@@ -1,0 +1,37 @@
+{
+  "name": "TweetDeck Enhancer",
+
+  "description": "Enhances TweetDeck with a fresh new look and new features",
+  "version": "1.0",
+
+  "permissions": [
+    "https://tweetdeck.com/*", "https://twimg.com/*", "https://twitter.com/*", "https://ryandolan123.com/*", "tabs"
+  ],
+
+  "content_scripts": [
+    {
+      "matches": ["https://tweetdeck.twitter.com/"/*, "chrome-extension://ebnkffpipigdoodlmaabjjmkokimeegb"*/],
+      "js": ["extension/TweetDeckEnhancerLoad.js"],
+      "run_at": "document_end"
+    },
+    {
+      "matches": ["https://tweetdeck.twitter.com/"/*, "chrome-extension://ebnkffpipigdoodlmaabjjmkokimeegb"*/],
+      "js": ["extension/TweetDeckEnhancerFix.js"],
+      "run_at": "document_start"
+    }
+  ],
+
+  "default_locale": "en_US",
+
+  "icons": {
+      "128": "AppIcon128.png",
+      "16": "AppIcon16.png",
+      "24": "AppIcon24.png",
+      "32": "AppIcon32.png",
+      "48": "AppIcon48.png"
+   },
+
+  "web_accessible_resources": ["resources","resources/app-dark.css","resources/app-light.css"],
+
+  "manifest_version": 2
+}
