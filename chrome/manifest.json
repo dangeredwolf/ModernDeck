@@ -2,7 +2,7 @@
   "name": "TweetDeck Enhancer",
 
   "description": "Enhances TweetDeck with a fresh new look and new features",
-  "version": "1.0",
+  "version": "3.0",
 
   "permissions": [
     "https://tweetdeck.com/*", "https://twimg.com/*", "https://twitter.com/*", "https://ryandolan123.com/*", "tabs"
@@ -24,14 +24,31 @@
   "default_locale": "en_US",
 
   "icons": {
-      "128": "AppIcon128.png",
       "16": "AppIcon16.png",
       "24": "AppIcon24.png",
       "32": "AppIcon32.png",
-      "48": "AppIcon48.png"
+      "48": "AppIcon48.png",
+      "64": "AppIcon64.png",
+      "128": "AppIcon128.png",
+      "256": "AppIcon256.png",
+      "512": "AppIcon512.png"
    },
 
-  "web_accessible_resources": ["resources","resources/app-dark.css","resources/app-light.css"],
+  "web_accessible_resources": [
+    "resources",
+    "resources/app-dark.css",
+    "resources/app-light.css",
+    "resources/TDEinject.js",
+    "resources/fonts",
+    "resources/fonts/Roboto300latin.woff2",
+    "resources/fonts/Roboto300latinext.woff2",
+    "resources/fonts/Roboto400latin.woff2",
+    "resources/fonts/Roboto400latinext.woff2",
+    "resources/fonts/Roboto500latin.woff2",
+    "resources/fonts/Roboto500latinext.woff2",
+    "resources/fonts/Roboto700latin.woff2",
+    "resources/fonts/Roboto700latinext.woff2"
+  ],
 
   "manifest_version": 2
 }

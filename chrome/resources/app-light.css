@@ -654,7 +654,7 @@ audio:not([controls]) {
 }
 
 html {
-  font-family:"RobotoDraft", "Roboto", "Helvetica Neue", Helvetica, Verdana, sans-serif;
+  font-family: "RobotoDraft", "", "Helvetica Neue", Helvetica, Verdana, sans-serif;
   -webkit-text-size-adjust:100%;
   -ms-text-size-adjust:100%;
   transition: 200ms all!important;
@@ -818,7 +818,7 @@ table {
 
 html {
   height:100%;
-  font-family:"RobotoDraft", "Roboto","Helvetica Neue",Helvetica,Verdana,sans-serif;
+  font-family: "RobotoDraft", "","Helvetica Neue",Helvetica,Verdana,sans-serif;
   font-weight:normal;
   font-size:14px;
   color:#333;
@@ -829,7 +829,7 @@ html {
 }
 
 html {
-  font-family:"RobotoDraft", "Roboto","Helvetica Neue",Helvetica,Verdana,sans-serif;
+  font-family: "RobotoDraft", "","Helvetica Neue",Helvetica,Verdana,sans-serif;
   font-weight:normal;
   color:#333
 }
@@ -1023,7 +1023,7 @@ abbr[title] {
 .txt-ellipsis {
   max-width:100%;
   vertical-align:bottom;
-  overflow:hidden;
+  /* overflow:hidden; */
   white-space:nowrap;
   word-wrap:normal;
   -ms-text-overflow:ellipsis;
@@ -1409,7 +1409,7 @@ abbr[title] {
 }
 
 .nbfc {
-  overflow:hidden;
+  /* overflow:hidden; */
   word-break:break-word;
   word-wrap:break-word
 }
@@ -3963,8 +3963,7 @@ button.js-toggle-button.btn.js-toggle-users.is-selected:hover {
 }
 
 .is-inverted-dark .scroll-conversation {
-  background:#eaeaea
-}
+  background: #EFEFEF;}
 
 .is-inverted-dark .tweet-detail-reply .stream-item {
   /* border-bottom-color:#d1d1d1 */
@@ -4720,7 +4719,7 @@ a.mdl-dismiss-media>i.icon.icon-close {
 
 .btn-alt:hover {
   color: #6F6F6F;
-  background-color: #F4F4F4;}
+  background-color: #E4E4E4;}
 
 .btn-alt:focus {
   color: #767676;
@@ -5290,7 +5289,7 @@ a.link-complex>span {
     display: inline;
     content: "Tweet";
     font-size: 16px;
-    margin-left: -65px;
+    /* margin-left: -65px; */
     font-weight: 400;
     text-align:left;
 }
@@ -5414,8 +5413,11 @@ a.link-complex>span {
 
 span.drawer-header-title.block.drawer-column-header-title {
   color: #fff;
-  float: left;
+  /* float: right; */
   font-size: 16px;
+  width: 100%;
+  text-align: center;
+  margin-left: -16px;
 }
 
 i.icon.icon-user-switch.icon-large.position-rel {
@@ -5622,6 +5624,10 @@ a.pull-left.margin-txs.txt-mute.txt-small.link-complex:hover {
   /* border-bottom:2px solid #c5c5c5; */
   background-color:transparent;
   color:inherit
+;
+  box-shadow: 0 1px 10px rgba(17,17,17,0.25);
+  /* overflow: visible; */
+  z-index: 500;
 }
 
 .column-title {
@@ -7217,6 +7223,8 @@ li.js-typeahead-item.js-typeahead-recent-search-item.list-item.is-actionable.ite
   border-width:0px 0;
   margin-top:-1px;
   background:#eee
+;
+  box-shadow: 0 1px 10px rgba(17,17,17,0.175);
 }
 
 .tweet-detail-wrapper .stream-item {
@@ -7601,10 +7609,11 @@ i.icon.icon-move {
 }
 
 .app-nav-tab.is-selected {
-  color: #fff;}
+  color: #E4E4E4;
+}
 
 .app-nav-tab.is-selected:hover {
-  color:#292f33
+  color:#fff
 }
 
 .app-nav-tab .icon {
@@ -9397,16 +9406,11 @@ i.icon.icon-clear-timeline {
 }
 
 .lst-profile.l-grouped {
-  border-top:1px solid #d2d2d2
+  border-top:0px solid #d2d2d2
 }
 
 #general_settings>.mdl-links>span.inline-block:after {
-  content: " TweetDeck Enhancer 3.0 Beta 5 by @ryandolan123";
-  padding-left: 8px;
-}
-
-.ryandolan123TweetDeckEnhancerExtensionChrome #general_settings>.mdl-links>span.inline-block:after {
-  content: " TweetDeck Enhancer 3.0 Beta 5 by @ryandolan123 (Chrome Extension Version)"!important;
+  content: " TweetDeck Enhancer 3.0 by @ryandolan123";
   padding-left: 8px;
 }
 
@@ -9830,7 +9834,7 @@ input#file-upload-input {
   transition:margin,.25s
 ;
   left: 27%;
-  width: 85%;
+  width: 65%;
 }
 
 .application:not(.is-condensed) .compose-title {
@@ -9860,7 +9864,7 @@ input#file-upload-input {
   width: 100%;
   /* margin: 0; */
   padding: 0;
-  margin-left: -45px;
+  margin-left: -25px;
 }
 
 .compose-content {
@@ -10142,7 +10146,7 @@ input#file-upload-input {
   -moz-transition-delay:0;
   -o-transition-delay:0;
   transition-delay:0;
-  background-color: #1484DD;
+  background-color: rgba(20, 132, 221, 1);
   cursor:default;
   height:165px;
   overflow:hidden;
@@ -10290,7 +10294,7 @@ input#file-upload-input {
 }
 
 .is-inline-inactive {
-  height:0
+  height:0;
 }
 
 .tweet-detail-wrapper .is-inline-inactive {
@@ -13353,6 +13357,21 @@ a.account-link[href="https://twitter.com/Leafizzle"] .fullname.txt-ellipsis:afte
     box-shadow: none;
     padding-right:3px;
     padding-bottom: 3px;
+}
+
+.inline-reply.is-inline-inactive {
+  transition:all 200ms!important;
+  background-color:rgba(20, 132, 221, 0)!important;
+  height:45px;
+}
+
+.is-actionable .inline-reply.is-inline-inactive {
+  height:0px;
+}
+
+.inline-reply {
+  transition:all 200ms!important;
+  background-color:rgba(20, 132, 221, 1)!important;
 }
 
 
