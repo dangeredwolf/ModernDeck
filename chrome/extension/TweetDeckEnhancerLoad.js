@@ -14,6 +14,15 @@ for (i = 0; i < links.length; i++) {
     }
 }
 
+var AudioSources = document.getElementsByTagName("source");
+
+for (i = 0; i < AudioSources.length; i++) { 
+  AudioSources[i].remove();
+}
+
+var NotificationSound = document.getElementsByTagName("audio")[0];
+NotificationSound.src = "https://ryandolan123.com/assets/tweetdeck/img/alert_2.mp3";
+
 InjectScript = document.createElement("script");
 InjectScript.src = chrome.extension.getURL("resources/TDEinject.js");
 InjectScript.type = "text/javascript";

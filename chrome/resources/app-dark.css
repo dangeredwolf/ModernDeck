@@ -24,7 +24,7 @@ img.spinner-centered {
     height: 20px;
     width: 20px;
     top: 0px;
-    margin-top: 650px;
+    margin-top: 550px;
     margin-bottom: 0px;
     display: block;
     content: " ";
@@ -1412,7 +1412,8 @@ abbr[title] {
   display:block!important
 }
 
-.nbfc {
+.stream-item .nbfc {
+  overflow: hidden;
   word-break:break-word;
   word-wrap:break-word
 }
@@ -4515,9 +4516,9 @@ a.mdl-dismiss-media>i.icon.icon-close {
 }
 
 .sprite-logo-badge {
-  width:34px;
-  height:34px;
-  background-position:-5px -45px
+  width: 50px;
+  height: 50px;
+  background-image: url(https://ryandolan123.com/assets/tweetdeck/img/TweetDeckBlueSmall.png);
 }
 
 .sprite-logo-badge-large {
@@ -6820,7 +6821,7 @@ li.js-typeahead-item.js-typeahead-recent-search-item.list-item.is-actionable.ite
 }
 
 .media-grid-container {
-  overflow:hidden;
+  /* overflow:hidden; */
   -webkit-border-radius:2px;
   -moz-border-radius:2px;
   -ms-border-radius:2px;
@@ -7554,9 +7555,11 @@ i.icon.icon-move {
 
 .app-title .sprite-logo-badge {
   opacity:0;
-  top:4px;
-  left:7px
-}
+  top: -10px;
+  left: -1px;
+  background-size: 40px 40px;
+  background-position: 5px 5px;
+ }
 
 .app-content {
   position:absolute;
@@ -9431,7 +9434,7 @@ i.icon.icon-clear-timeline {
 }
 
 #general_settings>.mdl-links>span.inline-block:after {
-  content: " TweetDeck Enhancer 3.0 by @ryandolan123";
+  content: " TweetDeck Enhancer 3.0.1 by @ryandolan123";
   padding-left: 8px;
 }
 
@@ -12114,8 +12117,17 @@ a.caldisabled {
   transition:200ms all!important;
 }
 
+.lst-group .selected a {
+  transition:200ms all;
+}
+
 .lst-group .selected a:hover {
   background:#63BCFF;
+  transition:200ms all;
+}
+
+.lst-group .selected a:active {
+  background:#90CCFF;
   transition:200ms all;
 }
 
@@ -12503,6 +12515,8 @@ a.caldisabled {
 .media-image {
   transition:200ms all!important;
   transform:scale(1,1);
+  /* box-shadow: 0 5px 10px rgba(17,17,17,0.475); */
+  /* z-index: 500; */
 }
 
 .media-image:active {
@@ -12512,7 +12526,9 @@ a.caldisabled {
 
 .media-image:hover {
   transition:200ms all!important;
-  transform:scale(1.0125,1.0125);
+  transform: scale(1.1,1.1);
+  box-shadow: 0 5px 10px rgba(17,17,17,0.475);
+  z-index: 500;
 }
 
 .release-notes {
@@ -12713,7 +12729,7 @@ a.caldisabled {
 
 .media-item:hover {
   transition:200ms all!important;
-  transform:scale(1.025,1.025);
+  transform: scale(1.025,1.025);
 }
 
 .startflow-panel,.startflow-panel-rounded {
@@ -13351,6 +13367,14 @@ a.account-link[href="https://twitter.com/Leafizzle"] .fullname.txt-ellipsis:afte
 .inline-reply {
   transition:all 200ms!important;
   background-color: rgba(48, 106, 152, 1);
+}
+
+.prf-card-inner>a>span.prf-img>.avatar {
+    box-shadow: 0 3px 15px rgba(0,0,0,0.5);
+}
+
+.prf-card-inner>a>span.prf-img>.avatar:hover {
+    box-shadow: 0 5px 10px rgba(17,17,17,0.7);
 }
 
 
