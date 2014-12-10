@@ -10,18 +10,16 @@
 
   "content_scripts": [
     {
-      "matches": ["https://tweetdeck.twitter.com/"/*, "chrome-extension://ebnkffpipigdoodlmaabjjmkokimeegb"*/],
+      "matches": ["https://tweetdeck.twitter.com/"],
       "js": ["extension/TweetDeckEnhancerLoad.js"],
       "run_at": "document_end"
     },
     {
-      "matches": ["https://tweetdeck.twitter.com/"/*, "chrome-extension://ebnkffpipigdoodlmaabjjmkokimeegb"*/],
+      "matches": ["https://tweetdeck.twitter.com/"],
       "js": ["extension/TweetDeckEnhancerFix.js"],
       "run_at": "document_start"
     }
   ],
-
-  "default_locale": "en_US",
 
   "icons": {
       "16": "AppIcon16.png",
