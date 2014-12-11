@@ -297,8 +297,7 @@ img.spinner-centered {
 }
 
 .txt-r-deep-gray {
-  color:#8899a6
-}
+  color: #A4A4A4;}
 
 .txt-r-dark-gray {
   color:#7FB6DB
@@ -660,7 +659,7 @@ audio:not([controls]) {
 }
 
 html {
-  font-family:"RobotoDraft", "Roboto", "Helvetica Neue", Helvetica, sans-serif;
+  font-family: "RobotoDraft", "Helvetica Neue", Helvetica, sans-serif;
   -webkit-text-size-adjust:100%;
   -ms-text-size-adjust:100%;
   transition: 200ms all!important;
@@ -817,14 +816,14 @@ table {
 }
 
 .os-windows {
-  font-family:"RobotoDraft", "Roboto", "Helvetica Neue",Helvetica,Verdana,sans-serif;
+  font-family:"RobotoDraft", "Helvetica Neue",Helvetica,Verdana,sans-serif;
   font-weight:normal;
   text-rendering:auto
 }
 
 html {
   height:100%;
-  font-family:"RobotoDraft",  "Roboto", "Helvetica Neue",Helvetica,Verdana,sans-serif;
+  font-family: "RobotoDraft", "Helvetica Neue",Helvetica,Verdana,sans-serif;
   font-weight:400;
   font-size:14px;
   font-weight:normal;
@@ -836,13 +835,13 @@ html {
 }
 
 html {
-  font-family:"RobotoDraft", "Roboto", "Helvetica Neue",Helvetica,Verdana,sans-serif;
+  font-family:"RobotoDraft","Helvetica Neue",Helvetica,Verdana,sans-serif;
   font-weight:normal;
   color:#ddd
 }
 
 .is-inverted-dark {
-  font-family:"RobotoDraft", "Roboto", "Helvetica Neue",Helvetica,Verdana,sans-serif;
+  font-family:"RobotoDraft", "Helvetica Neue",Helvetica,Verdana,sans-serif;
   font-weight:normal;
 }
 
@@ -5292,7 +5291,7 @@ a.link-complex>span {
     display: inline;
     content: "Tweet";
     font-size: 16px;
-    margin-left: -65px;
+    /* margin-left: -65px; */
     font-weight: 400;
     text-align:left;
 }
@@ -6224,10 +6223,44 @@ a.js-column-back.link-complex:active {
   -webkit-animation: none!important;
 }
 
-@-webkit-keyframes popcomesthetweetsview {
+/*@-webkit-keyframes popcomesthetweetsview {
     0% {padding-top: 1000%;}
     50% {padding-top: 1000%;}
     100% {padding-top: 0%;}
+}*/
+
+@-webkit-keyframes popcomesthetweetsview {
+  0%, 60%, 75%, 90%, 100% {
+    -webkit-transition-timing-function: cubic-bezier(0.215, 0.610, 0.655, 1.000);
+            transition-timing-function: cubic-bezier(0.215, 0.610, 0.655, 1.000);
+  }
+
+  0% {
+    opacity: 1;
+    -webkit-transform: translate3d(0, 3000px, 0);
+            transform: translate3d(0, 3000px, 0);
+  }
+
+  60% {
+    opacity: 1;
+    -webkit-transform: translate3d(0, -20px, 0);
+            transform: translate3d(0, -20px, 0);
+  }
+
+  75% {
+    -webkit-transform: translate3d(0, 10px, 0);
+            transform: translate3d(0, 10px, 0);
+  }
+
+  90% {
+    -webkit-transform: translate3d(0, -5px, 0);
+            transform: translate3d(0, -5px, 0);
+  }
+
+  100% {
+    -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+  }
 }
 
 @-webkit-keyframes popcomestheview {
@@ -6242,13 +6275,6 @@ a.js-column-back.link-complex:active {
     100% {opacity: 1; -webkit-transform: scale(1,1); }
 }
 
-@-webkit-keyframes new {
-    0% {height:0px; }
-    100% {height:10px;}
-}
-
-/* -webkit-animation: new 0.5s 1; */ 
-
 /* @-webkit-keyframes popgoesthemodalwindow {
   0% {opacity: 0; -webkit-transform: scale(0.3,0.3); }
     15% {opacity: 0; -webkit-transform: scale(0.3,0.3); }
@@ -6256,12 +6282,19 @@ a.js-column-back.link-complex:active {
     100% {opacity: 1; -webkit-transform: scale(1,1); }
 } */
 
-@-webkit-keyframes popgoesthemodalwindow {
+/*@-webkit-keyframes popgoesthemodalwindow {
   0% {opacity: 0; -webkit-transform: scale(1.5,1.5); }
     15% {opacity: 0; -webkit-transform: scale(1.5,1.5); }
     55% {opacity: 0.5;}
-    /*85% {opacity: 0.95;}*/
     100% {opacity: 1; -webkit-transform: scale(1,1); }
+}*/
+
+@-webkit-keyframes popgoesthemodalwindow {
+  0% {opacity: 0; -webkit-transform: scale(1.5,1.5) perspective(400px) rotate3d(1,0,0,20deg); }
+    /*15% {opacity: 0; -webkit-transform: scale(1.5,1.5) perspective(400px) rotate3d(1,0,0,20deg); }*/
+    /*55% {opacity: 0.5; -webkit-transform: scale(1.2,1.2) perspective(400px) rotate3d(1,0,0,5deg); }*/
+    /*85% {opacity: 0.95;}*/
+    100% {opacity: 1; -webkit-transform: scale(1,1); perspective(400px) rotate3d(1,0,0,0deg)}
 }
 
 @-webkit-keyframes popgoesthepanel {
@@ -6289,9 +6322,77 @@ a.js-column-back.link-complex:active {
     100% {background: rgb(17,17,17,0.6);opacity:0.95;}
 }
 
+@-webkit-keyframes new {
+    0% {height:0px; }
+    100% {height:10px;}
+}
+
+/* -webkit-animation: new 0.5s 1; */ 
+
+/* @-webkit-keyframes popgoesthemodalwindow {
+  0% {opacity: 0; -webkit-transform: scale(0.3,0.3); }
+    15% {opacity: 0; -webkit-transform: scale(0.3,0.3); }
+    55% {opacity: 0.5;}
+    100% {opacity: 1; -webkit-transform: scale(1,1); }
+} */
+
+/*@-webkit-keyframes popgoesthemodalwindow {
+  0% {opacity: 0; -webkit-transform: scale(1.5,1.5); }
+    15% {opacity: 0; -webkit-transform: scale(1.5,1.5); }
+    55% {opacity: 0.5;}
+    100% {opacity: 1; -webkit-transform: scale(1,1); }
+}*/
+
+@-webkit-keyframes popgoesthemodalwindow {
+  0% {opacity: 0; -webkit-transform: scale(1.5,1.5) perspective(400px) rotate3d(1,0,0,20deg); }
+    /*15% {opacity: 0; -webkit-transform: scale(1.5,1.5) perspective(400px) rotate3d(1,0,0,20deg); }*/
+    /*55% {opacity: 0.5; -webkit-transform: scale(1.2,1.2) perspective(400px) rotate3d(1,0,0,5deg); }*/
+    /*85% {opacity: 0.95;}*/
+    100% {opacity: 1; -webkit-transform: scale(1,1); perspective(400px) rotate3d(1,0,0,0deg)}
+}
+
+@-webkit-keyframes popgoesthepanel {
+    0% {opacity: 0; -webkit-transform: scale(0.3,0.3); }
+    100% {opacity: 1; -webkit-transform: scale(1,1); }
+}
+
+@-webkit-keyframes fadein {
+    0% {opacity: 0}
+    100% {opacity: 1}
+}
+
+@-webkit-keyframes hellocolumns {
+    0% {opacity: 0;}
+    100% {opacity: 1;}
+}
+
+@-webkit-keyframes sidebaranimation {
+    0% {margin-left: -46px;}
+    100% {margin-left: 0px;}
+}
+
+@-webkit-keyframes backgroundanimation {
+    0% {background: rgb(17,17,17,0);opacity:0;}
+    100% {background: rgb(17,17,17,0.6);opacity:0.95;}
+}
+
+tweet-detail-reply .stream-item.is-actionable {
+  -webkit-animation: popgoesthetweet 0.4s 1!important;
+  transition: 300ms all;
+}
+
+.app-columns-container .stream-item.is-actionable {
+  -webkit-animation: popgoesthetweet 0.4s 1!important;
+  transition: 300ms all;
+}
+
 .stream-item {
   -webkit-animation: popgoesthetweet 0.4s 1;
   transition: 300ms all;
+}
+
+.js-column.will-animate .stream-item.is-actionable {
+  -webkit-animation:none;
 }
 
 .draggable-dragging .stream-item {
@@ -9434,7 +9535,7 @@ i.icon.icon-clear-timeline {
 }
 
 #general_settings>.mdl-links>span.inline-block:after {
-  content: " TweetDeck Enhancer 3.0.1 by @ryandolan123";
+  content: " TweetDeck Enhancer 3.1 by @ryandolan123";
   padding-left: 8px;
 }
 
@@ -13100,6 +13201,17 @@ a.caldisabled {
     left: 44%;
 }
 
+.mdl .column-title-back:after {
+    content: "Tweet";
+    font-weight: 500;
+    color: #000;
+    margin-top: -43px;
+    position: absolute;
+    text-align: center;
+    float: right;
+    left: 44%;
+}
+
 .js-tweet-social-proof-back:after {
     content: "Interactions";
     font-weight: 400;
@@ -13375,6 +13487,10 @@ a.account-link[href="https://twitter.com/Leafizzle"] .fullname.txt-ellipsis:afte
 
 .prf-card-inner>a>span.prf-img>.avatar:hover {
     box-shadow: 0 5px 10px rgba(17,17,17,0.7);
+}
+
+.js-column-social-proof .column-content {
+    -webkit-animation: popcomesthetweetsview 0.7s 1;
 }
 
 
