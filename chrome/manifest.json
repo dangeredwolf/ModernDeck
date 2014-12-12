@@ -37,6 +37,7 @@
     "resources/app-dark.css",
     "resources/app-light.css",
     "resources/TDEinject.js",
+    "resources/default-debug.js",
     "resources/fonts",
     "resources/fonts/Roboto300latin.woff2",
     "resources/fonts/Roboto300latinext.woff2",

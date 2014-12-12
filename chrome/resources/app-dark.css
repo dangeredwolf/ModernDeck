@@ -868,7 +868,7 @@ body {
   right:0;
   overflow:hidden;
   background-color: #303236;
-  -webkit-animation: popgoesthemodalwindow 601ms;
+  -webkit-animation: popgoesthemodalwindow 600ms;
 }
 
 .is-application-animating {
@@ -3857,11 +3857,19 @@ to {
 }
 
 .is-inverted-dark .tweet-action,.is-inverted-dark .tweet-detail-action {
-  color:#ddd
+  color: #DBDBDB;
+}
+
+.is-inverted-dark .stream-item.is-actionable:hover .tweet-action,.is-inverted-dark .tweet-detail-action {
+  color: #aaa;
 }
 
 .is-inverted-dark .tweet-action:hover,.is-inverted-dark .tweet-detail-action:hover,.is-inverted-dark .tweet-action:focus,.is-inverted-dark .tweet-detail-action:focus,.is-inverted-dark .tweet-action:active,.is-inverted-dark .tweet-detail-action:active {
-  color:#111
+  color: #737373;
+}
+
+.is-inverted-dark .stream-item.is-actionable:hover .tweet-action:hover,.is-inverted-dark .stream-item.is-actionable:hover .tweet-detail-action:hover,.is-inverted-dark .stream-item.is-actionable:hover .tweet-action:focus,.is-inverted-dark .stream-item.is-actionable:hover .tweet-detail-action:focus,.is-inverted-dark .stream-item.is-actionable:hover .tweet-action:active,.is-inverted-dark .stream-item.is-actionable:hover .tweet-detail-action:active {
+  color: #737373;
 }
 
 .is-inverted-dark .with-drop-shadow:after {
@@ -4787,17 +4795,17 @@ a.mdl-dismiss-media>i.icon.icon-close {
 
 .btn-positive:hover,.btn-positive-alt:hover,.btn-fav.s-favorited:hover,.s-following .follow-btn:hover {
   color:#fff;
-  background-color:#50a5e6
+  background-color: #009AFF;
 }
 
 .btn-positive:focus,.btn-positive-alt:focus,.btn-fav.s-favorited:focus,.s-following .follow-btn:focus {
   color:#fff;
-  background-color:#50a5e6
+  background-color: #4DB2FF;
 }
 
 .btn-positive:active,.btn-positive-alt:active,.btn-fav.s-favorited:active,.s-following .follow-btn:active,.btn-positive.is-selected,.is-selected.btn-positive-alt,.is-selected.btn-fav.s-favorited,.s-following .is-selected.follow-btn {
   color:#fff;
-  background-color:#3b94d9;
+  background-color: #0782E2;
   box-shadow:none
 }
 
@@ -6217,6 +6225,7 @@ a.js-column-back.link-complex:active {
 
 .js-chirp-container {
   -webkit-animation: popcomesthetweetsview 0.85s 1;
+  perspective: 1000px;
 }
 
 .draggable-dragging .js-chirp-container {
@@ -6289,12 +6298,105 @@ a.js-column-back.link-complex:active {
     100% {opacity: 1; -webkit-transform: scale(1,1); }
 }*/
 
+@-webkit-keyframes popcomesthetweetsview {
+  0%, 60%, 75%, 90%, 100% {
+    -webkit-transition-timing-function: cubic-bezier(0.215, 0.610, 0.655, 1.000);
+            transition-timing-function: cubic-bezier(0.215, 0.610, 0.655, 1.000);
+  }
+
+  0% {
+    opacity: 1;
+    -webkit-transform: translate3d(0, 3000px, 0);
+            transform: translate3d(0, 3000px, 0);
+  }
+
+  60% {
+    opacity: 1;
+    -webkit-transform: translate3d(0, -20px, 0);
+            transform: translate3d(0, -20px, 0);
+  }
+
+  75% {
+    -webkit-transform: translate3d(0, 10px, 0);
+            transform: translate3d(0, 10px, 0);
+  }
+
+  90% {
+    -webkit-transform: translate3d(0, -5px, 0);
+            transform: translate3d(0, -5px, 0);
+  }
+
+  100% {
+    -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+  }
+}
+
+@-webkit-keyframes popcomestheview {
+    0% {margin-top: 100%;}
+    50% {margin-top: 100%;}
+    100% {margin-top: 0%;}
+}
+
+@-webkit-keyframes popgoesthetweet {
+    0% {opacity: 0; -webkit-transform: scale(0.3,0.3); }
+    50% {opacity: 0.3;}
+    100% {opacity: 1; -webkit-transform: scale(1,1); }
+}
+
+/* @-webkit-keyframes popgoesthemodalwindow {
+  0% {opacity: 0; -webkit-transform: scale(0.3,0.3); }
+    15% {opacity: 0; -webkit-transform: scale(0.3,0.3); }
+    55% {opacity: 0.5;}
+    100% {opacity: 1; -webkit-transform: scale(1,1); }
+} */
+
+/*@-webkit-keyframes popgoesthemodalwindow {
+  0% {opacity: 0; -webkit-transform: scale(1.5,1.5); }
+    15% {opacity: 0; -webkit-transform: scale(1.5,1.5); }
+    55% {opacity: 0.5;}
+    100% {opacity: 1; -webkit-transform: scale(1,1); }
+}*/
+
 @-webkit-keyframes popgoesthemodalwindow {
-  0% {opacity: 0; -webkit-transform: scale(1.5,1.5) perspective(400px) rotate3d(1,0,0,20deg); }
+  0% {opacity: 0; -webkit-transform: scale(2,2) perspective(400px) rotate3d(1,0,0,40deg); }
     /*15% {opacity: 0; -webkit-transform: scale(1.5,1.5) perspective(400px) rotate3d(1,0,0,20deg); }*/
     /*55% {opacity: 0.5; -webkit-transform: scale(1.2,1.2) perspective(400px) rotate3d(1,0,0,5deg); }*/
     /*85% {opacity: 0.95;}*/
     100% {opacity: 1; -webkit-transform: scale(1,1); perspective(400px) rotate3d(1,0,0,0deg)}
+}
+
+@-webkit-keyframes herecomesthetweetdetails {
+  0% {opacity: 0; -webkit-transform: scale(0.5,0.5) perspective(600px) rotate3d(1,0,0,-50deg); }
+    /*15% {opacity: 0; -webkit-transform: scale(1.5,1.5) perspective(400px) rotate3d(1,0,0,20deg); }*/
+    /*55% {opacity: 0.5; -webkit-transform: scale(1.2,1.2) perspective(400px) rotate3d(1,0,0,5deg); }*/
+    /*85% {opacity: 0.95;}*/
+    100% {opacity: 1; -webkit-transform: scale(1,1); perspective(600px) rotate3d(1,0,0,0deg)}
+}
+
+@-webkit-keyframes herecomesthetweetdetailsxl {
+  0% {opacity: 0; -webkit-transform: scale(1.65,1.65) perspective(600px) rotate3d(1,0,0,-70deg); }
+    /*15% {opacity: 0; -webkit-transform: scale(1.5,1.5) perspective(400px) rotate3d(1,0,0,20deg); }*/
+    /*55% {opacity: 0.5; -webkit-transform: scale(1.2,1.2) perspective(400px) rotate3d(1,0,0,5deg); }*/
+    /*85% {opacity: 0.95;}*/
+    100% {opacity: 1; -webkit-transform: scale(1,1); perspective(0px) rotate3d(1,0,0,0deg)}
+
+}
+
+@-webkit-keyframes herecomesthetweetdetailssmall {
+  0% {opacity: 0; -webkit-transform: scale(0.5,0.5) perspective(600px) rotate3d(1,0,0,-90deg); }
+    /*15% {opacity: 0; -webkit-transform: scale(1.5,1.5) perspective(400px) rotate3d(1,0,0,20deg); }*/
+    /*55% {opacity: 0.5; -webkit-transform: scale(1.2,1.2) perspective(400px) rotate3d(1,0,0,5deg); }*/
+    /*85% {opacity: 0.95;}*/
+    100% {opacity: 1; -webkit-transform: scale(1,1); perspective(600px) rotate3d(1,0,0,0deg)}
+}
+
+@-webkit-keyframes herecomesthetweetdetailssmallbefore {
+  0% {opacity: 0; -webkit-transform: scale(0.5,0.5) perspective(600px) rotate3d(1,0,0,90deg); }
+    /*15% {opacity: 0; -webkit-transform: scale(1.5,1.5) perspective(400px) rotate3d(1,0,0,20deg); }*/
+    /*55% {opacity: 0.5; -webkit-transform: scale(1.2,1.2) perspective(400px) rotate3d(1,0,0,5deg); }*/
+    /*85% {opacity: 0.95;}*/
+    100% {opacity: 1; -webkit-transform: scale(1,1); perspective(600px) rotate3d(1,0,0,0deg)}
 }
 
 @-webkit-keyframes popgoesthepanel {
@@ -6326,7 +6428,6 @@ a.js-column-back.link-complex:active {
     0% {height:0px; }
     100% {height:10px;}
 }
-
 /* -webkit-animation: new 0.5s 1; */ 
 
 /* @-webkit-keyframes popgoesthemodalwindow {
@@ -6382,7 +6483,7 @@ tweet-detail-reply .stream-item.is-actionable {
 }
 
 .app-columns-container .stream-item.is-actionable {
-  -webkit-animation: popgoesthetweet 0.4s 1!important;
+  -webkit-animation: herecomesthetweetdetails 0.4s 1!important;
   transition: 300ms all;
 }
 
@@ -6401,6 +6502,11 @@ tweet-detail-reply .stream-item.is-actionable {
 
 .stream-item.is-actionable:hover {
   background: rgba(0, 0, 0, 0.15);
+  transition: 300ms all;
+}
+
+.mdl-content .stream-item.is-actionable:hover {
+  background: rgba(0, 0, 0, 0.075);
   transition: 300ms all;
 }
 
@@ -7267,11 +7373,13 @@ li.js-typeahead-item.js-typeahead-recent-search-item.list-item.is-actionable.ite
   border:solid #333;
   border-width:0px 0;
   margin-top:-1px;
-  background:#323232
+  background:#323232;
+  perspective: 500px;
 }
 
 .tweet-detail-wrapper .stream-item {
-  border:0
+  border:0;
+  -webkit-animation: herecomesthetweetdetails 0.4s 1;
 }
 
 .detail-divider {
@@ -7989,8 +8097,10 @@ i.icon.icon-move {
   display:block
 }
 
-.app-search-tweet-results {
-  height:100%
+.app-search-tweet-results .column-header-temp {
+  height:0;
+  opacity: 0;
+  display: none;
 }
 
 .app-search-tweet-results {
@@ -9191,8 +9301,7 @@ i.icon.icon-clear-timeline {
   border-radius:2px;
   background:#ebebeb;
   background-clip:padding-box;
-  -webkit-background-clip:padding-box
-  -webkit-animation: popgoesthetweet 0.4s 1;
+  -webkit-background-clip:padding-box;
 }
 
 .modal-content-with-border {
@@ -9224,6 +9333,12 @@ i.icon.icon-clear-timeline {
   -webkit-animation: popgoesthemodalwindow 0.33s 1;
   opacity: 1;
   border-radius: 5px;
+  transform-origin: 50% 60%;
+  -webkit-animation-timing-function: cubic-bezier(0.075,.885,.32,1);
+}
+
+.js-mediatable .mdl {
+  -webkit-animation: herecomesthetweetdetailsxl 0.3s 1;
 }
 
 .mdl-header {
@@ -9353,7 +9468,8 @@ i.icon.icon-clear-timeline {
 }
 
 .mdl-column-sml {
-  width:200px
+  width:200px;
+  border: 1px solid #F7F7F7;
 }
 
 .mdl-column-lrg {
@@ -11052,7 +11168,8 @@ textarea,input.l-fullwidth {
 }
 
 .with-emphasis:disabled {
-  border-color:#ccc
+  border-color:#ccc;
+  border: none;
 }
 
 ::placeholder input::placeholder,textarea::placeholder {
@@ -12779,10 +12896,20 @@ a.caldisabled {
   display:block;
   margin-top:-55px;
   max-width:100%;
-  height:auto;
+  height: 290px;
   -webkit-box-shadow:0 2px 19px 5px rgba(17,17,17,0.25);
   -moz-box-shadow:0 2px 19px 5px rgba(17,17,17,0.25);
   box-shadow:0 2px 19px 5px rgba(17,17,17,0.25)
+;
+  background: url(https://ryandolan123.com/assets/tweetdeck/img/TweetDeck.png) no-repeat;
+  padding-left: 402px;
+  /* left: 100%; */
+  margin-right: -20px;
+  margin-left: -200px!important;
+  margin-top: -180px!important;
+  box-sizing: border-box;
+  width: 300px;
+  box-shadow: none!important;
 }
 
 .toggle-login-type {
@@ -13424,8 +13551,10 @@ button.js-send-tweet-button.js-spinner-button.js-show-tip.btn.btn-positive.btn-e
 .link-clean[href="https://twitter.com/MrsTekky"]>.fullname:after,
 .link-clean[href="https://twitter.com/SwiftOnSecurity"]>.fullname:after,
 .link-clean[href="https://twitter.com/furaffinity"]>.fullname:after,
-.link-clean[href="https://twitter.com/kernymi"]>.fullname:after,
-.link-clean[href="https://twitter.com/Leafizzle"]>.fullname:after
+.link-clean[href="https://twitter.com/Leafizzle"]>.fullname:after,
+.link-clean[href="https://twitter.com/Arcanine_ebooks"]>.fullname:after,
+.link-clean[href="https://twitter.com/TDEnhancer"]>.fullname:after,
+.link-clean[href="https://twitter.com/WilliamcaFox"]>.fullname:after
 
 {
     background-image:url(https://ryandolan123.com/tweetdeck-web/web/assets/global/backgrounds/td_sprite_sheet_2013_@1x.png);
@@ -13453,7 +13582,10 @@ a.account-link[href="https://twitter.com/MrsTekky"] .fullname.txt-ellipsis:after
 a.account-link[href="https://twitter.com/SwiftOnSecurity"] .fullname.txt-ellipsis:after,
 a.account-link[href="https://twitter.com/furaffinity"] .fullname.txt-ellipsis:after,
 a.account-link[href="https://twitter.com/kernymi"] .fullname.txt-ellipsis:after,
-a.account-link[href="https://twitter.com/Leafizzle"] .fullname.txt-ellipsis:after
+a.account-link[href="https://twitter.com/Leafizzle"] .fullname.txt-ellipsis:after,
+a.account-link[href="https://twitter.com/Arcanine_ebooks"] .fullname.txt-ellipsis:after,
+a.account-link[href="https://twitter.com/TDEnhancer"] .fullname.txt-ellipsis:after,
+a.account-link[href="https://twitter.com/WilliamcaFox"] .fullname.txt-ellipsis:after
 {
     background-image:url(https://ryandolan123.com/tweetdeck-web/web/assets/global/backgrounds/td_sprite_sheet_2013_@1x.png);
     content:"...";
@@ -13493,6 +13625,71 @@ a.account-link[href="https://twitter.com/Leafizzle"] .fullname.txt-ellipsis:afte
     -webkit-animation: popcomesthetweetsview 0.7s 1;
 }
 
+.link-clean[href="https://twitter.com/TDEnhancer"] .avatar {
+    box-shadow: none!important;
+    border-radius: 0px!important;
+}
+
+.account-settings-row[data-user-id="2927859037"] .avatar {
+    box-shadow: none!important;
+    border-radius: 0px!important;
+}
+
+.js-account-item[data-account-key="twitter:2927859037"] .avatar {
+    box-shadow: none!important;
+    border-radius: 0px!important;
+}
+
+.account-link[href="https://twitter.com/TDEnhancer"] .avatar {
+    box-shadow: none!important;
+    border-radius: 0px!important;
+}
+
+.item-img[href="https://twitter.com/TDEnhancer"] .avatar {
+    box-shadow: none!important;
+    border-radius: 0px!important;
+}
+
+.js-typeahead-user-item[data-user-id="2927859037"] .avatar {
+    box-shadow: none!important;
+    border-radius: 0px!important;
+}
+
+.js-accounts-column-holder .startflow-link {
+    padding-bottom: 15px;
+    color: #fff;
+}
+
+.js-accounts-column-holder .startflow-link:hover {
+    color: rgba(255, 255, 255, 0.75);
+}
+
+.js-accounts-column-holder .startflow-link:active {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+div.tweet-detail-reply.js-replies-before article.stream-item {
+  border:0;
+  -webkit-animation: herecomesthetweetdetailssmallbefore 0.4s 1!important;
+}
+
+div.js-replies-to.replies-after article.stream-item {
+  border:0;
+  -webkit-animation: herecomesthetweetdetailssmall 0.4s 1!important;
+}
+
+.js-replies-before .tweet-detail-reply {
+    perspective: 600px;
+}
+
+.js-replies-to .tweet-detail-reply {
+    perspective: 600px;
+}
+
+.js-app.application {
+  -webkit-animation: popgoesthemodalwindow 0.5s!important;
+  -webkit-animation-timing-function: ease-out;
+}
 
 /* DEMO */
 
