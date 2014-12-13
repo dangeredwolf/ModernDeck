@@ -866,7 +866,7 @@ body {
 
 .js-app.application {
   -webkit-animation: popgoesthemodalwindow 0.5s!important;
-  -webkit-animation-timing-function: ease-out;
+  /* -webkit-animation-timing-function: ease-out; */
 }
 
 .is-application-animating {
@@ -5408,6 +5408,8 @@ a.link-complex>span {
   left:0;
   bottom:0;
   width:100%
+;
+  perspective: 500px;
 }
 
 span.drawer-header-title.block.drawer-column-header-title {
@@ -6319,8 +6321,16 @@ a.js-column-back.link-complex:active {
     100% {opacity: 1; -webkit-transform: scale(1,1); }
 }*/
 
-@-webkit-keyframes popgoesthemodalwindow {
+/*@-webkit-keyframes popgoesthemodalwindow {
   0% {opacity: 0; -webkit-transform: scale(2,2) perspective(400px) rotate3d(1,0,0,40deg); }
+    /*15% {opacity: 0; -webkit-transform: scale(1.5,1.5) perspective(400px) rotate3d(1,0,0,20deg); }*/
+    /*55% {opacity: 0.5; -webkit-transform: scale(1.2,1.2) perspective(400px) rotate3d(1,0,0,5deg); }*/
+    /*85% {opacity: 0.95;} * /
+    100% {opacity: 1; -webkit-transform: scale(1,1); perspective(400px) rotate3d(1,0,0,0deg)}
+}*/
+
+@-webkit-keyframes popgoesthemodalwindow {
+  0% {opacity: 0.5; -webkit-transform: scale(1.65,1.65) perspective(400px) rotate3d(1,0,0,40deg); }
     /*15% {opacity: 0; -webkit-transform: scale(1.5,1.5) perspective(400px) rotate3d(1,0,0,20deg); }*/
     /*55% {opacity: 0.5; -webkit-transform: scale(1.2,1.2) perspective(400px) rotate3d(1,0,0,5deg); }*/
     /*85% {opacity: 0.95;}*/
@@ -6390,7 +6400,7 @@ a.js-column-back.link-complex:active {
 
 @-webkit-keyframes backgroundanimation {
     0% {background: rgb(17,17,17,0);opacity:0;}
-    100% {background: rgb(17,17,17,0.6);opacity:0.95;}
+    100% {background: rgb(17,17,17,0.6);opacity:1;}
 }
 
 @-webkit-keyframes new {
@@ -6416,7 +6426,7 @@ a.js-column-back.link-complex:active {
 }
 
 .app-columns-container .stream-item.is-actionable {
-  /* -webkit-animation: herecomesthetweet 0.4s 1!important; */
+  -webkit-animation: herecomesthetweet 0.4s 1!important;
   transition: 300ms all;
 }
 
@@ -9122,6 +9132,7 @@ i.icon.icon-clear-timeline {
   background:rgba(17,17,17,0.6);
   opacity:1;
   -webkit-animation: backgroundanimation 0.25s 1;
+  /* -webkit-animation-timing-function: cubic-bezier(0.175,.885,.32,1); */
 }
 
 .ovl-plain:before,.ovl:before,.overlay:before,.ovl:before,.overlay:before {
@@ -9214,11 +9225,12 @@ i.icon.icon-clear-timeline {
   border-radius: 5px;
   transition: 200ms box-shadow;
    transform-origin: 50% 60%;
-   -webkit-animation-timing-function: cubic-bezier(0.075,.885,.32,1);
+   
+  -webkit-animation-timing-function: cubic-bezier(0.175,.885,.32,1);
 }
 
 .js-mediatable .mdl {
-  -webkit-animation: herecomesthetweetdetailsxl 0.44s 1;
+  -webkit-animation: herecomesthetweetdetailsxl 0.3s 1;
   -webkit-animation-timing-function: cubic-bezier(0.175,.885,.32,1);
 }
 
@@ -13564,6 +13576,7 @@ a.account-link[href="https://twitter.com/WilliamcaFox"] .fullname.txt-ellipsis:a
 div.tweet-detail-reply.js-replies-before article.stream-item {
   border:0;
   -webkit-animation: herecomesthetweetdetailssmallbefore 0.4s 1!important;
+  -webkit-animation: none!important;
 }
 
 div.js-replies-to.replies-after article.stream-item {
@@ -13572,7 +13585,7 @@ div.js-replies-to.replies-after article.stream-item {
 }
 
 .js-replies-before {
-    perspective: 600px;
+    /* perspective: 600px; */
 }
 
 .js-replies-to {
