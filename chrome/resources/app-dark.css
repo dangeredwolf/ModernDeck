@@ -6399,6 +6399,14 @@ a.js-column-back.link-complex:active {
     100% {opacity: 1; -webkit-transform: scale(1,1); perspective(600px) rotate3d(1,0,0,0deg)}
 }
 
+@-webkit-keyframes herecomesthetweet {
+  0% {opacity: 0; -webkit-transform: scale(0.4,0.4) perspective(600px) rotate3d(1,0,0,40deg); }
+    /*15% {opacity: 0; -webkit-transform: scale(1.5,1.5) perspective(400px) rotate3d(1,0,0,20deg); }*/
+    /*55% {opacity: 0.5; -webkit-transform: scale(1.2,1.2) perspective(400px) rotate3d(1,0,0,5deg); }*/
+    /*85% {opacity: 0.95;}*/
+    100% {opacity: 1; -webkit-transform: scale(1,1); perspective(600px) rotate3d(1,0,0,0deg)}
+}
+
 @-webkit-keyframes popgoesthepanel {
     0% {opacity: 0; -webkit-transform: scale(0.3,0.3); }
     100% {opacity: 1; -webkit-transform: scale(1,1); }
@@ -6483,7 +6491,7 @@ tweet-detail-reply .stream-item.is-actionable {
 }
 
 .app-columns-container .stream-item.is-actionable {
-  -webkit-animation: herecomesthetweetdetails 0.4s 1!important;
+  -webkit-animation: herecomesthetweet 0.4s 1!important;
   transition: 300ms all;
 }
 
@@ -9470,6 +9478,7 @@ i.icon.icon-clear-timeline {
 .mdl-column-sml {
   width:200px;
   border: 1px solid #F7F7F7;
+  border-right: none;
 }
 
 .mdl-column-lrg {
