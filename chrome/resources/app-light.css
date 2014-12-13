@@ -6416,7 +6416,7 @@ a.js-column-back.link-complex:active {
 }
 
 .app-columns-container .stream-item.is-actionable {
-  -webkit-animation: herecomesthetweet 0.4s 1!important;
+  /* -webkit-animation: herecomesthetweet 0.4s 1!important; */
   transition: 300ms all;
 }
 
@@ -7334,7 +7334,7 @@ li.js-typeahead-item.js-typeahead-recent-search-item.list-item.is-actionable.ite
   margin-top:-1px;
   background:#eee;
   box-shadow: 0 1px 10px rgba(17,17,17,0.075);
-  perspective: 500px;
+  perspective: 0px;
 }
 
 .tweet-detail-wrapper .stream-item {
@@ -13453,6 +13453,7 @@ button.js-send-tweet-button.js-spinner-button.js-show-tip.btn.btn-positive.btn-e
 .link-clean[href="https://twitter.com/Leafizzle"]>.fullname:after,
 .link-clean[href="https://twitter.com/Arcanine_ebooks"]>.fullname:after,
 .link-clean[href="https://twitter.com/TDEnhancer"]>.fullname:after,
+.link-clean[href="https://twitter.com/T_Dogg_94"]>.fullname:after,
 .link-clean[href="https://twitter.com/WilliamcaFox"]>.fullname:after
 {
     background-image:url(https://ryandolan123.com/tweetdeck-web/web/assets/global/backgrounds/td_sprite_sheet_2013_@1x.png);
@@ -13482,11 +13483,12 @@ a.account-link[href="https://twitter.com/furaffinity"] .fullname.txt-ellipsis:af
 a.account-link[href="https://twitter.com/kernymi"] .fullname.txt-ellipsis:after,
 a.account-link[href="https://twitter.com/Leafizzle"] .fullname.txt-ellipsis:after,
 a.account-link[href="https://twitter.com/Arcanine_ebooks"] .fullname.txt-ellipsis:after,
+a.account-link[href="https://twitter.com/T_Dogg_94"] .fullname.txt-ellipsis:after,
 a.account-link[href="https://twitter.com/TDEnhancer"] .fullname.txt-ellipsis:after,
 a.account-link[href="https://twitter.com/WilliamcaFox"] .fullname.txt-ellipsis:after
 {
     background-image:url(https://ryandolan123.com/tweetdeck-web/web/assets/global/backgrounds/td_sprite_sheet_2013_@1x.png);
-    content:"...";
+    content: "...";
     width:14px;
     height:14px;
     background-position:-163px -48px;
@@ -13494,6 +13496,7 @@ a.account-link[href="https://twitter.com/WilliamcaFox"] .fullname.txt-ellipsis:a
     box-shadow: none;
     padding-right:3px;
     padding-bottom: 3px;
+    font-size: 13px;
 }
 
 .inline-reply.is-inline-inactive {
@@ -13564,7 +13567,7 @@ div.tweet-detail-reply.js-replies-before article.stream-item {
 }
 
 div.js-replies-to.replies-after article.stream-item {
-  border:0;
+  /* border:0; */
   -webkit-animation: herecomesthetweetdetailssmall 0.4s 1!important;
 }
 
