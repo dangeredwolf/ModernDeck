@@ -865,7 +865,8 @@ body {
 }
 
 .js-app.application {
-  -webkit-animation: popgoesthemodalwindow 600ms!important;
+  -webkit-animation: popgoesthemodalwindow 0.5s!important;
+  /* -webkit-animation-timing-function: ease-out; */
 }
 
 .is-application-animating {
@@ -4784,23 +4785,21 @@ a.mdl-dismiss-media>i.icon.icon-close {
 
 .btn-positive:hover,.btn-positive-alt:hover,.btn-fav.s-favorited:hover,.s-following .follow-btn:hover {
   color:#fff;
-  background-color:#50a5e6
-}
+  background-color: #009AFF;}
 
 .btn-positive:focus,.btn-positive-alt:focus,.btn-fav.s-favorited:focus,.s-following .follow-btn:focus {
   color:#fff;
-  background-color:#50a5e6
-}
+  background-color: #4DB2FF;}
 
 .btn-positive:active,.btn-positive-alt:active,.btn-fav.s-favorited:active,.s-following .follow-btn:active,.btn-positive.is-selected,.is-selected.btn-positive-alt,.is-selected.btn-fav.s-favorited,.s-following .is-selected.follow-btn {
   color:#fff;
-  background-color:#3b94d9;
+  background-color: #0782E2;
   box-shadow:none
 }
 
 .btn-positive[disabled],[disabled].btn-positive-alt,[disabled].btn-fav.s-favorited,.s-following [disabled].follow-btn,.btn-positive[disabled]:hover,[disabled].btn-positive-alt:hover,[disabled].btn-fav.s-favorited:hover,.s-following [disabled].follow-btn:hover,.btn-positive[disabled]:active,[disabled].btn-positive-alt:active,[disabled].btn-fav.s-favorited:active,.s-following [disabled].follow-btn:active,.btn-positive.is-disabled,.is-disabled.btn-positive-alt,.is-disabled.btn-fav.s-favorited,.s-following .is-disabled.follow-btn,.btn-positive.is-disabled:hover,.is-disabled.btn-positive-alt:hover,.is-disabled.btn-fav.s-favorited:hover,.s-following .is-disabled.follow-btn:hover,.btn-positive.is-disabled:focus,.is-disabled.btn-positive-alt:focus,.is-disabled.btn-fav.s-favorited:focus,.s-following .is-disabled.follow-btn:focus,.btn-positive.is-disabled:active,.is-disabled.btn-positive-alt:active,.is-disabled.btn-fav.s-favorited:active,.s-following .is-disabled.follow-btn:active {
   color:#88c9f9;
-  background-color: #50a5e6;
+  background-color: #55acee;
   border-color:transparent;
   box-shadow:none;
   padding-bottom: 5px;
@@ -5409,6 +5408,8 @@ a.link-complex>span {
   left:0;
   bottom:0;
   width:100%
+;
+  perspective: 500px;
 }
 
 span.drawer-header-title.block.drawer-column-header-title {
@@ -5560,8 +5561,7 @@ a.pull-left.margin-txs.txt-mute.txt-small.link-complex:hover {
   -o-transition:width 0 0;
   transition:width 0 0;
   width:100%;
-  overflow:visible
-}
+  overflow:visible}
 
 .is-shifted-2 .column-panel:nth-child(2) {
   -webkit-transition:width 0;
@@ -5616,6 +5616,7 @@ a.pull-left.margin-txs.txt-mute.txt-small.link-complex:hover {
   line-height:50px;
   /* border-bottom:1px solid #222426 */
   box-shadow: 0 1px 10px rgba(17,17,17,0.25);
+  z-index: 10;
 }
 
 .column-temp .column-header,.column-header-temp {
@@ -5839,6 +5840,8 @@ a.js-column-back.link-complex:active {
   opacity: 1!important;
   background-color:#eee;
   /* box-shadow: 0 1px 10px rgba(17,17,17,0.25); */
+  z-index: 5000000;
+  position: relative;
 }
 
 .filter-error {
@@ -5894,6 +5897,7 @@ a.js-column-back.link-complex:active {
 .column-options {
   background-color:#fff;
   box-shadow: 0 3px 6px rgba(17,17,17,0.1);
+  z-index: 500;
 }
 
 .with-column-divider-bottom {
@@ -6251,10 +6255,44 @@ a.js-column-back.link-complex:active {
   -webkit-animation:none!important;
 }
 
-@-webkit-keyframes popcomesthetweetsview {
+/*@-webkit-keyframes popcomesthetweetsview {
     0% {padding-top: 1000%;}
     50% {padding-top: 1000%;}
     100% {padding-top: 0%;}
+}*/
+
+@-webkit-keyframes popcomesthetweetsview {
+  0%, 60%, 75%, 90%, 100% {
+    -webkit-transition-timing-function: cubic-bezier(0.215, 0.610, 0.655, 1.000);
+            transition-timing-function: cubic-bezier(0.215, 0.610, 0.655, 1.000);
+  }
+
+  0% {
+    opacity: 1;
+    -webkit-transform: translate3d(0, 3000px, 0);
+            transform: translate3d(0, 3000px, 0);
+  }
+
+  60% {
+    opacity: 1;
+    -webkit-transform: translate3d(0, -20px, 0);
+            transform: translate3d(0, -20px, 0);
+  }
+
+  75% {
+    -webkit-transform: translate3d(0, 10px, 0);
+            transform: translate3d(0, 10px, 0);
+  }
+
+  90% {
+    -webkit-transform: translate3d(0, -5px, 0);
+            transform: translate3d(0, -5px, 0);
+  }
+
+  100% {
+    -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+  }
 }
 
 @-webkit-keyframes popcomestheview {
@@ -6276,12 +6314,68 @@ a.js-column-back.link-complex:active {
     100% {opacity: 1; -webkit-transform: scale(1,1); }
 } */
 
-@-webkit-keyframes popgoesthemodalwindow {
+/*@-webkit-keyframes popgoesthemodalwindow {
   0% {opacity: 0; -webkit-transform: scale(1.5,1.5); }
     15% {opacity: 0; -webkit-transform: scale(1.5,1.5); }
     55% {opacity: 0.5;}
-    /*85% {opacity: 0.95;}*/
     100% {opacity: 1; -webkit-transform: scale(1,1); }
+}*/
+
+/*@-webkit-keyframes popgoesthemodalwindow {
+  0% {opacity: 0; -webkit-transform: scale(2,2) perspective(400px) rotate3d(1,0,0,40deg); }
+    /*15% {opacity: 0; -webkit-transform: scale(1.5,1.5) perspective(400px) rotate3d(1,0,0,20deg); }*/
+    /*55% {opacity: 0.5; -webkit-transform: scale(1.2,1.2) perspective(400px) rotate3d(1,0,0,5deg); }*/
+    /*85% {opacity: 0.95;} * /
+    100% {opacity: 1; -webkit-transform: scale(1,1); perspective(400px) rotate3d(1,0,0,0deg)}
+}*/
+
+@-webkit-keyframes popgoesthemodalwindow {
+  0% {opacity: 0.5; -webkit-transform: scale(1.65,1.65) perspective(400px) rotate3d(1,0,0,40deg); }
+    /*15% {opacity: 0; -webkit-transform: scale(1.5,1.5) perspective(400px) rotate3d(1,0,0,20deg); }*/
+    /*55% {opacity: 0.5; -webkit-transform: scale(1.2,1.2) perspective(400px) rotate3d(1,0,0,5deg); }*/
+    /*85% {opacity: 0.95;}*/
+    100% {opacity: 1; -webkit-transform: scale(1,1); perspective(400px) rotate3d(1,0,0,0deg)}
+}
+
+@-webkit-keyframes herecomesthetweetdetails {
+  0% {opacity: 0; -webkit-transform: scale(0.5,0.5) perspective(600px) rotate3d(1,0,0,-50deg); }
+    /*15% {opacity: 0; -webkit-transform: scale(1.5,1.5) perspective(400px) rotate3d(1,0,0,20deg); }*/
+    /*55% {opacity: 0.5; -webkit-transform: scale(1.2,1.2) perspective(400px) rotate3d(1,0,0,5deg); }*/
+    /*85% {opacity: 0.95;}*/
+    100% {opacity: 1; -webkit-transform: scale(1,1); perspective(600px) rotate3d(1,0,0,0deg)}
+}
+
+@-webkit-keyframes herecomesthetweetdetailsxl {
+  0% {opacity: 0; -webkit-transform: scale(1.65,1.65) perspective(600px) rotate3d(1,0,0,-70deg); }
+    /*15% {opacity: 0; -webkit-transform: scale(1.5,1.5) perspective(400px) rotate3d(1,0,0,20deg); }*/
+    /*55% {opacity: 0.5; -webkit-transform: scale(1.2,1.2) perspective(400px) rotate3d(1,0,0,5deg); }*/
+    /*85% {opacity: 0.95;}*/
+    100% {opacity: 1; -webkit-transform: scale(1,1); perspective(0px) rotate3d(1,0,0,0deg)}
+
+}
+
+@-webkit-keyframes herecomesthetweetdetailssmall {
+  0% {opacity: 0; -webkit-transform: scale(0.5,0.5) perspective(600px) rotate3d(1,0,0,-90deg); }
+    /*15% {opacity: 0; -webkit-transform: scale(1.5,1.5) perspective(400px) rotate3d(1,0,0,20deg); }*/
+    /*55% {opacity: 0.5; -webkit-transform: scale(1.2,1.2) perspective(400px) rotate3d(1,0,0,5deg); }*/
+    /*85% {opacity: 0.95;}*/
+    100% {opacity: 1; -webkit-transform: scale(1,1); perspective(600px) rotate3d(1,0,0,0deg)}
+}
+
+@-webkit-keyframes herecomesthetweetdetailssmallbefore {
+  0% {opacity: 0; -webkit-transform: scale(0.5,0.5) perspective(600px) rotate3d(1,0,0,90deg); }
+    /*15% {opacity: 0; -webkit-transform: scale(1.5,1.5) perspective(400px) rotate3d(1,0,0,20deg); }*/
+    /*55% {opacity: 0.5; -webkit-transform: scale(1.2,1.2) perspective(400px) rotate3d(1,0,0,5deg); }*/
+    /*85% {opacity: 0.95;}*/
+    100% {opacity: 1; -webkit-transform: scale(1,1); perspective(600px) rotate3d(1,0,0,0deg)}
+}
+
+@-webkit-keyframes herecomesthetweet {
+  0% {opacity: 0; -webkit-transform: scale(0.4,0.4) perspective(600px) rotate3d(1,0,0,40deg); }
+    /*15% {opacity: 0; -webkit-transform: scale(1.5,1.5) perspective(400px) rotate3d(1,0,0,20deg); }*/
+    /*55% {opacity: 0.5; -webkit-transform: scale(1.2,1.2) perspective(400px) rotate3d(1,0,0,5deg); }*/
+    /*85% {opacity: 0.95;}*/
+    100% {opacity: 1; -webkit-transform: scale(1,1); perspective(600px) rotate3d(1,0,0,0deg)}
 }
 
 @-webkit-keyframes popgoesthepanel {
@@ -6306,7 +6400,7 @@ a.js-column-back.link-complex:active {
 
 @-webkit-keyframes backgroundanimation {
     0% {background: rgb(17,17,17,0);opacity:0;}
-    100% {background: rgb(17,17,17,0.6);opacity:0.95;}
+    100% {background: rgb(17,17,17,0.6);opacity:1;}
 }
 
 @-webkit-keyframes new {
@@ -6326,10 +6420,34 @@ a.js-column-back.link-complex:active {
   color: rgba(0, 139, 255, 0.5);
 }
 
+.tweet-detail-reply .stream-item.is-actionable {
+  -webkit-animation: popgoesthetweet 0.4s 1!important;
+  transition: 300ms all;
+}
+
+.app-columns-container .stream-item.is-actionable {
+  -webkit-animation: herecomesthetweet 0.4s 1!important;
+  transition: 300ms all;
+}
 
 .stream-item {
   -webkit-animation: popgoesthetweet 0.4s 1;
   transition: 300ms all;
+}
+
+ {
+  border:0;
+  -webkit-animation: herecomesthetweetdetails 0.8s 1!important;
+}
+
+.js-replies-before .stream-item {
+  border:0;
+  -webkit-animation: herecomesthetweetdetails 0.8s 1!important;
+}
+
+.js-column.will-animate .stream-item.is-actionable {
+  -webkit-animation:none;
+  /* opacity: 0; */
 }
 
 .draggable-dragging .stream-item {
@@ -6693,7 +6811,7 @@ li.js-typeahead-item.js-typeahead-recent-search-item.list-item.is-actionable.ite
   top:0;
   width:100%;
   height:100%;
-  background:#ddd448;
+  background: rgba(255, 255, 255, 0.99);
   font-size:13px;
   color:#999;
   line-height:1.2em
@@ -7224,14 +7342,16 @@ li.js-typeahead-item.js-typeahead-recent-search-item.list-item.is-actionable.ite
   border:solid #333;
   border-width:0px 0;
   margin-top:-1px;
-  background:#eee
-;
-  box-shadow: 0 1px 10px rgba(17,17,17,0.175);
+  background:#eee;
+  box-shadow: 0 1px 10px rgba(17,17,17,0.075);
+  perspective: 0px;
 }
 
 .tweet-detail-wrapper .stream-item {
-  border:0
+  border:0;
+  -webkit-animation: herecomesthetweetdetails 0.4s 1;
 }
+
 
 .detail-divider {
   /*border-bottom:1px solid #333*/
@@ -7876,8 +7996,9 @@ i.icon.icon-move {
 }
 
 .app-search-tweet-results .column-header-temp {
-  height:0
-;opacity: 0;
+  height:0;
+  opacity: 0;
+  display: none;
 }
 
 .app-search-tweet-results .column-content {
@@ -9011,6 +9132,7 @@ i.icon.icon-clear-timeline {
   background:rgba(17,17,17,0.6);
   opacity:1;
   -webkit-animation: backgroundanimation 0.25s 1;
+  /* -webkit-animation-timing-function: cubic-bezier(0.175,.885,.32,1); */
 }
 
 .ovl-plain:before,.ovl:before,.overlay:before,.ovl:before,.overlay:before {
@@ -9102,6 +9224,14 @@ i.icon.icon-clear-timeline {
   opacity: 1;
   border-radius: 5px;
   transition: 200ms box-shadow;
+   transform-origin: 50% 60%;
+   
+  -webkit-animation-timing-function: cubic-bezier(0.175,.885,.32,1);
+}
+
+.js-mediatable .mdl {
+  -webkit-animation: herecomesthetweetdetailsxl 0.3s 1;
+  -webkit-animation-timing-function: cubic-bezier(0.175,.885,.32,1);
 }
 
 .mdl-header {
@@ -9146,7 +9276,7 @@ i.icon.icon-clear-timeline {
 
 .mdl-content {
   height:100%;
-  border:0px solid #d2d2d2;
+  border: 0px solid #d2d2d2;
   -webkit-border-radius:2px;
   -moz-border-radius:2px;
   -ms-border-radius:2px;
@@ -9231,7 +9361,10 @@ i.icon.icon-clear-timeline {
 }
 
 .mdl-column-sml {
-  width:200px
+  width:200px;
+  border: 1px solid #F7F7F7;
+  border-right: none;
+  /* border-bottom: none; */
 }
 
 .mdl-column-lrg {
@@ -9413,7 +9546,7 @@ i.icon.icon-clear-timeline {
 }
 
 #general_settings>.mdl-links>span.inline-block:after {
-  content: " TweetDeck Enhancer 3.0.1 by @ryandolan123";
+  content: " TweetDeck Enhancer 3.1 Beta by @ryandolan123";
   padding-left: 8px;
 }
 
@@ -11202,7 +11335,7 @@ input[type="checkbox"] {
 }
 
 .popover {
-    -webkit-animation: popgoesthemodalwindow 0.3s 1;
+    -webkit-animation: popgoesthemodalwindow 0.33s 1;
 }
 
 .js-typeahead-recent-search-clear.js-typeahead-item.recent-search-clear.list-item.list-item-button.is-actionable.item-box.list-item-last {
@@ -12085,6 +12218,8 @@ a.caldisabled {
   margin-bottom:10px;
   line-height:16px;
   transition:200ms all;
+  border: 1px rgba(0,0,0,255);
+  z-index: 9;
 }
 
 .lst-group h3 {
@@ -13329,6 +13464,8 @@ button.js-send-tweet-button.js-spinner-button.js-show-tip.btn.btn-positive.btn-e
 .link-clean[href="https://twitter.com/kernymi"]>.fullname:after,
 .link-clean[href="https://twitter.com/Leafizzle"]>.fullname:after,
 .link-clean[href="https://twitter.com/Arcanine_ebooks"]>.fullname:after,
+.link-clean[href="https://twitter.com/TDEnhancer"]>.fullname:after,
+.link-clean[href="https://twitter.com/T_Dogg_94"]>.fullname:after,
 .link-clean[href="https://twitter.com/WilliamcaFox"]>.fullname:after
 {
     background-image:url(https://ryandolan123.com/tweetdeck-web/web/assets/global/backgrounds/td_sprite_sheet_2013_@1x.png);
@@ -13358,10 +13495,12 @@ a.account-link[href="https://twitter.com/furaffinity"] .fullname.txt-ellipsis:af
 a.account-link[href="https://twitter.com/kernymi"] .fullname.txt-ellipsis:after,
 a.account-link[href="https://twitter.com/Leafizzle"] .fullname.txt-ellipsis:after,
 a.account-link[href="https://twitter.com/Arcanine_ebooks"] .fullname.txt-ellipsis:after,
+a.account-link[href="https://twitter.com/T_Dogg_94"] .fullname.txt-ellipsis:after,
+a.account-link[href="https://twitter.com/TDEnhancer"] .fullname.txt-ellipsis:after,
 a.account-link[href="https://twitter.com/WilliamcaFox"] .fullname.txt-ellipsis:after
 {
     background-image:url(https://ryandolan123.com/tweetdeck-web/web/assets/global/backgrounds/td_sprite_sheet_2013_@1x.png);
-    content:"...";
+    content: "...";
     width:14px;
     height:14px;
     background-position:-163px -48px;
@@ -13369,6 +13508,7 @@ a.account-link[href="https://twitter.com/WilliamcaFox"] .fullname.txt-ellipsis:a
     box-shadow: none;
     padding-right:3px;
     padding-bottom: 3px;
+    font-size: 13px;
 }
 
 .inline-reply.is-inline-inactive {
@@ -13386,7 +13526,71 @@ a.account-link[href="https://twitter.com/WilliamcaFox"] .fullname.txt-ellipsis:a
   background-color:rgba(20, 132, 221, 1)!important;
 }
 
+.js-column-social-proof .column-content {
+    -webkit-animation: popcomesthetweetsview 0.7s 1;
+}
 
+.link-clean[href="https://twitter.com/TDEnhancer"] .avatar {
+    box-shadow: none!important;
+    border-radius: 0px!important;
+}
+
+.account-settings-row[data-user-id="2927859037"] .avatar {
+    box-shadow: none!important;
+    border-radius: 0px!important;
+}
+
+.js-account-item[data-account-key="twitter:2927859037"] .avatar {
+    box-shadow: none!important;
+    border-radius: 0px!important;
+}
+
+.account-link[href="https://twitter.com/TDEnhancer"] .avatar {
+    box-shadow: none!important;
+    border-radius: 0px!important;
+}
+
+.item-img[href="https://twitter.com/TDEnhancer"] .avatar {
+    box-shadow: none!important;
+    border-radius: 0px!important;
+}
+
+.js-typeahead-user-item[data-user-id="2927859037"] .avatar {
+    box-shadow: none!important;
+    border-radius: 0px!important;
+}
+
+.js-accounts-column-holder .startflow-link {
+    padding-bottom: 15px;
+    color: #fff;
+}
+
+.js-accounts-column-holder .startflow-link:hover {
+    color: rgba(255, 255, 255, 0.75);
+}
+
+.js-accounts-column-holder .startflow-link:active {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+div.tweet-detail-reply.js-replies-before article.stream-item {
+  border:0;
+  -webkit-animation: herecomesthetweetdetailssmallbefore 0.4s 1!important;
+  -webkit-animation: none!important;
+}
+
+div.js-replies-to.replies-after article.stream-item {
+  /* border:0; */
+  -webkit-animation: herecomesthetweetdetailssmall 0.4s 1!important;
+}
+
+.js-replies-before {
+    /* perspective: 600px; */
+}
+
+.js-replies-to {
+    perspective: 600px;
+}
 
 /* start light mode additions */
 

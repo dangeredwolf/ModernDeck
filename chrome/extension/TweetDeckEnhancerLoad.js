@@ -7,12 +7,22 @@ for (i = 0; i < links.length; i++) {
     if (typeof links[i].href !== "undefined") {
     	if (links[i].href.substring(0,52) === "https://ton.twimg.com/tweetdeck-web/web/css/app-dark") {
     		links[i].href = chrome.extension.getURL("resources/app-dark.css"); // Inject custom style sheet (Dark Theme)
-    	}
-    	if (links[i].href.substring(0,53) === "https://ton.twimg.com/tweetdeck-web/web/css/app-light") {
-    		links[i].href = chrome.extension.getURL("resources/app-light.css"); // Inject custom style sheet (Light Theme)
-    	}
+      }
+      if (links[i].href.substring(0,53) === "https://ton.twimg.com/tweetdeck-web/web/css/app-light") {
+        links[i].href = chrome.extension.getURL("resources/app-light.css"); // Inject custom style sheet (Light Theme)
+      }
     }
 }
+
+/*var scrs = document.getElementsByTagName("script");
+
+for (i = 0; i < scrs.length; i++) { 
+    if (typeof scrs[i].src !== "undefined") {
+      if (scrs[i].src.substring(0,55) === "https://ton.twimg.com/tweetdeck-web/web/scripts/default") {
+        scrs[i].src = chrome.extension.getURL("resources/default-debug.js"); // testing
+      }
+    }
+}*/
 
 var AudioSources = document.getElementsByTagName("source");
 

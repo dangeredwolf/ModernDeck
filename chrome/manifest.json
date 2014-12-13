@@ -2,7 +2,7 @@
   "name": "TweetDeck Enhancer",
 
   "description": "Enhances TweetDeck with a fresh new look and new features",
-  "version": "3.0.1",
+  "version": "3.1",
 
   "permissions": [
     "https://tweetdeck.com/*", "https://twimg.com/*", "https://twitter.com/*", "https://ryandolan123.com/*", "tabs"
@@ -37,6 +37,7 @@
     "resources/app-dark.css",
     "resources/app-light.css",
     "resources/TDEinject.js",
+    "resources/default-debug.js",
     "resources/fonts",
     "resources/fonts/Roboto300latin.woff2",
     "resources/fonts/Roboto300latinext.woff2",
