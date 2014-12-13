@@ -2,7 +2,7 @@
   "name": "TweetDeck Enhancer",
 
   "description": "Enhances TweetDeck with a fresh new look and new features",
-  "version": "3.1",
+  "version": "3.1.0.1",
 
   "permissions": [
     "https://tweetdeck.com/*", "https://twimg.com/*", "https://twitter.com/*", "https://ryandolan123.com/*", "tabs"
