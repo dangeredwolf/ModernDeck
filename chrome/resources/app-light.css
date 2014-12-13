@@ -5484,7 +5484,8 @@ i.icon.icon-user-switch.icon-large.position-rel {
   width:100%;
   overflow-x:hidden;
   word-break:break-word;
-  word-wrap:break-word
+  word-wrap:break-word;
+  perspective: 500px;
 }
 
 .column-background-fill {
