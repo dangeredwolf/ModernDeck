@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Author</key>
+	<string>ryandolan123</string>
+	<key>Builder Version</key>
+	<string>10600.1.25</string>
+	<key>CFBundleDisplayName</key>
+	<string>TweetDeck Enhancer</string>
+	<key>CFBundleIdentifier</key>
+	<string>com.ryandolan123.TweetDeckEnhancer</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleShortVersionString</key>
+	<string>3.1.1</string>
+	<key>CFBundleVersion</key>
+	<string>3.1.1</string>
+	<key>Chrome</key>
+	<dict>
+		<key>Database Quota</key>
+		<real>5242880</real>
+	</dict>
+	<key>Content</key>
+	<dict>
+		<key>Scripts</key>
+		<dict>
+			<key>End</key>
+			<array>
+				<string>TweetDeckEnhancerLoad.js</string>
+			</array>
+			<key>Start</key>
+			<array>
+				<string>TweetDeckEnhancerFix.js</string>
+			</array>
+		</dict>
+		<key>Whitelist</key>
+		<array>
+			<string>https://tweetdeck.twitter.com/</string>
+		</array>
+	</dict>
+	<key>Description</key>
+	<string>Extremely buggy safari build of tweetdeck enhancer</string>
+	<key>DeveloperIdentifier</key>
+	<string>V4MZKCA3P6</string>
+	<key>ExtensionInfoDictionaryVersion</key>
+	<string>1.0</string>
+	<key>Permissions</key>
+	<dict>
+		<key>Website Access</key>
+		<dict>
+			<key>Include Secure Pages</key>
+			<true/>
+			<key>Level</key>
+			<string>All</string>
+		</dict>
+	</dict>
+	<key>Website</key>
+	<string>https://ryandolan123.com/TweetDeckEnhancer</string>
+</dict>
+</plist>
