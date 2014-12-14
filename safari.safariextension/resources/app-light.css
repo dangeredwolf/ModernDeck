@@ -3884,12 +3884,20 @@ to {
   color:#444
 }
 
-.is-inverted-dark .accordion .icon-arrow-d {
-  color:#ffffff
+.is-inverted-dark .icon-arrow-d {
+  color: #707070;
 }
 
-.is-inverted-dark .accordion .icon-arrow-u {
-  color:#ffffff
+.account-settings-row .icon-arrow-d {
+  color: #fff;
+}
+
+.is-inverted-dark .icon-arrow-u {
+  color: #707070;
+}
+
+.account-settings-row .icon-arrow-u {
+  color: #fff;
 }
 
 .is-inverted-dark .facet-type-content.is-active {
@@ -3925,6 +3933,7 @@ button.js-toggle-button.btn.js-toggle-tweets.is-selected {
     background-color: rgba(0, 119, 255, 1);
     border-radius: 7px 0 0 7px;
     color: #fff;
+    transform: scale(1,1);
 }
 
 button.js-toggle-button.btn.js-toggle-tweets.is-selected:hover {
@@ -3942,6 +3951,7 @@ button.js-toggle-button.btn.js-toggle-users.is-selected {
 button.js-toggle-button.btn.js-toggle-users {
     border-radius: 0 7px 7px 0;
     box-shadow:none!important;
+    transform: scale(1,1);
 }
 
 button.js-toggle-button.btn.js-toggle-users.is-selected:hover {
@@ -4639,10 +4649,11 @@ a.mdl-dismiss-media>i.icon.icon-close {
   font-size:14px;
   font-weight:400;
   border:0px solid #ddd;
-  color:#000;
+  color: #000000;
   background-color:#eee;
   text-shadow:none;
-  transition:300ms all!important;
+  transition:200ms all!important;
+  transform: scale(1,1)
 }
 
 .btn:hover {
@@ -4650,6 +4661,7 @@ a.mdl-dismiss-media>i.icon.icon-close {
   text-decoration:none;
   background-color:#ddd;
   transition:300ms all!important;
+  transform: scale(1.05,1.05)
 }
 
 .btn:focus {
@@ -4659,13 +4671,18 @@ a.mdl-dismiss-media>i.icon.icon-close {
   box-shadow:0 0 2px 3px #00acee;
   outline:0;
   transition:300ms all!important;
+  transform: scale(1.05,1.05)
 }
 
 .btn:active,.btn.is-selected {
   text-decoration:none;
   color:#000;
   background-color:#bbb;
-  transition:300ms all!important;
+  transition: 200ms all!important;
+}
+
+.btn:active {
+  transform: scale(0.9,0.9)
 }
 
 .btn[disabled],.btn[disabled]:hover,.btn[disabled]:active,.btn.is-disabled,.btn.is-disabled:hover,.btn.is-disabled:focus,.btn.is-disabled:active {
@@ -4675,7 +4692,7 @@ a.mdl-dismiss-media>i.icon.icon-close {
   cursor:default;
   outline:none;
   box-shadow:none;
-  transition:300ms all!important;
+  transition:200ms all!important
 }
 
 .btn::-moz-focus-inner {
@@ -4752,6 +4769,8 @@ a.mdl-dismiss-media>i.icon.icon-close {
   border-color:transparent;
   background-color:transparent;
   border-radius:0
+;
+  color: #555;
 }
 
 .btn-neutral:hover,.btn-neutral-negative:hover,.btn-neutral-positive:hover,.btn-options-tray:hover {
@@ -4818,7 +4837,8 @@ a.mdl-dismiss-media>i.icon.icon-close {
 
 .btn-compose:hover {
   color:#fff;
-  background-color:#2b7bb9
+  background-color: #00BAFF;
+  transform: scale(1.05,1.05);
 }
 
 .btn-compose:focus {
@@ -4827,9 +4847,10 @@ a.mdl-dismiss-media>i.icon.icon-close {
   box-shadow:none
 }
 
-.btn-compose:active,.btn-compose.is-selected {
+.btn-compose:active {
   color:#fff;
-  background-color:#2b7bb9
+  background-color: #128CCC;
+  transform: scale(1,1);
 }
 
 .btn-positive-alt:hover,.btn-fav.s-favorited:hover,.s-following .follow-btn:hover {
@@ -6527,7 +6548,7 @@ a.js-column-back.link-complex:active {
 }
 
 .list-item:hover .txt-mute,.list-item:active .txt-mute,.list-item.is-selected .txt-mute {
-  color:#ddd;
+  color: #A8E1FF;
   text-decoration: none;
 }
 
@@ -7518,9 +7539,8 @@ i.icon.icon-move {
   width:100%;
   height:30px;
   padding:6px 8px;
-  /* border:1px solid #222426; */
+  border: 1px solid #DCDCDC;
   overflow-y:hidden;
-  background: #F0F0F0;
   /* -webkit-box-shadow:inset 0 1px 1px rgba(17,17,17,0.5); */
   -moz-box-shadow:inset 0 1px 1px rgba(17,17,17,0.5);
   /* box-shadow:inset 0 1px 1px rgba(17,17,17,0.5); */
@@ -7619,7 +7639,7 @@ i.icon.icon-move {
 .app-header {
   user-select:none;
   width:200px;
-  background-color:#444;
+  background-color: #555;
   z-index:200
 }
 
@@ -7639,8 +7659,7 @@ i.icon.icon-move {
   bottom:0;
   left:0;
   right:0;
-  background-color:#444
-}
+  background-color: #555;}
 
 .sprite-logo,.sprite-logo-badge,.sprite-logo-badge-large {
   position:absolute;
@@ -7690,7 +7709,7 @@ i.icon.icon-move {
   bottom:40px;
   left:0;
   right:0;
-  background-color:#444
+  background-color: #555;
 }
 
 .app-nav-link {
@@ -7724,15 +7743,18 @@ i.icon.icon-move {
   padding-right:10px;
   margin-left:6px;
   border-top-left-radius:2px;
-  border-bottom-left-radius:2px
+  border-bottom-left-radius:2px;
+  transition:200ms all!important
 }
 
 .app-nav-tab:hover {
-  color:#fff
+  color:#fff;
+  transition:200ms all!important
 }
 
 .app-nav-tab.is-selected {
   color: #E4E4E4;
+  transition:200ms all!important
 }
 
 .app-nav-tab.is-selected:hover {
@@ -7752,7 +7774,8 @@ i.icon.icon-move {
 
 .tweet-button .icon-compose {
   font-size:30px;
-  margin-left:-6px
+  margin-left:-6px;
+  transition:200ms all!important
 }
 
 .attach-compose-buttons {
@@ -7761,18 +7784,20 @@ i.icon.icon-move {
 
 .attach-compose-buttons .tweet-button {
   background-color: #03A9F3;
-  box-shadow:none
+  box-shadow:none;
+  transition:200ms all!important;
 }
 
 .attach-compose-buttons .icon-compose-dm {
-  margin-left:-4px
+  margin-left:-4px;
+  transition:200ms all!important
 }
 
 .with-nav-border-t:before {
   position:relative;
   top:-5px;
-  border-top:1px solid #777
-}
+  /* border-top:1px solid #777
+ */}
 
 .is-condensed .app-header {
   width:50px
@@ -8668,24 +8693,33 @@ i.icon.icon-clear-timeline {
   top:9px;
   right:-7px;
   font-style:normal;
-  font-size:10px;
+  font-size: 12px;
   padding:2px 3px;
-  line-height:1;
-  border-radius:4px;
-  background-color:#55acee;
+  /* line-height: 1.1; */
+  border-radius: 99px;
+  background-color: #0091FF;
   color:#fff;
-  visibility:hidden
+  /* visibility:hidden
+ */
+  border: none;
+  font-weight: 400;
+  margin-top: -5px;
+  font-size: 0px;
+  width: 1px;
+  height: 2px;
 }
 
 .numbered-badge-onheader {
-  border:2px solid #fff
+  /* border:2px solid #fff
+ */
+  display: none;
 }
 
 .numbered-badge-onnav {
   top:1px;
-  right:-5px;
-  border:2px solid #444
-}
+  /* right:-5px; */
+  /* border:2px solid #444
+ */}
 
 .drawer {
   position:absolute;
@@ -9519,7 +9553,8 @@ i.icon.icon-clear-timeline {
   width:80px;
   height:85px;
   border:1px solid #d2d2d2;
-  color:#666
+  color:#666;
+  transition: 200ms all!important;
 }
 
 .lst-profile span {
@@ -9547,7 +9582,7 @@ i.icon.icon-clear-timeline {
 }
 
 #general_settings>.mdl-links>span.inline-block:after {
-  content: " TweetDeck Enhancer 3.1 by @ryandolan123";
+  content: " TweetDeck Enhancer 3.1.1 by @ryandolan123";
   padding-left: 8px;
 }
 
@@ -10364,6 +10399,7 @@ input#file-upload-input {
 .inline-reply .btn-neutral,.inline-reply .character-count {
   color:#fff;
   transition: 200ms all!important;
+  -webkit-transform: none;
 }
 
 
@@ -10974,9 +11010,8 @@ input,textarea,select,.uneditable-input {
   font-size:13px;
   line-height:18px;
   color:#444;
-  border:0px solid #E7E7E7;
-  border-radius:3px
-}
+  border: 1px solid #eee;
+  border-radius: 5px;}
 
 input:focus,textarea:focus,select:focus,.uneditable-input:focus {
   outline:0
@@ -11147,8 +11182,8 @@ legend {
 input,textarea,select {
   box-sizing:border-box;
   width:100%;
-  height:28px;
-  padding:4px 8px;
+  height: 32px;
+  padding: 4px 8px;
   color:#444
 }
 
@@ -11283,7 +11318,7 @@ input[type="checkbox"] {
 
 .search-input-control input {
   padding-right:25px;
-  /* border: 1px solid #E7E7E7; */
+  border: 1px solid #eee;
 }
 
 .js-search-results-footer>button.js-add-column.btn.btn-positive.obj-center.padding-vl {
@@ -11298,6 +11333,7 @@ input[type="checkbox"] {
     /* border: 1px rgba(0,0,0,255); */
     background-color: #0091FF;
     border: 1px solid rgba(34, 36, 38, 0.11);
+    transform: scale(1,1);
 }
 
 .js-search-results-footer>button.js-add-column.btn.btn-positive.obj-center.padding-vl:active {
@@ -11895,7 +11931,7 @@ a.caldisabled {
   float:left;
   overflow:hidden;
   padding:0 0 0 5px;
-  text-transform:uppercase
+  text-transform:uppercase;font-weight: 500;
 }
 
 .prf-stats li {
@@ -11924,8 +11960,8 @@ a.caldisabled {
 }
 
 .prf-stats li+li a {
-  border-left:1px solid #ebebeb
-}
+  /* border-left:1px solid #ebebeb
+ */}
 
 .prf-stats a {
   display:block;
@@ -11937,7 +11973,8 @@ a.caldisabled {
 .prf-stats a strong {
   display:block;
   color:#333;
-  font-size:14px
+  font-size: 14px;
+  font-weight: 500;
 }
 
 .prf-stats a:hover,.prf-stats a:hover strong {
@@ -11974,14 +12011,16 @@ a.caldisabled {
 .prf .lst-profile span {
   bottom:0;
   color:#aaa;
-  font-size:11px;
+  font-size: 12px;
   text-transform:uppercase
+;font-weight: 500;
 }
 
 .prf .lst-profile i {
   color:#aaa;
   margin-top:4px;
   font-size:34px
+;transition: 200ms all!important;
 }
 
 .prf .lst-profile a {
@@ -11992,11 +12031,13 @@ a.caldisabled {
 }
 
 .prf .lst-profile a:hover span {
-  color:#505060
+  color:#505060;
+  transition: 200ms all!important;
 }
 
 .prf .lst-profile a:hover i {
-  color:#505060
+  color:#505060;
+  transition: 200ms all!important;
 }
 
 .prf .lst-profile li:last-child a {
@@ -13053,7 +13094,7 @@ a.caldisabled {
   top:105px;
   left:0;
   right:0;
-  bottom:220px
+  bottom: 195px;
 }
 
 .column-nav-link {
@@ -13079,8 +13120,7 @@ a.caldisabled {
   box-sizing:border-box;
   counter-increment:column-nav;
   color:#fff;
-  background-color:#444
-}
+  background-color: #555;}
 
 .column-nav-link:after {
   content:counter(column-nav);
@@ -13239,15 +13279,40 @@ a.caldisabled {
   color: #bbb;
 }
 
-.column-title-back:after {
+.js-column-detail .column-title-back:after {
     content: "Tweet";
     font-weight: 500;
     color: #000;
     margin-top: -43px;
     position: absolute;
     text-align: center;
-    float: right;
+    /* float: right; */
     left: 44%;
+    margin-left: -5px;
+}
+
+.js-tweet-results .column-title-back:after {
+    content: "Tweet";
+    font-weight: 500;
+    color: #000;
+    margin-top: 0px;
+    position: absolute;
+    text-align: center;
+    /* float: right; */
+    left: 44%;
+    margin-left: -5px;
+}
+
+.column-type-message .column-title-back:after {
+    content: "Conversation";
+    font-weight: 500;
+    color: #000;
+    margin-top: -43px;
+    position: absolute;
+    text-align: center;
+    /* float: right; */
+    left: 44%;
+    margin-left: -5px;
 }
 
 .js-tweet-social-proof-back:after {
@@ -13591,6 +13656,22 @@ div.js-replies-to.replies-after article.stream-item {
 
 .js-replies-to {
     perspective: 600px;
+}
+
+.list-item.is-selected {
+    background-color: rgb(0, 145, 255);
+}
+
+.list-item.is-selected .fullname {
+    color: #fff;
+}
+
+.js-message-detail .stream-item {
+    -webkit-animation: none;
+}
+
+.js-message-detail {
+    -webkit-animation: popgoesthetweet 0.4s 1;
 }
 
 /* start light mode additions */

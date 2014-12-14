@@ -3857,7 +3857,7 @@ to {
 }
 
 .is-inverted-dark .tweet-action,.is-inverted-dark .tweet-detail-action {
-  color: #DBDBDB;
+  color: #BDBDBD;
 }
 
 .is-inverted-dark .stream-item.is-actionable:hover .tweet-action,.is-inverted-dark .tweet-detail-action {
@@ -3899,8 +3899,12 @@ to {
   color:#ffffff
 }
 
-.is-inverted-dark .accordion .icon-arrow-u {
-  color:#ffffff
+.js-search-filter .icon-arrow-d {
+  color:#333!important
+}
+
+.js-search-filter .icon-arrow-u {
+  color:#333
 }
 
 .is-inverted-dark .facet-type-content.is-active {
@@ -3930,12 +3934,14 @@ to {
 button.js-toggle-button.btn.js-toggle-tweets {
     border-radius: 7px 0 0 7px;
     box-shadow:none!important;
+    transform: none;
 }
 
 button.js-toggle-button.btn.js-toggle-tweets.is-selected {
     background-color: rgba(0, 119, 255, 1);
     border-radius: 7px 0 0 7px;
     color: #fff;
+    transform: none;
 }
 
 button.js-toggle-button.btn.js-toggle-tweets.is-selected:hover {
@@ -3948,11 +3954,13 @@ button.js-toggle-button.btn.js-toggle-users.is-selected {
     background-color: rgba(0, 119, 255, 1);
     border-radius: 0 7px 7px 0;
     color: #fff;
+    transform: none;
 }
 
 button.js-toggle-button.btn.js-toggle-users {
     border-radius: 0 7px 7px 0;
     box-shadow:none!important;
+    transform: none;
 }
 
 button.js-toggle-button.btn.js-toggle-users.is-selected:hover {
@@ -4647,43 +4655,50 @@ a.mdl-dismiss-media>i.icon.icon-close {
   font-size:14px;
   font-weight:400;
   border:0px solid #ddd;
-  color:#444;
+  color: #000000;
   background-color:#eee;
   text-shadow:none;
-  transition:300ms all!important;
+  transition:200ms all!important;
+  transform: scale(1,1)
 }
 
 .btn:hover {
-  color:#444;
+  color:#000;
   text-decoration:none;
   background-color:#ddd;
   transition:300ms all!important;
+  transform: scale(1.05,1.05)
 }
 
 .btn:focus {
   text-decoration:none;
-  color:#444;
+  color:#000;
   background-color:#ddd;
   box-shadow:0 0 2px 3px #00acee;
   outline:0;
   transition:300ms all!important;
+  transform: scale(1.05,1.05)
 }
 
 .btn:active,.btn.is-selected {
   text-decoration:none;
-  color:#444;
+  color:#000;
   background-color:#bbb;
-  transition:300ms all!important;
+  transition: 200ms all!important;
+}
+
+.btn:active {
+  transform: scale(0.9,0.9)
 }
 
 .btn[disabled],.btn[disabled]:hover,.btn[disabled]:active,.btn.is-disabled,.btn.is-disabled:hover,.btn.is-disabled:focus,.btn.is-disabled:active {
-  color:#bbb;
+  color:#555;
   border-color:#ddd;
   background-color:#eee;
   cursor:default;
   outline:none;
   box-shadow:none;
-  transition:300ms all!important;
+  transition:200ms all!important
 }
 
 .btn::-moz-focus-inner {
@@ -4762,11 +4777,15 @@ a.mdl-dismiss-media>i.icon.icon-close {
   border-color:transparent;
   background-color:transparent;
   border-radius:0
+;
+  color: #ccc;
 }
 
 .btn-neutral:hover,.btn-neutral-negative:hover,.btn-neutral-positive:hover,.btn-options-tray:hover {
   border-color:transparent;
   background-color:transparent
+;
+  color: #fff;
 }
 
 .btn-neutral:hover .label,.btn-neutral-negative:hover .label,.btn-neutral-positive:hover .label,.btn-options-tray:hover .label {
@@ -4778,6 +4797,8 @@ a.mdl-dismiss-media>i.icon.icon-close {
   background-color:transparent;
   box-shadow:none;
   outline:none
+;
+  color: #fff;
 }
 
 .btn-neutral[disabled],.btn-neutral[disabled]:hover,.btn-neutral[disabled]:active,.btn-neutral.is-disabled,.btn-neutral.is-disabled:hover,.btn-neutral.is-disabled:focus,.btn-neutral.is-disabled:active,[disabled].btn-neutral-negative,[disabled].btn-neutral-positive,[disabled].btn-options-tray,[disabled].btn-neutral-negative:hover,[disabled].btn-neutral-positive:hover,[disabled].btn-options-tray:hover,[disabled].btn-neutral-negative:active,[disabled].btn-neutral-positive:active,[disabled].btn-options-tray:active,.is-disabled.btn-neutral-negative,.is-disabled.btn-neutral-positive,.is-disabled.btn-options-tray,.is-disabled.btn-neutral-negative:hover,.is-disabled.btn-neutral-positive:hover,.is-disabled.btn-options-tray:hover,.is-disabled.btn-neutral-negative:focus,.is-disabled.btn-neutral-positive:focus,.is-disabled.btn-options-tray:focus,.is-disabled.btn-neutral-negative:active,.is-disabled.btn-neutral-positive:active,.is-disabled.btn-options-tray:active {
@@ -4830,7 +4851,8 @@ a.mdl-dismiss-media>i.icon.icon-close {
 
 .btn-compose:hover {
   color:#fff;
-  background-color:#2b7bb9
+  background-color: #178DE8;
+  transform: none;
 }
 
 .btn-compose:focus {
@@ -4841,7 +4863,8 @@ a.mdl-dismiss-media>i.icon.icon-close {
 
 .btn-compose:active,.btn-compose.is-selected {
   color:#fff;
-  background-color:#2b7bb9
+  background-color: #1671B8;
+  transform: none;
 }
 
 .btn-positive-alt:hover,.btn-fav.s-favorited:hover,.s-following .follow-btn:hover {
@@ -7521,6 +7544,16 @@ li.js-typeahead-item.js-typeahead-recent-search-item.list-item.is-actionable.ite
   transition: 200ms all;
 }
 
+.js-user-results .fullname {
+  color: #000000;
+  transition: 200ms all;
+}
+
+.js-user-results .fullname:hover {
+  color: #555555;
+  transition: 200ms all;
+}
+
 .tweet-location {
   margin-left:-.15rem;
   padding-top: 5px;
@@ -7646,10 +7679,10 @@ i.icon.icon-move {
   border:1px solid #222426;
   overflow-y:hidden;
   background:#fff;
-  -webkit-box-shadow:inset 0 1px 1px rgba(17,17,17,0.5);
+  /* -webkit-box-shadow:inset 0 1px 1px rgba(17,17,17,0.5); */
   -moz-box-shadow:inset 0 1px 1px rgba(17,17,17,0.5);
-  box-shadow:inset 0 1px 1px rgba(17,17,17,0.5);
-  -webkit-transition:height .3s ease-in-out;
+  /* box-shadow:inset 0 1px 1px rgba(17,17,17,0.5); */
+  /* -webkit-transition:height .3s ease-in-out; */
   -moz-transition:height .3s ease-in-out;
   -o-transition:height .3s ease-in-out;
   transition:height .3s ease-in-out
@@ -7869,6 +7902,8 @@ i.icon.icon-move {
   height:40px;
   font-size:18px;
   text-align:left
+;
+  transform: none;
 }
 
 .tweet-button .icon-compose {
@@ -7883,6 +7918,8 @@ i.icon.icon-move {
 .attach-compose-buttons .tweet-button {
   background-color: #2b7bb9;
   box-shadow:none
+;
+  transform: none;
 }
 
 .attach-compose-buttons .icon-compose-dm {
@@ -7892,8 +7929,8 @@ i.icon.icon-move {
 .with-nav-border-t:before {
   position:relative;
   top:-5px;
-  border-top:1px solid #777
-}
+  /* border-top:1px solid #777
+ */}
 
 .is-condensed .app-header {
   width:50px
@@ -8061,7 +8098,7 @@ i.icon.icon-move {
 
 .app-search-input:focus,.app-search-input.is-focused {
   box-shadow:none;
-  border:1px solid #222426;
+  /* border:1px solid #222426; */
   color:#222426;
   background-color:#fff
 }
@@ -8116,8 +8153,7 @@ i.icon.icon-move {
 }
 
 .app-search-tweet-results {
-  overflow:hidden
-}
+  overflow:hidden}
 
 .app-search-tweet-results .column-header-temp {
   height:0
@@ -8788,25 +8824,34 @@ i.icon.icon-clear-timeline {
   top:9px;
   right:-7px;
   font-style:normal;
-  font-size:10px;
+  font-size: 12px;
   padding:2px 3px;
-  line-height:1;
-  border-radius:4px;
-  background-color:#55acee;
+  /* line-height: 1.1; */
+  border-radius: 99px;
+  background-color: #0091FF;
   color:#fff;
-  visibility:hidden
+  /* visibility:hidden
+ */
+  border: none;
+  font-weight: 400;
+  margin-top: -5px;
+  font-size: 0px;
+  width: 1px;
+  height: 2px;
 }
 
 .numbered-badge-onheader {
-  border:2px solid #303236
+  /* border:2px solid #fff
+ */
+  display: none;
 }
 
 .numbered-badge-onnav {
   top:1px;
-  right:-5px;
-  border:2px solid #111
-}
-
+  /* right:-5px; */
+  /* border:2px solid #444
+ */}
+ 
 .drawer {
   position:absolute;
   width:270px;
@@ -9666,7 +9711,7 @@ i.icon.icon-clear-timeline {
 }
 
 #general_settings>.mdl-links>span.inline-block:after {
-  content: " TweetDeck Enhancer 3.1 by @ryandolan123";
+  content: " TweetDeck Enhancer 3.1.1 by @ryandolan123";
   padding-left: 8px;
 }
 
@@ -10468,6 +10513,7 @@ input#file-upload-input {
 .inline-reply .btn-neutral,.inline-reply .character-count {
   color:#fff;
   transition: 200ms all!important;
+  transform: none;
 }
 
 .reply-triangle {
@@ -11406,7 +11452,7 @@ input[type="checkbox"] {
     vertical-align: middle;
     height: 100%;
     width: 100%;
-    margin-top: -15px;
+    margin-top: -13px;
     position: absolute;
     top: 45%;
     left: 0px;
@@ -11420,6 +11466,7 @@ input[type="checkbox"] {
 
 .js-tweet-results.app-search-tweet-results {
     border-radius: 0 0 8px 8px;
+    height: 100%;
 }
 
 .js-popover-content {
@@ -11437,7 +11484,7 @@ input[type="checkbox"] {
 
 .search-input-control input {
   padding-right:25px;
-  border: 1px solid #E7E7E7;
+  /* border: 1px solid #eee; */
 }
 
 .search-input-control .icon {
@@ -12026,20 +12073,23 @@ a.caldisabled {
 }
 
 .prf-stats li+li a {
-  border-left:1px solid #ebebeb
-}
+  /* border-left:1px solid #ebebeb
+ */}
 
 .prf-stats a {
   display:block;
   padding:11px 12px;
   font-size:10px;
   color:#999
+;
+  font-weight: 500;
 }
 
 .prf-stats a strong {
   display:block;
   color:#333;
   font-size:14px
+;font-weight: 500;
 }
 
 .prf-stats a:hover,.prf-stats a:hover strong {
@@ -12065,35 +12115,43 @@ a.caldisabled {
   *vertical-align:auto;
   zoom:1;
   *display:inline;
-  margin:0
+  margin:0;
+  transition: 200ms all!important;
 }
 
 .prf .lst-profile span {
-  bottom:0;
+  bottom: 0;
   color:#aaa;
   font-size:11px;
-  text-transform:uppercase
+  text-transform:uppercase;
+  transition: 200ms all!important;
+  font-weight: 500;
+  /* margin-top: 15px; */
 }
 
 .prf .lst-profile i {
   color:#aaa;
-  margin-top:4px;
-  font-size:34px
+  margin-top: 10px;
+  font-size:34px;
+  transition: 200ms all!important;
 }
 
 .prf .lst-profile a {
   height:65px;
   width:auto;
   border:0;
-  border-right:0px solid #fff
+  border-right:0px solid #fff;
+  transition: 200ms all!important;
 }
 
 .prf .lst-profile a:hover span {
-  color:#505060
+  color:#505060;
+  transition: 200ms all!important;
 }
 
 .prf .lst-profile a:hover i {
-  color:#505060
+  color:#505060;
+  transition: 200ms all!important;
 }
 
 .prf .lst-profile li:last-child a {
@@ -13332,21 +13390,82 @@ a.caldisabled {
   color: #bbb;
 }
 
-.column-title-back:after {
+.js-column-detail .column-title-back:after {
     content: "Tweet";
-    font-weight: 400;
-    color: #eee;
+    font-weight: 500;
+    color: #fff;
     margin-top: -43px;
     position: absolute;
     text-align: center;
-    float: right;
+    /* float: right; */
     left: 44%;
+    margin-left: -5px;
+}
+
+.js-tweet-results .js-column-back .column-title-back:after {
+    content: "Tweet";
+    font-weight: 500;
+    color: #000;
+    margin-top: 0px;
+    position: absolute;
+    text-align: center;
+    /* float: right; */
+    left: 44%;
+    margin-left: -5px;
+}
+
+.column-type-message .column-title-back:after {
+    content: "Conversation";
+    font-weight: 500;
+    color: #fff;
+    margin-top: -43px;
+    position: absolute;
+    text-align: center;
+    /* float: right; */
+    left: 44%;
+    margin-left: -5px;
+}
+
+.js-tweet-social-proof-back:after {
+    content: "Interactions";
+    font-weight: 500;
+    color: #fff;
+    margin-top: -56px;
+    position: absolute;
+    text-align: center;
+    float: right;
+    left: 36%;
+    font-size: 16px;
+}
+
+.mdl .js-tweet-social-proof-back:after {
+    content: "Interactions";
+    font-weight: 500;
+    color: #000;
+    margin-top: -56px;
+    position: absolute;
+    text-align: center;
+    float: right;
+    left: 36%;
+    font-size: 16px;
+}
+
+.js-tweet-results .js-tweet-social-proof-back:after {
+    content: "Interactions";
+    font-weight: 500;
+    color: #000;
+    margin-top: -56px;
+    position: absolute;
+    text-align: center;
+    float: right;
+    left: 36%;
+    font-size: 16px;
 }
 
 .mdl .column-title-back:after {
     content: "Tweet";
     font-weight: 500;
-    color: #000;
+    color: #fff;
     margin-top: -43px;
     position: absolute;
     text-align: center;
@@ -13354,10 +13473,18 @@ a.caldisabled {
     left: 44%;
 }
 
+.js-modal-panel.mdl .column-title-back:after {
+  color:#000
+}
+
+.js-modal-panel .js-tweet-social-proof-back:after {
+  color:#000;
+}
+
 .js-tweet-social-proof-back:after {
     content: "Interactions";
-    font-weight: 400;
-    color: #eee;
+    font-weight: 500;
+    color: #fff;
     margin-top: -56px;
     position: absolute;
     text-align: center;
@@ -13603,9 +13730,9 @@ a.account-link[href="https://twitter.com/TDEnhancer"] .fullname.txt-ellipsis:aft
 a.account-link[href="https://twitter.com/WilliamcaFox"] .fullname.txt-ellipsis:after
 {
     background-image:url(https://ryandolan123.com/tweetdeck-web/web/assets/global/backgrounds/td_sprite_sheet_2013_@1x.png);
-    content:"...";
+    content: "....";
     width:14px;
-    height:14px;
+    height: 14px;
     background-position:-163px -48px;
     color: rgba(0, 0, 0, 0);
     box-shadow: none;
@@ -13703,7 +13830,23 @@ div.js-replies-to.replies-after article.stream-item {
 
 .js-app.application {
   -webkit-animation: popgoesthemodalwindow 0.5s!important;
-  -webkit-animation-timing-function: ease-out;
+  /* -webkit-animation-timing-function: ease-out; */
+}
+
+.list-item.is-selected {
+    background-color: rgb(0, 145, 255);
+}
+
+.list-item.is-selected .fullname {
+    color: #fff;
+}
+
+.js-message-detail .stream-item {
+    -webkit-animation: none;
+}
+
+.js-message-detail {
+    -webkit-animation: popgoesthetweet 0.4s 1;
 }
 
 /* DEMO */
