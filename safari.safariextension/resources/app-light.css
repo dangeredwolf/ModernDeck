@@ -97,8 +97,7 @@ img.spinner-centered {
 }
 
 .bg-r-faded-gray {
-  background-color:#e1e8ed
-}
+  background-color: #03A9F3;}
 
 .bg-r-light-gray {
   background-color: #03A9F3;}
@@ -1253,7 +1252,7 @@ abbr[title] {
   bottom:0;
   left:0;
   right:0;
-  overflow:scroll
+  /* overflow:scroll; */overflow-y: scroll;
 }
 
 .antiscroll-inner::-webkit-scrollbar {
@@ -1428,8 +1427,7 @@ abbr[title] {
 
 .cf:before,.cf:after {
   display:block;
-  content:" "
-}
+  content:" "}
 
 .cf:after {
   clear:both
@@ -1602,8 +1600,8 @@ abbr[title] {
 }
 
 .is-movable {
-  cursor:move
-}
+  /* cursor:move
+ */}
 
 .is-zoomable {
   cursor:-webkit-zoom-in;
@@ -5334,7 +5332,8 @@ a.link-complex>span {
 }
 
 .account-remove-check-open .account-remove-check {
-  display:block
+  display:block;
+  -webkit-animation: herecomesthetweetdetails 0.3s 1!important;
 }
 
 .js-account-invited-accounts {
@@ -6660,8 +6659,13 @@ li.js-typeahead-item.js-typeahead-recent-search-item.list-item.is-actionable.ite
   padding-bottom:12.15px
 }
 
-.icon-compose-minigrid {
+/*.icon-compose-minigrid {
   display:none;
+}*/
+
+.is-minigrid .compose-account {
+    margin-right: 0px;
+    padding-right: 14px;
 }
 
 .compose-media-bar-remove>i.sprite.sprite-close {
@@ -7308,7 +7312,7 @@ li.js-typeahead-item.js-typeahead-recent-search-item.list-item.is-actionable.ite
 }
 
 .quoted-tweet {
-  border-color:#66757f;
+  border-color: #E1E1E1;
   color:#999
 }
 
@@ -7965,7 +7969,7 @@ i.icon.icon-move {
 
 .app-search-input:focus,.app-search-input.is-focused {
   box-shadow:none;
-  border:1px solid #222426;
+  /* border:1px solid #222426; */
   color:#222426;
   background-color:#fff
 }
@@ -8170,8 +8174,7 @@ i.icon.icon-move {
   position:relative;
   display:none;
   padding-left:8px;
-  overflow-y:hidden
-}
+  overflow-y:hidden}
 
 .accordion .icon-arrow-d,.accordion .icon-arrow-u {
   position:absolute;
@@ -8699,14 +8702,18 @@ i.icon.icon-clear-timeline {
   border-radius: 99px;
   background-color: #0091FF;
   color:#fff;
-  /* visibility:hidden
- */
+  visibility:hidden;
   border: none;
   font-weight: 400;
   margin-top: -5px;
   font-size: 0px;
   width: 1px;
   height: 2px;
+}
+
+.numbered-badge.is-visible {
+    visibility: visible;
+  
 }
 
 .numbered-badge-onheader {
@@ -9356,6 +9363,7 @@ i.icon.icon-clear-timeline {
   opacity:.7;
   color:#333;
   margin-left: -622px;
+  display: none;
 }
 
 .mdl-dismiss:hover {
@@ -9582,7 +9590,7 @@ i.icon.icon-clear-timeline {
 }
 
 #general_settings>.mdl-links>span.inline-block:after {
-  content: " TweetDeck Enhancer 3.1.1 by @ryandolan123";
+  content: " TweetDeck Enhancer 3.1.2 by @ryandolan123";
   padding-left: 8px;
 }
 
@@ -10290,7 +10298,8 @@ input#file-upload-input {
 }
 
 .account-selector-grid-mode {
-  opacity:.2
+  opacity:.2;
+  margin-right: 3px!important;
 }
 
 .is-selected.account-selector-grid-mode {
@@ -11297,8 +11306,7 @@ input[type="checkbox"] {
 }
 
 .search-input-control {
-  position:relative
-}
+  position:relative}
 
 .search-input-control.has-value .search-input-perform-search {
   display:none
@@ -11318,7 +11326,7 @@ input[type="checkbox"] {
 
 .search-input-control input {
   padding-right:25px;
-  border: 1px solid #eee;
+  /* border: 1px solid #eee; */
 }
 
 .js-search-results-footer>button.js-add-column.btn.btn-positive.obj-center.padding-vl {
@@ -12993,59 +13001,63 @@ a.caldisabled {
 }
 
 @media only screen and (max-width: 980px) {
-.app-image {
-  margin-bottom:30px
-}
+  .app-image {
+    margin-bottom:30px
+  }
 
-.app-signin-wrap {
-  margin-left:10px;
-  margin-right:10px
-}
+  .app-signin-wrap {
+    margin-left:10px;
+    margin-right:10px
+  }
 
-.app-info-signup {
-  position:static;
-  float:left;
-  margin-top:20px
-}
+  .app-info-signup {
+    position:static;
+    float:left;
+    margin-top:20px
+  }
 }
 
 @media only screen and (max-width: 768px) {
-.app-signin-form {
-  margin:0 auto;
-  margin-bottom:60px;
-  display:block;
-  position:static
-}
+  .app-signin-form {
+    margin:0 auto;
+    margin-bottom:60px;
+    display:block;
+    position:static
+  }
 
-.app-info {
-  padding-right:0
-}
+  .app-info {
+    padding-right:0
+  }
 
-.app-info-panel {
-  margin-right:0
-}
+  .app-info-panel {
+    margin-right:0
+  }
 
-.signin-form {
-  margin-top:40px
-}
+  .signin-form {
+    margin-top:40px
+  }
 
-.startflow {
-  margin-top:30px
-}
+  .startflow {
+    margin-top:30px
+  }
 }
 
 @media only screen and (max-width: 350px) {
-.app-signin-form {
-  width:300px
+  .app-signin-form {
+    width:300px
+  }
+
+  .form-login-username {
+    width:229px
+  }
+
+  .form-login-pwd {
+    width:178px
+  }
 }
 
-.form-login-username {
-  width:229px
-}
-
-.form-login-pwd {
-  width:178px
-}
+.link-complex.txt-medium.block.cf:hover {
+    color: #AADFFF;
 }
 
 .startflow-wrap {
@@ -13091,10 +13103,11 @@ a.caldisabled {
 .column-navigator {
   counter-reset:column-nav;
   position:absolute;
-  top:105px;
+  top: 115px;
   left:0;
   right:0;
   bottom: 195px;
+  overflow: visible;
 }
 
 .column-nav-link {
@@ -13103,6 +13116,7 @@ a.caldisabled {
   color:#aaa;
   font-size:18px;
   cursor:pointer
+;overflow: visible;
 }
 
 .column-nav-link:focus,.column-nav-link:active {
@@ -13120,7 +13134,12 @@ a.caldisabled {
   box-sizing:border-box;
   counter-increment:column-nav;
   color:#fff;
-  background-color: #555;}
+  background-color: #555;
+  /* top: 0; */
+  margin-top: auto;
+  /* overflow: visible; */
+  /* margin-top: 8px; */
+}
 
 .column-nav-link:after {
   content:counter(column-nav);
@@ -13177,6 +13196,25 @@ a.caldisabled {
   line-height:41px;
   color: #fff!important;
   -webkit-animation: backgroundanimation 0.2s 1;
+}
+
+.is-unread>div>div>header>a>div>span>b.fullname.link-complex-target {
+  color: #eee
+}
+.is-unread>div>div>div>div>div>p>span.js-tweet-text.tweet-text.with-linebreaks {
+  color: #DFF2FF;
+}
+.is-unread>div>div>header>a>div>span>span.username.txt-mute {
+  color: #56A6FF
+}
+
+.stream-item.is-actionable .tweet-action,.stream-item.is-actionable .tweet-detail-action {
+ color: #D9D9D9;
+}
+
+.stream-item.is-actionable .tweet-action:hover,.stream-item.is-actionable .tweet-detail-action:hover,.stream-item.is-actionable .tweet-action:focus,.stream-item.is-actionable .tweet-detail-action:focus,.stream-item.is-actionable .tweet-action:active,.stream-item.is-actionable .tweet-detail-action:active,.stream-item.is-actionable .tweet-action.is-selected,.stream-item.is-actionable .is-selected.tweet-detail-action {
+  color:#999;
+  text-decoration:none
 }
 
 .is-condensed .column-nav-link:after {
@@ -13674,25 +13712,23 @@ div.js-replies-to.replies-after article.stream-item {
     -webkit-animation: popgoesthetweet 0.4s 1;
 }
 
-/* start light mode additions */
-
-.is-unread>div>div>header>a>div>span>b.fullname.link-complex-target {
-  color: #eee
-}
-.is-unread>div>div>div>div>div>p>span.js-tweet-text.tweet-text.with-linebreaks {
-  color: #DFF2FF;
-}
-.is-unread>div>div>header>a>div>span>span.username.txt-mute {
-  color: #56A6FF
+.account-remove-check-message {
+    color: #fff;
 }
 
-.stream-item.is-actionable .tweet-action,.stream-item.is-actionable .tweet-detail-action {
- color: #ddd;
+.is-condensed .column-navigator {
+    top: 105px;
 }
 
-.stream-item.is-actionable .tweet-action:hover,.stream-item.is-actionable .tweet-detail-action:hover,.stream-item.is-actionable .tweet-action:focus,.stream-item.is-actionable .tweet-detail-action:focus,.stream-item.is-actionable .tweet-action:active,.stream-item.is-actionable .tweet-detail-action:active,.stream-item.is-actionable .tweet-action.is-selected,.stream-item.is-actionable .is-selected.tweet-detail-action {
-  color:#999;
-  text-decoration:none
+.tweet-button span.label {
+    font-size: 16px;
+    text-align: center;
+    margin-left: 25px!important;
+}
+
+.med-tweet .dropdown-menu {
+    top: initial;
+    bottom: 100%;
 }
 
 /* DEMO */
