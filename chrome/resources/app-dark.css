@@ -101,8 +101,7 @@ img.spinner-centered {
 }
 
 .bg-r-faded-gray {
-  background-color:#e1e8ed
-}
+  background-color: #306A98;}
 
 .bg-r-light-gray {
   background-color:#306A98
@@ -1255,8 +1254,7 @@ abbr[title] {
   bottom:0;
   left:0;
   right:0;
-  overflow:scroll
-}
+  overflow-y: scroll;}
 
 .antiscroll-inner::-webkit-scrollbar {
   width:0;
@@ -1604,7 +1602,7 @@ abbr[title] {
 }
 
 .is-movable {
-  cursor:move
+  /*cursor:move*/
 }
 
 .is-zoomable {
@@ -5339,6 +5337,7 @@ a.link-complex>span {
 
 .account-remove-check-open .account-remove-check {
   display:block
+;-webkit-animation: herecomesthetweetdetails 0.3s 1!important;
 }
 
 .js-account-invited-accounts {
@@ -6723,8 +6722,13 @@ li.js-typeahead-item.js-typeahead-recent-search-item.list-item.is-actionable.ite
   padding-bottom:12.15px
 }
 
-.icon-compose-minigrid {
+/*.icon-compose-minigrid {
   display:none;
+}*/
+
+.is-minigrid .compose-account {
+    margin-right: 0px;
+    padding-right: 14px;
 }
 
 .compose-media-bar-remove>i.sprite.sprite-close {
@@ -7347,13 +7351,13 @@ li.js-typeahead-item.js-typeahead-recent-search-item.list-item.is-actionable.ite
 }
 
 .quoted-tweet {
-  border:1px solid #ccd6dd;
+  border:1px solid #555;
   color:#66757f;
   font-size:.9em
 }
 
 .quoted-tweet {
-  border-color:#66757f;
+  border-color: #373737;
   color:#999
 }
 
@@ -7853,6 +7857,8 @@ i.icon.icon-move {
   font-size:18px;
   color:#777;
   cursor:pointer
+;
+  padding-bottom: 7px!important;
 }
 
 .app-nav-link:focus,.app-nav-link:active {
@@ -8087,7 +8093,7 @@ i.icon.icon-move {
   border:none;
   background-color:#3a3d42;
   color:#aaa;
-  box-shadow:inset 0 1px 1px rgba(17,17,17,0.5);
+  /* box-shadow:inset 0 1px 1px rgba(17,17,17,0.5); */
   outline:none;
   word-break:normal
 }
@@ -8098,7 +8104,7 @@ i.icon.icon-move {
 
 .app-search-input:focus,.app-search-input.is-focused {
   box-shadow:none;
-  /* border:1px solid #222426; */
+  border: none;
   color:#222426;
   background-color:#fff
 }
@@ -8819,6 +8825,10 @@ i.icon.icon-clear-timeline {
   width:auto
 }
 
+.numbered-badge.is-visible {
+  visibility:visible;
+}
+
 .numbered-badge {
   position:absolute;
   top:9px;
@@ -8830,8 +8840,7 @@ i.icon.icon-clear-timeline {
   border-radius: 99px;
   background-color: #0091FF;
   color:#fff;
-  /* visibility:hidden
- */
+  visibility:hidden;
   border: none;
   font-weight: 400;
   margin-top: -5px;
@@ -9711,7 +9720,7 @@ i.icon.icon-clear-timeline {
 }
 
 #general_settings>.mdl-links>span.inline-block:after {
-  content: " TweetDeck Enhancer 3.1.1 by @ryandolan123";
+  content: " TweetDeck Enhancer 3.1.2 by @ryandolan123";
   padding-left: 8px;
 }
 
@@ -10417,7 +10426,8 @@ input#file-upload-input {
 }
 
 .account-selector-grid-mode {
-  opacity:.2
+  opacity:.2;
+  margin-right: 3px!important;
 }
 
 .is-selected.account-selector-grid-mode {
@@ -11484,7 +11494,7 @@ input[type="checkbox"] {
 
 .search-input-control input {
   padding-right:25px;
-  /* border: 1px solid #eee; */
+  /* border: 1px solid #F2F2F2; */
 }
 
 .search-input-control .icon {
@@ -13232,7 +13242,8 @@ a.caldisabled {
   box-sizing:border-box;
   counter-increment:column-nav;
   color:#ccc;
-  background-color:#111
+  background-color:#111;
+  margin-top: 8px;
 }
 
 .column-nav-link:after {
@@ -13277,9 +13288,9 @@ a.caldisabled {
     font-weight: 500;
 }
 
-.draggable-dragging {
-  /* box-shadow:0 4px 10px rgba(17,17,17,0.8)
- */}
+/*.draggable-dragging {
+   box-shadow:0 4px 10px rgba(17,17,17,0.8)
+}*/
 
 .column-nav-flyout {
   z-index:1000;
@@ -13847,6 +13858,25 @@ div.js-replies-to.replies-after article.stream-item {
 
 .js-message-detail {
     -webkit-animation: popgoesthetweet 0.4s 1;
+}
+
+.account-remove-check-message {
+    color: #fff;
+}
+
+.is-condensed .column-navigator {
+    top: 105px;
+}
+
+.tweet-button span.label {
+    font-size: 16px;
+    text-align: center;
+    margin-left: 25px!important;
+}
+
+.med-tweet .dropdown-menu {
+    top: initial;
+    bottom: 100%;
 }
 
 /* DEMO */
