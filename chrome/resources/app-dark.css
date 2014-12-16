@@ -12521,8 +12521,8 @@ a.caldisabled {
 .dropdown-menu {
   position:absolute;
   z-index:1;
-  padding:12px 0;
-  border-radius:5px;
+  padding:10px 0;
+  border-radius:8px;
   text-align:left;
   font-weight:400;
   font-size:13px;
@@ -12546,7 +12546,7 @@ a.caldisabled {
   display:block;
   float:none;
   transition:0ms all!important;
-  height: 22px;
+  height: 21px;
 }
 
 .dropdown-menu li a {
@@ -12616,7 +12616,7 @@ a.caldisabled {
   margin-right:-15px;
   text-indent:0;
   /*bottom: 100%;*/
-  -webkit-animation: dropmenucomedown 0.25s 1;
+  -webkit-animation: dropmenucomedown 0.2s 1;
 }
 
 .pos-l .caret {
@@ -12655,7 +12655,7 @@ a.caldisabled {
 .pos-t {
   top:auto;
   bottom:100%;
-  -webkit-animation: dropmenucomeup 0.25s 1;
+  -webkit-animation: dropmenucomeup 0.2s 1;
 }
 
 /* .pos-t .caret {
@@ -12672,7 +12672,7 @@ a.caldisabled {
   margin-bottom:0;
   margin-left:-15px;
   margin-top:0;
-  -webkit-animation: dropmenucomeright 0.25s 1;
+  -webkit-animation: dropmenucomeright 0.2s 1;
 }
 
 .pos-br .caret {
