@@ -6358,6 +6358,21 @@ a.js-column-back.link-complex:active {
     100% {opacity: 1; -webkit-transform: scale(1,1); perspective(400px) rotate3d(1,0,0,0deg)}
 }
 
+@-webkit-keyframes dropmenucomedown {
+  0% {opacity: 0; margin-top:-15px}
+  100% {opacity: 1; margin-top:5px}
+}
+
+@-webkit-keyframes dropmenucomeright {
+  0% {opacity: 0; margin-left:-35px}
+  100% {opacity: 1; margin-left:-15px}
+}
+
+@-webkit-keyframes dropmenucomeup {
+  0% {opacity: 0; bottom:0%}
+  100% {opacity: 1; bottom:100%}
+}
+
 @-webkit-keyframes herecomesthetweetdetails {
   0% {opacity: 0; -webkit-transform: scale(0.5,0.5) perspective(600px) rotate3d(1,0,0,-50deg); }
     /*15% {opacity: 0; -webkit-transform: scale(1.5,1.5) perspective(400px) rotate3d(1,0,0,20deg); }*/
@@ -9272,7 +9287,7 @@ i.icon.icon-clear-timeline {
 }
 
 .js-mediatable .mdl {
-  -webkit-animation: herecomesthetweetdetailsxl 0.3s 1;
+  /* -webkit-animation: herecomesthetweetdetailsxl 0.3s 1; */
   -webkit-animation-timing-function: cubic-bezier(0.175,.885,.32,1);
 }
 
@@ -9470,13 +9485,16 @@ i.icon.icon-clear-timeline {
 
 .mdl.s-full {
   position:absolute;
-  bottom:0;
-  right:0;
-  left:0;
-  height:100%;
-  width:100%;
-  max-width:1024px;
-  margin:0 auto
+  bottom: 10%;
+  right: 0;
+  left: 0;
+  height: 85%;
+  width: 50%;
+  max-width: 1500px;
+  margin:0 auto;
+  /* top: 0%; */
+  margin-top: auto;
+  margin-bottom: auto;
 }
 
 .s-profile {
@@ -9590,7 +9608,7 @@ i.icon.icon-clear-timeline {
 }
 
 #general_settings>.mdl-links>span.inline-block:after {
-  content: " TweetDeck Enhancer 3.1.2 by @ryandolan123";
+  content: " TweetDeck Enhancer 3.2 by @ryandolan123";
   padding-left: 8px;
 }
 
@@ -10517,18 +10535,18 @@ input#file-upload-input {
 
 .med-tweet {
   position:absolute;
-  right:25%;
-  left:25%;
+  right: 15%;
+  left: 15%;
   bottom:10px
 }
 
 .med-embeditem {
   position:absolute;
-  bottom:150px;
-  top:50px;
+  bottom: 85px;
+  top: 00px;
   width:100%;
   text-align:center;
-  overflow-y:hidden;
+  /* overflow-y:hidden; */
   background:transparent url(web/assets/global/backgrounds/spinner_large_white.gif) no-repeat 50% 50%;
   background:transparent url(https://ryandolan123.com/tweetdeck-web/web/assets/global/backgrounds/spinner_large_white.gif) no-repeat 50% 50%
 }
@@ -12485,7 +12503,8 @@ a.caldisabled {
   margin-top:5px;
   margin-right:-15px;
   text-indent:0;
-  /*bottom: 100%;*/
+  /* bottom: 100%; */
+  -webkit-animation: dropmenucomedown 0.2s 1;
 }
 
 .pos-l .caret {
@@ -12526,6 +12545,8 @@ a.caldisabled {
   /*bottom:100%;
   margin-top:0;
   margin-bottom:5px */
+  -webkit-animation: dropmenucomeup 0.2s 1;
+  bottom: 100%;
 }
 
 /* .pos-t .caret {
@@ -12541,7 +12562,8 @@ a.caldisabled {
   left:215px;
   margin-bottom:0;
   margin-left:-15px;
-  margin-top:0
+  margin-top:0;
+  -webkit-animation: dropmenucomeright 0.2s;
 }
 
 .pos-br .caret {
@@ -13291,8 +13313,9 @@ a.caldisabled {
 }
 
 .media-img {
-  max-width:100%;
-  vertical-align:middle
+  /* max-width: 100%!important; */
+  vertical-align:middle;
+  /* max-height: 100%!important; */
 }
 
 .compose-content>div>.cf>.js-account-selector-grid-toggle.pull-right.account-selector-grid-toggle {
@@ -13729,6 +13752,10 @@ div.js-replies-to.replies-after article.stream-item {
 .med-tweet .dropdown-menu {
     top: initial;
     bottom: 100%;
+}
+
+.js-column-nav-list {
+    padding-top: 5px;
 }
 
 /* DEMO */
