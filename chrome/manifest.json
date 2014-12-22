@@ -2,7 +2,7 @@
   "name": "TweetDeck Enhancer",
 
   "description": "Enhances TweetDeck with a fresh new look and new features",
-  "version": "4.0",
+  "version": "4.0.1",
 
   "permissions": [
     "webRequest","webRequestBlocking","https://tweetdeck.twitter.com/*","https://ryandolan123.com/*"

@@ -5451,8 +5451,8 @@ a.link-complex>span {
 }
 
 .is-narrow-columns .column {
-  width: 280px;
-  margin-right: 2px;}
+  width: 283px;
+  /* margin-right: 2px; */}
 
 .is-wide-columns .app-columns {
   /* padding-top:6px; */
@@ -5460,8 +5460,8 @@ a.link-complex>span {
  */}
 
 .is-wide-columns .column {
-  width:350px;
-  margin-right: 3px;}
+  width: 352px;
+  /* margin-right: 3px; */}
 
 .column-temp {
   word-break:break-word;
@@ -5492,8 +5492,16 @@ a.link-complex>span {
   bottom:0;
   width: 325px;
   perspective: 500px;
-  border-right: 3px solid rgba(0, 0, 0, 0.05);
+  border-right: 3px solid rgba(233, 233, 233, 1)!important;
+  /* overflow: visible; */
 }
+
+.is-narrow-columns .column-content {
+  width:280px
+}
+
+.is-wide-columns .column-content {
+  width: 350px;}
 
 span.drawer-header-title.block.drawer-column-header-title {
   color: #fff;
@@ -5711,6 +5719,15 @@ a.pull-left.margin-txs.txt-mute.txt-small.link-complex:hover {
   color: #fff;
   overflow: hidden;
   transition: 200ms all;
+  width:328px;
+}
+
+.is-narrow-columns .column-header,.is-narrow-columns .column-header-temp {
+  width:283px;
+}
+
+.is-wide-columns .column-header,.is-wide-columns .column-header-temp {
+  width:353px;
 }
 
 .column-temp .column-header,.column-header-temp {
@@ -9941,7 +9958,7 @@ i.icon.icon-clear-timeline {
 }
 
 #general_settings>.mdl-links>span.inline-block:after {
-  content: " TweetDeck Enhancer 4.0 PRE-RELEASE by @ryandolan123";
+  content: " TweetDeck Enhancer 4.0.1 by @ryandolan123";
   padding-left: 8px;
 }
 
@@ -14889,9 +14906,13 @@ a.js-action-url.link-clean:active {
     display: none;
 }
 
+a.pull-left.margin-txs.txt-mute.txt-small.is-vishidden.is-visshown-narrow {
+    display: none!important;
+}
+
 /* DEMO */
 
-.app-navigator>.dropdown-menu>.js-dropdown-content>ul>li>b.non-selectable-item.txt-ellipsis {
+/*.app-navigator>.dropdown-menu>.js-dropdown-content>ul>li>b.non-selectable-item.txt-ellipsis {
     font-size: 0px!important;
     -webkit-animation: backgroundanimation 0.3s 1;
 }
@@ -14902,4 +14923,4 @@ a.js-action-url.link-clean:active {
     text-align: left;
     display:block;
     margin-top:-15px
-}
+}*/

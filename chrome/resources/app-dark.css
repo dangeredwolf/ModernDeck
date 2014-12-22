@@ -5455,8 +5455,8 @@ a.link-complex>span {
 }
 
 .is-narrow-columns .column {
-  width: 280px;
-  margin-right: 2px;}
+  width: 283px;
+  /* margin-right: 2px; */}
 
 .is-wide-columns .app-columns {
   /* padding-top:6px; */
@@ -5497,6 +5497,14 @@ a.link-complex>span {
   width: 325px;
   perspective: 500px;
   border-right: 3px solid rgba(0, 0, 0, 0.05);
+}
+
+.is-narrow-columns .column-content {
+  width:280px
+}
+
+.is-wide-columns .column-content {
+  width:350px
 }
 
 span.drawer-header-title.block.drawer-column-header-title {
@@ -5715,7 +5723,18 @@ a.pull-left.margin-txs.txt-mute.txt-small.link-complex:hover {
   color: #fff;
   overflow: hidden;
   transition: 200ms all;
+  width:328px;
 }
+
+
+.is-narrow-columns .column-header,.is-narrow-columns .column-header-temp {
+  width:283px;
+}
+
+.is-wide-columns .column-header,.is-wide-columns .column-header-temp {
+  width:353px;
+}
+
 
 .column-temp .column-header,.column-header-temp {
   position:absolute;
@@ -9949,7 +9968,7 @@ i.icon.icon-clear-timeline {
 }
 
 #general_settings>.mdl-links>span.inline-block:after {
-  content: " TweetDeck Enhancer 4.0 PRE-RELEASE by @ryandolan123";
+  content: " TweetDeck Enhancer 4.0.1 by @ryandolan123";
   padding-left: 8px;
 }
 
@@ -14896,9 +14915,13 @@ a.js-dismiss.txt-r-on-dark-blue {
     background-color: rgba(38, 50, 56, 1);
 }
 
+a.pull-left.margin-txs.txt-mute.txt-small.is-vishidden.is-visshown-narrow {
+    display: none!important;
+}
+
 /* DEMO */
 
-.app-navigator>.dropdown-menu>.js-dropdown-content>ul>li>b.non-selectable-item.txt-ellipsis {
+/*.app-navigator>.dropdown-menu>.js-dropdown-content>ul>li>b.non-selectable-item.txt-ellipsis {
     font-size: 0px!important;
     -webkit-animation: backgroundanimation 0.3s 1;
 }
@@ -14909,4 +14932,4 @@ a.js-dismiss.txt-r-on-dark-blue {
     text-align: left;
     display:block;
     margin-top:-15px
-}
+}*/
