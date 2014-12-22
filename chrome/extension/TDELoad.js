@@ -1,4 +1,4 @@
-// TweetDeckEnhancerLoad.js
+// TDELoad.js
 // Copyright (c) 2014 Ryan Dolan (ryandolan123)
 
 if (typeof safari !== "undefined") {
@@ -11,6 +11,9 @@ if (typeof safari !== "undefined") {
 if (typeof chrome !== "undefined") {
   var isChrome = true;
 }
+
+console.log(chrome.webRequest);
+console.log(chrome);
 
 var links = document.getElementsByTagName("link");
 

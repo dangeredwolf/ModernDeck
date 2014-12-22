@@ -1,4 +1,4 @@
-// TweetDeckEnhancerFix.js
+// TDEFix.js
 // Copyright (c) 2014 Ryan Dolan (ryandolan123)
 
 // Attempts to remove old load from appearing for split second. Unfortunately doesn't work as well as hoped. Oh well.

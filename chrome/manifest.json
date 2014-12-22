@@ -2,24 +2,29 @@
   "name": "TweetDeck Enhancer",
 
   "description": "Enhances TweetDeck with a fresh new look and new features",
-  "version": "3.2.0.1",
+  "version": "4.0",
 
   "permissions": [
-    "https://tweetdeck.com/*", "https://twimg.com/*", "https://twitter.com/*", "https://ryandolan123.com/*", "tabs"
+    "webRequest","webRequestBlocking","https://tweetdeck.twitter.com/*","https://ryandolan123.com/*"
   ],
 
   "content_scripts": [
     {
       "matches": ["https://tweetdeck.twitter.com/"],
-      "js": ["extension/TweetDeckEnhancerLoad.js"],
+      "js": ["extension/TDELoad.js"],
       "run_at": "document_end"
     },
     {
       "matches": ["https://tweetdeck.twitter.com/"],
-      "js": ["extension/TweetDeckEnhancerFix.js"],
+      "js": ["extension/TDEFix.js"],
       "run_at": "document_start"
     }
   ],
+
+  "background": {
+    "scripts": ["extension/TDEBackground.js"],
+    "persistent": true
+  },
 
   "icons": {
       "16": "AppIcon16.png",
