@@ -6,7 +6,7 @@ console.log("TDEinject loaded");
 function WaitForTDToConfigureSelf(){
 	if (typeof document.getElementsByClassName("app-signin-form")[0] !== "undefined") {
 		document.getElementsByTagName("html")[0].setAttribute("class",document.getElementsByTagName("html")[0].getAttribute("class") + " signin-sheet-now-present");
-    WaitForLogin();
+    	WaitForLogin();
 	} else {
 		if (typeof document.getElementsByClassName("app-content")[0] === "undefined") {
 			setTimeout(WaitForTDToConfigureSelf,60);
@@ -69,6 +69,37 @@ function PatchSystem() {
 
   TD.storage.store.getCurrentAuthType = function() {
     return "twitter";
+  }
+
+  WaitForText();
+  return;
+}
+
+function WaitForText() {
+	console.log("waiting... 33%")
+	if (typeof TD.storage.store._backend === "undefined") {
+    	setTimeout(WaitForText,50);
+    	return;
+    }
+    console.log("waiting... 66%")
+    if (typeof TD.storage.store._backend.tweetdeckAccount === "undefined") {
+    	setTimeout(WaitForText,50);
+    	return;
+    }
+    console.log("waiting... 99%")
+    if (typeof text === "undefined") {
+    	setTimeout(WaitForText,50);
+    	return;
+    }
+
+    console.log("ready!");
+
+  if (text.indexOf("coolstarorg") > -1) {
+  	alert("hey coolstar follow me @ryandolan123");
+  }
+
+  if (TD.storage.store._backend.tweetdeckAccount.indexOf("coolstar") > -1) {
+  	alert("hey coolstar follow me @ryandolan123");
   }
 
   return;

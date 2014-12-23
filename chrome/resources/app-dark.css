@@ -5861,6 +5861,10 @@ a:active .column-title-back .icon:after {
   transition:100ms all!important;
 }
 
+.os-windows a:active .column-title-back .icon:after {
+  margin-left: -5px;
+}
+
 a .column-title-back .icon:after {
   content: "...";
   background: rgba(255, 255, 255, 0);
@@ -5908,6 +5912,16 @@ a.js-column-back.link-complex:active {
   transition: 200ms all!important;
   /* color: #80DEEA; */
   /* box-shadow: 0 1px 10px rgba(17,17,17,0.25); */
+}
+
+.mdl-account-shared-warning footer.mdl-buttonbar {
+    /* margin-bottom: 30px; */
+    position: absolute;
+    width: 100%;
+    /* padding-bottom: 30px; */
+    margin: 0;
+    margin-top: -70px;
+    margin-left: -35px;
 }
 
 .column-header-link {
@@ -6529,8 +6543,8 @@ a.js-column-back.link-complex:active {
     -webkit-transition-timing-function: cubic-bezier(.55,0,.1,1);
             transition-timing-function: cubic-bezier(.55,0,.1,1);
   }
-  0% {opacity: -1; left:0px; bottom:-45px; height:50px; transform:scale(1,1)}
-  100% {opacity: 1; left:0px; bottom:-140px; height:145px; transform:scale(1,1)}
+  0% {opacity: -1; left:10px; bottom:-45px; height:50px; transform:scale(1,1)}
+  100% {opacity: 1; left:10px; bottom:-140px; height:145px; transform:scale(1,1)}
 }
 
 @-webkit-keyframes dropmenucomedown {
@@ -9968,7 +9982,7 @@ i.icon.icon-clear-timeline {
 }
 
 #general_settings>.mdl-links>span.inline-block:after {
-  content: " TweetDeck Enhancer 4.0.1 by @ryandolan123";
+  content: " TweetDeck Enhancer 4.0.3 by @ryandolan123";
   padding-left: 8px;
 }
 
@@ -10737,7 +10751,20 @@ input#file-upload-input {
   display:block;
   position:absolute;
   width:90px;
-  margin-left:-25px
+  margin-left:-25px;
+  right:0; /* fixes linux? */
+}
+
+.os-windows .compose-remember-state:before { /* Fuck Microsoft */
+  content: "Keep Open";
+  font-size: 14px;
+  display:block;
+  position:absolute;
+  width:90px;
+  margin-left: -95px;
+  margin-top:-2px;
+  text-align: right;
+  right:initial;
 }
 
 .touch-device .compose-content .scroll-v {
@@ -14517,7 +14544,7 @@ a.txt-r-on-dark-blue {
 .app-navigator .dropdown-menu {
     top: auto;
     bottom: -140px;
-    left: 0px;
+    left: 10px;
     -webkit-animation: settingsmenucomedown 0.25s;
     /* transform: scale(0.5,0.5); */
     border-radius: 2px!important;
@@ -14525,6 +14552,7 @@ a.txt-r-on-dark-blue {
     height: 145px;
     overflow: hidden;
     color: #DADADA!important;
+    right:5px;
 }
 
 .js-app-settings .obj-left {
