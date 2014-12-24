@@ -6,7 +6,7 @@ console.log("TDEinject loaded");
 function WaitForTDToConfigureSelf(){
 	if (typeof document.getElementsByClassName("app-signin-form")[0] !== "undefined") {
 		document.getElementsByTagName("html")[0].setAttribute("class",document.getElementsByTagName("html")[0].getAttribute("class") + " signin-sheet-now-present");
-    	WaitForLogin();
+    WaitForLogin();
 	} else {
 		if (typeof document.getElementsByClassName("app-content")[0] === "undefined") {
 			setTimeout(WaitForTDToConfigureSelf,60);
