@@ -1,4 +1,4 @@
-TweetDeck-Enhancer
+TweetDeck Enhancer
 ==================
 
 Extension which applies TweetDeck Enhancer CSS to tweetdeck.twitter.com. Supported on Google Chrome (stable), Safari for OS X (not as stable), and Opera (stable). 
