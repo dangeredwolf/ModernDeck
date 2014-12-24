@@ -4780,7 +4780,6 @@ a.mdl-dismiss-media>i.icon.icon-close {
 .is-inverted-dark .btn-alt[disabled],.is-inverted-dark .btn-alt[disabled]:hover,.is-inverted-dark .btn-alt[disabled]:active,.is-inverted-dark .btn-alt.is-disabled,.is-inverted-dark .btn-alt.is-disabled:hover,.is-inverted-dark .btn-alt.is-disabled:focus,.is-inverted-dark .btn-alt.is-disabled:active {
   color:#bbb;
   border-color:#ddd;
-  background-color:#eee
 }
 
 .btn-alt {
@@ -4807,7 +4806,6 @@ a.mdl-dismiss-media>i.icon.icon-close {
 .btn-alt[disabled],.btn-alt[disabled]:hover,.btn-alt[disabled]:active,.btn-alt.is-disabled,.btn-alt.is-disabled:hover,.btn-alt.is-disabled:focus,.btn-alt.is-disabled:active {
   color:#eee;
   border-color:#444;
-  background-color:#666872
 }
 
 .btn .icon {
@@ -5103,7 +5101,7 @@ button.js-follow-button.js-show-tip.follow-btn.btn.btn-alt {}
 }
 
 .btn-square {
-  /* padding:4px 0; */
+  padding:4px 0;
   width:30px
 }
 
