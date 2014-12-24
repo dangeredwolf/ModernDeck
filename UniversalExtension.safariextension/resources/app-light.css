@@ -8334,7 +8334,8 @@ i.icon.icon-move {
 }
 
 .app-search-tweet-results .column-content {
-  top:0
+  top:0;
+  width:100%;
 }
 
 .app-search-tweet-results .column-detail .column-content,.app-search-tweet-results .column-detail-level-2 .column-content {
