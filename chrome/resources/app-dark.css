@@ -14945,6 +14945,12 @@ a.pull-left.margin-txs.txt-mute.txt-small.is-vishidden.is-visshown-narrow {
     display: none!important;
 }
 
+button.js-send-tweet-button.js-spinner-button.js-show-tip.btn.btn-positive.btn-extra-height.spinner-button-is-active:after {
+  font-size:0px!important;
+  width:0px!important;
+}
+
+
 /* DEMO */
 
 /*.app-navigator>.dropdown-menu>.js-dropdown-content>ul>li>b.non-selectable-item.txt-ellipsis {

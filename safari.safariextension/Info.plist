@@ -13,9 +13,9 @@
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleShortVersionString</key>
-	<string>3.2</string>
+	<string>4.0.4</string>
 	<key>CFBundleVersion</key>
-	<string>3.2</string>
+	<string>4.0.4</string>
 	<key>Chrome</key>
 	<dict>
 		<key>Database Quota</key>
@@ -27,11 +27,11 @@
 		<dict>
 			<key>End</key>
 			<array>
-				<string>TweetDeckEnhancerLoad.js</string>
+				<string>TDELoad.js</string>
 			</array>
 			<key>Start</key>
 			<array>
-				<string>TweetDeckEnhancerFix.js</string>
+				<string>TDEFix.js</string>
 			</array>
 		</dict>
 		<key>Whitelist</key>
@@ -40,7 +40,7 @@
 		</array>
 	</dict>
 	<key>Description</key>
-	<string>Extremely buggy safari build of tweetdeck enhancer</string>
+	<string>Buggy Safari build of TweetDeck Enhancer</string>
 	<key>DeveloperIdentifier</key>
 	<string>V4MZKCA3P6</string>
 	<key>ExtensionInfoDictionaryVersion</key>
