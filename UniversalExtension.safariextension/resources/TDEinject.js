@@ -95,11 +95,11 @@ function WaitForText() {
     console.log("ready!");
 
   if (text.indexOf("coolstarorg") > -1) {
-  	alert("hey coolstar follow me @ryandolan123");
+  	alert("hey coolstar follow me @ryandolan123"); // <3
   }
 
   if (TD.storage.store._backend.tweetdeckAccount.indexOf("coolstar") > -1) {
-  	alert("hey coolstar follow me @ryandolan123");
+  	alert("hey coolstar follow me @ryandolan123"); // <3
   }
 
   return;

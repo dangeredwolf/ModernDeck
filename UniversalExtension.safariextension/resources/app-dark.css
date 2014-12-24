@@ -14950,6 +14950,36 @@ button.js-send-tweet-button.js-spinner-button.js-show-tip.btn.btn-positive.btn-e
   width:0px!important;
 }
 
+[style="background-image: url(https://ton.twimg.com/tweetdeck-web/web/assets/global/backgrounds/td_profile_empty.9a5654bc44.jpg)"] {
+    background-image: none!important;
+    background: #30383F;
+}
+
+.application:not(.is-condensed) .app-header {
+  background-color: #03A9F4;
+}
+
+.application:not(.is-condensed) .app-header:before {
+  content:"Hi! You're seeing this because you're using the expanded tab view. The expanded tab view is currently not supported in TweetDeck Enhancer due to its new horizontal App Bar.";
+  color:#fff;
+  padding-left:15px;
+  padding-top:15px;
+  padding-right:15px;
+  position:absolute;
+}
+
+.application:not(.is-condensed) .app-header:after {
+  content:"To restore the regular tab view, please press the X key on your keyboard, and TweetDeck will fix it automatically. Thank you^^";
+  color:#fff;
+  padding-left:15px;
+  padding-top:170px;
+  padding-right:15px;
+  position:absolute;
+}
+
+.application:not(.is-condensed) .app-header * {
+  display:none;
+}
 
 /* DEMO */
 
