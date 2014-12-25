@@ -12,9 +12,6 @@ if (typeof chrome !== "undefined") {
   var isChrome = true;
 }
 
-console.log(chrome.webRequest);
-console.log(chrome);
-
 if (isChrome) {
   /*chrome.webRequest.onHeadersReceived.addListener(function(details) {
     
@@ -23,6 +20,19 @@ if (isChrome) {
       /*details.responseHeaders = details.responseHeaders.concat(transformHeaders(getHeaders(/^backbone\.responseHeaders.+$/)));
 
       return { responseHeaders: details.responseHeaders };*/
+
+      chrome.runtime.onInstalled.addListener(function(details){
+          if(details.reason == "install"){
+              chrome.tabs.create(
+              {url:"https://tweetdeck.twitter.com",
+              active:true
+              }
+              , function(){})
+          }else if(details.reason == "update"){
+              var thisVersion = chrome.runtime.getManifest().version;
+              console.log("Updated from " + details.previousVersion + " to " + thisVersion + "!");
+          }
+      });
 
       if (details.type !== "main_frame") {
         return

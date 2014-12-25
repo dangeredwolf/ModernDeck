@@ -22,7 +22,8 @@ img.spinner-centered {
 
 .js-startflow-content.startflow {
    /* background: url(https://ryandolan123.com/tweetdeck-web/web/assets/global/backgrounds/spinner-fff-on-55acee.gif) no-repeat;*/
-   background: url(https://abs.twimg.com/a/1418162186/img/t1/spinner-rosetta-blue.gif) no-repeat;
+   /*background: url(https://abs.twimg.com/a/1418162186/img/t1/spinner-rosetta-blue.gif) no-repeat;*/ 
+   background: url(https://abs.twimg.com/a/1419352959/img/t1/spinner-rosetta-gray-32x32.gif) no-repeat;
    background-size:48px 48px;
    -webkit-filter: brightness(9);
     height: 24px;
