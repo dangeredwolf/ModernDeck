@@ -33,8 +33,7 @@
       "48": "AppIcon48.png",
       "64": "AppIcon64.png",
       "128": "AppIcon128.png",
-      "256": "AppIcon256.png",
-      "512": "AppIcon512.png"
+      "256": "AppIcon256.png"
    },
 
   "web_accessible_resources": [
