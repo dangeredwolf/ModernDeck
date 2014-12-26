@@ -62,8 +62,9 @@ if (isChrome) {
     }, {urls:["https://tweetdeck.twitter.com/*"]}, ["responseHeaders","blocking"]);
 
 chrome.webRequest.onBeforeRequest.addListener(function(details) { // Incomplete right now. Will be used to change TweetDeck favicon. Will be finished before the next stable release.
+      console.log("hm?");
       if (details.url.indexOf("favicon") > -1) {
         details.url = chrome.extension.getURL("resources/favicon.ico");
       }
-    }, {urls:["https://ton.twimg.com/tweetdeck-web/web/assets/logos/*"]}, ["responseHeaders","blocking"]);
+    }, {urls:["https://ton.twimg.com/tweetdeck-web/web/assets/*"]}, ["requestBody","blocking"]);
 }
