@@ -6,3 +6,5 @@ chrome.pem
 chrome.crx
 
 .gitignore
+
+*.pem
