@@ -12,9 +12,6 @@ if (typeof chrome !== "undefined") {
   var isChrome = true;
 }
 
-console.log(chrome.webRequest);
-console.log(chrome);
-
 var links = document.getElementsByTagName("link");
 
 for (i = 0; i < links.length; i++) { 

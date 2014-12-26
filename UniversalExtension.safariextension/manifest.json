@@ -54,5 +54,10 @@
     "resources/fonts/Roboto700latinext.woff2"
   ],
 
+  "browser_action": {
+    "default_icon": "resources/oneclick/InstaTweetDeck.png",
+    "default_popup": "extension/ITD.html"
+  },
+
   "manifest_version": 2
 }

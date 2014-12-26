@@ -14,29 +14,32 @@ if (typeof chrome !== "undefined") {
 
 if (isChrome) {
   /*chrome.webRequest.onHeadersReceived.addListener(function(details) {
-    
+
   },{urls: []});*/
+
+    chrome.runtime.onInstalled.addListener(function(details){
+      if (details.reason == "install") {
+       chrome.tabs.create({
+          url:"https://tweetdeck.twitter.com",
+          active:true
+         },function(){});
+      }
+      else
+      if (details.reason == "update") {
+          var thisVersion = chrome.runtime.getManifest().version;
+          console.log("Updated from " + details.previousVersion + " to " + thisVersion + "!");
+      }
+    });
+
     chrome.webRequest.onHeadersReceived.addListener(function(details) {
       /*details.responseHeaders = details.responseHeaders.concat(transformHeaders(getHeaders(/^backbone\.responseHeaders.+$/)));
 
       return { responseHeaders: details.responseHeaders };*/
 
-      chrome.runtime.onInstalled.addListener(function(details){
-          if(details.reason == "install"){
-              chrome.tabs.create(
-              {url:"https://tweetdeck.twitter.com",
-              active:true
-              }
-              , function(){})
-          }else if(details.reason == "update"){
-              var thisVersion = chrome.runtime.getManifest().version;
-              console.log("Updated from " + details.previousVersion + " to " + thisVersion + "!");
-          }
-      });
-
       if (details.type !== "main_frame") {
-        return
+        return;
       }
+
       console.log("Connecting to " + details.url + "...");
       //console.log(details);
 
@@ -57,4 +60,10 @@ if (isChrome) {
 
       return {responseHeaders:details.responseHeaders};
     }, {urls:["https://tweetdeck.twitter.com/*"]}, ["responseHeaders","blocking"]);
+
+chrome.webRequest.onCompleted.addListener(function(details) { // Incomplete right now. Will be used to change TweetDeck favicon. Will be finished before the next stable release.
+      if (details.url.indexOf("favicon") > -1) {
+
+      }
+    }, {urls:["https://ton.twimg.com/tweetdeck-web/web/assets/logos/*"]}, ["responseHeaders","blocking"]);
 }
