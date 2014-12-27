@@ -10,8 +10,6 @@ function WaitForTDToConfigureSelf(){
 	} else {
 		if (typeof document.getElementsByClassName("app-content")[0] === "undefined") {
 			setTimeout(WaitForTDToConfigureSelf,60);
-		} else {
-			PreventExpandedColumns();
 		}
 	}
 }
@@ -24,9 +22,11 @@ function WaitForLogin() {
   setTimeout(WaitForLogin,500);
 }
 
-function PreventExpandedColumns(){
+function WorldTick(){
 
-	if (typeof document.getElementsByClassName("js-app application")[0] !== "undefined") {
+  // Prevent Expanded Columns
+
+	/*if (typeof document.getElementsByClassName("js-app application")[0] !== "undefined") {
 		if (!document.getElementsByClassName("js-app application")[0].getAttribute("class").contains("is-condensed")) {
 			document.getElementsByClassName("js-app application")[0].setAttribute("class","js-app application is-condensed");
 		}
@@ -36,30 +36,63 @@ function PreventExpandedColumns(){
 		if (!document.getElementsByClassName("js-app-header")[0].getAttribute("class").contains("is-condensed")) {
 			document.getElementsByClassName("js-app-header")[0].setAttribute("class",document.getElementsByClassName("js-app-header")[0].getAttribute("class") + " is-condensed");
 		}
-	}
-	
+	}*/
 
-	setTimeout(PreventExpandedColumns,1500);
+  // TDE Settings Button
+
+  if (document.getElementsByClassName("lst-group js-setting-list").length > 0) {
+    if (typeof tdesettings === "undefined") {
+
+      var JSTDESettingsListItem = document.createElement("li");
+      JSTDESettingsListItem.setAttribute("class"," ");
+      JSTDESettingsListItem.setAttribute("id","tdesettingslistitem");
+      JSTDESettingsListItem.innerHTML = '<a href="#" class="list-link" id="tdesettings" data-action="tde"><strong>TDE Settings</strong></a>';
+
+      document.getElementsByClassName("lst-group js-setting-list")[0].appendChild(JSTDESettingsListItem);
+
+      if (typeof tdesettings !== "undefined") { // I doubt this will happen in any circumstance, but just in case, we'll make sure its there
+        tdesettings.onclick = function() {
+          if (document.getElementsByClassName("l-column mdl-column mdl-column-lrg").length > 0) {
+            document.getElementsByClassName("l-column mdl-column mdl-column-lrg")[0].innerHTML =
+            '<div class="l-column-scrollv scroll-v  scroll-alt mdl-col-settings"> <form action="#" id="tde-settings" accept-charset="utf-8" class="frm"><fieldset id="tde_settings">More to come...</fieldset></form> </div>';
+            
+            if (document.getElementsByClassName("l-column-scrollv scroll-v  scroll-alt ").length > 1) { // Okay thats great we brought the view up. Now we need to pretend we're tweetdeck and swap out the classes.
+              var ChildNodes = document.getElementsByClassName("l-column-scrollv scroll-v  scroll-alt ")[0].childNodes[1].childNodes;
+
+              for (i = 0; i < ChildNodes.length; i++) { 
+                if (typeof ChildNodes[i].setAttribute !== "undefined") { // Make sure it's real, sometimes non-real things are thrown in the mix by tweetdeck / chrome
+                  ChildNodes[i].setAttribute("class"," ");
+                }
+              }
+
+              if (typeof tdesettingslistitem !== "undefined") {
+                tdesettingslistitem.setAttribute("class", "selected");
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+
+	setTimeout(WorldTick,300);
 }
 
 
 function PatchSystem() {
-  console.log("Waiting for system to be ready for patching...");
   if (typeof TD === "undefined") {
     setTimeout(PatchSystem,50);
     return;
   }
-  console.log("Waiting for system to be ready for patching... 2");
   if (typeof TD.storage === "undefined") {
     setTimeout(PatchSystem,50);
     return;
   }
-  console.log("Waiting for system to be ready for patching... 3");
   if (typeof TD.storage.store === "undefined") {
     setTimeout(PatchSystem,50);
     return;
   }
-  console.log("Waiting for system to be ready for patching... 4");
   if (typeof TD.storage.store.getCurrentAuthType === "undefined") {
     setTimeout(PatchSystem,50);
     return;
@@ -71,22 +104,22 @@ function PatchSystem() {
     return "twitter";
   }
 
+  console.log("done patching AuthType...");
+
   WaitForText();
   return;
 }
 
 function WaitForText() {
-	console.log("waiting... 33%")
+  console.log("Waiting for login...");
 	if (typeof TD.storage.store._backend === "undefined") {
     	setTimeout(WaitForText,50);
     	return;
     }
-    console.log("waiting... 66%")
     if (typeof TD.storage.store._backend.tweetdeckAccount === "undefined") {
     	setTimeout(WaitForText,50);
     	return;
     }
-    console.log("waiting... 99%")
     if (typeof text === "undefined") {
     	setTimeout(WaitForText,50);
     	return;
@@ -102,10 +135,13 @@ function WaitForText() {
   	alert("hey coolstar follow me @ryandolan123"); // <3
   }
 
+  console.log("done waiting for login");
+  console.log("it's showtime");
+
   return;
 }
 
 WaitForTDToConfigureSelf();
-PreventExpandedColumns();
+WorldTick();
 
 setTimeout(PatchSystem,1500); // Delayed so the user is not prompted by TweetDeck if using a TweetDeck Account
