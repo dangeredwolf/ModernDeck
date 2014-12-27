@@ -11851,7 +11851,7 @@ input[type="checkbox"] {
     position: absolute;
     right: 26px;
     bottom: 26px;
-    box-shadow: 0px 2px 7px 3px rgba(0,0,0,0.25);
+    box-shadow: 0px 1px 3px 2px rgba(0,0,0,0.25);
     /* border: 1px rgba(0,0,0,255); */
     background-color: #26C6DA;
     border: 1px solid rgba(34, 36, 38, 0.11);
@@ -11865,7 +11865,7 @@ input[type="checkbox"] {
 }
 
 .js-add-column:active {
-    background-color: #00ACC1;
+    background-color: #00ACC1!important;
     transition:100ms all!important;
 }
 
