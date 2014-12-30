@@ -7049,7 +7049,7 @@ li.js-typeahead-item.js-typeahead-recent-search-item.list-item.is-actionable.ite
   top:0;
   width:100%;
   height:100%;
-  background: rgba(249, 249, 249, 0.985);
+  background: transparent;
   font-size:13px;
   color:#999;
   line-height:1.2em;
