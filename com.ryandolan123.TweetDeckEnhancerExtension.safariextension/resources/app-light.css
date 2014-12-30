@@ -4738,7 +4738,7 @@ a.mdl-dismiss-media>i.icon.icon-close {
 }
 
 .btn[disabled],.btn[disabled]:hover,.btn[disabled]:active,.btn.is-disabled,.btn.is-disabled:hover,.btn.is-disabled:focus,.btn.is-disabled:active {
-  color: #aaa;
+  color: #CACACA;
   /* cursor:default; */
   /* outline:none; */
   /* box-shadow:none; */
@@ -6678,7 +6678,7 @@ a.js-column-back.link-complex:active {
   /* opacity: 0; */
 }
 
-.draggable-dragging .stream-item {
+.js-column.column.draggable-dragging article.stream-item {
     -webkit-animation: none!important;
 }
 
