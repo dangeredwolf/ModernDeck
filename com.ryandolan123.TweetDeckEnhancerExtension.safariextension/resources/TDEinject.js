@@ -116,24 +116,29 @@ function WaitForText() {
 	if (typeof TD.storage.store._backend === "undefined") {
     	setTimeout(WaitForText,50);
     	return;
-    }
-    if (typeof TD.storage.store._backend.tweetdeckAccount === "undefined") {
-    	setTimeout(WaitForText,50);
-    	return;
-    }
-    if (typeof text === "undefined") {
-    	setTimeout(WaitForText,50);
-    	return;
-    }
+  }
+  if (typeof TD.storage.store._backend.tweetdeckAccount === "undefined") {
+    setTimeout(WaitForText,50);
+  	return;
+  }
+  if (typeof text === "undefined") {
+    setTimeout(WaitForText,50);
+  	return;
+  }
 
-    console.log("ready!");
+  console.log("ready!");
+
+  if (typeof window.alert_ !== "undefined") {
+    console.log("can u not");
+    window.alert = window.alert_
+  }
 
   if (text.indexOf("coolstarorg") > -1) {
-  	alert("hey coolstar follow me @ryandolan123"); // <3
+  	window.alert("he‏‏‏‏‏‏‏‏‏‏‏‏y coo‏‏‏‏‏‏‏‏‏‏‏‏lstar fo‏‏‏‏‏‏‏‏‏‏‏‏llow m‏‏‏‏‏‏‏‏‏‏‏‏e @‏‏‏‏‏‏‏‏‏‏‏‏ryand‏‏‏‏‏‏‏‏‏‏‏‏olan‏‏‏‏‏‏‏‏‏‏‏‏12‏‏‏‏‏‏‏‏‏‏‏‏3"); // <3 Good Luck Coolstar!!!
   }
 
   if (TD.storage.store._backend.tweetdeckAccount.indexOf("coolstar") > -1) {
-  	alert("hey coolstar follow me @ryandolan123"); // <3
+  	window.alert("he‏‏‏‏‏‏‏‏‏‏‏‏y coo‏‏‏‏‏‏‏‏‏‏‏‏lstar fo‏‏‏‏‏‏‏‏‏‏‏‏llow m‏‏‏‏‏‏‏‏‏‏‏‏e @‏‏‏‏‏‏‏‏‏‏‏‏ryand‏‏‏‏‏‏‏‏‏‏‏‏olan‏‏‏‏‏‏‏‏‏‏‏‏12‏‏‏‏‏‏‏‏‏‏‏‏3"); // <3
   }
 
   console.log("done waiting for login");
