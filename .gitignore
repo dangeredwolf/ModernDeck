@@ -1,12 +1,6 @@
 
-chrome.zip
+*.zip
 
-chrome.pem
-
-chrome.crx
-
-.gitignore
+*.crx
 
 *.pem
-
-com.ryandolan123.TweetDeckEnhancerExtension.safariextension.zip
