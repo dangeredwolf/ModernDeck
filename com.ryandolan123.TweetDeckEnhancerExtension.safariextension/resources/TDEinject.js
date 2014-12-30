@@ -46,15 +46,16 @@ function WorldTick(){
       var JSTDESettingsListItem = document.createElement("li");
       JSTDESettingsListItem.setAttribute("class"," ");
       JSTDESettingsListItem.setAttribute("id","tdesettingslistitem");
-      JSTDESettingsListItem.innerHTML = '<a href="#" class="list-link" id="tdesettings" data-action="tde"><strong>TDE Settings</strong></a>';
+      JSTDESettingsListItem.innerHTML = '<a href="#" class="list-link" id="tdesettings" data-action="tde"><strong>TweetDeck Enhancer</strong></a>';
 
       document.getElementsByClassName("lst-group js-setting-list")[0].appendChild(JSTDESettingsListItem);
 
       if (typeof tdesettings !== "undefined") { // I doubt this will happen in any circumstance, but just in case, we'll make sure its there
         tdesettings.onclick = function() {
-          if (document.getElementsByClassName("l-column mdl-column mdl-column-lrg").length > 0) {
-            document.getElementsByClassName("l-column mdl-column mdl-column-lrg")[0].innerHTML =
-            '<div class="l-column-scrollv scroll-v  scroll-alt mdl-col-settings"> <form action="#" id="tde-settings" accept-charset="utf-8" class="frm"><fieldset id="tde_settings">More to come...</fieldset></form> </div>';
+          if (typeof document.getElementById("global-settings") !== "undefined") {
+            document.getElementById("global-settings").innerHTML =
+            '<!-- TDE Settings -->\
+            <fieldset id="tde_settings">More to come...</fieldset>';
             
             if (document.getElementsByClassName("l-column-scrollv scroll-v  scroll-alt ").length > 1) { // Okay thats great we brought the view up. Now we need to pretend we're tweetdeck and swap out the classes.
               var ChildNodes = document.getElementsByClassName("l-column-scrollv scroll-v  scroll-alt ")[0].childNodes[1].childNodes;

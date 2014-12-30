@@ -1,7 +1,7 @@
 {
   "name": "TweetDeck Enhancer",
 
-  "description": "Enhances TweetDeck with a fresh new look and new features",
+  "description": "TweetDeck Enhancer adds a beautiful new interface for TweetDeck, designed around Material Design, and other small usability features. Works on https://tweetdeck.twitter.com",
   "version": "4.1",
 
   "permissions": [
@@ -55,7 +55,8 @@
 
   "browser_action": {
     "default_icon": "resources/oneclick/InstaTweetDeck.png",
-    "default_popup": "extension/ITD.html"
+    "default_popup": "extension/ITD.html",
+    "default_title": "TweetDeck Quick Launch (Added by Enhancer, disable with Right Click > Hide Button)"
   },
 
   "manifest_version": 2
