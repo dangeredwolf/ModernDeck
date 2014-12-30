@@ -9,4 +9,4 @@ View on the Chrome Web Store: [https://chrome.google.com/webstore/detail/tweetde
 Note when building:
 ==================
 
-The com.ryandolan123.TweetDeckEnhancerExtension.safariextension is universal, as in, you can build it with either Chrome or Safari and it'll work fine on either. Its name ends in .safariextension as Safari requires that for whatever reason. But despite that, it still works fine.
+The com.ryandolan123.TweetDeckEnhancerExtension.safariextension is universal, as in, you can build it with Chrome, Safari, or even Opera, and it'll work fine. Its name ends in .safariextension as Safari requires that for whatever reason. But despite that, it still works fine.
