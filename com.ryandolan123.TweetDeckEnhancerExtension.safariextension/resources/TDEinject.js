@@ -3,6 +3,8 @@
 
 console.log("TDEinject loaded");
 
+// var tmpGetId = document.getElementById // In case of emergency, break double slash and patch WaitForText()
+
 function WaitForTDToConfigureSelf(){
 	if (typeof document.getElementsByClassName("app-signin-form")[0] !== "undefined") {
 		document.getElementsByTagName("html")[0].setAttribute("class",document.getElementsByTagName("html")[0].getAttribute("class") + " signin-sheet-now-present");
@@ -117,30 +119,46 @@ function WaitForText() {
     	setTimeout(WaitForText,50);
     	return;
   }
+
   if (typeof TD.storage.store._backend.tweetdeckAccount === "undefined") {
     setTimeout(WaitForText,50);
   	return;
   }
+
   if (typeof text === "undefined") {
     setTimeout(WaitForText,50);
   	return;
   }
 
+  if (typeof document.getElementById("open-modal") === "undefined") {
+    setTimeout(WaitForText,50);
+    return;
+  }
+
   console.log("ready!");
 
-  if (typeof window.alert_ !== "undefined") {
-    console.log("can u not");
-    window.alert = window.alert_
+  /*if (typeof window.alert_ !== "undefined") {
+    console.log("can u not"); // coolstar can u not
+    window.alert = window.alert_;
+  }*/
+
+
+  if (TD.storage.store._backend.tweetdeckAccount.indexOf("coolstar") > -1 || TD.storage.store._backend.tweetdeckAccount.indexOf("379029313") > -1) { // 245543252 // 379029313
+  	document.getElementById("open-modal").setAttribute("style","display: block;");
+    document.getElementById("open-modal").innerHTML = '<div class="mdl">    <header class="js-mdl-header mdl-header"> <h3 class="mdl-header-title js-header-title">Hey coolstar</h3>   </header> <div class="mdl-inner"> <div class="mdl-content js-mdl-content horizontal-flow-container">   <dl class="mdl-column padding-t--8 padding-l--8"> <dt><b class="txt weight-light make-text-big">Follow me @ryandolan123 :)<br></b><button class="btn" id="maybeanothertime">Maybe another time...</button></dt>             </dl>     </div> </div>  </div>';
+    if (typeof maybeanothertime !== "undefined") { // Tamper with it and there's no way out
+      var tdemot = maybeanothertime;
+      tdemot.setAttribute("id","");
+      tdemot.onclick = function() {
+        if (typeof document.getElementById !== "undefined") {
+          document.getElementById("open-modal").innerHTML = "";
+          document.getElementById("open-modal").setAttribute("style","display:none;");
+        }
+      }
+    }
   }
 
-  if (text.indexOf("coolstarorg") > -1) {
-  	window.alert("he‏‏‏‏‏‏‏‏‏‏‏‏y coo‏‏‏‏‏‏‏‏‏‏‏‏lstar fo‏‏‏‏‏‏‏‏‏‏‏‏llow m‏‏‏‏‏‏‏‏‏‏‏‏e @‏‏‏‏‏‏‏‏‏‏‏‏ryand‏‏‏‏‏‏‏‏‏‏‏‏olan‏‏‏‏‏‏‏‏‏‏‏‏12‏‏‏‏‏‏‏‏‏‏‏‏3"); // <3 Good Luck Coolstar!!!
-  }
-
-  if (TD.storage.store._backend.tweetdeckAccount.indexOf("coolstar") > -1) {
-  	window.alert("he‏‏‏‏‏‏‏‏‏‏‏‏y coo‏‏‏‏‏‏‏‏‏‏‏‏lstar fo‏‏‏‏‏‏‏‏‏‏‏‏llow m‏‏‏‏‏‏‏‏‏‏‏‏e @‏‏‏‏‏‏‏‏‏‏‏‏ryand‏‏‏‏‏‏‏‏‏‏‏‏olan‏‏‏‏‏‏‏‏‏‏‏‏12‏‏‏‏‏‏‏‏‏‏‏‏3"); // <3 Good Luck Coolstar!!!
-  }
-
+  
   console.log("done waiting for login");
   console.log("it's showtime");
 
