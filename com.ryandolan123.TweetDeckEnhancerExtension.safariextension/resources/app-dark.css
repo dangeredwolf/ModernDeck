@@ -4891,7 +4891,7 @@ button.js-follow-button.js-show-tip.follow-btn.btn.btn-alt {}
 
 .btn-compose:hover {
   color:#fff;
-  background-color: #17688F;
+  background-color: #0094A2;
   transform: scale(1.05,1.05);
 }
 
@@ -4903,7 +4903,7 @@ button.js-follow-button.js-show-tip.follow-btn.btn.btn-alt {}
 
 .btn-compose:active {
   color:#fff;
-  background-color: #039BE5;
+  background-color: #1B646C!important;
   transform: scale(1,1);
 }
 
@@ -6529,7 +6529,7 @@ a.js-column-back.link-complex:active {
 }*/
 
 @-webkit-keyframes popgoesthemodalwindow {
-  0% {opacity: 0.5; -webkit-transform: scale(1.1,1.1) }
+  0% {opacity: 0.5; -webkit-transform: scale(1.125,1.125) }
     100% {opacity: 1; -webkit-transform: scale(1,1);}
 }
 
