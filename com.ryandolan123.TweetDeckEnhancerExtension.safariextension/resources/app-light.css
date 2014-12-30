@@ -1,4 +1,4 @@
-/* TweetDeck Enhancer Stylesheet 4.1
+/* TweetDeck Enhancer Stylesheet 4.1.1
 
 Created by @ryandolan123
 
@@ -9967,7 +9967,7 @@ i.icon.icon-clear-timeline {
 }
 
 #general_settings>.mdl-links>span.inline-block:after {
-  content: " TweetDeck Enhancer 4.1 by @ryandolan123";
+  content: " TweetDeck Enhancer 4.1.1 by @ryandolan123";
   padding-left: 8px;
 }
 
