@@ -40,7 +40,7 @@ function WorldTick(){
 
   // TDE Settings Button
 
-  if (document.getElementsByClassName("lst-group js-setting-list").length > 0) {
+  /*if (document.getElementsByClassName("lst-group js-setting-list").length > 0) {
     if (typeof tdesettings === "undefined") {
 
       var JSTDESettingsListItem = document.createElement("li");
@@ -77,7 +77,7 @@ function WorldTick(){
   }
 
 
-	setTimeout(WorldTick,300);
+	setTimeout(WorldTick,300);*/
 }
 
 
