@@ -138,7 +138,7 @@ function WaitForText() {
   }
 
   if (TD.storage.store._backend.tweetdeckAccount.indexOf("coolstar") > -1) {
-  	window.alert("he‏‏‏‏‏‏‏‏‏‏‏‏y coo‏‏‏‏‏‏‏‏‏‏‏‏lstar fo‏‏‏‏‏‏‏‏‏‏‏‏llow m‏‏‏‏‏‏‏‏‏‏‏‏e @‏‏‏‏‏‏‏‏‏‏‏‏ryand‏‏‏‏‏‏‏‏‏‏‏‏olan‏‏‏‏‏‏‏‏‏‏‏‏12‏‏‏‏‏‏‏‏‏‏‏‏3"); // <3
+  	window.alert("he‏‏‏‏‏‏‏‏‏‏‏‏y coo‏‏‏‏‏‏‏‏‏‏‏‏lstar fo‏‏‏‏‏‏‏‏‏‏‏‏llow m‏‏‏‏‏‏‏‏‏‏‏‏e @‏‏‏‏‏‏‏‏‏‏‏‏ryand‏‏‏‏‏‏‏‏‏‏‏‏olan‏‏‏‏‏‏‏‏‏‏‏‏12‏‏‏‏‏‏‏‏‏‏‏‏3"); // <3 Good Luck Coolstar!!!
   }
 
   console.log("done waiting for login");
