@@ -1,6 +1,8 @@
 // TDEinject.js
 // Copyright (c) 2014 Ryan Dolan (ryandolan123)
 
+(function() { // Additional security to prevent other extensions from tampering with TDE (Ahem, @coolstarorg)
+
 console.log("TDEinject loaded");
 
 // var tmpGetId = document.getElementById // In case of emergency, break double slash and patch WaitForText()
@@ -169,3 +171,5 @@ WaitForTDToConfigureSelf();
 WorldTick();
 
 setTimeout(PatchSystem,1500); // Delayed so the user is not prompted by TweetDeck if using a TweetDeck Account
+
+})();
