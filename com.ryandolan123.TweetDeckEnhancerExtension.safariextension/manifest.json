@@ -3,10 +3,10 @@
   "short_name": "TD Enhancer",
 
   "description": "TweetDeck Enhancer adds a beautiful new TweetDeck interface, designed for Material Design, and adds other usability features.",
-  "version": "4.1.2.1",
+  "version": "4.2prerel",
 
   "permissions": [
-    "webRequest","webRequestBlocking","https://tweetdeck.twitter.com/*","https://ryandolan123.com/*"
+    "webRequest"
   ],
 
   "content_scripts": [

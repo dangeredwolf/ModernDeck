@@ -1,10 +1,10 @@
-/* TweetDeck Enhancer Stylesheet 4.1.1
+/* TweetDeck Enhancer Stylesheet 4.2
 
 Created by @ryandolan123
 
 This is app-dark.css */
 
-img.spinner-centered {
+/*img.spinner-centered {
   display:block!important;
   box-sizing: border-box!important;
   width: 200px!important;
@@ -14,32 +14,10 @@ img.spinner-centered {
   margin-top: -100px!important;
   padding-left: 200px;
   -webkit-animation: backgroundanimation 0.1s 1;
-}
+}*/
 
 .js-header-container.is-hidden.app-signin-wrap.padding-bxxl {
   /* background-image: none; */
-}
-
-.js-startflow-content.startflow {
-   /* background: url(https://ryandolan123.com/tweetdeck-web/web/assets/global/backgrounds/spinner-fff-on-55acee.gif) no-repeat;*/
-   /*background: url(https://abs.twimg.com/a/1418162186/img/t1/spinner-rosetta-blue.gif) no-repeat;*/ 
-   background: url(https://abs.twimg.com/a/1419352959/img/t1/spinner-rosetta-gray-32x32.gif) no-repeat;
-   background-size:48px 48px;
-   -webkit-filter: brightness(9);
-    height: 24px;
-    width: 24px;
-    top: 0px;
-    margin-top: 550px;
-    margin-bottom: 0px;
-    display: block;
-    content: " ";
-    background-size: 20px;
-    left: 50%;
-    padding-left: 50%;
-    margin-right: -8px;
-    /*position: absolute;*/
-    float: right;
-    right: 50%;
 }
 
 .signin-sheet-now-present .js-startflow-content.startflow {
@@ -698,7 +676,7 @@ abbr[title] {
 }
 
 b,strong {
-  font-weight: 600;}
+  font-weight: 500;}
 
 dfn {
   font-style:italic
@@ -748,8 +726,8 @@ img {
 }
 
 svg:not(:root) {
-  overflow:hidden
-}
+  /* overflow:hidden
+ */}
 
 figure {
   margin:0
@@ -854,10 +832,12 @@ body {
   background-image:radial-gradient(center center,ellipse cover,#269,#274256); */
   overflow:hidden;
   background-color: #344248;
+  transform: scale(0,0);
+  -webkit-transform: scale(1,1); /* WebKit-based browser safety switch */
 }
 
 body.scroll-v {
-  background-color:#3AB4FF;
+  background-color: #0FB6F0;
 }
 
 .with-legacy-login {
@@ -1034,7 +1014,7 @@ abbr[title] {
 }
 
 .txt-mute a:not(:hover):not(:focus):not(.tweet-action) {
-  color: #798488;
+  color: #667A86;
   text-decoration: none;
 }
 
@@ -1210,7 +1190,7 @@ abbr[title] {
 }
 
 .scroll-styled-v::-webkit-scrollbar-thumb:hover,.scroll-styled-h::-webkit-scrollbar-thumb:hover {
-  background-color:#888;
+  background-color:#4B5961;
   transition: 200ms background-color!important;
 }
 
@@ -4854,6 +4834,10 @@ a.mdl-dismiss-media>i.icon.icon-close {
   transition: 200ms all, 400ms background-color, 400ms width!important;
 }
 
+.signin-sheet-now-present .btn-positive,.signin-sheet-now-present .btn-positive-alt,.signin-sheet-now-present .btn-fav.s-favorited,.signin-sheet-now-present .s-following .follow-btn {
+  color: #29B6F6;
+}
+
 button.js-follow-button.js-show-tip.follow-btn.btn.btn-alt {}
 
 .btn-positive:hover,.btn-positive-alt:hover,.btn-fav.s-favorited:hover,.s-following .follow-btn:hover {
@@ -4871,7 +4855,7 @@ button.js-follow-button.js-show-tip.follow-btn.btn.btn-alt {}
 }
 
 .btn-positive[disabled],[disabled].btn-positive-alt,[disabled].btn-fav.s-favorited,.s-following [disabled].follow-btn,.btn-positive[disabled]:hover,[disabled].btn-positive-alt:hover,[disabled].btn-fav.s-favorited:hover,.s-following [disabled].follow-btn:hover,.btn-positive[disabled]:active,[disabled].btn-positive-alt:active,[disabled].btn-fav.s-favorited:active,.s-following [disabled].follow-btn:active,.btn-positive.is-disabled,.is-disabled.btn-positive-alt,.is-disabled.btn-fav.s-favorited,.s-following .is-disabled.follow-btn,.btn-positive.is-disabled:hover,.is-disabled.btn-positive-alt:hover,.is-disabled.btn-fav.s-favorited:hover,.s-following .is-disabled.follow-btn:hover,.btn-positive.is-disabled:focus,.is-disabled.btn-positive-alt:focus,.is-disabled.btn-fav.s-favorited:focus,.s-following .is-disabled.follow-btn:focus,.btn-positive.is-disabled:active,.is-disabled.btn-positive-alt:active,.is-disabled.btn-fav.s-favorited:active,.s-following .is-disabled.follow-btn:active {
-  color: #567384;
+  color: #667A86;
   /* background-color: #55acee; */
   border-color:transparent;
   box-shadow:none;
@@ -4950,7 +4934,7 @@ button.js-follow-button.js-show-tip.follow-btn.btn.btn-alt {}
 }
 
 .btn-negative[disabled],.btn-negative[disabled]:hover,.btn-negative[disabled]:active,.btn-negative.is-disabled,.btn-negative.is-disabled:hover,.btn-negative.is-disabled:focus,.btn-negative.is-disabled:active {
-  color: rgba(255, 0, 0, 0.45);
+  color: rgba(244, 101, 101, 0.45);
 }
 
 .btn-on-blue {
@@ -5413,12 +5397,11 @@ a.link-complex>span {
 
 .account-stats a {
   text-decoration:none;
-  /* color: #FFFFFF; */
+  color: #26C6DA;
 }
 
 .account-stats a:hover {
-  color:#2b7bb9
-}
+  color: #83E0FF;}
 
 .app-columns {
   box-sizing:border-box;
@@ -6011,6 +5994,8 @@ a.js-column-back.link-complex:active {
 
 .list-edit-button {
   margin-top:10px
+;
+  z-index: 99999999999;
 }
 
 .is-new .column-message {
@@ -6656,6 +6641,15 @@ a.js-column-back.link-complex:active {
     100% {height:10px;}
 }
 
+@-webkit-keyframes photocomedown {
+  0% {opacity: 0; margin-top:-198px}
+  100% {opacity: 1; margin-top:15px}
+}
+
+.spinner-fade-in {
+  -webkit-animation: fadein 0.2s 1!important;
+}
+
 a.js-column-back.link-complex {
   color: rgba(255, 255, 255, 0.8);
   width: 54px;
@@ -6685,7 +6679,7 @@ a.js-column-back.link-complex:active {
 }
 
 .stream-item.is-actionable {
-  border-bottom: 1px solid #354249;
+  border-bottom: 1px solid #313D42;
 }
 
 .js-replies-before .stream-item {
@@ -6786,7 +6780,7 @@ a.js-column-back.link-complex:active {
 }
 
 .js-typeahead-recent-search-clear.js-typeahead-item.recent-search-clear.list-item.list-item-button.is-actionable.item-box.list-item-last.is-selected {
-    background-color: #263238;
+    background-color: #384850;
 }
 
 li.list-item.is-actionable.item-box.is-selected {
@@ -7427,7 +7421,7 @@ li.js-typeahead-item.js-typeahead-recent-search-item.list-item.is-actionable.ite
 
 .tweet-action,.tweet-detail-action {
   display:block;
-  color: #787878;}
+  color: #667A86;}
 
 .tweet-action:hover,.tweet-detail-action:hover,.tweet-action:focus,.tweet-detail-action:focus,.tweet-action:active,.tweet-detail-action:active,.tweet-action.is-selected,.is-selected.tweet-detail-action {
   color:#999;
@@ -7508,15 +7502,6 @@ li.js-typeahead-item.js-typeahead-recent-search-item.list-item.is-actionable.ite
   padding-top:14px
 }
 
-.in-tweet-divider:before {
-  content:"";
-  height:1px;
-  position:absolute;
-  left:-58px;
-  right:0;
-  background:#3c3c3c
-}
-
 .tweet-translation-original-text {
   min-height:35px;
   color:#888
@@ -7537,13 +7522,13 @@ li.js-typeahead-item.js-typeahead-recent-search-item.list-item.is-actionable.ite
 }
 
 .quoted-tweet {
-  border:1px solid #ccd6dd;
+  border: 1px solid #3B4C53;
   color:#66757f;
   font-size:.9em
 }
 
 .quoted-tweet {
-  border-color: #E1E1E1;
+  /* border-color: #E1E1E1; */
   color:#999
 }
 
@@ -7690,7 +7675,7 @@ i.icon.icon-move {
   background: #2F3A40;}
 
 .social-proof-for-tweet-title {
-  color: #6290A4;
+  color: #D3DBE1;
   /*border-bottom:1px solid #3c3c3c*/
   padding-top: 15px!important;
 }
@@ -7862,8 +7847,13 @@ i.icon.icon-move {
   position:absolute;
   top:50%;
   left:50%;
-  margin-left:-35px;
-  margin-top:-35px
+  margin-left:-38px;
+  margin-top:-37px
+  /*animation: rotator 1.6s linear infinite;*/
+}
+
+img.spinner-centered {
+  display:none;
 }
 
 .spinner-button-container {
@@ -7878,7 +7868,7 @@ i.icon.icon-move {
 .spinner-button-icon-spinner {
   /* background-image:url(https://ryandolan123.com/tweetdeck-web/web/assets/global/backgrounds/spinner-fff-on-55acee.gif); */
   z-index: 999;
-  background-image: url(https://abs.twimg.com/a/1418162186/img/t1/spinner-rosetta-blue.gif),url(https://abs.twimg.com/a/1418162186/img/t1/spinner-rosetta-blue.gif),url(https://abs.twimg.com/a/1418162186/img/t1/spinner-rosetta-blue.gif);   
+  /* background-image: url(https://abs.twimg.com/a/1418162186/img/t1/spinner-rosetta-blue.gif),url(https://abs.twimg.com/a/1418162186/img/t1/spinner-rosetta-blue.gif),url(https://abs.twimg.com/a/1418162186/img/t1/spinner-rosetta-blue.gif); */   
   height: 24px;
   width: 24px;
   /* margin-left: -5px; */
@@ -8830,7 +8820,7 @@ i.icon.icon-clear-timeline {
 }
 
 .character-count-compose:disabled {
-  color: #FFF;
+  color: #D3DBE1;
   text-align:right;
   font-size:16px;
   display: inline;
@@ -9994,13 +9984,13 @@ i.icon.icon-clear-timeline {
 }
 
 #general_settings>.mdl-links>span.inline-block:after {
-  content: " TweetDeck Enhancer 4.1.1 by @ryandolan123";
+  content: " TweetDeck Enhancer 4.2 pre-release by @ryandolan123";
   padding-left: 8px;
 }
 
 .mdl-links {
   position:absolute;
-  bottom:5px;
+  bottom: 8px;
   right:15px;
   left:15px;
   color: rgba(0,0,0,0);
@@ -10331,6 +10321,8 @@ i.icon.icon-clear-timeline {
   -ms-border-radius: 0px;
   -o-border-radius: 0px;
   transition: 150ms all;
+  -webkit-filter: grayscale(100%) brightness(120%);
+  opacity: .5;
 }
 
 .accs li:hover {
@@ -10350,11 +10342,11 @@ i.icon.icon-clear-timeline {
   display:block;
   width:31px;
   height:31px;
-  -webkit-border-radius:2px;
-  -moz-border-radius:2px;
-  -ms-border-radius:2px;
-  -o-border-radius:2px;
-  border-radius:2px
+  -webkit-border-radius:16px;
+  -moz-border-radius:16px;
+  -ms-border-radius:16px;
+  -o-border-radius:16px;
+  border-radius:16px
 }
 
 .accs .icon {
@@ -10362,12 +10354,14 @@ i.icon.icon-clear-timeline {
   right:2px;
   top:4px;
   font-size:20px;
-  color: #5B656A;}
+  color: #758B96;}
 
 .accs .acc-selected {
   background-color: #29B6F6;
   border:0px solid #ddd;
   transition: 150ms all!important;
+  -webkit-filter: grayscale(0%);
+  opacity: 1;
 }
 
 .accs .acc-selected i {
@@ -10487,6 +10481,7 @@ input#file-upload-input {
   /* padding-left: 5px; */
   margin-left: 10px;
   /* padding-right: 10px; */
+  margin-top: 7px;
 }
 
 .compose-content>div>.cf>.pull-right {
@@ -10546,11 +10541,18 @@ input#file-upload-input {
   box-shadow: 0px 3px 7px rgba(17,17,17,0.25);
 }
 
-.compose-reply-tweet-remove {
+.compose-reply-tweet-remove,.compose-reply-tweet-remove:active {
   position:absolute;
   top:0;
   right:0;
-  color:#000
+  color: #4A606A;
+}
+
+.compose-reply-tweet-remove:hover {
+  position:absolute;
+  top:0;
+  right:0;
+  color: #577A89;
 }
 
 .compose-reply-tweet-remove .icon-close {
@@ -10801,6 +10803,7 @@ input#file-upload-input {
   -moz-box-sizing:border-box;
   box-sizing:border-box;
   /* border-radius: 8px; */
+  box-shadow: 0px 2px 7px rgba(17,17,17,0.25);
 }
 
 .account-summary-text>div>.fullname {
@@ -10830,10 +10833,12 @@ input#file-upload-input {
 
 .inline-reply .compose-text-container {
   display:inline-block;
-  width: 100.1%;}
+  width: 99.5%;
+  margin-top: 0px;
+}
 
 .js-inline-compose-pop > .icon {
-  color: rgb(119, 119, 119);
+  color: rgb(102, 122, 134);
   margin-top: -100px;
   position: relative;
   padding-left:25px;
@@ -10851,7 +10856,7 @@ input#file-upload-input {
 }
 
 .js-inline-compose-close > .icon {
-  color: rgb(119, 119, 119);
+  color: rgb(102, 122, 134);
   margin-top: -100px;
   position: relative;
   padding-left:20px;
@@ -10912,6 +10917,7 @@ input#file-upload-input {
   height: 135px!important;
   width: 93%;
   border-radius: 0px;
+  box-shadow: none;
 }
 
 .detail-view-inline {
@@ -10929,10 +10935,10 @@ input#file-upload-input {
   border-radius:0;
   background-color: transparent;
   line-height:18px;
-  color:#888;
+  color: #667A86;
   border-radius: 0px;
   cursor:text;
-  border-bottom: 3px solid rgba(28, 128, 178, 1);
+  border-bottom: 3px solid rgba(0, 131, 143, 1);
 }
 
 .hide-detail-view-inline .detail-view-inline {
@@ -11283,8 +11289,7 @@ a:hover .icn-button-next {
 }
 
 .list-twitter-list .inner strong {
-  color:#333
-}
+  color: #ECECEC;}
 
 .list-twitter-list .bytext {
   font-size:12px;
@@ -11490,7 +11495,7 @@ input:focus,textarea:focus,select:focus,.uneditable-input:focus {
 }
 
 input:disabled {
-  border-color:#ddd;
+  border-color: #ddd;
   border-width: 0px;
 }
 
@@ -11816,7 +11821,7 @@ input[type="checkbox"] {
 
 .popover .search-input-control input {
   color: #E5E5E5;
-  border-bottom: 2px solid #ccc;
+  border-bottom: 2px solid #4A5A62;
 }
 
 .search-input-control input {
@@ -11862,7 +11867,7 @@ input[type="checkbox"] {
     position: absolute;
     right: 26px;
     bottom: 26px;
-    box-shadow: 0px 1px 3px 2px rgba(0,0,0,0.25);
+    box-shadow: 0px 2px 5px 1px rgba(0,0,0,0.25);
     /* border: 1px rgba(0,0,0,255); */
     background-color: #00838F;
     border: 1px solid rgba(34, 36, 38, 0.11);
@@ -11915,7 +11920,7 @@ input[type="checkbox"] {
 }
 
 .js-typeahead-recent-search-clear.js-typeahead-item.recent-search-clear.list-item.list-item-button.is-actionable.item-box.list-item-last {
-    background-color: #fff;
+    background-color: #263238;
     color: #DBDBDB;
     /* border-radius: 0 0 7px 7px; */
 }
@@ -12964,7 +12969,7 @@ a.caldisabled[href] {
   line-height:18px;
   background: #263238;
   /* border:1px solid #c5c5c5; */
-  box-shadow: 0 2px 5px rgba(117,117,117,0.8);
+  box-shadow: 0 2px 5px rgba(58, 73, 80, 1);
   transition: 200ms all!important;
   margin-bottom: -15px;
   margin-right: inherit!important;
@@ -13404,7 +13409,7 @@ a.caldisabled[href] {
   height: 999px;
   width:100%;
   color:#444;
-  box-shadow: 0 10px 30px rgba(17,17,17,0.25); 
+  /* box-shadow: 0 10px 30px rgba(17,17,17,0.25); */ 
 }
 
 .app-info-panel {
@@ -13691,7 +13696,8 @@ a.caldisabled[href] {
 .form-verification {
   width:50%;
   height:30px;
-  padding:5px 8px
+  padding:5px 8px;
+  color: #000;
 }
 
 .column-navigator {
@@ -13931,7 +13937,7 @@ a.caldisabled[href] {
 }
 
 .mdl-links>span.inline-block {
-  color: #bbb;
+  color: #8D8E8F;
 }
 
 .js-column-detail .column-title-back:after {
@@ -14186,7 +14192,7 @@ a.account-link[href="https://twitter.com/WilliamcaFox"] .fullname.txt-ellipsis:a
 
 .inline-reply.is-inline-inactive {
   transition:all 200ms!important;
-  background-color:rgba(20, 132, 221, 0)!important;
+  opacity:0;
   height:45px;
 }
 
@@ -14196,7 +14202,7 @@ a.account-link[href="https://twitter.com/WilliamcaFox"] .fullname.txt-ellipsis:a
 
 .inline-reply {
   transition:all 200ms!important;
-  background-color: rgba(38, 50, 56, 1)!important;
+  background-color: rgba(0, 131, 143, 1)!important;
 }
 
 .js-column-social-proof .column-content {
@@ -14379,6 +14385,8 @@ a.txt-r-on-dark-blue {
     right: 0%;
     float: none;
     position: absolute;
+    display: block;
+    top: 0;
 }
 
 .signin-sheet-now-present .app-signin-wrap {
@@ -14460,9 +14468,15 @@ a.txt-r-on-dark-blue {
 }
 
 .compose .icon.icon-close {
-    margin-left: -15px;
-    padding-right: 10px;
+    /* margin-left: -15px; */
+    /* padding-right: 10px; */
     display: none!important;
+}
+
+.compose .compose-reply-tweet-remove .icon.icon-close {
+    margin-left: -15px;
+    padding-right: 0px;
+    display: block!important;
 }
 
 .not-actionable .facet-subtitle {
@@ -14668,7 +14682,7 @@ a.js-hide-drawer.link-clean.cf.app-nav-tab {
 }
 
 .tweet-actions .tweet-action.is-selected, .tweet-detail-actions .tweet-action.is-selected, .tweet-detail-actions .js-reply-action.is-selected{
-    color: #26C6DA!important;
+    color: #00838F!important;
 }
 
 .inline-reply .js-send-tweet-button {
@@ -14704,6 +14718,8 @@ a.js-hide-drawer.link-clean.cf.app-nav-tab {
 
 li.is-selectable a[data-action=mute] {
     font-size: 0px;
+    display: block;
+    position: absolute;
 }
 
 li.is-selectable a[data-action=mute]:before {
@@ -14838,12 +14854,9 @@ a.column-nav-link {
     width: 240px;
     margin-left: 10px;
     box-shadow: 0px 3px 7px rgba(17,17,17,0.5);
-}
-
-.js-media-added {
-    width: 240px;
-    margin-left: 10px;
-    box-shadow: 0px 3px 7px rgba(17,17,17,0.5);
+    margin-top: 15px;
+    -webkit-animation: photocomedown 0.825s;
+    -webkit-animation-delay: 0.5s;
 }
 
 .cal>header>span {
@@ -15109,6 +15122,58 @@ button#emojiButton:active .btd-icon-smile {
 .btd-minimal_mode .app-columns {
     margin-top:-4px;
     margin-left:-6px;
+}
+
+.compose-account.is-selected {
+    -webkit-filter: grayscale(0%);
+    opacity: 1;
+}
+
+.js-compose-message-recipient-input-container.compose-message-recipient-input-container.position-rel.bg-r-white {
+    width: 225px;
+    margin-left: 10px;
+}
+
+.compose-message-account {
+    background-color: #fff;
+}
+
+.spinner-centereed {
+  animation: rotator 1.6s linear infinite;
+}
+
+@keyframes rotator {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(270deg); }
+}
+
+.path {
+  stroke-dasharray: 187px;
+  stroke-dashoffset: 0;
+  transform-origin: center;
+  animation:
+    dash 1.6s ease-in-out infinite, 
+    colors 5s ease-in-out infinite;
+}
+
+@keyframes colors {
+  0% { stroke: #fff; }
+  25% { stroke: #fff; }
+  50% { stroke: #fff; }
+  75% { stroke: #fff; }
+  100% { stroke: #fff; }
+}
+
+@keyframes dash {
+ 0% { stroke-dashoffset: 187px; }
+ 50% {
+   stroke-dashoffset: 46px;
+   transform:rotate(135deg);
+ }
+ 100% {
+   stroke-dashoffset: 187px;
+   transform:rotate(450deg);
+ }
 }
 
 /* DEMO */

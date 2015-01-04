@@ -1,21 +1,46 @@
 // TDEinject.js
 // Copyright (c) 2014 Ryan Dolan (ryandolan123)
 
-(function() { // Additional security to prevent other extensions from tampering with TDE (Ahem, @coolstarorg)
+(function() { // Additional security to prevent other extensions and website code from tampering with TDE (Ahem, @coolstarorg)
 
-console.log("TDEinject loaded");
+var oldlog = console.log;
+var oldconsole = console;
+var oldsetTimeout = window.setTimeout;
+var elementById = document.getElementById; // In case of emergency, break double slash and patch WaitForText()
 
-// var tmpGetId = document.getElementById // In case of emergency, break double slash and patch WaitForText()
+if (oldlog.toString() !== "function log() { [native code] }") {
+  oldlog = function(){}; // INTEGRITY CHECK FAILED, bye bye
+}
+
+function log(txt) {
+  oldlog.call(oldconsole,txt);
+}
+
+if (oldsetTimeout.toString() !== "function setTimeout() { [native code] }") {
+  log("setTimeout integrity check failed :(")
+  oldsetTimeout = function(exec){}; // INTEGRITY CHECK FAILED, bye bye
+}
+
+function setTimeout(func,time) {
+  oldsetTimeout.call(this,func,time)
+}
+
+if (elementById.toString() !== "function getElementById() { [native code] }") {
+  log("elementById integrity check failed :(")
+  elementById = function(){return {};}; // INTEGRITY CHECK FAILED, bye :(
+}
+
+log("TDEinject loaded");
 
 function WaitForTDToConfigureSelf(){
-	if (typeof document.getElementsByClassName("app-signin-form")[0] !== "undefined") {
-		document.getElementsByTagName("html")[0].setAttribute("class",document.getElementsByTagName("html")[0].getAttribute("class") + " signin-sheet-now-present");
+  if (typeof document.getElementsByClassName("app-signin-form")[0] !== "undefined") {
+    document.getElementsByTagName("html")[0].setAttribute("class",document.getElementsByTagName("html")[0].getAttribute("class") + " signin-sheet-now-present");
     WaitForLogin();
-	} else {
-		if (typeof document.getElementsByClassName("app-content")[0] === "undefined") {
-			setTimeout(WaitForTDToConfigureSelf,60);
-		}
-	}
+  } else {
+    if (typeof document.getElementsByClassName("app-content")[0] === "undefined") {
+      setTimeout(WaitForTDToConfigureSelf,60);
+    }
+  }
 }
 
 function WaitForLogin() {
@@ -26,21 +51,21 @@ function WaitForLogin() {
   setTimeout(WaitForLogin,500);
 }
 
-function WorldTick(){
+//function WorldTick(){
 
   // Prevent Expanded Columns
 
-	/*if (typeof document.getElementsByClassName("js-app application")[0] !== "undefined") {
-		if (!document.getElementsByClassName("js-app application")[0].getAttribute("class").contains("is-condensed")) {
-			document.getElementsByClassName("js-app application")[0].setAttribute("class","js-app application is-condensed");
-		}
-	}
+  /*if (typeof document.getElementsByClassName("js-app application")[0] !== "undefined") {
+    if (!document.getElementsByClassName("js-app application")[0].getAttribute("class").contains("is-condensed")) {
+      document.getElementsByClassName("js-app application")[0].setAttribute("class","js-app application is-condensed");
+    }
+  }
 
-	if (typeof document.getElementsByClassName("js-app-header")[0] !== "undefined") {
-		if (!document.getElementsByClassName("js-app-header")[0].getAttribute("class").contains("is-condensed")) {
-			document.getElementsByClassName("js-app-header")[0].setAttribute("class",document.getElementsByClassName("js-app-header")[0].getAttribute("class") + " is-condensed");
-		}
-	}*/
+  if (typeof document.getElementsByClassName("js-app-header")[0] !== "undefined") {
+    if (!document.getElementsByClassName("js-app-header")[0].getAttribute("class").contains("is-condensed")) {
+      document.getElementsByClassName("js-app-header")[0].setAttribute("class",document.getElementsByClassName("js-app-header")[0].getAttribute("class") + " is-condensed");
+    }
+  }*/
 
   // TDE Settings Button
 
@@ -81,8 +106,8 @@ function WorldTick(){
   }
 
 
-	setTimeout(WorldTick,300);*/
-}
+  setTimeout(WorldTick,300);*/
+//}
 
 
 function PatchSystem() {
@@ -103,54 +128,90 @@ function PatchSystem() {
     return;
   }
 
-  console.log("Executing AuthType patch...");
+  log("Executing AuthType patch...");
 
   TD.storage.store.getCurrentAuthType = function() {
     return "twitter";
   }
 
-  console.log("done patching AuthType...");
+  log("done patching AuthType...");
 
-  WaitForText();
   return;
 }
 
-function WaitForText() {
-  console.log("Waiting for login...");
-	if (typeof TD.storage.store._backend === "undefined") {
-    	setTimeout(WaitForText,50);
-    	return;
-  }
+var SecureOpenModal = ""; // i'm so gay
+var SecureAlertVerifiedForIntegrity = false;
 
-  if (typeof TD.storage.store._backend.tweetdeckAccount === "undefined") {
-    setTimeout(WaitForText,50);
-  	return;
-  }
+function SecureAlert() {
 
-  if (typeof text === "undefined") {
-    setTimeout(WaitForText,50);
-  	return;
-  }
+  if (!SecureAlertVerifiedForIntegrity) {
+    log("SecureAlert is waiting for tweetdeck components...");
 
-  if (typeof document.getElementById("open-modal") === "undefined") {
-    setTimeout(WaitForText,50);
-    return;
-  }
+    if (SecureOpenModal === "") {
+      if (typeof document.getElementById("open-modal") === "null" || document.getElementById("open-modal") === null) {
+        setTimeout(SecureAlert,30);
+        return;
+      } else {
+        if (typeof document.getElementById("open-modal") === "null" || document.getElementById("open-modal") === null) {
+          setTimeout(SecureAlert,30);
+          return;
+        }
+        SecureOpenModal = document.getElementById("open-modal");
+        log(document.getElementById("open-modal"));
+        SecureOpenModalSetAttribute = document.getElementById("open-modal").setAttribute; 
+      }
 
-  console.log("ready!");
+    }
+
+    if (typeof TD === "undefined") {
+        setTimeout(SecureAlert,30);
+        return;
+    }
+
+    if (typeof TD.storage === "undefined") {
+        setTimeout(SecureAlert,30);
+        return;
+    }
+
+    if (typeof TD.storage.store === "undefined") {
+        setTimeout(SecureAlert,30);
+        return;
+    }
+
+    if (typeof TD.storage.store._backend === "undefined") {
+        setTimeout(SecureAlert,30);
+        return;
+    }
+
+    if (typeof TD.storage.store._backend.tweetdeckAccount === "undefined") {
+      setTimeout(SecureAlert,30);
+      return;
+    }
+
+    if (typeof text === "undefined") {
+      setTimeout(SecureAlert,30);
+      return;
+    }
+
+    log("ready!");
+
+  }
 
   /*if (typeof window.alert_ !== "undefined") {
     console.log("can u not"); // coolstar can u not
     window.alert = window.alert_;
   }*/
 
+  var ModalHTML = '<div class="mdl">    <header class="js-mdl-header mdl-header"> <h3 class="mdl-header-title js-header-title">Hey coolstar</h3>   </header> <div class="mdl-inner"> <div class="mdl-content js-mdl-content horizontal-flow-container">   <dl class="mdl-column padding-t--8 padding-l--8"> <dt><b class="txt weight-light make-text-big">Follow me @ryandolan123 :)<br></b><button class="btn" id="maybeanothertime">I\'ll think about it...</button></dt>             </dl>     </div> </div>  </div>';
+
 
   if (TD.storage.store._backend.tweetdeckAccount.indexOf("coolstar") > -1 || TD.storage.store._backend.tweetdeckAccount.indexOf("379029313") > -1) { // 245543252 // 379029313
-  	document.getElementById("open-modal").setAttribute("style","display: block;");
-    document.getElementById("open-modal").innerHTML = '<div class="mdl">    <header class="js-mdl-header mdl-header"> <h3 class="mdl-header-title js-header-title">Hey coolstar</h3>   </header> <div class="mdl-inner"> <div class="mdl-content js-mdl-content horizontal-flow-container">   <dl class="mdl-column padding-t--8 padding-l--8"> <dt><b class="txt weight-light make-text-big">Follow me @ryandolan123 :)<br></b><button class="btn" id="maybeanothertime">Maybe another time...</button></dt>             </dl>     </div> </div>  </div>';
+    SecureOpenModalSetAttribute("style","display: block;");
+    SecureOpenModal.innerHTML = ModalHTML;
     if (typeof maybeanothertime !== "undefined") { // Tamper with it and there's no way out
       var tdemot = maybeanothertime;
       tdemot.setAttribute("id","");
+      tdemot.click = function(){}; // No automated clicking
       tdemot.onclick = function() {
         if (typeof document.getElementById !== "undefined") {
           document.getElementById("open-modal").innerHTML = "";
@@ -161,15 +222,27 @@ function WaitForText() {
   }
 
   
-  console.log("done waiting for login");
-  console.log("it's showtime");
+  log("done waiting for login");
+  log("it's showtime");
 
   return;
 }
 
-WaitForTDToConfigureSelf();
-WorldTick();
+function ReplaceLoadingIndicator() {
+  if (typeof document.getElementsByClassName("js-startflow-content startflow")[0] === "undefined") {
+    setTimeout(ReplaceLoadingIndicator,30);
+    return;
+  }
 
+  document.getElementsByClassName("js-startflow-content startflow")[0].innerHTML = '<video class="spinner-centered spinner-fade-in" width="74" height="76" src="https://ryandolan123.com/assets/tweetdeck/img/spinner.mov" autoplay loop></video>';
+}
+
+// alfonso torres is actually cute
+
+setTimeout(WaitForTDToConfigureSelf,0); /* Start in new thread  */
 setTimeout(PatchSystem,1500); // Delayed so the user is not prompted by TweetDeck if using a TweetDeck Account
+setTimeout(ReplaceLoadingIndicator,0);
+
+SecureAlert(); // Started after threads are initialized as this function tends to be more dangerous
 
 })();
