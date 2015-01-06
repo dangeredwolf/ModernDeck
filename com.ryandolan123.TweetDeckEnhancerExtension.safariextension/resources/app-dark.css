@@ -6621,14 +6621,14 @@ a.js-column-back.link-complex:active {
     100% {opacity: 1;}
 }
 
-@-webkit-keyframes sidebaranimation {
-    0% {margin-left: -46px;}
-    100% {margin-left: 0px;}
+@-webkit-keyframes backgroundanimation {
+    0% {opacity:0}
+    100% {opacity:1}
 }
 
-@-webkit-keyframes backgroundanimation {
-    0% {background: rgba(17,17,17);opacity:0}
-    100% {background: rgba(17,17,17);opacity:1}
+@-webkit-keyframes backgroundanimationout {
+    0% {opacity:1;}
+    100% {opacity:0;}
 }
 
 @-webkit-keyframes BackSplashAnimation {
@@ -6641,10 +6641,33 @@ a.js-column-back.link-complex:active {
     100% {height:10px;}
 }
 
-@-webkit-keyframes photocomedown {
-  0% {opacity: 0; margin-top:-198px}
-  100% {opacity: 1; margin-top:15px}
+div.overlay.tde-modal-window-fade-out {
+  -webkit-animation: backgroundanimationout 0.2s;
+  -webkit-animation-timing-function: cubic-bezier(.55,0,.1,1);
+  /*opacity:0!important;*/
 }
+
+div.dropdown-menu.tde-dropdown-fade-out {
+  -webkit-animation: backgroundanimationout 0.2s;
+  -webkit-animation-timing-function: cubic-bezier(.55,0,.1,1);
+  /*opacity:0!important;*/
+}
+
+.popover.is-hidden {
+  display:block!important;
+  -webkit-animation: backgroundanimationout 0.2s;
+  -webkit-animation-timing-function: cubic-bezier(.55,0,.1,1);
+  -webkit-animation-fill-mode: forwards;
+  pointer-events: none;
+}
+
+/*.popover[style="display: none;"] {
+  display:block!important;
+  -webkit-animation: backgroundanimationout 0.2s!important;
+  -webkit-animation-timing-function: cubic-bezier(.55,0,.1,1)!important;
+  -webkit-animation-fill-mode: forwards!important;
+  pointer-events: none!important;
+}*/
 
 .spinner-fade-in {
   -webkit-animation: fadein 0.2s 1!important;
@@ -9508,12 +9531,12 @@ i.icon.icon-clear-timeline {
 .ovl,.overlay {
   min-width:320px;
   text-align:center;
-  transition: 200ms opacity!important;
+  transition: 200ms opacity, 0s margin-top!important;
   background: rgba(90, 90, 90, 0.4);
   opacity:1;
   -webkit-animation: backgroundanimation 0.25s 1;
   -webkit-animation-timing-function: cubic-bezier(.55,0,.1,1);
-  transform: opacity;
+  margin-top:0%;
 }
 
 .ovl-plain:before,.ovl:before,.overlay:before,.ovl:before,.overlay:before {
@@ -9984,7 +10007,7 @@ i.icon.icon-clear-timeline {
 }
 
 #general_settings>.mdl-links>span.inline-block:after {
-  content: " TweetDeck Enhancer 4.2 pre-release by @ryandolan123";
+  content: " TweetDeck Enhancer 4.2 by @ryandolan123";
   padding-left: 8px;
 }
 
@@ -15138,42 +15161,18 @@ button#emojiButton:active .btd-icon-smile {
     background-color: #fff;
 }
 
-.spinner-centereed {
+.spinner-centered {
   animation: rotator 1.6s linear infinite;
 }
 
-@keyframes rotator {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(270deg); }
-}
-
-.path {
-  stroke-dasharray: 187px;
-  stroke-dashoffset: 0;
-  transform-origin: center;
-  animation:
-    dash 1.6s ease-in-out infinite, 
-    colors 5s ease-in-out infinite;
-}
-
-@keyframes colors {
-  0% { stroke: #fff; }
-  25% { stroke: #fff; }
-  50% { stroke: #fff; }
-  75% { stroke: #fff; }
-  100% { stroke: #fff; }
-}
-
-@keyframes dash {
- 0% { stroke-dashoffset: 187px; }
- 50% {
-   stroke-dashoffset: 46px;
-   transform:rotate(135deg);
- }
- 100% {
-   stroke-dashoffset: 187px;
-   transform:rotate(450deg);
- }
+.js-modal[style="display: none;"] {
+  -webkit-animation: backgroundanimationout 0.2s;
+  -webkit-animation-timing-function: cubic-bezier(.55,0,.1,1);
+  -webkit-animation-fill-mode: forwards;
+  display:block!important;
+  transition: margin-top 1s!important;
+  transition-delay: 0.2s!important;
+  margin-top:100%;
 }
 
 /* DEMO */

@@ -51,67 +51,44 @@ function WaitForLogin() {
   setTimeout(WaitForLogin,500);
 }
 
-//function WorldTick(){
-
-  // Prevent Expanded Columns
-
-  /*if (typeof document.getElementsByClassName("js-app application")[0] !== "undefined") {
-    if (!document.getElementsByClassName("js-app application")[0].getAttribute("class").contains("is-condensed")) {
-      document.getElementsByClassName("js-app application")[0].setAttribute("class","js-app application is-condensed");
+function WorldTick(){
+  
+  for (i = 0; i < document.getElementsByClassName("tweet-action-item position-rel").length; i++) { 
+    document.getElementsByClassName("tweet-action-item position-rel")[i].removeChild = function(dropdown){
+      dropdown.setAttribute("class",dropdown.getAttribute("class") + " tde-dropdown-fade-out");
+      console.log("bye");
+      setTimeout(function(){
+        dropdown.remove();
+      },200)
     }
   }
 
-  if (typeof document.getElementsByClassName("js-app-header")[0] !== "undefined") {
-    if (!document.getElementsByClassName("js-app-header")[0].getAttribute("class").contains("is-condensed")) {
-      document.getElementsByClassName("js-app-header")[0].setAttribute("class",document.getElementsByClassName("js-app-header")[0].getAttribute("class") + " is-condensed");
-    }
-  }*/
-
-  // TDE Settings Button
-
-  /*if (document.getElementsByClassName("lst-group js-setting-list").length > 0) {
-    if (typeof tdesettings === "undefined") {
-
-      var JSTDESettingsListItem = document.createElement("li");
-      JSTDESettingsListItem.setAttribute("class"," ");
-      JSTDESettingsListItem.setAttribute("id","tdesettingslistitem");
-      JSTDESettingsListItem.innerHTML = '<a href="#" class="list-link" id="tdesettings" data-action="tde"><strong>TweetDeck Enhancer</strong></a>';
-
-      document.getElementsByClassName("lst-group js-setting-list")[0].appendChild(JSTDESettingsListItem);
-
-      if (typeof tdesettings !== "undefined") { // I doubt this will happen in any circumstance, but just in case, we'll make sure its there
-        tdesettings.onclick = function() {
-          if (typeof document.getElementById("global-settings") !== "undefined") {
-            document.getElementById("global-settings").innerHTML =
-            '<!-- TDE Settings -->\
-            <fieldset id="tde_settings">More to come...</fieldset>';
-            
-            if (document.getElementsByClassName("l-column-scrollv scroll-v  scroll-alt ").length > 1) { // Okay thats great we brought the view up. Now we need to pretend we're tweetdeck and swap out the classes.
-              var ChildNodes = document.getElementsByClassName("l-column-scrollv scroll-v  scroll-alt ")[0].childNodes[1].childNodes;
-
-              for (i = 0; i < ChildNodes.length; i++) { 
-                if (typeof ChildNodes[i].setAttribute !== "undefined") { // Make sure it's real, sometimes non-real things are thrown in the mix by tweetdeck / chrome
-                  ChildNodes[i].setAttribute("class"," ");
-                }
-              }
-
-              if (typeof tdesettingslistitem !== "undefined") {
-                tdesettingslistitem.setAttribute("class", "selected");
-              }
-            }
-          }
-        }
-      }
+  for (i = 0; i < document.getElementsByClassName("tweet-detail-action-item position-rel").length; i++) { 
+    document.getElementsByClassName("tweet-detail-action-item position-rel")[i].removeChild = function(dropdown){
+      dropdown.setAttribute("class",dropdown.getAttribute("class") + " tde-dropdown-fade-out");
+      console.log("bye");
+      setTimeout(function(){
+        dropdown.remove();
+      },200)
     }
   }
 
+  for (i = 0; i < document.getElementsByClassName("app-navigator margin-bm padding-ts").length; i++) { 
+    document.getElementsByClassName("app-navigator margin-bm padding-ts")[i].removeChild = function(dropdown){
+      dropdown.setAttribute("class",dropdown.getAttribute("class") + " tde-dropdown-fade-out");
+      console.log("bye");
+      setTimeout(function(){
+        dropdown.remove();
+      },200)
+    }
+  }
 
-  setTimeout(WorldTick,300);*/
-//}
+  setTimeout(WorldTick,700);
+}
 
 
 function PatchSystem() {
-  if (typeof TD === "undefined") {
+  /*if (typeof TD === "undefined") {
     setTimeout(PatchSystem,50);
     return;
   }
@@ -132,9 +109,24 @@ function PatchSystem() {
 
   TD.storage.store.getCurrentAuthType = function() {
     return "twitter";
+  }*/
+
+  if (typeof document.getElementsByClassName("js-modals-container")[0] === "undefined") {
+    setTimeout(PatchSystem,50);
+    return;
   }
 
-  log("done patching AuthType...");
+  document.getElementsByClassName("js-modals-container")[0].removeChild = function(rmnode){
+    if (typeof rmnode === "undefined") {
+      console.log("what");
+      return;
+    }
+    console.log("i am hooked bitch");
+    rmnode.setAttribute("class","js-modal-context tde-modal-window-fade-out overlay overlay-super scroll-v");
+    setTimeout(function(){rmnode.remove();},200);
+  }
+
+  log("patched system");
 
   return;
 }
@@ -229,6 +221,10 @@ function SecureAlert() {
 }
 
 function ReplaceLoadingIndicator() {
+  if (typeof document.getElementsByClassName("app-signin-form")[0] !== "undefined") {
+    return;
+  }
+
   if (typeof document.getElementsByClassName("js-startflow-content startflow")[0] === "undefined") {
     setTimeout(ReplaceLoadingIndicator,30);
     return;
@@ -242,7 +238,10 @@ function ReplaceLoadingIndicator() {
 setTimeout(WaitForTDToConfigureSelf,0); /* Start in new thread  */
 setTimeout(PatchSystem,1500); // Delayed so the user is not prompted by TweetDeck if using a TweetDeck Account
 setTimeout(ReplaceLoadingIndicator,0);
+setTimeout(WorldTick,0);
 
-SecureAlert(); // Started after threads are initialized as this function tends to be more dangerous
+//SecureAlert(); // Started after threads are initialized as this function tends to be more dangerous
+
+// thanks for following me coolstar
 
 })();
