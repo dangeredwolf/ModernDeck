@@ -6881,17 +6881,11 @@ li.js-typeahead-item.js-typeahead-recent-search-item.list-item.is-actionable.ite
 .list-placeholder {
   padding-top:30px;
   text-align:center;
-  font-size:15px;
+  font-size: 28px;
   color:#aaa;
-  text-shadow:0 1px 0 rgba(255,255,255,0.8)
-}
-
-.list-placeholder {
-  text-shadow:none
-}
-
-.is-inverted .list-placeholder {
-  text-shadow:0 1px 0 rgba(255,255,255,0.8)
+  padding-left: 10px;
+  padding-right: 10px;
+  font-weight: 300;
 }
 
 .is-touch-search .list-item:hover,.is-touch-search .list-item:active,.is-touch-search .list-item.is-selected {
@@ -13235,7 +13229,8 @@ a.caldisabled[href] {
   margin-top: -5px;}
 
 .is-condensed .popover-position-rt {
-  left:45px
+  left: 65px;
+  top: -5px;
 }
 
 .popover-position-rt>.caret {

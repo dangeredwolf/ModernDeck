@@ -5,7 +5,7 @@
 	<key>Author</key>
 	<string>ryandolan123</string>
 	<key>Builder Version</key>
-	<string>10600.1.25</string>
+	<string>10600.2.5</string>
 	<key>CFBundleDisplayName</key>
 	<string>TweetDeck Enhancer</string>
 	<key>CFBundleIdentifier</key>
@@ -42,7 +42,7 @@
 	<key>Description</key>
 	<string>Buggy Safari build of TweetDeck Enhancer</string>
 	<key>DeveloperIdentifier</key>
-	<string>V4MZKCA3P6</string>
+	<string></string>
 	<key>ExtensionInfoDictionaryVersion</key>
 	<string>1.0</string>
 	<key>Permissions</key>
