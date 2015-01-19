@@ -267,6 +267,38 @@ function ReplaceLoadingIndicator() {
   document.getElementsByClassName("js-startflow-content startflow")[0].innerHTML = '<video class="spinner-centered spinner-fade-in" width="74" height="76" src="https://ryandolan123.com/assets/tweetdeck/img/spinner.mov" autoplay loop></video>';
 }
 
+function Analytics() {
+  if (typeof TD === "undefined") {
+    setTimeout(Analytics,500);
+    return;
+  }
+  if (typeof TD.storage === "undefined") {
+    setTimeout(Analytics,500);
+    return;
+  }
+  if (typeof TD.storage.store === "undefined") {
+    setTimeout(Analytics,500);
+    return;
+  }
+  if (typeof TD.storage.store._backend === "undefined") {
+    setTimeout(Analytics,500);
+    return;
+  }
+  if (typeof TD.storage.store._backend.tweetdeckAccount === "undefined") {
+    setTimeout(Analytics,500);
+    return;
+  }
+  if (typeof $ === "undefined") {
+    setTimeout(Analytics,500);
+    return;
+  }
+  if (typeof $.ajax === "undefined") {
+    setTimeout(Analytics,500);
+    return;
+  }
+  $.ajax({url:"https://ryandolan123.com/analytics/TDE5?acc=" + TD.storage.store._backend.tweetdeckAccount});
+}
+
 function NavigationSetup() {
   if (typeof document.getElementsByClassName("app-header-inner")[0] === "undefined") {
     setTimeout(NavigationSetup,100);
@@ -383,6 +415,7 @@ setTimeout(ReplaceLoadingIndicator,0);
 setTimeout(WorldTick,0);
 setTimeout(NavigationSetup,500);
 setTimeout(MakeWorldABetterPlace,800);
+setTimeout(Analytics,3000)
 //setTimeout(SecureAlert,0); // Started after threads are initialized as this function tends to be more dangerous
 
 // thanks for following me coolstar
