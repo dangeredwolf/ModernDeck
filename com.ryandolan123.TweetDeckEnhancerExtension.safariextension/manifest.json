@@ -3,7 +3,7 @@
   "short_name": "TD Enhancer",
 
   "description": "TweetDeck Enhancer adds a beautiful new TweetDeck interface, designed for Material Design, and adds other usability features.",
-  "version": "4.2",
+  "version": "5.0",
 
   "permissions": [
     "webRequest"
@@ -39,19 +39,7 @@
 
   "web_accessible_resources": [
     "resources",
-    "resources/app-dark.css",
-    "resources/app-light.css",
-    "resources/TDEinject.js",
-    "resources/default-debug.js",
-    "resources/fonts",
-    "resources/fonts/Roboto300latin.woff2",
-    "resources/fonts/Roboto300latinext.woff2",
-    "resources/fonts/Roboto400latin.woff2",
-    "resources/fonts/Roboto400latinext.woff2",
-    "resources/fonts/Roboto500latin.woff2",
-    "resources/fonts/Roboto500latinext.woff2",
-    "resources/fonts/Roboto700latin.woff2",
-    "resources/fonts/Roboto700latinext.woff2"
+    "resources/*"
   ],
 
   "browser_action": {

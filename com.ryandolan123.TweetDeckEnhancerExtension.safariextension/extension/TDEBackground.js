@@ -1,5 +1,5 @@
 // TDEBackground.js
-// Copyright (c) 2014 Ryan Dolan (ryandolan123)
+// Copyright (c) 2015 Ryan Dolan (ryandolan123)
 
 if (typeof safari !== "undefined") {
   var isSafari = true;
