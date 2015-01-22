@@ -1,28 +1,8 @@
-/* TweetDeck Enhancer Stylesheet 5.0 developer preview
+/* TweetDeck Enhancer Stylesheet 5.0 developer preview 2
 
 Created by @ryandolan123
 
 This is app-dark.css */
-
-/*img.spinner-centered {
-  display:block!important;
-  box-sizing: border-box!important;
-  width: 200px!important;
-  height: 200px!important;
-  background: url(https://ryandolan123.com/assets/tweetdeck/img/TweetDeckWhite.png) no-repeat!important;
-  margin-left: -100px!important;
-  margin-top: -100px!important;
-  padding-left: 200px;
-  -webkit-animation: backgroundanimation 0.1s 1;
-}*/
-
-.js-header-container.is-hidden.app-signin-wrap.padding-bxxl {
-  /* background-image: none; */
-}
-
-.signin-sheet-now-present .js-startflow-content.startflow {
-  -webkit-filter: brightness(1)!important;
-}
 
 .bg-r-text {
   background-color:#292f33
@@ -817,7 +797,7 @@ body.scroll-v {
 
 body {
   -webkit-animation: popgoesthemodalwindow2d 0.5s!important;
-  /* -webkit-animation-timing-function: ease-out; */
+  -webkit-animation-timing-function: ease-out;
 }
 
 .is-application-animating {
@@ -4917,7 +4897,7 @@ button.js-follow-button.js-show-tip.follow-btn.btn.btn-alt {}
 }
 
 .btn-on-blue[disabled],.btn-on-blue[disabled]:hover,.btn-on-blue[disabled]:active,.btn-on-blue.is-disabled,.btn-on-blue.is-disabled:hover,.btn-on-blue.is-disabled:focus,.btn-on-blue.is-disabled:active {
-  color: #6A6A6A;
+  color: #47555E;
   background-color:#1F6BB5;
   border-color:transparent
 }
@@ -6546,10 +6526,9 @@ a.js-column-back.link-complex:active {
 }
 
 @-webkit-keyframes dropmenucomeupnopad {
-  0% {opacity: 0; margin-top:40px}
+  0% {opacity: 0; margin-top:30px}
   100% {opacity: 1; margin-top:0px}
 }
-
 
 @-webkit-keyframes herecomesthetweetdetails {
   0% {opacity: 0; -webkit-transform: scale(0.5,0.5) perspective(600px) rotate3d(1,0,0,-50deg); }
@@ -6870,7 +6849,7 @@ li.js-typeahead-item.js-typeahead-recent-search-item.list-item.is-actionable.ite
 }
 
 .list-placeholder {
-  padding-top:30px;
+  /* padding-top:30px; */
   text-align:center;
   font-size: 28px;
   color: #667A86;
@@ -6911,7 +6890,7 @@ li.js-typeahead-item.js-typeahead-recent-search-item.list-item.is-actionable.ite
   height:48px;
   border-radius: 24px;
   transition:200ms all!important;
-  box-shadow: 0 3px 5px rgba(17,17,17,0.3);
+  /* box-shadow: 0 3px 5px rgba(17,17,17,0.3); */
 }
 
 .avatar.compose-account-img:active {
@@ -7713,7 +7692,7 @@ i.icon.icon-move {
 }
 
 .is-unread .txt-mute,.is-unread .conversation-indicator {
-  color: rgba(0, 0, 0, 0.46);
+  color: rgba(255, 255, 255, 0.34);
   text-decoration: none;
 }
 
@@ -8807,7 +8786,8 @@ i.icon.icon-clear-timeline {
   right:10px;
   max-width:270px;
   background: #263238;
-  text-align:left
+  text-align:left;
+  display:none;
 }
 
 .status-message-text {
@@ -9636,6 +9616,7 @@ i.icon.icon-clear-timeline {
   overflow: hidden;
   transform: none;
   transition: 100ms box-shadow, 100ms transform!important;
+  pointer-events: all;
 }
 
 .js-mediatable .mdl {
@@ -9786,8 +9767,8 @@ i.icon.icon-clear-timeline {
 
 .mdl-column-sml {
   width:200px;
-  border: 1px solid #F7F7F7;
-  border-right: none;
+  /* border: 1px solid #F7F7F7; */
+  /* border-right: none; */
   /* border-bottom: none; */
 }
 
@@ -9998,12 +9979,13 @@ i.icon.icon-clear-timeline {
 }
 
 .settings-modal>div>header>h3.mdl-header-title.js-header-title:after {
-  content: "Settings";
+  content: "TweetDeck Settings";
 }
 
 .mdl-col-settings {
   background-color: rgba(46, 59, 65, 1);
   margin-top: -2px;
+  /* -webkit-animation: dropmenucomeupnopad 0.225s 1; */
 }
 
 .lst-profile.l-grouped {
@@ -10011,7 +9993,7 @@ i.icon.icon-clear-timeline {
 }
 
 #general_settings>.mdl-links>span.inline-block:after {
-  content: " TweetDeck Enhancer 5.0 developer preview by @ryandolan123";
+  content: " TweetDeck Enhancer 5.0";
   padding-left: 8px;
 }
 
@@ -10027,17 +10009,17 @@ i.icon.icon-clear-timeline {
 }
 
 .mdl-links a {
-  color:#76939F;
+  color: #198A95;
   transition: 200ms all!important;
 }
 
 .mdl-links a:hover {
-  color: #93AFB9;
+  color: #1E949E;
   transition: 200ms all!important;
 }
 
 .mdl-links a:active {
-  color:#ccc;
+  color: #175F65;
   transition: 200ms all!important;
 }
 
@@ -10418,7 +10400,7 @@ input#file-upload-input {
 }
 
 .compose {
-  background-color: #1E5B78;
+  background-color: #00838F;
   color: #FFF;
   height:100%;
   transition:300ms all!important;
@@ -10566,7 +10548,11 @@ input#file-upload-input {
   width: 220px;
   margin-left: 10px;
   z-index: 99;
-  box-shadow: 0px 3px 7px rgba(17,17,17,0.25);
+  box-shadow: 0px 3px 7px rgba(17,17,17,0.5);
+  opacity: 1;
+  transition: 150ms all!important;
+  transition-timing-function: cubic-bezier(.55,0,.1,1);
+  margin-top: 0px;
 }
 
 .compose-reply-tweet-remove,.compose-reply-tweet-remove:active {
@@ -10614,7 +10600,7 @@ input#file-upload-input {
   border:none;
   color: #D8D8D8;
   font-size:1rem;box-shadow: 0px 3px 7px rgba(17,17,17,0.5);
-  width: 240px;
+  width: 300px;
 }
 
 .compose-message-account:focus {
@@ -11281,7 +11267,7 @@ a:hover .icn-button-next {
 .list-link:hover:hover,.list-twitter-list:hover:hover,.list-subtitle:hover:hover,.list-account:hover:hover,.list-listmember:hover:hover,.list-link:hover:focus,.list-twitter-list:hover:focus,.list-subtitle:hover:focus,.list-account:hover:focus,.list-listmember:hover:focus,.list-link:hover:active,.list-twitter-list:hover:active,.list-subtitle:hover:active,.list-account:hover:active,.list-listmember:hover:active,.list-account:hover:hover,.list-account:hover:focus,.list-account:hover:active,.list-listaccount:hover:hover,.list-listaccount:hover:focus,.list-listaccount:hover:active,.list-subtitle:hover:hover,.list-subtitle:hover:focus,.list-subtitle:hover:active {
   text-decoration:none;
   color: #FFF;
-  background: #197078;
+  background: rgba(25, 112, 120, 0.4);
 }
 
 .chev-right {
@@ -11734,6 +11720,7 @@ input[type="checkbox"] {
 .control-group {
   padding-bottom:10px;
   border-radius: 0px;
+  /* margin-top: 40px; */
 }
 
 .controls {
@@ -12843,6 +12830,7 @@ a.caldisabled[href] {
   transition:200ms all;
   border: 1px rgba(0,0,0,255);
   z-index: 9;
+  transition: 200ms all;
 }
 
 .lst-group h3 {
@@ -12871,13 +12859,13 @@ a.caldisabled[href] {
 .lst-group .selected {
   background: #197078;
   color: #FFFFFF;
-  transition:200ms all!important;
+  /* transition:200ms all!important; */
 }
 
 .lst-group.js-setting-list .selected {
   background: #197078;
   color: #FFF;
-  transition:200ms all!important;
+  /* transition:200ms all!important; */
 }
 
 .lst-group .selected a {
@@ -13970,7 +13958,7 @@ a.caldisabled[href] {
 }
 
 .mdl-links>span.inline-block {
-  color: #76939F;
+  color: #50717F;
 }
 
 .js-column-detail .column-title-back:after {
@@ -14213,12 +14201,12 @@ a.account-link[href="https://twitter.com/WilliamcaFox"] .fullname.txt-ellipsis:a
 {
     background-image:url(https://ryandolan123.com/tweetdeck-web/web/assets/global/backgrounds/td_sprite_sheet_2013_@1x.png);
     content: "...";
-    width:14px;
+    width: 18px;
     height:14px;
     background-position:-163px -48px;
     color: rgba(0, 0, 0, 0);
     box-shadow: none;
-    padding-right:3px;
+    padding-right: 5px;
     padding-bottom: 3px;
     font-size: 13px;
 }
@@ -14728,7 +14716,7 @@ a.js-hide-drawer.link-clean.cf.app-nav-tab:after {
 }
 
 .compose .typeahead-item span.username {
-    color: #808080;
+    color: rgba(255, 255, 255, 0.4);
 }
 
 .tweet-actions .tweet-action.is-selected, .tweet-detail-actions .tweet-action.is-selected, .tweet-detail-actions .js-reply-action.is-selected{
@@ -14873,6 +14861,11 @@ a[rel=user]:active {
 }
 
 a[rel=hashtag]:active {
+    transform: none!important;
+    transition:150ms all!important;
+}
+
+.prf-card-inner a:active {
     transform: none!important;
     transition:150ms all!important;
 }
@@ -15026,7 +15019,7 @@ button.js-send-tweet-button.js-spinner-button.js-show-tip.btn.btn-positive.btn-e
 
 [style="background-image: url(https://ton.twimg.com/tweetdeck-web/web/assets/global/backgrounds/td_profile_empty.9a5654bc44.jpg)"] {
     background-image: none!important;
-    background: #30383F;
+    background: #383F45;
 }
 
 .application:not(.is-condensed) .app-header {
@@ -15081,7 +15074,7 @@ button.js-send-tweet-button.js-spinner-button.js-show-tip.btn.btn-positive.btn-e
     margin-left: -5px;
     margin-top: -4px;
     box-shadow: none!important;
-    background-color: rgba(30, 91, 120, 1);
+    background-color: #00838F;
     transition-timing-function: cubic-bezier(.55,0,.1,1);
     transition:250ms!important
 ;
@@ -15192,12 +15185,12 @@ button#emojiButton:active .btd-icon-smile {
 }
 
 .js-compose-message-recipient-input-container.compose-message-recipient-input-container.position-rel.bg-r-white {
-    width: 225px;
+    width: 240px;
     margin-left: 10px;
 }
 
 .compose-message-account {
-    background-color: #fff;
+    background-color: #263238;
 }
 
 .spinner-centered {
@@ -15417,9 +15410,10 @@ button#emojiButton:active .btd-icon-smile {
 }
 
 .tde-appbar-notification {
-    margin-top: -40px;
+    margin-top: 10px;
     position: absolute;
     margin-left: -5px;
+    top:0;
     margin-right: auto;
     width: 100%;
     padding-left: 0px;
@@ -15429,6 +15423,7 @@ button#emojiButton:active .btd-icon-smile {
     font-weight: 400;
     transition:300ms all!important;
     transition-timing-function: cubic-bezier(.55,0,.1,1)!important;
+    bottom:initial!important;
 }
 
 .tde-appbar-notification-hidden {
@@ -15439,18 +15434,61 @@ button#emojiButton:active .btd-icon-smile {
   margin-top:-100px;
 }
 
-
-/* DEMO */
-
-/*.app-navigator>.dropdown-menu>.js-dropdown-content>ul>li>b.non-selectable-item.txt-ellipsis {
-    font-size: 0px!important;
-    -webkit-animation: backgroundanimation 0.3s 1;
+.js-compose-message-recipient-container ul.js-typeahead-user-list.typeahead-user-list {
+    width: 240px;
+    /* left: 20px; */
+    transition: 200ms all!important;
+    -webkit-animation: dropmenucomedownnopad 0.225s 1;
 }
 
-.app-navigator>.dropdown-menu>.js-dropdown-content>ul>li>b.non-selectable-item.txt-ellipsis:after {
+.js-compose-message-recipient-container .js-typeahead-dropdown {
+    left: 10px;
+    z-index: 9999999;
+}
+
+.typeahead-dropdown.dropdown-menu .is-selected {
+    background: #125D63;
+    /* overflow: inherit; */
+}
+
+.js-setting-list .list-link strong {
+    font-weight: 400!important;
+}
+
+.settings-modal .l-column.mdl-column {
+    /* -webkit-animation: dropmenucomeupnopad 0.25s 1; */
+    /* margin-top: 40px; */
+}
+
+.mdl-col-settings form.frm fieldset {
+    -webkit-animation: dropmenucomeupnopad 0.25s 1!important;
+    /* margin-top: 40px; */
+    -webkit-animation-timing-function: cubic-bezier(.55,0,.1,1)!important;
+}
+
+.mdl-favorite-from-options .txt-r-deep-yellow {
+    color: inherit!important;
+}
+
+.settings-modal>div>header>.enhancer-settings:after {
+  content: ""!important;
+}
+
+.tde-logo {
+    width: 250px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.tde-about-title {
+    color: #E5E5E5;
+    stroke: sda;
+}
+
+.tde-version-title {
+    font-weight: 400;
     font-size: 16px;
-    content: "example@example.com";
-    text-align: left;
-    display:block;
-    margin-top:-15px
-}*/
+    text-align: center;
+    padding-top: 5px;
+}

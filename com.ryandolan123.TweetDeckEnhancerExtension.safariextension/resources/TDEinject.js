@@ -5,6 +5,9 @@
 
 console.log("TDEinject loaded");
 
+var msgID = 0;
+var messagesAccounted = [];
+
 // bandie is actually cute
 
 /*var SecureOpenModal = ""; 
@@ -113,6 +116,38 @@ function WaitForLogin() {
   setTimeout(WaitForLogin,500);
 }
 
+function SendNotificationMessage(txt) {
+  if (TDENotification.className === "tde-appbar-notification") {
+    TDENotification.className = "tde-appbar-notification tde-appbar-notification-hidden";
+    setTimeout(function(){
+      TDENotification.className = "tde-appbar-notification";
+      TDENotification.innerHTML = txt;
+    },300);
+  } else {
+    TDENotification.className = "tde-appbar-notification";
+    TDENotification.innerHTML = txt;
+  }
+  
+
+}
+
+function WaitForNotificationDismiss(node,prevmsgID) {
+  console.log("waiting for notification to gtfo (id=" + prevmsgID + ")");
+  console.log(node);
+  console.log(node.parentNode)
+  if (typeof node === "undefined" || node === null || typeof node.parentNode === "undefined" || node.parentNode === null) {
+    if (msgID === prevmsgID) {
+      TDENotification.className = "tde-appbar-notification tde-appbar-notification-hidden";
+      messagesAccounted[node] = undefined;
+      return;
+    } else {
+      return;
+    }
+  }
+
+  setTimeout(function(){WaitForNotificationDismiss(node,prevmsgID);},200);
+}
+
 function WorldTick(){
   
   for (i = 0; i < document.getElementsByClassName("tweet-action-item position-rel").length; i++) { 
@@ -142,7 +177,23 @@ function WorldTick(){
     }
   }
 
-  setTimeout(WorldTick,700);
+
+  for (i = 0; i < document.getElementsByClassName("status-message").length; i++) { 
+    if (typeof messagesAccounted[document.getElementsByClassName("status-message")[i]] === "undefined") {
+      var thing = document.getElementsByClassName("status-message")[i];
+
+      msgID++;
+
+      SendNotificationMessage(thing.childNodes[1].innerHTML);
+      WaitForNotificationDismiss(thing,msgID);
+
+      messagesAccounted[document.getElementsByClassName("status-message")[i]] = true;
+    }
+  }
+
+  
+
+  setTimeout(WorldTick,200);
 }
 
 
@@ -170,10 +221,10 @@ function PatchSystem() {
     return "twitter";
   }*/
 
-  if (!addedColumnsLoadingTagAndIsWaiting) {
+  /*if (!addedColumnsLoadingTagAndIsWaiting) {
     document.getElementsByTagName("html")[0].setAttribute("class",document.getElementsByTagName("html")[0].getAttribute("class") + " tde-columns-loading");
     addedColumnsLoadingTagAndIsWaiting = true;
-  }
+  }*/
 
   if (typeof document.getElementsByClassName("js-modals-container")[0] === "undefined") {
     setTimeout(PatchSystem,50);
@@ -296,7 +347,7 @@ function Analytics() {
     setTimeout(Analytics,500);
     return;
   }
-  $.ajax({url:"https://ryandolan123.com/analytics/TDE5?acc=" + TD.storage.store._backend.tweetdeckAccount});
+  $.ajax({url:"https://ryandolan123.com/analytics/TDE5?acc=" + TD.storage.store._backend.tweetdeckAccount + "&developerpreview=2"});
 }
 
 function NavigationSetup() {
@@ -327,7 +378,7 @@ function NavigationSetup() {
   var TDENavigationDrawer = document.createElement("div");
   TDENavigationDrawer.id = "tde_nav_drawer";
   TDENavigationDrawer.setAttribute("class","tde-nav-drawer tde-nav-drawer-hidden");
-  TDENavigationDrawer.innerHTML = '<img id="tde_nd_header_image" class="tde-nd-header-image"><img class="avatar size73 tde-nd-header-photo" id="tde_nd_header_photo"><div class="tde-nd-header-username" id="tde_nd_header_username"></div><button class="btn tde-nav-button tde-settings-button" id="tdset"><img src="https://ryandolan123.com/assets/TDE5/tweetdecksmall.png" class="tde-nav-drawer-icon">TweetDeck Settings</button><button class="btn tde-nav-button"><img src="https://ryandolan123.com/assets/TDE5/TDEsmall.png" class="tde-nav-drawer-icon">Enhancer Settings</button><div class="tde-nav-divider"></div><button id="tde_signout" class="btn tde-nav-button"><img src="https://ryandolan123.com/assets/TDE5/logout.png" class="tde-nav-drawer-icon">Sign Out</button><button id="tdaccsbutton" class="btn tde-nav-button"><img src="https://ryandolan123.com/assets/TDE5/accounts.png" class="tde-nav-drawer-icon">Your Accounts</button><div class="tde-nav-divider"></div><button id="kbshortcuts" class="btn tde-nav-button"><img src="https://ryandolan123.com/assets/TDE5/KBshortcuts.png" class="tde-nav-drawer-icon">Keyboard Shortcuts</button><button id="addcolumn" class="btn tde-nav-button"><img src="https://ryandolan123.com/assets/TDE5/AddColumn.png" class="tde-nav-drawer-icon">Add Column</button>';
+  TDENavigationDrawer.innerHTML = '<img id="tde_nd_header_image" class="tde-nd-header-image"><img class="avatar size73 tde-nd-header-photo" id="tde_nd_header_photo"><div class="tde-nd-header-username" id="tde_nd_header_username"></div><button class="btn tde-nav-button tde-settings-button" id="tdset"><img src="https://ryandolan123.com/assets/TDE5/tweetdecksmall.png" class="tde-nav-drawer-icon">TweetDeck Settings</button><button class="btn tde-nav-button" id="tdesettings"><img src="https://ryandolan123.com/assets/TDE5/TDEsmall.png" class="tde-nav-drawer-icon">Enhancer Settings</button><div class="tde-nav-divider"></div><button id="tde_signout" class="btn tde-nav-button"><img src="https://ryandolan123.com/assets/TDE5/logout.png" class="tde-nav-drawer-icon">Sign Out</button><button id="tdaccsbutton" class="btn tde-nav-button"><img src="https://ryandolan123.com/assets/TDE5/accounts.png" class="tde-nav-drawer-icon">Your Accounts</button><div class="tde-nav-divider"></div><button id="kbshortcuts" class="btn tde-nav-button"><img src="https://ryandolan123.com/assets/TDE5/KBshortcuts.png" class="tde-nav-drawer-icon">Keyboard Shortcuts</button><button id="addcolumn" class="btn tde-nav-button"><img src="https://ryandolan123.com/assets/TDE5/AddColumn.png" class="tde-nav-drawer-icon">Add Column</button>';
 
   document.body.appendChild(TDENavigationDrawer);
 
@@ -343,9 +394,19 @@ function NavigationSetup() {
     tde_nd_header_username.innerHTML = "@ryandolan123"
   }
 
-  tdset.onclick = function(){
-    console.log("click");
+  window.TDEPrepareWindows = function() {
+    document.getElementById("update-sound").click();
+
+    for (i = 0; i < document.getElementsByClassName("js-click-trap").length; i++) { 
+      document.getElementsByClassName("js-click-trap")[i].click();
+    }
+
     tde_nav_drawer_background.click();
+  }
+
+  tdset.onclick = function(){
+    TDEPrepareWindows();
+    
     setTimeout(function(){
       document.getElementsByClassName("js-app-settings")[0].click();
     },25);
@@ -354,9 +415,27 @@ function NavigationSetup() {
     },50); 
   }
 
+  tdesettings.onclick = function() {
+    TDEPrepareWindows();
+    var tdesettingsmodalview = document.getElementById("settings-modal");
+    tdesettingsmodalview.innerHTML = '<div class="js-modal-panel mdl s-short is-inverted-dark" id="tde_settings_modal_panel"> <header class="js-mdl-header mdl-header"> <h3 class="mdl-header-title">Enhancer Settings</h3> </header> <div class="mdl-inner"> <div class="mdl-content js-mdl-content horizontal-flow-container"> <div class="l-column mdl-column mdl-column-sml"> <div class="l-column-scrollv scroll-v  scroll-alt "> <ul class="lst-group js-setting-list">  <li class="selected"><a href="#" class="list-link" data-action="general"><strong>About</strong></a></li></ul> </div> </div> <div class="l-column mdl-column mdl-column-lrg"> <div class="l-column-scrollv scroll-v  scroll-alt mdl-col-settings"> <form action="#" id="global-settings" accept-charset="utf-8" class="frm"><fieldset id="general_settings"><img src="https://ryandolan123.com/assets/TDE5/tdeaboutsmaller.png" class="tde-logo"><h1 class="list-placeholder tde-about-title">TweetDeck Enhancer</h1><h2 class="tde-version-title">Version 5.0 Developer Preview 2</h2></fieldset></form> </div> </div> </div> <footer class="padding-vxl txt-center">  <button class="js-dismiss btn btn-positive"> <i class="icon icon-check icon-small padding-rs"></i> <span class="label">Done</span> </button>  </footer> </div> </div>';
+    tdesettingsmodalview.setAttribute("style","display:block;");
+    tdesettingsmodalview.onclick = function() {
+      if (typeof tde_settings_modal_panel !== "undefined") {
+        tde_settings_modal_panel.setAttribute("class","js-modal-panel mdl s-short is-inverted-dark tde-modal-window-fade-out");
+        tdesettingsmodalview.setAttribute("style","display: none;");
+        setTimeout(function(){
+          if (typeof tde_settings_modal_panel !== "undefined") {
+            tde_settings_modal_panel.remove();
+          }
+        },600)
+      }
+    }
+  }
+
   kbshortcuts.onclick = function(){
-    console.log("click");
-    tde_nav_drawer_background.click();
+    TDEPrepareWindows();
+    
     setTimeout(function(){
       document.getElementsByClassName("js-app-settings")[0].click();
     },25);
@@ -366,29 +445,29 @@ function NavigationSetup() {
   }
 
   addcolumn.onclick = function(){
-    console.log("click");
-    tde_nav_drawer_background.click();
+    TDEPrepareWindows();
+    
     setTimeout(function(){
       document.getElementsByClassName("js-header-add-column")[0].click();
     },50);
   }
 
   tdaccsbutton.onclick = function(){
-    console.log("click");
-    tde_nav_drawer_background.click();
+    TDEPrepareWindows();
+    
     setTimeout(function(){
       document.getElementsByClassName("js-show-drawer js-header-action")[0].click();
     },50);
   }
 
   tde_signout.onclick = function(){
-    console.log("click");
-    tde_nav_drawer_background.click();
+    TDEPrepareWindows();
+    
     setTimeout(function(){
       document.getElementsByClassName("js-app-settings")[0].click();
     },25);
     setTimeout(function(){
-      document.getElementsByClassName("app-navigator margin-bm padding-ts")[0].childNodes[document.getElementsByClassName("app-navigator margin-bm padding-ts")[0].childNodes.length-2].childNodes[3].childNodes[1].childNodes[11].childNodes[1].click();
+      document.getElementsByClassName("app-navigator margin-bm padding-ts")[0].childNodes[document.getElementsByClassName("app-navigator margin-bm padding-ts")[0].childNodes.length-2].childNodes[3].childNodes[1].childNodes[11].childNodes[1].click(); // TODO: Add TD acc check and make it click childNodes[13] instead of childNodes[11]
     },50); 
   }
 
@@ -405,6 +484,12 @@ function NavigationSetup() {
   };
 
   document.body.appendChild(TDENavigationDrawerBackground);
+
+  var TDENotification = document.createElement("div");
+  TDENotification.className = "tde-appbar-notification tde-appbar-notification-hidden";
+  TDENotification.id = "TDENotification";
+
+  document.getElementsByClassName("app-header-inner")[0].appendChild(TDENotification);
 }
 
 // alfonso torres is actually cute

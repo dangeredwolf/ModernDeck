@@ -1,49 +1,8 @@
-/* TweetDeck Enhancer Stylesheet 5.0 developer preview
+/* TweetDeck Enhancer Stylesheet 5.0 developer preview 2
 
 Created by @ryandolan123
 
 This is app-light.css */
-
-img.spinner-centered {
-  display:block!important;
-  box-sizing: border-box!important;
-  width: 200px!important;
-  height: 200px!important;
-  background: url(https://ryandolan123.com/assets/tweetdeck/img/TweetDeckWhite.png) no-repeat!important;
-  margin-left: -100px!important;
-  margin-top: -100px!important;
-  padding-left: 200px;
-  -webkit-animation: backgroundanimation 0.1s 1;
-}
-
-.js-header-container.is-hidden.app-signin-wrap.padding-bxxl {
-  /* background-image: none; */
-}
-
-.js-startflow-content.startflow {
-   /* background: url(https://ryandolan123.com/tweetdeck-web/web/assets/global/backgrounds/spinner-fff-on-55acee.gif) no-repeat;*/
-   background: url(https://abs.twimg.com/a/1418162186/img/t1/spinner-rosetta-blue.gif) no-repeat;
-   background-size:48px 48px;
-   -webkit-filter: brightness(9);
-    height: 24px;
-    width: 24px;
-    top: 0px;
-    margin-top: 550px;
-    margin-bottom: 0px;
-    display: block;
-    content: " ";
-    background-size: 20px;
-    left: 50%;
-    padding-left: 50%;
-    margin-right: -8px;
-    /*position: absolute;*/
-    float: right;
-    right: 50%;
-}
-
-.signin-sheet-now-present .js-startflow-content.startflow {
-  -webkit-filter: brightness(1)!important;
-}
 
 .bg-r-text {
   background-color:#292f33
@@ -822,6 +781,9 @@ body {
 
 [class=''] .application {
   /* -webkit-animation: popgoestheapp 600ms; */
+  -webkit-animation: columnFlyin 0.35s;
+  -webkit-animation-timing-function: cubic-bezier(.55,0,.1,1);
+  transition: top 200ms!important;
 }
 
 .signin-sheet-now-present .application {
@@ -829,8 +791,8 @@ body {
 }
 
 body {
-  /* -webkit-animation: popgoesthemodalwindow2d 0.5s!important; */
-  /* -webkit-animation-timing-function: ease-out; */
+  -webkit-animation: popgoesthemodalwindow2d 0.5s!important;
+  -webkit-animation-timing-function: ease-out;
 }
 
 .is-application-animating {
@@ -1190,8 +1152,7 @@ abbr[title] {
 }
 
 .scroll-alt::-webkit-scrollbar-thumb {
-  background-color:#666
-}
+  background-color: #ABABAB;}
 
 .scroll-alt::-webkit-scrollbar-thumb:hover {
   background-color:#666
@@ -6548,7 +6509,7 @@ a.js-column-back.link-complex:active {
 }
 
 @-webkit-keyframes dropmenucomeupnopad {
-  0% {opacity: 0; margin-top:40px}
+  0% {opacity: 0; margin-top:30px}
   100% {opacity: 1; margin-top:0px}
 }
 
@@ -6626,6 +6587,11 @@ a.js-column-back.link-complex:active {
 @-webkit-keyframes new {
     0% {height:0px; }
     100% {height:10px;}
+}
+
+@-webkit-keyframes columnFlyin {
+    0% {top: 100%;}
+    100% {top: 0%;}
 }
 
 div.overlay.tde-modal-window-fade-out {
@@ -8780,7 +8746,8 @@ i.icon.icon-clear-timeline {
   right:10px;
   max-width:270px;
   background:#fff;
-  text-align:left
+  text-align:left;
+  display:none;
 }
 
 .status-message-text {
@@ -9765,9 +9732,10 @@ i.icon.icon-clear-timeline {
 
 .mdl-column-sml {
   width:200px;
-  border: 1px solid #F7F7F7;
-  border-right: none;
+  /* border-right: 1px solid #F7F7F7; */
+  /* border-right: none; */
   /* border-bottom: none; */
+  background-color: #F8F8F8;
 }
 
 .mdl-column-lrg {
@@ -9977,7 +9945,7 @@ i.icon.icon-clear-timeline {
 }
 
 .settings-modal>div>header>h3.mdl-header-title.js-header-title:after {
-  content: "Settings";
+  content: "TweetDeck Settings";
 }
 
 .mdl-col-settings {
@@ -9989,7 +9957,7 @@ i.icon.icon-clear-timeline {
 }
 
 #general_settings>.mdl-links>span.inline-block:after {
-  content: " TweetDeck Enhancer 5.0 developer preview by @ryandolan123";
+  content: " TweetDeck Enhancer 5.0";
   padding-left: 8px;
 }
 
@@ -12895,8 +12863,8 @@ a.caldisabled[href] {
 }
 
 .lst-group.js-setting-list .selected {
-  background: #eee;
-  color: #000;
+  background: rgba(0, 195, 220, 0.87);
+  color: #FFF;
   transition:200ms all!important;
 }
 
@@ -12935,7 +12903,7 @@ a.caldisabled[href] {
 }
 
 .lst-group.js-setting-list .selected .fullname,.lst-group.js-setting-list .selected .inner strong,.lst-group.js-setting-list .selected .list-link,.lst-group.js-setting-list .selected .list-twitter-list,.lst-group.js-setting-list .selected .list-subtitle,.lst-group.js-setting-list .selected .list-account,.lst-group.js-setting-list .selected .list-listmember {
-  color: #000;
+  color: #FFF;
   text-shadow:none
 }
 
@@ -14633,7 +14601,7 @@ a.js-header-action.js-app-settings.link-clean.cf.app-nav-link.padding-hl {
 }
 
 .js-header-add-column {
-    top: -1px;
+    top: -105px;
     left: -15px;
     display: block!important;
     opacity:0;
@@ -14661,6 +14629,7 @@ a.link-clean.cf.app-nav-tab {
     position: absolute;
     /* padding-left: 50px; */
     transition: 200ms all!important;
+    /* margin-top: -50px; */
 }
 
 a.js-hide-drawer.link-clean.cf.app-nav-tab {
@@ -14684,6 +14653,7 @@ a.js-hide-drawer.link-clean.cf.app-nav-tab:after {
 a.js-hide-drawer.link-clean.cf.app-nav-tab.is-hidden {
   display:block!important;
   opacity:0;
+  pointer-events: none;
 }
 
 .js-show-drawer.app-nav-tab .icon {
@@ -14885,6 +14855,11 @@ a[rel=user]:active {
 }
 
 a[rel=hashtag]:active {
+    transform: none!important;
+    transition:150ms all!important;
+}
+
+.prf-card-inner a:active {
     transform: none!important;
     transition:150ms all!important;
 }
@@ -15394,10 +15369,13 @@ button#emojiButton:active .btd-icon-smile {
 .js-show-drawer.app-nav-tab {
     opacity: 0;
     margin-top: -50px;
+    width: 0px!important;
+    height: 0px!important;
 }
 
 .tde-appbar-notification {
-    margin-top: -40px;
+    margin-top: 10px;
+    top:0;
     position: absolute;
     margin-left: -5px;
     margin-right: auto;
@@ -15409,6 +15387,7 @@ button#emojiButton:active .btd-icon-smile {
     font-weight: 400;
     transition:300ms all!important;
     transition-timing-function: cubic-bezier(.55,0,.1,1)!important;
+    bottom:initial!important;
 }
 
 .tde-appbar-notification-hidden {
@@ -15419,17 +15398,53 @@ button#emojiButton:active .btd-icon-smile {
   margin-top:-100px;
 }
 
-/* DEMO */
 
-/*.app-navigator>.dropdown-menu>.js-dropdown-content>ul>li>b.non-selectable-item.txt-ellipsis {
-    font-size: 0px!important;
-    -webkit-animation: backgroundanimation 0.3s 1;
+.js-compose-message-recipient-container ul.js-typeahead-user-list.typeahead-user-list {
+    width: 240px;
+    /* left: 20px; */
+    transition: 200ms all!important;
+    -webkit-animation: dropmenucomedownnopad 0.225s 1;
 }
 
-.app-navigator>.dropdown-menu>.js-dropdown-content>ul>li>b.non-selectable-item.txt-ellipsis:after {
+.js-compose-message-recipient-container .js-typeahead-dropdown {
+    left: 10px;
+    z-index: 9999999;
+}
+
+.js-setting-list .list-link strong {
+    font-weight: 400!important;
+}
+
+.mdl-col-settings form.frm fieldset {
+    -webkit-animation: dropmenucomeupnopad 0.25s 1!important;
+    /* margin-top: 40px; */
+    -webkit-animation-timing-function: cubic-bezier(.55,0,.1,1)!important;
+}
+
+.mdl-favorite-from-options .txt-r-deep-yellow {
+    color: inherit!important;
+}
+
+.settings-modal>div>header>.enhancer-settings:after {
+  content: ""!important;
+}
+
+.tde-logo {
+    width: 250px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.tde-about-title {
+    color: #E5E5E5;
+    stroke: sda;
+}
+
+.tde-version-title {
+    font-weight: 400;
     font-size: 16px;
-    content: "example@example.com";
-    text-align: left;
-    display:block;
-    margin-top:-15px
-}*/
+    text-align: center;
+    padding-top: 5px;
+}
+
