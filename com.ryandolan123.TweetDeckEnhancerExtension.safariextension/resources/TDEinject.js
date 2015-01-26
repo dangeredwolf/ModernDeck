@@ -94,6 +94,9 @@ function SecureAlert() {
   return;
 }*/
 
+var ShouldUpgrade = false;
+
+
 var addedColumnsLoadingTagAndIsWaiting = false;
 
 function WaitForTDToConfigureSelf(){
@@ -107,6 +110,56 @@ function WaitForTDToConfigureSelf(){
   }
 }
 
+function StreamAngularJS() {
+
+  if (!ShouldUpgrade) {
+    return;
+  }
+
+  // TDE now uses Angular JS for other nice material things
+
+
+  // AngularJS Material Stylesheet
+
+  var angularstyles = document.createElement("link");
+  angularstyles.rel = "stylesheet";
+  angularstyles.href = "//ajax.googleapis.com/ajax/libs/angular_material/0.6.1/angular-material.min.css";
+  angularstyles.id = "angularstyles";
+  document.head.appendChild(angularstyles);
+
+  // AngularJS / AngularJS Material Scripts
+
+  var injectAngularJS = document.createElement("script");
+  injectAngularJS.type = "text/javascript";
+  injectAngularJS.src = "//cdn.jsdelivr.net/hammerjs/2.0.4/hammer.min.js";
+  injectAngularJS.id = "injectAngularJS";
+  document.body.appendChild(injectAngularJS);
+
+  var injectAngularJS2 = document.createElement("script");
+  injectAngularJS2.type = "text/javascript";
+  injectAngularJS2.src = "//ajax.googleapis.com/ajax/libs/angularjs/1.3.6/angular.min.js";
+  injectAngularJS2.id = "injectAngularJS2";
+  document.body.appendChild(injectAngularJS2);
+
+  var injectAngularJS3 = document.createElement("script");
+  injectAngularJS3.type = "text/javascript";
+  injectAngularJS3.src = "//ajax.googleapis.com/ajax/libs/angularjs/1.3.6/angular-animate.min.js";
+  injectAngularJS3.id = "injectAngularJS3";
+  document.body.appendChild(injectAngularJS3);
+
+  var injectAngularJS4 = document.createElement("script");
+  injectAngularJS4.type = "text/javascript";
+  injectAngularJS4.src = "//ajax.googleapis.com/ajax/libs/angularjs/1.3.6/angular-aria.min.js";
+  injectAngularJS4.id = "injectAngularJS4";
+  document.body.appendChild(injectAngularJS4);
+
+  var injectAngularJS5 = document.createElement("script");
+  injectAngularJS5.type = "text/javascript";
+  injectAngularJS5.src = "//ajax.googleapis.com/ajax/libs/angular_material/0.6.1/angular-material.min.js";
+  injectAngularJS5.id = "injectAngularJS5";
+  document.body.appendChild(injectAngularJS5);
+
+}
 
 function WaitForLogin() {
   if (typeof document.getElementsByClassName("app-signin-form")[0] === "undefined") {
@@ -297,6 +350,17 @@ function MakeWorldABetterPlace() {
   }
 }
 
+function DisplayMigrateUI() {
+  StreamAngularJS();
+  document.getElementsByTagName("html")[0].className += " tde-is-upgrading ";
+  document.getElementsByClassName("js-app-loading")[0].innerHTML = '<div class="mdl s-fluid tde-upgrading"><div class="mdl-header"></div><div class="mdl-inner"><div class="mdl-content"><md-progress-circular md-mode="indeterminate" aria-valuemin="0" aria-valuemax="100" role="progressbar" class="md-default-theme" style="-webkit-transform: scale(1);"><div class="md-spinner-wrapper"><div class="md-inner"><div class="md-gap"></div><div class="md-left"><div class="md-half-circle"></div></div><div class="md-right"><div class="md-half-circle"></div></div></div></div></md-progress-circular><h2>Enhancer is Upgrading...</h2><h3>Personalizing Enhancer</h3><div class="whatever"></div></div></div></div>';
+}
+
+function CheckForNeedsUpgrade() {
+  if (ShouldUpgrade) {
+    setTimeout(DisplayMigrateUI,1000);
+  }
+}
 
 function ReplaceLoadingIndicator() {
   if (typeof document.getElementsByClassName("app-signin-form")[0] !== "undefined") {
@@ -418,7 +482,7 @@ function NavigationSetup() {
   tdesettings.onclick = function() {
     TDEPrepareWindows();
     var tdesettingsmodalview = document.getElementById("settings-modal");
-    tdesettingsmodalview.innerHTML = '<div class="js-modal-panel mdl s-short is-inverted-dark" id="tde_settings_modal_panel"> <header class="js-mdl-header mdl-header"> <h3 class="mdl-header-title">Enhancer Settings</h3> </header> <div class="mdl-inner"> <div class="mdl-content js-mdl-content horizontal-flow-container"> <div class="l-column mdl-column mdl-column-sml"> <div class="l-column-scrollv scroll-v  scroll-alt "> <ul class="lst-group js-setting-list">  <li class="selected"><a href="#" class="list-link" data-action="general"><strong>About</strong></a></li></ul> </div> </div> <div class="l-column mdl-column mdl-column-lrg"> <div class="l-column-scrollv scroll-v  scroll-alt mdl-col-settings"> <form action="#" id="global-settings" accept-charset="utf-8" class="frm"><fieldset id="general_settings"><img src="https://ryandolan123.com/assets/TDE5/tdeaboutsmaller.png" class="tde-logo"><h1 class="list-placeholder tde-about-title">TweetDeck Enhancer</h1><h2 class="tde-version-title">Version 5.0 Developer Preview 2</h2></fieldset></form> </div> </div> </div> <footer class="padding-vxl txt-center">  <button class="js-dismiss btn btn-positive"> <i class="icon icon-check icon-small padding-rs"></i> <span class="label">Done</span> </button>  </footer> </div> </div>';
+    tdesettingsmodalview.innerHTML = '<div class="js-modal-panel mdl s-short is-inverted-dark" id="tde_settings_modal_panel"> <header class="js-mdl-header mdl-header"> <h3 class="mdl-header-title">Enhancer Settings</h3> </header> <div class="mdl-inner"> <div class="mdl-content js-mdl-content horizontal-flow-container"> <div class="l-column mdl-column mdl-column-sml"> <div class="l-column-scrollv scroll-v  scroll-alt "> <ul class="lst-group js-setting-list">  <li class="selected"><a href="#" class="list-link" data-action="general"><strong>About</strong></a></li></ul> </div> </div> <div class="l-column mdl-column mdl-column-lrg"> <div class="l-column-scrollv scroll-v  scroll-alt mdl-col-settings"> <form action="#" id="global-settings" accept-charset="utf-8" class="frm"><fieldset id="general_settings"><img src="https://ryandolan123.com/assets/TDE5/tdeaboutsmaller.png" class="tde-logo"><h1 class="list-placeholder tde-about-title">TweetDeck Enhancer</h1><h2 class="tde-version-title">Version 5.0 Developer Preview 3</h2></fieldset></form> </div> </div> </div> <footer class="padding-vxl txt-center">  <button class="js-dismiss btn btn-positive"> <i class="icon icon-check icon-small padding-rs"></i> <span class="label">Done</span> </button>  </footer> </div> </div>';
     tdesettingsmodalview.setAttribute("style","display:block;");
     tdesettingsmodalview.onclick = function() {
       if (typeof tde_settings_modal_panel !== "undefined") {
@@ -495,12 +559,14 @@ function NavigationSetup() {
 // alfonso torres is actually cute
 
 setTimeout(WaitForTDToConfigureSelf,0); /* Start in new thread  */
-setTimeout(PatchSystem,500);
+setTimeout(PatchSystem,300);
 setTimeout(ReplaceLoadingIndicator,0);
 setTimeout(WorldTick,0);
 setTimeout(NavigationSetup,500);
 setTimeout(MakeWorldABetterPlace,800);
-setTimeout(Analytics,3000)
+setTimeout(Analytics,3000);
+setTimeout(CheckForNeedsUpgrade,500);
+
 //setTimeout(SecureAlert,0); // Started after threads are initialized as this function tends to be more dangerous
 
 // thanks for following me coolstar

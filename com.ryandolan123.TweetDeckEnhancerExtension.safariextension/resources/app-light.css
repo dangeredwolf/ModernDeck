@@ -791,8 +791,8 @@ body {
 }
 
 body {
-  -webkit-animation: popgoesthemodalwindow2d 0.5s!important;
-  -webkit-animation-timing-function: ease-out;
+  /* -webkit-animation: popgoesthemodalwindow2d 0.5s!important; */
+  /* -webkit-animation-timing-function: ease-out; */
 }
 
 .is-application-animating {
@@ -5335,7 +5335,7 @@ a.link-complex>span {
 }
 
 .column {
-  transition: all 150ms;
+  /* transition: all 150ms, left 0ms; */
   border-radius:0;
   position:relative;
   z-index:1;
@@ -5353,8 +5353,8 @@ a.link-complex>span {
 }
 
 .column.is-focused {
-  box-shadow:0px 0px 6px 4px #30A6FF
-}
+  /* box-shadow:0px 0px 6px 4px #30A6FF
+ */}
 
 .column {
   /* border:1px solid #222426 */
@@ -6344,7 +6344,7 @@ a.js-column-back.link-complex:active {
 }
 
 .js-chirp-container {
-  -webkit-animation: popcomesthetweetsview 0.85s 1;
+  -webkit-animation: popcomesthetweetsview 0.6s 1;
 }
 
 .draggable-dragging .js-chirp-container {
@@ -6361,7 +6361,7 @@ a.js-column-back.link-complex:active {
     100% {padding-top: 0%;}
 }*/
 
-@-webkit-keyframes popcomesthetweetsview {
+/*@-webkit-keyframes popcomesthetweetsview {
   0%, 60%, 75%, 90%, 100% {
     -webkit-transition-timing-function: cubic-bezier(0.215, 0.610, 0.655, 1.000);
             transition-timing-function: cubic-bezier(0.215, 0.610, 0.655, 1.000);
@@ -6388,6 +6388,36 @@ a.js-column-back.link-complex:active {
     -webkit-transform: translate3d(0, -5px, 0);
             transform: translate3d(0, -5px, 0);
   }
+
+  100% {
+    -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+  }
+}*/
+
+@-webkit-keyframes popcomesthetweetsview {
+
+  0% {
+    opacity: 1;
+    -webkit-transform: translate3d(0, 2700px, 0);
+            transform: translate3d(0, 2700px, 0);
+  }
+
+  60% {
+    opacity: 1;
+    -webkit-transform: translate3d(0, -25px, 0);
+            transform: translate3d(0, -25px, 0);
+  }
+
+  /*75% {
+    -webkit-transform: translate3d(0, 10px, 0);
+            transform: translate3d(0, 10px, 0);
+  }
+
+  90% {
+    -webkit-transform: translate3d(0, -5px, 0);
+            transform: translate3d(0, -5px, 0);
+  }*/
 
   100% {
     -webkit-transform: translate3d(0, 0, 0);
@@ -7421,11 +7451,10 @@ li.js-typeahead-item.js-typeahead-recent-search-item.list-item.is-actionable.ite
 }
 
 .is-retweet .icon-retweet-toggle {
-  color:#77b255
-}
+  color: #32B602;}
 
 .is-favorite .icon-favorite-toggle {
-  color: #ffac33!important;}
+  color: #FF9101!important;}
 
 .tweet-footer {
   margin-top:3px;
@@ -7908,10 +7937,12 @@ i.icon.icon-move {
   left:0;
   right:0;
   bottom:0;
-  background-color: #eee;}
+  background-color: #03A9F4;}
 
 .is-chrome .app-columns-container {
-  backface-visibility:hidden
+  /* backface-visibility:hidden
+ */
+  overflow-y: visible;
 }
 
 .app-navigator {
@@ -10457,6 +10488,8 @@ input#file-upload-input {
   margin-left: 10px;
   /* padding-right: 10px; */
   margin-top: 10px;
+  height: 250px;
+  box-shadow: 0px 3px 7px rgba(17,17,17,0.5);
 }
 
 .compose-content>div>.cf>.pull-right {
@@ -10466,15 +10499,16 @@ input#file-upload-input {
 
 .compose-text {
   width: 90%;
-  height: 200px!important;
+  height: 185px!important;
   resize:none;
   border:none;
   color:#444;
   font-size:1rem;
-  box-shadow: 0px 3px 7px rgba(17,17,17,0.5);
+  /* box-shadow: 0px 3px 7px rgba(17,17,17,0.5); */
   text-overflow: ellipsis;
   padding-left: 15px!important;
   border-radius: 2px;
+  padding-bottom: 30px;
 }
 
 .compose-text::placeholder {
@@ -10790,7 +10824,7 @@ input#file-upload-input {
 .inline-reply .compose-text-container {
   display:inline-block;
   width:100%;
-  height: 155px;
+  height: 170px;
   border-radius: 0px;
   margin-left: -1px;
 }
@@ -10892,10 +10926,12 @@ input#file-upload-input {
   -o-transition-delay:0;
   transition-delay:0;
   padding:10px;
-  height: 140px!important;
-  width: 93%;
+  height: 100px!important;
+  width: 94%;
   border-radius: 0px;
   box-shadow: none;
+  margin-bottom: -31px;
+  /* padding-bottom: 30px; */
 }
 
 .detail-view-inline {
@@ -12414,12 +12450,12 @@ a.caldisabled[href] {
 
 .prf-img:active {
   transition:200ms transform;
-  transform:scale(0.92,0.92)!important;
+  /*transform:scale(0.92,0.92)!important;*/
 }
 
 .prf-img:hover {
   transition:200ms transform;
-  transform:scale(1.075,1.075);
+  /* transform:scale(1.075,1.075); */
 }
 
 .prf-img img {
@@ -14010,11 +14046,11 @@ a.caldisabled[href] {
 }
 
 .column-detail-level-2>.column-content>.column-scroller {
-    -webkit-animation: popgoesthetweet 0.4s 1;
+    /* -webkit-animation: popgoesthetweet 0.4s 1; */
 }
 
 .prf-card-inner>a>span.prf-img>.avatar {
-    box-shadow: 0 0px 15px rgba(0,0,0,0.5);
+    box-shadow: 0 15px 40px rgba(17,17,17,0.4);
 }
 
 .prf-card-inner .location.txt-ellipsis strong {
@@ -14225,15 +14261,18 @@ a.account-link[href="https://twitter.com/WilliamcaFox"] .fullname.txt-ellipsis:a
   transition:all 200ms!important;
   background-color: #03A9F4!important;
   box-shadow: 0px 2px 7px rgba(17,17,17,0.25);
+  height: 180px;
 }
 
 .js-column-social-proof .column-content {
-    -webkit-animation: popcomesthetweetsview 0.7s 1;
+    -webkit-animation: popcomesthetweetsview 0.5s 1;
+    -webkit-animation-timing-function: cubic-bezier(.55,0,.1,1);
 }
 
 .link-clean[href="https://twitter.com/TDEnhancer"] .avatar {
     box-shadow: none!important;
     border-radius: 0px!important;
+    transform: scale(1.25,1.25);
 }
 
 .account-settings-row[data-user-id="2927859037"] .avatar {
@@ -14443,7 +14482,7 @@ a.txt-r-on-dark-blue {
     transform: scale(1.05,1.05);
     box-shadow: 0 30px 70px rgba(17,17,17,0.6);
     transition: 200ms box-shadow, 200ms transform!important;
-    z-index: 999999;
+    z-index: 99999999999999!important;
 }
 
 .column-nav-item.draggable-dragging {
@@ -15437,7 +15476,7 @@ button#emojiButton:active .btd-icon-smile {
 }
 
 .tde-about-title {
-    color: #E5E5E5;
+    color: #333;
     stroke: sda;
 }
 
@@ -15447,4 +15486,117 @@ button#emojiButton:active .btd-icon-smile {
     text-align: center;
     padding-top: 5px;
 }
+
+.tde-upgrading md-progress-circular .md-inner .md-left .md-half-circle {
+    border-left-color: #009688!important;
+    border-top-color: #009688!important;
+    border-width:6px
+}
+
+.tde-upgrading md-progress-circular .md-inner .md-right .md-half-circle {
+    border-right-color: #009688!important;
+    border-top-color: #009688!important;
+    border-width:6px
+}
+
+.tde-upgrading md-progress-circular.md-default-theme .md-inner .md-gap {
+    border-top-color: #009688!important;
+    border-bottom-color: #009688!important;
+}
+
+.tde-upgrading md-progress-circular {
+    position:absolute;
+    margin-left:27px;
+    margin-top:30px;
+}
+
+.tde-upgrading h2 {
+    position:absolute;
+    margin-left:25px;
+    margin-top:-25px;
+}
+
+.tde-upgrading .whatever {
+    width:350px;
+    height:110px;
+
+}
+
+.tde-upgrading:before {
+    background-color:transparent
+}
+
+.tde-upgrading h3 {
+    font-weight:400;
+    position:absolute;
+    margin-top:45px;
+    margin-left:112px;
+    font-size:15px;
+}
+
+.tde-upgrading {
+    margin:0;
+    z-index:999999999999999999;
+    border-radius:2px!important;
+    position: absolute;
+    /* margin: auto; */
+    display: block;
+    /* margin-left: auto; */
+    margin-right: auto;
+    /* float: right; */
+    /* right: 50%; */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    transition:170ms all!important;
+}
+
+.tde-is-upgrading .application {
+    /*display:none;*/
+    opacity:0;
+}
+
+.tde-is-upgrading body {
+    background-color:#00BCD4;
+}
+
+.tde-is-upgrading .js-app-loading {
+    width: 100%;
+    height: 100%;
+    display: block!important;
+}
+
+.column.draggable-dragging {
+    transform: scale(1.05,1.05) translateY(16px);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

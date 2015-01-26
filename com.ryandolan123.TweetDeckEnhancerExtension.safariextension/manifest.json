@@ -6,7 +6,9 @@
   "version": "5.0",
 
   "permissions": [
-    "webRequest"
+    "webRequest",
+    "webRequestBlocking",
+    "https://tweetdeck.twitter.com/"
   ],
 
   "content_scripts": [
