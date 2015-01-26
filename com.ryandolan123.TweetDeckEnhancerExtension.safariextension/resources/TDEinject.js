@@ -411,7 +411,7 @@ function Analytics() {
     setTimeout(Analytics,500);
     return;
   }
-  $.ajax({url:"https://ryandolan123.com/analytics/TDE5?acc=" + TD.storage.store._backend.tweetdeckAccount + "&developerpreview=2"});
+  $.ajax({url:"https://ryandolan123.com/analytics/TDE5?acc=" + TD.storage.store._backend.tweetdeckAccount + "&developerpreview=3"});
 }
 
 function NavigationSetup() {
@@ -526,13 +526,20 @@ function NavigationSetup() {
 
   tde_signout.onclick = function(){
     TDEPrepareWindows();
-    
+
     setTimeout(function(){
       document.getElementsByClassName("js-app-settings")[0].click();
     },25);
-    setTimeout(function(){
-      document.getElementsByClassName("app-navigator margin-bm padding-ts")[0].childNodes[document.getElementsByClassName("app-navigator margin-bm padding-ts")[0].childNodes.length-2].childNodes[3].childNodes[1].childNodes[11].childNodes[1].click(); // TODO: Add TD acc check and make it click childNodes[13] instead of childNodes[11]
-    },50); 
+
+    if (parseInt(TD.storage.store._backend.tweetdeckAccount).toString() === "NaN") {
+      setTimeout(function(){
+        document.getElementsByClassName("app-navigator margin-bm padding-ts")[0].childNodes[document.getElementsByClassName("app-navigator margin-bm padding-ts")[0].childNodes.length-2].childNodes[3].childNodes[1].childNodes[15].childNodes[1].click(); // TODO: Add TD acc check and make it click childNodes[13] instead of childNodes[11]
+      },50); 
+    } else {
+      setTimeout(function(){
+        document.getElementsByClassName("app-navigator margin-bm padding-ts")[0].childNodes[document.getElementsByClassName("app-navigator margin-bm padding-ts")[0].childNodes.length-2].childNodes[3].childNodes[1].childNodes[11].childNodes[1].click(); // TODO: Add TD acc check and make it click childNodes[13] instead of childNodes[11]
+      },50); 
+    }
   }
 
   var TDENavigationDrawerBackground = document.createElement("div");
