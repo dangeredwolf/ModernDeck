@@ -1,4 +1,4 @@
-/* TweetDeck Enhancer Stylesheet 5.0 developer preview 2
+/* TweetDeck Enhancer Stylesheet 5.0 developer preview 3
 
 Created by @ryandolan123
 
@@ -9,8 +9,8 @@ This is app-light.css */
 }
 
 .bg-r-white {
-  background-color:#fff
-}
+  /* background-color:#fff
+ */}
 
 .bg-r-faint-gray {
   background-color:#f5f8fa
@@ -4150,14 +4150,14 @@ button.js-toggle-button.btn.js-toggle-users.is-selected:hover {
 
 .tweet-button .icon-compose:before {
     content: "...";
-  
     color: transparent;
-    background: url(https://ryandolan123.com/assets/tweetdeck/img/compose.png) no-repeat;
+    background: url(https://ryandolan123.com/assets/TDE5/compose.png) no-repeat;
     margin-left: 5px;
     margin-top: 5px;
     width: 26px;
     height: 26px;
     position: absolute;
+    background-size: 22px 22px;
 }
 
 .icon-mark-read:before {
@@ -4811,7 +4811,7 @@ button.js-follow-button.js-show-tip.follow-btn.btn.btn-alt {}
 
 .btn-compose:hover {
   color:#fff;
-  background-color: #00BAFF;
+  background-color: #00BCD4;
   transform: scale(1.05,1.05);
 }
 
@@ -4823,7 +4823,7 @@ button.js-follow-button.js-show-tip.follow-btn.btn.btn-alt {}
 
 .btn-compose:active {
   color:#fff;
-  background-color: #039BE5!important;
+  background-color: #009CB0!important;
   transform: scale(1,1);
 }
 
@@ -5632,7 +5632,7 @@ a.pull-left.margin-txs.txt-mute.txt-small.link-complex:hover {
   box-shadow: 0 1px 10px rgba(17,17,17,0.35);
   z-index: 10;
   color: #fff;
-  overflow: hidden;
+  /*overflow: hidden;*/
   transition: 200ms all;
   width:328px;
 }
@@ -5987,6 +5987,10 @@ a.js-column-back.link-complex:active {
 
 .is-touch-column-options .is-options-open .mark-all-read-link {
   right:44.25px
+}
+
+.is-touch-column-options .column-title-messages {
+    margin-right:50px
 }
 
 .column-options {
@@ -10396,7 +10400,7 @@ input#file-upload-input {
 }
 
 .compose {
-  background-color: #29B6F6;
+  background-color: #00BCD4;
   color: #FFF;
   height:100%;
   transition:300ms all!important;
@@ -10846,7 +10850,7 @@ input#file-upload-input {
   display:inline-block;
   width: 100.1%;
   margin-top: 0px;
-  /* box-shadow: 0px 3px 7px rgba(17,17,17,0.5); */
+  box-shadow: none;
 }
 
 .js-inline-compose-pop > .icon {
@@ -14202,7 +14206,7 @@ button.js-send-tweet-button.js-spinner-button.js-show-tip.btn.btn-positive.btn-e
 .link-clean[href="https://twitter.com/ryand123_privat"]>.fullname:after,
 .link-clean[href="https://twitter.com/WilliamcaFox"]>.fullname:after
 {
-    background-image:url(https://ryandolan123.com/tweetdeck-web/web/assets/global/backgrounds/td_sprite_sheet_2013_@1x.png);
+    background-image: url(https://ryandolan123.com/tweetdeck-web/web/assets/global/backgrounds/td_sprite_sheet_2013_@1x.png);
     content:"...";
     width:20px;
     height:20px;
@@ -14259,7 +14263,7 @@ a.account-link[href="https://twitter.com/WilliamcaFox"] .fullname.txt-ellipsis:a
 
 .inline-reply {
   transition:all 200ms!important;
-  background-color: #03A9F4!important;
+  background-color: #00C3DC!important;
   box-shadow: 0px 2px 7px rgba(17,17,17,0.25);
   height: 180px;
 }
@@ -15049,6 +15053,11 @@ button.js-send-tweet-button.js-spinner-button.js-show-tip.btn.btn-positive.btn-e
   width:0px!important;
 }
 
+[style="background-image: url(https://ton.twimg.com/tweetdeck-web/web/assets/global/backgrounds/td_profile_empty@2x.28d11b0d43.jpg)"] {
+    background-image: none!important;
+    background: #1FC0CF;
+}
+
 [style="background-image: url(https://ton.twimg.com/tweetdeck-web/web/assets/global/backgrounds/td_profile_empty.9a5654bc44.jpg)"] {
     background-image: none!important;
     background: #1FC0CF;
@@ -15103,7 +15112,7 @@ button.js-send-tweet-button.js-spinner-button.js-show-tip.btn.btn-positive.btn-e
     margin-left: -5px;
     margin-top: -4px;
     box-shadow: none!important;
-    background-color: rgba(41, 182, 246, 1);
+    background-color: #00BCD4;
     transition-timing-function: cubic-bezier(.55,0,.1,1);
     transition:250ms!important
 }
@@ -15570,7 +15579,59 @@ button#emojiButton:active .btd-icon-smile {
     transform: scale(1.05,1.05) translateY(16px);
 }
 
+.edit-conversation-name {
+    position:absolute;
+    top:-50px;
+    right:0;
+    left:0;
+    -moz-box-sizing:border-box;
+    box-sizing:border-box;
+    height:50px;
+    padding:0 10px;
+    color:inherit;
+    line-height:50px;
+    /* border-bottom:1px solid #222426; */
+    -webkit-transition:all 230ms!important;
+    transition:all 230ms!important;
+    transition-timing-function: cubic-bezier(.55,0,.1,1)!important;
+    -webkit-transition-timing-function: cubic-bezier(.55,0,.1,1)!important;
+    background-color: #03A9F4;
+    z-index: 999999999999999999;
+}
 
+.edit-conversation-name.is-visible {
+    top:0
+}
+
+.conversation-name {
+    position: relative;
+    width: 200px;
+    color:#fff;
+}
+
+.edit-conversation-name .nbfc {
+    display: none;
+}
+
+.edit-conversation-name.is-visible .nbfc {
+    display: block;
+}
+
+.js-dm-participants-back:after {
+    content: "People";
+    font-weight: 400;
+    color: #fff;
+    margin-top: -53px;
+    position: absolute;
+    text-align: left;
+    left: 48px;
+    margin-left: 5px;
+    font-size: 16px;
+}
+
+.title-content .txt-mute {
+    color: #fff;
+}
 
 
 

