@@ -68,9 +68,13 @@
    "message": "People",
    "description": ""
   },
-
   "Tweet": {
    "message": "Tweet",
+   "description": ""
+  },
+
+  "About": {
+   "message": "About",
    "description": ""
   }
 }
