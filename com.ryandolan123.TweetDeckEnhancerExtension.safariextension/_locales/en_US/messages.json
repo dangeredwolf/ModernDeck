@@ -1,0 +1,76 @@
+{
+  "ExtDesc": {
+   "message": "TweetDeck Enhancer adds a beautiful new TweetDeck interface, designed for Material Design, and adds other usability features.",
+   "description": "TDE's description"
+  },
+
+  "ButtonHoverTitle": {
+   "message": "TweetDeck Quick Launch (Added by Enhancer, disable with Right Click > Hide Button)",
+   "description": "Text that appears when hovering over the 'Quick Launch' tweetdeck button"
+  },
+
+  "TDSettings": {
+   "message": "TweetDeck Settings",
+   "description": ""
+  },
+  "EnhancerSettings": {
+   "message": "Enhancer Settings",
+   "description": ""
+  },
+  "SignOut": {
+   "message": "Sign Out",
+   "description": ""
+  },
+  "TDAccUpgrade": {
+   "message": "Switch to Twitter Account",
+   "description": ""
+  },
+  "YourAccounts": {
+   "message": "Your Accounts",
+   "description": ""
+  },
+  "KBShortcuts": {
+   "message": "Keyboard Shortcuts",
+   "description": ""
+  },
+  "AddColumn": {
+   "message": "Add Column",
+   "description": ""
+  },
+
+  "EnhancerUpgrading": {
+   "message": "Enhancer is Upgrading...",
+   "description": ""
+  },
+  "FixingNavDrawer": {
+   "message": "Personalizing Enhancer",
+   "description": ""
+  },
+
+  "ExpandedViewWarning1": {
+   "message": "Hi! You're seeing this because you're using the expanded tab view. The expanded tab view is currently not supported in TweetDeck Enhancer due to its new horizontal App Bar.",
+   "description": ""
+  },
+  "ExpandedViewWarning2": {
+   "message": "To restore the regular tab view, please press the X key on your keyboard, and TweetDeck will fix it automatically. Thank you^^",
+   "description": ""
+  },
+
+  "Conversation": {
+   "message": "Conversation",
+   "description": ""
+  },
+  "Interactions": {
+   "message": "Interactions",
+   "description": ""
+  },
+  "People": {
+   "message": "People",
+   "description": ""
+  },
+
+  "Tweet": {
+   "message": "Tweet",
+   "description": ""
+  }
+}
