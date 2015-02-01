@@ -459,7 +459,7 @@ setTimeout(PatchSystem,300);
 setTimeout(ReplaceLoadingIndicator,0);
 setTimeout(WorldTick,0);
 setTimeout(NavigationSetup,500);
-setTimeout(MakeWorldABetterPlace,800);
+//setTimeout(MakeWorldABetterPlace,800);
 setTimeout(Analytics,3000);
 setTimeout(CheckForNeedsUpgrade,500);
 
