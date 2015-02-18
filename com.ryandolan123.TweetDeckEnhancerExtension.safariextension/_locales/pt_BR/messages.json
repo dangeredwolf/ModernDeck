@@ -1,0 +1,80 @@
+{
+  "ExtDesc": {
+   "message": "TweetDeck Enhancer adiciona uma incrível nova interface ao Tweetdeck, desenhada utilizando o Material Design e adiciona outros recursos de usabilidade.",
+   "description": "TDE's description"
+  },
+
+  "ButtonHoverTitle": {
+   "message": "Atalho Rápido para o Tweetdeck (Adicionado pelo Enhancer, desabilite com Clique Direito > Ocultar Botão)",
+   "description": "Text that appears when hovering over the 'Quick Launch' tweetdeck button"
+  },
+
+  "TDSettings": {
+   "message": "Configurações do TweetDeck",
+   "description": ""
+  },
+  "EnhancerSettings": {
+   "message": "Configurações do Enhancer",
+   "description": ""
+  },
+  "SignOut": {
+   "message": "Sair",
+   "description": ""
+  },
+  "TDAccUpgrade": {
+   "message": "Alternar para Conta do Twitter",
+   "description": ""
+  },
+  "YourAccounts": {
+   "message": "Suas Contas",
+   "description": ""
+  },
+  "KBShortcuts": {
+   "message": "Atalhos de Teclado",
+   "description": ""
+  },
+  "AddColumn": {
+   "message": "Adicionar coluna",
+   "description": ""
+  },
+
+  "EnhancerUpgrading": {
+   "message": "Enhancer está atualizando...",
+   "description": ""
+  },
+  "FixingNavDrawer": {
+   "message": "Personalizar o Enhancer",
+   "description": ""
+  },
+
+  "ExpandedViewWarning1": {
+   "message": "Olá! Você está vendo isso porque você está utilizando a visualização de aba expandida. A visualização de aba expandida atualmente não é suportada pelo TweetDeck Enhancer devido a sua nova barra horizontal.",
+   "description": ""
+  },
+  "ExpandedViewWarning2": {
+   "message": "Para restaurar a visualização comum das abas, por favor pressione a tecla X no seu teclado e o TweetDeck corrigirá o problema automaticamente. Obrigado!",
+   "description": ""
+  },
+
+  "Conversation": {
+   "message": "Conversas",
+   "description": ""
+  },
+  "Interactions": {
+   "message": "Interações",
+   "description": ""
+  },
+  "People": {
+   "message": "Pessoas",
+   "description": ""
+  },
+  "Tweet": {
+   "message": "Tweet",
+   "description": ""
+  },
+
+  "About": {
+   "message": "Sobre",
+   "description": ""
+  }
+}

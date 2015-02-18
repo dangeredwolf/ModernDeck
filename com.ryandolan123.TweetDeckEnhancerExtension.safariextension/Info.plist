@@ -5,7 +5,7 @@
 	<key>Author</key>
 	<string>ryandolan123</string>
 	<key>Builder Version</key>
-	<string>10600.2.5</string>
+	<string>10600.3.18</string>
 	<key>CFBundleDisplayName</key>
 	<string>TweetDeck Enhancer</string>
 	<key>CFBundleIdentifier</key>
@@ -27,11 +27,11 @@
 		<dict>
 			<key>End</key>
 			<array>
-				<string>TDELoad.js</string>
+				<string>extension/TDEFix.js</string>
 			</array>
 			<key>Start</key>
 			<array>
-				<string>TDEFix.js</string>
+				<string>extension/TDELoad.js</string>
 			</array>
 		</dict>
 		<key>Whitelist</key>
@@ -40,9 +40,9 @@
 		</array>
 	</dict>
 	<key>Description</key>
-	<string>Buggy Safari build of TweetDeck Enhancer</string>
+	<string>TweetDeck Enhancer</string>
 	<key>DeveloperIdentifier</key>
-	<string></string>
+	<string>V4MZKCA3P6</string>
 	<key>ExtensionInfoDictionaryVersion</key>
 	<string>1.0</string>
 	<key>Permissions</key>

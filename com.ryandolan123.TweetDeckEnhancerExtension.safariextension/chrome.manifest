@@ -1,0 +1,5 @@
+content   tweetdeckenhancer                
+skin      tweetdeckenhancer  classic/1.0   skin/
+locale    tweetdeckenhancer  en-US         _locales/en-US/
+
+overlay chrome://browser/content/browser.xul  chrome://tweetdeckenhancer/content/browserOverlay.xul

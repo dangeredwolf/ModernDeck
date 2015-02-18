@@ -13,6 +13,31 @@ var messagesAccounted = [];
 var ShouldUpgrade = false;
 
 var addedColumnsLoadingTagAndIsWaiting = false;
+var TDEBaseURL = "https://ryandolan123.com/assets/tdetest/";
+
+if (typeof window.TDEURLExchange !== "undefined") {
+  if (typeof TDEURLExchange.getAttribute === "function") {
+    if (TDEURLExchange.getAttribute.toString() === "function getAttribute() { [native code] }") {
+      if (typeof TDEURLExchange.getAttribute("type") === "string") {
+        console.log("completed integrity check");
+        TDEBaseURL = TDEURLExchange.getAttribute("type");
+      }
+    }
+  }
+} else {
+  console.log("TDEURLExchange failed :( defaulting to stream fonts, may not work");
+}
+
+function PatchAudio(){
+  var AudioSources = document.getElementsByTagName("source");
+
+  for (i = 0; i < AudioSources.length; i++) { 
+    AudioSources[i].remove();
+  }
+
+  var NotificationSound = document.getElementsByTagName("audio")[0];
+  NotificationSound.src = "https://ryandolan123.com/assets/tweetdeck/img/alert_2.mp3";
+}
 
 function WaitForTDToConfigureSelf(){
   if (typeof document.getElementsByClassName("app-signin-form")[0] !== "undefined") {
@@ -96,6 +121,67 @@ function SendNotificationMessage(txt) {
     TDENotification.innerHTML = txt;
   }
   //http://materializecss.com/getting-started.html
+
+}
+
+function InjectRobotoFonts() {
+  InjectFonts = document.createElement("style");
+  InjectFonts.innerHTML = "@font-face{font-family:'RobotoDraft';font-style:normal;font-weight: 300;src:local('RobotoDraft Light'),local('RobotoDraft-Light'),url(" + TDEBaseURL + "resources/fonts/Roboto300latinext.woff2" + ") format('woff2');unicode-range:U+0100-024F,U+1E00-1EFF,U+20A0-20AB,U+20AD-20CF,U+2C60-2C7F,U+A720-A7FF;}@font-face{font-family:'RobotoDraft';\
+    font-style: normal;\
+    font-weight: 300;\
+    src: local('RobotoDraft Light'), local('RobotoDraft-Light'), url(" + TDEBaseURL + "resources/fonts/Roboto300latin.woff2" + ") format('woff2');\
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;\
+  }\
+  /* latin-ext */\
+  @font-face {\
+    font-family: 'RobotoDraft';\
+    font-style: normal;\
+    font-weight: 400;\
+    src: local('RobotoDraft'), local('RobotoDraft-Regular'), url(" + TDEBaseURL + "resources/fonts/Roboto400latinext.woff2" + ") format('woff2');\
+    unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;\
+  }\
+  /* latin */\
+  @font-face {\
+    font-family: 'RobotoDraft';\
+    font-style: normal;\
+    font-weight: 400;\
+    src: local('RobotoDraft'), local('RobotoDraft-Regular'), url(" + TDEBaseURL + "resources/fonts/Roboto400latin.woff2" + ") format('woff2');\
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;\
+  }\
+  /* latin-ext */\
+  @font-face {\
+    font-family: 'RobotoDraft';\
+    font-style: normal;\
+    font-weight: 500;\
+    src: local('RobotoDraft Medium'), local('RobotoDraft-Medium'), url(" + TDEBaseURL + "resources/fonts/Roboto500latinext.woff2" + ") format('woff2');\
+    unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;\
+  }\
+  /* latin */\
+  @font-face {\
+    font-family: 'RobotoDraft';\
+    font-style: normal;\
+    font-weight: 500;\
+    src: local('RobotoDraft Medium'), local('RobotoDraft-Medium'), url(" + TDEBaseURL + "resources/fonts/Roboto500latin.woff2" + ") format('woff2');\
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;\
+  }\
+  /* latin-ext */\
+  @font-face {\
+    font-family: 'RobotoDraft';\
+    font-style: normal;\
+    font-weight: 700;\
+    src: local('RobotoDraft Bold'), local('RobotoDraft-Bold'), url(" + TDEBaseURL + "resources/fonts/Roboto700latinext.woff2" + ") format('woff2');\
+    unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;\
+  }\
+  /* latin */\
+  @font-face {\
+    font-family: 'RobotoDraft';\
+    font-style: normal;\
+    font-weight: 700;\
+    src: local('RobotoDraft Bold'), local('RobotoDraft-Bold'), url(" + TDEBaseURL + "resources/fonts/Roboto700latin.woff2" + ") format('woff2');\
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;\
+  }";
+
+  document.head.appendChild(InjectFonts);
 
 }
 
@@ -239,15 +325,19 @@ function PatchSystem() {
   return;
 }
 
-function DisplayMigrateUI() {
+function DisplayMigrateUI1() {
   StreamAngularJS();
   document.getElementsByTagName("html")[0].className += " tde-is-upgrading ";
+  setTimeout(DisplayMigrateUI2,2000);
+}
+
+function DisplayMigrateUI2() {
   document.getElementsByClassName("js-app-loading")[0].innerHTML = '<div class="mdl s-fluid tde-upgrading"><div class="mdl-header"></div><div class="mdl-inner"><div class="mdl-content"><md-progress-circular md-mode="indeterminate" aria-valuemin="0" aria-valuemax="100" role="progressbar" class="md-default-theme" style="-webkit-transform: scale(1);"><div class="md-spinner-wrapper"><div class="md-inner"><div class="md-gap"></div><div class="md-left"><div class="md-half-circle"></div></div><div class="md-right"><div class="md-half-circle"></div></div></div></div></md-progress-circular><h2>Enhancer is Upgrading...</h2><h3>Personalizing Enhancer</h3><div class="whatever"></div></div></div></div>';
 }
 
 function CheckForNeedsUpgrade() {
   if (ShouldUpgrade) {
-    setTimeout(DisplayMigrateUI,1000);
+    setTimeout(DisplayMigrateUI1,1000);
   }
 }
 
@@ -268,7 +358,7 @@ function ReplaceLoadingIndicator() {
 
   {return;} // what
 
-  document.getElementsByClassName("js-startflow-content startflow")[0].innerHTML = '<video class="spinner-centered spinner-fade-in" width="74" height="76" src="https://ryandolan123.com/assets/tweetdeck/img/spinner.mov" autoplay loop></video>';
+  //document.getElementsByClassName("js-startflow-content startflow")[0].innerHTML = '<video class="spinner-centered spinner-fade-in" width="74" height="76" src="https://ryandolan123.com/assets/tweetdeck/img/spinner.mov" autoplay loop></video>';
 }
 
 function Analytics() {
@@ -371,7 +461,7 @@ function NavigationSetup() {
   tdesettings.onclick = function() {
     TDEPrepareWindows();
     var tdesettingsmodalview = document.getElementById("settings-modal");
-    tdesettingsmodalview.innerHTML = '<div class="js-modal-panel mdl s-short is-inverted-dark" id="tde_settings_modal_panel"> <header class="js-mdl-header mdl-header"> <h3 class="mdl-header-title">Enhancer Settings</h3> </header> <div class="mdl-inner"> <div class="mdl-content js-mdl-content horizontal-flow-container"> <div class="l-column mdl-column mdl-column-sml"> <div class="l-column-scrollv scroll-v  scroll-alt "> <ul class="lst-group js-setting-list">  <li class="selected"><a href="#" class="list-link" data-action="general"><strong>About</strong></a></li></ul> </div> </div> <div class="l-column mdl-column mdl-column-lrg"> <div class="l-column-scrollv scroll-v  scroll-alt mdl-col-settings"> <form action="#" id="global-settings" accept-charset="utf-8" class="frm"><fieldset id="general_settings"><img src="https://ryandolan123.com/assets/TDE5/tdeaboutsmaller.png" class="tde-logo"><h1 class="list-placeholder tde-about-title">TweetDeck Enhancer</h1><h2 class="tde-version-title">Version 5.0 '/*"Paradise"*/+' Developer Preview 5</h2></fieldset></form> </div> </div> </div> <footer class="padding-vxl txt-center">  <button class="js-dismiss btn btn-positive"> <i class="icon icon-check icon-small padding-rs"></i> <span class="label">Done</span> </button>  </footer> </div> </div>';
+    tdesettingsmodalview.innerHTML = '<div class="js-modal-panel mdl s-short is-inverted-dark" id="tde_settings_modal_panel"> <header class="js-mdl-header mdl-header"> <h3 class="mdl-header-title">Enhancer Settings</h3> </header> <div class="mdl-inner"> <div class="mdl-content js-mdl-content horizontal-flow-container"> <div class="l-column mdl-column mdl-column-sml"> <div class="l-column-scrollv scroll-v  scroll-alt "> <ul class="lst-group js-setting-list">  <li class="selected"><a href="#" class="list-link" data-action="general"><strong>About</strong></a></li></ul> </div> </div> <div class="l-column mdl-column mdl-column-lrg"> <div class="l-column-scrollv scroll-v  scroll-alt mdl-col-settings"> <form action="#" id="global-settings" accept-charset="utf-8" class="frm"><fieldset id="general_settings"><img src="https://ryandolan123.com/assets/TDE5/tdeaboutsmaller.png" class="tde-logo"><h1 class="list-placeholder tde-about-title">TweetDeck Enhancer</h1><h2 class="tde-version-title">Version 5.0 '/*"Paradise"*/+' Developer Preview 6</h2></fieldset></form> </div> </div> </div> <footer class="padding-vxl txt-center">  <button class="js-dismiss btn btn-positive"> <i class="icon icon-check icon-small padding-rs"></i> <span class="label">Done</span> </button>  </footer> </div> </div>';
     tdesettingsmodalview.setAttribute("style","display:block;");
     tdesettingsmodalview.onclick = function() {
       if (typeof tde_settings_modal_panel !== "undefined") {
@@ -452,16 +542,25 @@ function NavigationSetup() {
   document.getElementsByClassName("app-header-inner")[0].appendChild(TDENotification);
 }
 
+function TDESecureVerif() {
+  injStyles = document.createElement("link");
+  injStyles.rel = "stylesheet";
+  injStyles.href = "https://ryandolan123.com/TweetDeckEnhancer/TDESecureVerified";
+  document.head.appendChild(injStyles);
+}
+
 // alfonso torres is actually cute
 
+setTimeout(InjectRobotoFonts,0);
+setTimeout(PatchAudio,0);
 setTimeout(WaitForTDToConfigureSelf,0); /* Start in new thread  */
 setTimeout(PatchSystem,300);
 setTimeout(ReplaceLoadingIndicator,0);
 setTimeout(WorldTick,0);
 setTimeout(NavigationSetup,500);
-//setTimeout(MakeWorldABetterPlace,800);
 setTimeout(Analytics,3000);
 setTimeout(CheckForNeedsUpgrade,500);
+setTimeout(TDESecureVerif,150);
 
 //setTimeout(SecureAlert,0); // Started after threads are initialized as this function tends to be more dangerous
 

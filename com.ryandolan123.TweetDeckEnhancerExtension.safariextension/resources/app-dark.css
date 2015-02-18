@@ -761,8 +761,6 @@ body {
   background-image:radial-gradient(center center,ellipse cover,#269,#274256); */
   overflow:hidden;
   background-color: rgba(38, 50, 56, 1);
-  transform: scale(0,0);
-  -webkit-transform: scale(1,1); /* WebKit-based browser safety switch */
 }
 
 body.scroll-v {
@@ -6680,7 +6678,7 @@ div.dropdown-menu.tde-dropdown-fade-out {
 
 a.js-column-back.link-complex {
   color: rgba(255, 255, 255, 0.8);
-  width: 54px;
+  width: 100%;
 }
 
 a.js-column-back.link-complex:hover {
@@ -15569,6 +15567,7 @@ body[class=""], html.js {
     position:absolute;
     margin-left:25px;
     margin-top:-25px;
+    color: #444;
 }
 
 .tde-upgrading .whatever {
@@ -15587,6 +15586,7 @@ body[class=""], html.js {
     margin-top:45px;
     margin-left:112px;
     font-size:15px;
+    color: #555;
 }
 
 .tde-upgrading {
@@ -15603,6 +15603,7 @@ body[class=""], html.js {
     top: 50%;
     left: 50%;
     transform: translate(-50%,-50%);
+    background-color: #fff;
 }
 
 .tde-is-upgrading .application {
@@ -15676,6 +15677,17 @@ body[class=""], html.js {
 
 .title-content .txt-mute {
     color: #fff;
+}
+
+.tde-upgrading .mdl-content {
+    background-color: #fff;
+}
+
+md-progress-circular.loadspin {
+    margin: auto!important;
+    position: relative;
+    padding: initial!important;
+    top: 46%;
 }
 
 
