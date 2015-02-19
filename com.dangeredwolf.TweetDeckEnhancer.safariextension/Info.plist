@@ -3,13 +3,13 @@
 <plist version="1.0">
 <dict>
 	<key>Author</key>
-	<string>ryandolan123</string>
+	<string>dangeredwolf</string>
 	<key>Builder Version</key>
 	<string>10600.3.18</string>
 	<key>CFBundleDisplayName</key>
 	<string>TweetDeck Enhancer</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.ryandolan123.TweetDeckEnhancer</string>
+	<string>com.dangeredwolf.TweetDeckEnhancer</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleShortVersionString</key>
@@ -56,6 +56,6 @@
 		</dict>
 	</dict>
 	<key>Website</key>
-	<string>https://ryandolan123.com/TweetDeckEnhancer</string>
+	<string>https://dangeredwolf.com/TweetDeckEnhancer</string>
 </dict>
 </plist>

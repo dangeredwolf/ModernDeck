@@ -1,5 +1,5 @@
 // TDEinject.js
-// Copyright (c) 2015 Ryan Dolan (ryandolan123)
+// Copyright (c) 2015 Dangered Wolf
 
 (function() { // Additional security to prevent other extensions and website code from tampering with TDE
 
@@ -11,7 +11,7 @@ var messagesAccounted = [];
 var ShouldUpgrade = false;
 
 var addedColumnsLoadingTagAndIsWaiting = false;
-var TDEBaseURL = "https://ryandolan123.com/assets/tdetest/";
+var TDEBaseURL = "https://dangeredwolf.com/assets/tdetest/";
 
 if (typeof window.TDEURLExchange !== "undefined") {
   if (typeof TDEURLExchange.getAttribute === "function") {
@@ -34,7 +34,7 @@ function PatchAudio(){
   }
 
   var NotificationSound = document.getElementsByTagName("audio")[0];
-  NotificationSound.src = "https://ryandolan123.com/assets/tweetdeck/img/alert_2.mp3";
+  NotificationSound.src = "https://dangeredwolf.com/assets/tweetdeck/img/alert_2.mp3";
 }
 
 function WaitForTDToConfigureSelf(){
@@ -356,7 +356,7 @@ function ReplaceLoadingIndicator() {
 
   {return;} // what
 
-  //document.getElementsByClassName("js-startflow-content startflow")[0].innerHTML = '<video class="spinner-centered spinner-fade-in" width="74" height="76" src="https://ryandolan123.com/assets/tweetdeck/img/spinner.mov" autoplay loop></video>';
+  //document.getElementsByClassName("js-startflow-content startflow")[0].innerHTML = '<video class="spinner-centered spinner-fade-in" width="74" height="76" src="https://dangeredwolf.com/assets/tweetdeck/img/spinner.mov" autoplay loop></video>';
 }
 
 function Analytics() {
@@ -388,7 +388,7 @@ function Analytics() {
     setTimeout(Analytics,500);
     return;
   }
-  $.ajax({url:"https://ryandolan123.com/analytics/TDE5?acc=" + TD.storage.store._backend.tweetdeckAccount + "&developerpreview=5&intcodename=Paradise"});
+  $.ajax({url:"https://dangeredwolf.com/analytics/TDE5?acc=" + TD.storage.store._backend.tweetdeckAccount + "&developerpreview=5&intcodename=Paradise"});
 }
 
 function NavigationSetup() {
@@ -400,7 +400,7 @@ function NavigationSetup() {
   var TDENavigationDrawerButton = document.createElement("a");
   TDENavigationDrawerButton.id = "tde-navigation-drawer-button";
   TDENavigationDrawerButton.setAttribute("class","js-header-action tde-drawer-button link-clean cf app-nav-link");
-  TDENavigationDrawerButton.innerHTML = '<div class="obj-left"> <img src="https://ryandolan123.com/assets/TDE5/navbutton.png" class="tde-nav-activator"> </div> <div class="nbfc padding-ts hide-condensed"></div>'; // temporarily a settings icon, ill make an icon later
+  TDENavigationDrawerButton.innerHTML = '<div class="obj-left"> <img src="https://dangeredwolf.com/assets/TDE5/navbutton.png" class="tde-nav-activator"> </div> <div class="nbfc padding-ts hide-condensed"></div>'; // temporarily a settings icon, ill make an icon later
 
   document.getElementsByClassName("app-header-inner")[0].appendChild(TDENavigationDrawerButton);
 
@@ -419,7 +419,7 @@ function NavigationSetup() {
   var TDENavigationDrawer = document.createElement("div");
   TDENavigationDrawer.id = "tde_nav_drawer";
   TDENavigationDrawer.setAttribute("class","tde-nav-drawer tde-nav-drawer-hidden");
-  TDENavigationDrawer.innerHTML = '<img id="tde_nd_header_image" class="tde-nd-header-image"><img class="avatar size73 tde-nd-header-photo" id="tde_nd_header_photo"><div class="tde-nd-header-username" id="tde_nd_header_username"></div><button class="btn tde-nav-button tde-settings-button" id="tdset"><img src="https://ryandolan123.com/assets/TDE5/tweetdecksmall.png" class="tde-nav-drawer-icon">TweetDeck Settings</button><button class="btn tde-nav-button" id="tdesettings"><img src="https://ryandolan123.com/assets/TDE5/TDEsmall.png" class="tde-nav-drawer-icon">Enhancer Settings</button><div class="tde-nav-divider"></div><button id="tde_signout" class="btn tde-nav-button"><img src="https://ryandolan123.com/assets/TDE5/logout.png" class="tde-nav-drawer-icon">Sign Out</button><button id="tdaccsbutton" class="btn tde-nav-button"><img src="https://ryandolan123.com/assets/TDE5/accounts.png" class="tde-nav-drawer-icon">Your Accounts</button><div class="tde-nav-divider"></div><button id="kbshortcuts" class="btn tde-nav-button"><img src="https://ryandolan123.com/assets/TDE5/KBshortcuts.png" class="tde-nav-drawer-icon">Keyboard Shortcuts</button><button id="addcolumn" class="btn tde-nav-button"><img src="https://ryandolan123.com/assets/TDE5/AddColumn.png" class="tde-nav-drawer-icon">Add Column</button>';
+  TDENavigationDrawer.innerHTML = '<img id="tde_nd_header_image" class="tde-nd-header-image"><img class="avatar size73 tde-nd-header-photo" id="tde_nd_header_photo"><div class="tde-nd-header-username" id="tde_nd_header_username"></div><button class="btn tde-nav-button tde-settings-button" id="tdset"><img src="https://dangeredwolf.com/assets/TDE5/tweetdecksmall.png" class="tde-nav-drawer-icon">TweetDeck Settings</button><button class="btn tde-nav-button" id="tdesettings"><img src="https://dangeredwolf.com/assets/TDE5/TDEsmall.png" class="tde-nav-drawer-icon">Enhancer Settings</button><div class="tde-nav-divider"></div><button id="tde_signout" class="btn tde-nav-button"><img src="https://dangeredwolf.com/assets/TDE5/logout.png" class="tde-nav-drawer-icon">Sign Out</button><button id="tdaccsbutton" class="btn tde-nav-button"><img src="https://dangeredwolf.com/assets/TDE5/accounts.png" class="tde-nav-drawer-icon">Your Accounts</button><div class="tde-nav-divider"></div><button id="kbshortcuts" class="btn tde-nav-button"><img src="https://dangeredwolf.com/assets/TDE5/KBshortcuts.png" class="tde-nav-drawer-icon">Keyboard Shortcuts</button><button id="addcolumn" class="btn tde-nav-button"><img src="https://dangeredwolf.com/assets/TDE5/AddColumn.png" class="tde-nav-drawer-icon">Add Column</button>';
 
   document.body.appendChild(TDENavigationDrawer);
 
@@ -432,7 +432,7 @@ function NavigationSetup() {
   }
 
   if (typeof tde_nd_header_username !== "undefined") {
-    tde_nd_header_username.innerHTML = "@ryandolan123"
+    tde_nd_header_username.innerHTML = "@dangeredwolf"
   }
 
   window.TDEPrepareWindows = function() {
@@ -459,7 +459,7 @@ function NavigationSetup() {
   tdesettings.onclick = function() {
     TDEPrepareWindows();
     var tdesettingsmodalview = document.getElementById("settings-modal");
-    tdesettingsmodalview.innerHTML = '<div class="js-modal-panel mdl s-short is-inverted-dark" id="tde_settings_modal_panel"> <header class="js-mdl-header mdl-header"> <h3 class="mdl-header-title">Enhancer Settings</h3> </header> <div class="mdl-inner"> <div class="mdl-content js-mdl-content horizontal-flow-container"> <div class="l-column mdl-column mdl-column-sml"> <div class="l-column-scrollv scroll-v  scroll-alt "> <ul class="lst-group js-setting-list">  <li class="selected"><a href="#" class="list-link" data-action="general"><strong>About</strong></a></li></ul> </div> </div> <div class="l-column mdl-column mdl-column-lrg"> <div class="l-column-scrollv scroll-v  scroll-alt mdl-col-settings"> <form action="#" id="global-settings" accept-charset="utf-8" class="frm"><fieldset id="general_settings"><img src="https://ryandolan123.com/assets/TDE5/tdeaboutsmaller.png" class="tde-logo"><h1 class="list-placeholder tde-about-title">TweetDeck Enhancer</h1><h2 class="tde-version-title">Version 5.0 '/*"Paradise"*/+' Developer Preview 6</h2></fieldset></form> </div> </div> </div> <footer class="padding-vxl txt-center">  <button class="js-dismiss btn btn-positive"> <i class="icon icon-check icon-small padding-rs"></i> <span class="label">Done</span> </button>  </footer> </div> </div>';
+    tdesettingsmodalview.innerHTML = '<div class="js-modal-panel mdl s-short is-inverted-dark" id="tde_settings_modal_panel"> <header class="js-mdl-header mdl-header"> <h3 class="mdl-header-title">Enhancer Settings</h3> </header> <div class="mdl-inner"> <div class="mdl-content js-mdl-content horizontal-flow-container"> <div class="l-column mdl-column mdl-column-sml"> <div class="l-column-scrollv scroll-v  scroll-alt "> <ul class="lst-group js-setting-list">  <li class="selected"><a href="#" class="list-link" data-action="general"><strong>About</strong></a></li></ul> </div> </div> <div class="l-column mdl-column mdl-column-lrg"> <div class="l-column-scrollv scroll-v  scroll-alt mdl-col-settings"> <form action="#" id="global-settings" accept-charset="utf-8" class="frm"><fieldset id="general_settings"><img src="https://dangeredwolf.com/assets/TDE5/tdeaboutsmaller.png" class="tde-logo"><h1 class="list-placeholder tde-about-title">TweetDeck Enhancer</h1><h2 class="tde-version-title">Version 5.0 '/*"Paradise"*/+' Developer Preview 6</h2></fieldset></form> </div> </div> </div> <footer class="padding-vxl txt-center">  <button class="js-dismiss btn btn-positive"> <i class="icon icon-check icon-small padding-rs"></i> <span class="label">Done</span> </button>  </footer> </div> </div>';
     tdesettingsmodalview.setAttribute("style","display:block;");
     tdesettingsmodalview.onclick = function() {
       if (typeof tde_settings_modal_panel !== "undefined") {
@@ -543,7 +543,7 @@ function NavigationSetup() {
 function TDESecureVerif() {
   injStyles = document.createElement("link");
   injStyles.rel = "stylesheet";
-  injStyles.href = "https://ryandolan123.com/TweetDeckEnhancer/TDESecureVerified";
+  injStyles.href = "https://dangeredwolf.com/TweetDeckEnhancer/TDESecureVerified";
   document.head.appendChild(injStyles);
 }
 

@@ -1,5 +1,5 @@
 // TDELoad.js
-// Copyright (c) 2015 Ryan Dolan (ryandolan123)
+// Copyright (c) 2015 Dangered Wolf
 
 console.log("TDELoad loaded");
 console.log("Enhancer 5.0")
@@ -34,7 +34,7 @@ if (!isWebKit) {
 if (!isWebKit) {
   console.log("Gecko Detected: This is experimental!!");
   var isGecko = true;
-  chrome.extension.getURL = function(url){return "https://ryandolan123.com/assets/tdetest/" + url} 
+  chrome.extension.getURL = function(url){return "https://dangeredwolf.com/assets/tdetest/" + url} 
 }
 
 function ReplaceLoadingIndicator() {
@@ -79,7 +79,7 @@ for (i = 0; i < links.length; i++) {
           links[i].href = safari.extension.baseURI + "resources/app-dark.css";
         }
         if (isGecko) {
-          links[i].href = "https://ryandolan123.com/assets/tdetest/app-dark.css";
+          links[i].href = "https://dangeredwolf.com/assets/tdetest/app-dark.css";
         }
       }
       if (links[i].href.substring(0,53) === "https://ton.twimg.com/tweetdeck-web/web/css/app-light") {
@@ -90,7 +90,7 @@ for (i = 0; i < links.length; i++) {
             links[i].href = safari.extension.baseURI + "resources/app-light.css";
           }
           if (isGecko) {
-            links[i].href = "https://ryandolan123.com/assets/tdetest/app-light.css";
+            links[i].href = "https://dangeredwolf.com/assets/tdetest/app-light.css";
           }
         }
       }
@@ -118,9 +118,9 @@ if (isSafari) {
 }
 
 if (isGecko) {
-  TDEURLExchange("https://ryandolan123.com/assets/tdetest/");
+  TDEURLExchange("https://dangeredwolf.com/assets/tdetest/");
   InjectScript = document.createElement("script");
-  InjectScript.src = "https://ryandolan123.com/assets/tdetest/TDEinject.js"; // TODO: Figure out how to make this local // maybe
+  InjectScript.src = "https://dangeredwolf.com/assets/tdetest/TDEinject.js"; // TODO: Figure out how to make this local // maybe
   InjectScript.type = "text/javascript";
   document.head.appendChild(InjectScript);
 }
