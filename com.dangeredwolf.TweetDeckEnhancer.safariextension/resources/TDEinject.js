@@ -8,8 +8,6 @@ console.log("TDEinject loaded");
 var msgID = 0;
 var messagesAccounted = [];
 
-// bandie is actually cute
-
 var ShouldUpgrade = false;
 
 var addedColumnsLoadingTagAndIsWaiting = false;
@@ -549,7 +547,7 @@ function TDESecureVerif() {
   document.head.appendChild(injStyles);
 }
 
-// alfonso torres is actually cute
+// Danny is a cutie and I love him <333
 
 setTimeout(InjectRobotoFonts,0);
 setTimeout(PatchAudio,0);
@@ -561,9 +559,5 @@ setTimeout(NavigationSetup,500);
 setTimeout(Analytics,3000);
 setTimeout(CheckForNeedsUpgrade,500);
 setTimeout(TDESecureVerif,150);
-
-//setTimeout(SecureAlert,0); // Started after threads are initialized as this function tends to be more dangerous
-
-// thanks for following me coolstar
 
 })();
