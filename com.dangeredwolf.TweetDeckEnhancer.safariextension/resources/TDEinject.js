@@ -23,7 +23,7 @@ if (typeof window.TDEURLExchange !== "undefined") {
     }
   }
 } else {
-  console.log("TDEURLExchange failed :( defaulting to stream fonts, may not work");
+  console.log("TDEURLExchange failed :( defaulting to stream fonts, may not work... but we'll try...");
 }
 
 function PatchAudio(){
@@ -359,7 +359,7 @@ function ReplaceLoadingIndicator() {
   //document.getElementsByClassName("js-startflow-content startflow")[0].innerHTML = '<video class="spinner-centered spinner-fade-in" width="74" height="76" src="https://dangeredwolf.com/assets/tweetdeck/img/spinner.mov" autoplay loop></video>';
 }
 
-function Analytics() {
+function Analytics(ver) {
   if (typeof TD === "undefined") {
     setTimeout(Analytics,500);
     return;
@@ -388,7 +388,66 @@ function Analytics() {
     setTimeout(Analytics,500);
     return;
   }
-  $.ajax({url:"https://dangeredwolf.com/analytics/TDE5?acc=" + TD.storage.store._backend.tweetdeckAccount + "&developerpreview=7&intcodename=Paradise"});
+  $.ajax({url:"https://dangeredwolf.com/analytics/TDE5?acc=" + TD.storage.store._backend.tweetdeckAccount + "&developerpreview=8&intcodename=Paradise&ver=" + ver.toString()});
+}
+
+function ImJustKidding(tdesettingsmodalview){
+  console.log("activate super easter egg powers");
+  if (typeof tdesettingsmodalview !== "undefined") {
+    tdesettingsmodalview.click();
+  }
+  setTimeout(function(){
+    document.getElementsByClassName("js-header-add-column")[0].click(); // Click add column
+    document.getElementsByClassName("js-item-launch")[9].childNodes[1].click(); // Click the user tweets button
+  },100);
+  setTimeout(function(){
+    $(".lst-group")[2].remove();
+    document.getElementsByClassName("js-add-column-search-input")[0].value = "enhancerint";
+    $(".js-modal-panel.mdl.s-tall-fixed.is-inverted-dark .js-back").remove();
+    $(".js-modal-panel.mdl.s-tall-fixed.is-inverted-dark")[0].style.cssText = "height:750px;";
+  },200);
+  setTimeout(function(){
+    $(".mdl .js-perform-search.search-input-perform-search").click();
+  },230)
+  setTimeout(function(){
+    $(".lst-group .js-list-container li .list-account")[0].click();
+    $(".lst-group .js-list-container li .list-account")[0].click();
+    $(".lst-group .js-list-container li .list-account")[0].click();
+    $(".js-title")[0].remove();
+  },1500);
+  setTimeout(function(){
+    if (typeof $(".mdl .stream-item[data-key='569320189801705472']") !== "undefined") {
+      $(".mdl .stream-item[data-key='569320189801705472'] .item-box")[0].click();
+    }
+  },2600);
+}
+
+function PrepareLoginStuffs() {
+  document.getElementsByClassName("js-header-add-column")[0].click(); // Click add column
+  document.getElementById("open-modal").setAttribute("style","display:none;"); // Prevent modal from showing up
+  document.getElementsByClassName("js-item-launch")[9].childNodes[1].click(); // Click the user tweets button
+  document.getElementById("open-modal").setAttribute("style","display:none;"); // Hide tweets modal
+
+  setTimeout(function(){ // Check out tweets
+    document.getElementById("open-modal").setAttribute("style","display:none;"); // not sure exactly why i have to do this, probably for loading, but okay
+  },0);
+
+  setTimeout(function(){ // Find user profile
+    document.getElementsByClassName("js-right-column")[0].childNodes[0].childNodes[1].childNodes[1].childNodes[3] // continued next line
+    .childNodes[3].childNodes[1].childNodes[1].childNodes[1].childNodes[1].childNodes[1].childNodes[3].click(); // eww; basically finds most recent tweet so it can fetch profile
+
+    document.getElementsByClassName("js-click-trap")[0].setAttribute("style","display:none;"); // Hide profile thing
+    setTimeout(function(){
+      document.getElementsByClassName("js-click-trap")[0].setAttribute("style","display:none;"); // Hide profile thing
+    },0);
+  },700);
+
+  setTimeout(function(){ // DATA EXTRACTION FROM PROFILE
+    tde_nd_header_image.setAttribute("style",document.getElementsByClassName("prf-header")[0].style.cssText); // Fetch header and place in nav drawer
+    tde_nd_header_photo.setAttribute("src",document.getElementsByClassName("prf-img")[0].childNodes[1].src); // Fetch profile picture and place in nav drawer
+    tde_nd_header_username.innerHTML = document.getElementsByClassName("prf-card-inner")[0].childNodes[1].childNodes[5].childNodes[0].textContent; // Fetch twitter handle and place in nav drawer
+    Analytics(!!document.getElementsByClassName("sprite-verified")[0]); // Collect basic analytics data (doesn't log usage or other sensitive information)
+  },1000);
 }
 
 function NavigationSetup() {
@@ -424,16 +483,18 @@ function NavigationSetup() {
   document.body.appendChild(TDENavigationDrawer);
 
   if (typeof tde_nd_header_image !== "undefined") {
-    tde_nd_header_image.setAttribute("style","background-image: url(https://pbs.twimg.com/profile_banners/245543252/1420570474/web)");
+    tde_nd_header_image.setAttribute("style","background:#00BCD4");
   }
 
   if (typeof tde_nd_header_photo !== "undefined") {
-    tde_nd_header_photo.setAttribute("src","https://pbs.twimg.com/profile_images/547149637791252480/bHD_KYCY_bigger.jpeg");
+    tde_nd_header_photo.setAttribute("src","");
   }
 
   if (typeof tde_nd_header_username !== "undefined") {
-    tde_nd_header_username.innerHTML = "@dangeredwolf"
+    tde_nd_header_username.innerHTML = "Loading..."
   }
+
+  setTimeout(PrepareLoginStuffs,0);
 
   window.TDEPrepareWindows = function() {
     document.getElementById("update-sound").click();
@@ -459,7 +520,7 @@ function NavigationSetup() {
   tdesettings.onclick = function() {
     TDEPrepareWindows();
     var tdesettingsmodalview = document.getElementById("settings-modal");
-    tdesettingsmodalview.innerHTML = '<div class="js-modal-panel mdl s-short is-inverted-dark" id="tde_settings_modal_panel"> <header class="js-mdl-header mdl-header"> <h3 class="mdl-header-title">Enhancer Settings</h3> </header> <div class="mdl-inner"> <div class="mdl-content js-mdl-content horizontal-flow-container"> <div class="l-column mdl-column mdl-column-sml"> <div class="l-column-scrollv scroll-v  scroll-alt "> <ul class="lst-group js-setting-list">  <li class="selected"><a href="#" class="list-link" data-action="general"><strong>About</strong></a></li></ul> </div> </div> <div class="l-column mdl-column mdl-column-lrg"> <div class="l-column-scrollv scroll-v  scroll-alt mdl-col-settings"> <form action="#" id="global-settings" accept-charset="utf-8" class="frm"><fieldset id="general_settings"><img src="https://dangeredwolf.com/assets/TDE5/tdeaboutsmaller.png" class="tde-logo"><h1 class="list-placeholder tde-about-title">TweetDeck Enhancer</h1><h2 class="tde-version-title">Version 5.0 '/*"Paradise"*/+' Developer Preview 7</h2></fieldset></form> </div> </div> </div> <footer class="padding-vxl txt-center">  <button class="js-dismiss btn btn-positive"> <i class="icon icon-check icon-small padding-rs"></i> <span class="label">Done</span> </button>  </footer> </div> </div>';
+    tdesettingsmodalview.innerHTML = '<div class="js-modal-panel mdl s-short is-inverted-dark" id="tde_settings_modal_panel"> <header class="js-mdl-header mdl-header"> <h3 class="mdl-header-title">Enhancer Settings</h3> </header> <div class="mdl-inner"> <div class="mdl-content js-mdl-content horizontal-flow-container"> <div class="l-column mdl-column mdl-column-sml"> <div class="l-column-scrollv scroll-v  scroll-alt "> <ul class="lst-group js-setting-list">  <li class="selected"><a href="#" class="list-link" id="enhancer_settings_about_button" data-action="general"><strong>About</strong></a></li></ul> </div> </div> <div class="l-column mdl-column mdl-column-lrg"> <div class="l-column-scrollv scroll-v  scroll-alt mdl-col-settings"> <form action="#" id="global-settings" accept-charset="utf-8" class="frm"><fieldset id="general_settings"><img src="https://dangeredwolf.com/assets/TDE5/tdeaboutsmaller.png" class="tde-logo"><h1 class="list-placeholder tde-about-title">TweetDeck Enhancer</h1><h2 class="tde-version-title">Version 5.0 '/*"Paradise"*/+' Developer Preview 8</h2></fieldset></form> </div> </div> </div> <footer class="padding-vxl txt-center">  <button class="js-dismiss btn btn-positive"> <i class="icon icon-check icon-small padding-rs"></i> <span class="label">Done</span> </button>  </footer> </div> </div>';
     tdesettingsmodalview.setAttribute("style","display:block;");
     tdesettingsmodalview.onclick = function() {
       if (typeof tde_settings_modal_panel !== "undefined") {
@@ -472,6 +533,21 @@ function NavigationSetup() {
         },600)
       }
     }
+    window.tdeblah = false;
+    $("#enhancer_settings_about_button").on("mousedown",function() {
+      console.log("down!!");
+      window.tdeblah = true;
+      setTimeout(function(){
+        if (window.tdeblah === true) {
+          console.log("sweet!!!");
+          ImJustKidding(tde_settings_modal_panel);
+        }
+      },2000)
+    });
+    $("#enhancer_settings_about_button").on("mouseup",function() {
+      window.tdeblah = false;
+      console.log("up!!");
+    });
   }
 
   kbshortcuts.onclick = function(){
@@ -555,9 +631,9 @@ setTimeout(WaitForTDToConfigureSelf,0); /* Start in new thread  */
 setTimeout(PatchSystem,300);
 setTimeout(ReplaceLoadingIndicator,0);
 setTimeout(WorldTick,0);
-setTimeout(NavigationSetup,500);
-setTimeout(Analytics,3000);
+setTimeout(NavigationSetup,100);
 setTimeout(CheckForNeedsUpgrade,500);
 setTimeout(TDESecureVerif,150);
 
 })();
+

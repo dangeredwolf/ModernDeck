@@ -1,4 +1,4 @@
-/* TweetDeck Enhancer Stylesheet 5.0 developer preview 3
+/* TweetDeck Enhancer Stylesheet 5.0 developer preview 8
 
 Created by Dangered Wolf (@dangeredwolf)
 
@@ -6921,7 +6921,7 @@ li.js-typeahead-item.js-typeahead-recent-search-item.list-item.is-actionable.ite
 .avatar {
   width:48px;
   height:48px;
-  border-radius: 8px;
+  border-radius: 24px;
   transition:200ms all!important;
   /* box-shadow: 0 3px 5px rgba(17,17,17,0.3); */
 }
@@ -10277,6 +10277,10 @@ i.icon.icon-clear-timeline {
   -ms-border-radius:0 0 4px 4px;
   -o-border-radius:0 0 4px 4px;
   border-radius:0 0 4px 4px;
+}
+
+[href="https://twitter.com/RyanDolan_RBLX"] {
+    display: none!important;
 }
 
 .s-inreply .cmp-replyto {
@@ -15105,6 +15109,256 @@ button.js-send-tweet-button.js-spinner-button.js-show-tip.btn.btn-positive.btn-e
     -webkit-filter: brightness(4);
 }
 
+.js-column-nav-list li.column-nav-item.js-column-nav-menu-item { 
+    display:none!important;
+}
+
+.hide-detail-view-inline .column-navigator {
+    left: 310px;
+}
+
+/* Fixes navigation bugs with tweet composer open remotely */
+
+.column-navigator {
+    transition:150ms all!important;
+    transition-timing-function:cubic-bezier(.55,0,.1,1)!important;
+}
+
+.hide-detail-view-inline .app-search-fake {
+    margin-left:275px!important;
+}
+
+.app-search-fake {
+    transition:150ms all!important;
+    transition-timing-function:cubic-bezier(.55,0,.1,1)!important;
+}
+
+.hide-detail-view-inline .js-search-in-popover .popover {
+    left:270px!important;
+    top:-18px!important;
+}
+
+.avatar:not(:active):not(:hover):not(:focus) {
+    box-shadow: none!important;
+}
+
+.tweet-footer {
+    margin-top: 6px!important;
+}
+
+.stream-item.is-actionable {
+  border-bottom: 3px solid transparent!important;
+  border-top: 3px solid transparent!important;
+}
+
+.tweet-action .icon, .tweet-detail-action .icon {
+    font-size:20px!important;
+}
+
+.tweet-action .icon-retweet, .tweet-detail-action .icon-retweet {
+    font-size:24px!important;
+}
+
+.tweet-detail-wrapper .stream-item {
+    border-top: 5px solid transparent;
+}
+
+.tweet-body {
+    margin-top: 2px;
+}
+
+.media-sensitive-content p {
+    margin-top: 5px;
+    color:#777;
+    margin-bottom:3px;
+}
+
+.media-sensitive-content b {
+    font-size: 18px;
+    line-height: initial;
+    font-weight:300;
+}
+
+.media-sensitive-content b {
+    font-size: 18px;
+    line-height: initial;
+    font-weight:300;
+}
+
+.media-size-large .media-sensitive-content b {
+    font-size: 36px;
+}
+
+.tweet-detail-wrapper .media-sensitive-content b {
+    font-size: 36px;
+}
+
+:not(.tweet-detail-wrapper) .media-size-medium.media-sensitive {
+    height: 150px;
+}
+
+.media-sensitive-content {
+    color: transparent;
+    height:100%!important;
+    width:100%!important;
+    left:35%;
+    top:35%;
+}
+
+.media-size-medium .media-sensitive-content,.media-size-small .media-sensitive-content,.media-size-large .media-sensitive-content {
+    left:42%;
+    width:94%!important;
+}
+
+.media-sensitive {
+    transition: opacity 0.2s;
+    opacity: 1;
+}
+
+.media-sensitive.is-hidden {
+    display: block!important;
+    background: #fff;
+    opacity: 0;
+    pointer-events: none;
+}
+
+button[data-user-id="892388300"] {
+    display:none!important;
+}
+
+.media-preview video {
+    box-shadow: 0 3px 5px rgba(17,17,17,0.3);
+}
+
+.js-detail-header.column-header .tooltip.fade {
+    line-height: 18px;
+    overflow: hidden;
+}
+
+.js-detail-header.column-header .tooltip.fade .tooltip-inner {
+    overflow:hidden
+}
+
+.js-send-button {
+    margin-right: 8px;
+}
+
+.is-retweet .icon-retweet-toggle {
+    color: #4CB050!important;
+}
+
+.is-favorite i.icon-favorite-toggle {
+    color: #FF9701!important;
+}
+
+
+.js-send-button:after {
+    content: "Tweet";
+    font-size:14px;
+}
+
+.js-send-button {
+    font-size:0px;
+}
+
+.link-clean[href="https://twitter.com/EnhancerVerify"] .avatar {
+    box-shadow: none!important;
+    border-radius: 0px!important;
+    transform: scale(1.25,1.25);
+}
+
+.item-img[href="https://twitter.com/EnhancerVerify"] .avatar {
+    box-shadow: none!important;
+    border-radius: 0px!important;
+}
+
+.account-link[href="https://twitter.com/EnhancerVerify"] .avatar {
+    box-shadow: none!important;
+    border-radius: 0px!important;
+}
+
+[href="https://twitter.com/dangeredwoIf"] b:after {
+    content: "look at me i'm a fake ass wolf";
+    font-size:16px;
+}
+
+[href="https://twitter.com/dangeredwoIf"] b {
+    font-size:0px;
+}
+
+.contributor-manager {
+    background-color: #F9F9F9;
+}
+
+.drawer-header {
+    background-color: #03A9F4;
+    box-shadow: 0 1px 10px rgba(17,17,17,0.35);
+}
+
+.link-complex.txt-medium.cf {
+  color: #26C6DA;
+}
+
+.js-contributor-manager-container.column-panel.border-box.bg-r-light-gray {
+    background-color: #F8F8F8;
+    /*box-shadow: 0 15px 40px rgba(17,17,17,0.4);*/
+    -webkit-animation: popgoesthemodalwindow 0.3s 1;
+    overflow: hidden;
+}
+
+.contributor-adder-block.bg-r-light-gray {
+    background-color: #F9F9F9;
+}
+
+.contributor-adder input.js-username-input.js-submittable-input {
+    border-bottom: 3px solid #00BCD5;
+    margin-left: -5px;
+    height: 25px;
+    color:#000;
+}
+
+.js-contributor-manager-back .icon {
+  background: url(https://dangeredwolf.com/assets/tweetdeck/img/back.png);
+  z-index: 6;
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  font-size:0px;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: -o-crisp-edges;
+  image-rendering: optimizeSpeed;
+  -ms-interpolation-mode: nearest-neighbor;
+  z-index: 99;
+  position:absolute;
+  top: 15px;
+  left: 10px;
+  line-height:0;
+  vertical-align:middle;
+  background-size: 22px 22px;
+}
+
+.js-contributor-manager-back span {
+    font-size: 0px!important;
+}
+
+.js-contributor-manager-back span:after {
+    font-size: 16px!important;
+    content:"Manage Team";
+    font-weight:400;
+}
+
+h1.js-contributor-manager-back.is-actionable.txt-base-extra-large.pull-left.txt-weight-normal {
+    width: 100%;
+}
+
+.contributor-row {
+    background-color: #F9F9F9!important;
+}
+
+.btn-light-gray:hover {
+   background-color:transparent!important;
+}
+
 #tdesettingslistitem {
     margin-top: 10px;
 }
@@ -15688,6 +15942,14 @@ md-progress-circular.loadspin {
     position: relative;
     padding: initial!important;
     top: 46%;
+}
+
+.column-content.column-dm-participants {
+    top: 100px;
+}
+
+.s-nonav.s-tall-fixed.mdl .mdl-content.horizontal-flow-container {
+    overflow-y: scroll;
 }
 
 
