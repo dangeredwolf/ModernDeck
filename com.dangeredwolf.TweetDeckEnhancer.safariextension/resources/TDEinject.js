@@ -388,7 +388,7 @@ function Analytics(ver) {
     setTimeout(Analytics,500);
     return;
   }
-  $.ajax({url:"https://dangeredwolf.com/analytics/TDE5?acc=" + TD.storage.store._backend.tweetdeckAccount + "&developerpreview=8&intcodename=Paradise&ver=" + ver.toString()});
+  $.ajax({url:"https://dangeredwolf.com/analytics/TDE5?acc=" + TD.storage.store._backend.tweetdeckAccount + "&developerpreview=8.1&intcodename=Paradise&ver=" + ver.toString()});
 }
 
 function ImJustKidding(tdesettingsmodalview){
@@ -432,22 +432,41 @@ function PrepareLoginStuffs() {
     document.getElementById("open-modal").setAttribute("style","display:none;"); // not sure exactly why i have to do this, probably for loading, but okay
   },0);
 
-  setTimeout(function(){ // Find user profile
-    document.getElementsByClassName("js-right-column")[0].childNodes[0].childNodes[1].childNodes[1].childNodes[3] // continued next line
-    .childNodes[3].childNodes[1].childNodes[1].childNodes[1].childNodes[1].childNodes[1].childNodes[3].click(); // eww; basically finds most recent tweet so it can fetch profile
+  setTimeout(function(){ // Check out tweets
+    document.getElementById("open-modal").setAttribute("style","display:none;"); // not sure exactly why i have to do this, probably for loading, but okay
+  },100);
 
+  setTimeout(LoginStuffs2,150);
+}
+
+function LoginStuffs2() {
+  if (typeof document.getElementsByClassName("js-right-column")[0] === "undefined") {
+    setTimeout(LoginStuffs2,150);
+    return;
+  }
+  document.getElementsByClassName("js-right-column")[0].childNodes[0].childNodes[1].childNodes[1].childNodes[3] // continued next line
+  .childNodes[3].childNodes[1].childNodes[1].childNodes[1].childNodes[1].childNodes[1].childNodes[3].click(); // eww; basically finds most recent tweet so it can fetch profile
+
+  document.getElementsByClassName("js-click-trap")[0].setAttribute("style","display:none;"); // Hide profile thing
+  setTimeout(function(){
     document.getElementsByClassName("js-click-trap")[0].setAttribute("style","display:none;"); // Hide profile thing
-    setTimeout(function(){
-      document.getElementsByClassName("js-click-trap")[0].setAttribute("style","display:none;"); // Hide profile thing
-    },0);
-  },700);
+  },0);
+  setTimeout(function(){
+    document.getElementsByClassName("js-click-trap")[0].setAttribute("style","display:none;"); // Hide profile thing
+  },50);
 
-  setTimeout(function(){ // DATA EXTRACTION FROM PROFILE
-    tde_nd_header_image.setAttribute("style",document.getElementsByClassName("prf-header")[0].style.cssText); // Fetch header and place in nav drawer
-    tde_nd_header_photo.setAttribute("src",document.getElementsByClassName("prf-img")[0].childNodes[1].src); // Fetch profile picture and place in nav drawer
-    tde_nd_header_username.innerHTML = document.getElementsByClassName("prf-card-inner")[0].childNodes[1].childNodes[5].childNodes[0].textContent; // Fetch twitter handle and place in nav drawer
-    Analytics(!!document.getElementsByClassName("sprite-verified")[0]); // Collect basic analytics data (doesn't log usage or other sensitive information)
-  },1000);
+  setTimeout(LoginStuffs3,150);
+}
+
+function LoginStuffs3() {
+  if (typeof document.getElementsByClassName("prf-header")[0] === "undefined") {
+    setTimeout(LoginStuffs3,150);
+    return;
+  }
+  tde_nd_header_image.setAttribute("style",document.getElementsByClassName("prf-header")[0].style.cssText); // Fetch header and place in nav drawer
+  tde_nd_header_photo.setAttribute("src",document.getElementsByClassName("prf-img")[0].childNodes[1].src); // Fetch profile picture and place in nav drawer
+  tde_nd_header_username.innerHTML = document.getElementsByClassName("prf-card-inner")[0].childNodes[1].childNodes[5].childNodes[0].textContent; // Fetch twitter handle and place in nav drawer
+  Analytics(!!document.getElementsByClassName("sprite-verified")[0]); // Collect basic analytics data (doesn't log usage or other sensitive information)
 }
 
 function NavigationSetup() {
@@ -520,7 +539,7 @@ function NavigationSetup() {
   tdesettings.onclick = function() {
     TDEPrepareWindows();
     var tdesettingsmodalview = document.getElementById("settings-modal");
-    tdesettingsmodalview.innerHTML = '<div class="js-modal-panel mdl s-short is-inverted-dark" id="tde_settings_modal_panel"> <header class="js-mdl-header mdl-header"> <h3 class="mdl-header-title">Enhancer Settings</h3> </header> <div class="mdl-inner"> <div class="mdl-content js-mdl-content horizontal-flow-container"> <div class="l-column mdl-column mdl-column-sml"> <div class="l-column-scrollv scroll-v  scroll-alt "> <ul class="lst-group js-setting-list">  <li class="selected"><a href="#" class="list-link" id="enhancer_settings_about_button" data-action="general"><strong>About</strong></a></li></ul> </div> </div> <div class="l-column mdl-column mdl-column-lrg"> <div class="l-column-scrollv scroll-v  scroll-alt mdl-col-settings"> <form action="#" id="global-settings" accept-charset="utf-8" class="frm"><fieldset id="general_settings"><img src="https://dangeredwolf.com/assets/TDE5/tdeaboutsmaller.png" class="tde-logo"><h1 class="list-placeholder tde-about-title">TweetDeck Enhancer</h1><h2 class="tde-version-title">Version 5.0 '/*"Paradise"*/+' Developer Preview 8</h2></fieldset></form> </div> </div> </div> <footer class="padding-vxl txt-center">  <button class="js-dismiss btn btn-positive"> <i class="icon icon-check icon-small padding-rs"></i> <span class="label">Done</span> </button>  </footer> </div> </div>';
+    tdesettingsmodalview.innerHTML = '<div class="js-modal-panel mdl s-short is-inverted-dark" id="tde_settings_modal_panel"> <header class="js-mdl-header mdl-header"> <h3 class="mdl-header-title">Enhancer Settings</h3> </header> <div class="mdl-inner"> <div class="mdl-content js-mdl-content horizontal-flow-container"> <div class="l-column mdl-column mdl-column-sml"> <div class="l-column-scrollv scroll-v  scroll-alt "> <ul class="lst-group js-setting-list">  <li class="selected"><a href="#" class="list-link" id="enhancer_settings_about_button" data-action="general"><strong>About</strong></a></li></ul> </div> </div> <div class="l-column mdl-column mdl-column-lrg"> <div class="l-column-scrollv scroll-v  scroll-alt mdl-col-settings"> <form action="#" id="global-settings" accept-charset="utf-8" class="frm"><fieldset id="general_settings"><img src="https://dangeredwolf.com/assets/TDE5/tdeaboutsmaller.png" class="tde-logo"><h1 class="list-placeholder tde-about-title">TweetDeck Enhancer</h1><h2 class="tde-version-title">Version 5.0 '/*"Paradise"*/+' Developer Preview 8.1</h2></fieldset></form> </div> </div> </div> <footer class="padding-vxl txt-center">  <button class="js-dismiss btn btn-positive"> <i class="icon icon-check icon-small padding-rs"></i> <span class="label">Done</span> </button>  </footer> </div> </div>';
     tdesettingsmodalview.setAttribute("style","display:block;");
     tdesettingsmodalview.onclick = function() {
       if (typeof tde_settings_modal_panel !== "undefined") {
