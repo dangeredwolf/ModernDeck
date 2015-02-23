@@ -1,4 +1,4 @@
-/* TweetDeck Enhancer Stylesheet 5.0 developer preview 8.1
+/* TweetDeck Enhancer Stylesheet 5.0 developer preview 9
 Copyright 2015 Dangered Wolf (@dangeredwolf)
 
 app-dark.css */
@@ -213,7 +213,7 @@ app-dark.css */
 }
 
 .txt-r-dark-gray {
-  color: #8A8A8A;}
+  color: #667A86;}
 
 .txt-r-faint-green {
   color:#292f33
@@ -14869,11 +14869,11 @@ button[data-user-id="892388300"] {
 }
 
 .contributor-manager {
-    background-color: #F9F9F9;
+    background-color: #344248!important;
 }
 
 .drawer-header {
-    background-color: #03A9F4;
+    background-color: #263238!important;
     box-shadow: 0 1px 10px rgba(17,17,17,0.35);
 }
 
@@ -14889,7 +14889,7 @@ button[data-user-id="892388300"] {
 }
 
 .contributor-adder-block.bg-r-light-gray {
-    background-color: #F9F9F9;
+    background-color: #344248!important;
 }
 
 .contributor-adder input.js-username-input.js-submittable-input {
