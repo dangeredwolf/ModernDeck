@@ -1,4 +1,4 @@
-/* TweetDeck Enhancer Stylesheet 5.0 developer preview 9
+/* TweetDeck Enhancer 5.0 [codename Paradise] 
 Copyright 2015 Dangered Wolf (@dangeredwolf)
 
 app-light.css */
@@ -14373,7 +14373,7 @@ div.js-replies-to.replies-after article.stream-item {
 
 .is-condensed .column-navigator {
     top: 0px;
-    left: 107px;
+    left: 50px;
     bottom: 0px;
 }
 
@@ -15125,7 +15125,7 @@ button.js-send-tweet-button.js-spinner-button.js-show-tip.btn.btn-positive.btn-e
 }
 
 .hide-detail-view-inline .column-navigator {
-    left: 310px;
+    left: 240px!important;
 }
 
 /* Fixes navigation bugs with tweet composer open remotely */
@@ -15828,10 +15828,29 @@ button#emojiButton:active .btd-icon-smile {
 .tde-is-upgrading .application {
     /*display:none;*/
     opacity:0;
+    top:0%;
+    transform: scale(0.001,0.001);
+    -webkit-transform: scale(0.001,0.001);
+}
+
+html.tde-is-upgrading {
+    overflow: hidden;
+}
+
+.tde-is-upgrading .tde-nav-drawer-background {
+    height: 0px;
+    display: none;
+}
+
+.tde-is-upgrading .mdl:not(.tde-upgrading) {
+    top: 100%;
+    transform: scale(0.01,0.01);
+    -webkit-transform: scale(0.01,0.01);
+    opacity: 0;
 }
 
 .tde-is-upgrading body {
-    background-color:#00BCD4;
+    background-color:#0ED0D2;
 }
 
 .tde-is-upgrading .js-app-loading {

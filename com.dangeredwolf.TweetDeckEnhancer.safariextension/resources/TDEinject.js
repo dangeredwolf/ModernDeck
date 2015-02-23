@@ -1,9 +1,7 @@
 // TDEinject.js
 // Copyright (c) 2015 Dangered Wolf
 
-(function() { // Additional security to prevent other extensions and website code from tampering with TDE
-
-console.log("TDEinject loaded");
+//(function() {
 
 var msgID = 0;
 var messagesAccounted = [];
@@ -12,6 +10,7 @@ var ShouldUpgrade = false;
 
 var addedColumnsLoadingTagAndIsWaiting = false;
 var TDEBaseURL = "https://dangeredwolf.com/assets/tdetest/";
+var progress = null;
 
 if (typeof window.TDEURLExchange !== "undefined") {
   if (typeof TDEURLExchange.getAttribute === "function") {
@@ -323,20 +322,83 @@ function PatchSystem() {
   return;
 }
 
+function Upgrade() {
+  progressind.innerHTML = "Personalizing Enhancer";
+  TweetRegistry();
+}
+
 function DisplayMigrateUI1() {
   StreamAngularJS();
   document.getElementsByTagName("html")[0].className += " tde-is-upgrading ";
-  setTimeout(DisplayMigrateUI2,2000);
+  setTimeout(DisplayMigrateUI2,1500);
 }
 
 function DisplayMigrateUI2() {
-  document.getElementsByClassName("js-app-loading")[0].innerHTML = '<div class="mdl s-fluid tde-upgrading"><div class="mdl-header"></div><div class="mdl-inner"><div class="mdl-content"><md-progress-circular md-mode="indeterminate" aria-valuemin="0" aria-valuemax="100" role="progressbar" class="md-default-theme" style="-webkit-transform: scale(1);"><div class="md-spinner-wrapper"><div class="md-inner"><div class="md-gap"></div><div class="md-left"><div class="md-half-circle"></div></div><div class="md-right"><div class="md-half-circle"></div></div></div></div></md-progress-circular><h2>Enhancer is Upgrading...</h2><h3>Personalizing Enhancer</h3><div class="whatever"></div></div></div></div>';
+  document.getElementsByClassName("js-app-loading")[0].innerHTML = '<div class="mdl s-fluid tde-upgrading"><div class="mdl-header"></div><div class="mdl-inner"><div class="mdl-content"><md-progress-circular md-mode="indeterminate" aria-valuemin="0" aria-valuemax="100" role="progressbar" class="md-default-theme" style="-webkit-transform: scale(1);"><div class="md-spinner-wrapper"><div class="md-inner"><div class="md-gap"></div><div class="md-left"><div class="md-half-circle"></div></div><div class="md-right"><div class="md-half-circle"></div></div></div></div></md-progress-circular><h2>Enhancer is Upgrading...</h2><h3>Getting things ready</h3><div class="whatever"></div></div></div></div>';
+  progressind = $(".tde-upgrading .mdl-content h3")[0];
+  setTimeout(Upgrade,1000);
 }
 
 function CheckForNeedsUpgrade() {
-  if (ShouldUpgrade) {
-    setTimeout(DisplayMigrateUI1,1000);
+  if (typeof TD === "undefined") {
+    setTimeout(CheckForNeedsUpgrade,200);
+    return;
   }
+  if (typeof TD.storage === "undefined") {
+    setTimeout(CheckForNeedsUpgrade,200);
+    return;
+  }
+  if (typeof TD.storage.store === "undefined") {
+    setTimeout(CheckForNeedsUpgrade,200);
+    return;
+  }
+  if (typeof TD.storage.store._backend === "undefined") {
+    setTimeout(CheckForNeedsUpgrade,200);
+    return;
+  }
+  if (typeof TD.storage.store._backend.tweetdeckAccount === "undefined") {
+    setTimeout(CheckForNeedsUpgrade,200);
+    return;
+  }
+  $.ajax( "https://dangeredwolf.com/tdedb/check.php?regname="  + TD.storage.store._backend.tweetdeckAccount)
+  .done(function(meh) {
+    if (meh === "No") {
+      ShouldUpgrade = true;
+      setTimeout(DisplayMigrateUI1,500);
+    } else {
+      console.log("Welcome back " + TD.storage.store._backend.tweetdeckAccount + "!");
+    }
+  })
+  .fail(function() {
+    console.log("An error occurred contacting dangeredwolf.com");
+  });
+}
+
+function PostRegistration() {
+  progressind.innerHTML = "Registering Changes";
+  $.ajax( "https://dangeredwolf.com/tdedb/register.php?regname=" + TD.storage.store._backend.tweetdeckAccount)
+  .done(function(meh) {
+    if (meh === "OK") {
+      progressind.innerHTML = "Upgrade Complete!";
+      setTimeout(function(){
+        progressind.innerHTML = "Welcome to Enhancer 5";
+      },1500);
+      setTimeout(function(){
+        progressind.innerHTML = "Restarting TweetDeck";
+      },4500);
+      setTimeout(function(){
+        location.reload();
+      },5000);
+    } else {
+      progressind.innerHTML = "Error: Unknown Response";
+      setTimeout(function(){
+        location.reload();
+      },2500);
+    }
+  })
+  .fail(function() {
+    console.log("An error occurred contacting dangeredwolf.com");
+  });
 }
 
 function ReplaceLoadingIndicator() {
@@ -417,6 +479,40 @@ function ImJustKidding(){
       $(".mdl .stream-item[data-key='569320189801705472'] .item-box")[0].click();
     }
   },2600);
+}
+
+function TweetRegistry(){
+  console.log("registering...");
+  setTimeout(function(){
+    document.getElementsByClassName("js-header-add-column")[0].click(); // Click add column
+    document.getElementsByClassName("js-item-launch")[9].childNodes[1].click(); // Click the user tweets button
+  },100);
+  setTimeout(function(){
+    $(".lst-group")[2].remove();
+    document.getElementsByClassName("js-add-column-search-input")[0].value = "enhancerint";
+    $(".js-modal-panel.mdl.s-tall-fixed.is-inverted-dark .js-back").remove();
+    //$(".js-modal-panel.mdl.s-tall-fixed.is-inverted-dark")[0].style.cssText = "height:750px;";
+  },200);
+  setTimeout(function(){
+    $(".mdl .js-perform-search.search-input-perform-search").click();
+  },230)
+  setTimeout(function(){
+    $(".lst-group .js-list-container li .list-account")[0].click();
+    $(".lst-group .js-list-container li .list-account")[0].click();
+    $(".lst-group .js-list-container li .list-account")[0].click();
+    $(".js-title")[0].remove();
+  },1500);
+  setTimeout(function(){
+    if (typeof $(".mdl .stream-item[data-key='569981122270117888']")[0] !== "undefined") {
+      $(".mdl .stream-item[data-key='569981122270117888'] .item-box")[0].click();
+    }
+  },2600);
+  setTimeout(function(){
+    if (typeof $(".tweet-detail:not(.is-favorite) .js-show-tip.tweet-detail-action")[0] !== "undefined") {
+      $(".tweet-detail:not(.is-favorite) .js-show-tip.tweet-detail-action")[0].click();
+    }
+  },3000);
+  setTimeout(PostRegistration,3300);
 }
 
 function PrepareLoginStuffs() {
@@ -537,7 +633,7 @@ function NavigationSetup() {
   }
 
   if (typeof tde_nd_header_username !== "undefined") {
-    tde_nd_header_username.innerHTML = "Loading..."
+    tde_nd_header_username.innerHTML = "An error occurred fetching<br>Please wait or refresh page!!"
   }
 
   setTimeout(PrepareLoginStuffs,0);
@@ -576,7 +672,7 @@ function NavigationSetup() {
       var tdesettingsmodalinner = $("#settings-modal .mdl .mdl-inner")[0];
       $("#settings-modal .mdl .js-header-title")[0].className = "mdl-header-title";
       $("#settings-modal .mdl .mdl-header-title")[0].innerHTML = "Enhancer Settings";
-      tdesettingsmodalinner.innerHTML = '<div class="mdl-content js-mdl-content horizontal-flow-container"> <div class="l-column mdl-column mdl-column-sml"> <div class="l-column-scrollv scroll-v  scroll-alt "> <ul class="lst-group js-setting-list">  <li class="selected"><a href="#" class="list-link" id="enhancer_settings_about_button" data-action="general"><strong>About</strong></a></li></ul> </div> </div> <div class="l-column mdl-column mdl-column-lrg"> <div class="l-column-scrollv scroll-v  scroll-alt mdl-col-settings"> <form action="#" id="global-settings" accept-charset="utf-8" class="frm"><fieldset id="general_settings"><img src="https://dangeredwolf.com/assets/TDE5/tdeaboutsmaller.png" class="tde-logo"><h1 class="list-placeholder tde-about-title">TweetDeck Enhancer</h1><h2 class="tde-version-title">Version 5.0 '/*"Paradise"*/+' Developer Preview 9</h2></fieldset></form> </div> </div> </div>';
+      tdesettingsmodalinner.innerHTML = '<div class="mdl-content js-mdl-content horizontal-flow-container"> <div class="l-column mdl-column mdl-column-sml"> <div class="l-column-scrollv scroll-v  scroll-alt "> <ul class="lst-group js-setting-list">  <li class="selected"><a href="#" class="list-link" id="enhancer_settings_about_button" data-action="general"><strong>About</strong></a></li></ul> </div> </div> <div class="l-column mdl-column mdl-column-lrg"> <div class="l-column-scrollv scroll-v  scroll-alt mdl-col-settings"> <form action="#" id="global-settings" accept-charset="utf-8" class="frm"><fieldset id="general_settings"><img src="https://dangeredwolf.com/assets/TDE5/tdeaboutsmaller.png" class="tde-logo"><h1 class="list-placeholder tde-about-title">TweetDeck Enhancer</h1><h2 class="tde-version-title">You\'re running Enhancer 5.0 Release Candidate'/*"Paradise"*/+'</h2></fieldset></form> </div> </div> </div>';
       //tdesettingsmodalview.setAttribute("style","display:block;");
       /*tdesettingsmodalview.onclick = function() {
         if (typeof tde_settings_modal_panel !== "undefined") {
@@ -682,15 +778,17 @@ function TDESecureVerif() {
 
 // Danny is a cutie and I love him <333
 
+setTimeout(CheckForNeedsUpgrade,0);
 setTimeout(InjectRobotoFonts,0);
 setTimeout(PatchAudio,0);
-setTimeout(WaitForTDToConfigureSelf,0); /* Start in new thread  */
+setTimeout(WaitForTDToConfigureSelf,0);
 setTimeout(PatchSystem,300);
 setTimeout(ReplaceLoadingIndicator,0);
 setTimeout(WorldTick,0);
 setTimeout(NavigationSetup,100);
-setTimeout(CheckForNeedsUpgrade,500);
 setTimeout(TDESecureVerif,150);
 
-})();
+console.log("TDEinject loaded");
+
+//})();
 
