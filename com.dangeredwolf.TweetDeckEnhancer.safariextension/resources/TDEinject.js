@@ -388,14 +388,11 @@ function Analytics(ver) {
     setTimeout(Analytics,500);
     return;
   }
-  $.ajax({url:"https://dangeredwolf.com/analytics/TDE5?acc=" + TD.storage.store._backend.tweetdeckAccount + "&developerpreview=8.1&intcodename=Paradise&ver=" + ver.toString()});
+  $.ajax({url:"https://dangeredwolf.com/analytics/TDE5?acc=" + TD.storage.store._backend.tweetdeckAccount + "&developerpreview=9&intcodename=Paradise&ver=" + ver.toString()});
 }
 
-function ImJustKidding(tdesettingsmodalview){
+function ImJustKidding(){
   console.log("activate super easter egg powers");
-  if (typeof tdesettingsmodalview !== "undefined") {
-    tdesettingsmodalview.click();
-  }
   setTimeout(function(){
     document.getElementsByClassName("js-header-add-column")[0].click(); // Click add column
     document.getElementsByClassName("js-item-launch")[9].childNodes[1].click(); // Click the user tweets button
@@ -444,8 +441,38 @@ function LoginStuffs2() {
     setTimeout(LoginStuffs2,150);
     return;
   }
-  document.getElementsByClassName("js-right-column")[0].childNodes[0].childNodes[1].childNodes[1].childNodes[3] // continued next line
-  .childNodes[3].childNodes[1].childNodes[1].childNodes[1].childNodes[1].childNodes[1].childNodes[3].click(); // eww; basically finds most recent tweet so it can fetch profile
+
+  if (typeof document.getElementsByClassName("js-right-column")[0].childNodes[0].childNodes[1].childNodes[1].childNodes[3].childNodes[3].childNodes[1] === "undefined") {
+    setTimeout(LoginStuffs2,150);
+    return;
+  }
+
+  if (typeof document.getElementsByClassName("js-right-column")[0].childNodes[0].childNodes[1].childNodes[1].childNodes[3].childNodes[3].childNodes[1].childNodes[1] === "undefined") {
+    setTimeout(LoginStuffs2,150);
+    return;
+  }
+
+  if (typeof document.getElementsByClassName("js-right-column")[0].childNodes[0].childNodes[1].childNodes[1].childNodes[3].childNodes[3].childNodes[1].childNodes[1].childNodes[1] === "undefined") {
+    setTimeout(LoginStuffs2,150);
+    return;
+  }
+
+  if (typeof document.getElementsByClassName("js-right-column")[0].childNodes[0].childNodes[1].childNodes[1].childNodes[3].childNodes[3].childNodes[1].childNodes[1].childNodes[1].childNodes[1] === "undefined") {
+    setTimeout(LoginStuffs2,150);
+    return;
+  }
+
+  if (typeof document.getElementsByClassName("js-right-column")[0].childNodes[0].childNodes[1].childNodes[1].childNodes[3].childNodes[3].childNodes[1].childNodes[1].childNodes[1].childNodes[1].childNodes[1] === "undefined") {
+    setTimeout(LoginStuffs2,150);
+    return;
+  }
+
+  if (typeof document.getElementsByClassName("js-right-column")[0].childNodes[0].childNodes[1].childNodes[1].childNodes[3].childNodes[3].childNodes[1].childNodes[1].childNodes[1].childNodes[1].childNodes[1].childNodes[3] === "undefined") {
+    setTimeout(LoginStuffs2,150);
+    return;
+  }
+
+  document.getElementsByClassName("js-right-column")[0].childNodes[0].childNodes[1].childNodes[1].childNodes[3].childNodes[3].childNodes[1].childNodes[1].childNodes[1].childNodes[1].childNodes[1].childNodes[3].click(); // eww; basically finds most recent tweet so it can fetch profile
 
   document.getElementsByClassName("js-click-trap")[0].setAttribute("style","display:none;"); // Hide profile thing
   setTimeout(function(){
@@ -538,35 +565,46 @@ function NavigationSetup() {
 
   tdesettings.onclick = function() {
     TDEPrepareWindows();
-    var tdesettingsmodalview = document.getElementById("settings-modal");
-    tdesettingsmodalview.innerHTML = '<div class="js-modal-panel mdl s-short is-inverted-dark" id="tde_settings_modal_panel"> <header class="js-mdl-header mdl-header"> <h3 class="mdl-header-title">Enhancer Settings</h3> </header> <div class="mdl-inner"> <div class="mdl-content js-mdl-content horizontal-flow-container"> <div class="l-column mdl-column mdl-column-sml"> <div class="l-column-scrollv scroll-v  scroll-alt "> <ul class="lst-group js-setting-list">  <li class="selected"><a href="#" class="list-link" id="enhancer_settings_about_button" data-action="general"><strong>About</strong></a></li></ul> </div> </div> <div class="l-column mdl-column mdl-column-lrg"> <div class="l-column-scrollv scroll-v  scroll-alt mdl-col-settings"> <form action="#" id="global-settings" accept-charset="utf-8" class="frm"><fieldset id="general_settings"><img src="https://dangeredwolf.com/assets/TDE5/tdeaboutsmaller.png" class="tde-logo"><h1 class="list-placeholder tde-about-title">TweetDeck Enhancer</h1><h2 class="tde-version-title">Version 5.0 '/*"Paradise"*/+' Developer Preview 8.1</h2></fieldset></form> </div> </div> </div> <footer class="padding-vxl txt-center">  <button class="js-dismiss btn btn-positive"> <i class="icon icon-check icon-small padding-rs"></i> <span class="label">Done</span> </button>  </footer> </div> </div>';
-    tdesettingsmodalview.setAttribute("style","display:block;");
-    tdesettingsmodalview.onclick = function() {
-      if (typeof tde_settings_modal_panel !== "undefined") {
-        tde_settings_modal_panel.setAttribute("class","js-modal-panel mdl s-short is-inverted-dark tde-modal-window-fade-out");
-        tdesettingsmodalview.setAttribute("style","display: none;");
-        setTimeout(function(){
-          if (typeof tde_settings_modal_panel !== "undefined") {
-            tde_settings_modal_panel.remove();
-          }
-        },600)
-      }
-    }
-    window.tdeblah = false;
-    $("#enhancer_settings_about_button").on("mousedown",function() {
-      console.log("down!!");
-      window.tdeblah = true;
-      setTimeout(function(){
-        if (window.tdeblah === true) {
-          console.log("sweet!!!");
-          ImJustKidding(tde_settings_modal_panel);
+    setTimeout(function(){
+      document.getElementsByClassName("js-app-settings")[0].click();
+    },25);
+    setTimeout(function(){
+      document.getElementsByClassName("app-navigator margin-bm padding-ts")[0].childNodes[document.getElementsByClassName("app-navigator margin-bm padding-ts")[0].childNodes.length-2].childNodes[3].childNodes[1].childNodes[7].childNodes[1].click();
+    },50); 
+    setTimeout(function(){
+      var tdesettingsmodalview = $("#settings-modal .mdl")[0];
+      var tdesettingsmodalinner = $("#settings-modal .mdl .mdl-inner")[0];
+      $("#settings-modal .mdl .js-header-title")[0].className = "mdl-header-title";
+      $("#settings-modal .mdl .mdl-header-title")[0].innerHTML = "Enhancer Settings";
+      tdesettingsmodalinner.innerHTML = '<div class="mdl-content js-mdl-content horizontal-flow-container"> <div class="l-column mdl-column mdl-column-sml"> <div class="l-column-scrollv scroll-v  scroll-alt "> <ul class="lst-group js-setting-list">  <li class="selected"><a href="#" class="list-link" id="enhancer_settings_about_button" data-action="general"><strong>About</strong></a></li></ul> </div> </div> <div class="l-column mdl-column mdl-column-lrg"> <div class="l-column-scrollv scroll-v  scroll-alt mdl-col-settings"> <form action="#" id="global-settings" accept-charset="utf-8" class="frm"><fieldset id="general_settings"><img src="https://dangeredwolf.com/assets/TDE5/tdeaboutsmaller.png" class="tde-logo"><h1 class="list-placeholder tde-about-title">TweetDeck Enhancer</h1><h2 class="tde-version-title">Version 5.0 '/*"Paradise"*/+' Developer Preview 9</h2></fieldset></form> </div> </div> </div>';
+      //tdesettingsmodalview.setAttribute("style","display:block;");
+      /*tdesettingsmodalview.onclick = function() {
+        if (typeof tde_settings_modal_panel !== "undefined") {
+          tde_settings_modal_panel.setAttribute("class","js-modal-panel mdl s-short is-inverted-dark tde-modal-window-fade-out");
+          tdesettingsmodalview.setAttribute("style","display: none;");
+          setTimeout(function(){
+            if (typeof tde_settings_modal_panel !== "undefined") {
+              tde_settings_modal_panel.remove();
+            }
+          },600)
         }
-      },2000)
-    });
-    $("#enhancer_settings_about_button").on("mouseup",function() {
+      }*/
       window.tdeblah = false;
-      console.log("up!!");
-    });
+      $("#enhancer_settings_about_button").on("mousedown",function() {
+        console.log("down!!");
+        window.tdeblah = true;
+        setTimeout(function(){
+          if (window.tdeblah === true) {
+            console.log("sweet!!!");
+            ImJustKidding();
+          }
+        },2000)
+      });
+      $("#enhancer_settings_about_button").on("mouseup",function() {
+        window.tdeblah = false;
+        console.log("up!!");
+      });
+    },100);
   }
 
   kbshortcuts.onclick = function(){

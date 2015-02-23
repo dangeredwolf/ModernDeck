@@ -5770,7 +5770,7 @@ a:active .column-title-back .icon:after {
   height: 40px;
   position: absolute;
   margin-top: -10px;
-  margin-left: -20px;
+  margin-left: -9px;
   border-radius: 99px;
   z-index: 9;
   -webkit-animation: BackSplashAnimation 0.25s cubic-bezier(.55,0,.1,1);
@@ -10313,7 +10313,17 @@ i.icon.icon-clear-timeline {
 }
 
 .accs-header h3 {
-  font-size:16px
+  font-size:16px;
+  text-overflow: ellipsis;
+  height: 20px;
+  position: absolute;
+  white-space: nowrap;
+  padding-left: 15px;
+  /* padding-right: 15px; */
+  width: 94%;
+  display: block;
+  margin: 0;
+  overflow: hidden;
 }
 
 .accs-header a {
