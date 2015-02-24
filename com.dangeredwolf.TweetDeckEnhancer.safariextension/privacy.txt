@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 TweetDeck Enhancer may collect small subsets of information, so we can analyze which versions of TweetDeck Enhancer is being used, and improve our product.
+=======
+TweetDeck Enhancer may collect small subsets of information, so we can analyze which versions of TweetDeck Enhancer is being used.
+>>>>>>> TDE5
 
 Due to the nature of HTTP, your IP address must be sent, because of the way web servers work. IP addresses are never used other than to send back the bytes needed.
 

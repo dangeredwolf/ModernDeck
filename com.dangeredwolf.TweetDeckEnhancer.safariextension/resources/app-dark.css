@@ -1,3 +1,4 @@
+<<<<<<< HEAD:com.dangeredwolf.TweetDeckEnhancer.safariextension/resources/app-dark.css
 /* TweetDeck Enhancer Stylesheet 4.3
 Copyright (c) 2015 Ryan Dolan (ryandolan123)
 
@@ -73,6 +74,12 @@ This is app-dark.css */
   src: local('RobotoDraft Bold'), local('RobotoDraft-Bold'), url(https://fonts.gstatic.com/s/robotodraft/v3/u0_CMoUf3y3-4Ss4ci-VwRMZUMTqD9S0syfqvqacjFo.woff2) format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
 }
+=======
+/* TweetDeck Enhancer 5.0 [codename Paradise]
+Copyright 2015 Dangered Wolf (@dangeredwolf)
+
+app-dark.css */
+>>>>>>> TDE5:com.dangeredwolf.TweetDeckEnhancer.safariextension/resources/app-dark.css
 
 .bg-r-text {
   background-color:#292f33
@@ -90,7 +97,11 @@ This is app-dark.css */
   background-color: transparent;}
 
 .bg-r-light-gray {
+<<<<<<< HEAD:com.dangeredwolf.TweetDeckEnhancer.safariextension/resources/app-dark.css
   background-color: #1E5B78;}
+=======
+  background-color: #314048;}
+>>>>>>> TDE5:com.dangeredwolf.TweetDeckEnhancer.safariextension/resources/app-dark.css
 
 .bg-r-medium-gray {
   background-color:#aab8c2
@@ -284,7 +295,7 @@ This is app-dark.css */
 }
 
 .txt-r-dark-gray {
-  color: #8A8A8A;}
+  color: #667A86;}
 
 .txt-r-faint-green {
   color:#292f33
@@ -818,11 +829,14 @@ html {
   color:#eee
 }
 
+<<<<<<< HEAD:com.dangeredwolf.TweetDeckEnhancer.safariextension/resources/app-dark.css
 .is-inverted-dark {
   font-family"San Francisco", "RobotoDraft", :"Roboto","Helvetica Neue",Helvetica,Verdana,sans-serif;
   /* font-weight:normal; */
 }
 
+=======
+>>>>>>> TDE5:com.dangeredwolf.TweetDeckEnhancer.safariextension/resources/app-dark.css
 body {
   height:100%;
   /* background-image:-webkit-radial-gradient(center center,ellipse cover,#269,#274256);
@@ -830,13 +844,11 @@ body {
   background-image:-ms-radial-gradient(center center,ellipse cover,#269,#274256);
   background-image:radial-gradient(center center,ellipse cover,#269,#274256); */
   overflow:hidden;
-  background-color: #344248;
-  transform: scale(0,0);
-  -webkit-transform: scale(1,1); /* WebKit-based browser safety switch */
+  background-color: rgba(38, 50, 56, 1);
 }
 
 body.scroll-v {
-  background-color: #0FB6F0;
+  background-color: #0ED0D2;
 }
 
 .with-legacy-login {
@@ -855,7 +867,10 @@ body.scroll-v {
 }
 
 [class=''] .application {
-  -webkit-animation: popgoestheapp 600ms;
+  /* -webkit-animation: popgoestheapp 600ms; */
+  -webkit-animation: columnFlyin 0.35s;
+  -webkit-animation-timing-function: cubic-bezier(.55,0,.1,1);
+  transition: top 200ms!important;
 }
 
 .signin-sheet-now-present .application {
@@ -863,7 +878,7 @@ body.scroll-v {
 }
 
 body {
-  -webkit-animation: popgoesthemodalwindow2d 0.5s!important;
+  /* -webkit-animation: popgoesthemodalwindow2d 0.5s!important; */
   /* -webkit-animation-timing-function: ease-out; */
 }
 
@@ -878,25 +893,48 @@ body {
 }
 
 ::selection {
+<<<<<<< HEAD:com.dangeredwolf.TweetDeckEnhancer.safariextension/resources/app-dark.css
   background: #00707B;
   color: #73B3AA;
+=======
+  background: #00838F;
+  color: #DDD;
+>>>>>>> TDE5:com.dangeredwolf.TweetDeckEnhancer.safariextension/resources/app-dark.css
+  text-shadow:none
+}
+
+.signin-sheet-now-present ::selection {
+  background: #A2E8F1;
+  color: #000;
   text-shadow:none
 }
 
 a {
+<<<<<<< HEAD:com.dangeredwolf.TweetDeckEnhancer.safariextension/resources/app-dark.css
   color: #009DAB;
+=======
+  color: #009EAD;
+>>>>>>> TDE5:com.dangeredwolf.TweetDeckEnhancer.safariextension/resources/app-dark.css
   text-decoration:none;
   transition: 150ms background-color, 150ms transform, 150ms color;
 }
 
 a:hover,a:focus {
+<<<<<<< HEAD:com.dangeredwolf.TweetDeckEnhancer.safariextension/resources/app-dark.css
   color: rgba(0, 185, 202, 1);
+=======
+  color: rgba(0, 189, 179, 1);
+>>>>>>> TDE5:com.dangeredwolf.TweetDeckEnhancer.safariextension/resources/app-dark.css
   text-decoration:none;
   transition:200ms all;
 }
 
 a:active {
+<<<<<<< HEAD:com.dangeredwolf.TweetDeckEnhancer.safariextension/resources/app-dark.css
   color: rgba(0, 108, 118, 1);
+=======
+  color: rgba(0, 115, 126, 1);
+>>>>>>> TDE5:com.dangeredwolf.TweetDeckEnhancer.safariextension/resources/app-dark.css
   transition: 150mx background-color, 150ms transform;
   background-color: rgba(0,0,0,0.05)!important;
   transform: scale(0.875,0.875)!important;
@@ -1008,17 +1046,17 @@ abbr[title] {
 }
 
 .txt-mute {
-  color: #798488;
+  color: #6D808B;
   text-decoration: none;
 }
 
-.txt-mute a:not(:hover):not(:focus):not(.tweet-action) {
-  color: #667A86;
+.txt-mute a:not(:hover):not(:focus):not(.tweet-action):not([data-action]) {
+  color: #708795;
   text-decoration: none;
 }
 
 .txt-normal {
-  color:#808080;
+  color: #DADADA;
 }
 
 .txt-ellipsis {
@@ -1227,19 +1265,7 @@ abbr[title] {
 }
 
 .scroll-conversation {
-  /* background:#222222 */
-}
-
-.is-inverted-dark .column-scroller::-webkit-scrollbar-track {
-  border-left-color:#e0e0e0
-}
-
-.is-inverted-dark .column-scroller::-webkit-scrollbar-thumb {
-  background-color:#d9d9d9
-}
-
-.is-inverted-dark .column-scroller::-webkit-scrollbar-thumb:hover {
-  background-color:#888
+  background: #344248;
 }
 
 .antiscroll-wrap {
@@ -3801,6 +3827,7 @@ to {
   animation-name:rotate-out
 }
 
+<<<<<<< HEAD:com.dangeredwolf.TweetDeckEnhancer.safariextension/resources/app-dark.css
 .is-inverted-dark {
   /* color: #DADADA; */
   /* -webkit-font-smoothing:subpixel-antialiased; */
@@ -3812,6 +3839,8 @@ to {
   transition: 200ms all;
 }
 
+=======
+>>>>>>> TDE5:com.dangeredwolf.TweetDeckEnhancer.safariextension/resources/app-dark.css
 .link-complex.txt-medium.block.cf {
   color: #26C6DA;
 }
@@ -3820,6 +3849,7 @@ to {
   color: #7DCEFF;
 }
 
+<<<<<<< HEAD:com.dangeredwolf.TweetDeckEnhancer.safariextension/resources/app-dark.css
 .is-inverted-dark .link-normal-dark,.is-inverted-dark .link-normal-dark:hover,.is-inverted-dark .link-normal-dark:focus,.is-inverted-dark .link-normal-dark:active {
   color:#444
 }
@@ -3885,42 +3915,16 @@ to {
   color: #707070;
 }
 
+=======
+>>>>>>> TDE5:com.dangeredwolf.TweetDeckEnhancer.safariextension/resources/app-dark.css
 .account-settings-row .icon-arrow-d {
   /* color: #fff; */
   display: none!important;
 }
 
-.is-inverted-dark .icon-arrow-u {
-  color: #707070;
-}
-
 .account-settings-row .icon-arrow-u {
   /* color: #fff; */
   display: none!important;
-}
-
-.is-inverted-dark .facet-type-content.is-active {
-  background-color:rgba(210,155,154,0.25)
-}
-
-.is-inverted-dark .facet-type-user.is-active {
-  background-color:rgba(240, 208, 79, 0.25)
-}
-
-.is-inverted-dark .facet-type-location.is-active {
-  background-color:rgba(118,194,158,0.25)
-}
-
-.is-inverted-dark .facet-type-alerts.is-active {
-  background-color:rgba(153,153,153,0.25)
-}
-
-.is-inverted-dark .facet-type-engagement.is-active {
-  background-color:rgba(62, 133, 228, 0.25);
-}
-
-.is-inverted-dark .facet-type {
-   border-bottom:0px solid #e5e5e5 
 }
 
 button.js-toggle-button.btn.js-toggle-tweets {
@@ -3959,6 +3963,7 @@ button.js-toggle-button.btn.js-toggle-users.is-selected:hover {
     /* color: #fff; */
 }
 
+<<<<<<< HEAD:com.dangeredwolf.TweetDeckEnhancer.safariextension/resources/app-dark.css
 .is-inverted-dark .accordion .is-active {
   color: #FFF;}
 
@@ -4014,6 +4019,8 @@ button.js-toggle-button.btn.js-toggle-users.is-selected:hover {
   display:none!important
 }
 
+=======
+>>>>>>> TDE5:com.dangeredwolf.TweetDeckEnhancer.safariextension/resources/app-dark.css
 .icon {
   display:inline-block;
   vertical-align:baseline;
@@ -4212,9 +4219,10 @@ button.js-toggle-button.btn.js-toggle-users.is-selected:hover {
 .tweet-button .icon-compose:before {
     content: "...";
     color: transparent;
-    background: url(https://ryandolan123.com/assets/tweetdeck/img/compose.png) no-repeat;
-    margin-left: 5px;
-    margin-top: 5px;
+    background: url(https://dangeredwolf.com/assets/TDE5/compose.png) no-repeat;
+    background-size: 24px;
+    margin-left: 4px;
+    margin-top: 4px;
     width: 26px;
     height: 26px;
     position: absolute;
@@ -4244,6 +4252,35 @@ button.js-toggle-button.btn.js-toggle-users.is-selected:hover {
     width: 26px;
     height: 26px;
     position: absolute;
+<<<<<<< HEAD:com.dangeredwolf.TweetDeckEnhancer.safariextension/resources/app-dark.css
+    transition: 150ms all!important;
+    transition-timing-function:cubic-bezier(.55,0,.1,1)!important;
+    transform: scale(0.85,0.85) rotate(360deg);
+}
+
+.tweet-button.is-hidden .icon-compose:before {
+  margin-left: 115px;
+  transform: scale(1,1);
+  transition:250ms all!important;
+  transition-timing-function:cubic-bezier(.55,0,.1,1)!important;
+}
+
+.tweet-button.is-hidden .icon-compose:after {
+  margin-left:0px;
+  opacity: 1;
+}
+
+.tweet-button .icon-compose:after {
+    content: "...";
+    color: transparent;
+    background: url(https://ryandolan123.com/assets/tweetdeck/img/back.png) no-repeat;
+    margin-left: 10px;
+    margin-top: 5px;
+    width: 26px;
+    height: 26px;
+    position: absolute;
+=======
+>>>>>>> TDE5:com.dangeredwolf.TweetDeckEnhancer.safariextension/resources/app-dark.css
     z-index: 999999999999999999;
     background-size: 26px 26px;
     transition:250ms all!important;
@@ -4491,13 +4528,21 @@ a.mdl-dismiss-media>i.icon.icon-close {
 .sprite {
   display:inline-block;
   vertical-align:text-top;
+<<<<<<< HEAD:com.dangeredwolf.TweetDeckEnhancer.safariextension/resources/app-dark.css
   background-image:url(https://ryandolan123.com/assets/tweetdeck/cache/td_sprite_sheet_2013_@1x.png);
+=======
+  background-image:url(https://dangeredwolf.com/tweetdeck-web/web/assets/global/backgrounds/td_sprite_sheet_2013_@1x.png);
+>>>>>>> TDE5:com.dangeredwolf.TweetDeckEnhancer.safariextension/resources/app-dark.css
   background-repeat:no-repeat
 }
 
 @media (-webkit-min-device-pixel-ratio: 1.5),(min-resolution: 144dpi) {
 .sprite {
+<<<<<<< HEAD:com.dangeredwolf.TweetDeckEnhancer.safariextension/resources/app-dark.css
   background-image:url(https://ryandolan123.com/assets/tweetdeck/cache/td_sprite_sheet_2013_@2x.png);
+=======
+  background-image:url(https://dangeredwolf.com/tweetdeck-web/web/assets/global/backgrounds/td_sprite_sheet_2013_@2x.png);
+>>>>>>> TDE5:com.dangeredwolf.TweetDeckEnhancer.safariextension/resources/app-dark.css
   background-size:240px 110px;
   background-repeat:no-repeat
 }
@@ -4514,15 +4559,16 @@ a.mdl-dismiss-media>i.icon.icon-close {
 }
 
 .sprite-verified {
-  width:20px;
-  height:20px;
+  width:22px;
+  height:22px;
   background-position:-10px -10px
 }
 
 .sprite-verified-mini {
-  width:16px;
+  width:18px;
   height:18px;
-  background-position:-161px -47px
+  background-position:-161px -47px;
+  overflow:visible;
 }
 
 .sprite-translator {
@@ -4553,10 +4599,6 @@ a.mdl-dismiss-media>i.icon.icon-close {
   background-position:-8px -87px
 }
 
-.is-inverted-dark .sprite-drag-vertical {
-  background-position:-120px -10px
-}
-
 .bing-logo {
   background-position:-58px -87px
 }
@@ -4570,7 +4612,7 @@ a.mdl-dismiss-media>i.icon.icon-close {
 .sprite-logo-badge {
   width: 50px;
   height: 50px;
-  background-image: url(https://ryandolan123.com/assets/tweetdeck/img/TweetDeckBlueSmall.png);
+  background-image: url(https://dangeredwolf.com/assets/tweetdeck/img/TweetDeckBlueSmall.png);
 }
 
 .sprite-logo-badge-large {
@@ -4623,38 +4665,22 @@ a.mdl-dismiss-media>i.icon.icon-close {
   background-position:-226px -80px
 }
 
-.is-inverted-dark .sprite-flash {
-  width:8px;
-  height:18px;
-  background-position:-166px -80px
-}
-
-.is-inverted-dark .sprite-dataminr-dot {
-  width:8px;
-  height:18px;
-  background-position:-176px -80px
-}
-
-.is-inverted-dark .sprite-dataminr-plus {
-  width:8px;
-  height:18px;
-  background-position:-186px -80px
-}
-
-.is-inverted-dark .sprite-dataminr-momentum-dot {
-  width:8px;
-  height:18px;
-  background-position:-226px -80px
-}
-
 .fullname-badged:before {
+<<<<<<< HEAD:com.dangeredwolf.TweetDeckEnhancer.safariextension/resources/app-dark.css
   background-image:url(https://ryandolan123.com/assets/tweetdeck/cache/td_sprite_sheet_2013_@1x.png);
+=======
+  background-image:url(https://dangeredwolf.com/tweetdeck-web/web/assets/global/backgrounds/td_sprite_sheet_2013_@1x.png);
+>>>>>>> TDE5:com.dangeredwolf.TweetDeckEnhancer.safariextension/resources/app-dark.css
   background-repeat:no-repeat
 }
 
 @media (-webkit-min-device-pixel-ratio: 1.5),(min-resolution: 144dpi) {
 .fullname-badged:before {
+<<<<<<< HEAD:com.dangeredwolf.TweetDeckEnhancer.safariextension/resources/app-dark.css
   background-image:url(https://ryandolan123.com/assets/tweetdeck/cache/td_sprite_sheet_2013_@2x.png);
+=======
+  background-image:url(https://dangeredwolf.com/tweetdeck-web/web/assets/global/backgrounds/td_sprite_sheet_2013_@2x.png);
+>>>>>>> TDE5:com.dangeredwolf.TweetDeckEnhancer.safariextension/resources/app-dark.css
   background-size:240px 110px
 }
 }
@@ -4672,7 +4698,11 @@ a.mdl-dismiss-media>i.icon.icon-close {
 }
 
 .svg-warning {
+<<<<<<< HEAD:com.dangeredwolf.TweetDeckEnhancer.safariextension/resources/app-dark.css
   background-image:url(https://ryandolan123.com/assets/tweetdeck/cache/warning-icon.svg);
+=======
+  background-image:url(https://dangeredwolf.com/tweetdeck-web/web/assets/global/backgrounds/warning-icon.svg);
+>>>>>>> TDE5:com.dangeredwolf.TweetDeckEnhancer.safariextension/resources/app-dark.css
   background-repeat:no-repeat;
   background-size:100% 100%
 }
@@ -4751,7 +4781,11 @@ a.mdl-dismiss-media>i.icon.icon-close {
 }
 
 .btn[disabled],.btn[disabled]:hover,.btn[disabled]:active,.btn.is-disabled,.btn.is-disabled:hover,.btn.is-disabled:focus,.btn.is-disabled:active {
+<<<<<<< HEAD:com.dangeredwolf.TweetDeckEnhancer.safariextension/resources/app-dark.css
   color: #515D65;
+=======
+  color: #54707F;
+>>>>>>> TDE5:com.dangeredwolf.TweetDeckEnhancer.safariextension/resources/app-dark.css
   /* cursor:default; */
   /* outline:none; */
   /* box-shadow:none; */
@@ -4761,34 +4795,6 @@ a.mdl-dismiss-media>i.icon.icon-close {
 .btn::-moz-focus-inner {
   border:0;
   padding:0
-}
-
-.is-inverted-dark .btn-alt {
-  /* color:#222; */
-  /* background-color:#eee; */
-  border-color:#ddd
-}
-
-.is-inverted-dark .btn-alt:hover {
-  /* color:#222; */
-  /* background-color:#ddd
- */}
-
-.is-inverted-dark .btn-alt:focus {
-  /* color:#222; */
-  /* background-color:#ddd; */
-  /* box-shadow:0 0 2px 3px #00acee; */
-  outline:0
-}
-
-.is-inverted-dark .btn-alt:active,.is-inverted-dark .btn-alt.is-selected {
-  /* color:#222; */
-  /* background-color:#bbb
- */}
-
-.is-inverted-dark .btn-alt[disabled],.is-inverted-dark .btn-alt[disabled]:hover,.is-inverted-dark .btn-alt[disabled]:active,.is-inverted-dark .btn-alt.is-disabled,.is-inverted-dark .btn-alt.is-disabled:hover,.is-inverted-dark .btn-alt.is-disabled:focus,.is-inverted-dark .btn-alt.is-disabled:active {
-  color:#bbb;
-  border-color:#ddd;
 }
 
 .btn-alt {
@@ -4820,7 +4826,7 @@ a.mdl-dismiss-media>i.icon.icon-close {
 .btn .icon {
   line-height:1em;
   vertical-align:middle;
-  margin-left: -5px;
+  /* margin-left: -5px; */
 }
 
 .btn .label {
@@ -4913,7 +4919,7 @@ button.js-follow-button.js-show-tip.follow-btn.btn.btn-alt {}
 
 .btn-compose:focus {
   color:#fff;
-  background-color:#2b7bb9;
+  background-color: #265C63;
   box-shadow:none
 }
 
@@ -4923,18 +4929,50 @@ button.js-follow-button.js-show-tip.follow-btn.btn.btn-alt {}
   transform: scale(1,1);
 }
 
+
 .tweet-button {
   width: 40px;
   height: 40px;
   font-size:18px;
   text-align:left;
   margin-top: -2px;
-  margin-left: 15px;
+  margin-left: 40px;
   border-radius: 32px;
   transform: none!important;
   box-shadow: 0px 1px 2px 1px rgba(0,0,0,0.25)!important;
   z-index: 999;
   transition-timing-function: cubic-bezier(.55,0,.1,1);
+}
+
+.tweet-button .icon-compose {
+  font-size:30px;
+  margin-left: -5px;
+  transition: 300ms all!important;
+  margin-top: -3px;
+  /* transform: scale(0.85,0.85) rotate(360deg); */
+}
+
+.attach-compose-buttons {
+  margin-right:-11px
+}
+
+.attach-compose-buttons .tweet-button {
+  /* background-color: #29B6F6; */
+  box-shadow:none;
+  transition:200ms all!important;
+}
+
+.attach-compose-buttons .tweet-button {
+  note: !!!thisProbablyIsNotTheButtonYouAreLookingFor!!!;
+  background-color: #00BCD4;
+  /* box-shadow:none; */
+  transition: 141ms all!important;
+  border-radius: 0px;
+  opacity:0;
+  margin-top: -60px;
+  transition-timing-function: cubic-bezier(.55,0,.1,1)!important;
+  margin-left: -5px;
+  width: 271px;
 }
 
 .btn-positive-alt:hover,.btn-fav.s-favorited:hover,.s-following .follow-btn:hover {
@@ -4992,7 +5030,7 @@ button.js-follow-button.js-show-tip.follow-btn.btn.btn-alt {}
 }
 
 .btn-on-blue[disabled],.btn-on-blue[disabled]:hover,.btn-on-blue[disabled]:active,.btn-on-blue.is-disabled,.btn-on-blue.is-disabled:hover,.btn-on-blue.is-disabled:focus,.btn-on-blue.is-disabled:active {
-  color: #6A6A6A;
+  color: #47555E;
   background-color:#1F6BB5;
   border-color:transparent
 }
@@ -5033,7 +5071,7 @@ button.js-follow-button.js-show-tip.follow-btn.btn.btn-alt {}
 }
 
 .btn-light-gray {
-  color: #83E0FF;
+  color: #26C6DA;
   border-color:transparent;
   /* background-color:#f5f8fa
  */}
@@ -5444,7 +5482,7 @@ a.link-complex>span {
 }
 
 .column {
-  transition: all 150ms;
+  transition: 150ms box-shadow;
   border-radius:0;
   position:relative;
   z-index:1;
@@ -5459,14 +5497,17 @@ a.link-complex>span {
   /* border-right: 3px solid rgba(0, 0, 0, 0.05); */
   /* margin-right: 3px; */
   animation-timing-function: cubic-bezier(.55,0,.1,1);
+  /* display: none; */
 }
 
 .column.is-focused {
   box-shadow:0px 0px 6px 4px #30A6FF
 }
 
-.column {
-  /* border:1px solid #222426 */
+.column.animatecolumnin {
+  /*-webkit-animation: columnFlyin 0.35s;
+  -webkit-animation-timing-function: cubic-bezier(.55,0,.1,1);*/
+  display: inline-block;
 }
 
 .is-narrow-columns .app-columns {
@@ -5517,6 +5558,10 @@ a.link-complex>span {
   width: 325px;
   perspective: 500px;
   border-right: 3px solid rgba(0, 0, 0, 0.05);
+}
+
+.tde-columns-loading .column-scroller {
+  /* display:none; */
 }
 
 .is-narrow-columns .column-content {
@@ -5724,7 +5769,11 @@ a.pull-left.margin-txs.txt-mute.txt-small.link-complex:hover {
 }
 
 .is-new .column-header,.is-new .column-header-temp {
+<<<<<<< HEAD:com.dangeredwolf.TweetDeckEnhancer.safariextension/resources/app-dark.css
   background: linear-gradient(rgba(38, 50, 56, 1),#0F4C52);
+=======
+  background: linear-gradient(rgba(38, 50, 56, 1),#0E4B50);
+>>>>>>> TDE5:com.dangeredwolf.TweetDeckEnhancer.safariextension/resources/app-dark.css
   transition: 200ms all;
 }
 
@@ -5740,7 +5789,11 @@ a.pull-left.margin-txs.txt-mute.txt-small.link-complex:hover {
   box-shadow: 0 1px 10px rgba(17,17,17,0.35);
   z-index: 10;
   color: #fff;
+<<<<<<< HEAD:com.dangeredwolf.TweetDeckEnhancer.safariextension/resources/app-dark.css
   /* overflow: hidden; */
+=======
+  /*overflow: hidden;*/
+>>>>>>> TDE5:com.dangeredwolf.TweetDeckEnhancer.safariextension/resources/app-dark.css
   transition: 200ms all;
   width:328px;
 }
@@ -5853,7 +5906,11 @@ a.pull-left.margin-txs.txt-mute.txt-small.link-complex:hover {
 }
 
 .column-title-back .icon {
+<<<<<<< HEAD:com.dangeredwolf.TweetDeckEnhancer.safariextension/resources/app-dark.css
   background: url(https://ryandolan123.com/assets/tweetdeck/img/back.png);
+=======
+  background: url(https://dangeredwolf.com/assets/tweetdeck/img/back.png);
+>>>>>>> TDE5:com.dangeredwolf.TweetDeckEnhancer.safariextension/resources/app-dark.css
   z-index: 6;
   position: absolute;
   width: 22px;
@@ -5868,19 +5925,28 @@ a.pull-left.margin-txs.txt-mute.txt-small.link-complex:hover {
   top: 15px;
   left: 0px;
   line-height:0;
+<<<<<<< HEAD:com.dangeredwolf.TweetDeckEnhancer.safariextension/resources/app-dark.css
   vertical-align:middle
 ;
+=======
+  vertical-align:middle;
+>>>>>>> TDE5:com.dangeredwolf.TweetDeckEnhancer.safariextension/resources/app-dark.css
   background-size: 22px 22px;
 }
 
 a:active .column-title-back .icon:after {
   content: "...";
   background: rgba(255, 255, 255, 0.2);
-  width:30px;
-  height:30px;
+  width: 40px;
+  height: 40px;
   position: absolute;
+<<<<<<< HEAD:com.dangeredwolf.TweetDeckEnhancer.safariextension/resources/app-dark.css
   margin-top: -5px;
   margin-left: -14px;
+=======
+  margin-top: -10px;
+  margin-left: -9px;
+>>>>>>> TDE5:com.dangeredwolf.TweetDeckEnhancer.safariextension/resources/app-dark.css
   border-radius: 99px;
   z-index: 9;
   -webkit-animation: BackSplashAnimation 0.25s cubic-bezier(.55,0,.1,1);
@@ -5888,7 +5954,11 @@ a:active .column-title-back .icon:after {
 }
 
 .os-windows a:active .column-title-back .icon:after {
+<<<<<<< HEAD:com.dangeredwolf.TweetDeckEnhancer.safariextension/resources/app-dark.css
   /* margin-left: -6px; */
+=======
+  margin-left: -9px;
+>>>>>>> TDE5:com.dangeredwolf.TweetDeckEnhancer.safariextension/resources/app-dark.css
 }
 
 a .column-title-back .icon:after {
@@ -6003,11 +6073,11 @@ a.js-column-back.link-complex:active {
 }
 
 .is-options-open .column-settings-link:active {
-  background-color: #00ACC1;
+  background-color: #00737E!important;
 }
 
 .is-options-open .column-settings-link:hover {
-  background-color: #4DD0E1;
+  background-color: #0098A6;
   transition:300ms background-color;
 }
 
@@ -6101,8 +6171,12 @@ a.js-column-back.link-complex:active {
   right:44.25px
 }
 
+.is-touch-column-options .column-title-messages {
+    margin-right:50px
+}
+
 .column-options {
-  background-color: #26C6DA;
+  background-color: #00838F;
   box-shadow: 0 3px 6px rgba(17,17,17,0.1);
   z-index: 500;
   /*width: 328px;*/
@@ -6162,14 +6236,6 @@ a.js-column-back.link-complex:active {
 
 .btn-options-unique .icon {
   font-size:18px
-}
-
-.is-inverted-dark .column-options {
-  background-color:#fff
-}
-
-.is-inverted-dark .with-column-divider-bottom {
-  /* border-bottom:1px solid #ddd */
 }
 
 .column-updates {
@@ -6456,7 +6522,8 @@ a.js-column-back.link-complex:active {
 }
 
 .js-chirp-container {
-  -webkit-animation: popcomesthetweetsview 0.85s 1;
+  -webkit-animation: popcomesthetweetsview 0.6s 1;
+  display: block;
 }
 
 .draggable-dragging .js-chirp-container {
@@ -6473,7 +6540,7 @@ a.js-column-back.link-complex:active {
     100% {padding-top: 0%;}
 }*/
 
-@-webkit-keyframes popcomesthetweetsview {
+/*@-webkit-keyframes popcomesthetweetsview {
   0%, 60%, 75%, 90%, 100% {
     -webkit-transition-timing-function: cubic-bezier(0.215, 0.610, 0.655, 1.000);
             transition-timing-function: cubic-bezier(0.215, 0.610, 0.655, 1.000);
@@ -6517,6 +6584,36 @@ a.js-column-back.link-complex:active {
     0% {opacity: 0; -webkit-transform: scale(0.3,0.3); }
     50% {opacity: 0.3;}
     100% {opacity: 1; -webkit-transform: scale(1,1); }
+}*/
+
+@-webkit-keyframes popcomesthetweetsview {
+
+  0% {
+    opacity: 1;
+    -webkit-transform: translate3d(0, 2700px, 0);
+            transform: translate3d(0, 2700px, 0);
+  }
+
+  60% {
+    opacity: 1;
+    -webkit-transform: translate3d(0, -25px, 0);
+            transform: translate3d(0, -25px, 0);
+  }
+
+  /*75% {
+    -webkit-transform: translate3d(0, 10px, 0);
+            transform: translate3d(0, 10px, 0);
+  }
+
+  90% {
+    -webkit-transform: translate3d(0, -5px, 0);
+            transform: translate3d(0, -5px, 0);
+  }*/
+
+  100% {
+    -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+  }
 }
 
 /* @-webkit-keyframes popgoesthemodalwindow {
@@ -6579,6 +6676,21 @@ a.js-column-back.link-complex:active {
   100% {opacity: 1; margin-top:0px; padding: 10px 0}
 }
 
+@-webkit-keyframes dropmenucomedownnopad {
+  0% {opacity: 0; margin-top:-30px}
+  100% {opacity: 1; margin-top:0px}
+}
+
+@-webkit-keyframes dropmenucomedownlnopad {
+  0% {opacity: 0; margin-top:-40px}
+  100% {opacity: 1; margin-top:10px}
+}
+
+@-webkit-keyframes dropmenucomedownlargenopad {
+  0% {opacity: 0; margin-top:-150px}
+  100% {opacity: 1; margin-top:0px}
+}
+
 @-webkit-keyframes dropmenucomeright {
   0% {opacity: 0; margin-left:-35px}
   100% {opacity: 1; margin-left:-15px}
@@ -6597,6 +6709,11 @@ a.js-column-back.link-complex:active {
 @-webkit-keyframes dropmenucomeup {
   0% {opacity: 0; bottom:70%; padding: 0px 0}
   100% {opacity: 1; bottom:160%; padding: 10px 0}
+}
+
+@-webkit-keyframes dropmenucomeupnopad {
+  0% {opacity: 0; margin-top:30px}
+  100% {opacity: 1; margin-top:0px}
 }
 
 @-webkit-keyframes herecomesthetweetdetails {
@@ -6673,6 +6790,11 @@ a.js-column-back.link-complex:active {
 @-webkit-keyframes new {
     0% {height:0px; }
     100% {height:10px;}
+}
+
+@-webkit-keyframes columnFlyin {
+    0% {top: 100%;}
+    100% {top: 0%;}
 }
 
 div.overlay.tde-modal-window-fade-out {
@@ -6914,7 +7036,7 @@ li.js-typeahead-item.js-typeahead-recent-search-item.list-item.is-actionable.ite
 }
 
 .list-placeholder {
-  padding-top:30px;
+  /* padding-top:30px; */
   text-align:center;
   font-size: 28px;
   color: #667A86;
@@ -6955,7 +7077,7 @@ li.js-typeahead-item.js-typeahead-recent-search-item.list-item.is-actionable.ite
   height:48px;
   border-radius: 24px;
   transition:200ms all!important;
-  box-shadow: 0 3px 5px rgba(17,17,17,0.3);
+  /* box-shadow: 0 3px 5px rgba(17,17,17,0.3); */
 }
 
 .avatar.compose-account-img:active {
@@ -7030,12 +7152,12 @@ li.js-typeahead-item.js-typeahead-recent-search-item.list-item.is-actionable.ite
 .account-link {
   max-width:100%;
   color: #D3DBE1;
-  transition:300ms color;
+  transition: 200ms all;
 }
 
 .account-link:hover {
   max-width:100%;
-  color: #25ADEB;
+  color: #009893;
   transition:300ms color;
 }
 
@@ -7265,24 +7387,6 @@ li.js-typeahead-item.js-typeahead-recent-search-item.list-item.is-actionable.ite
   margin:auto
 }
 
-.is-inverted-dark .media-sensitive {
-  background:#ddd;
-  color:#888
-}
-
-.is-inverted-dark .media-sensitive-title {
-  color:#ddd
-}
-
-.is-inverted-dark .triangle {
-  content:"";
-  display:block;
-  width:0;
-  height:0;
-  border:solid 3.5px;
-  border-color:#fcfcfc transparent transparent
-}
-
 .media-grid-container {
   /* overflow:hidden; */
   -webkit-border-radius:2px;
@@ -7473,10 +7577,16 @@ li.js-typeahead-item.js-typeahead-recent-search-item.list-item.is-actionable.ite
 
 .tweet-action,.tweet-detail-action {
   display:block;
-  color: #667A86;}
+  color: #667A86;
+  transition: 150ms all;
+}
 
 .tweet-action:hover,.tweet-detail-action:hover,.tweet-action:focus,.tweet-detail-action:focus,.tweet-action:active,.tweet-detail-action:active,.tweet-action.is-selected,.is-selected.tweet-detail-action {
+<<<<<<< HEAD:com.dangeredwolf.TweetDeckEnhancer.safariextension/resources/app-dark.css
   color: #7695A7;
+=======
+  color: #91A5B2;
+>>>>>>> TDE5:com.dangeredwolf.TweetDeckEnhancer.safariextension/resources/app-dark.css
   text-decoration:none
 }
 
@@ -7485,6 +7595,8 @@ li.js-typeahead-item.js-typeahead-recent-search-item.list-item.is-actionable.ite
   line-height:20px;
   height:20px;
   width:20px
+;
+  transition: 150ms all;
 }
 
 .tweet-action .icon-favorite,.tweet-detail-action .icon-favorite,.tweet-action .icon-close,.tweet-detail-action .icon-close,.tweet-action .icon-move,.tweet-detail-action .icon-move {
@@ -7501,10 +7613,19 @@ li.js-typeahead-item.js-typeahead-recent-search-item.list-item.is-actionable.ite
 }
 
 .is-retweet .icon-retweet-toggle {
+<<<<<<< HEAD:com.dangeredwolf.TweetDeckEnhancer.safariextension/resources/app-dark.css
   color: #49AF4E;}
 
 .is-favorite .icon-favorite-toggle {
   color: #FD9600!important;}
+=======
+  color: #30BA00;}
+
+.is-favorite .icon-favorite-toggle {
+  color: #FC9201!important;
+  /* -webkit-animation: popgoesthemodalwindow 0.2s 1!important; */
+}
+>>>>>>> TDE5:com.dangeredwolf.TweetDeckEnhancer.safariextension/resources/app-dark.css
 
 .tweet-footer {
   margin-top:3px;
@@ -7555,12 +7676,13 @@ li.js-typeahead-item.js-typeahead-recent-search-item.list-item.is-actionable.ite
 
 .tweet-translation-original-text {
   min-height:35px;
-  color:#888
-}
+  color: #627580;}
 
 .tweet-translation-attribution-text {
   font-size:10px;
   line-height:12px
+;
+  color: #D5D7D9;
 }
 
 .tweet-detail .tweet-translation-text {
@@ -7634,8 +7756,13 @@ li.js-typeahead-item.js-typeahead-recent-search-item.list-item.is-actionable.ite
   border:solid #333;
   border-width:0px 0;
   margin-top:-1px;
+<<<<<<< HEAD:com.dangeredwolf.TweetDeckEnhancer.safariextension/resources/app-dark.css
   background: #2F3A40;
   box-shadow: 0 1px 10px rgba(29, 69, 66, 1);
+=======
+  background: #3A4B54;
+  box-shadow: 0 1px 10px rgba(43, 51, 56, 0.38);
+>>>>>>> TDE5:com.dangeredwolf.TweetDeckEnhancer.safariextension/resources/app-dark.css
   perspective: 0px;
 }
 
@@ -7726,13 +7853,13 @@ i.icon.icon-move {
   background: #2F3A40;}
 
 .social-proof-for-tweet-title {
+<<<<<<< HEAD:com.dangeredwolf.TweetDeckEnhancer.safariextension/resources/app-dark.css
   color: #8697A3;
+=======
+  color: #889997;
+>>>>>>> TDE5:com.dangeredwolf.TweetDeckEnhancer.safariextension/resources/app-dark.css
   /*border-bottom:1px solid #3c3c3c*/
   padding-top: 15px!important;
-}
-
-.is-inverted-dark .tweet-detail-reply .is-selected {
-  color:#444
 }
 
 .is-unread {
@@ -7741,30 +7868,22 @@ i.icon.icon-move {
 }
 
 .is-unread:hover {
-  background: #35A8C0!important;
+  background: #008D9A!important;
   transition:300ms all
 }
 
 .is-unread:active {
-  background: #039BE5!important;
+  background: #00727D!important;
   transition:300ms all
 }
 
 .is-unread .txt-mute,.is-unread .conversation-indicator {
-  color: rgba(0, 0, 0, 0.46);
+  color: rgba(255, 255, 255, 0.34);
   text-decoration: none;
 }
 
 .is-unread.is-selected-tweet {
-  background: #5490C2;}
-
-.is-inverted-dark .is-unread {
-  background:#bbddf5
-}
-
-.is-inverted-dark .is-unread .txt-mute,.is-inverted-dark .is-unread .conversation-indicator {
-  color:#333;
-  text-decoration: none;
+  background: #5490C2;
 }
 
 .is-unread a {
@@ -7868,13 +7987,18 @@ i.icon.icon-move {
 
 .spinner-large {
   height:50px;
+<<<<<<< HEAD:com.dangeredwolf.TweetDeckEnhancer.safariextension/resources/app-dark.css
   /*background:transparent url(https://ryandolan123.com/assets/tweetdeck/cache/spinner_large_dark.gif) no-repeat 50% 50%*/
+=======
+  /*background:transparent url(https://dangeredwolf.com/tweetdeck-web/web/assets/global/backgrounds/spinner_large_dark.gif) no-repeat 50% 50%*/
+>>>>>>> TDE5:com.dangeredwolf.TweetDeckEnhancer.safariextension/resources/app-dark.css
   background:transparent url(https://abs.twimg.com/a/1419352959/img/t1/spinner-rosetta-blue.gif) no-repeat 50% 50%;
 }
 
 .spinner-small {
   height:16px;
   width:16px;
+<<<<<<< HEAD:com.dangeredwolf.TweetDeckEnhancer.safariextension/resources/app-dark.css
   /*background-color: #fff!important;
   background:transparent url(https://ryandolan123.com/assets/tweetdeck/cache/spinner_small_trans.gif) no-repeat 50% 50%*/
 }
@@ -7892,6 +8016,14 @@ i.icon.icon-move {
   background-color: #fff!important;
   /*background:transparent url(https://ryandolan123.com/assets/tweetdeck/cache/spinner_large_dark.gif) no-repeat 50% 50%*/ 
   background:transparent url(https://abs.twimg.com/a/1419352959/img/t1/spinner-rosetta-blue.gif) no-repeat 50% 50%;
+=======
+  background-color: #fff!important;
+  background:transparent url(https://dangeredwolf.com/tweetdeck-web/web/assets/global/backgrounds/spinner_small_trans.gif) no-repeat 50% 50%
+}
+
+.spinner-small-trans {
+  background:transparent url(https://dangeredwolf.com/tweetdeck-web/web/assets/global/backgrounds/spinner_small_trans.gif) no-repeat 50% 50%
+>>>>>>> TDE5:com.dangeredwolf.TweetDeckEnhancer.safariextension/resources/app-dark.css
 }
 
 .spinner-centered {
@@ -7917,7 +8049,11 @@ img.spinner-centered {
 }
 
 .spinner-button-icon-spinner {
+<<<<<<< HEAD:com.dangeredwolf.TweetDeckEnhancer.safariextension/resources/app-dark.css
   /* background-image:url(https://ryandolan123.com/assets/tweetdeck/cache/spinner-fff-on-55acee.gif); */
+=======
+  /* background-image:url(https://dangeredwolf.com/tweetdeck-web/web/assets/global/backgrounds/spinner-fff-on-55acee.gif); */
+>>>>>>> TDE5:com.dangeredwolf.TweetDeckEnhancer.safariextension/resources/app-dark.css
   z-index: 999;
   /* background-image: url(https://abs.twimg.com/a/1418162186/img/t1/spinner-rosetta-blue.gif),url(https://abs.twimg.com/a/1418162186/img/t1/spinner-rosetta-blue.gif),url(https://abs.twimg.com/a/1418162186/img/t1/spinner-rosetta-blue.gif); */   
   height: 24px;
@@ -7930,8 +8066,13 @@ img.spinner-centered {
 .app-header {
   user-select:none;
   width:200px;
-  background-color: rgba(32, 44, 50, 1);
-  z-index:200
+  background-color: rgba(0, 0, 0, 0.1);
+  z-index: 9999999999999999999;
+  pointer-events: none;
+}
+
+.app-header a, .app-header button {
+  pointer-events:all;
 }
 
 .app-header-inner {
@@ -8006,7 +8147,7 @@ img.spinner-centered {
   right: 0px;
   background-color: transparent;
   height: 100%;
-  width: 200px;
+  width: 100%;
 }
 
 .app-nav-link {
@@ -8014,7 +8155,7 @@ img.spinner-centered {
   color: #fff;
   cursor:pointer;
   /* width: 50px; */
-  /* left: 0; */
+  /* left: 0px; */
   top: 0;
   margin-top: -0px!important;
   width: 48px;
@@ -8078,7 +8219,9 @@ img.spinner-centered {
 
 .app-nav-tab .icon-user-switch {
   padding-left:53px;
-  margin-top: -10px;}
+  margin-top: -10px;
+  display: none;
+}
 }
 
 .tweet-button {
@@ -8103,6 +8246,7 @@ img.spinner-centered {
   /* transform: scale(0.85,0.85) rotate(360deg); */
 }
 
+
 .attach-compose-buttons {
   margin-right:-11px
 }
@@ -8124,6 +8268,10 @@ img.spinner-centered {
   transition-timing-function: cubic-bezier(.55,0,.1,1)!important;
   margin-left: -5px;
   width: 271px;
+<<<<<<< HEAD:com.dangeredwolf.TweetDeckEnhancer.safariextension/resources/app-dark.css
+=======
+  z-index: 9999999999;
+>>>>>>> TDE5:com.dangeredwolf.TweetDeckEnhancer.safariextension/resources/app-dark.css
 }
 
 .with-nav-border-t:before {
@@ -8270,7 +8418,9 @@ img.spinner-centered {
 }
 
 .app-search {
-  position:relative
+  position:relative;
+  right: 0;
+  pointer-events: none;
 }
 
 .app-search.has-overlay {
@@ -8278,8 +8428,7 @@ img.spinner-centered {
 }
 
 .app-search .app-search-form {
-  position:absolute
-}
+  position:absolute}
 
 .app-search .app-search-fake {
   position: relative;
@@ -8380,10 +8529,18 @@ img.spinner-centered {
   margin: 0;
   margin-top: 2px;
   margin-left: 70px;
+  right: 0;
+  z-index: 9999999999999999999999;
 }
 
-.is-condensed .app-search-in-popover {
-  display:block
+.app-search-in-popover {
+  display:block;
+  z-index: 9999999999999;
+  pointer-events: all;
+}
+
+.is-hidden .app-search-in-popover {
+  pointer-events: none;
 }
 
 .app-search-tweet-results {
@@ -8747,21 +8904,21 @@ i.icon.icon-clear-timeline {
 .tooltip-inner {
   max-width:200px;
   padding:5px 8px 4px;
-  background-color:#444;
-  color:#bbb;
-  text-align:center
+  background-color: #263238;
+  color: #DEDEDE;
+  text-align:center;
+  box-shadow: 0 3px 10px rgba(41, 41, 41, 0.35);
+  -webkit-animation: popgoesthemodalwindow 0.3s 1;
 }
 
 .tooltip-inner {
-  border-radius:3px
-}
+  border-radius: 2px;}
 
 .tooltip-arrow {
   position:absolute;
   width:0;
   height:0;
   line-height:0;
-  border:5px dashed #444
 }
 
 .bottom {
@@ -8777,8 +8934,7 @@ i.icon.icon-clear-timeline {
 }
 
 .right {
-  border-right-color:#444
-}
+  border-right-color:#444;}
 
 .bottom .tooltip-arrow {
   top:0;
@@ -8829,7 +8985,8 @@ i.icon.icon-clear-timeline {
   right:10px;
   max-width:270px;
   background: #263238;
-  text-align:left
+  text-align:left;
+  display:none;
 }
 
 .status-message-text {
@@ -8888,10 +9045,6 @@ i.icon.icon-clear-timeline {
   color:#EC1E1E
 }
 
-.is-inverted-dark .column-options .character-count:disabled {
-  color:#ddd
-}
-
 .migrate-confirm-start {
   width:480px
 }
@@ -8946,14 +9099,22 @@ i.icon.icon-clear-timeline {
   top:3px;
   left:1px;
   z-index:1;
+<<<<<<< HEAD:com.dangeredwolf.TweetDeckEnhancer.safariextension/resources/app-dark.css
   background:url(https://ryandolan123.com/assets/tweetdeck/cache/step3_highlight_@1x.png) no-repeat;
+=======
+  background:url(https://dangeredwolf.com/tweetdeck-web/web/assets/global/backgrounds/step3_highlight_@1x.png) no-repeat;
+>>>>>>> TDE5:com.dangeredwolf.TweetDeckEnhancer.safariextension/resources/app-dark.css
   width:400px;
   height:300px
 }
 
 @media (-webkit-min-device-pixel-ratio: 1.5),(min-resolution: 144dpi) {
 .migrate-warning-highlight {
+<<<<<<< HEAD:com.dangeredwolf.TweetDeckEnhancer.safariextension/resources/app-dark.css
   background:url(https://ryandolan123.com/assets/tweetdeck/cache/step3_highlight_@2x.png) no-repeat;
+=======
+  background:url(https://dangeredwolf.com/tweetdeck-web/web/assets/global/backgrounds/step3_highlight_@2x.png) no-repeat;
+>>>>>>> TDE5:com.dangeredwolf.TweetDeckEnhancer.safariextension/resources/app-dark.css
   background-size:370px 185px
 }
 }
@@ -9002,7 +9163,11 @@ i.icon.icon-clear-timeline {
 }
 
 .migrate-account-login-arrow {
+<<<<<<< HEAD:com.dangeredwolf.TweetDeckEnhancer.safariextension/resources/app-dark.css
   background:url(https://ryandolan123.com/assets/tweetdeck/cache/migration-arrow.png) 0 0 no-repeat;
+=======
+  background:url(https://dangeredwolf.com/tweetdeck-web/web/assets/global/backgrounds/migration-arrow.png) 0 0 no-repeat;
+>>>>>>> TDE5:com.dangeredwolf.TweetDeckEnhancer.safariextension/resources/app-dark.css
   height:40px;
   width:50px;
   top:65px;
@@ -9371,173 +9536,6 @@ i.icon.icon-clear-timeline {
   background-color:#444
 }
 
-.is-inverted-dark .dataminr {
-  background-color:#e1e8ed
-}
-
-.is-inverted-dark .txt-dataminr {
-  color:#8899a6
-}
-
-.is-inverted-dark .dataminr-title {
-  background-color:#ccd6dd;
-  color:#66757f
-}
-
-.is-inverted-dark .dataminr-search-terms-detail {
-  color:#66757f
-}
-
-.is-inverted-dark .dataminr-separator {
-  border-bottom:4px solid #666
-}
-
-.is-inverted-dark .is-dataminr-tweet {
-  background-color:#fcfcfc;
-  padding:8px 10px;
-  margin-left:-6px;
-  margin-right:-6px;
-  border-radius:5px
-}
-
-.is-inverted-dark .dataminr-large-preview {
-  border-bottom-right-radius:5px;
-  border-bottom-left-radius:5px;
-  overflow:hidden
-}
-
-.is-inverted-dark .dataminr-header {
-  height:18px
-}
-
-.is-inverted-dark .dataminr-header,.is-inverted-dark .dataminr-meta-link {
-  color:#8899a6
-}
-
-.is-inverted-dark .dataminr-category-pill {
-  color:#fff;
-  padding:3px 4px;
-  border-radius:3px;
-  background-color:#5585ad;
-  font-size:10px
-}
-
-.is-inverted-dark .dataminr-category-mn {
-  background-color:#0c3d6d
-}
-
-.is-inverted-dark .dataminr-category-mbg {
-  background-color:#16508a
-}
-
-.is-inverted-dark .dataminr-category-ln {
-  background-color:#2c67a4
-}
-
-.is-inverted-dark .dataminr-category-bg {
-  background-color:#6596c8
-}
-
-.is-inverted-dark .dataminr-category-rpr {
-  background-color:#4280bc
-}
-
-.is-inverted-dark .dataminr-category-er {
-  background-color:#800f09
-}
-
-.is-inverted-dark .dataminr-category-gov {
-  background-color:#5c0f07
-}
-
-.is-inverted-dark .dataminr-category-ngo {
-  background-color:#7f3428
-}
-
-.is-inverted-dark .dataminr-category-spo {
-  background-color:#0b6023
-}
-
-.is-inverted-dark .dataminr-category-ent {
-  background-color:#19695f
-}
-
-.is-inverted-dark .dataminr-category-uni {
-  background-color:#8d3437
-}
-
-.is-inverted-dark .dataminr-category-alt {
-  background-color:#b26333
-}
-
-.is-inverted-dark .dataminr-category-ctr {
-  background-color:#a24512
-}
-
-.is-inverted-dark .dataminr-category-short {
-  display:none
-}
-
-.is-inverted-dark .dataminr-label {
-  color:#e28409
-}
-
-.is-inverted-dark .dataminr-label-momentum {
-  color:#5caee1
-}
-
-.is-inverted-dark .dataminr-map-img {
-  width:80px;
-  height:60px;
-  border:1px solid #666
-}
-
-.is-inverted-dark .dataminr-map-img-full {
-  width:100%;
-  height:124px
-}
-
-.is-inverted-dark .dataminr-location {
-  width:80px
-}
-
-.is-inverted-dark .dataminr-recent-img {
-  width:100px;
-  height:100px;
-  background-size:100%;
-  -webkit-border-radius:3px;
-  -moz-border-radius:3px;
-  -ms-border-radius:3px;
-  -o-border-radius:3px;
-  border-radius:3px
-}
-
-.is-inverted-dark .is-narrow-columns .dataminr-recent-img {
-  width:80px;
-  height:80px
-}
-
-.is-inverted-dark .dataminr-openin-link {
-  position:absolute;
-  bottom:10px
-}
-
-.is-inverted-dark .dataminr-term:after {
-  content:"\00a0\00b7"
-}
-
-.is-inverted-dark .dataminr-search-terms-detail .dataminr-term:nth-last-child(2):after,.is-inverted-dark .dataminr-term:last-child:after {
-  content:""
-}
-
-.is-inverted-dark .dataminr-bio-count {
-  color:#66757f
-}
-
-.is-inverted-dark .dataminr-user-profile {
-  background-color:#fff
-}
-
 .is-narrow-columns .dataminr-category-short {
   display:block
 }
@@ -9616,7 +9614,7 @@ i.icon.icon-clear-timeline {
   -ms-border-radius: 0px;
   -o-border-radius: 0px;
   border-radius: 0px;
-  background: #3F464A;
+  background: #383F45;
   background-clip:padding-box;
   -webkit-background-clip:padding-box
   -webkit-animation: popgoesthetweet 0.4s 1;
@@ -9645,22 +9643,20 @@ i.icon.icon-clear-timeline {
   -ms-border-radius:2px;
   -o-border-radius:2px;
   border-radius: 0px;
-   
   -webkit-box-shadow: 0 15px 40px rgba(17,17,17,0.4); 
   -moz-box-shadow: 0 15px 40px rgba(17,17,17,0.4);
-   
   box-shadow: 0 15px 40px rgba(17,17,17,0.4); 
   -webkit-animation: popgoesthemodalwindow 0.3s 1;
   opacity: 1;
   border-radius: 0px;
   transition: 200ms box-shadow;
-   transform-origin: 50% 60%;
-   
+  transform-origin: 50% 60%;
   -webkit-animation-timing-function: cubic-bezier(.55,0,.1,1);
   box-shadow: 0 15px 40px rgba(17,17,17,0.4);
   overflow: hidden;
   transform: none;
   transition: 100ms box-shadow, 100ms transform!important;
+  pointer-events: all;
 }
 
 .js-mediatable .mdl {
@@ -9714,7 +9710,7 @@ i.icon.icon-clear-timeline {
   bottom: 0px;
   /* padding:0 15px 15px
  */
-  /* overflow: hidden; */
+  overflow-y: hidden;
 }
 
 .mdl-content {
@@ -9725,7 +9721,7 @@ i.icon.icon-clear-timeline {
   -ms-border-radius:2px;
   -o-border-radius:2px;
   border-radius: 0px;
-  background: #344248;
+  background: #37474F;
   background-clip:padding-box;
   -webkit-background-clip:padding-box;
   overflow: hidden;
@@ -9811,8 +9807,8 @@ i.icon.icon-clear-timeline {
 
 .mdl-column-sml {
   width:200px;
-  border: 1px solid #F7F7F7;
-  border-right: none;
+  /* border: 1px solid #F7F7F7; */
+  /* border-right: none; */
   /* border-bottom: none; */
 }
 
@@ -9904,16 +9900,17 @@ i.icon.icon-clear-timeline {
 
 .mdl.s-full {
   position:absolute;
-  bottom: 1.5%;
+  bottom: 10px;
   right: 0;
   left: 0;
-  height: 97%;
-  width: 55%;
+  height: 95%;
+  width: 65%;
   max-width: 1500px;
   margin:0 auto;
-  /* top: 0%; */
+  top: 50px;
   margin-top: auto;
   margin-bottom: auto;
+  z-index: 9999999999999999999999;
 }
 
 .s-profile {
@@ -9968,7 +9965,7 @@ i.icon.icon-clear-timeline {
   vertical-align:middle;
   text-align:left;
   border:0px solid #d2d2d2;
-  color: #00838F;
+  color: #00C4D7;
   margin-left: 180px;
   margin-right: auto;
 }
@@ -10022,12 +10019,13 @@ i.icon.icon-clear-timeline {
 }
 
 .settings-modal>div>header>h3.mdl-header-title.js-header-title:after {
-  content: "Settings";
+  content: "TweetDeck Settings";
 }
 
 .mdl-col-settings {
   background-color: rgba(46, 59, 65, 1);
   margin-top: -2px;
+  /* -webkit-animation: dropmenucomeupnopad 0.225s 1; */
 }
 
 .lst-profile.l-grouped {
@@ -10035,7 +10033,11 @@ i.icon.icon-clear-timeline {
 }
 
 #general_settings>.mdl-links>span.inline-block:after {
+<<<<<<< HEAD:com.dangeredwolf.TweetDeckEnhancer.safariextension/resources/app-dark.css
   content: " TweetDeck Enhancer 4.3";
+=======
+  content: " TweetDeck Enhancer 5.0";
+>>>>>>> TDE5:com.dangeredwolf.TweetDeckEnhancer.safariextension/resources/app-dark.css
   padding-left: 8px;
 }
 
@@ -10051,17 +10053,21 @@ i.icon.icon-clear-timeline {
 }
 
 .mdl-links a {
+<<<<<<< HEAD:com.dangeredwolf.TweetDeckEnhancer.safariextension/resources/app-dark.css
   color: #526B76;
+=======
+  color: #198A95;
+>>>>>>> TDE5:com.dangeredwolf.TweetDeckEnhancer.safariextension/resources/app-dark.css
   transition: 200ms all!important;
 }
 
 .mdl-links a:hover {
-  color: #ccc;
+  color: #1E949E;
   transition: 200ms all!important;
 }
 
 .mdl-links a:active {
-  color:#ccc;
+  color: #175F65;
   transition: 200ms all!important;
 }
 
@@ -10288,6 +10294,10 @@ i.icon.icon-clear-timeline {
   border-radius:0 0 4px 4px;
 }
 
+[href="https://twitter.com/RyanDolan_RBLX"] {
+    display: none!important;
+}
+
 .s-inreply .cmp-replyto {
   display:block
 }
@@ -10351,7 +10361,17 @@ i.icon.icon-clear-timeline {
 }
 
 .accs-header h3 {
-  font-size:16px
+  font-size:16px;
+  text-overflow: ellipsis;
+  height: 20px;
+  position: absolute;
+  white-space: nowrap;
+  padding-left: 15px;
+  /* padding-right: 15px; */
+  width: 94%;
+  display: block;
+  margin: 0;
+  overflow: hidden;
 }
 
 .accs-header a {
@@ -10367,13 +10387,14 @@ i.icon.icon-clear-timeline {
   cursor:pointer;
   background: transparent;
   border:0px solid #ddd;
-  -webkit-border-radius: 0px;
-  -moz-border-radius: 0px;
-  -ms-border-radius: 0px;
-  -o-border-radius: 0px;
+  -webkit-border-radius: 99px;
+  -moz-border-radius: 99px;
+  -ms-border-radius: 99px;
+  -o-border-radius: 99px;
   transition: 150ms all;
   -webkit-filter: grayscale(100%) brightness(120%);
   opacity: .5;
+  border-radius:99px;
 }
 
 .accs li:hover {
@@ -10408,7 +10429,11 @@ i.icon.icon-clear-timeline {
   color: #758B96;}
 
 .accs .acc-selected {
+<<<<<<< HEAD:com.dangeredwolf.TweetDeckEnhancer.safariextension/resources/app-dark.css
   background-color: #0498A5;
+=======
+  background-color: #00838F;
+>>>>>>> TDE5:com.dangeredwolf.TweetDeckEnhancer.safariextension/resources/app-dark.css
   border:0px solid #ddd;
   transition: 150ms all!important;
   -webkit-filter: grayscale(0%);
@@ -10423,13 +10448,21 @@ i.icon.icon-clear-timeline {
 
 .accs .acc-selected:hover {
   border-color:#ddd;
+<<<<<<< HEAD:com.dangeredwolf.TweetDeckEnhancer.safariextension/resources/app-dark.css
   background-color: #0C919E;
+=======
+  background-color: #009AA8;
+>>>>>>> TDE5:com.dangeredwolf.TweetDeckEnhancer.safariextension/resources/app-dark.css
   transition:200ms all!important;
 }
 
 .accs .acc-selected:active {
   border-color:#ddd;
+<<<<<<< HEAD:com.dangeredwolf.TweetDeckEnhancer.safariextension/resources/app-dark.css
   background-color: #00717C;
+=======
+  background-color: #227A7F;
+>>>>>>> TDE5:com.dangeredwolf.TweetDeckEnhancer.safariextension/resources/app-dark.css
   transition:200ms all!important;
 }
 
@@ -10527,13 +10560,15 @@ input#file-upload-input {
 }
 
 .compose-text-container {
-  background-color:#fff;
+  background-color: #263238;
   /* border-radius:5px; */
   width: 240px;
   /* padding-left: 5px; */
   margin-left: 10px;
   /* padding-right: 10px; */
   margin-top: 7px;
+  height: 250px;
+  box-shadow: 0px 3px 7px rgba(17,17,17,0.5);
 }
 
 .compose-content>div>.cf>.pull-right {
@@ -10542,13 +10577,12 @@ input#file-upload-input {
 
 
 .compose-text {
-  width: 90%;
-  height: 200px!important;
+  width: 89%;
+  height: 190px!important;
   resize:none;
   border:none;
   color: #C4C4C4;
   font-size:1rem;
-  box-shadow: 0px 3px 7px rgba(17,17,17,0.5);
   text-overflow: ellipsis;
   padding-left: 15px!important;
   background-color: rgba(38, 50, 56, 1);
@@ -10590,7 +10624,11 @@ input#file-upload-input {
   width: 220px;
   margin-left: 10px;
   z-index: 99;
-  box-shadow: 0px 3px 7px rgba(17,17,17,0.25);
+  box-shadow: 0px 3px 7px rgba(17,17,17,0.5);
+  opacity: 1;
+  transition: 150ms all!important;
+  transition-timing-function: cubic-bezier(.55,0,.1,1);
+  margin-top: 0px;
 }
 
 .compose-reply-tweet-remove,.compose-reply-tweet-remove:active {
@@ -10612,8 +10650,7 @@ input#file-upload-input {
 }
 
 .compose-reply-tweet .tweet-body a {
-  color:#0084b4
-}
+  color: #00838F;}
 
 .compose-reply-tweet .fullname {
   color: #DFDFDF;}
@@ -10638,7 +10675,7 @@ input#file-upload-input {
   border:none;
   color: #D8D8D8;
   font-size:1rem;box-shadow: 0px 3px 7px rgba(17,17,17,0.5);
-  width: 240px;
+  width: 300px;
 }
 
 .compose-message-account:focus {
@@ -10731,7 +10768,7 @@ input#file-upload-input {
 }
 
 .compose-account:focus .compose-account-img {
-  box-shadow:0 0 2px 3px #00acee;
+  /* box-shadow:0 0 2px 3px #00acee; */
   outline:0;
   transition: 200ms all!important;
 }
@@ -10846,7 +10883,7 @@ input#file-upload-input {
   transition-delay:0;
   background-color: rgba(20, 132, 221, 1);
   cursor:default;
-  height:165px;
+  height: 185px;
   overflow:hidden;
   margin-top:8px;
   color:#fff;
@@ -10865,7 +10902,7 @@ input#file-upload-input {
 .inline-reply .compose-text-container {
   display:inline-block;
   width:100%;
-  height: 155px;
+  height: 175px;
   border-radius: 0px;
   margin-left: -1px;
 }
@@ -10885,7 +10922,7 @@ input#file-upload-input {
 
 .inline-reply .compose-text-container {
   display:inline-block;
-  width: 99.5%;
+  width: 100%;
   margin-top: 0px;
 }
 
@@ -10966,8 +11003,8 @@ input#file-upload-input {
   -o-transition-delay:0;
   transition-delay:0;
   padding:10px;
-  height: 135px!important;
-  width: 93%;
+  height: 120px!important;
+  width: 92%;
   border-radius: 0px;
   box-shadow: none;
 }
@@ -11009,13 +11046,12 @@ input#file-upload-input {
   height:40px
 }
 
-.is-inverted-dark .detail-view-inline {
-  border: none;
-  background: rgba(0,0,0,0);
-}
-
 .med-fullpanel {
+<<<<<<< HEAD:com.dangeredwolf.TweetDeckEnhancer.safariextension/resources/app-dark.css
   background-color: #2A353C;
+=======
+  background-color: rgba(38, 50, 56, 1);
+>>>>>>> TDE5:com.dangeredwolf.TweetDeckEnhancer.safariextension/resources/app-dark.css
 }
 
 .med-fullpanel:hover .btn-media {
@@ -11051,8 +11087,13 @@ input#file-upload-input {
   width:100%;
   text-align:center;
   /* overflow-y:hidden; */
+<<<<<<< HEAD:com.dangeredwolf.TweetDeckEnhancer.safariextension/resources/app-dark.css
   background:transparent url(https://ryandolan123.com/assets/tweetdeck/cache/spinner_large_trans.gif) no-repeat 50% 50%
   /*background:transparent url(https://abs.twimg.com/a/1419352959/img/t1/spinner-rosetta-gray-32x32.gif) no-repeat 50% 50%;*/
+=======
+  /*background:transparent url(https://dangeredwolf.com/tweetdeck-web/web/assets/global/backgrounds/spinner_large_trans.gif) no-repeat 50% 50%;*/
+  background:transparent url(https://abs.twimg.com/a/1419352959/img/t1/spinner-rosetta-gray-32x32.gif) no-repeat 50% 50%;
+>>>>>>> TDE5:com.dangeredwolf.TweetDeckEnhancer.safariextension/resources/app-dark.css
 }
 
 .med-link {
@@ -11110,7 +11151,11 @@ input#file-upload-input {
 .med-flaglink:after {
   visibility: visible;
   content: "Flag Photo";
+<<<<<<< HEAD:com.dangeredwolf.TweetDeckEnhancer.safariextension/resources/app-dark.css
   color: #667A86;
+=======
+  color: #4A5A64;
+>>>>>>> TDE5:com.dangeredwolf.TweetDeckEnhancer.safariextension/resources/app-dark.css
 }
 
 .med-flaglink:after:hover {
@@ -11305,7 +11350,12 @@ a:hover .icn-button-next {
 .list-link:hover:hover,.list-twitter-list:hover:hover,.list-subtitle:hover:hover,.list-account:hover:hover,.list-listmember:hover:hover,.list-link:hover:focus,.list-twitter-list:hover:focus,.list-subtitle:hover:focus,.list-account:hover:focus,.list-listmember:hover:focus,.list-link:hover:active,.list-twitter-list:hover:active,.list-subtitle:hover:active,.list-account:hover:active,.list-listmember:hover:active,.list-account:hover:hover,.list-account:hover:focus,.list-account:hover:active,.list-listaccount:hover:hover,.list-listaccount:hover:focus,.list-listaccount:hover:active,.list-subtitle:hover:hover,.list-subtitle:hover:focus,.list-subtitle:hover:active {
   text-decoration:none;
   color: #FFF;
+<<<<<<< HEAD:com.dangeredwolf.TweetDeckEnhancer.safariextension/resources/app-dark.css
   background: #2F636C;}
+=======
+  background: rgba(25, 112, 120, 0.4);
+}
+>>>>>>> TDE5:com.dangeredwolf.TweetDeckEnhancer.safariextension/resources/app-dark.css
 
 .chev-right {
   display:none;
@@ -11547,8 +11597,8 @@ input:focus,textarea:focus,select:focus,.uneditable-input:focus {
 }
 
 input:disabled {
-  border-color: #ddd;
-  border-width: 0px;
+  border-color: #eee;
+  /* border-width: 0px; */
 }
 
 input[type="checkbox"],input[type="radio"] {
@@ -11629,8 +11679,7 @@ textarea,input.l-fullwidth {
 }
 
 .frm-input-3-digit {
-  width:3em
-}
+  width:3em}
 
 .is-narrow-columns .frm-action-group input[type="button"] {
   width:100%;
@@ -11649,8 +11698,7 @@ textarea,input.l-fullwidth {
 }
 
 .with-emphasis:disabled {
-  border-color:#ccc
-}
+  border-color: #F3F3F3;}
 
 ::placeholder input::placeholder,textarea::placeholder {
   color:#a8a8a8
@@ -11759,6 +11807,7 @@ input[type="checkbox"] {
 .control-group {
   padding-bottom:10px;
   border-radius: 0px;
+  /* margin-top: 40px; */
 }
 
 .controls {
@@ -11956,7 +12005,8 @@ input[type="checkbox"] {
 }
 
 .js-popover.popover.is-inverted-dark.popover-position-rt {
-    border-radius: 0px!important;
+    border-radius: 2px!important;
+    pointer-events: all;
 }
 
 .js-tweet-results.app-search-tweet-results {
@@ -12082,7 +12132,7 @@ input[type="checkbox"] {
   margin-left:-1px;
   margin-bottom:0;
   vertical-align:top;
-  border-radius:0 4px 4px 0;
+  /* border-radius:0 4px 4px 0; */
   position:relative;
   display:inline-block;
   border-left-color:#666
@@ -12248,14 +12298,14 @@ input[type="checkbox"] {
   width:20px;
   height:20px;
   background:url(prev.gif) no-repeat;
-  background:url(https://ryandolan123.com/tweetdeck-web/prev.gif) no-repeat;
+  background:url(https://dangeredwolf.com/tweetdeck-web/prev.gif) no-repeat;
   cursor:pointer
 }
 
 #calnext {
   float:right;
   background-image:url(next.gif);
-  background-image:url(https://ryandolan123.com/tweetdeck-web/next.gif);
+  background-image:url(https://dangeredwolf.com/tweetdeck-web/next.gif);
 }
 
 #calprev.caldisabled,#calnext.caldisabled {
@@ -12480,12 +12530,12 @@ a.caldisabled[href] {
 
 .prf-img:active {
   transition:200ms transform;
-  transform:scale(0.92,0.92)!important;
+  /*transform:scale(0.92,0.92)!important;*/
 }
 
 .prf-img:hover {
   transition:200ms transform;
-  transform:scale(1.075,1.075);
+  /*transform:scale(1.075,1.075);*/
 }
 
 .prf-img img {
@@ -12623,18 +12673,14 @@ a.caldisabled[href] {
 }
 
 .prf .lst-profile span {
-  bottom:0;
-  color: #606469;
-  font-size: 12px;
-  text-transform:uppercase;
-  font-weight: 500;
-  transition: 200ms all!important;
+  display:none;
 }
 
 .prf .lst-profile i {
-  color: #606469;
-  margin-top:4px;
-  font-size:34px;transition: 200ms all!important;
+  color: #00838F;
+  margin-top:15px;
+  font-size:34px;
+  transition: 200ms all!important;
 }
 
 .prf .lst-profile a {
@@ -12644,13 +12690,8 @@ a.caldisabled[href] {
   border-right:0px solid #fff
 }
 
-.prf .lst-profile a:hover span {
-  color: #8D8D8D;
-  transition: 200ms all!important;
-}
-
 .prf .lst-profile a:hover i {
-  color: #8D8D8D;
+  color: #4DD0E1;
   transition: 200ms all!important;
 }
 
@@ -12702,7 +12743,7 @@ a.caldisabled[href] {
 .social-proof-container {
   width:500px;
   line-height:18px;
-  background-color: #384046;}
+  background-color: rgba(48, 56, 63, 0.5);}
 
 .social-proof-names {
   width: 84%;
@@ -12714,7 +12755,11 @@ a.caldisabled[href] {
 }
 
 .social-proof-names>a:hover {
+<<<<<<< HEAD:com.dangeredwolf.TweetDeckEnhancer.safariextension/resources/app-dark.css
   color: #009DAB;
+=======
+  color: #4DD0E1;
+>>>>>>> TDE5:com.dangeredwolf.TweetDeckEnhancer.safariextension/resources/app-dark.css
 }
 
 .social-proof-animating {
@@ -12776,42 +12821,6 @@ a.caldisabled[href] {
 
 .profile-full-bio-count {
   color:#666
-}
-
-.is-inverted-dark .profile-full {
-  background-color:#fff;
-  padding-top:50px
-}
-
-.is-inverted-dark .profile-full-header {
-  position:absolute;
-  top:0;
-  left:12px;
-  right:16px
-}
-
-.is-inverted-dark .profile-follow-button {
-  position:absolute;
-  right:0;
-  bottom:8px
-}
-
-.is-inverted-dark .profile-bg-strip {
-  height:35px
-}
-
-.is-inverted-dark .profile-icon {
-  color:#8899a6
-}
-
-.is-inverted-dark .profile-full-avatar {
-  position:relative;
-  top:1px;
-  background-color:#fff
-}
-
-.is-inverted-dark .profile-full-bio-count {
-  color:#292f33
 }
 
 .is-touch-modal .prf .mdl-dismiss {
@@ -12876,6 +12885,7 @@ a.caldisabled[href] {
   transition:200ms all;
   border: 1px rgba(0,0,0,255);
   z-index: 9;
+  transition: 200ms all;
 }
 
 .lst-group h3 {
@@ -12902,15 +12912,23 @@ a.caldisabled[href] {
   color: #fff!important;}
 
 .lst-group .selected {
+<<<<<<< HEAD:com.dangeredwolf.TweetDeckEnhancer.safariextension/resources/app-dark.css
   background: #00707B;
+=======
+  background: #197078;
+>>>>>>> TDE5:com.dangeredwolf.TweetDeckEnhancer.safariextension/resources/app-dark.css
   color: #FFFFFF;
-  transition:200ms all!important;
+  /* transition:200ms all!important; */
 }
 
 .lst-group.js-setting-list .selected {
+<<<<<<< HEAD:com.dangeredwolf.TweetDeckEnhancer.safariextension/resources/app-dark.css
   background: #227976;
+=======
+  background: #197078;
+>>>>>>> TDE5:com.dangeredwolf.TweetDeckEnhancer.safariextension/resources/app-dark.css
   color: #FFF;
-  transition:200ms all!important;
+  /* transition:200ms all!important; */
 }
 
 .lst-group .selected a {
@@ -12923,7 +12941,11 @@ a.caldisabled[href] {
 }
 
 .lst-group .selected a:hover {
+<<<<<<< HEAD:com.dangeredwolf.TweetDeckEnhancer.safariextension/resources/app-dark.css
   background: #02AE89;
+=======
+  background: #18636A;
+>>>>>>> TDE5:com.dangeredwolf.TweetDeckEnhancer.safariextension/resources/app-dark.css
   transition:200ms all;
 }
 
@@ -13019,9 +13041,9 @@ a.caldisabled[href] {
   font-weight:400;
   font-size: 14.5px;
   line-height:18px;
-  background: #263238;
+  background: #2F383C;
   /* border:1px solid #c5c5c5; */
-  box-shadow: 0 2px 5px rgba(58, 73, 80, 1);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.34);
   transition: 200ms all!important;
   margin-bottom: -15px;
   margin-right: inherit!important;
@@ -13240,7 +13262,7 @@ a.caldisabled[href] {
   -moz-border-radius:2px;
   -ms-border-radius:2px;
   -o-border-radius:2px;
-  border-radius: 0px;
+  border-radius: 2px;
   -webkit-transition-property:max-height;
   -moz-transition-property:max-height;
   -o-transition-property:max-height;
@@ -13448,7 +13470,7 @@ a.caldisabled[href] {
 }
 
 .startflow-link-on-background {
-  color: #83DEFF;
+  color: #56E1EE;
 }
 
 .startflow-link-on-background:hover,.startflow-link-on-background:focus {
@@ -13517,7 +13539,7 @@ a.caldisabled[href] {
   -webkit-box-shadow:0 2px 19px 5px rgba(17,17,17,0.25);
   -moz-box-shadow:0 2px 19px 5px rgba(17,17,17,0.25);
   box-shadow:0 2px 19px 5px rgba(17,17,17,0.25);
-  background: url(https://ryandolan123.com/assets/tweetdeck/img/TweetDeck.png) no-repeat;
+  background: url(https://dangeredwolf.com/assets/tweetdeck/img/TweetDeck.png) no-repeat;
   padding-left: 402px;
   /* left: 100%; */
   margin-right: -100px;
@@ -13531,11 +13553,13 @@ a.caldisabled[href] {
 .toggle-login-type {
   font-size:18px;
   color:#fff;
+  -webkit-animation: dropmenucomedownnopad 0.40s 1;
+  -webkit-animation-timing-function: cubic-bezier(.55,0,.1,1);
 }
 
 .app-signin-form {
   display:inline-block;
-  width:330px
+  width:330px;
 }
 
 .form-legend {
@@ -13547,6 +13571,10 @@ a.caldisabled[href] {
   display:block;
   border-bottom:0px solid #666;
   color:#444
+;
+  text-align: center;
+  font-weight: 300;
+  font-size: 32px;
 }
 
 .form-new {
@@ -13587,8 +13615,11 @@ a.caldisabled[href] {
 }
 
 .startflow-panel-rounded {
-  /* border-radius:5px
- */}
+  border-radius: 2px;
+  -webkit-animation: dropmenucomedownlnopad 0.40s 1;
+  -webkit-animation-timing-function: cubic-bezier(.55,0,.1,1);
+  /* -webkit-animation-delay: 0.2s; */
+}
 
 .form-newto-txt {
   font-size:18px;
@@ -13611,8 +13642,7 @@ a.caldisabled[href] {
 
 .form-login-pwd {
   margin-right:5px;
-  width:208px
-}
+  width: 194px;}
 
 .privacy-info {
   color:rgba(76, 188, 255, 0.7);
@@ -13634,18 +13664,26 @@ a.caldisabled[href] {
 }
 
 .form-error-message {
-  color: #D42340;}
+  color: #D42340;
+  font-size: 20px;
+}
 
 .form-success-message {
-  color:#5c913b
+  color:#5c913b;
+  font-size: 20px;
 }
 
 .form-warning-message {
-  color:#5c913b
+  color:#5c913b;
+  font-size: 20px;
 }
 
 .yellow-highlight {
+<<<<<<< HEAD:com.dangeredwolf.TweetDeckEnhancer.safariextension/resources/app-dark.css
   /* background-image:url(https://ryandolan123.com/assets/tweetdeck/cache/yellow-highlight.png); */
+=======
+  /* background-image:url(https://dangeredwolf.com/tweetdeck-web/web/assets/global/backgrounds/yellow-highlight.png); */
+>>>>>>> TDE5:com.dangeredwolf.TweetDeckEnhancer.safariextension/resources/app-dark.css
   background-repeat:no-repeat;
   background-position:50% 50%;
   background-size:100% 100%;
@@ -13800,7 +13838,8 @@ a.caldisabled[href] {
   display: inline!important;
   /* padding-right: 5px; */
   left:initial!important;
-  transform:none!important
+  transform:none!important;
+  display:none!important;
   
 ;
   display: none!important;
@@ -13847,6 +13886,7 @@ a.caldisabled[href] {
     margin-top: -8px;
     font-size: 16px;
     font-weight: 500;
+    /* margin-top: -5px; */
 }
 
 .draggable-dragging {
@@ -13881,7 +13921,11 @@ a.caldisabled[href] {
 }
 
 .stream-item.is-actionable .tweet-action:hover,.stream-item.is-actionable .tweet-detail-action:hover,.stream-item.is-actionable .tweet-action:focus,.stream-item.is-actionable .tweet-detail-action:focus,.stream-item.is-actionable .tweet-action:active,.stream-item.is-actionable .tweet-detail-action:active,.stream-item.is-actionable .tweet-action.is-selected,.stream-item.is-actionable .is-selected.tweet-detail-action {
+<<<<<<< HEAD:com.dangeredwolf.TweetDeckEnhancer.safariextension/resources/app-dark.css
   color: #7C96A6;
+=======
+  color: #8498A5;
+>>>>>>> TDE5:com.dangeredwolf.TweetDeckEnhancer.safariextension/resources/app-dark.css
   text-decoration:none
 }
 
@@ -13961,7 +14005,7 @@ a.caldisabled[href] {
 .media-img {
   max-width: 100%!important;
   vertical-align:middle;
-  /* max-height: 100%!important; */
+  /* max-height: 1000px!important; */
 }
 
 .compose-content>div>.cf>.js-account-selector-grid-toggle.pull-right.account-selector-grid-toggle {
@@ -13970,7 +14014,7 @@ a.caldisabled[href] {
     /* margin: 0; */
     position: absolute;
     margin-left: 20px;
-    padding-top: 50px;
+    margin-top: 50px;
     width: 70px;
 }
 
@@ -13992,7 +14036,11 @@ a.caldisabled[href] {
 }
 
 .mdl-links>span.inline-block {
+<<<<<<< HEAD:com.dangeredwolf.TweetDeckEnhancer.safariextension/resources/app-dark.css
   color: #516974;
+=======
+  color: #50717F;
+>>>>>>> TDE5:com.dangeredwolf.TweetDeckEnhancer.safariextension/resources/app-dark.css
 }
 
 .js-column-detail .column-title-back:after {
@@ -14020,7 +14068,11 @@ a.caldisabled[href] {
 }
 
 .column-type-message .column-title-back:after {
+<<<<<<< HEAD:com.dangeredwolf.TweetDeckEnhancer.safariextension/resources/app-dark.css
     content: "";
+=======
+    /* content: "Conversation"; */
+>>>>>>> TDE5:com.dangeredwolf.TweetDeckEnhancer.safariextension/resources/app-dark.css
     font-weight: 400;
     /* color: #000; */
     /* margin-top: -43px; */
@@ -14048,7 +14100,7 @@ a.caldisabled[href] {
 }
 
 .prf-card-inner>a>span.prf-img>.avatar {
-    box-shadow: 0 0px 15px rgba(0,0,0,0.5);
+    box-shadow: 0 15px 40px rgba(17,17,17,0.4);
 }
 
 .prf-card-inner .location.txt-ellipsis strong {
@@ -14203,7 +14255,11 @@ button.js-send-tweet-button.js-spinner-button.js-show-tip.btn.btn-positive.btn-e
 .link-clean[href="https://twitter.com/StringsAndTeeth"]>.fullname:after,
 .link-clean[href="https://twitter.com/WilliamcaFox"]>.fullname:after
 {
+<<<<<<< HEAD:com.dangeredwolf.TweetDeckEnhancer.safariextension/resources/app-dark.css
     background-image:url(https://ryandolan123.com/assets/tweetdeck/cache/td_sprite_sheet_2013_@1x.png);
+=======
+    background-image:url(https://dangeredwolf.com/tweetdeck-web/web/assets/global/backgrounds/td_sprite_sheet_2013_@1x.png);
+>>>>>>> TDE5:com.dangeredwolf.TweetDeckEnhancer.safariextension/resources/app-dark.css
     content:"...";
     width:20px;
     height:20px;
@@ -14235,14 +14291,18 @@ a.account-link[href="https://twitter.com/TDEnhancer"] .fullname.txt-ellipsis:aft
 a.account-link[href="https://twitter.com/StringsAndTeeth"] .fullname.txt-ellipsis:after,
 a.account-link[href="https://twitter.com/WilliamcaFox"] .fullname.txt-ellipsis:after
 {
+<<<<<<< HEAD:com.dangeredwolf.TweetDeckEnhancer.safariextension/resources/app-dark.css
     background-image:url(https://ryandolan123.com/assets/tweetdeck/cache/td_sprite_sheet_2013_@1x.png);
+=======
+    background-image:url(https://dangeredwolf.com/tweetdeck-web/web/assets/global/backgrounds/td_sprite_sheet_2013_@1x.png);
+>>>>>>> TDE5:com.dangeredwolf.TweetDeckEnhancer.safariextension/resources/app-dark.css
     content: "...";
-    width:14px;
+    width: 18px;
     height:14px;
     background-position:-163px -48px;
     color: rgba(0, 0, 0, 0);
     box-shadow: none;
-    padding-right:3px;
+    padding-right: 5px;
     padding-bottom: 3px;
     font-size: 13px;
 } */
@@ -14259,18 +14319,20 @@ a.account-link[href="https://twitter.com/WilliamcaFox"] .fullname.txt-ellipsis:a
   height:0px;
 }
 
-.inline-reply {
+.stream-item .inline-reply.js-inline-reply {
   transition:all 200ms!important;
   background-color: rgba(0, 131, 143, 1)!important;
 }
 
 .js-column-social-proof .column-content {
-    -webkit-animation: popcomesthetweetsview 0.7s 1;
+    -webkit-animation: popcomesthetweetsview 0.5s 1;
+    -webkit-animation-timing-function: cubic-bezier(.55,0,.1,1);
 }
 
 .link-clean[href="https://twitter.com/TDEnhancer"] .avatar {
     box-shadow: none!important;
     border-radius: 0px!important;
+    transform: scale(1.25,1.25);
 }
 
 .account-settings-row[data-user-id="2927859037"] .avatar {
@@ -14352,7 +14414,7 @@ div.js-replies-to.replies-after article.stream-item {
 
 .is-condensed .column-navigator {
     top: 0px;
-    left: 107px;
+    left: 50px;
     bottom: 0px;
 }
 
@@ -14418,7 +14480,7 @@ div.js-replies-to.replies-after article.stream-item {
 }
 
 .form-login a {
-    color: rgba(76, 188, 255, 1);
+    color: rgba(41, 182, 246, 1);
 }
 
 .txt-on-r-dark-blue h1 {
@@ -14494,7 +14556,7 @@ a.txt-r-on-dark-blue {
 }
 
 .btn.btn-back.js-back {
-    background: url(https://ryandolan123.com/assets/tweetdeck/img/back.png);
+    background: url(https://dangeredwolf.com/assets/tweetdeck/img/back.png);
     margin-top: -782px;
     z-index: 6;
     position: absolute;
@@ -14507,7 +14569,7 @@ a.txt-r-on-dark-blue {
     image-rendering: -o-crisp-edges;
     image-rendering: -webkit-optimize-contrast;
     -ms-interpolation-mode: nearest-neighbor;
-    z-index: 99;
+    z-index: 999999;
 }
 
 .s-profile .pos-l {
@@ -14619,12 +14681,14 @@ a.txt-r-on-dark-blue {
     overflow: hidden;
     color: #DADADA!important;
     right:5px;
+    display: none;
 }
 
 .js-app-settings .obj-left {
     float: right;
     /* margin-top: -35px; */
     /* margin-right: -135px; */
+    display:none;
 }
 
 a.js-header-action.js-app-settings.link-clean.cf.app-nav-link.padding-hl {
@@ -14632,7 +14696,7 @@ a.js-header-action.js-app-settings.link-clean.cf.app-nav-link.padding-hl {
     top: 10px;
     position: absolute;
     margin-top: 7px!important;
-    right: 0px;
+    right: 35px;
     z-index: 99;
     bottom: 0;
     height: 30px;
@@ -14642,9 +14706,10 @@ a.js-header-action.js-app-settings.link-clean.cf.app-nav-link.padding-hl {
 
 .js-header-add-column {
     top: -1px;
-    
     left: -15px;
     display: block!important;
+    opacity:0;
+    margin-top: -50px!important;
 }
 
 ul.js-int-scroller {
@@ -14661,19 +14726,33 @@ ul.js-int-scroller {
 
 a.link-clean.cf.app-nav-tab {
     top: 0;
-    bottom: 0;
+    /* bottom: 0; */
     z-index: 999;
     left: 0px;
-    margin-left: 110px;
+    margin-left: 70px;
     position: absolute;
     /* padding-left: 50px; */
     transition: 200ms all!important;
+    margin-top: -60px;
 }
 
 a.js-hide-drawer.link-clean.cf.app-nav-tab {
     /* width: 0px; */
-    /* margin-left: 90px; */
+    margin-left: 120px;
     transition: 200ms all!important;
+    left: 0px;
+    margin-right: auto;
+    width: 150px;
+    top: 2px;
+    /* top: initial; */
+    margin-top: 0px;
+}
+
+a.js-hide-drawer.link-clean.cf.app-nav-tab:after {
+  content: "Close Account List";
+  font-size:14px;
+  text-align:center;
+  padding-bottom: 3px;
 }
 
 .js-show-drawer.app-nav-tab .icon {
@@ -14737,7 +14816,7 @@ a.js-hide-drawer.link-clean.cf.app-nav-tab {
 }
 
 .compose .typeahead-item span.username {
-    color: #808080;
+    color: rgba(255, 255, 255, 0.4);
 }
 
 .tweet-actions .tweet-action.is-selected, .tweet-detail-actions .tweet-action.is-selected, .tweet-detail-actions .js-reply-action.is-selected{
@@ -14750,7 +14829,7 @@ a.js-hide-drawer.link-clean.cf.app-nav-tab {
 }
 
 .tweet-action[data-actions-menu-position]:focus {
-    color: #26C6DA!important;
+    color: #00C2BC!important;
 }
 
 .social-proof-for-tweet-title b {
@@ -14846,7 +14925,7 @@ button.js-account-action.btn.btn-light-gray.full-width.margin-tl.btn-extra-heigh
 }
 
 .js-account-manager-container header.drawer-header.padding-lxl {
-    background-color: #1E5B78;
+    background-color: #263238;
 }
 
 a.js-drawer-close.column-close-link.txt-r-dark-gray {
@@ -14876,7 +14955,17 @@ a[rel=user]:active {
     transition:150ms all!important;
 }
 
+.signin-sheet-now-present a:active {
+    transform: none!important;
+    transition:150ms all!important;
+}
+
 a[rel=hashtag]:active {
+    transform: none!important;
+    transition:150ms all!important;
+}
+
+.prf-card-inner a:active {
     transform: none!important;
     transition:150ms all!important;
 }
@@ -14957,6 +15046,7 @@ a#amPm {
 
 .mdl-content.js-mdl-content.horizontal-flow-container {
     padding-top: 0px;
+    overflow-y: hidden;
 }
 
 .mdl-content.js-mdl-content.horizontal-flow-container.with-scroll.scroll-v {
@@ -15010,9 +15100,9 @@ a.js-dismiss.txt-r-on-dark-blue {
     display: none;
 }
 
-.application.hide-detail-view-inline {
+/*.application.hide-detail-view-inline {
     background-color: #344248;
-}
+}*/
 
 .compose-message-recipient-list {
     background-color: rgba(38, 50, 56, 1);
@@ -15029,11 +15119,16 @@ button.js-send-tweet-button.js-spinner-button.js-show-tip.btn.btn-positive.btn-e
 
 [style="background-image: url(https://ton.twimg.com/tweetdeck-web/web/assets/global/backgrounds/td_profile_empty.9a5654bc44.jpg)"] {
     background-image: none!important;
-    background: #30383F;
+    background: #383F45;
+}
+
+[style="background-image: url(https://ton.twimg.com/tweetdeck-web/web/assets/global/backgrounds/td_profile_empty@2x.28d11b0d43.jpg)"] {
+    background-image: none!important;
+    background: #383F45d;
 }
 
 .application:not(.is-condensed) .app-header {
-  background-color: #03A9F4;
+  background-color: #00838F;
 }
 
 .application:not(.is-condensed) .app-header:before {
@@ -15073,6 +15168,337 @@ button.js-send-tweet-button.js-spinner-button.js-show-tip.btn.btn-positive.btn-e
     -webkit-filter: brightness(4);
 }
 
+.js-column-nav-list li.column-nav-item.js-column-nav-menu-item { 
+    display: inline!important;
+}
+
+<<<<<<< HEAD:com.dangeredwolf.TweetDeckEnhancer.safariextension/resources/app-dark.css
+.js-show-drawer.tweet-button.btn-compose.is-hidden {
+    display: inline-block!important;
+    border-radius: 0px;
+    width: 271px;
+    margin-left: -5px;
+    margin-top: -4px;
+    box-shadow: none!important;
+    background-color: rgba(0, 131, 143, 1);
+    transition: 250ms!important;
+    transition-timing-function: cubic-bezier(.55,0,.1,1)!important;
+}
+
+.tweet-button.is-hidden .icon-compose {
+    margin-left: 10px;
+=======
+.hide-detail-view-inline .column-navigator {
+    left: 240px!important;
+    dasd: asdf;
+}
+
+/* Fixes navigation bugs with tweet composer open remotely */
+
+.column-navigator {
+    transition:150ms all!important;
+    transition-timing-function:cubic-bezier(.55,0,.1,1)!important;
+>>>>>>> TDE5:com.dangeredwolf.TweetDeckEnhancer.safariextension/resources/app-dark.css
+}
+
+.hide-detail-view-inline .app-search-fake {
+    margin-left:275px!important;
+}
+
+.app-search-fake {
+    transition:150ms all!important;
+    transition-timing-function:cubic-bezier(.55,0,.1,1)!important;
+}
+
+.hide-detail-view-inline .js-search-in-popover .popover {
+    left:270px!important;
+    top:-18px!important;
+}
+
+.avatar:not(:active):not(:hover):not(:focus) {
+    box-shadow: none!important;
+}
+
+.tweet-footer {
+    margin-top: 6px!important;
+}
+
+.stream-item.is-actionable {
+  border-bottom: 3px solid transparent!important;
+  border-top: 3px solid transparent!important;
+}
+
+.tweet-action .icon, .tweet-detail-action .icon {
+    font-size:20px!important;
+}
+
+.tweet-action .icon-retweet, .tweet-detail-action .icon-retweet {
+    font-size:24px!important;
+}
+
+.tweet-detail-wrapper .stream-item {
+    border-top: 5px solid transparent;
+}
+
+.tweet-body {
+    margin-top: 2px;
+}
+
+.media-sensitive-content p {
+    margin-top: 5px;
+    color:#777;
+    margin-bottom:3px;
+}
+
+.media-sensitive-content b {
+    font-size: 18px;
+    line-height: initial;
+    font-weight:300;
+}
+
+.media-sensitive-content b {
+    font-size: 18px;
+    line-height: initial;
+    font-weight:300;
+}
+
+.media-size-large .media-sensitive-content b {
+    font-size: 36px;
+}
+
+.tweet-detail-wrapper .media-sensitive-content b {
+    font-size: 36px;
+}
+
+:not(.tweet-detail-wrapper) .media-size-medium.media-sensitive {
+    height: 150px;
+}
+
+.media-sensitive-content {
+    color: transparent;
+    height:100%!important;
+    width:100%!important;
+    left:35%;
+    top:35%;
+}
+
+.media-size-medium .media-sensitive-content,.media-size-small .media-sensitive-content,.media-size-large .media-sensitive-content {
+    left:42%;
+    width:94%!important;
+}
+
+.media-sensitive {
+    transition: opacity 0.2s;
+    opacity: 1;
+}
+
+.media-sensitive.is-hidden {
+    display: block!important;
+    background: #fff;
+    opacity: 0;
+    pointer-events: none;
+}
+
+<<<<<<< HEAD:com.dangeredwolf.TweetDeckEnhancer.safariextension/resources/app-dark.css
+.compose-message-account {
+    background-color: #263238;
+=======
+button[data-user-id="892388300"] {
+    display:none!important;
+>>>>>>> TDE5:com.dangeredwolf.TweetDeckEnhancer.safariextension/resources/app-dark.css
+}
+
+.media-preview video {
+    box-shadow: 0 3px 5px rgba(17,17,17,0.3);
+}
+
+.js-detail-header.column-header .tooltip.fade {
+    line-height: 18px;
+    overflow: hidden;
+}
+
+<<<<<<< HEAD:com.dangeredwolf.TweetDeckEnhancer.safariextension/resources/app-dark.css
+
+.edit-conversation-name {
+    position:absolute;
+    top:-50px;
+    right:0;
+    left:0;
+    -moz-box-sizing:border-box;
+    box-sizing:border-box;
+    height:50px;
+    padding:0 10px;
+    color:inherit;
+    line-height:50px;
+    /* border-bottom:1px solid #222426; */
+    -webkit-transition:all 230ms!important;
+    transition:all 230ms!important;
+    transition-timing-function: cubic-bezier(.55,0,.1,1)!important;
+    -webkit-transition-timing-function: cubic-bezier(.55,0,.1,1)!important;
+    background-color: #263238;
+    z-index: 999999999999999999;
+}
+
+.edit-conversation-name.is-visible {
+    top:0
+}
+
+.conversation-name {
+    position: relative;
+    width: 200px;
+}
+
+.edit-conversation-name .nbfc {
+    display: none;
+}
+
+.edit-conversation-name.is-visible .nbfc {
+    display: block;
+}
+
+.js-dm-participants-back:after {
+    content: "People";
+    font-weight: 400;
+    color: #fff;
+    margin-top: -53px;
+    position: absolute;
+    text-align: left;
+    left: 48px;
+    margin-left: 5px;
+    font-size: 16px;
+}
+
+.column-dm-participants {
+    top: 100px;
+}
+
+/* DEMO */
+=======
+.js-detail-header.column-header .tooltip.fade .tooltip-inner {
+    overflow:hidden
+}
+>>>>>>> TDE5:com.dangeredwolf.TweetDeckEnhancer.safariextension/resources/app-dark.css
+
+.js-send-button {
+    margin-right: 8px;
+}
+
+.is-retweet .icon-retweet-toggle {
+    color: #4CB050!important;
+}
+
+.is-favorite i.icon-favorite-toggle {
+    color: #FF9701!important;
+}
+
+
+.js-send-button:after {
+    content: "Tweet";
+    font-size:14px;
+}
+
+.js-send-button {
+    font-size:0px;
+}
+
+.link-clean[href="https://twitter.com/EnhancerVerify"] .avatar {
+    box-shadow: none!important;
+    border-radius: 0px!important;
+    transform: scale(1.25,1.25);
+}
+
+.item-img[href="https://twitter.com/EnhancerVerify"] .avatar {
+    box-shadow: none!important;
+    border-radius: 0px!important;
+}
+
+.account-link[href="https://twitter.com/EnhancerVerify"] .avatar {
+    box-shadow: none!important;
+    border-radius: 0px!important;
+}
+
+[href="https://twitter.com/dangeredwoIf"] b:after {
+    content: "look at me i'm a fake ass wolf";
+    font-size:16px;
+}
+
+[href="https://twitter.com/dangeredwoIf"] b {
+    font-size:0px;
+}
+
+.contributor-manager {
+    background-color: #344248!important;
+}
+
+.drawer-header {
+    background-color: #263238!important;
+    box-shadow: 0 1px 10px rgba(17,17,17,0.35);
+}
+
+.link-complex.txt-medium.cf {
+  color: #26C6DA;
+}
+
+.js-contributor-manager-container.column-panel.border-box.bg-r-light-gray {
+    background-color: #F8F8F8;
+    /*box-shadow: 0 15px 40px rgba(17,17,17,0.4);*/
+    -webkit-animation: popgoesthemodalwindow 0.3s 1;
+    overflow: hidden;
+}
+
+.contributor-adder-block.bg-r-light-gray {
+    background-color: #344248!important;
+}
+
+.contributor-adder input.js-username-input.js-submittable-input {
+    border-bottom: 3px solid #00BCD5;
+    margin-left: -5px;
+    height: 25px;
+    color:#000;
+}
+
+.js-contributor-manager-back .icon {
+  background: url(https://dangeredwolf.com/assets/tweetdeck/img/back.png);
+  z-index: 6;
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  font-size:0px;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: -o-crisp-edges;
+  image-rendering: optimizeSpeed;
+  -ms-interpolation-mode: nearest-neighbor;
+  z-index: 99;
+  position:absolute;
+  top: 15px;
+  left: 10px;
+  line-height:0;
+  vertical-align:middle;
+  background-size: 22px 22px;
+}
+
+.js-contributor-manager-back span {
+    font-size: 0px!important;
+}
+
+.js-contributor-manager-back span:after {
+    font-size: 16px!important;
+    content:"Manage Team";
+    font-weight:400;
+}
+
+h1.js-contributor-manager-back.is-actionable.txt-base-extra-large.pull-left.txt-weight-normal {
+    width: 100%;
+}
+
+.contributor-row {
+    background-color: #F9F9F9!important;
+}
+
+.btn-light-gray:hover {
+   background-color:transparent!important;
+}
+
 #tdesettingslistitem {
     margin-top: 10px;
 }
@@ -15095,6 +15521,19 @@ button.js-send-tweet-button.js-spinner-button.js-show-tip.btn.btn-positive.btn-e
 
 .btn.js-edit span.label.margin-ln {
     color: #fff!important;
+}
+
+button.js-edit.btn.btn-neutral-positive.full-width.reset-height {
+    color: #fff!important;
+    background-color: rgba(0, 131, 143, 1);
+}
+
+.btn.js-edit span.label.margin-ln {
+    color: #fff!important;
+}
+
+.facet-type .control-group input.txt-mute {
+    color: #eee;
 }
 
 button.js-edit.btn.btn-neutral-positive.full-width.reset-height {
@@ -15188,7 +15627,7 @@ button#emojiButton:active .btd-icon-smile {
 }
 
 .js-compose-message-recipient-input-container.compose-message-recipient-input-container.position-rel.bg-r-white {
-    width: 225px;
+    width: 240px;
     margin-left: 10px;
 }
 
@@ -15210,6 +15649,401 @@ button#emojiButton:active .btd-icon-smile {
   margin-top:100%;
 }
 
+.tde-drawer-button {
+    top: 5px;
+    z-index:99999999;
+    transition:150ms all!important;
+}
+
+.hide-detail-view-inline .tde-drawer-button {
+    top: 5px;
+    z-index:99999999;
+    margin-left: 220px;
+    z-index: 99999999999999;
+}
+
+.tde-nav-drawer {
+    background-color: #2E3B41;
+    width: 250px;
+    height: 100%;
+    z-index: 999999999999;
+    position: absolute;
+    box-shadow: 0 15px 40px rgba(17,17,17,0.4);
+    transition:300ms all;
+    transition-timing-function:cubic-bezier(.55,0,.1,1);
+    overflow-x: hidden;
+    overflow-y: scroll;
+    overflow-y: hidden;
+}
+
+.tde-nav-drawer-hidden {
+  margin-left:-320px;
+}
+
+.tde-nav-drawer-background {
+    position: absolute;
+    z-index: 999999999;
+    background-color: rgba(90, 90, 90, 0.4);
+    height: 100%;
+    width: 100%;
+    transition:300ms all;
+    transition-timing-function:cubic-bezier(.55,0,.1,1);
+}
+
+.tde-nav-drawer-background-hidden {
+  background-color:rgba(100,100,100,0);
+  pointer-events:none;
+}
+
+.tde-nd-header-image {
+    width: 102%;
+    height: 150px;
+    position: absolute;
+    border: none!important;
+    background-size: 400px 200px;
+    background-position: -50px -30px;
+    border-color: #38454B;
+    margin: 0;
+    padding: 0;
+    margin-left: -2px;
+    margin-top: -2px;
+    background-color: #2E3B41;
+}
+
+.tde-nd-header-photo {
+    z-index: 999999999;
+    position: absolute;
+    margin-left: 88px;
+    margin-top: 20px;
+}
+
+.tde-nd-header-username {
+  position:absolute;
+  width:100%;
+  margin-top:110px;
+  text-align:center;
+  text-shadow:0 5px 40px rgba(0,0,0,1);
+  color:#fff;
+  font-size:16px;
+}
+
+.tde-columns-loading .column-content {
+  /* display:none; */
+}
+
+.js-search-in-popover .popover {
+    /* right: -250px; */
+    /* left: 88%; */
+    /* margin-right: 50px; */
+    position: relative;
+    display: block;
+    right: 0;
+    margin-left: auto;
+    margin-right: 70px;
+}
+
+.js-search-in-popover {
+    pointer-events: none;
+}
+
+.js-popover.popover.is-inverted-dark.popover-position-rt.is-hidden {
+    pointer-events: none;
+}
+
+.compose-reply-tweet.is-hidden {
+    display: block!important;
+    /* height: 0px; */
+    opacity: 0;
+    pointer-events: none;
+    margin-top: -60px;
+    height:20px;
+}
+
+.tde-nav-button {
+    text-transform: none;
+    color: #E7E7E7!important;
+    opacity:1;
+    /* margin-top: auto; */
+    /* margin-bottom: auto; */
+    /* text-anchor: middle; */
+    text-indent: 45px;
+    font-weight: 500;
+    font-size: 14px;
+    margin-top:8px;
+}
+
+.tde-nav-button:hover {
+    opacity:0.8;
+}
+
+.tde-nav-button:active {
+    opacity:1;
+    color: #E4E4E4!important;
+}
+
+.tde-nav-button:focus {
+    opacity:0.85
+}
+
+.form-login h2 {
+    font-weight: 400;
+    font-size: 22px;
+}
+
+.form-login p {
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.js-login-error-message {
+     -webkit-animation: dropmenucomedownlargenopad 0.40s 1;
+    -webkit-animation-timing-function: cubic-bezier(.55,0,.1,1);
+}
+
+.app-signin-form .cf.margin-txs {
+    font-size: 0px;
+    padding-top: 18px;
+}
+
+.js-login-forgot-password {
+    padding-left: 70px;
+}
+
+.signin-sheet-now-present button.btn.align-top[type="submit"]:not(.btn-login) {
+    text-transform: none;
+    margin-top: 4px;
+}
+
+.tde-nav-drawer-icon {
+    width: 20px;
+    height: 20px;
+    /* margin-top: 5px; */
+    padding-right: 25px;
+    padding-bottom: 5px;
+    /* padding-top: 5px; */
+    position: absolute;
+    margin-left: -40px;
+    -webkit-filter: brightness(400%);
+}
+
+.tde-settings-button {
+    margin-top: 160px;
+}
+
+.tde-nav-divider {
+    width: 100%;
+    /* z-index: 99999999999999999; */
+    height: 2px;
+    /* border: 1px #333; */
+    background-color: #38454B;
+    margin-top: 12px;
+    /*margin-bottom: 12px;*/
+}
+
+.tde-nav-activator {
+    width: 20px;
+    height: 20px;
+    margin-left: 7px;
+    margin-top: 5px;
+}
+
+.js-show-drawer.app-nav-tab {
+    opacity: 0;
+    margin-top: -50px!important;
+}
+
+.tde-appbar-notification {
+    margin-top: 10px;
+    position: absolute;
+    margin-left: -5px;
+    top:0;
+    margin-right: auto;
+    width: 100%;
+    padding-left: 0px;
+    color: #fff;
+    font-size: 18px;
+    text-align: center;
+    font-weight: 400;
+    transition:300ms all!important;
+    transition-timing-function: cubic-bezier(.55,0,.1,1)!important;
+    bottom:initial!important;
+}
+
+.tde-appbar-notification-hidden {
+    margin-top:-80px;
+}
+
+.js-app-settings {
+  margin-top:-100px;
+}
+
+.js-compose-message-recipient-container ul.js-typeahead-user-list.typeahead-user-list {
+    width: 240px;
+    /* left: 20px; */
+    transition: 200ms all!important;
+    -webkit-animation: dropmenucomedownnopad 0.225s 1;
+}
+
+.js-compose-message-recipient-container .js-typeahead-dropdown {
+    left: 10px;
+    z-index: 9999999;
+}
+
+.typeahead-dropdown.dropdown-menu .is-selected {
+    background: #125D63;
+    /* overflow: inherit; */
+}
+
+.js-setting-list .list-link strong {
+    font-weight: 400!important;
+}
+
+.settings-modal .l-column.mdl-column {
+    /* -webkit-animation: dropmenucomeupnopad 0.25s 1; */
+    /* margin-top: 40px; */
+}
+
+.mdl-col-settings form.frm fieldset {
+    -webkit-animation: dropmenucomeupnopad 0.25s 1!important;
+    /* margin-top: 40px; */
+    -webkit-animation-timing-function: cubic-bezier(.55,0,.1,1)!important;
+}
+
+.mdl-favorite-from-options .txt-r-deep-yellow {
+    color: inherit!important;
+}
+
+.settings-modal>div>header>.enhancer-settings:after {
+  content: ""!important;
+}
+
+.tde-logo {
+    width: 250px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.tde-about-title {
+    color: #E5E5E5;
+    stroke: sda;
+}
+
+.tde-version-title {
+    font-weight: 400;
+    font-size: 16px;
+    text-align: center;
+    padding-top: 5px;
+}
+
+body[class=""], html.js {
+  color:#eee;
+  background-color:rgba(38, 50, 56, 1);
+}
+
+.tde-upgrading md-progress-circular .md-inner .md-left .md-half-circle {
+    border-left-color: #009688!important;
+    border-top-color: #009688!important;
+    border-width:6px
+}
+
+.tde-upgrading md-progress-circular .md-inner .md-right .md-half-circle {
+    border-right-color: #009688!important;
+    border-top-color: #009688!important;
+    border-width:6px
+}
+
+.tde-upgrading md-progress-circular.md-default-theme .md-inner .md-gap {
+    border-top-color: #009688!important;
+    border-bottom-color: #009688!important;
+}
+
+.tde-upgrading md-progress-circular {
+    position:absolute;
+    margin-left:27px;
+    margin-top:30px;
+}
+
+.tde-upgrading h2 {
+    position:absolute;
+    margin-left:25px;
+    margin-top:-25px;
+    color: #444;
+}
+
+.tde-upgrading .whatever {
+    width:350px;
+    height:110px;
+
+}
+
+.tde-upgrading:before {
+    background-color:transparent
+}
+
+.tde-upgrading h3 {
+    font-weight:400;
+    position:absolute;
+    margin-top:45px;
+    margin-left:112px;
+    font-size:15px;
+    color: #555;
+}
+
+.tde-upgrading {
+    margin:0;
+    z-index:999999999999999999;
+    border-radius:2px!important;
+    position: absolute;
+    /* margin: auto; */
+    display: block;
+    /* margin-left: auto; */
+    margin-right: auto;
+    /* float: right; */
+    /* right: 50%; */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    background-color: #fff;
+}
+
+.tde-is-upgrading .application {
+    /*display:none;*/
+    opacity:0;
+    top:0%;
+    transform: scale(0.001,0.001);
+    -webkit-transform: scale(0.001,0.001);
+}
+
+html.tde-is-upgrading {
+    overflow: hidden;
+}
+
+.tde-is-upgrading .tde-nav-drawer-background {
+    height: 0px;
+    display: none;
+}
+
+.tde-is-upgrading .mdl:not(.tde-upgrading) {
+    top: 100%
+    transform: scale(0.01,0.01);
+    -webkit-transform: scale(0.01,0.01);
+    opacity: 0;
+}
+
+.tde-is-upgrading body {
+    background-color:#0ED0D2;
+}
+
+.tde-is-upgrading .js-app-loading {
+    width: 100%;
+    height: 100%;
+    display: block!important;
+}
+
+.column.draggable-dragging {
+    transform: scale(1.05,1.05) translateY(16px);
+}
 
 .edit-conversation-name {
     position:absolute;
@@ -15238,6 +16072,7 @@ button#emojiButton:active .btd-icon-smile {
 .conversation-name {
     position: relative;
     width: 200px;
+    color:#fff;
 }
 
 .edit-conversation-name .nbfc {
@@ -15260,21 +16095,58 @@ button#emojiButton:active .btd-icon-smile {
     font-size: 16px;
 }
 
-.column-dm-participants {
+.title-content .txt-mute {
+    color: #fff;
+}
+
+.tde-upgrading .mdl-content {
+    background-color: #fff;
+}
+
+md-progress-circular.loadspin {
+    margin: auto!important;
+    position: relative;
+    padding: initial!important;
+    top: 46%;
+}
+
+.column-content.column-dm-participants {
     top: 100px;
 }
 
-/* DEMO */
-
-/*.app-navigator>.dropdown-menu>.js-dropdown-content>ul>li>b.non-selectable-item.txt-ellipsis {
-    font-size: 0px!important;
-    -webkit-animation: backgroundanimation 0.3s 1;
+.s-nonav.s-tall-fixed.mdl .mdl-content.horizontal-flow-container {
+    overflow-y: scroll;
 }
 
-.app-navigator>.dropdown-menu>.js-dropdown-content>ul>li>b.non-selectable-item.txt-ellipsis:after {
-    font-size: 16px;
-    content: "example@example.com";
-    text-align: left;
-    display:block;
-    margin-top:-15px
-}*/
+.detail-view-inline {
+    background-color: #3A4B54;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

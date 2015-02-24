@@ -3,19 +3,25 @@
 <plist version="1.0">
 <dict>
 	<key>Author</key>
-	<string>ryandolan123</string>
+	<string>dangeredwolf</string>
 	<key>Builder Version</key>
-	<string>10600.2.5</string>
+	<string>10600.3.18</string>
 	<key>CFBundleDisplayName</key>
 	<string>TweetDeck Enhancer</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.ryandolan123.TweetDeckEnhancer</string>
+	<string>com.dangeredwolf.TweetDeckEnhancer</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleShortVersionString</key>
+<<<<<<< HEAD:com.dangeredwolf.TweetDeckEnhancer.safariextension/Info.plist
 	<string>4.3</string>
 	<key>CFBundleVersion</key>
 	<string>4.3</string>
+=======
+	<string>5.0</string>
+	<key>CFBundleVersion</key>
+	<string>5.0</string>
+>>>>>>> TDE5:com.dangeredwolf.TweetDeckEnhancer.safariextension/Info.plist
 	<key>Chrome</key>
 	<dict>
 		<key>Database Quota</key>
@@ -27,11 +33,11 @@
 		<dict>
 			<key>End</key>
 			<array>
-				<string>TDELoad.js</string>
+				<string>extension/TDEFix.js</string>
 			</array>
 			<key>Start</key>
 			<array>
-				<string>TDEFix.js</string>
+				<string>extension/TDELoad.js</string>
 			</array>
 		</dict>
 		<key>Whitelist</key>
@@ -40,9 +46,9 @@
 		</array>
 	</dict>
 	<key>Description</key>
-	<string>Buggy Safari build of TweetDeck Enhancer</string>
+	<string>TweetDeck Enhancer</string>
 	<key>DeveloperIdentifier</key>
-	<string></string>
+	<string>V4MZKCA3P6</string>
 	<key>ExtensionInfoDictionaryVersion</key>
 	<string>1.0</string>
 	<key>Permissions</key>
@@ -56,6 +62,6 @@
 		</dict>
 	</dict>
 	<key>Website</key>
-	<string>https://ryandolan123.com/TweetDeckEnhancer</string>
+	<string>https://dangeredwolf.com/TweetDeckEnhancer</string>
 </dict>
 </plist>

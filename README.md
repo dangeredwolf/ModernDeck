@@ -12,6 +12,7 @@ Opera
 Note when building:
 ==================
 
+<<<<<<< HEAD
 The com.dangeredwolf.TweetDeckEnhancer.safariextension is universal, as in, you can build it with Chrome, Safari, or even Opera, and it'll work fine. Its name ends in .safariextension as Safari requires that for whatever reason. But despite that, it still works fine in other browsers.
 
 Installation:
@@ -61,3 +62,6 @@ Warning: Safari seems to have issues for some reason installing [Issue #12](http
 **== Firefox ==**
 
 Unfortunately you cannot yet build Firefox from this source (The Enhancer for Firefox beta uses a customized source to make it run on non-WebKit), TDE5 should be though.
+=======
+The com.dangeredwolf.TweetDeckEnhancer.safariextension is universal, as in, you can build it with Chrome, Safari, or even Opera, and it'll work fine. Its name ends in .safariextension as Safari requires that for whatever reason. But despite that, it still works fine in other browsers.
+>>>>>>> TDE5

@@ -2,11 +2,23 @@
   "name": "TweetDeck Enhancer",
   "short_name": "Enhancer",
 
+<<<<<<< HEAD:com.dangeredwolf.TweetDeckEnhancer.safariextension/manifest.json
   "description": "TweetDeck Enhancer adds a beautiful new TweetDeck interface, designed for Material Design, and adds other usability features.",
   "version": "4.3",
 
   "permissions": [
     "webRequest","webRequestBlocking","https://tweetdeck.twitter.com/","https://ton.twimg.com/"
+=======
+  "description": "__MSG_ExtDesc__",
+  "version": "5.0",
+
+  "default_locale": "en_US",
+
+  "permissions": [
+    "webRequest",
+    "webRequestBlocking",
+    "https://tweetdeck.twitter.com/"
+>>>>>>> TDE5:com.dangeredwolf.TweetDeckEnhancer.safariextension/manifest.json
   ],
 
   "content_scripts": [
@@ -40,7 +52,7 @@
   "browser_action": {
     "default_icon": "resources/oneclick/InstaTweetDeck.png",
     "default_popup": "extension/ITD.html",
-    "default_title": "TweetDeck Quick Launch (Added by Enhancer, disable with Right Click > Hide Button)"
+    "default_title": "__MSG_ButtonHoverTitle__"
   },
 
   "manifest_version": 2
