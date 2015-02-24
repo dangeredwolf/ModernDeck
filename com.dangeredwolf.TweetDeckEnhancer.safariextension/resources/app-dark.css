@@ -15503,7 +15503,7 @@ html.tde-is-upgrading {
     transition:all 230ms!important;
     transition-timing-function: cubic-bezier(.55,0,.1,1)!important;
     -webkit-transition-timing-function: cubic-bezier(.55,0,.1,1)!important;
-    background-color: #03A9F4;
+    background-color: #263238;
     z-index: 999999999999999999;
 }
 
