@@ -15962,6 +15962,10 @@ md-progress-circular.loadspin {
     overflow-y: scroll;
 }
 
+input.js-username-input.js-submittable-input {
+    color: #000;
+}
+
 
 
 

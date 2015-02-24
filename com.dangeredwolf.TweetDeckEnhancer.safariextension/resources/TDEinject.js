@@ -1,7 +1,11 @@
 // TDEinject.js
 // Copyright (c) 2015 Dangered Wolf
 
-//(function() {
+// made with love <3
+
+// also dedicated to my amazing boyfriend danny <333
+
+(function() {
 
 var msgID = 0;
 var messagesAccounted = [];
@@ -450,7 +454,7 @@ function Analytics(ver) {
     setTimeout(Analytics,500);
     return;
   }
-  $.ajax({url:"https://dangeredwolf.com/analytics/TDE5?acc=" + TD.storage.store._backend.tweetdeckAccount + "&developerpreview=9&intcodename=Paradise&ver=" + ver.toString()});
+  $.ajax({url:"https://dangeredwolf.com/analytics/TDE5?acc=" + TD.storage.store._backend.tweetdeckAccount + "&release=stable&intcodename=paradise&ver=" + ver.toString()});
 }
 
 function ImJustKidding(){
@@ -480,6 +484,8 @@ function ImJustKidding(){
     }
   },2600);
 }
+
+// screw gender roles
 
 function TweetRegistry(){
   console.log("registering...");
@@ -681,7 +687,7 @@ function NavigationSetup() {
       var tdesettingsmodalinner = $("#settings-modal .mdl .mdl-inner")[0];
       $("#settings-modal .mdl .js-header-title")[0].className = "mdl-header-title";
       $("#settings-modal .mdl .mdl-header-title")[0].innerHTML = "Enhancer Settings";
-      tdesettingsmodalinner.innerHTML = '<div class="mdl-content js-mdl-content horizontal-flow-container"> <div class="l-column mdl-column mdl-column-sml"> <div class="l-column-scrollv scroll-v  scroll-alt "> <ul class="lst-group js-setting-list">  <li class="selected"><a href="#" class="list-link" id="enhancer_settings_about_button" data-action="general"><strong>About</strong></a></li></ul> </div> </div> <div class="l-column mdl-column mdl-column-lrg"> <div class="l-column-scrollv scroll-v  scroll-alt mdl-col-settings"> <form action="#" id="global-settings" accept-charset="utf-8" class="frm"><fieldset id="general_settings"><img src="https://dangeredwolf.com/assets/TDE5/tdeaboutsmaller.png" class="tde-logo"><h1 class="list-placeholder tde-about-title">TweetDeck Enhancer</h1><h2 class="tde-version-title">You\'re running Enhancer 5.0 Release Candidate 2'/*"Paradise"*/+'</h2></fieldset></form> </div> </div> </div>';
+      tdesettingsmodalinner.innerHTML = '<div class="mdl-content js-mdl-content horizontal-flow-container"> <div class="l-column mdl-column mdl-column-sml"> <div class="l-column-scrollv scroll-v  scroll-alt "> <ul class="lst-group js-setting-list">  <li class="selected"><a href="#" class="list-link" id="enhancer_settings_about_button" data-action="general"><strong>About</strong></a></li></ul> </div> </div> <div class="l-column mdl-column mdl-column-lrg"> <div class="l-column-scrollv scroll-v  scroll-alt mdl-col-settings"> <form action="#" id="global-settings" accept-charset="utf-8" class="frm"><fieldset id="general_settings"><img src="https://dangeredwolf.com/assets/TDE5/tdeaboutsmaller.png" class="tde-logo"><h1 class="list-placeholder tde-about-title">TweetDeck Enhancer</h1><h2 class="tde-version-title">You\'re running Enhancer 5.0'/*"Paradise"*/+'</h2></fieldset></form> </div> </div> </div>';
       //tdesettingsmodalview.setAttribute("style","display:block;");
       /*tdesettingsmodalview.onclick = function() {
         if (typeof tde_settings_modal_panel !== "undefined") {
@@ -785,7 +791,7 @@ function TDESecureVerif() {
   document.head.appendChild(injStyles);
 }
 
-// Danny is a cutie and I love him <333
+// Danny is a cutie and I love himmm <333
 
 setTimeout(CheckForNeedsUpgrade,0);
 setTimeout(InjectRobotoFonts,0);
@@ -799,5 +805,5 @@ setTimeout(TDESecureVerif,150);
 
 console.log("TDEinject loaded");
 
-//})();
+})();
 
