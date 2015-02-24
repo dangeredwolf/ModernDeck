@@ -1,11 +1,4 @@
 // TDEinject.js
-<<<<<<< HEAD
-// Copyright (c) 2015 Ryan Dolan (ryandolan123)
-
-(function() {
-
-console.log("TDEinject loaded");
-=======
 // Copyright (c) 2015 Dangered Wolf
 
 // made with love <3
@@ -46,7 +39,6 @@ function PatchAudio(){
   var NotificationSound = document.getElementsByTagName("audio")[0];
   NotificationSound.src = "https://dangeredwolf.com/assets/tweetdeck/img/alert_2.mp3";
 }
->>>>>>> TDE5
 
 function WaitForTDToConfigureSelf(){
   if (typeof document.getElementsByClassName("app-signin-form")[0] !== "undefined") {
@@ -55,10 +47,6 @@ function WaitForTDToConfigureSelf(){
   } else {
     if (typeof document.getElementsByClassName("app-content")[0] === "undefined") {
       setTimeout(WaitForTDToConfigureSelf,60);
-<<<<<<< HEAD
-    }
-  }
-=======
     } 
   }
 }
@@ -112,7 +100,6 @@ function StreamAngularJS() {
   injectAngularJS5.id = "injectAngularJS5";
   document.body.appendChild(injectAngularJS5);
 
->>>>>>> TDE5
 }
 
 function WaitForLogin() {
@@ -123,8 +110,6 @@ function WaitForLogin() {
   setTimeout(WaitForLogin,500);
 }
 
-<<<<<<< HEAD
-=======
 function SendNotificationMessage(txt) {
   if (TDENotification.className === "tde-appbar-notification") {
     TDENotification.className = "tde-appbar-notification tde-appbar-notification-hidden";
@@ -218,26 +203,11 @@ function WaitForNotificationDismiss(node,prevmsgID) {
   setTimeout(function(){WaitForNotificationDismiss(node,prevmsgID);},200);
 }
 
->>>>>>> TDE5
 function WorldTick(){
   
   for (i = 0; i < document.getElementsByClassName("tweet-action-item position-rel").length; i++) { 
     document.getElementsByClassName("tweet-action-item position-rel")[i].removeChild = function(dropdown){
       dropdown.setAttribute("class",dropdown.getAttribute("class") + " tde-dropdown-fade-out");
-<<<<<<< HEAD
-      console.log("bye");
-      setTimeout(function(){
-        dropdown.remove();
-      },200)
-    }
-  }
-
-  for (i = 0; i < document.getElementsByClassName("js-action-header-button column-header-link column-settings-link").length; i++) { 
-    document.getElementsByClassName("js-action-header-button column-header-link column-settings-link")[i].removeChild = function(dropdown){
-      dropdown.setAttribute("class",dropdown.getAttribute("class") + " tde-dropdown-fade-out");
-      console.log("bye");
-=======
->>>>>>> TDE5
       setTimeout(function(){
         dropdown.remove();
       },200)
@@ -247,10 +217,6 @@ function WorldTick(){
   for (i = 0; i < document.getElementsByClassName("tweet-detail-action-item position-rel").length; i++) { 
     document.getElementsByClassName("tweet-detail-action-item position-rel")[i].removeChild = function(dropdown){
       dropdown.setAttribute("class",dropdown.getAttribute("class") + " tde-dropdown-fade-out");
-<<<<<<< HEAD
-      console.log("bye");
-=======
->>>>>>> TDE5
       setTimeout(function(){
         dropdown.remove();
       },200)
@@ -260,20 +226,13 @@ function WorldTick(){
   for (i = 0; i < document.getElementsByClassName("app-navigator margin-bm padding-ts").length; i++) { 
     document.getElementsByClassName("app-navigator margin-bm padding-ts")[i].removeChild = function(dropdown){
       dropdown.setAttribute("class",dropdown.getAttribute("class") + " tde-dropdown-fade-out");
-<<<<<<< HEAD
-      console.log("bye");
-=======
->>>>>>> TDE5
       setTimeout(function(){
         dropdown.remove();
       },200)
     }
   }
 
-<<<<<<< HEAD
-=======
 
->>>>>>> TDE5
   for (i = 0; i < document.getElementsByClassName("status-message").length; i++) { 
     if (typeof messagesAccounted[document.getElementsByClassName("status-message")[i]] === "undefined") {
       var thing = document.getElementsByClassName("status-message")[i];
@@ -287,13 +246,9 @@ function WorldTick(){
     }
   }
 
-<<<<<<< HEAD
-  setTimeout(WorldTick,400);
-=======
   
 
   setTimeout(WorldTick,200);
->>>>>>> TDE5
 }
 
 
@@ -321,14 +276,11 @@ function PatchSystem() {
     return "twitter";
   }*/
 
-<<<<<<< HEAD
-=======
   /*if (!addedColumnsLoadingTagAndIsWaiting) {
     document.getElementsByTagName("html")[0].setAttribute("class",document.getElementsByTagName("html")[0].getAttribute("class") + " tde-columns-loading");
     addedColumnsLoadingTagAndIsWaiting = true;
   }*/
 
->>>>>>> TDE5
   if (typeof document.getElementsByClassName("js-modals-container")[0] === "undefined") {
     setTimeout(PatchSystem,50);
     return;
@@ -339,17 +291,10 @@ function PatchSystem() {
       console.log("what");
       return;
     }
-<<<<<<< HEAD
-    console.log("i am hooked bitch");
-=======
->>>>>>> TDE5
     rmnode.setAttribute("class","js-modal-context tde-modal-window-fade-out overlay overlay-super scroll-v");
     setTimeout(function(){rmnode.remove();},200);
   }
 
-<<<<<<< HEAD
-  console.log("patched system");
-=======
   document.body.removeChild = function(i) {
     if (typeof i.getAttribute("class") !== "undefined" && i.getAttribute("class") !== null && i.getAttribute("class").indexOf("tooltip") > -1) {
       setTimeout(function(){
@@ -377,14 +322,10 @@ function PatchSystem() {
       //},300*columns.length);
     },800);
    },0); //1200
->>>>>>> TDE5
 
   return;
 }
 
-<<<<<<< HEAD
-function Analytics() {
-=======
 function Upgrade() {
   progressind.innerHTML = "Personalizing Enhancer";
   TweetRegistry();
@@ -485,7 +426,6 @@ function ReplaceLoadingIndicator() {
 }
 
 function Analytics(ver) {
->>>>>>> TDE5
   if (typeof TD === "undefined") {
     setTimeout(Analytics,500);
     return;
@@ -514,22 +454,6 @@ function Analytics(ver) {
     setTimeout(Analytics,500);
     return;
   }
-<<<<<<< HEAD
-  $.ajax({url:"https://ryandolan123.com/analytics/TDE4?acc=" + TD.storage.store._backend.tweetdeckAccount + "&v=4.3&codename=seadragon"});
-}
-
-function ReplaceLoadingIndicator() {
-  if (typeof document.getElementsByClassName("app-signin-form")[0] !== "undefined") {
-    return;
-  }
-
-  if (typeof document.getElementsByClassName("js-startflow-content startflow")[0] === "undefined") {
-    setTimeout(ReplaceLoadingIndicator,30);
-    return;
-  }
-
-  document.getElementsByClassName("js-startflow-content startflow")[0].innerHTML = '<video class="spinner-centered spinner-fade-in" width="74" height="76" src="https://ryandolan123.com/assets/tweetdeck/img/spinner.mov" autoplay loop></video>';
-=======
   $.ajax({url:"https://dangeredwolf.com/analytics/TDE5?acc=" + TD.storage.store._backend.tweetdeckAccount + "&release=stable&intcodename=paradise&ver=" + ver.toString()});
 }
 
@@ -858,28 +782,11 @@ function NavigationSetup() {
   TDENotification.id = "TDENotification";
 
   document.getElementsByClassName("app-header-inner")[0].appendChild(TDENotification);
->>>>>>> TDE5
 }
 
 function TDESecureVerif() {
   injStyles = document.createElement("link");
   injStyles.rel = "stylesheet";
-<<<<<<< HEAD
-  injStyles.href = "https://ryandolan123.com/TweetDeckEnhancer/TDESecureVerified";
-  document.head.appendChild(injStyles);
-}
-
-setTimeout(WaitForTDToConfigureSelf,0);
-setTimeout(PatchSystem,1200); 
-setTimeout(ReplaceLoadingIndicator,0);
-setTimeout(WorldTick,0);
-setTimeout(Analytics,3000);
-setTimeout(TDESecureVerif,150);
-
-})();
-
-// TDE 4.3 SeaDragon x3
-=======
   injStyles.href = "https://dangeredwolf.com/TweetDeckEnhancer/TDESecureVerified";
   document.head.appendChild(injStyles);
 }
@@ -900,4 +807,3 @@ console.log("TDEinject loaded");
 
 })();
 
->>>>>>> TDE5

@@ -1,14 +1,7 @@
 {
   "name": "TweetDeck Enhancer",
-  "short_name": "Enhancer",
+  "short_name": "TD Enhancer",
 
-<<<<<<< HEAD:com.dangeredwolf.TweetDeckEnhancer.safariextension/manifest.json
-  "description": "TweetDeck Enhancer adds a beautiful new TweetDeck interface, designed for Material Design, and adds other usability features.",
-  "version": "4.3",
-
-  "permissions": [
-    "webRequest","webRequestBlocking","https://tweetdeck.twitter.com/","https://ton.twimg.com/"
-=======
   "description": "__MSG_ExtDesc__",
   "version": "5.0",
 
@@ -18,7 +11,6 @@
     "webRequest",
     "webRequestBlocking",
     "https://tweetdeck.twitter.com/"
->>>>>>> TDE5:com.dangeredwolf.TweetDeckEnhancer.safariextension/manifest.json
   ],
 
   "content_scripts": [
@@ -26,6 +18,11 @@
       "matches": ["https://tweetdeck.twitter.com/"],
       "js": ["extension/TDELoad.js"],
       "run_at": "document_end"
+    },
+    {
+      "matches": ["https://tweetdeck.twitter.com/"],
+      "js": ["extension/TDEFix.js"],
+      "run_at": "document_start"
     }
   ],
 

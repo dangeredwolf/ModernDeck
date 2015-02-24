@@ -1,9 +1,5 @@
 // TDEBackground.js
-<<<<<<< HEAD:com.dangeredwolf.TweetDeckEnhancer.safariextension/extension/TDEBackground.js
-// Copyright (c) 2015 Ryan Dolan (ryandolan123)
-=======
 // Copyright (c) 2015 Dangered Wolf
->>>>>>> TDE5:com.dangeredwolf.TweetDeckEnhancer.safariextension/extension/TDEBackground.js
 
 if (typeof safari !== "undefined") {
   var isSafari = true;

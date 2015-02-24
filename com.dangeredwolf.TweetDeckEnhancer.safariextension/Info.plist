@@ -13,15 +13,9 @@
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleShortVersionString</key>
-<<<<<<< HEAD:com.dangeredwolf.TweetDeckEnhancer.safariextension/Info.plist
-	<string>4.3</string>
-	<key>CFBundleVersion</key>
-	<string>4.3</string>
-=======
 	<string>5.0</string>
 	<key>CFBundleVersion</key>
 	<string>5.0</string>
->>>>>>> TDE5:com.dangeredwolf.TweetDeckEnhancer.safariextension/Info.plist
 	<key>Chrome</key>
 	<dict>
 		<key>Database Quota</key>

@@ -1,9 +1,5 @@
 // TDELoad.js
-<<<<<<< HEAD:com.dangeredwolf.TweetDeckEnhancer.safariextension/extension/TDELoad.js
-// Copyright (c) 2015 Ryan Dolan (ryandolan123)
-=======
 // Copyright (c) 2015 Dangered Wolf
->>>>>>> TDE5:com.dangeredwolf.TweetDeckEnhancer.safariextension/extension/TDELoad.js
 
 console.log("TDELoad loaded");
 console.log("Enhancer 5.0")
@@ -101,26 +97,6 @@ for (i = 0; i < links.length; i++) {
     }
 }
 
-<<<<<<< HEAD:com.dangeredwolf.TweetDeckEnhancer.safariextension/extension/TDELoad.js
-function ReplaceLoadingIndicator() {
-  console.log("waiting to replace logo (tdeload)")
-  if (typeof document.getElementsByClassName("app-signin-form")[0] !== "undefined") {
-    return;
-  }
-
-  if (typeof document.getElementsByClassName("js-startflow-content startflow")[0] === "undefined") {
-    setTimeout(ReplaceLoadingIndicator,30);
-    return;
-  }
-  console.log("done waiting, replacing logo (tdeload)")
-
-  document.getElementsByClassName("js-startflow-content startflow")[0].innerHTML = '<video class="spinner-centered spinner-fade-in" width="74" height="76" src="' + chrome.extension.getURL("resources/spinner.mov") + '" autoplay loop></video>';
-  console.log(document.getElementsByClassName("js-startflow-content startflow")[0].innerHTML);
-  //window.tde5loadingreplaced = true;
-}
-
-setTimeout(ReplaceLoadingIndicator,0);
-=======
 if (isChrome) {
   TDEURLExchange(chrome.extension.getURL(""));
   console.log(chrome.extension.getURL(""));
@@ -149,7 +125,6 @@ if (isGecko) {
   document.head.appendChild(InjectScript);
 }
 
->>>>>>> TDE5:com.dangeredwolf.TweetDeckEnhancer.safariextension/extension/TDELoad.js
 
 /*var scrs = document.getElementsByTagName("script");
 
@@ -217,9 +192,5 @@ InjectFonts.innerHTML = "@font-face{font-family:'RobotoDraft';font-style:normal;
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;\
 }";
 
-<<<<<<< HEAD:com.dangeredwolf.TweetDeckEnhancer.safariextension/extension/TDELoad.js
-document.head.appendChild(InjectFonts);
-=======
 document.head.appendChild(InjectFonts);
 */
->>>>>>> TDE5:com.dangeredwolf.TweetDeckEnhancer.safariextension/extension/TDELoad.js
