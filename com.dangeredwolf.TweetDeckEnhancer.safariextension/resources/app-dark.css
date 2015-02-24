@@ -7517,12 +7517,12 @@ i.icon.icon-move {
 }
 
 .is-unread:hover {
-  background: #35A8C0!important;
+  background: #008D9A!important;
   transition:300ms all
 }
 
 .is-unread:active {
-  background: #039BE5!important;
+  background: #00727D!important;
   transition:300ms all
 }
 
@@ -10235,8 +10235,7 @@ input#file-upload-input {
 }
 
 .compose-reply-tweet .tweet-body a {
-  color:#0084b4
-}
+  color: #00838F;}
 
 .compose-reply-tweet .fullname {
   color: #DFDFDF;}
@@ -13607,7 +13606,7 @@ a.caldisabled[href] {
 }
 
 .column-type-message .column-title-back:after {
-    content: "Conversation";
+    /* content: "Conversation"; */
     font-weight: 400;
     /* color: #000; */
     /* margin-top: -43px; */

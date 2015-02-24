@@ -14072,7 +14072,7 @@ a.caldisabled[href] {
 }
 
 .column-type-message .column-title-back:after {
-    content: "Conversation";
+    /* content: "Conversation"; */
     font-weight: 400;
     /* color: #000; */
     /* margin-top: -43px; */
