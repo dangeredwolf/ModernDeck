@@ -516,6 +516,7 @@ function TweetRegistry(){
 }
 
 function PrepareLoginStuffs() {
+  console.log('waiting for login stuffs');
   document.getElementsByClassName("js-header-add-column")[0].click(); // Click add column
   document.getElementById("open-modal").setAttribute("style","display:none;"); // Prevent modal from showing up
   document.getElementsByClassName("js-item-launch")[9].childNodes[1].click(); // Click the user tweets button
@@ -533,6 +534,8 @@ function PrepareLoginStuffs() {
 }
 
 function LoginStuffs2() {
+  console.log('waiting for login stuffs 2');
+
   if (typeof document.getElementsByClassName("js-right-column")[0] === "undefined") {
     setTimeout(LoginStuffs2,150);
     return;
@@ -570,6 +573,11 @@ function LoginStuffs2() {
 
   document.getElementsByClassName("js-right-column")[0].childNodes[0].childNodes[1].childNodes[1].childNodes[3].childNodes[3].childNodes[1].childNodes[1].childNodes[1].childNodes[1].childNodes[1].childNodes[3].click(); // eww; basically finds most recent tweet so it can fetch profile
 
+  if (typeof document.getElementsByClassName("js-click-trap")[0] === "undefined") {
+    setTimeout(LoginStuffs2,150);
+    return;
+  }
+
   document.getElementsByClassName("js-click-trap")[0].setAttribute("style","display:none;"); // Hide profile thing
   setTimeout(function(){
     document.getElementsByClassName("js-click-trap")[0].setAttribute("style","display:none;"); // Hide profile thing
@@ -582,6 +590,7 @@ function LoginStuffs2() {
 }
 
 function LoginStuffs3() {
+  console.log('waiting for login stuffs 3');
   if (typeof document.getElementsByClassName("prf-header")[0] === "undefined") {
     setTimeout(LoginStuffs3,150);
     return;
@@ -672,7 +681,7 @@ function NavigationSetup() {
       var tdesettingsmodalinner = $("#settings-modal .mdl .mdl-inner")[0];
       $("#settings-modal .mdl .js-header-title")[0].className = "mdl-header-title";
       $("#settings-modal .mdl .mdl-header-title")[0].innerHTML = "Enhancer Settings";
-      tdesettingsmodalinner.innerHTML = '<div class="mdl-content js-mdl-content horizontal-flow-container"> <div class="l-column mdl-column mdl-column-sml"> <div class="l-column-scrollv scroll-v  scroll-alt "> <ul class="lst-group js-setting-list">  <li class="selected"><a href="#" class="list-link" id="enhancer_settings_about_button" data-action="general"><strong>About</strong></a></li></ul> </div> </div> <div class="l-column mdl-column mdl-column-lrg"> <div class="l-column-scrollv scroll-v  scroll-alt mdl-col-settings"> <form action="#" id="global-settings" accept-charset="utf-8" class="frm"><fieldset id="general_settings"><img src="https://dangeredwolf.com/assets/TDE5/tdeaboutsmaller.png" class="tde-logo"><h1 class="list-placeholder tde-about-title">TweetDeck Enhancer</h1><h2 class="tde-version-title">You\'re running Enhancer 5.0 Release Candidate'/*"Paradise"*/+'</h2></fieldset></form> </div> </div> </div>';
+      tdesettingsmodalinner.innerHTML = '<div class="mdl-content js-mdl-content horizontal-flow-container"> <div class="l-column mdl-column mdl-column-sml"> <div class="l-column-scrollv scroll-v  scroll-alt "> <ul class="lst-group js-setting-list">  <li class="selected"><a href="#" class="list-link" id="enhancer_settings_about_button" data-action="general"><strong>About</strong></a></li></ul> </div> </div> <div class="l-column mdl-column mdl-column-lrg"> <div class="l-column-scrollv scroll-v  scroll-alt mdl-col-settings"> <form action="#" id="global-settings" accept-charset="utf-8" class="frm"><fieldset id="general_settings"><img src="https://dangeredwolf.com/assets/TDE5/tdeaboutsmaller.png" class="tde-logo"><h1 class="list-placeholder tde-about-title">TweetDeck Enhancer</h1><h2 class="tde-version-title">You\'re running Enhancer 5.0 Release Candidate 2'/*"Paradise"*/+'</h2></fieldset></form> </div> </div> </div>';
       //tdesettingsmodalview.setAttribute("style","display:block;");
       /*tdesettingsmodalview.onclick = function() {
         if (typeof tde_settings_modal_panel !== "undefined") {

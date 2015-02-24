@@ -4153,12 +4153,43 @@ button.js-toggle-button.btn.js-toggle-users.is-selected:hover {
     content: "...";
     color: transparent;
     background: url(https://dangeredwolf.com/assets/TDE5/compose.png) no-repeat;
-    margin-left: 5px;
+    background-size: 24px;
+    margin-left: 4px;
+    margin-top: 4px;
+    width: 26px;
+    height: 26px;
+    position: absolute;
+    transition: 150ms all!important;
+    transition-timing-function:cubic-bezier(.55,0,.1,1)!important;
+    transform: scale(0.85,0.85) rotate(360deg);
+}
+
+.tweet-button .icon-compose:after {
+    content: "...";
+    color: transparent;
+    background: url(https://ryandolan123.com/assets/tweetdeck/img/back.png) no-repeat;
+    margin-left: 10px;
     margin-top: 5px;
     width: 26px;
     height: 26px;
     position: absolute;
-    background-size: 22px 22px;
+    z-index: 999999999999999999;
+    background-size: 26px 26px;
+    transition:250ms all!important;
+    transition-timing-function:cubic-bezier(.55,0,.1,1);
+    opacity: 0;
+}
+
+.tweet-button.is-hidden .icon-compose:after {
+  margin-left:0px;
+  opacity: 1;
+}
+
+.tweet-button.is-hidden .icon-compose:before {
+  margin-left: 115px;
+  transform: scale(1,1);
+  transition:250ms all!important;
+  transition-timing-function:cubic-bezier(.55,0,.1,1)!important;
 }
 
 .icon-mark-read:before {
@@ -8052,7 +8083,7 @@ i.icon.icon-move {
   margin-left: -5px;
   transition:300ms all!important;
   margin-top: -3px;
-  transform: scale(0.85,0.85) rotate(360deg);
+  /* transform: scale(0.85,0.85) rotate(360deg); */
 }
 
 .attach-compose-buttons {
@@ -8069,7 +8100,7 @@ i.icon.icon-move {
   margin-top: -60px;
   transition-timing-function: cubic-bezier(.55,0,.1,1)!important;
   margin-left: -5px;
-  width: 70px;
+  width: 271px;
 }
 
 .attach-compose-buttons .icon-compose-dm {
@@ -9609,7 +9640,7 @@ i.icon.icon-clear-timeline {
   box-shadow: 0 15px 40px rgba(17,17,17,0.4); 
   -webkit-animation: popgoesthemodalwindow 0.3s 1;
   opacity: 1;
-  border-radius: 0px;
+  border-radius: 2px;
   transition: 200ms box-shadow;
    transform-origin: 50% 60%;
    
@@ -15121,7 +15152,7 @@ button.js-send-tweet-button.js-spinner-button.js-show-tip.btn.btn-positive.btn-e
 }
 
 .js-column-nav-list li.column-nav-item.js-column-nav-menu-item { 
-    display:none!important;
+    display: inline!important;
 }
 
 .hide-detail-view-inline .column-navigator {
@@ -15373,18 +15404,17 @@ h1.js-contributor-manager-back.is-actionable.txt-base-extra-large.pull-left.txt-
 .js-show-drawer.tweet-button.btn-compose.is-hidden {
     display: inline-block!important;
     border-radius: 0px;
-    width: 70px;
+    width: 271px;
     margin-left: -5px;
     margin-top: -4px;
     box-shadow: none!important;
     background-color: #00BCD4;
     transition-timing-function: cubic-bezier(.55,0,.1,1);
-    transition:250ms!important
-}
+    /* transition:250ms!important */}
 
 .tweet-button.is-hidden .icon-compose {
     margin-left: 10px;
-    transform: scale(1,1);
+    /* transform: scale(1,1); */
 }
 
 .btn.js-edit span.label.margin-ln {
@@ -15511,8 +15541,8 @@ button#emojiButton:active .btd-icon-smile {
 
 .hide-detail-view-inline .tde-drawer-button {
     top: 5px;
-    z-index:99999999;
-    margin-left:70px;
+    z-index: 99999999999;
+    margin-left:220px;
 }
 
 .tde-nav-drawer {
