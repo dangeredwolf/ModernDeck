@@ -26,7 +26,7 @@ if (typeof window.TDEURLExchange !== "undefined") {
     }
   }
 } else {
-  console.log("TDEURLExchange failed :( defaulting to stream fonts, may not work... but we'll try...");
+  console.log("TDEURLExchange failed :( defaulting to streamed sources, may not work... but we'll try...");
 }
 
 function PatchAudio(){
@@ -51,6 +51,19 @@ function WaitForTDToConfigureSelf(){
   }
 }
 
+function CryptoScript() {
+  var injectsha3 = document.createElement("script");
+  injectsha3.type = "text/javascript";
+  injectsha3.src = TDEBaseURL + "resources/sha3.js";
+  document.body.appendChild(injectsha3);
+}
+
+function GetPreferencesIdentifierFromCrypto() {
+  if (typeof CryptoJS !== "undefined") {
+    return CryptoJS.SHA3(TD.storage.store._backend.guestID); // 512 bit SHA-3? yes please
+  }
+}
+
 function StreamAngularJS() {
 
   if (!ShouldUpgrade) {
@@ -59,12 +72,11 @@ function StreamAngularJS() {
 
   // TDE now uses Angular JS for other nice material things
 
-
   // AngularJS Material Stylesheet
 
   var angularstyles = document.createElement("link");
   angularstyles.rel = "stylesheet";
-  angularstyles.href = "//ajax.googleapis.com/ajax/libs/angular_material/0.6.1/angular-material.min.css";
+  angularstyles.href = TDEBaseURL + "resources/angular/angular-material.min.css";
   angularstyles.id = "angularstyles";
   document.head.appendChild(angularstyles);
 
@@ -72,31 +84,31 @@ function StreamAngularJS() {
 
   var injectAngularJS = document.createElement("script");
   injectAngularJS.type = "text/javascript";
-  injectAngularJS.src = "//cdn.jsdelivr.net/hammerjs/2.0.4/hammer.min.js";
+  injectAngularJS.src = TDEBaseURL + "resources/angular/hammer.min.js";
   injectAngularJS.id = "injectAngularJS";
   document.body.appendChild(injectAngularJS);
 
   var injectAngularJS2 = document.createElement("script");
   injectAngularJS2.type = "text/javascript";
-  injectAngularJS2.src = "//ajax.googleapis.com/ajax/libs/angularjs/1.3.6/angular.min.js";
+  injectAngularJS2.src = TDEBaseURL + "resources/angular/angular.min.js";
   injectAngularJS2.id = "injectAngularJS2";
   document.body.appendChild(injectAngularJS2);
 
   var injectAngularJS3 = document.createElement("script");
   injectAngularJS3.type = "text/javascript";
-  injectAngularJS3.src = "//ajax.googleapis.com/ajax/libs/angularjs/1.3.6/angular-animate.min.js";
+  injectAngularJS3.src = TDEBaseURL + "resources/angular/angular-animate.min.js";
   injectAngularJS3.id = "injectAngularJS3";
   document.body.appendChild(injectAngularJS3);
 
   var injectAngularJS4 = document.createElement("script");
   injectAngularJS4.type = "text/javascript";
-  injectAngularJS4.src = "//ajax.googleapis.com/ajax/libs/angularjs/1.3.6/angular-aria.min.js";
+  injectAngularJS4.src = TDEBaseURL + "resources/angular/angular-aria.min.js";
   injectAngularJS4.id = "injectAngularJS4";
   document.body.appendChild(injectAngularJS4);
 
   var injectAngularJS5 = document.createElement("script");
   injectAngularJS5.type = "text/javascript";
-  injectAngularJS5.src = "//ajax.googleapis.com/ajax/libs/angular_material/0.6.1/angular-material.min.js";
+  injectAngularJS5.src = TDEBaseURL + "resources/angular/angular-material.min.js";
   injectAngularJS5.id = "injectAngularJS5";
   document.body.appendChild(injectAngularJS5);
 
@@ -253,33 +265,6 @@ function WorldTick(){
 
 
 function PatchSystem() {
-  /*if (typeof TD === "undefined") {
-    setTimeout(PatchSystem,50);
-    return;
-  }
-  if (typeof TD.storage === "undefined") {
-    setTimeout(PatchSystem,50);
-    return;
-  }
-  if (typeof TD.storage.store === "undefined") {
-    setTimeout(PatchSystem,50);
-    return;
-  }
-  if (typeof TD.storage.store.getCurrentAuthType === "undefined") {
-    setTimeout(PatchSystem,50);
-    return;
-  }
-
-  console.log("Executing AuthType patch...");
-
-  TD.storage.store.getCurrentAuthType = function() {
-    return "twitter";
-  }*/
-
-  /*if (!addedColumnsLoadingTagAndIsWaiting) {
-    document.getElementsByTagName("html")[0].setAttribute("class",document.getElementsByTagName("html")[0].getAttribute("class") + " tde-columns-loading");
-    addedColumnsLoadingTagAndIsWaiting = true;
-  }*/
 
   if (typeof document.getElementsByClassName("js-modals-container")[0] === "undefined") {
     setTimeout(PatchSystem,50);
@@ -306,29 +291,16 @@ function PatchSystem() {
     }
    }
 
-   setTimeout(function(){
-    /*var step = 0;
-    console.log(document.getElementsByClassName("column"));
-    var columns = document.getElementsByClassName("column");
-    for (i = 0; i < columns.length; i++) { 
-      setTimeout(function(){
-        columns[step].setAttribute("class",columns[step].getAttribute("class") + " animatecolumnin");
-        step++;
-        console.log((new Date()).getSeconds());
-      },300 * i);
-    }*/
-      setTimeout(function(){
-        document.getElementsByTagName("html")[0].setAttribute("class",document.getElementsByTagName("html")[0].getAttribute("class").replace(" tde-columns-loading",""));
-      //},300*columns.length);
-    },800);
-   },0); //1200
+  setTimeout(function(){
+    document.getElementsByTagName("html")[0].setAttribute("class",document.getElementsByTagName("html")[0].getAttribute("class").replace(" tde-columns-loading",""));
+  },800);
 
   return;
 }
 
 function Upgrade() {
-  progressind.innerHTML = "Personalizing Enhancer";
-  TweetRegistry();
+  progressind.innerHTML = "Just a sec...";
+  setTimeout(PostRegistration,300);
 }
 
 function DisplayMigrateUI1() {
@@ -344,6 +316,10 @@ function DisplayMigrateUI2() {
 }
 
 function CheckForNeedsUpgrade() {
+  if (typeof CryptoJS === "undefined") {
+    setTimeout(CheckForNeedsUpgrade,200);
+    return;
+  }
   if (typeof TD === "undefined") {
     setTimeout(CheckForNeedsUpgrade,200);
     return;
@@ -360,17 +336,17 @@ function CheckForNeedsUpgrade() {
     setTimeout(CheckForNeedsUpgrade,200);
     return;
   }
-  if (typeof TD.storage.store._backend.tweetdeckAccount === "undefined") {
+  if (typeof TD.storage.store._backend.guestID === "undefined") {
     setTimeout(CheckForNeedsUpgrade,200);
     return;
   }
-  $.ajax( "https://dangeredwolf.com/tdedb/check.php?regname="  + TD.storage.store._backend.tweetdeckAccount)
+  $.ajax( "https://dangeredwolf.com/tdedb/check.php?regname="  + GetPreferencesIdentifierFromCrypto())
   .done(function(meh) {
     if (meh === "No") {
       ShouldUpgrade = true;
       setTimeout(DisplayMigrateUI1,500);
     } else {
-      console.log("Welcome back " + TD.storage.store._backend.tweetdeckAccount + "!");
+      console.log("Welcome back! <3");
     }
   })
   .fail(function() {
@@ -379,20 +355,20 @@ function CheckForNeedsUpgrade() {
 }
 
 function PostRegistration() {
-  progressind.innerHTML = "Registering Changes";
-  $.ajax( "https://dangeredwolf.com/tdedb/register.php?regname=" + TD.storage.store._backend.tweetdeckAccount)
+  progressind.innerHTML = "Migrating to 512-bit crypto identifier...";
+  $.ajax( "https://dangeredwolf.com/tdedb/register.php?regname=" + GetPreferencesIdentifierFromCrypto())
   .done(function(meh) {
     if (meh === "OK") {
       progressind.innerHTML = "Upgrade Complete!";
       setTimeout(function(){
-        progressind.innerHTML = "Welcome to Enhancer 5";
-      },1500);
+        progressind.innerHTML = "Welcome to Enhancer 5.0.2";
+      },1000);
       setTimeout(function(){
         progressind.innerHTML = "Restarting TweetDeck";
-      },4500);
+      },2500);
       setTimeout(function(){
         location.reload();
-      },5000);
+      },3000);
     } else {
       progressind.innerHTML = "Error: Unknown Response";
       setTimeout(function(){
@@ -425,27 +401,7 @@ function ReplaceLoadingIndicator() {
   //document.getElementsByClassName("js-startflow-content startflow")[0].innerHTML = '<video class="spinner-centered spinner-fade-in" width="74" height="76" src="https://dangeredwolf.com/assets/tweetdeck/img/spinner.mov" autoplay loop></video>';
 }
 
-function Analytics(ver) {
-  if (typeof TD === "undefined") {
-    setTimeout(Analytics,500);
-    return;
-  }
-  if (typeof TD.storage === "undefined") {
-    setTimeout(Analytics,500);
-    return;
-  }
-  if (typeof TD.storage.store === "undefined") {
-    setTimeout(Analytics,500);
-    return;
-  }
-  if (typeof TD.storage.store._backend === "undefined") {
-    setTimeout(Analytics,500);
-    return;
-  }
-  if (typeof TD.storage.store._backend.tweetdeckAccount === "undefined") {
-    setTimeout(Analytics,500);
-    return;
-  }
+function Analytics() {
   if (typeof $ === "undefined") {
     setTimeout(Analytics,500);
     return;
@@ -454,7 +410,7 @@ function Analytics(ver) {
     setTimeout(Analytics,500);
     return;
   }
-  $.ajax({url:"https://dangeredwolf.com/analytics/TDE5?acc=" + TD.storage.store._backend.tweetdeckAccount + "&release=stable&intcodename=paradise&ver=" + ver.toString()});
+  $.ajax({url:"https://dangeredwolf.com/analytics/TDE5?crypto=sha3&v=5.0.2&release=stable"});
 }
 
 function ImJustKidding(){
@@ -487,40 +443,6 @@ function ImJustKidding(){
 
 // screw gender roles
 
-function TweetRegistry(){
-  console.log("registering...");
-  setTimeout(function(){
-    document.getElementsByClassName("js-header-add-column")[0].click(); // Click add column
-    document.getElementsByClassName("js-item-launch")[9].childNodes[1].click(); // Click the user tweets button
-  },100);
-  setTimeout(function(){
-    $(".lst-group")[2].remove();
-    document.getElementsByClassName("js-add-column-search-input")[0].value = "enhancerint";
-    $(".js-modal-panel.mdl.s-tall-fixed.is-inverted-dark .js-back").remove();
-    //$(".js-modal-panel.mdl.s-tall-fixed.is-inverted-dark")[0].style.cssText = "height:750px;";
-  },200);
-  setTimeout(function(){
-    $(".mdl .js-perform-search.search-input-perform-search").click();
-  },230)
-  setTimeout(function(){
-    $(".lst-group .js-list-container li .list-account")[0].click();
-    $(".lst-group .js-list-container li .list-account")[0].click();
-    $(".lst-group .js-list-container li .list-account")[0].click();
-    $(".js-title")[0].remove();
-  },1500);
-  setTimeout(function(){
-    if (typeof $(".mdl .stream-item[data-key='569981122270117888']")[0] !== "undefined") {
-      $(".mdl .stream-item[data-key='569981122270117888'] .item-box")[0].click();
-    }
-  },2600);
-  setTimeout(function(){
-    if (typeof $(".tweet-detail:not(.is-favorite) .js-show-tip.tweet-detail-action")[0] !== "undefined") {
-      $(".tweet-detail:not(.is-favorite) .js-show-tip.tweet-detail-action")[0].click();
-    }
-  },3000);
-  setTimeout(PostRegistration,3300);
-}
-
 function PrepareLoginStuffs() {
   console.log('waiting for login stuffs');
   document.getElementsByClassName("js-header-add-column")[0].click(); // Click add column
@@ -545,9 +467,9 @@ function LoginStuffs2() {
   if (typeof document.getElementsByClassName("js-right-column")[0] === "undefined") {
     setTimeout(LoginStuffs2,150);
     return;
-  }
+  } 
 
-  if (typeof document.getElementsByClassName("js-right-column")[0].childNodes[0].childNodes[1].childNodes[1].childNodes[3].childNodes[3].childNodes[1] === "undefined") {
+  if (typeof document.getElementsByClassName("js-right-column")[0].childNodes[0].childNodes[1].childNodes[1].childNodes[3].childNodes[3].childNodes[1] === "undefined") { ////////////////////////////////// AS BAD AS IT LOOKS IT WORKS GREAT
     setTimeout(LoginStuffs2,150);
     return;
   }
@@ -604,7 +526,8 @@ function LoginStuffs3() {
   tde_nd_header_image.setAttribute("style",document.getElementsByClassName("prf-header")[0].style.cssText); // Fetch header and place in nav drawer
   tde_nd_header_photo.setAttribute("src",document.getElementsByClassName("prf-img")[0].childNodes[1].src); // Fetch profile picture and place in nav drawer
   tde_nd_header_username.innerHTML = document.getElementsByClassName("prf-card-inner")[0].childNodes[1].childNodes[5].childNodes[0].textContent; // Fetch twitter handle and place in nav drawer
-  Analytics(!!document.getElementsByClassName("sprite-verified")[0]); // Collect basic analytics data (doesn't log usage or other sensitive information)
+
+  Analytics(); // Collect basic TDE version analytics data (doesn't log usage, account name / ID, or anything else)
 }
 
 function NavigationSetup() {
@@ -616,7 +539,7 @@ function NavigationSetup() {
   var TDENavigationDrawerButton = document.createElement("a");
   TDENavigationDrawerButton.id = "tde-navigation-drawer-button";
   TDENavigationDrawerButton.setAttribute("class","js-header-action tde-drawer-button link-clean cf app-nav-link");
-  TDENavigationDrawerButton.innerHTML = '<div class="obj-left"> <img src="https://dangeredwolf.com/assets/TDE5/navbutton.png" class="tde-nav-activator"> </div> <div class="nbfc padding-ts hide-condensed"></div>'; // temporarily a settings icon, ill make an icon later
+  TDENavigationDrawerButton.innerHTML = '<div class="obj-left"> <img src="https://dangeredwolf.com/assets/TDE5/navbutton.png" class="tde-nav-activator"> </div> <div class="nbfc padding-ts hide-condensed"></div>';
 
   document.getElementsByClassName("app-header-inner")[0].appendChild(TDENavigationDrawerButton);
 
@@ -635,7 +558,7 @@ function NavigationSetup() {
   var TDENavigationDrawer = document.createElement("div");
   TDENavigationDrawer.id = "tde_nav_drawer";
   TDENavigationDrawer.setAttribute("class","tde-nav-drawer tde-nav-drawer-hidden");
-  TDENavigationDrawer.innerHTML = '<img id="tde_nd_header_image" class="tde-nd-header-image"><img class="avatar size73 tde-nd-header-photo" id="tde_nd_header_photo"><div class="tde-nd-header-username" id="tde_nd_header_username"></div><button class="btn tde-nav-button tde-settings-button" id="tdset"><img src="https://dangeredwolf.com/assets/TDE5/tweetdecksmall.png" class="tde-nav-drawer-icon">TweetDeck Settings</button><button class="btn tde-nav-button" id="tdesettings"><img src="https://dangeredwolf.com/assets/TDE5/TDEsmall.png" class="tde-nav-drawer-icon">Enhancer Settings</button><div class="tde-nav-divider"></div><button id="tde_signout" class="btn tde-nav-button"><img src="https://dangeredwolf.com/assets/TDE5/logout.png" class="tde-nav-drawer-icon">Sign Out</button><button id="tdaccsbutton" class="btn tde-nav-button"><img src="https://dangeredwolf.com/assets/TDE5/accounts.png" class="tde-nav-drawer-icon">Your Accounts</button><div class="tde-nav-divider"></div><button id="kbshortcuts" class="btn tde-nav-button"><img src="https://dangeredwolf.com/assets/TDE5/KBshortcuts.png" class="tde-nav-drawer-icon">Keyboard Shortcuts</button><button id="addcolumn" class="btn tde-nav-button"><img src="https://dangeredwolf.com/assets/TDE5/AddColumn.png" class="tde-nav-drawer-icon">Add Column</button>';
+  TDENavigationDrawer.innerHTML = '<img id="tde_nd_header_image" class="tde-nd-header-image"><img class="avatar size73 tde-nd-header-photo" id="tde_nd_header_photo"><div class="tde-nd-header-username" id="tde_nd_header_username"></div><button class="btn tde-nav-button tde-settings-button" id="tdset"><img src="https://dangeredwolf.com/assets/TDE5/tweetdecksmall.png" class="tde-nav-drawer-icon">TweetDeck Settings</button><button class="btn tde-nav-button" id="tdesettings"><img src="https://dangeredwolf.com/assets/TDE5/TDEsmall.png" class="tde-nav-drawer-icon">Enhancer Settings</button><button class="btn tde-nav-button" id="btdsettings"><img src="https://dangeredwolf.com/assets/TDE5/BTDsmall.png" class="tde-nav-drawer-icon">Better TweetDeck Settings</button><div class="tde-nav-divider"></div><button id="tde_signout" class="btn tde-nav-button"><img src="https://dangeredwolf.com/assets/TDE5/logout.png" class="tde-nav-drawer-icon">Sign Out</button><button id="tdaccsbutton" class="btn tde-nav-button"><img src="https://dangeredwolf.com/assets/TDE5/accounts.png" class="tde-nav-drawer-icon">Your Accounts</button><div class="tde-nav-divider"></div><button id="kbshortcuts" class="btn tde-nav-button"><img src="https://dangeredwolf.com/assets/TDE5/KBshortcuts.png" class="tde-nav-drawer-icon">Keyboard Shortcuts</button><button id="addcolumn" class="btn tde-nav-button"><img src="https://dangeredwolf.com/assets/TDE5/AddColumn.png" class="tde-nav-drawer-icon">Add Column</button>';
 
   document.body.appendChild(TDENavigationDrawer);
 
@@ -687,7 +610,7 @@ function NavigationSetup() {
       var tdesettingsmodalinner = $("#settings-modal .mdl .mdl-inner")[0];
       $("#settings-modal .mdl .js-header-title")[0].className = "mdl-header-title";
       $("#settings-modal .mdl .mdl-header-title")[0].innerHTML = "Enhancer Settings";
-      tdesettingsmodalinner.innerHTML = '<div class="mdl-content js-mdl-content horizontal-flow-container"> <div class="l-column mdl-column mdl-column-sml"> <div class="l-column-scrollv scroll-v  scroll-alt "> <ul class="lst-group js-setting-list">  <li class="selected"><a href="#" class="list-link" id="enhancer_settings_about_button" data-action="general"><strong>About</strong></a></li></ul> </div> </div> <div class="l-column mdl-column mdl-column-lrg"> <div class="l-column-scrollv scroll-v  scroll-alt mdl-col-settings"> <form action="#" id="global-settings" accept-charset="utf-8" class="frm"><fieldset id="general_settings"><img src="https://dangeredwolf.com/assets/TDE5/tdeaboutsmaller.png" class="tde-logo"><h1 class="list-placeholder tde-about-title">TweetDeck Enhancer</h1><h2 class="tde-version-title">You\'re running Enhancer 5.0'/*"Paradise"*/+'</h2></fieldset></form> </div> </div> </div>';
+      tdesettingsmodalinner.innerHTML = '<div class="mdl-content js-mdl-content horizontal-flow-container"> <div class="l-column mdl-column mdl-column-sml"> <div class="l-column-scrollv scroll-v  scroll-alt "> <ul class="lst-group js-setting-list">  <li class="selected"><a href="#" class="list-link" id="enhancer_settings_about_button" data-action="general"><strong>About</strong></a></li></ul> </div> </div> <div class="l-column mdl-column mdl-column-lrg"> <div class="l-column-scrollv scroll-v  scroll-alt mdl-col-settings"> <form action="#" id="global-settings" accept-charset="utf-8" class="frm"><fieldset id="general_settings"><img src="https://dangeredwolf.com/assets/TDE5/tdeaboutsmaller.png" class="tde-logo"><h1 class="list-placeholder tde-about-title">TweetDeck Enhancer</h1><h2 class="tde-version-title">You\'re running Enhancer 5.0.2'/*"Paradise"*/+'</h2></fieldset></form> </div> </div> </div>';
       //tdesettingsmodalview.setAttribute("style","display:block;");
       /*tdesettingsmodalview.onclick = function() {
         if (typeof tde_settings_modal_panel !== "undefined") {
@@ -716,6 +639,14 @@ function NavigationSetup() {
         console.log("up!!");
       });
     },100);
+  }
+
+  btdsettings.onclick = function(){
+    TDEPrepareWindows();
+    setTimeout(function(){
+      var opn = window.open("chrome-extension://micblkellenpbfapmcpcfhcoeohhnpob/options/options.html", '_blank');
+      opn.focus();
+    },200);
   }
 
   kbshortcuts.onclick = function(){
@@ -791,8 +722,25 @@ function TDESecureVerif() {
   document.head.appendChild(injStyles);
 }
 
+function HandleKeyboardStuffs(e) {
+  if (e.keyCode === 81) {
+    if (typeof tde_nav_drawer !== "undefined") {
+      if (tde_nav_drawer.className === "tde-nav-drawer tde-nav-drawer-hidden") {
+        if (typeof document.getElementById("tde-navigation-drawer-button") !== "undefined") {
+          document.getElementById("tde-navigation-drawer-button").click();
+        }
+      } else {
+        if (typeof tde_nav_drawer_background !== "undefined") {
+          tde_nav_drawer_background.click();
+        }
+      }
+    }
+  }
+}
+
 // Danny is a cutie and I love himmm <333
 
+setTimeout(CryptoScript,0);
 setTimeout(CheckForNeedsUpgrade,0);
 setTimeout(InjectRobotoFonts,0);
 setTimeout(PatchAudio,0);
@@ -802,6 +750,8 @@ setTimeout(ReplaceLoadingIndicator,0);
 setTimeout(WorldTick,0);
 setTimeout(NavigationSetup,100);
 setTimeout(TDESecureVerif,150);
+
+window.addEventListener("keyup", HandleKeyboardStuffs, false);
 
 console.log("TDEinject loaded");
 

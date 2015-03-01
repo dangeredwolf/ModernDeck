@@ -1,5 +1,1 @@
-TweetDeck Enhancer may collect small subsets of information, so we can analyze which versions of TweetDeck Enhancer is being used.
-
-Due to the nature of HTTP, your IP address must be sent, because of the way web servers work. IP addresses are never used other than to send back the bytes needed.
-
-Some resources are fetched in realtime by TweetDeck Enhancer, to make easier update and enhancement processes.
+Enhancer collects basic analytics data so that we know which versions of TDE are being used. Starting with 5.0.2, your identifier has been replaced with a 512-bit long SHA-3 key, to enhance user privacy even further. 

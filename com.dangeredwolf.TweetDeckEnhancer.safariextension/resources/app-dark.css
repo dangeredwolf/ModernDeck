@@ -1,4 +1,4 @@
-/* TweetDeck Enhancer 5.0 [codename Paradise]
+/* TweetDeck Enhancer 5.0.2 [codename Paradise]
 Copyright 2015 Dangered Wolf (@dangeredwolf)
 
 app-dark.css */
@@ -6,10 +6,6 @@ app-dark.css */
 .bg-r-text {
   background-color:#292f33
 }
-
-.bg-r-white {
-  /* background-color:#fff
- */}
 
 .bg-r-faint-gray {
   background-color:#f5f8fa
@@ -5193,6 +5189,7 @@ a.link-complex>span {
   /* border-right: 3px solid rgba(0, 0, 0, 0.05); */
   /* margin-right: 3px; */
   animation-timing-function: cubic-bezier(.55,0,.1,1);
+  border-right:none!important;
   /* display: none; */
 }
 
@@ -5486,7 +5483,6 @@ a.pull-left.margin-txs.txt-mute.txt-small.link-complex:hover {
   width:328px;
 }
 
-
 .is-narrow-columns .column-header,.is-narrow-columns .column-header-temp {
   width:283px;
 }
@@ -5494,7 +5490,6 @@ a.pull-left.margin-txs.txt-mute.txt-small.link-complex:hover {
 .is-wide-columns .column-header,.is-wide-columns .column-header-temp {
   width:353px;
 }
-
 
 .column-temp .column-header,.column-header-temp {
   position:absolute;
@@ -5516,6 +5511,7 @@ a.pull-left.margin-txs.txt-mute.txt-small.link-complex:hover {
   position:absolute;
   width:100%;
   padding-top: 2px;
+  margin-left:0px!important;
 }
 
 .column-title .attribution {
@@ -9639,7 +9635,7 @@ i.icon.icon-clear-timeline {
 }
 
 #general_settings>.mdl-links>span.inline-block:after {
-  content: " TweetDeck Enhancer 5.0";
+  content: " TweetDeck Enhancer 5.0.1";
   padding-left: 8px;
 }
 
@@ -10060,7 +10056,7 @@ input#file-upload-input {
 }
 
 .compose {
-  background-color: #00838F;
+  background-color: #00838F!important;
   color: #FFF;
   height:100%;
   transition:300ms all!important;
@@ -10200,7 +10196,7 @@ input#file-upload-input {
 
 .compose-reply-tweet {
   position:relative;
-  background-color: #263238;
+  background-color: #263238!important;
   font-size:12px;
   font-weight:400;
   color: #D6D6D6;
@@ -15061,6 +15057,7 @@ button#emojiButton:active .btd-icon-smile {
 .btd-minimal_mode .app-columns {
     margin-top:-4px;
     margin-left:-6px;
+    padding:0px 0px 0px 6px!important;
 }
 
 .compose-account.is-selected {
@@ -15563,6 +15560,59 @@ md-progress-circular.loadspin {
 .detail-view-inline {
     background-color: #3A4B54;
 }
+
+body:not(.btd-ready) #btdsettings {
+  display:none;
+}
+
+.btd-settings {
+  display:none;
+}
+
+.emoji-popover .emojis-compose-panel .emoji-container::before {
+    background-image: none!important;
+}
+
+.emoji-popover {
+    width: 88%;
+    margin-top: -20px;
+}
+
+.emoji-popover .emojis-compose-panel .emoji-container {
+    width: 100%!important;
+}
+
+.emoji-popover .category-chooser {
+    background: #344248!important;
+}
+
+.emoji-popover .emoji-container > div.active {
+    -webkit-animation: dropmenucomeupnopad 0.25s 1!important;
+    -webkit-animation-timing-function: cubic-bezier(.55,0,.1,1)!important;
+}
+
+.btd-emoji.emoji-pop[data-cat="Emoji-HumanImage"] {
+    margin-left: 35px;
+}
+
+.category-chooser .btd-emoji.emoji-pop:not(.active) {
+    -webkit-filter: grayscale(100%);
+}
+
+.keyboard-shortcut-list-modal .mdl-content:after {
+    content: "Q -- Open Enhancer Navigation Drawer";
+    margin-top: -8px;
+    margin-left: 0px;
+    z-index: 999999999999999;
+    color: #fff;
+    width: 100%;
+    height: 30px;
+    display: block;
+    position: absolute;
+    font-size: 14px;
+    text-align: center;
+}
+
 
 
 
