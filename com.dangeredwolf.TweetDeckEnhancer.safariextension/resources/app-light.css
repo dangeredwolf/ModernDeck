@@ -1,4 +1,4 @@
-/* TweetDeck Enhancer 5.0.2 [codename Paradise] 
+/* TweetDeck Enhancer 5.0.3 [codename Paradise] 
 Copyright 2015 Dangered Wolf (@dangeredwolf)
 
 app-light.css */
@@ -4972,8 +4972,7 @@ button.js-follow-button.js-show-tip.follow-btn.btn.btn-alt {}
 }
 
 .btn-neutral-negative {
-  color:#d29b9a
-}
+  color: #FFFFFF;}
 
 .btn-neutral-negative:hover,.btn-neutral-negative:focus {
   color:#d29b9a
@@ -5035,8 +5034,7 @@ button.js-follow-button.js-show-tip.follow-btn.btn.btn-alt {}
 }
 
 .btn-bg-negative {
-  background-color:#5d5457
-}
+  background-color: #26C6DA;}
 
 .btn-bg-negative:hover,.btn-bg-negative:focus {
   background-color:#5d5457
@@ -9631,17 +9629,14 @@ i.icon.icon-clear-timeline {
   -ms-border-radius:2px;
   -o-border-radius:2px;
   border-radius: 0px;
-   
   -webkit-box-shadow: 0 15px 40px rgba(17,17,17,0.4); 
   -moz-box-shadow: 0 15px 40px rgba(17,17,17,0.4);
-   
-  box-shadow: 0 15px 40px rgba(17,17,17,0.4); 
-  -webkit-animation: popgoesthemodalwindow 0.3s 1;
+  box-shadow: 0 15px 40px rgba(17,17,17,0.4);
   opacity: 1;
   border-radius: 2px;
   transition: 200ms box-shadow;
-   transform-origin: 50% 60%;
-   
+  transform-origin: 50% 60%;
+  -webkit-animation: popgoesthemodalwindow 0.3s 1;
   -webkit-animation-timing-function: cubic-bezier(.55,0,.1,1);
   box-shadow: 0 15px 40px rgba(17,17,17,0.4);
   overflow: hidden;
@@ -9736,13 +9731,13 @@ i.icon.icon-clear-timeline {
 }
 
 .mdl-placeholder {
-  padding:30px;
+  padding-top:30px;
   text-align:center;
-  font-size:15px;
-  font-weight:600;
-  line-height:1.2;
+  font-size: 28px;
   color:#aaa;
-  text-shadow:0 1px 0 rgba(255,255,255,0.8)
+  padding-left: 10px;
+  padding-right: 10px;
+  font-weight: 300;
 }
 
 .mdl-dismiss {
@@ -10022,7 +10017,7 @@ i.icon.icon-clear-timeline {
 }
 
 #general_settings>.mdl-links>span.inline-block:after {
-  content: " TweetDeck Enhancer 5.0.1";
+  content: " TweetDeck Enhancer 5.0.3";
   padding-left: 8px;
 }
 
@@ -10769,7 +10764,6 @@ input#file-upload-input {
 }
 
 .is-selected.compose-account:focus .compose-account-img {
-  box-shadow:0 0 2px 3px #00acee;
   outline:0
 }
 
@@ -13782,13 +13776,15 @@ a.caldisabled[href] {
 }
 
 .startflow-msg-header {
-  background-color:#666;
-  font-size:20px
+  background-color:#00A9FF;
+  font-size:20px;
+  color:#fff;
 }
 
 .startflow-msg-warning {
-  background-color:#FFCC4D;
-  font-size:20px
+  background-color:#FF904D;
+  font-size:20px;
+  color:#fff;
 }
 
 .startflow-message-wrap p {
@@ -16003,18 +15999,33 @@ body:not(.btd-ready) #btdsettings {
     -webkit-filter: grayscale(100%);
 }
 
-.keyboard-shortcut-list-modal .mdl-content:after {
-    content: "Q -- Open Enhancer Navigation Drawer";
-    margin-top: -8px;
-    margin-left: 0px;
-    z-index: 999999999999999;
-    color: #000;
-    width: 100%;
-    height: 30px;
+.startflow-panel button {
+    color: #0ED0D2;
+}
+
+.startflow-message-wrap .startflow-panel {
+    -webkit-animation: popgoesthemodalwindow 0.3s 1;
+    -webkit-animation-timing-function: cubic-bezier(.55,0,.1,1);
+}
+
+.js-twogin-warning-login-anyway-btn {
+    font-size: 0px;
+}
+
+.js-twogin-warning-login-anyway-btn:after {
+    content: "I'll just use this account (unrecommended)";
+    font-size: 16px;
+    padding-bottom: 15px;
     display: block;
-    position: absolute;
-    font-size: 14px;
-    text-align: center;
+}
+
+.js-twogin-warning-logout-btn.btn-txt-large:after {
+    content: "Alright, I'll use my own account.";
+    font-size: 20px;
+}
+
+.js-twogin-warning-logout-btn.btn-txt-large {
+    font-size: 0px;
 }
 
 

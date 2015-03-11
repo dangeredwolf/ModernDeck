@@ -2,7 +2,7 @@
 // Copyright (c) 2015 Dangered Wolf
 
 console.log("TDELoad loaded");
-console.log("Enhancer 5.0.2");
+console.log("Enhancer 5.1");
 
 function ReplaceLoadingIndicator() {
   console.log("Waiting for TweetDeck so I can replace loading spinner (TDELoad)");
@@ -16,6 +16,8 @@ function ReplaceLoadingIndicator() {
     return;
   }
   console.log("Replacing Loading Spinner (TDELoad)");
+
+  console.log((isChromium && chrome.extension.getURL("resources/spinner.mov")) || (isSafari && safari.extension.baseURI + "resources/spinner.mov"));
 
   document.getElementsByClassName("js-startflow-content startflow")[0].className += " tde-upgrading";
   document.getElementsByClassName("js-startflow-content startflow")[0].innerHTML = '<video class="spinner-centered spinner-fade-in" width="74" height="76" src="' + (isChromium && chrome.extension.getURL("resources/spinner.mov")) || (isSafari && safari.extension.baseURI + "resources/spinner.mov") + '" autoplay loop></video>';

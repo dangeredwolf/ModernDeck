@@ -3,7 +3,7 @@
   "short_name": "TD Enhancer",
 
   "description": "__MSG_ExtDesc__",
-  "version": "5.0.2",
+  "version": "5.0.3",
 
   "default_locale": "en_US",
 
@@ -18,11 +18,6 @@
       "matches": ["https://tweetdeck.twitter.com/"],
       "js": ["extension/TDELoad.js"],
       "run_at": "document_end"
-    },
-    {
-      "matches": ["https://tweetdeck.twitter.com/"],
-      "js": ["extension/TDEFix.js"],
-      "run_at": "document_start"
     }
   ],
 

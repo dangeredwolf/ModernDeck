@@ -1,4 +1,4 @@
-/* TweetDeck Enhancer 5.0.2 [codename Paradise]
+/* TweetDeck Enhancer 5.0.3 [codename Paradise]
 Copyright 2015 Dangered Wolf (@dangeredwolf)
 
 app-dark.css */
@@ -5769,7 +5769,7 @@ a.js-column-back.link-complex:active {
 }
 
 .is-new .column-message {
-  background-color: #197078;
+  background-color: #0E4B50;
   transition: 200ms all;
 }
 
@@ -8359,6 +8359,7 @@ i.icon.icon-clear-timeline {
   transition:200ms background-color;
   background-color: #00838F;
   color: #fff;
+  box-shadow: none;
 }
 
 .facet-type:last-child {
@@ -8373,6 +8374,9 @@ i.icon.icon-clear-timeline {
 .facet-type.is-expanded {
   background-color:rgba(153,153,153,0.2);
   transition:250ms background-color;
+  box-shadow: 0 1px 10px rgba(17,17,17,0.35);
+  z-index: 9999999999999;
+  transform: scale(1.025);
 }
 
 .facet-type-icon {
@@ -9348,13 +9352,14 @@ i.icon.icon-clear-timeline {
 }
 
 .mdl-placeholder {
-  padding:30px;
+  /* padding-top:30px; */
   text-align:center;
-  font-size:15px;
-  font-weight:600;
-  line-height:1.2;
-  color: #888;
-  text-shadow: none;}
+  font-size: 28px;
+  color: #667A86;
+  padding-left: 10px;
+  padding-right: 10px;
+  font-weight: 300;
+}
 
 .mdl-dismiss {
   z-index:100;
@@ -9635,7 +9640,7 @@ i.icon.icon-clear-timeline {
 }
 
 #general_settings>.mdl-links>span.inline-block:after {
-  content: " TweetDeck Enhancer 5.0.1";
+  content: " TweetDeck Enhancer 5.0.3";
   padding-left: 8px;
 }
 
@@ -10317,6 +10322,8 @@ input#file-upload-input {
   /* padding-bottom: 5px; */
   transition: 200ms all!important;
   margin-bottom: 5px;
+  opacity: .5;
+  -webkit-filter: grayscale(100%);
 }
 
 .compose-account-names {
@@ -10380,7 +10387,7 @@ input#file-upload-input {
 }
 
 .is-selected.compose-account:focus .compose-account-img {
-  box-shadow:0 0 2px 3px #00acee;
+  /* box-shadow:0 0 2px 3px #00acee; */
   outline:0
 }
 
@@ -13018,11 +13025,11 @@ a.caldisabled[href] {
 }
 
 .startflow-link-on-background {
-  color: #56E1EE;
+  color: rgba(255, 255, 255, 0.53);
 }
 
 .startflow-link-on-background:hover,.startflow-link-on-background:focus {
-  color: #6CD6FD;
+  color: rgba(239, 239, 239, 0.75);
 }
 
 .app-info {
@@ -13315,13 +13322,15 @@ a.caldisabled[href] {
 }
 
 .startflow-msg-header {
-  background-color:#666;
-  font-size:20px
+  background-color:#00A9FF;
+  font-size:20px;
+  color:#fff;
 }
 
 .startflow-msg-warning {
-  background-color:#FFCC4D;
-  font-size:20px
+  background-color:#FF904D;
+  font-size:20px;
+  color:#fff;
 }
 
 .startflow-message-wrap p {
@@ -14087,7 +14096,7 @@ a.txt-r-on-dark-blue {
     image-rendering: -o-crisp-edges;
     image-rendering: -webkit-optimize-contrast;
     -ms-interpolation-mode: nearest-neighbor;
-    z-index: 999999;
+    z-index: 9999999999;
 }
 
 .s-profile .pos-l {
@@ -14889,7 +14898,7 @@ button[data-user-id="892388300"] {
 }
 
 .contributor-adder input.js-username-input.js-submittable-input {
-    border-bottom: 3px solid #00BCD5;
+    border-bottom: 3px solid #00838F;
     margin-left: -5px;
     height: 25px;
     color:#000;
@@ -15599,18 +15608,38 @@ body:not(.btd-ready) #btdsettings {
     -webkit-filter: grayscale(100%);
 }
 
-.keyboard-shortcut-list-modal .mdl-content:after {
-    content: "Q -- Open Enhancer Navigation Drawer";
-    margin-top: -8px;
-    margin-left: 0px;
-    z-index: 999999999999999;
-    color: #fff;
-    width: 100%;
-    height: 30px;
+.startflow-panel button {
+    color: #0ED0D2;
+}
+
+.startflow-message-wrap .startflow-panel {
+    -webkit-animation: popgoesthemodalwindow 0.3s 1;
+    -webkit-animation-timing-function: cubic-bezier(.55,0,.1,1);
+}
+
+.js-twogin-warning-login-anyway-btn {
+    font-size: 0px;
+}
+
+.js-twogin-warning-login-anyway-btn:after {
+    content: "I'll just use this account (unrecommended)";
+    font-size: 16px;
+    padding-bottom: 15px;
     display: block;
-    position: absolute;
-    font-size: 14px;
-    text-align: center;
+}
+
+.js-twogin-warning-logout-btn.btn-txt-large:after {
+    content: "Alright, I'll use my own account.";
+    font-size: 20px;
+}
+
+.js-twogin-warning-logout-btn.btn-txt-large {
+    font-size: 0px;
+}
+
+.startflow ::selection {
+    background: rgba(102, 227, 228, 0.57);
+    color: #666;
 }
 
 
