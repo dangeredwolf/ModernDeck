@@ -4589,7 +4589,6 @@ button.js-follow-button.js-show-tip.follow-btn.btn.btn-alt {}
   /* background-color: #55acee; */
   border-color:transparent;
   box-shadow:none;
-  padding-bottom: 5px;
 }
 
 .btn-positive.text-hidden,.text-hidden.btn-positive-alt,.text-hidden.btn-fav.s-favorited,.s-following .text-hidden.follow-btn,.btn-positive.text-hidden:link,.text-hidden.btn-positive-alt:link,.text-hidden.btn-fav.s-favorited:link,.s-following .text-hidden.follow-btn:link,.btn-positive.text-hidden:visited,.text-hidden.btn-positive-alt:visited,.text-hidden.btn-fav.s-favorited:visited,.s-following .text-hidden.follow-btn:visited,.btn-positive.text-hidden:hover,.text-hidden.btn-positive-alt:hover,.text-hidden.btn-fav.s-favorited:hover,.s-following .text-hidden.follow-btn:hover,.btn-positive.text-hidden:focus,.text-hidden.btn-positive-alt:focus,.text-hidden.btn-fav.s-favorited:focus,.s-following .text-hidden.follow-btn:focus,.btn-positive.text-hidden:active,.text-hidden.btn-positive-alt:active,.text-hidden.btn-fav.s-favorited:active,.s-following .text-hidden.follow-btn:active {
