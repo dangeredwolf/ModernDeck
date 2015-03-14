@@ -13,9 +13,9 @@
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleShortVersionString</key>
-	<string>5.0.3</string>
+	<string>5.0.4</string>
 	<key>CFBundleVersion</key>
-	<string>5.0.3</string>
+	<string>5.0.4</string>
 	<key>Chrome</key>
 	<dict>
 		<key>Database Quota</key>
@@ -25,10 +25,6 @@
 	<dict>
 		<key>Scripts</key>
 		<dict>
-			<key>End</key>
-			<array>
-				<string>extension/TDEFix.js</string>
-			</array>
 			<key>Start</key>
 			<array>
 				<string>extension/TDELoad.js</string>

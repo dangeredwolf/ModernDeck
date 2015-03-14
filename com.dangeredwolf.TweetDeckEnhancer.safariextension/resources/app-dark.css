@@ -1,4 +1,4 @@
-/* TweetDeck Enhancer 5.0.3 [codename Paradise]
+/* TweetDeck Enhancer 5.0.4 [codename Paradise]
 Copyright 2015 Dangered Wolf (@dangeredwolf)
 
 app-dark.css */
@@ -5185,15 +5185,12 @@ a.link-complex>span {
   background-color: rgba(52, 66, 72, 1);
   font-size:1rem;
   white-space:normal;
-  /* border-right: 3px solid rgba(0, 0, 0, 0.05); */
-  /* margin-right: 3px; */
-  animation-timing-function: cubic-bezier(.55,0,.1,1);
+  transition-timing-function: cubic-bezier(.55,0,.1,1);
   border-right:none!important;
-  /* display: none; */
 }
 
 .column.is-focused {
-  box-shadow:0px 0px 6px 4px #30A6FF
+  box-shadow:inset 0px 10px 10px 10px #00BBD5;
 }
 
 .column.animatecolumnin {
@@ -5762,8 +5759,7 @@ a.js-column-back.link-complex:active {
 }
 
 .list-edit-button {
-  margin-top:10px
-;
+  margin-top:10px;
   z-index: 99999999999;
 }
 
@@ -8856,7 +8852,6 @@ i.icon.icon-clear-timeline {
   font-style:normal;
   font-size: 12px;
   padding:2px 3px;
-  /* line-height: 1.1; */
   border-radius: 99px;
   background-color: rgba(255, 255, 255, 0.92);
   color:#fff;
@@ -8868,24 +8863,26 @@ i.icon.icon-clear-timeline {
   width: 1px;
   height: 3px;
   margin-right: 5px;
+  opacity:0;
+  transition:400ms all;
 }
 
 .numbered-badge.is-visible {
     visibility: visible;
-  
+}
+
+.tde-show-column-icons .numbered-badge {
+  opacity:1;
+  transition:150ms all!important;
 }
 
 .numbered-badge-onheader {
-  /* border:2px solid #fff
- */
   display: none;
 }
 
 .numbered-badge-onnav {
   top:1px;
-  /* right:-5px; */
-  /* border:2px solid #444
- */}
+}
 
 .drawer {
   position:absolute;
@@ -9639,7 +9636,7 @@ i.icon.icon-clear-timeline {
 }
 
 #general_settings>.mdl-links>span.inline-block:after {
-  content: " TweetDeck Enhancer 5.0.3";
+  content: " TweetDeck Enhancer 5.0.4";
   padding-left: 8px;
 }
 
@@ -13356,14 +13353,20 @@ a.caldisabled[href] {
 .column-nav-link {
   position:relative;
   height:100%;
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(255, 255, 255, 0);
   font-size:18px;
   cursor:pointer;overflow: visible;
+  transition:500ms all;
+}
+
+.tde-show-column-icons .column-nav-link:not(:active):not(:hover) {
+  color: rgba(255, 255, 255, 0.5);
+  transition: 150ms all!important;
 }
 
 .column-nav-link:focus,.column-nav-link:active {
   outline:none;
-  color:#aaa
+  color: rgba(255, 255, 255, 0.2);
 }
 
 .column-nav-link.is-selected,.column-nav-link:hover {
@@ -13381,7 +13384,7 @@ a.caldisabled[href] {
   /* margin-top: auto; */
   /* overflow: visible; */
   /* margin-top: 8px; */
-  transition: 150ms all;
+  transition: 400ms all;
   height: 42px!important;
   margin-right: 0px!important;
   margin-left: 0px!important;
@@ -13391,8 +13394,13 @@ a.caldisabled[href] {
   /* padding-right: 5px; */
   left:initial!important;
   transform:none!important;
-  display:none!important;
+  opacity:0;
   
+}
+
+.column-nav-item.tde-show-column-icons {
+  opacity:1;
+  transition:200ms all!important;
 }
 
 .column-nav-link:after {
@@ -15641,6 +15649,46 @@ body:not(.btd-ready) #btdsettings {
     color: #666;
 }
 
+
+.is-focused .column-header {
+    /*background: linear-gradient(#00BCD4,#00BCD4)!important;*/
+    -webkit-animation: HereIAm 2s cubic-bezier(.55,0,.1,1)!important;
+    transition:200ms all;
+}
+
+@-webkit-keyframes HereIAm {
+    0% {
+        background: linear-gradient(#03A9F4,#03A9F4)!important;
+    }
+    50% {
+        background: linear-gradient(#00BCD4,#00BCD4)!important;
+    }
+    75% {
+        background: linear-gradient(#03A9F4,#03A9F4)!important;
+    }
+    82% {
+        background: linear-gradient(#00BCD4,#00BCD4)!important;
+    }
+    90% {
+        background: linear-gradient(#03A9F4,#03A9F4)!important;
+    }
+    95% {
+        background: linear-gradient(#00BCD4,#00BCD4)!important;
+    }
+    100% {
+        background: linear-gradient(#03A9F4,#03A9F4)!important;
+    }
+}
+
+.tde-show-column-icons .tde-appbar-notification:not(.tde-appbar-notification-hidden) {
+    margin-left: 50%!important;
+    width: 50%!important;
+}
+
+.hide-detail-view-inline .js-search-in-popover .popover { /* hey cody i fixed a t hing */
+    left: 65px!important;
+    top: -18px!important;
+}
 
 
 

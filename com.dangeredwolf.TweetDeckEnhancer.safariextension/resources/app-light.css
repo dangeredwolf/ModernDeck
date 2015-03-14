@@ -1,4 +1,4 @@
-/* TweetDeck Enhancer 5.0.3 [codename Paradise] 
+/* TweetDeck Enhancer 5.0.4 [codename Paradise] 
 Copyright 2015 Dangered Wolf (@dangeredwolf)
 
 app-light.css */
@@ -5361,7 +5361,7 @@ a.link-complex>span {
 }
 
 .column {
-  /* transition: all 150ms, left 0ms; */
+  transition: box-shadow 150ms;
   border-radius:0;
   position:relative;
   z-index:1;
@@ -5373,15 +5373,13 @@ a.link-complex>span {
   background-color: #F9F9F9;
   font-size:1rem;
   white-space:normal;
-  /* border-right: 3px solid rgba(0, 0, 0, 0.05); */
-  /* margin-right: 3px; */
-  animation-timing-function: cubic-bezier(.55,0,.1,1);
+  transition-timing-function: cubic-bezier(.55,0,.1,1);
   border-right:none!important;
 }
 
 .column.is-focused {
-  /* box-shadow:0px 0px 6px 4px #30A6FF
- */}
+  box-shadow:inset 0px 10px 10px 10px #00BBD5;
+}
 
 .column {
   /* border:1px solid #222426 */
@@ -7969,7 +7967,7 @@ i.icon.icon-move {
   left:0;
   right:0;
   bottom:0;
-  background-color: #03A9F4;}
+  background-color: #f9f9f9;}
 
 .is-chrome .app-columns-container {
   /* backface-visibility:hidden
@@ -9079,11 +9077,17 @@ i.icon.icon-clear-timeline {
   width: 1px;
   height: 3px;
   margin-right: 5px;
+  opacity:0;
+  transition:400ms all;
 }
 
 .numbered-badge.is-visible {
     visibility: visible;
-  
+}
+
+.tde-show-column-icons .numbered-badge {
+  opacity:1;
+  transition:150ms all!important;
 }
 
 .numbered-badge-onheader {
@@ -10017,7 +10021,7 @@ i.icon.icon-clear-timeline {
 }
 
 #general_settings>.mdl-links>span.inline-block:after {
-  content: " TweetDeck Enhancer 5.0.3";
+  content: " TweetDeck Enhancer 5.0.4";
   padding-left: 8px;
 }
 
@@ -13811,14 +13815,20 @@ a.caldisabled[href] {
 .column-nav-link {
   position:relative;
   height:100%;
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(255, 255, 255, 0);
   font-size:18px;
   cursor:pointer;overflow: visible;
+  transition:500ms all;
+}
+
+.tde-show-column-icons .column-nav-link:not(:active):not(:hover) {
+  color: rgba(255, 255, 255, 0.5);
+  transition: 150ms all!important;
 }
 
 .column-nav-link:focus,.column-nav-link:active {
   outline:none;
-  color:#aaa
+  color: rgba(255, 255, 255, 0.2); 
 }
 
 .column-nav-link.is-selected,.column-nav-link:hover {
@@ -13836,7 +13846,7 @@ a.caldisabled[href] {
   /* margin-top: auto; */
   /* overflow: visible; */
   /* margin-top: 8px; */
-  transition: 150ms all;
+  transition: 400ms all;
   height: 42px!important;
   margin-right: 0px!important;
   margin-left: 0px!important;
@@ -13845,10 +13855,14 @@ a.caldisabled[href] {
   display: inline!important;
   /* padding-right: 5px; */
   left:initial!important;
-  transform:none!important
-  
-;
-  display: none!important;
+  transform:none!important;
+  opacity:0;
+}
+
+
+.column-nav-item.tde-show-column-icons {
+  opacity:1;
+  transition:200ms all!important;
 }
 
 .column-nav-link:after {
@@ -16026,6 +16040,51 @@ body:not(.btd-ready) #btdsettings {
 
 .js-twogin-warning-logout-btn.btn-txt-large {
     font-size: 0px;
+}
+
+.startflow ::selection {
+    background: rgba(102, 227, 228, 0.57);
+    color: #666;
+}
+
+.is-focused .column-header {
+    /*background: linear-gradient(#00BCD4,#00BCD4)!important;*/
+    -webkit-animation: HereIAm 2s cubic-bezier(.55,0,.1,1)!important;
+    transition:200ms all;
+}
+
+@-webkit-keyframes HereIAm {
+    0% {
+        background: linear-gradient(#03A9F4,#03A9F4)!important;
+    }
+    50% {
+        background: linear-gradient(#00BCD4,#00BCD4)!important;
+    }
+    75% {
+        background: linear-gradient(#03A9F4,#03A9F4)!important;
+    }
+    82% {
+        background: linear-gradient(#00BCD4,#00BCD4)!important;
+    }
+    90% {
+        background: linear-gradient(#03A9F4,#03A9F4)!important;
+    }
+    95% {
+        background: linear-gradient(#00BCD4,#00BCD4)!important;
+    }
+    100% {
+        background: linear-gradient(#03A9F4,#03A9F4)!important;
+    }
+}
+
+.tde-show-column-icons .tde-appbar-notification:not(.tde-appbar-notification-hidden) {
+    margin-left: 50%!important;
+    width: 50%!important;
+}
+
+.hide-detail-view-inline .js-search-in-popover .popover { /* hey cody i fixed a t hing */
+    left: 65px!important;
+    top: -18px!important;
 }
 
 

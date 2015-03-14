@@ -199,9 +199,6 @@ function InjectRobotoFonts() {
 }
 
 function WaitForNotificationDismiss(node,prevmsgID) {
-  console.log("waiting for notification to gtfo (id=" + prevmsgID + ")");
-  console.log(node);
-  console.log(node.parentNode)
   if (typeof node === "undefined" || node === null || typeof node.parentNode === "undefined" || node.parentNode === null) {
     if (msgID === prevmsgID) {
       TDENotification.className = "tde-appbar-notification tde-appbar-notification-hidden";
@@ -361,7 +358,7 @@ function PostRegistration() {
     if (meh === "OK") {
       progressind.innerHTML = "Upgrade Complete!";
       setTimeout(function(){
-        progressind.innerHTML = "Welcome to Enhancer 5.0.2";
+        progressind.innerHTML = "Welcome to Enhancer 5.0.4";
       },1000);
       setTimeout(function(){
         progressind.innerHTML = "Restarting TweetDeck";
@@ -410,7 +407,7 @@ function Analytics() {
     setTimeout(Analytics,500);
     return;
   }
-  $.ajax({url:"https://dangeredwolf.com/analytics/TDE5?crypto=sha3&v=5.0.2&release=stable"});
+  $.ajax({url:"https://dangeredwolf.com/analytics/TDE5?crypto=sha3&v=5.0.4&release=stable"});
 }
 
 function ImJustKidding(){
@@ -439,6 +436,52 @@ function ImJustKidding(){
       $(".mdl .stream-item[data-key='569320189801705472'] .item-box")[0].click();
     }
   },2600);
+}
+
+function MouseConfig() {
+  if (typeof $ === "undefined") {
+    setTimeout(MouseConfig,200);
+    return;
+  }
+  if (typeof $(".js-app-header")[0] === "undefined") {
+    setTimeout(MouseConfig,200);
+    return;
+  } else {
+    if (typeof $(".js-app-header").mouseover === "undefined") {
+      console.log("still waiting...")
+      setTimeout(MouseConfig,200);
+      return;
+    }
+    $(".js-app-header").mouseover(function() {
+      $(".js-app-header")[0].className = "js-app-header pin-all app-header is-condensed tde-show-column-icons";
+    });
+
+    $(".js-app-header").mouseleave(function(){
+      console.log("dismiss 1");
+      setTimeout(function(){
+        console.log("dismiss 2");
+        if ($(".js-app-header").is(":not(:hover)")) {
+          console.log("dismiss 2.1");
+          setTimeout(function(){
+            if ($(".js-app-header").is(":not(:hover)")) {
+              console.log("dismiss 3");
+              setTimeout(function(){
+                if ($(".js-app-header").is(":not(:hover)")) {
+                  console.log("dismiss 4");
+                  setTimeout(function(){
+                    if ($(".js-app-header").is(":not(:hover)")) {
+                      console.log("dismiss 5");
+                      $(".js-app-header")[0].className = "js-app-header pin-all app-header is-condensed";
+                    }
+                  },400);
+                }
+              },300);
+            }
+          },200);
+        }
+      },100);
+    });
+  }
 }
 
 // screw gender roles
@@ -610,7 +653,7 @@ function NavigationSetup() {
       var tdesettingsmodalinner = $("#settings-modal .mdl .mdl-inner")[0];
       $("#settings-modal .mdl .js-header-title")[0].className = "mdl-header-title";
       $("#settings-modal .mdl .mdl-header-title")[0].innerHTML = "Enhancer Settings";
-      tdesettingsmodalinner.innerHTML = '<div class="mdl-content js-mdl-content horizontal-flow-container"> <div class="l-column mdl-column mdl-column-sml"> <div class="l-column-scrollv scroll-v  scroll-alt "> <ul class="lst-group js-setting-list">  <li class="selected"><a href="#" class="list-link" id="enhancer_settings_about_button" data-action="general"><strong>About</strong></a></li></ul> </div> </div> <div class="l-column mdl-column mdl-column-lrg"> <div class="l-column-scrollv scroll-v  scroll-alt mdl-col-settings"> <form action="#" id="global-settings" accept-charset="utf-8" class="frm"><fieldset id="general_settings"><img src="https://dangeredwolf.com/assets/TDE5/tdeaboutsmaller.png" class="tde-logo"><h1 class="list-placeholder tde-about-title">TweetDeck Enhancer</h1><h2 class="tde-version-title">You\'re running Enhancer 5.0.3</h2></fieldset></form> </div> </div> </div>';
+      tdesettingsmodalinner.innerHTML = '<div class="mdl-content js-mdl-content horizontal-flow-container"> <div class="l-column mdl-column mdl-column-sml"> <div class="l-column-scrollv scroll-v  scroll-alt "> <ul class="lst-group js-setting-list">  <li class="selected"><a href="#" class="list-link" id="enhancer_settings_about_button" data-action="general"><strong>About</strong></a></li></ul> </div> </div> <div class="l-column mdl-column mdl-column-lrg"> <div class="l-column-scrollv scroll-v  scroll-alt mdl-col-settings"> <form action="#" id="global-settings" accept-charset="utf-8" class="frm"><fieldset id="general_settings"><img src="https://dangeredwolf.com/assets/TDE5/tdeaboutsmaller.png" class="tde-logo"><h1 class="list-placeholder tde-about-title">TweetDeck Enhancer</h1><h2 class="tde-version-title">You\'re running Enhancer 5.0.4</h2></fieldset></form> </div> </div> </div>';
       //tdesettingsmodalview.setAttribute("style","display:block;");
       /*tdesettingsmodalview.onclick = function() {
         if (typeof tde_settings_modal_panel !== "undefined") {
@@ -754,6 +797,7 @@ setTimeout(ReplaceLoadingIndicator,0);
 setTimeout(WorldTick,0);
 setTimeout(NavigationSetup,100);
 setTimeout(TDESecureVerif,150);
+setTimeout(MouseConfig,500);
 
 window.addEventListener("keyup", HandleKeyboardStuffs, false);
 
