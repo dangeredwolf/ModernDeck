@@ -5,7 +5,7 @@
 
 // also dedicated to my amazing boyfriend danny <333
 
-(function() {
+//(function() {
 
 var msgID = 0;
 var messagesAccounted = [];
@@ -15,6 +15,11 @@ var ShouldUpgrade = false;
 var addedColumnsLoadingTagAndIsWaiting = false;
 var TDEBaseURL = "https://dangeredwolf.com/assets/tdetest/";
 var progress = null;
+var tde_fetch_profile_info_for_nav_drawer = 0;
+
+var SystemVersion = "5.0.5";
+
+var TreatGeckoWithCare = false;
 
 if (typeof window.TDEURLExchange !== "undefined") {
   if (typeof TDEURLExchange.getAttribute === "function") {
@@ -27,6 +32,10 @@ if (typeof window.TDEURLExchange !== "undefined") {
   }
 } else {
   console.log("TDEURLExchange failed :( defaulting to streamed sources, may not work... but we'll try...");
+}
+
+if (typeof chrome === "undefined" && typeof safari === "undefined") {
+  TreatGeckoWithCare = true;
 }
 
 function PatchAudio(){
@@ -82,35 +91,23 @@ function StreamAngularJS() {
 
   // AngularJS / AngularJS Material Scripts
 
-  var injectAngularJS = document.createElement("script");
-  injectAngularJS.type = "text/javascript";
-  injectAngularJS.src = TDEBaseURL + "resources/angular/hammer.min.js";
-  injectAngularJS.id = "injectAngularJS";
-  document.body.appendChild(injectAngularJS);
+  var AngularScripts =[
+    {src: TDEBaseURL + "resources/angular/hammer.min.js", id: "injectAngularJS"},
+    {src: TDEBaseURL + "resources/angular/angular.min.js", id: "injectAngularJS2"},
+    {src: TDEBaseURL + "resources/angular/angular-animate.min.js", id: "injectAngularJS3"},
+    {src: TDEBaseURL + "resources/angular/angular-aria.min.js", id: "injectAngularJS4"},
+    {src: TDEBaseURL + "resources/angular/angular-material.min.js", id: "injectAngularJS5"}
+  ];
 
-  var injectAngularJS2 = document.createElement("script");
-  injectAngularJS2.type = "text/javascript";
-  injectAngularJS2.src = TDEBaseURL + "resources/angular/angular.min.js";
-  injectAngularJS2.id = "injectAngularJS2";
-  document.body.appendChild(injectAngularJS2);
+  var temp;
 
-  var injectAngularJS3 = document.createElement("script");
-  injectAngularJS3.type = "text/javascript";
-  injectAngularJS3.src = TDEBaseURL + "resources/angular/angular-animate.min.js";
-  injectAngularJS3.id = "injectAngularJS3";
-  document.body.appendChild(injectAngularJS3);
-
-  var injectAngularJS4 = document.createElement("script");
-  injectAngularJS4.type = "text/javascript";
-  injectAngularJS4.src = TDEBaseURL + "resources/angular/angular-aria.min.js";
-  injectAngularJS4.id = "injectAngularJS4";
-  document.body.appendChild(injectAngularJS4);
-
-  var injectAngularJS5 = document.createElement("script");
-  injectAngularJS5.type = "text/javascript";
-  injectAngularJS5.src = TDEBaseURL + "resources/angular/angular-material.min.js";
-  injectAngularJS5.id = "injectAngularJS5";
-  document.body.appendChild(injectAngularJS5);
+  for (var i = 0; i < AngularScripts.length; i++) {
+    temp = document.createElement("script");
+    temp.type = "text/javascript";
+    temp.src = AngularScripts[i]['src'];
+    temp.id = AngularScripts[i]['id'];
+    document.body.appendChild(temp);
+  }
 
 }
 
@@ -358,7 +355,7 @@ function PostRegistration() {
     if (meh === "OK") {
       progressind.innerHTML = "Upgrade Complete!";
       setTimeout(function(){
-        progressind.innerHTML = "Welcome to Enhancer 5.0.4";
+        progressind.innerHTML = "Welcome to Enhancer " + SystemVersion;
       },1000);
       setTimeout(function(){
         progressind.innerHTML = "Restarting TweetDeck";
@@ -376,6 +373,46 @@ function PostRegistration() {
   .fail(function() {
     console.log("An error occurred contacting dangeredwolf.com");
   });
+}
+
+function EnableFabulousMode() {
+  $("html")[0].className += " tde-fabulous-april-fools";
+}
+
+function CheckForFabulousness() {
+  var pebble = new Date();
+  if (pebble.getMonth() === 3 && pebble.getDate() === 1 && pebble.getFullYear() === 2015) {
+    console.log("fabulous!!!");
+    PromptFabulousness();
+  } else {
+    console.log("waiting for fabulousness");
+    setTimeout(FabulousThread,0);
+  }
+}
+
+function FabulousThread() {
+  var pebble = new Date();
+  if (pebble.getMonth() === 3 && pebble.getDate() === 1 && pebble.getFullYear() === 2015) {
+    console.log("fabulous!!!");
+    PromptFabulousness();
+    return;
+  }
+  setTimeout(FabulousThread,30000);
+}
+
+function PromptFabulousness() {
+  if (typeof $ === "undefined") {
+    setTimeout(PromptFabulousness,200);
+    return;
+  }
+
+  if (typeof $("#open-modal")[0] === "undefined") {
+    setTimeout(PromptFabulousness,200);
+    return;
+  }
+
+  $("#open-modal")[0].innerHTML = '<div class="js-modal-panel mdl s-tall-fixed is-inverted-dark"> <header class="js-mdl-header mdl-header"> <h3 class="mdl-header-title js-header-title">TweetDeck Enhancer</h3> <a href="#" class="mdl-drag-handle js-drag-handle"><i class="sprite sprite-drag"></i></a> <a href="#" class="mdl-dismiss js-dismiss link-normal-dark"><i class="icon icon-close"></i></a> </header> <div class="mdl-inner"> <div class="mdl-content js-mdl-content horizontal-flow-container"><h1 style="text-align:center;padding-top:30px;font-weight:300;font-size:34px">TweetDeck Enhancer - Fabulous Mode</h1><p style="font-size:16px; text-align:center; padding:10px;word-wrap:normal;height:30%;line-height:30px;">In TweetDeck Enhancer, we want to make the user experience as good as we possibly<br>can. A new way we are doing this is with the all new TweetDeck Enhancer Fabulous Mode.<br>Fabulous Mode is a brand new feature which makes your TweetDeck client more<br>fabulous than ever! You are invited to be one of the first to try it!<br><br> What are you waiting for? Enable TweetDeck Enhancer Fabulous Mode!</p><img src="https://dangeredwolf.com/assets/TDE5/aprilfools/fabuloustde500.png" style="height:250px;width: 250px;margin-left:auto;margin-right:auto;position:relative;padding-left:200px;"><div class="pull-right" style="padding-top:275px;padding-right:15px"><button class="btn" onclick="javascript:$(\'#open-modal\')[0].setAttribute(\'style\',\'display: none;\');">Not yet :(</button><button class="btn" onclick="javascript:EnableFabulousMode();$(\'#open-modal\')[0].setAttribute(\'style\',\'display: none;\');">I\'m in!</button></div></div></div></div>';
+  $("#open-modal")[0].setAttribute("style","display: block;");
 }
 
 function ReplaceLoadingIndicator() {
@@ -407,7 +444,7 @@ function Analytics() {
     setTimeout(Analytics,500);
     return;
   }
-  $.ajax({url:"https://dangeredwolf.com/analytics/TDE5?crypto=sha3&v=5.0.4&release=stable"});
+  $.ajax({url:"https://dangeredwolf.com/analytics/TDE5?crypto=sha3&v=" + SystemVersion + "&release=stable"});
 }
 
 function ImJustKidding(){
@@ -487,88 +524,58 @@ function MouseConfig() {
 // screw gender roles
 
 function PrepareLoginStuffs() {
-  console.log('waiting for login stuffs');
-  document.getElementsByClassName("js-header-add-column")[0].click(); // Click add column
-  document.getElementById("open-modal").setAttribute("style","display:none;"); // Prevent modal from showing up
-  document.getElementsByClassName("js-item-launch")[9].childNodes[1].click(); // Click the user tweets button
-  document.getElementById("open-modal").setAttribute("style","display:none;"); // Hide tweets modal
-
-  setTimeout(function(){ // Check out tweets
-    document.getElementById("open-modal").setAttribute("style","display:none;"); // not sure exactly why i have to do this, probably for loading, but okay
-  },0);
-
-  setTimeout(function(){ // Check out tweets
-    document.getElementById("open-modal").setAttribute("style","display:none;"); // not sure exactly why i have to do this, probably for loading, but okay
-  },100);
-
-  setTimeout(LoginStuffs2,150);
-}
-
-function LoginStuffs2() {
-  console.log('waiting for login stuffs 2');
-
-  if (typeof document.getElementsByClassName("js-right-column")[0] === "undefined") {
-    setTimeout(LoginStuffs2,150);
-    return;
-  } 
-
-  if (typeof document.getElementsByClassName("js-right-column")[0].childNodes[0].childNodes[1].childNodes[1].childNodes[3].childNodes[3].childNodes[1] === "undefined") { ////////////////////////////////// AS BAD AS IT LOOKS IT WORKS GREAT
-    setTimeout(LoginStuffs2,150);
+  if (typeof $ === "undefined") {
+    console.log("Waiting for jQuery for login stuffs... [new edition of function]");
+    setTimeout(PrepareLoginStuffs,200);
     return;
   }
 
-  if (typeof document.getElementsByClassName("js-right-column")[0].childNodes[0].childNodes[1].childNodes[1].childNodes[3].childNodes[3].childNodes[1].childNodes[1] === "undefined") {
-    setTimeout(LoginStuffs2,150);
+  var FindProfButton = $(".js-account-settings-accounts .account-settings-row:first-child .js-account-settings-detail.accordion-panel .padding-tm.padding-hxl .link-complex.txt-medium.block.cf[rel=\"user\"]")[0];
+  if (typeof FindProfButton === "undefined") {
+    console.log("Waiting for login stuffs... [new edition of function]");
+    setTimeout(PrepareLoginStuffs,200);
     return;
   }
+  FindProfButton.click();
+  setTimeout(FinaliseLoginStuffs,0);
 
-  if (typeof document.getElementsByClassName("js-right-column")[0].childNodes[0].childNodes[1].childNodes[1].childNodes[3].childNodes[3].childNodes[1].childNodes[1].childNodes[1] === "undefined") {
-    setTimeout(LoginStuffs2,150);
-    return;
-  }
-
-  if (typeof document.getElementsByClassName("js-right-column")[0].childNodes[0].childNodes[1].childNodes[1].childNodes[3].childNodes[3].childNodes[1].childNodes[1].childNodes[1].childNodes[1] === "undefined") {
-    setTimeout(LoginStuffs2,150);
-    return;
-  }
-
-  if (typeof document.getElementsByClassName("js-right-column")[0].childNodes[0].childNodes[1].childNodes[1].childNodes[3].childNodes[3].childNodes[1].childNodes[1].childNodes[1].childNodes[1].childNodes[1] === "undefined") {
-    setTimeout(LoginStuffs2,150);
-    return;
-  }
-
-  if (typeof document.getElementsByClassName("js-right-column")[0].childNodes[0].childNodes[1].childNodes[1].childNodes[3].childNodes[3].childNodes[1].childNodes[1].childNodes[1].childNodes[1].childNodes[1].childNodes[3] === "undefined") {
-    setTimeout(LoginStuffs2,150);
-    return;
-  }
-
-  document.getElementsByClassName("js-right-column")[0].childNodes[0].childNodes[1].childNodes[1].childNodes[3].childNodes[3].childNodes[1].childNodes[1].childNodes[1].childNodes[1].childNodes[1].childNodes[3].click(); // eww; basically finds most recent tweet so it can fetch profile
-
-  if (typeof document.getElementsByClassName("js-click-trap")[0] === "undefined") {
-    setTimeout(LoginStuffs2,150);
-    return;
-  }
-
-  document.getElementsByClassName("js-click-trap")[0].setAttribute("style","display:none;"); // Hide profile thing
   setTimeout(function(){
-    document.getElementsByClassName("js-click-trap")[0].setAttribute("style","display:none;"); // Hide profile thing
-  },0);
-  setTimeout(function(){
-    document.getElementsByClassName("js-click-trap")[0].setAttribute("style","display:none;"); // Hide profile thing
+    if (typeof $(".js-click-trap")[0] !== "undefined") {
+      $(".js-click-trap")[0].className += " is-hidden";
+    }
   },50);
-
-  setTimeout(LoginStuffs3,150);
+  if (typeof $(".js-click-trap")[0] !== "undefined") {
+    $(".js-click-trap")[0].className += " is-hidden";
+  }
 }
 
-function LoginStuffs3() {
-  console.log('waiting for login stuffs 3');
+function FinaliseLoginStuffs() {
+  console.log('waiting for final login stuffs [revised]');
+
+  if (typeof $(".js-click-trap")[0] !== "undefined") {
+    $(".js-click-trap")[0].className += " is-hidden";
+  }
+
   if (typeof document.getElementsByClassName("prf-header")[0] === "undefined") {
+    if (typeof tde_fetch_profile_info_for_nav_drawer === "undefined") {
+      tde_fetch_profile_info_for_nav_drawer = 0;
+    }
+    tde_fetch_profile_info_for_nav_drawer++;
+
+    if (tde_fetch_profile_info_for_nav_drawer > 10) {
+      console.log("this is not even working, bye");
+      setTimeout(PrepareLoginStuffs,0);
+      return;
+    }
     setTimeout(LoginStuffs3,150);
     return;
   }
-  tde_nd_header_image.setAttribute("style",document.getElementsByClassName("prf-header")[0].style.cssText); // Fetch header and place in nav drawer
-  tde_nd_header_photo.setAttribute("src",document.getElementsByClassName("prf-img")[0].childNodes[1].src); // Fetch profile picture and place in nav drawer
-  tde_nd_header_username.innerHTML = document.getElementsByClassName("prf-card-inner")[0].childNodes[1].childNodes[5].childNodes[0].textContent; // Fetch twitter handle and place in nav drawer
+
+  tde_nd_header_image.setAttribute("style",$(".prf-header")[0].style.cssText); // Fetch header and place in nav drawer
+  tde_nd_header_photo.setAttribute("src",$(".prf-img")[0].childNodes[1].src); // Fetch profile picture and place in nav drawer
+  tde_nd_header_username.innerHTML = $(".prf-card-inner")[0].childNodes[1].childNodes[5].childNodes[0].textContent; // Fetch twitter handle and place in nav drawer
+
+  console.log("Finished login stuffs! you are in the nav drawer, I think!");
 
   Analytics(); // Collect basic TDE version analytics data (doesn't log usage, account name / ID, or anything else)
 }
@@ -650,10 +657,11 @@ function NavigationSetup() {
     },50); 
     setTimeout(function(){
       var tdesettingsmodalview = $("#settings-modal .mdl")[0];
+      tdesettingsmodalview.className = "js-modal-panel mdl s-short is-inverted-dark tde-settings-panel";
       var tdesettingsmodalinner = $("#settings-modal .mdl .mdl-inner")[0];
       $("#settings-modal .mdl .js-header-title")[0].className = "mdl-header-title";
       $("#settings-modal .mdl .mdl-header-title")[0].innerHTML = "Enhancer Settings";
-      tdesettingsmodalinner.innerHTML = '<div class="mdl-content js-mdl-content horizontal-flow-container"> <div class="l-column mdl-column mdl-column-sml"> <div class="l-column-scrollv scroll-v  scroll-alt "> <ul class="lst-group js-setting-list">  <li class="selected"><a href="#" class="list-link" id="enhancer_settings_about_button" data-action="general"><strong>About</strong></a></li></ul> </div> </div> <div class="l-column mdl-column mdl-column-lrg"> <div class="l-column-scrollv scroll-v  scroll-alt mdl-col-settings"> <form action="#" id="global-settings" accept-charset="utf-8" class="frm"><fieldset id="general_settings"><img src="https://dangeredwolf.com/assets/TDE5/tdeaboutsmaller.png" class="tde-logo"><h1 class="list-placeholder tde-about-title">TweetDeck Enhancer</h1><h2 class="tde-version-title">You\'re running Enhancer 5.0.4</h2></fieldset></form> </div> </div> </div>';
+      tdesettingsmodalinner.innerHTML = '<div class="mdl-content js-mdl-content horizontal-flow-container"> <div class="l-column mdl-column mdl-column-sml"> <div class="l-column-scrollv scroll-v  scroll-alt "> <ul class="lst-group js-setting-list">  <li class="selected"><a href="#" class="list-link" id="enhancer_settings_about_button" data-action="general"><strong>About</strong></a></li></ul> </div> </div> <div class="l-column mdl-column mdl-column-lrg"> <div class="l-column-scrollv scroll-v  scroll-alt mdl-col-settings"> <form action="#" id="global-settings" accept-charset="utf-8" class="frm"><fieldset id="general_settings"><img src="https://dangeredwolf.com/assets/TDE5/tdeaboutsmaller.png" class="tde-logo"><h1 class="list-placeholder tde-about-title">TweetDeck Enhancer</h1><h2 class="tde-version-title">You\'re running Enhancer ' + SystemVersion + '</h2></fieldset></form> </div> </div> </div>';
       //tdesettingsmodalview.setAttribute("style","display:block;");
       /*tdesettingsmodalview.onclick = function() {
         if (typeof tde_settings_modal_panel !== "undefined") {
@@ -690,6 +698,10 @@ function NavigationSetup() {
       var opn = window.open("chrome-extension://micblkellenpbfapmcpcfhcoeohhnpob/options/options.html", '_blank');
       opn.focus();
     },200);
+  }
+
+  if (TreatGeckoWithCare) {
+    btdsettings.remove();
   }
 
   kbshortcuts.onclick = function(){
@@ -765,7 +777,7 @@ function TDESecureVerif() {
   document.head.appendChild(injStyles);
 }
 
-function HandleKeyboardStuffs(e) {
+function KeyboardShortcutHandler(e) {
   if ($("input:focus,textarea:focus").length > 0) {
   	return;
   }
@@ -785,6 +797,58 @@ function HandleKeyboardStuffs(e) {
   }
 }
 
+function PreferenceLoader() {
+  if (typeof localStorage.tde_colour !== "undefined") {
+    // do stuff
+  }
+  if (typeof localStorage.tde_developer_parameter_debug !== "undefined") {
+    if (localStorage.tde_developer_parameter_debug === "true") {
+      console.log("tde_developer_parameter_debug = true");
+      var TDEAttachDebuggerScope = this;
+      TDEAttachDebugger(TDEAttachDebuggerScope);
+    } else {
+      window.TDEAttachDebugger = undefined;
+    }
+  } else {
+    window.TDEAttachDebugger = undefined;
+  }
+}
+
+function TDEAttachDebugger(debuggerScope) {
+  console.log("Attaching developer debugger");
+  window.tde_debug = debuggerScope;
+}
+
+function MustachePatcher() {
+  if (typeof TD_mustaches === "undefined") {
+    setTimeout(MustachePatcher,500);
+    return;
+  }
+  if (typeof TD_mustaches["settings/global_setting_filter_row.mustache"] === "undefined") {
+    setTimeout(MustachePatcher,500);
+    return;
+  }
+
+  TD_mustaches["settings/global_setting_filter_row.mustache"]='<li class="list-filter cf"> {{_i}}<div class="tde-mute-text tde-mute-text-{{getDisplayType}}"></div> {{>text/global_filter_value}}{{/i}} <input type="button" name="remove-filter" value="{{_i}}Remove{{/i}}" data-id="{{id}}" class="js-remove-filter small btn btn-negative"> </li>'
+}
+
+function TDESupportedParameters() {
+  if (typeof $ === "undefined") {
+    setTimeout(TDESupportedParameters,500);
+    return;
+  }
+  $("html")[0].className += " tde-preferences-differentiator tde-api-ver-5-0 tde-js-loaded";
+}
+
+function YesFavicon() {
+  console.log("gonna replace favicon :3");
+  if (typeof $ === "undefined") {
+    setTimeout(YesFavicon,200);
+    return;
+  }
+  $("link[rel=\"shortcut icon\"]")[0].href = TDEBaseURL + "resources/favicon.ico";
+}
+
 // Danny is a cutie and I love himmm <333
 
 setTimeout(CryptoScript,0);
@@ -793,15 +857,19 @@ setTimeout(InjectRobotoFonts,0);
 setTimeout(PatchAudio,0);
 setTimeout(WaitForTDToConfigureSelf,0);
 setTimeout(PatchSystem,300);
-setTimeout(ReplaceLoadingIndicator,0);
+//setTimeout(ReplaceLoadingIndicator,0);
 setTimeout(WorldTick,0);
 setTimeout(NavigationSetup,100);
 setTimeout(TDESecureVerif,150);
 setTimeout(MouseConfig,500);
+setTimeout(PreferenceLoader,1000);
+setTimeout(TDESupportedParameters,500);
+setTimeout(MustachePatcher,500);
+setTimeout(CheckForFabulousness,500);
+setTimeout(YesFavicon,0);
 
-window.addEventListener("keyup", HandleKeyboardStuffs, false);
+window.addEventListener("keyup", KeyboardShortcutHandler, false);
 
 console.log("TDEinject loaded");
 
-})();
-
+//})();

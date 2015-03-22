@@ -1,1 +1,35 @@
-Enhancer collects small subsets of information, so we can analyse which versions of Enhancer are being used. It is sent completely anonymously. No data sent can be used to track who you are. Due to the nature of HTTP, your IP address must be sent, because of the way web servers work. IP addresses are never used other than to send back the bytes needed. Some resources are fetched in realtime by Enhancer, to make easier, secure updates and improve user experience. Any and all requests sent to the Enhancer server is sent over HTTPS.
+====== TweetDeck Enhancer Privacy Policy ======
+
+It's important to maintain privacy when using products like these, which could potentially expose sensitive information to the extension.
+
+TweetDeck itself does its own information collecting of it's own, through Google Analytics on Twitter's end. This is always present even with TweetDeck Enhancer off.
+TweetDeck's Google Analytics is controlled by *Twitter*, NOT by me. However, Google Analytics' privacy policy is here: https://www.google.com/policies/privacy/partners/
+
+TweetDeck Enhancer, luckily, does not collect much information at all. However, starting with TweetDeck Enhancer 5.0, it checks in with an activation server.
+The activation server is contacted with "regname", which is a 512 bit SHA3 hash of the TweetDeck "GuestID", which is browser-specific and cannot be traced back to a user.
+This server is contacted when TweetDeck Enhancer first starts, and does not transfer any other personally identifiable information besides this hash.
+Other assets may be fetched from the server, such as the alert sound, and other miscellaneous items, particularlly images, and no other information is sent there.
+
+Due to Cloudflare and the server not having mod_cloudflare installed,
+
+I do NOT know:
+-Who you are
+-Where you live
+-What your IP address is (Cloudflare's IP addresses are logged, and not yours)
+-What you are doing
+-With whom you are doing things with
+
+I DO know:
+-Your client's generated hash of the randomised GuestID which cannot be traced back to you
+-The version of TweetDeck Enhancer you are running
+-Your user agent
+
+If you are not familiar, the user agent simply contains operating system and web browser information, here's an example:
+Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.101 Safari/537.36
+
+You are completely anonymous when using TweetDeck Enhancer.
+
+The version and user agent information is sent when you launch TweetDeck Enhancer.
+This simply helps us know which versions of TweetDeck Enhancer are being used, and on which platforms it's being used, to improve services.
+
+(Last Updated 22 March 2015)

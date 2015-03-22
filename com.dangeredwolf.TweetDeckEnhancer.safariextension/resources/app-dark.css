@@ -1,4 +1,4 @@
-/* TweetDeck Enhancer 5.0.4 [codename Paradise]
+/* TweetDeck Enhancer 5.0.5 [codename Uptown]
 Copyright 2015 Dangered Wolf (@dangeredwolf)
 
 app-dark.css */
@@ -12,10 +12,12 @@ app-dark.css */
 }
 
 .bg-r-faded-gray {
-  background-color: transparent;}
+  background-color: transparent;
+}
 
 .bg-r-light-gray {
-  background-color: #314048;}
+  background-color: #314048;
+}
 
 .bg-r-medium-gray {
   background-color:#aab8c2
@@ -1419,7 +1421,7 @@ abbr[title] {
   width:auto!important;
   height:auto!important;
   padding:50px;
-  background-color:#fff
+  background-color: rgba(55, 71, 79, 1);
 }
 
 .with-drop-shadow:after {
@@ -7497,7 +7499,7 @@ i.icon.icon-move {
   background: #2F3A40;}
 
 .social-proof-for-tweet-title {
-  color: #889997;
+  color: #8899A6;
   /*border-bottom:1px solid #3c3c3c*/
   padding-top: 15px!important;
 }
@@ -7672,6 +7674,7 @@ img.spinner-centered {
   width: 24px;
   /* margin-left: -5px; */
   -webkit-filter: brightness(99);
+  -moz-filter: brightness(99);
   border-radius: 999px;
 }
 
@@ -9636,7 +9639,7 @@ i.icon.icon-clear-timeline {
 }
 
 #general_settings>.mdl-links>span.inline-block:after {
-  content: " TweetDeck Enhancer 5.0.4";
+  content: " TweetDeck Enhancer 5.0.5";
   padding-left: 8px;
 }
 
@@ -9988,6 +9991,7 @@ i.icon.icon-clear-timeline {
   -o-border-radius: 99px;
   transition: 150ms all;
   -webkit-filter: grayscale(100%) brightness(120%);
+  -moz-filter: grayscale(100%) brightness(120%);
   opacity: .5;
   border-radius:99px;
 }
@@ -10028,6 +10032,7 @@ i.icon.icon-clear-timeline {
   border:0px solid #ddd;
   transition: 150ms all!important;
   -webkit-filter: grayscale(0%);
+  -moz-filter: grayscale(0%);
   opacity: 1;
 }
 
@@ -10320,6 +10325,7 @@ input#file-upload-input {
   margin-bottom: 5px;
   opacity: .5;
   -webkit-filter: grayscale(100%);
+  -moz-filter: grayscale(100%);
 }
 
 .compose-account-names {
@@ -12284,8 +12290,12 @@ a.caldisabled[href] {
   font-size: 11px;
   vertical-align:top;
   background-color:rgba(17,17,17,0.25);
-  color:#fff;
+  color: #fff;
   text-transform:uppercase;
+  background: #263238!important;
+  text-shadow: none;
+  border-radius: 2px;
+  box-shadow: 0 3px 10px rgba(41, 41, 41, 0.35);
 }
 
 .prf-follow-status.s-follows {
@@ -14700,6 +14710,7 @@ button.js-send-tweet-button.js-spinner-button.js-show-tip.btn.btn-positive.btn-e
     background-color: transparent!important;
     color: transparent!important;
     -webkit-filter: brightness(4);
+    -moz-filter: brightness(4);
 }
 
 .js-column-nav-list li.column-nav-item.js-column-nav-menu-item { 
@@ -15078,6 +15089,7 @@ button#emojiButton:active .btd-icon-smile {
 
 .compose-account.is-selected {
     -webkit-filter: grayscale(0%);
+    -moz-filter: grayscale(0%);
     opacity: 1;
 }
 
@@ -15279,6 +15291,7 @@ button#emojiButton:active .btd-icon-smile {
     position: absolute;
     margin-left: -40px;
     -webkit-filter: brightness(400%);
+    -moz-filter:brightness(400%);
 }
 
 .tde-settings-button {
@@ -15613,6 +15626,7 @@ body:not(.btd-ready) #btdsettings {
 
 .category-chooser .btd-emoji.emoji-pop:not(.active) {
     -webkit-filter: grayscale(100%);
+    -moz-filter: grayscale(100%);
 }
 
 .startflow-panel button {
@@ -15689,6 +15703,277 @@ body:not(.btd-ready) #btdsettings {
     left: 65px!important;
     top: -18px!important;
 }
+
+.mdl:not(.tde-settings-panel) fieldset#general_settings:before {
+    content: "Streaming";
+    font-size: 24px;
+    margin-bottom: 15px;
+    display: block;
+    font-weight:300;
+    text-align:center;
+}
+
+fieldset#general_settings .cf .obj-left {
+    float: none;
+    padding-bottom: 30px;
+}
+
+fieldset#general_settings .cf {
+    /* margin-top: -10px; */
+}
+
+fieldset .fixed-width-label.txt-uppercase b {
+    font-size: 24px;
+    text-transform: none;
+    font-weight: 300;
+    text-align:center;
+    padding-bottom:5px;
+    display:block;
+}
+
+fieldset .fixed-width-label:not(.radio), fieldset .control-label {
+    width:100%;
+    text-align:left;
+}
+
+fieldset#global_filter_settings .control-label {
+    margin-bottom:25px;
+    margin-top:5px;
+    display:block;
+}
+
+fieldset#general_settings .obj-left:last-child b {
+    font-size:0px;
+}
+
+fieldset#general_settings .obj-left:last-child b:after {
+    font-size:24px;
+    content:"Fonts";
+}
+
+fieldset#general_settings .control-group label.checkbox, fieldset#general_settings .control-group label.radio {
+    margin-left:88px;
+}
+
+fieldset#general_settings .mdl-links {
+    margin-bottom: -400px;
+    display:block;
+    padding-bottom: 15px;
+}
+
+.js-display-sensitive-media.checkbox {
+    font-size:0px;
+}
+
+.js-display-sensitive-media.checkbox:after {
+    font-size:15px;
+    content:"Show potentially sensitive media";
+}
+
+fieldset#general_settings .checkbox:not(.js-display-sensitive-media),fieldset#general_settings .radio {
+    font-size:15px;
+}
+
+fieldset#services_settings label.control-label {
+    font-size:24px;
+    font-weight:300;
+}
+
+.controls {
+    margin-left:40px;
+}
+
+.mdl .checkbox, .mdl .radio {
+    display:block;
+    margin-bottom:15px;
+}
+
+#link-shortening {
+    /* padding-top: 20px; */
+    display:block;
+    top: 15px;
+    position: relative;
+}
+
+#filter-input {
+    width:320px;
+}
+
+#add-filter {
+    margin-left:auto;
+    margin-right:auto;
+    display:block;
+
+}
+
+#global_filter_settings .control-group:nth-child(4) .controls {
+    margin-left: 0px;   
+}
+
+.tde-mute-text-:before {
+    content: "Text ";
+    font-size: 16px;
+    font-weight:600
+}
+
+.tde-mute-text-user:before {
+    content: "User ";
+    font-size: 16px;
+    font-weight:600
+}
+
+.tde-mute-text-source:before {
+    content: "Source ";
+    font-size: 16px;
+    font-weight:600
+}
+
+.tde-mute-text {
+    display:inline!important;
+}
+
+.list-filter em {
+    display:inline!important;
+}
+
+.is-inverted-dark .js-toggle.padding-al {
+    box-shadow: 0 4px 7px rgba(17,17,17,0.2);
+    z-index:99999!important;
+    position:relative!important;
+}
+
+.is-inverted-dark .facet-type {
+    background: #2E3B41;
+}
+
+.is-inverted-dark .js-accordion.accordion.js-search-filter {
+    box-shadow: 0 3px 3px rgba(17,17,17,0.2);
+    position:relative!important;
+    z-index:9999!important;
+    margin-bottom: 6px;
+}
+
+.js-fhf-header,.is-inverted-dark .search-results,.is-inverted-dark .js-accordion.accordion.js-search-filter {
+    overflow:visible!important;
+}
+
+.is-inverted-dark .control-s .control-label {
+    color:#fff;
+}
+
+.facet-type .control-group select, .facet-type‚ .control-group input {
+    color:#fff;
+    border-bottom:2px solid #fff;
+}
+
+.popover .search-input-control input:not(.search-input) {
+    border-bottom:2px solid #fff!important;
+}
+
+.popover input.txt-mute, .popover textarea.txt-mute {
+    border-bottom:2px solid #fff!important;
+    color:#fff;
+}
+
+.is-inverted-dark .js-content-filter .search-input-control input::-webkit-input-placeholder { /* WebKit browsers */
+    color: #fff;
+}
+.is-inverted-dark .js-content-filter .search-input-control input:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+   color: #fff;
+   opacity: 1;
+}
+.is-inverted-dark .js-content-filter .search-input-control input::-moz-placeholder { /* Mozilla Firefox 19+ */
+   color: #fff;
+   opacity: 1;
+}
+.is-inverted-dark .js-content-filter .search-input-control input:-ms-input-placeholder { /* Internet Explorer 10+ */
+   color: #fff;
+}
+
+.is-inverted-dark .js-content-filter .search-input-control input::input-placeholder { 
+   color: #fff;
+}
+
+.tde-fabulous-april-fools .column:not(.is-new) .column-header, .tde-fabulous-april-fools .column:not(.is-new) .column-header-temp {
+    -webkit-filter: brightness(80%);
+    filter:brightness(80%);
+    -moz-filter:brightness(80%);
+}
+
+.tde-fabulous-april-fools body, .tde-fabulous-april-fools .selected, .tde-fabulous-april-fools .stream-item .inline-reply.js-inline-reply,.tde-fabulous-april-fools .column-header, .tde-fabulous-april-fools .column-header-temp, .tde-fabulous-april-fools .mdl-column .pin-top form.search-input-list.padding-as, .tde-fabulous-april-fools .mdl:before, .tde-fabulous-april-fools .tde-nav-drawer, .tde-fabulous-april-fools .tde-nav-divider {
+    background:linear-gradient(to right, #F44336, #FF5722, #FF9800, #FFEB3B, #CDDC39, #8BC34A, #4CAF50, #00BCD4, #03A9F4, #2196F3, #3F51B5, #673AB7, #9C27B0, #E91E63, #F44336)!important;
+}
+
+.tde-fabulous-april-fools .tweet-button, .tde-fabulous-april-fools .compose, .tde-fabulous-april-fools .js-add-column {
+    background:linear-gradient(to right, #F44336, #FF5722, #FF9800)!important;
+}
+
+.tde-fabulous-april-fools .js-list-container li a:hover {
+    background:linear-gradient(to right, #F44336, #FF5722, #FF9800, #FFEB3B, #CDDC39, #8BC34A, #4CAF50, #00BCD4, #03A9F4, #2196F3, #3F51B5, #673AB7, #9C27B0, #E91E63, #F44336)!important;
+     -webkit-filter: brightness(120%);
+    filter:brightness(120%);
+    -moz-filter:brightness(120%);
+}
+
+.tde-fabulous-april-fools .btn,.tde-fabulous-april-fools .column-title,.tde-fabulous-april-fools .column-header-link,.tde-fabulous-april-fools .column-type-icon,.tde-fabulous-april-fools .column-title-back {
+    text-shadow:0px 3px 4px rgba(50,50,50,0.7);
+}
+
+.tde-fabulous-april-fools .icon-compose:before,.tde-fabulous-april-fools .icon-compose:after {
+    text-shadow:none!important;
+}
+
+.tde-fabulous-april-fools .tde-nav-button {
+    color:#fff!important;
+}
+
+.tde-fabulous-april-fools .tde-nav-divider {
+    -webkit-filter: brightness(120%);
+    filter:brightness(120%);
+    -moz-filter:brightness(120%);
+}
+
+.tde-fabulous-april-fools .tde-nav-drawer-background,.tde-fabulous-april-fools .stream-item .is-unread {
+    background:linear-gradient(to right, #F44336, #FF5722, #FF9800, #FFEB3B, #CDDC39, #8BC34A, #4CAF50, #00BCD4, #03A9F4, #2196F3, #3F51B5, #673AB7, #9C27B0, #E91E63, #F44336)!important;
+    opacity:0.4
+}
+
+.tde-fabulous-april-fools .tde-nav-drawer-background-hidden {
+    opacity:0;
+}
+
+.tde-fabulous-april-fools .ovl, .tde-fabulous-april-fools .overlay {
+    background: linear-gradient(to right, rgba(244, 67, 54, 0.4), rgba(255, 87, 34, 0.65), rgba(255, 152, 0, 0.71), rgba(255, 235, 59, 0.34), rgba(205, 220, 57, 0.19), rgba(139, 195, 74, 0.37), rgba(76, 175, 80, 0.83), rgba(0, 188, 212, 0.77), rgba(3, 169, 244, 0.34), rgba(33, 150, 243, 0.52), rgba(63, 81, 181, 0.42), rgba(103, 58, 183, 0), rgba(156, 39, 176, 0.56), rgba(233, 30, 99, 0.68), rgba(230, 90, 80, 0.66))!important;
+}
+
+/*.tde-fabulous-april-fools .btn {
+    -webkit-background-clip: text; buttons can't be -webkit-background-clip'd? 
+    background: linear-gradient(to right, #F44336, #FF5722, #FF9800, #FFEB3B, #CDDC39, #8BC34A, #4CAF50, #00BCD4, #03A9F4, #2196F3, #3F51B5, #673AB7, #9C27B0, #E91E63, #F44336)!important;
+    -webkit-text-fill-color: transparent;
+}*/
+
+.tde-fabulous-april-fools .tweet-actions .tweet-action.is-selected, .tde-fabulous-april-fools .tweet-detail-actions .tweet-action.is-selected, .tde-fabulous-april-fools .tweet-detail-actions .js-reply-action.is-selected {
+ color:#FF9800!important;   
+}
+
+.tde-fabulous-april-fools .lst-group .selected a:hover {
+  background:rgba(0,0,0,0.1)!important;
+}
+
+.tde-fabulous-april-fools .tde-logo {
+    box-sizing: border-box;
+    padding-left: 250px;
+    padding-bottom: 250px;
+    background: url(https://dangeredwolf.com/assets/TDE5/aprilfools/fabuloustde500.png);
+    background-size: 250px;
+}
+
+.tde-fabulous-april-fools .tde-version-title:after {
+    content:" FABULOUS MODE";
+}
+
+
+
 
 
 
