@@ -480,6 +480,12 @@ function MouseConfig() {
     setTimeout(MouseConfig,200);
     return;
   }
+
+  if (TreatGeckoWithCare) {
+    $(".js-app-header")[0].className = "js-app-header pin-all app-header is-condensed tde-show-column-icons";
+    return;
+  }
+
   if (typeof $(".js-app-header")[0] === "undefined") {
     setTimeout(MouseConfig,200);
     return;
