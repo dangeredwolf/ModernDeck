@@ -67,19 +67,6 @@ function WaitForTDToConfigureSelf(){
   }
 }
 
-function CryptoScript() {
-  var injectsha3 = document.createElement("script");
-  injectsha3.type = "text/javascript";
-  injectsha3.src = GetURL("sources/sha3.js");
-  document.body.appendChild(injectsha3);
-}
-
-function GetPreferencesIdentifierFromCrypto() {
-  if (typeof CryptoJS !== "undefined") {
-    return CryptoJS.SHA3(TD.storage.store._backend.guestID); // 512 bit SHA-3? yes please
-  }
-}
-
 function WaitForLogin() {
   if (typeof document.getElementsByClassName("app-signin-form")[0] === "undefined") {
     document.getElementsByTagName("html")[0].setAttribute("class",document.getElementsByTagName("html")[0].getAttribute("class").replace(" signin-sheet-now-present",""));
@@ -334,7 +321,7 @@ function Analytics() {
     setTimeout(Analytics,500);
     return;
   }
-  $.ajax({url:"https://dangeredwolf.com/analytics/TDE5?crypto=sha3&v=" + SystemVersion + "&release=stable"});
+  $.ajax({url:"https://dangeredwolf.com/analytics/TDE5?v=" + SystemVersion + "&release=stable"});
 }
 
 function ImJustKidding(){
@@ -463,7 +450,7 @@ function FinaliseLoginStuffs() {
       setTimeout(PrepareLoginStuffs,0);
       return;
     }
-    setTimeout(LoginStuffs3,150);
+    setTimeout(FinaliseLoginStuffs,150);
     return;
   }
 
@@ -794,7 +781,6 @@ function EnableSecureStylesheets() {
 
 // Danny is a cutie and I love himmm <333
 
-setTimeout(CryptoScript,0);
 setTimeout(InjectRobotoFonts,0);
 setTimeout(PatchAudio,0);
 setTimeout(WaitForTDToConfigureSelf,0);
