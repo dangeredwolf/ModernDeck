@@ -284,7 +284,7 @@ function PromptFabulousness() {
     return;
   }
 
-  $("#open-modal")[0].innerHTML = '<div class="js-modal-panel mdl s-tall-fixed is-inverted-dark"> <header class="js-mdl-header mdl-header"> <h3 class="mdl-header-title js-header-title">TweetDeck Enhancer</h3> <a href="#" class="mdl-drag-handle js-drag-handle"><i class="sprite sprite-drag"></i></a> <a href="#" class="mdl-dismiss js-dismiss link-normal-dark"><i class="icon icon-close"></i></a> </header> <div class="mdl-inner"> <div class="mdl-content js-mdl-content horizontal-flow-container"><h1 style="text-align:center;padding-top:30px;font-weight:300;font-size:34px">TweetDeck Enhancer - Fabulous Mode</h1><p style="font-size:16px; text-align:center; padding:10px;word-wrap:normal;height:30%;line-height:30px;">In TweetDeck Enhancer, we want to make the user experience as good as we possibly<br>can. A new way we are doing this is with the all new TweetDeck Enhancer Fabulous Mode.<br>Fabulous Mode is a brand new feature which makes your TweetDeck client more<br>fabulous than ever! You are invited to be one of the first to try it!<br><br> What are you waiting for? Enable TweetDeck Enhancer Fabulous Mode!</p><img src="'+ GetURL("sources") + '/fabuloustde500.png" style="height:250px;width: 250px;margin-left:auto;margin-right:auto;position:relative;padding-left:200px;"><div class="pull-right" style="padding-top:275px;padding-right:15px"><button class="btn" onclick="javascript:$(\'#open-modal\')[0].setAttribute(\'style\',\'display: none;\');">Not yet :(</button><button class="btn" onclick="javascript:EnableFabulousMode();$(\'#open-modal\')[0].setAttribute(\'style\',\'display: none;\');">I\'m in!</button></div></div></div></div>';
+  $("#open-modal")[0].innerHTML = '<div class="js-modal-panel mdl s-tall-fixed is-inverted-dark tde-fab"> <header class="js-mdl-header mdl-header"> <h3 class="mdl-header-title js-header-title">TweetDeck Enhancer</h3> <a href="#" class="mdl-drag-handle js-drag-handle"><i class="sprite sprite-drag"></i></a> <a href="#" class="mdl-dismiss js-dismiss link-normal-dark"><i class="icon icon-close"></i></a> </header> <div class="mdl-inner"> <div class="mdl-content js-mdl-content horizontal-flow-container"><h1 style="text-align:center;padding-top:30px;font-weight:300;font-size:34px">TweetDeck Enhancer - Fabulous Mode</h1><p style="font-size:16px; text-align:center; padding:10px;word-wrap:normal;height:30%;line-height:30px;">In TweetDeck Enhancer, we want to make the user experience as good as we possibly<br>can. A new way we are doing this is with the all new TweetDeck Enhancer Fabulous Mode.<br>Fabulous Mode is a brand new feature which makes your TweetDeck client more<br>fabulous than ever! You are invited to be one of the first to try it!<br><br> What are you waiting for? Enable TweetDeck Enhancer Fabulous Mode!</p><img src="'+ GetURL("sources") + '/aprilfools/fabuloustde500.png" style="height:250px;width: 250px;margin-left:auto;margin-right:auto;position:relative;padding-left:200px;"><div class="pull-right" style="padding-top:275px;padding-right:15px"><button class="btn" onclick="javascript:$(\'#open-modal\')[0].setAttribute(\'style\',\'display: none;\');setTimeout(function(){$(\'#tde-fab\')[0].remove();},200);">Not yet :(</button><button class="btn" onclick="javascript:EnableFabulousMode();$(\'#open-modal\')[0].setAttribute(\'style\',\'display: none;\');setTimeout(function(){$(\'#tde-fab\')[0].remove();},200);">I\'m in!</button></div></div></div></div>';
   $("#open-modal")[0].setAttribute("style","display: block;");
 }
 
@@ -324,7 +324,7 @@ function Analytics() {
   $.ajax({url:"https://dangeredwolf.com/analytics/TDE5?v=" + SystemVersion + "&release=stable"});
 }
 
-function ImJustKidding(){
+function ActivateSuperEasterEggPowers(){
   console.log("activate super easter egg powers");
   setTimeout(function(){
     document.getElementsByClassName("js-header-add-column")[0].click(); // Click add column
@@ -545,18 +545,6 @@ function NavigationSetup() {
       $("#settings-modal .mdl .js-header-title")[0].className = "mdl-header-title";
       $("#settings-modal .mdl .mdl-header-title")[0].innerHTML = "Enhancer Settings";
       tdesettingsmodalinner.innerHTML = '<div class="mdl-content js-mdl-content horizontal-flow-container"> <div class="l-column mdl-column mdl-column-sml"> <div class="l-column-scrollv scroll-v  scroll-alt "> <ul class="lst-group js-setting-list">  <li class="selected"><a href="#" class="list-link" id="enhancer_settings_about_button" data-action="general"><strong>About</strong></a></li></ul> </div> </div> <div class="l-column mdl-column mdl-column-lrg"> <div class="l-column-scrollv scroll-v  scroll-alt mdl-col-settings"> <form action="#" id="global-settings" accept-charset="utf-8" class="frm"><fieldset id="general_settings"><img src="' + GetURL("sources") +'/tdeaboutsmaller.png" class="tde-logo"><h1 class="list-placeholder tde-about-title">TweetDeck Enhancer</h1><h2 class="tde-version-title">You\'re running Enhancer ' + SystemVersion + '</h2></fieldset></form> </div> </div> </div>';
-      //tdesettingsmodalview.setAttribute("style","display:block;");
-      /*tdesettingsmodalview.onclick = function() {
-        if (typeof tde_settings_modal_panel !== "undefined") {
-          tde_settings_modal_panel.setAttribute("class","js-modal-panel mdl s-short is-inverted-dark tde-modal-window-fade-out");
-          tdesettingsmodalview.setAttribute("style","display: none;");
-          setTimeout(function(){
-            if (typeof tde_settings_modal_panel !== "undefined") {
-              tde_settings_modal_panel.remove();
-            }
-          },600)
-        }
-      }*/
       window.tdeblah = false;
       $("#enhancer_settings_about_button").on("mousedown",function() {
         console.log("down!!");
@@ -564,7 +552,7 @@ function NavigationSetup() {
         setTimeout(function(){
           if (window.tdeblah === true) {
             console.log("sweet!!!");
-            ImJustKidding();
+            ActivateSuperEasterEggPowers();
           }
         },2000)
       });
@@ -764,7 +752,7 @@ function EnableCommunications() {
 function DisableSecureStylesheets() {
   if (!WantsToDisableSecureStylesheets) {
     console.log("Are you sure you want to disable secure stylesheets?");
-    console.log("Bugfix and security updates will become slower.");
+    console.log("Bugfix and security updates will become slower and rely on core extension updates.");
     console.log("Run this command again to disable it.");
     WantsToDisableSecureStylesheets = true;
     return;
