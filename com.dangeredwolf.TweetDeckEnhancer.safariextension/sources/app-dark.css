@@ -7320,7 +7320,7 @@ img.spinner-centered {
   user-select:none;
   width:200px;
   background-color: rgba(0, 0, 0, 0.1);
-  z-index: 9999999999999999999;
+  z-index: 299;
   pointer-events: none;
 }
 
