@@ -17,10 +17,10 @@ function ReplaceLoadingIndicator() {
   }
   console.log("Replacing Loading Spinner (TDELoad)");
 
-  console.log((isChromium && chrome.extension.getURL("resources/spinner.mov")) || (isSafari && safari.extension.baseURI + "resources/spinner.mov"));
+  console.log((isChromium && chrome.extension.getURL("sources/spinner.mov")) || (isSafari && safari.extension.baseURI + "sources/spinner.mov"));
 
   document.getElementsByClassName("js-startflow-content startflow")[0].className += " tde-upgrading";
-  document.getElementsByClassName("js-startflow-content startflow")[0].innerHTML = '<video class="spinner-centered spinner-fade-in" width="74" height="76" src="' + (isChromium && chrome.extension.getURL("resources/spinner.mov")) || (isSafari && safari.extension.baseURI + "resources/spinner.mov") + '" autoplay loop></video>';
+  document.getElementsByClassName("js-startflow-content startflow")[0].innerHTML = '<video class="spinner-centered spinner-fade-in" width="74" height="76" src="' + (isChromium && chrome.extension.getURL("sources/spinner.mov")) || (isSafari && safari.extension.baseURI + "sources/spinner.mov") + '" autoplay loop></video>';
 }
 
 function TDEURLExchange(url) {
@@ -61,10 +61,10 @@ var links = document.getElementsByTagName("link");
 for (i = 0; i < links.length; i++) { 
     if (typeof links[i].href !== "undefined") {
     	if (links[i].href.substring(0,52) === "https://ton.twimg.com/tweetdeck-web/web/css/app-dark") {
-      	links[i].href = (isChromium && chrome.extension.getURL("resources/app-dark.css")) || (isSafari && safari.extension.baseURI + "resources/app-dark.css") || "https://dangeredwolf.com/assets/tdetest/app-dark.css";
+      	links[i].href = (isChromium && chrome.extension.getURL("sources/app-dark.css")) || (isSafari && safari.extension.baseURI + "sources/app-dark.css") || "https://dangeredwolf.com/assets/tdetest/app-dark.css";
       }
       if (links[i].href.substring(0,53) === "https://ton.twimg.com/tweetdeck-web/web/css/app-light") {
-        links[i].href = (isChromium && chrome.extension.getURL("resources/app-light.css")) || (isSafari && safari.extension.baseURI + "resources/app-light.css") || "https://dangeredwolf.com/assets/tdetest/app-light.css";
+        links[i].href = (isChromium && chrome.extension.getURL("sources/app-light.css")) || (isSafari && safari.extension.baseURI + "sources/app-light.css") || "https://dangeredwolf.com/assets/tdetest/app-light.css";
       }
     }
 }
@@ -74,10 +74,10 @@ InjectScript = document.createElement("script");
 
 if (isChromium) {
   TDEURLExchange(chrome.extension.getURL(""));
-  InjectScript.src = chrome.extension.getURL("resources/TDEinject.js");
+  InjectScript.src = chrome.extension.getURL("sources/TDEinject.js");
 } else if (isSafari) {
   TDEURLExchange(safari.extension.baseURI + "/");
-  InjectScript.src = safari.extension.baseURI + "resources/TDEinject.js";
+  InjectScript.src = safari.extension.baseURI + "sources/TDEinject.js";
 } else {
   TDEURLExchange("https://dangeredwolf.com/assets/tdetest/");
   InjectScript.src = "https://dangeredwolf.com/assets/tdetest/TDEinject.js"; // Firefox version can't update properly yet

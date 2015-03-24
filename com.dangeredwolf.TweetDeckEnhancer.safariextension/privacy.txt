@@ -5,13 +5,6 @@ It's important to maintain privacy when using products like these, which could p
 TweetDeck itself does its own information collecting of it's own, through Google Analytics on Twitter's end. This is always present even with TweetDeck Enhancer off.
 TweetDeck's Google Analytics is controlled by *Twitter*, NOT by me. However, Google Analytics' privacy policy is here: https://www.google.com/policies/privacy/partners/
 
-TweetDeck Enhancer, luckily, does not collect much information at all. However, starting with TweetDeck Enhancer 5.0, it checks in with an activation server.
-The activation server is contacted with "regname", which is a 512 bit SHA3 hash of the TweetDeck "GuestID", which is browser-specific and cannot be traced back to a user.
-This server is contacted when TweetDeck Enhancer first starts, and does not transfer any other personally identifiable information besides this hash.
-Other assets may be fetched from the server, such as the alert sound, and other miscellaneous items, particularlly images, and no other information is sent there.
-
-Due to Cloudflare and the server not having mod_cloudflare installed,
-
 I do NOT know:
 -Who you are
 -Where you live
@@ -20,7 +13,6 @@ I do NOT know:
 -With whom you are doing things with
 
 I DO know:
--Your client's generated hash of the randomised GuestID which cannot be traced back to you
 -The version of TweetDeck Enhancer you are running
 -Your user agent
 
@@ -31,5 +23,7 @@ You are completely anonymous when using TweetDeck Enhancer.
 
 The version and user agent information is sent when you launch TweetDeck Enhancer.
 This simply helps us know which versions of TweetDeck Enhancer are being used, and on which platforms it's being used, to improve services.
+
+No information whatsoever is shared with third parties.
 
 (Last Updated 22 March 2015)

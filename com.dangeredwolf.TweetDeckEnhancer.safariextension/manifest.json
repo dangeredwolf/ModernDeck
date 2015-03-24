@@ -32,17 +32,16 @@
       "32": "AppIcon32.png",
       "48": "AppIcon48.png",
       "64": "AppIcon64.png",
-      "128": "AppIcon128.png",
-      "256": "AppIcon256.png"
+      "128": "AppIcon128.png"
    },
 
   "web_accessible_resources": [
-    "resources",
-    "resources/*"
+    "sources",
+    "sources/*"
   ],
 
   "browser_action": {
-    "default_icon": "resources/oneclick/InstaTweetDeck.png",
+    "default_icon": "sources/oneclick/InstaTweetDeck.png",
     "default_popup": "extension/ITD.html",
     "default_title": "__MSG_ButtonHoverTitle__"
   },
