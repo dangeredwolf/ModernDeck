@@ -56,17 +56,6 @@ function PatchAudio(){
   NotificationSound.src = GetURL("sources/alert_2.mp3");
 }
 
-function WaitForTDToConfigureSelf(){
-  if (typeof document.getElementsByClassName("app-signin-form")[0] !== "undefined") {
-    document.getElementsByTagName("html")[0].setAttribute("class",document.getElementsByTagName("html")[0].getAttribute("class") + " signin-sheet-now-present");
-    WaitForLogin();
-  } else {
-    if (typeof document.getElementsByClassName("app-content")[0] === "undefined") {
-      setTimeout(WaitForTDToConfigureSelf,60);
-    } 
-  }
-}
-
 function WaitForLogin() {
   if (typeof document.getElementsByClassName("app-signin-form")[0] === "undefined") {
     document.getElementsByTagName("html")[0].setAttribute("class",document.getElementsByTagName("html")[0].getAttribute("class").replace(" signin-sheet-now-present",""));
@@ -707,14 +696,6 @@ function MustachePatcher() {
   TD_mustaches["settings/global_setting_filter_row.mustache"]='<li class="list-filter cf"> {{_i}}<div class="tde-mute-text tde-mute-text-{{getDisplayType}}"></div> {{>text/global_filter_value}}{{/i}} <input type="button" name="remove-filter" value="{{_i}}Remove{{/i}}" data-id="{{id}}" class="js-remove-filter small btn btn-negative"> </li>'
 }
 
-function TDESupportedParameters() {
-  if (typeof $ === "undefined") {
-    setTimeout(TDESupportedParameters,500);
-    return;
-  }
-  $("html")[0].className += " tde-preferences-differentiator tde-api-ver-5-0 tde-js-loaded";
-}
-
 function YesFavicon() {
   console.log("gonna replace favicon :3");
   if (typeof $ === "undefined") {
@@ -771,18 +752,17 @@ function EnableSecureStylesheets() {
 
 setTimeout(InjectRobotoFonts,0);
 setTimeout(PatchAudio,0);
-setTimeout(WaitForTDToConfigureSelf,0);
 setTimeout(PatchSystem,300);
-//setTimeout(ReplaceLoadingIndicator,0);
 setTimeout(WorldTick,0);
 setTimeout(NavigationSetup,100);
 setTimeout(TDESecureVerif,150);
 setTimeout(MouseConfig,500);
 setTimeout(PreferenceLoader,1000);
-setTimeout(TDESupportedParameters,500);
 setTimeout(MustachePatcher,500);
 setTimeout(CheckForFabulousness,500);
 setTimeout(YesFavicon,0);
+
+document.getElementsByTagName("html").className += " tde-preferences-differentiator tde-api-ver-5-0 tde-js-loaded";
 
 window.addEventListener("keyup", KeyboardShortcutHandler, false);
 
