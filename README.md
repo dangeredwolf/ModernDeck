@@ -41,8 +41,6 @@ Installation:
 
 **== Safari ==**
 
-Warning: Safari seems to have issues for some reason installing [Issue #12](https://github.com/dangeredwolf/TweetDeck-Enhancer/issues/12)
-
 1. If you haven't, go to the Safari menu on the Menu bar, click Preferences, go to the Advanced tab, at the bottom check "Show Develop menu in menu bar", then you can close preferences.
 
 2. Go to the Develop menu > Show Extension Builder
