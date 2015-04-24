@@ -1,4 +1,4 @@
-/* TweetDeck Enhancer 5.0.6 [codename Horizon] 
+/* TweetDeck Enhancer 5.1 [codename Horizon] 
 Copyright 2015 Dangered Wolf (@dangeredwolf)
 Released under the MIT License
 
@@ -235,7 +235,7 @@ app-dark.css */
 }
 
 .txt-r-medium-green {
-  color:#77b255
+  color:#4CAE51
 }
 
 .txt-r-deep-green {
@@ -339,7 +339,7 @@ app-dark.css */
 }
 
 .txt-r-deep-yellow {
-  color:#ffac33
+  color:#FF9701
 }
 
 .txt-r-dark-yellow {
@@ -5034,7 +5034,7 @@ h6 {
 }
 
 .column.is-focused {
-  box-shadow:inset 0px 10px 10px 10px #00BBD5;
+  box-shadow:inset 0px 10px 10px 10px #00838F;
 }
 
 .column.animatecolumnin {
@@ -5461,6 +5461,7 @@ a .column-title-back .icon:after {
     margin-left: 0px;
     text-align: left;
     font-size: 0px;
+    display:block!important;
 }
 
 span.js-tooltip-target.link-complex-target {
@@ -6417,6 +6418,10 @@ li.js-typeahead-item.js-typeahead-recent-search-item.list-item.is-actionable.ite
   height:48px;
   border-radius: 24px;
   transition:200ms all!important;
+}
+
+.tde-no-round-avatars .avatar {
+    border-radius: 5px!important;
 }
 
 .avatar.compose-account-img:active {
@@ -9055,7 +9060,7 @@ i.icon.icon-clear-timeline {
   height:auto
 }
 
-.mdl:before {
+body:not(body[class="scroll-v"]) .mdl:before {
   content: " ";
   width: 100.1%;
   height: 48px;
@@ -9979,18 +9984,6 @@ input#file-upload-input {
 
 .compose-account-selected {
   display:none;
-  position:absolute;
-  bottom:-2px;
-  right:-2px;
-  width:16px;
-  height:16px;
-  text-align:center;
-  border-radius:8px;
-  background-color:#00C853;
-}
-
-.is-selected .compose-account-selected {
-  display:block
 }
 
 .account-selector-grid-mode {
@@ -11593,12 +11586,6 @@ a.caldisabled[href] {
   width:520px;
   height:200px;
   bottom:0;
-  background-image:url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4gPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjUwJSIgeTE9IjAlIiB4Mj0iNTAlIiB5Mj0iMTAwJSI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iInRyYW5zcGFyZW50IiIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0icmdiYSgxNywxNywxNywwLjU1KSIvPjwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPjxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JhZCkiIC8+PC9zdmc+IA==);
-  background-size:100%;
-  background-image: -webkit-linear-gradient(transparent 0%,rgba(17,17,17,0.3) 100%);
-  background-image:-moz-linear-gradient(transparent 0%,rgba(17,17,17,0.3) 100%);
-  background-image:-o-linear-gradient(transparent 0%,rgba(17,17,17,0.3) 100%);
-  background-image: linear-gradient(transparent 0%,rgba(17,17,17,0.3) 100%);
 }
 
 .prf .account-group {
@@ -12542,7 +12529,8 @@ a.caldisabled[href] {
   box-sizing:border-box;
   position:relative;
   margin:0 auto;
-  max-width:1020px
+  max-width:1020px;
+  top:100px;
 }
 
 .startflow-link-on-background {
@@ -14708,68 +14696,6 @@ body[class=""], html.js {
   background-color:rgba(38, 50, 56, 1);
 }
 
-.tde-upgrading md-progress-circular .md-inner .md-left .md-half-circle {
-    border-left-color: #009688!important;
-    border-top-color: #009688!important;
-    border-width:6px
-}
-
-.tde-upgrading md-progress-circular .md-inner .md-right .md-half-circle {
-    border-right-color: #009688!important;
-    border-top-color: #009688!important;
-    border-width:6px
-}
-
-.tde-upgrading md-progress-circular.md-default-theme .md-inner .md-gap {
-    border-top-color: #009688!important;
-    border-bottom-color: #009688!important;
-}
-
-.tde-upgrading md-progress-circular {
-    position:absolute;
-    margin-left:27px;
-    margin-top:30px;
-}
-
-.tde-upgrading h2 {
-    position:absolute;
-    margin-left:25px;
-    margin-top:-25px;
-    color: #444;
-}
-
-.tde-upgrading .whatever {
-    width:350px;
-    height:110px;
-
-}
-
-.tde-upgrading:before {
-    background-color:transparent
-}
-
-.tde-upgrading h3 {
-    font-weight:400;
-    position:absolute;
-    margin-top:45px;
-    margin-left:112px;
-    font-size:15px;
-    color: #555;
-}
-
-.tde-upgrading {
-    margin:0;
-    z-index:999999999999999999;
-    border-radius:2px!important;
-    position: absolute;
-    display: block;
-    margin-right: auto;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-    background-color: #fff;
-}
-
 .tde-is-upgrading .application {
     opacity:0;
     top:0%;
@@ -15251,6 +15177,99 @@ fieldset#services_settings label.control-label {
 
 .tde-fabulous-april-fools .tde-version-title:after {
     content:" FABULOUS MODE";
+}
+
+.column-options {
+    width:328px;
+    transition:200ms all;
+}
+
+.is-wide-columns .column-options {
+    width:353px;
+}
+
+.is-narrow-columns .column-options {
+    width:283px;
+}
+
+.tde-fabulous-april-fools .tde-fab {
+    display:none;
+}
+
+.tde-fabulous-april-fools .js-setting-list .list-link strong {
+    text-shadow:0px 1px 4px rgba(50,50,50,0.7)
+}
+
+.tde-fabulous-april-fools .is-unread,.tde-fabulous-april-fools .is-unread:hover,.tde-fabulous-april-fools .is-unread:active {
+  background:linear-gradient(to right, #F44336, #FF5722, #FF9800, #FFEB3B, #CDDC39, #8BC34A, #4CAF50, #00BCD4, #03A9F4, #2196F3, #3F51B5, #673AB7, #9C27B0, #E91E63, #F44336)!important
+}
+
+.tde-fabulous-april-fools .is-unread * {
+    text-shadow:0px 3px 4px rgba(50,50,50,0.7);
+}
+
+.tde-fabulous-april-fools .app-columns-container {
+    background: #C3352B;
+}
+
+.tde-fabulous-april-fools .tde-settings-panel #general_settings:after {
+    content: "P.S. Happy April Fools Day";
+    /*text-align: center;*/
+    font-size: 12px;
+    width: 100%;
+    display: block;
+    opacity:0.2;
+    margin-top:10px;
+}
+
+.link-clean[href="https://twitter.com/UberFacts"] .sprite-verified {
+    display: none;
+}
+
+.margin-t--12.margin-b--30 {
+  margin-top:-60px!important
+}
+
+.quoted-tweet {
+    border:none;
+    box-shadow:0px 3px 7px rgba(17,17,17,0.5);
+}
+
+.tde-dark .js-quote-tweet-holder .quoted-tweet {
+    border: none;
+    padding-left:70px!important;
+    margin-bottom:2px;
+    padding-right:25px!important;
+    background:rgba(38, 50, 56, 1)!important;
+    padding-bottom:40px!important;
+    width: 145px;
+    border-radius: 2px;
+    margin-left: 10px;
+}
+
+.js-quote-tweet-holder {
+    display:inline;
+}
+
+.js-message-detail {
+    -webkit-animation: popcomesthetweetsview 0.6s 1!important;
+    animation: popcomesthetweetsview 0.6s 1!important;
+}
+
+.tde-column-oneline .column-head-title {
+    text-align:left!important;
+    display:inline!important;
+    padding-left:40px;
+    font-weight:500!important;
+}
+
+.tde-column-oneline .column-title {
+    text-align:inherit!important;
+    margin-top:-3px;
+}
+
+.tde-comic-sans-ms {
+    font-family: "Comic Sans MS"!important;
 }
 
 

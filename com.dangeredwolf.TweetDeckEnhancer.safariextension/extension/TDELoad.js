@@ -2,7 +2,7 @@
 // Copyright (c) 2015 Dangered Wolf
 
 console.log("TDELoad loaded");
-console.log("Enhancer 5.0.5");
+console.log("Enhancer 5.1");
 
 function ReplaceLoadingIndicator() {
   console.log("Waiting for TweetDeck so I can replace loading spinner (TDELoad)");

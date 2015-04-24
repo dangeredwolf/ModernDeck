@@ -17,7 +17,7 @@ var TDEBaseURL = "https://dangeredwolf.com/assets/tdetest/"; // Defaults to stre
 var progress = null;
 var tde_fetch_profile_info_for_nav_drawer = 0;
 
-var SystemVersion = "5.0.6";
+var SystemVersion = "5.1.1";
 
 var TreatGeckoWithCare = false;
 
@@ -252,6 +252,138 @@ function CheckForFabulousness() {
   }
 }
 
+function ResetSettingsUI() {
+  $("#tde-appearance-form")[0].style.cssText = "display:none;";
+  $("#tde-accessibility-form")[0].style.cssText = "display:none;";
+  $("#tde-about-form")[0].style.cssText = "display:none;";
+  $("#tde-appearance-li")[0].className = "";
+  $("#tde-accessibility-li")[0].className = "";
+  $("#tde-about-li")[0].className = "";
+}
+
+function LoadPrefs() {
+  if (localStorage.tde_round_avatars === "false") {
+    document.getElementsByTagName("html")[0].className += " tde-no-round-avatars";
+  } else if (typeof localStorage.tde_round_avatars === "undefined") {
+    localStorage.tde_round_avatars = true;
+  }
+
+  if (localStorage.tde_column_oneline === "true") {
+    document.getElementsByTagName("html")[0].className += " tde-column-oneline";
+  } else if (typeof localStorage.tde_column_oneline === "undefined") {
+    localStorage.tde_column_oneline = false;
+  }
+
+}
+
+function PrefsListener() {
+  console.log("Testing...");
+  if ($("#tde-round-avatars-control").length > 0) { // Only scan for settings changes when dialog is up
+    console.log("waiting...");
+
+    if (localStorage.tde_round_avatars === "false" && $("#tde-round-avatars-control")[0].checked) {
+      console.log("Hey true!!");
+      localStorage.tde_round_avatars = true;
+      document.getElementsByTagName("html")[0].className = document.getElementsByTagName("html")[0].className.replace(" tde-no-round-avatars","");
+    }
+
+    if (localStorage.tde_round_avatars === "true" && !$("#tde-round-avatars-control")[0].checked) {
+      console.log("Hey false!!");
+      localStorage.tde_round_avatars = false;
+      document.getElementsByTagName("html")[0].className += " tde-no-round-avatars";
+    }
+
+    if (localStorage.tde_column_oneline === "false" && $("#tde-column-oneline-control")[0].checked) {
+      console.log("Hey true!!");
+      localStorage.tde_column_oneline = true;
+      document.getElementsByTagName("html")[0].className += " tde-column-oneline";
+    }
+
+    if (localStorage.tde_column_oneline === "true" && !$("#tde-column-oneline-control")[0].checked) {
+      console.log("Hey false!!");
+      localStorage.tde_column_oneline = false;
+      document.getElementsByTagName("html")[0].className = document.getElementsByTagName("html")[0].className.replace(" tde-column-oneline","");
+    }
+
+    setTimeout(PrefsListener,500);
+  }
+}
+
+// SendNotificationMessage("You'll need to restart TweetDeck to apply some of your settings. (Press Ctrl+R or ⌘R)")
+
+function TDESettings() {
+  TDEPrepareWindows();
+    setTimeout(function(){
+      document.getElementsByClassName("js-app-settings")[0].click();
+    },25);
+    setTimeout(function(){
+      document.getElementsByClassName("app-navigator margin-bm padding-ts")[0].childNodes[document.getElementsByClassName("app-navigator margin-bm padding-ts")[0].childNodes.length-2].childNodes[3].childNodes[1].childNodes[7].childNodes[1].click();
+    },50); 
+    setTimeout(function(){
+      var tdesettingsmodalview = $("#settings-modal .mdl")[0];
+      tdesettingsmodalview.className = "js-modal-panel mdl s-short is-inverted-dark tde-settings-panel";
+      var tdesettingsmodalinner = $("#settings-modal .mdl .mdl-inner")[0];
+      $("#settings-modal .mdl .js-header-title")[0].className = "mdl-header-title";
+      $("#settings-modal .mdl .mdl-header-title")[0].innerHTML = "Enhancer Settings";
+      tdesettingsmodalinner.innerHTML = '<div class="mdl-content js-mdl-content horizontal-flow-container"> <div class="l-column mdl-column mdl-column-sml"> <div class="l-column-scrollv scroll-v  scroll-alt "> <ul class="lst-group js-setting-list">\
+      <li id="tde-appearance-li" class="selected"><a href="#" class="list-link" id="enhancer_settings_appearance_button" data-action="general"><strong>Appearance</strong></a></li>\
+      \
+      <li id="tde-accessibility-li"><a href="#" class="list-link" id="enhancer_settings_accessibility_button" data-action="general"><strong>Accessiblity</strong></a></li>\
+      \
+      <li id="tde-about-li"><a href="#" class="list-link" id="enhancer_settings_about_button" data-action="general"><strong>About</strong></a></li>\
+      \
+      \
+      </ul> </div> </div> <div class="l-column mdl-column mdl-column-lrg"> <div class="l-column-scrollv scroll-v  scroll-alt mdl-col-settings">\
+      \
+      \
+      <form action="#" id="tde-appearance-form" accept-charset="utf-8" class="frm"><fieldset id="general_settings"><div class="control-group" style="padding-top:10px;"><label class="checkbox">Use rounded profile pictures<input type="checkbox" name="streaming-updates" checked="checked" id="tde-round-avatars-control"> </label><label class="checkbox">Keep column titles on one line<input type="checkbox" name="streaming-updates" checked="checked" id="tde-column-oneline-control"> </label></div></fieldset></form>\
+      \
+      <form action="#" id="tde-accessibility-form" accept-charset="utf-8" class="frm" style="display:none;"><fieldset id="general_settings"><p>Unfortunately, there are currently no accessibility settings available, but be on the lookout for some! :)</p></fieldset></form>\
+      \
+      <form action="#" id="tde-about-form" accept-charset="utf-8" class="frm" style="display:none;"><fieldset id="general_settings"><img src="chrome-extension://nffgbfpllijjknfklblafndbeajmekfb/sources/tdeaboutsmaller.png" class="tde-logo"><h1 class="list-placeholder tde-about-title">TweetDeck Enhancer</h1><h2 class="tde-version-title">You\'re running Enhancer ' + SystemVersion + '</h2><div class="mdl-links" style="margin-bottom:-10px"> <a href="https://dangeredwolf.com/TweetDeckEnhancer/privacy.txt" target="_blank">Privacy Policy</a> </div></fieldset></form>\
+      \
+      </div> </div> </div>';
+      window.tdeblah = false;
+
+      $("#tde-column-oneline-control")[0].checked = (localStorage.tde_column_oneline === "true" && true || false);
+      $("#tde-round-avatars-control")[0].checked = (localStorage.tde_round_avatars === "true" && true || false);
+
+
+      PrefsListener();
+
+      $("#enhancer_settings_about_button").on("mousedown",function() {
+        console.log("down!!");
+        window.tdeblah = true;
+        setTimeout(function(){
+          if (window.tdeblah === true) {
+            console.log("sweet!!!");
+            ActivateSuperEasterEggPowers();
+          }
+        },2000)
+      });
+
+      $("#enhancer_settings_about_button").on("mouseup",function() {
+        window.tdeblah = false;
+        console.log("up!!");
+        ResetSettingsUI();
+        $("#tde-about-li")[0].className = "selected";
+        $("#tde-about-form")[0].style.cssText = "display:block;";
+      });
+
+      $("#enhancer_settings_appearance_button").on("mouseup",function() {
+        ResetSettingsUI();
+        $("#tde-appearance-li")[0].className = "selected";
+        $("#tde-appearance-form")[0].style.cssText = "display:block;";
+      });
+
+      $("#enhancer_settings_accessibility_button").on("mouseup",function() {
+        ResetSettingsUI();
+        $("#tde-accessibility-li")[0].className = "selected";
+        $("#tde-accessibility-form")[0].style.cssText = "display:block;";
+      });
+    },100);
+}
+
 function FabulousThread() {
   var pebble = new Date();
   if (pebble.getMonth() === 3 && pebble.getDate() === 1 && pebble.getFullYear() === 2015) {
@@ -366,20 +498,14 @@ function MouseConfig() {
     });
 
     $(".js-app-header").mouseleave(function(){
-      console.log("dismiss 1");
       setTimeout(function(){
-        console.log("dismiss 2");
         if ($(".js-app-header").is(":not(:hover)")) {
-          console.log("dismiss 2.1");
           setTimeout(function(){
             if ($(".js-app-header").is(":not(:hover)")) {
-              console.log("dismiss 3");
               setTimeout(function(){
                 if ($(".js-app-header").is(":not(:hover)")) {
-                  console.log("dismiss 4");
                   setTimeout(function(){
                     if ($(".js-app-header").is(":not(:hover)")) {
-                      console.log("dismiss 5");
                       $(".js-app-header")[0].className = "js-app-header pin-all app-header is-condensed";
                     }
                   },400);
@@ -519,38 +645,7 @@ function NavigationSetup() {
     },50); 
   }
 
-  tdesettings.onclick = function() {
-    TDEPrepareWindows();
-    setTimeout(function(){
-      document.getElementsByClassName("js-app-settings")[0].click();
-    },25);
-    setTimeout(function(){
-      document.getElementsByClassName("app-navigator margin-bm padding-ts")[0].childNodes[document.getElementsByClassName("app-navigator margin-bm padding-ts")[0].childNodes.length-2].childNodes[3].childNodes[1].childNodes[7].childNodes[1].click();
-    },50); 
-    setTimeout(function(){
-      var tdesettingsmodalview = $("#settings-modal .mdl")[0];
-      tdesettingsmodalview.className = "js-modal-panel mdl s-short is-inverted-dark tde-settings-panel";
-      var tdesettingsmodalinner = $("#settings-modal .mdl .mdl-inner")[0];
-      $("#settings-modal .mdl .js-header-title")[0].className = "mdl-header-title";
-      $("#settings-modal .mdl .mdl-header-title")[0].innerHTML = "Enhancer Settings";
-      tdesettingsmodalinner.innerHTML = '<div class="mdl-content js-mdl-content horizontal-flow-container"> <div class="l-column mdl-column mdl-column-sml"> <div class="l-column-scrollv scroll-v  scroll-alt "> <ul class="lst-group js-setting-list">  <li class="selected"><a href="#" class="list-link" id="enhancer_settings_about_button" data-action="general"><strong>About</strong></a></li></ul> </div> </div> <div class="l-column mdl-column mdl-column-lrg"> <div class="l-column-scrollv scroll-v  scroll-alt mdl-col-settings"> <form action="#" id="global-settings" accept-charset="utf-8" class="frm"><fieldset id="general_settings"><img src="' + GetURL("sources") +'/tdeaboutsmaller.png" class="tde-logo"><h1 class="list-placeholder tde-about-title">TweetDeck Enhancer</h1><h2 class="tde-version-title">You\'re running Enhancer ' + SystemVersion + '</h2></fieldset></form> </div> </div> </div>';
-      window.tdeblah = false;
-      $("#enhancer_settings_about_button").on("mousedown",function() {
-        console.log("down!!");
-        window.tdeblah = true;
-        setTimeout(function(){
-          if (window.tdeblah === true) {
-            console.log("sweet!!!");
-            ActivateSuperEasterEggPowers();
-          }
-        },2000)
-      });
-      $("#enhancer_settings_about_button").on("mouseup",function() {
-        window.tdeblah = false;
-        console.log("up!!");
-      });
-    },100);
-  }
+  tdesettings.onclick = TDESettings;
 
   btdsettings.onclick = function(){
     TDEPrepareWindows();
@@ -661,23 +756,6 @@ function KeyboardShortcutHandler(e) {
   }
 }
 
-function PreferenceLoader() {
-  if (typeof localStorage.tde_colour !== "undefined") {
-    // do stuff
-  }
-  if (typeof localStorage.tde_developer_parameter_debug !== "undefined") {
-    if (localStorage.tde_developer_parameter_debug === "true") {
-      console.log("tde_developer_parameter_debug = true");
-      var TDEAttachDebuggerScope = this;
-      TDEAttachDebugger(TDEAttachDebuggerScope);
-    } else {
-      window.TDEAttachDebugger = undefined;
-    }
-  } else {
-    window.TDEAttachDebugger = undefined;
-  }
-}
-
 function TDEAttachDebugger(debuggerScope) {
   console.log("Attaching developer debugger");
   window.tde_debug = debuggerScope;
@@ -697,12 +775,23 @@ function MustachePatcher() {
 }
 
 function YesFavicon() {
-  console.log("gonna replace favicon :3");
   if (typeof $ === "undefined") {
     setTimeout(YesFavicon,200);
     return;
   }
   $("link[rel=\"shortcut icon\"]")[0].href = TDEBaseURL + "sources/favicon.ico";
+}
+
+function ReloadTheme() {
+    document.querySelector("html").className = document.querySelector("html").className.replace(" tde-dark","").replace(" tde-light","")
+    document.querySelector(".application").className = document.querySelector(".application").className.replace(" tde-dark","").replace(" tde-light","")
+    if (document.querySelector("link[title='dark'][disabled]") !== null) {
+        document.querySelector("html").className += " tde-light";
+        document.querySelector(".application").className += " tde-light";
+    } else {
+        document.querySelector("html").className += " tde-dark";
+        document.querySelector(".application").className += " tde-dark";
+    }
 }
 
 function DisableCommunications() {
@@ -755,16 +844,24 @@ setTimeout(PatchAudio,0);
 setTimeout(PatchSystem,300);
 setTimeout(WorldTick,0);
 setTimeout(NavigationSetup,100);
-setTimeout(TDESecureVerif,150);
+setTimeout(TDESecureVerif,300);
 setTimeout(MouseConfig,500);
-setTimeout(PreferenceLoader,1000);
 setTimeout(MustachePatcher,500);
 setTimeout(CheckForFabulousness,500);
 setTimeout(YesFavicon,0);
+setTimeout(LoadPrefs,500);
 
-document.getElementsByTagName("html").className += " tde-preferences-differentiator tde-api-ver-5-0 tde-js-loaded";
+document.getElementsByTagName("html")[0].className += " tde-preferences-differentiator tde-api-ver-5-1 tde-js-loaded";
+
+ReloadTheme();
 
 window.addEventListener("keyup", KeyboardShortcutHandler, false);
+
+(new MutationObserver(function(mutations) {
+  mutations.forEach(function(mutation) {
+    ReloadTheme();
+  });    
+})).observe(document.querySelector("link[title='dark']"), {attributes:true});
 
 console.log("TDEinject loaded");
 

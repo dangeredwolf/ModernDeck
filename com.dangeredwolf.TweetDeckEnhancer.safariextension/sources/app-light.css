@@ -1,4 +1,4 @@
-/* TweetDeck Enhancer 5.0.6 [codename Horizon] 
+/* TweetDeck Enhancer 5.1 [codename Horizon] 
 Copyright 2015 Dangered Wolf (@dangeredwolf)
 Released under the MIT License
 
@@ -235,7 +235,7 @@ app-light.css */
 }
 
 .txt-r-medium-green {
-  color:#77b255
+  color:#4CAE51
 }
 
 .txt-r-deep-green {
@@ -339,7 +339,7 @@ app-light.css */
 }
 
 .txt-r-deep-yellow {
-  color:#ffac33
+  color:#FF9701
 }
 
 .txt-r-dark-yellow {
@@ -555,7 +555,6 @@ app-light.css */
   color:#fff
 }
 
-/*! normalize.css v2.0.1 | MIT License | git.io/normalize */
 article,aside,details,figcaption,figure,footer,header,hgroup,nav,section,summary {
   display:block
 }
@@ -574,10 +573,14 @@ audio:not([controls]) {
 }
 
 html {
-  font-family: "RobotoDraft", "San Francisco", "RobotoDraft", "", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "RobotoDraft", "Roboto";
   -webkit-text-size-adjust:100%;
   -ms-text-size-adjust:100%;
   transition: 200ms all!important;
+}
+
+input, textarea, keygen, select, button {
+  font-family: "RobotoDraft", "Roboto";
 }
 
 html:active {
@@ -615,11 +618,6 @@ dfn {
 mark {
   background:#ff0;
   color:#000
-}
-
-code,kbd,pre,samp {
-  font-family:monospace,serif;
-  font-size:1em
 }
 
 pre {
@@ -676,7 +674,6 @@ legend {
 }
 
 button,input,select,textarea {
-  font-family:inherit;
   font-size:100%;
   margin:0
 }
@@ -724,32 +721,16 @@ table {
   border-spacing:0
 }
 
-.os-windows {
-  font-family:"San Francisco", "RobotoDraft", "Roboto", "Helvetica Neue", Helvetica, Verdana, sans-serif;
-  font-weight:normal;
-  text-rendering:auto
-}
-
 html {
   height:100%;
-  font-family: "RobotoDraft", "San Francisco", "RobotoDraft", "","Helvetica Neue",Helvetica,Verdana,sans-serif;
+  font-family: "RobotoDraft", "Roboto";
   font-weight:normal;
   font-size: 14px;
   color:#333;
   line-height:1.28578;
   -webkit-font-smoothing:subpixel-antialiased;
   text-rendering:optimizeLegibility;
-  overflow:hidden}
-
-html {
-  font-family: "RobotoDraft", "San Francisco", "RobotoDraft", "Helvetica Neue",Helvetica,Verdana,sans-serif;
-  font-weight:normal;
-  color:#333
-}
-
-.is-inverted-dark {
-  font-family"San Francisco", "RobotoDraft", :"Roboto","Helvetica Neue",Helvetica,Verdana,sans-serif;
-  font-weight:normal;
+  overflow:hidden
 }
 
 body {
@@ -807,19 +788,19 @@ body {
 }
 
 a {
-  color: #29B6F6;
+  color: #00BBD4;
   text-decoration:none;
   transition: 150ms background-color, 150ms transform, 150ms color;
 }
 
 a:hover,a:focus {
-  color:rgba(0, 168, 255, 1);
+  color:rgba(11, 202, 226, 1);
   text-decoration:none;
   transition:200ms all;
 }
 
 a:active {
-  color:rgba(0, 149, 226, 1);
+  color:rgba(13, 168, 188, 1);
   transition: 150mx background-color, 150ms transform;
   background-color: rgba(0,0,0,0.05)!important;
   transform: scale(0.875,0.875)!important;
@@ -896,10 +877,6 @@ small {
 
 .txt-extra-large-fixed {
   font-size:20px!important
-}
-
-.txt-serif {
-  font-family:"San Francisco", "RobotoDraft", "Roboto", "Helvetica Neue", Helvetica, sans-serif, Georgia,"Times New Roman",serif
 }
 
 .txt-bold {
@@ -5623,6 +5600,7 @@ a .column-title-back .icon:after {
     margin-left: 0px;
     text-align: left;
     font-size: 0px;
+    display:block!important;
 }
 
 span.js-tooltip-target.link-complex-target {
@@ -6550,7 +6528,6 @@ li.js-typeahead-item.js-typeahead-recent-search-item.list-item.is-actionable.ite
 }
 
 .list-placeholder {
-  padding-top:30px;
   text-align:center;
   font-size: 28px;
   color:#aaa;
@@ -6587,6 +6564,10 @@ li.js-typeahead-item.js-typeahead-recent-search-item.list-item.is-actionable.ite
   height:48px;
   border-radius: 24px;
   transition:200ms all!important;
+}
+
+.tde-no-round-avatars .avatar{
+    border-radius: 5px!important;
 }
 
 .avatar.compose-account-img:active {
@@ -6664,7 +6645,6 @@ li.js-typeahead-item.js-typeahead-recent-search-item.list-item.is-actionable.ite
 
 .account-link:hover {
   max-width:100%;
-  color: #25ADEB;
   transition:300ms color;
 }
 
@@ -7187,7 +7167,6 @@ li.js-typeahead-item.js-typeahead-recent-search-item.list-item.is-actionable.ite
 
 .tweet-detail .tweet-translation-text {
   font-size:1.2857rem;
-  font-family:"San Francisco", "RobotoDraft", "Roboto", "Helvetica Neue", Helvetica, sans-serif, Georgia,"Times New Roman",serif
 }
 
 .tweet-detail .in-tweet-divider:before {
@@ -10322,18 +10301,6 @@ input#file-upload-input {
 
 .compose-account-selected {
   display:none;
-  position:absolute;
-  bottom:-2px;
-  right:-2px;
-  width:16px;
-  height:16px;
-  text-align:center;
-  border-radius:8px;
-  background-color:#00C853;
-}
-
-.is-selected .compose-account-selected {
-  display:block
 }
 
 .account-selector-grid-mode {
@@ -10870,11 +10837,6 @@ a:hover .icn-button-next {
   top:6px
 }
 
-.list-filter em {
-  font-family:"San Francisco", "RobotoDraft", "Roboto", "Helvetica Neue", Helvetica, sans-serif, Georgia,"Times New Roman",serif;
-  font-style:italic
-}
-
 .list-twitter-list .inner {
   white-space:nowrap;
   overflow:hidden;
@@ -10998,7 +10960,6 @@ a:hover .icn-button-next {
   color:#666;
   font-size:13px;
   line-height:1.2em;
-  font-family:"San Francisco", "RobotoDraft", "Roboto", "Helvetica Neue", Helvetica, sans-serif, Georgia,"Times New Roman",serif;
   font-style:italic
 }
 
@@ -11945,12 +11906,6 @@ a.caldisabled[href] {
   width:520px;
   height:200px;
   bottom:0;
-  background-image:url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4gPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjUwJSIgeTE9IjAlIiB4Mj0iNTAlIiB5Mj0iMTAwJSI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iInRyYW5zcGFyZW50IiIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0icmdiYSgxNywxNywxNywwLjU1KSIvPjwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPjxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JhZCkiIC8+PC9zdmc+IA==);
-  background-size:100%;
-  background-image: -webkit-linear-gradient(transparent 0%,rgba(17,17,17,0.3) 100%);
-  background-image:-moz-linear-gradient(transparent 0%,rgba(17,17,17,0.3) 100%);
-  background-image:-o-linear-gradient(transparent 0%,rgba(17,17,17,0.3) 100%);
-  background-image: linear-gradient(transparent 0%,rgba(17,17,17,0.3) 100%);
 }
 
 .prf .account-group {
@@ -12435,7 +12390,7 @@ a.caldisabled[href] {
 }
 
 .lst-group .selected {
-  background: #29B6F6;
+  background: #00BBD4;
   color: #FFFFFF;
   transition:200ms all!important;
 }
@@ -12448,16 +12403,11 @@ a.caldisabled[href] {
 
 .lst-group .selected a {
   transition:200ms all;
-}
-
-.lst-group .selected a {
-  transition:200ms all;
   color: #000;
 }
 
 .lst-group .selected a:hover {
-  background: #42C1FB;
-  transition:200ms all;
+  background: #29C6DB;
 }
 
 .js-setting-list.lst-group .selected a:hover {
@@ -12466,7 +12416,7 @@ a.caldisabled[href] {
 }
 
 .lst-group .selected a.list-account:hover {
-  background: #49BFF5;
+  background: #29C6DB;
   transition:200ms all;
 }
 
@@ -12765,7 +12715,8 @@ a.caldisabled[href] {
   transition-duration:150ms;
   -webkit-box-shadow: 0 2px 5px rgba(117,117,117,0.8);
   -moz-box-shadow: 0 2px 5px rgba(117,117,117,0.8);
-  box-shadow: 0 2px 5px rgba(117,117,117,0.8)!important;}
+  box-shadow: 0 2px 5px rgba(117,117,117,0.8)!important;
+}
 
 .popover-content {
   overflow-x:hidden
@@ -15052,66 +15003,6 @@ button#emojiButton:active .btd-icon-smile {
     padding-top: 5px;
 }
 
-.tde-upgrading md-progress-circular .md-inner .md-left .md-half-circle {
-    border-left-color: #009688!important;
-    border-top-color: #009688!important;
-    border-width:6px
-}
-
-.tde-upgrading md-progress-circular .md-inner .md-right .md-half-circle {
-    border-right-color: #009688!important;
-    border-top-color: #009688!important;
-    border-width:6px
-}
-
-.tde-upgrading md-progress-circular.md-default-theme .md-inner .md-gap {
-    border-top-color: #009688!important;
-    border-bottom-color: #009688!important;
-}
-
-.tde-upgrading md-progress-circular {
-    position:absolute;
-    margin-left:27px;
-    margin-top:30px;
-}
-
-.tde-upgrading h2 {
-    position:absolute;
-    margin-left:25px;
-    margin-top:-25px;
-}
-
-.tde-upgrading .whatever {
-    width:350px;
-    height:110px;
-
-}
-
-.tde-upgrading:before {
-    background-color:transparent
-}
-
-.tde-upgrading h3 {
-    font-weight:400;
-    position:absolute;
-    margin-top:45px;
-    margin-left:112px;
-    font-size:15px;
-}
-
-.tde-upgrading {
-    margin:0;
-    z-index:999999999999999999;
-    border-radius:2px!important;
-    position: absolute;
-    display: block;
-    margin-right: auto;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-    transition:170ms all!important;
-}
-
 .tde-is-upgrading .application {
     opacity:0;
     top:0%;
@@ -15595,6 +15486,99 @@ fieldset#services_settings label.control-label {
 
 .tde-fabulous-april-fools .tde-version-title:after {
     content:" FABULOUS MODE";
+}
+
+.column-options {
+    width:328px;
+    transition:200ms all;
+}
+
+.is-wide-columns .column-options {
+    width:353px;
+}
+
+.is-narrow-columns .column-options {
+    width:283px;
+}
+
+.tde-fabulous-april-fools .tde-fab {
+    display:none;
+}
+
+.tde-fabulous-april-fools .js-setting-list .list-link strong {
+    text-shadow:0px 1px 4px rgba(50,50,50,0.7)
+}
+
+.tde-fabulous-april-fools .is-unread,.tde-fabulous-april-fools .is-unread:hover,.tde-fabulous-april-fools .is-unread:active {
+  background:linear-gradient(to right, #F44336, #FF5722, #FF9800, #FFEB3B, #CDDC39, #8BC34A, #4CAF50, #00BCD4, #03A9F4, #2196F3, #3F51B5, #673AB7, #9C27B0, #E91E63, #F44336)!important
+}
+
+.tde-fabulous-april-fools .is-unread * {
+    text-shadow:0px 3px 4px rgba(50,50,50,0.7);
+}
+
+.tde-fabulous-april-fools .app-columns-container {
+    background: #C3352B;
+}
+
+.tde-fabulous-april-fools .tde-settings-panel #general_settings:after {
+    content: "P.S. Happy April Fools Day";
+    /*text-align: center;*/
+    font-size: 12px;
+    width: 100%;
+    display: block;
+    opacity:0.2;
+    margin-top:10px;
+}
+
+.link-clean[href="https://twitter.com/UberFacts"] .sprite-verified {
+    display: none;
+}
+
+.margin-t--12.margin-b--30 {
+  margin-top:-60px!important
+}
+
+.quoted-tweet {
+    border:none;
+    box-shadow:0px 3px 7px rgba(17,17,17,0.5);
+}
+
+.js-quote-tweet-holder .quoted-tweet {
+    border: none;
+    padding-left:70px!important;
+    margin-bottom:2px;
+    padding-right:25px!important;
+    background:#fff;
+    padding-bottom:40px!important;
+    width: 145px;
+    border-radius: 2px;
+    margin-left: 10px;
+}
+
+.js-quote-tweet-holder {
+    display:inline;
+}
+
+.js-message-detail {
+    -webkit-animation: popcomesthetweetsview 0.6s 1!important;
+    animation: popcomesthetweetsview 0.6s 1!important;
+}
+
+.tde-column-oneline .column-head-title {
+    text-align:left!important;
+    display:inline!important;
+    padding-left:40px;
+    font-weight:500!important;
+}
+
+.tde-column-oneline .column-title {
+    text-align:inherit!important;
+    margin-top:-3px
+}
+
+.tde-comic-sans-ms {
+    font-family: "Comic Sans MS"!important;
 }
 
 
