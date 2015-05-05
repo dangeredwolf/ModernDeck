@@ -17,7 +17,7 @@ var TDEBaseURL = "https://dangeredwolf.com/assets/tdetest/"; // Defaults to stre
 var progress = null;
 var tde_fetch_profile_info_for_nav_drawer = 0;
 
-var SystemVersion = "5.1.1";
+var SystemVersion = "5.2";
 
 var TreatGeckoWithCare = false;
 
@@ -523,14 +523,12 @@ function MouseConfig() {
 
 function PrepareLoginStuffs() {
   if (typeof $ === "undefined") {
-    console.log("Waiting for jQuery for login stuffs... [new edition of function]");
     setTimeout(PrepareLoginStuffs,200);
     return;
   }
 
   var FindProfButton = $(".js-account-settings-accounts .account-settings-row:first-child .js-account-settings-detail.accordion-panel .padding-tm.padding-hxl .link-complex.txt-medium.block.cf[rel=\"user\"]")[0];
   if (typeof FindProfButton === "undefined") {
-    console.log("Waiting for login stuffs... [new edition of function]");
     setTimeout(PrepareLoginStuffs,200);
     return;
   }
@@ -548,8 +546,6 @@ function PrepareLoginStuffs() {
 }
 
 function FinaliseLoginStuffs() {
-  console.log('waiting for final login stuffs [revised]');
-
   if (typeof $(".js-click-trap")[0] !== "undefined") {
     $(".js-click-trap")[0].className += " is-hidden";
   }
