@@ -3,14 +3,10 @@
 
 // made with love <3
 
-// also dedicated to my amazing boyfriend danny <333
-
-//(function() {
-
 var msgID = 0;
 var messagesAccounted = [];
 
-var ShouldUpgrade = false;
+var TDEDark = true;
 
 var addedColumnsLoadingTagAndIsWaiting = false;
 var TDEBaseURL = "https://dangeredwolf.com/assets/tdetest/"; // Defaults to streaming if nothing else is available (i.e. firefox)
@@ -519,8 +515,6 @@ function MouseConfig() {
   }
 }
 
-// screw gender roles
-
 function PrepareLoginStuffs() {
   if (typeof $ === "undefined") {
     setTimeout(PrepareLoginStuffs,200);
@@ -784,9 +778,11 @@ function ReloadTheme() {
     if (document.querySelector("link[title='dark'][disabled]") !== null) {
         document.querySelector("html").className += " tde-light";
         document.querySelector(".application").className += " tde-light";
+        TDEDark = false;
     } else {
         document.querySelector("html").className += " tde-dark";
         document.querySelector(".application").className += " tde-dark";
+        TDEDark = true;
     }
 }
 
@@ -833,7 +829,77 @@ function EnableSecureStylesheets() {
   console.log("Thanks! For quicker updates and improvements, you have now enabled optional secure stylesheets.");
 }
 
-// Danny is a cutie and I love himmm <333
+function diag() {
+  try {
+    attemptdiag();
+  }
+  catch(err) {
+    var openmodal = document.getElementById("open-modal");
+  openmodal.innerHTML = '<div class="mdl s-tall-fixed"><header class="mdl-header"><h3 class="mdl-header-title">Diagnostics Failed</h3></header><div class="mdl-inner"><div class="mdl-content"style="padding-left:20px">\
+  \
+  Well, that\'s unfortunate. I can\'t seem to be able to fetch diagnostics right now. Maybe refresh and try again?\
+  <br><br>\
+  (P.S. the error is ' + ((typeof err === "undefined" && "[miraculously, undefined.]") || (err.toString())).toString() + ')';
+  openmodal.style.cssText = "display: block;";
+  }
+}
+
+function attemptdiag() {
+  var openmodal = document.getElementById("open-modal");
+  openmodal.innerHTML = '<div class="mdl s-tall-fixed"><header class="mdl-header"><h3 class="mdl-header-title">Diagnostics</h3></header><div class="mdl-inner"><div class="mdl-content"style="padding-left:20px">\
+  \
+  \
+  \
+  <a href="javascript:dxdiag();">Click for DxDiag instructions if asked</a>\
+  <br>SystemVersion: ' + SystemVersion + '\
+  <br>userAgent: ' + navigator.userAgent + '\
+  <br>vendor: ' + navigator.vendor + '\
+  <br>vendorSub: ' + navigator.vendorSub + '\
+  <br>appCodeName: ' + navigator.appCodeName + '\
+  <br>appName: ' + navigator.appName + '\
+  <br>cookieEnabled: ' + navigator.cookieEnabled + '\
+  <br>language: ' + navigator.language + '\
+  <br>platform: ' + navigator.platform + '\
+  <br>TreatGeckoWithCare: ' + TreatGeckoWithCare + '\
+  <br>audiosrc: ' + document.getElementsByTagName("audio")[0].src + '\
+  <br>TDEBaseURL: ' + TDEBaseURL + '\
+  <br>TDEDark: ' + TDEDark + '\
+  <br>tde_fetch_profile_info_for_nav_drawer: ' + tde_fetch_profile_info_for_nav_drawer + '\
+  <br>tde_round_avatars: ' + localStorage.tde_round_avatars + '\
+  <br>tde_column_oneline: ' + localStorage.tde_column_oneline + '\
+  <br>tde_flag_block_secure_ss: ' + localStorage.tde_flag_block_secure_ss + '\
+  <br>tde_flag_block_communications: ' + localStorage.tde_flag_block_communications + '\
+  <br>tde_nd_header_image: ' + $("#tde_nd_header_image")[0].style.cssText + '\
+  <br>tde_nd_header_username: ' + $("#tde_nd_header_username")[0].innerHTML + '\
+  <br>tde_nd_header_photo: ' + $("#tde_nd_header_photo")[0].src + '\
+  <br>guestID: ' + TD.storage.store._backend.guestID + '\
+  <br>msgID: ' + msgID + '\
+  <br>InjectFonts?: ' + (typeof InjectFonts !== "undefined") + '\
+  \
+  \
+  \
+  ';
+  openmodal.style.cssText = "display: block;";
+}
+
+function dxdiag() {
+  var openmodal = document.getElementById("open-modal");
+  openmodal.innerHTML = '<div class="mdl s-tall-fixed"><header class="mdl-header"><h3 class="mdl-header-title">DxDiag Help</h3></header><div class="mdl-inner"><div class="mdl-content"style="padding-left:20px">\
+  \
+  \
+  \
+  This is a guide to help you acquire your DxDiag if asked by a developer.\
+  <br><br>\
+  Warning: This only applies for Windows. If you\'re running OS X / Linux / etc., this won\'t work.\
+  <br><br>\
+  Step 1: Press the Windows key + R key to open the Run dialog.<br>\
+  Step 2: In the box of the new window, type in "dxdiag", and press the Enter key.<br>\
+  Step 3: In the DirectX Diagnostic window, click the "Save All Information..." button at the bottom.<br>\
+  Step 4: Save this file somewhere you\'ll remember, like the Desktop.<br>\
+  Step 5: Upload the file to a file hosting site, for example, <a target="_blank" href="https://mega.co.nz">Mega</a> (no signup needed), or whereever you can easily share the link for the file with developers.\
+  ';
+  openmodal.style.cssText = "display: block;";
+}
 
 setTimeout(InjectRobotoFonts,0);
 setTimeout(PatchAudio,0);
@@ -860,5 +926,3 @@ window.addEventListener("keyup", KeyboardShortcutHandler, false);
 })).observe(document.querySelector("link[title='dark']"), {attributes:true});
 
 console.log("TDEinject loaded");
-
-//})();
