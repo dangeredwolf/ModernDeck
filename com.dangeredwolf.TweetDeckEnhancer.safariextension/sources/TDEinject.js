@@ -336,7 +336,7 @@ function TDESettings() {
       \
       <form action="#" id="tde-accessibility-form" accept-charset="utf-8" class="frm" style="display:none;"><fieldset id="general_settings"><p>Unfortunately, there are currently no accessibility settings available, but be on the lookout for some! :)</p></fieldset></form>\
       \
-      <form action="#" id="tde-about-form" accept-charset="utf-8" class="frm" style="display:none;"><fieldset id="general_settings"><img src="chrome-extension://nffgbfpllijjknfklblafndbeajmekfb/sources/tdeaboutsmaller.png" class="tde-logo"><h1 class="list-placeholder tde-about-title">TweetDeck Enhancer</h1><h2 class="tde-version-title">You\'re running Enhancer ' + SystemVersion + '</h2><div class="mdl-links" style="margin-bottom:-10px"> <a href="https://dangeredwolf.com/TweetDeckEnhancer/privacy.txt" target="_blank">Privacy Policy</a> </div></fieldset></form>\
+      <form action="#" id="tde-about-form" accept-charset="utf-8" class="frm" style="display:none;"><fieldset id="general_settings"><img src="' + TDEBaseURL + 'sources/tdeaboutsmaller.png" class="tde-logo"><h1 class="list-placeholder tde-about-title">TweetDeck Enhancer</h1><h2 class="tde-version-title">You\'re running Enhancer ' + SystemVersion + '</h2><div class="mdl-links" style="margin-bottom:-10px"> <a href="https://dangeredwolf.com/TweetDeckEnhancer/privacy.txt" target="_blank">Privacy Policy</a> </div></fieldset></form>\
       \
       </div> </div> </div>';
       window.tdeblah = false;
@@ -913,7 +913,7 @@ setTimeout(CheckForFabulousness,500);
 setTimeout(YesFavicon,0);
 setTimeout(LoadPrefs,500);
 
-document.getElementsByTagName("html")[0].className += " tde-preferences-differentiator tde-api-ver-5-1 tde-js-loaded";
+document.getElementsByTagName("html")[0].className += " tde-preferences-differentiator tde-api-ver-5-2 tde-js-loaded";
 
 ReloadTheme();
 
