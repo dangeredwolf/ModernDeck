@@ -61,10 +61,10 @@ var links = document.getElementsByTagName("link");
 for (i = 0; i < links.length; i++) { 
     if (typeof links[i].href !== "undefined") {
     	if (links[i].href.substring(0,52) === "https://ton.twimg.com/tweetdeck-web/web/css/app-dark") {
-      	links[i].href = (isChromium && chrome.extension.getURL("sources/app-dark.css")) || (isSafari && safari.extension.baseURI + "sources/app-dark.css") || "https://dangeredwolf.com/assets/tdetest/app-dark.css";
+      	links[i].href = (isChromium && chrome.extension.getURL("sources/enhancer.css")) || (isSafari && safari.extension.baseURI + "sources/enhancer.css") || "https://dangeredwolf.com/assets/tdetest/app-dark.css";
       }
       if (links[i].href.substring(0,53) === "https://ton.twimg.com/tweetdeck-web/web/css/app-light") {
-        links[i].href = (isChromium && chrome.extension.getURL("sources/app-light.css")) || (isSafari && safari.extension.baseURI + "sources/app-light.css") || "https://dangeredwolf.com/assets/tdetest/app-light.css";
+        links[i].href = (isChromium && chrome.extension.getURL("sources/enhancer.css")) || (isSafari && safari.extension.baseURI + "sources/enhancer.css") || "https://dangeredwolf.com/assets/tdetest/app-light.css";
       }
     }
 }
