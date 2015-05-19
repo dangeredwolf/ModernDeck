@@ -13550,7 +13550,7 @@ html.tde-dark {
  color:rgba(149, 175, 191, 0.52)
 }
 
-.tde-dark .stream-item.is-actionable a.tweet-action:hover,.tde-dark .stream-item.is-actionable a.tweet-detail-action:hover,.tde-dark .stream-item.is-actionable a.tweet-action:focus,.tde-dark .stream-item.is-actionable a.tweet-detail-action:focus,.tde-dark .stream-item.is-actionable a.tweet-action:active,.tde-dark .stream-item.is-actionable a.tweet-detail-action:active,.tde-dark .stream-item.is-actionable a.tweet-action.is-selected,.tde-dark .stream-item.is-actionable a.is-selected.tweet-detail-action {
+.tde-dark .tweet-detail-action:active,.tde-dark .tweet-detail-action:hover,.tde-dark .stream-item.is-actionable a.tweet-action:hover,.tde-dark .stream-item.is-actionable a.tweet-detail-action:hover,.tde-dark .stream-item.is-actionable a.tweet-action:focus,.tde-dark .stream-item.is-actionable a.tweet-detail-action:focus,.tde-dark .stream-item.is-actionable a.tweet-action:active,.tde-dark .stream-item.is-actionable a.tweet-detail-action:active,.tde-dark .stream-item.is-actionable a.tweet-action.is-selected,.tde-dark .stream-item.is-actionable a.is-selected.tweet-detail-action {
 	color:#8498A5;
 	text-decoration:none
 }
@@ -13939,7 +13939,7 @@ article.is-unread .account-link {
 }
 
 .tde-dark .gap-chirp-text {
-  color:#00B8D9;
+  color:#00838F;
 }
 
 .gap-chirp {
