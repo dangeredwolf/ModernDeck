@@ -2,7 +2,7 @@
 // Copyright (c) 2015 Dangered Wolf
 
 console.log("TDELoad loaded");
-console.log("Enhancer 5.1");
+console.log("Enhancer 5.2");
 
 function ReplaceLoadingIndicator() {
   console.log("Waiting for TweetDeck so I can replace loading spinner (TDELoad)");
@@ -53,18 +53,23 @@ if (!isWebKit) {
   var isGecko = true;
 } else {
   console.log("WebKit Detected");
-  setTimeout(ReplaceLoadingIndicator,0);
+  //setTimeout(ReplaceLoadingIndicator,0);
 }
+
+injStyles = document.createElement("link");
+injStyles.rel = "stylesheet";
+injStyles.href = "chrome-extension://nffgbfpllijjknfklblafndbeajmekfb/sources/enhancer.css";
+document.head.appendChild(injStyles);
 
 var links = document.getElementsByTagName("link");
 
 for (i = 0; i < links.length; i++) { 
     if (typeof links[i].href !== "undefined") {
     	if (links[i].href.substring(0,52) === "https://ton.twimg.com/tweetdeck-web/web/css/app-dark") {
-      	links[i].href = (isChromium && chrome.extension.getURL("sources/enhancer.css")) || (isSafari && safari.extension.baseURI + "sources/enhancer.css") || "https://dangeredwolf.com/assets/tdetest/app-dark.css";
+      	links[i].href = undefined;
       }
       if (links[i].href.substring(0,53) === "https://ton.twimg.com/tweetdeck-web/web/css/app-light") {
-        links[i].href = (isChromium && chrome.extension.getURL("sources/enhancer.css")) || (isSafari && safari.extension.baseURI + "sources/enhancer.css") || "https://dangeredwolf.com/assets/tdetest/app-light.css";
+        links[i].href = undefined;
       }
     }
 }
