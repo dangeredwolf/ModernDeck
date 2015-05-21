@@ -3900,7 +3900,8 @@ to {
 }
 
 .tde-dark .s-following .follow-btn:hover {
-	color: #E15F5F!important;}
+	color: #E15F5F!important
+}
 
 .btn-positive-alt:active,.btn-fav.s-favorited:active,.s-following .follow-btn:active,.btn-positive-alt.is-selected,.is-selected.btn-fav.s-favorited,.s-following .is-selected.follow-btn {
 	color:#C22727
@@ -3977,16 +3978,6 @@ to {
 
 .btn-light-gray:hover {
 	color:#66757f;
-	background:#fff
-}
-
-.btn-light-gray:focus {
-	color:#66757f;
-	background:#fff
-}
-
-.btn-light-gray:active,.btn-light-gray.is-selected {
-	color:#292f33;
 	background:#fff
 }
 
@@ -4198,6 +4189,10 @@ h6 {
 
 .account-remove-check-open .account-remove {
 	display:none!important
+}
+
+.account-remove-check {
+	display:none
 }
 
 .account-remove-check-open .account-remove-check {
@@ -6188,7 +6183,8 @@ div.dropdown-menu.tde-dropdown-fade-out {
 .tweet-footer {
 	margin-top:3px;
 	margin-left:-7px;
-	width: 200px;}
+	width: 200px
+}
 
 .tweet-dogear {
 	position:absolute;
@@ -6237,7 +6233,8 @@ div.dropdown-menu.tde-dropdown-fade-out {
 }
 
 .tde-dark .tweet-translation-original-text {
-	color: #697F8C;}
+	color: #697F8C
+}
 
 .tweet-translation-attribution-text {
 	font-size:10px;
@@ -6929,7 +6926,8 @@ div.dropdown-menu.tde-dropdown-fade-out {
 	position:relative;
 	display:none;
 	padding-left:8px;
-	overflow-y:hidden
+	overflow-y:hidden;
+	transition: 200ms all
 }
 
 .accordion .icon-arrow-d,.accordion .icon-arrow-u {
@@ -8690,15 +8688,20 @@ div.dropdown-menu.tde-dropdown-fade-out {
 }
 
 .inline-reply {
-	transition:height 150ms;
-	background:rgb(20, 132, 221);
+	transition: all 200ms;
+	background: #00C3DC;
 	cursor:default;
-	height:165px;
+	height: 180px;
 	overflow:hidden;
 	margin-top:8px;
 	color:#fff;
 	width:107%;
-	box-sizing:border-box
+	box-sizing:border-box;
+	box-shadow: 0px 2px 7px rgba(17,17,17,0.25)
+}
+
+.tde-dark .inline-reply {
+	background: #00838F
 }
 
 .account-summary-text .fullname {
@@ -8781,6 +8784,11 @@ div.dropdown-menu.tde-dropdown-fade-out {
 	border-bottom:3px solid #00BCD4
 }
 
+.detail-view-inline-text {
+	color: #697F8C;
+	border-bottom: 3px solid #00838F
+}
+
 .is-inline-inactive {
 	height:0
 }
@@ -8824,17 +8832,13 @@ div.dropdown-menu.tde-dropdown-fade-out {
 .med-embeditem {
 	position:absolute;
 	bottom:85px;
-	top:00px;
+	top:0px;
 	width:100%;
-	text-align:center;
-	background:transparent url(spinner_large_white.gif) no-repeat 50% 50%
+	text-align:center
 }
 
-.med-link {
-	display:inline-block;
-	vertical-align:middle;
-	zoom:1;
-	color:#4CBCFF
+.tde-light .med-embeditem {
+	background:transparent url(spinner_large_white.gif) no-repeat 50% 50%
 }
 
 .med-tray {
@@ -9437,7 +9441,7 @@ input,textarea {
 	height:32px;
 	padding:4px 8px;
 	color:#333;
-	border-bottom:2px solid #ccc;
+	border-bottom: 2px solid #667A86;
 	border-radius:0px;
 	box-sizing:content-box
 }
@@ -9819,6 +9823,10 @@ input[type="checkbox"] {
 	text-align:center
 }
 
+.tde-dark #caldays span {
+	color: #677B86
+}
+
 #calweeks {
 	margin-top:4px
 }
@@ -9863,6 +9871,10 @@ input[type="checkbox"] {
 	background:transparent!important;
 	color:rgba(128,128,128,0.5)!important;
 	cursor:default
+}
+
+.tde-dark .caldisabled[href],.tde-dark .caldisabled[href]:hover,.tde-dark .caldisabled[href]:active {
+	color: rgba(102, 122, 134, 1)!important
 }
 
 #calcurrent {
@@ -11455,13 +11467,6 @@ button.js-send-tweet-button.js-spinner-button.js-show-tip.btn.btn-positive.btn-e
 	height:0px
 }
 
-.inline-reply {
-	transition:all 200ms;
-	background:#00C3DC!important;
-	box-shadow:0px 2px 7px rgba(17,17,17,0.25);
-	height:180px
-}
-
 .js-column-social-proof .column-content {
 	-webkit-animation:popcomesthetweetsview 0.5s 1 cubic-bezier(.19,1,.22,1);
 	animation:popcomesthetweetsview 0.5s 1 cubic-bezier(.19,1,.22,1)
@@ -11668,15 +11673,15 @@ a.txt-r-on-dark-blue {
 }
 
 .btn.btn-back.js-back {
-	background:url(https://dangeredwolf.com/assets/tweetdeck/img/back.png) no-repeat;
-	background:url(back.png) no-repeat;
+	background: url(https://dangeredwolf.com/assets/tweetdeck/img/back.png) no-repeat!important;
+	background: url(back.png) no-repeat!important;
 	margin-top:-635px;
 	z-index:6;
 	position:absolute;
 	width:25px;
 	height:25px;
 	font-size:0px;
-	background-size:25px;
+	background-size:25px!important;
 	margin-left:10px;
 	image-rendering:optimizeSpeed;
 	z-index:99
@@ -11894,6 +11899,10 @@ a.link-clean.cf.app-nav-tab {
 	color:#26C6DA!important
 }
 
+.tde-dark .tweet-actions .tweet-action.is-selected,.tde-dark .tweet-detail-actions .tweet-action.is-selected,.tde-dark .tweet-detail-actions .js-reply-action.is-selected{
+	color: #00838F!important
+}
+
 .inline-reply .js-send-tweet-button {
 	margin-left:0px;
 	margin-right:0px
@@ -12043,13 +12052,11 @@ a#amPm {
 }
 
 #next-month .icon {
-	color:#666!important;
 	font-size:20px;
 	font-weight:600
 }
 
 #prev-month .icon {
-	color:#666!important;
 	font-size:20px;
 	font-weight:700
 }
@@ -13563,6 +13570,15 @@ html.tde-dark {
 	color:#eee
 }
 
+.tde-dark .compose-text::-webkit-input-placeholder {
+	color:#6D7B83
+}
+
+.app-search .compose-text::-moz-placeholder {
+	color:#6D7B83;
+	opacity:1
+}
+
 .tde-dark a.column-nav-link {
 	color:rgba(255,255,255,0)
 }
@@ -13848,11 +13864,27 @@ html>body input.js-add-to-customtimeline-input.no-radius {
 	margin-top: 0px
 }
 
-a.js-hide-drawer.link-clean.cf.app-nav-tab {
+.js-hide-drawer.link-clean.app-nav-tab {
 	top:12px;
 	margin-top:10px;
 	max-height:30px;
 	min-height: 30px;
 	margin-left:138px;
 	width: 138px!important;
+}
+
+.js-account-safeguard-checkbox {
+	display:inline;
+	position:absolute;
+	margin-left:170px
+}
+
+.js-account-safeguard-text {
+	font-size:0px
+}
+
+.js-account-safeguard-text:after {
+	font-size:12px;
+	content:"Ready?";
+	margin-right:5px
 }
