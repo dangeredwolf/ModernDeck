@@ -344,31 +344,6 @@ function TDESettings() {
     },100);
 }
 
-function FabulousThread() {
-  var pebble = new Date();
-  if (pebble.getMonth() === 3 && pebble.getDate() === 1 && pebble.getFullYear() === 2015) {
-    console.log("fabulous!!!");
-    PromptFabulousness();
-    return;
-  }
-  setTimeout(FabulousThread,30000);
-}
-
-function PromptFabulousness() {
-  if (typeof $ === "undefined") {
-    setTimeout(PromptFabulousness,200);
-    return;
-  }
-
-  if (typeof $("#open-modal")[0] === "undefined") {
-    setTimeout(PromptFabulousness,200);
-    return;
-  }
-
-  $("#open-modal")[0].innerHTML = '<div class="js-modal-panel mdl s-tall-fixed is-inverted-dark tde-fab"> <header class="js-mdl-header mdl-header"> <h3 class="mdl-header-title js-header-title">TweetDeck Enhancer</h3> <a href="#" class="mdl-drag-handle js-drag-handle"><i class="sprite sprite-drag"></i></a> <a href="#" class="mdl-dismiss js-dismiss link-normal-dark"><i class="icon icon-close"></i></a> </header> <div class="mdl-inner"> <div class="mdl-content js-mdl-content horizontal-flow-container"><h1 style="text-align:center;padding-top:30px;font-weight:300;font-size:34px">TweetDeck Enhancer - Fabulous Mode</h1><p style="font-size:16px; text-align:center; padding:10px;word-wrap:normal;height:30%;line-height:30px;">In TweetDeck Enhancer, we want to make the user experience as good as we possibly<br>can. A new way we are doing this is with the all new TweetDeck Enhancer Fabulous Mode.<br>Fabulous Mode is a brand new feature which makes your TweetDeck client more<br>fabulous than ever! You are invited to be one of the first to try it!<br><br> What are you waiting for? Enable TweetDeck Enhancer Fabulous Mode!</p><img src="'+ GetURL("sources") + '/aprilfools/fabuloustde500.png" style="height:250px;width: 250px;margin-left:auto;margin-right:auto;position:relative;padding-left:200px;"><div class="pull-right" style="padding-top:275px;padding-right:15px"><button class="btn" onclick="javascript:$(\'#open-modal\')[0].setAttribute(\'style\',\'display: none;\');setTimeout(function(){$(\'#tde-fab\')[0].remove();},200);">Not yet :(</button><button class="btn" onclick="javascript:EnableFabulousMode();$(\'#open-modal\')[0].setAttribute(\'style\',\'display: none;\');setTimeout(function(){$(\'#tde-fab\')[0].remove();},200);">I\'m in!</button></div></div></div></div>';
-  $("#open-modal")[0].setAttribute("style","display: block;");
-}
-
 function ReplaceLoadingIndicator() {
   if (typeof document.getElementsByClassName("app-signin-form")[0] !== "undefined") {
     return;
