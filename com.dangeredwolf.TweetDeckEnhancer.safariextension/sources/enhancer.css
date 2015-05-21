@@ -3445,7 +3445,11 @@ to {
 }
 
 .icon-follow-color {
-	color:#00aced
+	color:#00BCD4
+}
+
+.tde-dark .icon-follow-color {
+	color:#009EAD
 }
 
 .icon-list-color {
