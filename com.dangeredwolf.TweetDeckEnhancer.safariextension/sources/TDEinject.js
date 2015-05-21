@@ -13,7 +13,7 @@ var TDEBaseURL = "https://dangeredwolf.com/assets/tdetest/"; // Defaults to stre
 var progress = null;
 var tde_fetch_profile_info_for_nav_drawer = 0;
 
-var SystemVersion = "5.2 RC1";
+var SystemVersion = "5.2 RC1.1";
 
 var TreatGeckoWithCare = false;
 
@@ -147,13 +147,15 @@ function WaitForNotificationDismiss(node,prevmsgID) {
     }
   }
 
-  setTimeout(function(){WaitForNotificationDismiss(node,prevmsgID);},200);
+  setTimeout(function(){WaitForNotificationDismiss(node,prevmsgID);},500);
 }
 
 function WorldTick(){
+
+  var elms = document.querySelectorAll(".tweet-action-item,.tweet-detail-action-item,.app-navigator.margin-bm.padding-ts");
   
-  for (i = 0; i < document.getElementsByClassName("tweet-action-item position-rel").length; i++) { 
-    document.getElementsByClassName("tweet-action-item position-rel")[i].removeChild = function(dropdown){
+  for (i = 0; i < elms.length; i++) { 
+    elms[i].removeChild = function(dropdown){
       dropdown.setAttribute("class",dropdown.getAttribute("class") + " tde-dropdown-fade-out");
       setTimeout(function(){
         dropdown.remove();
@@ -161,41 +163,22 @@ function WorldTick(){
     }
   }
 
-  for (i = 0; i < document.getElementsByClassName("tweet-detail-action-item position-rel").length; i++) { 
-    document.getElementsByClassName("tweet-detail-action-item position-rel")[i].removeChild = function(dropdown){
-      dropdown.setAttribute("class",dropdown.getAttribute("class") + " tde-dropdown-fade-out");
-      setTimeout(function(){
-        dropdown.remove();
-      },200)
+  if (typeof document.querySelector(".status-message") !== "undefined") {
+    for (i = 0; i < document.getElementsByClassName("status-message").length; i++) { 
+      if (typeof messagesAccounted[document.getElementsByClassName("status-message")[i]] === "undefined") {
+        var thing = document.getElementsByClassName("status-message")[i];
+
+        msgID++;
+
+        SendNotificationMessage(thing.childNodes[1].innerHTML);
+        WaitForNotificationDismiss(thing,msgID);
+
+        messagesAccounted[document.getElementsByClassName("status-message")[i]] = true;
+      }
     }
   }
 
-  for (i = 0; i < document.getElementsByClassName("app-navigator margin-bm padding-ts").length; i++) { 
-    document.getElementsByClassName("app-navigator margin-bm padding-ts")[i].removeChild = function(dropdown){
-      dropdown.setAttribute("class",dropdown.getAttribute("class") + " tde-dropdown-fade-out");
-      setTimeout(function(){
-        dropdown.remove();
-      },200)
-    }
-  }
-
-
-  for (i = 0; i < document.getElementsByClassName("status-message").length; i++) { 
-    if (typeof messagesAccounted[document.getElementsByClassName("status-message")[i]] === "undefined") {
-      var thing = document.getElementsByClassName("status-message")[i];
-
-      msgID++;
-
-      SendNotificationMessage(thing.childNodes[1].innerHTML);
-      WaitForNotificationDismiss(thing,msgID);
-
-      messagesAccounted[document.getElementsByClassName("status-message")[i]] = true;
-    }
-  }
-
-  
-
-  setTimeout(WorldTick,200);
+  setTimeout(WorldTick,500);
 }
 
 
@@ -226,26 +209,7 @@ function PatchSystem() {
     }
    }
 
-  setTimeout(function(){
-    document.getElementsByTagName("html")[0].setAttribute("class",document.getElementsByTagName("html")[0].getAttribute("class").replace(" tde-columns-loading",""));
-  },800);
-
   return;
-}
-
-function EnableFabulousMode() {
-  $("html")[0].className += " tde-fabulous-april-fools";
-}
-
-function CheckForFabulousness() {
-  var pebble = new Date();
-  if (pebble.getMonth() === 3 && pebble.getDate() === 1 && pebble.getFullYear() === 2015) {
-    console.log("fabulous!!!");
-    PromptFabulousness();
-  } else {
-    console.log("waiting for fabulousness");
-    setTimeout(FabulousThread,0);
-  }
 }
 
 function ResetSettingsUI() {
@@ -467,52 +431,6 @@ function ActivateSuperEasterEggPowers(){
       $(".mdl .stream-item[data-key='569320189801705472'] .item-box")[0].click();
     }
   },2600);
-}
-
-function MouseConfig() {
-  if (typeof $ === "undefined") {
-    setTimeout(MouseConfig,200); 
-    return;
-  }
-
-  if (TreatGeckoWithCare) {
-    $(".js-app-header")[0].className = "js-app-header pin-all app-header is-condensed tde-show-column-icons";
-    return;
-  }
-
-  if (typeof $(".js-app-header")[0] === "undefined") {
-    setTimeout(MouseConfig,200);
-    return;
-  } else {
-    if (typeof $(".js-app-header").mouseover === "undefined") {
-      console.log("still waiting...")
-      setTimeout(MouseConfig,200);
-      return;
-    }
-    $(".js-app-header").mouseover(function() {
-      $(".js-app-header")[0].className = "js-app-header pin-all app-header is-condensed tde-show-column-icons";
-    });
-
-    $(".js-app-header").mouseleave(function(){
-      setTimeout(function(){
-        if ($(".js-app-header").is(":not(:hover)")) {
-          setTimeout(function(){
-            if ($(".js-app-header").is(":not(:hover)")) {
-              setTimeout(function(){
-                if ($(".js-app-header").is(":not(:hover)")) {
-                  setTimeout(function(){
-                    if ($(".js-app-header").is(":not(:hover)")) {
-                      $(".js-app-header")[0].className = "js-app-header pin-all app-header is-condensed";
-                    }
-                  },400);
-                }
-              },300);
-            }
-          },200);
-        }
-      },100);
-    });
-  }
 }
 
 function PrepareLoginStuffs() {
@@ -907,9 +825,7 @@ setTimeout(PatchSystem,300);
 setTimeout(WorldTick,0);
 setTimeout(NavigationSetup,100);
 setTimeout(TDESecureVerif,300);
-setTimeout(MouseConfig,500);
 setTimeout(MustachePatcher,500);
-setTimeout(CheckForFabulousness,500);
 setTimeout(YesFavicon,0);
 setTimeout(LoadPrefs,500);
 
