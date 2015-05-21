@@ -11544,6 +11544,10 @@ div.js-replies-to.replies-after article.stream-item.is-actionable {
 	color:#000
 }
 
+.tde-dark .account-remove-check-message {
+	color:#eee
+}
+
 .tweet-button span.label {
 	font-size:16px;
 	text-align:center;
@@ -11814,7 +11818,8 @@ a.link-clean.cf.app-nav-tab {
 .js-hide-drawer.app-nav-tab:after {
 	content:"Close Account List";
 	font-size:14px;
-	text-align:center
+	text-align:center;
+	color:#fff
 }
 
 .js-hide-drawer.app-nav-tab.is-hidden {
@@ -13841,4 +13846,13 @@ html>body input.js-add-to-customtimeline-input.no-radius {
 	-webkit-animation: dropmenucomedownnopad 0.40s 1 cubic-bezier(.19,1,.22,1);
 	animation:dropmenucomedownnopad 0.40s 1 cubic-bezier(.19,1,.22,1);
 	margin-top: 0px
+}
+
+a.js-hide-drawer.link-clean.cf.app-nav-tab {
+	top:12px;
+	margin-top:10px;
+	max-height:30px;
+	min-height: 30px;
+	margin-left:138px;
+	width: 138px!important;
 }
