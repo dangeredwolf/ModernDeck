@@ -8454,10 +8454,6 @@ div.dropdown-menu.tde-dropdown-fade-out {
 	font-size:18px
 }
 
-.compose-reply-tweet .tweet-body a {
-	color:#0084b4
-}
-
 .tde-light .compose-reply-tweet .fullname {
 	color:#000
 }
@@ -8481,7 +8477,8 @@ div.dropdown-menu.tde-dropdown-fade-out {
 	padding-left:32px;
 	border:none;
 	color:#444;
-	font-size:1rem;box-shadow:0px 3px 7px rgba(17,17,17,0.5)
+	font-size:1rem;
+	box-shadow:0px 3px 7px rgba(17,17,17,0.5)
 }
 
 .compose-message-account:focus {
@@ -12086,22 +12083,22 @@ button.js-send-tweet-button.js-spinner-button.js-show-tip.btn.btn-positive.btn-e
 	width:0px!important
 }
 
-[style="background-image: url(https://ton.twimg.com/tweetdeck-web/web/assets/global/backgrounds/td_profile_empty@2x.28d11b0d43.jpg)"] {
+.prf [style="background-image: url(https://ton.twimg.com/tweetdeck-web/web/assets/global/backgrounds/td_profile_empty@2x.28d11b0d43.jpg)"] {
 	background-image:none!important;
 	background:#1FC0CF
 }
 
-[style="background-image: url(https://ton.twimg.com/tweetdeck-web/web/assets/global/backgrounds/td_profile_empty.9a5654bc44.jpg)"] {
+.prf [style="background-image: url(https://ton.twimg.com/tweetdeck-web/web/assets/global/backgrounds/td_profile_empty.9a5654bc44.jpg)"] {
 	background-image:none!important;
 	background:#1FC0CF
 }
 
-.tde-dark [style="background-image: url(https://ton.twimg.com/tweetdeck-web/web/assets/global/backgrounds/td_profile_empty@2x.28d11b0d43.jpg)"] {
+.tde-dark .prf [style="background-image: url(https://ton.twimg.com/tweetdeck-web/web/assets/global/backgrounds/td_profile_empty@2x.28d11b0d43.jpg)"] {
 	background-image:none!important;
 	background:rgb(38, 50, 56)
 }
 
-.tde-dark [style="background-image: url(https://ton.twimg.com/tweetdeck-web/web/assets/global/backgrounds/td_profile_empty.9a5654bc44.jpg)"] {
+.tde-dark .prf [style="background-image: url(https://ton.twimg.com/tweetdeck-web/web/assets/global/backgrounds/td_profile_empty.9a5654bc44.jpg)"] {
 	background-image:none!important;
 	background:rgb(38, 50, 56)
 }
@@ -13771,7 +13768,7 @@ fieldset .toggle-switch {
 	opacity:0.99
 }
 
-.js-modal[style="display: none;"] {
+.js-modal[style="display: none;"],.typeahead[style="display: none;"] {
 	pointer-events:none;
 	display:block!important;
 	opacity:0

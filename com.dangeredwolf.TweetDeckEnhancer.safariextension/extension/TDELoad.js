@@ -1,7 +1,7 @@
 // TDELoad.js
 // Copyright (c) 2015 Dangered Wolf
 
-console.log("TDELoad 5.2");
+console.log("Enhancer 5.2");
 
 var links = document.querySelectorAll("link[title='dark'],link[title='light']");
 
@@ -54,15 +54,3 @@ if (isChromium) {
 
 InjectScript.type = "text/javascript";
 document.head.appendChild(InjectScript);
-
-/*
-
-================================================ Note (Mainly to Opera extension reviewers) ================================================
-
-TweetDeck Enhancer has cross-browser support, which is why you see references such as "isGecko" and "isSafari" in addition to "isChromium".
-
-This is also why there are "chrome.manifest" / "install.rdf" files (Firefox) and "Info.plist" and "Settings.plist" (Safari). Enhancer is available for Chrome/Chromium, Opera, Safari, Firefox, Windows Desktop, and soon OS X desktop.
-
-Keeping the files here makes Enhancer a lot easier to maintain and update for people using all platforms faster!
-
-*/

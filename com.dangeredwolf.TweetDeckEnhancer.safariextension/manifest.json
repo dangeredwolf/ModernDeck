@@ -17,6 +17,7 @@
     {
       "matches": ["https://tweetdeck.twitter.com/"],
       "js": ["extension/TDELoad.js"],
+      "css": ["sources/enhancerload.css"],
       "run_at": "document_end"
     }
   ],
