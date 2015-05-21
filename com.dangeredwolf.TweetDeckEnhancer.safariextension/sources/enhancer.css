@@ -11158,7 +11158,7 @@ input[type="checkbox"] {
 
 .column-nav-item {
 	position:relative!important;
-	width:60px!important;
+	width: 40px!important;
 	box-sizing:border-box;
 	counter-increment:column-nav!important;
 	color:rgba(255, 255, 255, 0.75)!important;
@@ -11166,7 +11166,7 @@ input[type="checkbox"] {
 	height:42px!important;
 	margin-right:0px!important;
 	margin-left:0px!important;
-	top:0!important;
+	top: 6px!important;
 	height:42px!important;
 	display:inline!important;
 	left:initial!important;
@@ -11174,7 +11174,7 @@ input[type="checkbox"] {
 	opacity:0
 } 
 
-.column-nav-item.tde-show-column-icons {
+.column-navigator:hover .column-nav-item {
 	opacity:1;
 	transition:200ms all
 }
@@ -12120,7 +12120,7 @@ button.js-send-tweet-button.js-spinner-button.js-show-tip.btn.btn-positive.btn-e
 }
 
 .js-column-nav-list li.column-nav-item.js-column-nav-menu-item {
-	display:inline!important
+	display: inline-block!important
 }
 
 .hide-detail-view-inline .column-navigator {
@@ -12892,7 +12892,7 @@ body.scroll-v .mdl .startflow-panel {
 	-webkit-animation:none
 }
 
-.tde-show-column-icons .tde-appbar-notification:not(.tde-appbar-notification-hidden) {
+.column-navigator:hover .tde-appbar-notification:not(.tde-appbar-notification-hidden) {
 	margin-left:50%!important;
 	width:50%!important
 }
