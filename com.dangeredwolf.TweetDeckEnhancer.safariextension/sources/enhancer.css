@@ -5660,6 +5660,10 @@ div.dropdown-menu.tde-dropdown-fade-out {
 	font-weight:300
 }
 
+.tde-dark .list-placeholder {
+	color: #6D7B83
+}
+
 .is-minigrid .compose-account {
 	margin-right:0px;
 	padding-right:14px
@@ -6841,10 +6845,11 @@ div.dropdown-menu.tde-dropdown-fade-out {
 	position:absolute;
 	left:0;
 	right:0;
-	margin-top:-2px;
 	background:#fff;
 	color:#ddd;
 	border-radius:0;
+	-webkit-animation:dropmenucomedownnopad 0.40s 1 cubic-bezier(.19,1,.22,1);
+	animation:dropmenucomedownnopad 0.40s 1 cubic-bezier(.19,1,.22,1)
 	width:auto
 }
 
@@ -9496,7 +9501,7 @@ input[type="checkbox"] {
 	padding:0!important
 }
 
-.control-s .control-label {
+.control-s .control-label,.tde-dark .control-s .control-label {
 	color:#fff;
 	display:inline
 }
@@ -9548,7 +9553,7 @@ input[type="checkbox"] {
 	color:#000;
 	font-size:14px;
 	padding-right:25px;
-	border-bottom:2px solid #ccc
+	border-bottom: 2px solid rgba(255,255,255,0.7)
 }
 
 .tde-dark .search-input-control input {
@@ -13036,6 +13041,9 @@ fieldset#services_settings label.control-label {
 	pointer-events:none;
 	display:block!important;
 	opacity:0
+;
+	-webkit-animation: no;
+	animation: no;
 }
 
 .list-filter em {
@@ -13265,7 +13273,8 @@ html.tde-dark {
 }
 
 .tde-dark .invalid-char-count:disabled {
-	color: #EC6262;}
+	color: #EC6262
+}
 
 .tde-dark .btn:hover:not([disabled]):not(.is-disabled) {
 	color:#4DD0E1
@@ -13770,4 +13779,5 @@ fieldset .toggle-switch {
 }
 
 .tde-dark .lst-modal,.tde-dark .typeahead {
-	background: #1E272C;}
+	background: #1E272C
+}
