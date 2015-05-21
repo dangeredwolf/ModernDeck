@@ -6,44 +6,19 @@ console.log("TDELoad 5.2");
 var links = document.querySelectorAll("link[title='dark'],link[title='light']");
 
 for (i = 0; i < links.length; i++) {
-  links[i].href = null;
-}
-
-function TDEURLExchange(url) {
-  injurl = document.createElement("div");
-  injurl.setAttribute("type",url);
-  injurl.id = "TDEURLExchange";
-  document.head.appendChild(injurl);
-  console.log("injected url exchange with id " + injurl.id);
-}
-
-if (typeof chrome !== "undefined") {
-  var isChromium = true;
-  console.log("Chromium Detected");
-} else {
-  console.log("Not Chromium");
-}
-
-if (typeof safari !== "undefined") {
-  var isSafari = true;
-  console.log("Safari Detected: This is experimental!!");
-} else {
-  console.log("Not Safari");
-}
-
-var isWebKit = isSafari || isChromium;
-
-if (!isWebKit) {
-  console.log("Not WebKit");
-  console.log("Gecko Detected: This is experimental!!");
-  var isGecko = true;
-} else {
-  console.log("WebKit Detected");
-  //setTimeout(ReplaceLoadingIndicator,0);
+  links[i].href = "";
 }
 
 injStyles = document.createElement("link");
 injStyles.rel = "stylesheet";
+
+if (typeof chrome !== "undefined") {
+  var isChromium = true;
+}
+
+if (typeof safari !== "undefined") {
+  var isSafari = true;
+}
 
 if (isChromium) {
   injStyles.href = chrome.extension.getURL("sources/enhancer.css");
@@ -57,6 +32,14 @@ document.head.appendChild(injStyles);
 
 console.log("Bootstrapping TDEinject");
 InjectScript = document.createElement("script");
+
+function TDEURLExchange(url) {
+  injurl = document.createElement("div");
+  injurl.setAttribute("type",url);
+  injurl.id = "TDEURLExchange";
+  document.head.appendChild(injurl);
+  console.log("injected url exchange with id " + injurl.id);
+}
 
 if (isChromium) {
   TDEURLExchange(chrome.extension.getURL(""));
