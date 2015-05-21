@@ -1,26 +1,12 @@
 // TDELoad.js
 // Copyright (c) 2015 Dangered Wolf
 
-console.log("TDELoad loaded");
-console.log("Enhancer 5.2");
+console.log("TDELoad 5.2");
 
-function ReplaceLoadingIndicator() {
-  console.log("Waiting for TweetDeck so I can replace loading spinner (TDELoad)");
+var links = document.querySelectorAll("link[title='dark'],link[title='light']");
 
-  if (typeof document.getElementsByClassName("app-signin-form")[0] !== "undefined") {
-    return; // Can't do this with a sign in sheet there
-  }
-
-  if (typeof document.getElementsByClassName("js-startflow-content startflow")[0] === "undefined") {
-    setTimeout(ReplaceLoadingIndicator,30);
-    return;
-  }
-  console.log("Replacing Loading Spinner (TDELoad)");
-
-  console.log((isChromium && chrome.extension.getURL("sources/spinner.mov")) || (isSafari && safari.extension.baseURI + "sources/spinner.mov"));
-
-  document.getElementsByClassName("js-startflow-content startflow")[0].className += " tde-upgrading";
-  document.getElementsByClassName("js-startflow-content startflow")[0].innerHTML = '<video class="spinner-centered spinner-fade-in" width="74" height="76" src="' + (isChromium && chrome.extension.getURL("sources/spinner.mov")) || (isSafari && safari.extension.baseURI + "sources/spinner.mov") + '" autoplay loop></video>';
+for (i = 0; i < links.length; i++) {
+  links[i].href = null;
 }
 
 function TDEURLExchange(url) {
@@ -58,21 +44,16 @@ if (!isWebKit) {
 
 injStyles = document.createElement("link");
 injStyles.rel = "stylesheet";
-injStyles.href = "chrome-extension://nffgbfpllijjknfklblafndbeajmekfb/sources/enhancer.css";
-document.head.appendChild(injStyles);
 
-var links = document.getElementsByTagName("link");
-
-for (i = 0; i < links.length; i++) { 
-    if (typeof links[i].href !== "undefined") {
-    	if (links[i].href.substring(0,52) === "https://ton.twimg.com/tweetdeck-web/web/css/app-dark") {
-      	links[i].href = undefined;
-      }
-      if (links[i].href.substring(0,53) === "https://ton.twimg.com/tweetdeck-web/web/css/app-light") {
-        links[i].href = undefined;
-      }
-    }
+if (isChromium) {
+  injStyles.href = chrome.extension.getURL("sources/enhancer.css");
+} else if (isSafari) {
+  injStyles.href = safari.extension.baseURI + "sources/enhancer.css";
+} else {
+  // TODO: FF stuff
 }
+
+document.head.appendChild(injStyles);
 
 console.log("Bootstrapping TDEinject");
 InjectScript = document.createElement("script");
