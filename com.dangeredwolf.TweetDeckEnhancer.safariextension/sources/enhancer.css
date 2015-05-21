@@ -8388,10 +8388,6 @@ div.dropdown-menu.tde-dropdown-fade-out {
 	box-shadow:0px 3px 7px rgba(17,17,17,0.5)
 }
 
-.compose-content>div>.cf>.pull-right {
-	margin-top:0px
-}
-
 .compose-text {
 	width:90%;
 	height:185px!important;
@@ -8442,12 +8438,16 @@ div.dropdown-menu.tde-dropdown-fade-out {
 	margin-top:0px
 }
 
+.tde-dark .compose-reply-tweet {
+	background: #263238;	
+}
+
 .compose-reply-tweet-remove {
 	position:absolute;
 	top:0;
 	right:0;
 	color:#9B9B9B;
-	z-index:999999999999999
+	z-index:99999999
 }
 
 .compose-reply-tweet-remove .icon-close {
@@ -8458,7 +8458,7 @@ div.dropdown-menu.tde-dropdown-fade-out {
 	color:#0084b4
 }
 
-.compose-reply-tweet .fullname {
+.tde-light .compose-reply-tweet .fullname {
 	color:#000
 }
 
@@ -9743,10 +9743,6 @@ input[type="checkbox"] {
 	padding:2px 0
 }
 
-#calbody {
-	background:#fff
-}
-
 #calnext,#calprev {
 	float:left;
 	width:20px;
@@ -9779,7 +9775,6 @@ input[type="checkbox"] {
 }
 
 #calweeks {
-	background:#fff;
 	margin-top:4px
 }
 
@@ -9819,9 +9814,9 @@ input[type="checkbox"] {
 	background:rgba(0,0,0,0.04)
 }
 
-.caldisabled[href] {
+.caldisabled[href],.caldisabled[href]:hover,.caldisabled[href]:active {
 	background:transparent!important;
-	color:#D4D4D4!important;
+	color:rgba(128,128,128,0.5)!important;
 	cursor:default
 }
 
@@ -9837,6 +9832,10 @@ input[type="checkbox"] {
 
 .cal {
 	color:#666
+}
+
+.tde-dark .cal {
+	color:#ddd
 }
 
 .cal header {
@@ -11250,14 +11249,12 @@ input[type="checkbox"] {
 	vertical-align:middle
 }
 
-.compose-content>div>.cf>.js-account-selector-grid-toggle.pull-right.account-selector-grid-toggle {
-	float:left;
-	padding:0;
-	position:absolute;
-	margin-left:20px;
-	margin-top:50px;
+.compose-content .account-selector-grid-toggle {
+	position:fixed;
 	width:70px;
-	z-index:2
+	bottom: 13px;
+	left: 15px;
+	float: none;
 }
 
 .compose-title-text:after {
@@ -13268,6 +13265,9 @@ html.tde-dark {
 	text-shadow:none;
 	color:#fff
 }
+
+.tde-dark .invalid-char-count:disabled {
+	color: #EC6262;}
 
 .tde-dark .btn:hover:not([disabled]):not(.is-disabled) {
 	color:#4DD0E1
