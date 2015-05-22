@@ -13,9 +13,720 @@ enhancer.css */
 
 /* SUPERCLASSES */
 
-.tweet-action-item.feature-customtimelines.tweet-drag-handle,.tweet-detail-action-item.feature-customtimelines.tweet-drag-handle,.column-nav-link:after,.more-tweets-btn-inner-mouse-release,.more-tweets-btn-inner-loading,.more-tweets-btn-container--mouse-release .more-tweets-btn-inner-default,.more-tweets-btn-container--loading .more-tweets-btn-inner-default,.list-item .icon-search.list-icon,.js-typeahead-recent-search-item .obj-left,.s-following .follow-btn .btn-loader,.btd-settings,body:not(.btd-ready) #btdsettings,.edit-conversation-name .nbfc,.js-app-add-column,.btn.js-dismiss,.js-schedule-datepicker-holder .popover .padding-as .btn .icon-trash,.js-dismiss.btn.btn-positive i.icon.icon-check.icon-small.padding-rs,.column-close-link.txt-r-dark-gray,.js-app-loading .js-header-container,.js-add-image-button-label,.js-schedule-button-label,.js-tweet-button-label,.js-dm-button .label.padding-ls,.column-nav-flyout,.release-notes-modal .mdl-drag-handle,#datepicker,.search-input-spinner,.search-input-clear-search,.is-narrow-columns .toggle-item-text,.toggle-item-text-truncated,.sch.s-searching .sch-clear,legend,.frm-legend,.action-btn,.med-origlink,.med-flaglink,.hide-detail-view-inline .detail-view-inline,.compose-account-selected,.js-compose-hint.margin-vl.anim.anim-fade-in,#file-upload-input,.s-sending .char-count,.s-profile .mdl-buttonbar,.s-profile h3,.mdl.s-nonav .mdl-inner .mdl-buttonbar,.ovl.is-dragging:before,.is-dragging.overlay:before,.is-narrow-columns .dataminr-category-full,.is-inverted-dark .dataminr-category-short,.dataminr-category-short,.numbered-badge-onheader,.migrate-account-login-step-1 .migrate-tweetdeck-account-warning-wrapper,.migrate-account-login-step-2 .migrate-tweetdeck-account-warning-wrapper,.migrate-account-login-step-3 .migrate-account-login-forms,.migrate-account-login-step-3 .migrate-account-login-about,.migrate-account-login-forms-cancel,.tooltip-arrow,.accordion .is-active .icon-arrow-d,.tde-dark body.scroll-v .mdl:before,.icon.icon-clear-timeline,.accordion .icon-arrow-u,.app-search-in-popover,.app-search-form,.app-header .app-nav-logo-text,.app-header .hide-condensed,.app-header .sprite-logo,.app-header .tweet-button .label,.app-header .app-nav-link .icon-arrow-l-double,.app-header .app-nav-link .icon-arrow-r-double,.app-nav-link .icon-arrow-r-double,.app-nav-tab .icon-user-switch,.tweet-message-status,.icon.icon-move,.tweet-drag-handle,.is-narrow-columns .media-size-medium .media-sensitive-title,.contributor-row[data-contributor-role="contributor"] [data-show-when-contributor-role="admin"],.contributor-row[data-contributor-role="admin"] [data-show-when-contributor-role="contributor"],.contributor-row[data-state-error="closed-error"] [data-hide-when-state-error="closed-error"],.contributor-row[data-state="settings"] [data-hide-when-state="settings"],.contributor-row[data-state-error="settings-error"] [data-hide-when-state-error="settings-error"],[data-show-when-state],[data-show-when-state-error],.is-options-open .column-settings-link .icon-arrow-d,.column-header-link .icon-arrow-u,.column-title-back .attribution,.js-add-to-customtimeline-button,.column-title-editable .js-show-tip.avatar.size24,.account-remove-check,.signin-sheet-now-present .application,.mdl-dismiss-media > .icon-close,.btn-fav-fav-text,.with-add-by-url .list-placeholder.pin-all,.s-thats-you .btn-loader,.s-pending .btn-loader,.s-blocking .follow-btn:hover .block-text,.s-blocking .btn-loader,.s-not-favorited .btn-loader,.btn-fav-faved-text,.s-favorited .btn-loader,.btn-fav-protected-text,.s-protected .btn-loader,.link-clean[href="https://twitter.com/UberFacts"] .sprite-verified,.btn-fav-unfav-text,.btn-fav.s-favorited:hover .btn-fav-faved-text,.s-not-following .btn-loader,.action-text,.s-following .follow-btn:hover .following-text {
+.status-message,.app-masthead,.cmp-spinner,.chev-right,.compose-text-title,.cmp button b,.cmp .mdl-header-title:empty,.app-search-tweet-results .column-header-temp,.spinner-centered,.without-tweet-drag-handles .tweet-drag-handle,.account-remove-check,.js-app-settings .obj-left,.tweet-action-item.feature-customtimelines.tweet-drag-handle,.tweet-detail-action-item.feature-customtimelines.tweet-drag-handle,.column-nav-link:after,.more-tweets-btn-inner-mouse-release,.more-tweets-btn-inner-loading,.more-tweets-btn-container--mouse-release .more-tweets-btn-inner-default,.more-tweets-btn-container--loading .more-tweets-btn-inner-default,.list-item .icon-search.list-icon,.js-typeahead-recent-search-item .obj-left,.s-following .follow-btn .btn-loader,.btd-settings,body:not(.btd-ready) #btdsettings,.edit-conversation-name .nbfc,.js-app-add-column,.btn.js-dismiss,.js-schedule-datepicker-holder .popover .padding-as .btn .icon-trash,.js-dismiss.btn.btn-positive i.icon.icon-check.icon-small.padding-rs,.column-close-link.txt-r-dark-gray,.js-app-loading .js-header-container,.js-add-image-button-label,.js-schedule-button-label,.js-tweet-button-label,.js-dm-button .label.padding-ls,.column-nav-flyout,.release-notes-modal .mdl-drag-handle,#datepicker,.search-input-spinner,.search-input-clear-search,.is-narrow-columns .toggle-item-text,.toggle-item-text-truncated,.sch.s-searching .sch-clear,legend,.frm-legend,.action-btn,.med-origlink,.med-flaglink,.hide-detail-view-inline .detail-view-inline,.compose-account-selected,.js-compose-hint.margin-vl.anim.anim-fade-in,#file-upload-input,.s-sending .char-count,.s-profile .mdl-buttonbar,.s-profile h3,.mdl.s-nonav .mdl-inner .mdl-buttonbar,.ovl.is-dragging:before,.is-dragging.overlay:before,.is-narrow-columns .dataminr-category-full,.is-inverted-dark .dataminr-category-short,.dataminr-category-short,.numbered-badge-onheader,.migrate-account-login-step-1 .migrate-tweetdeck-account-warning-wrapper,.migrate-account-login-step-2 .migrate-tweetdeck-account-warning-wrapper,.migrate-account-login-step-3 .migrate-account-login-forms,.migrate-account-login-step-3 .migrate-account-login-about,.migrate-account-login-forms-cancel,.tooltip-arrow,.accordion .is-active .icon-arrow-d,.tde-dark body.scroll-v .mdl:before,.icon.icon-clear-timeline,.accordion .icon-arrow-u,.app-search-in-popover,.app-search-form,.app-header .app-nav-logo-text,.app-header .hide-condensed,.app-header .sprite-logo,.app-header .tweet-button .label,.app-header .app-nav-link .icon-arrow-l-double,.app-header .app-nav-link .icon-arrow-r-double,.app-nav-link .icon-arrow-r-double,.app-nav-tab .icon-user-switch,.tweet-message-status,.icon.icon-move,.tweet-drag-handle,.is-narrow-columns .media-size-medium .media-sensitive-title,.contributor-row[data-contributor-role="contributor"] [data-show-when-contributor-role="admin"],.contributor-row[data-contributor-role="admin"] [data-show-when-contributor-role="contributor"],.contributor-row[data-state-error="closed-error"] [data-hide-when-state-error="closed-error"],.contributor-row[data-state="settings"] [data-hide-when-state="settings"],.contributor-row[data-state-error="settings-error"] [data-hide-when-state-error="settings-error"],[data-show-when-state],[data-show-when-state-error],.is-options-open .column-settings-link .icon-arrow-d,.column-header-link .icon-arrow-u,.column-title-back .attribution,.js-add-to-customtimeline-button,.column-title-editable .js-show-tip.avatar.size24,.account-remove-check,.signin-sheet-now-present .application,.mdl-dismiss-media > .icon-close,.btn-fav-fav-text,.with-add-by-url .list-placeholder.pin-all,.s-thats-you .btn-loader,.s-pending .btn-loader,.s-blocking .follow-btn:hover .block-text,.s-blocking .btn-loader,.s-not-favorited .btn-loader,.btn-fav-faved-text,.s-favorited .btn-loader,.btn-fav-protected-text,.s-protected .btn-loader,.link-clean[href="https://twitter.com/UberFacts"] .sprite-verified,.btn-fav-unfav-text,.btn-fav.s-favorited:hover .btn-fav-faved-text,.s-not-following .btn-loader,.action-text,.s-following .follow-btn:hover .following-text {
 	display:none
 }
+
+/* ANIMATIONS */
+
+@-webkit-keyframes moretweetsanim {
+	0% {
+		opacity: 1;
+		top:-40px
+	}
+
+	60% {
+		opacity: 1;
+		top:25px
+	}
+
+	100% {
+		top:20px
+	}
+}
+
+@keyframes moretweetsanim {
+	0% {
+		opacity: 1;
+		top:-40px
+	}
+
+	60% {
+		opacity: 1;
+		top:25px
+	}
+
+	100% {
+		top:20px
+	}
+}
+
+@-webkit-keyframes bounce-in {
+	40% {
+		transform:scale(1.35)
+	}
+}
+
+@keyframes bounce-in {
+	40% {
+		transform:scale(1.35)
+	}
+}
+
+@-webkit-keyframes fade-in {
+	from {
+		opacity:.01
+	}
+
+	to {
+		opacity:1
+	}
+}
+
+@keyframes fade-in {
+	from {
+		opacity:.01
+	}
+
+	to {
+		opacity:1
+	}
+}
+
+@-webkit-keyframes rotate-in {
+	from {
+		transform-origin:-5px 0;
+		transform:rotate(90deg);
+		opacity:0
+	}
+
+	to {
+		transform-origin:-5px 0;
+		transform:rotate(0);
+		opacity:1
+	}
+}
+
+@keyframes rotate-in {
+	from {
+		transform-origin:-5px 0;
+		transform:rotate(90deg);
+		opacity:0
+	}
+
+	to {
+		transform-origin:-5px 0;
+		transform:rotate(0);
+		opacity:1
+	}
+}
+
+@-webkit-keyframes rotate-out {
+	from {
+		transform-origin:-5px 0;
+		transform:rotate(0);
+		opacity:1
+	}
+
+	to {
+		transform-origin:-5px 0;
+		transform:rotate(90deg);
+		opacity:0
+	}
+}
+
+@keyframes rotate-out {
+	from {
+		transform-origin:-5px 0;
+		transform:rotate(0);
+		opacity:1
+	}
+
+	to {
+		transform-origin:-5px 0;
+		transform:rotate(90deg);
+		opacity:0
+	}
+}
+
+@-webkit-keyframes popcomesthetweetsview {
+	0% {
+		opacity:1;
+		transform:translate3d(0, 2700px, 0);
+	}
+
+	60% {
+		opacity:1;
+		transform:translate3d(0, -25px, 0);
+	}
+
+	100% {
+		transform:translate3d(0, 0, 0);
+	}
+}
+
+@keyframes popcomesthetweetsview {
+	0% {
+		opacity:1;
+		transform:translate3d(0, 2700px, 0);
+	}
+
+	60% {
+		opacity:1;
+		transform:translate3d(0, -25px, 0);
+	}
+
+	100% {
+		transform:translate3d(0, 0, 0);
+	}
+}
+
+@-webkit-keyframes popcomestheview {
+	0% {
+		margin-top:100%
+	}
+
+	50% {
+		margin-top:100%
+	}
+
+	100% {
+		margin-top:0%
+	}
+}
+
+@keyframes popcomestheview {
+	0% {
+		margin-top:100%
+	}
+
+	50% {
+		margin-top:100%
+	}
+
+	100% {
+		margin-top:0%
+	}
+}
+
+@-webkit-keyframes popgoesthetweet {
+	0% {
+		opacity:0;
+		transform:scale(0.3,0.3)
+	}
+
+	50% {
+		opacity:0.3
+	}
+
+	100% {
+		opacity:1;
+		transform:scale(1,1)
+	}
+}
+
+@keyframes popgoesthetweet {
+	0% {
+		opacity:0;
+		transform:scale(0.3,0.3)
+	}
+
+	50% {
+		opacity:0.3
+	}
+
+	100% {
+		opacity:1;
+		transform:scale(1,1)
+	}
+}
+
+@-webkit-keyframes popgoesthemodalwindow {
+	from {
+		opacity:0.5;
+		transform:scale(1.125,1.125)
+	}
+
+	to {
+		opacity:1;
+		transform:scale(1,1)
+	}
+}
+
+@keyframes popgoesthemodalwindow {
+	from {
+		opacity:0.5;
+		transform:scale(1.125,1.125)
+	}
+
+	to {
+		opacity:1;
+		transform:scale(1,1)
+	}
+}
+
+@-webkit-keyframes dropmenucomedown {
+	from {
+		opacity:0;
+		margin-top:-18px;
+		padding:0px 0
+	}
+
+	to {
+		opacity:1;
+		margin-top:0px;
+		padding:10px 0
+	}
+}
+
+@keyframes dropmenucomedown {
+	from {
+		opacity:0;
+		margin-top:-18px;
+		padding:0px 0
+	}
+
+	to {
+		opacity:1;
+		margin-top:0px;
+		padding:10px 0
+	}
+}
+
+@-webkit-keyframes dropmenucomedownnopad {
+	from {
+		opacity:0;
+		margin-top:-18px
+	}
+
+	to {
+		opacity:1;
+		margin-top:0px
+	}
+}
+
+@keyframes dropmenucomedownnopad {
+	from {
+		opacity:0;
+		margin-top:-18px
+	}
+
+	to {
+		opacity:1;
+		margin-top:0px
+	}
+}
+
+@-webkit-keyframes dropmenucomedownlnopad {
+	from {
+		opacity:0;
+		margin-top:-40px
+	}
+
+	to {
+		opacity:1;
+		margin-top:10px
+	}
+}
+
+@keyframes dropmenucomedownlnopad {
+	from {
+		opacity:0;
+		margin-top:-40px
+	}
+
+	to {
+		opacity:1;
+		margin-top:10px
+	}
+}
+
+@-webkit-keyframes dropmenucomedownlargenopad {
+	from {
+		opacity:0;
+		margin-top:-70px
+	}
+
+	to {
+		opacity:1;
+		margin-top:0px
+	}
+}
+
+@keyframes dropmenucomedownlargenopad {
+	from {
+		opacity:0;
+		margin-top:-70px
+	}
+
+	to {
+		opacity:1;
+		margin-top:0px
+	}
+}
+
+@-webkit-keyframes popovercomedown {
+	from {
+		opacity:0;
+		margin-top:-30px
+	}
+
+	to {
+		opacity:1;
+		margin-top:5px
+	}
+}
+
+@keyframes popovercomedown {
+	from {
+		opacity:0;
+		margin-top:-30px
+	}
+
+	to {
+		opacity:1;
+		margin-top:5px
+	}
+}
+
+@-webkit-keyframes calendarcomedown {
+	from {
+		opacity:0;
+		margin-top:-40px
+	}
+
+	to {
+		opacity:1;
+		margin-top:-15px
+	}
+}
+
+@keyframes calendarcomedown {
+	from {
+		opacity:0;
+		margin-top:-40px
+	}
+
+	to {
+		opacity:1;
+		margin-top:-15px
+	}
+}
+
+@-webkit-keyframes photocomedown {
+	from {
+		opacity:0;
+		margin-top:-198px
+	}
+
+	to {
+		opacity:1;
+		margin-top:15px
+	}
+}
+
+@keyframes photocomedown {
+	from {
+		opacity:0;
+		margin-top:-198px
+	}
+
+	to {
+		opacity:1;
+		margin-top:15px
+	}
+}
+
+@-webkit-keyframes dropmenucomeup {
+	from {
+		opacity:0;
+		bottom:70%;
+		padding:0px 0
+	}
+
+	to {
+		opacity:1;
+		bottom:160%;
+		padding:10px 0
+	}
+}
+
+@keyframes dropmenucomeup {
+	from {
+		opacity:0;
+		bottom:70%;
+		padding:0px 0
+	}
+
+	to {
+		opacity:1;
+		bottom:160%;
+		padding:10px 0
+	}
+}
+
+@-webkit-keyframes dropmenucomeupnopad {
+	from {
+		opacity:0;
+		margin-top:30px
+	}
+
+	to {
+		opacity:1;
+		margin-top:0px
+	}
+}
+
+@keyframes dropmenucomeupnopad {
+	from {
+		opacity:0;
+		margin-top:30px
+	}
+
+	to {
+		opacity:1;
+		margin-top:0px
+	}
+}
+
+@-webkit-keyframes herecomesthetweetdetails {
+	from {
+		opacity:0;
+		transform:scale(0.7,0.6) perspective(600px) rotate3d(1,0,0,-20deg)
+	}
+
+	to {
+		opacity:1;
+		transform:scale(1,1)
+	}
+}
+
+@keyframes herecomesthetweetdetails {
+	from {
+		opacity:0;
+		transform:scale(0.7,0.6) perspective(600px) rotate3d(1,0,0,-20deg)
+	}
+
+	to {
+		opacity:1;
+		transform:scale(1,1)
+	}
+}
+
+@-webkit-keyframes herecomesthetweetdetailsxl {
+	from {
+		opacity:0;
+		transform:scale(1.65,1.65) perspective(600px) rotate3d(1,0,0,-70deg)
+	}
+
+	to {
+		opacity:1;
+		transform:scale(1,1)
+	}
+}
+
+@keyframes herecomesthetweetdetailsxl {
+	from {
+		opacity:0;
+		transform:scale(1.65,1.65) perspective(600px) rotate3d(1,0,0,-70deg)
+	}
+
+	to {
+		opacity:1;
+		transform:scale(1,1)
+	}
+}
+
+@-webkit-keyframes herecomesthetweetdetailssmall {
+	from {
+		opacity:0;
+		transform:scale(0.5,0.5) perspective(600px) rotate3d(1,0,0,-90deg)
+	}
+
+	to {
+		opacity:1;
+		transform:scale(1,1)
+	}
+}
+
+@keyframes herecomesthetweetdetailssmall {
+	from {
+		opacity:0;
+		transform:scale(0.5,0.5) perspective(600px) rotate3d(1,0,0,-90deg)
+	}
+
+	to {
+		opacity:1;
+		transform:scale(1,1)
+	}
+}
+
+@-webkit-keyframes herecomesthetweetdetailssmallbefore {
+	from {
+		opacity:0;
+		transform:scale(0.5,0.5) perspective(600px) rotate3d(1,0,0,90deg)
+	}
+
+	to {
+		opacity:1;
+		transform:scale(1,1)
+	}
+}
+
+@keyframes herecomesthetweetdetailssmallbefore {
+	from {
+		opacity:0;
+		transform:scale(0.5,0.5) perspective(600px) rotate3d(1,0,0,90deg)
+	}
+
+	to {
+		opacity:1;
+		transform:scale(1,1)
+	}
+}
+
+@-webkit-keyframes herecomesthetweet {
+	from {
+		opacity:0;
+		transform:scale(0.4,0.4) perspective(600px) rotate3d(1,0,0,40deg)
+	}
+
+	to {
+		opacity:1;
+		transform:scale(1,1)
+	}
+}
+
+@keyframes herecomesthetweet {
+	from {
+		opacity:0;
+		transform:scale(0.4,0.4) perspective(600px) rotate3d(1,0,0,40deg)
+	}
+
+	to {
+		opacity:1;
+		transform:scale(1,1)
+	}
+}
+
+@-webkit-keyframes popgoesthepanel {
+	from {
+		opacity:0;
+		transform:scale(0.3,0.3)
+	}
+
+	to {
+		opacity:1;
+		transform:scale(1,1)
+	}
+}
+
+@keyframes popgoesthepanel {
+	from {
+		opacity:0;
+		transform:scale(0.3,0.3)
+	}
+
+	to {
+		opacity:1;
+		transform:scale(1,1)
+	}
+}
+
+@-webkit-keyframes fadein {
+	from {
+		opacity:0
+	}
+
+	to {
+		opacity:1
+	}
+}
+
+@keyframes fadein {
+	from {
+		opacity:0
+	}
+
+	to {
+		opacity:1
+	}
+}
+
+@-webkit-keyframes backgroundanimationout {
+	from {
+		opacity:1
+	}
+
+	to {
+		opacity:0
+	}
+}
+
+@keyframes backgroundanimationout {
+	from {
+		opacity:1
+	}
+
+	to {
+		opacity:0
+	}
+}
+
+@-webkit-keyframes BackSplashAnimation {
+	from {
+		opacity:0;
+		transform:scale(0.5,0.5)
+	}
+
+	to {
+		opacity:1;
+		transform:scale(1,1)
+	}
+}
+
+@keyframes BackSplashAnimation {
+	from {
+		opacity:0;
+		transform:scale(0.5,0.5)
+	}
+
+	to {
+		opacity:1;
+		transform:scale(1,1)
+	}
+}
+
+@-webkit-keyframes new {
+	from {
+		height:0px
+	}
+
+	to {
+		height:10px
+	}
+}
+
+@keyframes new {
+	from {
+		height:0px
+	}
+
+	to {
+		height:10px
+	}
+}
+
+@-webkit-keyframes columnFlyin {
+	from {
+		top:100%
+	}
+
+	to {
+		top:0%
+	}
+}
+
+@keyframes columnFlyin {
+	from {
+		top:100%
+	}
+
+	to {
+		top:0%
+	}
+}
+
 
 /* / */
 
@@ -2945,128 +3656,6 @@ small {
 	margin-bottom:-10px!important
 }
 
-@-webkit-keyframes moretweetsanim {
-
-	0% {
-	opacity:1;
-	top:-40px
-	}
-
-	60% {
-	opacity:1;
-	top:25px
-	}
-
-	100% {
-	top:20px
-	}
-}
-
-@keyframes moretweetsanim {
-
-	0% {
-	opacity:1;
-	top:-40px
-	}
-
-	60% {
-	opacity:1;
-	top:25px
-	}
-
-	100% {
-	top:20px
-	}
-}
-
-@-webkit-keyframes bounce-in {
-40% {
-	transform:scale(1.35)
-}
-}
-
-@keyframes bounce-in {
-40% {
-	transform:scale(1.35)
-}
-}
-
-@-webkit-keyframes fade-in {
-from {
-	opacity:.01
-}
-
-to {
-	opacity:1
-}
-}
-
-@keyframes fade-in {
-from {
-	opacity:.01
-}
-
-to {
-	opacity:1
-}
-}
-
-@-webkit-keyframes rotate-in {
-0% {
-	transform-origin:-5px 0;
-	transform:rotate(90deg);
-	opacity:0
-}
-
-100% {
-	transform-origin:-5px 0;
-	transform:rotate(0);
-	opacity:1
-}
-}
-
-@keyframes rotate-in {
-0% {
-	transform-origin:-5px 0;
-	transform:rotate(90deg);
-	opacity:0
-}
-
-100% {
-	transform-origin:-5px 0;
-	transform:rotate(0);
-	opacity:1
-}
-}
-
-@-webkit-keyframes rotate-out {
-0% {
-	transform-origin:-5px 0;
-	transform:rotate(0);
-	opacity:1
-}
-
-100% {
-	transform-origin:-5px 0;
-	transform:rotate(90deg);
-	opacity:0
-}
-}
-
-@keyframes rotate-out {
-0% {
-	transform-origin:-5px 0;
-	transform:rotate(0);
-	opacity:1
-}
-
-100% {
-	transform-origin:-5px 0;
-	transform:rotate(90deg);
-	opacity:0
-}
-}
-
 .anim {
 	-webkit-animation-timing-function:cubic-bezier(.19,1,.22,1);
 	animation-timing-function:cubic-bezier(.19,1,.22,1);
@@ -3442,6 +4031,34 @@ to {
 
 .icon-flash:before {
 	content:"\f050"
+}
+
+.icon-user-team-mgr:before {
+	content: "\f046"
+}
+
+.icon-user-switch:before {
+	content: "\f047"
+}
+
+.icon-conversation:before {
+	content: "\f048"
+}
+
+.icon-dataminr:before {
+	content: "\f049"
+}
+
+.icon-link:before {
+	content: "\f04a"
+}
+
+.icon-flash:before {
+	content: "\f050"
+}
+
+.icon-pointer-u:before {
+	content: "\f051"
 }
 
 .icon-follow-color {
@@ -4189,10 +4806,6 @@ h6 {
 
 .account-remove-check-open .account-remove {
 	display:none!important
-}
-
-.account-remove-check {
-	display:none
 }
 
 .account-remove-check-open .account-remove-check {
@@ -5004,380 +5617,13 @@ a .column-title-back .icon:after {
 	animation:popcomesthetweetsview 0.85s 1!important
 }
 
-@-webkit-keyframes popcomesthetweetsview {
-
-	0% {
-	opacity:1;
-	transform:translate3d(0, 2700px, 0);
-	}
-
-	60% {
-	opacity:1;
-	transform:translate3d(0, -25px, 0);
-	}
-
-	100% {
-	transform:translate3d(0, 0, 0);
-	}
-}
-
-@-webkit-keyframes popcomestheview {
-	0% {margin-top:100%
-}
-	50% {margin-top:100%
-}
-	100% {margin-top:0%
-}
-}
-
-@-webkit-keyframes popgoesthetweet {
-	0% {opacity:0; transform:scale(0.3,0.3); }
-	50% {opacity:0.3
-}
-	100% {opacity:1; transform:scale(1,1); }
-}
-
-@-webkit-keyframes popgoesthemodalwindow {
-	0% {opacity:0.5; transform:scale(1.125,1.125) }
-	100% {opacity:1; transform:scale(1,1)
-}
-}
-
-@-webkit-keyframes popgoestheapp {
-	0% {opacity:0.5; transform:scale(1.35,1.35) }
-	100% {opacity:1; ransform:scale(1,1)
-}
-} 
-
-@-webkit-keyframes popgoesthemodalwindow2d {
-	0% {opacity:0.5; transform:scale(1.65,1.65)
-}
-	100% {opacity:1; transform:scale(1,1)
-}
-}
-
-@-webkit-keyframes settingsmenucomedown {
-	0%, 100% {
-	transition-timing-function:cubic-bezier(.19,1,.22,1);
-	}
-	0% {opacity:-1; left:10px; bottom:-45px; height:50px; transform:scale(1,1)}
-	100% {opacity:1; left:10px; bottom:-140px; height:145px; transform:scale(1,1)}
-}
-
-@-webkit-keyframes dropmenucomedown {
-	0% {opacity:0; margin-top:-18px; padding:0px 0}
-	100% {opacity:1; margin-top:0px; padding:10px 0}
-}
-
-@-webkit-keyframes dropmenucomedownnopad {
-	0% {opacity:0; margin-top:-18px}
-	100% {opacity:1; margin-top:0px}
-}
-
-@-webkit-keyframes dropmenucomedownlnopad {
-	0% {opacity:0; margin-top:-40px}
-	100% {opacity:1; margin-top:10px}
-}
-
-@-webkit-keyframes dropmenucomedownlargenopad {
-	0% {opacity:0; margin-top:-70px}
-	100% {opacity:1; margin-top:0px}
-}
-
-@-webkit-keyframes popovercomedown {
-	0% {opacity:0; margin-top:-30px}
-	100% {opacity:1; margin-top:-5px}
-}
-
-@-webkit-keyframes calendarcomedown {
-	0% {opacity:0; margin-top:-40px}
-	100% {opacity:1; margin-top:-15px}
-}
-
-@-webkit-keyframes photocomedown {
-	0% {opacity:0; margin-top:-198px}
-	100% {opacity:1; margin-top:15px}
-}
-
-@-webkit-keyframes dropmenucomeup {
-	0% {opacity:0; bottom:70%; padding:0px 0}
-	100% {opacity:1; bottom:160%; padding:10px 0}
-}
-
-@-webkit-keyframes dropmenucomeupnopad {
-	0% {opacity:0; margin-top:30px}
-	100% {opacity:1; margin-top:0px}
-}
-
-@-webkit-keyframes herecomesthetweetdetails {
-	0% {opacity:0; transform:scale(0.7,0.6) perspective(600px) rotate3d(1,0,0,-20deg); }
-	100% {opacity:1; transform:scale(1,1)
-}
-}
-
-@-webkit-keyframes herecomesthetweetdetailsxl {
-	0% {opacity:0; transform:scale(1.65,1.65) perspective(600px) rotate3d(1,0,0,-70deg); }
-	100% {opacity:1; transform:scale(1,1)
-}
-
-}
-
-@-webkit-keyframes herecomesthetweetdetailssmall {
-	0% {opacity:0; transform:scale(0.5,0.5) perspective(600px) rotate3d(1,0,0,-90deg); }
-	100% {opacity:1; transform:scale(1,1)
-}
-}
-
-@-webkit-keyframes herecomesthetweetdetailssmallbefore {
-	0% {opacity:0; transform:scale(0.5,0.5) perspective(600px) rotate3d(1,0,0,90deg); }
-	100% {opacity:1; transform:scale(1,1)
-}
-}
-
-@-webkit-keyframes herecomesthetweet {
-	0% {opacity:0; transform:scale(0.4,0.4) perspective(600px) rotate3d(1,0,0,40deg); }
-	100% {opacity:1; transform:scale(1,1)
-}
-}
-
-@-webkit-keyframes popgoesthepanel {
-	0% {opacity:0; transform:scale(0.3,0.3); }
-	100% {opacity:1; transform:scale(1,1)
-}
-}
-
-@-webkit-keyframes fadein {
-	0% {opacity:0}
-	100% {opacity:1}
-}
-
-@-webkit-keyframes hellocolumns {
-	0% {opacity:0
-}
-	100% {opacity:1
-}
-}
-
-@-webkit-keyframes backgroundanimation {
-	0% {opacity:0}
-	100% {opacity:1}
-}
-
-@-webkit-keyframes backgroundanimationout {
-	0% {opacity:1
-}
-	100% {opacity:0
-}
-}
-
-@-webkit-keyframes BackSplashAnimation {
-	0% {opacity:0;transform:scale(0.5,0.5)}
-	100% {opacity:1;transform:scale(1,1)}
-}
-
-@-webkit-keyframes new {
-	0% {height:0px; }
-	100% {height:10px
-}
-}
-
-@-webkit-keyframes columnFlyin {
-	0% {top:100%
-}
-	100% {top:0%
-}
-}
-
-/* ////////////////////////////////////////////////////////////////////////////////////// */
-
-@keyframes popcomesthetweetsview {
-
-	0% {
-	opacity:1;
-	transform:translate3d(0, 2700px, 0);
-	}
-
-	60% {
-	opacity:1;
-	transform:translate3d(0, -25px, 0);
-	}
-
-	100% {
-	transform:translate3d(0, 0, 0);
-	}
-}
-
-@keyframes popcomestheview {
-	0% {margin-top:100%
-}
-	50% {margin-top:100%
-}
-	100% {margin-top:0%
-}
-}
-
-@keyframes popgoesthetweet {
-	0% {opacity:0; transform:scale(0.3,0.3); }
-	50% {opacity:0.3
-}
-	100% {opacity:1; transform:scale(1,1); }
-}
-
-@keyframes popgoesthemodalwindow {
-	0% {opacity:0.5; transform:scale(1.125,1.125) }
-	100% {opacity:1; transform:scale(1,1)
-}
-}
-
-@keyframes popgoestheapp {
-	0% {opacity:0.5; transform:scale(1.35,1.35) }
-	100% {opacity:1; transform:scale(1,1)
-}
-} 
-
-@keyframes popgoesthemodalwindow2d {
-	0% {opacity:0.5; transform:scale(1.65,1.65)
-}
-	100% {opacity:1; transform:scale(1,1)
-}
-}
-
-@keyframes settingsmenucomedown {
-	0%, 100% {
-	transition-timing-function:cubic-bezier(.19,1,.22,1);
-	}
-	0% {opacity:-1; left:10px; bottom:-45px; height:50px; transform:scale(1,1)}
-	100% {opacity:1; left:10px; bottom:-140px; height:145px; transform:scale(1,1)}
-}
-
-@keyframes dropmenucomedown {
-	0% {opacity:0; margin-top:-18px; padding:0px 0}
-	100% {opacity:1; margin-top:0px; padding:10px 0}
-}
-
-@keyframes dropmenucomedownnopad {
-	0% {opacity:0; margin-top:-18px}
-	100% {opacity:1; margin-top:0px}
-}
-
-@keyframes dropmenucomedownlnopad {
-	0% {opacity:0; margin-top:-40px}
-	100% {opacity:1; margin-top:10px}
-}
-
-@keyframes dropmenucomedownlargenopad {
-	0% {opacity:0; margin-top:-70px}
-	100% {opacity:1; margin-top:0px}
-}
-
-@keyframes popovercomedown {
-	0% {opacity:0; margin-top:-30px}
-	100% {opacity:1; margin-top:-5px}
-}
-
-@keyframes calendarcomedown {
-	0% {opacity:0; margin-top:-40px}
-	100% {opacity:1; margin-top:-15px}
-}
-
-@keyframes photocomedown {
-	0% {opacity:0; margin-top:-198px}
-	100% {opacity:1; margin-top:15px}
-}
-
-@keyframes dropmenucomeup {
-	0% {opacity:0; bottom:70%; padding:0px 0}
-	100% {opacity:1; bottom:160%; padding:10px 0}
-}
-
-@keyframes dropmenucomeupnopad {
-	0% {opacity:0; margin-top:30px}
-	100% {opacity:1; margin-top:0px}
-}
-
-@keyframes herecomesthetweetdetails {
-	0% {opacity:0; transform:scale(0.7,0.6) perspective(600px) rotate3d(1,0,0,-20deg); }
-	100% {opacity:1; transform:scale(1,1); }
-}
-
-@keyframes herecomesthetweetdetailsxl {
-	0% {opacity:0; transform:scale(1.65,1.65) perspective(600px) rotate3d(1,0,0,-70deg); }
-	100% {opacity:1; transform:scale(1,1); }
-}
-
-@keyframes herecomesthetweetdetailssmall {
-	0% {opacity:0; transform:scale(0.5,0.5) perspective(600px) rotate3d(1,0,0,-90deg); }
-	100% {opacity:1; transform:scale(1,1); }
-}
-
-@keyframes herecomesthetweetdetailssmallbefore {
-	0% {opacity:0; transform:scale(0.5,0.5) perspective(600px) rotate3d(1,0,0,90deg); }
-	100% {opacity:1; transform:scale(1,1); }
-}
-
-@keyframes herecomesthetweet {
-	0% {opacity:0; transform:scale(0.4,0.4) perspective(600px) rotate3d(1,0,0,40deg); }
-	100% {opacity:1; transform:scale(1,1); }
-}
-
-@keyframes popgoesthepanel {
-	0% {opacity:0; transform:scale(0.3,0.3); }
-	100% {opacity:1; transform:scale(1,1); }
-}
-
-@keyframes fadein {
-	0% {opacity:0}
-	100% {opacity:1}
-}
-
-@keyframes hellocolumns {
-	0% {
-		opacity:0
-	}
-	100% {
-		opacity:1
-	}
-}
-
-@keyframes backgroundanimation {
-	0% {opacity:0}
-	100% {opacity:1}
-}
-
-@keyframes backgroundanimationout {
-	0% {
-		opacity:1
-	}
-	100% {
-		opacity:0
-	}
-}
-
-@keyframes BackSplashAnimation {
-	0% {opacity:0;transform:scale(0.5,0.5)}
-	100% {opacity:1;transform:scale(1,1)}
-}
-
-@keyframes new {
-	0% {height:0px; }
-	100% {height:10px
-}
-}
-
-@keyframes columnFlyin {
-	0% {top:100%
-}
-	100% {top:0%
-}
-} 
-
-div.overlay.tde-modal-window-fade-out {
+.overlay.tde-modal-window-fade-out {
 	-webkit-animation:backgroundanimationout 0.2s cubic-bezier(.19,1,.22,1);
 	animation:backgroundanimationout 0.2s cubic-bezier(.19,1,.22,1);
 	display:block
 }
 
-div.dropdown-menu.tde-dropdown-fade-out {
+.dropdown-menu.tde-dropdown-fade-out {
 	-webkit-animation:backgroundanimationout 0.2s cubic-bezier(.19,1,.22,1);
 	animation:backgroundanimationout 0.2s cubic-bezier(.19,1,.22,1);
 	display:block
@@ -6091,11 +6337,6 @@ div.dropdown-menu.tde-dropdown-fade-out {
 	padding-top:4px
 }
 
-.without-tweet-drag-handles .tweet-drag-handle {
-	display:none;
-	visibility:hidden!important
-}
-
 .tweet-timestamp {
 	padding-left:5px;
 	margin:0 0 -1px
@@ -6463,10 +6704,6 @@ div.dropdown-menu.tde-dropdown-fade-out {
 	background:transparent url(spinner_small_trans.gif) no-repeat 50% 50%
 }
 
-.spinner-centered {
-	display:none
-}
-
 .spinner-button-container {
 	position:relative;
 	display:inline
@@ -6757,12 +6994,8 @@ div.dropdown-menu.tde-dropdown-fade-out {
 
 .app-search-fake {
 	width:42px;
+	border-bottom:none;
 	color:rgb(0,0,0,0)
-}
-
-.app-search-fake .icon {
-	display:none;
-	margin-top:-1px
 }
 
 .app-search-fake .icon {
@@ -6770,10 +7003,6 @@ div.dropdown-menu.tde-dropdown-fade-out {
 	font-size:24px;
 	margin-left:-4px;
 	margin-top:-7px
-}
-
-.app-search-fake {
-	border-bottom:none
 }
 
 .app-search-button {
@@ -6816,12 +7045,6 @@ div.dropdown-menu.tde-dropdown-fade-out {
 
 .app-search-tweet-results {
 	overflow:hidden
-}
-
-.app-search-tweet-results .column-header-temp {
-	display:none;
-	height:0;
-	opacity:0
 }
 
 .app-search-tweet-results .column-content {
@@ -6872,7 +7095,7 @@ div.dropdown-menu.tde-dropdown-fade-out {
 	color:#ddd;
 	border-radius:0;
 	-webkit-animation:dropmenucomedownnopad 0.40s 1 cubic-bezier(.19,1,.22,1);
-	animation:dropmenucomedownnopad 0.40s 1 cubic-bezier(.19,1,.22,1)
+	animation:dropmenucomedownnopad 0.40s 1 cubic-bezier(.19,1,.22,1);
 	width:auto
 }
 
@@ -7055,7 +7278,7 @@ div.dropdown-menu.tde-dropdown-fade-out {
 
 .tooltip {
 	position:absolute;
-	z-index:10000;
+	z-index:1000;
 	padding:5px;
 	font-size:12px;
 	pointer-events:none
@@ -7070,99 +7293,7 @@ div.dropdown-menu.tde-dropdown-fade-out {
 	box-shadow:0 3px 10px rgba(17,17,17,0.35);
 	-webkit-animation:popgoesthemodalwindow 0.3s 1 cubic-bezier(.19,1,.22,1);
 	animation:popgoesthemodalwindow 0.3s 1 cubic-bezier(.19,1,.22,1)
-}
-
-.tooltip-inner {
 	border-radius:2px
-}
-
-.bottom {
-	border-bottom-color:#444
-}
-
-.top {
-	border-top-color:#444
-}
-
-.left {
-	border-left-color:#444
-}
-
-.right {
-	border-right-color:#444
-}
-
-.bottom .tooltip-arrow {
-	top:0;
-	left:50%;
-	margin-left:-5px;
-	border-bottom-style:solid;
-	border-top:none;
-	border-left-color:transparent;
-	border-right-color:transparent
-}
-
-.top .tooltip-arrow {
-	bottom:0;
-	left:50%;
-	margin-left:-5px;
-	border-top-style:solid;
-	border-bottom:none;
-	border-left-color:transparent;
-	border-right-color:transparent
-}
-
-.left .tooltip-arrow {
-	right:0;
-	top:50%;
-	margin-top:-5px;
-	border-left-style:solid;
-	border-right:none;
-	border-top-color:transparent;
-	border-bottom-color:transparent
-}
-
-.right .tooltip-arrow {
-	left:0;
-	top:50%;
-	margin-top:-5px;
-	border-right-style:solid;
-	border-left:none;
-	border-top-color:transparent;
-	border-bottom-color:transparent
-}
-
-.status-message {
-	box-shadow:0 2px 4px rgba(17,17,17,0.25);
-	position:absolute;
-	z-index:2000;
-	right:10px;
-	max-width:270px;
-	background:#fff;
-	display:none;
-	text-align:left
-}
-
-.status-message-text {
-	word-break:break-word;
-	word-wrap:break-word;
-	display:block;
-	margin-right:25px;
-	color:#000;
-	font-size:12px;
-	line-height:1.2em
-}
-
-.status-dismiss {
-	position:absolute;
-	top:6px;
-	right:5px;
-	color:#000;
-	font-size:18px
-}
-
-.status-dismiss:hover,.status-dismiss:active {
-	color:#666
 }
 
 .character-count:disabled,.character-count-compose:disabled {
@@ -7643,9 +7774,13 @@ div.dropdown-menu.tde-dropdown-fade-out {
 	transition:200ms opacity, 0s margin-top!important;
 	background:rgba(100, 100, 100, 0.4);
 	opacity:1;
-	-webkit-animation:backgroundanimation 0.25s 1 cubic-bezier(.19,1,.22,1);
-	animation:backgroundanimation 0.25s 1 cubic-bezier(.19,1,.22,1);
+	-webkit-animation:fadein 0.25s 1 cubic-bezier(.19,1,.22,1);
+	animation:fadein 0.25s 1 cubic-bezier(.19,1,.22,1);
 	margin-top:0%
+}
+
+.tde-dark .ovl, .tde-dark .overlay {
+	background: rgba(88, 100, 107, 0.4)
 }
 
 .ovl-plain:before,.ovl:before,.overlay:before,.ovl:before,.overlay:before {
@@ -8069,10 +8204,6 @@ div.dropdown-menu.tde-dropdown-fade-out {
 	width:550px
 }
 
-.cmp .mdl-header-title:empty {
-	display:none
-}
-
 .cmp textarea {
 	width:100%;
 	height:85px;
@@ -8097,11 +8228,6 @@ div.dropdown-menu.tde-dropdown-fade-out {
 	position:relative
 }
 
-.cmp button b {
-	display:none;
-	padding-left:0
-}
-
 .cmp .set-content b {
 	white-space:nowrap;
 	overflow:hidden;
@@ -8119,11 +8245,6 @@ div.dropdown-menu.tde-dropdown-fade-out {
 	display:inline-block;
 	vertical-align:middle;
 	zoom:1
-}
-
-.cmp-spinner {
-	display:none;
-	vertical-align:text-top
 }
 
 .cmp-input-container {
@@ -8436,11 +8557,6 @@ div.dropdown-menu.tde-dropdown-fade-out {
 
 .compose-text::placeholder {
 	color:#666
-}
-
-.compose-text-title {
-	display:none;
-	color:#fff
 }
 
 .compose-send-button-success {
@@ -9043,12 +9159,6 @@ a:hover .icn-button-next {
 	background:#fff
 }
 
-.chev-right {
-	display:none;
-	float:right;
-	vertical-align:middle
-}
-
 .list-filter {
 	padding:15px 14px;
 	font-size:13px
@@ -9109,13 +9219,6 @@ a:hover .icn-button-next {
 	color:#999
 }
 
-.list-subtitle .chev-right {
-	position:absolute;
-	top:21px;
-	right:14px;
-	float:none
-}
-
 .list-account {
 	padding:6px 0;
 	border:0
@@ -9138,14 +9241,6 @@ a:hover .icn-button-next {
 	display:block;
 	color:#999;
 	font-size:12px
-}
-
-.list-account .chev-right {
-	position:absolute;
-	top:13px;
-	right:14px;
-	display:none;
-	float:none
 }
 
 .list-account i {
@@ -9882,6 +9977,11 @@ input[type="checkbox"] {
 	color:#fff!important
 }
 
+.tde-dark #calcurrent {
+	background: #00838F!important;
+	color:#fff!important
+}
+
 #caltoday {
 	background:transparent;
 	color:#00BCD4!important
@@ -9911,7 +10011,6 @@ input[type="checkbox"] {
 
 #calhead {
 	padding:12px 5px;
-	text-align:left;
 	font-size:13px;
 	font-weight:500;
 	margin-left:auto;
@@ -10094,7 +10193,7 @@ input[type="checkbox"] {
 	vertical-align:middle;
 	zoom:1;
 	transition:200ms all;
-	padding-right:4px
+	padding-right:0px
 }
 
 .prf-stats li:hover {
@@ -10221,10 +10320,9 @@ input[type="checkbox"] {
 	padding:2px 5px;
 	font-size:11px;
 	vertical-align:top;
-	background:rgba(17,17,17,0.25);
 	color:#333;
 	text-transform:uppercase;
-	background:#fff!important;
+	background:#fff;
 	text-shadow:none;
 	border-radius:2px;
 	box-shadow:0 3px 10px rgba(41, 41, 41, 0.35)
@@ -10491,26 +10589,7 @@ input[type="checkbox"] {
 }
 
 .caret {
-	position:absolute;
-	top:-7px;
-	left:50%;
-	width:12px;
-	height:8px;
-	margin-left:-6px;
-	display:none;
-	overflow:hidden
-}
-
-.caret-outer,.caret-inner {
-	position:absolute;
-	top:0;
-	left:0;
-	display:inline-block;
-	margin-left:-1px
-}
-
-.caret-outer,.caret-inner {
-	border:none
+	display:none
 }
 
 .drp-h-divider {
@@ -10829,12 +10908,6 @@ input[type="checkbox"] {
 	padding:0
 }
 
-.app-masthead {
-	background:#444;
-	display:none;
-	height:45px
-}
-
 .has-login body {
 	overflow-y:auto
 }
@@ -10949,7 +11022,6 @@ input[type="checkbox"] {
 
 .form-legend {
 	box-sizing:border-box;
-	font-size:18px;
 	width:100%;
 	display:block;
 	color:#444;
@@ -11206,11 +11278,8 @@ input[type="checkbox"] {
 	counter-increment:column-nav!important;
 	color:rgba(255, 255, 255, 0.75)!important;
 	transition:400ms all;
-	height:42px!important;
 	margin-right:0px!important;
 	margin-left:0px!important;
-	/* top:6px!important; */
-	height:42px!important;
 	display:inline-block!important;
 	left:initial!important;
 	transform:none!important;
@@ -11237,7 +11306,6 @@ input[type="checkbox"] {
 
 .column-nav-link .column-head-title {
 	display:block;
-	vertical-align:bottom;
 	overflow:hidden;
 	white-space:nowrap;
 	word-wrap:normal;
@@ -11449,10 +11517,11 @@ input[type="checkbox"] {
 	transition:200ms all
 }
 
-button.js-send-tweet-button.js-spinner-button.js-show-tip.btn.btn-positive.btn-extra-height {
+.js-send-tweet-button.js-spinner-button {
 	font-size:0px
 }
-button.js-send-tweet-button.js-spinner-button.js-show-tip.btn.btn-positive.btn-extra-height:after {
+
+.js-send-tweet-button.js-spinner-button {
 	font-size:14px;
 	content:"Tweet"
 }
@@ -11618,7 +11687,7 @@ div.js-replies-to.replies-after article.stream-item.is-actionable {
 	color:#fff
 }
 
-a.txt-r-on-dark-blue {
+.txt-r-on-dark-blue {
 	color:#fff
 }
 
@@ -11634,11 +11703,7 @@ a.txt-r-on-dark-blue {
 }
 
 .signin-sheet-now-present .app-signin-wrap {
-	margin:0;
-	margin-left:auto;
-	margin-right:auto;
-	margin-top:auto;
-	margin-bottom:auto;
+	margin:auto;
 	bottom:-30%;
 	box-shadow:none
 }
@@ -11730,7 +11795,7 @@ a.txt-r-on-dark-blue {
 	padding-top:5px
 }
 
-.facet-type .control-group select, .facet-typeÃ‚Â .control-group input {
+.facet-type .control-group select, .facet-typeÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â .control-group input {
 	border-bottom:2px solid #fff;
 	border-radius:2px;
 	color:#fff
@@ -11763,22 +11828,8 @@ html body .app-navigator .dropdown-menu {
 	display:none
 }
 
-.js-app-settings .obj-left {
-	display:none;
-	float:right
-}
-
-a.js-header-action.js-app-settings.link-clean.cf.app-nav-link.padding-hl {
-	margin:0!important;
-	top:10px;
-	position:absolute;
-	margin-top:7px!important;
-	right:0px;
-	z-index:99;
-	bottom:0;
-	height:30px;
-	width:30px;
-	padding:0
+ {
+	display:none
 }
 
 .js-header-add-column {
@@ -11789,7 +11840,7 @@ a.js-header-action.js-app-settings.link-clean.cf.app-nav-link.padding-hl {
 	margin-top:-50px
 }
 
-ul.js-int-scroller {
+.js-int-scroller {
 	padding-left:40px
 }
 
@@ -11809,15 +11860,6 @@ a.link-clean.cf.app-nav-tab {
 	margin-left:85px;
 	position:absolute;
 	transition:200ms all
-}
-
- {
-	margin-left:120px;
-	transition:200ms all;
-	left:0px;
-	margin-right:auto;
-	width:140px;
-	top:2px
 }
 
 .js-hide-drawer.app-nav-tab:after {
@@ -12101,8 +12143,8 @@ a#amPm {
 }
 
 .dropdown-menu [data-action] {
-	-webkit-animation:backgroundanimation 0.5s 1 cubic-bezier(.19,1,.22,1);
-	animation:backgroundanimation 0.5s 1 cubic-bezier(.19,1,.22,1)
+	-webkit-animation:fadein 0.5s 1 cubic-bezier(.19,1,.22,1);
+	animation:fadein 0.5s 1 cubic-bezier(.19,1,.22,1)
 }
 
 .startflow-message-wrap .bg-r-dark-blue .margin-rxl {
@@ -12941,12 +12983,6 @@ body.scroll-v .mdl .startflow-panel {
 	top:-18px!important
 }
 
-.more-tweets-btn-container {
-	text-align:center;
-	z-index:1000;
-	pointer-events:none
-}
-
 .more-tweets-btn-container--hidden {
 	pointer-events:none
 }
@@ -13113,7 +13149,7 @@ fieldset#services_settings label.control-label {
 	color:#333
 }
 
-.facet-type .control-group select, .facet-type‚ .control-group input {
+.facet-type .control-group select, .facet-typeÃ¢â‚¬Å¡ .control-group input {
 	color:#333;
 	border-bottom:2px solid #333
 }
@@ -13887,4 +13923,369 @@ html>body input.js-add-to-customtimeline-input.no-radius {
 	font-size:12px;
 	content:"Ready?";
 	margin-right:5px
+}
+
+.column-scroller {
+	opacity:1!important
+}
+
+.with-drop-target .column-drag-drop-overlay {
+	visibility: visible
+}
+
+.more-tweets-btn-container {
+	text-align: center;
+	z-index: 1000;
+	pointer-events: none;
+	box-shadow:none
+}
+
+.more-tweets-btn-container--out .more-tweets-btn {
+	top:-3em!important
+}
+
+.more-tweets-btn {
+	border-radius: 2px;
+	position: relative;
+	top: -3em;
+	opacity: 1;
+	transition: all 200ms cubic-bezier(.55,0,.1,1);
+	pointer-events: auto;
+	padding: 8px 12px;
+	min-height: 0;
+	box-shadow: 0 3px 3px rgba(17,17,17,0.15);
+	color:#fff!important;
+	background: #00BCD4;
+}
+
+.tde-dark .more-tweets-btn {
+	background: #00838F;
+}
+
+.more-tweets-btn:active {
+	margin-top: 1px
+}
+
+.more-tweets-btn:active,.more-tweets-btn:focus,.more-tweets-btn:hover,.more-tweets-btn:active {
+	background:#00BCD4!important;
+	color:#fff!important;
+}
+
+.tde-dark .more-tweets-btn:active,.tde-dark .more-tweets-btn:focus,.tde-dark .more-tweets-btn:hover,.tde-dark .more-tweets-btn:active {
+	background: #00838F!important;
+}
+
+.more-tweets-btn:active {
+	transform:scale(1,1)!important
+}
+
+.more-tweets-btn .icon {
+	font-size: 1.3em;
+	line-height: 0.9
+}
+
+.more-tweets-btn-container--hidden .more-tweets-btn {
+	-webkit-transition: none;
+	transition: none
+}
+
+.more-tweets-btn-container--visible .more-tweets-btn,.more-tweets-btn-container--mouse-release .more-tweets-btn,.more-tweets-btn-container--loading .more-tweets-btn {
+	opacity: 1;
+	top: 20px;
+	-webkit-animation: moretweetsanim 0.7s 1 cubic-bezier(.55,0,.1,1);
+	animation: moretweetsanim 0.7s 1 cubic-bezier(.55,0,.1,1);
+}
+
+.more-tweets-btn-container--mouse-release .more-tweets-btn,.more-tweets-btn-container--loading .more-tweets-btn {
+	background-color: #66757f
+}
+
+.more-tweets-btn-inner-mouse-release,.more-tweets-btn-inner-loading,.more-tweets-btn-container--mouse-release .more-tweets-btn-inner-default,.more-tweets-btn-container--loading .more-tweets-btn-inner-default {
+	display: none
+}
+
+.more-tweets-btn-container--mouse-release .more-tweets-btn-inner-mouse-release,.more-tweets-btn-container--loading .more-tweets-btn-inner-loading {
+	display: block
+}
+
+div.js-compose-message-recipient-input-container.compose-message-recipient-input-container.position-rel.bg-r-white {
+	width:240px
+}
+
+.nbfc.compose-message-recipient-name {
+	padding-left: 30px!important;
+	padding-top: 5px;
+}
+
+.compose-message-recipient-list {
+	/* margin-bottom: -0px; */
+	/* position: absolute; */
+	background: #fff;
+}
+
+.tde-dark .compose-message-recipient-list,.tde-dark .compose-message-recipient-input-container {
+	background:#263238;
+}
+
+.compose-message-recipient.js-compose-message-recipient {
+	margin-top: 6px!important;
+	width: 240px;
+}
+
+.compose-message-recipient .pull-left {
+	border-radius:12px
+}
+
+.compose-message-account {
+	width: 215px;
+	padding:0px;
+	margin-bottom:3px;
+	margin-top:-3px;
+	padding-bottom:3px;
+	padding-left:10px;
+	border-bottom:3px solid #eee;
+	margin-left: 8px;
+	padding-top: 3px;
+}
+
+.tde-dark .compose-message-account {
+	border-bottom: 3px solid #667A86;
+}
+
+.compose-message-recipient-input-container {
+	background:#fff;
+}
+
+.js-compose-message-recipient-input-container.compose-message-recipient-input-container.position-rel.bg-r-white {
+	width: 240px!important;
+	box-shadow: 0px 3px 7px rgba(17,17,17,0.5);
+	padding-bottom:3px;
+}
+
+.compose-message-account {
+	box-shadow:none;
+}
+
+.typeahead-dropdown {
+	-webkit-animation: dropmenucomedownnopad 0.225s 1;
+	animation: dropmenucomedownnopad 0.225s 1;
+	width:240px;
+}
+
+.dropdown-menu ul {
+	max-width:240px;
+}
+
+.compose-message-recipient-container {
+	display:block!important;
+	transition:200ms all;
+	max-height:2000px;
+	opacity:1
+}
+
+.compose-message-recipient-container.is-hidden {
+	max-height:0px;
+	opacity:0;
+	pointer-events:none;
+}
+
+div.js-media-added {
+	-webkit-animation-delay:0s;
+	animation-delay:0s;
+}
+
+a.js-column-back.link-complex {
+	color:#fff;
+}
+
+a.js-column-back.link-complex,a.js-column-back.link-complex:hover,a.js-column-back.link-complex:active,a.js-column-back.link-complex:focus {
+	color:#fff;
+	background: transparent!important;
+	transform: none!important;
+}
+
+a .column-title-back.conversation-title .icon:after {
+	margin-left:-19px;
+}
+
+.js-column-detail .column-title-back.conversation-title:after {
+	display:none;
+}
+
+.title-content .txt-mute {
+	color:rgba(255,255,255,0.8)
+}
+
+.tde-light .add-participant .js-username-input.js-submittable-input {
+	border-bottom:2px #ccc solid;
+}
+
+.tde-dark .add-participant .js-username-input.js-submittable-input {
+	border-bottom: 2px #667A86 solid;
+}
+
+.column-content.column-dm-participants {
+	top:120px;
+}
+
+.media-grid-container .compose-media-grid-remove .sprite-close {
+	margin-left:0px!important
+}
+
+.compose-media-grid-holder {
+	padding-bottom:45px!important;
+	background:#fff
+}
+
+.tde-dark .compose-media-grid-holder {
+	background:#263238
+}
+
+.tde-dark .add-participant input::-webkit-input-placeholder {
+	color: #667A86
+}
+
+.tde-dark .add-participant input::-moz-placeholder {
+	 color: #667A86;
+	 opacity: 1
+}
+
+.tde-dark .app-navigator .js-hide-drawer {
+	 background: #263238;
+	 box-shadow:0 -5px 10px rgba(17,17,17,0.35)
+}
+
+.tde-light .app-navigator .js-hide-drawer {
+	 box-shadow: 0 -3px 5px rgba(17,17,17,0.15)
+}
+
+a.js-hide-drawer.link-clean.cf.app-nav-tab {
+	top:12px;
+	margin-top:10px;
+	max-height:30px;
+	min-height: 30px;
+	margin-left:138px
+}
+
+a.js-hide-drawer.link-clean.cf.app-nav-tab:after {
+	top:0px;
+	position:absolute;
+	width:100%;
+	margin-top:10px
+}
+
+.toggle-switch {
+	margin-right:10px
+}
+
+fieldset .toggle-switch {
+	position: relative;
+	margin-top:15px;
+	margin-left: 73px
+}
+
+.toggle-switch-input {
+	position: absolute;
+	margin-left: -999px;
+	visibility: hidden
+}
+
+.toggle-switch-label {
+	display: block;
+	position: relative;
+	cursor: pointer;
+	outline: none;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none
+}
+
+.toggle-switch-label {
+	padding: 2px;
+	height: 12px;
+	border-radius: 2px
+}
+
+.toggle-switch-label:before,.toggle-switch-label:after {
+	display: block;
+	position: absolute;
+	top: 0px;
+	left: 1px;
+	content: "";
+	bottom: -2px
+}
+
+.toggle-switch-label:before {
+	width: 30px;
+	right: 1px;
+	background-color: #BDC7CE;
+	border-radius: 7px;
+	height: 11px;
+	top: 4px
+}
+
+.tde-dark .toggle-switch-label:before {
+	background-color: #56717D
+}
+
+.toggle-switch.enable-transition .toggle-switch-label:before {
+	transition: all 0.2s ease-in-out
+}
+
+.toggle-switch-label:after {
+	width: 18px;
+	background-color: #fff;
+	border-radius: 9px;
+	box-shadow: 0 3px 6px rgba(0,0,0,0.25);
+	transition: all 350ms cubic-bezier(.55,0,.1,1)
+}
+
+.tde-dark .toggle-switch-label:after {
+	background-color:#ccc
+}
+
+.toggle-switch-input:checked+.toggle-switch-label:after {
+	background-color: #1DA2B4
+}
+
+.toggle-switch-input:checked+.toggle-switch-label:before {
+	background-color: #20C9DF
+}
+
+.tde-dark .toggle-switch-input:checked+.toggle-switch-label:after {
+	background-color: #1A7780
+}
+
+.tde-dark .toggle-switch-input:checked+.toggle-switch-label:before {
+	background-color: #6CCACB
+}
+
+
+.toggle-switch-input:checked+.toggle-switch-label:after {
+	margin-left: 13px
+}
+
+.toggle-switch-label-text {
+	display: inline-block;
+	margin-left: 40px;
+	font-size:15px
+}
+
+.js-display-sensitive-media span {
+	font-size:0px
+}
+
+.js-display-sensitive-media span:after {
+	font-size:15px;
+	content:"Show potentially sensitive media"
+}
+
+.js-account-action:active {
+	transform:none!important;
+	background:transparent!important
+}
+
+.tde-light .detail-view-inline-text {
+	border-bottom: 3px solid #00BCD4
 }
