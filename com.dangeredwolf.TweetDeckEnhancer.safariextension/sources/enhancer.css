@@ -12071,7 +12071,7 @@ fieldset .toggle-switch {
   margin-top: 3px;
 }
 
-html.tde-dark body {
+html.tde-dark body:not(.scroll-v) {
   background:rgb(38, 50, 56)
 }
 
