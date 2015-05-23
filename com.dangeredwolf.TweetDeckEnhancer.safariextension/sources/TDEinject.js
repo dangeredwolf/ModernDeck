@@ -727,18 +727,18 @@ function diag() {
     attemptdiag();
   }
   catch(err) {
-    var openmodal = document.getElementById("open-modal");
+    var openmodal = document.getElementById("open-modal") || document.getElementsByClassName("js-app-loading")[0];;
   openmodal.innerHTML = '<div class="mdl s-tall-fixed"><header class="mdl-header"><h3 class="mdl-header-title">Diagnostics Failed</h3></header><div class="mdl-inner"><div class="mdl-content"style="padding-left:20px">\
   \
   Well, that\'s unfortunate. I can\'t seem to be able to fetch diagnostics right now. Maybe refresh and try again?\
   <br><br>\
   (P.S. the error is ' + ((typeof err === "undefined" && "[miraculously, undefined.]") || (err.toString())).toString() + ')';
-  openmodal.style.cssText = "display: block;";
+  openmodal.setAttribute("style","display: block;");
   }
 }
 
 function attemptdiag() {
-  var openmodal = document.getElementById("open-modal");
+  var openmodal = document.getElementById("open-modal") || document.getElementsByClassName("js-app-loading")[0];
   openmodal.innerHTML = '<div class="mdl s-tall-fixed"><header class="mdl-header"><h3 class="mdl-header-title">Diagnostics</h3></header><div class="mdl-inner"><div class="mdl-content"style="padding-left:20px">\
   \
   \
@@ -762,21 +762,21 @@ function attemptdiag() {
   <br>tde_column_oneline: ' + localStorage.tde_column_oneline + '\
   <br>tde_flag_block_secure_ss: ' + localStorage.tde_flag_block_secure_ss + '\
   <br>tde_flag_block_communications: ' + localStorage.tde_flag_block_communications + '\
-  <br>tde_nd_header_image: ' + $("#tde_nd_header_image")[0].style.cssText + '\
-  <br>tde_nd_header_username: ' + $("#tde_nd_header_username")[0].innerHTML + '\
-  <br>tde_nd_header_photo: ' + $("#tde_nd_header_photo")[0].src + '\
-  <br>guestID: ' + TD.storage.store._backend.guestID + '\
-  <br>msgID: ' + msgID + '\
+  <br>tde_nd_header_image: ' + (typeof $("#tde_nd_header_image")[0] !== "undefined" && $("#tde_nd_header_image")[0].style.cssText) + '\
+  <br>tde_nd_header_username: ' + (typeof $("#tde_nd_header_username")[0] !== "undefined" && $("#tde_nd_header_username")[0].innerHTML) + '\
+  <br>tde_nd_header_photo: ' + (typeof $("#tde_nd_header_photo")[0] !== "undefined" && $("#tde_nd_header_photo")[0].src) + '\
+  <br>guestID: ' + (TD.storage.store._backend.guestID) + '\
+  <br>msgID: ' + (msgID) + '\
   <br>InjectFonts?: ' + (typeof InjectFonts !== "undefined") + '\
   \
   \
   \
   ';
-  openmodal.style.cssText = "display: block;";
+  openmodal.setAttribute("style","display: block;");
 }
 
 function dxdiag() {
-  var openmodal = document.getElementById("open-modal");
+  var openmodal = document.getElementById("open-modal") || document.getElementsByClassName("js-app-loading")[0];
   openmodal.innerHTML = '<div class="mdl s-tall-fixed"><header class="mdl-header"><h3 class="mdl-header-title">DxDiag Help</h3></header><div class="mdl-inner"><div class="mdl-content"style="padding-left:20px">\
   \
   \
@@ -791,7 +791,7 @@ function dxdiag() {
   Step 4: Save this file somewhere you\'ll remember, like the Desktop.<br>\
   Step 5: Upload the file to a file hosting site, for example, <a target="_blank" href="https://mega.co.nz">Mega</a> (no signup needed), or whereever you can easily share the link for the file with developers.\
   ';
-  openmodal.style.cssText = "display: block;";
+  openmodal.setAttribute("style","display: block;");
 }
 
 setTimeout(InjectRobotoFonts,0);
