@@ -10757,7 +10757,7 @@ body.scroll-v .mdl .startflow-panel {
 	-webkit-animation:none
 }
 
-.column-navigator:hover .tde-appbar-notification:not(.tde-appbar-notification-hidden) {
+.app-header:hover .tde-appbar-notification:not(.tde-appbar-notification-hidden) {
 	margin-left:50%!important;
 	width:50%!important
 }
