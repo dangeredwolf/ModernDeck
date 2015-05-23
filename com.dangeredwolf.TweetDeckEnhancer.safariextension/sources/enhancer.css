@@ -1,4 +1,4 @@
-/* TweetDeck Enhancer 5.2 [codename Horizon] 
+/* TweetDeck Enhancer 5.2.1 [codename Horizon] 
 Copyright 2015 Dangered Wolf (@dangeredwolf)
 Released under the MIT License
 
@@ -8870,15 +8870,13 @@ input[type="checkbox"] {
 	background:url(https://dangeredwolf.com/assets/tweetdeck/img/TweetDeck.png) no-repeat;
 	background:url(TweetDeck.png) no-repeat;
 	padding-left:502px;
-	margin-right:100px;
-	margin-left:-120px;
-	margin-top:-30px;
+	margin-left: -500px;
 	box-sizing:border-box;
 	width:200px;
 	box-shadow:none;
 	max-height:200px;
 	position:fixed;
-	left:300px;
+	left: 50%;
 	top:220px;
 	pointer-events:none
 }
@@ -12058,4 +12056,33 @@ fieldset .toggle-switch {
 
 .tde-light .detail-view-inline-text {
 	border-bottom: 3px solid #00BCD4
+}
+
+.tweet-detail-action-item.margin-ln {
+    margin-left: 12%!important;
+}
+
+.tweet-detail-action-item {
+    width:20%;
+    margin-left: 2%!important;
+}
+
+.js-column-detail .column-title-back:after {
+  margin-top: 3px;
+}
+
+html.tde-dark body {
+  background:rgb(38, 50, 56)
+}
+
+.tde-dark .emoji-popover .category-chooser {
+  background: #263238!important;
+}
+
+.tde-dark .column-title .attribution,.tde-light .column-title .attribution {
+  display:inline
+}
+
+.btd-settings {
+  top:-100px
 }
