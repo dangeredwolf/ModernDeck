@@ -1,7 +1,7 @@
 // TDELoad.js
 // Copyright (c) 2015 Dangered Wolf
 
-console.log("Enhancer 5.2.1");
+console.log("Enhancer 5.3");
 
 var links = document.querySelectorAll("link[title='dark'],link[title='light']");
 

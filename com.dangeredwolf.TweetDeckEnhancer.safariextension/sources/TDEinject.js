@@ -13,7 +13,7 @@ var TDEBaseURL = "https://dangeredwolf.com/assets/tdetest/"; // Defaults to stre
 var progress = null;
 var tde_fetch_profile_info_for_nav_drawer = 0;
 
-var SystemVersion = "5.2.1";
+var SystemVersion = "5.3";
 
 var TreatGeckoWithCare = false;
 
@@ -489,7 +489,7 @@ function NavigationSetup() {
   var TDENavigationDrawer = document.createElement("div");
   TDENavigationDrawer.id = "tde_nav_drawer";
   TDENavigationDrawer.setAttribute("class","tde-nav-drawer tde-nav-drawer-hidden");
-  TDENavigationDrawer.innerHTML = '<img id="tde_nd_header_image" class="tde-nd-header-image"><img class="avatar size73 tde-nd-header-photo" id="tde_nd_header_photo"><div class="tde-nd-header-username" id="tde_nd_header_username"></div><button class="btn tde-nav-button tde-settings-button" id="tdset"><img src="'+ GetURL("sources") + '/tweetdecksmall.png" class="tde-nav-drawer-icon">TweetDeck Settings</button><button class="btn tde-nav-button" id="tdesettings"><img src="'+ GetURL("sources") +'/TDEsmall.png" class="tde-nav-drawer-icon">Enhancer Settings</button><button class="btn tde-nav-button" id="btdsettings"><img src="' + GetURL("sources") + '/BTDsmall.png" class="tde-nav-drawer-icon">Better TweetDeck Settings</button><div class="tde-nav-divider"></div><button id="tde_signout" class="btn tde-nav-button"><img src="' + GetURL("sources") + '/logout.png" class="tde-nav-drawer-icon">Sign Out</button><button id="tdaccsbutton" class="btn tde-nav-button"><img src="' + GetURL("sources") +'/accounts.png" class="tde-nav-drawer-icon">Your Accounts</button><div class="tde-nav-divider"></div><button id="kbshortcuts" class="btn tde-nav-button"><img src="'+ GetURL("sources") +'/KBshortcuts.png" class="tde-nav-drawer-icon">Keyboard Shortcuts</button><button id="addcolumn" class="btn tde-nav-button"><img src="' + GetURL("sources") + '/AddColumn.png" class="tde-nav-drawer-icon">Add Column</button>';
+  TDENavigationDrawer.innerHTML = '<img id="tde_nd_header_image" class="tde-nd-header-image"><img class="avatar size73 tde-nd-header-photo" id="tde_nd_header_photo"><div class="tde-nd-header-username" id="tde_nd_header_username"></div><button class="btn tde-nav-button tde-settings-button waves-effect waves-light" id="tdset"><img src="'+ GetURL("sources") + '/tweetdecksmall.png" class="tde-nav-drawer-icon">TweetDeck Settings</button><button class="btn tde-nav-button waves-effect waves-light" id="tdesettings"><img src="'+ GetURL("sources") +'/TDEsmall.png" class="tde-nav-drawer-icon">Enhancer Settings</button><button class="btn tde-nav-button waves-effect waves-light" id="btdsettings"><img src="' + GetURL("sources") + '/BTDsmall.png" class="tde-nav-drawer-icon">Better TweetDeck Settings</button><div class="tde-nav-divider"></div><button id="tde_signout" class="btn tde-nav-button waves-effect waves-light"><img src="' + GetURL("sources") + '/logout.png" class="tde-nav-drawer-icon">Sign Out</button><button id="tdaccsbutton" class="btn tde-nav-button waves-effect waves-light"><img src="' + GetURL("sources") +'/accounts.png" class="tde-nav-drawer-icon">Your Accounts</button><div class="tde-nav-divider"></div><button id="kbshortcuts" class="btn tde-nav-button waves-effect waves-light"><img src="'+ GetURL("sources") +'/KBshortcuts.png" class="tde-nav-drawer-icon">Keyboard Shortcuts</button><button id="addcolumn" class="btn tde-nav-button waves-effect waves-light"><img src="' + GetURL("sources") + '/AddColumn.png" class="tde-nav-drawer-icon">Add Column</button>';
 
   document.body.appendChild(TDENavigationDrawer);
 
@@ -794,6 +794,17 @@ function dxdiag() {
   openmodal.setAttribute("style","display: block;");
 }
 
+function materialise() {
+  injStyles = document.createElement("link");
+  injStyles.rel = "stylesheet";
+  injStyles.href = TDEBaseURL + "sources/materialise/materialise.css";
+  document.head.appendChild(injStyles);
+
+  injJS = document.createElement("script");
+  injJS.src = TDEBaseURL + "sources/materialise/materialize.min.js";
+  document.head.appendChild(injJS);
+}
+
 setTimeout(InjectRobotoFonts,0);
 setTimeout(PatchAudio,0);
 setTimeout(PatchSystem,300);
@@ -803,6 +814,7 @@ setTimeout(TDESecureVerif,300);
 setTimeout(MustachePatcher,500);
 setTimeout(YesFavicon,0);
 setTimeout(LoadPrefs,500);
+setTimeout(materialise,3000);
 
 document.getElementsByTagName("html")[0].className += " tde-preferences-differentiator tde-api-ver-5-2 tde-js-loaded";
 
