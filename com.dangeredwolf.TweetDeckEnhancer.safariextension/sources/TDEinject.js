@@ -77,10 +77,10 @@ function SendNotificationMessage(txt) {
 
 function InjectRobotoFonts() {
   InjectFonts = document.createElement("style");
-  InjectFonts.innerHTML = "@font-face{font-family:'RobotoDraft';font-style:normal;font-weight: 300;src:local('RobotoDraft Light'),local('RobotoDraft-Light'),url(" + TDEBaseURL + "sources/fonts/Roboto300latinext.woff2" + ") format('woff2');unicode-range:U+0100-024F,U+1E00-1EFF,U+20A0-20AB,U+20AD-20CF,U+2C60-2C7F,U+A720-A7FF;}@font-face{font-family:'RobotoDraft';\
+  InjectFonts.innerHTML = "@font-face{font-family:'RobotoDraft';font-style:normal;font-weight: 300;src:local('RobotoDraft Light'),local('RobotoDraft-Light'),url(" + TDEBaseURL + "sources/fonts/Roboto300latinext.woff2) format('woff2');unicode-range:U+0100-024F,U+1E00-1EFF,U+20A0-20AB,U+20AD-20CF,U+2C60-2C7F,U+A720-A7FF;}@font-face{font-family:'RobotoDraft';\
     font-style: normal;\
     font-weight: 300;\
-    src: local('RobotoDraft Light'), local('RobotoDraft-Light'), url(" + TDEBaseURL + "sources/fonts/Roboto300latin.woff2" + ") format('woff2');\
+    src: local('RobotoDraft Light'), local('RobotoDraft-Light'), url(" + TDEBaseURL + "sources/fonts/Roboto300latin.woff2) format('woff2');\
     unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;\
   }\
   /* latin-ext */\
@@ -88,7 +88,7 @@ function InjectRobotoFonts() {
     font-family: 'RobotoDraft';\
     font-style: normal;\
     font-weight: 400;\
-    src: local('RobotoDraft'), local('RobotoDraft-Regular'), url(" + TDEBaseURL + "sources/fonts/Roboto400latinext.woff2" + ") format('woff2');\
+    src: local('RobotoDraft'), local('RobotoDraft-Regular'), url(" + TDEBaseURL + "sources/fonts/Roboto400latinext.woff2) format('woff2');\
     unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;\
   }\
   /* latin */\
@@ -96,7 +96,7 @@ function InjectRobotoFonts() {
     font-family: 'RobotoDraft';\
     font-style: normal;\
     font-weight: 400;\
-    src: local('RobotoDraft'), local('RobotoDraft-Regular'), url(" + TDEBaseURL + "sources/fonts/Roboto400latin.woff2" + ") format('woff2');\
+    src: local('RobotoDraft'), local('RobotoDraft-Regular'), url(" + TDEBaseURL + "sources/fonts/Roboto400latin.woff2) format('woff2');\
     unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;\
   }\
   /* latin-ext */\
@@ -104,7 +104,7 @@ function InjectRobotoFonts() {
     font-family: 'RobotoDraft';\
     font-style: normal;\
     font-weight: 500;\
-    src: local('RobotoDraft Medium'), local('RobotoDraft-Medium'), url(" + TDEBaseURL + "sources/fonts/Roboto500latinext.woff2" + ") format('woff2');\
+    src: local('RobotoDraft Medium'), local('RobotoDraft-Medium'), url(" + TDEBaseURL + "sources/fonts/Roboto500latinext.woff2) format('woff2');\
     unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;\
   }\
   /* latin */\
@@ -112,7 +112,7 @@ function InjectRobotoFonts() {
     font-family: 'RobotoDraft';\
     font-style: normal;\
     font-weight: 500;\
-    src: local('RobotoDraft Medium'), local('RobotoDraft-Medium'), url(" + TDEBaseURL + "sources/fonts/Roboto500latin.woff2" + ") format('woff2');\
+    src: local('RobotoDraft Medium'), local('RobotoDraft-Medium'), url(" + TDEBaseURL + "sources/fonts/Roboto500latin.woff2) format('woff2');\
     unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;\
   }\
   /* latin-ext */\
@@ -120,7 +120,7 @@ function InjectRobotoFonts() {
     font-family: 'RobotoDraft';\
     font-style: normal;\
     font-weight: 700;\
-    src: local('RobotoDraft Bold'), local('RobotoDraft-Bold'), url(" + TDEBaseURL + "sources/fonts/Roboto700latinext.woff2" + ") format('woff2');\
+    src: local('RobotoDraft Bold'), local('RobotoDraft-Bold'), url(" + TDEBaseURL + "sources/fonts/Roboto700latinext.woff2) format('woff2');\
     unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;\
   }\
   /* latin */\
@@ -128,8 +128,15 @@ function InjectRobotoFonts() {
     font-family: 'RobotoDraft';\
     font-style: normal;\
     font-weight: 700;\
-    src: local('RobotoDraft Bold'), local('RobotoDraft-Bold'), url(" + TDEBaseURL + "sources/fonts/Roboto700latin.woff2" + ") format('woff2');\
+    src: local('RobotoDraft Bold'), local('RobotoDraft-Bold'), url(" + TDEBaseURL + "sources/fonts/Roboto700latin.woff2) format('woff2');\
     unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;\
+  }\
+  /* material icons */\
+  @font-face {\
+    font-family: 'Material Icons';\
+    font-style: normal;\
+    font-weight: 400;\
+    src: local('Material Icons'), local('MaterialIcons-Regular'), url(" + TDEBaseURL + "sources/fonts/MaterialIcons.woff2) format('woff2');\
   }";
 
   document.head.appendChild(InjectFonts);
@@ -178,7 +185,7 @@ function WorldTick(){
     }
   }
 
-  setTimeout(WorldTick,500);
+  setTimeout(WorldTick,600);
 }
 
 
@@ -470,7 +477,7 @@ function NavigationSetup() {
   var TDENavigationDrawerButton = document.createElement("a");
   TDENavigationDrawerButton.id = "tde-navigation-drawer-button";
   TDENavigationDrawerButton.setAttribute("class","js-header-action tde-drawer-button link-clean cf app-nav-link");
-  TDENavigationDrawerButton.innerHTML = '<div class="obj-left"> <img src="'+ GetURL("sources") +'/navbutton.png" class="tde-nav-activator"> </div> <div class="nbfc padding-ts hide-condensed"></div>';
+  TDENavigationDrawerButton.innerHTML = '<div class="obj-left"><div class="tde-nav-activator"></div><div class="nbfc padding-ts"></div>';
 
   document.getElementsByClassName("app-header-inner")[0].appendChild(TDENavigationDrawerButton);
 
@@ -794,15 +801,18 @@ function dxdiag() {
   openmodal.setAttribute("style","display: block;");
 }
 
-function materialise() {
-  injStyles = document.createElement("link");
-  injStyles.rel = "stylesheet";
-  injStyles.href = TDEBaseURL + "sources/materialise/materialise.css";
-  document.head.appendChild(injStyles);
+function outtaSpaceSuggestions() {
+  if (parseInt($(".character-count-compose")[0].value) < 0) {
 
-  injJS = document.createElement("script");
-  injJS.src = TDEBaseURL + "sources/materialise/materialize.min.js";
-  document.head.appendChild(injJS);
+    if (typeof $(".tde-out-of-space-suggestions")[0] === "undefined") {
+      NoCharsNotification = document.createElement("div");
+    }
+
+  } else if (typeof $(".tde-out-of-space-suggestions")[0] !== "undefined" || parseInt($(".character-count-compose")[0].value) >= 0) {
+    $(".tde-out-of-space-suggestions")[0].remove();
+  }
+
+  setTimeout(outtaSpaceSuggestions,2000);
 }
 
 setTimeout(InjectRobotoFonts,0);
@@ -814,7 +824,7 @@ setTimeout(TDESecureVerif,300);
 setTimeout(MustachePatcher,500);
 setTimeout(YesFavicon,0);
 setTimeout(LoadPrefs,500);
-setTimeout(materialise,3000);
+setTimeout(outtaSpaceSuggestions,7000);
 
 document.getElementsByTagName("html")[0].className += " tde-preferences-differentiator tde-api-ver-5-2 tde-js-loaded";
 

@@ -21,7 +21,7 @@ button[data-user-id="892388300"],a.pull-left.margin-txs.txt-mute.txt-small.is-vi
 	display:none!important
 }
 
-.edit-conversation-name.is-visible .nbfc,.prf-img img,.has-value .input-clear-control,.sch.s-searching .sch-spinner,.search-input-control.has-value .search-input-clear-search,.search-input-control.is-waiting-for-response .search-input-spinner,.s-working .working,.s-nonmember .nonmember,.s-member .member,.s-message-to .cmp-message,.s-photo-added .cmp-info,.s-link-added .cmp-info,.s-inreply .cmp-replyto,.migrate-account-login-step-3 .migrate-tweetdeck-account-warning-wrapper .migrate-account-login-forms-cancel,.migrate-account-login-step-3 .migrate-tweetdeck-account-warning-wrapper,.migrate-account-login-step-1 .migrate-account-login-tweetdeck-form .migrate-account-login-forms-cancel,.migrate-account-login-step-2 .migrate-account-login-twitter-form .migrate-account-login-forms-cancel,.is-expanded .accordion-panel,.app-search-in-popover,.rpl.s-replying .rpl-actions,.accordion .is-active .icon-arrow-u,.img-strip-media img,.contributor-row[data-state="closed"] [data-show-when-state="closed"],.contributor-row[data-state="settings"] [data-show-when-state="settings"],.contributor-row[data-state="settings"] [data-show-when-state="settings confirmRemove"],.contributor-row[data-state="confirmRemove"] [data-show-when-state="settings confirmRemove"],.contributor-row[data-state-error="confirmRemove-removing-error"] [data-show-when-state-error="confirmRemove-removing-error"],.contributor-row[data-state="confirmRemove-removing"] [data-show-when-state="confirmRemove-removing"],.contributor-row[data-state-error="confirmRemove-error"] [data-show-when-state-error="confirmRemove-error"],.contributor-row[data-state="confirmRemove"] [data-show-when-state="confirmRemove"],.contributor-row[data-state="confirmRemove-removing"] [data-show-when-state="confirmRemove"],.contributor-row[data-state-error="confirmDeadmin-error"] [data-show-when-state-error="confirmDeadmin-error"],w.contributor-row[data-state="confirmDeadmin"] [data-show-when-state="confirmDeadmin"],.contributor-row[data-state-error="confirmAdd-added-error"] [data-show-when-state-error="confirmAdd-added-error"],.contributor-row[data-state="confirmAdd-added"] [data-show-when-state="confirmAdd-added"],.contributor-row[data-state="confirmAdd"] [data-show-when-state="confirmAdd"],.contributor-row[data-state-error="confirmAdd-error"] [data-show-when-state-error="confirmAdd-error"],.s-pending .pending-text,.s-blocking .follow-btn:hover .unblock-text,.s-blocking .block-text,.s-following .follow-btn:hover .unfollow-text,.s-following .following-text,.s-not-favorited .btn-fav-fav-text,.s-favorited .btn-fav-faved-text,.s-protected .btn-fav-protected-text,.btn-fav.s-favorited:hover .btn-fav-unfav-text,.cf,article,aside,details,figcaption,figure,footer,header,hgroup,nav,section,summary {
+.s-thats-you .thats-you-text,.edit-conversation-name.is-visible .nbfc,.prf-img img,.has-value .input-clear-control,.sch.s-searching .sch-spinner,.search-input-control.has-value .search-input-clear-search,.search-input-control.is-waiting-for-response .search-input-spinner,.s-working .working,.s-nonmember .nonmember,.s-member .member,.s-message-to .cmp-message,.s-photo-added .cmp-info,.s-link-added .cmp-info,.s-inreply .cmp-replyto,.migrate-account-login-step-3 .migrate-tweetdeck-account-warning-wrapper .migrate-account-login-forms-cancel,.migrate-account-login-step-3 .migrate-tweetdeck-account-warning-wrapper,.migrate-account-login-step-1 .migrate-account-login-tweetdeck-form .migrate-account-login-forms-cancel,.migrate-account-login-step-2 .migrate-account-login-twitter-form .migrate-account-login-forms-cancel,.is-expanded .accordion-panel,.app-search-in-popover,.rpl.s-replying .rpl-actions,.accordion .is-active .icon-arrow-u,.img-strip-media img,.contributor-row[data-state="closed"] [data-show-when-state="closed"],.contributor-row[data-state="settings"] [data-show-when-state="settings"],.contributor-row[data-state="settings"] [data-show-when-state="settings confirmRemove"],.contributor-row[data-state="confirmRemove"] [data-show-when-state="settings confirmRemove"],.contributor-row[data-state-error="confirmRemove-removing-error"] [data-show-when-state-error="confirmRemove-removing-error"],.contributor-row[data-state="confirmRemove-removing"] [data-show-when-state="confirmRemove-removing"],.contributor-row[data-state-error="confirmRemove-error"] [data-show-when-state-error="confirmRemove-error"],.contributor-row[data-state="confirmRemove"] [data-show-when-state="confirmRemove"],.contributor-row[data-state="confirmRemove-removing"] [data-show-when-state="confirmRemove"],.contributor-row[data-state-error="confirmDeadmin-error"] [data-show-when-state-error="confirmDeadmin-error"],w.contributor-row[data-state="confirmDeadmin"] [data-show-when-state="confirmDeadmin"],.contributor-row[data-state-error="confirmAdd-added-error"] [data-show-when-state-error="confirmAdd-added-error"],.contributor-row[data-state="confirmAdd-added"] [data-show-when-state="confirmAdd-added"],.contributor-row[data-state="confirmAdd"] [data-show-when-state="confirmAdd"],.contributor-row[data-state-error="confirmAdd-error"] [data-show-when-state-error="confirmAdd-error"],.s-pending .pending-text,.s-blocking .follow-btn:hover .unblock-text,.s-blocking .block-text,.s-following .follow-btn:hover .unfollow-text,.s-following .following-text,.s-not-favorited .btn-fav-fav-text,.s-favorited .btn-fav-faved-text,.s-protected .btn-fav-protected-text,.btn-fav.s-favorited:hover .btn-fav-unfav-text,.cf,article,aside,details,figcaption,figure,footer,header,hgroup,nav,section,summary {
 	display:block
 }
 
@@ -5124,25 +5124,24 @@ a .column-title-back .icon:after {
 }
 
 .tweet-button .icon-compose:before {
-	content:"...";
-	color:transparent;
-	background:url(https://dangeredwolf.com/assets/TDE5/compose.png) no-repeat;
-	background:url(compose.png) no-repeat;
-	background-size:24px;
-	margin-left:4px;
-	margin-top:4px;
-	width:26px;
+	content:"\E3C9";
+	font-family:"Material Icons";
+	font-size: 32px;
+	color:#fff;
+	margin-top: 2px;
+	width: 26px;
 	height:26px;
 	position:absolute;
 	transition:150ms all cubic-bezier(.19,1,.22,1);
-	transform:scale(0.85,0.85) rotate(360deg)
+	transform:scale(0.85,0.85) rotate(360deg);
+	text-align:center
 }
 
 .tweet-button .icon-compose:after {
-	content:"...";
-	color:transparent;
-	background:url(https://dangeredwolf.com/assets/tweetdeck/img/back.png) no-repeat;
-	background:url(back.png) no-repeat;
+	content:"\E5C4";
+	font-family:"Material Icons";
+	font-size: 32px;
+	color:#fff;
 	margin-left:10px;
 	margin-top:5px;
 	width:26px;
@@ -5151,6 +5150,9 @@ a .column-title-back .icon:after {
 	z-index:1001;
 	background-size:26px 26px;
 	transition:250ms all cubic-bezier(.19,1,.22,1);
+	font-style:normal;
+	-webkit-font-feature-settings:'liga';
+	-webkit-font-smoothing:antialiased;
 	opacity:0
 }
 
@@ -10527,8 +10529,20 @@ button#emojiButton:active .btd-icon-smile {
 	width:20px;
 	height:20px;
 	margin-left:7px;
-	margin-top:5px
+	margin-top:-2px
 }
+
+.tde-nav-activator:before {
+	-webkit-font-feature-settings:'liga';
+	-webkit-font-smoothing:antialiased;
+	font-style:normal;
+	font-size:26px;
+	font-weight:400;
+	font-family:"Material Icons";
+	content:"\E5D2";
+	color:#fff
+}
+
 
 .js-show-drawer.app-nav-tab {
 	opacity:0;
@@ -12079,26 +12093,22 @@ html.tde-dark body:not(.scroll-v) {
 	border-bottom:2px solid #eaeaea;
 }
 
-@media (max-width: 1250px) {
+@media (max-width:1250px) {
 	.mdl.s-full {
 		width:75%;
 	}
 }
 
-@media (max-width: 1000px) {
+@media (max-width:1000px) {
 	.mdl.s-full {
 		width:85%;
 	}
 }
 
-@media (max-width: 999px) {
+@media (max-width:999px) {
 	.mdl.s-full {
 		width:90%;
 	}
-}
-
-.s-thats-you .thats-you-text {
-	display: block;
 }
 
 .tde-dark .js-quote-tweet-holder .quoted-tweet {
