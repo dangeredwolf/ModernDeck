@@ -1,4 +1,4 @@
-/* TweetDeck Enhancer 5.3 [codename Horizon] 
+/* TweetDeck Enhancer 5.3 [codename Journey] 
 Copyright 2015 Dangered Wolf (@dangeredwolf)
 Released under the MIT License
 
@@ -676,30 +676,6 @@ enhancer.css */
 
 	to {
 		opacity:0
-	}
-}
-
-@-webkit-keyframes BackSplashAnimation {
-	from {
-		opacity:0;
-		transform:scale(0.5,0.5)
-	}
-
-	to {
-		opacity:1;
-		transform:scale(1,1)
-	}
-}
-
-@keyframes BackSplashAnimation {
-	from {
-		opacity:0;
-		transform:scale(0.5,0.5)
-	}
-
-	to {
-		opacity:1;
-		transform:scale(1,1)
 	}
 }
 
@@ -3461,7 +3437,6 @@ h6 {
 	width:22px;
 	height:22px;
 	font-size:0px;
-	image-rendering:optimizeSpeed;
 	z-index:99;
 	position:absolute;
 	top:15px;
@@ -3481,13 +3456,9 @@ a:active .column-title-back .icon:after {
 	margin-left:-9px;
 	border-radius:21px;
 	z-index:9;
-	-webkit-animation:BackSplashAnimation 0.25s cubic-bezier(.19,1,.22,1);
-	animation:BackSplashAnimation 0.25s cubic-bezier(.19,1,.22,1);
+	transform:scale(1);
+	opacity:1;
 	transition:100ms all
-}
-
-.os-windows a:active .column-title-back .icon:after {
-	margin-left:-9px
 }
 
 a .column-title-back .icon:after {
@@ -3500,6 +3471,8 @@ a .column-title-back .icon:after {
 	margin-left:-19px;
 	border-radius:16px;
 	z-index:9;
+	transform:scale(0.5);
+	opacity:0;
 	transition:200ms all
 }
 
@@ -3941,7 +3914,7 @@ a .column-title-back .icon:after {
 }
 
 .stream-item.is-actionable {
-	border-top:6px solid transparent
+	margin-top:6px
 }
 
 .js-replies-before .stream-item {
@@ -9446,7 +9419,7 @@ input[type="checkbox"] {
 	animation:none
 }
 
-div.js-replies-to.replies-after article.stream-item.is-actionable {
+.replies-after .stream-item.is-actionable {
 	-webkit-animation:herecomesthetweetdetailssmall 0.4s 1 cubic-bezier(.19,1,.22,1);
 	animation:herecomesthetweetdetailssmall 0.4s 1 cubic-bezier(.19,1,.22,1)
 }
@@ -9595,7 +9568,6 @@ div.js-replies-to.replies-after article.stream-item.is-actionable {
 	font-size:0px;
 	background-size:25px!important;
 	margin-left:10px;
-	image-rendering:optimizeSpeed;
 	z-index:99
 }
 
@@ -10219,7 +10191,6 @@ button.js-send-tweet-button.js-spinner-button.js-show-tip.btn.btn-positive.btn-e
 	width:22px;
 	height:22px;
 	font-size:0px;
-	image-rendering:optimizeSpeed;
 	z-index:99;
 	position:absolute;
 	top:15px;
