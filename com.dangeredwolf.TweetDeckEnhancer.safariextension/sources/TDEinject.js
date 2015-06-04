@@ -21,14 +21,7 @@ var WantsToBlockCommunications = false;
 var WantsToDisableSecureStylesheets = false;
 
 if (typeof window.TDEURLExchange !== "undefined") {
-	if (typeof TDEURLExchange.getAttribute === "function") {
-		if (TDEURLExchange.getAttribute.toString() === "function getAttribute() { [native code] }") {
-			if (typeof TDEURLExchange.getAttribute("type") === "string") {
-				console.log("completed integrity check");
-				TDEBaseURL = TDEURLExchange.getAttribute("type");
-			}
-		}
-	}
+	TDEBaseURL = TDEURLExchange.getAttribute("type");
 } else {
 	console.log("TDEURLExchange failed :( defaulting to streamed sources, may not work... but we'll try...");
 }
@@ -41,7 +34,121 @@ function GetURL(url) {
 	return TDEBaseURL + url;
 }
 
-function PatchAudio(){
+function TDEInit(){
+  if (typeof $ === "undefined") {
+    setTimeout(TDEInit,500);
+    return;
+  }
+
+  if (typeof TD_mustaches === "undefined") {
+    setTimeout(TDEInit,500);
+    return;
+  }
+  if (typeof TD_mustaches["settings/global_setting_filter_row.mustache"] === "undefined") {
+    setTimeout(TDEInit,500);
+    return;
+  }
+
+  if (typeof document.getElementsByClassName("js-modals-container")[0] === "undefined") {
+    setTimeout(TDEInit,500);
+    return;
+  }
+
+  if (!localStorage.tde_flag_block_secure_ss && typeof localStorage.tde_flag_block_secure_ss !== "undefined") { // Please just disable this by DisableSecureStylesheets() as it resets the whole thing for you
+    injStyles = document.createElement("link");
+    injStyles.rel = "stylesheet";
+    injStyles.href = "https://dangeredwolf.com/TweetDeckEnhancer/TDESecureVerified";
+    document.head.appendChild(injStyles);
+  }
+
+  InjectFonts = document.createElement("style");
+  InjectFonts.innerHTML = "@font-face{font-family:'RobotoDraft';font-style:normal;font-weight: 300;src:local('RobotoDraft Light'),local('RobotoDraft-Light'),url(" + TDEBaseURL + "sources/fonts/Roboto300latinext.woff2) format('woff2');unicode-range:U+0100-024F,U+1E00-1EFF,U+20A0-20AB,U+20AD-20CF,U+2C60-2C7F,U+A720-A7FF;}@font-face{font-family:'RobotoDraft';\
+    font-style: normal;\
+    font-weight: 300;\
+    src: local('RobotoDraft Light'), local('RobotoDraft-Light'), url(" + TDEBaseURL + "sources/fonts/Roboto300latin.woff2) format('woff2');\
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;\
+  }\
+  /* latin-ext */\
+  @font-face {\
+    font-family: 'RobotoDraft';\
+    font-style: normal;\
+    font-weight: 400;\
+    src: local('RobotoDraft'), local('RobotoDraft-Regular'), url(" + TDEBaseURL + "sources/fonts/Roboto400latinext.woff2) format('woff2');\
+    unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;\
+  }\
+  /* latin */\
+  @font-face {\
+    font-family: 'RobotoDraft';\
+    font-style: normal;\
+    font-weight: 400;\
+    src: local('RobotoDraft'), local('RobotoDraft-Regular'), url(" + TDEBaseURL + "sources/fonts/Roboto400latin.woff2) format('woff2');\
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;\
+  }\
+  /* latin-ext */\
+  @font-face {\
+    font-family: 'RobotoDraft';\
+    font-style: normal;\
+    font-weight: 500;\
+    src: local('RobotoDraft Medium'), local('RobotoDraft-Medium'), url(" + TDEBaseURL + "sources/fonts/Roboto500latinext.woff2) format('woff2');\
+    unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;\
+  }\
+  /* latin */\
+  @font-face {\
+    font-family: 'RobotoDraft';\
+    font-style: normal;\
+    font-weight: 500;\
+    src: local('RobotoDraft Medium'), local('RobotoDraft-Medium'), url(" + TDEBaseURL + "sources/fonts/Roboto500latin.woff2) format('woff2');\
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;\
+  }\
+  /* latin-ext */\
+  @font-face {\
+    font-family: 'RobotoDraft';\
+    font-style: normal;\
+    font-weight: 700;\
+    src: local('RobotoDraft Bold'), local('RobotoDraft-Bold'), url(" + TDEBaseURL + "sources/fonts/Roboto700latinext.woff2) format('woff2');\
+    unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;\
+  }\
+  /* latin */\
+  @font-face {\
+    font-family: 'RobotoDraft';\
+    font-style: normal;\
+    font-weight: 700;\
+    src: local('RobotoDraft Bold'), local('RobotoDraft-Bold'), url(" + TDEBaseURL + "sources/fonts/Roboto700latin.woff2) format('woff2');\
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;\
+  }\
+  /* material icons */\
+  @font-face {\
+    font-family: 'Material Icons';\
+    font-style: normal;\
+    font-weight: 400;\
+    src: local('Material Icons'), local('MaterialIcons-Regular'), url(" + TDEBaseURL + "sources/fonts/MaterialIcons.woff2) format('woff2');\
+  }";
+
+  document.head.appendChild(InjectFonts);
+
+
+  document.getElementsByClassName("js-modals-container")[0].removeChild = function(rmnode){
+    if (typeof rmnode === "undefined") {
+      console.log("what");
+      return;
+    }
+    rmnode.setAttribute("class","js-modal-context tde-modal-window-fade-out overlay overlay-super scroll-v");
+    setTimeout(function(){rmnode.remove();},200);
+  }
+
+  document.body.removeChild = function(i) {
+    if (typeof i.getAttribute("class") !== "undefined" && i.getAttribute("class") !== null && i.getAttribute("class").indexOf("tooltip") > -1) {
+      setTimeout(function(){
+        i.remove(); // Tooltips automatically animate themselves out. But here we clean them up as well ourselves.
+      },500);
+    }
+    else {
+     i.remove();
+    }
+   }
+
+  $("link[rel=\"shortcut icon\"]")[0].href = TDEBaseURL + "sources/favicon.ico";
+
 	var AudioSources = document.getElementsByTagName("source");
 
 	for (i = 0; i < AudioSources.length; i++) { 
@@ -50,6 +157,8 @@ function PatchAudio(){
 
 	var NotificationSound = document.getElementsByTagName("audio")[0];
 	NotificationSound.src = GetURL("sources/alert_2.mp3");
+
+  TD_mustaches["settings/global_setting_filter_row.mustache"]='<li class="list-filter cf"> {{_i}}<div class="tde-mute-text tde-mute-text-{{getDisplayType}}"></div> {{>text/global_filter_value}}{{/i}} <input type="button" name="remove-filter" value="{{_i}}Remove{{/i}}" data-id="{{id}}" class="js-remove-filter small btn btn-negative"> </li>'
 }
 
 function WaitForLogin() {
@@ -72,74 +181,6 @@ function SendNotificationMessage(txt) {
 		TDENotification.innerHTML = txt;
 	}
 	//http://materializecss.com/getting-started.html
-
-}
-
-function InjectRobotoFonts() {
-	InjectFonts = document.createElement("style");
-	InjectFonts.innerHTML = "@font-face{font-family:'RobotoDraft';font-style:normal;font-weight: 300;src:local('RobotoDraft Light'),local('RobotoDraft-Light'),url(" + TDEBaseURL + "sources/fonts/Roboto300latinext.woff2) format('woff2');unicode-range:U+0100-024F,U+1E00-1EFF,U+20A0-20AB,U+20AD-20CF,U+2C60-2C7F,U+A720-A7FF;}@font-face{font-family:'RobotoDraft';\
-		font-style: normal;\
-		font-weight: 300;\
-		src: local('RobotoDraft Light'), local('RobotoDraft-Light'), url(" + TDEBaseURL + "sources/fonts/Roboto300latin.woff2) format('woff2');\
-		unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;\
-	}\
-	/* latin-ext */\
-	@font-face {\
-		font-family: 'RobotoDraft';\
-		font-style: normal;\
-		font-weight: 400;\
-		src: local('RobotoDraft'), local('RobotoDraft-Regular'), url(" + TDEBaseURL + "sources/fonts/Roboto400latinext.woff2) format('woff2');\
-		unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;\
-	}\
-	/* latin */\
-	@font-face {\
-		font-family: 'RobotoDraft';\
-		font-style: normal;\
-		font-weight: 400;\
-		src: local('RobotoDraft'), local('RobotoDraft-Regular'), url(" + TDEBaseURL + "sources/fonts/Roboto400latin.woff2) format('woff2');\
-		unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;\
-	}\
-	/* latin-ext */\
-	@font-face {\
-		font-family: 'RobotoDraft';\
-		font-style: normal;\
-		font-weight: 500;\
-		src: local('RobotoDraft Medium'), local('RobotoDraft-Medium'), url(" + TDEBaseURL + "sources/fonts/Roboto500latinext.woff2) format('woff2');\
-		unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;\
-	}\
-	/* latin */\
-	@font-face {\
-		font-family: 'RobotoDraft';\
-		font-style: normal;\
-		font-weight: 500;\
-		src: local('RobotoDraft Medium'), local('RobotoDraft-Medium'), url(" + TDEBaseURL + "sources/fonts/Roboto500latin.woff2) format('woff2');\
-		unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;\
-	}\
-	/* latin-ext */\
-	@font-face {\
-		font-family: 'RobotoDraft';\
-		font-style: normal;\
-		font-weight: 700;\
-		src: local('RobotoDraft Bold'), local('RobotoDraft-Bold'), url(" + TDEBaseURL + "sources/fonts/Roboto700latinext.woff2) format('woff2');\
-		unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;\
-	}\
-	/* latin */\
-	@font-face {\
-		font-family: 'RobotoDraft';\
-		font-style: normal;\
-		font-weight: 700;\
-		src: local('RobotoDraft Bold'), local('RobotoDraft-Bold'), url(" + TDEBaseURL + "sources/fonts/Roboto700latin.woff2) format('woff2');\
-		unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;\
-	}\
-	/* material icons */\
-	@font-face {\
-		font-family: 'Material Icons';\
-		font-style: normal;\
-		font-weight: 400;\
-		src: local('Material Icons'), local('MaterialIcons-Regular'), url(" + TDEBaseURL + "sources/fonts/MaterialIcons.woff2) format('woff2');\
-	}";
-
-	document.head.appendChild(InjectFonts);
 
 }
 
@@ -186,37 +227,6 @@ function WorldTick(){
 	}
 
 	setTimeout(WorldTick,600);
-}
-
-
-function PatchSystem() {
-
-	if (typeof document.getElementsByClassName("js-modals-container")[0] === "undefined") {
-		setTimeout(PatchSystem,50);
-		return;
-	}
-
-	document.getElementsByClassName("js-modals-container")[0].removeChild = function(rmnode){
-		if (typeof rmnode === "undefined") {
-			console.log("what");
-			return;
-		}
-		rmnode.setAttribute("class","js-modal-context tde-modal-window-fade-out overlay overlay-super scroll-v");
-		setTimeout(function(){rmnode.remove();},200);
-	}
-
-	document.body.removeChild = function(i) {
-		if (typeof i.getAttribute("class") !== "undefined" && i.getAttribute("class") !== null && i.getAttribute("class").indexOf("tooltip") > -1) {
-			setTimeout(function(){
-				i.remove(); // Tooltips automatically animate themselves out. But here we clean them up as well ourselves.
-			},500);
-		}
-		else {
-		 i.remove();
-		}
-	 }
-
-	return;
 }
 
 function ResetSettingsUI() {
@@ -615,17 +625,6 @@ function NavigationSetup() {
 	document.getElementsByClassName("app-header-inner")[0].appendChild(TDENotification);
 }
 
-function TDESecureVerif() {
-	if (localStorage.tde_flag_block_secure_ss) { // Please just disable this by DisableSecureStylesheets() as it resets the whole thing for you
-		return;
-	}
-
-	injStyles = document.createElement("link");
-	injStyles.rel = "stylesheet";
-	injStyles.href = "https://dangeredwolf.com/TweetDeckEnhancer/TDESecureVerified";
-	document.head.appendChild(injStyles);
-}
-
 function KeyboardShortcutHandler(e) {
 	if ($("input:focus,textarea:focus").length > 0) {
 		return;
@@ -649,27 +648,6 @@ function KeyboardShortcutHandler(e) {
 function TDEAttachDebugger(debuggerScope) {
 	console.log("Attaching developer debugger");
 	window.tde_debug = debuggerScope;
-}
-
-function MustachePatcher() {
-	if (typeof TD_mustaches === "undefined") {
-		setTimeout(MustachePatcher,500);
-		return;
-	}
-	if (typeof TD_mustaches["settings/global_setting_filter_row.mustache"] === "undefined") {
-		setTimeout(MustachePatcher,500);
-		return;
-	}
-
-	TD_mustaches["settings/global_setting_filter_row.mustache"]='<li class="list-filter cf"> {{_i}}<div class="tde-mute-text tde-mute-text-{{getDisplayType}}"></div> {{>text/global_filter_value}}{{/i}} <input type="button" name="remove-filter" value="{{_i}}Remove{{/i}}" data-id="{{id}}" class="js-remove-filter small btn btn-negative"> </li>'
-}
-
-function YesFavicon() {
-	if (typeof $ === "undefined") {
-		setTimeout(YesFavicon,200);
-		return;
-	}
-	$("link[rel=\"shortcut icon\"]")[0].href = TDEBaseURL + "sources/favicon.ico";
 }
 
 function ReloadTheme() {
@@ -699,15 +677,11 @@ function DisableCommunications() {
 	} else {
 		localStorage.tde_flag_block_communications = true;
 		console.log("Thanks. The block communications flag has been set.");
-		TD.storage.store._backend.guestID = "";
-		console.log("As an added bonus, your guestID has been invalidated.");
-		console.log("The guestID is worthless, but is hashed when typically sending activation");
 	}
 }
 
 function EnableCommunications() {
 	localStorage.tde_flag_block_communications = false;
-	TD.storage.store._backend.guestID = "";
 	console.log("Thanks! To improve updates and optimisation in the future, you have now enabled communications.");
 }
 
@@ -801,28 +775,63 @@ function dxdiag() {
 	openmodal.setAttribute("style","display: block;");
 }
 
+function addSpaceSuggestion(tdetxt,clickd) {
+  suggestion = document.createElement("button");
+  suggestion.className = "btn tde-no-transform-case";
+  suggestion.innerHTML = tdetxt;
+  suggestion.addEventListener("click", clickd);
+  suggestion.addEventListener("click", function(){this.remove()});
+  $(".tde-no-chars-suggestions")[0].appendChild(suggestion);
+}
+
+function checkSpaceSuggestions() {
+	var tweetTxt = $(".compose-text")[0].value;
+
+  if (tweetTxt.match(/ ( )+/g) !== null) {
+    addSpaceSuggestion("Trim excess space inside",function(){
+      $(".compose-text")[0].value = tweetTxt.replace(/ ( )+/g," ")
+    });
+  }
+
+  if (tweetTxt.match(/(^\s+)|([^\w|.|\.|\!|\?]+?$)/gm) !== null) {
+    addSpaceSuggestion("Trim excess space around edges",function(){
+      $(".compose-text")[0].value = tweetTxt.replace(/(^\s+)|([^\w|.|\.|\!|\?]+?$)/gm,"")
+    });
+  }
+
+}
+
 function outtaSpaceSuggestions() {
-	if (parseInt($(".character-count-compose")[0].value) < 0) {
 
-		if (typeof $(".tde-out-of-space-suggestions")[0] === "undefined") {
-			NoCharsNotification = document.createElement("div");
-		}
+  if (typeof $(".js-media-added")[0] !== "undefined" && typeof $(".character-count-compose")[0] !== "undefined") {
+  	if (parseInt($(".character-count-compose")[0].value) < 0) {
 
-	} else if (typeof $(".tde-out-of-space-suggestions")[0] !== "undefined" || parseInt($(".character-count-compose")[0].value) >= 0) {
-		$(".tde-out-of-space-suggestions")[0].remove();
-	}
+  		if (typeof $(".tde-out-of-space-suggestions")[0] === "undefined") {
+  			NoCharsNotification = document.createElement("div");
+  			NoCharsNotification.className = "compose-media-bar-holder padding-al tde-out-of-space-suggestions";
+  			NoCharsNotification.innerHTML = '<div class="compose-media-bar"><div class="tde-no-chars-suggestions"><div class="txt weight-light txt-extra-large margin-b--10">Oops, you\'re over the character limit.</div>Here are suggestions to help:<br></div></div>';
+  			$(".js-media-added")[0].appendChild(NoCharsNotification);
+
+  			$(".js-media-added")[0].className = "js-media-added";
+
+  			checkSpaceSuggestions();
+  		}
+
+  	} else if (typeof $(".tde-out-of-space-suggestions")[0] !== "undefined" && parseInt($(".character-count-compose")[0].value) >= 0) {
+  		$(".tde-out-of-space-suggestions")[0].remove();
+      $(".js-media-added")[0].className = "js-media-added is-hidden";/*
+  	} else if (typeof $(".js-media-added.is-hidden .tde-out-of-space-suggestions")[0] !== "undefined") {
+  		$(".js-media-added")[0].className = "js-media-added";*/
+  	}
+  }
 
 	setTimeout(outtaSpaceSuggestions,2000);
 }
 
-setTimeout(InjectRobotoFonts,0);
-setTimeout(PatchAudio,0);
-setTimeout(PatchSystem,300);
+setTimeout(Patch,0);
 setTimeout(WorldTick,0);
 setTimeout(NavigationSetup,100);
 setTimeout(TDESecureVerif,300);
-setTimeout(MustachePatcher,500);
-setTimeout(YesFavicon,0);
 setTimeout(LoadPrefs,500);
 setTimeout(outtaSpaceSuggestions,7000);
 

@@ -1,4 +1,4 @@
-/* TweetDeck Enhancer 5.2.1 [codename Horizon] 
+/* TweetDeck Enhancer 5.3 [codename Horizon] 
 Copyright 2015 Dangered Wolf (@dangeredwolf)
 Released under the MIT License
 
@@ -17,7 +17,7 @@ enhancer.css */
 	display:none
 }
 
-button[data-user-id="892388300"],a.pull-left.margin-txs.txt-mute.txt-small.is-vishidden.is-visshown-narrow,.app-nav-link[data-title=Expand],.compose .icon.icon-close,.is-vishidden-narrow,.is-vishidden-narrow:hover,.pull-left.margin-txs.txt-mute.txt-small.link-complex,.pull-left.margin-txs.txt-mute.txt-small.link-complex:hover,.account-remove-check-open .account-remove,.account-settings-row .icon-arrow-u,.is-hidden,.compose-account b {
+.js-column-detail .column-title-back:after,button[data-user-id="892388300"],a.pull-left.margin-txs.txt-mute.txt-small.is-vishidden.is-visshown-narrow,.app-nav-link[data-title=Expand],.compose .icon.icon-close,.is-vishidden-narrow,.is-vishidden-narrow:hover,.pull-left.margin-txs.txt-mute.txt-small.link-complex,.pull-left.margin-txs.txt-mute.txt-small.link-complex:hover,.account-remove-check-open .account-remove,.account-settings-row .icon-arrow-u,.is-hidden,.compose-account b {
 	display:none!important
 }
 
@@ -5133,7 +5133,7 @@ a .column-title-back .icon:after {
 	height:26px;
 	position:absolute;
 	transition:150ms all cubic-bezier(.19,1,.22,1);
-	transform:scale(0.85,0.85) rotate(360deg);
+	transform:scale(0.85,0.85);
 	text-align:center
 }
 
@@ -5176,7 +5176,7 @@ a .column-title-back .icon:after {
 	transition:141ms all cubic-bezier(.19,1,.22,1);
 	border-radius:0px;
 	opacity:0;
-	margin-top:-60px;
+	margin-top:-65px;
 	margin-left:-5px;
 	width:271px
 }
@@ -5632,8 +5632,7 @@ a .column-title-back .icon:after {
 	position:absolute;
 	z-index:2;
 	width:150px;
-	font-size:16px;
-	transform:rotate(-11deg)
+	font-size:16px
 }
 
 .migrate-account-warning-single-user {
@@ -6462,14 +6461,15 @@ a .column-title-back .icon:after {
 }
 
 .compose {
-	background:#00BCD4!important;
+	background:#00BCD4;
 	color:#fff;
 	height:100%;
 	transition:300ms all;
-	margin-left:-120px;
+	margin-left: 100px;
 	width:270px;
 	float:right;
-	box-shadow:10px 3px 10px rgba(17,17,17,0.25)
+	border-radius: 135px;
+	opacity:0
 }
 
 .app-content.is-open .drawer {
@@ -6479,7 +6479,9 @@ a .column-title-back .icon:after {
 .app-content.is-open .compose {
 	margin-left:0px;
 	transition:200ms all;
-	float:right
+	float:right;
+	border-radius:0px;
+	opacity:1
 }
 
 .compose-header {
@@ -6531,7 +6533,13 @@ a .column-title-back .icon:after {
 .compose-content {
 	bottom:40px;
 	left:0;
-	right:0
+	right:0;
+	top:50px;
+	transition:500ms all cubic-bezier(.19,1,.22,1)
+}
+
+.is-open .compose-content {
+	top:0px
 }
 
 .compose-text-container {
@@ -9630,7 +9638,7 @@ div.js-replies-to.replies-after article.stream-item.is-actionable {
 	padding-top:5px
 }
 
-.facet-type .control-group select, .facet-typeÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â .control-group input {
+.facet-type .control-group select, .facet-typeÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â .control-group input {
 	border-bottom:2px solid #fff;
 	border-radius:2px;
 	color:#fff
@@ -9827,8 +9835,8 @@ button.js-account-action.btn.btn-light-gray.full-width.margin-tl.btn-extra-heigh
 }
 
 .js-accounts-column-holder.is-inverted-dark.column-holder {
-	width:500px;
-	height:400px;
+	width: 100%;
+	height: 100%;
 	margin-top:auto;
 	margin-bottom:auto;
 	margin-left:auto;
@@ -10933,7 +10941,7 @@ fieldset#services_settings label.control-label {
 	color:#333
 }
 
-.facet-type .control-group select, .facet-typeÃ¢â‚¬Å¡ .control-group input {
+.facet-type .control-group select, .facet-typeÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ .control-group input {
 	color:#333;
 	border-bottom:2px solid #333
 }
@@ -11092,7 +11100,7 @@ html.tde-dark {
  color:rgba(149, 175, 191, 0.52)
 }
 
-.tde-dark .tweet-detail-action:active,.tde-dark .tweet-detail-action:hover,.tde-dark .stream-item.is-actionable a.tweet-action:hover,.tde-dark .stream-item.is-actionable a.tweet-detail-action:hover,.tde-dark .stream-item.is-actionable a.tweet-action:focus,.tde-dark .stream-item.is-actionable a.tweet-detail-action:focus,.tde-dark .stream-item.is-actionable a.tweet-action:active,.tde-dark .stream-item.is-actionable a.tweet-detail-action:active,.tde-dark .stream-item.is-actionable a.tweet-action.is-selected,.tde-dark .stream-item.is-actionable a.is-selected.tweet-detail-action {
+.tde-dark a.tweet-action:active,.tde-dark a.tweet-action:hover,.tde-dark .tweet-detail-action:active,.tde-dark .tweet-detail-action:hover,.tde-dark .stream-item.is-actionable a.tweet-action:hover,.tde-dark .stream-item.is-actionable a.tweet-detail-action:hover,.tde-dark .stream-item.is-actionable a.tweet-action:focus,.tde-dark .stream-item.is-actionable a.tweet-detail-action:focus,.tde-dark .stream-item.is-actionable a.tweet-action:active,.tde-dark .stream-item.is-actionable a.tweet-detail-action:active,.tde-dark .stream-item.is-actionable a.tweet-action.is-selected,.tde-dark .stream-item.is-actionable a.is-selected.tweet-detail-action {
 	color:#8498A5;
 	text-decoration:none
 }
@@ -12060,12 +12068,12 @@ fieldset .toggle-switch {
 }
 
 .tweet-detail-action-item.margin-ln {
-	margin-left:12%!important;
+	margin-left:12%!important
 }
 
 .tweet-detail-action-item {
 	width:20%;
-	margin-left:2%!important;
+	margin-left:2%!important
 }
 
 .os-windows .js-column-detail .column-title-back:after {
@@ -12077,7 +12085,7 @@ html.tde-dark body:not(.scroll-v) {
 }
 
 .tde-dark .emoji-popover .category-chooser {
-	background:#263238!important;
+	background:#263238!important
 }
 
 .tde-dark .column-title .attribution,.tde-light .column-title .attribution {
@@ -12111,6 +12119,30 @@ html.tde-dark body:not(.scroll-v) {
 	}
 }
 
+.js-column-detail .column-title-back:before {
+	content:"Tweet";
+	font-weight:400;
+	color:#fff;
+	text-align:left;
+	left:48px;
+	margin-left: 20px;
+	font-size:16px;
+	display: inline-block;
+	margin-top: 1px;
+}
+
+
 .tde-dark .js-quote-tweet-holder .quoted-tweet {
 	background:#263238
+}
+
+.tde-no-chars-suggestions {
+	padding-top: 10px;
+	padding-bottom: 50px;
+	line-height: 25px
+}
+
+button.tde-no-transform-case {
+	text-transform:none;
+	padding:4px 0px
 }
