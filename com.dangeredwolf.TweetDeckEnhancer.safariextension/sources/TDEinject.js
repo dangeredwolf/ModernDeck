@@ -159,6 +159,18 @@ function TDEInit(){
 	NotificationSound.src = GetURL("sources/alert_2.mp3");
 
   TD_mustaches["settings/global_setting_filter_row.mustache"]='<li class="list-filter cf"> {{_i}}<div class="tde-mute-text tde-mute-text-{{getDisplayType}}"></div> {{>text/global_filter_value}}{{/i}} <input type="button" name="remove-filter" value="{{_i}}Remove{{/i}}" data-id="{{id}}" class="js-remove-filter small btn btn-negative"> </li>'
+
+  if (localStorage.tde_round_avatars === "false") {
+    document.getElementsByTagName("html")[0].className += " tde-no-round-avatars";
+  } else if (typeof localStorage.tde_round_avatars === "undefined") {
+    localStorage.tde_round_avatars = true;
+  }
+
+  if (localStorage.tde_column_oneline === "true") {
+    document.getElementsByTagName("html")[0].className += " tde-column-oneline";
+  } else if (typeof localStorage.tde_column_oneline === "undefined") {
+    localStorage.tde_column_oneline = false;
+  }
 }
 
 function WaitForLogin() {
@@ -180,8 +192,6 @@ function SendNotificationMessage(txt) {
 		TDENotification.className = "tde-appbar-notification";
 		TDENotification.innerHTML = txt;
 	}
-	//http://materializecss.com/getting-started.html
-
 }
 
 function WaitForNotificationDismiss(node,prevmsgID) {
@@ -238,24 +248,9 @@ function ResetSettingsUI() {
 	$("#tde-about-li")[0].className = "";
 }
 
-function LoadPrefs() {
-	if (localStorage.tde_round_avatars === "false") {
-		document.getElementsByTagName("html")[0].className += " tde-no-round-avatars";
-	} else if (typeof localStorage.tde_round_avatars === "undefined") {
-		localStorage.tde_round_avatars = true;
-	}
-
-	if (localStorage.tde_column_oneline === "true") {
-		document.getElementsByTagName("html")[0].className += " tde-column-oneline";
-	} else if (typeof localStorage.tde_column_oneline === "undefined") {
-		localStorage.tde_column_oneline = false;
-	}
-
-}
-
 function PrefsListener() {
 	console.log("Testing...");
-	if ($("#tde-round-avatars-control").length > 0) { // Only scan for settings changes when dialog is up
+	if ($("#tde-round-avatars-control").length > 0) { 
 		console.log("waiting...");
 
 		if (localStorage.tde_round_avatars === "false" && $("#tde-round-avatars-control")[0].checked) {
@@ -285,8 +280,6 @@ function PrefsListener() {
 		setTimeout(PrefsListener,500);
 	}
 }
-
-// SendNotificationMessage("You'll need to restart TweetDeck to apply some of your settings. (Press Ctrl+R or ⌘R)")
 
 function TDESettings() {
 	TDEPrepareWindows();
@@ -376,9 +369,6 @@ function ReplaceLoadingIndicator() {
 		return;
 	}
 
-	{return;} // what
-
-	//document.getElementsByClassName("js-startflow-content startflow")[0].innerHTML = '<video class="spinner-centered spinner-fade-in" width="74" height="76" src="https://dangeredwolf.com/assets/tweetdeck/img/spinner.mov" autoplay loop></video>';
 }
 
 function Analytics() {
@@ -400,8 +390,8 @@ function Analytics() {
 function ActivateSuperEasterEggPowers(){
 	console.log("activate super easter egg powers");
 	setTimeout(function(){
-		document.getElementsByClassName("js-header-add-column")[0].click(); // Click add column
-		document.getElementsByClassName("js-item-launch")[9].childNodes[1].click(); // Click the user tweets button
+		document.getElementsByClassName("js-header-add-column")[0].click();
+		document.getElementsByClassName("js-item-launch")[9].childNodes[1].click();
 	},100);
 	setTimeout(function(){
 		$(".lst-group")[2].remove();
