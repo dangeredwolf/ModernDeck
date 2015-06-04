@@ -20,14 +20,21 @@ var TreatGeckoWithCare = false;
 var WantsToBlockCommunications = false;
 var WantsToDisableSecureStylesheets = false;
 
-if (typeof window.TDEURLExchange !== "undefined") {
-	TDEBaseURL = TDEURLExchange.getAttribute("type");
+if (typeof TDEURLExchange !== "undefined") {
+	TDEBaseURL = TDEURLExchange.getAttribute("type") || "https://dangeredwolf.com/assets/tdetest/";
+  console.info("TDEURLExchange completed with URL " + TDEBaseURL);
 } else {
-	console.log("TDEURLExchange failed :( defaulting to streamed sources, may not work... but we'll try...");
+	console.warn("TDEURLExchange failed :( defaulting to streamed sources, may not work... but we'll try...");
 }
 
 if (typeof chrome === "undefined" && typeof safari === "undefined") {
 	TreatGeckoWithCare = true;
+}
+
+function SpawnModule(fun,del) {
+  if (typeof fun === "undefined") {
+    console.error("");
+  }
 }
 
 function GetURL(url) {
@@ -818,7 +825,7 @@ function outtaSpaceSuggestions() {
 	setTimeout(outtaSpaceSuggestions,2000);
 }
 
-setTimeout(Patch,0);
+setTimeout(TDEInit,0);
 setTimeout(WorldTick,0);
 setTimeout(NavigationSetup,100);
 setTimeout(TDESecureVerif,300);
