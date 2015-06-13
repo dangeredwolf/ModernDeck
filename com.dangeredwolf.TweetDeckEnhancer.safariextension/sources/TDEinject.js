@@ -364,7 +364,7 @@ function Analytics() {
 		setTimeout(Analytics,500);
 		return;
 	}
-	$.ajax({url:"https://tweetdeckenhancer.com/analytics/TDE5?v=" + SystemVersion + "&release=beta"});
+	$.ajax({url:"https://tweetdeckenhancer.com/analytics/TDE5/?v=" + SystemVersion + "&release=beta"});
 }
 
 function ActivateSuperEasterEggPowers(){
