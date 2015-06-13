@@ -10,14 +10,15 @@
   "permissions": [
     "webRequest",
     "webRequestBlocking",
-    "https://tweetdeck.twitter.com/"
+    "https://tweetdeck.twitter.com/",
+    "https://ton.twimg.com/"
   ],
 
   "content_scripts": [
     {
-      "matches": ["https://tweetdeck.twitter.com/"],
+      "matches": ["https://tweetdeck.twitter.com/*"],
       "js": ["extension/TDELoad.js"],
-      "css": ["sources/enhancerload.css"],
+      "css": ["sources/enhancer.css"],
       "run_at": "document_end"
     }
   ],
@@ -33,7 +34,8 @@
       "32": "AppIcon32.png",
       "48": "AppIcon48.png",
       "64": "AppIcon64.png",
-      "128": "AppIcon128.png"
+      "128": "Icon.png",
+      "500": "sources/tdeaboutsmaller.png"
    },
 
   "web_accessible_resources": [

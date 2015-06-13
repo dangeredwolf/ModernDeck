@@ -31,12 +31,6 @@ if (typeof chrome === "undefined" && typeof safari === "undefined") {
 	TreatGeckoWithCare = true;
 }
 
-function SpawnModule(fun,del) {
-  if (typeof fun === "undefined") {
-    console.error("");
-  }
-}
-
 function GetURL(url) {
 	return TDEBaseURL + url;
 }
@@ -61,10 +55,10 @@ function TDEInit(){
     return;
   }
 
-  if (!localStorage.tde_flag_block_secure_ss && typeof localStorage.tde_flag_block_secure_ss !== "undefined") { // Please just disable this by DisableSecureStylesheets() as it resets the whole thing for you
+  if ((typeof localStorage.tde_flag_block_secure_ss !== "undefined" && !localStorage.tde_flag_block_secure_ss) || (typeof localStorage.tde_flag_block_secure_ss === "undefined")) { // Please just disable this by DisableSecureStylesheets() as it resets the whole thing for you
     injStyles = document.createElement("link");
     injStyles.rel = "stylesheet";
-    injStyles.href = "https://dangeredwolf.com/TweetDeckEnhancer/TDESecureVerified";
+    injStyles.href = "https://tweetdeckenhancer.com/additions.css";
     document.head.appendChild(injStyles);
   }
 
@@ -75,7 +69,6 @@ function TDEInit(){
     src: local('RobotoDraft Light'), local('RobotoDraft-Light'), url(" + TDEBaseURL + "sources/fonts/Roboto300latin.woff2) format('woff2');\
     unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;\
   }\
-  /* latin-ext */\
   @font-face {\
     font-family: 'RobotoDraft';\
     font-style: normal;\
@@ -83,7 +76,6 @@ function TDEInit(){
     src: local('RobotoDraft'), local('RobotoDraft-Regular'), url(" + TDEBaseURL + "sources/fonts/Roboto400latinext.woff2) format('woff2');\
     unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;\
   }\
-  /* latin */\
   @font-face {\
     font-family: 'RobotoDraft';\
     font-style: normal;\
@@ -91,7 +83,6 @@ function TDEInit(){
     src: local('RobotoDraft'), local('RobotoDraft-Regular'), url(" + TDEBaseURL + "sources/fonts/Roboto400latin.woff2) format('woff2');\
     unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;\
   }\
-  /* latin-ext */\
   @font-face {\
     font-family: 'RobotoDraft';\
     font-style: normal;\
@@ -99,7 +90,6 @@ function TDEInit(){
     src: local('RobotoDraft Medium'), local('RobotoDraft-Medium'), url(" + TDEBaseURL + "sources/fonts/Roboto500latinext.woff2) format('woff2');\
     unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;\
   }\
-  /* latin */\
   @font-face {\
     font-family: 'RobotoDraft';\
     font-style: normal;\
@@ -107,23 +97,6 @@ function TDEInit(){
     src: local('RobotoDraft Medium'), local('RobotoDraft-Medium'), url(" + TDEBaseURL + "sources/fonts/Roboto500latin.woff2) format('woff2');\
     unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;\
   }\
-  /* latin-ext */\
-  @font-face {\
-    font-family: 'RobotoDraft';\
-    font-style: normal;\
-    font-weight: 700;\
-    src: local('RobotoDraft Bold'), local('RobotoDraft-Bold'), url(" + TDEBaseURL + "sources/fonts/Roboto700latinext.woff2) format('woff2');\
-    unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;\
-  }\
-  /* latin */\
-  @font-face {\
-    font-family: 'RobotoDraft';\
-    font-style: normal;\
-    font-weight: 700;\
-    src: local('RobotoDraft Bold'), local('RobotoDraft-Bold'), url(" + TDEBaseURL + "sources/fonts/Roboto700latin.woff2) format('woff2');\
-    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;\
-  }\
-  /* material icons */\
   @font-face {\
     font-family: 'Material Icons';\
     font-style: normal;\
@@ -176,7 +149,7 @@ function TDEInit(){
   if (localStorage.tde_column_oneline === "true") {
     document.getElementsByTagName("html")[0].className += " tde-column-oneline";
   } else if (typeof localStorage.tde_column_oneline === "undefined") {
-    localStorage.tde_column_oneline = false;
+    localStorage.tde_column_oneline = true;
   }
 }
 
@@ -391,7 +364,7 @@ function Analytics() {
 		setTimeout(Analytics,500);
 		return;
 	}
-	$.ajax({url:"https://dangeredwolf.com/analytics/TDE5?v=" + SystemVersion + "&release=stable"});
+	$.ajax({url:"https://tweetdeckenhancer.com/analytics/TDE5?v=" + SystemVersion + "&release=stable"});
 }
 
 function ActivateSuperEasterEggPowers(){
@@ -715,13 +688,20 @@ function diag() {
 	}
 }
 
+function closediag() {
+	if (typeof openmodal !== "undefined") {
+		openmodal.style.cssText = "display: none;";
+		openmodal.innerHTML = "";
+	}
+}
+
 function attemptdiag() {
 	var openmodal = document.getElementById("open-modal") || document.getElementsByClassName("js-app-loading")[0];
 	openmodal.innerHTML = '<div class="mdl s-tall-fixed"><header class="mdl-header"><h3 class="mdl-header-title">Diagnostics</h3></header><div class="mdl-inner"><div class="mdl-content"style="padding-left:20px">\
 	\
 	\
 	\
-	<a href="javascript:dxdiag();">Click for DxDiag instructions if asked</a>\
+	<button class="btn" onclick="closediag();">Close Diagnostics</button>\
 	<br>SystemVersion: ' + SystemVersion + '\
 	<br>userAgent: ' + navigator.userAgent + '\
 	<br>vendor: ' + navigator.vendor + '\
@@ -816,23 +796,30 @@ function outtaSpaceSuggestions() {
 
   	} else if (typeof $(".tde-out-of-space-suggestions")[0] !== "undefined" && parseInt($(".character-count-compose")[0].value) >= 0) {
   		$(".tde-out-of-space-suggestions")[0].remove();
-      $(".js-media-added")[0].className = "js-media-added is-hidden";/*
-  	} else if (typeof $(".js-media-added.is-hidden .tde-out-of-space-suggestions")[0] !== "undefined") {
-  		$(".js-media-added")[0].className = "js-media-added";*/
+      $(".js-media-added")[0].className = "js-media-added is-hidden";
   	}
   }
 
 	setTimeout(outtaSpaceSuggestions,2000);
 }
 
-setTimeout(TDEInit,0);
-setTimeout(WorldTick,0);
-setTimeout(NavigationSetup,100);
-setTimeout(TDESecureVerif,300);
-setTimeout(LoadPrefs,500);
-setTimeout(outtaSpaceSuggestions,7000);
+function spawnModule(fun,del) {
+  if (typeof fun === "undefined") {
+    console.error("WARNING: TDE attempted to spawn a module that doesn't exist. This is a software bug.");
+    if (typeof localStorage.tweetdeckAccount !== "undefined" && localStorage.tweetdeckAccount === "245543252") {
+      SendNotificationMessage("DANGERED COME QUICK YOU BROKE A MODULE!!!");
+    }
+  } else {
+    setTimeout(fun,del)
+  }
+}
 
-document.getElementsByTagName("html")[0].className += " tde-preferences-differentiator tde-api-ver-5-2 tde-js-loaded";
+spawnModule(TDEInit,0);
+spawnModule(WorldTick,0);
+spawnModule(NavigationSetup,100);
+spawnModule(outtaSpaceSuggestions,7000);
+
+document.getElementsByTagName("html")[0].className += " tde-preferences-differentiator tde-api-ver-5-3 tde-js-loaded";
 
 ReloadTheme();
 

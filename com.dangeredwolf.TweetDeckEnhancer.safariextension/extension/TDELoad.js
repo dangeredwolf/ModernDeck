@@ -3,7 +3,7 @@
 
 console.log("Enhancer 5.3");
 
-var links = document.querySelectorAll("link[title='dark'],link[title='light']");
+/*var links = document.querySelectorAll("link[title='dark'],link[title='light']");
 
 for (i = 0; i < links.length; i++) {
   links[i].href = "";
@@ -28,7 +28,7 @@ if (isChromium) {
   // TODO: FF stuff
 }
 
-document.head.appendChild(injStyles);
+document.head.appendChild(injStyles);*/
 
 console.log("Bootstrapping TDEinject");
 InjectScript = document.createElement("script");

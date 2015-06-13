@@ -20,4 +20,13 @@ if (chrome !== "undefined") {
       return {responseHeaders:details.responseHeaders};
     }, {urls:["https://tweetdeck.twitter.com/*"]}, ["responseHeaders","blocking"]);
 
+  chrome.webRequest.onBeforeRequest.addListener(function(details) {
+      
+      if (details.url.indexOf("app-dark") > -1 || details.url.indexOf("app-light") > -1) {
+        return {cancel:true};
+      }
+
+      return;
+    }, {urls:["https://ton.twimg.com/*"]}, ["blocking"]);
+
 }
