@@ -7,7 +7,7 @@ console.log("Enhancer 5.3");
 
 for (i = 0; i < links.length; i++) {
   links[i].href = "";
-}
+}*/
 
 injStyles = document.createElement("link");
 injStyles.rel = "stylesheet";
@@ -20,7 +20,7 @@ if (typeof safari !== "undefined") {
   var isSafari = true;
 }
 
-if (isChromium) {
+/*if (isChromium) {
   injStyles.href = chrome.extension.getURL("sources/enhancer.css");
 } else if (isSafari) {
   injStyles.href = safari.extension.baseURI + "sources/enhancer.css";
