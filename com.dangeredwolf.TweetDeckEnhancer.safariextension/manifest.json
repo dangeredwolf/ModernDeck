@@ -1,8 +1,8 @@
 {
   "name": "TweetDeck Enhancer",
-  "short_name": "TD Enhancer",
+  "short_name": "TDE",
 
-  "description": "__MSG_ExtDesc__",
+  "description": "The world's most loved twitter client.",
   "version": "5.3",
 
   "default_locale": "en_US",
@@ -11,7 +11,9 @@
     "webRequest",
     "webRequestBlocking",
     "https://tweetdeck.twitter.com/",
-    "https://ton.twimg.com/"
+    "https://ton.twimg.com/",
+    "contextMenus",
+    "tabs"
   ],
 
   "content_scripts": [

@@ -1,6 +1,11 @@
 // TDEBackground.js
 // Copyright (c) 2015 Dangered Wolf
 
+// Released under the MIT license
+
+// Sharing functionality implemented thanks to some work by Eramdam!
+// His original code was also released under the MIT license
+
 if (chrome !== "undefined") {
 
     chrome.webRequest.onHeadersReceived.addListener(function(details) {
@@ -28,5 +33,71 @@ if (chrome !== "undefined") {
 
       return;
     }, {urls:["https://ton.twimg.com/*"]}, ["blocking"]);
+
+  /*function FindTab(urls,items) {
+    var tabs = [];
+    var windowcount = 0;
+
+    chrome.windows.getAll(function(windows) {
+      for (var i = 0; i < windows.length; i++) {
+        chrome.tabs.getAllInWindow(windows[i].id, function(tabs) {
+          windowcount++;
+          allTheTabs = allTheTabs.concat(tabs);
+          if (windowcount === windows.length) {
+            openApp(urls,tabs,items);
+          }
+        });
+
+      }
+    });
+  }
+
+   function openApp(urls, tabs, itemInfos) {
+    console.log("openApp", itemInfos.timestamp);
+    // Search urls in priority order...
+    for (var i = 0; i < urls.length; i++) {
+      var url = urls[i];
+
+      // Search tabs...
+      for (var j = 0; j < tabs.length; j++) {
+        var tab = tabs[j];
+        if (tab.url.indexOf(url) === 0) {
+          // Found it!
+          var tabId = tab.id;
+          chrome.windows.update(tab.windowId, {
+            focused: true
+          });
+          chrome.tabs.update(tabId, {
+            selected: true,
+            active: true,
+            highlighted: true
+          }, function() {
+            console.log("update", itemInfos.timestamp);
+            var text = itemInfos.text;
+            var url = itemInfos.url;
+            chrome.tabs.sendMessage(tabId, {
+              text: text,
+              url: url,
+              timestamp: itemInfos.timestamp,
+              count: 2
+            })
+          });
+          return;
+        }
+      }
+    }
+
+
+  function Share(shareme) {
+
+  }
+
+  chrome.contextMenus.create({
+      "title": "Share on TweetDeck",
+      "contexts": ["selection","image","page","link"],
+      "onclick": Share
+    });*/
+
+
 
 }
