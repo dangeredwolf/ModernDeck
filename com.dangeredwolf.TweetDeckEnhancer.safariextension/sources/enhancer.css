@@ -6525,7 +6525,7 @@ a .column-title-back .icon:after {
 
 .compose-text {
 	width:90%;
-	height:160px!important;
+	height:140px!important;
 	resize:none;
 	border:none;
 	color:#444;
@@ -9178,8 +9178,8 @@ input[type="checkbox"] {
 .compose-content .account-selector-grid-toggle {
 	position:fixed;
 	width:70px;
-	bottom:13px;
-	left:15px;
+	bottom:17px;
+	left:-260px;
 	float:none
 }
 
