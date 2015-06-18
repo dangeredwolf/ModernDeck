@@ -13,7 +13,7 @@ enhancer.css */
 
 /* SUPERCLASSES */
 
-.accordion .is-active .facet-subtitle,.mdl-dismiss,.mdl-dismiss-media,.tde-mobile .column-type-icon,.column-type-message .js-column-detail .column-title-back:before,.add-on.with-emphasis,.tde-minimal .column-navigator,.tde-dark body.scroll-v .js-modal-context .mdl:before,html body .app-navigator .dropdown-menu,.caret,.js-column-detail .column-title-back.conversation-title:after,.more-tweets-btn-inner-mouse-release,.more-tweets-btn-inner-loading,.more-tweets-btn-container--mouse-release .more-tweets-btn-inner-default,.more-tweets-btn-container--loading .more-tweets-btn-inner-default,.status-message,.app-masthead,.cmp-spinner,.chev-right,.compose-text-title,.cmp button b,.cmp .mdl-header-title:empty,.app-search-tweet-results .column-header-temp,.spinner-centered,.without-tweet-drag-handles .tweet-drag-handle,.account-remove-check,.js-app-settings .obj-left,.tweet-action-item.feature-customtimelines.tweet-drag-handle,.tweet-detail-action-item.feature-customtimelines.tweet-drag-handle,.column-nav-link:after,.more-tweets-btn-inner-mouse-release,.more-tweets-btn-inner-loading,.more-tweets-btn-container--mouse-release .more-tweets-btn-inner-default,.more-tweets-btn-container--loading .more-tweets-btn-inner-default,.list-item .icon-search.list-icon,.js-typeahead-recent-search-item .obj-left,.s-following .follow-btn .btn-loader,.btd-settings,body:not(.btd-ready) #btdsettings,.edit-conversation-name .nbfc,.js-app-add-column,.btn.js-dismiss,.js-schedule-datepicker-holder .popover .padding-as .btn .icon-trash,.js-dismiss.btn.btn-positive i.icon.icon-check.icon-small.padding-rs,.column-close-link.txt-r-dark-gray,.js-app-loading .js-header-container,.js-add-image-button-label,.js-schedule-button-label,.js-tweet-button-label,.js-dm-button .label.padding-ls,.column-nav-flyout,.release-notes-modal .mdl-drag-handle,#datepicker,.search-input-spinner,.search-input-clear-search,.toggle-item-text-truncated,.sch.s-searching .sch-clear,legend,.frm-legend,.action-btn,.med-origlink,.med-flaglink,.hide-detail-view-inline .detail-view-inline,.compose-account-selected,.js-compose-hint.margin-vl.anim.anim-fade-in,#file-upload-input,.s-sending .char-count,.s-profile .mdl-buttonbar,.s-profile h3,.mdl.s-nonav .mdl-inner .mdl-buttonbar,.ovl.is-dragging:before,.is-dragging.overlay:before,.numbered-badge-onheader,.migrate-account-login-step-1 .migrate-tweetdeck-account-warning-wrapper,.migrate-account-login-step-2 .migrate-tweetdeck-account-warning-wrapper,.migrate-account-login-step-3 .migrate-account-login-forms,.migrate-account-login-step-3 .migrate-account-login-about,.migrate-account-login-forms-cancel,.tooltip-arrow,.accordion .is-active .icon-arrow-d,.accordion .icon-arrow-u,.app-search-in-popover,.app-search-form,.app-header .app-nav-logo-text,.app-header .hide-condensed,.app-header .sprite-logo,.app-header .tweet-button .label,.app-header .app-nav-link .icon-arrow-l-double,.app-header .app-nav-link .icon-arrow-r-double,.app-nav-link .icon-arrow-r-double,.app-nav-tab .icon-user-switch,.tweet-message-status,.icon.icon-move,.tweet-drag-handle,.is-narrow-columns .media-size-medium .media-sensitive-title,.contributor-row[data-contributor-role="contributor"] [data-show-when-contributor-role="admin"],.contributor-row[data-contributor-role="admin"] [data-show-when-contributor-role="contributor"],.contributor-row[data-state-error="closed-error"] [data-hide-when-state-error="closed-error"],.contributor-row[data-state="settings"] [data-hide-when-state="settings"],.contributor-row[data-state-error="settings-error"] [data-hide-when-state-error="settings-error"],[data-show-when-state],[data-show-when-state-error],.is-options-open .column-settings-link .icon-arrow-d,.column-header-link .icon-arrow-u,.column-title-back .attribution,.js-add-to-customtimeline-button,.column-title-editable .js-show-tip.avatar.size24,.account-remove-check,.signin-sheet-now-present .application,.btn-fav-fav-text,.with-add-by-url .list-placeholder.pin-all,.s-thats-you .btn-loader,.s-pending .btn-loader,.s-blocking .follow-btn:hover .block-text,.s-blocking .btn-loader,.s-not-favorited .btn-loader,.btn-fav-faved-text,.s-favorited .btn-loader,.btn-fav-protected-text,.s-protected .btn-loader,.link-clean[href="https://twitter.com/UberFacts"] .sprite-verified,.btn-fav-unfav-text,.btn-fav.s-favorited:hover .btn-fav-faved-text,.s-not-following .btn-loader,.action-text,.s-following .follow-btn:hover .following-text {
+.column-nav-item.is-new:first-child .column-nav-updates,.accordion .is-active .facet-subtitle,.mdl-dismiss,.mdl-dismiss-media,.tde-mobile .column-type-icon,.column-type-message .js-column-detail .column-title-back:before,.add-on.with-emphasis,.tde-minimal .column-navigator,.tde-dark body.scroll-v .js-modal-context .mdl:before,html body .app-navigator .dropdown-menu,.caret,.js-column-detail .column-title-back.conversation-title:after,.more-tweets-btn-inner-mouse-release,.more-tweets-btn-inner-loading,.more-tweets-btn-container--mouse-release .more-tweets-btn-inner-default,.more-tweets-btn-container--loading .more-tweets-btn-inner-default,.status-message,.app-masthead,.cmp-spinner,.chev-right,.compose-text-title,.cmp button b,.cmp .mdl-header-title:empty,.app-search-tweet-results .column-header-temp,.spinner-centered,.without-tweet-drag-handles .tweet-drag-handle,.account-remove-check,.js-app-settings .obj-left,.tweet-action-item.feature-customtimelines.tweet-drag-handle,.tweet-detail-action-item.feature-customtimelines.tweet-drag-handle,.column-nav-link:after,.more-tweets-btn-inner-mouse-release,.more-tweets-btn-inner-loading,.more-tweets-btn-container--mouse-release .more-tweets-btn-inner-default,.more-tweets-btn-container--loading .more-tweets-btn-inner-default,.list-item .icon-search.list-icon,.js-typeahead-recent-search-item .obj-left,.s-following .follow-btn .btn-loader,.btd-settings,body:not(.btd-ready) #btdsettings,.edit-conversation-name .nbfc,.js-app-add-column,.btn.js-dismiss,.js-schedule-datepicker-holder .popover .padding-as .btn .icon-trash,.js-dismiss.btn.btn-positive i.icon.icon-check.icon-small.padding-rs,.column-close-link.txt-r-dark-gray,.js-app-loading .js-header-container,.js-add-image-button-label,.js-schedule-button-label,.js-tweet-button-label,.js-dm-button .label.padding-ls,.column-nav-flyout,.release-notes-modal .mdl-drag-handle,#datepicker,.search-input-spinner,.search-input-clear-search,.toggle-item-text-truncated,.sch.s-searching .sch-clear,legend,.frm-legend,.action-btn,.med-origlink,.med-flaglink,.hide-detail-view-inline .detail-view-inline,.compose-account-selected,.js-compose-hint.margin-vl.anim.anim-fade-in,#file-upload-input,.s-sending .char-count,.s-profile .mdl-buttonbar,.s-profile h3,.mdl.s-nonav .mdl-inner .mdl-buttonbar,.ovl.is-dragging:before,.is-dragging.overlay:before,.numbered-badge-onheader,.migrate-account-login-step-1 .migrate-tweetdeck-account-warning-wrapper,.migrate-account-login-step-2 .migrate-tweetdeck-account-warning-wrapper,.migrate-account-login-step-3 .migrate-account-login-forms,.migrate-account-login-step-3 .migrate-account-login-about,.migrate-account-login-forms-cancel,.tooltip-arrow,.accordion .is-active .icon-arrow-d,.accordion .icon-arrow-u,.app-search-in-popover,.app-search-form,.app-header .app-nav-logo-text,.app-header .hide-condensed,.app-header .sprite-logo,.app-header .tweet-button .label,.app-header .app-nav-link .icon-arrow-l-double,.app-header .app-nav-link .icon-arrow-r-double,.app-nav-link .icon-arrow-r-double,.app-nav-tab .icon-user-switch,.tweet-message-status,.icon.icon-move,.tweet-drag-handle,.is-narrow-columns .media-size-medium .media-sensitive-title,.contributor-row[data-contributor-role="contributor"] [data-show-when-contributor-role="admin"],.contributor-row[data-contributor-role="admin"] [data-show-when-contributor-role="contributor"],.contributor-row[data-state-error="closed-error"] [data-hide-when-state-error="closed-error"],.contributor-row[data-state="settings"] [data-hide-when-state="settings"],.contributor-row[data-state-error="settings-error"] [data-hide-when-state-error="settings-error"],[data-show-when-state],[data-show-when-state-error],.is-options-open .column-settings-link .icon-arrow-d,.column-header-link .icon-arrow-u,.column-title-back .attribution,.js-add-to-customtimeline-button,.column-title-editable .js-show-tip.avatar.size24,.account-remove-check,.signin-sheet-now-present .application,.btn-fav-fav-text,.with-add-by-url .list-placeholder.pin-all,.s-thats-you .btn-loader,.s-pending .btn-loader,.s-blocking .follow-btn:hover .block-text,.s-blocking .btn-loader,.s-not-favorited .btn-loader,.btn-fav-faved-text,.s-favorited .btn-loader,.btn-fav-protected-text,.s-protected .btn-loader,.link-clean[href="https://twitter.com/UberFacts"] .sprite-verified,.btn-fav-unfav-text,.btn-fav.s-favorited:hover .btn-fav-faved-text,.s-not-following .btn-loader,.action-text,.s-following .follow-btn:hover .following-text {
 	display:none
 }
 
@@ -396,6 +396,30 @@ enhancer.css */
 	to {
 		opacity:1;
 		margin-top:5px
+	}
+}
+
+@keyframes rtpopovercomedown {
+	from {
+		opacity:0;
+		top:-85px
+	}
+
+	to {
+		opacity:1;
+		top:-55px
+	}
+}
+
+@-webkit-keyframes rtpopovercomedown {
+	from {
+		opacity:0;
+		top:-85px
+	}
+
+	to {
+		opacity:1;
+		top:-55px
 	}
 }
 
@@ -1403,7 +1427,9 @@ fieldset {
 
 legend {
 	border:0;
-	padding:0
+	padding:0;
+	font-family: Roboto;
+	font-weight: 300;
 }
 
 button,input,select,textarea {
@@ -1448,7 +1474,7 @@ table {
 
 html {
 	height:100%;
-	font-family:"RobotoDraft", "Roboto", "Helvetica Neue", Helvetica;
+	font-family:"Roboto", "Helvetica Neue", Helvetica;
 	font-weight:normal;
 	font-size:14px;
 	color:#333;
@@ -1644,6 +1670,10 @@ small {
 	font-size:12px!important
 }
 
+.tde-light .txt-base-smallest {
+	font-weight:400
+}
+
 .txt-base-small {
 	font-size:14px
 }
@@ -1745,16 +1775,6 @@ small {
 .tde-dark .scroll-styled-v::-webkit-scrollbar-thumb:hover,.tde-dark .scroll-styled-h::-webkit-scrollbar-thumb:hover {
 	background:rgb(132, 152, 165);
 	transition:200ms background
-}
-
- {
-	scrollbar-face-color:#505254;
-	scrollbar-highlight-color:#505254;
-	scrollbar-shadow-color:#505254;
-	scrollbar-darkshadow-color:#505254;
-	scrollbar-track-color:#3c3c3c;
-	scrollbar-3dlight-color:#505254;
-	scrollbar-arrow-color:#999
 }
 
 .antiscroll-wrap {
@@ -2195,7 +2215,8 @@ small {
 }
 
 .icon-protected:before {
-	content:"\f013"
+	content:"\e897";
+	font-family:"Material Icons"
 }
 
 .icon-list:before {
@@ -2574,124 +2595,71 @@ small {
 	color:transparent
 }
 
-.icon-verified-bg {
-	transform:scale(0.8,0.8)
-}
-
-.sprite {
-	display:inline-block;
-	vertical-align:text-top;
-	background-image:url(https://dangeredwolf.com/assets/tweetdeck/cache/td_sprite_sheet_2013_@1x.png);
-	background-image:url(td_sprite_sheet_2013_@1x.png);
-	background-repeat:no-repeat
-}
-
-@media (-webkit-min-device-pixel-ratio:1.5),(min-resolution:144dpi) {
-.sprite {
-	background-image:url(https://dangeredwolf.com/assets/tweetdeck/cache/td_sprite_sheet_2013_@2x.png);
-	background-image:url(td_sprite_sheet_2013_@2x.png);
-	background-size:240px 110px;
-	background-repeat:no-repeat
-}
+.sprite:before {
+	font-family:"Material Icons";
+	font-style:normal;
+	color:#0EC5D5
 }
 
 .sprite-drag {
-	background-image:none;
-	width:642px;
-	height:50px;
+	width:1000px;
+	height:55px;
 	cursor:default;
 	z-index:2
 }
 
 .sprite-verified {
 	width:20px;
-	height:20px;
-	background-position:-10px -10px
+	height:20px
+}
+
+.sprite-verified:before {
+	content:"\e8e8"
 }
 
 .sprite-verified-mini {
-	width:16px;
-	height:18px;
-	background-position:-161px -47px
+	width:16px
+}
+
+.sprite-verified-mini:before {
+	content:"\e8e8";
 }
 
 .sprite-translator {
 	width:20px;
-	height:20px;
-	background-position:-40px -10px
+	height:20px
+}
+
+.sprite-translator:before {
+	content:"\e87a"
 }
 
 .sprite-close {
-	width:24px;
-	height:24px;
-	background-position:-90px -10px;
-	margin-left:-540px!important
+	width:36px;
+	height:36px;
+	font-size:36px;
+	margin-left:10px;
+	padding-top:20px
 }
 
-.sprite-drag-vertical {
-	width:8px;
-	height:38px;
-	background-position:-9999px -9999px;
-	background-image:none;
-	background:#E0E0E0;
-	margin-left:-1px
+.sprite-close:before {
+	content:"\e5cd";
+	line-height:1em
 }
 
 .bing-logo {
 	width:50px;
 	height:22px;
-	background-position:-58px -87px
+	padding-top:6px;
+	color:inherit
 }
 
-.tde-light .bing-logo {
-	-webkit-filter:brightness(50%);
-	-moz-filter:brightness(50%)
-}
-
-.is-inverted-dark .sprite-drag-vertical {
-	background-position:-120px -10px
-}
-
-.sprite-column-update {
-	width:158px;
-	height:3px;
-	background-position:-10px -80px
-}
-
-.sprite-flash {
-	width:8px;
-	height:18px;
-	background-position:-196px -80px
-}
-
-.fullname-badged:before {
-	background-image:url(https://dangeredwolf.com/assets/tweetdeck/cache/td_sprite_sheet_2013_@1x.png);
-	background-image:url(td_sprite_sheet_2013_@1x.png);
-	background-repeat:no-repeat
-}
-
-@media (-webkit-min-device-pixel-ratio:1.5),(min-resolution:144dpi) {
-.fullname-badged:before {
-	background-image:url(https://dangeredwolf.com/assets/tweetdeck/cache/td_sprite_sheet_2013_@2x.png);
-	background-image:url(td_sprite_sheet_2013_@2x.png);
-	background-size:240px 110px
-}
-}
-
-.badge-translator:before {
-	width:14px;
-	height:14px;
-	background-position:-143px -48px
-}
-
-.badge-verified:before {
-	width:14px;
-	height:14px;
-	background-position:-163px -48px
+.bing-logo:before {
+	content:"Bing";
+	color:inherit
 }
 
 .btn {
-	border-radius:0px;
 	position:relative;
 	display:inline-block;
 	margin:0;
@@ -2700,7 +2668,6 @@ small {
 	vertical-align:middle;
 	text-align:center;
 	cursor:pointer;
-	text-decoration:none;
 	font-size:14px;
 	font-weight:400;
 	border:none;
@@ -2708,16 +2675,13 @@ small {
 	background:transparent;
 	text-shadow:none;
 	text-transform:uppercase;
-	transition:200ms all;
-	transform:scale(1,1)
+	transition:200ms all
 }
 
 .btn:hover {
-	color:#4DD0E1;
 	text-decoration:none;
 	background:transparent;
-	transition:300ms all;
-	transform:scale(1.05,1.05)
+	transition:300ms all
 }
 
 .btn:focus {
@@ -2725,59 +2689,20 @@ small {
 	color:#26C6DA ;
 	background:transparent;
 	outline:0;
-	transition:300ms all;
-	transform:scale(1.05,1.05)
+	transition:300ms all
 }
 
 .btn:active,.btn.is-selected {
 	text-decoration:none;
 	background:rgba(0, 0, 0, 0.04);
-	transition:200ms all
-}
-
-.btn:active {
-	transform:scale(0.9,0.9);
-	color:#aaa!important
+	transform:scale(1.05);
+	transition:200ms all;
+	color:#aaa
 }
 
 .btn[disabled],.btn[disabled]:hover,.btn[disabled]:active,.btn.is-disabled,.btn.is-disabled:hover,.btn.is-disabled:focus,.btn.is-disabled:active {
 	color:#CACACA;
 	transition:200ms all
-}
-
-.is-inverted-dark .btn-alt {
-	border-color:#ddd
-}
-
-.is-inverted-dark .btn-alt:focus {
-	outline:0
-}
-
-.is-inverted-dark .btn-alt[disabled],.is-inverted-dark .btn-alt[disabled]:hover,.is-inverted-dark .btn-alt[disabled]:active,.is-inverted-dark .btn-alt.is-disabled,.is-inverted-dark .btn-alt.is-disabled:hover,.is-inverted-dark .btn-alt.is-disabled:focus,.is-inverted-dark .btn-alt.is-disabled:active {
-	color:#bbb;
-	border-color:#ddd
-}
-
-.btn-alt {
-	background:transparent;
-	border-color:#444
-}
-
-.btn-alt:hover {
-	background:transparent
-}
-
-.btn-alt:focus {
-	outline:0
-}
-
-.btn-alt:active,.btn-alt.is-selected {
-	color:#848484
-}
-
-.btn-alt[disabled],.btn-alt[disabled]:hover,.btn-alt[disabled]:active,.btn-alt.is-disabled,.btn-alt.is-disabled:hover,.btn-alt.is-disabled:focus,.btn-alt.is-disabled:active {
-	color:#eee;
-	border-color:#444
 }
 
 .btn .icon {
@@ -2786,34 +2711,11 @@ small {
 }
 
 .btn .label {
-	vertical-align:middle}
-
-.btn-neutral,.btn-neutral-negative,.btn-neutral-positive,.btn-options-tray {
-	border-color:transparent;
-	background:transparent;
-	border-radius:0
-}
-
-.btn-neutral:hover,.btn-neutral-negative:hover,.btn-neutral-positive:hover,.btn-options-tray:hover {
-	border-color:transparent;
-	background:transparent
-}
-
-.btn-neutral:hover .label,.btn-neutral-negative:hover .label,.btn-neutral-positive:hover .label,.btn-options-tray:hover .label {
-	text-decoration:none
-}
-
-.btn-neutral:focus,.btn-neutral-negative:focus,.btn-neutral-positive:focus,.btn-options-tray:focus {
-	border-color:transparent;
-	background:transparent;
-	box-shadow:none;
-	outline:none
+	vertical-align:middle
 }
 
 .btn-neutral[disabled],.btn-neutral[disabled]:hover,.btn-neutral[disabled]:active,.btn-neutral.is-disabled,.btn-neutral.is-disabled:hover,.btn-neutral.is-disabled:focus,.btn-neutral.is-disabled:active,[disabled].btn-neutral-negative,[disabled].btn-neutral-positive,[disabled].btn-options-tray,[disabled].btn-neutral-negative:hover,[disabled].btn-neutral-positive:hover,[disabled].btn-options-tray:hover,[disabled].btn-neutral-negative:active,[disabled].btn-neutral-positive:active,[disabled].btn-options-tray:active,.is-disabled.btn-neutral-negative,.is-disabled.btn-neutral-positive,.is-disabled.btn-options-tray,.is-disabled.btn-neutral-negative:hover,.is-disabled.btn-neutral-positive:hover,.is-disabled.btn-options-tray:hover,.is-disabled.btn-neutral-negative:focus,.is-disabled.btn-neutral-positive:focus,.is-disabled.btn-options-tray:focus,.is-disabled.btn-neutral-negative:active,.is-disabled.btn-neutral-positive:active,.is-disabled.btn-options-tray:active {
-	opacity:.3;
-	border-color:transparent;
-	background:transparent
+	opacity:.3
 }
 
 .btn-positive,.btn-positive-alt,.btn-fav.s-favorited,.s-following .follow-btn {
@@ -3098,19 +3000,6 @@ h6 {
 	font-size:0px
 }
 
-.js-tweet-social-proof-back {
-	color:rgb(0, 139, 255);
-	transition:150ms all
-}
-
-.js-tweet-social-proof-back:hover {
-	color:rgb(43, 158, 255)
-}
-
-.js-tweet-social-proof-back:active {
-	color:rgba(0, 139, 255, 0.5)!important
-}
-
 .account-remove-check-open .account-remove-check {
 	display:block;
 	-webkit-animation:popgoesthemodalwindow 0.2s 1!important;
@@ -3184,7 +3073,8 @@ h6 {
 }
 
 .mdl-inner .column-content {
-	width:100%!important
+	width:100%!important;
+	border:none
 }
 
 .column-content {
@@ -3212,14 +3102,15 @@ h6 {
 	width:100%;
 	text-align:center;
 	margin-left:-16px;
-	font-weight:500
+	font-weight:500;
+	padding-top:4px
 }
 
 .icon-user-switch {
 	transition:300ms color
 }
 
-.bg-r-light-gray>.obj-left>i.icon.icon-user-switch.icon-large.position-rel {
+.bg-r-light-gray .icon-user-switch {
 	color:#fff;
 	transition:300ms color
 }
@@ -3252,12 +3143,7 @@ h6 {
 	animation:popgoesthepanel 0.3s 1
 }
 
-.js-dropdown {
-	-webkit-animation:fadein 0.3s 1;
-	animation:fadein 0.3s 1
-}
-
-.js-popover {
+.js-dropdown,.js-popover {
 	-webkit-animation:fadein 0.3s 1;
 	animation:fadein 0.3s 1
 }
@@ -3303,13 +3189,13 @@ h6 {
 }
 
 .column-holder .column-panel:nth-child(2) {
-	width:0;
+	width:0px;
 	left:100%;
 	z-index:2
 }
 
 .column-holder .column-panel:nth-child(3) {
-	width:0;
+	width:0px;
 	overflow:hidden;
 	left:200%
 }
@@ -3394,6 +3280,10 @@ h6 {
 	margin-left:0px!important
 }
 
+.mdl .column-title {
+	width:90%
+}
+
 .column-title .attribution {
 	font-weight:400;
 	font-size:13px;
@@ -3428,22 +3318,6 @@ h6 {
 	top:5px
 }
 
-.column-number {
-	counter-increment:column-number;
-	position:absolute;
-	top:0;
-	left:0;
-	line-height:1;
-	font-size:10px;
-	color:#777;
-	display:none;
-	padding:1px
-}
-
-.column-number:before {
-	content:counter(column-number)
-}
-
 .column-drag-handle {
 	position:absolute;
 	top:13px;
@@ -3465,44 +3339,30 @@ h6 {
 }
 
 .column-title-back .icon {
-	background-image:url(https://dangeredwolf.com/assets/tweetdeck/img/back.png);
-	background-image:url(back.png);
-	width:22px;
-	height:22px;
-	font-size:0px;
-	z-index:99;
 	position:absolute;
-	top:15px;
+	top:1px;
 	left:0px;
-	line-height:0;
-	vertical-align:middle;
-	background-size:22px 22px
+	font-size:25px
 }
 
 a:active .column-title-back .icon:after {
-	content:"...";
-	background:rgba(255, 255, 255, 0.2);
 	width:40px;
 	height:40px;
-	position:absolute;
-	margin-top:-10px;
-	margin-left:-9px;
-	border-radius:21px;
-	z-index:9;
+	margin-left:-32px;
 	transform:scale(1);
 	opacity:1;
 	transition:100ms all
 }
 
 a .column-title-back .icon:after {
-	content:"...";
-	background:rgba(255, 255, 255, 0);
+	content:" ";
+	background:rgba(255, 255, 255, 0.2);
 	width:30px;
 	height:30px;
 	position:absolute;
-	margin-top:-7px;
-	margin-left:-19px;
-	border-radius:16px;
+	margin-top:3px;
+	margin-left:-50px;
+	border-radius:21px;
 	z-index:9;
 	transform:scale(0.5);
 	opacity:0;
@@ -3519,11 +3379,6 @@ a .column-title-back .icon:after {
 	display:block!important
 }
 
-.tde-light .is-inverted-dark {
-	color:#333;
-	transition:200ms all
-}
-
 .link-complex.txt-medium.block.cf {
 	color:#26C6DA
 }
@@ -3538,7 +3393,7 @@ a .column-title-back .icon:after {
 }
 
 .btn.js-toggle-tweets.is-selected {
-	background:rgb(0, 119, 255);
+	background:rgba(0,0,0,0.05);
 	border-radius:7px 0 0 7px;
 	transform:scale(1,1)
 }
@@ -3562,7 +3417,7 @@ a .column-title-back .icon:after {
 	border-radius:0 7px 7px 0
 }
 
-.tde-light .is-inverted-dark .scroll-conversation {
+.tde-light .mdl .scroll-conversation {
 	background:#EFEFEF
 }
 
@@ -3679,40 +3534,19 @@ a .column-title-back .icon:after {
 }
 
 .column-message {
-	box-sizing:border-box;
-	width:100%;
 	height:21px!important;
 	overflow:hidden;
-	line-height:1em;
-	opacity:1!important;
 	background:#03A9F4;
 	box-shadow:0 1px 10px rgba(0, 0, 0, 0.25);
 	z-index:50000;
 	position:relative;
-	color:#fff;
 	transition:200ms all
+;
+	color: #fff;
 }
 
-.filter-error {
-	color:#fff;
-	background:#c00;
-	line-height:1
-}
-
-.facet-content {
-	color:#F4DEDD
-}
-
-.facet-user {
-	color:#e5cf76
-}
-
-.facet-action {
-	color:#9cd1d4
-}
-
-.facet-engagement {
-	color:#91a6c0
+.facet-content .icon {
+	opacity:0.75
 }
 
 .column-options {
@@ -3743,58 +3577,6 @@ a .column-title-back .icon:after {
 	content:'';
 	display:inline-block;
 	width:100%
-}
-
-.is-new .update-glow::after {
-	content:" ";
-	position:absolute;
-	bottom:-5px;
-	width:150px;
-	height:3px;
-	background-position:-10px -90px
-}
-
-.btn-options-unique {
-	color:#ddd;
-	padding-top:8px;
-	padding-bottom:8px;
-	font-size:13px
-}
-
-.btn-options-unique .icon {
-	font-size:18px
-}
-
-.is-inverted-dark .column-options {
-	background:#fff
-}
-
-.column-updates {
-	position:absolute;
-	top:0;
-	left:50%;
-	margin-left:-25%;
-	visibility:hidden
-}
-
-.column-nav-updates {
-	position:absolute;
-	top:3px;
-	right:6px;
-	color:rgb(255, 255, 255);
-	visibility:hidden
-}
-
-.is-new .column-updates,.is-new .column-nav-updates {
-	width:100%;
-	margin-left:-50%;
-	height:10px;
-	-webkit-animation:new 0.5s 1;
-	animation:new 0.5s 1
-}
-
-.contributor-manager .account-summary {
-	margin-right:0!important
 }
 
 .contributor-row {
@@ -3858,15 +3640,7 @@ a .column-title-back .icon:after {
 	top:-1px
 }
 
-.contributor-row[data-state="confirmDeadmin"] {
-	top:-1px
-}
-
-.contributor-row[data-state="confirmRemove"],.contributor-row[data-state="confirmRemove-removing"] {
-	top:-1px
-}
-
-.contributor-row[data-state="confirmRemove-removing"] {
+.contributor-row[data-state="confirmRemove-removing"],.contributor-row[data-state="confirmDeadmin"],.contributor-row[data-state="confirmDeadmin"] {
 	top:-1px
 }
 
@@ -3877,20 +3651,6 @@ a .column-title-back .icon:after {
 .contributor-row[data-state="confirmRemove-removing"] {
 	opacity:0;
 	height:0
-}
-
-.is-animating {
-	transition:height 100ms,opacity 50ms;
-	transition-delay:0,50ms;
-	overflow:hidden;
-	height:0;
-	min-height:0;
-	margin-top:-1px;
-	opacity:0
-}
-
-.is-expanding {
-	overflow:hidden
 }
 
 .chirp-container {
@@ -4104,7 +3864,7 @@ a .column-title-back .icon:after {
 	color:#999
 }
 
-.app-search-tweet-results .js-tooltip-target.link-complex-target:before {
+.app-search-tweet-results .link-complex-target:before {
 	content:"Tweet";
 	font-weight:400;
 	color:#fff;
@@ -4116,7 +3876,7 @@ a .column-title-back .icon:after {
 	font-size:16px
 }
 
-.column-detail-level-2 .js-tooltip-target.link-complex-target:before {
+.column-detail-level-2 .link-complex-target:before {
 	content:""!important;
 	font-size:0px!important
 }
@@ -4151,10 +3911,6 @@ a .column-title-back .icon:after {
 	padding-right:14px
 }
 
-.compose-media-bar-remove .sprite {
-	margin-left:0px!important
-}
-
 .avatar {
 	width:48px;
 	height:48px;
@@ -4162,8 +3918,14 @@ a .column-title-back .icon:after {
 	transition:200ms all
 }
 
-.tde-no-round-avatars .avatar{
+.tde-no-round-avatars .avatar {
 	border-radius:5px!important
+}
+
+.list-account .avatar {
+	width:28px;
+	height:28px;
+	margin-left:10px
 }
 
 .avatar.compose-account-img:active {
@@ -4408,19 +4170,6 @@ a .column-title-back .icon:after {
 
 .media-item:first-child {
 	margin-top:0
-}
-
-.triangle {
-	position:absolute;
-	left:50%;
-	margin-left:-7px;
-	top:0;
-	content:"";
-	display:block;
-	width:0;
-	height:0;
-	border:solid 7px;
-	border-color:#222426 transparent transparent
 }
 
 .video-overlay {
@@ -4911,25 +4660,6 @@ a .column-title-back .icon:after {
 	overflow-y:scroll
 }
 
-.spinner-large {
-	height:50px;
-	background:transparent url(spinner_large_white.gif) no-repeat 50% 50%
-}
-
-.tde-dark .spinner-large {
-	background:none
-}
-
-.spinner-small {
-	height:16px;
-	width:16px;
-	background:transparent url(spinner_small_light.gif) no-repeat 50% 50%
-}
-
-.spinner-small-trans {
-	background:transparent url(spinner_small_trans.gif) no-repeat 50% 50%
-}
-
 .spinner-button-container {
 	position:relative;
 	display:inline
@@ -4984,36 +4714,6 @@ a .column-title-back .icon:after {
 	padding:10px 10px 0
 }
 
-.app-title {
-	text-align:center;
-	height:32px;
-	padding-top:3px;
-	position:absolute;
-	bottom:3px;
-	right:50%;
-	background:transparent;
-	display:none;
-	transform:scale(0.78,0.78)
-}
-
-.sprite-logo,.sprite-logo-badge,.sprite-logo-badge-large {
-	position:absolute;
-	top:6px;
-	left:-5px
-}
-
-.app-title .sprite-logo {
-	left:35px
-}
-
-.app-title .sprite-logo-badge {
-	opacity:0;
-	top:-10px;
-	left:-1px;
-	background-size:40px 40px;
-	background-position:5px 5px
-}
-
 .app-content {
 	position:absolute;
 	top:40px;
@@ -5063,7 +4763,7 @@ a .column-title-back .icon:after {
 }
 
 .app-nav-link:focus,.app-nav-link:active {
-	outline:none;
+	outline:0;
 	color:#777
 }
 
@@ -5432,8 +5132,12 @@ a .column-title-back .icon:after {
 	background:rgba(153,153,153,0.2);
 	transition:250ms background;
 	transform:scale(1.025);
-	z-index:9999;
+	z-index:9;
 	box-shadow:0 1px 10px rgba(17,17,17,0.35)
+}
+
+.popover .facet-type.is-expanded {
+    background:#26C6DA
 }
 
 .facet-type-icon {
@@ -5850,11 +5554,11 @@ a .column-title-back .icon:after {
 	background:#fff;
 	text-align:left;
 	opacity:1;
-	border-radius:2px;
+	border-radius: 4px;
 	transform-origin:50% 60%;
 	-webkit-animation:popgoesthemodalwindow 0.3s 1 cubic-bezier(.19,1,.22,1);
 	animation:popgoesthemodalwindow 0.3s 1 cubic-bezier(.19,1,.22,1);
-	box-shadow:0 15px 40px rgba(17,17,17,0.4);
+	box-shadow: 0 30px 70px rgba(17,17,17,0.6);
 	overflow:hidden;
 	transform:none;
 	transition:100ms box-shadow, 100ms transform
@@ -5872,7 +5576,7 @@ a .column-title-back .icon:after {
 	margin-right:auto;
 	text-align:center;
 	color:#fff;
-	margin-top:-1px;
+	margin-top:0px;
 	z-index:10;
 	position:absolute;
 	width:100%;
@@ -5897,7 +5601,7 @@ a .column-title-back .icon:after {
 
 .mdl-inner {
 	position:absolute;
-	top:47px;
+	top:50px;
 	left:-1px;
 	right:0;
 	bottom:0px
@@ -5909,7 +5613,6 @@ a .column-title-back .icon:after {
 	background:#fff;
 	background-clip:padding-box;
 	overflow:hidden;
-	overflow-y:scroll;
 	padding-top:20px
 }
 
@@ -5990,9 +5693,10 @@ a .column-title-back .icon:after {
 .mdl:before {
 	content:" ";
 	width:100.1%;
-	height:48px;
+	height:52px;
 	background:#29B6F6;
 	position:absolute;
+	box-shadow:0 0px 15px rgba(17,17,17,0.3);
 	z-index:9
 }
 
@@ -6014,14 +5718,6 @@ a .column-title-back .icon:after {
 	bottom:auto;
 	left:auto;
 	right:auto
-}
-
-.mdl.s-nonav .mdl-inner {
-	bottom:0
-}
-
-.mdl.s-static .mdl-inner {
-	position:static
 }
 
 .mdl.s-narrow {
@@ -6076,6 +5772,10 @@ a .column-title-back .icon:after {
 	padding:0
 }
 
+.column-header h1 strong {
+	font-weight:400;
+}
+
 .lst-launcher {
 	padding-top:20px;
 	width:100%;
@@ -6085,18 +5785,18 @@ a .column-title-back .icon:after {
 }
 
 .lst-launcher li {
-	display: inline;
-	float:left}
+	display:inline
+}
 
 .lst-launcher a,.lst-launcher a:hover,.lst-launcher a:focus,.lst-launcher a:active {
-	display: block;
-	width:271px;
+	display:block;
+	width:235px;
 	height:46px;
 	text-align:left;
 	color:#666;
 	margin-left:25px;
-	vertical-align:middle;
-	margin-bottom:15px}
+	margin-bottom:15px
+}
 
 .lst-launcher .btn .icon {
 	line-height:inherit
@@ -6525,7 +6225,7 @@ a .column-title-back .icon:after {
 
 .compose-text {
 	width:90%;
-	height:140px!important;
+	height: 140px!important;
 	resize:none;
 	border:none;
 	color:#444;
@@ -6717,16 +6417,6 @@ a .column-title-back .icon:after {
 .compose-account:focus .compose-account-img {
 	box-shadow:0 0 2px 3px #00acee;
 	outline:0;
-	transition:200ms all
-}
-
-.compose-account:not(.is-selected):focus .compose-account-img,.compose-account:not(.is-selected):hover .compose-account-img {
-	opacity:.5;
-	transition:200ms all
-}
-
-.compose-account:not(.is-selected):focus .compose-account-names,.compose-account:not(.is-selected):hover .compose-account-names {
-	opacity:.67;
 	transition:200ms all
 }
 
@@ -6934,10 +6624,6 @@ a .column-title-back .icon:after {
 	text-align:center
 }
 
-.tde-light .med-embeditem {
-	background:transparent url(spinner_large_white.gif) no-repeat 50% 50%
-}
-
 .med-tray {
 	display:inline-block;
 	vertical-align:middle;
@@ -7042,8 +6728,8 @@ a:hover .icn-button-next {
 }
 
 .keyboard-shortcut-list-modal {
-	height:420px;
-	max-width:470px
+	height: 500px;
+	max-width:480px
 }
 
 .keyboard-shortcut-list-modal .mdl-inner {
@@ -7058,21 +6744,28 @@ a:hover .icn-button-next {
 }
 
 .text-like-keyboard-key {
-	padding:2px 5px;
-	background:#A9A9A9;
+	padding:6px 10px;
+	background: #333;
 	border-radius:3px;
-	color:#fff
+	color:#fff;
+	box-shadow:0px 3px 5px rgba(0,0,0,0.5);
+	margin-right:3px
+}
+
+.tde-dark .text-like-keyboard-key {
+	background:#263238
 }
 
 .keyboard-shortcut-list {
 	width:50%;
 	padding-left:25px;
 	font-size:13px;
-	box-sizing:border-box
+	box-sizing:border-box;
+	
 }
 
 .keyboard-shortcut-definition {
-	margin:0 0 15px
+	margin: 0 0 25px
 }
 
 .keyboard-shortcut-title {
@@ -7091,39 +6784,11 @@ a:hover .icn-button-next {
 
 .s-checked .checked {
 	display:block;
-	color:#393
-}
-
-.list-link,.list-twitter-list,.list-subtitle,.list-account,.list-listmember,.list-account,.list-listaccount,.list-subtitle,.list-filter {
-	position:relative;
-	display:block;
-	padding:11px 12px;
-	font-size:14px;
-	color:#333
-}
-
-.tde-dark .list-link,.tde-dark .list-link:focus,.tde-dark .list-link:active,.tde-dark .list-link:hover,.tde-dark .list-twitter-list,.tde-dark .list-subtitle,.tde-dark .list-account,.tde-dark .list-listmember,.tde-dark .list-account,.tde-dark .list-listaccount,.tde-dark .list-subtitle,.tde-dark .list-filter {
-	color:#eee
-}
-
-.list-link:active,.list-twitter-list:active,.list-subtitle:active,.list-account:active,.list-listmember:active,.list-account:active,.list-listaccount:active,.list-subtitle:active,.list-filter:active {
-	text-decoration:none
+	color:#fff
 }
 
 .list-link,.list-twitter-list,.list-subtitle,.list-account,.list-listmember,.list-subtitle,.list-filter {
 	padding:11px 12px
-}
-
-.list-link:hover,.list-twitter-list:hover,.list-subtitle:hover,.list-account:hover,.list-listmember:hover,.list-account:hover,.list-listaccount:hover,.list-subtitle:hover {
-	text-decoration:none;
-	color:#444;
-	background:#fff
-}
-
-.list-link:hover:hover,.list-twitter-list:hover:hover,.list-subtitle:hover:hover,.list-account:hover:hover,.list-listmember:hover:hover,.list-link:hover:focus,.list-twitter-list:hover:focus,.list-subtitle:hover:focus,.list-account:hover:focus,.list-listmember:hover:focus,.list-link:hover:active,.list-twitter-list:hover:active,.list-subtitle:hover:active,.list-account:hover:active,.list-listmember:hover:active,.list-account:hover:hover,.list-account:hover:focus,.list-account:hover:active,.list-listaccount:hover:hover,.list-listaccount:hover:focus,.list-listaccount:hover:active,.list-subtitle:hover:hover,.list-subtitle:hover:focus,.list-subtitle:hover:active {
-	text-decoration:none;
-	color:#444;
-	background:#fff
 }
 
 .list-filter {
@@ -7132,9 +6797,8 @@ a:hover .icn-button-next {
 }
 
 .list-filter input {
-	position:absolute;
-	right:15px;
-	top:6px
+	right:0px;
+	position:absolute
 }
 
 .list-twitter-list .inner {
@@ -7154,70 +6818,17 @@ a:hover .icn-button-next {
 	color:#eaeaea;
 }
 
-.list-twitter-list .bytext {
-	font-size:12px;
-	color:#999
-}
-
-.list-twitter-list .subtitle {
-	display:block;
-	font-size:12px;
-	color:#999
-}
-
-.list-twitter-list .avatar {
-	position:absolute;
-	top:15px;
-	right:15px
-}
-
-.list-twitter-list p {
-	font-size:12px;
-	margin-right:30px
-}
-
-.list-twitter-list .icon-protected {
-	vertical-align:-2px
-}
-
-.list-subtitle span {
-	display:block;
-	font-size:13px;
-	color:#999
-}
-
 .list-account {
 	padding:6px 0;
 	border:0
 }
 
-.list-account.s-justify {
-	padding-left:12px
-}
-
-.list-account img {
-	height:32px;
-	width:32px
-}
-
-.list-account .fullname {
+.tde-light .list-account {
 	color:#333
 }
 
-.list-account .username {
-	display:block;
-	color:#999;
-	font-size:12px
-}
-
-.list-account i {
-	margin-right:3px;
-	margin-top:2px
-}
-
-.list-account-is-default {
-	font-size:11px;
-	padding:9px 14px
+.tde-light .list-account .username {
+	opacity:0.75
 }
 
 .list-listmember {
@@ -7247,6 +6858,10 @@ a:hover .icn-button-next {
 	font-size:13px;
 	line-height:1.2em;
 	font-style:italic
+}
+
+.tde-dark .list-listmember .bio,.tde-dark .list-listmember .username {
+	color:#637983
 }
 
 .list-listmember .btn {
@@ -7331,7 +6946,7 @@ input,textarea,select,.uneditable-input {
 	font-size:13px;
 	line-height:18px;
 	color:#444;
-	border-bottom:2px solid #ccc;
+	border-bottom:2px solid #ddd;
 	border-radius:0px;
 	background:transparent
 }
@@ -7443,9 +7058,13 @@ textarea,.l-fullwidth {
 	background:#fddfde
 }
 
+.column-nav-updates {
+	display:none
+}
+
 .is-new>.column-nav-updates.icon-dot {
-	background:none;
-	margin-right:-85%
+	margin-right:-85%;
+	display:inline
 }
 
 .s-error input {
@@ -7488,7 +7107,7 @@ input,textarea {
 	height:32px;
 	padding:4px 8px;
 	color:#333;
-	border-bottom:2px solid #667A86;
+	border-bottom:2px solid #ddd;
 	border-radius:0px;
 	box-sizing:content-box
 }
@@ -7622,6 +7241,7 @@ input[type="checkbox"] {
 	color:#000;
 	font-size:14px;
 	padding-right:25px;
+	width: 255px;
 	border-bottom:2px solid #ddd
 }
 
@@ -7633,7 +7253,8 @@ input[type="checkbox"] {
 .mdl-column.l-column .search-input {
 	padding-right:25px;
 	color:#fff;
-	border-bottom:2px solid #fff
+	border-bottom:2px solid #fff;
+	width: 100%;
 }
 
 .mdl-column.l-column .search-input::-webkit-input-placeholder {
@@ -7739,7 +7360,7 @@ input[type="checkbox"] {
 }
 
 .toggle-item.is-selected {
-	color:#fff;
+	color: #fff!important;
 	text-decoration:none;
 	cursor:default
 }
@@ -8319,42 +7940,6 @@ input[type="checkbox"] {
 	color:#666
 }
 
-.is-inverted-dark .profile-full {
-	background:#fff;
-	padding-top:50px
-}
-
-.is-inverted-dark .profile-full-header {
-	position:absolute;
-	top:0;
-	left:12px;
-	right:16px
-}
-
-.is-inverted-dark .profile-follow-button {
-	position:absolute;
-	right:0;
-	bottom:8px
-}
-
-.is-inverted-dark .profile-bg-strip {
-	height:35px
-}
-
-.is-inverted-dark .profile-icon {
-	color:#8899a6
-}
-
-.is-inverted-dark .profile-full-avatar {
-	position:relative;
-	top:1px;
-	background:#fff
-}
-
-.is-inverted-dark .profile-full-bio-count {
-	color:#292f33
-}
-
 .lst li {
 	position:relative;
 	padding:5px;
@@ -8665,16 +8250,11 @@ input[type="checkbox"] {
 .popover-position-rt {
 	z-index:1000;
 	left:65px;
-	top:-5px;
+	top:-55px;
 	margin-top:-5px;
+	-webkit-animation:rtpopovercomedown 0.25s cubic-bezier(.19,1,.22,1);
+	animation:rtpopovercomedown 0.25s cubic-bezier(.19,1,.22,1);
 	right:0
-}
-
-.popover-position-rt>.caret {
-	bottom:auto;
-	left:-3px;
-	transform:rotate(270deg);
-	top:16px
 }
 
 .card-holder {
@@ -9079,7 +8659,8 @@ input[type="checkbox"] {
 	overflow:visible;
 	transition:300ms all;
 	transition-delay:2s;
-	transform:none!important
+	transform:none!important;
+	top:0px
 }
 
 .app-header:hover .column-nav-link:not(:active):not(:hover) {
@@ -9101,11 +8682,8 @@ input[type="checkbox"] {
 	position:relative;
 	width:40px;
 	box-sizing:border-box;
-	counter-increment:column-nav;
 	color:rgba(255, 255, 255, 0.75);
 	transition:400ms all;
-	margin-right:0px;
-	margin-left:0px;
 	display:inline-block;
 	left:initial;
 	transform:none;
@@ -9518,29 +9096,28 @@ input[type="checkbox"] {
 }
 
 .draggable-dragging {
-	box-shadow:0 30px 70px rgba(17,17,17,0.6);
+	box-shadow:0 50px 100px rgba(17,17,17,0.8);
 	transition:200ms box-shadow, 200ms transform!important;
-	z-index:999!important
+	z-index:999
 }
 
-.column-nav-item.draggable-dragging {
-	pointer-events:none;
-	transform:none!important;
-	box-shadow:none!important;
-	transition:150ms all
-}
-
-.btn.btn-back.js-back {
-	background-image:url(https://dangeredwolf.com/assets/tweetdeck/img/back.png) no-repeat;
-	background-image:url(back.png) no-repeat;
+.btn-back {
 	margin-top:-635px;
 	position:absolute;
 	width:25px;
 	height:25px;
 	font-size:0px;
-	background-size:25px;
 	margin-left:10px;
 	z-index:99
+}
+
+.btn-back:before {
+	content:"\e5c4";
+	font-family:"Material Icons";
+	font-size: 32px;
+	color:#fff;
+	margin-left:-12px;
+	line-height:0.5
 }
 
 .s-profile .pos-l {
@@ -9619,8 +9196,7 @@ input[type="checkbox"] {
 }
 
 .js-int-scroller {
-	padding-left:40px
-}
+	margin-left: 40px;}
 
 .column-nav-flyout .column-nav-item {
 	height:40px!important;
@@ -9943,11 +9519,6 @@ a[rel=hashtag]:active {
 	transition:150ms all cubic-bezier(.19,1,.22,1)
 }
 
-.hide-detail-view-inline .js-search-in-popover .popover {
-	left:270px!important;
-	top:-18px!important
-}
-
 .tweet-footer {
 	margin-top:6px!important
 }
@@ -10104,18 +9675,14 @@ a[rel=hashtag]:active {
 }
 
 .js-contributor-manager-back .icon {
-	background-image:url(https://dangeredwolf.com/assets/tweetdeck/img/back.png);
-	background-image:url(back.png);
 	width:22px;
 	height:22px;
-	font-size:0px;
+	font-size: 28px;
 	z-index:99;
 	position:absolute;
 	top:15px;
 	left:10px;
-	line-height:0;
-	vertical-align:middle;
-	background-size:22px 22px
+	line-height:0.8
 }
 
 .js-contributor-manager-back span {
@@ -10123,7 +9690,7 @@ a[rel=hashtag]:active {
 }
 
 .js-contributor-manager-back span:after {
-	font-size:16px!important;
+	font-size:16px;
 	content:"Manage Team";
 	font-weight:400
 }
@@ -10356,17 +9923,9 @@ a[rel=hashtag]:active {
 	margin-top:8px
 }
 
-.tde-nav-button:hover {
-	opacity:0.8
-}
-
 .tde-nav-button:active {
 	opacity:1;
 	color:#4B4B4C!important
-}
-
-.tde-nav-button:focus {
-	opacity:0.85
 }
 
 .form-login h2 {
@@ -10503,7 +10062,20 @@ a[rel=hashtag]:active {
 }
 
 .js-setting-list .list-link strong {
-	font-weight:400!important
+	font-weight:400;
+	color:#333;
+}
+
+.selected .list-link strong {
+	color:#fff
+}
+
+.tde-dark .js-setting-list .list-link strong {
+	color:#6D808B
+}
+
+.tde-dark .js-setting-list .selected strong {
+	color:#fff
 }
 
 .mdl-col-settings form.frm fieldset {
@@ -10541,10 +10113,6 @@ a[rel=hashtag]:active {
 	text-align:center;
 	padding-top:5px;
 	margin:0
-}
-
-.column.draggable-dragging {
-	transform:scale(1.05,1.05) translateY(16px)
 }
 
 .edit-conversation-name {
@@ -10592,10 +10160,6 @@ a[rel=hashtag]:active {
 	top:100px
 }
 
-.s-nonav.s-tall-fixed.mdl .mdl-content.horizontal-flow-container {
-	overflow-y:scroll
-}
-
 input.js-username-input.js-submittable-input {
 	color:#000
 }
@@ -10641,14 +10205,14 @@ input.js-username-input.js-submittable-input {
 }
 
 .js-twogin-warning-login-anyway-btn:after {
-	content:"I'll just use this account (unrecommended)";
+	content:"I'll use this account (unrecommended)";
 	font-size:16px;
 	padding-bottom:15px;
 	display:block
 }
 
 .js-twogin-warning-logout-btn.btn-txt-large:after {
-	content:"Alright, I'll use my own account.";
+	content:"I'll use my own account.";
 	font-size:20px
 }
 
@@ -10674,11 +10238,6 @@ body.scroll-v .mdl .startflow-panel {
 html:not(.tde-minimal) .app-header:hover .tde-appbar-notification:not(.tde-appbar-notification-hidden) {
 	margin-left:50%!important;
 	width:50%!important
-}
-
-.hide-detail-view-inline .js-search-in-popover .popover {
-	left:65px!important;
-	top:-18px!important
 }
 
 .more-tweets-btn-container--hidden {
@@ -10821,55 +10380,12 @@ fieldset .fixed-width-label:not(.radio), fieldset:not(.js-search-filter) .contro
 	display:inline!important
 }
 
-.is-inverted-dark .js-toggle.padding-al {
-	box-shadow:0 4px 7px rgba(17,17,17,0.2);
-	z-index:999!important;
-	position:relative!important
-}
-
-.is-inverted-dark .facet-type {
-	background:#fff
-}
-
-.is-inverted-dark .accordion.js-search-filter {
-	box-shadow:0 3px 3px rgba(17,17,17,0.2);
-	position:relative!important;
-	z-index:999!important;
-	margin-bottom:6px
-}
-
-.js-fhf-header,.is-inverted-dark .search-results,.is-inverted-dark .accordion.js-search-filter {
-	overflow:visible!important
-}
-
-.is-inverted-dark .control-s .control-label {
-	color:#333
-}
-
-.facet-type .control-group select, .facet-type .control-group input {
-	color:#333;
-	border-bottom:2px solid #333
-}
-
 .popover .search-input-control input:not(.search-input) {
 	border-bottom:2px solid #333!important
 }
 
 .popover input.txt-mute, .popover textarea.txt-mute {
 	border-bottom:2px solid #333!important;
-	color:#333
-}
-
-.is-inverted-dark .js-content-filter .search-input-control input::-webkit-input-placeholder {
-	color:#333
-}
-
-.is-inverted-dark .js-content-filter .search-input-control input::-moz-placeholder {
-	color:#333;
-	opacity:1
-}
-
-.is-inverted-dark .js-content-filter .search-input-control input::input-placeholder {
 	color:#333
 }
 
@@ -11203,6 +10719,12 @@ html.tde-dark {
 	color:#fff
 }
 
+.lst-group .username {
+	display:block;
+	margin-top:2px;
+	font-size:0.9em
+}
+
 .tde-dark .lst-group .selected a .username {
 	color:rgba(255,255,255,0.5)
 }
@@ -11390,7 +10912,7 @@ html.tde-dark {
 }
 
 .mdl-column.mdl-column-lrg {
-	background:rgb(255,255,255)
+	background:#fff
 }
 
 .tde-dark .mdl-column.mdl-column-lrg {
@@ -11576,7 +11098,7 @@ fieldset .toggle-switch {
 	float:right
 }
 
-html>body input.js-add-to-customtimeline-input.no-radius {
+.js-add-to-customtimeline-input {
 	margin-top:-1000px;
 	min-height:inherit;
 	margin-bottom:10px;
@@ -12136,4 +11658,27 @@ button.tde-no-transform-case {
 
 .is-expanded .accordion-panel {
 	display:block
+}
+
+.column-nav-item.is-new:first-child .obj-left {
+	margin-top:-30px;
+}
+
+.lst-group li {
+    padding-left:5px
+}
+
+.list-link {
+    width:100%;
+    height:100%;
+    display:block
+}
+
+.tde-light option {
+	color:#333
+}
+
+.tde-dark option {
+	color:#eee;
+	background:#2E3B41
 }

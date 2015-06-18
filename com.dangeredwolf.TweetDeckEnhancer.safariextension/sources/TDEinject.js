@@ -13,7 +13,7 @@ var TDEBaseURL = "https://dangeredwolf.com/assets/tdetest/"; // Defaults to stre
 var progress = null;
 var tde_fetch_profile_info_for_nav_drawer = 0;
 
-var SystemVersion = "5.3 Beta 1.2";
+var SystemVersion = "5.3 Beta 2.0";
 
 var TreatGeckoWithCare = false;
 
@@ -63,45 +63,60 @@ function TDEInit(){
   }
 
   InjectFonts = document.createElement("style");
-  InjectFonts.innerHTML = "@font-face{font-family:'RobotoDraft';font-style:normal;font-weight: 300;src:local('RobotoDraft Light'),local('RobotoDraft-Light'),url(" + TDEBaseURL + "sources/fonts/Roboto300latinext.woff2) format('woff2');unicode-range:U+0100-024F,U+1E00-1EFF,U+20A0-20AB,U+20AD-20CF,U+2C60-2C7F,U+A720-A7FF;}@font-face{font-family:'RobotoDraft';\
+  InjectFonts.innerHTML = "\
+  @font-face {\
+	  font-family:'Roboto';\
+	  font-style:normal;\
+	  font-weight: 300;\
+	  src: url(" + TDEBaseURL + "sources/fonts/Roboto300latinext.woff2) format('woff2');\
+	  unicode-range:U+0100-024F,U+1E00-1EFF,U+20A0-20AB,U+20AD-20CF,U+2C60-2C7F,U+A720-A7FF;\
+  }\
+  @font-face {\
+  	font-family:'Roboto';\
     font-style: normal;\
     font-weight: 300;\
-    src: local('RobotoDraft Light'), local('RobotoDraft-Light'), url(" + TDEBaseURL + "sources/fonts/Roboto300latin.woff2) format('woff2');\
+    src: url(" + TDEBaseURL + "sources/fonts/Roboto300latin.woff2) format('woff2');\
     unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;\
   }\
   @font-face {\
-    font-family: 'RobotoDraft';\
+    font-family: 'Roboto';\
     font-style: normal;\
     font-weight: 400;\
-    src: local('RobotoDraft'), local('RobotoDraft-Regular'), url(" + TDEBaseURL + "sources/fonts/Roboto400latinext.woff2) format('woff2');\
+    src: url(" + TDEBaseURL + "sources/fonts/Roboto400latinext.woff2) format('woff2');\
     unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;\
   }\
   @font-face {\
-    font-family: 'RobotoDraft';\
+    font-family: 'Roboto';\
     font-style: normal;\
     font-weight: 400;\
-    src: local('RobotoDraft'), local('RobotoDraft-Regular'), url(" + TDEBaseURL + "sources/fonts/Roboto400latin.woff2) format('woff2');\
+    src: url(" + TDEBaseURL + "sources/fonts/Roboto400latin.woff2) format('woff2');\
     unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;\
   }\
   @font-face {\
-    font-family: 'RobotoDraft';\
+    font-family: 'Roboto';\
     font-style: normal;\
     font-weight: 500;\
-    src: local('RobotoDraft Medium'), local('RobotoDraft-Medium'), url(" + TDEBaseURL + "sources/fonts/Roboto500latinext.woff2) format('woff2');\
+    src: url(" + TDEBaseURL + "sources/fonts/Roboto500latinext.woff2) format('woff2');\
     unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;\
   }\
   @font-face {\
-    font-family: 'RobotoDraft';\
+    font-family: 'Roboto';\
     font-style: normal;\
     font-weight: 500;\
-    src: local('RobotoDraft Medium'), local('RobotoDraft-Medium'), url(" + TDEBaseURL + "sources/fonts/Roboto500latin.woff2) format('woff2');\
+    src: url(" + TDEBaseURL + "sources/fonts/Roboto500latin.woff2) format('woff2');\
     unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;\
   }\
   @font-face {\
     font-family: 'Material Icons';\
     font-style: normal;\
     font-weight: 400;\
-    src: local('Material Icons'), local('MaterialIcons-Regular'), url(" + TDEBaseURL + "sources/fonts/MaterialIcons.woff2) format('woff2');\
+    src: url(" + TDEBaseURL + "sources/fonts/MaterialIcons.woff2) format('woff2');\
+  }\
+  @font-face {\
+    font-family: 'Font Awesome';\
+    font-style: normal;\
+    font-weight: 400;\
+    src: url(" + TDEBaseURL + "sources/fonts/fontawesome.woff2) format('woff2');\
   }";
 
   document.head.appendChild(InjectFonts);
@@ -150,6 +165,12 @@ function TDEInit(){
     document.getElementsByTagName("html")[0].className += " tde-column-oneline";
   } else if (typeof localStorage.tde_column_oneline === "undefined") {
     localStorage.tde_column_oneline = true;
+  }
+
+  if (localStorage.tde_outlines === "true") {
+  	document.getElementsByTagName("html")[0].className += "tde-acc-focus-ring";
+  } else if (typeof localStorage.tde_outlines === "undefined"){
+  	localStorage.tde_outlines = false;
   }
 }
 
@@ -257,6 +278,18 @@ function PrefsListener() {
 			document.getElementsByTagName("html")[0].className = document.getElementsByTagName("html")[0].className.replace(" tde-column-oneline","");
 		}
 
+		if (localStorage.tde_outlines === "false" && $("#tde-outlines-control")[0].checked) {
+			console.log("Hey true!!");
+			localStorage.tde_outlines = true;
+			document.getElementsByTagName("html")[0].className += " tde-acc-focus-ring";
+		}
+
+		if (localStorage.tde_outlines === "true" && !$("#tde-outlines-control")[0].checked) {
+			console.log("Hey false!!");
+			localStorage.tde_outlines = false;
+			document.getElementsByTagName("html")[0].className = document.getElementsByTagName("html")[0].className.replace(" tde-acc-focus-ring","");
+		}
+
 		setTimeout(PrefsListener,500);
 	}
 }
@@ -278,7 +311,7 @@ function TDESettings() {
 			tdesettingsmodalinner.innerHTML = '<div class="mdl-content js-mdl-content horizontal-flow-container"> <div class="l-column mdl-column mdl-column-sml"> <div class="l-column-scrollv scroll-v	scroll-alt "> <ul class="lst-group js-setting-list">\
 			<li id="tde-appearance-li" class="selected"><a href="#" class="list-link" id="enhancer_settings_appearance_button" data-action="general"><strong>Appearance</strong></a></li>\
 			\
-			<li id="tde-accessibility-li"><a href="#" class="list-link" id="enhancer_settings_accessibility_button" data-action="general"><strong>Accessiblity</strong></a></li>\
+			<li id="tde-accessibility-li"><a href="#" class="list-link" id="enhancer_settings_accessibility_button" data-action="general"><strong>Accessibility</strong></a></li>\
 			\
 			<li id="tde-about-li"><a href="#" class="list-link" id="enhancer_settings_about_button" data-action="general"><strong>About</strong></a></li>\
 			\
@@ -288,7 +321,7 @@ function TDESettings() {
 			\
 			<form action="#" id="tde-appearance-form" accept-charset="utf-8" class="frm"><fieldset id="general_settings"><div class="control-group" style="padding-top:10px;"><label class="checkbox">Use rounded profile pictures<input type="checkbox" name="streaming-updates" checked="checked" id="tde-round-avatars-control"> </label><label class="checkbox">Keep column titles on one line<input type="checkbox" name="streaming-updates" checked="checked" id="tde-column-oneline-control"> </label></div></fieldset></form>\
 			\
-			<form action="#" id="tde-accessibility-form" accept-charset="utf-8" class="frm" style="display:none;"><fieldset id="general_settings"><p>Unfortunately, there are currently no accessibility settings available, but be on the lookout for some! :)</p></fieldset></form>\
+			<form action="#" id="tde-accessibility-form" accept-charset="utf-8" class="frm" style="display:none;"><fieldset id="general_settings"><label class="checkbox">Always show outlines on focussed items<input type="checkbox" checked="checked" id="tde-outlines-control"> </label></fieldset></form>\
 			\
 			<form action="#" id="tde-about-form" accept-charset="utf-8" class="frm" style="display:none;"><fieldset id="general_settings"><img src="' + TDEBaseURL + 'sources/tdeaboutsmaller.png" class="tde-logo"><h1 class="list-placeholder tde-about-title">TweetDeck Enhancer</h1><h2 class="tde-version-title">You\'re running Enhancer ' + SystemVersion + '</h2><div class="mdl-links" style="margin-bottom:-10px"> <a href="https://dangeredwolf.com/TweetDeckEnhancer/privacy.txt" target="_blank">Privacy Policy</a> </div></fieldset></form>\
 			\
@@ -297,6 +330,7 @@ function TDESettings() {
 
 			$("#tde-column-oneline-control")[0].checked = (localStorage.tde_column_oneline === "true" && true || false);
 			$("#tde-round-avatars-control")[0].checked = (localStorage.tde_round_avatars === "true" && true || false);
+			$("#tde-outlines-control")[0].checked = (localStorage.tde_outlines === "true" && true || false);
 
 
 			PrefsListener();

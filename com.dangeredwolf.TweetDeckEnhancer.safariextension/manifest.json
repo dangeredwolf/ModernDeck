@@ -20,7 +20,7 @@
     {
       "matches": ["https://tweetdeck.twitter.com/*"],
       "js": ["extension/TDELoad.js"],
-      "css": ["sources/enhancer.css"],
+      "css": ["sources/enhancer.css"], /* dev */
       "run_at": "document_end"
     }
   ],
