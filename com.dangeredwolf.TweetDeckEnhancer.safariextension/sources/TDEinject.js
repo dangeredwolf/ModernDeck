@@ -13,12 +13,44 @@ var TDEBaseURL = "https://dangeredwolf.com/assets/tdetest/"; // Defaults to stre
 var progress = null;
 var tde_fetch_profile_info_for_nav_drawer = 0;
 
-var SystemVersion = "5.3 Beta 2.0";
+var SystemVersion = "5.3 Beta 3.0";
 
 var TreatGeckoWithCare = false;
 
 var WantsToBlockCommunications = false;
 var WantsToDisableSecureStylesheets = false;
+
+var Preferences = []
+
+Preferences.Appearance = [
+	[
+		"flag",
+		"tde-round-avatars",
+		"tde_round_avatars",
+		"tde-rounded-profiles-control",
+		"Use rounded profile pictures",
+		true
+	],
+	[
+		"flag",
+		"tde-column-oneline",
+		"tde_column_oneline",
+		"tde-column-oneline-control",
+		"Keep column titles on one line",
+		true
+	]
+],
+
+Preferences.Accessibility = [
+	[
+		"flag",
+		"tde-outlines",
+		"tde_outlines",
+		"tde-outlines-control",
+		"Always show outlines on focussed items",
+		false
+	]
+]
 
 if (typeof TDEURLExchange !== "undefined") {
 	TDEBaseURL = TDEURLExchange.getAttribute("type") || "https://dangeredwolf.com/assets/tdetest/";
@@ -172,6 +204,8 @@ function TDEInit(){
   } else if (typeof localStorage.tde_outlines === "undefined"){
   	localStorage.tde_outlines = false;
   }
+
+
 }
 
 function WaitForLogin() {

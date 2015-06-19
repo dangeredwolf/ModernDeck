@@ -71,94 +71,6 @@ enhancer.css */
 	}
 }
 
-@-webkit-keyframes bounce-in {
-	40% {
-		transform:scale(1.35)
-	}
-}
-
-@keyframes bounce-in {
-	40% {
-		transform:scale(1.35)
-	}
-}
-
-@-webkit-keyframes fade-in {
-	from {
-		opacity:.01
-	}
-
-	to {
-		opacity:1
-	}
-}
-
-@keyframes fade-in {
-	from {
-		opacity:.01
-	}
-
-	to {
-		opacity:1
-	}
-}
-
-@-webkit-keyframes rotate-in {
-	from {
-		transform-origin:-5px 0;
-		transform:rotate(90deg);
-		opacity:0
-	}
-
-	to {
-		transform-origin:-5px 0;
-		transform:rotate(0);
-		opacity:1
-	}
-}
-
-@keyframes rotate-in {
-	from {
-		transform-origin:-5px 0;
-		transform:rotate(90deg);
-		opacity:0
-	}
-
-	to {
-		transform-origin:-5px 0;
-		transform:rotate(0);
-		opacity:1
-	}
-}
-
-@-webkit-keyframes rotate-out {
-	from {
-		transform-origin:-5px 0;
-		transform:rotate(0);
-		opacity:1
-	}
-
-	to {
-		transform-origin:-5px 0;
-		transform:rotate(90deg);
-		opacity:0
-	}
-}
-
-@keyframes rotate-out {
-	from {
-		transform-origin:-5px 0;
-		transform:rotate(0);
-		opacity:1
-	}
-
-	to {
-		transform-origin:-5px 0;
-		transform:rotate(90deg);
-		opacity:0
-	}
-}
-
 @-webkit-keyframes popcomesthetweetsview {
 	0% {
 		opacity:1;
@@ -191,63 +103,27 @@ enhancer.css */
 	}
 }
 
-@-webkit-keyframes popcomestheview {
-	0% {
-		margin-top:100%
-	}
-
-	50% {
-		margin-top:100%
-	}
-
-	100% {
-		margin-top:0%
-	}
-}
-
-@keyframes popcomestheview {
-	0% {
-		margin-top:100%
-	}
-
-	50% {
-		margin-top:100%
-	}
-
-	100% {
-		margin-top:0%
-	}
-}
-
-@-webkit-keyframes popgoesthetweet {
+@-webkit-keyframes socialProofPop {
 	0% {
 		opacity:0;
-		transform:scale(0.3,0.3)
-	}
-
-	50% {
-		opacity:0.3
+		transform:translate3d(0, 100px, 0);
 	}
 
 	100% {
 		opacity:1;
-		transform:scale(1,1)
+		transform:translate3d(0, 0, 0);
 	}
 }
 
-@keyframes popgoesthetweet {
+@keyframes socialProofPop {
 	0% {
 		opacity:0;
-		transform:scale(0.3,0.3)
-	}
-
-	50% {
-		opacity:0.3
+		transform:translate3d(0, 100px, 0);
 	}
 
 	100% {
 		opacity:1;
-		transform:scale(1,1)
+		transform:translate3d(0, 0, 0);
 	}
 }
 
@@ -523,125 +399,114 @@ enhancer.css */
 	}
 }
 
-@-webkit-keyframes herecomesthetweetdetails {
-	from {
+@keyframes herecomesthetweet {
+	0% {
 		opacity:0;
-		transform:scale(0.7,0.6) perspective(1000px) rotate3d(1,0,0,-15deg)
+		transform:translate3d(0, 100px, 0);
 	}
 
-	to {
+	100% {
 		opacity:1;
-		transform:scale(1,1)
+		transform:translate3d(0, 0, 0);
 	}
 }
 
-@keyframes herecomesthetweetdetails {
-	from {
-		opacity:0;
-		transform:scale(0.7,0.6) perspective(1000px) rotate3d(1,0,0,-15deg)
-	}
-
-	to {
-		opacity:1;
-		transform:scale(1,1)
-	}
-}
-
-@-webkit-keyframes herecomesthetweetdetailsxl {
-	from {
-		opacity:0;
-		transform:scale(1.65,1.65) perspective(600px) rotate3d(1,0,0,-70deg)
-	}
-
-	to {
-		opacity:1;
-		transform:scale(1,1)
-	}
-}
-
-@keyframes herecomesthetweetdetailsxl {
-	from {
-		opacity:0;
-		transform:scale(1.65,1.65) perspective(600px) rotate3d(1,0,0,-70deg)
-	}
-
-	to {
-		opacity:1;
-		transform:scale(1,1)
-	}
-}
-
-@-webkit-keyframes herecomesthetweetdetailssmall {
-	from {
-		opacity:0;
-		transform:scale(0.5,0.5) perspective(600px) rotate3d(1,0,0,-90deg)
-	}
-
-	to {
-		opacity:1;
-		transform:scale(1,1)
-	}
-}
-
-@keyframes herecomesthetweetdetailssmall {
-	from {
-		opacity:0;
-		transform:scale(0.5,0.5) perspective(600px) rotate3d(1,0,0,-90deg)
-	}
-
-	to {
-		opacity:1;
-		transform:scale(1,1)
-	}
-}
-
-@-webkit-keyframes herecomesthetweetdetailssmallbefore {
-	from {
-		opacity:0;
-		transform:scale(0.5,0.5) perspective(600px) rotate3d(1,0,0,90deg)
-	}
-
-	to {
-		opacity:1;
-		transform:scale(1,1)
-	}
-}
-
-@keyframes herecomesthetweetdetailssmallbefore {
-	from {
-		opacity:0;
-		transform:scale(0.5,0.5) perspective(600px) rotate3d(1,0,0,90deg)
-	}
-
-	to {
-		opacity:1;
-		transform:scale(1,1)
-	}
-}
 
 @-webkit-keyframes herecomesthetweet {
-	from {
+	0% {
 		opacity:0;
-		transform:scale(0.4,0.4) perspective(600px) rotate3d(1,0,0,40deg)
+		transform:translate3d(0, 100px, 0);
 	}
 
-	to {
+	100% {
 		opacity:1;
-		transform:scale(1,1)
+		transform:translate3d(0, 0, 0);
 	}
 }
 
-@keyframes herecomesthetweet {
-	from {
+@keyframes herecomesthetweetsmall {
+	0% {
 		opacity:0;
-		transform:scale(0.4,0.4) perspective(600px) rotate3d(1,0,0,40deg)
+		transform:translate3d(0, 30px, 0);
 	}
 
-	to {
+	100% {
 		opacity:1;
-		transform:scale(1,1)
+		transform:translate3d(0, 0, 0);
 	}
 }
+
+
+@-webkit-keyframes herecomesthetweetsmall {
+	0% {
+		opacity:0;
+		transform:translate3d(0, 30px, 0);
+	}
+
+	100% {
+		opacity:1;
+		transform:translate3d(0, 0, 0);
+	}
+}
+
+@keyframes tweetontimeline {
+	0% {
+		opacity:0;
+		height:0px;
+		transform:translate3d(0, -100px, 0);
+	}
+
+	20% {
+		opacity:0
+	}
+
+	100% {
+		opacity:1;
+		transform:translate3d(0, 0, 0);
+	}
+}
+
+@-webkit-keyframes tweetontimeline {
+	0% {
+		opacity:0;
+		height:0px;
+		transform:translate3d(0, -100px, 0);
+	}
+
+	20% {
+		opacity:0
+	}
+
+	100% {
+		opacity:1;
+		transform:translate3d(0, 0, 0);
+	}
+}
+
+@keyframes herecomesthetweetup {
+	0% {
+		opacity:0;
+		transform:translate3d(0, -100px, 0);
+	}
+
+	100% {
+		opacity:1;
+		transform:translate3d(0, 0, 0);
+	}
+}
+
+@-webkit-keyframes herecomesthetweetup {
+	0% {
+		opacity:0;
+		transform:translate3d(0, -100px, 0);
+	}
+
+	100% {
+		opacity:1;
+		transform:translate3d(0, 0, 0);
+	}
+}
+
 
 @-webkit-keyframes popgoesthepanel {
 	from {
@@ -687,7 +552,7 @@ enhancer.css */
 	}
 }
 
-@-webkit-keyframes backgroundanimationout {
+@-webkit-keyframes fadeout {
 	from {
 		opacity:1
 	}
@@ -697,33 +562,13 @@ enhancer.css */
 	}
 }
 
-@keyframes backgroundanimationout {
+@keyframes fadeout {
 	from {
 		opacity:1
 	}
 
 	to {
 		opacity:0
-	}
-}
-
-@-webkit-keyframes new {
-	from {
-		height:0px
-	}
-
-	to {
-		height:10px
-	}
-}
-
-@keyframes new {
-	from {
-		height:0px
-	}
-
-	to {
-		height:10px
 	}
 }
 
@@ -2650,12 +2495,14 @@ small {
 .bing-logo {
 	width:50px;
 	height:22px;
-	padding-top:6px;
+	padding-top:9px;
+	margin-top:1px;
 	color:inherit
 }
 
 .bing-logo:before {
 	content:"Bing";
+	font-family:inherit;
 	color:inherit
 }
 
@@ -3083,7 +2930,6 @@ h6 {
 	left:0;
 	bottom:0;
 	width:325px;
-	perspective:500px;
 	border-right:3px solid rgba(233, 233, 233, 1);
 	opacity:1!important
 }
@@ -3123,19 +2969,18 @@ h6 {
 	height:48px
 }
 
-.is-shifted-1 .column-holder {
-	transform:translateX(-100%)
-}
-
-.is-shifted-2 .column-holder {
-	transform:translateX(-200%)
-}
-
 .column-panel {
 	position:absolute;
 	top:0;
 	bottom:0;
+	z-index:3;
+	transition:250ms top cubic-bezier(.19,1,.22,1),300ms opacity cubic-bezier(.19,1,.22,1);
+	z-index:9;
 	width:100%
+}
+
+.is-shifted-1 .column-panel:not(.column-detail),.is-shifted-2 .column-panel:not(.column-detail-level-2):not(.column-detail) {
+	pointer-events:none
 }
 
 .js-modal-panel {
@@ -3167,42 +3012,50 @@ h6 {
 	word-break:break-word;
 	word-wrap:break-word;
 	opacity:1!important;
-	perspective:500px
+	background:#F9F9F9
 }
 
-.column-background-fill {
-	background:#fff
-}
-
-.is-column-scroller-animating {
-	transition:top 200ms
-}
-
-.column-opacity-transition {
-	transition:opacity 350ms
-}
-
-.column-loading-placeholder .spinner-small {
-	display:inline-block;
-	vertical-align:-2px;
-	padding-right:3px
+.tde-dark .column-scroller {
+	background:rgb(52, 66, 72)
 }
 
 .column-holder .column-panel:nth-child(2) {
 	width:0px;
-	left:100%;
-	z-index:2
+	top:100px;
+	opacity:0;
+	pointer-events:none;
+	z-index:99
 }
 
 .column-holder .column-panel:nth-child(3) {
 	width:0px;
 	overflow:hidden;
-	left:200%
+	top:100px
 }
 
-.is-shifted-1 .column-panel:nth-child(n+2) {
+.is-shifted-1 .column-panel:nth-child(n+2),.is-shifted-2 .column-panel:nth-child(n+2) {
 	width:100%;
-	z-index:2
+	pointer-events:all;
+	opacity:1;
+	top:0px
+}
+
+.is-shifted-1 .column-detail-level-2 {
+	top:100px!important;
+	pointer-events:none!important;
+	opacity:0!important
+}
+
+.column-detail-level-2 {
+	z-index:100!important
+}
+
+.column-detail-level-2 {
+	background:#F9F9F9
+}
+
+.tde-dark .column-detail-level-2 {
+	background:rgb(52,66,72)
 }
 
 .is-shifted-2 .column-panel:nth-child(2) {
@@ -3245,7 +3098,7 @@ h6 {
 	background:linear-gradient(#03A9F4,#03A9F4);
 	line-height:50px;
 	box-shadow:0 1px 10px rgba(17,17,17,0.35);
-	z-index:10;
+	z-index: 50001;
 	color:#fff;
 	transition:200ms all;
 	width:328px
@@ -3340,7 +3193,7 @@ h6 {
 
 .column-title-back .icon {
 	position:absolute;
-	top:1px;
+	top:2px;
 	left:0px;
 	font-size:25px
 }
@@ -3351,7 +3204,7 @@ a:active .column-title-back .icon:after {
 	margin-left:-32px;
 	transform:scale(1);
 	opacity:1;
-	transition:100ms all
+	transition:70ms all
 }
 
 a .column-title-back .icon:after {
@@ -3361,7 +3214,7 @@ a .column-title-back .icon:after {
 	height:30px;
 	position:absolute;
 	margin-top:3px;
-	margin-left:-50px;
+	margin-left: -20px;
 	border-radius:21px;
 	z-index:9;
 	transform:scale(0.5);
@@ -3670,17 +3523,16 @@ a .column-title-back .icon:after {
 }
 
 .overlay.tde-modal-window-fade-out,.dropdown-menu.tde-dropdown-fade-out {
-	-webkit-animation:backgroundanimationout 0.2s cubic-bezier(.19,1,.22,1);
-	animation:backgroundanimationout 0.2s cubic-bezier(.19,1,.22,1);
+	-webkit-animation:fadeout 0.2s cubic-bezier(.19,1,.22,1);
+	animation:fadeout 0.2s cubic-bezier(.19,1,.22,1);
 	display:block
 }
 
 .popover.is-hidden {
 	display:block!important;
-	-webkit-animation:backgroundanimationout 0.2s cubic-bezier(.19,1,.22,1);
-	-webkit-animation-fill-mode:forwards;
-	animation:backgroundanimationout 0.2s cubic-bezier(.19,1,.22,1);
-	animation-fill-mode:forwards;
+	opacity:0;
+	-webkit-animation:none;
+	animation:none;
 	pointer-events:none
 }
 
@@ -3690,8 +3542,8 @@ a .column-title-back .icon:after {
 }
 
 .stream-item {
-	-webkit-animation:herecomesthetweet 0.4s 1;
-	animation:herecomesthetweet 0.4s 1;
+	-webkit-animation:tweetontimeline 0.4s cubic-bezier(.19,1,.22,1);
+	animation:tweetontimeline 0.4s cubic-bezier(.19,1,.22,1);
 	transition:300ms all
 }
 
@@ -3705,8 +3557,8 @@ a .column-title-back .icon:after {
 
 .js-replies-before .stream-item {
 	border:0;
-	-webkit-animation:herecomesthetweetdetails 0.8s 1;
-	animation:herecomesthetweetdetails 0.8s 1
+	-webkit-animation:herecomesthetweetup 0.4s cubic-bezier(.19,1,.22,1);
+	animation:herecomesthetweetup 0.4s cubic-bezier(.19,1,.22,1)
 }
 
 .js-column.column.draggable-dragging article.stream-item {
@@ -3862,23 +3714,6 @@ a .column-title-back .icon:after {
 .list-icon {
 	margin-top:-4px;
 	color:#999
-}
-
-.app-search-tweet-results .link-complex-target:before {
-	content:"Tweet";
-	font-weight:400;
-	color:#fff;
-	position:absolute;
-	text-align:left;
-	left:48px;
-	margin-left:-5px;
-	margin-top:2px;
-	font-size:16px
-}
-
-.column-detail-level-2 .link-complex-target:before {
-	content:""!important;
-	font-size:0px!important
 }
 
 .list-item-button {
@@ -4493,15 +4328,18 @@ a .column-title-back .icon:after {
 .tweet-detail-wrapper {
 	margin-top:-1px;
 	background:#FAFAFA;
-	box-shadow:0 1px 10px rgba(17,17,17,0.3);
-	perspective:250px
+	box-shadow:0 1px 10px rgba(17,17,17,0.3)
+}
+
+.tweet-detail-wrapper {
+	-webkit-animation:herecomesthetweetsmall 0.4s cubic-bezier(.19,1,.22,1);
+	animation:herecomesthetweetsmall 0.4s cubic-bezier(.19,1,.22,1);
+	border-top:5px solid transparent
 }
 
 .tweet-detail-wrapper .stream-item {
-	border:0;
-	border-top:5px solid transparent;
-	-webkit-animation:herecomesthetweetdetails 0.4s 1;
-	animation:herecomesthetweetdetails 0.4s 1
+	animation:none;
+	-webkit-animation:none
 }
 
 .tweet-detail-media {
@@ -4725,7 +4563,7 @@ a .column-title-back .icon:after {
 	overflow:visible;
 	transition-property:transform;
 	transition-duration:.2s;
-	transition-timing-function:cubic-bezier(.19,1,.22,1)!important;
+	transition-timing-function:!important;
 	-webkit-transition-timing-function:cubic-bezier(.19,1,.22,1)!important
 }
 
@@ -8233,6 +8071,7 @@ input[type="checkbox"] {
 	border-radius:2px;
 	transition:max-height 150ms;
 	box-shadow:0 2px 5px rgba(117,117,117,0.8);
+	transition:opacity 250ms cubic-bezier(.19,1,.22,1);
 	-webkit-animation:popovercomedown 0.25s cubic-bezier(.19,1,.22,1);
 	animation:popovercomedown 0.25s cubic-bezier(.19,1,.22,1);
 	margin-left:auto;
@@ -8683,16 +8522,17 @@ input[type="checkbox"] {
 	width:40px;
 	box-sizing:border-box;
 	color:rgba(255, 255, 255, 0.75);
-	transition:400ms all;
+	transition:400ms all cubic-bezier(.19,1,.22,1);
 	display:inline-block;
 	left:initial;
-	transform:none;
+	transform:translate3d(15px,0,0);
 	opacity:0
 } 
 
 .column-navigator:hover .column-nav-item {
 	opacity:1;
-	transition:200ms all
+	transform:none;
+	transition:200ms all cubic-bezier(.19,1,.22,1)
 }
 
 .column-nav-link .icon {
@@ -8916,11 +8756,6 @@ input[type="checkbox"] {
 	height:0px
 }
 
-.js-column-social-proof .column-content {
-	-webkit-animation:popcomesthetweetsview 0.5s 1 cubic-bezier(.19,1,.22,1);
-	animation:popcomesthetweetsview 0.5s 1 cubic-bezier(.19,1,.22,1)
-}
-
 .link-clean[href="https://twitter.com/TDEnhancer"] .avatar {
 	box-shadow:none!important;
 	border-radius:0px!important;
@@ -8965,19 +8800,9 @@ input[type="checkbox"] {
 	color:#898989
 }
 
-.js-replies-before .stream-item {
-	border:0;
-	-webkit-animation:none;
-	animation:none
-}
-
 .replies-after .stream-item.is-actionable {
-	-webkit-animation:herecomesthetweetdetailssmall 0.4s 1 cubic-bezier(.19,1,.22,1);
-	animation:herecomesthetweetdetailssmall 0.4s 1 cubic-bezier(.19,1,.22,1)
-}
-
-.js-replies-to {
-	perspective:600px
+	-webkit-animation:herecomesthetweet 0.4s cubic-bezier(.19,1,.22,1);
+	animation:herecomesthetweet 0.4s cubic-bezier(.19,1,.22,1)
 }
 
 .list-item.is-selected {
@@ -8990,8 +8815,8 @@ input[type="checkbox"] {
 }
 
 .js-message-detail {
-	-webkit-animation:popgoesthetweet 0.4s 1 cubic-bezier(.19,1,.22,1);
-	animation:popgoesthetweet 0.4s 1 cubic-bezier(.19,1,.22,1)
+	-webkit-animation:herecomesthetweet 0.4s cubic-bezier(.19,1,.22,1);
+	animation:herecomesthetweet 0.4s cubic-bezier(.19,1,.22,1)
 }
 
 .account-remove-check-message {
@@ -9089,10 +8914,6 @@ input[type="checkbox"] {
 
 .accs.js-account-selector {
 	padding-top:50px
-}
-
-.column-detail {
-	z-index:3
 }
 
 .draggable-dragging {
@@ -9816,9 +9637,9 @@ a[rel=hashtag]:active {
 }
 
 .js-modal[style="display: none;"] {
-	-webkit-animation:backgroundanimationout 0.2s cubic-bezier(.19,1,.22,1);
+	-webkit-animation:fadeout 0.2s cubic-bezier(.19,1,.22,1);
 	-webkit-animation-fill-mode:forwards;
-	animation:backgroundanimationout 0.2s cubic-bezier(.19,1,.22,1);
+	animation:fadeout 0.2s cubic-bezier(.19,1,.22,1);
 	animation-fill-mode:forwards;
 	display:block!important;
 	transition:margin-top 1s!important;
@@ -9899,10 +9720,6 @@ a[rel=hashtag]:active {
 	text-shadow:0 5px 40px #000;
 	color:#fff;
 	font-size:16px
-}
-
-.popover.is-hidden {
-	pointer-events:none
 }
 
 .compose-reply-tweet.is-hidden {
@@ -10431,7 +10248,12 @@ fieldset .fixed-width-label:not(.radio), fieldset:not(.js-search-filter) .contro
 
 .tde-column-oneline .column-title {
 	text-align:inherit!important;
-	margin-top:-3px
+	margin-top:-2px
+}
+
+.tde-column-oneline .column-type-icon {
+    padding-top:2px
+	
 }
 
 .contributor-list {
@@ -10502,6 +10324,10 @@ html.tde-dark {
 .tde-dark .txt-mute a:not(:hover):not(:focus):not(.tweet-action):not([data-action]) {
 	color:#708795;
 	text-decoration:none
+}
+
+.js-tweet-social-proof-back,.js-tweet-social-proof-back:hover,.tde-dark .js-tweet-social-proof-back,.tde-dark .js-tweet-social-proof-back:hover {
+	color:#fff
 }
 
 .tde-dark .is-new .column-message {
@@ -10754,7 +10580,7 @@ html.tde-dark {
 }
 
 .tde-dark .dropdown-menu {
-	background:#2D3B41;
+	background: #263238;
 	box-shadow:0 2px 5px rgba(0, 0, 0, 0.34)
 }
 
@@ -10859,7 +10685,7 @@ html.tde-dark {
 }
 
 .tde-dark .drp-h-divider {
-	border-bottom:1px solid #3E5058
+	border-bottom:1px solid #323E43
 }
 
 .tde-dark .is-unread .txt-mute,.tde-dark .is-unread .conversation-indicator {
@@ -11146,10 +10972,6 @@ fieldset .toggle-switch {
 	font-size:12px;
 	content:"Ready?";
 	margin-right:5px
-}
-
-.column-scroller {
-	opacity:1!important
 }
 
 .with-drop-target .column-drag-drop-overlay {
@@ -11553,7 +11375,7 @@ html.tde-dark body:not(.scroll-v) {
 	margin-left:20px;
 	font-size:16px;
 	display:inline-block;
-	margin-top:1px
+	margin-top:2px
 }
 
 .tde-dark .js-quote-tweet-holder .quoted-tweet {
@@ -11681,4 +11503,9 @@ button.tde-no-transform-case {
 .tde-dark option {
 	color:#eee;
 	background:#2E3B41
+}
+
+.js-column-social-proof .stream-item {
+	-webkit-animation:socialProofPop 0.2s cubic-bezier(.19,1,.22,1);
+	animation:socialProofPop 0.2s cubic-bezier(.19,1,.22,1);
 }
