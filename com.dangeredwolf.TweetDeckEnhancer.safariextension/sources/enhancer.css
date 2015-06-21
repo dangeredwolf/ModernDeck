@@ -13,7 +13,7 @@ enhancer.css */
 
 /* SUPERCLASSES */
 
-.column-nav-item.is-new:first-child .column-nav-updates,.accordion .is-active .facet-subtitle,.mdl-dismiss,.mdl-dismiss-media,.tde-mobile .column-type-icon,.column-type-message .js-column-detail .column-title-back:before,.add-on.with-emphasis,.tde-minimal .column-navigator,.tde-dark body.scroll-v .js-modal-context .mdl:before,html body .app-navigator .dropdown-menu,.caret,.js-column-detail .column-title-back.conversation-title:after,.more-tweets-btn-inner-mouse-release,.more-tweets-btn-inner-loading,.more-tweets-btn-container--mouse-release .more-tweets-btn-inner-default,.more-tweets-btn-container--loading .more-tweets-btn-inner-default,.status-message,.app-masthead,.cmp-spinner,.chev-right,.compose-text-title,.cmp button b,.cmp .mdl-header-title:empty,.app-search-tweet-results .column-header-temp,.spinner-centered,.without-tweet-drag-handles .tweet-drag-handle,.account-remove-check,.js-app-settings .obj-left,.tweet-action-item.feature-customtimelines.tweet-drag-handle,.tweet-detail-action-item.feature-customtimelines.tweet-drag-handle,.column-nav-link:after,.more-tweets-btn-inner-mouse-release,.more-tweets-btn-inner-loading,.more-tweets-btn-container--mouse-release .more-tweets-btn-inner-default,.more-tweets-btn-container--loading .more-tweets-btn-inner-default,.list-item .icon-search.list-icon,.js-typeahead-recent-search-item .obj-left,.s-following .follow-btn .btn-loader,.btd-settings,body:not(.btd-ready) #btdsettings,.edit-conversation-name .nbfc,.js-app-add-column,.btn.js-dismiss,.js-schedule-datepicker-holder .popover .padding-as .btn .icon-trash,.js-dismiss.btn.btn-positive i.icon.icon-check.icon-small.padding-rs,.column-close-link.txt-r-dark-gray,.js-app-loading .js-header-container,.js-add-image-button-label,.js-schedule-button-label,.js-tweet-button-label,.js-dm-button .label.padding-ls,.column-nav-flyout,.release-notes-modal .mdl-drag-handle,#datepicker,.search-input-spinner,.search-input-clear-search,.toggle-item-text-truncated,.sch.s-searching .sch-clear,legend,.frm-legend,.action-btn,.med-origlink,.med-flaglink,.hide-detail-view-inline .detail-view-inline,.compose-account-selected,.js-compose-hint.margin-vl.anim.anim-fade-in,#file-upload-input,.s-sending .char-count,.s-profile .mdl-buttonbar,.s-profile h3,.mdl.s-nonav .mdl-inner .mdl-buttonbar,.ovl.is-dragging:before,.is-dragging.overlay:before,.numbered-badge-onheader,.migrate-account-login-step-1 .migrate-tweetdeck-account-warning-wrapper,.migrate-account-login-step-2 .migrate-tweetdeck-account-warning-wrapper,.migrate-account-login-step-3 .migrate-account-login-forms,.migrate-account-login-step-3 .migrate-account-login-about,.migrate-account-login-forms-cancel,.tooltip-arrow,.accordion .is-active .icon-arrow-d,.accordion .icon-arrow-u,.app-search-in-popover,.app-search-form,.app-header .app-nav-logo-text,.app-header .hide-condensed,.app-header .sprite-logo,.app-header .tweet-button .label,.app-header .app-nav-link .icon-arrow-l-double,.app-header .app-nav-link .icon-arrow-r-double,.app-nav-link .icon-arrow-r-double,.app-nav-tab .icon-user-switch,.tweet-message-status,.icon.icon-move,.tweet-drag-handle,.is-narrow-columns .media-size-medium .media-sensitive-title,.contributor-row[data-contributor-role="contributor"] [data-show-when-contributor-role="admin"],.contributor-row[data-contributor-role="admin"] [data-show-when-contributor-role="contributor"],.contributor-row[data-state-error="closed-error"] [data-hide-when-state-error="closed-error"],.contributor-row[data-state="settings"] [data-hide-when-state="settings"],.contributor-row[data-state-error="settings-error"] [data-hide-when-state-error="settings-error"],[data-show-when-state],[data-show-when-state-error],.is-options-open .column-settings-link .icon-arrow-d,.column-header-link .icon-arrow-u,.column-title-back .attribution,.js-add-to-customtimeline-button,.column-title-editable .js-show-tip.avatar.size24,.account-remove-check,.signin-sheet-now-present .application,.btn-fav-fav-text,.with-add-by-url .list-placeholder.pin-all,.s-thats-you .btn-loader,.s-pending .btn-loader,.s-blocking .follow-btn:hover .block-text,.s-blocking .btn-loader,.s-not-favorited .btn-loader,.btn-fav-faved-text,.s-favorited .btn-loader,.btn-fav-protected-text,.s-protected .btn-loader,.link-clean[href="https://twitter.com/UberFacts"] .sprite-verified,.btn-fav-unfav-text,.btn-fav.s-favorited:hover .btn-fav-faved-text,.s-not-following .btn-loader,.action-text,.s-following .follow-btn:hover .following-text {
+.accordion .is-active .facet-subtitle,.mdl-dismiss,.mdl-dismiss-media,.tde-mobile .column-type-icon,.column-type-message .js-column-detail .column-title-back:before,.add-on.with-emphasis,.tde-minimal .column-navigator,.tde-dark body.scroll-v .js-modal-context .mdl:before,html body .app-navigator .dropdown-menu,.caret,.js-column-detail .column-title-back.conversation-title:after,.more-tweets-btn-inner-mouse-release,.more-tweets-btn-inner-loading,.more-tweets-btn-container--mouse-release .more-tweets-btn-inner-default,.more-tweets-btn-container--loading .more-tweets-btn-inner-default,.status-message,.app-masthead,.cmp-spinner,.chev-right,.compose-text-title,.cmp button b,.cmp .mdl-header-title:empty,.app-search-tweet-results .column-header-temp,.spinner-centered,.without-tweet-drag-handles .tweet-drag-handle,.account-remove-check,.js-app-settings .obj-left,.tweet-action-item.feature-customtimelines.tweet-drag-handle,.tweet-detail-action-item.feature-customtimelines.tweet-drag-handle,.column-nav-link:after,.more-tweets-btn-inner-mouse-release,.more-tweets-btn-inner-loading,.more-tweets-btn-container--mouse-release .more-tweets-btn-inner-default,.more-tweets-btn-container--loading .more-tweets-btn-inner-default,.list-item .icon-search.list-icon,.js-typeahead-recent-search-item .obj-left,.s-following .follow-btn .btn-loader,.btd-settings,body:not(.btd-ready) #btdsettings,.edit-conversation-name .nbfc,.js-app-add-column,.btn.js-dismiss,.js-schedule-datepicker-holder .popover .padding-as .btn .icon-trash,.js-dismiss.btn.btn-positive i.icon.icon-check.icon-small.padding-rs,.column-close-link.txt-r-dark-gray,.js-app-loading .js-header-container,.js-add-image-button-label,.js-schedule-button-label,.js-tweet-button-label,.js-dm-button .label.padding-ls,.column-nav-flyout,.release-notes-modal .mdl-drag-handle,#datepicker,.search-input-spinner,.search-input-clear-search,.toggle-item-text-truncated,.sch.s-searching .sch-clear,legend,.frm-legend,.action-btn,.med-origlink,.med-flaglink,.hide-detail-view-inline .detail-view-inline,.compose-account-selected,.js-compose-hint.margin-vl.anim.anim-fade-in,#file-upload-input,.s-sending .char-count,.s-profile .mdl-buttonbar,.s-profile h3,.mdl.s-nonav .mdl-inner .mdl-buttonbar,.ovl.is-dragging:before,.is-dragging.overlay:before,.numbered-badge-onheader,.migrate-account-login-step-1 .migrate-tweetdeck-account-warning-wrapper,.migrate-account-login-step-2 .migrate-tweetdeck-account-warning-wrapper,.migrate-account-login-step-3 .migrate-account-login-forms,.migrate-account-login-step-3 .migrate-account-login-about,.migrate-account-login-forms-cancel,.tooltip-arrow,.accordion .is-active .icon-arrow-d,.accordion .icon-arrow-u,.app-search-in-popover,.app-search-form,.app-header .app-nav-logo-text,.app-header .hide-condensed,.app-header .sprite-logo,.app-header .tweet-button .label,.app-header .app-nav-link .icon-arrow-l-double,.app-header .app-nav-link .icon-arrow-r-double,.app-nav-link .icon-arrow-r-double,.app-nav-tab .icon-user-switch,.tweet-message-status,.icon.icon-move,.tweet-drag-handle,.is-narrow-columns .media-size-medium .media-sensitive-title,.contributor-row[data-contributor-role="contributor"] [data-show-when-contributor-role="admin"],.contributor-row[data-contributor-role="admin"] [data-show-when-contributor-role="contributor"],.contributor-row[data-state-error="closed-error"] [data-hide-when-state-error="closed-error"],.contributor-row[data-state="settings"] [data-hide-when-state="settings"],.contributor-row[data-state-error="settings-error"] [data-hide-when-state-error="settings-error"],[data-show-when-state],[data-show-when-state-error],.is-options-open .column-settings-link .icon-arrow-d,.column-header-link .icon-arrow-u,.column-title-back .attribution,.js-add-to-customtimeline-button,.column-title-editable .js-show-tip.avatar.size24,.account-remove-check,.signin-sheet-now-present .application,.btn-fav-fav-text,.with-add-by-url .list-placeholder.pin-all,.s-thats-you .btn-loader,.s-pending .btn-loader,.s-blocking .follow-btn:hover .block-text,.s-blocking .btn-loader,.s-not-favorited .btn-loader,.btn-fav-faved-text,.s-favorited .btn-loader,.btn-fav-protected-text,.s-protected .btn-loader,.link-clean[href="https://twitter.com/UberFacts"] .sprite-verified,.btn-fav-unfav-text,.btn-fav.s-favorited:hover .btn-fav-faved-text,.s-not-following .btn-loader,.action-text,.s-following .follow-btn:hover .following-text {
 	display:none
 }
 
@@ -151,10 +151,11 @@ enhancer.css */
 	}
 }
 
+
 @-webkit-keyframes dropmenucomedown {
 	from {
 		opacity:0;
-		margin-top:-18px;
+		margin-top:-5px;
 		padding:0px 0
 	}
 
@@ -168,7 +169,7 @@ enhancer.css */
 @keyframes dropmenucomedown {
 	from {
 		opacity:0;
-		margin-top:-18px;
+		margin-top:-5px;
 		padding:0px 0
 	}
 
@@ -182,7 +183,7 @@ enhancer.css */
 @-webkit-keyframes dropmenucomedownnopad {
 	from {
 		opacity:0;
-		margin-top:-18px
+		margin-top:-8px
 	}
 
 	to {
@@ -194,7 +195,7 @@ enhancer.css */
 @keyframes dropmenucomedownnopad {
 	from {
 		opacity:0;
-		margin-top:-18px
+		margin-top:-8px
 	}
 
 	to {
@@ -206,7 +207,7 @@ enhancer.css */
 @-webkit-keyframes dropmenucomedownlnopad {
 	from {
 		opacity:0;
-		margin-top:-40px
+		margin-top:-20px
 	}
 
 	to {
@@ -218,7 +219,7 @@ enhancer.css */
 @keyframes dropmenucomedownlnopad {
 	from {
 		opacity:0;
-		margin-top:-40px
+		margin-top:-20px
 	}
 
 	to {
@@ -230,7 +231,7 @@ enhancer.css */
 @-webkit-keyframes dropmenucomedownlargenopad {
 	from {
 		opacity:0;
-		margin-top:-70px
+		margin-top:-40px
 	}
 
 	to {
@@ -242,7 +243,7 @@ enhancer.css */
 @keyframes dropmenucomedownlargenopad {
 	from {
 		opacity:0;
-		margin-top:-70px
+		margin-top:-40px
 	}
 
 	to {
@@ -254,7 +255,7 @@ enhancer.css */
 @-webkit-keyframes popovercomedown {
 	from {
 		opacity:0;
-		margin-top:-30px
+		margin-top:-15px
 	}
 
 	to {
@@ -266,7 +267,7 @@ enhancer.css */
 @keyframes popovercomedown {
 	from {
 		opacity:0;
-		margin-top:-30px
+		margin-top:-15px
 	}
 
 	to {
@@ -278,31 +279,31 @@ enhancer.css */
 @keyframes rtpopovercomedown {
 	from {
 		opacity:0;
-		top:-85px
+		top:-100px
 	}
 
 	to {
 		opacity:1;
-		top:-55px
+		top:-80px
 	}
 }
 
 @-webkit-keyframes rtpopovercomedown {
 	from {
 		opacity:0;
-		top:-85px
+		top:-100px
 	}
 
 	to {
 		opacity:1;
-		top:-55px
+		top:-80px
 	}
 }
 
 @-webkit-keyframes calendarcomedown {
 	from {
 		opacity:0;
-		margin-top:-40px
+		margin-top:-20px
 	}
 
 	to {
@@ -314,7 +315,7 @@ enhancer.css */
 @keyframes calendarcomedown {
 	from {
 		opacity:0;
-		margin-top:-40px
+		margin-top:-20px
 	}
 
 	to {
@@ -350,7 +351,7 @@ enhancer.css */
 @-webkit-keyframes dropmenucomeup {
 	from {
 		opacity:0;
-		bottom:70%;
+		bottom:100%;
 		padding:0px 0
 	}
 
@@ -364,7 +365,7 @@ enhancer.css */
 @keyframes dropmenucomeup {
 	from {
 		opacity:0;
-		bottom:70%;
+		bottom:100%;
 		padding:0px 0
 	}
 
@@ -378,7 +379,7 @@ enhancer.css */
 @-webkit-keyframes dropmenucomeupnopad {
 	from {
 		opacity:0;
-		margin-top:30px
+		margin-top:20px
 	}
 
 	to {
@@ -390,7 +391,7 @@ enhancer.css */
 @keyframes dropmenucomeupnopad {
 	from {
 		opacity:0;
-		margin-top:30px
+		margin-top:20px
 	}
 
 	to {
@@ -636,548 +637,6 @@ enhancer.css */
 	animation-name:rotate-out
 }
 
-/* INTERNAL COLOURS */
-
-.bg-r-text {
-	background:#292f33
-}
-
-.bg-r-faint-gray {
-	background:#f5f8fa
-}
-
-.bg-r-faded-gray {
-	background:transparent
-}
-
-.bg-r-light-gray {
-	background:#03A9F3
-}
-
-.bg-r-medium-gray {
-	background:#aab8c2
-}
-
-.bg-r-deep-gray {
-	background:#8899a6
-}
-
-.bg-r-dark-gray {
-	background:#66757f
-}
-
-.bg-r-faint-green {
-	background:#292f33
-}
-
-.bg-r-faded-green {
-	background:#c6e5b3
-}
-
-.bg-r-light-green {
-	background:#a6d388
-}
-
-.bg-r-medium-green {
-	background:#77b255
-}
-
-.bg-r-deep-green {
-	background:#5c913b
-}
-
-.bg-r-dark-green {
-	background:#3e721d
-}
-
-.bg-r-faint-red {
-	background:#ffe8eb
-}
-
-.bg-r-faded-red {
-	background:#f4abba
-}
-
-.bg-r-light-red {
-	background:#ea596e
-}
-
-.bg-r-medium-red {
-	background:#dd2e44
-}
-
-.bg-r-deep-red {
-	background:#a0041e
-}
-
-.bg-r-dark-red {
-	background:#a0041e
-}
-
-.bg-r-faint-blue {
-	background:#f2f9ff
-}
-
-.bg-r-faded-blue {
-	background:#bbddf5
-}
-
-.bg-r-light-blue {
-	background:#88c9f9
-}
-
-.bg-r-twitter-blue {
-	background:#55acee
-}
-
-.bg-r-medium-blue {
-	background:#50a5e6
-}
-
-.bg-r-deep-blue {
-	background:#3b94d9
-}
-
-.bg-r-dark-blue {
-	background:#29B6F6
-}
-
-.bg-r-faint-purple {
-	background:#f3edfa
-}
-
-.bg-r-faded-purple {
-	background:#cbb7ea
-}
-
-.bg-r-light-purple {
-	background:#aa8dd8
-}
-
-.bg-r-medium-purple {
-	background:#9266cc
-}
-
-.bg-r-deep-purple {
-	background:#744eaa
-}
-
-.bg-r-dark-purple {
-	background:#553788
-}
-
-.bg-r-faint-yellow {
-	background:#fff8e8
-}
-
-.bg-r-faded-yellow {
-	background:#ffe8b6
-}
-
-.bg-r-light-yellow {
-	background:#ffd983
-}
-
-.bg-r-medium-yellow {
-	background:#ffcc4d
-}
-
-.bg-r-deep-yellow {
-	background:#ffac33
-}
-
-.bg-r-dark-yellow {
-	background:#f4900c
-}
-
-.bg-r-faint-orange {
-	background:#ffede5
-}
-
-.bg-r-faded-orange {
-	background:#ffb699
-}
-
-.bg-r-light-orange {
-	background:#ff9a73
-}
-
-.bg-r-medium-orange {
-	background:#fa743e
-}
-
-.bg-r-deep-orange {
-	background:#e95f28
-}
-
-.bg-r-dark-orange {
-	background:#d14a15
-}
-
-.bg-r-text-link {
-	background:#2b7bb9
-}
-
-.txt-r-text {
-	color:#292f33
-}
-
-.txt-r-white {
-	color:#fff
-}
-
-.txt-r-faint-gray {
-	color:#f5f8fa
-}
-
-.txt-r-faded-gray {
-	color:#e1e8ed
-}
-
-.txt-r-light-gray {
-	color:#ccd6dd
-}
-
-.txt-r-medium-gray {
-	color:#aab8c2
-}
-
-.txt-r-deep-gray {
-	color:#8899a6
-}
-
-.txt-r-dark-gray {
-	color:#667A86
-}
-
-.txt-r-faint-green {
-	color:#292f33
-}
-
-.txt-r-faded-green {
-	color:#c6e5b3
-}
-
-.txt-r-light-green {
-	color:#a6d388
-}
-
-.txt-r-medium-green {
-	color:#4CAE51
-}
-
-.txt-r-deep-green {
-	color:#3AC98A
-}
-
-.txt-r-dark-green {
-	color:#3e721d
-}
-
-.txt-r-faint-red {
-	color:#ffe8eb
-}
-
-.txt-r-faded-red {
-	color:#f4abba
-}
-
-.txt-r-light-red {
-	color:#ea596e
-}
-
-.txt-r-medium-red {
-	color:#dd2e44
-}
-
-.txt-r-deep-red {
-	color:#a0041e
-}
-
-.txt-r-dark-red {
-	color:#000
-}
-
-.txt-r-faint-blue {
-	color:#f2f9ff
-}
-
-.txt-r-faded-blue {
-	color:#bbddf5
-}
-
-.txt-r-light-blue {
-	color:#88c9f9
-}
-
-.txt-r-twitter-blue {
-	color:#55acee
-}
-
-.txt-r-medium-blue {
-	color:#50a5e6
-}
-
-.txt-r-deep-blue {
-	color:#3b94d9
-}
-
-.txt-r-dark-blue {
-	color:#1c6399
-}
-
-.txt-r-faint-purple {
-	color:#f3edfa
-}
-
-.txt-r-faded-purple {
-	color:#cbb7ea
-}
-
-.txt-r-light-purple {
-	color:#aa8dd8
-}
-
-.txt-r-medium-purple {
-	color:#9266cc
-}
-
-.txt-r-deep-purple {
-	color:#744eaa
-}
-
-.txt-r-dark-purple {
-	color:#553788
-}
-
-.txt-r-faint-yellow {
-	color:#fff8e8
-}
-
-.txt-r-faded-yellow {
-	color:#ffe8b6
-}
-
-.txt-r-light-yellow {
-	color:#ffd983
-}
-
-.txt-r-medium-yellow {
-	color:#ffcc4d
-}
-
-.txt-r-deep-yellow {
-	color:#FF9701
-}
-
-.txt-r-dark-yellow {
-	color:#f4900c
-}
-
-.txt-r-faint-orange {
-	color:#ffede5
-}
-
-.txt-r-faded-orange {
-	color:#ffb699
-}
-
-.txt-r-light-orange {
-	color:#ff9a73
-}
-
-.txt-r-medium-orange {
-	color:#fa743e
-}
-
-.txt-r-deep-orange {
-	color:#e95f28
-}
-
-.txt-r-dark-orange {
-	color:#d14a15
-}
-
-.txt-on-r-text {
-	color:#fff
-}
-
-.txt-on-r-white {
-	color:#292f33
-}
-
-.txt-on-r-faint-gray {
-	color:#292f33
-}
-
-.txt-on-r-faded-gray {
-	color:#292f33
-}
-
-.txt-on-r-light-gray {
-	color:#292f33
-}
-
-.txt-on-r-medium-gray {
-	color:#fff
-}
-
-.txt-on-r-deep-gray {
-	color:#fff
-}
-
-.txt-on-r-dark-gray {
-	color:#fff
-}
-
-.txt-on-r-faint-green {
-	color:#292f33
-}
-
-.txt-on-r-faded-green {
-	color:#292f33
-}
-
-.txt-on-r-light-green {
-	color:#292f33
-}
-
-.txt-on-r-medium-green {
-	color:#fff
-}
-
-.txt-on-r-deep-green {
-	color:#fff
-}
-
-.txt-on-r-dark-green {
-	color:#fff
-}
-
-.txt-on-r-faint-red {
-	color:#292f33
-}
-
-.txt-on-r-faded-red {
-	color:#292f33
-}
-
-.txt-on-r-light-red {
-	color:#292f33
-}
-
-.txt-on-r-medium-red {
-	color:#fff
-}
-
-.txt-on-r-deep-red {
-	color:#fff
-}
-
-.txt-on-r-dark-red {
-	color:#fff
-}
-
-.txt-on-r-faint-blue {
-	color:#292f33
-}
-
-.txt-on-r-faded-blue {
-	color:#292f33
-}
-
-.txt-on-r-light-blue {
-	color:#292f33
-}
-
-.txt-on-r-twitter-blue {
-	color:#fff
-}
-
-.txt-on-r-medium-blue {
-	color:#fff
-}
-
-.txt-on-r-deep-blue {
-	color:#fff
-}
-
-.txt-on-r-dark-blue {
-	color:#fff
-}
-
-.txt-on-r-faint-purple {
-	color:#292f33
-}
-
-.txt-on-r-faded-purple {
-	color:#292f33
-}
-
-.txt-on-r-light-purple {
-	color:#292f33
-}
-
-.txt-on-r-medium-purple {
-	color:#fff
-}
-
-.txt-on-r-deep-purple {
-	color:#fff
-}
-
-.txt-on-r-dark-purple {
-	color:#fff
-}
-
-.txt-on-r-faint-yellow {
-	color:#292f33
-}
-
-.txt-on-r-faded-yellow {
-	color:#292f33
-}
-
-.txt-on-r-light-yellow {
-	color:#292f33
-}
-
-.txt-on-r-medium-yellow {
-	color:#fff
-}
-
-.txt-on-r-deep-yellow {
-	color:#fff
-}
-
-.txt-on-r-dark-yellow {
-	color:#fff
-}
-
-.txt-on-r-faint-orange {
-	color:#292f33
-}
-
-.txt-on-r-faded-orange {
-	color:#292f33
-}
-
-.txt-on-r-light-orange {
-	color:#292f33
-}
-
-.txt-on-r-medium-orange {
-	color:#fff
-}
-
-.txt-on-r-deep-orange {
-	color:#fff
-}
-
-.txt-on-r-dark-orange {
-	color:#fff
-}
-
 /* ENHANCER COLOURS */ /* NOTE:VERY FAR FROM COMPLETE */
 
 body.scroll-v { /* Loading Screen Background */
@@ -1393,8 +852,7 @@ a:hover,a:focus {
 a:active {
 	color:rgb(13,168,188);
 	transition:150ms background, 150ms transform;
-	background-color:rgba(0,0,0,0.05)!important;
-	transform:scale(1.05,1.05)!important
+	background-color:rgba(0,0,0,0.05)
 }
 
 p {
@@ -1478,8 +936,7 @@ small {
 }
 
 .txt-center {
-	text-align:center
-}
+	text-align:center}
 
 .txt-left {
 	text-align:left!important
@@ -2308,38 +1765,6 @@ small {
 	content:"\f051"
 }
 
-.icon-follow-color {
-	color:#00BCD4
-}
-
-.tde-dark .icon-follow-color {
-	color:#009EAD
-}
-
-.icon-list-color {
-	color:#939393
-}
-
-.icon-mention-color {
-	color:#c36
-}
-
-.icon-unread-color {
-	color:#3aa0ea
-}
-
-.icon-remove-color {
-	color:#dd2e44
-}
-
-.icon-submit-color {
-	color:#0DDC26
-}
-
-.icon-twitter-blue-color {
-	color:#0084b4
-}
-
 .icon-xsmall {
 	font-size:8px
 }
@@ -2450,6 +1875,7 @@ small {
 	width:1000px;
 	height:55px;
 	cursor:default;
+	display:block;
 	z-index:2
 }
 
@@ -3012,6 +2438,7 @@ h6 {
 	word-break:break-word;
 	word-wrap:break-word;
 	opacity:1!important;
+	transition:top 200ms cubic-bezier(.19,1,.22,1);
 	background:#F9F9F9
 }
 
@@ -3242,32 +2669,10 @@ a .column-title-back .icon:after {
 
 .btn.js-toggle-tweets {
 	border-radius:7px 0 0 7px;
-	box-shadow:none!important
-}
-
-.btn.js-toggle-tweets.is-selected {
-	background:rgba(0,0,0,0.05);
-	border-radius:7px 0 0 7px;
-	transform:scale(1,1)
-}
-
-.btn.js-toggle-tweets.is-selected:hover {
-	border-radius:7px 0 0 7px
-}
-
-.btn.js-toggle-users.is-selected {
-	background:rgb(0, 119, 255);
-	border-radius:0 7px 7px 0
 }
 
 .btn.js-toggle-users {
 	border-radius:0 7px 7px 0;
-	box-shadow:none!important
-}
-
-.btn.js-toggle-users.is-selected:hover {
-	background:rgba(0, 119, 255, 0.8);
-	border-radius:0 7px 7px 0
 }
 
 .tde-light .mdl .scroll-conversation {
@@ -3561,7 +2966,7 @@ a .column-title-back .icon:after {
 	animation:herecomesthetweetup 0.4s cubic-bezier(.19,1,.22,1)
 }
 
-.js-column.column.draggable-dragging article.stream-item {
+.draggable-dragging .stream-item {
 	-webkit-animation:none;
 	animation:none
 }
@@ -4227,6 +3632,10 @@ a .column-title-back .icon:after {
 	padding-top:0px!important
 }
 
+.message-stream-item .tweet-footer {
+	margin-left:50px
+}
+
 .stream-item:hover .tweet-actions {
 	visibility:visible
 }
@@ -4268,11 +3677,11 @@ a .column-title-back .icon:after {
 }
 
 .is-retweet .icon-retweet-toggle {
-	color:#32B602
+	color:#3BB740
 }
 
 .is-favorite .icon-favorite-toggle {
-	color:#FF9101!important
+	color:#FF9101
 }
 
 .tweet-footer {
@@ -4457,11 +3866,11 @@ a .column-title-back .icon:after {
 .rpl textarea {
 	resize:none;
 	width:93%;
-	height:30px;
+	height:40px;
 	padding:6px 8px;
 	border:none;
 	overflow-y:hidden;
-	transition:height .3s ease-in-out;
+	transition:height 250ms cubic-bezier(.19,1,.22,1);
 	border-bottom:2px solid #D2D2D2
 }
 
@@ -4494,7 +3903,7 @@ a .column-title-back .icon:after {
 }
 
 .rpl.s-replying textarea {
-	height:70px;
+	height:100px;
 	overflow-y:scroll
 }
 
@@ -4922,6 +4331,10 @@ a .column-title-back .icon:after {
 	font-size:14px
 }
 
+.recent-searches-fixed-list .list-placeholder {
+	padding-top:120px
+}
+
 .accordion,.accordion-popover {
 	color:#ddd
 }
@@ -4961,15 +4374,14 @@ a .column-title-back .icon:after {
 
 .facet-type {
 	position:relative;
-	transition:200ms background;
+	transition:200ms background cubic-bezier(.19,1,.22,1),200ms box-shadow cubic-bezier(.19,1,.22,1);
 	background:#26C6DA;
 	color:#fff
 }
 
 .facet-type.is-expanded {
 	background:rgba(153,153,153,0.2);
-	transition:250ms background;
-	transform:scale(1.025);
+	transform:scale(1.01);
 	z-index:9;
 	box-shadow:0 1px 10px rgba(17,17,17,0.35)
 }
@@ -5008,11 +4420,7 @@ a .column-title-back .icon:after {
 	transition:height 200ms
 }
 
-.accordion .is-active {
-	color:#ddd
-}
-
-.accordion .is-active .accordion-header,.accordion .is-active .accordion-header:hover {
+.accordion .is-active,.accordion .is-active .accordion-header,.accordion .is-active .accordion-header:hover {
 	color:#fff
 }
 
@@ -5100,7 +4508,9 @@ a .column-title-back .icon:after {
 .character-count:disabled {
 	width:30px;
 	color:#fff;
+	font-size:16px;
 	height:auto;
+	padding-bottom:3px;
 	transition:200ms all
 }
 
@@ -5119,6 +4529,10 @@ a .column-title-back .icon:after {
 
 .invalid-char-count:disabled {
 	color:#EC1E1E
+}
+
+.txt-bold.invalid-char-count:disabled {
+	color: #EC6969
 }
 
 .migrate-confirm-start {
@@ -5258,16 +4672,15 @@ a .column-title-back .icon:after {
 .numbered-badge {
 	position:absolute;
 	top:9px;
-	right:-7px;
+	right:-2px;
 	padding:2px 3px;
-	border-radius:9px;
-	background:rgba(255, 255, 255, 0.92);
 	color:#fff;
 	visibility:hidden;
 	border:none;
 	font-weight:400;
+	font-style:normal;
 	margin-top:0px;
-	font-size:0px;
+	font-size:12px;
 	width:1px;
 	height:3px;
 	margin-right:5px;
@@ -5704,20 +5117,7 @@ a .column-title-back .icon:after {
 	left:15px;
 	color:rgba(0,0,0,0);
 	font-size:12px;
-	text-align:center;
-	margin-bottom:8px
-}
-
-.mdl-links a {
-	color:#999
-}
-
-.mdl-links a:hover {
-	color:#ccc
-}
-
-.mdl-links a:active {
-	color:#ccc
+	text-align:center
 }
 
 .mdl-account-shared-warning {
@@ -6090,14 +5490,12 @@ a .column-title-back .icon:after {
 
 .compose-send-button-success.is-hidden {
 	display:block!important;
-	opacity:0;pointer-events: none;
+	opacity:0;
+	pointer-events:none;
 }
 
 .tde-dark .compose-send-button-success {
-	color: #00838F;}
-
-.compose-reply-avatar {
-	vertical-align:-7px
+	color:#00838F
 }
 
 .compose-reply-tweet {
@@ -6127,14 +5525,14 @@ a .column-title-back .icon:after {
 
 .compose-reply-tweet-remove {
 	position:absolute;
-	top:0;
+	top:-6px;
 	right:0;
 	color:#9B9B9B;
 	z-index:999
 }
 
 .compose-reply-tweet-remove .icon-close {
-	font-size:18px
+	font-size:28px
 }
 
 .tde-light .compose-reply-tweet .fullname {
@@ -6779,13 +6177,15 @@ label,input,select,textarea {
 
 input,textarea,select,.uneditable-input {
 	display:inline-block;
-	width:100%;
+	width: 85%;
+	height:32px;
 	padding:4px 8px;
 	font-size:13px;
 	line-height:18px;
 	color:#444;
 	border-bottom:2px solid #ddd;
 	border-radius:0px;
+	box-sizing:content-box;
 	background:transparent
 }
 
@@ -6897,12 +6297,14 @@ textarea,.l-fullwidth {
 }
 
 .column-nav-updates {
-	display:none
+	display:none /* literally what */
 }
 
 .is-new>.column-nav-updates.icon-dot {
-	margin-right:-85%;
-	display:inline
+	right:0;
+	margin-top:-20px;
+	position:absolute;
+	display:block
 }
 
 .s-error input {
@@ -6940,24 +6342,7 @@ fieldset {
 	border:0
 }
 
-input,textarea {
-	width:60%;
-	height:32px;
-	padding:4px 8px;
-	color:#333;
-	border-bottom:2px solid #ddd;
-	border-radius:0px;
-	box-sizing:content-box
-}
-
 select {
-	width:70%;
-	height:32px;
-	padding:4px 8px;
-	color:#333;
-	border-bottom:2px solid #ccc;
-	border-radius:0px;
-	box-sizing:content-box;
 	-webkit-appearance:menulist;
 	-moz-appearance:menulist
 }
@@ -6965,7 +6350,7 @@ select {
 input:before,textarea:before,select:before {
 	-webkit-appearance:initial;
 	-moz-appearance:initial;
-	color:#000
+	color:#ddd
 }
 
 textarea {
@@ -7079,7 +6464,7 @@ input[type="checkbox"] {
 	color:#000;
 	font-size:14px;
 	padding-right:25px;
-	width: 255px;
+	width: 340px;
 	border-bottom:2px solid #ddd
 }
 
@@ -7639,7 +7024,7 @@ input[type="checkbox"] {
 	color:#00BCD4;
 	margin-top:15px;
 	font-size:36px;
-	transition:200ms all; 
+	transition:200ms all
 }
 
 .prf .lst-profile a {
@@ -7937,7 +7322,6 @@ input[type="checkbox"] {
 .dropdown-menu ul {
 	position:relative;
 	z-index:1;
-	transition:200ms all;
 	max-width:240px
 }
 
@@ -7947,10 +7331,6 @@ input[type="checkbox"] {
 	float:none;
 	transition:200ms all;
 	height:32px
-}
-
-.dropdown-menu li.is-selectable:hover {
-	background:rgba(16,16,16,0.05)!important
 }
 
 .dropdown-menu [data-action] {
@@ -7963,19 +7343,10 @@ input[type="checkbox"] {
 	text-decoration:none
 }
 
-.dropdown-menu [data-action]:active {
-	background:rgba(0, 188, 212, 0.25)!important
-}
-
 .dropdown-menu i {
 	position:relative;
 	left:auto;
 	top:auto
-}
-
-.dropdown-menu .is-selected {
-	background:#F5F5F5;
-	transition:200ms all
 }
 
 .dropdown-text-large {
@@ -8012,12 +7383,7 @@ input[type="checkbox"] {
 	text-indent:0;
 	-webkit-animation:dropmenucomedown 0.3s 1 cubic-bezier(.19,1,.22,1);
 	animation:dropmenucomedown 0.3s 1 cubic-bezier(.19,1,.22,1);
-	top:auto
-}
-
-.pos-l .caret {
-	left:auto;
-	right:8px
+	top: 0px
 }
 
 .pos-r {
@@ -8028,12 +7394,6 @@ input[type="checkbox"] {
 	margin-right:0
 }
 
-.pos-r .caret {
-	left:8px;
-	right:auto;
-	margin-left:0
-}
-
 .pos-r-under-icon {
 	right:auto;
 	left:0;
@@ -8042,17 +7402,11 @@ input[type="checkbox"] {
 	margin-right:0
 }
 
-.pos-r-under-icon .caret {
-	left:8px;
-	right:auto;
-	margin-left:0
-}
-
 .pos-t {
 	top:auto;
 	-webkit-animation:dropmenucomeup 0.3s 1 cubic-bezier(.19,1,.22,1);
 	animation:dropmenucomeup 0.3s 1 cubic-bezier(.19,1,.22,1);
-	bottom:160%
+	bottom:100%
 }
 
 .ovl-trap {
@@ -8068,7 +7422,7 @@ input[type="checkbox"] {
 	z-index:100;
 	position:absolute;
 	background:#fff;
-	border-radius:2px;
+	border-radius:4px;
 	transition:max-height 150ms;
 	box-shadow:0 2px 5px rgba(117,117,117,0.8);
 	transition:opacity 250ms cubic-bezier(.19,1,.22,1);
@@ -8089,7 +7443,7 @@ input[type="checkbox"] {
 .popover-position-rt {
 	z-index:1000;
 	left:65px;
-	top:-55px;
+	top: -80px;
 	margin-top:-5px;
 	-webkit-animation:rtpopovercomedown 0.25s cubic-bezier(.19,1,.22,1);
 	animation:rtpopovercomedown 0.25s cubic-bezier(.19,1,.22,1);
@@ -8283,26 +7637,23 @@ input[type="checkbox"] {
 
 .media-item {
 	transition:200ms all;
-	transform:scale(1,1);
 	box-shadow:0 3px 5px rgba(17,17,17,0.3)
 }
 
 .media-item:active {
 	transition:200ms all;
-	transform:scale(0.85,0.85)!important;
-	box-shadow:none!important
+	background-color:rgba(0,0,0,0.2)!important
 }
 
 .media-item:hover {
 	transition:200ms all;
-	transform:scale(1.025,1.025);
 	box-shadow:0 5px 10px rgba(17,17,17,0.475)
 }
 
 .startflow-panel,.startflow-panel-rounded {
 	background:#fff;
 	color:#444;
-	box-shadow:0 10px 30px rgba(17,17,17,0.25); 
+	box-shadow:0 10px 30px rgba(17,17,17,0.25);
 	border-radius:2px;
 	-webkit-animation:dropmenucomedownlnopad 0.40s 1 cubic-bezier(.19,1,.22,1);
 	animation:dropmenucomedownlnopad 0.40s 1 cubic-bezier(.19,1,.22,1)
@@ -8492,19 +7843,15 @@ input[type="checkbox"] {
 .tde-dark a.column-nav-link,.tde-light a.column-nav-link {
 	position:relative;
 	height:100%;
-	color:rgba(255, 255, 255, 0);
+	color:rgba(255, 255, 255, 0.5);
 	font-size:18px;
 	cursor:pointer;
 	overflow:visible;
 	transition:300ms all;
 	transition-delay:2s;
 	transform:none!important;
+	box-shadow:none;
 	top:0px
-}
-
-.app-header:hover .column-nav-link:not(:active):not(:hover) {
-	color:rgba(255, 255, 255, 0.5);
-	transition:150ms all
 }
 
 .column-nav-link:focus,.column-nav-link:active {
@@ -8519,20 +7866,34 @@ input[type="checkbox"] {
 
 .column-nav-item {
 	position:relative;
-	width:40px;
+	width:0px;
 	box-sizing:border-box;
 	color:rgba(255, 255, 255, 0.75);
 	transition:400ms all cubic-bezier(.19,1,.22,1);
+	transition-delay:1s;
 	display:inline-block;
 	left:initial;
+	box-shadow:none!important;
+	background:none;
 	transform:translate3d(15px,0,0);
-	opacity:0
+	opacity:0;
+	height:100%;
 } 
 
-.column-navigator:hover .column-nav-item {
+.column-navigator:hover .column-nav-item,.column-nav-item.is-new {
 	opacity:1;
-	transform:none;
-	transition:200ms all cubic-bezier(.19,1,.22,1)
+	width:40px;
+	transition:200ms all cubic-bezier(.19,1,.22,1),400ms transform
+}
+
+.column-navigator:hover .column-nav-item:not(.is-new) {
+	transform:none
+}
+
+.column-nav-item.is-new {
+	top:0px!important;
+	transform:rotate(360deg);
+	transition:200ms all cubic-bezier(.19,1,.22,1),400ms transform
 }
 
 .column-nav-link .icon {
@@ -8810,13 +8171,9 @@ input[type="checkbox"] {
 }
 
 .js-message-detail .stream-item {
-	-webkit-animation:none;
-	animation:none
-}
-
-.js-message-detail {
 	-webkit-animation:herecomesthetweet 0.4s cubic-bezier(.19,1,.22,1);
-	animation:herecomesthetweet 0.4s cubic-bezier(.19,1,.22,1)
+	animation:herecomesthetweet 0.4s cubic-bezier(.19,1,.22,1);
+	transition:300ms all
 }
 
 .account-remove-check-message {
@@ -8905,13 +8262,6 @@ input[type="checkbox"] {
 	box-shadow:none
 }
 
-.s-profile .pos-l {
-	bottom:160%;
-	top:auto;
-	-webkit-animation:dropmenucomeup 0.2s 1 cubic-bezier(.19,1,.22,1);
-	animation:dropmenucomeup 0.2s 1 cubic-bezier(.19,1,.22,1)
-}
-
 .accs.js-account-selector {
 	padding-top:50px
 }
@@ -8942,7 +8292,7 @@ input[type="checkbox"] {
 }
 
 .s-profile .pos-l {
-	bottom:160%;
+	bottom:150%;
 	top:auto;
 	-webkit-animation:dropmenucomeup 0.2s 1 cubic-bezier(.19,1,.22,1);
 	animation:dropmenucomeup 0.2s 1 cubic-bezier(.19,1,.22,1)
@@ -8982,8 +8332,11 @@ input[type="checkbox"] {
 
 .facet-type .control-group select, .facet-type .control-group input {
 	border-bottom:2px solid #fff;
-	border-radius:2px;
 	color:#fff
+}
+
+.facet-type .control-group select,.facet-type .control-group input:not([type=checkbox]) {
+	width:65%;
 }
 
 .facet-type .control-group select::-webkit-input-placeholder, .facet-type .control-group input::-webkit-input-placeholder {
@@ -9017,7 +8370,8 @@ input[type="checkbox"] {
 }
 
 .js-int-scroller {
-	margin-left: 40px;}
+	margin-left:40px
+}
 
 .column-nav-flyout .column-nav-item {
 	height:40px!important;
@@ -9134,12 +8488,15 @@ input[type="checkbox"] {
 
 li.is-selectable a[data-action=mute] {
 	font-size:0px
+;
+	line-height: 0px;
 }
 
 li.is-selectable a[data-action=mute]:before {
 	font-size:14px;
 	content:"Mute in TweetDeck";
-	display:block
+	display:block;
+	line-height:14px;
 }
 
 .js-account-action{
@@ -9272,11 +8629,6 @@ a[rel=hashtag]:active {
 	opacity:0;
 	margin-top:5px;
 	margin-bottom:5px
-}
-
-.dropdown-menu [data-action] {
-	-webkit-animation:fadein 0.5s 1 cubic-bezier(.19,1,.22,1);
-	animation:fadein 0.5s 1 cubic-bezier(.19,1,.22,1)
 }
 
 .startflow-message-wrap .bg-r-dark-blue .margin-rxl {
@@ -9426,14 +8778,6 @@ a[rel=hashtag]:active {
 	margin-right:8px
 }
 
-.is-retweet .icon-retweet-toggle {
-	color:#4CB050!important
-}
-
-.is-favorite i.icon-favorite-toggle {
-	color:#FF9701!important
-} 
-
 .js-send-button:after {
 	content:"\e163";
 	font-size:24px;
@@ -9561,12 +8905,13 @@ a[rel=hashtag]:active {
 	border-bottom:2px solid #fff
 }
 
-.js-cancel.btn.btn-neutral.btn-square.block.reset-height.padding-vxs {
+.js-save.block,.js-cancel.block {
 	display:inline!important
 }
 
-.js-save.btn.btn-neutral.btn-square.block.reset-height.padding-vn {
-	display:inline!important
+.js-save.block i,.js-cancel.block i {
+	color:#fff;
+	font-size:24px;
 }
 
 #emojiButton {
@@ -9934,26 +9279,39 @@ a[rel=hashtag]:active {
 
 .edit-conversation-name {
 	position:absolute;
-	top:-50px;
-	right:0;
+	top:0;
+	right:-30px;
 	left:0;
 	box-sizing:border-box;
 	height:50px;
 	padding:0 10px;
 	color:inherit;
 	line-height:50px;
-	transition:all 230ms cubic-bezier(.19,1,.22,1);
+	transition:all 250ms cubic-bezier(.19,1,.22,1);
 	background:#03A9F4;
+	opacity:0;
+	pointer-events:none;
 	z-index:999
 }
 
+.tde-dark .edit-conversation-name {
+	background:#263238
+}
+
 .edit-conversation-name.is-visible {
-	top:0
+	right:0;
+	pointer-events:all;
+	opacity:1
 }
 
 .conversation-name {
 	position:relative;
-	width:200px;
+	width:220px;
+	border-bottom:2px solid #fff;
+	color:#fff
+}
+
+.js-dm-participants-back,.js-dm-participants-back:hover,.js-dm-participants-back:focus {
 	color:#fff
 }
 
@@ -10161,7 +9519,7 @@ fieldset .fixed-width-label:not(.radio), fieldset:not(.js-search-filter) .contro
 }
 
 #global_filter_settings .control-group:nth-child(4) .controls {
-	margin-left:0px; 
+	margin-left:0px
 }
 
 .tde-mute-text:before {
@@ -10202,8 +9560,8 @@ fieldset .fixed-width-label:not(.radio), fieldset:not(.js-search-filter) .contro
 }
 
 .popover input.txt-mute, .popover textarea.txt-mute {
-	border-bottom:2px solid #333!important;
-	color:#333
+	border-bottom:2px solid #fff!important;
+	color:#fff
 }
 
 .is-wide-columns .column-options {
@@ -10230,11 +9588,6 @@ fieldset .fixed-width-label:not(.radio), fieldset:not(.js-search-filter) .contro
 	margin-left:10px
 }
 
-.js-message-detail {
-	-webkit-animation:popcomesthetweetsview 0.6s 1 cubic-bezier(.19,1,.22,1)!important;
-	animation:popcomesthetweetsview 0.6s 1 cubic-bezier(.19,1,.22,1)!important
-}
-
 .is-options-open .more-tweets-btn-container--hidden {
 	top:-50px!important
 }
@@ -10257,7 +9610,7 @@ fieldset .fixed-width-label:not(.radio), fieldset:not(.js-search-filter) .contro
 }
 
 .contributor-list {
-	padding-left:10px; 
+	padding-left:10px
 }
 
 .column-detail .column-header {
@@ -10318,7 +9671,7 @@ html.tde-dark {
 
 .tde-dark a:active {
 	color:rgba(0, 115, 126, 1);
-	background-color:rgba(0,0,0,0.05)!important
+	background-color:rgba(0,0,0,0.05)
 }
 
 .tde-dark .txt-mute a:not(:hover):not(:focus):not(.tweet-action):not([data-action]) {
@@ -10592,8 +9945,12 @@ html.tde-dark {
 	color:#E0E0E0
 }
 
+.dropdown-menu a[href][data-action]:active {
+	transform:none
+}
+
 .tde-dark .dropdown-menu a[href][data-action]:active {
-	background:rgba(0, 188, 212, 0.25)!important
+	background-color:rgb(52, 66, 72)
 }
 
 .tde-dark .dropdown-menu .is-selected {
@@ -10662,10 +10019,6 @@ html.tde-dark {
 .app-search .compose-text::-moz-placeholder {
 	color:#6D7B83;
 	opacity:1
-}
-
-.tde-dark a.column-nav-link {
-	color:rgba(255,255,255,0)
 }
 
 .tde-dark textarea:not(.compose-text):not(.js-compose-text) {
@@ -11388,6 +10741,10 @@ html.tde-dark body:not(.scroll-v) {
 	line-height:25px
 }
 
+.tde-light .tde-no-chars-suggestions {
+	color:#333
+}
+
 button.tde-no-transform-case {
 	text-transform:none;
 	padding:4px 0px
@@ -11475,6 +10832,7 @@ button.tde-no-transform-case {
 	position:relative;
 	display:none;
 	padding-left:8px;
+	transition:height 200ms cubic-bezier(.19,1,.22,1);
 	overflow-y:hidden
 }
 
@@ -11482,7 +10840,7 @@ button.tde-no-transform-case {
 	display:block
 }
 
-.column-nav-item.is-new:first-child .obj-left {
+.column-nav-item.is-new .obj-left {
 	margin-top:-30px;
 }
 
@@ -11508,4 +10866,43 @@ button.tde-no-transform-case {
 .js-column-social-proof .stream-item {
 	-webkit-animation:socialProofPop 0.2s cubic-bezier(.19,1,.22,1);
 	animation:socialProofPop 0.2s cubic-bezier(.19,1,.22,1);
+}
+
+.js-search .popover {
+	width:400px!important
+}
+
+.edit-conversation-name .btn {
+	padding:10px;
+	width:40px;
+	color:#fff
+}
+
+.edit-conversation-name .btn i {
+	font-size:24px
+}
+
+.txt-r-deep-gray {
+	opacity:0.5;
+	color:inherit
+}
+
+.conversation-title .title-content {
+	text-align:left
+}
+
+.txt-r-deep-yellow {
+	color:#FF9701
+}
+
+.txt-r-medium-green {
+    color:#3BB740
+}
+
+.controls .icon-small-valigned {
+	color:#fff
+}
+
+.js-column-options {
+	transition:height 200ms cubic-bezier(.19,1,.22,1)
 }
