@@ -13,7 +13,7 @@ enhancer.css */
 
 /* SUPERCLASSES */
 
-.accordion .is-active .facet-subtitle,.mdl-dismiss,.mdl-dismiss-media,.tde-mobile .column-type-icon,.column-type-message .js-column-detail .column-title-back:before,.add-on.with-emphasis,.tde-minimal .column-navigator,.tde-dark body.scroll-v .js-modal-context .mdl:before,html body .app-navigator .dropdown-menu,.caret,.js-column-detail .column-title-back.conversation-title:after,.more-tweets-btn-inner-mouse-release,.more-tweets-btn-inner-loading,.more-tweets-btn-container--mouse-release .more-tweets-btn-inner-default,.more-tweets-btn-container--loading .more-tweets-btn-inner-default,.status-message,.app-masthead,.cmp-spinner,.chev-right,.compose-text-title,.cmp button b,.cmp .mdl-header-title:empty,.app-search-tweet-results .column-header-temp,.spinner-centered,.without-tweet-drag-handles .tweet-drag-handle,.account-remove-check,.js-app-settings .obj-left,.tweet-action-item.feature-customtimelines.tweet-drag-handle,.tweet-detail-action-item.feature-customtimelines.tweet-drag-handle,.column-nav-link:after,.more-tweets-btn-inner-mouse-release,.more-tweets-btn-inner-loading,.more-tweets-btn-container--mouse-release .more-tweets-btn-inner-default,.more-tweets-btn-container--loading .more-tweets-btn-inner-default,.list-item .icon-search.list-icon,.js-typeahead-recent-search-item .obj-left,.s-following .follow-btn .btn-loader,.btd-settings,body:not(.btd-ready) #btdsettings,.edit-conversation-name .nbfc,.js-app-add-column,.btn.js-dismiss,.js-schedule-datepicker-holder .popover .padding-as .btn .icon-trash,.js-dismiss.btn.btn-positive i.icon.icon-check.icon-small.padding-rs,.column-close-link.txt-r-dark-gray,.js-app-loading .js-header-container,.js-add-image-button-label,.js-schedule-button-label,.js-tweet-button-label,.js-dm-button .label.padding-ls,.column-nav-flyout,.release-notes-modal .mdl-drag-handle,#datepicker,.search-input-spinner,.search-input-clear-search,.toggle-item-text-truncated,.sch.s-searching .sch-clear,legend,.frm-legend,.action-btn,.med-origlink,.med-flaglink,.hide-detail-view-inline .detail-view-inline,.compose-account-selected,.js-compose-hint.margin-vl.anim.anim-fade-in,#file-upload-input,.s-sending .char-count,.s-profile .mdl-buttonbar,.s-profile h3,.mdl.s-nonav .mdl-inner .mdl-buttonbar,.ovl.is-dragging:before,.is-dragging.overlay:before,.numbered-badge-onheader,.migrate-account-login-step-1 .migrate-tweetdeck-account-warning-wrapper,.migrate-account-login-step-2 .migrate-tweetdeck-account-warning-wrapper,.migrate-account-login-step-3 .migrate-account-login-forms,.migrate-account-login-step-3 .migrate-account-login-about,.migrate-account-login-forms-cancel,.tooltip-arrow,.accordion .is-active .icon-arrow-d,.accordion .icon-arrow-u,.app-search-in-popover,.app-search-form,.app-header .app-nav-logo-text,.app-header .hide-condensed,.app-header .sprite-logo,.app-header .tweet-button .label,.app-header .app-nav-link .icon-arrow-l-double,.app-header .app-nav-link .icon-arrow-r-double,.app-nav-link .icon-arrow-r-double,.app-nav-tab .icon-user-switch,.tweet-message-status,.icon.icon-move,.tweet-drag-handle,.is-narrow-columns .media-size-medium .media-sensitive-title,.contributor-row[data-contributor-role="contributor"] [data-show-when-contributor-role="admin"],.contributor-row[data-contributor-role="admin"] [data-show-when-contributor-role="contributor"],.contributor-row[data-state-error="closed-error"] [data-hide-when-state-error="closed-error"],.contributor-row[data-state="settings"] [data-hide-when-state="settings"],.contributor-row[data-state-error="settings-error"] [data-hide-when-state-error="settings-error"],[data-show-when-state],[data-show-when-state-error],.is-options-open .column-settings-link .icon-arrow-d,.column-header-link .icon-arrow-u,.column-title-back .attribution,.js-add-to-customtimeline-button,.column-title-editable .js-show-tip.avatar.size24,.account-remove-check,.signin-sheet-now-present .application,.btn-fav-fav-text,.with-add-by-url .list-placeholder.pin-all,.s-thats-you .btn-loader,.s-pending .btn-loader,.s-blocking .follow-btn:hover .block-text,.s-blocking .btn-loader,.s-not-favorited .btn-loader,.btn-fav-faved-text,.s-favorited .btn-loader,.btn-fav-protected-text,.s-protected .btn-loader,.link-clean[href="https://twitter.com/UberFacts"] .sprite-verified,.btn-fav-unfav-text,.btn-fav.s-favorited:hover .btn-fav-faved-text,.s-not-following .btn-loader,.action-text,.s-following .follow-btn:hover .following-text {
+.add-participant .search-input-control:before,.drawer-content .search-input-control:before,.cf.account-remove-check,.facet-type .search-input-control:before,.accordion .is-active .facet-subtitle,.mdl-dismiss,.mdl-dismiss-media,.tde-mobile .column-type-icon,.column-type-message .js-column-detail .column-title-back:before,.add-on.with-emphasis,.tde-minimal .column-navigator,.tde-dark body.scroll-v .js-modal-context .mdl:before,html body .app-navigator .dropdown-menu,.caret,.js-column-detail .column-title-back.conversation-title:after,.more-tweets-btn-inner-mouse-release,.more-tweets-btn-inner-loading,.more-tweets-btn-container--mouse-release .more-tweets-btn-inner-default,.more-tweets-btn-container--loading .more-tweets-btn-inner-default,.status-message,.app-masthead,.cmp-spinner,.chev-right,.compose-text-title,.cmp button b,.cmp .mdl-header-title:empty,.app-search-tweet-results .column-header-temp,.spinner-centered,.without-tweet-drag-handles .tweet-drag-handle,.account-remove-check,.js-app-settings .obj-left,.tweet-action-item.feature-customtimelines.tweet-drag-handle,.tweet-detail-action-item.feature-customtimelines.tweet-drag-handle,.column-nav-link:after,.more-tweets-btn-inner-mouse-release,.more-tweets-btn-inner-loading,.more-tweets-btn-container--mouse-release .more-tweets-btn-inner-default,.more-tweets-btn-container--loading .more-tweets-btn-inner-default,.list-item .icon-search.list-icon,.js-typeahead-recent-search-item .obj-left,.s-following .follow-btn .btn-loader,.btd-settings,body:not(.btd-ready) #btdsettings,.edit-conversation-name .nbfc,.js-app-add-column,.btn.js-dismiss,.js-schedule-datepicker-holder .popover .padding-as .btn .icon-trash,.js-dismiss.btn.btn-positive i.icon.icon-check.icon-small.padding-rs,.column-close-link.txt-r-dark-gray,.js-app-loading .js-header-container,.js-add-image-button-label,.js-schedule-button-label,.js-tweet-button-label,.js-dm-button .label.padding-ls,.column-nav-flyout,.release-notes-modal .mdl-drag-handle,#datepicker,.search-input-spinner,.search-input-clear-search,.toggle-item-text-truncated,.sch.s-searching .sch-clear,legend,.frm-legend,.action-btn,.med-origlink,.med-flaglink,.hide-detail-view-inline .detail-view-inline,.compose-account-selected,.js-compose-hint.margin-vl.anim.anim-fade-in,#file-upload-input,.s-sending .char-count,.s-profile .mdl-buttonbar,.s-profile h3,.mdl.s-nonav .mdl-inner .mdl-buttonbar,.ovl.is-dragging:before,.is-dragging.overlay:before,.numbered-badge-onheader,.migrate-account-login-step-1 .migrate-tweetdeck-account-warning-wrapper,.migrate-account-login-step-2 .migrate-tweetdeck-account-warning-wrapper,.migrate-account-login-step-3 .migrate-account-login-forms,.migrate-account-login-step-3 .migrate-account-login-about,.migrate-account-login-forms-cancel,.tooltip-arrow,.accordion .is-active .icon-arrow-d,.accordion .icon-arrow-u,.app-search-in-popover,.app-search-form,.app-header .app-nav-logo-text,.app-header .hide-condensed,.app-header .sprite-logo,.app-header .tweet-button .label,.app-header .app-nav-link .icon-arrow-l-double,.app-header .app-nav-link .icon-arrow-r-double,.app-nav-link .icon-arrow-r-double,.app-nav-tab .icon-user-switch,.tweet-message-status,.icon.icon-move,.tweet-drag-handle,.is-narrow-columns .media-size-medium .media-sensitive-title,.contributor-row[data-contributor-role="contributor"] [data-show-when-contributor-role="admin"],.contributor-row[data-contributor-role="admin"] [data-show-when-contributor-role="contributor"],.contributor-row[data-state-error="closed-error"] [data-hide-when-state-error="closed-error"],.contributor-row[data-state="settings"] [data-hide-when-state="settings"],.contributor-row[data-state-error="settings-error"] [data-hide-when-state-error="settings-error"],[data-show-when-state],[data-show-when-state-error],.is-options-open .column-settings-link .icon-arrow-d,.column-header-link .icon-arrow-u,.column-title-back .attribution,.js-add-to-customtimeline-button,.column-title-editable .js-show-tip.avatar.size24,.account-remove-check,.signin-sheet-now-present .application,.btn-fav-fav-text,.with-add-by-url .list-placeholder.pin-all,.s-thats-you .btn-loader,.s-pending .btn-loader,.s-blocking .follow-btn:hover .block-text,.s-blocking .btn-loader,.s-not-favorited .btn-loader,.btn-fav-faved-text,.s-favorited .btn-loader,.btn-fav-protected-text,.s-protected .btn-loader,.link-clean[href="https://twitter.com/UberFacts"] .sprite-verified,.btn-fav-unfav-text,.btn-fav.s-favorited:hover .btn-fav-faved-text,.s-not-following .btn-loader,.action-text,.s-following .follow-btn:hover .following-text {
 	display:none
 }
 
@@ -38,6 +38,38 @@ enhancer.css */
 }
 
 /* ANIMATIONS */
+
+@-webkit-keyframes expand {
+	0% {
+		margin-top:-100%;
+		opacity:0
+	}
+
+	50% {
+		opacity:0
+	}
+
+	100% {
+		margin-top:0%;
+		opacity:1
+	}
+}
+
+@keyframes expand {
+	0% {
+		margin-top:-100%;
+		opacity:0
+	}
+
+	30% {
+		opacity:0
+	}
+
+	100% {
+		margin-top:0%;
+		opacity:1
+	}
+}
 
 @-webkit-keyframes moretweetsanim {
 	0% {
@@ -279,31 +311,31 @@ enhancer.css */
 @keyframes rtpopovercomedown {
 	from {
 		opacity:0;
-		top:-100px
+		top:-80px
 	}
 
 	to {
 		opacity:1;
-		top:-80px
+		top:-60px
 	}
 }
 
 @-webkit-keyframes rtpopovercomedown {
 	from {
 		opacity:0;
-		top:-100px
+		top:-80px
 	}
 
 	to {
 		opacity:1;
-		top:-80px
+		top:-60px
 	}
 }
 
 @-webkit-keyframes calendarcomedown {
 	from {
 		opacity:0;
-		margin-top:-20px
+		margin-top:-40px
 	}
 
 	to {
@@ -315,7 +347,7 @@ enhancer.css */
 @keyframes calendarcomedown {
 	from {
 		opacity:0;
-		margin-top:-20px
+		margin-top:-40px
 	}
 
 	to {
@@ -946,7 +978,7 @@ small {
 	text-align:right!important
 }
 
-.txt-mute {
+.txt-mute,.txt-r-dark-gray {
 	color:#808080;
 	text-decoration:none
 }
@@ -1146,8 +1178,7 @@ small {
 .l-table {
 	display:table;
 	width:100%;
-	height:100%
-}
+	height:100%}
 
 .l-row {
 	display:table-row
@@ -1155,7 +1186,7 @@ small {
 
 .l-cell {
 	display:table-cell;
-	vertical-align:middle
+	vertical-align:bottom
 }
 
 .l-cell-modal {
@@ -1722,7 +1753,8 @@ small {
 }
 
 .icon-user-team-mgr:before {
-	content:"\f046"
+	content:"\e7fb";
+	font-family:"Material Icons"
 }
 
 .icon-user-switch:before {
@@ -1739,10 +1771,6 @@ small {
 
 .icon-flash:before {
 	content:"\f050"
-}
-
-.icon-user-team-mgr:before {
-	content:"\f046"
 }
 
 .icon-user-switch:before {
@@ -1869,6 +1897,10 @@ small {
 	font-family:"Material Icons";
 	font-style:normal;
 	color:#0EC5D5
+}
+
+.tde-dark .sprite:before {
+	color:#00838F
 }
 
 .sprite-drag {
@@ -2374,8 +2406,11 @@ h6 {
 	width:100%;
 	text-align:center;
 	margin-left:-16px;
-	font-weight:500;
-	padding-top:4px
+	font-weight:500
+}
+
+.js-contributor-manager-container .drawer-header-title {
+	padding-top:4px;
 }
 
 .icon-user-switch {
@@ -2399,7 +2434,6 @@ h6 {
 	position:absolute;
 	top:0;
 	bottom:0;
-	z-index:3;
 	transition:250ms top cubic-bezier(.19,1,.22,1),300ms opacity cubic-bezier(.19,1,.22,1);
 	z-index:9;
 	width:100%
@@ -2447,7 +2481,7 @@ h6 {
 }
 
 .column-holder .column-panel:nth-child(2) {
-	width:0px;
+	width:100%;
 	top:100px;
 	opacity:0;
 	pointer-events:none;
@@ -2557,7 +2591,8 @@ h6 {
 	position:absolute;
 	width:100%;
 	padding-top:2px;
-	margin-left:0px!important
+	margin-left:0px!important;
+	margin-top:0px!important
 }
 
 .mdl .column-title {
@@ -2649,6 +2684,10 @@ a .column-title-back .icon:after {
 	transition:200ms all
 }
 
+.tde-light .popover .column-title-back .icon:after {
+	background:rgba(0,0,0,0.1)
+}
+
 .column-title-back .column-head-title {
 	padding-bottom:25px;
 	margin-top:-55px;
@@ -2657,10 +2696,6 @@ a .column-title-back .icon:after {
 	text-align:left;
 	font-size:0px;
 	display:block!important
-}
-
-.link-complex.txt-medium.block.cf {
-	color:#26C6DA
 }
 
 .link-complex.txt-medium.block.cf:hover .link-complex.txt-medium.block.cf:active {
@@ -2793,6 +2828,7 @@ a .column-title-back .icon:after {
 
 .column-message {
 	height:21px!important;
+	box-sizing:border-box;
 	overflow:hidden;
 	background:#03A9F4;
 	box-shadow:0 1px 10px rgba(0, 0, 0, 0.25);
@@ -2838,7 +2874,7 @@ a .column-title-back .icon:after {
 }
 
 .contributor-row {
-	transition:background 200ms,height 200ms,opacity 200ms;
+	transition:background 200ms cubic-bezier(.19,1,.22,1),height 200ms cubic-bezier(.19,1,.22,1),opacity 200ms cubic-bezier(.19,1,.22,1);
 	overflow:hidden
 }
 
@@ -3972,7 +4008,7 @@ a .column-title-back .icon:after {
 	overflow:visible;
 	transition-property:transform;
 	transition-duration:.2s;
-	transition-timing-function:!important;
+	transition-timing-function:cubic-bezier(.19,1,.22,1)!important;
 	-webkit-transition-timing-function:cubic-bezier(.19,1,.22,1)!important
 }
 
@@ -4024,16 +4060,23 @@ a .column-title-back .icon:after {
 }
 
 .app-nav-tab {
+	bottom:0;
+	z-index:999;
+	left:0px;
+	margin-top:10px;
+	max-height:30px;
+	min-height:30px;
+	margin-left:108px;
+	width:167px;
 	font-size:18px;
 	color:#fff;
 	cursor:pointer;
 	border-top-left-radius:2px;
 	border-bottom-left-radius:2px;
 	transition:200ms all;
-	width:48px;
 	display:block;
 	position:absolute;
-	top:0
+	top:12px
 }
 
 .app-nav-tab .icon {
@@ -4059,8 +4102,10 @@ a .column-title-back .icon:after {
 	box-shadow:rgba(0,0,0,0.75) 0px 2px 5px;
 	position:fixed;
 	bottom:150px;
-	left:70%;
+	left:65%;
 	transition:300ms all;
+	width:55px;
+	height:55px;
 	top:80%
 }
 
@@ -4077,6 +4122,14 @@ a .column-title-back .icon:after {
 	margin-left:-5px;
 	transition:300ms all;
 	margin-top:-3px
+}
+
+.tde-minimal .tweet-button .icon-compose:before {
+	font-size:36px;
+}
+
+.tde-minimal .tweet-button .icon-compose {
+	margin-left:1px
 }
 
 .tweet-button .icon-compose:before {
@@ -4403,8 +4456,8 @@ a .column-title-back .icon:after {
 }
 
 .facet-subtitle {
-	padding-top:3px;
-	padding-right:12px;
+	padding-top:2px;
+	text-align:center;
 	font-size:12px;
 	display:block;
 	color:#fff;
@@ -4815,6 +4868,11 @@ a .column-title-back .icon:after {
 	transition:100ms box-shadow, 100ms transform
 }
 
+.tde-mobile .mdl {
+    width:100%;
+    top:50px
+}
+
 .mdl-header {
 	position:relative;
 	padding:15px;
@@ -4914,8 +4972,16 @@ a .column-title-back .icon:after {
 	background:#F8F8F8
 }
 
+.tde-mobile .mdl-column-sml {
+    width:120px
+}
+
 .mdl-column-lrg {
 	width:445px
+}
+
+.tde-mobile .mdl-column-lrg {
+    width:300px
 }
 
 .mdl-column-med {
@@ -4923,6 +4989,10 @@ a .column-title-back .icon:after {
 	background:#fff;
 	border-radius:0px 0 0 0px;
 	z-index:99
+}
+
+.tde-mobile .mdl-column-med:not(.mdl-column-rhs) {
+	width:50px
 }
 
 .mdl-column-rhs {
@@ -4935,6 +5005,11 @@ a .column-title-back .icon:after {
 .mdl.s-fluid {
 	height:auto;
 	width:auto
+}
+
+.tde-mobile .mdl.s-fluid {
+	width:100%;
+	height:90%;
 }
 
 .mdl.s-fluid-height {
@@ -5036,16 +5111,18 @@ a .column-title-back .icon:after {
 }
 
 .lst-launcher li {
-	display:inline
+	display:inline-block;
+	width:30%
 }
 
 .lst-launcher a,.lst-launcher a:hover,.lst-launcher a:focus,.lst-launcher a:active {
 	display:block;
-	width:235px;
+	width: 200px;
 	height:46px;
 	text-align:left;
 	color:#666;
-	margin-left:25px;
+	margin-left:24px;
+	margin-right:0px;
 	margin-bottom:15px
 }
 
@@ -5413,20 +5490,16 @@ a .column-title-back .icon:after {
 }
 
 .js-compose-scroller .margin-v--14.cf {
-	width:50px!important;
-	margin-left:165px!important;
-	margin-top:auto!important;
 	position:absolute;
-	display:block!important;
-	bottom:40px;
-	z-index:999;
-	height:30px
+	pointer-events:none
 }
 
 .compose-accounts {
 	padding-top:20px;
 	padding-left:19px;
 	padding-right:8px;
+	-webkit-animation:expand 0.50s cubic-bezier(.19,1,.22,1);
+	animation:expand 0.50s cubic-bezier(.19,1,.22,1);
 	display:inline-block
 }
 
@@ -5462,8 +5535,7 @@ a .column-title-back .icon:after {
 }
 
 .compose-text {
-	width:90%;
-	height: 140px!important;
+	height: 160px!important;
 	resize:none;
 	border:none;
 	color:#444;
@@ -5620,7 +5692,7 @@ a .column-title-back .icon:after {
 	margin-bottom:5px;
 	-webkit-filter:grayscale(100%);
 	-moz-filter:grayscale(100%);
-	opacity:.2
+	opacity:.25
 }
 
 .compose-account p {
@@ -5677,12 +5749,18 @@ a .column-title-back .icon:after {
 }
 
 .account-selector-grid-mode {
-	opacity:.2;
+	opacity:.3;
+	transition:opacity 200ms;
 	margin-right:3px!important
 }
 
+.tde-light .account-selector-grid-mode,.tde-dark .account-selector-grid-mode:hover,.tde-dark .account-selector-grid-mode,.tde-dark .account-selector-grid-mode.is-selected {
+	color:#fff
+}
+
 .is-selected.account-selector-grid-mode {
-	opacity:.67;z-index:3
+	opacity:0.7;
+	z-index:3
 }
 
 .compose-remember-state {
@@ -6189,6 +6267,10 @@ input,textarea,select,.uneditable-input {
 	background:transparent
 }
 
+.tde-dark input,.tde-dark textarea,.tde-dark select,.tde-dark .uneditable-input {
+	border-bottom: 2px solid #54707F;
+}
+
 input:focus,textarea:focus,select:focus,.uneditable-input:focus {
 	outline:0
 }
@@ -6468,6 +6550,23 @@ input[type="checkbox"] {
 	border-bottom:2px solid #ddd
 }
 
+.search-input-control:before {
+	content:"\e8B6";
+	display:inline;
+	position:absolute;
+	font-size:16px;
+	font-family:"Material Icons";
+	color:#bbb
+}
+
+.search-input {
+	padding-left:20px
+}
+
+.facet-type .search-input {
+	padding-left:10px
+}
+
 .tde-dark .search-input {
 	color:#fff;
 	border-bottom:2px solid rgba(255,255,255,0.7)
@@ -6536,9 +6635,32 @@ input[type="checkbox"] {
 	border-radius:0 0 8px 8px
 }
 
-.recent-search-clear.is-actionable.list-item-last {
+.recent-search-clear.list-item-last {
 	background:#fff;
 	color:#000
+}
+
+.recent-search-clear.list-item-last span {
+	margin-top:-10px;
+	font-size:0px;
+	display:block
+}
+
+.recent-search-clear.list-item-last span:before {
+	content:"\e0b8";
+	font-size:20px;
+	margin-top:10px;
+	display:inline-block;
+	font-family:"Material Icons"
+}
+
+.recent-search-clear.list-item-last span:after {
+	content:"Clear";
+	font-size:13px;
+	margin-top:-20px;
+	margin-left:30px;
+	text-transform:uppercase;
+	display:block
 }
 
 .tde-dark .recent-search-clear.is-actionable.list-item-last {
@@ -7216,13 +7338,8 @@ input[type="checkbox"] {
 }
 
 .lst .s-selected {
-	background:rgba(0, 188, 212, 0.5);
-	color:#fff;
+	background:rgba(0,0,0,0.1);
 	transition:200ms all
-}
-
-.lst .s-selected .fullname,.lst .s-selected .username {
-	color:#fff
 }
 
 .lst-group .selected {
@@ -7383,8 +7500,7 @@ input[type="checkbox"] {
 	text-indent:0;
 	-webkit-animation:dropmenucomedown 0.3s 1 cubic-bezier(.19,1,.22,1);
 	animation:dropmenucomedown 0.3s 1 cubic-bezier(.19,1,.22,1);
-	top: 0px
-}
+	top: 20px;}
 
 .pos-r {
 	right:auto;
@@ -7423,9 +7539,8 @@ input[type="checkbox"] {
 	position:absolute;
 	background:#fff;
 	border-radius:4px;
-	transition:max-height 150ms;
 	box-shadow:0 2px 5px rgba(117,117,117,0.8);
-	transition:opacity 250ms cubic-bezier(.19,1,.22,1);
+	transition:opacity 250ms cubic-bezier(.19,1,.22,1),max-height 200ms cubic-bezier(.19,1,.22,1);
 	-webkit-animation:popovercomedown 0.25s cubic-bezier(.19,1,.22,1);
 	animation:popovercomedown 0.25s cubic-bezier(.19,1,.22,1);
 	margin-left:auto;
@@ -7443,8 +7558,7 @@ input[type="checkbox"] {
 .popover-position-rt {
 	z-index:1000;
 	left:65px;
-	top: -80px;
-	margin-top:-5px;
+	top: -60px;
 	-webkit-animation:rtpopovercomedown 0.25s cubic-bezier(.19,1,.22,1);
 	animation:rtpopovercomedown 0.25s cubic-bezier(.19,1,.22,1);
 	right:0
@@ -7481,41 +7595,20 @@ input[type="checkbox"] {
 .card-image {
 	max-width:100%;
 	transition:200ms all;
-	transform:scale(1,1);
 	box-shadow:0 3px 5px rgba(17,17,17,0.3)
 }
 
-.card-image:active {
-	max-width:100%;
-	transition:200ms all;
-	transform:scale(0.85,0.85)!important;
-	box-shadow:none!important
-}
-
-.card-image:hover {
-	max-width:100%;
-	transition:200ms all;
-	transform:scale(1.025,1.025);
+.card-image:active,.card-image:hover {
 	box-shadow:0 5px 10px rgba(17,17,17,0.475)
 }
 
 .media-image {
 	transition:200ms all;
-	transform:scale(1,1);
 	box-shadow:0 3px 5px rgba(17,17,17,0.3)
 }
 
-.media-image:active {
-	transition:200ms all;
-	transform:scale(0.85,0.85)!important;
-	box-shadow:none!important
-}
-
-.media-image:hover {
-	transition:200ms all;
-	transform:scale(1.1,1.1);
-	box-shadow:0 5px 10px rgba(17,17,17,0.475);
-	z-index:500
+.media-image:active,.media-image:hover {
+	box-shadow:0 5px 10px rgba(17,17,17,0.475)
 }
 
 .startflow {
@@ -7724,70 +7817,63 @@ input[type="checkbox"] {
 }
 
 .yellow-highlight {
-	background-repeat:no-repeat;
-	background-position:50% 50%;
-	background-size:100% 100%;
 	background:#fffC8E
 }
 
 @media only screen and (max-width:980px) {
 	.app-image {
-	margin-bottom:30px
+		margin-bottom:30px
 	}
 
 	.app-signin-wrap {
-	margin-left:10px;
-	margin-right:10px
+		margin-left:10px;
+		margin-right:10px
 	}
 
 	.app-info-signup {
-	position:static;
-	float:left;
-	margin-top:20px
+		position:static;
+		float:left;
+		margin-top:20px
 	}
 }
 
 @media only screen and (max-width:768px) {
 	.app-signin-form {
-	margin:0 auto;
-	margin-bottom:60px;
-	display:block;
-	position:static
+		margin:0 auto;
+		margin-bottom:60px;
+		display:block;
+		position:static
 	}
 
 	.app-info {
-	padding-right:0
+		padding-right:0
 	}
 
 	.app-info-panel {
-	margin-right:0
+		margin-right:0
 	}
 
 	.signin-form {
-	margin-top:40px
+		margin-top:40px
 	}
 
 	.startflow {
-	margin-top:30px
+		margin-top:30px
 	}
 }
 
 @media only screen and (max-width:350px) {
 	.app-signin-form {
-	width:300px
+		width:300px
 	}
 
 	.form-login-username {
-	width:229px
+		width:229px
 	}
 
 	.form-login-pwd {
-	width:178px
+		width:178px
 	}
-}
-
-.link-complex.txt-medium.block.cf:hover {
-	color:#AADFFF
 }
 
 .startflow-wrap {
@@ -7957,7 +8043,7 @@ input[type="checkbox"] {
 .compose-content .account-selector-grid-toggle {
 	position:fixed;
 	width:70px;
-	bottom:17px;
+	bottom: 7px;
 	left:-260px;
 	float:none
 }
@@ -8381,16 +8467,6 @@ input[type="checkbox"] {
 	width:100px
 }
 
-.app-nav-tab {
-	top:0;
-	bottom:0;
-	z-index:999;
-	left:0px;
-	margin-left:85px;
-	position:absolute;
-	transition:200ms all
-}
-
 .js-hide-drawer.app-nav-tab:after {
 	content:"Close Account List";
 	font-size:14px;
@@ -8483,25 +8559,32 @@ input[type="checkbox"] {
 }
 
 .js-reply-charcount {
-	padding-top:0px!important
+	padding-top:0px!important;
+	border-bottom:none!important
 }
 
 li.is-selectable a[data-action=mute] {
-	font-size:0px
-;
-	line-height: 0px;
+	font-size:0px;
+	line-height:0px
 }
 
 li.is-selectable a[data-action=mute]:before {
 	font-size:14px;
 	content:"Mute in TweetDeck";
 	display:block;
-	line-height:14px;
+	line-height:16px;
 }
 
-.js-account-action{
-	color:#00BFFF;
-	background:none
+li.is-selectable a[data-action=report-spam] {
+	font-size:0px;
+	line-height:0px
+}
+
+li.is-selectable a[data-action=report-spam]:before {
+	font-size:14px;
+	content:"Report for Spam";
+	display:block;
+	line-height:16px;
 }
 
 .js-account-action:hover {
@@ -8607,12 +8690,12 @@ a[rel=hashtag]:active {
 	position:absolute
 }
 
-.mdl-content.js-mdl-content.horizontal-flow-container {
+.mdl-content.horizontal-flow-container {
 	padding-top:0px;
 	overflow-y:hidden
 }
 
-.mdl-content.js-mdl-content.horizontal-flow-container.with-scroll.scroll-v {
+.mdl-content.horizontal-flow-container.with-scroll {
 	padding-top:20px
 }
 
@@ -8815,12 +8898,6 @@ a[rel=hashtag]:active {
 	height:53px
 }
 
-.link-complex.txt-medium.cf {
-	color:#26C6DA;
-	transform:scale(1,1)!important;
-	background:transparent!important
-}
-
 .js-contributor-manager-container {
 	background:#F8F8F8;
 	-webkit-animation:popgoesthemodalwindow 0.3s 1 cubic-bezier(.19,1,.22,1);
@@ -8833,7 +8910,7 @@ a[rel=hashtag]:active {
 }
 
 .contributor-adder .js-username-input {
-	border-bottom:3px solid #00838F;
+	border-bottom:3px solid #ddd;
 	margin-left:-5px;
 	height:25px;
 	color:#000
@@ -9311,7 +9388,7 @@ a[rel=hashtag]:active {
 	color:#fff
 }
 
-.js-dm-participants-back,.js-dm-participants-back:hover,.js-dm-participants-back:focus {
+.tde-dark .js-dm-participants-back,.tde-dark .js-dm-participants-back:hover,.tde-dark .js-dm-participants-back:focus,.js-dm-participants-back,.js-dm-participants-back:hover,.js-dm-participants-back:focus {
 	color:#fff
 }
 
@@ -9333,10 +9410,6 @@ a[rel=hashtag]:active {
 
 .column-content.column-dm-participants {
 	top:100px
-}
-
-input.js-username-input.js-submittable-input {
-	color:#000
 }
 
 .emoji-popover .emojis-compose-panel .emoji-container::before {
@@ -9507,8 +9580,50 @@ fieldset .fixed-width-label:not(.radio), fieldset:not(.js-search-filter) .contro
 	position:relative
 }
 
+#global_filter_settings .control-label[for="filter-input"] {
+	font-size:0px
+}
+
 #filter-input {
 	width:320px
+}
+
+#filter-input[placeholder="eg @JohnDoe123"]::-webkit-input-placeholder,#filter-input[placeholder="eg TweetSpamApp"]::-webkit-input-placeholder,#filter-input[placeholder="eg iPad"]::-webkit-input-placeholder {
+    font-size:0px
+}
+
+#filter-input[placeholder="eg @JohnDoe123"]::-webkit-input-placeholder:before {
+	font-size:13px;
+    content:"For example, @NSA"
+}
+
+#filter-input[placeholder="eg TweetSpamApp"]::-webkit-input-placeholder:before {
+	font-size:13px;
+    content:"For example, dangeredwolf twtter bots"
+}
+
+#filter-input[placeholder="eg iPad"]::-webkit-input-placeholder:before {
+	font-size:13px;
+    content:"For example, starter pack"
+}
+
+#filter-input[placeholder="eg @JohnDoe123"]::-moz-placeholder,#filter-input[placeholder="eg TweetSpamApp"]::-moz-placeholder,#filter-input[placeholder="eg iPad"]::-moz-placeholder {
+    font-size:0px
+}
+
+#filter-input[placeholder="eg @JohnDoe123"]::-moz-placeholder:before {
+	font-size:13px;
+    content:"For example, @NSA"
+}
+
+#filter-input[placeholder="eg TweetSpamApp"]::-moz-placeholder:before {
+	font-size:13px;
+    content:"For example, dangeredwolf twtter bots"
+}
+
+#filter-input[placeholder="eg iPad"]::-moz-placeholder:before {
+	font-size:13px;
+    content:"For example, starter pack"
 }
 
 #add-filter {
@@ -9617,6 +9732,20 @@ fieldset .fixed-width-label:not(.radio), fieldset:not(.js-search-filter) .contro
 	z-index:11
 }
 
+.tde-light .popover .column-header {
+	background:#f5f5f5;
+	color:#333
+}
+
+.tde-light .popover .js-column-back {
+	color:#666
+}
+
+.tde-light .popover .js-column-detail .column-title-back:before {
+	color:#666;
+	font-weight:500
+}
+
 .is-shifted-1 .column-panel:not(.column-detail):not(.column-detail-level-2) .column-header {
 	box-shadow:-6px 1px 10px rgba(17,17,17,0.35)
 }
@@ -9633,9 +9762,8 @@ html.tde-dark {
 	color:#eee
 }
 
-.tde-dark .txt-mute {
-	color:#6D808B;
-	text-decoration:none
+.tde-dark .txt-mute,.tde-dark-media-previews .med-fullpanel .txt-mute,.tde-dark .txt-r-dark-gray {
+	color:#6D808B
 }
 
 .tde-dark .column-title .attribution {
@@ -9649,11 +9777,11 @@ html.tde-dark {
 	margin-right:3px
 }
 
-.tde-dark .account-link {
+.tde-dark .account-link,.tde-dark-media-previews .med-fullpanel .account-link {
 	color:#D3DBE1
 }
 
-.tde-dark a.account-link:hover,.tde-dark a.account-link:active {
+.tde-dark a.account-link:hover,.tde-dark a.account-link:active,.tde-dark-media-previews .med-fullpanel .account-link:hover,.tde-dark-media-previews .med-fullpanel .account-link:active {
 	color:#009893
 }
 
@@ -9695,7 +9823,7 @@ html.tde-dark {
  color:rgba(149, 175, 191, 0.52)
 }
 
-.tde-dark .tweet-action, .tde-dark .tweet-detail-action {
+.tde-dark .tweet-action, .tde-dark-media-previews .tweet-action, .tde-dark .tweet-detail-action {
  color:rgba(149, 175, 191, 0.52)
 }
 
@@ -9754,7 +9882,7 @@ html.tde-dark {
 }
 
 .tde-dark .app-nav-link.is-selected,.tde-dark .app-nav-link:hover,.tde-dark .column-nav-link.is-selected,.tde-dark .column-nav-link:hover {
-	color:#fff
+	color:inherit
 }
 
 .tde-dark .app-columns-container {
@@ -9811,6 +9939,11 @@ html.tde-dark {
 
 .tde-dark .mdl {
 	background:rgb(53, 63, 70)
+}
+
+.tde-dark-media-previews .med-fullpanel {
+	background:rgb(53, 63, 70);
+	color:#eee
 }
 
 .tde-dark .btn[disabled],.tde-dark .btn[disabled]:hover,.tde-dark .btn[disabled]:active,.tde-dark .btn.is-disabled,.tde-dark .btn.is-disabled:hover,.tde-dark .btn.is-disabled:focus,.tde-dark .btn.is-disabled:active {
@@ -9965,8 +10098,7 @@ html.tde-dark {
 }
 
 .tde-dark .account-stats a {
-	color:#26C6DA
-}
+	color: #00838F;}
 
 .tde-dark .drawer-header {
 	background:#263238
@@ -10009,7 +10141,8 @@ html.tde-dark {
 }
 
 .tde-dark .compose-text {
-	color:#eee
+	color:#eee;
+	border-bottom:none
 }
 
 .tde-dark .compose-text::-webkit-input-placeholder {
@@ -10028,7 +10161,7 @@ html.tde-dark {
 	font-size:13px;
 	line-height:18px;
 	color:#fff;
-	border-bottom:2px solid #ccc;
+	border-bottom: 2px solid #667A86;
 	border-radius:0px;
 	background:transparent
 }
@@ -10302,15 +10435,6 @@ fieldset .toggle-switch {
 	margin-top:0px
 }
 
-.js-hide-drawer.link-clean.app-nav-tab {
-	top:12px;
-	margin-top:10px;
-	max-height:30px;
-	min-height:30px;
-	margin-left:138px;
-	width:138px!important
-}
-
 .js-account-safeguard-checkbox {
 	display:inline;
 	position:absolute;
@@ -10435,13 +10559,8 @@ fieldset .toggle-switch {
 	margin-top:-3px;
 	padding-bottom:3px;
 	padding-left:10px;
-	border-bottom:3px solid #eee;
 	margin-left:8px;
 	padding-top:3px
-}
-
-.tde-dark .compose-message-account {
-	border-bottom:3px solid #667A86
 }
 
 .compose-message-recipient-input-container {
@@ -10462,6 +10581,11 @@ fieldset .toggle-switch {
 	-webkit-animation:dropmenucomedownnopad 0.225s 1;
 	animation:dropmenucomedownnopad 0.225s 1;
 	width:240px
+}
+
+.typeahead-dropdown.is-hidden {
+	-webkit-animation:none;
+	animation:none
 }
 
 .dropdown-menu ul {
@@ -10487,20 +10611,18 @@ a.js-column-back, a.js-column-back:hover, a.js-column-back:active, a.js-column-b
 	transform:none!important
 }
 
-a .column-title-back.conversation-title .icon:after {
-	margin-left:-19px
-}
-
 .title-content .txt-mute {
 	color:rgba(255,255,255,0.8)
 }
 
 .tde-light .add-participant .js-username-input.js-submittable-input {
-	border-bottom:2px solid #ccc
+	border-bottom:2px solid #ccc;
+	width:95%
 }
 
 .tde-dark .add-participant .js-username-input.js-submittable-input {
-	border-bottom:2px solid #667A86
+	border-bottom:2px solid #667A86;
+	width:95%
 }
 
 .column-content.column-dm-participants {
@@ -10535,7 +10657,8 @@ a .column-title-back.conversation-title .icon:after {
 }
 
 .tde-light .app-navigator .js-hide-drawer {
-	 box-shadow:0 -3px 5px rgba(17,17,17,0.15)
+	 box-shadow:0 -3px 5px rgba(17,17,17,0.15);
+	 background: #03A9F4;
 }
 
 .tde-minimal .js-hide-drawer {
@@ -10832,7 +10955,7 @@ button.tde-no-transform-case {
 	position:relative;
 	display:none;
 	padding-left:8px;
-	transition:height 200ms cubic-bezier(.19,1,.22,1);
+	transition:height 150ms cubic-bezier(.19,1,.22,1);
 	overflow-y:hidden
 }
 
@@ -10875,7 +10998,7 @@ button.tde-no-transform-case {
 .edit-conversation-name .btn {
 	padding:10px;
 	width:40px;
-	color:#fff
+	color:#fff!important
 }
 
 .edit-conversation-name .btn i {
@@ -10888,6 +11011,11 @@ button.tde-no-transform-case {
 }
 
 .conversation-title .title-content {
+	display:block;
+	padding-left:20px;
+	color:#fff;
+	font-size:16px;
+	font-weight:500;
 	text-align:left
 }
 
@@ -10905,4 +11033,106 @@ button.tde-no-transform-case {
 
 .js-column-options {
 	transition:height 200ms cubic-bezier(.19,1,.22,1)
+}
+
+.js-popover-content.scroll-none {
+	border-radius:4px
+}
+
+.icon-follow-color {
+	color:#00BCD4
+}
+
+.tde-dark .icon-follow-color {
+	color:#00838F
+}
+
+.pin-bottom.margin-a--15 {
+	margin-bottom:7px!important
+}
+
+.js-account-manager-container {
+	z-index:10
+}
+
+.conversation-title .title-content b {
+	color:#fff
+}
+
+.conversation-title a[rel="hashtag"] {
+	display:none;
+	margin-top:-50px;
+	margin-left:5px;
+}
+
+.column-type-message .conversation-title .js-column-back.l-table {
+	display:block;
+	margin-top:-50px
+}
+
+.l-table>.icon-arrow-l {
+	top:-50px
+}
+
+.column-title-back.conversation-title {
+	font-size:0px
+}
+
+.contributor-row:not([data-state="confirmRemove"]) .contributor-confirm-remove,.contributor-settings-role,.contributor-detail,.contributor-remove {
+	opacity:0;
+	margin-top:-20px;
+	transition:opacity 200ms cubic-bezier(.19,1,.22,1),margin-top 200ms cubic-bezier(.19,1,.22,1);
+}
+
+.contributor-row[data-state="settings"] .contributor-settings-role,.contributor-row[data-state="settings"] .contributor-confirm-change,.contributor-row[data-state="closed"] .contributor-detail,.contributor-row[data-state="settings"] .contributor-remove {
+	margin-top:0px;
+	opacity:1
+}
+
+.contributor-row[data-state="confirmRemove"] .contributor-confirm-remove {
+	display:block;
+	-webkit-animation:popgoesthemodalwindow 0.2s 1!important;
+	animation:popgoesthemodalwindow 0.2s 1!important
+}
+
+.contributor-row[data-state="confirmRemove"] .contributor-confirm-remove.padding-bl {
+	margin-top:-130px;
+}
+
+.drawer-header:active .drawer-header-title .icon:after {
+	width:40px;
+	height:40px;
+	margin-top:-37px;
+	margin-left:-17px;
+	transform:scale(1);
+	opacity:1;
+	transition:70ms all
+}
+
+.drawer-header .drawer-header-title .icon:after {
+	content:" ";
+	background:rgba(255, 255, 255, 0.2);
+	width:30px;
+	height:30px;
+	position:absolute;
+	margin-top:-40px;
+	margin-left: -5px;
+	border-radius:21px;
+	z-index:9;
+	transform:scale(0.5);
+	opacity:0;
+	transition:200ms all
+}
+
+.conversation-event .item-box {
+	padding: 12px
+}
+
+.conversation-event {
+	text-align:center
+}
+
+.column-header .padding-v--3 {
+	padding-top:6px!important;
+	padding-bottom:6px!important
 }

@@ -9,11 +9,11 @@ var messagesAccounted = [];
 var TDEDark = true;
 
 var addedColumnsLoadingTagAndIsWaiting = false;
-var TDEBaseURL = "https://dangeredwolf.com/assets/tdetest/"; // Defaults to streaming if nothing else is available (i.e. firefox)
+var TDEBaseURL = "https://dangeredwolf.com/assets/tdetest/"; // Defaults to streaming if nothing else is available (i.e. legacy firefox)
 var progress = null;
 var tde_fetch_profile_info_for_nav_drawer = 0;
 
-var SystemVersion = "5.3 Beta 3.1";
+var SystemVersion = "5.3 RC";
 
 var TreatGeckoWithCare = false;
 
@@ -34,7 +34,7 @@ Preferences.Appearance = [
 	[
 		"flag",
 		"tde-column-oneline",
-		"tde_column_oneline",
+		"tde_stay_oneline",
 		"tde-column-oneline-control",
 		"Keep column titles on one line",
 		true
@@ -193,10 +193,17 @@ function TDEInit(){
     localStorage.tde_round_avatars = true;
   }
 
-  if (localStorage.tde_column_oneline === "true") {
+  if (localStorage.tde_stay_oneline === "true") {
     document.getElementsByTagName("html")[0].className += " tde-column-oneline";
-  } else if (typeof localStorage.tde_column_oneline === "undefined") {
-    localStorage.tde_column_oneline = true;
+  } else if (typeof localStorage.tde_stay_oneline === "undefined") {
+    localStorage.tde_stay_oneline = true;
+    document.getElementsByTagName("html")[0].className += " tde-column-oneline";
+  }
+
+  if (localStorage.tde_dark_media === "true") {
+    document.getElementsByTagName("html")[0].className += " tde-dark-media-previews";
+  } else if (typeof localStorage.tde_dark_media === "undefined") {
+    localStorage.tde_dark_media = false;
   }
 
   if (localStorage.tde_outlines === "true") {
@@ -300,17 +307,29 @@ function PrefsListener() {
 			document.getElementsByTagName("html")[0].className += " tde-no-round-avatars";
 		}
 
-		if (localStorage.tde_column_oneline === "false" && $("#tde-column-oneline-control")[0].checked) {
+		if (localStorage.tde_stay_oneline === "false" && $("#tde-column-oneline-control")[0].checked) {
 			console.log("Hey true!!");
-			localStorage.tde_column_oneline = true;
+			localStorage.tde_stay_oneline = true;
 			document.getElementsByTagName("html")[0].className += " tde-column-oneline";
 		}
 
-		if (localStorage.tde_column_oneline === "true" && !$("#tde-column-oneline-control")[0].checked) {
+		if (localStorage.tde_stay_oneline === "true" && !$("#tde-column-oneline-control")[0].checked) {
 			console.log("Hey false!!");
-			localStorage.tde_column_oneline = false;
+			localStorage.tde_stay_oneline = false;
 			document.getElementsByTagName("html")[0].className = document.getElementsByTagName("html")[0].className.replace(" tde-column-oneline","");
 		}
+
+    if (localStorage.tde_dark_media === "false" && $("#tde-dark-media-control")[0].checked) {
+      console.log("Hey true!!");
+      localStorage.tde_dark_media = true;
+      document.getElementsByTagName("html")[0].className += " tde-dark-media-previews";
+    }
+
+    if (localStorage.tde_dark_media === "true" && !$("#tde-dark-media-control")[0].checked) {
+      console.log("Hey false!!");
+      localStorage.tde_dark_media = false;
+      document.getElementsByTagName("html")[0].className = document.getElementsByTagName("html")[0].className.replace(" tde-dark-media-previews","");
+    }
 
 		if (localStorage.tde_outlines === "false" && $("#tde-outlines-control")[0].checked) {
 			console.log("Hey true!!");
@@ -353,36 +372,23 @@ function TDESettings() {
 			</ul> </div> </div> <div class="l-column mdl-column mdl-column-lrg"> <div class="l-column-scrollv scroll-v	scroll-alt mdl-col-settings">\
 			\
 			\
-			<form action="#" id="tde-appearance-form" accept-charset="utf-8" class="frm"><fieldset id="general_settings"><div class="control-group" style="padding-top:10px;"><label class="checkbox">Use rounded profile pictures<input type="checkbox" name="streaming-updates" checked="checked" id="tde-round-avatars-control"> </label><label class="checkbox">Keep column titles on one line<input type="checkbox" name="streaming-updates" checked="checked" id="tde-column-oneline-control"> </label></div></fieldset></form>\
+			<form action="#" id="tde-appearance-form" accept-charset="utf-8" class="frm"><fieldset id="general_settings"><div class="control-group" style="padding-top:10px;"><label class="checkbox">Use rounded profile pictures<input type="checkbox" name="streaming-updates" checked="checked" id="tde-round-avatars-control"> </label><label class="checkbox">Keep column titles on one line<input type="checkbox" name="streaming-updates" checked="checked" id="tde-column-oneline-control"> </label><label class="checkbox">Dark media viewer in light mode<input type="checkbox" name="streaming-updates" checked="checked" id="tde-dark-media-control"> </label></div></fieldset></form>\
 			\
 			<form action="#" id="tde-accessibility-form" accept-charset="utf-8" class="frm" style="display:none;"><fieldset id="general_settings"><label class="checkbox">Always show outlines on focussed items<input type="checkbox" checked="checked" id="tde-outlines-control"> </label></fieldset></form>\
 			\
 			<form action="#" id="tde-about-form" accept-charset="utf-8" class="frm" style="display:none;"><fieldset id="general_settings"><img src="' + TDEBaseURL + 'sources/tdeaboutsmaller.png" class="tde-logo"><h1 class="list-placeholder tde-about-title">TweetDeck Enhancer</h1><h2 class="tde-version-title">You\'re running Enhancer ' + SystemVersion + '</h2><div class="mdl-links" style="margin-bottom:-10px"> <a href="https://dangeredwolf.com/TweetDeckEnhancer/privacy.txt" target="_blank">Privacy Policy</a> </div></fieldset></form>\
 			\
 			</div> </div> </div>';
-			window.tdeblah = false;
 
-			$("#tde-column-oneline-control")[0].checked = (localStorage.tde_column_oneline === "true" && true || false);
+			$("#tde-column-oneline-control")[0].checked = (localStorage.tde_stay_oneline === "true" && true || false);
 			$("#tde-round-avatars-control")[0].checked = (localStorage.tde_round_avatars === "true" && true || false);
 			$("#tde-outlines-control")[0].checked = (localStorage.tde_outlines === "true" && true || false);
+      $("#tde-dark-media-control")[0].checked = (localStorage.tde_dark_media === "true" && true || false);
 
 
 			PrefsListener();
 
-			$("#enhancer_settings_about_button").on("mousedown",function() {
-				console.log("down!!");
-				window.tdeblah = true;
-				setTimeout(function(){
-					if (window.tdeblah === true) {
-						console.log("sweet!!!");
-						ActivateSuperEasterEggPowers();
-					}
-				},2000)
-			});
-
 			$("#enhancer_settings_about_button").on("mouseup",function() {
-				window.tdeblah = false;
-				console.log("up!!");
 				ResetSettingsUI();
 				$("#tde-about-li")[0].className = "selected";
 				$("#tde-about-form")[0].style.cssText = "display:block;";
@@ -433,34 +439,6 @@ function Analytics() {
 		return;
 	}
 	$.ajax({url:"https://tweetdeckenhancer.com/analytics/TDE5/?v=" + SystemVersion + "&release=beta"});
-}
-
-function ActivateSuperEasterEggPowers(){
-	console.log("activate super easter egg powers");
-	setTimeout(function(){
-		document.getElementsByClassName("js-header-add-column")[0].click();
-		document.getElementsByClassName("js-item-launch")[9].childNodes[1].click();
-	},100);
-	setTimeout(function(){
-		$(".lst-group")[2].remove();
-		document.getElementsByClassName("js-add-column-search-input")[0].value = "enhancerint";
-		$(".js-modal-panel.mdl.s-tall-fixed.is-inverted-dark .js-back").remove();
-		$(".js-modal-panel.mdl.s-tall-fixed.is-inverted-dark")[0].style.cssText = "height:750px;";
-	},200);
-	setTimeout(function(){
-		$(".mdl .js-perform-search.search-input-perform-search").click();
-	},230)
-	setTimeout(function(){
-		$(".lst-group .js-list-container li .list-account")[0].click();
-		$(".lst-group .js-list-container li .list-account")[0].click();
-		$(".lst-group .js-list-container li .list-account")[0].click();
-		$(".js-title")[0].remove();
-	},1500);
-	setTimeout(function(){
-		if (typeof $(".mdl .stream-item[data-key='569320189801705472']") !== "undefined") {
-			$(".mdl .stream-item[data-key='569320189801705472'] .item-box")[0].click();
-		}
-	},2600);
 }
 
 function PrepareLoginStuffs() {
@@ -785,7 +763,7 @@ function attemptdiag() {
 	<br>TDEDark: ' + TDEDark + '\
 	<br>tde_fetch_profile_info_for_nav_drawer: ' + tde_fetch_profile_info_for_nav_drawer + '\
 	<br>tde_round_avatars: ' + localStorage.tde_round_avatars + '\
-	<br>tde_column_oneline: ' + localStorage.tde_column_oneline + '\
+	<br>tde_stay_oneline: ' + localStorage.tde_stay_oneline + '\
 	<br>tde_flag_block_secure_ss: ' + localStorage.tde_flag_block_secure_ss + '\
 	<br>tde_flag_block_communications: ' + localStorage.tde_flag_block_communications + '\
 	<br>tde_nd_header_image: ' + (typeof $("#tde_nd_header_image")[0] !== "undefined" && $("#tde_nd_header_image")[0].style.cssText) + '\
@@ -885,7 +863,7 @@ function spawnModule(fun,del) {
 spawnModule(TDEInit,0);
 spawnModule(WorldTick,0);
 spawnModule(NavigationSetup,100);
-spawnModule(outtaSpaceSuggestions,7000);
+//spawnModule(outtaSpaceSuggestions,7000);
 
 document.getElementsByTagName("html")[0].className += " tde-preferences-differentiator tde-api-ver-5-3 tde-js-loaded";
 
