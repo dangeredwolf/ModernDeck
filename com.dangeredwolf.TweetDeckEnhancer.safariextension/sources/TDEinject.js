@@ -13,7 +13,7 @@ var TDEBaseURL = "https://dangeredwolf.com/assets/tdetest/"; // Defaults to stre
 var progress = null;
 var tde_fetch_profile_info_for_nav_drawer = 0;
 
-var SystemVersion = "5.3 RC1.1";
+var SystemVersion = "5.3 RC1.2";
 
 var TreatGeckoWithCare = false;
 

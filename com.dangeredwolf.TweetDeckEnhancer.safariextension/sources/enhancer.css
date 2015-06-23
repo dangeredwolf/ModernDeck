@@ -6509,13 +6509,20 @@ input[type="checkbox"] {
 	border-bottom:2px solid #ddd
 }
 
-.search-input-control:before {
+.search-input-control::-webkit-input-placeholder:before {
 	content:"\e8B6";
 	display:inline;
 	position:absolute;
 	font-size:16px;
-	font-family:"Material Icons";
-	color:#bbb
+	font-family:"Material Icons"
+}
+
+.search-input-control::-moz-placeholder:before {
+	content:"\e8B6";
+	display:inline;
+	position:absolute;
+	font-size:16px;
+	font-family:"Material Icons"
 }
 
 .search-input {
