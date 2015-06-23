@@ -13,7 +13,7 @@ enhancer.css */
 
 /* SUPERCLASSES */
 
-.add-participant .search-input-control:before,.drawer-content .search-input-control:before,.cf.account-remove-check,.facet-type .search-input-control:before,.accordion .is-active .facet-subtitle,.mdl-dismiss,.mdl-dismiss-media,.tde-mobile .column-type-icon,.column-type-message .js-column-detail .column-title-back:before,.add-on.with-emphasis,.tde-minimal .column-navigator,.tde-dark body.scroll-v .js-modal-context .mdl:before,html body .app-navigator .dropdown-menu,.caret,.js-column-detail .column-title-back.conversation-title:after,.more-tweets-btn-inner-mouse-release,.more-tweets-btn-inner-loading,.more-tweets-btn-container--mouse-release .more-tweets-btn-inner-default,.more-tweets-btn-container--loading .more-tweets-btn-inner-default,.status-message,.app-masthead,.cmp-spinner,.chev-right,.compose-text-title,.cmp button b,.cmp .mdl-header-title:empty,.app-search-tweet-results .column-header-temp,.spinner-centered,.without-tweet-drag-handles .tweet-drag-handle,.account-remove-check,.js-app-settings .obj-left,.tweet-action-item.feature-customtimelines.tweet-drag-handle,.tweet-detail-action-item.feature-customtimelines.tweet-drag-handle,.column-nav-link:after,.more-tweets-btn-inner-mouse-release,.more-tweets-btn-inner-loading,.more-tweets-btn-container--mouse-release .more-tweets-btn-inner-default,.more-tweets-btn-container--loading .more-tweets-btn-inner-default,.list-item .icon-search.list-icon,.js-typeahead-recent-search-item .obj-left,.s-following .follow-btn .btn-loader,.btd-settings,body:not(.btd-ready) #btdsettings,.edit-conversation-name .nbfc,.js-app-add-column,.btn.js-dismiss,.js-schedule-datepicker-holder .popover .padding-as .btn .icon-trash,.js-dismiss.btn.btn-positive i.icon.icon-check.icon-small.padding-rs,.column-close-link.txt-r-dark-gray,.js-app-loading .js-header-container,.js-add-image-button-label,.js-schedule-button-label,.js-tweet-button-label,.js-dm-button .label.padding-ls,.column-nav-flyout,.release-notes-modal .mdl-drag-handle,#datepicker,.search-input-spinner,.search-input-clear-search,.toggle-item-text-truncated,.sch.s-searching .sch-clear,legend,.frm-legend,.action-btn,.med-origlink,.med-flaglink,.hide-detail-view-inline .detail-view-inline,.compose-account-selected,.js-compose-hint.margin-vl.anim.anim-fade-in,#file-upload-input,.s-sending .char-count,.s-profile .mdl-buttonbar,.s-profile h3,.mdl.s-nonav .mdl-inner .mdl-buttonbar,.ovl.is-dragging:before,.is-dragging.overlay:before,.numbered-badge-onheader,.migrate-account-login-step-1 .migrate-tweetdeck-account-warning-wrapper,.migrate-account-login-step-2 .migrate-tweetdeck-account-warning-wrapper,.migrate-account-login-step-3 .migrate-account-login-forms,.migrate-account-login-step-3 .migrate-account-login-about,.migrate-account-login-forms-cancel,.tooltip-arrow,.accordion .is-active .icon-arrow-d,.accordion .icon-arrow-u,.app-search-in-popover,.app-search-form,.app-header .app-nav-logo-text,.app-header .hide-condensed,.app-header .sprite-logo,.app-header .tweet-button .label,.app-header .app-nav-link .icon-arrow-l-double,.app-header .app-nav-link .icon-arrow-r-double,.app-nav-link .icon-arrow-r-double,.app-nav-tab .icon-user-switch,.tweet-message-status,.icon.icon-move,.tweet-drag-handle,.is-narrow-columns .media-size-medium .media-sensitive-title,.contributor-row[data-contributor-role="contributor"] [data-show-when-contributor-role="admin"],.contributor-row[data-contributor-role="admin"] [data-show-when-contributor-role="contributor"],.contributor-row[data-state-error="closed-error"] [data-hide-when-state-error="closed-error"],.contributor-row[data-state="settings"] [data-hide-when-state="settings"],.contributor-row[data-state-error="settings-error"] [data-hide-when-state-error="settings-error"],[data-show-when-state],[data-show-when-state-error],.is-options-open .column-settings-link .icon-arrow-d,.column-header-link .icon-arrow-u,.column-title-back .attribution,.js-add-to-customtimeline-button,.column-title-editable .js-show-tip.avatar.size24,.account-remove-check,.signin-sheet-now-present .application,.btn-fav-fav-text,.with-add-by-url .list-placeholder.pin-all,.s-thats-you .btn-loader,.s-pending .btn-loader,.s-blocking .follow-btn:hover .block-text,.s-blocking .btn-loader,.s-not-favorited .btn-loader,.btn-fav-faved-text,.s-favorited .btn-loader,.btn-fav-protected-text,.s-protected .btn-loader,.link-clean[href="https://twitter.com/UberFacts"] .sprite-verified,.btn-fav-unfav-text,.btn-fav.s-favorited:hover .btn-fav-faved-text,.s-not-following .btn-loader,.action-text,.s-following .follow-btn:hover .following-text {
+.mdl .search-input-control::before,.startflow-panel .txt-center,.add-participant .search-input-control:before,.drawer-content .search-input-control:before,.cf.account-remove-check,.facet-type .search-input-control:before,.accordion .is-active .facet-subtitle,.mdl-dismiss,.mdl-dismiss-media,.tde-mobile .column-type-icon,.column-type-message .js-column-detail .column-title-back:before,.add-on.with-emphasis,.tde-minimal .column-navigator,.tde-dark body.scroll-v .js-modal-context .mdl:before,html body .app-navigator .dropdown-menu,.caret,.js-column-detail .column-title-back.conversation-title:after,.more-tweets-btn-inner-mouse-release,.more-tweets-btn-inner-loading,.more-tweets-btn-container--mouse-release .more-tweets-btn-inner-default,.more-tweets-btn-container--loading .more-tweets-btn-inner-default,.status-message,.app-masthead,.cmp-spinner,.chev-right,.compose-text-title,.cmp button b,.cmp .mdl-header-title:empty,.app-search-tweet-results .column-header-temp,.spinner-centered,.without-tweet-drag-handles .tweet-drag-handle,.account-remove-check,.js-app-settings .obj-left,.tweet-action-item.feature-customtimelines.tweet-drag-handle,.tweet-detail-action-item.feature-customtimelines.tweet-drag-handle,.column-nav-link:after,.more-tweets-btn-inner-mouse-release,.more-tweets-btn-inner-loading,.more-tweets-btn-container--mouse-release .more-tweets-btn-inner-default,.more-tweets-btn-container--loading .more-tweets-btn-inner-default,.list-item .icon-search.list-icon,.js-typeahead-recent-search-item .obj-left,.s-following .follow-btn .btn-loader,.btd-settings,body:not(.btd-ready) #btdsettings,.edit-conversation-name .nbfc,.js-app-add-column,.js-dismiss,.js-schedule-datepicker-holder .popover .padding-as .btn .icon-trash,.js-dismiss.btn.btn-positive i.icon.icon-check.icon-small.padding-rs,.column-close-link.txt-r-dark-gray,.js-app-loading .js-header-container,.js-add-image-button-label,.js-schedule-button-label,.js-tweet-button-label,.js-dm-button .label.padding-ls,.column-nav-flyout,.release-notes-modal .mdl-drag-handle,#datepicker,.search-input-spinner,.search-input-clear-search,.toggle-item-text-truncated,.sch.s-searching .sch-clear,legend,.frm-legend,.action-btn,.med-origlink,.med-flaglink,.hide-detail-view-inline .detail-view-inline,.compose-account-selected,.js-compose-hint.margin-vl.anim.anim-fade-in,#file-upload-input,.s-sending .char-count,.s-profile .mdl-buttonbar,.s-profile h3,.mdl.s-nonav .mdl-inner .mdl-buttonbar,.ovl.is-dragging:before,.is-dragging.overlay:before,.numbered-badge-onheader,.migrate-account-login-step-1 .migrate-tweetdeck-account-warning-wrapper,.migrate-account-login-step-2 .migrate-tweetdeck-account-warning-wrapper,.migrate-account-login-step-3 .migrate-account-login-forms,.migrate-account-login-step-3 .migrate-account-login-about,.migrate-account-login-forms-cancel,.tooltip-arrow,.accordion .is-active .icon-arrow-d,.accordion .icon-arrow-u,.app-search-in-popover,.app-search-form,.app-header .app-nav-logo-text,.app-header .hide-condensed,.app-header .sprite-logo,.app-header .tweet-button .label,.app-header .app-nav-link .icon-arrow-l-double,.app-header .app-nav-link .icon-arrow-r-double,.app-nav-link .icon-arrow-r-double,.app-nav-tab .icon-user-switch,.tweet-message-status,.icon.icon-move,.tweet-drag-handle,.is-narrow-columns .media-size-medium .media-sensitive-title,.contributor-row[data-contributor-role="contributor"] [data-show-when-contributor-role="admin"],.contributor-row[data-contributor-role="admin"] [data-show-when-contributor-role="contributor"],.contributor-row[data-state-error="closed-error"] [data-hide-when-state-error="closed-error"],.contributor-row[data-state="settings"] [data-hide-when-state="settings"],.contributor-row[data-state-error="settings-error"] [data-hide-when-state-error="settings-error"],[data-show-when-state],[data-show-when-state-error],.is-options-open .column-settings-link .icon-arrow-d,.column-header-link .icon-arrow-u,.column-title-back .attribution,.js-add-to-customtimeline-button,.column-title-editable .js-show-tip.avatar.size24,.account-remove-check,.signin-sheet-now-present .application,.btn-fav-fav-text,.with-add-by-url .list-placeholder.pin-all,.s-thats-you .btn-loader,.s-pending .btn-loader,.s-blocking .follow-btn:hover .block-text,.s-blocking .btn-loader,.s-not-favorited .btn-loader,.btn-fav-faved-text,.s-favorited .btn-loader,.btn-fav-protected-text,.s-protected .btn-loader,.link-clean[href="https://twitter.com/UberFacts"] .sprite-verified,.btn-fav-unfav-text,.btn-fav.s-favorited:hover .btn-fav-faved-text,.s-not-following .btn-loader,.action-text,.s-following .follow-btn:hover .following-text {
 	display:none
 }
 
@@ -38,38 +38,6 @@ enhancer.css */
 }
 
 /* ANIMATIONS */
-
-@-webkit-keyframes expand {
-	0% {
-		margin-top:-100%;
-		opacity:0
-	}
-
-	50% {
-		opacity:0
-	}
-
-	100% {
-		margin-top:0%;
-		opacity:1
-	}
-}
-
-@keyframes expand {
-	0% {
-		margin-top:-100%;
-		opacity:0
-	}
-
-	30% {
-		opacity:0
-	}
-
-	100% {
-		margin-top:0%;
-		opacity:1
-	}
-}
 
 @-webkit-keyframes moretweetsanim {
 	0% {
@@ -1482,7 +1450,7 @@ small {
 }
 
 .icon-mention:before {
-	content:"\e0bf";
+	content:"\e0c9";
 	font-family:"Material Icons"
 }
 
@@ -1491,7 +1459,7 @@ small {
 }
 
 .icon-message:before {
-	content:"\e0c9";
+	content:"\e0bf";
 	font-family:"Material Icons"
 }
 
@@ -3211,7 +3179,6 @@ a .column-title-back .icon:after {
 .avatar:hover {
 	transition:200ms all;
 	box-shadow:0 5px 10px rgba(17,17,17,0.475);
-	transform:scale(1.075,1.075)
 }
 
 .avatar.size16 {
@@ -3647,13 +3614,7 @@ a .column-title-back .icon:after {
 
 .tweet-avatar {
 	margin-top:2px;
-	margin-bottom:2px;
-	transform:scale(1,1)
-}
-
-.avatar:active {
-	transform:scale(0.85,0.85)!important;
-	box-shadow:none!important
+	margin-bottom:2px
 }
 
 .is-conversation .tweet-avatar {
@@ -3713,7 +3674,7 @@ a .column-title-back .icon:after {
 }
 
 .is-retweet .icon-retweet-toggle {
-	color:#3BB740
+	color:#13B33F
 }
 
 .is-favorite .icon-favorite-toggle {
@@ -5111,16 +5072,17 @@ a .column-title-back .icon:after {
 }
 
 .lst-launcher li {
-	display:inline-block;
-	width:30%
+	width:50%;
+	float:left
 }
 
 .lst-launcher a,.lst-launcher a:hover,.lst-launcher a:focus,.lst-launcher a:active {
 	display:block;
-	width: 200px;
+	width: 271px;
 	height:46px;
 	text-align:left;
 	color:#666;
+	vertical-align:middle;
 	margin-left:24px;
 	margin-right:0px;
 	margin-bottom:15px
@@ -5491,15 +5453,13 @@ a .column-title-back .icon:after {
 
 .js-compose-scroller .margin-v--14.cf {
 	position:absolute;
-	pointer-events:none
+	pointer-events: all;
 }
 
 .compose-accounts {
 	padding-top:20px;
 	padding-left:19px;
 	padding-right:8px;
-	-webkit-animation:expand 0.50s cubic-bezier(.19,1,.22,1);
-	animation:expand 0.50s cubic-bezier(.19,1,.22,1);
 	display:inline-block
 }
 
@@ -5744,14 +5704,13 @@ a .column-title-back .icon:after {
 	outline:0
 }
 
-.is-selected .compose-account-names {
-	opacity:1
-}
-
 .account-selector-grid-mode {
 	opacity:.3;
-	transition:opacity 200ms;
 	margin-right:3px!important
+}
+
+.is-selected .compose-account-names {
+	opacity:1
 }
 
 .tde-light .account-selector-grid-mode,.tde-dark .account-selector-grid-mode:hover,.tde-dark .account-selector-grid-mode,.tde-dark .account-selector-grid-mode.is-selected {
@@ -10459,6 +10418,7 @@ fieldset .toggle-switch {
 	text-align:center;
 	z-index:1000;
 	pointer-events:none;
+	display:block;
 	box-shadow:none
 }
 
@@ -10484,8 +10444,8 @@ fieldset .toggle-switch {
 	background:#00838F
 }
 
-.more-tweets-btn:active {
-	margin-top:1px
+.more-tweets-btn:active,.more-tweets-btn:hover,.more-tweets-btn:focus {
+	box-shadow:0 3px 10px rgba(17,17,17,0.6);
 }
 
 .more-tweets-btn:active,.more-tweets-btn:focus,.more-tweets-btn:hover,.more-tweets-btn:active {
@@ -10516,6 +10476,10 @@ fieldset .toggle-switch {
 	top:20px;
 	-webkit-animation:moretweetsanim 0.7s 1 cubic-bezier(.55,0,.1,1);
 	animation:moretweetsanim 0.7s 1 cubic-bezier(.55,0,.1,1)
+}
+
+.more-tweets-btn-container--visible .btn {
+	display:inline-block!important
 }
 
 .more-tweets-btn-container--mouse-release .more-tweets-btn,.more-tweets-btn-container--loading .more-tweets-btn {
@@ -10928,7 +10892,7 @@ button.tde-no-transform-case {
 }
 
 .is-retweet .tweet-dogear {
-	background:#4CB050;
+	background:#13B33F;
 	left:0px;
 	height:100%;
 	right:initial;
@@ -11048,7 +11012,12 @@ button.tde-no-transform-case {
 }
 
 .pin-bottom.margin-a--15 {
-	margin-bottom:7px!important
+	margin-bottom:7px!important;
+	pointer-events:none
+}
+
+.pin-bottom.margin-a--15 .checkbox {
+	pointer-events:all
 }
 
 .js-account-manager-container {
@@ -11135,4 +11104,59 @@ button.tde-no-transform-case {
 .column-header .padding-v--3 {
 	padding-top:6px!important;
 	padding-bottom:6px!important
+}
+
+.startflow-panel .bg-r-dark-blue {
+	background:rgb(14, 208, 210)
+}
+
+.startflow-panel .bg-r-dark-blue h1 {
+	margin:0!important
+}
+
+.startflow-panel .txt-large.padding-tn {
+	font-size:16px!important
+}
+
+.startflow-panel .txt-large.padding-tn:before {
+	font-weight:500;
+	font-size:20px!important;
+	content:"Your account uses two factor authentication";
+	display:block;
+	padding-right:50px;
+	padding-bottom:20px;
+}
+
+a.js-dismiss {
+	display:block;
+	text-transform:uppercase;
+	float:right;
+	margin-top:30px!important;
+	margin-right:-160px!important
+}
+
+.js-twogin-2fa-code-form .spinner-button-container {
+	float:right;
+	display:block;
+	font-weight:500;
+	margin-top:24px;
+	margin-right:70px
+}
+
+.js-twogin-2fa-code {
+	margin-bottom:0px!important;
+	margin-top:4px
+}
+
+[rel="favorite-button"]+.l-cell {
+	margin-top:-24px;
+	margin-left:120px;
+	display:block
+}
+
+.follow-from-accounts-username {
+	margin-top:7px;
+	left:120px;
+	position:absolute;
+	display:block
 }
