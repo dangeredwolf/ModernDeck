@@ -11,6 +11,8 @@
     "webRequest",
     "webRequestBlocking",
     "https://tweetdeck.twitter.com/",
+    "https://tweetdeckenhancer.com/",
+    "https://dangeredwolf.com/",
     "https://ton.twimg.com/",
     "contextMenus",
     "tabs"
@@ -20,7 +22,7 @@
     {
       "matches": ["https://tweetdeck.twitter.com/*"],
       "js": ["extension/TDELoad.js"],
-      "css": ["sources/enhancer.min.css"], /* dev */
+      "css": ["sources/enhancer.min.css"],
       "run_at": "document_end"
     }
   ],

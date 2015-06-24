@@ -5,15 +5,12 @@ Released under the MIT License
 Contains some CSS created by TweetDeck
 Copyright 2014 Twitter Inc.
 
-Also contains normalize.css v2.0.1 [MIT License]
-git.io/normalize 
-
 enhancer.css */
 
 
 /* SUPERCLASSES */
 
-.mdl .search-input-control::before,.startflow-panel .txt-center,.add-participant .search-input-control:before,.drawer-content .search-input-control:before,.cf.account-remove-check,.facet-type .search-input-control:before,.accordion .is-active .facet-subtitle,.mdl-dismiss,.mdl-dismiss-media,.tde-mobile .column-type-icon,.column-type-message .js-column-detail .column-title-back:before,.add-on.with-emphasis,.tde-minimal .column-navigator,.tde-dark body.scroll-v .js-modal-context .mdl:before,html body .app-navigator .dropdown-menu,.caret,.js-column-detail .column-title-back.conversation-title:after,.more-tweets-btn-inner-mouse-release,.more-tweets-btn-inner-loading,.more-tweets-btn-container--mouse-release .more-tweets-btn-inner-default,.more-tweets-btn-container--loading .more-tweets-btn-inner-default,.status-message,.app-masthead,.cmp-spinner,.chev-right,.compose-text-title,.cmp button b,.cmp .mdl-header-title:empty,.app-search-tweet-results .column-header-temp,.spinner-centered,.without-tweet-drag-handles .tweet-drag-handle,.account-remove-check,.js-app-settings .obj-left,.tweet-action-item.feature-customtimelines.tweet-drag-handle,.tweet-detail-action-item.feature-customtimelines.tweet-drag-handle,.column-nav-link:after,.more-tweets-btn-inner-mouse-release,.more-tweets-btn-inner-loading,.more-tweets-btn-container--mouse-release .more-tweets-btn-inner-default,.more-tweets-btn-container--loading .more-tweets-btn-inner-default,.list-item .icon-search.list-icon,.js-typeahead-recent-search-item .obj-left,.s-following .follow-btn .btn-loader,.btd-settings,body:not(.btd-ready) #btdsettings,.edit-conversation-name .nbfc,.js-app-add-column,.js-dismiss,.js-schedule-datepicker-holder .popover .padding-as .btn .icon-trash,.js-dismiss.btn.btn-positive i.icon.icon-check.icon-small.padding-rs,.column-close-link.txt-r-dark-gray,.js-app-loading .js-header-container,.js-add-image-button-label,.js-schedule-button-label,.js-tweet-button-label,.js-dm-button .label.padding-ls,.column-nav-flyout,.release-notes-modal .mdl-drag-handle,#datepicker,.search-input-spinner,.search-input-clear-search,.toggle-item-text-truncated,.sch.s-searching .sch-clear,legend,.frm-legend,.action-btn,.med-origlink,.med-flaglink,.hide-detail-view-inline .detail-view-inline,.compose-account-selected,.js-compose-hint.margin-vl.anim.anim-fade-in,#file-upload-input,.s-sending .char-count,.s-profile .mdl-buttonbar,.s-profile h3,.mdl.s-nonav .mdl-inner .mdl-buttonbar,.ovl.is-dragging:before,.is-dragging.overlay:before,.numbered-badge-onheader,.migrate-account-login-step-1 .migrate-tweetdeck-account-warning-wrapper,.migrate-account-login-step-2 .migrate-tweetdeck-account-warning-wrapper,.migrate-account-login-step-3 .migrate-account-login-forms,.migrate-account-login-step-3 .migrate-account-login-about,.migrate-account-login-forms-cancel,.tooltip-arrow,.accordion .is-active .icon-arrow-d,.accordion .icon-arrow-u,.app-search-in-popover,.app-search-form,.app-header .app-nav-logo-text,.app-header .hide-condensed,.app-header .sprite-logo,.app-header .tweet-button .label,.app-header .app-nav-link .icon-arrow-l-double,.app-header .app-nav-link .icon-arrow-r-double,.app-nav-link .icon-arrow-r-double,.app-nav-tab .icon-user-switch,.tweet-message-status,.icon.icon-move,.tweet-drag-handle,.is-narrow-columns .media-size-medium .media-sensitive-title,.contributor-row[data-contributor-role="contributor"] [data-show-when-contributor-role="admin"],.contributor-row[data-contributor-role="admin"] [data-show-when-contributor-role="contributor"],.contributor-row[data-state-error="closed-error"] [data-hide-when-state-error="closed-error"],.contributor-row[data-state="settings"] [data-hide-when-state="settings"],.contributor-row[data-state-error="settings-error"] [data-hide-when-state-error="settings-error"],[data-show-when-state],[data-show-when-state-error],.is-options-open .column-settings-link .icon-arrow-d,.column-header-link .icon-arrow-u,.column-title-back .attribution,.js-add-to-customtimeline-button,.column-title-editable .js-show-tip.avatar.size24,.account-remove-check,.signin-sheet-now-present .application,.btn-fav-fav-text,.with-add-by-url .list-placeholder.pin-all,.s-thats-you .btn-loader,.s-pending .btn-loader,.s-blocking .follow-btn:hover .block-text,.s-blocking .btn-loader,.s-not-favorited .btn-loader,.btn-fav-faved-text,.s-favorited .btn-loader,.btn-fav-protected-text,.s-protected .btn-loader,.link-clean[href="https://twitter.com/UberFacts"] .sprite-verified,.btn-fav-unfav-text,.btn-fav.s-favorited:hover .btn-fav-faved-text,.s-not-following .btn-loader,.action-text,.s-following .follow-btn:hover .following-text {
+.mdl .js-dismiss,.mdl .search-input-control:before,.startflow-panel .txt-center,.add-participant .search-input-control:before,.drawer-content .search-input-control:before,.cf.account-remove-check,.facet-type .search-input-control:before,.accordion .is-active .facet-subtitle,.mdl-dismiss,.mdl-dismiss-media,.tde-mobile .column-type-icon,.column-type-message .js-column-detail .column-title-back:before,.add-on.with-emphasis,.tde-minimal .column-navigator,.tde-dark body.scroll-v .js-modal-context .mdl:before,html body .app-navigator .dropdown-menu,.caret,.js-column-detail .column-title-back.conversation-title:after,.more-tweets-btn-inner-mouse-release,.more-tweets-btn-inner-loading,.more-tweets-btn-container--mouse-release .more-tweets-btn-inner-default,.more-tweets-btn-container--loading .more-tweets-btn-inner-default,.status-message,.app-masthead,.cmp-spinner,.chev-right,.compose-text-title,.cmp button b,.cmp .mdl-header-title:empty,.app-search-tweet-results .column-header-temp,.spinner-centered,.without-tweet-drag-handles .tweet-drag-handle,.account-remove-check,.js-app-settings .obj-left,.tweet-action-item.feature-customtimelines.tweet-drag-handle,.tweet-detail-action-item.feature-customtimelines.tweet-drag-handle,.column-nav-link:after,.more-tweets-btn-inner-mouse-release,.more-tweets-btn-inner-loading,.more-tweets-btn-container--mouse-release .more-tweets-btn-inner-default,.more-tweets-btn-container--loading .more-tweets-btn-inner-default,.list-item .icon-search.list-icon,.js-typeahead-recent-search-item .obj-left,.s-following .follow-btn .btn-loader,.btd-settings,body:not(.btd-ready) #btdsettings,.edit-conversation-name .nbfc,.js-app-add-column,.js-dismiss,.js-schedule-datepicker-holder .popover .padding-as .btn .icon-trash,.js-dismiss.btn.btn-positive i.icon.icon-check.icon-small.padding-rs,.column-close-link.txt-r-dark-gray,.js-app-loading .js-header-container,.js-add-image-button-label,.js-schedule-button-label,.js-tweet-button-label,.js-dm-button .label.padding-ls,.column-nav-flyout,.release-notes-modal .mdl-drag-handle,#datepicker,.search-input-spinner,.search-input-clear-search,.toggle-item-text-truncated,.sch.s-searching .sch-clear,legend,.frm-legend,.action-btn,.med-origlink,.med-flaglink,.hide-detail-view-inline .detail-view-inline,.compose-account-selected,.js-compose-hint.margin-vl.anim.anim-fade-in,#file-upload-input,.s-sending .char-count,.s-profile .mdl-buttonbar,.s-profile h3,.mdl.s-nonav .mdl-inner .mdl-buttonbar,.ovl.is-dragging:before,.is-dragging.overlay:before,.numbered-badge-onheader,.migrate-account-login-step-1 .migrate-tweetdeck-account-warning-wrapper,.migrate-account-login-step-2 .migrate-tweetdeck-account-warning-wrapper,.migrate-account-login-step-3 .migrate-account-login-forms,.migrate-account-login-step-3 .migrate-account-login-about,.migrate-account-login-forms-cancel,.tooltip-arrow,.accordion .is-active .icon-arrow-d,.accordion .icon-arrow-u,.app-search-in-popover,.app-search-form,.app-header .app-nav-logo-text,.app-header .hide-condensed,.app-header .sprite-logo,.app-header .tweet-button .label,.app-header .app-nav-link .icon-arrow-l-double,.app-header .app-nav-link .icon-arrow-r-double,.app-nav-link .icon-arrow-r-double,.app-nav-tab .icon-user-switch,.tweet-message-status,.icon.icon-move,.tweet-drag-handle,.is-narrow-columns .media-size-medium .media-sensitive-title,.contributor-row[data-contributor-role="contributor"] [data-show-when-contributor-role="admin"],.contributor-row[data-contributor-role="admin"] [data-show-when-contributor-role="contributor"],.contributor-row[data-state-error="closed-error"] [data-hide-when-state-error="closed-error"],.contributor-row[data-state="settings"] [data-hide-when-state="settings"],.contributor-row[data-state-error="settings-error"] [data-hide-when-state-error="settings-error"],[data-show-when-state],[data-show-when-state-error],.is-options-open .column-settings-link .icon-arrow-d,.column-header-link .icon-arrow-u,.column-title-back .attribution,.js-add-to-customtimeline-button,.column-title-editable .js-show-tip.avatar.size24,.account-remove-check,.signin-sheet-now-present .application,.btn-fav-fav-text,.with-add-by-url .list-placeholder.pin-all,.s-thats-you .btn-loader,.s-pending .btn-loader,.s-blocking .follow-btn:hover .block-text,.s-blocking .btn-loader,.s-not-favorited .btn-loader,.btn-fav-faved-text,.s-favorited .btn-loader,.btn-fav-protected-text,.s-protected .btn-loader,.link-clean[href="https://twitter.com/UberFacts"] .sprite-verified,.btn-fav-unfav-text,.btn-fav.s-favorited:hover .btn-fav-faved-text,.s-not-following .btn-loader,.action-text,.s-following .follow-btn:hover .following-text {
 	display:none
 }
 
@@ -68,38 +65,6 @@ enhancer.css */
 
 	100% {
 		top:20px
-	}
-}
-
-@-webkit-keyframes popcomesthetweetsview {
-	0% {
-		opacity:1;
-		transform:translate3d(0, 2700px, 0);
-	}
-
-	60% {
-		opacity:1;
-		transform:translate3d(0, -25px, 0);
-	}
-
-	100% {
-		transform:translate3d(0, 0, 0);
-	}
-}
-
-@keyframes popcomesthetweetsview {
-	0% {
-		opacity:1;
-		transform:translate3d(0, 2700px, 0);
-	}
-
-	60% {
-		opacity:1;
-		transform:translate3d(0, -25px, 0);
-	}
-
-	100% {
-		transform:translate3d(0, 0, 0);
 	}
 }
 
@@ -161,7 +126,7 @@ enhancer.css */
 
 	to {
 		opacity:1;
-		margin-top:0px;
+		margin-top:0;
 		padding:10px 0
 	}
 }
@@ -175,7 +140,7 @@ enhancer.css */
 
 	to {
 		opacity:1;
-		margin-top:0px;
+		margin-top:0;
 		padding:10px 0
 	}
 }
@@ -188,7 +153,7 @@ enhancer.css */
 
 	to {
 		opacity:1;
-		margin-top:0px
+		margin-top:0
 	}
 }
 
@@ -200,7 +165,7 @@ enhancer.css */
 
 	to {
 		opacity:1;
-		margin-top:0px
+		margin-top:0
 	}
 }
 
@@ -236,7 +201,7 @@ enhancer.css */
 
 	to {
 		opacity:1;
-		margin-top:0px
+		margin-top:0
 	}
 }
 
@@ -248,7 +213,7 @@ enhancer.css */
 
 	to {
 		opacity:1;
-		margin-top:0px
+		margin-top:0
 	}
 }
 
@@ -279,7 +244,7 @@ enhancer.css */
 @keyframes rtpopovercomedown {
 	from {
 		opacity:0;
-		top:-80px
+		top:-85px
 	}
 
 	to {
@@ -291,7 +256,7 @@ enhancer.css */
 @-webkit-keyframes rtpopovercomedown {
 	from {
 		opacity:0;
-		top:-80px
+		top:-85px
 	}
 
 	to {
@@ -384,7 +349,7 @@ enhancer.css */
 
 	to {
 		opacity:1;
-		margin-top:0px
+		margin-top:0
 	}
 }
 
@@ -396,7 +361,7 @@ enhancer.css */
 
 	to {
 		opacity:1;
-		margin-top:0px
+		margin-top:0
 	}
 }
 
@@ -2002,10 +1967,6 @@ small {
 	color:#29B6F6
 }
 
-.btn-positive:active,.btn-positive-alt:active,.btn-fav.s-favorited:active,.s-following .follow-btn:active,.btn-positive.is-selected,.is-selected.btn-positive-alt,.is-selected.btn-fav.s-favorited,.s-following .is-selected.follow-btn {
-	box-shadow:none
-}
-
 .btn-positive[disabled],[disabled].btn-positive-alt,[disabled].btn-fav.s-favorited,.s-following [disabled].follow-btn,.btn-positive[disabled]:hover,[disabled].btn-positive-alt:hover,[disabled].btn-fav.s-favorited:hover,.s-following [disabled].follow-btn:hover,.btn-positive[disabled]:active,[disabled].btn-positive-alt:active,[disabled].btn-fav.s-favorited:active,.s-following [disabled].follow-btn:active,.btn-positive.is-disabled,.is-disabled.btn-positive-alt,.is-disabled.btn-fav.s-favorited,.s-following .is-disabled.follow-btn,.btn-positive.is-disabled:hover,.is-disabled.btn-positive-alt:hover,.is-disabled.btn-fav.s-favorited:hover,.s-following .is-disabled.follow-btn:hover,.btn-positive.is-disabled:focus,.is-disabled.btn-positive-alt:focus,.is-disabled.btn-fav.s-favorited:focus,.s-following .is-disabled.follow-btn:focus,.btn-positive.is-disabled:active,.is-disabled.btn-positive-alt:active,.is-disabled.btn-fav.s-favorited:active,.s-following .is-disabled.follow-btn:active {
 	color:#dedede;
 	border-color:transparent;
@@ -2466,7 +2427,7 @@ h6 {
 	width:100%;
 	pointer-events:all;
 	opacity:1;
-	top:0px
+	top:0
 }
 
 .is-shifted-1 .column-detail-level-2 {
@@ -2559,8 +2520,8 @@ h6 {
 	position:absolute;
 	width:100%;
 	padding-top:2px;
-	margin-left:0px!important;
-	margin-top:0px!important
+	margin-left:0!important;
+	margin-top:0!important
 }
 
 .mdl .column-title {
@@ -2624,7 +2585,7 @@ h6 {
 .column-title-back .icon {
 	position:absolute;
 	top:2px;
-	left:0px;
+	left:0;
 	font-size:25px
 }
 
@@ -2660,7 +2621,7 @@ a .column-title-back .icon:after {
 	padding-bottom:25px;
 	margin-top:-55px;
 	font-weight:400;
-	margin-left:0px;
+	margin-left:0;
 	text-align:left;
 	font-size:0px;
 	display:block!important
@@ -2676,10 +2637,6 @@ a .column-title-back .icon:after {
 
 .btn.js-toggle-users {
 	border-radius:0 7px 7px 0;
-}
-
-.tde-light .mdl .scroll-conversation {
-	background:#EFEFEF
 }
 
 .js-tooltip-target.link-complex-target {
@@ -2802,13 +2759,13 @@ a .column-title-back .icon:after {
 	box-shadow:0 1px 10px rgba(0, 0, 0, 0.25);
 	z-index:50000;
 	position:relative;
-	transition:200ms all
-;
+	transition:200ms all;
 	color: #fff;
 }
 
 .facet-content .icon {
-	opacity:0.75
+	opacity:0.75;
+	top:0
 }
 
 .column-options {
@@ -2916,19 +2873,12 @@ a .column-title-back .icon:after {
 }
 
 .chirp-container {
-	-webkit-animation:popcomesthetweetsview 0.6s 1;
-	animation:popcomesthetweetsview 0.6s 1;
 	opacity:1!important
 }
 
 .draggable-dragging .chirp-container {
 	-webkit-animation:none!important;
 	animation:none!important
-}
-
-.mdl.draggable-dragging .chirp-container {
-	-webkit-animation:popcomesthetweetsview 0.6s 1!important;
-	animation:popcomesthetweetsview 0.6s 1!important
 }
 
 .overlay.tde-modal-window-fade-out,.dropdown-menu.tde-dropdown-fade-out {
@@ -2968,11 +2918,6 @@ a .column-title-back .icon:after {
 	border:0;
 	-webkit-animation:herecomesthetweetup 0.4s cubic-bezier(.19,1,.22,1);
 	animation:herecomesthetweetup 0.4s cubic-bezier(.19,1,.22,1)
-}
-
-.draggable-dragging .stream-item {
-	-webkit-animation:none;
-	animation:none
 }
 
 .tde-light .stream-item.is-actionable:hover {
@@ -3141,8 +3086,6 @@ a .column-title-back .icon:after {
 	text-align:center;
 	font-size:28px;
 	color:#aaa;
-	padding-left:10px;
-	padding-right:10px;
 	font-weight:300
 }
 
@@ -3151,7 +3094,7 @@ a .column-title-back .icon:after {
 }
 
 .is-minigrid .compose-account {
-	margin-right:0px;
+	margin-right:0;
 	padding-right:14px
 }
 
@@ -3179,6 +3122,11 @@ a .column-title-back .icon:after {
 .avatar:hover {
 	transition:200ms all;
 	box-shadow:0 5px 10px rgba(17,17,17,0.475);
+}
+
+.avatar:active {
+	opacity:0.5;
+	box-shadow:0 5px 10px rgba(17,17,17,0.95);
 }
 
 .avatar.size16 {
@@ -3479,14 +3427,14 @@ a .column-title-back .icon:after {
 	width:100%;
 	height:400px;
 	vertical-align:top;
-	top:0px;
+	top:0;
 	margin-top:-120%
 }
 
 .gif-pause {
 	width:100%;
 	height:100%;
-	top:0px;
+	top:0;
 	bottom:0px
 }
 
@@ -3626,7 +3574,7 @@ a .column-title-back .icon:after {
 	visibility:visible;
 	float:right;
 	margin-left:-50px;
-	padding-top:0px!important
+	padding-top:0!important
 }
 
 .message-stream-item .tweet-footer {
@@ -3961,7 +3909,7 @@ a .column-title-back .icon:after {
 .app-content {
 	position:absolute;
 	top:40px;
-	left:0px;
+	left:0;
 	right:0;
 	bottom:0;
 	background:#eee;
@@ -4002,7 +3950,7 @@ a .column-title-back .icon:after {
 	margin-top:-0px!important;
 	width:48px;
 	height:30px;
-	top:0px;
+	top:0;
 	position:absolute
 }
 
@@ -4023,7 +3971,7 @@ a .column-title-back .icon:after {
 .app-nav-tab {
 	bottom:0;
 	z-index:999;
-	left:0px;
+	left:0;
 	margin-top:10px;
 	max-height:30px;
 	min-height:30px;
@@ -4127,7 +4075,7 @@ a .column-title-back .icon:after {
 }
 
 .tweet-button.is-hidden .icon-compose:after {
-	margin-left:0px;
+	margin-left:0;
 	opacity:1}
 
 .tweet-button.is-hidden .icon-compose:before {
@@ -4693,7 +4641,7 @@ a .column-title-back .icon:after {
 	border:none;
 	font-weight:400;
 	font-style:normal;
-	margin-top:0px;
+	margin-top:0;
 	font-size:12px;
 	width:1px;
 	height:3px;
@@ -4846,7 +4794,7 @@ a .column-title-back .icon:after {
 	margin-right:auto;
 	text-align:center;
 	color:#fff;
-	margin-top:0px;
+	margin-top:0;
 	z-index:10;
 	position:absolute;
 	width:100%;
@@ -4908,14 +4856,15 @@ a .column-title-back .icon:after {
 	color:#aaa;
 	padding-left:10px;
 	padding-right:10px;
+	vertical-align:middle;
 	font-weight:300
 }
 
 .mdl-drag-handle {
 	cursor:move;
 	position:absolute;
-	left:0px;
-	top:0px;
+	left:0;
+	top:0;
 	z-index:100;
 	background:transparent
 }
@@ -5001,7 +4950,7 @@ a .column-title-back .icon:after {
 
 .mdl.s-fluid .mdl-inner,.mdl.s-fluid-height .mdl-inner {
 	position:relative;
-	top:0px;
+	top:0;
 	bottom:auto;
 	left:auto;
 	right:auto
@@ -5084,7 +5033,7 @@ a .column-title-back .icon:after {
 	color:#666;
 	vertical-align:middle;
 	margin-left:24px;
-	margin-right:0px;
+	margin-right:0;
 	margin-bottom:15px
 }
 
@@ -5316,7 +5265,7 @@ a .column-title-back .icon:after {
 	position:absolute;
 	width:100%;
 	margin-left:-15px;
-	margin-top:0px
+	margin-top:0
 }
 
 .accs-header h3 {
@@ -5426,7 +5375,7 @@ a .column-title-back .icon:after {
 }
 
 .app-content.is-open .compose {
-	margin-left:0px;
+	margin-left:0;
 	transition:200ms all;
 	float:right;
 	border-radius:0px;
@@ -5482,7 +5431,7 @@ a .column-title-back .icon:after {
 }
 
 .is-open .compose-content {
-	top:0px
+	top:0
 }
 
 .compose-text-container {
@@ -5544,7 +5493,7 @@ a .column-title-back .icon:after {
 	opacity:1;
 	transition:150ms all;
 	transition-timing-function:cubic-bezier(.19,1,.22,1);
-	margin-top:0px
+	margin-top:0
 }
 
 .tde-light .compose-reply-tweet {
@@ -5792,7 +5741,7 @@ a .column-title-back .icon:after {
 .inline-reply .compose-text-container {
 	display:inline-block;
 	width:100.1%;
-	margin-top:0px;
+	margin-top:0;
 	box-shadow:none
 }
 
@@ -5892,7 +5841,7 @@ a .column-title-back .icon:after {
 .med-embeditem {
 	position:absolute;
 	bottom:85px;
-	top:0px;
+	top:0;
 	width:100%;
 	text-align:center
 }
@@ -6045,14 +5994,17 @@ a:hover .icn-button-next {
 	margin:15px 0 10px
 }
 
-.mdl-report-spam-options {
+.mdl-report-spam-options,.mdl-report-spam-abusive {
 	width:500px;
-	height:auto
+	height:400px
 }
 
-.mdl-report-spam-abusive {
-	width:500px;
-	height:auto
+.mdl-report-spam-options .mdl-inner,.mdl-report-spam-abusive .mdl-inner {
+	padding:15px
+}
+
+.mdl-report-spam-options .mdl-buttonbar {
+	margin-top:-60px
 }
 
 .s-checked .checked {
@@ -6070,7 +6022,7 @@ a:hover .icn-button-next {
 }
 
 .list-filter input {
-	right:0px;
+	right:0;
 	position:absolute
 }
 
@@ -6471,7 +6423,7 @@ input[type="checkbox"] {
 }
 
 .control-s .controls {
-	margin-left:0px;
+	margin-left:0;
 	display:inline
 }
 
@@ -6509,20 +6461,14 @@ input[type="checkbox"] {
 	border-bottom:2px solid #ddd
 }
 
-.search-input-control::-webkit-input-placeholder:before {
+.search-input-control:before {
 	content:"\e8B6";
 	display:inline;
 	position:absolute;
+	top:10px;
 	font-size:16px;
-	font-family:"Material Icons"
-}
-
-.search-input-control::-moz-placeholder:before {
-	content:"\e8B6";
-	display:inline;
-	position:absolute;
-	font-size:16px;
-	font-family:"Material Icons"
+	font-family:"Material Icons";
+	color:#ccc
 }
 
 .search-input {
@@ -6577,8 +6523,14 @@ input[type="checkbox"] {
 	background:#26C6DA
 }
 
+.js-add-column:hover,.js-add-column:focus,.js-add-column:active {
+	background:#26C6DA;
+	box-shadow:0px 5px 15px 1px rgba(0,0,0,0.25)
+}
+
 .js-add-column:active {
-	background:#00ACC1!important;
+	background:#58CDDB;
+	transform:none;
 	transition:100ms all
 }
 
@@ -6592,7 +6544,7 @@ input[type="checkbox"] {
 	width:100%;
 	margin-top:-15px;
 	position:absolute;
-	left:0px;
+	left:0;
 	box-shadow:black;
 	color:rgba(255, 255, 255, 0.94)
 }
@@ -6870,7 +6822,7 @@ input[type="checkbox"] {
 
 .form-calendar {
 	position:relative;
-	padding-top:0px;
+	padding-top:0;
 	margin-top:-5px
 }
 
@@ -7029,7 +6981,7 @@ input[type="checkbox"] {
 	vertical-align:middle;
 	zoom:1;
 	transition:200ms all;
-	padding-right:0px
+	padding-right:0
 }
 
 .prf-stats li:hover {
@@ -7323,22 +7275,17 @@ input[type="checkbox"] {
 	color:#000
 }
 
-.lst-group .selected a:hover {
-	background:#29C6DB
-}
-
-.js-setting-list.lst-group .selected a:hover {
-	background:rgba(0, 0, 0, 0.1);
+.tde-light .lst-group .selected:active {
+	background: #58CDDB;
 	transition:200ms all
 }
 
-.tde-light .lst-group .selected a.list-account:hover {
-	background:#29C6DB;
-	transition:200ms all
+.lst-group li a:active,.lst-group li a:hover,.lst-group li a:focus {
+	background:none
 }
 
-.lst-group .selected a:active {
-	background:#DDDDDD;
+.tde-dark .lst-group .selected:active {
+	background: #429BA6;
 	transition:200ms all
 }
 
@@ -7488,7 +7435,7 @@ input[type="checkbox"] {
 	top:auto;
 	-webkit-animation:dropmenucomeup 0.3s 1 cubic-bezier(.19,1,.22,1);
 	animation:dropmenucomeup 0.3s 1 cubic-bezier(.19,1,.22,1);
-	bottom:100%
+	bottom:160%
 }
 
 .ovl-trap {
@@ -7524,7 +7471,7 @@ input[type="checkbox"] {
 .popover-position-rt {
 	z-index:1000;
 	left:65px;
-	top: -60px;
+	top:-60px;
 	-webkit-animation:rtpopovercomedown 0.25s cubic-bezier(.19,1,.22,1);
 	animation:rtpopovercomedown 0.25s cubic-bezier(.19,1,.22,1);
 	right:0
@@ -7554,12 +7501,9 @@ input[type="checkbox"] {
 	height:100%
 }
 
-.card-player {
-	border:none
-}
-
-.card-image {
+.card-player,.card-image {
 	max-width:100%;
+	border:0;
 	transition:200ms all;
 	box-shadow:0 3px 5px rgba(17,17,17,0.3)
 }
@@ -7701,7 +7645,8 @@ input[type="checkbox"] {
 
 .media-item:active {
 	transition:200ms all;
-	background-color:rgba(0,0,0,0.2)!important
+	box-shadow:0 5px 10px rgba(17,17,17,0.95)!important;
+	opacity:0.5
 }
 
 .media-item:hover {
@@ -7884,7 +7829,7 @@ input[type="checkbox"] {
 .column-navigator {
 	counter-reset:column-nav;
 	position:absolute;
-	top:0px;
+	top:0;
 	left:50px;
 	bottom:0px;
 	right:0;
@@ -7903,7 +7848,7 @@ input[type="checkbox"] {
 	transition-delay:2s;
 	transform:none!important;
 	box-shadow:none;
-	top:0px
+	top:0
 }
 
 .column-nav-link:focus,.column-nav-link:active {
@@ -7943,7 +7888,7 @@ input[type="checkbox"] {
 }
 
 .column-nav-item.is-new {
-	top:0px!important;
+	top:0!important;
 	transform:rotate(360deg);
 	transition:200ms all cubic-bezier(.19,1,.22,1),400ms transform
 }
@@ -8175,27 +8120,7 @@ input[type="checkbox"] {
 	transform:scale(1.25,1.25)
 }
 
-.account-settings-row[data-user-id="2927859037"] .avatar {
-	box-shadow:none!important;
-	border-radius:0px!important
-}
-
-.js-account-item[data-account-key="twitter:2927859037"] .avatar {
-	box-shadow:none!important;
-	border-radius:0px!important
-}
-
-.account-link[href="https://twitter.com/TDEnhancer"] .avatar {
-	box-shadow:none!important;
-	border-radius:0px!important
-}
-
-.item-img[href="https://twitter.com/TDEnhancer"] .avatar {
-	box-shadow:none!important;
-	border-radius:0px!important
-}
-
-.js-typeahead-user-item[data-user-id="2927859037"] .avatar {
+.js-typeahead-user-item[data-user-id="2927859037"] .avatar,.item-img[href="https://twitter.com/TDEnhancer"] .avatar,.account-link[href="https://twitter.com/TDEnhancer"] .avatar,.js-account-item[data-account-key="twitter:2927859037"] .avatar,.account-settings-row[data-user-id="2927859037"] .avatar,.avatar[alt="@TDEnhancer"] {
 	box-shadow:none!important;
 	border-radius:0px!important
 }
@@ -8325,22 +8250,54 @@ input[type="checkbox"] {
 }
 
 .btn-back {
-	margin-top:-635px;
+	margin-top:-640px;
 	position:absolute;
 	width:25px;
 	height:25px;
 	font-size:0px;
-	margin-left:10px;
+	margin-left:7px;	
 	z-index:99
 }
 
 .btn-back:before {
 	content:"\e5c4";
+	display:block;
 	font-family:"Material Icons";
-	font-size: 32px;
+	font-size: 30px;
 	color:#fff;
-	margin-left:-12px;
+	margin-left:-10px;
+	margin-top:5px;
+	font-weight:400;
 	line-height:0.5
+}
+
+.btn-back:active {
+	background:none
+}
+
+.btn-back:active:after {
+	width:40px;
+	height:40px;
+	margin-top:-30px;
+	margin-left:-17px;
+	transform:scale(1);
+	opacity:1;
+	transition:70ms all
+}
+
+.btn-back:after {
+	content:" ";
+	background:rgba(255, 255, 255, 0.2);
+	width:30px;
+	height:30px;
+	position:absolute;
+	margin-top:-40px;
+	margin-left: -5px;
+	border-radius:21px;
+	z-index:9;
+	transform:scale(0.5);
+	opacity:0;
+	transition:200ms all
 }
 
 .s-profile .pos-l {
@@ -8402,7 +8359,7 @@ input[type="checkbox"] {
 
 .app-nav-link.js-header-add-column .obj-left {
 	float:none;
-	top:0px;
+	top:0;
 	height:100%
 }
 
@@ -8451,7 +8408,7 @@ input[type="checkbox"] {
 }
 
 .cf.app-nav-tab .obj-left {
-	margin-right:0px;
+	margin-right:0;
 	margin-left:-40px;
 	margin-top:20px
 }
@@ -8502,8 +8459,8 @@ input[type="checkbox"] {
 }
 
 .inline-reply .js-send-tweet-button {
-	margin-left:0px;
-	margin-right:0px
+	margin-left:0;
+	margin-right:0
 }
 
 .tweet-action[data-actions-menu-position]:focus {
@@ -8525,7 +8482,7 @@ input[type="checkbox"] {
 }
 
 .js-reply-charcount {
-	padding-top:0px!important;
+	padding-top:0!important;
 	border-bottom:none!important
 }
 
@@ -8657,7 +8614,7 @@ a[rel=hashtag]:active {
 }
 
 .mdl-content.horizontal-flow-container {
-	padding-top:0px;
+	padding-top:0;
 	overflow-y:hidden
 }
 
@@ -9231,7 +9188,7 @@ a[rel=hashtag]:active {
 	margin-left:-5px;
 	margin-right:auto;
 	width:100%;
-	padding-left:0px;
+	padding-left:0;
 	color:#fff;
 	font-size:18px;
 	text-align:center;
@@ -9284,8 +9241,8 @@ a[rel=hashtag]:active {
 }
 
 .mdl-col-settings form.frm fieldset {
-	-webkit-animation:dropmenucomeupnopad 0.25s 1 cubic-bezier(.19,1,.22,1);
-	animation:dropmenucomeupnopad 0.25s 1 cubic-bezier(.19,1,.22,1)
+	-webkit-animation:dropmenucomeupnopad 0.35s 1 cubic-bezier(.19,1,.22,1);
+	animation:dropmenucomeupnopad 0.35s 1 cubic-bezier(.19,1,.22,1)
 }
 
 .mdl-favorite-from-options .txt-r-deep-yellow {
@@ -9600,7 +9557,7 @@ fieldset .fixed-width-label:not(.radio), fieldset:not(.js-search-filter) .contro
 }
 
 #global_filter_settings .control-group:nth-child(4) .controls {
-	margin-left:0px
+	margin-left:0
 }
 
 .tde-mute-text:before {
@@ -9986,14 +9943,8 @@ html.tde-dark {
 	color:#798488
 }
 
-.tde-dark .list-link:hover:hover,.tde-dark .list-twitter-list:hover:hover,.tde-dark .list-subtitle:hover:hover,.tde-dark .list-account:hover:hover,.tde-dark .list-listmember:hover:hover,.tde-dark .list-link:hover:focus,.tde-dark .list-twitter-list:hover:focus,.tde-dark .list-subtitle:hover:focus,.tde-dark .list-account:hover:focus,.tde-dark .list-listmember:hover:focus,.tde-dark .list-link:hover:active,.tde-dark .list-twitter-list:hover:active,.tde-dark .list-subtitle:hover:active,.tde-dark .list-account:hover:active,.tde-dark .list-listmember:hover:active,.tde-dark .list-account:hover:hover,.tde-dark .list-account:hover:focus,.tde-dark .list-account:hover:active,.tde-dark .list-listaccount:hover:hover,.tde-dark .list-listaccount:hover:focus,.tde-dark .list-listaccount:hover:active,.tde-dark .list-subtitle:hover:hover,.tde-dark .list-subtitle:hover:focus,.tde-dark .list-subtitle:hover:active {
-	text-decoration:none;
-	color:#fff;
-	background:rgba(25, 112, 120, 0.4)
-}
-
 .tde-dark .lst-group .selected {
-	background:#197078;
+	background: #00838F;
 	color:#fff
 }
 
@@ -10016,8 +9967,7 @@ html.tde-dark {
 }
 
 .tde-dark .js-add-column:active {
-	background:#00ACC1!important
-}
+	background: #429BA6!important;}
 
 .tde-dark .tweet-detail-wrapper {
 	background:#3A4B54
@@ -10273,7 +10223,7 @@ fieldset .toggle-switch {
 .toggle-switch-label:before,.toggle-switch-label:after {
 	display:block;
 	position:absolute;
-	top:0px;
+	top:0;
 	left:1px;
 	content:"";
 	bottom:-2px
@@ -10380,7 +10330,7 @@ fieldset .toggle-switch {
 	margin-top:-1000px;
 	min-height:inherit;
 	margin-bottom:10px;
-	top:0px
+	top:0
 }
 
 .column-type-customtimeline .column-drag-handle {
@@ -10398,7 +10348,7 @@ fieldset .toggle-switch {
 .js-column-options .dropdown-menu.js-dropdown {
 	-webkit-animation:dropmenucomedownnopad 0.40s 1 cubic-bezier(.19,1,.22,1);
 	animation:dropmenucomedownnopad 0.40s 1 cubic-bezier(.19,1,.22,1);
-	margin-top:0px
+	margin-top:0
 }
 
 .js-account-safeguard-checkbox {
@@ -10452,7 +10402,7 @@ fieldset .toggle-switch {
 }
 
 .more-tweets-btn:active,.more-tweets-btn:hover,.more-tweets-btn:focus {
-	box-shadow:0 3px 10px rgba(17,17,17,0.6);
+	box-shadow:0 5px 15px rgba(17,17,17,0.4);
 }
 
 .more-tweets-btn:active,.more-tweets-btn:focus,.more-tweets-btn:hover,.more-tweets-btn:active {
@@ -10460,12 +10410,16 @@ fieldset .toggle-switch {
 	color:#fff!important
 }
 
-.tde-dark .more-tweets-btn:active,.tde-dark .more-tweets-btn:focus,.tde-dark .more-tweets-btn:hover,.tde-dark .more-tweets-btn:active {
+.tde-dark .more-tweets-btn:focus,.tde-dark .more-tweets-btn:hover,.tde-dark .more-tweets-btn:active {
 	background:#00838F!important
 }
 
+.tde-dark .more-tweets-btn:active {
+	background: #2F9099!important;}
+
 .more-tweets-btn:active {
-	transform:scale(1,1)!important
+	background:#58CDDB!important;
+	transform:scale(1)!important
 }
 
 .more-tweets-btn .icon {
@@ -10601,7 +10555,7 @@ a.js-column-back, a.js-column-back:hover, a.js-column-back:active, a.js-column-b
 }
 
 .media-grid-container .compose-media-grid-remove .sprite-close {
-	margin-left:0px!important
+	margin-left:0!important
 }
 
 .compose-media-grid-holder {
@@ -10633,14 +10587,14 @@ a.js-column-back, a.js-column-back:hover, a.js-column-back:active, a.js-column-b
 }
 
 .tde-minimal .js-hide-drawer {
-	top:0px;
+	top:0;
 	margin-top:-30px!important;
 	max-height:35px;
 	min-height:35px
 }
 
 .js-hide-drawer:after {
-	top:0px;
+	top:0;
 	position:absolute;
 	width:100%;
 	margin-top:10px
@@ -10682,7 +10636,7 @@ fieldset .toggle-switch {
 .toggle-switch-label:before,.toggle-switch-label:after {
 	display:block;
 	position:absolute;
-	top:0px;
+	top:0;
 	left:1px;
 	content:"";
 	bottom:-2px
@@ -10865,7 +10819,7 @@ button.tde-no-transform-case {
 }
 
 .tde-minimal .app-content {
-	top:0px
+	top:0
 }
 
 .btn-options-tray[data-action="right"] {
@@ -10892,7 +10846,7 @@ button.tde-no-transform-case {
 
 .is-favorite .tweet-dogear {
 	background:#FF9701;
-	left:0px;
+	left:0;
 	height:100%;
 	right:initial;
 	width:3px
@@ -10900,7 +10854,7 @@ button.tde-no-transform-case {
 
 .is-retweet .tweet-dogear {
 	background:#13B33F;
-	left:0px;
+	left:0;
 	height:100%;
 	right:initial;
 	width:3px
@@ -10908,7 +10862,7 @@ button.tde-no-transform-case {
 
 .is-favorite.is-retweet .tweet-dogear {
 	background:#1FC9DF;
-	left:0px;
+	left:0;
 	height:100%;
 	right:initial;
 	width:3px
@@ -10939,7 +10893,16 @@ button.tde-no-transform-case {
 }
 
 .lst-group li {
-    padding-left:5px
+    padding-left:5px;
+    transition:200ms all
+}
+
+.lst-group li:hover {
+	box-shadow:0px 5px 15px 1px rgba(0,0,0,0.25)
+}
+
+.lst-group li:active {
+	background:rgba(0,0,0,0.05)
 }
 
 .list-link {
@@ -11061,7 +11024,7 @@ button.tde-no-transform-case {
 }
 
 .contributor-row[data-state="settings"] .contributor-settings-role,.contributor-row[data-state="settings"] .contributor-confirm-change,.contributor-row[data-state="closed"] .contributor-detail,.contributor-row[data-state="settings"] .contributor-remove {
-	margin-top:0px;
+	margin-top:0;
 	opacity:1
 }
 
