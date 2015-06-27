@@ -13,7 +13,7 @@ var TDEBaseURL = "https://dangeredwolf.com/assets/tdetest/"; // Defaults to stre
 var progress = null;
 var tde_fetch_profile_info_for_nav_drawer = 0;
 
-var SystemVersion = "5.3.1";
+var SystemVersion = "5.3.3";
 
 var TreatGeckoWithCare = false;
 
@@ -69,6 +69,22 @@ function TDEInit(){
     setTimeout(TDEInit,500);
     return;
   }
+
+  if (typeof TD === "undefined") {
+  	setTimeout(TDEInit,500);
+    return;
+  }
+
+  if (typeof TD.util === "undefined") {
+  	setTimeout(TDEInit,500);
+    return;
+  }
+
+  if (typeof TD.util.prettyTimeString === "undefined") {
+  	setTimeout(TDEInit,500);
+    return;
+  }
+
   if (typeof TD_mustaches["settings/global_setting_filter_row.mustache"] === "undefined") {
     setTimeout(TDEInit,500);
     return;
@@ -82,7 +98,11 @@ function TDEInit(){
   if ((typeof localStorage.tde_flag_block_secure_ss !== "undefined" && !localStorage.tde_flag_block_secure_ss) || (typeof localStorage.tde_flag_block_secure_ss === "undefined")) { // Please just disable this by DisableSecureStylesheets() as it resets the whole thing for you
     injStyles = document.createElement("link");
     injStyles.rel = "stylesheet";
-    injStyles.href = "https://tweetdeckenhancer.com/additionscss";
+    if (navigator.userAgent.indexOf("Windows NT 5.1") > -1 || navigator.userAgent.indexOf("Windows NT 5.2") > -1) {
+    	injStyles.href = "http://tweetdeckenhancer.com/additionscss";
+    } else {
+    	injStyles.href = "https://tweetdeckenhancer.com/additionscss";
+    }
     document.head.appendChild(injStyles);
   }
 
@@ -145,7 +165,6 @@ function TDEInit(){
 
   document.head.appendChild(InjectFonts);
 
-
   document.getElementsByClassName("js-modals-container")[0].removeChild = function(rmnode){
     if (typeof rmnode === "undefined") {
       console.log("what");
@@ -197,6 +216,9 @@ function TDEInit(){
   	localStorage.tde_outlines = false;
   }
 
+	TD.util.prettyTimeString = function(e) {
+		return TD.i("{{hours12}}:{{minutes}} {{amPm}}, {{day}} {{month}} {{fullYear}}", TD.util.prettyTime(e))
+	}
 
 }
 

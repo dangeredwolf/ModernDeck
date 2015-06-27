@@ -1,4 +1,4 @@
-/* TweetDeck Enhancer 5.3.2 [codename Long Journeys] 
+/* TweetDeck Enhancer 5.3.3 [codename Cozy] 
 Copyright 2015 Dangered Wolf (@dangeredwolf)
 Released under the MIT License
 
@@ -2908,22 +2908,22 @@ a .column-title-back .icon:after {
 }
 
 .tde-light .stream-item.is-actionable:hover {
-	background:rgba(0, 0, 0, 0.03);
+	background:#fff;
+	box-shadow:0 2px 5px rgba(0, 0, 0, 0.4);
 	transition:300ms all
 }
 
 .tde-light .stream-item.is-actionable:active {
-	background:rgba(0, 0, 0, 0.04);
 	transition:300ms all
 }
 
 .tde-dark .stream-item.is-actionable:hover {
-	background:rgba(0, 0, 0, 0.04);
+	background:#3A4B54;
+	box-shadow:0 2px 5px rgba(0, 0, 0, 0.4);
 	transition:300ms all
 }
 
 .tde-dark .stream-item.is-actionable:active {
-	background:rgba(0, 0, 0, 0.08);
 	transition:300ms all
 }
 
@@ -3638,7 +3638,7 @@ a .column-title-back .icon:after {
 }
 
 .tweet-translation-attribution-text {
-	font-size:10px;
+	font-size:12px;
 	line-height:12px
 }
 
@@ -3666,6 +3666,7 @@ a .column-title-back .icon:after {
 	box-shadow:0 2px 5px rgba(0, 0, 0, 0.4);
 	-webkit-animation:herecomesthetweetsmall 0.4s cubic-bezier(.19,1,.22,1);
 	animation:herecomesthetweetsmall 0.4s cubic-bezier(.19,1,.22,1);
+	overflow:hidden;
 	border-top:5px solid transparent;
 	box-sizing:border-box;
 	padding:5px;
@@ -3681,12 +3682,6 @@ a .column-title-back .icon:after {
 	margin:15px 0
 }
 
-.tweet-stats {
-	overflow:hidden;
-	padding:10px 0;
-	margin:15px 0 -15px
-}
-
 .tweet-stats li {
 	display:inline-block;
 	margin-right:7px
@@ -3698,7 +3693,8 @@ a .column-title-back .icon:after {
 }
 
 .stat-word {
-	padding-left:3px
+	padding-left:3px;
+	font-weight:500
 }
 
 .tweet-location {
@@ -4721,10 +4717,7 @@ a .column-title-back .icon:after {
 	content:'';
 	display:inline-block;
 	vertical-align:middle;
-	zoom:1;
-	height:100%;
-	margin-right:-.25em;
-	opacity:0
+	height:100%
 }
 
 .ovl-block {
@@ -7112,6 +7105,11 @@ input[type="checkbox"] {
 	text-shadow:none;
 	border-radius:2px;
 	box-shadow:0 3px 10px rgba(41, 41, 41, 0.35)
+}
+
+.tde-dark .prf-follow-status {
+	background:#2E3B41;
+	color:#eee
 }
 
 .profile-full-follow-status {
@@ -11147,10 +11145,114 @@ a.js-dismiss {
 	overflow:visible
 }
 
-.tde-light .tweet-stat a {
-	color:#787878!important
-}
-
 .tde-dark .app-content {
 	background:#263238
+}
+
+.tweet-detail .txt-small {
+	font-size:0px!important;
+}
+
+.tweet-detail .txt-small a {
+	font-size:12px!important;
+	text-transform:uppercase;
+	font-weight:500
+}
+
+.tde-light .tweet-detail .txt-small a {
+	color:#979797!important
+}
+
+.tweet-stats li a {
+	text-align:right;
+	float:right;
+	position:absolute;
+	display:inline;
+	right:12px;
+	margin-top:-36px;
+	margin-left:10px;
+	width:50%
+}
+
+.tweet-stats li[data-type="favoriters"] a {
+	margin-top:-6px;
+	margin-left:0px
+}
+
+.tweet-detail .margin-tl.txt-small {
+	margin-top:30px!important;
+	margin-bottom:50px!important
+}
+
+.tweet-detail .margin-tl.txt-small a {
+	float:right;
+	position:absolute;
+	width:50%
+}
+
+.tweet-detail .margin-tl.txt-small a:nth-child(2) {
+	width:50%;
+	margin-top:30px
+}
+
+.tweet-stats {
+	margin-top:-25px
+}
+
+.card-holder h3 a,.tweet-detail .card-holder .txt-normal {
+	text-transform:uppercase
+}
+
+.tweet-detail .card-holder .txt-small a {
+	width:200%;
+	display:block;
+	float:right;
+	text-align:right;
+	padding-top:20px
+}
+
+.tweet-detail .card-holder {
+	margin-bottom:-10px
+}
+
+.tde-dark-media-previews .med-fullpanel .tweet-timestamp a {
+    color:#677985!important
+}
+
+.mdl-btn-media {
+	padding-left:20px;
+	padding-right:20px
+}
+
+.js-translate-call-to-action {
+	font-size:12px;
+	text-transform:uppercase;
+	position:absolute;
+	display:block;
+	font-weight:500;
+	margin-top:-5px;
+	box-sizing:border-box
+}
+
+.tde-dark .js-translate-call-to-action {
+	color:#697F8C
+}
+
+.js-tweet-translation {
+	webkit-animation:tweetontimeline 0.4s cubic-bezier(.19,1,.22,1); 
+	animation:tweetontimeline 0.4s cubic-bezier(.19,1,.22,1)
+}
+
+.tweet-detail .margin-tl.txt-small:before {
+	content:"";
+	display:block;
+	width:200%;
+	margin-left:-50%;
+	margin-bottom:20px;
+	height:1px;
+	background:#ccc
+}
+
+.tde-dark .tweet-detail .margin-tl.txt-small:before {
+	background:#4D6D7F
 }
