@@ -1,5 +1,5 @@
 // TDELoad.js
-// Copyright (c) 2015 Dangered Wolf
+// Copyright (c) 2015 Dangered Wolf 
 
 console.log("Enhancer 5.3.3");
 
@@ -10,6 +10,11 @@ if (typeof chrome !== "undefined") {
 if (typeof safari !== "undefined") {
   var isSafari = true;
 }
+
+if (typeof chrome == "undefined" && typeof safari == "undefined") {
+  var isFirefox = true;
+}
+
 
 function InjectDevStyles() {
   console.log("*boops your nose* hey there developer :3");
@@ -29,6 +34,10 @@ function InjectDevStyles() {
     injStyles.href = chrome.extension.getURL("sources/enhancer.css");
   } else if (isSafari) {
     injStyles.href = safari.extension.baseURI + "sources/enhancer.css";
+  } else if (isFirefox) {
+    injStyles.href = self.options.ffTDEURLExchange + "sources/enhancer.css";
+  } else {
+    console.log('you done goofed')
   }
 
   document.head.appendChild(injStyles);
@@ -60,8 +69,8 @@ if (isChromium) {
   TDEURLExchange(safari.extension.baseURI + "/");
   InjectScript.src = safari.extension.baseURI + "sources/TDEinject.js";
 } else {
-  TDEURLExchange("https://dangeredwolf.com/assets/tdetest/");
-  InjectScript.src = "https://dangeredwolf.com/assets/tdetest/TDEinject.js"; // Firefox version can't update properly yet
+  TDEURLExchange(self.options.ffTDEURLExchange);
+  InjectScript.src = self.options.ffTDEURLExchange + "sources/TDEinject.js";
 }
 
 InjectScript.type = "text/javascript";

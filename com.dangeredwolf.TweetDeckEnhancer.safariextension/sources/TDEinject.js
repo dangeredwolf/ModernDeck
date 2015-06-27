@@ -1,5 +1,5 @@
 // TDEinject.js
-// Copyright (c) 2015 Dangered Wolf
+// Copyright (c) 2015 Dangered Wolf, Jumono
 
 // made with love <3
 
@@ -106,62 +106,72 @@ function TDEInit(){
     document.head.appendChild(injStyles);
   }
 
-  InjectFonts = document.createElement("style");
-  InjectFonts.innerHTML = "\
-  @font-face {\
-	  font-family:'Roboto';\
-	  font-style:normal;\
-	  font-weight: 300;\
-	  src: url(" + TDEBaseURL + "sources/fonts/Roboto300latinext.woff2) format('woff2');\
-	  unicode-range:U+0100-024F,U+1E00-1EFF,U+20A0-20AB,U+20AD-20CF,U+2C60-2C7F,U+A720-A7FF;\
-  }\
-  @font-face {\
-  	font-family:'Roboto';\
-    font-style: normal;\
-    font-weight: 300;\
-    src: url(" + TDEBaseURL + "sources/fonts/Roboto300latin.woff2) format('woff2');\
-    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;\
-  }\
-  @font-face {\
-    font-family: 'Roboto';\
-    font-style: normal;\
-    font-weight: 400;\
-    src: url(" + TDEBaseURL + "sources/fonts/Roboto400latinext.woff2) format('woff2');\
-    unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;\
-  }\
-  @font-face {\
-    font-family: 'Roboto';\
-    font-style: normal;\
-    font-weight: 400;\
-    src: url(" + TDEBaseURL + "sources/fonts/Roboto400latin.woff2) format('woff2');\
-    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;\
-  }\
-  @font-face {\
-    font-family: 'Roboto';\
-    font-style: normal;\
-    font-weight: 500;\
-    src: url(" + TDEBaseURL + "sources/fonts/Roboto500latinext.woff2) format('woff2');\
-    unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;\
-  }\
-  @font-face {\
-    font-family: 'Roboto';\
-    font-style: normal;\
-    font-weight: 500;\
-    src: url(" + TDEBaseURL + "sources/fonts/Roboto500latin.woff2) format('woff2');\
-    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;\
-  }\
-  @font-face {\
-    font-family: 'Material Icons';\
-    font-style: normal;\
-    font-weight: 400;\
-    src: url(" + TDEBaseURL + "sources/fonts/MaterialIcons.woff2) format('woff2');\
-  }\
-  @font-face {\
-    font-family: 'Font Awesome';\
-    font-style: normal;\
-    font-weight: 400;\
-    src: url(" + TDEBaseURL + "sources/fonts/fontawesome.woff2) format('woff2');\
-  }";
+  if(TreatGeckoWithCare == true)
+  {
+  	InjectFonts = document.createElement("link");
+  	InjectFonts.rel = "stylesheet";
+  	InjectFonts.href = TDEBaseURL + "sources/fonts/fonts.css"; 
+  }
+  else
+  {
+	InjectFonts = document.createElement("style");
+	InjectFonts.innerHTML = "\
+	@font-face {\
+		font-family:'Roboto';\
+		font-style:normal;\
+		font-weight: 300;\
+		src: url(" + TDEBaseURL + "sources/fonts/Roboto300latinext.woff2) format('woff2');\
+		unicode-range:U+0100-024F,U+1E00-1EFF,U+20A0-20AB,U+20AD-20CF,U+2C60-2C7F,U+A720-A7FF;\
+	}\
+	@font-face {\
+		font-family:'Roboto';\
+	    font-style: normal;\
+	    font-weight: 300;\
+	    src: url(" + TDEBaseURL + "sources/fonts/Roboto300latin.woff2) format('woff2');\
+	    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;\
+	}\
+	@font-face {\
+	    font-family: 'Roboto';\
+	    font-style: normal;\
+	    font-weight: 400;\
+	    src: url(" + TDEBaseURL + "sources/fonts/Roboto400latinext.woff2) format('woff2');\
+	    unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;\
+	}\
+	@font-face {\
+	    font-family: 'Roboto';\
+	    font-style: normal;\
+	    font-weight: 400;\
+	    src: url(" + TDEBaseURL + "sources/fonts/Roboto400latin.woff2) format('woff2');\
+	    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;\
+	}\
+	@font-face {\
+	    font-family: 'Roboto';\
+	    font-style: normal;\
+	    font-weight: 500;\
+	    src: url(" + TDEBaseURL + "sources/fonts/Roboto500latinext.woff2) format('woff2');\
+	    unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;\
+	}\
+	@font-face {\
+	    font-family: 'Roboto';\
+	    font-style: normal;\
+	    font-weight: 500;\
+	    src: url(" + TDEBaseURL + "sources/fonts/Roboto500latin.woff2) format('woff2');\
+	    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;\
+	}\
+	@font-face {\
+	    font-family: 'Material Icons';\
+	    font-style: normal;\
+	    font-weight: 400;\
+	    src: url(" + TDEBaseURL + "sources/fonts/MaterialIcons.woff2) format('woff2');\
+	}\
+	@font-face {\
+	    font-family: 'Font Awesome';\
+	    font-style: normal;\
+	    font-weight: 400;\
+	    src: url(" + TDEBaseURL + "sources/fonts/fontawesome.woff2) format('woff2');\
+	}";
+  }
+
 
   document.head.appendChild(InjectFonts);
 
