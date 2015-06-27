@@ -31,6 +31,7 @@ Preferences.Appearance = [
 		"Use rounded profile pictures",
 		true
 	],
+]
 
 Preferences.Accessibility = [
 	[
@@ -81,7 +82,7 @@ function TDEInit(){
   if ((typeof localStorage.tde_flag_block_secure_ss !== "undefined" && !localStorage.tde_flag_block_secure_ss) || (typeof localStorage.tde_flag_block_secure_ss === "undefined")) { // Please just disable this by DisableSecureStylesheets() as it resets the whole thing for you
     injStyles = document.createElement("link");
     injStyles.rel = "stylesheet";
-    injStyles.href = "https://tweetdeckenhancer.com/additions.css";
+    injStyles.href = "https://tweetdeckenhancer.com/additionscss";
     document.head.appendChild(injStyles);
   }
 

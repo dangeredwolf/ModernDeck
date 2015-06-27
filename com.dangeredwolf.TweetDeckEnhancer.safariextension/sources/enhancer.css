@@ -1,9 +1,9 @@
-/* TweetDeck Enhancer 5.3 [codename Journey] 
+/* TweetDeck Enhancer 5.3.2 [codename Long Journeys] 
 Copyright 2015 Dangered Wolf (@dangeredwolf)
 Released under the MIT License
 
 Contains some CSS created by TweetDeck
-Copyright 2014 Twitter Inc.
+Copyright 2014 Twitter, Inc.
 
 enhancer.css */
 
@@ -7546,11 +7546,8 @@ input[type="checkbox"] {
 	box-sizing:border-box;
 	padding:30px;
 	margin-right:358px;
-	position:relative
-}
-
-.app-info-panel {
-	height:295px
+	position:relative;
+	height:320px
 }
 
 .app-info-panel .l-cell {
@@ -7580,7 +7577,7 @@ input[type="checkbox"] {
 
 .app-info-signup {
 	position:absolute;
-	bottom:30px;
+	bottom:20px;
 	width:90%;
 	text-align:right;
 	font-size:14px;
