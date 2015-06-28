@@ -3844,7 +3844,6 @@ a .column-title-back .icon:after {
 	height:26px;
 	width:26px;
 	-webkit-filter:brightness(60%) contrast(80%);
-	-moz-filter:brightness(60%) contrast(80%);
 	filter:brightness(60%) contrast(80%);
 	margin-left:-15px;
 	margin-top:-12px;
@@ -3859,8 +3858,7 @@ a .column-title-back .icon:after {
 }
 
 .tde-light .spinner-button-icon-spinner {
-	-webkit-filter:brightness(100%) hue-rotate(-30deg) contrast(100%)
-	-moz-filter:brightness(100%) hue-rotate(-30deg) contrast(100%);
+	-webkit-filter:brightness(100%) hue-rotate(-30deg) contrast(100%);
 	filter:brightness(100%) hue-rotate(-30deg) contrast(100%)
 }
 
@@ -5286,7 +5284,7 @@ a .column-title-back .icon:after {
 	background:transparent;
 	transition:150ms all;
 	-webkit-filter:grayscale(100%) brightness(100%);
-	-moz-filter:grayscale(100%) brightness(100%);
+	filter:grayscale(100%) brightness(100%);
 	opacity:.5;
 	border-radius:57px
 }
@@ -5323,7 +5321,7 @@ a .column-title-back .icon:after {
 	background:#29B6F6;
 	transition:150ms all;
 	-webkit-filter:grayscale(0%);
-	-moz-filter:grayscale(0%);
+	filter:grayscale(0%);
 	opacity:1;
 	border-radius:57px
 }
@@ -5591,7 +5589,7 @@ a .column-title-back .icon:after {
 	transition:200ms all;
 	margin-bottom:5px;
 	-webkit-filter:grayscale(100%);
-	-moz-filter:grayscale(100%);
+	filter:grayscale(100%);
 	opacity:.25
 }
 
@@ -8960,7 +8958,7 @@ a[rel=hashtag]:active {
 
 .compose-account.is-selected {
 	-webkit-filter:grayscale(0%);
-	-moz-filter:grayscale(0%);
+	filter:grayscale(0%);
 	opacity:1
 }
 
@@ -9386,7 +9384,7 @@ a[rel=hashtag]:active {
 
 .category-chooser .btd-emoji.emoji-pop:not(.active) {
 	-webkit-filter:grayscale(100%);
-	-moz-filter:grayscale(100%)
+	filter:grayscale(100%)
 }
 
 .startflow-message-wrap .startflow-panel {
@@ -9834,7 +9832,7 @@ html.tde-dark {
 
 .tde-dark .tde-nav-drawer-icon {
 	-webkit-filter:brightness(400%);
-	-moz-filter:brightness(400%)
+	filter:brightness(400%)
 }
 
 .tde-dark .account-bio {
@@ -9852,7 +9850,7 @@ html.tde-dark {
 .tde-dark .accs .acc-selected {
 	background:#00838F;
 	-webkit-filter:grayscale(0%);
-	-moz-filter:grayscale(0%);
+	filter:grayscale(0%);
 	opacity:1
 }
 
@@ -11254,4 +11252,8 @@ a.js-dismiss {
 
 .tde-dark .tweet-detail .margin-tl.txt-small:before {
 	background:#4D6D7F
+}
+
+.tde-mobile .column-options,.tde-mobile .column,.tde-mobile .column-header,.tde-mobile .column-content {
+	width:100%!important
 }
