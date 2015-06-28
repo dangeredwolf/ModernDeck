@@ -7585,8 +7585,7 @@ input[type="checkbox"] {
 .app-image {
 	display:inline;
 	max-width:200px;
-	background-image:url(https://dangeredwolf.com/assets/tweetdeck/img/TweetDeck.png) no-repeat;
-	background-image:url(TweetDeck.png) no-repeat;
+	background:url(https://dangeredwolf.com/assets/tweetdeck/img/TweetDeck.png) no-repeat;
 	padding-left:502px;
 	margin-left:-500px;
 	box-sizing:border-box;
