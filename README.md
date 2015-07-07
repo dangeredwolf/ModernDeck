@@ -35,4 +35,4 @@ Installation
 
 **Firefox**
 
-This version of TDE currently cannot be used with Firefox without additional directory configuration. Bap @jumono for help. :3
+This version of ModernDeck currently cannot be used with Firefox without additional directory configuration. Bap @jumono for help. :3
