@@ -5,10 +5,10 @@ An extension that adds nice things to TweetDeck, like a material design interfac
 
 [https://tweetdeckenhancer.com](https://tweetdeckenhancer.com)
 
-Installation:
+Installation
 ==================
 
-**== Chrome ==**
+** Chrome **
 
 1. Go to Chrome Menu > More tools > Extensions
 
@@ -20,7 +20,7 @@ Installation:
 
 5. If all is well it'll load!
 
-**== Opera ==**
+**=Opera **
 
 1. Go to View > Extensions (If on Windows you may need to directly go to opera://extensions)
 
@@ -33,6 +33,6 @@ Installation:
 5. If all is well it'll load!
 
 
-**== Firefox ==**
+** Firefox **
 
-This version of TDE currently cannot be used with Firefox without additional directory configuration. Bap @jumono for more details.
+This version of TDE currently cannot be used with Firefox without additional directory configuration. Bap @jumono for help. :3
