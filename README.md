@@ -20,7 +20,7 @@ Installation
 
 5. If all is well it'll load!
 
-**=Opera **
+** Opera **
 
 1. Go to View > Extensions (If on Windows you may need to directly go to opera://extensions)
 
