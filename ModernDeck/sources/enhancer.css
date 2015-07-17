@@ -1,4 +1,4 @@
-/* ModernDeck 5.3.4 [codename Modern] 
+/* ModernDeck 5.3.4 [codename Modern]
 Copyright 2015 Dangered Wolf (@dangeredwolf)
 Released under the MIT License
 
@@ -620,7 +620,7 @@ enhancer.css */
 	animation-name:rotate-out
 }
 
-/* MODERNDECK COLOURS */ 
+/* MODERNDECK COLOURS */
 
 
 /* start paper */
@@ -1434,7 +1434,8 @@ small {
 .l-table {
 	display:table;
 	width:100%;
-	height:100%}
+	height:100%
+}
 
 .l-row {
 	display:table-row
@@ -1442,7 +1443,7 @@ small {
 
 .l-cell {
 	display:table-cell;
-	vertical-align:bottom
+	vertical-align:middle
 }
 
 .l-cell-modal {
@@ -3433,7 +3434,7 @@ a .column-title-back .icon:after {
 
 .avatar.compose-account-img:active {
 	transform:scale(1.0,1.0)!important
-} 
+}
 
 .avatar:hover {
 	transition:200ms all;
@@ -4169,7 +4170,7 @@ a .column-title-back .icon:after {
 
 .spinner-button-icon-spinner {
 	z-index:999;
-	background-image:url(https://abs.twimg.com/a/1418162186/img/t1/spinner-rosetta-blue.gif); 
+	background-image:url(https://abs.twimg.com/a/1418162186/img/t1/spinner-rosetta-blue.gif);
 	height:26px;
 	width:26px;
 	-webkit-filter:brightness(60%) contrast(80%);
@@ -6284,7 +6285,7 @@ a:hover .icn-button-next {
 	padding-left:25px;
 	font-size:13px;
 	box-sizing:border-box;
-	
+
 }
 
 .keyboard-shortcut-definition {
@@ -7891,7 +7892,7 @@ input[type="checkbox"] {
 	text-align:right;
 	font-size:14px;
 	opacity:0.7
-} 
+}
 
 .app-image {
 	display:inline;
@@ -7913,7 +7914,7 @@ input[type="checkbox"] {
 	color:#fff;
 	-webkit-animation:dropmenucomedownnopad 0.40s 1 cubic-bezier(.19,1,.22,1);
 	animation:dropmenucomedownnopad 0.40s 1 cubic-bezier(.19,1,.22,1)
-} 
+}
 
 .app-signin-form {
 	display:inline-block;
@@ -8179,7 +8180,7 @@ input[type="checkbox"] {
 	transform:translate3d(15px,0,0);
 	opacity:0;
 	height:100%
-} 
+}
 
 .column-navigator:hover .column-nav-item,.column-nav-item.is-new {
 	opacity:1;
@@ -8227,7 +8228,7 @@ input[type="checkbox"] {
 	display:inline;
 	padding-left:40px;
 	font-weight:500
-} 
+}
 
 .is-unread .fullname {
 	color:#eee
@@ -8560,7 +8561,7 @@ input[type="checkbox"] {
 	width:25px;
 	height:25px;
 	font-size:0px;
-	margin-left:7px;	
+	margin-left:7px;
 	z-index:99
 }
 
@@ -9535,7 +9536,7 @@ a[rel=hashtag]:active {
 
 .js-app-settings {
 	margin-top:-100px
-} 
+}
 
 .js-compose-message-recipient-container .typeahead-user-list {
 	width:240px;
@@ -10122,7 +10123,7 @@ html.tde-dark {
 
 .tde-dark .tde-nav-divider {
 	background:#38454B
-} 
+}
 
 .tde-dark .tde-nav-button {
 	color:#E7E7E7!important
@@ -11536,7 +11537,7 @@ a.js-dismiss {
 }
 
 .js-tweet-translation {
-	webkit-animation:tweetontimeline 0.4s cubic-bezier(.19,1,.22,1); 
+	webkit-animation:tweetontimeline 0.4s cubic-bezier(.19,1,.22,1);
 	animation:tweetontimeline 0.4s cubic-bezier(.19,1,.22,1)
 }
 
