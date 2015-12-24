@@ -1,3 +1,5 @@
+Jumono is taking over the project now. Thank you all for supporting ModernDeck's mission to build a better TweetDeck. And remember, it'll always, always be that way, no matter what shape or form it takes. Merry Christmas. 
+
 ModernDeck
 ==================
 
