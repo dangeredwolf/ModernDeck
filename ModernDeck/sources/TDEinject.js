@@ -41,7 +41,7 @@ Preferences.Accessibility = [
 		"tde-outlines",
 		"tde_outlines",
 		"tde-outlines-control",
-		"Always show outlines on focussed items",
+		"Always show outlines on focused items",
 		false
 	]
 ]
