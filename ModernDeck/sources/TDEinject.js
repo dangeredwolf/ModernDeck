@@ -13,12 +13,14 @@ var TDEBaseURL = "https://dangeredwolf.com/assets/tdetest/"; // Defaults to stre
 var progress = null;
 var tde_fetch_profile_info_for_nav_drawer = 0;
 
-var SystemVersion = "5.3.4";
+var SystemVersion = "5.4";
 
 var TreatGeckoWithCare = false;
 
 var WantsToBlockCommunications = false;
 var WantsToDisableSecureStylesheets = false;
+
+var elements = function(a,b,c){return document.getElementsByClassName(a,b,c)};
 
 var Preferences = []
 
@@ -46,7 +48,7 @@ Preferences.Accessibility = [
 
 if (typeof TDEURLExchange !== "undefined") {
 	TDEBaseURL = TDEURLExchange.getAttribute("type") || "https://dangeredwolf.com/assets/tdetest/";
-  console.info("TDEURLExchange completed with URL " + TDEBaseURL);
+	console.info("TDEURLExchange completed with URL " + TDEBaseURL);
 } else {
 	console.warn("TDEURLExchange failed :( defaulting to streamed sources, may not work... but we'll try...");
 }
@@ -60,60 +62,60 @@ function GetURL(url) {
 }
 
 function TDEInit(){
-  if (typeof $ === "undefined") {
-    setTimeout(TDEInit,500);
-    return;
-  }
+	if (typeof $ === "undefined") {
+		setTimeout(TDEInit,500);
+		return;
+	}
 
-  if (typeof TD_mustaches === "undefined") {
-    setTimeout(TDEInit,500);
-    return;
-  }
+	if (typeof TD_mustaches === "undefined") {
+		setTimeout(TDEInit,500);
+		return;
+	}
 
-  if (typeof TD === "undefined") {
-  	setTimeout(TDEInit,500);
-    return;
-  }
+	if (typeof TD === "undefined") {
+		setTimeout(TDEInit,500);
+		return;
+	}
 
-  if (typeof TD.util === "undefined") {
-  	setTimeout(TDEInit,500);
-    return;
-  }
+	if (typeof TD.util === "undefined") {
+		setTimeout(TDEInit,500);
+		return;
+	}
 
-  if (typeof TD.util.prettyTimeString === "undefined") {
-  	setTimeout(TDEInit,500);
-    return;
-  }
+	if (typeof TD.util.prettyTimeString === "undefined") {
+		setTimeout(TDEInit,500);
+		return;
+	}
 
-  if (typeof TD_mustaches["settings/global_setting_filter_row.mustache"] === "undefined") {
-    setTimeout(TDEInit,500);
-    return;
-  }
+	if (typeof TD_mustaches["settings/global_setting_filter_row.mustache"] === "undefined") {
+		setTimeout(TDEInit,500);
+		return;
+	}
 
-  if (typeof document.getElementsByClassName("js-modals-container")[0] === "undefined") {
-    setTimeout(TDEInit,500);
-    return;
-  }
+	if (typeof elements("js-modals-container")[0] === "undefined") {
+		setTimeout(TDEInit,500);
+		return;
+	}
 
-  if ((typeof localStorage.tde_flag_block_secure_ss !== "undefined" && !localStorage.tde_flag_block_secure_ss) || (typeof localStorage.tde_flag_block_secure_ss === "undefined")) { // Please just disable this by DisableSecureStylesheets() as it resets the whole thing for you
-    injStyles = document.createElement("link");
-    injStyles.rel = "stylesheet";
-    if (navigator.userAgent.indexOf("Windows NT 5.1") > -1 || navigator.userAgent.indexOf("Windows NT 5.2") > -1) {
-    	injStyles.href = "http://tweetdeckenhancer.com/additionscss";
-    } else {
-    	injStyles.href = "https://tweetdeckenhancer.com/additionscss";
-    }
-    document.head.appendChild(injStyles);
-  }
+	if ((typeof localStorage.tde_flag_block_secure_ss !== "undefined" && !localStorage.tde_flag_block_secure_ss) || (typeof localStorage.tde_flag_block_secure_ss === "undefined")) { // Please just disable this by DisableSecureStylesheets() as it resets the whole thing for you
+		injStyles = document.createElement("link");
+		injStyles.rel = "stylesheet";
+		if (navigator.userAgent.indexOf("Windows NT 5.1") > -1 || navigator.userAgent.indexOf("Windows NT 5.2") > -1) {
+			injStyles.href = "http://tweetdeckenhancer.com/additionscss";
+		} else {
+			injStyles.href = "https://tweetdeckenhancer.com/additionscss";
+		}
+		document.head.appendChild(injStyles);
+	}
 
-  if(TreatGeckoWithCare == true)
-  {
-  	InjectFonts = document.createElement("link");
-  	InjectFonts.rel = "stylesheet";
-  	InjectFonts.href = TDEBaseURL + "sources/fonts/fonts.css"; 
-  }
-  else
-  {
+	if(TreatGeckoWithCare == true)
+	{
+		InjectFonts = document.createElement("link");
+		InjectFonts.rel = "stylesheet";
+		InjectFonts.href = TDEBaseURL + "sources/fonts/fonts.css";
+	}
+	else
+	{
 	InjectFonts = document.createElement("style");
 	InjectFonts.innerHTML = "\
 	@font-face {\
@@ -125,118 +127,118 @@ function TDEInit(){
 	}\
 	@font-face {\
 		font-family:'Roboto';\
-	    font-style: normal;\
-	    font-weight: 300;\
-	    src: url(" + TDEBaseURL + "sources/fonts/Roboto300latin.woff2) format('woff2');\
-	    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;\
+		font-style: normal;\
+		font-weight: 300;\
+		src: url(" + TDEBaseURL + "sources/fonts/Roboto300latin.woff2) format('woff2');\
+		unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;\
 	}\
 	@font-face {\
-	    font-family: 'Roboto';\
-	    font-style: normal;\
-	    font-weight: 400;\
-	    src: url(" + TDEBaseURL + "sources/fonts/Roboto400latinext.woff2) format('woff2');\
-	    unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;\
+		font-family: 'Roboto';\
+		font-style: normal;\
+		font-weight: 400;\
+		src: url(" + TDEBaseURL + "sources/fonts/Roboto400latinext.woff2) format('woff2');\
+		unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;\
 	}\
 	@font-face {\
-	    font-family: 'Roboto';\
-	    font-style: normal;\
-	    font-weight: 400;\
-	    src: url(" + TDEBaseURL + "sources/fonts/Roboto400latin.woff2) format('woff2');\
-	    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;\
+		font-family: 'Roboto';\
+		font-style: normal;\
+		font-weight: 400;\
+		src: url(" + TDEBaseURL + "sources/fonts/Roboto400latin.woff2) format('woff2');\
+		unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;\
 	}\
 	@font-face {\
-	    font-family: 'Roboto';\
-	    font-style: normal;\
-	    font-weight: 500;\
-	    src: url(" + TDEBaseURL + "sources/fonts/Roboto500latinext.woff2) format('woff2');\
-	    unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;\
+		font-family: 'Roboto';\
+		font-style: normal;\
+		font-weight: 500;\
+		src: url(" + TDEBaseURL + "sources/fonts/Roboto500latinext.woff2) format('woff2');\
+		unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;\
 	}\
 	@font-face {\
-	    font-family: 'Roboto';\
-	    font-style: normal;\
-	    font-weight: 500;\
-	    src: url(" + TDEBaseURL + "sources/fonts/Roboto500latin.woff2) format('woff2');\
-	    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;\
+		font-family: 'Roboto';\
+		font-style: normal;\
+		font-weight: 500;\
+		src: url(" + TDEBaseURL + "sources/fonts/Roboto500latin.woff2) format('woff2');\
+		unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;\
 	}\
 	@font-face {\
-	    font-family: 'Material Icons';\
-	    font-style: normal;\
-	    font-weight: 400;\
-	    src: url(" + TDEBaseURL + "sources/fonts/MaterialIcons.woff2) format('woff2');\
+		font-family: 'Material Icons';\
+		font-style: normal;\
+		font-weight: 400;\
+		src: url(" + TDEBaseURL + "sources/fonts/MaterialIcons.woff2) format('woff2');\
 	}\
 	@font-face {\
-	    font-family: 'Font Awesome';\
-	    font-style: normal;\
-	    font-weight: 400;\
-	    src: url(" + TDEBaseURL + "sources/fonts/fontawesome.woff2) format('woff2');\
+		font-family: 'Font Awesome';\
+		font-style: normal;\
+		font-weight: 400;\
+		src: url(" + TDEBaseURL + "sources/fonts/fontawesome.woff2) format('woff2');\
 	}";
-  }
-
-
-  document.head.appendChild(InjectFonts);
-
-  document.getElementsByClassName("js-modals-container")[0].removeChild = function(rmnode){
-    if (typeof rmnode === "undefined") {
-      console.log("what");
-      return;
-    }
-    rmnode.setAttribute("class","js-modal-context tde-modal-window-fade-out overlay overlay-super scroll-v");
-    setTimeout(function(){rmnode.remove();},200);
-  }
-
-  if (typeof document.getElementsByClassName("js-modal")[0] !== "undefined") {
-
-  document.getElementsByClassName("js-modal")[0].removeChild = function(rmnode){
-	    if (typeof rmnode === "undefined") {
-	      console.log("what");
-	      return;
-	    }
-	    rmnode.setAttribute("class","js-modal-context tde-modal-window-fade-out overlay overlay-super scroll-v");
-	    setTimeout(function(){rmnode.remove();},200);
-	  }
 	}
 
-  document.body.removeChild = function(i) {
-    if (typeof i.getAttribute("class") !== "undefined" && i.getAttribute("class") !== null && i.getAttribute("class").indexOf("tooltip") > -1) {
-      setTimeout(function(){
-        i.remove(); // Tooltips automatically animate themselves out. But here we clean them up as well ourselves.
-      },500);
-    }
-    else {
-     i.remove();
-    }
-   }
 
-  $("link[rel=\"shortcut icon\"]")[0].href = TDEBaseURL + "sources/favicon.ico";
+	document.head.appendChild(InjectFonts);
+
+	elements("js-modals-container")[0].removeChild = function(rmnode){
+		if (typeof rmnode === "undefined") {
+			console.log("what");
+			return;
+		}
+		rmnode.setAttribute("class","js-modal-context tde-modal-window-fade-out overlay overlay-super scroll-v");
+		setTimeout(function(){rmnode.remove();},200);
+	}
+
+	if (typeof elements("js-modal")[0] !== "undefined") {
+
+		elements("js-modal")[0].removeChild = function(rmnode){
+			if (typeof rmnode === "undefined") {
+				console.log("what");
+				return;
+			}
+			rmnode.setAttribute("class","js-modal-context tde-modal-window-fade-out overlay overlay-super scroll-v");
+			setTimeout(function(){rmnode.remove();},200);
+		}
+	}
+
+	document.body.removeChild = function(i) {
+		if (typeof i.getAttribute("class") !== "undefined" && i.getAttribute("class") !== null && i.getAttribute("class").indexOf("tooltip") > -1) {
+			setTimeout(function(){
+				i.remove(); // Tooltips automatically animate themselves out. But here we clean them up as well ourselves.
+			},500);
+		}
+		else {
+ 		i.remove();
+	}
+ 	}
+
+	$("link[rel=\"shortcut icon\"]")[0].href = TDEBaseURL + "sources/favicon.ico";
 
 	var AudioSources = document.getElementsByTagName("source");
 
-	for (i = 0; i < AudioSources.length; i++) { 
+	for (i = 0; i < AudioSources.length; i++) {
 		AudioSources[i].remove();
 	}
 
 	var NotificationSound = document.getElementsByTagName("audio")[0];
 	NotificationSound.src = GetURL("sources/alert_2.mp3");
 
-  TD_mustaches["settings/global_setting_filter_row.mustache"]='<li class="list-filter cf"> {{_i}}<div class="tde-mute-text tde-mute-text-{{getDisplayType}}"></div> {{>text/global_filter_value}}{{/i}} <input type="button" name="remove-filter" value="{{_i}}Remove{{/i}}" data-id="{{id}}" class="js-remove-filter small btn btn-negative"> </li>'
+	TD_mustaches["settings/global_setting_filter_row.mustache"]='<li class="list-filter cf"> {{_i}}<div class="tde-mute-text tde-mute-text-{{getDisplayType}}"></div> {{>text/global_filter_value}}{{/i}} <input type="button" name="remove-filter" value="{{_i}}Remove{{/i}}" data-id="{{id}}" class="js-remove-filter small btn btn-negative"> </li>'
 
-  if (localStorage.tde_round_avatars === "false") {
-    document.getElementsByTagName("html")[0].className += " tde-no-round-avatars";
-  } else if (typeof localStorage.tde_round_avatars === "undefined") {
-    localStorage.tde_round_avatars = true;
-  }
+	if (localStorage.tde_round_avatars === "false") {
+		document.getElementsByTagName("html")[0].className += " tde-no-round-avatars";
+	} else if (typeof localStorage.tde_round_avatars === "undefined") {
+		localStorage.tde_round_avatars = true;
+	}
 
-  if (localStorage.tde_dark_media === "true") {
-    document.getElementsByTagName("html")[0].className += " tde-dark-media-previews";
-  } else if (typeof localStorage.tde_dark_media === "undefined") {
-    localStorage.tde_dark_media = true;
-  }
+	if (localStorage.tde_dark_media === "true") {
+		document.getElementsByTagName("html")[0].className += " tde-dark-media-previews";
+	} else if (typeof localStorage.tde_dark_media === "undefined") {
+		localStorage.tde_dark_media = true;
+	}
 
-  if (localStorage.tde_outlines === "true") {
-  	document.getElementsByTagName("html")[0].className += " tde-acc-focus-ring";
-  } else if (typeof localStorage.tde_outlines === "undefined"){
-  	localStorage.tde_outlines = false;
-  }
+	if (localStorage.tde_outlines === "true") {
+		document.getElementsByTagName("html")[0].className += " tde-acc-focus-ring";
+	} else if (typeof localStorage.tde_outlines === "undefined"){
+		localStorage.tde_outlines = false;
+	}
 
 	TD.util.prettyTimeString = function(e) {
 		return TD.i("{{hours12}}:{{minutes}} {{amPm}}, {{day}} {{month}} {{fullYear}}", TD.util.prettyTime(e))
@@ -247,10 +249,10 @@ function TDEInit(){
 }
 
 function WaitForLogin() {
-	if (typeof document.getElementsByClassName("app-signin-form")[0] === "undefined") {
+	if (typeof elements("app-signin-form")[0] === "undefined") {
 		document.getElementsByTagName("html")[0].setAttribute("class",document.getElementsByTagName("html")[0].getAttribute("class").replace(" signin-sheet-now-present",""));
 		return;
-	} 
+	}
 	setTimeout(WaitForLogin,500);
 }
 
@@ -284,8 +286,8 @@ function WaitForNotificationDismiss(node,prevmsgID) {
 function WorldTick(){
 
 	var elms = document.querySelectorAll(".tweet-action-item,.tweet-detail-action-item,.app-navigator.margin-bm.padding-ts");
-	
-	for (i = 0; i < elms.length; i++) { 
+
+	for (i = 0; i < elms.length; i++) {
 		elms[i].removeChild = function(dropdown){
 			dropdown.setAttribute("class",dropdown.getAttribute("class") + " tde-dropdown-fade-out");
 			setTimeout(function(){
@@ -296,7 +298,7 @@ function WorldTick(){
 
 	/*var elms2 = document.querySelectorAll(".chirp-container");
 
-	for (i = 0; i < elms2.length; i++) { 
+	for (i = 0; i < elms2.length; i++) {
 		elms2[i].removeChild = function(tweetarticle){
 			tweetarticle.setAttribute("class",tweetarticle.getAttribute("class") + " tde-tweet-fade-out");
 			setTimeout(function(){
@@ -306,16 +308,16 @@ function WorldTick(){
 	}*/
 
 	if (typeof document.querySelector(".status-message") !== "undefined") {
-		for (i = 0; i < document.getElementsByClassName("status-message").length; i++) { 
-			if (typeof messagesAccounted[document.getElementsByClassName("status-message")[i]] === "undefined") {
-				var thing = document.getElementsByClassName("status-message")[i];
+		for (i = 0; i < elements("status-message").length; i++) {
+			if (typeof messagesAccounted[elements("status-message")[i]] === "undefined") {
+				var thing = elements("status-message")[i];
 
 				msgID++;
 
 				SendNotificationMessage(thing.childNodes[1].innerHTML);
 				WaitForNotificationDismiss(thing,msgID);
 
-				messagesAccounted[document.getElementsByClassName("status-message")[i]] = true;
+				messagesAccounted[elements("status-message")[i]] = true;
 			}
 		}
 	}
@@ -334,7 +336,7 @@ function ResetSettingsUI() {
 
 function PrefsListener() {
 	console.log("Testing...");
-	if ($("#tde-round-avatars-control").length > 0) { 
+	if ($("#tde-round-avatars-control").length > 0) {
 		console.log("waiting...");
 
 		if (localStorage.tde_round_avatars === "false" && $("#tde-round-avatars-control")[0].checked) {
@@ -350,17 +352,17 @@ function PrefsListener() {
 		}
 
 
-    if (localStorage.tde_dark_media === "false" && $("#tde-dark-media-control")[0].checked) {
-      console.log("Hey true!!");
-      localStorage.tde_dark_media = true;
-      document.getElementsByTagName("html")[0].className += " tde-dark-media-previews";
-    }
+		if (localStorage.tde_dark_media === "false" && $("#tde-dark-media-control")[0].checked) {
+			console.log("Hey true!!");
+			localStorage.tde_dark_media = true;
+			document.getElementsByTagName("html")[0].className += " tde-dark-media-previews";
+		}
 
-    if (localStorage.tde_dark_media === "true" && !$("#tde-dark-media-control")[0].checked) {
-      console.log("Hey false!!");
-      localStorage.tde_dark_media = false;
-      document.getElementsByTagName("html")[0].className = document.getElementsByTagName("html")[0].className.replace(" tde-dark-media-previews","");
-    }
+		if (localStorage.tde_dark_media === "true" && !$("#tde-dark-media-control")[0].checked) {
+			console.log("Hey false!!");
+			localStorage.tde_dark_media = false;
+			document.getElementsByTagName("html")[0].className = document.getElementsByTagName("html")[0].className.replace(" tde-dark-media-previews","");
+		}
 
 		if (localStorage.tde_outlines === "false" && $("#tde-outlines-control")[0].checked) {
 			console.log("Hey true!!");
@@ -381,11 +383,11 @@ function PrefsListener() {
 function TDESettings() {
 	TDEPrepareWindows();
 		setTimeout(function(){
-			document.getElementsByClassName("js-app-settings")[0].click();
+			elements("js-app-settings")[0].click();
 		},25);
 		setTimeout(function(){
-			document.getElementsByClassName("app-navigator margin-bm padding-ts")[0].childNodes[document.getElementsByClassName("app-navigator margin-bm padding-ts")[0].childNodes.length-2].childNodes[3].childNodes[1].childNodes[7].childNodes[1].click();
-		},50); 
+			elements("app-navigator margin-bm padding-ts")[0].childNodes[elements("app-navigator margin-bm padding-ts")[0].childNodes.length-2].childNodes[3].childNodes[1].childNodes[7].childNodes[1].click();
+		},50);
 		setTimeout(function(){
 			var tdesettingsmodalview = $("#settings-modal .mdl")[0];
 			tdesettingsmodalview.className = "js-modal-panel mdl s-short is-inverted-dark tde-settings-panel";
@@ -413,7 +415,7 @@ function TDESettings() {
 
 			$("#tde-round-avatars-control")[0].checked = (localStorage.tde_round_avatars === "true" && true || false);
 			$("#tde-outlines-control")[0].checked = (localStorage.tde_outlines === "true" && true || false);
-      $("#tde-dark-media-control")[0].checked = (localStorage.tde_dark_media === "true" && true || false);
+			$("#tde-dark-media-control")[0].checked = (localStorage.tde_dark_media === "true" && true || false);
 
 
 			PrefsListener();
@@ -439,7 +441,7 @@ function TDESettings() {
 }
 
 function ReplaceLoadingIndicator() {
-	if (typeof document.getElementsByClassName("app-signin-form")[0] !== "undefined") {
+	if (typeof elements("app-signin-form")[0] !== "undefined") {
 		return;
 	}
 
@@ -448,7 +450,7 @@ function ReplaceLoadingIndicator() {
 		return;
 	}
 
-	if (typeof document.getElementsByClassName("js-startflow-content startflow")[0] === "undefined") {
+	if (typeof elements("js-startflow-content startflow")[0] === "undefined") {
 		setTimeout(ReplaceLoadingIndicator,30);
 		return;
 	}
@@ -477,7 +479,7 @@ function PrepareLoginStuffs() {
 		return;
 	}
 
-	var FindProfButton = $(".js-account-settings-accounts .account-settings-row:first-child .js-account-settings-detail.accordion-panel .padding-tm.padding-hxl .link-complex.txt-medium.block.cf[rel=\"user\"]")[0];
+	var FindProfButton = $(".js-account-settings-accounts>.account-settings-row:first-child a[rel='user']")[0];
 	if (typeof FindProfButton === "undefined") {
 		setTimeout(PrepareLoginStuffs,200);
 		return;
@@ -500,7 +502,7 @@ function FinaliseLoginStuffs() {
 		$(".js-click-trap")[0].className += " is-hidden";
 	}
 
-	if (typeof document.getElementsByClassName("prf-header")[0] === "undefined") {
+	if (typeof elements("prf-header")[0] === "undefined") {
 		if (typeof tde_fetch_profile_info_for_nav_drawer === "undefined") {
 			tde_fetch_profile_info_for_nav_drawer = 0;
 		}
@@ -515,7 +517,9 @@ function FinaliseLoginStuffs() {
 		return;
 	}
 
-	tde_nd_header_image.setAttribute("style",$(".prf-header")[0].style.cssText); // Fetch header and place in nav drawer
+	if ($(".prf-header")[0].style.cssText.search("td_profile_empty") > -1) {
+		tde_nd_header_image.setAttribute("style",$(".prf-header")[0].style.cssText); // Fetch header and place in nav drawer
+	}
 	tde_nd_header_photo.setAttribute("src",$(".prf-img")[0].childNodes[1].src); // Fetch profile picture and place in nav drawer
 	tde_nd_header_username.innerHTML = $(".prf-card-inner")[0].childNodes[1].childNodes[5].childNodes[0].textContent; // Fetch twitter handle and place in nav drawer
 
@@ -525,7 +529,7 @@ function FinaliseLoginStuffs() {
 }
 
 function NavigationSetup() {
-	if (typeof document.getElementsByClassName("app-header-inner")[0] === "undefined") {
+	if (typeof elements("app-header-inner")[0] === "undefined") {
 		setTimeout(NavigationSetup,100);
 		return;
 	}
@@ -535,7 +539,7 @@ function NavigationSetup() {
 	TDENavigationDrawerButton.setAttribute("class","js-header-action tde-drawer-button link-clean cf app-nav-link");
 	TDENavigationDrawerButton.innerHTML = '<div class="obj-left"><div class="tde-nav-activator"></div><div class="nbfc padding-ts"></div>';
 
-	document.getElementsByClassName("app-header-inner")[0].appendChild(TDENavigationDrawerButton);
+	elements("app-header-inner")[0].appendChild(TDENavigationDrawerButton);
 
 
 
@@ -573,8 +577,8 @@ function NavigationSetup() {
 	window.TDEPrepareWindows = function() {
 		document.getElementById("update-sound").click();
 
-		for (i = 0; i < document.getElementsByClassName("js-click-trap").length; i++) { 
-			document.getElementsByClassName("js-click-trap")[i].click();
+		for (i = 0; i < elements("js-click-trap").length; i++) {
+			elements("js-click-trap")[i].click();
 		}
 
 		tde_nav_drawer_background.click();
@@ -582,13 +586,13 @@ function NavigationSetup() {
 
 	tdset.onclick = function(){
 		TDEPrepareWindows();
-		
+
 		setTimeout(function(){
-			document.getElementsByClassName("js-app-settings")[0].click();
+			elements("js-app-settings")[0].click();
 		},25);
 		setTimeout(function(){
-			document.getElementsByClassName("app-navigator margin-bm padding-ts")[0].childNodes[document.getElementsByClassName("app-navigator margin-bm padding-ts")[0].childNodes.length-2].childNodes[3].childNodes[1].childNodes[7].childNodes[1].click();
-		},50); 
+			elements("app-navigator margin-bm padding-ts")[0].childNodes[elements("app-navigator margin-bm padding-ts")[0].childNodes.length-2].childNodes[3].childNodes[1].childNodes[7].childNodes[1].click();
+		},50);
 	}
 
 	tdesettings.onclick = TDESettings;
@@ -607,28 +611,28 @@ function NavigationSetup() {
 
 	kbshortcuts.onclick = function(){
 		TDEPrepareWindows();
-		
+
 		setTimeout(function(){
-			document.getElementsByClassName("js-app-settings")[0].click();
+			elements("js-app-settings")[0].click();
 		},25);
 		setTimeout(function(){
-			document.getElementsByClassName("app-navigator margin-bm padding-ts")[0].childNodes[document.getElementsByClassName("app-navigator margin-bm padding-ts")[0].childNodes.length-2].childNodes[3].childNodes[1].childNodes[5].childNodes[1].click();
-		},50); 
+			elements("app-navigator margin-bm padding-ts")[0].childNodes[elements("app-navigator margin-bm padding-ts")[0].childNodes.length-2].childNodes[3].childNodes[1].childNodes[5].childNodes[1].click();
+		},50);
 	}
 
 	addcolumn.onclick = function(){
 		TDEPrepareWindows();
-		
+
 		setTimeout(function(){
-			document.getElementsByClassName("js-header-add-column")[0].click();
+			elements("js-header-add-column")[0].click();
 		},50);
 	}
 
 	tdaccsbutton.onclick = function(){
 		TDEPrepareWindows();
-		
+
 		setTimeout(function(){
-			document.getElementsByClassName("js-show-drawer js-header-action")[0].click();
+			elements("js-show-drawer js-header-action")[0].click();
 		},50);
 	}
 
@@ -636,17 +640,17 @@ function NavigationSetup() {
 		TDEPrepareWindows();
 
 		setTimeout(function(){
-			document.getElementsByClassName("js-app-settings")[0].click();
+			elements("js-app-settings")[0].click();
 		},25);
 
 		if (parseInt(TD.storage.store._backend.tweetdeckAccount).toString() === "NaN") {
 			setTimeout(function(){
-				document.getElementsByClassName("app-navigator margin-bm padding-ts")[0].childNodes[document.getElementsByClassName("app-navigator margin-bm padding-ts")[0].childNodes.length-2].childNodes[3].childNodes[1].childNodes[15].childNodes[1].click(); // TODO: Add TD acc check and make it click childNodes[13] instead of childNodes[11]
-			},50); 
+				elements("app-navigator margin-bm padding-ts")[0].childNodes[elements("app-navigator margin-bm padding-ts")[0].childNodes.length-2].childNodes[3].childNodes[1].childNodes[15].childNodes[1].click(); // TODO: Add TD acc check and make it click childNodes[13] instead of childNodes[11]
+			},50);
 		} else {
 			setTimeout(function(){
-				document.getElementsByClassName("app-navigator margin-bm padding-ts")[0].childNodes[document.getElementsByClassName("app-navigator margin-bm padding-ts")[0].childNodes.length-2].childNodes[3].childNodes[1].childNodes[11].childNodes[1].click(); // TODO: Add TD acc check and make it click childNodes[13] instead of childNodes[11]
-			},50); 
+				elements("app-navigator margin-bm padding-ts")[0].childNodes[elements("app-navigator margin-bm padding-ts")[0].childNodes.length-2].childNodes[3].childNodes[1].childNodes[11].childNodes[1].click(); // TODO: Add TD acc check and make it click childNodes[13] instead of childNodes[11]
+			},50);
 		}
 	}
 
@@ -668,7 +672,7 @@ function NavigationSetup() {
 	TDENotification.className = "tde-appbar-notification tde-appbar-notification-hidden";
 	TDENotification.id = "TDENotification";
 
-	document.getElementsByClassName("app-header-inner")[0].appendChild(TDENotification);
+	elements("app-header-inner")[0].appendChild(TDENotification);
 }
 
 function KeyboardShortcutHandler(e) {
@@ -689,11 +693,6 @@ function KeyboardShortcutHandler(e) {
 			}
 		}
 	}
-}
-
-function TDEAttachDebugger(debuggerScope) {
-	console.log("Attaching developer debugger");
-	window.tde_debug = debuggerScope;
 }
 
 function ReloadTheme() {
@@ -754,7 +753,7 @@ function diag() {
 		attemptdiag();
 	}
 	catch(err) {
-		var openmodal = document.getElementById("open-modal") || document.getElementsByClassName("js-app-loading")[0];;
+		var openmodal = document.getElementById("open-modal") || elements("js-app-loading")[0];;
 	openmodal.innerHTML = '<div class="mdl s-tall-fixed"><header class="mdl-header"><h3 class="mdl-header-title">Diagnostics Failed</h3></header><div class="mdl-inner"><div class="mdl-content"style="padding-left:20px">\
 	\
 	Well, that\'s unfortunate. I can\'t seem to be able to fetch diagnostics right now. Maybe refresh and try again?\
@@ -772,7 +771,7 @@ function closediag() {
 }
 
 function attemptdiag() {
-	var openmodal = document.getElementById("open-modal") || document.getElementsByClassName("js-app-loading")[0];
+	var openmodal = document.getElementById("open-modal") || elements("js-app-loading")[0];
 	openmodal.innerHTML = '<div class="mdl s-tall-fixed"><header class="mdl-header"><h3 class="mdl-header-title">Diagnostics</h3></header><div class="mdl-inner"><div class="mdl-content"style="padding-left:20px">\
 	\
 	\
@@ -809,7 +808,7 @@ function attemptdiag() {
 }
 
 function dxdiag() {
-	var openmodal = document.getElementById("open-modal") || document.getElementsByClassName("js-app-loading")[0];
+	var openmodal = document.getElementById("open-modal") || elements("js-app-loading")[0];
 	openmodal.innerHTML = '<div class="mdl s-tall-fixed"><header class="mdl-header"><h3 class="mdl-header-title">DxDiag Help</h3></header><div class="mdl-inner"><div class="mdl-content"style="padding-left:20px">\
 	\
 	\
@@ -828,62 +827,62 @@ function dxdiag() {
 }
 
 function addSpaceSuggestion(tdetxt,clickd) {
-  suggestion = document.createElement("button");
-  suggestion.className = "btn tde-no-transform-case";
-  suggestion.innerHTML = tdetxt;
-  suggestion.addEventListener("click", clickd);
-  suggestion.addEventListener("click", function(){this.remove()});
-  $(".tde-no-chars-suggestions")[0].appendChild(suggestion);
+	suggestion = document.createElement("button");
+	suggestion.className = "btn tde-no-transform-case";
+	suggestion.innerHTML = tdetxt;
+	suggestion.addEventListener("click", clickd);
+	suggestion.addEventListener("click", function(){this.remove()});
+	$(".tde-no-chars-suggestions")[0].appendChild(suggestion);
 }
 
 function checkSpaceSuggestions() {
 	var tweetTxt = $(".compose-text")[0].value;
 
-  if (tweetTxt.match(/ ( )+/g) !== null) {
-    addSpaceSuggestion("Trim excess space inside",function(){
-      $(".compose-text")[0].value = tweetTxt.replace(/ ( )+/g," ")
-    });
-  }
+	if (tweetTxt.match(/ ( )+/g) !== null) {
+		addSpaceSuggestion("Trim excess space inside",function(){
+			$(".compose-text")[0].value = tweetTxt.replace(/ ( )+/g," ")
+		});
+	}
 
-  if (tweetTxt.match(/(^\s+)|([^\w|.|\.|\!|\?]+?$)/gm) !== null) {
-    addSpaceSuggestion("Trim excess space around edges",function(){
-      $(".compose-text")[0].value = tweetTxt.replace(/(^\s+)|([^\w|.|\.|\!|\?]+?$)/gm,"")
-    });
-  }
+	if (tweetTxt.match(/(^\s+)|([^\w|.|\.|\!|\?]+?$)/gm) !== null) {
+		addSpaceSuggestion("Trim excess space around edges",function(){
+			$(".compose-text")[0].value = tweetTxt.replace(/(^\s+)|([^\w|.|\.|\!|\?]+?$)/gm,"")
+		});
+	}
 
 }
 
 function outtaSpaceSuggestions() {
 
-  if (typeof $(".js-media-added")[0] !== "undefined" && typeof $(".character-count-compose")[0] !== "undefined") {
-  	if (parseInt($(".character-count-compose")[0].value) < 0) {
+	if (typeof $(".js-media-added")[0] !== "undefined" && typeof $(".character-count-compose")[0] !== "undefined") {
+		if (parseInt($(".character-count-compose")[0].value) < 0) {
 
-  		if (typeof $(".tde-out-of-space-suggestions")[0] === "undefined") {
-  			NoCharsNotification = document.createElement("div");
-  			NoCharsNotification.className = "compose-media-bar-holder padding-al tde-out-of-space-suggestions";
-  			NoCharsNotification.innerHTML = '<div class="compose-media-bar"><div class="tde-no-chars-suggestions"><div class="txt weight-light txt-extra-large margin-b--10">Oops, you\'re over the character limit.</div>Here are suggestions to help:<br></div></div>';
-  			
-  			$(".js-media-added")[0].appendChild(NoCharsNotification);
-  			$(".js-media-added")[0].className = "js-media-added";
+			if (typeof $(".tde-out-of-space-suggestions")[0] === "undefined") {
+				NoCharsNotification = document.createElement("div");
+				NoCharsNotification.className = "compose-media-bar-holder padding-al tde-out-of-space-suggestions";
+				NoCharsNotification.innerHTML = '<div class="compose-media-bar"><div class="tde-no-chars-suggestions"><div class="txt weight-light txt-extra-large margin-b--10">Oops, you\'re over the character limit.</div>Here are suggestions to help:<br></div></div>';
 
-  			checkSpaceSuggestions();
-  		}
+				$(".js-media-added")[0].appendChild(NoCharsNotification);
+				$(".js-media-added")[0].className = "js-media-added";
 
-  	} else if (typeof $(".tde-out-of-space-suggestions")[0] !== "undefined" && parseInt($(".character-count-compose")[0].value) >= 0) {
-  		$(".tde-out-of-space-suggestions")[0].remove();
-      $(".js-media-added")[0].className = "js-media-added is-hidden";
-  	}
-  }
+				checkSpaceSuggestions();
+			}
+
+		} else if (typeof $(".tde-out-of-space-suggestions")[0] !== "undefined" && parseInt($(".character-count-compose")[0].value) >= 0) {
+			$(".tde-out-of-space-suggestions")[0].remove();
+			$(".js-media-added")[0].className = "js-media-added is-hidden";
+		}
+	}
 
 	setTimeout(outtaSpaceSuggestions,2000);
 }
 
 function spawnModule(fun,del) {
-  if (typeof fun === "undefined") {
-    console.error("WARNING: TDE attempted to spawn a module that doesn't exist. This is a software bug.");
-  } else {
-    setTimeout(fun,del)
-  }
+	if (typeof fun === "undefined") {
+		console.error("WARNING: TDE attempted to spawn a module that doesn't exist. This is a software bug.");
+	} else {
+		setTimeout(fun,del)
+	}
 }
 
 spawnModule(TDEInit,0);
@@ -899,7 +898,7 @@ window.addEventListener("keyup", KeyboardShortcutHandler, false);
 (new MutationObserver(function(mutations) {
 	mutations.forEach(function(mutation) {
 		ReloadTheme();
-	});		
+	});
 })).observe(document.querySelector("link[title='dark']"), {attributes:true});
 
 console.log("TDEinject loaded");
