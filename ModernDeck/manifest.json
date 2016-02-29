@@ -3,7 +3,7 @@
   "short_name": "ModernDeck",
 
   "description": "The world's most loved twitter client.",
-  "version": "5.4",
+  "version": "5.4.1",
 
   "permissions": [
     "webRequest",
@@ -20,7 +20,7 @@
     {
       "matches": ["https://tweetdeck.twitter.com/*"],
       "js": ["extension/TDELoad.js"],
-      "css": ["sources/enhancer.min.css"],
+      "css": ["sources/enhancer.css"],
       "run_at": "document_end"
     }
   ],

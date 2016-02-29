@@ -1,7 +1,7 @@
 // TDELoad.js
-// Copyright (c) 2015 Dangered Wolf 
+// Copyright (c) 2015 Dangered Wolf
 
-console.log("Enhancer 5.3.3");
+console.log("TDELoad 5.4.1");
 
 if (typeof chrome !== "undefined") {
   var isChromium = true;

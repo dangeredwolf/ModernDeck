@@ -6,6 +6,8 @@
 var msgID = 0;
 var messagesAccounted = [];
 
+var profileProblem = false;
+
 var TDEDark = true;
 
 var addedColumnsLoadingTagAndIsWaiting = false;
@@ -13,9 +15,11 @@ var TDEBaseURL = "https://dangeredwolf.com/assets/tdetest/"; // Defaults to stre
 var progress = null;
 var tde_fetch_profile_info_for_nav_drawer = 0;
 
-var SystemVersion = "5.4";
+var SystemVersion = "5.4.1";
 
 var TreatGeckoWithCare = false;
+
+var FindProfButton;
 
 var WantsToBlockCommunications = false;
 var WantsToDisableSecureStylesheets = false;
@@ -97,7 +101,7 @@ function TDEInit(){
 		return;
 	}
 
-	if ((typeof localStorage.tde_flag_block_secure_ss !== "undefined" && !localStorage.tde_flag_block_secure_ss) || (typeof localStorage.tde_flag_block_secure_ss === "undefined")) { // Please just disable this by DisableSecureStylesheets() as it resets the whole thing for you
+	/*if ((typeof localStorage.tde_flag_block_secure_ss !== "undefined" && !localStorage.tde_flag_block_secure_ss) || (typeof localStorage.tde_flag_block_secure_ss === "undefined")) { // Please just disable this by DisableSecureStylesheets() as it resets the whole thing for you
 		injStyles = document.createElement("link");
 		injStyles.rel = "stylesheet";
 		if (navigator.userAgent.indexOf("Windows NT 5.1") > -1 || navigator.userAgent.indexOf("Windows NT 5.2") > -1) {
@@ -106,7 +110,7 @@ function TDEInit(){
 			injStyles.href = "https://tweetdeckenhancer.com/additionscss";
 		}
 		document.head.appendChild(injStyles);
-	}
+	}*/
 
 	if(TreatGeckoWithCare == true)
 	{
@@ -474,14 +478,17 @@ function Analytics() {
 }
 
 function PrepareLoginStuffs() {
+	console.log("Start prepare login stuffs");
 	if (typeof $ === "undefined") {
 		setTimeout(PrepareLoginStuffs,200);
 		return;
 	}
 
-	var FindProfButton = $(".js-account-settings-accounts>.account-settings-row:first-child a[rel='user']")[0];
+	FindProfButton = $(".account-settings-row:first-child a[rel='user']")[0];
 	if (typeof FindProfButton === "undefined") {
-		setTimeout(PrepareLoginStuffs,200);
+		$(".js-show-drawer.js-header-action").click();
+		profileProblem = true;
+		setTimeout(PrepareLoginStuffs,100);
 		return;
 	}
 	FindProfButton.click();
@@ -525,7 +532,11 @@ function FinaliseLoginStuffs() {
 
 	console.log("Finished login stuffs! you are in the nav drawer, I think!");
 
-	Analytics(); // Collect basic TDE version analytics data (doesn't log usage, account name / ID, or anything else)
+	if (profileProblem) {
+		profileProblem = false;
+		$(".js-show-drawer.btn-compose")[0].click();
+		console.log("repaired profile problem with tweet thing");
+	}
 }
 
 function NavigationSetup() {
@@ -545,11 +556,13 @@ function NavigationSetup() {
 
 	TDENavigationDrawerButton.onclick = function(){
 		// TODO: Wire button to open navigation drawer
+		// TODO: Remove the above TODO from back when i developed tde 5.0
+
 		if (typeof tde_nav_drawer_background !== "undefined") {
-			tde_nav_drawer_background.setAttribute("class","tde-nav-drawer-background");
+			$("#tde_nav_drawer_background").attr("class","tde-nav-drawer-background");
 		}
 		if (typeof tde_nav_drawer !== "undefined") {
-			tde_nav_drawer.setAttribute("class","tde-nav-drawer");
+			$("#tde_nav_drawer").attr("class","tde-nav-drawer");
 		}
 	};
 
@@ -560,17 +573,9 @@ function NavigationSetup() {
 
 	document.body.appendChild(TDENavigationDrawer);
 
-	if (typeof tde_nd_header_image !== "undefined") {
-		tde_nd_header_image.setAttribute("style","background:#00BCD4");
-	}
-
-	if (typeof tde_nd_header_photo !== "undefined") {
-		tde_nd_header_photo.setAttribute("src","");
-	}
-
-	if (typeof tde_nd_header_username !== "undefined") {
-		tde_nd_header_username.innerHTML = "An error occurred fetching<br>Please wait or refresh page!!"
-	}
+	$("#tde_nd_header_image").attr("style","background:#00BCD4");
+	$("#tde_nd_header_photo").attr("src","");
+	$("#tde_nd_header_username").html("PROFILE ERROR<br>Tell @dangeredwolf i said hi");
 
 	setTimeout(PrepareLoginStuffs,0);
 
