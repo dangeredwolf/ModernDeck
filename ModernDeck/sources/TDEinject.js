@@ -112,14 +112,6 @@ function TDEInit(){
 		document.head.appendChild(injStyles);
 	}*/
 
-	if(TreatGeckoWithCare == true)
-	{
-		InjectFonts = document.createElement("link");
-		InjectFonts.rel = "stylesheet";
-		InjectFonts.href = TDEBaseURL + "sources/fonts/fonts.css";
-	}
-	else
-	{
 	InjectFonts = document.createElement("style");
 	InjectFonts.innerHTML = "\
 	@font-face {\
@@ -176,7 +168,6 @@ function TDEInit(){
 		font-weight: 400;\
 		src: url(" + TDEBaseURL + "sources/fonts/fontawesome.woff2) format('woff2');\
 	}";
-	}
 
 
 	document.head.appendChild(InjectFonts);

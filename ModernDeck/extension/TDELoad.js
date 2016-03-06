@@ -30,12 +30,10 @@ function InjectDevStyles() {
   injStyles = document.createElement("link");
   injStyles.rel = "stylesheet";
 
-  if (isChromium) {
+  if (isChromium || isFirefox) {
     injStyles.href = chrome.extension.getURL("sources/enhancer.css");
   } else if (isSafari) {
     injStyles.href = safari.extension.baseURI + "sources/enhancer.css";
-  } else if (isFirefox) {
-    injStyles.href = self.options.ffTDEURLExchange + "sources/enhancer.css";
   } else {
     console.log('you done goofed')
   }
@@ -62,15 +60,12 @@ function TDEURLExchange(url) {
   console.log("injected url exchange with id " + injurl.id);
 }
 
-if (isChromium) {
+if (isChromium || isFirefox) {
   TDEURLExchange(chrome.extension.getURL(""));
   InjectScript.src = chrome.extension.getURL("sources/TDEinject.js");
 } else if (isSafari) {
   TDEURLExchange(safari.extension.baseURI + "/");
   InjectScript.src = safari.extension.baseURI + "sources/TDEinject.js";
-} else {
-  TDEURLExchange(self.options.ffTDEURLExchange);
-  InjectScript.src = self.options.ffTDEURLExchange + "sources/TDEinject.js";
 }
 
 InjectScript.type = "text/javascript";
