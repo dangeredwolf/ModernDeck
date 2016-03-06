@@ -8889,7 +8889,8 @@ a[rel=hashtag]:active {
 	z-index:9;
 	transform:scale(0.5);
 	opacity:0;
-	transition:500ms all,150ms opacity
+	transition:500ms all,150ms opacity;
+	pointer-events:none
 }
 
 
