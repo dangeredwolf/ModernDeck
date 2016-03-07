@@ -2496,12 +2496,12 @@ h6 {
 	font-weight:400;
 	color:#fff;
 	height:100%;
-	padding-left:30px!important;
+	padding-left:3px!important;
 	position:absolute;
 	width:100%;
-	padding-top:2px;
+	padding-top:3px;
 	margin-left:0!important;
-	margin-top:-2px!important
+	margin-top:-2px!important;
 }
 
 .mdl .column-title {
