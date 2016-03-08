@@ -3,24 +3,21 @@
 
 // made with love <3
 
+var SystemVersion = "5.4.1";
+var TDEBaseURL = "https://dangeredwolf.com/assets/tdetest/"; // Defaults to streaming if nothing else is available (i.e. legacy firefox)
+
 var msgID = 0;
 var messagesAccounted = [];
-
-var profileProblem = false;
 
 var TDEDark = true;
 
 var addedColumnsLoadingTagAndIsWaiting = false;
-var TDEBaseURL = "https://dangeredwolf.com/assets/tdetest/"; // Defaults to streaming if nothing else is available (i.e. legacy firefox)
 var progress = null;
-var tde_fetch_profile_info_for_nav_drawer = 0;
-
-var SystemVersion = "5.4.1";
+var FindProfButton;
+var FetchProfileInfo = 0;
 
 var TreatGeckoWithCare = false;
-
-var FindProfButton;
-
+var profileProblem = false;
 var WantsToBlockCommunications = false;
 var WantsToDisableSecureStylesheets = false;
 
@@ -126,48 +123,36 @@ function TDEInit(){
 		fontParseHelper({family:"Font Awesome",weight:"400",name:"fontawesome",range:"U+0000-F000"})
 	));
 
-	elements("js-modals-container")[0].removeChild = function(rmnode){
+	document.querySelector("js-modals-container").removeChild.function(rmnode){
 		if (typeof rmnode === "undefined") {
-			console.log("what");
 			return;
 		}
-		rmnode.setAttribute("class","js-modal-context tde-modal-window-fade-out overlay overlay-super scroll-v");
-		setTimeout(function(){rmnode.remove();},200);
+		$(rmnode).attr("class","js-modal-context tde-modal-window-fade-out overlay overlay-super scroll-v").delay(300).queue(function(){$(this).remove()});
 	}
 
 	if (typeof elements("js-modal")[0] !== "undefined") {
 
 		elements("js-modal")[0].removeChild = function(rmnode){
 			if (typeof rmnode === "undefined") {
-				console.log("what");
 				return;
 			}
-			rmnode.setAttribute("class","js-modal-context tde-modal-window-fade-out overlay overlay-super scroll-v");
-			setTimeout(function(){rmnode.remove();},200);
+			$(rmnode).attr("class","js-modal-context tde-modal-window-fade-out overlay overlay-super scroll-v").delay(300).queue(function(){$(this).remove()});
 		}
 	}
 
 	document.body.removeChild = function(i) {
-		if (typeof i.getAttribute("class") !== "undefined" && i.getAttribute("class") !== null && i.getAttribute("class").indexOf("tooltip") > -1) {
+		if (i.hasClass("tooltip")) {
 			setTimeout(function(){
 				i.remove(); // Tooltips automatically animate themselves out. But here we clean them up as well ourselves.
 			},500);
+		} else {
+	 		i.remove();
 		}
-		else {
- 		i.remove();
-	}
  	}
 
-	$("link[rel=\"shortcut icon\"]")[0].href = TDEBaseURL + "sources/favicon.ico";
+	$("link[rel=\"shortcut icon\"]").attr("href",TDEBaseURL + "sources/favicon.ico");
 
-	var AudioSources = document.getElementsByTagName("source");
-
-	for (i = 0; i < AudioSources.length; i++) {
-		AudioSources[i].remove();
-	}
-
-	var NotificationSound = document.getElementsByTagName("audio")[0];
-	NotificationSound.src = GetURL("sources/alert_2.mp3");
+	$(document.querySelector("audio")).attr("src",GetURL("sources/alert_2.mp3"));
 
 	TD_mustaches["settings/global_setting_filter_row.mustache"]='<li class="list-filter cf"> {{_i}}<div class="tde-mute-text tde-mute-text-{{getDisplayType}}"></div> {{>text/global_filter_value}}{{/i}} <input type="button" name="remove-filter" value="{{_i}}Remove{{/i}}" data-id="{{id}}" class="js-remove-filter small btn btn-negative"> </li>'
 
@@ -455,12 +440,12 @@ function FinaliseLoginStuffs() {
 	}
 
 	if (typeof elements("prf-header")[0] === "undefined") {
-		if (typeof tde_fetch_profile_info_for_nav_drawer === "undefined") {
-			tde_fetch_profile_info_for_nav_drawer = 0;
+		if (typeof FetchProfileInfo === "undefined") {
+			FetchProfileInfo = 0;
 		}
-		tde_fetch_profile_info_for_nav_drawer++;
+		FetchProfileInfo++;
 
-		if (tde_fetch_profile_info_for_nav_drawer > 10) {
+		if (FetchProfileInfo > 10) {
 			console.log("this is not even working, bye");
 			setTimeout(PrepareLoginStuffs,0);
 			return;
@@ -740,7 +725,7 @@ function attemptdiag() {
 	<br>audiosrc: ' + document.getElementsByTagName("audio")[0].src + '\
 	<br>TDEBaseURL: ' + TDEBaseURL + '\
 	<br>TDEDark: ' + TDEDark + '\
-	<br>tde_fetch_profile_info_for_nav_drawer: ' + tde_fetch_profile_info_for_nav_drawer + '\
+	<br>FetchProfileInfo: ' + FetchProfileInfo + '\
 	<br>tde_round_avatars: ' + localStorage.tde_round_avatars + '\
 	<br>tde_flag_block_secure_ss: ' + localStorage.tde_flag_block_secure_ss + '\
 	<br>tde_flag_block_communications: ' + localStorage.tde_flag_block_communications + '\
