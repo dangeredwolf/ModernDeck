@@ -26,7 +26,9 @@ var WantsToDisableSecureStylesheets = false;
 
 var elements = function(a,b,c){return document.getElementsByClassName(a,b,c)};
 
-var Preferences = []
+var Preferences = [];
+
+var make = function(a){return $(document.createElement(a))};
 
 Preferences.Appearance = [
 	[
@@ -65,6 +67,14 @@ function GetURL(url) {
 	return TDEBaseURL + url;
 }
 
+function fontParseHelper(a) {
+	if (typeof a !== "object" || a === null) {
+		throw "you forgot to pass the object";
+	}
+
+	return "@font-face{font-family:'" + (a.family || "Roboto") + "';font-style:" + (a.style || "normal") + ";font-weight:" + (a.weight || "300") + ";src:url(" + TDEBaseURL + "sources/fonts/" + a.name + ".woff2) format('woff2');unicode-range:" + (a.range || "U+0100-024F,U+1E00-1EFF,U+20A0-20AB,U+20AD-20CF,U+2C60-2C7F,U+A720-A7FF") + "}";
+}
+
 function TDEInit(){
 	if (typeof $ === "undefined") {
 		setTimeout(TDEInit,500);
@@ -96,90 +106,25 @@ function TDEInit(){
 		return;
 	}
 
-	if (typeof elements("js-modals-container")[0] === "undefined") {
+	if (typeof document.querySelector("js-modals-container") === "undefined") {
 		setTimeout(TDEInit,500);
 		return;
 	}
 
-	/*if ((typeof localStorage.tde_flag_block_secure_ss !== "undefined" && !localStorage.tde_flag_block_secure_ss) || (typeof localStorage.tde_flag_block_secure_ss === "undefined")) { // Please just disable this by DisableSecureStylesheets() as it resets the whole thing for you
-		injStyles = document.createElement("link");
-		injStyles.rel = "stylesheet";
-		if (navigator.userAgent.indexOf("Windows NT 5.1") > -1 || navigator.userAgent.indexOf("Windows NT 5.2") > -1) {
-			injStyles.href = "http://tweetdeckenhancer.com/additionscss";
-		} else {
-			injStyles.href = "https://tweetdeckenhancer.com/additionscss";
-		}
-		document.head.appendChild(injStyles);
-	}*/
+	TD.controller.stats.dataminrApiRequest = function(){};
+	TD.controller.stats.dataminrAuthRequest = function(){};
+	TD.controller.stats.dataminrClickImpression = function(){};
 
-	if(TreatGeckoWithCare == true)
-	{
-		InjectFonts = document.createElement("link");
-		InjectFonts.rel = "stylesheet";
-		InjectFonts.href = TDEBaseURL + "sources/fonts/fonts.css";
-	}
-	else
-	{
-	InjectFonts = document.createElement("style");
-	InjectFonts.innerHTML = "\
-	@font-face {\
-		font-family:'Roboto';\
-		font-style:normal;\
-		font-weight: 300;\
-		src: url(" + TDEBaseURL + "sources/fonts/Roboto300latinext.woff2) format('woff2');\
-		unicode-range:U+0100-024F,U+1E00-1EFF,U+20A0-20AB,U+20AD-20CF,U+2C60-2C7F,U+A720-A7FF;\
-	}\
-	@font-face {\
-		font-family:'Roboto';\
-		font-style: normal;\
-		font-weight: 300;\
-		src: url(" + TDEBaseURL + "sources/fonts/Roboto300latin.woff2) format('woff2');\
-		unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;\
-	}\
-	@font-face {\
-		font-family: 'Roboto';\
-		font-style: normal;\
-		font-weight: 400;\
-		src: url(" + TDEBaseURL + "sources/fonts/Roboto400latinext.woff2) format('woff2');\
-		unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;\
-	}\
-	@font-face {\
-		font-family: 'Roboto';\
-		font-style: normal;\
-		font-weight: 400;\
-		src: url(" + TDEBaseURL + "sources/fonts/Roboto400latin.woff2) format('woff2');\
-		unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;\
-	}\
-	@font-face {\
-		font-family: 'Roboto';\
-		font-style: normal;\
-		font-weight: 500;\
-		src: url(" + TDEBaseURL + "sources/fonts/Roboto500latinext.woff2) format('woff2');\
-		unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;\
-	}\
-	@font-face {\
-		font-family: 'Roboto';\
-		font-style: normal;\
-		font-weight: 500;\
-		src: url(" + TDEBaseURL + "sources/fonts/Roboto500latin.woff2) format('woff2');\
-		unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;\
-	}\
-	@font-face {\
-		font-family: 'Material Icons';\
-		font-style: normal;\
-		font-weight: 400;\
-		src: url(" + TDEBaseURL + "sources/fonts/MaterialIcons.woff2) format('woff2');\
-	}\
-	@font-face {\
-		font-family: 'Font Awesome';\
-		font-style: normal;\
-		font-weight: 400;\
-		src: url(" + TDEBaseURL + "sources/fonts/fontawesome.woff2) format('woff2');\
-	}";
-	}
-
-
-	document.head.appendChild(InjectFonts);
+	$(document.head).append(make("style").html(
+		fontParseHelper({name:"Roboto300latin",range:"U+0000-00FF,U+0131,U+0152-0153,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2212,U+2215,U+E0FF,U+EFFD,U+F000"}) +
+		fontParseHelper({name:"Roboto300latinext"}) +
+		fontParseHelper({weight:"400",name:"Roboto400latin",range:"U+0000-00FF,U+0131,U+0152-0153,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2212,U+2215,U+E0FF,U+EFFD,U+F000"}) +
+		fontParseHelper({weight:"400",name:"Roboto400latinext"}) +
+		fontParseHelper({weight:"500",name:"Roboto500latin",range:"U+0000-00FF,U+0131,U+0152-0153,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2212,U+2215,U+E0FF,U+EFFD,U+F000"}) +
+		fontParseHelper({weight:"500",name:"Roboto500latinext"}) +
+		fontParseHelper({family:"Material Icons",weight:"400",name:"MaterialIcons",range:"U+0000-F000"}) +
+		fontParseHelper({family:"Font Awesome",weight:"400",name:"fontawesome",range:"U+0000-F000"})
+	));
 
 	elements("js-modals-container")[0].removeChild = function(rmnode){
 		if (typeof rmnode === "undefined") {
