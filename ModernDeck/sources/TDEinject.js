@@ -3,30 +3,34 @@
 
 // made with love <3
 
+var SystemVersion = "5.4.1";
+var TDEBaseURL = "https://dangeredwolf.com/assets/tdetest/"; // Defaults to streaming if nothing else is available (i.e. legacy firefox)
+
 var msgID = 0;
 var messagesAccounted = [];
-
-var profileProblem = false;
 
 var TDEDark = true;
 
 var addedColumnsLoadingTagAndIsWaiting = false;
-var TDEBaseURL = "https://dangeredwolf.com/assets/tdetest/"; // Defaults to streaming if nothing else is available (i.e. legacy firefox)
 var progress = null;
-var tde_fetch_profile_info_for_nav_drawer = 0;
-
-var SystemVersion = "5.4.1";
-
-var TreatGeckoWithCare = false;
-
 var FindProfButton;
 
+var TreatGeckoWithCare = false;
+var profileProblem = false;
 var WantsToBlockCommunications = false;
 var WantsToDisableSecureStylesheets = false;
 
-var elements = function(a,b,c){return document.getElementsByClassName(a,b,c)};
+var FetchProfileInfo = 0;
 
-var Preferences = []
+var elements = function(a,b,c){return $(document.getElementsByClassName(a,b,c))};
+var find1Obj = function(selector){return $(document.querySelector(selector))};
+
+var Preferences = [];
+
+var make = function(a){return $(document.createElement(a))};
+var head = $(document.head);
+var body = $(document.body);
+var html = $(document.querySelector("html")); // Only 1 result; faster to find
 
 Preferences.Appearance = [
 	[
@@ -53,195 +57,108 @@ Preferences.Accessibility = [
 if (typeof TDEURLExchange !== "undefined") {
 	TDEBaseURL = TDEURLExchange.getAttribute("type") || "https://dangeredwolf.com/assets/tdetest/";
 	console.info("TDEURLExchange completed with URL " + TDEBaseURL);
-} else {
-	console.warn("TDEURLExchange failed :( defaulting to streamed sources, may not work... but we'll try...");
 }
 
 if (typeof chrome === "undefined" && typeof safari === "undefined") {
 	TreatGeckoWithCare = true;
 }
 
+function getPref(id) {
+	return localStorage[id] === "true" && true || localStorage[id] === "false" && false || localStorage[id];
+}
+
+function setPref(id,p) {
+	localStorage[id] = p;
+}
+
 function GetURL(url) {
 	return TDEBaseURL + url;
 }
 
+function fontParseHelper(a) {
+	if (typeof a !== "object" || a === null) {
+		throw "you forgot to pass the object";
+	}
+
+	return "@font-face{font-family:'" + (a.family || "Roboto") + "';font-style:" + (a.style || "normal") + ";font-weight:" + (a.weight || "300") + ";src:url(" + TDEBaseURL + "sources/fonts/" + a.name + ".woff2) format('woff2');unicode-range:" + (a.range || "U+0100-024F,U+1E00-1EFF,U+20A0-20AB,U+20AD-20CF,U+2C60-2C7F,U+A720-A7FF") + "}";
+}
+
 function TDEInit(){
-	if (typeof $ === "undefined") {
+	if (
+		typeof $ === "undefined" ||
+		typeof TD_mustaches === "undefined" ||
+		typeof TD === "undefined" ||
+		typeof TD.util === "undefined" ||
+		typeof TD.util.prettyTimeString === "undefined" ||
+		typeof TD_mustaches["settings/global_setting_filter_row.mustache"] === "undefined" ||
+		typeof document.querySelector("js-modals-container") === "undefined"
+	) {
 		setTimeout(TDEInit,500);
 		return;
 	}
 
-	if (typeof TD_mustaches === "undefined") {
-		setTimeout(TDEInit,500);
-		return;
-	}
+	TD.controller.stats.dataminrApiRequest = function(){};
+	TD.controller.stats.dataminrAuthRequest = function(){};
+	TD.controller.stats.dataminrClickImpression = function(){};
 
-	if (typeof TD === "undefined") {
-		setTimeout(TDEInit,500);
-		return;
-	}
+	$(document.head).append(make("style").html(
+		fontParseHelper({name:"Roboto300latin",range:"U+0000-00FF,U+0131,U+0152-0153,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2212,U+2215,U+E0FF,U+EFFD,U+F000"}) +
+		fontParseHelper({name:"Roboto300latinext"}) +
+		fontParseHelper({weight:"400",name:"Roboto400latin",range:"U+0000-00FF,U+0131,U+0152-0153,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2212,U+2215,U+E0FF,U+EFFD,U+F000"}) +
+		fontParseHelper({weight:"400",name:"Roboto400latinext"}) +
+		fontParseHelper({weight:"500",name:"Roboto500latin",range:"U+0000-00FF,U+0131,U+0152-0153,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2212,U+2215,U+E0FF,U+EFFD,U+F000"}) +
+		fontParseHelper({weight:"500",name:"Roboto500latinext"}) +
+		fontParseHelper({family:"Material Icons",weight:"400",name:"MaterialIcons",range:"U+0000-F000"}) +
+		fontParseHelper({family:"Font Awesome",weight:"400",name:"fontawesome",range:"U+0000-F000"})
+	));
 
-	if (typeof TD.util === "undefined") {
-		setTimeout(TDEInit,500);
-		return;
-	}
-
-	if (typeof TD.util.prettyTimeString === "undefined") {
-		setTimeout(TDEInit,500);
-		return;
-	}
-
-	if (typeof TD_mustaches["settings/global_setting_filter_row.mustache"] === "undefined") {
-		setTimeout(TDEInit,500);
-		return;
-	}
-
-	if (typeof elements("js-modals-container")[0] === "undefined") {
-		setTimeout(TDEInit,500);
-		return;
-	}
-
-	/*if ((typeof localStorage.tde_flag_block_secure_ss !== "undefined" && !localStorage.tde_flag_block_secure_ss) || (typeof localStorage.tde_flag_block_secure_ss === "undefined")) { // Please just disable this by DisableSecureStylesheets() as it resets the whole thing for you
-		injStyles = document.createElement("link");
-		injStyles.rel = "stylesheet";
-		if (navigator.userAgent.indexOf("Windows NT 5.1") > -1 || navigator.userAgent.indexOf("Windows NT 5.2") > -1) {
-			injStyles.href = "http://tweetdeckenhancer.com/additionscss";
-		} else {
-			injStyles.href = "https://tweetdeckenhancer.com/additionscss";
-		}
-		document.head.appendChild(injStyles);
-	}*/
-
-	if(TreatGeckoWithCare == true)
-	{
-		InjectFonts = document.createElement("link");
-		InjectFonts.rel = "stylesheet";
-		InjectFonts.href = TDEBaseURL + "sources/fonts/fonts.css";
-	}
-	else
-	{
-	InjectFonts = document.createElement("style");
-	InjectFonts.innerHTML = "\
-	@font-face {\
-		font-family:'Roboto';\
-		font-style:normal;\
-		font-weight: 300;\
-		src: url(" + TDEBaseURL + "sources/fonts/Roboto300latinext.woff2) format('woff2');\
-		unicode-range:U+0100-024F,U+1E00-1EFF,U+20A0-20AB,U+20AD-20CF,U+2C60-2C7F,U+A720-A7FF;\
-	}\
-	@font-face {\
-		font-family:'Roboto';\
-		font-style: normal;\
-		font-weight: 300;\
-		src: url(" + TDEBaseURL + "sources/fonts/Roboto300latin.woff2) format('woff2');\
-		unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;\
-	}\
-	@font-face {\
-		font-family: 'Roboto';\
-		font-style: normal;\
-		font-weight: 400;\
-		src: url(" + TDEBaseURL + "sources/fonts/Roboto400latinext.woff2) format('woff2');\
-		unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;\
-	}\
-	@font-face {\
-		font-family: 'Roboto';\
-		font-style: normal;\
-		font-weight: 400;\
-		src: url(" + TDEBaseURL + "sources/fonts/Roboto400latin.woff2) format('woff2');\
-		unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;\
-	}\
-	@font-face {\
-		font-family: 'Roboto';\
-		font-style: normal;\
-		font-weight: 500;\
-		src: url(" + TDEBaseURL + "sources/fonts/Roboto500latinext.woff2) format('woff2');\
-		unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;\
-	}\
-	@font-face {\
-		font-family: 'Roboto';\
-		font-style: normal;\
-		font-weight: 500;\
-		src: url(" + TDEBaseURL + "sources/fonts/Roboto500latin.woff2) format('woff2');\
-		unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;\
-	}\
-	@font-face {\
-		font-family: 'Material Icons';\
-		font-style: normal;\
-		font-weight: 400;\
-		src: url(" + TDEBaseURL + "sources/fonts/MaterialIcons.woff2) format('woff2');\
-	}\
-	@font-face {\
-		font-family: 'Font Awesome';\
-		font-style: normal;\
-		font-weight: 400;\
-		src: url(" + TDEBaseURL + "sources/fonts/fontawesome.woff2) format('woff2');\
-	}";
-	}
-
-
-	document.head.appendChild(InjectFonts);
-
-	elements("js-modals-container")[0].removeChild = function(rmnode){
+	document.querySelector("js-modals-container").removeChild(function(rmnode){
 		if (typeof rmnode === "undefined") {
-			console.log("what");
 			return;
 		}
-		rmnode.setAttribute("class","js-modal-context tde-modal-window-fade-out overlay overlay-super scroll-v");
-		setTimeout(function(){rmnode.remove();},200);
+		$(rmnode).attr("class","js-modal-context tde-modal-window-fade-out overlay overlay-super scroll-v").delay(300).queue(function(){$(this).remove()});
 	}
 
-	if (typeof elements("js-modal")[0] !== "undefined") {
+	if ($("js-modal").length > 0) {
 
 		elements("js-modal")[0].removeChild = function(rmnode){
 			if (typeof rmnode === "undefined") {
-				console.log("what");
 				return;
 			}
-			rmnode.setAttribute("class","js-modal-context tde-modal-window-fade-out overlay overlay-super scroll-v");
-			setTimeout(function(){rmnode.remove();},200);
+			$(rmnode).attr("class","js-modal-context tde-modal-window-fade-out overlay overlay-super scroll-v").delay(300).queue(function(){$(this).remove()});
 		}
 	}
 
-	document.body.removeChild = function(i) {
-		if (typeof i.getAttribute("class") !== "undefined" && i.getAttribute("class") !== null && i.getAttribute("class").indexOf("tooltip") > -1) {
+	body.on("removeChild",function(i) {
+		if ($(i).hasClass("tooltip")) {
 			setTimeout(function(){
-				i.remove(); // Tooltips automatically animate themselves out. But here we clean them up as well ourselves.
+				i.remove(); // Tooltips automagically animate themselves out. But here we clean them up as well ourselves.
 			},500);
+		} else {
+	 		i.remove();
 		}
-		else {
- 		i.remove();
-	}
- 	}
+ 	});
 
-	$("link[rel=\"shortcut icon\"]")[0].href = TDEBaseURL + "sources/favicon.ico";
-
-	var AudioSources = document.getElementsByTagName("source");
-
-	for (i = 0; i < AudioSources.length; i++) {
-		AudioSources[i].remove();
-	}
-
-	var NotificationSound = document.getElementsByTagName("audio")[0];
-	NotificationSound.src = GetURL("sources/alert_2.mp3");
-
+	$("link[rel=\"shortcut icon\"]").attr("href",TDEBaseURL + "sources/favicon.ico");
+	$(document.querySelector("audio")).attr("src",GetURL("sources/alert_2.mp3"));
 	TD_mustaches["settings/global_setting_filter_row.mustache"]='<li class="list-filter cf"> {{_i}}<div class="tde-mute-text tde-mute-text-{{getDisplayType}}"></div> {{>text/global_filter_value}}{{/i}} <input type="button" name="remove-filter" value="{{_i}}Remove{{/i}}" data-id="{{id}}" class="js-remove-filter small btn btn-negative"> </li>'
 
-	if (localStorage.tde_round_avatars === "false") {
-		document.getElementsByTagName("html")[0].className += " tde-no-round-avatars";
-	} else if (typeof localStorage.tde_round_avatars === "undefined") {
-		localStorage.tde_round_avatars = true;
+	if (getPref("tde_round_avatars") === false) {
+		html.addClass("tde-no-round-avatars");
+	} else
+		setPref("tde_round_avatars",true);
 	}
 
-	if (localStorage.tde_dark_media === "true") {
-		document.getElementsByTagName("html")[0].className += " tde-dark-media-previews";
-	} else if (typeof localStorage.tde_dark_media === "undefined") {
-		localStorage.tde_dark_media = true;
+	if (getPref("tde_dark_media") === true) {
+		html.addClass("tde-dark-media-previews");
+	} else
+		setPref("tde_dark_media",false);
 	}
 
-	if (localStorage.tde_outlines === "true") {
-		document.getElementsByTagName("html")[0].className += " tde-acc-focus-ring";
-	} else if (typeof localStorage.tde_outlines === "undefined"){
-		localStorage.tde_outlines = false;
+	if (getPref("tde_outlines") === true) {
+		html.addClass("tde-acc-focus-ring");
+	} else
+		setPref("tde_outlines",false);
 	}
 
 	TD.util.prettyTimeString = function(e) {
@@ -253,15 +170,25 @@ function TDEInit(){
 }
 
 function WaitForLogin() {
-	if (typeof elements("app-signin-form")[0] === "undefined") {
-		document.getElementsByTagName("html")[0].setAttribute("class",document.getElementsByTagName("html")[0].getAttribute("class").replace(" signin-sheet-now-present",""));
+	if (find1Obj(".app-signin-form").length > 0) {
+		//document.getElementsByTagName("html")[0].setAttribute("class",document.getElementsByTagName("html")[0].getAttribute("class").replace(" signin-sheet-now-present",""));
+		//lmao
+
+		html.removeClass("signin-sheet-now-present");
 		return;
 	}
 	setTimeout(WaitForLogin,500);
 }
 
 function SendNotificationMessage(txt) {
-	if (TDENotification.className === "tde-appbar-notification") {
+	var knotty = $(TDENotification);
+	if (knotty.hasClass("tde-appbar-notification-hidden")) {
+		knotty.removeClass("tde-appbar-notification-hidden");
+	} else {
+		knotty.addClass("tde-appbar-notification-hidden");
+		knotty.delay(300).queue(function(){knotty.html("").removeClass("tde-appbar-notification-hidden")});
+	}
+ 	/*if (TDENotification.className === "tde-appbar-notification") {
 		TDENotification.className = "tde-appbar-notification tde-appbar-notification-hidden";
 		setTimeout(function(){
 			TDENotification.className = "tde-appbar-notification";
@@ -270,13 +197,13 @@ function SendNotificationMessage(txt) {
 	} else {
 		TDENotification.className = "tde-appbar-notification";
 		TDENotification.innerHTML = txt;
-	}
+	}*/
 }
 
 function WaitForNotificationDismiss(node,prevmsgID) {
 	if (typeof node === "undefined" || node === null || typeof node.parentNode === "undefined" || node.parentNode === null) {
 		if (msgID === prevmsgID) {
-			TDENotification.className = "tde-appbar-notification tde-appbar-notification-hidden";
+			$(TDENotification).addClass("tde-appbar-notification-hidden");
 			messagesAccounted[node] = undefined;
 			return;
 		} else {
@@ -291,27 +218,34 @@ function WorldTick(){
 
 	var elms = document.querySelectorAll(".tweet-action-item,.tweet-detail-action-item,.app-navigator.margin-bm.padding-ts");
 
-	for (i = 0; i < elms.length; i++) {
+	$(".tweet-action-item,.tweet-detail-action-item,.app-navigator.margin-bm.padding-ts").each(function(index){
+		$(this).addClass("tde-dropdown-fade-out").delay(200).queue(function(){$(this).remove()});
+	})
+
+	/*for (i = 0; i < elms.length; i++) {
 		elms[i].removeChild = function(dropdown){
 			dropdown.setAttribute("class",dropdown.getAttribute("class") + " tde-dropdown-fade-out");
 			setTimeout(function(){
 				dropdown.remove();
 			},200)
 		}
+	}*/
+	if (find1Obj(".status-message").length > 0) {
+		$(".status-message").each(function(index){
+			if (typeof messagesAccounted[this] === "undefined") {
+				var thing = this;
+
+				msgID++;
+
+				SendNotificationMessage(this.childNodes[1].innerHTML);
+				WaitForNotificationDismiss(thing,msgID);
+
+				messagesAccounted[this] = true;
+			}
+		})
 	}
 
-	/*var elms2 = document.querySelectorAll(".chirp-container");
-
-	for (i = 0; i < elms2.length; i++) {
-		elms2[i].removeChild = function(tweetarticle){
-			tweetarticle.setAttribute("class",tweetarticle.getAttribute("class") + " tde-tweet-fade-out");
-			setTimeout(function(){
-				tweetarticle.remove();
-			},500)
-		}
-	}*/
-
-	if (typeof document.querySelector(".status-message") !== "undefined") {
+	/*if (typeof document.querySelector(".status-message") !== "undefined") {
 		for (i = 0; i < elements("status-message").length; i++) {
 			if (typeof messagesAccounted[elements("status-message")[i]] === "undefined") {
 				var thing = elements("status-message")[i];
@@ -324,10 +258,10 @@ function WorldTick(){
 				messagesAccounted[elements("status-message")[i]] = true;
 			}
 		}
-	}
-
-	setTimeout(WorldTick,600);
+	}*/
 }
+
+setInterval(WorldTick,600);
 
 function ResetSettingsUI() {
 	$("#tde-appearance-form")[0].style.cssText = "display:none;";
@@ -444,39 +378,6 @@ function TDESettings() {
 		},100);
 }
 
-function ReplaceLoadingIndicator() {
-	if (typeof elements("app-signin-form")[0] !== "undefined") {
-		return;
-	}
-
-	if (window.tde5loadingreplaced) {
-		console.log("we're too late, bye");
-		return;
-	}
-
-	if (typeof elements("js-startflow-content startflow")[0] === "undefined") {
-		setTimeout(ReplaceLoadingIndicator,30);
-		return;
-	}
-
-}
-
-function Analytics() {
-	if (localStorage.tde_flag_block_communications) { // Please just enable this flag via executing DisableCommunications() as it resets everything related to it
-		return;
-	}
-
-	if (typeof $ === "undefined") {
-		setTimeout(Analytics,500);
-		return;
-	}
-	if (typeof $.ajax === "undefined") {
-		setTimeout(Analytics,500);
-		return;
-	}
-	$.ajax({url:"https://tweetdeckenhancer.com/analytics/TDE5/?v=" + SystemVersion + "&release=beta"});
-}
-
 function PrepareLoginStuffs() {
 	console.log("Start prepare login stuffs");
 	if (typeof $ === "undefined") {
@@ -484,9 +385,9 @@ function PrepareLoginStuffs() {
 		return;
 	}
 
-	FindProfButton = $(".account-settings-row:first-child a[rel='user']")[0];
-	if (typeof FindProfButton === "undefined") {
-		$(".js-show-drawer.js-header-action").click();
+	FindProfButton = find1Obj(".account-settings-row:first-child a[rel='user']");
+	if (FindProfButton.length === -1) {
+		find1Obj(".js-show-drawer.js-header-action").click();
 		profileProblem = true;
 		setTimeout(PrepareLoginStuffs,100);
 		return;
@@ -494,29 +395,17 @@ function PrepareLoginStuffs() {
 	FindProfButton.click();
 	setTimeout(FinaliseLoginStuffs,0);
 
-	setTimeout(function(){
-		if (typeof $(".js-click-trap")[0] !== "undefined") {
-			$(".js-click-trap")[0].className += " is-hidden";
-		}
-	},50);
-	if (typeof $(".js-click-trap")[0] !== "undefined") {
-		$(".js-click-trap")[0].className += " is-hidden";
-	}
+	find1Obj(".js-click-trap").addClass("is-hidden").delay(50).queue(function(){$(this).addClass("is-hidden")});
 }
 
 function FinaliseLoginStuffs() {
-	if (typeof $(".js-click-trap")[0] !== "undefined") {
-		$(".js-click-trap")[0].className += " is-hidden";
-	}
+	find1Obj(".js-click-trap").addClass("is-hidden");
 
-	if (typeof elements("prf-header")[0] === "undefined") {
-		if (typeof tde_fetch_profile_info_for_nav_drawer === "undefined") {
-			tde_fetch_profile_info_for_nav_drawer = 0;
-		}
-		tde_fetch_profile_info_for_nav_drawer++;
+	if (find1Obj("prf-header").length < 0) {
+		FetchProfileInfo++;
 
-		if (tde_fetch_profile_info_for_nav_drawer > 10) {
-			console.log("this is not even working, bye");
+		if (FetchProfileInfo > 10) {
+			console.log("this is not even working, uh lets try again");
 			setTimeout(PrepareLoginStuffs,0);
 			return;
 		}
@@ -524,54 +413,136 @@ function FinaliseLoginStuffs() {
 		return;
 	}
 
-	if ($(".prf-header")[0].style.cssText.search("td_profile_empty") > -1) {
-		tde_nd_header_image.setAttribute("style",$(".prf-header")[0].style.cssText); // Fetch header and place in nav drawer
+	if (find1Obj(".prf-header").css("background-image").search("td_profile_empty") > 0) {
+		$(tde_nd_header_image).attr("style",find1Obj(".prf-header").attr(style)); // Fetch header and place in nav drawer
 	}
-	tde_nd_header_photo.setAttribute("src",$(".prf-img")[0].childNodes[1].src); // Fetch profile picture and place in nav drawer
-	tde_nd_header_username.innerHTML = $(".prf-card-inner")[0].childNodes[1].childNodes[5].childNodes[0].textContent; // Fetch twitter handle and place in nav drawer
+	$(tde_nd_header_photo).attr("src",find1Obj(".prf-img").attr("src")); // Fetch profile picture and place in nav drawer
+	$(tde_nd_header_username).html($(".prf-card-inner").children()[1].childNodes[5].childNodes[0].textContent); // Fetch twitter handle and place in nav drawer
 
 	console.log("Finished login stuffs! you are in the nav drawer, I think!");
 
 	if (profileProblem) {
 		profileProblem = false;
-		$(".js-show-drawer.btn-compose")[0].click();
+		find1Obj(".js-show-drawer.btn-compose").click();
 		console.log("repaired profile problem with tweet thing");
 	}
 }
 
 function NavigationSetup() {
-	if (typeof elements("app-header-inner")[0] === "undefined") {
+	if (find1Obj(".app-header-inner").length < 1) {
 		setTimeout(NavigationSetup,100);
 		return;
 	}
 
-	var TDENavigationDrawerButton = document.createElement("a");
-	TDENavigationDrawerButton.id = "tde-navigation-drawer-button";
-	TDENavigationDrawerButton.setAttribute("class","js-header-action tde-drawer-button link-clean cf app-nav-link");
-	TDENavigationDrawerButton.innerHTML = '<div class="obj-left"><div class="tde-nav-activator"></div><div class="nbfc padding-ts"></div>';
-
-	elements("app-header-inner")[0].appendChild(TDENavigationDrawerButton);
 
 
+	find1Obj("app-header-inner").append(
+		make("a")
+		.attr("id","tde-navigation-drawer-button")
+		.addClass("js-header-action tde-drawer-button link-clean cf app-nav-link")
+		.html('<div class="obj-left"><div class="tde-nav-activator"></div><div class="nbfc padding-ts"></div>');
+		.click(function(){
+			// TODO: Wire button to open navigation drawer
+			// TODO: Remove the above TODO from back when i was developing tde 5.0
 
-	TDENavigationDrawerButton.onclick = function(){
-		// TODO: Wire button to open navigation drawer
-		// TODO: Remove the above TODO from back when i developed tde 5.0
+			if (typeof tde_nav_drawer_background !== "undefined") {
+				find1Obj("#tde_nav_drawer_background").attr("class","tde-nav-drawer-background");
+			}
+			if (typeof tde_nav_drawer !== "undefined") {
+				find1Obj("#tde_nav_drawer").attr("class","tde-nav-drawer");
+			}
+		})
+	);
 
-		if (typeof tde_nav_drawer_background !== "undefined") {
-			$("#tde_nav_drawer_background").attr("class","tde-nav-drawer-background");
-		}
-		if (typeof tde_nav_drawer !== "undefined") {
-			$("#tde_nav_drawer").attr("class","tde-nav-drawer");
-		}
-	};
+	body.append(
+		make("div")
+		.attr("id","tde_nav_drawer")
+		.addClass("tde-nav-drawer tde-nav-drawer-hidden")
+		.append(
+			make("img")
+			.attr("id","tde_nd_header_image"),
+			make("img")
+			.addClass("avatar size73 tde-nd-header-photo")
+			.attr("id","tde_nd_header_photo"),
+			make("div")
+			.addClass("tde-nd-header-username")
+			.attr("id","tde_nd_header_username"),
+			make("button")
+			.addClass("htn tde-nav-button tde-settings-button")
+			.attr("id","tdset")
+			.html("TweetDeck Settings")
+			.append(
+				make("img")
+				.attr("src",TDEBaseURL + "sources/tweetdecksmall.png")
+				.addClass("tde-nav-drawer-icon")
+			),
+			make("button")
+			.addClass("htn tde-nav-button")
+			.attr("id","tdesettings")
+			.html("ModernDeck Settings")
+			.append(
+				make("img")
+				.attr("src",TDEBaseURL + "sources/TDEsmall.png")
+				.addClass("tde-nav-drawer-icon")
+			),
+			make("button")
+			.addClass("htn tde-nav-button")
+			.attr("id","btdsettings")
+			.html("Better TweetDeck Settings")
+			.append(
+				make("img")
+				.attr("src",TDEBaseURL + "sources/BTDsmall.png")
+				.addClass("tde-nav-drawer-icon")
+			),
+			make("div")
+			.addClass("tde-nav-divider"),
+			make("button")
+			.addClass("htn tde-nav-button")
+			.attr("id","tde_signout")
+			.html("Sign Out")
+			.append(
+				make("img")
+				.attr("src",TDEBaseURL + "sources/logout.png")
+				.addClass("tde-nav-drawer-icon")
+			),
+			make("button")
+			.addClass("htn tde-nav-button")
+			.attr("id","tdaccsbutton")
+			.html("Your Accounts")
+			.append(
+				make("img")
+				.attr("src",TDEBaseURL + "sources/accounts.png")
+				.addClass("tde-nav-drawer-icon")
+			),
+			make("div")
+			.addClass("tde-nav-divider"),
+			make("button")
+			.addClass("htn tde-nav-button")
+			.attr("id","kbshortcuts")
+			.html("Keyboard Shortcuts")
+			.append(
+				make("img")
+				.attr("src",TDEBaseURL + "sources/KBshortcuts.png")
+				.addClass("tde-nav-drawer-icon")
+			),
+			make("button")
+			.addClass("htn tde-nav-button")
+			.attr("id","addcolumn")
+			.html("AddColumn")
+			.append(
+				make("img")
+				.attr("src",TDEBaseURL + "sources/AddColumn.png")
+				.addClass("tde-nav-drawer-icon")
+			),
+		)
+	)
 
-	var TDENavigationDrawer = document.createElement("div");
+	/*var TDENavigationDrawer = document.createElement("div");
 	TDENavigationDrawer.id = "tde_nav_drawer";
 	TDENavigationDrawer.setAttribute("class","tde-nav-drawer tde-nav-drawer-hidden");
 	TDENavigationDrawer.innerHTML = '<img id="tde_nd_header_image" class="tde-nd-header-image"><img class="avatar size73 tde-nd-header-photo" id="tde_nd_header_photo"><div class="tde-nd-header-username" id="tde_nd_header_username"></div><button class="btn tde-nav-button tde-settings-button waves-effect waves-light" id="tdset"><img src="'+ GetURL("sources") + '/tweetdecksmall.png" class="tde-nav-drawer-icon">TweetDeck Settings</button><button class="btn tde-nav-button waves-effect waves-light" id="tdesettings"><img src="'+ GetURL("sources") +'/TDEsmall.png" class="tde-nav-drawer-icon">ModernDeck Settings</button><button class="btn tde-nav-button waves-effect waves-light" id="btdsettings"><img src="' + GetURL("sources") + '/BTDsmall.png" class="tde-nav-drawer-icon">Better TweetDeck Settings</button><div class="tde-nav-divider"></div><button id="tde_signout" class="btn tde-nav-button waves-effect waves-light"><img src="' + GetURL("sources") + '/logout.png" class="tde-nav-drawer-icon">Sign Out</button><button id="tdaccsbutton" class="btn tde-nav-button waves-effect waves-light"><img src="' + GetURL("sources") +'/accounts.png" class="tde-nav-drawer-icon">Your Accounts</button><div class="tde-nav-divider"></div><button id="kbshortcuts" class="btn tde-nav-button waves-effect waves-light"><img src="'+ GetURL("sources") +'/KBshortcuts.png" class="tde-nav-drawer-icon">Keyboard Shortcuts</button><button id="addcolumn" class="btn tde-nav-button waves-effect waves-light"><img src="' + GetURL("sources") + '/AddColumn.png" class="tde-nav-drawer-icon">Add Column</button>';
 
-	document.body.appendChild(TDENavigationDrawer);
+	document.body.appendChild(TDENavigationDrawer)*/;
 
 	$("#tde_nd_header_image").attr("style","background:#00BCD4");
 	$("#tde_nd_header_photo").attr("src","");
@@ -582,10 +553,7 @@ function NavigationSetup() {
 	window.TDEPrepareWindows = function() {
 		document.getElementById("update-sound").click();
 
-		for (i = 0; i < elements("js-click-trap").length; i++) {
-			elements("js-click-trap")[i].click();
-		}
-
+		$(".js-click-trap").click();
 		tde_nav_drawer_background.click();
 	}
 
@@ -795,7 +763,7 @@ function attemptdiag() {
 	<br>audiosrc: ' + document.getElementsByTagName("audio")[0].src + '\
 	<br>TDEBaseURL: ' + TDEBaseURL + '\
 	<br>TDEDark: ' + TDEDark + '\
-	<br>tde_fetch_profile_info_for_nav_drawer: ' + tde_fetch_profile_info_for_nav_drawer + '\
+	<br>FetchProfileInfo: ' + FetchProfileInfo + '\
 	<br>tde_round_avatars: ' + localStorage.tde_round_avatars + '\
 	<br>tde_flag_block_secure_ss: ' + localStorage.tde_flag_block_secure_ss + '\
 	<br>tde_flag_block_communications: ' + localStorage.tde_flag_block_communications + '\
