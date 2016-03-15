@@ -1,6 +1,8 @@
 // TDELoad.js
 // Copyright (c) 2015 Dangered Wolf
 
+const isDev = true;
+
 console.log("TDELoad 5.4.1");
 
 if (typeof chrome !== "undefined") {
@@ -43,7 +45,7 @@ function InjectDevStyles() {
   document.head.appendChild(injStyles);
 }
 
-if (typeof localStorage.tde_stylesheet_dev_mode !== "undefined" && localStorage.tde_stylesheet_dev_mode === "true") {
+if (typeof localStorage.tde_stylesheet_dev_mode !== "undefined" && localStorage.tde_stylesheet_dev_mode === "true" || isDev) {
   InjectDevStyles();
 }
 
