@@ -3,6 +3,8 @@
 
 // made with love <3
 
+"use strict";
+
 var SystemVersion = "5.4.1";
 var TDEBaseURL = "https://dangeredwolf.com/assets/tdetest/"; // Defaults to streaming if nothing else is available (i.e. legacy firefox)
 
@@ -26,6 +28,7 @@ var elements = function(a,b,c){return $(document.getElementsByClassName(a,b,c))}
 var find1Obj = function(selector){return $(document.querySelector(selector))};
 
 var Preferences = [];
+var openmodal;
 
 var make = function(a){return $(document.createElement(a))};
 var head = $(document.head);
@@ -112,21 +115,14 @@ function TDEInit(){
 		fontParseHelper({family:"Font Awesome",weight:"400",name:"fontawesome",range:"U+0000-F000"})
 	));
 
-	document.querySelector("js-modals-container").removeChild(function(rmnode){
-		if (typeof rmnode === "undefined") {
-			return;
-		}
-		$(rmnode).attr("class","js-modal-context tde-modal-window-fade-out overlay overlay-super scroll-v").delay(300).queue(function(){$(this).remove()});
-	}
+	find1Obj(".js-modals-container").on("removeChild",function(rmnode){
+		$(rmnode).addClass("tde-modal-window-fade-out").delay(300).queue(function(){$(this).remove()});
+	});
 
-	if ($("js-modal").length > 0) {
-
-		elements("js-modal")[0].removeChild = function(rmnode){
-			if (typeof rmnode === "undefined") {
-				return;
-			}
-			$(rmnode).attr("class","js-modal-context tde-modal-window-fade-out overlay overlay-super scroll-v").delay(300).queue(function(){$(this).remove()});
-		}
+	if (find1Obj("js-modal").length > 0) {
+		find1Obj("js-modal").on("removeChild",function(rmnode){
+			$(rmnode).addClass("tde-modal-window-fade-out").delay(300).queue(function(){$(this).remove()});
+		});
 	}
 
 	body.on("removeChild",function(i) {
@@ -143,27 +139,24 @@ function TDEInit(){
 	$(document.querySelector("audio")).attr("src",GetURL("sources/alert_2.mp3"));
 	TD_mustaches["settings/global_setting_filter_row.mustache"]='<li class="list-filter cf"> {{_i}}<div class="tde-mute-text tde-mute-text-{{getDisplayType}}"></div> {{>text/global_filter_value}}{{/i}} <input type="button" name="remove-filter" value="{{_i}}Remove{{/i}}" data-id="{{id}}" class="js-remove-filter small btn btn-negative"> </li>'
 
-	if (getPref("tde_round_avatars") === false) {
+	if (getPref("tde_round_avatars") === false)
 		html.addClass("tde-no-round-avatars");
-	} else
+	else
 		setPref("tde_round_avatars",true);
-	}
 
-	if (getPref("tde_dark_media") === true) {
+	if (getPref("tde_dark_media") === true)
 		html.addClass("tde-dark-media-previews");
-	} else
+	else
 		setPref("tde_dark_media",false);
-	}
 
-	if (getPref("tde_outlines") === true) {
+	if (getPref("tde_outlines") === true)
 		html.addClass("tde-acc-focus-ring");
-	} else
+	else
 		setPref("tde_outlines",false);
-	}
 
 	TD.util.prettyTimeString = function(e) {
-		return TD.i("{{hours12}}:{{minutes}} {{amPm}}, {{day}} {{month}} {{fullYear}}", TD.util.prettyTime(e))
-	}
+		return TD.i("{{hours12}}:{{minutes}} {{amPm}}, {{day}} {{month}} {{fullYear}}", TD.util.prettyTime(e));
+	};
 
 	NavigationSetup();
 
@@ -218,7 +211,7 @@ function WorldTick(){
 
 	var elms = document.querySelectorAll(".tweet-action-item,.tweet-detail-action-item,.app-navigator.margin-bm.padding-ts");
 
-	$(".tweet-action-item,.tweet-detail-action-item,.app-navigator.margin-bm.padding-ts").each(function(index){
+	$(".tweet-action-item>.dropdown,.tweet-detail-action-item>.dropdown,.app-navigator.margin-bm.padding-ts>.dropdown").each(function(index){
 		$(this).addClass("tde-dropdown-fade-out").delay(200).queue(function(){$(this).remove()});
 	})
 
@@ -379,29 +372,32 @@ function TDESettings() {
 }
 
 function PrepareLoginStuffs() {
-	console.log("Start prepare login stuffs");
+	//console.log("Start prepare login stuffs");
 	if (typeof $ === "undefined") {
 		setTimeout(PrepareLoginStuffs,200);
 		return;
 	}
 
-	FindProfButton = find1Obj(".account-settings-row:first-child a[rel='user']");
-	if (FindProfButton.length === -1) {
-		find1Obj(".js-show-drawer.js-header-action").click();
+	FetchProfileInfo = 0;
+
+	FindProfButton = $(".account-settings-row:first-child a[rel='user']");
+	if (FindProfButton.length < 1) {
+		$(".js-show-drawer.js-header-action").click();
 		profileProblem = true;
+		console.log("profile problem!");
 		setTimeout(PrepareLoginStuffs,100);
 		return;
 	}
 	FindProfButton.click();
 	setTimeout(FinaliseLoginStuffs,0);
 
-	find1Obj(".js-click-trap").addClass("is-hidden").delay(50).queue(function(){$(this).addClass("is-hidden")});
+	$(".js-click-trap").addClass("is-hidden").delay(50).queue(function(){$(this).addClass("is-hidden")});
 }
 
 function FinaliseLoginStuffs() {
-	find1Obj(".js-click-trap").addClass("is-hidden");
+	$(".js-click-trap").addClass("is-hidden");
 
-	if (find1Obj("prf-header").length < 0) {
+	if ($(".prf-header").length < 1) {
 		FetchProfileInfo++;
 
 		if (FetchProfileInfo > 10) {
@@ -413,11 +409,11 @@ function FinaliseLoginStuffs() {
 		return;
 	}
 
-	if (find1Obj(".prf-header").css("background-image").search("td_profile_empty") > 0) {
-		$(tde_nd_header_image).attr("style",find1Obj(".prf-header").attr(style)); // Fetch header and place in nav drawer
+	if ($(".prf-header").attr("style").search("td_profile_empty") > 0) {
+		$(tde_nd_header_image).attr("style",$(".prf-header").attr("style")); // Fetch header and place in nav drawer
 	}
-	$(tde_nd_header_photo).attr("src",find1Obj(".prf-img").attr("src")); // Fetch profile picture and place in nav drawer
-	$(tde_nd_header_username).html($(".prf-card-inner").children()[1].childNodes[5].childNodes[0].textContent); // Fetch twitter handle and place in nav drawer
+	$(tde_nd_header_photo).attr("src",$(".prf-img").attr("src")); // Fetch profile picture and place in nav drawer
+	$(tde_nd_header_username).html($(".prf-card-inner .username")[0].textContent); // Fetch twitter handle and place in nav drawer
 
 	console.log("Finished login stuffs! you are in the nav drawer, I think!");
 
@@ -434,33 +430,32 @@ function NavigationSetup() {
 		return;
 	}
 
-
-
-	find1Obj("app-header-inner").append(
+	$(".app-header-inner").append(
 		make("a")
 		.attr("id","tde-navigation-drawer-button")
 		.addClass("js-header-action tde-drawer-button link-clean cf app-nav-link")
-		.html('<div class="obj-left"><div class="tde-nav-activator"></div><div class="nbfc padding-ts"></div>');
+		.html('<div class="obj-left"><div class="tde-nav-activator"></div><div class="nbfc padding-ts"></div>')
 		.click(function(){
 			// TODO: Wire button to open navigation drawer
 			// TODO: Remove the above TODO from back when i was developing tde 5.0
 
 			if (typeof tde_nav_drawer_background !== "undefined") {
-				find1Obj("#tde_nav_drawer_background").attr("class","tde-nav-drawer-background");
+				$("#tde_nav_drawer_background").attr("class","tde-nav-drawer-background");
 			}
 			if (typeof tde_nav_drawer !== "undefined") {
-				find1Obj("#tde_nav_drawer").attr("class","tde-nav-drawer");
+				$("#tde_nav_drawer").attr("class","tde-nav-drawer");
 			}
 		})
 	);
 
-	body.append(
+	$("body").append(
 		make("div")
 		.attr("id","tde_nav_drawer")
 		.addClass("tde-nav-drawer tde-nav-drawer-hidden")
 		.append(
 			make("img")
-			.attr("id","tde_nd_header_image"),
+			.attr("id","tde_nd_header_image")
+			.addClass("tde-nd-header-image"),
 			make("img")
 			.addClass("avatar size73 tde-nd-header-photo")
 			.attr("id","tde_nd_header_photo"),
@@ -468,74 +463,74 @@ function NavigationSetup() {
 			.addClass("tde-nd-header-username")
 			.attr("id","tde_nd_header_username"),
 			make("button")
-			.addClass("htn tde-nav-button tde-settings-button")
+			.addClass("btn tde-nav-button tde-settings-button")
 			.attr("id","tdset")
-			.html("TweetDeck Settings")
 			.append(
 				make("img")
 				.attr("src",TDEBaseURL + "sources/tweetdecksmall.png")
 				.addClass("tde-nav-drawer-icon")
-			),
+			)
+			.html("TweetDeck Settings"),
 			make("button")
-			.addClass("htn tde-nav-button")
+			.addClass("btn tde-nav-button")
 			.attr("id","tdesettings")
-			.html("ModernDeck Settings")
 			.append(
 				make("img")
 				.attr("src",TDEBaseURL + "sources/TDEsmall.png")
 				.addClass("tde-nav-drawer-icon")
-			),
+			)
+			.html("ModernDeck Settings"),
 			make("button")
-			.addClass("htn tde-nav-button")
+			.addClass("btn tde-nav-button")
 			.attr("id","btdsettings")
-			.html("Better TweetDeck Settings")
 			.append(
 				make("img")
 				.attr("src",TDEBaseURL + "sources/BTDsmall.png")
 				.addClass("tde-nav-drawer-icon")
-			),
+			)
+			.html("Better TweetDeck Settings"),
 			make("div")
 			.addClass("tde-nav-divider"),
 			make("button")
-			.addClass("htn tde-nav-button")
+			.addClass("btn tde-nav-button")
 			.attr("id","tde_signout")
-			.html("Sign Out")
 			.append(
 				make("img")
 				.attr("src",TDEBaseURL + "sources/logout.png")
 				.addClass("tde-nav-drawer-icon")
-			),
+			)
+			.html("Sign Out"),
 			make("button")
-			.addClass("htn tde-nav-button")
+			.addClass("btn tde-nav-button")
 			.attr("id","tdaccsbutton")
-			.html("Your Accounts")
 			.append(
 				make("img")
 				.attr("src",TDEBaseURL + "sources/accounts.png")
 				.addClass("tde-nav-drawer-icon")
-			),
+			)
+			.html("Your Accounts"),
 			make("div")
 			.addClass("tde-nav-divider"),
 			make("button")
-			.addClass("htn tde-nav-button")
+			.addClass("btn tde-nav-button")
 			.attr("id","kbshortcuts")
-			.html("Keyboard Shortcuts")
 			.append(
 				make("img")
 				.attr("src",TDEBaseURL + "sources/KBshortcuts.png")
 				.addClass("tde-nav-drawer-icon")
-			),
+			)
+			.html("Keyboard Shortcuts"),
 			make("button")
-			.addClass("htn tde-nav-button")
+			.addClass("btn tde-nav-button")
 			.attr("id","addcolumn")
-			.html("AddColumn")
 			.append(
 				make("img")
 				.attr("src",TDEBaseURL + "sources/AddColumn.png")
 				.addClass("tde-nav-drawer-icon")
-			),
+			)
+			.html("Add Column")
 		)
-	)
+	);
 
 	/*var TDENavigationDrawer = document.createElement("div");
 	TDENavigationDrawer.id = "tde_nav_drawer";
@@ -669,38 +664,17 @@ function KeyboardShortcutHandler(e) {
 }
 
 function ReloadTheme() {
-		document.querySelector("html").className = document.querySelector("html").className.replace(" tde-dark","").replace(" tde-light","")
-		document.querySelector(".application").className = document.querySelector(".application").className.replace(" tde-dark","").replace(" tde-light","")
+		var stuff = $(".application,html");
+
+		stuff.removeClass("tde-light tde-dark");
+
 		if (document.querySelector("link[title='dark'][disabled]") !== null) {
-				document.querySelector("html").className += " tde-light";
-				document.querySelector(".application").className += " tde-light";
+				stuff.addClass("tde-light");
 				TDEDark = false;
 		} else {
-				document.querySelector("html").className += " tde-dark";
-				document.querySelector(".application").className += " tde-dark";
+				stuff.addClass("tde-dark");
 				TDEDark = true;
 		}
-}
-
-function DisableCommunications() {
-	if (!WantsToBlockCommunications) {
-		console.log("Sorry to see you go :(");
-		console.log("Do keep in mind that no personal information at all is sent in any requests.");
-		console.log("Because of Cloudflare, your real IP address is not logged either.");
-		console.log("Operating system data is only used to help optimise it for your device in the future.");
-		console.log("Privacy Policy available in privacy.txt");
-		console.log("If you're positive you want to block communications, please run this command a second time.");
-		WantsToBlockCommunications = true;
-		return;
-	} else {
-		localStorage.tde_flag_block_communications = true;
-		console.log("Thanks. The block communications flag has been set.");
-	}
-}
-
-function EnableCommunications() {
-	localStorage.tde_flag_block_communications = false;
-	console.log("Thanks! To improve updates and optimisation in the future, you have now enabled communications.");
 }
 
 function DisableSecureStylesheets() {
@@ -726,104 +700,162 @@ function diag() {
 		attemptdiag();
 	}
 	catch(err) {
-		var openmodal = document.getElementById("open-modal") || elements("js-app-loading")[0];;
-	openmodal.innerHTML = '<div class="mdl s-tall-fixed"><header class="mdl-header"><h3 class="mdl-header-title">Diagnostics Failed</h3></header><div class="mdl-inner"><div class="mdl-content"style="padding-left:20px">\
-	\
-	Well, that\'s unfortunate. I can\'t seem to be able to fetch diagnostics right now. Maybe refresh and try again?\
-	<br><br>\
-	(P.S. the error is ' + ((typeof err === "undefined" && "[miraculously, undefined.]") || (err.toString())).toString() + ')';
-	openmodal.setAttribute("style","display: block;");
+		openmodal = find1Obj("#open-modal,.js-app-loading");
+		openmodal.append(
+				make("div")
+				.addClass("mdl s-tall-fixed")
+				.append(
+						make("header")
+						.addClass("mdl-header")
+						.append(
+								make("h3")
+								.addClass("mdl-header-title")
+								.html("Diagnostics")
+						),
+						make("div")
+						.addClass("mdl-inner")
+						.append(
+								make("div")
+								.addClass("mdl-content")
+								.css("padding-left","20px")
+								.html("Well, that's unfortuate. I can't seem to be able to fetch diagnostics right now. Maybe refresh and try again?<br><br>(P.S. the error is " + (err ? err.toString() : "[miraculously, undefined.]") + ")")
+						)
+				)
+		)
+		.css("display","block");
 	}
 }
 
 function closediag() {
 	if (typeof openmodal !== "undefined") {
-		openmodal.style.cssText = "display: none;";
-		openmodal.innerHTML = "";
+		openmodal.css("display","none");
 	}
 }
 
 function attemptdiag() {
-	var openmodal = document.getElementById("open-modal") || elements("js-app-loading")[0];
-	openmodal.innerHTML = '<div class="mdl s-tall-fixed"><header class="mdl-header"><h3 class="mdl-header-title">Diagnostics</h3></header><div class="mdl-inner"><div class="mdl-content"style="padding-left:20px">\
-	\
-	\
-	\
-	<button class="btn" onclick="closediag();">Close Diagnostics</button>\
-	<br>SystemVersion: ' + SystemVersion + '\
-	<br>userAgent: ' + navigator.userAgent + '\
-	<br>vendor: ' + navigator.vendor + '\
-	<br>vendorSub: ' + navigator.vendorSub + '\
-	<br>appCodeName: ' + navigator.appCodeName + '\
-	<br>appName: ' + navigator.appName + '\
-	<br>cookieEnabled: ' + navigator.cookieEnabled + '\
-	<br>language: ' + navigator.language + '\
-	<br>platform: ' + navigator.platform + '\
-	<br>TreatGeckoWithCare: ' + TreatGeckoWithCare + '\
-	<br>audiosrc: ' + document.getElementsByTagName("audio")[0].src + '\
-	<br>TDEBaseURL: ' + TDEBaseURL + '\
-	<br>TDEDark: ' + TDEDark + '\
-	<br>FetchProfileInfo: ' + FetchProfileInfo + '\
-	<br>tde_round_avatars: ' + localStorage.tde_round_avatars + '\
-	<br>tde_flag_block_secure_ss: ' + localStorage.tde_flag_block_secure_ss + '\
-	<br>tde_flag_block_communications: ' + localStorage.tde_flag_block_communications + '\
-	<br>tde_nd_header_image: ' + (typeof $("#tde_nd_header_image")[0] !== "undefined" && $("#tde_nd_header_image")[0].style.cssText) + '\
-	<br>tde_nd_header_username: ' + (typeof $("#tde_nd_header_username")[0] !== "undefined" && $("#tde_nd_header_username")[0].innerHTML) + '\
-	<br>tde_nd_header_photo: ' + (typeof $("#tde_nd_header_photo")[0] !== "undefined" && $("#tde_nd_header_photo")[0].src) + '\
-	<br>guestID: ' + (TD.storage.store._backend.guestID) + '\
-	<br>msgID: ' + (msgID) + '\
-	<br>InjectFonts?: ' + (typeof InjectFonts !== "undefined") + '\
-	\
-	\
-	\
-	';
-	openmodal.setAttribute("style","display: block;");
+	openmodal = find1Obj("#open-modal,.js-app-loading");
+
+	openmodal.append(
+			make("div")
+			.addClass("mdl s-tall-fixed")
+			.append(
+					make("header")
+					.addClass("mdl-header")
+					.append(
+							make("h3")
+							.addClass("mdl-header-title")
+							.html("Diagnostics")
+					),
+					make("div")
+					.addClass("mdl-inner")
+					.append(
+							make("div")
+							.addClass("mdl-content")
+							.css("padding-left","20px")
+							.html('\
+							\
+							\
+							\
+							<button class="btn" onclick="closediag();">Close Diagnostics</button>\
+							<br>SystemVersion: ' + SystemVersion + '\
+							<br>userAgent: ' + navigator.userAgent + '\
+							<br>vendor: ' + navigator.vendor + '\
+							<br>vendorSub: ' + navigator.vendorSub + '\
+							<br>appCodeName: ' + navigator.appCodeName + '\
+							<br>appName: ' + navigator.appName + '\
+							<br>cookieEnabled: ' + navigator.cookieEnabled + '\
+							<br>language: ' + navigator.language + '\
+							<br>platform: ' + navigator.platform + '\
+							<br>TreatGeckoWithCare: ' + TreatGeckoWithCare + '\
+							<br>audiosrc: ' + document.getElementsByTagName("audio")[0].src + '\
+							<br>TDEBaseURL: ' + TDEBaseURL + '\
+							<br>TDEDark: ' + TDEDark + '\
+							<br>FetchProfileInfo: ' + FetchProfileInfo + '\
+							<br>tde_round_avatars: ' + localStorage.tde_round_avatars + '\
+							<br>tde_flag_block_secure_ss: ' + localStorage.tde_flag_block_secure_ss + '\
+							<br>tde_flag_block_communications: ' + localStorage.tde_flag_block_communications + '\
+							<br>tde_nd_header_image: ' + (typeof $("#tde_nd_header_image")[0] !== "undefined" && $("#tde_nd_header_image")[0].style.cssText) + '\
+							<br>tde_nd_header_username: ' + (typeof $("#tde_nd_header_username")[0] !== "undefined" && $("#tde_nd_header_username")[0].innerHTML) + '\
+							<br>tde_nd_header_photo: ' + (typeof $("#tde_nd_header_photo")[0] !== "undefined" && $("#tde_nd_header_photo")[0].src) + '\
+							<br>guestID: ' + (TD.storage.store._backend.guestID) + '\
+							<br>msgID: ' + (msgID) + '\
+							<br>InjectFonts?: ' + (typeof InjectFonts !== "undefined") + '\
+							\
+							\
+							\
+							')
+					)
+			)
+	)
+	.css("display","block");
 }
 
 function dxdiag() {
-	var openmodal = document.getElementById("open-modal") || elements("js-app-loading")[0];
-	openmodal.innerHTML = '<div class="mdl s-tall-fixed"><header class="mdl-header"><h3 class="mdl-header-title">DxDiag Help</h3></header><div class="mdl-inner"><div class="mdl-content"style="padding-left:20px">\
-	\
-	\
-	\
-	This is a guide to help you acquire your DxDiag if asked by a developer.\
-	<br><br>\
-	Warning: This only applies for Windows. If you\'re running OS X / Linux / etc., this won\'t work.\
-	<br><br>\
-	Step 1: Press the Windows key + R key to open the Run dialog.<br>\
-	Step 2: In the box of the new window, type in "dxdiag", and press the Enter key.<br>\
-	Step 3: In the DirectX Diagnostic window, click the "Save All Information..." button at the bottom.<br>\
-	Step 4: Save this file somewhere you\'ll remember, like the Desktop.<br>\
-	Step 5: Upload the file to a file hosting site, for example, <a target="_blank" href="https://mega.co.nz">Mega</a> (no signup needed), or whereever you can easily share the link for the file with developers.\
-	';
-	openmodal.setAttribute("style","display: block;");
+
+		openmodal = find1Obj("#open-modal,.js-app-loading");
+
+		openmodal.append(
+				make("div")
+				.addClass("mdl s-tall-fixed")
+				.append(
+						make("header")
+						.addClass("mdl-header")
+						.append(
+								make("h3")
+								.addClass("mdl-header-title")
+								.html("DxDiag Help")
+						),
+						make("div")
+						.addClass("mdl-inner")
+						.append(
+								make("div")
+								.addClass("mdl-content")
+								.css("padding-left","20px")
+								.html('\
+								This is a guide to help you acquire your DxDiag if asked by a developer.\
+								<br><br>\
+								Warning: This only applies for Windows. If you\'re running OS X / Linux / etc., this won\'t work.\
+								<br><br>\
+								Step 1: Press the Windows key + R key to open the Run dialog.<br>\
+								Step 2: In the box of the new window, type in "dxdiag", and press the Enter key.<br>\
+								Step 3: In the DirectX Diagnostic window, click the "Save All Information..." button at the bottom.<br>\
+								Step 4: Save this file somewhere you\'ll remember, like the Desktop.<br>\
+								Step 5: Upload the file to a file hosting site, for example, <a target="_blank" href="https://mega.nz">Mega</a> (no signup needed), or whereever you can easily share the link for the file with developers.\
+								')
+						)
+				)
+		)
+		.css("display","block");
 }
 
 function addSpaceSuggestion(tdetxt,clickd) {
-	suggestion = document.createElement("button");
-	suggestion.className = "btn tde-no-transform-case";
-	suggestion.innerHTML = tdetxt;
-	suggestion.addEventListener("click", clickd);
-	suggestion.addEventListener("click", function(){this.remove()});
-	$(".tde-no-chars-suggestions")[0].appendChild(suggestion);
+	find1Obj(".tde-no-chars-suggestions").append(
+		make("button")
+		.addClass("btn tde-no-transform-case")
+		.html(tdetxt)
+		.click(clickd)
+		.click(function(){this.remove()})
+	);
 }
 
 function checkSpaceSuggestions() {
-	var tweetTxt = $(".compose-text")[0].value;
+	var tweetTxt = find1Obj(".compose-text").val();
 
 	if (tweetTxt.match(/ ( )+/g) !== null) {
 		addSpaceSuggestion("Trim excess space inside",function(){
-			$(".compose-text")[0].value = tweetTxt.replace(/ ( )+/g," ")
+			find1Obj(".compose-text").val(tweetTxt.replace(/ ( )+/g," "));
 		});
 	}
 
 	if (tweetTxt.match(/(^\s+)|([^\w|.|\.|\!|\?]+?$)/gm) !== null) {
 		addSpaceSuggestion("Trim excess space around edges",function(){
-			$(".compose-text")[0].value = tweetTxt.replace(/(^\s+)|([^\w|.|\.|\!|\?]+?$)/gm,"")
+			find1Obj(".compose-text").val(tweetTxt.replace(/(^\s+)|([^\w|.|\.|\!|\?]+?$)/gm,""));
 		});
 	}
 
 }
+
+// TODO: write this future library as jquery
 
 function outtaSpaceSuggestions() {
 
@@ -831,6 +863,7 @@ function outtaSpaceSuggestions() {
 		if (parseInt($(".character-count-compose")[0].value) < 0) {
 
 			if (typeof $(".tde-out-of-space-suggestions")[0] === "undefined") {
+
 				NoCharsNotification = document.createElement("div");
 				NoCharsNotification.className = "compose-media-bar-holder padding-al tde-out-of-space-suggestions";
 				NoCharsNotification.innerHTML = '<div class="compose-media-bar"><div class="tde-no-chars-suggestions"><div class="txt weight-light txt-extra-large margin-b--10">Oops, you\'re over the character limit.</div>Here are suggestions to help:<br></div></div>';
@@ -853,20 +886,19 @@ function outtaSpaceSuggestions() {
 function spawnModule(fun,del) {
 	if (typeof fun === "undefined") {
 		console.error("WARNING: TDE attempted to spawn a module that doesn't exist. This is a software bug.");
-	} else {
-		setTimeout(fun,del)
 	}
+	setTimeout(fun,del);
 }
 
 spawnModule(TDEInit,0);
 spawnModule(WorldTick,0);
 //spawnModule(outtaSpaceSuggestions,7000);
 
-document.getElementsByTagName("html")[0].className += " tde-preferences-differentiator tde-api-ver-5-3 tde-js-loaded ";
+html.addClass("tde-preferences-differentiator tde-api-ver-5-4 tde-js-loaded");
 
 ReloadTheme();
 
-window.addEventListener("keyup", KeyboardShortcutHandler, false);
+window.addEventListener("keyup",KeyboardShortcutHandler,false);
 
 (new MutationObserver(function(mutations) {
 	mutations.forEach(function(mutation) {
