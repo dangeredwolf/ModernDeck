@@ -7568,6 +7568,18 @@ input[type="checkbox"] {
 	font-size:32px
 }
 
+.form-login>.form-legend {
+	text-align:left;
+	font-weight:500;
+	font-size:0;
+	padding-top:20px!important
+}
+
+.form-login>.form-legend:after {
+	font-size:20px;
+	content:"Sign in with Twitter"
+}
+
 .form-new {
 	margin-top:28px
 }
@@ -11170,4 +11182,50 @@ a.js-dismiss {
 
 .tde-light .js-search-results-container .facet-title,.tde-light .facet-subtitle,.facet-content {
 	color:#000
+}
+
+
+.startflow-background {
+    background-image:url(https://ton.twimg.com/tweetdeck-web/web/assets/global/backgrounds/login_bg.36f68cdcb5.jpg);
+    background-size:cover;
+    background-position:center
+}
+
+.startflow-background:before {
+    content:"";
+    position:absolute;
+    top:0;
+    right:0;
+    bottom:0;
+    left:0;
+    opacity:.8;
+    background-image:linear-gradient(#00BCD4 0%, transparent 150%)
+}
+
+.btn-login[type="submit"] {
+	background:#00BCD4;
+	width:300px;
+	border-radius:3px;
+	font-weight:500;
+	box-shadow:0 1px 2px 1px rgba(0,0,0,0.25);
+	color:#fff!important;
+}
+
+.btn-login[type="submit"]:hover,.btn-login[type="submit"]:focus {
+	box-shadow:0 3px 10px 3px rgba(0,0,0,0.25);
+}
+
+.tde-dark body .btn-login[type="submit"]:active {
+	background:#00CDE8!important;
+	transform:none!important
+}
+
+.cf.margin-tl {
+	color:transparent;
+	margin-top:20px!important;
+	margin-bottom:-10px
+}
+
+.cf.margin-tl>label {
+	color:#444
 }

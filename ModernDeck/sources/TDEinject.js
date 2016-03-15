@@ -589,7 +589,7 @@ function NavigationSetup() {
 	$(".app-header-inner").append(
 		make("div")
 		.addClass("tde-appbar-notification tde-appbar-notification-hidden")
-		attr("id","TDENotification")
+		.attr("id","TDENotification")
 	)
 
 	setTimeout(PrepareLoginStuffs,0);
