@@ -20,8 +20,8 @@ if (typeof chrome == "undefined" && typeof safari == "undefined") {
 
 function InjectDevStyles() {
   console.log("*boops your nose* hey there developer :3");
-  console.log("boopstrapping enhancer.css for extensibility");
-  console.log("don't forget to check that enhancer.css is in manifest.json before shipping, you goof");
+  console.log("boopstrapping moderndeck.css for extensibility");
+  console.log("don't forget to check that moderndeck.css is in manifest.json before shipping, you goof");
 
   var links = document.querySelectorAll("link[title='dark'],link[title='light']");
 

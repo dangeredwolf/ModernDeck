@@ -315,9 +315,9 @@ function PrefsListener() {
 
 function MTDSettings() {
 	MTDPrepareWindows();
-		delay($(".js-app-settings").click,10);
-		delay($("a[data-action='globalSettings']").click,100);
+		setTimeout(function(){$(".js-app-settings").click();},10);
 		setTimeout(function(){
+			$("a[data-action='globalSettings']").click();
 			var mtdsettingsmodalview = $("#settings-modal .mdl");
 			mtdsettingsmodalview.className = "js-modal-panel mdl s-short is-inverted-dark mtd-settings-panel";
 			var mtdsettingsmodalinner = $("#settings-modal .mdl .mdl-inner");
@@ -471,7 +471,7 @@ function NavigationSetup() {
 			.attr("id","tdset")
 			.append(
 				make("img")
-				.attr("src",MTDBaseURL + "sources/tweemtdcksmall.png")
+				.attr("src",MTDBaseURL + "sources/tweetdecksmall.png")
 				.addClass("mtd-nav-drawer-icon")
 			)
 			.click(function(){

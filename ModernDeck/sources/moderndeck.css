@@ -978,8 +978,9 @@ small {
 	color:#4CBCFF
 }
 
-.scroll-none,.scroll-h {
-	overflow:hidden}
+.scroll-none {
+	overflow:hidden
+}
 
 .scroll-v {
 	overflow-y:auto
@@ -989,7 +990,7 @@ small {
 	overflow-x:auto
 }
 
-.scroll-styled-v,.scroll-styled-h,.scroll-alt {
+.scroll-styled-v,.scroll-styled-h,.scroll-alt,.scroll-v {
 	scrollbar-face-color:#505254;
 	scrollbar-highlight-color:#505254;
 	scrollbar-shadow-color:#505254;
@@ -999,7 +1000,7 @@ small {
 	scrollbar-arrow-color:#999
 }
 
-.scroll-styled-v::-webkit-scrollbar {
+.scroll-styled-v::-webkit-scrollbar,.scroll-v::-webkit-scrollbar {
 	width:10px
 }
 
@@ -1011,23 +1012,23 @@ small {
 	border-color:#e5e5e5
 }
 
-.scroll-styled-v::-webkit-scrollbar-thumb,.scroll-styled-h::-webkit-scrollbar-thumb,.scroll-alt::-webkit-scrollbar-thumb {
+.scroll-styled-v::-webkit-scrollbar-thumb,.scroll-v::-webkit-scrollbar-thumb,.scroll-styled-h::-webkit-scrollbar-thumb,.scroll-alt::-webkit-scrollbar-thumb {
 	border-radius:5px;
 	background:#D9D9D9;
 	transition:200ms background
 }
 
-.mtd-dark .scroll-styled-v::-webkit-scrollbar-thumb,.mtd-dark .scroll-styled-h::-webkit-scrollbar-thumb {
+.mtd-dark .scroll-styled-v::-webkit-scrollbar-thumb,.mtd-dark .scroll-v::-webkit-scrollbar-thumb,.mtd-dark .scroll-styled-h::-webkit-scrollbar-thumb {
 	background:rgba(149,175,191,0.52);
 	transition:200ms background
 }
 
-.scroll-styled-v::-webkit-scrollbar-thumb:hover,.scroll-styled-h::-webkit-scrollbar-thumb:hover,.scroll-alt::-webkit-scrollbar-thumb:hover {
+.scroll-styled-v::-webkit-scrollbar-thumb:hover,.scroll-v::-webkit-scrollbar-thumb:hover,.scroll-styled-h::-webkit-scrollbar-thumb:hover,.scroll-alt::-webkit-scrollbar-thumb:hover {
 	background:#c9c9c9;
 	transition:200ms background
 }
 
-.mtd-dark .scroll-styled-v::-webkit-scrollbar-thumb:hover,.mtd-dark .scroll-styled-h::-webkit-scrollbar-thumb:hover {
+.mtd-dark .scroll-styled-v::-webkit-scrollbar-thumb:hover,.mtd-dark .scroll-v::-webkit-scrollbar-thumb:hover,.mtd-dark .scroll-styled-h::-webkit-scrollbar-thumb:hover {
 	background:rgb(132,152,165);
 	transition:200ms background
 }
@@ -3603,7 +3604,7 @@ a .column-title-back .icon:after {
 	color:#13B33F
 }
 
-.is-favorite .icon-favorite-toggle,.icon-favorite-color {
+.is-favorite .icon-favorite-toggle,:not(.btn-fav-fav-text)>.icon-favorite-color {
 	color:#FF9101
 }
 
@@ -5576,12 +5577,6 @@ a .column-title-back .icon:after {
 	color:#fff;
 	transition:200ms all;
 	outline:none
-}
-
-.compose-account:focus .compose-account-img {
-	box-shadow:0 0 2px 3px #00acee;
-	outline:0;
-	transition:200ms all
 }
 
 .is-grid .compose-account:nth-child(4n+4) {
@@ -7630,10 +7625,6 @@ input[type="checkbox"] {
 
 .form-login-pwd::placeholder,.form-login-email::placeholder,.form-login-username::placeholder {
 	color:#939393
-}
-
-.form-login-username {
-	width:256px
 }
 
 .form-login-pwd {
@@ -11212,6 +11203,10 @@ a.js-dismiss {
 	color:#fff!important;
 }
 
+.btn-login[type="submit"].full-width {
+	width:200px!important
+}
+
 .btn-login[type="submit"]:hover,.btn-login[type="submit"]:focus {
 	box-shadow:0 3px 10px 3px rgba(0,0,0,0.25);
 }
@@ -11229,4 +11224,8 @@ a.js-dismiss {
 
 .cf.margin-tl>label {
 	color:#444
+}
+
+.add-account>fieldset>.form-login-username {
+	width:200px!important
 }
