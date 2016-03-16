@@ -30,6 +30,10 @@ var find1Obj = function(selector){return $(document.querySelector(selector))};
 var Preferences = [];
 var openmodal;
 
+var delay = function(a,b){
+	setTimeout(function(){a();},b); // gets around weird invocation errors
+}
+
 var make = function(a){return $(document.createElement(a))};
 var head = $(document.head);
 var body = $(document.body);
@@ -313,10 +317,8 @@ function PrefsListener() {
 
 function TDESettings() {
 	TDEPrepareWindows();
-		$(".js-app-settings").click();
-		setTimeout(function(){
-			$(".app-navigator").childNodes[elements("app-navigator margin-bm padding-ts")[0].childNodes.length-2].childNodes[3].childNodes[1].childNodes[7].childNodes[1].click();
-		},50);
+		delay($(".js-app-settings").click,10);
+		delay($("a[data-action='globalSettings']").click,100);
 		setTimeout(function(){
 			var tdesettingsmodalview = $("#settings-modal .mdl");
 			tdesettingsmodalview.className = "js-modal-panel mdl s-short is-inverted-dark tde-settings-panel";
@@ -477,12 +479,10 @@ function NavigationSetup() {
 			.click(function(){
 				TDEPrepareWindows();
 
-				$(".js-app-settings").click();
-				setTimeout(function(){
-					$("a[data-action='globalSettings']").click();
-				},25);
+				setTimeout(function(){$(".js-app-settings").click()},10);
+				setTimeout(function(){$("a[data-action='globalSettings']").click()},20);
 			})
-			.text("TweetDeck Settings"),
+			.append("TweetDeck Settings"),
 			make("button")
 			.addClass("btn tde-nav-button")
 			.attr("id","tdesettings")
@@ -492,7 +492,7 @@ function NavigationSetup() {
 				.addClass("tde-nav-drawer-icon")
 			)
 			.click(TDESettings)
-			.text("ModernDeck Settings"),
+			.append("ModernDeck Settings"),
 			make("button")
 			.addClass("btn tde-nav-button")
 			.attr("id","btdsettings")
@@ -508,7 +508,7 @@ function NavigationSetup() {
 					opn.focus();
 				},200);
 			})
-			.text("Better TweetDeck Settings"),
+			.append("Better TweetDeck Settings"),
 			make("div")
 			.addClass("tde-nav-divider"),
 			make("button")
@@ -521,14 +521,10 @@ function NavigationSetup() {
 			)
 			.click(function(){
 				TDEPrepareWindows();
-
-				$(".js-app-settings").click();
-
-				setTimeout(function(){
-					$("a[data-action='signOut']").click();
-				},25);
+				setTimeout(function(){$(".js-app-settings").click()},10);
+				setTimeout(function(){$("a[data-action='signOut']").click()},20);
 			})
-			.text("Sign Out"),
+			.append("Sign Out"),
 			make("button")
 			.addClass("btn tde-nav-button")
 			.attr("id","tdaccsbutton")
@@ -539,10 +535,9 @@ function NavigationSetup() {
 			)
 			.click(function(){
 				TDEPrepareWindows();
-
 				$(".js-show-drawer.js-header-action").click();
 			})
-			.text("Your Accounts"),
+			.append("Your Accounts"),
 			make("div")
 			.addClass("tde-nav-divider"),
 			make("button")
@@ -555,13 +550,10 @@ function NavigationSetup() {
 			)
 			.click(function(){
 				TDEPrepareWindows();
-
-				$(".js-app-settings").click();
-				setTimeout(function(){
-					$("a[data-action='keyboardShortcutList']").click();
-				},25);
+				setTimeout(function(){$(".js-app-settings").click()},10);
+				setTimeout(function(){$("a[data-action='keyboardShortcutList']").click()},20);
 			})
-			.text("Keyboard Shortcuts"),
+			.append("Keyboard Shortcuts"),
 			make("button")
 			.addClass("btn tde-nav-button")
 			.attr("id","addcolumn")
@@ -572,10 +564,9 @@ function NavigationSetup() {
 			)
 			.click(function(){
 				TDEPrepareWindows();
-
 				$(".js-header-add-column").click();
 			})
-			.text("Add Column")
+			.append("Add Column")
 		),
 		make("div")
 		.attr("id","tde_nav_drawer_background")
@@ -592,8 +583,6 @@ function NavigationSetup() {
 		.attr("id","TDENotification")
 	)
 
-	setTimeout(PrepareLoginStuffs,0);
-
 	window.TDEPrepareWindows = function() {
 		$("#update-sound,.js-click-trap").click();
 		tde_nav_drawer_background.click();
@@ -602,25 +591,24 @@ function NavigationSetup() {
 	if (TreatGeckoWithCare) {
 		btdsettings.remove();
 	}
+
+	PrepareLoginStuffs();
 }
 
 function KeyboardShortcutHandler(e) {
-	if ($("input:focus,textarea:focus").length > 0) {
-		return;
+	if (document.querySelector("input:focus,textarea:focus") !== null || e.keyCode !== 81) {
+		return; // uses querySelector for optimal speed
 	}
 
-	if (e.keyCode === 81) {
-		if ($(tde_nav_drawer).hasClass("tde-nav-drawer-hidden")) {
-			$("#tde-navigation-drawer-button").click();
-		} else {
-			$(tde_nav_drawer_background).click();
-		}
+	if ($(tde_nav_drawer).hasClass("tde-nav-drawer-hidden")) {
+		$("#tde-navigation-drawer-button").click();
+	} else {
+		$(tde_nav_drawer_background).click();
 	}
 }
 
 function ReloadTheme() {
 		var stuff = $(".application,html");
-
 		stuff.removeClass("tde-light tde-dark");
 
 		if ($("link[title='dark'][disabled]").length > 0) {
