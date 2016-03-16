@@ -6,7 +6,7 @@
 "use strict";
 
 var SystemVersion = "5.4.2";
-var MTDBaseURL = "https://dangeredwolf.com/assets/tdetest/"; // Defaults to streaming if nothing else is available (i.e. legacy firefox)
+var MTDBaseURL = "https://dangeredwolf.com/assets/mtdtest/"; // Defaults to streaming if nothing else is available (i.e. legacy firefox)
 
 var msgID = 0;
 var messagesAccounted = [];
@@ -42,9 +42,9 @@ var html = $(document.querySelector("html")); // Only 1 result; faster to find
 Preferences.Appearance = [
 	[
 		"flag",
-		"tde-round-avatars",
-		"tde_round_avatars",
-		"tde-rounded-profiles-control",
+		"mtd-round-avatars",
+		"mtd_round_avatars",
+		"mtd-rounded-profiles-control",
 		"Use rounded profile pictures",
 		true
 	],
@@ -53,16 +53,16 @@ Preferences.Appearance = [
 Preferences.Accessibility = [
 	[
 		"flag",
-		"tde-outlines",
-		"tde_outlines",
-		"tde-outlines-control",
+		"mtd-outlines",
+		"mtd_outlines",
+		"mtd-outlines-control",
 		"Always show outlines on focussed items",
 		false
 	]
 ]
 
 if (typeof MTDURLExchange !== "undefined") {
-	MTDBaseURL = MTDURLExchange.getAttribute("type") || "https://dangeredwolf.com/assets/tdetest/";
+	MTDBaseURL = MTDURLExchange.getAttribute("type") || "https://dangeredwolf.com/assets/mtdtest/";
 	console.info("MTDURLExchange completed with URL " + MTDBaseURL);
 }
 
@@ -120,12 +120,12 @@ function MTDInit(){
 	));
 
 	find1Obj(".js-modals-container").on("removeChild",function(rmnode){
-		$(rmnode).addClass("tde-modal-window-fade-out").delay(300).queue(function(){$(this).remove()});
+		$(rmnode).addClass("mtd-modal-window-fade-out").delay(300).queue(function(){$(this).remove()});
 	});
 
 	if (find1Obj("js-modal").length > 0) {
 		find1Obj("js-modal").on("removeChild",function(rmnode){
-			$(rmnode).addClass("tde-modal-window-fade-out").delay(300).queue(function(){$(this).remove()});
+			$(rmnode).addClass("mtd-modal-window-fade-out").delay(300).queue(function(){$(this).remove()});
 		});
 	}
 
@@ -141,22 +141,22 @@ function MTDInit(){
 
 	$("link[rel=\"shortcut icon\"]").attr("href",MTDBaseURL + "sources/favicon.ico");
 	$(document.querySelector("audio")).attr("src",GetURL("sources/alert_2.mp3"));
-	TD_mustaches["settings/global_setting_filter_row.mustache"]='<li class="list-filter cf"> {{_i}}<div class="tde-mute-text tde-mute-text-{{getDisplayType}}"></div> {{>text/global_filter_value}}{{/i}} <input type="button" name="remove-filter" value="{{_i}}Remove{{/i}}" data-id="{{id}}" class="js-remove-filter small btn btn-negative"> </li>'
+	TD_mustaches["settings/global_setting_filter_row.mustache"]='<li class="list-filter cf"> {{_i}}<div class="mtd-mute-text mtd-mute-text-{{getDisplayType}}"></div> {{>text/global_filter_value}}{{/i}} <input type="button" name="remove-filter" value="{{_i}}Remove{{/i}}" data-id="{{id}}" class="js-remove-filter small btn btn-negative"> </li>'
 
-	if (getPref("tde_round_avatars") === false)
-		html.addClass("tde-no-round-avatars");
+	if (getPref("mtd_round_avatars") === false)
+		html.addClass("mtd-no-round-avatars");
 	else
-		setPref("tde_round_avatars",true);
+		setPref("mtd_round_avatars",true);
 
-	if (getPref("tde_dark_media") === true)
-		html.addClass("tde-dark-media-previews");
+	if (getPref("mtd_dark_media") === true)
+		html.addClass("mtd-dark-media-previews");
 	else
-		setPref("tde_dark_media",false);
+		setPref("mtd_dark_media",false);
 
-	if (getPref("tde_outlines") === true)
-		html.addClass("tde-acc-focus-ring");
+	if (getPref("mtd_outlines") === true)
+		html.addClass("mtd-acc-focus-ring");
 	else
-		setPref("tde_outlines",false);
+		setPref("mtd_outlines",false);
 
 	TD.util.prettyTimeString = function(e) {
 		return TD.i("{{hours12}}:{{minutes}} {{amPm}}, {{day}} {{month}} {{fullYear}}", TD.util.prettyTime(e));
@@ -179,20 +179,20 @@ function WaitForLogin() {
 
 function SendNotificationMessage(txt) {
 	var knotty = $(MTDNotification);
-	if (knotty.hasClass("tde-appbar-notification-hidden")) {
-		knotty.removeClass("tde-appbar-notification-hidden");
+	if (knotty.hasClass("mtd-appbar-notification-hidden")) {
+		knotty.removeClass("mtd-appbar-notification-hidden");
 	} else {
-		knotty.addClass("tde-appbar-notification-hidden");
-		knotty.delay(300).queue(function(){knotty.html("").removeClass("tde-appbar-notification-hidden")});
+		knotty.addClass("mtd-appbar-notification-hidden");
+		knotty.delay(300).queue(function(){knotty.html("").removeClass("mtd-appbar-notification-hidden")});
 	}
- 	/*if (MTDNotification.className === "tde-appbar-notification") {
-		MTDNotification.className = "tde-appbar-notification tde-appbar-notification-hidden";
+ 	/*if (MTDNotification.className === "mtd-appbar-notification") {
+		MTDNotification.className = "mtd-appbar-notification mtd-appbar-notification-hidden";
 		setTimeout(function(){
-			MTDNotification.className = "tde-appbar-notification";
+			MTDNotification.className = "mtd-appbar-notification";
 			MTDNotification.innerHTML = txt;
 		},300);
 	} else {
-		MTDNotification.className = "tde-appbar-notification";
+		MTDNotification.className = "mtd-appbar-notification";
 		MTDNotification.innerHTML = txt;
 	}*/
 }
@@ -200,7 +200,7 @@ function SendNotificationMessage(txt) {
 function WaitForNotificationDismiss(node,prevmsgID) {
 	if (typeof node === "undefined" || node === null || typeof node.parentNode === "undefined" || node.parentNode === null) {
 		if (msgID === prevmsgID) {
-			$(MTDNotification).addClass("tde-appbar-notification-hidden");
+			$(MTDNotification).addClass("mtd-appbar-notification-hidden");
 			messagesAccounted[node] = undefined;
 			return;
 		} else {
@@ -216,9 +216,9 @@ function WorldTick(){
 	var elms = document.querySelectorAll(".tweet-action-item,.tweet-detail-action-item,.app-navigator");
 
 	$(".tweet-action-item>.dropdown,.tweet-detail-action-item>.dropdown,.app-navigator>.dropdown").each(function(index){
-		$(this).addClass("tde-dropdown-fade-out").delay(200).queue(function(){$(this).remove()});
+		$(this).addClass("mtd-dropdown-fade-out").delay(200).queue(function(){$(this).remove()});
 		this.removeChild = function(dropdown){
-			$(dropdown).addClass("tde-dropdown-fade-out");
+			$(dropdown).addClass("mtd-dropdown-fade-out");
 			setTimeout(function(){
 				dropdown.remove();
 			},200);
@@ -259,54 +259,54 @@ function WorldTick(){
 setInterval(WorldTick,600);
 
 function ResetSettingsUI() {
-	$("#tde-appearance-form")[0].style.cssText = "display:none;";
-	$("#tde-accessibility-form")[0].style.cssText = "display:none;";
-	$("#tde-about-form")[0].style.cssText = "display:none;";
-	$("#tde-appearance-li")[0].className = "";
-	$("#tde-accessibility-li")[0].className = "";
-	$("#tde-about-li")[0].className = "";
+	$("#mtd-appearance-form")[0].style.cssText = "display:none;";
+	$("#mtd-accessibility-form")[0].style.cssText = "display:none;";
+	$("#mtd-about-form")[0].style.cssText = "display:none;";
+	$("#mtd-appearance-li")[0].className = "";
+	$("#mtd-accessibility-li")[0].className = "";
+	$("#mtd-about-li")[0].className = "";
 }
 
 function PrefsListener() {
 	console.log("Testing...");
-	if ($("#tde-round-avatars-control").length > 0) {
+	if ($("#mtd-round-avatars-control").length > 0) {
 		console.log("waiting...");
 
-		if (localStorage.tde_round_avatars === "false" && $("#tde-round-avatars-control")[0].checked) {
+		if (localStorage.mtd_round_avatars === "false" && $("#mtd-round-avatars-control")[0].checked) {
 			console.log("Hey true!!");
-			localStorage.tde_round_avatars = true;
-			document.getElementsByTagName("html")[0].className = document.getElementsByTagName("html")[0].className.replace(" tde-no-round-avatars","");
+			localStorage.mtd_round_avatars = true;
+			document.getElementsByTagName("html")[0].className = document.getElementsByTagName("html")[0].className.replace(" mtd-no-round-avatars","");
 		}
 
-		if (localStorage.tde_round_avatars === "true" && !$("#tde-round-avatars-control")[0].checked) {
+		if (localStorage.mtd_round_avatars === "true" && !$("#mtd-round-avatars-control")[0].checked) {
 			console.log("Hey false!!");
-			localStorage.tde_round_avatars = false;
-			document.getElementsByTagName("html")[0].className += " tde-no-round-avatars";
+			localStorage.mtd_round_avatars = false;
+			document.getElementsByTagName("html")[0].className += " mtd-no-round-avatars";
 		}
 
 
-		if (localStorage.tde_dark_media === "false" && $("#tde-dark-media-control")[0].checked) {
+		if (localStorage.mtd_dark_media === "false" && $("#mtd-dark-media-control")[0].checked) {
 			console.log("Hey true!!");
-			localStorage.tde_dark_media = true;
-			document.getElementsByTagName("html")[0].className += " tde-dark-media-previews";
+			localStorage.mtd_dark_media = true;
+			document.getElementsByTagName("html")[0].className += " mtd-dark-media-previews";
 		}
 
-		if (localStorage.tde_dark_media === "true" && !$("#tde-dark-media-control")[0].checked) {
+		if (localStorage.mtd_dark_media === "true" && !$("#mtd-dark-media-control")[0].checked) {
 			console.log("Hey false!!");
-			localStorage.tde_dark_media = false;
-			document.getElementsByTagName("html")[0].className = document.getElementsByTagName("html")[0].className.replace(" tde-dark-media-previews","");
+			localStorage.mtd_dark_media = false;
+			document.getElementsByTagName("html")[0].className = document.getElementsByTagName("html")[0].className.replace(" mtd-dark-media-previews","");
 		}
 
-		if (localStorage.tde_outlines === "false" && $("#tde-outlines-control")[0].checked) {
+		if (localStorage.mtd_outlines === "false" && $("#mtd-outlines-control")[0].checked) {
 			console.log("Hey true!!");
-			localStorage.tde_outlines = true;
-			document.getElementsByTagName("html")[0].className += " tde-acc-focus-ring";
+			localStorage.mtd_outlines = true;
+			document.getElementsByTagName("html")[0].className += " mtd-acc-focus-ring";
 		}
 
-		if (localStorage.tde_outlines === "true" && !$("#tde-outlines-control")[0].checked) {
+		if (localStorage.mtd_outlines === "true" && !$("#mtd-outlines-control")[0].checked) {
 			console.log("Hey false!!");
-			localStorage.tde_outlines = false;
-			document.getElementsByTagName("html")[0].className = document.getElementsByTagName("html")[0].className.replace(" tde-acc-focus-ring","");
+			localStorage.mtd_outlines = false;
+			document.getElementsByTagName("html")[0].className = document.getElementsByTagName("html")[0].className.replace(" mtd-acc-focus-ring","");
 		}
 
 		setTimeout(PrefsListener,500);
@@ -318,53 +318,53 @@ function MTDSettings() {
 		delay($(".js-app-settings").click,10);
 		delay($("a[data-action='globalSettings']").click,100);
 		setTimeout(function(){
-			var tdesettingsmodalview = $("#settings-modal .mdl");
-			tdesettingsmodalview.className = "js-modal-panel mdl s-short is-inverted-dark tde-settings-panel";
-			var tdesettingsmodalinner = $("#settings-modal .mdl .mdl-inner");
+			var mtdsettingsmodalview = $("#settings-modal .mdl");
+			mtdsettingsmodalview.className = "js-modal-panel mdl s-short is-inverted-dark mtd-settings-panel";
+			var mtdsettingsmodalinner = $("#settings-modal .mdl .mdl-inner");
 			$("#settings-modal .mdl .js-header-title").addClass("mdl-header-title");
 			$("#settings-modal .mdl .mdl-header-title").html("ModernDeck Settings");
-			tdesettingsmodalinner.innerHTML = '<div class="mdl-content js-mdl-content horizontal-flow-container"> <div class="l-column mdl-column mdl-column-sml"> <div class="l-column-scrollv scroll-v	scroll-alt "> <ul class="lst-group js-setting-list">\
-			<li id="tde-appearance-li" class="selected"><a href="#" class="list-link" id="enhancer_settings_appearance_button" data-action="general"><strong>Appearance</strong></a></li>\
+			mtdsettingsmodalinner.innerHTML = '<div class="mdl-content js-mdl-content horizontal-flow-container"> <div class="l-column mdl-column mdl-column-sml"> <div class="l-column-scrollv scroll-v	scroll-alt "> <ul class="lst-group js-setting-list">\
+			<li id="mtd-appearance-li" class="selected"><a href="#" class="list-link" id="mtd_settings_appearance_button" data-action="general"><strong>Appearance</strong></a></li>\
 			\
-			<li id="tde-accessibility-li"><a href="#" class="list-link" id="enhancer_settings_accessibility_button" data-action="general"><strong>Accessibility</strong></a></li>\
+			<li id="mtd-accessibility-li"><a href="#" class="list-link" id="mtd_settings_accessibility_button" data-action="general"><strong>Accessibility</strong></a></li>\
 			\
-			<li id="tde-about-li"><a href="#" class="list-link" id="enhancer_settings_about_button" data-action="general"><strong>About</strong></a></li>\
+			<li id="mtd-about-li"><a href="#" class="list-link" id="mtd_settings_about_button" data-action="general"><strong>About</strong></a></li>\
 			\
 			\
 			</ul> </div> </div> <div class="l-column mdl-column mdl-column-lrg"> <div class="l-column-scrollv scroll-v	scroll-alt mdl-col-settings">\
 			\
 			\
-			<form action="#" id="tde-appearance-form" accept-charset="utf-8" class="frm"><fieldset id="general_settings"><div class="control-group" style="padding-top:10px;"><label class="checkbox">Use rounded profile pictures<input type="checkbox" name="streaming-updates" checked="checked" id="tde-round-avatars-control"> </label><label class="checkbox">Dark media viewer in light mode<input type="checkbox" name="streaming-updates" checked="checked" id="tde-dark-media-control"> </label></div></fieldset></form>\
+			<form action="#" id="mtd-appearance-form" accept-charset="utf-8" class="frm"><fieldset id="general_settings"><div class="control-group" style="padding-top:10px;"><label class="checkbox">Use rounded profile pictures<input type="checkbox" name="streaming-updates" checked="checked" id="mtd-round-avatars-control"> </label><label class="checkbox">Dark media viewer in light mode<input type="checkbox" name="streaming-updates" checked="checked" id="mtd-dark-media-control"> </label></div></fieldset></form>\
 			\
-			<form action="#" id="tde-accessibility-form" accept-charset="utf-8" class="frm" style="display:none;"><fieldset id="general_settings"><label class="checkbox">Always show outlines on focussed items<input type="checkbox" checked="checked" id="tde-outlines-control"> </label></fieldset></form>\
+			<form action="#" id="mtd-accessibility-form" accept-charset="utf-8" class="frm" style="display:none;"><fieldset id="general_settings"><label class="checkbox">Always show outlines on focussed items<input type="checkbox" checked="checked" id="mtd-outlines-control"> </label></fieldset></form>\
 			\
-			<form action="#" id="tde-about-form" accept-charset="utf-8" class="frm" style="display:none;"><fieldset id="general_settings"><img src="' + MTDBaseURL + 'sources/mtdabout.png" class="tde-logo"><h1 class="list-placeholder tde-about-title">ModernDeck</h1><h2 class="tde-version-title">You\'re running version ' + SystemVersion + '</h2><div class="mdl-links" style="margin-bottom:-10px"> <a href="https://dangeredwolf.com/TweetDeckEnhancer/privacy.txt" style="display:none" target="_blank">Privacy Policy</a> </div></fieldset></form>\
+			<form action="#" id="mtd-about-form" accept-charset="utf-8" class="frm" style="display:none;"><fieldset id="general_settings"><img src="' + MTDBaseURL + 'sources/mtdabout.png" class="mtd-logo"><h1 class="list-placeholder mtd-about-title">ModernDeck</h1><h2 class="mtd-version-title">You\'re running version ' + SystemVersion + '</h2><div class="mdl-links" style="margin-bottom:-10px"> <a href="https://dangeredwolf.com/TweetDeckEnhancer/privacy.txt" style="display:none" target="_blank">Privacy Policy</a> </div></fieldset></form>\
 			\
 			</div> </div> </div>';
 
-			$("#tde-round-avatars-control").attr("checked",localStorage.tde_round_avatars === "true" && true || false);
-			$("#tde-outlines-control").attr("checked",localStorage.tde_outlines === "true" && true || false);
-			$("#tde-dark-media-control").attr("checked",localStorage.tde_dark_media === "true" && true || false);
+			$("#mtd-round-avatars-control").attr("checked",localStorage.mtd_round_avatars === "true" && true || false);
+			$("#mtd-outlines-control").attr("checked",localStorage.mtd_outlines === "true" && true || false);
+			$("#mtd-dark-media-control").attr("checked",localStorage.mtd_dark_media === "true" && true || false);
 
 
 			PrefsListener();
 
-			$("#enhancer_settings_about_button").on("mouseup",function() {
+			$("#mtd_settings_about_button").on("mouseup",function() {
 				ResetSettingsUI();
-				$("#tde-about-li").addClass("selected");
-				$("#tde-about-form").css("display","block");
+				$("#mtd-about-li").addClass("selected");
+				$("#mtd-about-form").css("display","block");
 			});
 
-			$("#enhancer_settings_appearance_button").on("mouseup",function() {
+			$("#mtd_settings_appearance_button").on("mouseup",function() {
 				ResetSettingsUI();
-				$("#tde-appearance-li").addClass("selected");
-				$("#tde-appearance-form").css("display","block");
+				$("#mtd-appearance-li").addClass("selected");
+				$("#mtd-appearance-form").css("display","block");
 			});
 
-			$("#enhancer_settings_accessibility_button").on("mouseup",function() {
+			$("#mtd_settings_accessibility_button").on("mouseup",function() {
 				ResetSettingsUI();
-				$("#tde-accessibility-li").addClass("selected");
-				$("#tde-accessibility-form").css("display","block");
+				$("#mtd-accessibility-li").addClass("selected");
+				$("#mtd-accessibility-form").css("display","block");
 			});
 		},100);
 }
@@ -408,13 +408,13 @@ function FinaliseLoginStuffs() {
 	}
 
 	if ($(".prf-header").attr("style").search("td_profile_empty") > 0) {
-		$(tde_nd_header_image).attr("style",$(".prf-header").attr("style")); // Fetch header and place in nav drawer
+		$(mtd_nd_header_image).attr("style",$(".prf-header").attr("style")); // Fetch header and place in nav drawer
 	}
 
 	$(".prf-card-inner .username>.prf-follow-status").remove();
 
-	$(tde_nd_header_photo).attr("src",$(".prf-img>img").attr("src")); // Fetch profile picture and place in nav drawer
-	$(tde_nd_header_username).html($(".prf-card-inner .username").html()); // Fetch twitter handle and place in nav drawer
+	$(mtd_nd_header_photo).attr("src",$(".prf-img>img").attr("src")); // Fetch profile picture and place in nav drawer
+	$(mtd_nd_header_username).html($(".prf-card-inner .username").html()); // Fetch twitter handle and place in nav drawer
 
 	console.log("Finished login stuffs! you are in the nav drawer, I think!");
 
@@ -433,46 +433,46 @@ function NavigationSetup() {
 
 	$(".app-header-inner").append(
 		make("a")
-		.attr("id","tde-navigation-drawer-button")
-		.addClass("js-header-action tde-drawer-button link-clean cf app-nav-link")
-		.html('<div class="obj-left"><div class="tde-nav-activator"></div><div class="nbfc padding-ts"></div>')
+		.attr("id","mtd-navigation-drawer-button")
+		.addClass("js-header-action mtd-drawer-button link-clean cf app-nav-link")
+		.html('<div class="obj-left"><div class="mtd-nav-activator"></div><div class="nbfc padding-ts"></div>')
 		.click(function(){
 			// TODO: Wire button to open navigation drawer
-			// TODO: Remove the above TODO from back when i was developing tde 5.0
+			// TODO: Remove the above TODO from back when i was developing mtd 5.0
 
-			if (typeof tde_nav_drawer_background !== "undefined") {
-				$("#tde_nav_drawer_background").attr("class","tde-nav-drawer-background");
+			if (typeof mtd_nav_drawer_background !== "undefined") {
+				$("#mtd_nav_drawer_background").attr("class","mtd-nav-drawer-background");
 			}
-			if (typeof tde_nav_drawer !== "undefined") {
-				$("#tde_nav_drawer").attr("class","tde-nav-drawer");
+			if (typeof mtd_nav_drawer !== "undefined") {
+				$("#mtd_nav_drawer").attr("class","mtd-nav-drawer");
 			}
 		})
 	);
 
 	$("body").append(
 		make("div")
-		.attr("id","tde_nav_drawer")
-		.addClass("tde-nav-drawer tde-nav-drawer-hidden")
+		.attr("id","mtd_nav_drawer")
+		.addClass("mtd-nav-drawer mtd-nav-drawer-hidden")
 		.append(
 			make("img")
-			.attr("id","tde_nd_header_image")
-			.addClass("tde-nd-header-image")
+			.attr("id","mtd_nd_header_image")
+			.addClass("mtd-nd-header-image")
 			.attr("style","background:#00BCD4"),
 			make("img")
-			.addClass("avatar size73 tde-nd-header-photo")
-			.attr("id","tde_nd_header_photo")
+			.addClass("avatar size73 mtd-nd-header-photo")
+			.attr("id","mtd_nd_header_photo")
 			.attr("src",""),
 			make("div")
-			.addClass("tde-nd-header-username")
-			.attr("id","tde_nd_header_username")
+			.addClass("mtd-nd-header-username")
+			.attr("id","mtd_nd_header_username")
 			.html("PROFILE ERROR<br>Tell @dangeredwolf i said hi"),
 			make("button")
-			.addClass("btn tde-nav-button tde-settings-button")
+			.addClass("btn mtd-nav-button mtd-settings-button")
 			.attr("id","tdset")
 			.append(
 				make("img")
-				.attr("src",MTDBaseURL + "sources/tweetdecksmall.png")
-				.addClass("tde-nav-drawer-icon")
+				.attr("src",MTDBaseURL + "sources/tweemtdcksmall.png")
+				.addClass("mtd-nav-drawer-icon")
 			)
 			.click(function(){
 				MTDPrepareWindows();
@@ -482,22 +482,22 @@ function NavigationSetup() {
 			})
 			.append("TweetDeck Settings"),
 			make("button")
-			.addClass("btn tde-nav-button")
-			.attr("id","tdesettings")
+			.addClass("btn mtd-nav-button")
+			.attr("id","mtdsettings")
 			.append(
 				make("img")
 				.attr("src",MTDBaseURL + "sources/MTDsmall.png")
-				.addClass("tde-nav-drawer-icon")
+				.addClass("mtd-nav-drawer-icon")
 			)
 			.click(MTDSettings)
 			.append("ModernDeck Settings"),
 			make("button")
-			.addClass("btn tde-nav-button")
+			.addClass("btn mtd-nav-button")
 			.attr("id","btdsettings")
 			.append(
 				make("img")
 				.attr("src",MTDBaseURL + "sources/BTDsmall.png")
-				.addClass("tde-nav-drawer-icon")
+				.addClass("mtd-nav-drawer-icon")
 			)
 			.click(function(){
 				MTDPrepareWindows();
@@ -508,14 +508,14 @@ function NavigationSetup() {
 			})
 			.append("Better TweetDeck Settings"),
 			make("div")
-			.addClass("tde-nav-divider"),
+			.addClass("mtd-nav-divider"),
 			make("button")
-			.addClass("btn tde-nav-button")
-			.attr("id","tde_signout")
+			.addClass("btn mtd-nav-button")
+			.attr("id","mtd_signout")
 			.append(
 				make("img")
 				.attr("src",MTDBaseURL + "sources/logout.png")
-				.addClass("tde-nav-drawer-icon")
+				.addClass("mtd-nav-drawer-icon")
 			)
 			.click(function(){
 				MTDPrepareWindows();
@@ -524,12 +524,12 @@ function NavigationSetup() {
 			})
 			.append("Sign Out"),
 			make("button")
-			.addClass("btn tde-nav-button")
+			.addClass("btn mtd-nav-button")
 			.attr("id","tdaccsbutton")
 			.append(
 				make("img")
 				.attr("src",MTDBaseURL + "sources/accounts.png")
-				.addClass("tde-nav-drawer-icon")
+				.addClass("mtd-nav-drawer-icon")
 			)
 			.click(function(){
 				MTDPrepareWindows();
@@ -537,14 +537,14 @@ function NavigationSetup() {
 			})
 			.append("Your Accounts"),
 			make("div")
-			.addClass("tde-nav-divider"),
+			.addClass("mtd-nav-divider"),
 			make("button")
-			.addClass("btn tde-nav-button")
+			.addClass("btn mtd-nav-button")
 			.attr("id","kbshortcuts")
 			.append(
 				make("img")
 				.attr("src",MTDBaseURL + "sources/KBshortcuts.png")
-				.addClass("tde-nav-drawer-icon")
+				.addClass("mtd-nav-drawer-icon")
 			)
 			.click(function(){
 				MTDPrepareWindows();
@@ -553,12 +553,12 @@ function NavigationSetup() {
 			})
 			.append("Keyboard Shortcuts"),
 			make("button")
-			.addClass("btn tde-nav-button")
+			.addClass("btn mtd-nav-button")
 			.attr("id","addcolumn")
 			.append(
 				make("img")
 				.attr("src",MTDBaseURL + "sources/AddColumn.png")
-				.addClass("tde-nav-drawer-icon")
+				.addClass("mtd-nav-drawer-icon")
 			)
 			.click(function(){
 				MTDPrepareWindows();
@@ -567,23 +567,23 @@ function NavigationSetup() {
 			.append("Add Column")
 		),
 		make("div")
-		.attr("id","tde_nav_drawer_background")
-		.addClass("tde-nav-drawer-background tde-nav-drawer-background-hidden")
+		.attr("id","mtd_nav_drawer_background")
+		.addClass("mtd-nav-drawer-background mtd-nav-drawer-background-hidden")
 		.click(function(){
-			$(this).addClass("tde-nav-drawer-background-hidden");
-			$(tde_nav_drawer).addClass("tde-nav-drawer-hidden");
+			$(this).addClass("mtd-nav-drawer-background-hidden");
+			$(mtd_nav_drawer).addClass("mtd-nav-drawer-hidden");
 		})
 	);
 
 	$(".app-header-inner").append(
 		make("div")
-		.addClass("tde-appbar-notification tde-appbar-notification-hidden")
+		.addClass("mtd-appbar-notification mtd-appbar-notification-hidden")
 		.attr("id","MTDNotification")
 	)
 
 	window.MTDPrepareWindows = function() {
 		$("#update-sound,.js-click-trap").click();
-		tde_nav_drawer_background.click();
+		mtd_nav_drawer_background.click();
 	}
 
 	if (TreatGeckoWithCare) {
@@ -598,22 +598,22 @@ function KeyboardShortcutHandler(e) {
 		return; // uses querySelector for optimal speed
 	}
 
-	if ($(tde_nav_drawer).hasClass("tde-nav-drawer-hidden")) {
-		$("#tde-navigation-drawer-button").click();
+	if ($(mtd_nav_drawer).hasClass("mtd-nav-drawer-hidden")) {
+		$("#mtd-navigation-drawer-button").click();
 	} else {
-		$(tde_nav_drawer_background).click();
+		$(mtd_nav_drawer_background).click();
 	}
 }
 
 function ReloadTheme() {
 		var stuff = $(".application,html");
-		stuff.removeClass("tde-light tde-dark");
+		stuff.removeClass("mtd-light mtd-dark");
 
 		if ($("link[title='dark'][disabled]").length > 0) {
-			stuff.addClass("tde-light");
+			stuff.addClass("mtd-light");
 			MTDDark = false;
 		} else {
-			stuff.addClass("tde-dark");
+			stuff.addClass("mtd-dark");
 			MTDDark = true;
 		}
 }
@@ -626,13 +626,13 @@ function DisableSecureStylesheets() {
 		WantsToDisableSecureStylesheets = true;
 		return;
 	} else {
-		localStorage.tde_flag_block_secure_ss = true;
+		localStorage.mtd_flag_block_secure_ss = true;
 		console.log("Secure stylesheets have been disabled");
 	}
 }
 
 function EnableSecureStylesheets() {
-	localStorage.tde_flag_block_secure_ss = false;
+	localStorage.mtd_flag_block_secure_ss = false;
 	console.log("Thanks! For quicker updates and improvements, you have now enabled optional secure stylesheets.");
 }
 
@@ -709,12 +709,12 @@ function attemptdiag() {
 							<br>MTDBaseURL: ' + MTDBaseURL + '\
 							<br>MTDDark: ' + MTDDark + '\
 							<br>FetchProfileInfo: ' + FetchProfileInfo + '\
-							<br>tde_round_avatars: ' + localStorage.tde_round_avatars + '\
-							<br>tde_flag_block_secure_ss: ' + localStorage.tde_flag_block_secure_ss + '\
-							<br>tde_flag_block_communications: ' + localStorage.tde_flag_block_communications + '\
-							<br>tde_nd_header_image: ' + (typeof $("#tde_nd_header_image")[0] !== "undefined" && $("#tde_nd_header_image")[0].style.cssText) + '\
-							<br>tde_nd_header_username: ' + (typeof $("#tde_nd_header_username")[0] !== "undefined" && $("#tde_nd_header_username")[0].innerHTML) + '\
-							<br>tde_nd_header_photo: ' + (typeof $("#tde_nd_header_photo")[0] !== "undefined" && $("#tde_nd_header_photo")[0].src) + '\
+							<br>mtd_round_avatars: ' + localStorage.mtd_round_avatars + '\
+							<br>mtd_flag_block_secure_ss: ' + localStorage.mtd_flag_block_secure_ss + '\
+							<br>mtd_flag_block_communications: ' + localStorage.mtd_flag_block_communications + '\
+							<br>mtd_nd_header_image: ' + (typeof $("#mtd_nd_header_image")[0] !== "undefined" && $("#mtd_nd_header_image")[0].style.cssText) + '\
+							<br>mtd_nd_header_username: ' + (typeof $("#mtd_nd_header_username")[0] !== "undefined" && $("#mtd_nd_header_username")[0].innerHTML) + '\
+							<br>mtd_nd_header_photo: ' + (typeof $("#mtd_nd_header_photo")[0] !== "undefined" && $("#mtd_nd_header_photo")[0].src) + '\
 							<br>guestID: ' + (TD.storage.store._backend.guestID) + '\
 							<br>msgID: ' + (msgID) + '\
 							<br>InjectFonts?: ' + (typeof InjectFonts !== "undefined") + '\
@@ -766,11 +766,11 @@ function dxdiag() {
 		.css("display","block");
 }
 
-function addSpaceSuggestion(tdetxt,clickd) {
-	find1Obj(".tde-no-chars-suggestions").append(
+function addSpaceSuggestion(mtdtxt,clickd) {
+	find1Obj(".mtd-no-chars-suggestions").append(
 		make("button")
-		.addClass("btn tde-no-transform-case")
-		.html(tdetxt)
+		.addClass("btn mtd-no-transform-case")
+		.html(mtdtxt)
 		.click(clickd)
 		.click(function(){this.remove()})
 	);
@@ -800,11 +800,11 @@ function outtaSpaceSuggestions() {
 	if (typeof $(".js-media-added")[0] !== "undefined" && typeof $(".character-count-compose")[0] !== "undefined") {
 		if (parseInt($(".character-count-compose")[0].value) < 0) {
 
-			if (typeof $(".tde-out-of-space-suggestions")[0] === "undefined") {
+			if (typeof $(".mtd-out-of-space-suggestions")[0] === "undefined") {
 
 				NoCharsNotification = document.createElement("div");
-				NoCharsNotification.className = "compose-media-bar-holder padding-al tde-out-of-space-suggestions";
-				NoCharsNotification.innerHTML = '<div class="compose-media-bar"><div class="tde-no-chars-suggestions"><div class="txt weight-light txt-extra-large margin-b--10">Oops, you\'re over the character limit.</div>Here are suggestions to help:<br></div></div>';
+				NoCharsNotification.className = "compose-media-bar-holder padding-al mtd-out-of-space-suggestions";
+				NoCharsNotification.innerHTML = '<div class="compose-media-bar"><div class="mtd-no-chars-suggestions"><div class="txt weight-light txt-extra-large margin-b--10">Oops, you\'re over the character limit.</div>Here are suggestions to help:<br></div></div>';
 
 				$(".js-media-added")[0].appendChild(NoCharsNotification);
 				$(".js-media-added")[0].className = "js-media-added";
@@ -812,8 +812,8 @@ function outtaSpaceSuggestions() {
 				checkSpaceSuggestions();
 			}
 
-		} else if (typeof $(".tde-out-of-space-suggestions")[0] !== "undefined" && parseInt($(".character-count-compose")[0].value) >= 0) {
-			$(".tde-out-of-space-suggestions")[0].remove();
+		} else if (typeof $(".mtd-out-of-space-suggestions")[0] !== "undefined" && parseInt($(".character-count-compose")[0].value) >= 0) {
+			$(".mtd-out-of-space-suggestions")[0].remove();
 			$(".js-media-added")[0].className = "js-media-added is-hidden";
 		}
 	}
@@ -832,7 +832,7 @@ spawnModule(MTDInit,0);
 spawnModule(WorldTick,0);
 //spawnModule(outtaSpaceSuggestions,7000);
 
-html.addClass("tde-preferences-differentiator tde-api-ver-5-4 tde-js-loaded");
+html.addClass("mtd-preferences-differentiator mtd-api-ver-5-4 mtd-js-loaded");
 
 ReloadTheme();
 

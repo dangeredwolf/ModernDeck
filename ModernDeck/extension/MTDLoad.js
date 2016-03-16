@@ -33,11 +33,11 @@ function InjectDevStyles() {
   injStyles.rel = "stylesheet";
 
   if (isChromium) {
-    injStyles.href = chrome.extension.getURL("sources/enhancer.css");
+    injStyles.href = chrome.extension.getURL("sources/moderndeck.css");
   } else if (isSafari) {
-    injStyles.href = safari.extension.baseURI + "sources/enhancer.css";
+    injStyles.href = safari.extension.baseURI + "sources/moderndeck.css";
   } else if (isFirefox) {
-    injStyles.href = self.options.ffMTDURLExchange + "sources/enhancer.css";
+    injStyles.href = self.options.ffMTDURLExchange + "sources/moderndeck.css";
   } else {
     console.log('you done goofed')
   }
@@ -45,7 +45,7 @@ function InjectDevStyles() {
   document.head.appendChild(injStyles);
 }
 
-if (typeof localStorage.tde_stylesheet_dev_mode !== "undefined" && localStorage.tde_stylesheet_dev_mode === "true" || isDev) {
+if (typeof localStorage.mtd_stylesheet_dev_mode !== "undefined" && localStorage.mtd_stylesheet_dev_mode === "true" || isDev) {
   InjectDevStyles();
 }
 
