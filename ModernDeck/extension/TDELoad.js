@@ -1,9 +1,9 @@
-// TDELoad.js
+// MTDLoad.js
 // Copyright (c) 2015 Dangered Wolf
 
 const isDev = true;
 
-console.log("TDELoad 5.4.1");
+console.log("MTDLoad 5.4.1");
 
 if (typeof chrome !== "undefined") {
   var isChromium = true;
@@ -37,7 +37,7 @@ function InjectDevStyles() {
   } else if (isSafari) {
     injStyles.href = safari.extension.baseURI + "sources/enhancer.css";
   } else if (isFirefox) {
-    injStyles.href = self.options.ffTDEURLExchange + "sources/enhancer.css";
+    injStyles.href = self.options.ffMTDURLExchange + "sources/enhancer.css";
   } else {
     console.log('you done goofed')
   }
@@ -53,26 +53,26 @@ if (!isSafari && !isChromium) {
   InjectDevStyles();
 }
 
-console.log("Bootstrapping TDEinject");
+console.log("Bootstrapping MTDinject");
 InjectScript = document.createElement("script");
 
-function TDEURLExchange(url) {
+function MTDURLExchange(url) {
   injurl = document.createElement("div");
   injurl.setAttribute("type",url);
-  injurl.id = "TDEURLExchange";
+  injurl.id = "MTDURLExchange";
   document.head.appendChild(injurl);
   console.log("injected url exchange with id " + injurl.id);
 }
 
 if (isChromium) {
-  TDEURLExchange(chrome.extension.getURL(""));
-  InjectScript.src = chrome.extension.getURL("sources/TDEinject.js");
+  MTDURLExchange(chrome.extension.getURL(""));
+  InjectScript.src = chrome.extension.getURL("sources/MTDinject.js");
 } else if (isSafari) {
-  TDEURLExchange(safari.extension.baseURI + "/");
-  InjectScript.src = safari.extension.baseURI + "sources/TDEinject.js";
+  MTDURLExchange(safari.extension.baseURI + "/");
+  InjectScript.src = safari.extension.baseURI + "sources/MTDinject.js";
 } else {
-  TDEURLExchange(self.options.ffTDEURLExchange);
-  InjectScript.src = self.options.ffTDEURLExchange + "sources/TDEinject.js";
+  MTDURLExchange(self.options.ffMTDURLExchange);
+  InjectScript.src = self.options.ffMTDURLExchange + "sources/MTDinject.js";
 }
 
 InjectScript.type = "text/javascript";

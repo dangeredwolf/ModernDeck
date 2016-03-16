@@ -1,17 +1,17 @@
-// TDEinject.js
+// MTDinject.js
 // Copyright (c) 2015 Dangered Wolf, Jumono
 
 // made with love <3
 
 "use strict";
 
-var SystemVersion = "5.4.1";
-var TDEBaseURL = "https://dangeredwolf.com/assets/tdetest/"; // Defaults to streaming if nothing else is available (i.e. legacy firefox)
+var SystemVersion = "5.4.2";
+var MTDBaseURL = "https://dangeredwolf.com/assets/tdetest/"; // Defaults to streaming if nothing else is available (i.e. legacy firefox)
 
 var msgID = 0;
 var messagesAccounted = [];
 
-var TDEDark = true;
+var MTDDark = true;
 
 var addedColumnsLoadingTagAndIsWaiting = false;
 var progress = null;
@@ -61,9 +61,9 @@ Preferences.Accessibility = [
 	]
 ]
 
-if (typeof TDEURLExchange !== "undefined") {
-	TDEBaseURL = TDEURLExchange.getAttribute("type") || "https://dangeredwolf.com/assets/tdetest/";
-	console.info("TDEURLExchange completed with URL " + TDEBaseURL);
+if (typeof MTDURLExchange !== "undefined") {
+	MTDBaseURL = MTDURLExchange.getAttribute("type") || "https://dangeredwolf.com/assets/tdetest/";
+	console.info("MTDURLExchange completed with URL " + MTDBaseURL);
 }
 
 if (typeof chrome === "undefined" && typeof safari === "undefined") {
@@ -79,7 +79,7 @@ function setPref(id,p) {
 }
 
 function GetURL(url) {
-	return TDEBaseURL + url;
+	return MTDBaseURL + url;
 }
 
 function fontParseHelper(a) {
@@ -87,10 +87,10 @@ function fontParseHelper(a) {
 		throw "you forgot to pass the object";
 	}
 
-	return "@font-face{font-family:'" + (a.family || "Roboto") + "';font-style:" + (a.style || "normal") + ";font-weight:" + (a.weight || "300") + ";src:url(" + TDEBaseURL + "sources/fonts/" + a.name + ".woff2) format('woff2');unicode-range:" + (a.range || "U+0100-024F,U+1E00-1EFF,U+20A0-20AB,U+20AD-20CF,U+2C60-2C7F,U+A720-A7FF") + "}";
+	return "@font-face{font-family:'" + (a.family || "Roboto") + "';font-style:" + (a.style || "normal") + ";font-weight:" + (a.weight || "300") + ";src:url(" + MTDBaseURL + "sources/fonts/" + a.name + ".woff2) format('woff2');unicode-range:" + (a.range || "U+0100-024F,U+1E00-1EFF,U+20A0-20AB,U+20AD-20CF,U+2C60-2C7F,U+A720-A7FF") + "}";
 }
 
-function TDEInit(){
+function MTDInit(){
 	if (
 		typeof $ === "undefined" ||
 		typeof TD_mustaches === "undefined" ||
@@ -100,7 +100,7 @@ function TDEInit(){
 		typeof TD_mustaches["settings/global_setting_filter_row.mustache"] === "undefined" ||
 		typeof document.querySelector("js-modals-container") === "undefined"
 	) {
-		setTimeout(TDEInit,500);
+		setTimeout(MTDInit,500);
 		return;
 	}
 
@@ -139,7 +139,7 @@ function TDEInit(){
 		}
  	});
 
-	$("link[rel=\"shortcut icon\"]").attr("href",TDEBaseURL + "sources/favicon.ico");
+	$("link[rel=\"shortcut icon\"]").attr("href",MTDBaseURL + "sources/favicon.ico");
 	$(document.querySelector("audio")).attr("src",GetURL("sources/alert_2.mp3"));
 	TD_mustaches["settings/global_setting_filter_row.mustache"]='<li class="list-filter cf"> {{_i}}<div class="tde-mute-text tde-mute-text-{{getDisplayType}}"></div> {{>text/global_filter_value}}{{/i}} <input type="button" name="remove-filter" value="{{_i}}Remove{{/i}}" data-id="{{id}}" class="js-remove-filter small btn btn-negative"> </li>'
 
@@ -178,29 +178,29 @@ function WaitForLogin() {
 }
 
 function SendNotificationMessage(txt) {
-	var knotty = $(TDENotification);
+	var knotty = $(MTDNotification);
 	if (knotty.hasClass("tde-appbar-notification-hidden")) {
 		knotty.removeClass("tde-appbar-notification-hidden");
 	} else {
 		knotty.addClass("tde-appbar-notification-hidden");
 		knotty.delay(300).queue(function(){knotty.html("").removeClass("tde-appbar-notification-hidden")});
 	}
- 	/*if (TDENotification.className === "tde-appbar-notification") {
-		TDENotification.className = "tde-appbar-notification tde-appbar-notification-hidden";
+ 	/*if (MTDNotification.className === "tde-appbar-notification") {
+		MTDNotification.className = "tde-appbar-notification tde-appbar-notification-hidden";
 		setTimeout(function(){
-			TDENotification.className = "tde-appbar-notification";
-			TDENotification.innerHTML = txt;
+			MTDNotification.className = "tde-appbar-notification";
+			MTDNotification.innerHTML = txt;
 		},300);
 	} else {
-		TDENotification.className = "tde-appbar-notification";
-		TDENotification.innerHTML = txt;
+		MTDNotification.className = "tde-appbar-notification";
+		MTDNotification.innerHTML = txt;
 	}*/
 }
 
 function WaitForNotificationDismiss(node,prevmsgID) {
 	if (typeof node === "undefined" || node === null || typeof node.parentNode === "undefined" || node.parentNode === null) {
 		if (msgID === prevmsgID) {
-			$(TDENotification).addClass("tde-appbar-notification-hidden");
+			$(MTDNotification).addClass("tde-appbar-notification-hidden");
 			messagesAccounted[node] = undefined;
 			return;
 		} else {
@@ -217,16 +217,14 @@ function WorldTick(){
 
 	$(".tweet-action-item>.dropdown,.tweet-detail-action-item>.dropdown,.app-navigator>.dropdown").each(function(index){
 		$(this).addClass("tde-dropdown-fade-out").delay(200).queue(function(){$(this).remove()});
-	})
-
-	/*for (i = 0; i < elms.length; i++) {
-		elms[i].removeChild = function(dropdown){
-			dropdown.setAttribute("class",dropdown.getAttribute("class") + " tde-dropdown-fade-out");
+		this.removeChild = function(dropdown){
+			$(dropdown).addClass("tde-dropdown-fade-out");
 			setTimeout(function(){
 				dropdown.remove();
-			},200)
+			},200);
 		}
-	}*/
+	})
+
 	if (find1Obj(".status-message").length > 0) {
 		$(".status-message").each(function(index){
 			if (typeof messagesAccounted[this] === "undefined") {
@@ -315,8 +313,8 @@ function PrefsListener() {
 	}
 }
 
-function TDESettings() {
-	TDEPrepareWindows();
+function MTDSettings() {
+	MTDPrepareWindows();
 		delay($(".js-app-settings").click,10);
 		delay($("a[data-action='globalSettings']").click,100);
 		setTimeout(function(){
@@ -340,7 +338,7 @@ function TDESettings() {
 			\
 			<form action="#" id="tde-accessibility-form" accept-charset="utf-8" class="frm" style="display:none;"><fieldset id="general_settings"><label class="checkbox">Always show outlines on focussed items<input type="checkbox" checked="checked" id="tde-outlines-control"> </label></fieldset></form>\
 			\
-			<form action="#" id="tde-about-form" accept-charset="utf-8" class="frm" style="display:none;"><fieldset id="general_settings"><img src="' + TDEBaseURL + 'sources/mtdabout.png" class="tde-logo"><h1 class="list-placeholder tde-about-title">ModernDeck</h1><h2 class="tde-version-title">You\'re running version ' + SystemVersion + '</h2><div class="mdl-links" style="margin-bottom:-10px"> <a href="https://dangeredwolf.com/TweetDeckEnhancer/privacy.txt" style="display:none" target="_blank">Privacy Policy</a> </div></fieldset></form>\
+			<form action="#" id="tde-about-form" accept-charset="utf-8" class="frm" style="display:none;"><fieldset id="general_settings"><img src="' + MTDBaseURL + 'sources/mtdabout.png" class="tde-logo"><h1 class="list-placeholder tde-about-title">ModernDeck</h1><h2 class="tde-version-title">You\'re running version ' + SystemVersion + '</h2><div class="mdl-links" style="margin-bottom:-10px"> <a href="https://dangeredwolf.com/TweetDeckEnhancer/privacy.txt" style="display:none" target="_blank">Privacy Policy</a> </div></fieldset></form>\
 			\
 			</div> </div> </div>';
 
@@ -473,11 +471,11 @@ function NavigationSetup() {
 			.attr("id","tdset")
 			.append(
 				make("img")
-				.attr("src",TDEBaseURL + "sources/tweetdecksmall.png")
+				.attr("src",MTDBaseURL + "sources/tweetdecksmall.png")
 				.addClass("tde-nav-drawer-icon")
 			)
 			.click(function(){
-				TDEPrepareWindows();
+				MTDPrepareWindows();
 
 				setTimeout(function(){$(".js-app-settings").click()},10);
 				setTimeout(function(){$("a[data-action='globalSettings']").click()},20);
@@ -488,21 +486,21 @@ function NavigationSetup() {
 			.attr("id","tdesettings")
 			.append(
 				make("img")
-				.attr("src",TDEBaseURL + "sources/TDEsmall.png")
+				.attr("src",MTDBaseURL + "sources/MTDsmall.png")
 				.addClass("tde-nav-drawer-icon")
 			)
-			.click(TDESettings)
+			.click(MTDSettings)
 			.append("ModernDeck Settings"),
 			make("button")
 			.addClass("btn tde-nav-button")
 			.attr("id","btdsettings")
 			.append(
 				make("img")
-				.attr("src",TDEBaseURL + "sources/BTDsmall.png")
+				.attr("src",MTDBaseURL + "sources/BTDsmall.png")
 				.addClass("tde-nav-drawer-icon")
 			)
 			.click(function(){
-				TDEPrepareWindows();
+				MTDPrepareWindows();
 				setTimeout(function(){
 					var opn = window.open("chrome-extension://micblkellenpbfapmcpcfhcoeohhnpob/options/options.html", '_blank');
 					opn.focus();
@@ -516,11 +514,11 @@ function NavigationSetup() {
 			.attr("id","tde_signout")
 			.append(
 				make("img")
-				.attr("src",TDEBaseURL + "sources/logout.png")
+				.attr("src",MTDBaseURL + "sources/logout.png")
 				.addClass("tde-nav-drawer-icon")
 			)
 			.click(function(){
-				TDEPrepareWindows();
+				MTDPrepareWindows();
 				setTimeout(function(){$(".js-app-settings").click()},10);
 				setTimeout(function(){$("a[data-action='signOut']").click()},20);
 			})
@@ -530,11 +528,11 @@ function NavigationSetup() {
 			.attr("id","tdaccsbutton")
 			.append(
 				make("img")
-				.attr("src",TDEBaseURL + "sources/accounts.png")
+				.attr("src",MTDBaseURL + "sources/accounts.png")
 				.addClass("tde-nav-drawer-icon")
 			)
 			.click(function(){
-				TDEPrepareWindows();
+				MTDPrepareWindows();
 				$(".js-show-drawer.js-header-action").click();
 			})
 			.append("Your Accounts"),
@@ -545,11 +543,11 @@ function NavigationSetup() {
 			.attr("id","kbshortcuts")
 			.append(
 				make("img")
-				.attr("src",TDEBaseURL + "sources/KBshortcuts.png")
+				.attr("src",MTDBaseURL + "sources/KBshortcuts.png")
 				.addClass("tde-nav-drawer-icon")
 			)
 			.click(function(){
-				TDEPrepareWindows();
+				MTDPrepareWindows();
 				setTimeout(function(){$(".js-app-settings").click()},10);
 				setTimeout(function(){$("a[data-action='keyboardShortcutList']").click()},20);
 			})
@@ -559,11 +557,11 @@ function NavigationSetup() {
 			.attr("id","addcolumn")
 			.append(
 				make("img")
-				.attr("src",TDEBaseURL + "sources/AddColumn.png")
+				.attr("src",MTDBaseURL + "sources/AddColumn.png")
 				.addClass("tde-nav-drawer-icon")
 			)
 			.click(function(){
-				TDEPrepareWindows();
+				MTDPrepareWindows();
 				$(".js-header-add-column").click();
 			})
 			.append("Add Column")
@@ -580,10 +578,10 @@ function NavigationSetup() {
 	$(".app-header-inner").append(
 		make("div")
 		.addClass("tde-appbar-notification tde-appbar-notification-hidden")
-		.attr("id","TDENotification")
+		.attr("id","MTDNotification")
 	)
 
-	window.TDEPrepareWindows = function() {
+	window.MTDPrepareWindows = function() {
 		$("#update-sound,.js-click-trap").click();
 		tde_nav_drawer_background.click();
 	}
@@ -613,10 +611,10 @@ function ReloadTheme() {
 
 		if ($("link[title='dark'][disabled]").length > 0) {
 			stuff.addClass("tde-light");
-			TDEDark = false;
+			MTDDark = false;
 		} else {
 			stuff.addClass("tde-dark");
-			TDEDark = true;
+			MTDDark = true;
 		}
 }
 
@@ -708,8 +706,8 @@ function attemptdiag() {
 							<br>platform: ' + navigator.platform + '\
 							<br>TreatGeckoWithCare: ' + TreatGeckoWithCare + '\
 							<br>audiosrc: ' + document.getElementsByTagName("audio")[0].src + '\
-							<br>TDEBaseURL: ' + TDEBaseURL + '\
-							<br>TDEDark: ' + TDEDark + '\
+							<br>MTDBaseURL: ' + MTDBaseURL + '\
+							<br>MTDDark: ' + MTDDark + '\
 							<br>FetchProfileInfo: ' + FetchProfileInfo + '\
 							<br>tde_round_avatars: ' + localStorage.tde_round_avatars + '\
 							<br>tde_flag_block_secure_ss: ' + localStorage.tde_flag_block_secure_ss + '\
@@ -825,12 +823,12 @@ function outtaSpaceSuggestions() {
 
 function spawnModule(fun,del) {
 	if (typeof fun === "undefined") {
-		console.error("WARNING: TDE attempted to spawn a module that doesn't exist. This is a software bug.");
+		console.error("WARNING: MTD attempted to spawn a module that doesn't exist. This is a software bug.");
 	}
 	setTimeout(fun,del);
 }
 
-spawnModule(TDEInit,0);
+spawnModule(MTDInit,0);
 spawnModule(WorldTick,0);
 //spawnModule(outtaSpaceSuggestions,7000);
 
@@ -846,4 +844,4 @@ window.addEventListener("keyup",KeyboardShortcutHandler,false);
 	});
 })).observe(document.querySelector("link[title='dark']"), {attributes:true});
 
-console.log("TDEinject loaded");
+console.log("MTDinject loaded");
