@@ -30,10 +30,6 @@ var find1Obj = function(selector){return $(document.querySelector(selector))};
 var Preferences = [];
 var openmodal;
 
-var delay = function(a,b){
-	setTimeout(function(){a();},b); // gets around weird invocation errors
-}
-
 var make = function(a){return $(document.createElement(a))};
 var head = $(document.head);
 var body = $(document.body);
@@ -168,9 +164,6 @@ function MTDInit(){
 
 function WaitForLogin() {
 	if (find1Obj(".app-signin-form").length > 0) {
-		//document.getElementsByTagName("html")[0].setAttribute("class",document.getElementsByTagName("html")[0].getAttribute("class").replace(" signin-sheet-now-present",""));
-		//lmao
-
 		html.removeClass("signin-sheet-now-present");
 		return;
 	}
@@ -180,21 +173,10 @@ function WaitForLogin() {
 function SendNotificationMessage(txt) {
 	var knotty = $(MTDNotification);
 	if (knotty.hasClass("mtd-appbar-notification-hidden")) {
-		knotty.removeClass("mtd-appbar-notification-hidden");
+		knotty.removeClass("mtd-appbar-notification-hidden").html(txt);
 	} else {
-		knotty.addClass("mtd-appbar-notification-hidden");
-		knotty.delay(300).queue(function(){knotty.html("").removeClass("mtd-appbar-notification-hidden")});
+		knotty.addClass("mtd-appbar-notification-hidden").delay(300).queue(function(){knotty.html(txt).removeClass("mtd-appbar-notification-hidden")});
 	}
- 	/*if (MTDNotification.className === "mtd-appbar-notification") {
-		MTDNotification.className = "mtd-appbar-notification mtd-appbar-notification-hidden";
-		setTimeout(function(){
-			MTDNotification.className = "mtd-appbar-notification";
-			MTDNotification.innerHTML = txt;
-		},300);
-	} else {
-		MTDNotification.className = "mtd-appbar-notification";
-		MTDNotification.innerHTML = txt;
-	}*/
 }
 
 function WaitForNotificationDismiss(node,prevmsgID) {
@@ -225,7 +207,7 @@ function WorldTick(){
 		}
 	})
 
-	if (find1Obj(".status-message").length > 0) {
+	if (document.querySelector(".status-message") !== null) {
 		$(".status-message").each(function(index){
 			if (typeof messagesAccounted[this] === "undefined") {
 				var thing = this;
@@ -259,54 +241,49 @@ function WorldTick(){
 setInterval(WorldTick,600);
 
 function ResetSettingsUI() {
-	$("#mtd-appearance-form")[0].style.cssText = "display:none;";
-	$("#mtd-accessibility-form")[0].style.cssText = "display:none;";
-	$("#mtd-about-form")[0].style.cssText = "display:none;";
-	$("#mtd-appearance-li")[0].className = "";
-	$("#mtd-accessibility-li")[0].className = "";
-	$("#mtd-about-li")[0].className = "";
+	$("#mtd-appearance-form,#mtd-accessibility-form,#mtd-about-form").css("display","none");
+	$("#mtd-appearance-li,#mtd-accessibility-li,#mtd-about-li").removeClass("selected");
 }
 
 function PrefsListener() {
 	console.log("Testing...");
-	if ($("#mtd-round-avatars-control").length > 0) {
+	if (document.querySelector("#mtd-round-avatars-control") !== null ) {
 		console.log("waiting...");
-
-		if (localStorage.mtd_round_avatars === "false" && $("#mtd-round-avatars-control")[0].checked) {
-			console.log("Hey true!!");
-			localStorage.mtd_round_avatars = true;
-			document.getElementsByTagName("html")[0].className = document.getElementsByTagName("html")[0].className.replace(" mtd-no-round-avatars","");
-		}
 
 		if (localStorage.mtd_round_avatars === "true" && !$("#mtd-round-avatars-control")[0].checked) {
 			console.log("Hey false!!");
 			localStorage.mtd_round_avatars = false;
-			document.getElementsByTagName("html")[0].className += " mtd-no-round-avatars";
+			html.addClass("mtd-no-round-avatars");
 		}
 
+		if (localStorage.mtd_round_avatars === "false" && $("#mtd-round-avatars-control")[0].checked) {
+			console.log("Hey true!!");
+			localStorage.mtd_round_avatars = true;
+			html.removeClass("mtd-no-round-avatars");
+		}
 
 		if (localStorage.mtd_dark_media === "false" && $("#mtd-dark-media-control")[0].checked) {
 			console.log("Hey true!!");
 			localStorage.mtd_dark_media = true;
-			document.getElementsByTagName("html")[0].className += " mtd-dark-media-previews";
+			html.addClass("mtd-dark-media-previews");
 		}
 
 		if (localStorage.mtd_dark_media === "true" && !$("#mtd-dark-media-control")[0].checked) {
 			console.log("Hey false!!");
 			localStorage.mtd_dark_media = false;
-			document.getElementsByTagName("html")[0].className = document.getElementsByTagName("html")[0].className.replace(" mtd-dark-media-previews","");
+			html.removeClass("mtd-dark-media-previews");
 		}
 
 		if (localStorage.mtd_outlines === "false" && $("#mtd-outlines-control")[0].checked) {
 			console.log("Hey true!!");
 			localStorage.mtd_outlines = true;
-			document.getElementsByTagName("html")[0].className += " mtd-acc-focus-ring";
+			html.addClass("mtd-acc-focus-ring");
 		}
 
 		if (localStorage.mtd_outlines === "true" && !$("#mtd-outlines-control")[0].checked) {
 			console.log("Hey false!!");
 			localStorage.mtd_outlines = false;
-			document.getElementsByTagName("html")[0].className = document.getElementsByTagName("html")[0].className.replace(" mtd-acc-focus-ring","");
+			html.removeClass("mtd-acc-focus-ring");
 		}
 
 		setTimeout(PrefsListener,500);
@@ -319,11 +296,11 @@ function MTDSettings() {
 		setTimeout(function(){
 			$("a[data-action='globalSettings']").click();
 			var mtdsettingsmodalview = $("#settings-modal .mdl");
-			mtdsettingsmodalview.className = "js-modal-panel mdl s-short is-inverted-dark mtd-settings-panel";
+			mtdsettingsmodalview.addClass("mtd-settings-panel");
 			var mtdsettingsmodalinner = $("#settings-modal .mdl .mdl-inner");
-			$("#settings-modal .mdl .js-header-title").addClass("mdl-header-title");
+			$("#settings-modal .mdl .js-header-title").removeClass("js-header-title");
 			$("#settings-modal .mdl .mdl-header-title").html("ModernDeck Settings");
-			mtdsettingsmodalinner.innerHTML = '<div class="mdl-content js-mdl-content horizontal-flow-container"> <div class="l-column mdl-column mdl-column-sml"> <div class="l-column-scrollv scroll-v	scroll-alt "> <ul class="lst-group js-setting-list">\
+			mtdsettingsmodalinner.html('<div class="mdl-content js-mdl-content horizontal-flow-container"> <div class="l-column mdl-column mdl-column-sml"> <div class="l-column-scrollv scroll-v	scroll-alt "> <ul class="lst-group js-setting-list">\
 			<li id="mtd-appearance-li" class="selected"><a href="#" class="list-link" id="mtd_settings_appearance_button" data-action="general"><strong>Appearance</strong></a></li>\
 			\
 			<li id="mtd-accessibility-li"><a href="#" class="list-link" id="mtd_settings_accessibility_button" data-action="general"><strong>Accessibility</strong></a></li>\
@@ -340,12 +317,11 @@ function MTDSettings() {
 			\
 			<form action="#" id="mtd-about-form" accept-charset="utf-8" class="frm" style="display:none;"><fieldset id="general_settings"><img src="' + MTDBaseURL + 'sources/mtdabout.png" class="mtd-logo"><h1 class="list-placeholder mtd-about-title">ModernDeck</h1><h2 class="mtd-version-title">You\'re running version ' + SystemVersion + '</h2><div class="mdl-links" style="margin-bottom:-10px"> <a href="https://dangeredwolf.com/TweetDeckEnhancer/privacy.txt" style="display:none" target="_blank">Privacy Policy</a> </div></fieldset></form>\
 			\
-			</div> </div> </div>';
+			</div> </div> </div>');
 
 			$("#mtd-round-avatars-control").attr("checked",localStorage.mtd_round_avatars === "true" && true || false);
 			$("#mtd-outlines-control").attr("checked",localStorage.mtd_outlines === "true" && true || false);
 			$("#mtd-dark-media-control").attr("checked",localStorage.mtd_dark_media === "true" && true || false);
-
 
 			PrefsListener();
 
