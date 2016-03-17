@@ -19,6 +19,7 @@ var FindProfButton;
 
 var TreatGeckoWithCare = false;
 var profileProblem = false;
+var wasTweetSheetOpen = false;
 var WantsToBlockCommunications = false;
 var WantsToDisableSecureStylesheets = false;
 
@@ -358,8 +359,11 @@ function PrepareLoginStuffs() {
 	if (FindProfButton.length < 1) {
 		$(".js-show-drawer.js-header-action").click();
 		profileProblem = true;
+		if (document.querySelector(".js-app.hide-detail-view-inline") !== null) {
+			wasTweetSheetOpen = true;
+		}
 		console.log("profile problem!");
-		setTimeout(PrepareLoginStuffs,100);
+		setTimeout(PrepareLoginStuffs,50);
 		return;
 	}
 	FindProfButton.click();
@@ -379,7 +383,7 @@ function FinaliseLoginStuffs() {
 			setTimeout(PrepareLoginStuffs,0);
 			return;
 		}
-		setTimeout(FinaliseLoginStuffs,150);
+		setTimeout(FinaliseLoginStuffs,50);
 		return;
 	}
 
@@ -396,7 +400,11 @@ function FinaliseLoginStuffs() {
 
 	if (profileProblem) {
 		profileProblem = false;
-		find1Obj(".js-show-drawer.btn-compose").click();
+		if (wasTweetSheetOpen) {
+			find1Obj(".js-show-drawer.btn-compose").click();
+		} else {
+			find1Obj(".js-hide-drawer[data-title='Accounts']").click();
+		}
 		console.log("repaired profile problem with tweet thing");
 	}
 }
