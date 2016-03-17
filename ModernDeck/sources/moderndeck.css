@@ -11229,3 +11229,7 @@ a.js-dismiss {
 .add-account>fieldset>.form-login-username {
 	width:200px!important
 }
+
+.btd-no_columns_icons header > h1.column-title {
+	padding-left:30px!important
+}
