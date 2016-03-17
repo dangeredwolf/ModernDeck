@@ -194,25 +194,54 @@ function WaitForNotificationDismiss(node,prevmsgID) {
 	setTimeout(function(){WaitForNotificationDismiss(node,prevmsgID);},500);
 }
 
+function querySpeedTest(selector) {
+	var a = Date.now();
+	for (var i=0;i<100;i++)
+		$(selector);
+	var b = Date.now();
+	for (var i=0;i<100;i++)
+		document.querySelectorAll(selector);
+	var c = Date.now();
+	for (var i=0;i<100;i++)
+		document.querySelector(selector);
+	var d = Date.now();
+	for (var i=0;i<100;i++)
+		document.getElementsByClassName(selector);
+	var e = Date.now();
+	for (var i=0;i<100;i++)
+		document.getElementsByTagName(selector);
+	var f = Date.now();
+	for (var i=0;i<100;i++)
+		document.getElementById(selector);
+	var g = Date.now();
+	console.log("jQuery Performance: " + (b - a));
+	console.log("querySelectorAll Performance: " + (c - b));
+	console.log("querySelector Performance: " + (d - c));
+	console.log("getElementsByClassName Performance: " + (e - d));
+	console.log("getElementsByTagName Performance: " + (f - e));
+	console.log("getElementById Performance: " + (g - f));
+}
+
 function WorldTick(){
 
-	var elms = document.querySelectorAll(".tweet-action-item,.tweet-detail-action-item,.app-navigator");
+	// Testing: Reduce amount of querySelectorAll calls to just ONE!
 
-	$(".tweet-action-item>.dropdown,.tweet-detail-action-item>.dropdown,.app-navigator>.dropdown").each(function(index){
-		$(this).addClass("mtd-dropdown-fade-out").delay(200).queue(function(){$(this).remove()});
-		this.removeChild = function(dropdown){
-			$(dropdown).addClass("mtd-dropdown-fade-out");
-			setTimeout(function(){
-				dropdown.remove();
-			},200);
-		}
-	})
-
-	if (document.querySelector(".status-message") !== null) {
-		$(".status-message").each(function(index){
+	var modalOpen = false;
+	$(".status-message,.overlay,.ovl[style='display: block;'],.tweet-action-item>.dropdown,.tweet-detail-action-item>.dropdown,.app-navigator>.dropdown")
+	.each(function(index){
+		var wow = $(this);
+		if (wow.is(".tweet-action-item>.dropdown,.tweet-detail-action-item>.dropdown,.app-navigator>.dropdown")) {
+			wow.addClass("mtd-dropdown-fade-out").delay(200).queue(function(){wow.remove()});
+			this.removeChild = function(dropdown){
+				$(dropdown).addClass("mtd-dropdown-fade-out");
+				setTimeout(function(){
+					dropdown.remove();
+				},200);
+			}
+		} else if (wow.is(".ovl[style='display: block;'],.overlay")) {
+			modalOpen = true;
+		} else if (wow.is(".status-message")) {
 			if (typeof messagesAccounted[this] === "undefined") {
-				var thing = this;
-
 				msgID++;
 
 				SendNotificationMessage(this.childNodes[1].innerHTML);
@@ -220,23 +249,8 @@ function WorldTick(){
 
 				messagesAccounted[this] = true;
 			}
-		})
-	}
-
-	/*if (typeof document.querySelector(".status-message") !== "undefined") {
-		for (i = 0; i < elements("status-message").length; i++) {
-			if (typeof messagesAccounted[elements("status-message")[i]] === "undefined") {
-				var thing = elements("status-message")[i];
-
-				msgID++;
-
-				SendNotificationMessage(thing.childNodes[1].innerHTML);
-				WaitForNotificationDismiss(thing,msgID);
-
-				messagesAccounted[elements("status-message")[i]] = true;
-			}
 		}
-	}*/
+	});
 }
 
 setInterval(WorldTick,600);

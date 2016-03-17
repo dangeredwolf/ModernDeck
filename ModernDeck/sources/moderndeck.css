@@ -11194,11 +11194,13 @@ a.js-dismiss {
     background-image:linear-gradient(#00BCD4 0%, transparent 150%)
 }
 
-.btn-login[type="submit"] {
+.btn-login[type="submit"],.app-signin-form .btn-positive {
 	background:#00BCD4;
 	width:300px;
 	border-radius:3px;
 	font-weight:500;
+	padding-top:10px;
+	padding-bottom:0;
 	box-shadow:0 1px 2px 1px rgba(0,0,0,0.25);
 	color:#fff!important;
 }
@@ -11207,11 +11209,15 @@ a.js-dismiss {
 	width:200px!important
 }
 
-.btn-login[type="submit"]:hover,.btn-login[type="submit"]:focus {
+.app-signin-form .btn-positive:not(.btn-login) {
+	width:270px!important
+}
+
+.btn-login[type="submit"]:hover,.btn-login[type="submit"]:focus,.app-signin-form .btn-positive:hover,.app-signin-form .btn-positive:focus {
 	box-shadow:0 3px 10px 3px rgba(0,0,0,0.25);
 }
 
-.mtd-dark body .btn-login[type="submit"]:active {
+.mtd-dark body .btn-login[type="submit"]:active,.mtd-dark body .app-signin-form .btn-positive:active {
 	background:#00CDE8!important;
 	transform:none!important
 }
