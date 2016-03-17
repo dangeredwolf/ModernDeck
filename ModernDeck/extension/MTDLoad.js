@@ -3,7 +3,7 @@
 
 const isDev = true;
 
-console.log("MTDLoad 5.4.1");
+console.log("MTDLoad 5.4.2");
 
 if (typeof chrome !== "undefined") {
   var isChromium = true;
