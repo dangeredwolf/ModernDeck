@@ -123,7 +123,7 @@ function MTDInit(){
 	};
 
 	$(document.getElementsByClassName("application")[0].childNodes).each(function(obj){
-		
+
 	})
 
 	if (find1Obj(".js-modal").length > 0) {
@@ -205,11 +205,13 @@ function WaitForNotificationDismiss(node,prevmsgID) {
 
 function WorldTick(){
 
+	// TODO: ADD THINGS FOR js-modal
+
 	$(document).on('DOMNodeInserted', function(e) {
 		var tar = $(e.target);
     if (tar.hasClass("dropdown")) {
 			console.log("dropdown!!!");
-			e.target.removeChild = function(dropdown){
+			e.target.parentNode.removeChild = function(dropdown){
 				$(dropdown).addClass("mtd-dropdown-fade-out");
 				setTimeout(function(){
 					dropdown.remove();
