@@ -5,6 +5,8 @@
   "description": "The world's most loved twitter client.",
   "version": "5.4.2",
 
+  "minimum_edge_version": "33.14281.1000.0",
+
   "permissions": [
     "webRequest",
     "webRequestBlocking",
