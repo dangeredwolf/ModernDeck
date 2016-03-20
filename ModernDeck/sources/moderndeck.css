@@ -12,7 +12,7 @@
 
 /* SUPERCLASSES */
 
-.preloader-wrapper+.preloader-wrapper,.is-loaded>.preloader-wrapper,.nav-user-info>.avatar,.release-notes-image,.release-notes-image-bullet,.accordion .icon-arrow-u,.med-fullpanel .tweet-dogear,.tweet-detail-wrapper .tweet-dogear,.js-hide-drawer .icon-compose,.mdl .js-dismiss,.mdl .search-input-control:before,.startflow-panel .txt-center:not(.form-error-message),.add-participant .search-input-control:before,.drawer-content .search-input-control:before,.cf.account-remove-check,.facet-type .search-input-control:before,.accordion .is-active .facet-subtitle,.mdl-dismiss,.mdl-dismiss-media,.mtd-mobile .column-type-icon,.column-type-message .js-column-detail .column-title-back:before,.add-on.with-emphasis,.mtd-minimal .column-navigator,.mtd-dark body.scroll-v .js-modal-context .mdl:before,html body .app-navigator .dropdown-menu,.caret,.js-column-detail .column-title-back.conversation-title:after,.more-tweets-btn-inner-mouse-release,.more-tweets-btn-inner-loading,.more-tweets-btn-container--mouse-release .more-tweets-btn-inner-default,.more-tweets-btn-container--loading .more-tweets-btn-inner-default,.status-message,.app-masthead,.cmp-spinner,.chev-right,.compose-text-title,.cmp button b,.cmp .mdl-header-title:empty,.app-search-tweet-results .column-header-temp,.spinner-centered,.without-tweet-drag-handles .tweet-drag-handle,.account-remove-check,.js-app-settings .obj-left,.tweet-action-item.feature-customtimelines.tweet-drag-handle,.tweet-detail-action-item.feature-customtimelines.tweet-drag-handle,.column-nav-link:after,.more-tweets-btn-inner-mouse-release,.more-tweets-btn-inner-loading,.more-tweets-btn-container--mouse-release .more-tweets-btn-inner-default,.more-tweets-btn-container--loading .more-tweets-btn-inner-default,.list-item .icon-search.list-icon,.js-typeahead-recent-search-item .obj-left,.s-following .follow-btn .btn-loader,.btd-settings,body:not(.btd-ready) #btdsettings,.edit-conversation-name .nbfc,.js-app-add-column,.js-dismiss,.js-schedule-datepicker-holder .popover .padding-as .btn .icon-trash,.js-dismiss.btn.btn-positive i.icon.icon-check.icon-small.padding-rs,.column-close-link.txt-r-dark-gray,.js-app-loading .js-header-container,.js-add-image-button-label,.js-schedule-button-label,.js-tweet-button-label,.js-dm-button .label.padding-ls,.column-nav-flyout,.release-notes-modal .mdl-drag-handle,#datepicker,.search-input-spinner,.search-input-clear-search,.toggle-item-text-truncated,.sch.s-searching .sch-clear,legend,.frm-legend,.action-btn,.med-origlink,.med-flaglink,.hide-detail-view-inline .detail-view-inline,.compose-account-selected,.js-compose-hint.margin-vl.anim.anim-fade-in,#file-upload-input,.s-sending .char-count,.s-profile .mdl-buttonbar,.s-profile h3,.mdl.s-nonav .mdl-inner .mdl-buttonbar,.ovl.is-dragging:before,.is-dragging.overlay:before,.numbered-badge-onheader,.migrate-account-login-step-1 .migrate-tweetdeck-account-warning-wrapper,.migrate-account-login-step-2 .migrate-tweetdeck-account-warning-wrapper,.migrate-account-login-step-3 .migrate-account-login-forms,.migrate-account-login-step-3 .migrate-account-login-about,.migrate-account-login-forms-cancel,.tooltip-arrow,.app-search-in-popover,.app-search-form,.app-header .app-nav-logo-text,.app-header .hide-condensed,.app-header .sprite-logo,.app-header .tweet-button .label,.app-header .app-nav-link .icon-arrow-l-double,.app-header .app-nav-link .icon-arrow-r-double,.app-nav-link .icon-arrow-r-double,.app-nav-tab .icon-user-switch,.tweet-message-status,.icon.icon-move,.tweet-drag-handle,.is-narrow-columns .media-size-medium .media-sensitive-title,.contributor-row[data-contributor-role="contributor"] [data-show-when-contributor-role="admin"],.contributor-row[data-contributor-role="admin"] [data-show-when-contributor-role="contributor"],.contributor-row[data-state-error="closed-error"] [data-hide-when-state-error="closed-error"],.contributor-row[data-state="settings"] [data-hide-when-state="settings"],.contributor-row[data-state-error="settings-error"] [data-hide-when-state-error="settings-error"],[data-show-when-state],[data-show-when-state-error],.is-options-open .column-settings-link .icon-arrow-d,.column-header-link .icon-arrow-u,.column-title-back .attribution,.js-add-to-customtimeline-button,.column-title-editable .js-show-tip.avatar.size24,.account-remove-check,.signin-sheet-now-present .application,.btn-fav-fav-text,.with-add-by-url .list-placeholder.pin-all,.s-thats-you .btn-loader,.s-pending .btn-loader,.s-blocking .follow-btn:hover .block-text,.s-blocking .btn-loader,.s-not-favorited .btn-loader,.btn-fav-faved-text,.s-favorited .btn-loader,.btn-fav-protected-text,.s-protected .btn-loader,.link-clean[href="https://twitter.com/UberFacts"] .sprite-verified,.btn-fav-unfav-text,.btn-fav.s-favorited:hover .btn-fav-faved-text,.s-not-following .btn-loader,.action-text,.s-following .follow-btn:hover .following-text {
+.mdl-drag-handle,.preloader-wrapper+.preloader-wrapper,.is-loaded>.preloader-wrapper,.nav-user-info>.avatar,.release-notes-image,.release-notes-image-bullet,.accordion .icon-arrow-u,.med-fullpanel .tweet-dogear,.tweet-detail-wrapper .tweet-dogear,.js-hide-drawer .icon-compose,.mdl .js-dismiss,.mdl .search-input-control:before,.startflow-panel .txt-center:not(.form-error-message),.add-participant .search-input-control:before,.drawer-content .search-input-control:before,.cf.account-remove-check,.facet-type .search-input-control:before,.accordion .is-active .facet-subtitle,.mdl-dismiss,.mdl-dismiss-media,.mtd-mobile .column-type-icon,.column-type-message .js-column-detail .column-title-back:before,.add-on.with-emphasis,.mtd-minimal .column-navigator,.mtd-dark body.scroll-v .js-modal-context .mdl:before,html body .app-navigator .dropdown-menu,.caret,.js-column-detail .column-title-back.conversation-title:after,.more-tweets-btn-inner-mouse-release,.more-tweets-btn-inner-loading,.more-tweets-btn-container--mouse-release .more-tweets-btn-inner-default,.more-tweets-btn-container--loading .more-tweets-btn-inner-default,.status-message,.app-masthead,.cmp-spinner,.chev-right,.compose-text-title,.cmp button b,.cmp .mdl-header-title:empty,.app-search-tweet-results .column-header-temp,.spinner-centered,.without-tweet-drag-handles .tweet-drag-handle,.account-remove-check,.js-app-settings .obj-left,.tweet-action-item.feature-customtimelines.tweet-drag-handle,.tweet-detail-action-item.feature-customtimelines.tweet-drag-handle,.column-nav-link:after,.more-tweets-btn-inner-mouse-release,.more-tweets-btn-inner-loading,.more-tweets-btn-container--mouse-release .more-tweets-btn-inner-default,.more-tweets-btn-container--loading .more-tweets-btn-inner-default,.list-item .icon-search.list-icon,.js-typeahead-recent-search-item .obj-left,.s-following .follow-btn .btn-loader,.btd-settings,body:not(.btd-ready) #btdsettings,.edit-conversation-name .nbfc,.js-app-add-column,.js-dismiss,.js-schedule-datepicker-holder .popover .padding-as .btn .icon-trash,.js-dismiss.btn.btn-positive i.icon.icon-check.icon-small.padding-rs,.column-close-link.txt-r-dark-gray,.js-app-loading .js-header-container,.js-add-image-button-label,.js-schedule-button-label,.js-tweet-button-label,.js-dm-button .label.padding-ls,.column-nav-flyout,.release-notes-modal .mdl-drag-handle,#datepicker,.search-input-spinner,.search-input-clear-search,.toggle-item-text-truncated,.sch.s-searching .sch-clear,legend,.frm-legend,.action-btn,.med-origlink,.med-flaglink,.hide-detail-view-inline .detail-view-inline,.compose-account-selected,.js-compose-hint.margin-vl.anim.anim-fade-in,#file-upload-input,.s-sending .char-count,.s-profile .mdl-buttonbar,.s-profile h3,.mdl.s-nonav .mdl-inner .mdl-buttonbar,.ovl.is-dragging:before,.is-dragging.overlay:before,.numbered-badge-onheader,.migrate-account-login-step-1 .migrate-tweetdeck-account-warning-wrapper,.migrate-account-login-step-2 .migrate-tweetdeck-account-warning-wrapper,.migrate-account-login-step-3 .migrate-account-login-forms,.migrate-account-login-step-3 .migrate-account-login-about,.migrate-account-login-forms-cancel,.tooltip-arrow,.app-search-in-popover,.app-search-form,.app-header .app-nav-logo-text,.app-header .hide-condensed,.app-header .sprite-logo,.app-header .tweet-button .label,.app-header .app-nav-link .icon-arrow-l-double,.app-header .app-nav-link .icon-arrow-r-double,.app-nav-link .icon-arrow-r-double,.app-nav-tab .icon-user-switch,.tweet-message-status,.icon.icon-move,.tweet-drag-handle,.is-narrow-columns .media-size-medium .media-sensitive-title,.contributor-row[data-contributor-role="contributor"] [data-show-when-contributor-role="admin"],.contributor-row[data-contributor-role="admin"] [data-show-when-contributor-role="contributor"],.contributor-row[data-state-error="closed-error"] [data-hide-when-state-error="closed-error"],.contributor-row[data-state="settings"] [data-hide-when-state="settings"],.contributor-row[data-state-error="settings-error"] [data-hide-when-state-error="settings-error"],[data-show-when-state],[data-show-when-state-error],.is-options-open .column-settings-link .icon-arrow-d,.column-header-link .icon-arrow-u,.column-title-back .attribution,.js-add-to-customtimeline-button,.column-title-editable .js-show-tip.avatar.size24,.account-remove-check,.signin-sheet-now-present .application,.btn-fav-fav-text,.with-add-by-url .list-placeholder.pin-all,.s-thats-you .btn-loader,.s-pending .btn-loader,.s-blocking .follow-btn:hover .block-text,.s-blocking .btn-loader,.s-not-favorited .btn-loader,.btn-fav-faved-text,.s-favorited .btn-loader,.btn-fav-protected-text,.s-protected .btn-loader,.link-clean[href="https://twitter.com/UberFacts"] .sprite-verified,.btn-fav-unfav-text,.btn-fav.s-favorited:hover .btn-fav-faved-text,.s-not-following .btn-loader,.action-text,.s-following .follow-btn:hover .following-text {
 	display:none
 }
 
@@ -1558,8 +1558,7 @@ small {
 
 .pin-top {
 	left:0;
-	right:0;
-	box-shadow:0 5px 5px rgba(17,17,17,.15)
+	right:0
 }
 
 .pin-bottom-only,.pin-bottom {
@@ -2570,6 +2569,7 @@ h6 {
 
 .mdl-inner .column-content {
 	width:100%!important;
+	top:0;
 	border:none
 }
 
@@ -2757,6 +2757,10 @@ h6 {
 
 .is-wide-columns .column-header,.is-wide-columns .column-header-temp {
 	width:353px
+}
+
+.mdl .column-header-temp {
+	display:none
 }
 
 .column-temp .column-header,.column-header-temp {
@@ -4928,7 +4932,7 @@ a .column-title-back .icon:after {
 	left:0;
 	right:0;
 	bottom:0;
-	z-index:300
+	z-index:1000
 }
 
 .ovl,.overlay {
@@ -4977,18 +4981,21 @@ a .column-title-back .icon:after {
 	zoom:1;
 	display:inline-block;
 	vertical-align:middle;
-	position:relative;
 	width:643px;
-	height:630px;
-	margin:0 auto;
 	background:#fff;
 	text-align:left;
 	opacity:1;
 	border-radius:4px;
 	animation:windowDown .3s 1 cubic-bezier(.19,1,.22,1);
 	box-shadow:0 30px 70px rgba(17,17,17,.6);
-	overflow:hidden;
-	transition:.1s box-shadow,.1s transform
+	/* overflow:hidden; */
+	height:100%;
+	border-radius:0;
+	left:0;
+	bottom:0;
+	top:0;
+	position:absolute;
+	margin:0;
 }
 
 .mtd-mobile .mdl {
@@ -5004,15 +5011,14 @@ a .column-title-back .icon:after {
 
 .mdl-header-title {
 	font-size:18px;
-	margin-left:-15px;
-	margin-right:auto;
-	text-align:center;
+	text-align:left;
 	color:#fff;
 	margin-top:0;
 	z-index:10;
 	position:absolute;
 	width:100%;
-	font-weight:400
+	padding-top:10px;
+	font-weight:500
 }
 
 .accs-header {
@@ -5033,7 +5039,7 @@ a .column-title-back .icon:after {
 
 .mdl-inner {
 	position:absolute;
-	top:50px;
+	top:70px;
 	left:-1px;
 	right:0;
 	bottom:0
@@ -5042,8 +5048,6 @@ a .column-title-back .icon:after {
 .mdl-content {
 	height:100%;
 	border-radius:0;
-	background:#fff;
-	background-clip:padding-box;
 	overflow:hidden;
 	padding-top:20px
 }
@@ -5072,15 +5076,6 @@ a .column-title-back .icon:after {
 	padding-right:10px;
 	vertical-align:middle;
 	font-weight:300
-}
-
-.mdl-drag-handle {
-	cursor:move;
-	position:absolute;
-	left:0;
-	top:0;
-	z-index:100;
-	background:transparent
 }
 
 .mdl-column {
@@ -5122,8 +5117,10 @@ a .column-title-back .icon:after {
 .mdl-column-rhs {
 	background:#fff;
 	width:385px;
-	height:100%;
-	position:absolute
+	bottom:0;
+	top:-70px;
+	position:absolute;
+	height:auto
 }
 
 .mdl.s-fluid {
@@ -5140,16 +5137,6 @@ a .column-title-back .icon:after {
 	height:auto
 }
 
-.mdl:before {
-	content:" ";
-	width:100.1%;
-	height:52px;
-	background:#29B6F6;
-	position:absolute;
-	box-shadow:0 0 15px rgba(17,17,17,.3);
-	z-index:9
-}
-
 .s-profile.mdl:before {
 	width:0
 }
@@ -5164,7 +5151,7 @@ a .column-title-back .icon:after {
 
 .mdl.s-fluid .mdl-inner,.mdl.s-fluid-height .mdl-inner {
 	position:relative;
-	top:0;
+	top:20px;
 	bottom:auto;
 	left:auto;
 	right:auto
@@ -5180,6 +5167,10 @@ a .column-title-back .icon:after {
 
 .mdl.s-wide {
 	width:643px
+}
+
+.mdl.mdl-favorite-from-options {
+	width:400px;
 }
 
 .mdl.s-full {
@@ -6658,10 +6649,13 @@ input[type="checkbox"] {
 }
 
 .mdl-column.l-column .search-input {
-	padding-right:25px;
 	color:#fff;
-	border-bottom:2px solid #fff;
-	width:100%
+	width:70%;
+	border-bottom:none;
+	margin-left:10px;
+	background:rgba(255,255,255,0.04);
+	box-shadow:0 3px 8px rgba(0,0,0,0.3);
+	border-radius:4px;
 }
 
 .mdl-column.l-column .search-input::-webkit-input-placeholder {
@@ -6683,8 +6677,8 @@ input[type="checkbox"] {
 	width:50px;
 	height:50px;
 	position:absolute;
-	right:26px;
-	bottom:26px;
+	right:-25px;
+	bottom:100px;
 	box-shadow:0 2px 5px 1px rgba(0,0,0,.25);
 	background:#26C6DA;
 	z-index:999
@@ -7021,7 +7015,7 @@ input[type="checkbox"] {
 	background:#ddd;
 	background-size:100%;
 	text-align:center;
-	text-shadow:0 5px 40px #000;
+	text-shadow:0 2px 7px #000;
 	color:#fff
 }
 
@@ -8343,12 +8337,13 @@ input[type="checkbox"] {
 }
 
 .btn-back {
-	margin-top:-640px;
-	position:absolute;
+	position:fixed;
+	top:20px;
 	width:25px;
 	height:25px;
 	font-size:0;
 	margin-left:7px;
+	display:none!important; /*TODO: FIX THIS*/
 	z-index:99
 }
 
@@ -8410,15 +8405,6 @@ input[type="checkbox"] {
 
 .not-actionable .facet-subtitle {
 	color:transparent
-}
-
-.mdl-column .pin-top .search-input-list {
-	background:#29B6F6;
-	padding-bottom:18px!important
-}
-
-.js-right-column.scroll-v.l-fullheight {
-	box-shadow:10px 10px 30px 0 rgba(17,17,17,.39)
 }
 
 .dropdown-menu b.non-selectable-item {
@@ -9894,10 +9880,6 @@ html.mtd-dark {
 	background:rgb(38,50,56)
 }
 
-.mtd-dark .mdl:before {
-	background:rgb(38,50,56)
-}
-
 .mtd-dark .accs .acc-selected {
 	background:#00838F;
 	-webkit-filter:grayscale(0%);
@@ -9914,7 +9896,7 @@ html.mtd-dark {
 }
 
 .mtd-dark .mdl {
-	background: rgb(46, 59, 65);
+	background: rgb(37, 50, 56);
 }
 
 .mtd-dark-media-previews .med-fullpanel {
@@ -9960,16 +9942,12 @@ html.mtd-dark {
 	color:#eee
 }
 
-.mtd-dark .mdl-column .pin-top .search-input-list {
-	background:#263238
-}
-
 .mtd-dark .column-background-fill {
 	background:rgb(55,71,79)
 }
 
 .mtd-dark .lst-group h3 {
-	color:#BBC8C5
+	color: #546671;
 }
 
 .mtd-dark .list-account .fullname {
@@ -10188,7 +10166,7 @@ html.mtd-dark {
 }
 
 .mtd-dark .mdl-column {
-	background:rgb(52,66,72)
+	background: rgb(37, 50, 56);
 }
 
 article.is-unread .account-link {
@@ -11409,14 +11387,6 @@ a.js-dismiss {
 
 .btd-no_columns_icons header > h1.column-title {
 	padding-left:30px!important
-}
-
-.mdl.s-profile {
-	height:100%;
-	border-radius:0;
-	left:0;
-	position:absolute;
-	margin:0!important
 }
 
 .social-proof-container>.pull-left {
