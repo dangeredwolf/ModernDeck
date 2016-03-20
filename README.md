@@ -1,4 +1,4 @@
-DangeredWolf is back ready to make ModernDeck shine again!
+
 
 ModernDeck
 ==================
