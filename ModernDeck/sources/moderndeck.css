@@ -11032,8 +11032,8 @@ button.mtd-no-transform-case {
 	box-shadow:0 5px 15px 1px rgba(0,0,0,.25)
 }
 
-.lst-group:not(.js-setting-list) li:active {
-	background:rgba(0,0,0,.5)
+.lst-group li:active {
+	background:rgba(0,0,0,.05)
 }
 
 .list-link {
