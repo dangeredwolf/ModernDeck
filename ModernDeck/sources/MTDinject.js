@@ -100,8 +100,7 @@ function MTDInit(){
 		typeof TD === "undefined" ||
 		typeof TD.util === "undefined" ||
 		typeof TD.util.prettyTimeString === "undefined" ||
-		typeof TD_mustaches["settings/global_setting_filter_row.mustache"] === "undefined" ||
-		typeof document.querySelector("js-modals-container") === "undefined"
+		typeof TD_mustaches["settings/global_setting_filter_row.mustache"] === "undefined"
 	) {
 		setTimeout(MTDInit,500);
 		return;
@@ -122,13 +121,23 @@ function MTDInit(){
 		fontParseHelper({family:"Font Awesome",weight:"400",name:"fontawesome",range:"U+0000-F000"})
 	));
 
-	find1Obj(".js-modals-container").on("removeChild",function(rmnode){
-		$(rmnode).addClass("mtd-modal-window-fade-out").delay(300).queue(function(){$(this).remove()});
-	});
+	document.getElementsByClassName("js-modals-container")[0].removeChild = function(rmnode){
+		$(rmnode).addClass("mtd-modal-window-fade-out");
+		setTimeout(function(){
+			rmnode.remove();
+		},200);
+	};
 
-	if (find1Obj("js-modal").length > 0) {
-		find1Obj("js-modal").on("removeChild",function(rmnode){
-			$(rmnode).addClass("mtd-modal-window-fade-out").delay(300).queue(function(){$(this).remove()});
+	$(document.getElementsByClassName("application")[0].childNodes).each(function(obj){
+
+	})
+
+	if (find1Obj(".js-modal").length > 0) {
+		find1Obj(".js-modal").on("removeChild",function(rmnode){
+			$(rmnode).addClass("mtd-modal-window-fade-out");
+			setTimeout(function(){
+				rmnode.remove();
+			},200);
 		});
 	}
 
@@ -207,50 +216,55 @@ function WaitForNotificationDismiss(node,prevmsgID) {
 
 function WorldTick(){
 
-	var elms = document.querySelectorAll(".tweet-action-item,.tweet-detail-action-item,.app-navigator");
+	// TODO: ADD THINGS FOR js-modal
 
-	$(".tweet-action-item>.dropdown,.tweet-detail-action-item>.dropdown,.app-navigator>.dropdown").each(function(index){
-		$(this).addClass("mtd-dropdown-fade-out").delay(200).queue(function(){$(this).remove()});
-		this.removeChild = function(dropdown){
-			$(dropdown).addClass("mtd-dropdown-fade-out");
-			setTimeout(function(){
-				dropdown.remove();
-			},200);
-		}
-	})
-
-	if (document.querySelector(".status-message") !== null) {
-		$(".status-message").each(function(index){
+	$(document).on('DOMNodeInserted', function(e) {
+		var tar = $(e.target);
+    if (tar.hasClass("dropdown")) {
+			console.log("dropdown!!!");
+			e.target.parentNode.removeChild = function(dropdown){
+				$(dropdown).addClass("mtd-dropdown-fade-out");
+				setTimeout(function(){
+					dropdown.remove();
+				},200);
+			}
+    } else if (tar.hasClass("status-message")) {
+			console.log("status-message!!!");
 			if (typeof messagesAccounted[this] === "undefined") {
 				var thing = this;
-
 				msgID++;
-
 				SendNotificationMessage(this.childNodes[1].innerHTML);
 				WaitForNotificationDismiss(thing,msgID);
-
 				messagesAccounted[this] = true;
 			}
-		})
-	}
-
-	/*if (typeof document.querySelector(".status-message") !== "undefined") {
-		for (i = 0; i < elements("status-message").length; i++) {
-			if (typeof messagesAccounted[elements("status-message")[i]] === "undefined") {
-				var thing = elements("status-message")[i];
-
-				msgID++;
-
-				SendNotificationMessage(thing.childNodes[1].innerHTML);
-				WaitForNotificationDismiss(thing,msgID);
-
-				messagesAccounted[elements("status-message")[i]] = true;
+		} else if (tar.hasClass("overlay")) {
+			console.log("overlay!!!");
+			if (!tar.hasClass("is-hidden")) {
+				if (tar.hasClass("is-hidden")) {
+					tar.addClass("mtd-modal-window-fade-out");
+					setTimeout(function(){
+						tar.remove();
+					},300);
+				}
+			} else {
+				var observer = new MutationObserver(function(mutations) {
+					console.log("its gone now!");
+				  if (tar.hasClass("is-hidden")) {
+						tar.addClass("mtd-modal-window-fade-out");
+						setTimeout(function(){
+							tar.remove();
+							observer.disconnect();
+						},300);
+					}
+				});
+				observer.observe(e.target, { attributes: true, childList: false, characterData: false });
 			}
 		}
-	}*/
+	});
+
 }
 
-setInterval(WorldTick,600);
+setTimeout(WorldTick,600);
 
 function ResetSettingsUI() {
 	$("#mtd-appearance-form,#mtd-accessibility-form,#mtd-about-form").css("display","none");

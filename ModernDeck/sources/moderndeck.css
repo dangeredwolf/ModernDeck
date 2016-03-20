@@ -11463,7 +11463,7 @@ a.js-dismiss {
     background-image:linear-gradient(#00BCD4 0%, transparent 150%)
 }
 
-.btn-login[type="submit"] {
+.btn-login[type="submit"],.login-container .btn-positive {
 	background:#00BCD4;
 	width:300px;
 	border-radius:3px;
@@ -11476,11 +11476,17 @@ a.js-dismiss {
 	width:200px!important
 }
 
-.btn-login[type="submit"]:hover,.btn-login[type="submit"]:focus {
-	box-shadow:0 3px 10px 3px rgba(0,0,0,.25)
+.login-container .btn-positive {
+	width:277px!important;
+	padding-top:14px;
+	padding-bottom:0
 }
 
-.mtd-dark body .btn-login[type="submit"]:active {
+.btn-login[type="submit"]:hover,.btn-login[type="submit"]:focus,.login-container .btn-positive:hover,body .login-container .btn-positive:focus {
+	box-shadow:0 3px 10px 3px rgba(0,0,0,0.25);
+}
+
+.mtd-dark body .btn-login[type="submit"]:active,.mtd-dark body .login-container .btn-positive:active {
 	background:#00CDE8!important;
 	transform:none!important
 }
