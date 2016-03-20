@@ -59,7 +59,7 @@ Preferences.Accessibility = [
 	]
 ]
 
-if (typeof MTDURLExchange !== "undefined") {
+if (typeof MTDURLExchange === "object" && typeof MTDURLExchange.getAttribute === "function") {
 	MTDBaseURL = MTDURLExchange.getAttribute("type") || "https://dangeredwolf.com/assets/mtdtest/";
 	console.info("MTDURLExchange completed with URL " + MTDBaseURL);
 }
