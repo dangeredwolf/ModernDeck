@@ -1,30 +1,18 @@
 /*
-					moderndeck.css
+			moderndeck.css
 
 
-					ModernDeck 5.4 [codename Revival]
-					Copyright 2015 Dangered Wolf (@dangeredwolf)
-					Released under the MIT License
+			ModernDeck 5.5 [codename Utopian Paradise]
+			Copyright 2014-2016 Ryan Dolan (@dangeredwolf)
+			Released under the MIT Licence
 
-					Contains some heavily modified original CSS created by TweetDeck, but for morality sake we'd still like to credit them!
-					Copyright 2014 Twitter, Inc.
-
-
-
-					Software Licence for Material Design loading indicator portion of this software:
-
-			    Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
-			    This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
-			    The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
-			    The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
-			    Code distributed by Google as part of the polymer project is also
-			    subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+			For a complete list of open source projects included in this, view the "LICENCES" file in the open source project @ github.com/dangeredwolf/ModernDeck
  */
 
 
 /* SUPERCLASSES */
 
-.is-loaded>.preloader-wrapper,.nav-user-info>.avatar,.release-notes-image,.release-notes-image-bullet,.accordion .icon-arrow-u,.med-fullpanel .tweet-dogear,.tweet-detail-wrapper .tweet-dogear,.js-hide-drawer .icon-compose,.mdl .js-dismiss,.mdl .search-input-control:before,.startflow-panel .txt-center:not(.form-error-message),.add-participant .search-input-control:before,.drawer-content .search-input-control:before,.cf.account-remove-check,.facet-type .search-input-control:before,.accordion .is-active .facet-subtitle,.mdl-dismiss,.mdl-dismiss-media,.mtd-mobile .column-type-icon,.column-type-message .js-column-detail .column-title-back:before,.add-on.with-emphasis,.mtd-minimal .column-navigator,.mtd-dark body.scroll-v .js-modal-context .mdl:before,html body .app-navigator .dropdown-menu,.caret,.js-column-detail .column-title-back.conversation-title:after,.more-tweets-btn-inner-mouse-release,.more-tweets-btn-inner-loading,.more-tweets-btn-container--mouse-release .more-tweets-btn-inner-default,.more-tweets-btn-container--loading .more-tweets-btn-inner-default,.status-message,.app-masthead,.cmp-spinner,.chev-right,.compose-text-title,.cmp button b,.cmp .mdl-header-title:empty,.app-search-tweet-results .column-header-temp,.spinner-centered,.without-tweet-drag-handles .tweet-drag-handle,.account-remove-check,.js-app-settings .obj-left,.tweet-action-item.feature-customtimelines.tweet-drag-handle,.tweet-detail-action-item.feature-customtimelines.tweet-drag-handle,.column-nav-link:after,.more-tweets-btn-inner-mouse-release,.more-tweets-btn-inner-loading,.more-tweets-btn-container--mouse-release .more-tweets-btn-inner-default,.more-tweets-btn-container--loading .more-tweets-btn-inner-default,.list-item .icon-search.list-icon,.js-typeahead-recent-search-item .obj-left,.s-following .follow-btn .btn-loader,.btd-settings,body:not(.btd-ready) #btdsettings,.edit-conversation-name .nbfc,.js-app-add-column,.js-dismiss,.js-schedule-datepicker-holder .popover .padding-as .btn .icon-trash,.js-dismiss.btn.btn-positive i.icon.icon-check.icon-small.padding-rs,.column-close-link.txt-r-dark-gray,.js-app-loading .js-header-container,.js-add-image-button-label,.js-schedule-button-label,.js-tweet-button-label,.js-dm-button .label.padding-ls,.column-nav-flyout,.release-notes-modal .mdl-drag-handle,#datepicker,.search-input-spinner,.search-input-clear-search,.toggle-item-text-truncated,.sch.s-searching .sch-clear,legend,.frm-legend,.action-btn,.med-origlink,.med-flaglink,.hide-detail-view-inline .detail-view-inline,.compose-account-selected,.js-compose-hint.margin-vl.anim.anim-fade-in,#file-upload-input,.s-sending .char-count,.s-profile .mdl-buttonbar,.s-profile h3,.mdl.s-nonav .mdl-inner .mdl-buttonbar,.ovl.is-dragging:before,.is-dragging.overlay:before,.numbered-badge-onheader,.migrate-account-login-step-1 .migrate-tweetdeck-account-warning-wrapper,.migrate-account-login-step-2 .migrate-tweetdeck-account-warning-wrapper,.migrate-account-login-step-3 .migrate-account-login-forms,.migrate-account-login-step-3 .migrate-account-login-about,.migrate-account-login-forms-cancel,.tooltip-arrow,.app-search-in-popover,.app-search-form,.app-header .app-nav-logo-text,.app-header .hide-condensed,.app-header .sprite-logo,.app-header .tweet-button .label,.app-header .app-nav-link .icon-arrow-l-double,.app-header .app-nav-link .icon-arrow-r-double,.app-nav-link .icon-arrow-r-double,.app-nav-tab .icon-user-switch,.tweet-message-status,.icon.icon-move,.tweet-drag-handle,.is-narrow-columns .media-size-medium .media-sensitive-title,.contributor-row[data-contributor-role="contributor"] [data-show-when-contributor-role="admin"],.contributor-row[data-contributor-role="admin"] [data-show-when-contributor-role="contributor"],.contributor-row[data-state-error="closed-error"] [data-hide-when-state-error="closed-error"],.contributor-row[data-state="settings"] [data-hide-when-state="settings"],.contributor-row[data-state-error="settings-error"] [data-hide-when-state-error="settings-error"],[data-show-when-state],[data-show-when-state-error],.is-options-open .column-settings-link .icon-arrow-d,.column-header-link .icon-arrow-u,.column-title-back .attribution,.js-add-to-customtimeline-button,.column-title-editable .js-show-tip.avatar.size24,.account-remove-check,.signin-sheet-now-present .application,.btn-fav-fav-text,.with-add-by-url .list-placeholder.pin-all,.s-thats-you .btn-loader,.s-pending .btn-loader,.s-blocking .follow-btn:hover .block-text,.s-blocking .btn-loader,.s-not-favorited .btn-loader,.btn-fav-faved-text,.s-favorited .btn-loader,.btn-fav-protected-text,.s-protected .btn-loader,.link-clean[href="https://twitter.com/UberFacts"] .sprite-verified,.btn-fav-unfav-text,.btn-fav.s-favorited:hover .btn-fav-faved-text,.s-not-following .btn-loader,.action-text,.s-following .follow-btn:hover .following-text {
+.preloader-wrapper+.preloader-wrapper,.is-loaded>.preloader-wrapper,.nav-user-info>.avatar,.release-notes-image,.release-notes-image-bullet,.accordion .icon-arrow-u,.med-fullpanel .tweet-dogear,.tweet-detail-wrapper .tweet-dogear,.js-hide-drawer .icon-compose,.mdl .js-dismiss,.mdl .search-input-control:before,.startflow-panel .txt-center:not(.form-error-message),.add-participant .search-input-control:before,.drawer-content .search-input-control:before,.cf.account-remove-check,.facet-type .search-input-control:before,.accordion .is-active .facet-subtitle,.mdl-dismiss,.mdl-dismiss-media,.mtd-mobile .column-type-icon,.column-type-message .js-column-detail .column-title-back:before,.add-on.with-emphasis,.mtd-minimal .column-navigator,.mtd-dark body.scroll-v .js-modal-context .mdl:before,html body .app-navigator .dropdown-menu,.caret,.js-column-detail .column-title-back.conversation-title:after,.more-tweets-btn-inner-mouse-release,.more-tweets-btn-inner-loading,.more-tweets-btn-container--mouse-release .more-tweets-btn-inner-default,.more-tweets-btn-container--loading .more-tweets-btn-inner-default,.status-message,.app-masthead,.cmp-spinner,.chev-right,.compose-text-title,.cmp button b,.cmp .mdl-header-title:empty,.app-search-tweet-results .column-header-temp,.spinner-centered,.without-tweet-drag-handles .tweet-drag-handle,.account-remove-check,.js-app-settings .obj-left,.tweet-action-item.feature-customtimelines.tweet-drag-handle,.tweet-detail-action-item.feature-customtimelines.tweet-drag-handle,.column-nav-link:after,.more-tweets-btn-inner-mouse-release,.more-tweets-btn-inner-loading,.more-tweets-btn-container--mouse-release .more-tweets-btn-inner-default,.more-tweets-btn-container--loading .more-tweets-btn-inner-default,.list-item .icon-search.list-icon,.js-typeahead-recent-search-item .obj-left,.s-following .follow-btn .btn-loader,.btd-settings,body:not(.btd-ready) #btdsettings,.edit-conversation-name .nbfc,.js-app-add-column,.js-dismiss,.js-schedule-datepicker-holder .popover .padding-as .btn .icon-trash,.js-dismiss.btn.btn-positive i.icon.icon-check.icon-small.padding-rs,.column-close-link.txt-r-dark-gray,.js-app-loading .js-header-container,.js-add-image-button-label,.js-schedule-button-label,.js-tweet-button-label,.js-dm-button .label.padding-ls,.column-nav-flyout,.release-notes-modal .mdl-drag-handle,#datepicker,.search-input-spinner,.search-input-clear-search,.toggle-item-text-truncated,.sch.s-searching .sch-clear,legend,.frm-legend,.action-btn,.med-origlink,.med-flaglink,.hide-detail-view-inline .detail-view-inline,.compose-account-selected,.js-compose-hint.margin-vl.anim.anim-fade-in,#file-upload-input,.s-sending .char-count,.s-profile .mdl-buttonbar,.s-profile h3,.mdl.s-nonav .mdl-inner .mdl-buttonbar,.ovl.is-dragging:before,.is-dragging.overlay:before,.numbered-badge-onheader,.migrate-account-login-step-1 .migrate-tweetdeck-account-warning-wrapper,.migrate-account-login-step-2 .migrate-tweetdeck-account-warning-wrapper,.migrate-account-login-step-3 .migrate-account-login-forms,.migrate-account-login-step-3 .migrate-account-login-about,.migrate-account-login-forms-cancel,.tooltip-arrow,.app-search-in-popover,.app-search-form,.app-header .app-nav-logo-text,.app-header .hide-condensed,.app-header .sprite-logo,.app-header .tweet-button .label,.app-header .app-nav-link .icon-arrow-l-double,.app-header .app-nav-link .icon-arrow-r-double,.app-nav-link .icon-arrow-r-double,.app-nav-tab .icon-user-switch,.tweet-message-status,.icon.icon-move,.tweet-drag-handle,.is-narrow-columns .media-size-medium .media-sensitive-title,.contributor-row[data-contributor-role="contributor"] [data-show-when-contributor-role="admin"],.contributor-row[data-contributor-role="admin"] [data-show-when-contributor-role="contributor"],.contributor-row[data-state-error="closed-error"] [data-hide-when-state-error="closed-error"],.contributor-row[data-state="settings"] [data-hide-when-state="settings"],.contributor-row[data-state-error="settings-error"] [data-hide-when-state-error="settings-error"],[data-show-when-state],[data-show-when-state-error],.is-options-open .column-settings-link .icon-arrow-d,.column-header-link .icon-arrow-u,.column-title-back .attribution,.js-add-to-customtimeline-button,.column-title-editable .js-show-tip.avatar.size24,.account-remove-check,.signin-sheet-now-present .application,.btn-fav-fav-text,.with-add-by-url .list-placeholder.pin-all,.s-thats-you .btn-loader,.s-pending .btn-loader,.s-blocking .follow-btn:hover .block-text,.s-blocking .btn-loader,.s-not-favorited .btn-loader,.btn-fav-faved-text,.s-favorited .btn-loader,.btn-fav-protected-text,.s-protected .btn-loader,.link-clean[href="https://twitter.com/UberFacts"] .sprite-verified,.btn-fav-unfav-text,.btn-fav.s-favorited:hover .btn-fav-faved-text,.s-not-following .btn-loader,.action-text,.s-following .follow-btn:hover .following-text {
 	display:none
 }
 
@@ -67,7 +55,7 @@
 	}
 }
 
-@keyframes moretweetsanim {
+@keyframes moreTweetsButtonDown {
 	0% {
 		opacity:1;
 		top:-40px
@@ -95,7 +83,7 @@
 	}
 }
 
-@keyframes popgoesthemodalwindow {
+@keyframes windowDown {
 	from {
 		opacity:.5;
 		transform:scale(1.125,1.125)
@@ -107,7 +95,7 @@
 	}
 }
 
-@keyframes dropmenucomedown {
+@keyframes menuDownAnimation {
 	from {
 		opacity:0;
 		margin-top:-5px;
@@ -121,7 +109,7 @@
 	}
 }
 
-@keyframes dropmenucomedownnopad {
+@keyframes menuDownAnimationNoPadding {
 	from {
 		opacity:0;
 		margin-top:-8px
@@ -133,7 +121,7 @@
 	}
 }
 
-@keyframes dropmenucomedownlnopad {
+@keyframes menuDownAnimationLogin {
 	from {
 		opacity:0;
 		margin-top:-20px
@@ -145,7 +133,7 @@
 	}
 }
 
-@keyframes dropmenucomedownlargenopad {
+@keyframes menuDownAnimationLargeNoPadding {
 	from {
 		opacity:0;
 		margin-top:-40px
@@ -157,7 +145,7 @@
 	}
 }
 
-@keyframes popovercomedown {
+@keyframes leftPopoverDown {
 	from {
 		opacity:0;
 		margin-top:-15px
@@ -169,7 +157,7 @@
 	}
 }
 
-@keyframes rtpopovercomedown {
+@keyframes rightPopoverDown {
 	from {
 		opacity:0;
 		top:-85px
@@ -181,7 +169,7 @@
 	}
 }
 
-@keyframes calendarcomedown {
+@keyframes calendarMenuDown {
 	from {
 		opacity:0;
 		margin-top:-40px
@@ -193,7 +181,7 @@
 	}
 }
 
-@keyframes photocomedown {
+@keyframes mediaDown {
 	from {
 		opacity:0;
 		margin-top:-198px
@@ -205,7 +193,7 @@
 	}
 }
 
-@keyframes dropmenucomeup {
+@keyframes menuUp {
 	from {
 		opacity:0;
 		bottom:100%;
@@ -219,7 +207,7 @@
 	}
 }
 
-@keyframes dropmenucomeupnopad {
+@keyframes menuUpAnimationNoPadding {
 	from {
 		opacity:0;
 		margin-top:20px
@@ -231,7 +219,7 @@
 	}
 }
 
-@keyframes herecomesthetweet {
+@keyframes tweetIncoming {
 	0% {
 		opacity:0;
 		border-radius:99px 99px 0 0;
@@ -247,19 +235,7 @@
 	}
 }
 
-@keyframes herecomesthetweetsmall {
-	0% {
-		opacity:0;
-		transform:translate3d(0,30px,0);
-	}
-
-	100% {
-		opacity:1;
-		transform:translate3d(0,0,0);
-	}
-}
-
-@keyframes tweetontimeline {
+@keyframes tweetIncomingTimeline {
 	0% {
 		opacity:0;
 		margin-top:-50px
@@ -273,7 +249,7 @@
 	}
 }
 
-@keyframes herecomesthetweetup {
+@keyframes tweetIncomingUp {
 	0% {
 		opacity:0;
 		transform:translate3d(0,-100px,0);
@@ -285,7 +261,7 @@
 	}
 }
 
-@keyframes popgoesthepanel {
+@keyframes panel {
 	from {
 		opacity:0;
 		transform:scale(.3,.3)
@@ -312,19 +288,19 @@
 	to {top:0}
 }
 
-@keyframes tweetButtonPop {
+@keyframes popIn {
 	from {transform:scale(0)}
 	to {transform:scale(1)}
 }
 
 
-@keyframes left-spin {
+@keyframes leftSpin {
   0% {transform:rotate(130deg)}
   50% {transform:rotate(-5deg)}
   100% {transform:rotate(130deg)}
 }
 
-@keyframes right-spin {
+@keyframes rightSpin {
   0% {transform:rotate(-130deg)}
   50% {transform:rotate(5deg)}
   100% {transform:rotate(-130deg)}
@@ -418,7 +394,7 @@
   position:relative;
   width:48px;
   height:48px;
-  box-sizing: border-box;
+  box-sizing:border-box
 }
 
 .med-embeditem>.preloader-wrapper {
@@ -427,9 +403,31 @@
 	margin-top:-20px
 }
 
+.column-loading-placeholder>.preloader-wrapper {
+	left:50%;
+	margin-left:-20px;
+	margin-top:20px
+}
+
+.chirp-container>.preloader-wrapper {
+	margin-bottom:50px;
+	margin-top:50px;
+	left:50%;
+	margin-left:-20px
+}
+
+.compose .spinner-layer {
+	border-color:#009EAD
+}
+
 .preloader-wrapper.small {
   width:36px;
   height:36px
+}
+
+.preloader-wrapper.tiny {
+  width:20px;
+  height:20px
 }
 
 .preloader-wrapper.big {
@@ -438,7 +436,7 @@
 }
 
 .preloader-wrapper.active {
-  animation:containerRotate 1568ms linear infinite
+  animation:containerRotate 1.568s linear infinite
 }
 
 .spinner-layer {
@@ -447,7 +445,11 @@
   width:100%;
   height:100%;
   opacity:0;
-  border-color: #26a69a;
+  border-color:#26a69a
+}
+
+html.tde-light .spinner-layer {
+	border-color:#03A9F4
 }
 
 .spinner-blue,.spinner-blue-only {
@@ -467,25 +469,25 @@
 }
 
 .active .spinner-layer.spinner-blue {
-  animation:fillUnfillRotate 5332ms cubic-bezier(.4,0,.2,1) infinite both,blue-fade-in-out 5332ms cubic-bezier(.4,0,.2,1) infinite both
+  animation:fillUnfillRotate 5.332s cubic-bezier(.4,0,.2,1) infinite both,blue-fade-in-out 5.332s cubic-bezier(.4,0,.2,1) infinite both
 }
 
 .active .spinner-layer.spinner-red {
-  animation:fillUnfillRotate 5332ms cubic-bezier(.4,0,.2,1) infinite both,red-fade-in-out 5332ms cubic-bezier(.4,0,.2,1) infinite both
+  animation:fillUnfillRotate 5.332s cubic-bezier(.4,0,.2,1) infinite both,red-fade-in-out 5.332s cubic-bezier(.4,0,.2,1) infinite both
 }
 
 .active .spinner-layer.spinner-yellow {
-  animation:fillUnfillRotate 5332ms cubic-bezier(.4,0,.2,1) infinite both,yellow-fade-in-out 5332ms cubic-bezier(.4,0,.2,1) infinite both
+  animation:fillUnfillRotate 5.332s cubic-bezier(.4,0,.2,1) infinite both,yellow-fade-in-out 5.332s cubic-bezier(.4,0,.2,1) infinite both
 }
 
 .active .spinner-layer.spinner-green {
-  animation:fillUnfillRotate 5332ms cubic-bezier(.4,0,.2,1) infinite both,green-fade-in-out 5332ms cubic-bezier(.4,0,.2,1) infinite both
+  animation:fillUnfillRotate 5.332s cubic-bezier(.4,0,.2,1) infinite both,green-fade-in-out 5.332s cubic-bezier(.4,0,.2,1) infinite both
 }
 
 .active .spinner-layer,.active .spinner-layer.spinner-blue-only,.active .spinner-layer.spinner-red-only,.active .spinner-layer.spinner-yellow-only,.active .spinner-layer.spinner-green-only {
   opacity:1;
   box-sizing:border-box;
-  animation:fillUnfillRotate 5332ms cubic-bezier(.4,0,.2,1) infinite both
+  animation:fillUnfillRotate 5.332s cubic-bezier(.4,0,.2,1) infinite both
 }
 
 .gap-patch {
@@ -497,7 +499,7 @@
   overflow:hidden;
   border-color:inherit;
   display:none;
-  box-sizing: border-box;
+  box-sizing:border-box
 }
 
 .gap-patch .circle {
@@ -521,7 +523,7 @@ box-sizing:border-box;
   overflow:hidden;
   text-align:center;
   box-sizing:border-box;
-  border-color:inherit;
+  border-color:inherit
 }
 
 .circle-clipper .circle {
@@ -540,6 +542,10 @@ box-sizing:border-box;
   bottom:0
 }
 
+.tiny .circle-clipper .circle {
+	border-width:3px
+}
+
 .circle-clipper.left .circle {
   left:0;
   border-right-color:transparent!important;
@@ -553,15 +559,15 @@ box-sizing:border-box;
 }
 
 .active .circle-clipper.left .circle {
-  animation:left-spin 1333ms cubic-bezier(.4,0,.2,1) infinite both;
+  animation:leftSpin 1.333s cubic-bezier(.4,0,.2,1) infinite both
 }
 
 .active .circle-clipper.right .circle {
-  animation:right-spin 1333ms cubic-bezier(.4,0,.2,1) infinite both;
+  animation:rightSpin 1.333s cubic-bezier(.4,0,.2,1) infinite both
 }
 
 #spinnerContainer.cooldown {
-  animation:containerRotate 1568ms linear infinite,fadeOut 400ms cubic-bezier(.4,0,.2,1)
+  animation:containerRotate 1.568s linear infinite,fadeOut .4s cubic-bezier(.4,0,.2,1)
 }
 
 .progress {
@@ -621,7 +627,7 @@ box-sizing:border-box;
 
 .mtd-back-paper .is-new .column-header,.mtd-back-paper .is-new .column-header-temp {
 	background:linear-gradient(#eee,#00BCD4)!important;
-	transition:200ms all
+	transition:.2s all
 }
 
 .mtd-back-paper .js-dm-participants-back:after,.mtd-back-paper .conversation-title .title-content b,.mtd-back-paper .js-tweet-social-proof-back:after,.mtd-back-paper .js-column-detail .column-title-back:before,.mtd-back-paper .js-hide-drawer.app-nav-tab:after,.mtd-back-paper .app-nav-tab,.mtd-back-paper .drawer-header-title.drawer-column-header-title,.mtd-back-paper .btn-back:before,.mtd-back-paper .mdl-header-title,.mtd-back-paper .column-header-temp,.mtd-back-paper .mdl-column.l-column .search-input,.mtd-back-paper .numbered-badge,.mtd-back-paper .app-search .app-search-fake,.mtd-back-paper .column-message,.mtd-back-paper .app-nav-link,.mtd-back-paper .column-title,.mtd-back-paper .column-header .icon {
@@ -674,7 +680,7 @@ box-sizing:border-box;
 
 .mtd-back-grey .is-new .column-header,.mtd-back-grey .is-new .column-header-temp {
 	background:linear-gradient(#555,#00BCD4);
-	transition:200ms all
+	transition:.2s all
 }
 
 
@@ -684,7 +690,7 @@ box-sizing:border-box;
 
 .mtd-back-red .is-new .column-header,.mtd-back-red .is-new .column-header-temp {
 	background:linear-gradient(#F44336,#00BCD4)!important;
-	transition:200ms all
+	transition:.2s all
 }
 
 .mtd-back-pink .mdl:before,.mtd-back-pink .mdl-column .pin-top .search-input-list,.mtd-back-pink.mtd-light .app-navigator .js-hide-drawer,.mtd-dark.mtd-back-pink .app-navigator .js-hide-drawer,.mtd-back-pink .edit-conversation-name,.mtd-back-pink .drawer-header,.mtd-back-pink .column:not(.is-new) .column-message,.mtd-back-pink body,.mtd-back-pink .column-header,.mtd-back-pink .column-header-temp {
@@ -693,7 +699,7 @@ box-sizing:border-box;
 
 .mtd-back-pink .is-new .column-header,.mtd-back-pink .is-new .column-header-temp {
 	background:linear-gradient(#E91E63,#00BCD4);
-	transition:200ms all
+	transition:.2s all
 }
 
 .mtd-back-orange .mdl:before,.mtd-back-orange .mdl-column .pin-top .search-input-list,.mtd-back-orange.mtd-light .app-navigator .js-hide-drawer,.mtd-dark.mtd-back-orange .app-navigator .js-hide-drawer,.mtd-back-orange .edit-conversation-name,.mtd-back-orange .drawer-header,.mtd-back-orange .column:not(.is-new) .column-message,.mtd-back-orange body,.mtd-back-orange .column-header,.mtd-back-orange .column-header-temp {
@@ -702,7 +708,7 @@ box-sizing:border-box;
 
 .mtd-back-orange .is-new .column-header,.mtd-back-orange .is-new .column-header-temp {
 	background:linear-gradient(#FF5722,#00BCD4)!important;
-	transition:200ms all
+	transition:.2s all
 }
 
 .mtd-back-violet .mdl:before,.mtd-back-violet .mdl-column .pin-top .search-input-list,.mtd-back-violet.mtd-light .app-navigator .js-hide-drawer,.mtd-dark.mtd-back-violet .app-navigator .js-hide-drawer,.mtd-back-violet .edit-conversation-name,.mtd-back-violet .drawer-header,.mtd-back-violet .column:not(.is-new) .column-message,.mtd-back-violet body,.mtd-back-violet .column-header,.mtd-back-violet .column-header-temp {
@@ -711,7 +717,7 @@ box-sizing:border-box;
 
 .mtd-back-violet .is-new .column-header,.mtd-back-violet .is-new .column-header-temp {
 	background:linear-gradient(#673AB7,#00BCD4)!important;
-	transition:200ms all
+	transition:.2s all
 }
 
 .mtd-back-teal .mdl:before,.mtd-back-teal .mdl-column .pin-top .search-input-list,.mtd-back-teal.mtd-light .app-navigator .js-hide-drawer,.mtd-dark.mtd-back-teal .app-navigator .js-hide-drawer,.mtd-back-teal .edit-conversation-name,.mtd-back-teal .drawer-header,.mtd-back-teal .column:not(.is-new) .column-message,.mtd-back-teal body,.mtd-back-teal .column-header,.mtd-back-teal .column-header-temp {
@@ -720,7 +726,7 @@ box-sizing:border-box;
 
 .mtd-back-teal .is-new .column-header,.mtd-back-teal .is-new .column-header-temp {
 	background:linear-gradient(#009688,#00BCD4)!important;
-	transition:200ms all
+	transition:.2s all
 }
 
 .mtd-back-green .mdl:before,.mtd-back-green .mdl-column .pin-top .search-input-list,.mtd-back-green.mtd-light .app-navigator .js-hide-drawer,.mtd-dark.mtd-back-green .app-navigator .js-hide-drawer,.mtd-back-green .edit-conversation-name,.mtd-back-green .drawer-header,.mtd-back-green .column:not(.is-new) .column-message,.mtd-back-green body,.mtd-back-green .column-header,.mtd-back-green .column-header-temp {
@@ -729,7 +735,7 @@ box-sizing:border-box;
 
 .mtd-back-green .is-new .column-header,.mtd-back-green .is-new .column-header-temp {
 	background:linear-gradient(#4CAF50,#00BCD4)!important;
-	transition:200ms all
+	transition:.2s all
 }
 
 .mtd-back-yellow .mdl:before,.mtd-back-yellow .mdl-column .pin-top .search-input-list,.mtd-back-yellow.mtd-light .app-navigator .js-hide-drawer,.mtd-dark.mtd-back-yellow .app-navigator .js-hide-drawer,.mtd-back-yellow .edit-conversation-name,.mtd-back-yellow .drawer-header,.mtd-back-yellow .column:not(.is-new) .column-message,.mtd-back-yellow body,.mtd-back-yellow .column-header,.mtd-back-yellow .column-header-temp {
@@ -738,7 +744,7 @@ box-sizing:border-box;
 
 .mtd-back-yellow .is-new .column-header,.mtd-back-yellow .is-new .column-header-temp {
 	background:linear-gradient(#FFC107,#00BCD4)!important;
-	transition:200ms all
+	transition:.2s all
 }
 
 .mtd-back-cyan .mdl:before,.mtd-back-cyan .mdl-column .pin-top .search-input-list,.mtd-back-cyan.mtd-light .app-navigator .js-hide-drawer,.mtd-dark.mtd-back-cyan .app-navigator .js-hide-drawer,.mtd-back-cyan .edit-conversation-name,.mtd-back-cyan .drawer-header,.mtd-back-cyan .column:not(.is-new) .column-message,.mtd-back-cyan body,.mtd-back-cyan .column-header,.mtd-back-cyan .column-header-temp {
@@ -747,7 +753,7 @@ box-sizing:border-box;
 
 .mtd-back-cyan .is-new .column-header,.mtd-back-cyan .is-new .column-header-temp {
 	background:linear-gradient(#00BCD4,#00BCD4)!important;
-	transition:200ms all
+	transition:.2s all
 }
 
 .mtd-back-black .mdl:before,.mtd-back-black .mdl-column .pin-top .search-input-list,.mtd-back-black.mtd-light .app-navigator .js-hide-drawer,.mtd-dark.mtd-back-black .app-navigator .js-hide-drawer,.mtd-back-black .edit-conversation-name,.mtd-back-black .drawer-header,.mtd-back-black .column:not(.is-new) .column-message,.mtd-back-black body,.mtd-back-black .column-header,.mtd-back-black .column-header-temp {
@@ -756,7 +762,7 @@ box-sizing:border-box;
 
 .mtd-back-black .is-new .column-header,.mtd-back-black .is-new .column-header-temp {
 	background:linear-gradient(#333,#00BCD4)!important;
-	transition:200ms all
+	transition:.2s all
 }
 
 .mtd-back-blue .mdl:before,.mtd-back-blue .mdl-column .pin-top .search-input-list,.mtd-back-blue.mtd-light .app-navigator .js-hide-drawer,.mtd-dark.mtd-back-blue .app-navigator .js-hide-drawer,.mtd-back-blue .edit-conversation-name,.mtd-back-blue .drawer-header,.mtd-back-blue .column:not(.is-new) .column-message,.mtd-back-blue body,.mtd-back-blue .column-header,.mtd-back-blue .column-header-temp {
@@ -765,7 +771,7 @@ box-sizing:border-box;
 
 .mtd-back-blue .is-new .column-header,.mtd-back-blue .is-new .column-header-temp {
 	background:linear-gradient(#2196F3,#00BCD4)!important;
-	transition:200ms all
+	transition:.2s all
 }
 
 /* classic skin */
@@ -860,7 +866,7 @@ box-sizing:border-box;
 }
 
 .mtd-theme-ios .column-panel {
-	transition:400ms left cubic-bezier(.19,1,.22,1)
+	transition:.4s left cubic-bezier(.19,1,.22,1)
 }
 
 .mtd-theme-ios .column-panel:nth-child(n+2),.mtd-theme-ios .column-panel:nth-child(n+2) {
@@ -871,7 +877,7 @@ box-sizing:border-box;
 .mtd-theme-ios .is-shifted-1 .column-panel:nth-child(n+2),.mtd-theme-ios .is-shifted-2 .column-panel:nth-child(n+2) {
 	left:0;
 	box-shadow:0 4px 10px rgba(0,0,0,.4);
-	transition:400ms left cubic-bezier(.19,1,.22,1)
+	transition:.4s left cubic-bezier(.19,1,.22,1)
 }
 
 .mtd-theme-ios .column-holder {
@@ -1042,11 +1048,11 @@ body {
 
 [class=''] .application {
 	animation:columnFlyin .35s cubic-bezier(.19,1,.22,1);
-	transition:top 200ms
+	transition:top .2s
 }
 
 .is-application-animating {
-	transition:top 300ms
+	transition:top .3s
 }
 
 ::selection {
@@ -1054,7 +1060,7 @@ body {
 	background:rgba(0,188,212,.26);
 	color:#444;
 	text-shadow:none;
-	transition:200ms all
+	transition:.2s all
 }
 
 ::-moz-selection {
@@ -1062,7 +1068,7 @@ body {
 	background:rgba(0,188,212,.26);
 	color:#444;
 	text-shadow:none;
-	transition:200ms all
+	transition:.2s all
 }
 
 body.scroll-v {
@@ -1072,13 +1078,13 @@ body.scroll-v {
 a {
 	color:#00BCD4;
 	text-decoration:none;
-	transition:150ms background,150ms transform,150ms color
+	transition:.15s background,.15s transform,.15s color
 }
 
 a:active {
 	color:rgb(13,168,188);
-	transition:150ms background,150ms transform;
-	background-color:rgba(0,0,0,05)
+	transition:.15s background,.15s transform;
+	background-color:rgba(0,0,0,.5)
 }
 
 p {
@@ -1288,22 +1294,22 @@ small {
 .scroll-styled-v::-webkit-scrollbar-thumb,.scroll-v::-webkit-scrollbar-thumb,.scroll-styled-h::-webkit-scrollbar-thumb,.scroll-alt::-webkit-scrollbar-thumb {
 	border-radius:5px;
 	background:#D9D9D9;
-	transition:200ms background
+	transition:.2s background
 }
 
 .mtd-dark .scroll-styled-v::-webkit-scrollbar-thumb,.mtd-dark .scroll-v::-webkit-scrollbar-thumb,.mtd-dark .scroll-styled-h::-webkit-scrollbar-thumb {
 	background:rgba(149,175,191,.52);
-	transition:200ms background
+	transition:.2s background
 }
 
 .scroll-styled-v::-webkit-scrollbar-thumb:hover,.scroll-v::-webkit-scrollbar-thumb:hover,.scroll-styled-h::-webkit-scrollbar-thumb:hover,.scroll-alt::-webkit-scrollbar-thumb:hover {
 	background:#c9c9c9;
-	transition:200ms background
+	transition:.2s background
 }
 
 .mtd-dark .scroll-styled-v::-webkit-scrollbar-thumb:hover,.mtd-dark .scroll-v::-webkit-scrollbar-thumb:hover,.mtd-dark .scroll-styled-h::-webkit-scrollbar-thumb:hover {
 	background:rgb(132,152,165);
-	transition:200ms background
+	transition:.2s background
 }
 
 .antiscroll-wrap {
@@ -1337,7 +1343,7 @@ small {
 	border-radius:7px;
 	position:absolute;
 	opacity:0;
-	transition:300ms opacity
+	transition:.3s opacity
 }
 
 .antiscroll-scrollbar-shown {
@@ -1380,7 +1386,7 @@ small {
 
 .l-cell {
 	display:table-cell;
-	vertical-align:bottom
+	vertical-align:middle
 }
 
 .l-cell-modal {
@@ -1615,12 +1621,12 @@ small {
 
 .is-actionable {
 	cursor:pointer;
-	transition:200ms all;
+	transition:.2s all;
 	transform:initial
 }
 
 .is-actionable:active {
-	transition:200ms all;
+	transition:.2s all;
 	transform:initial
 }
 
@@ -2173,13 +2179,13 @@ small {
 	background:transparent;
 	text-shadow:none;
 	text-transform:uppercase;
-	transition:200ms all
+	transition:.2s all
 }
 
 .btn:hover {
 	text-decoration:none;
 	background:transparent;
-	transition:300ms all
+	transition:.3s all
 }
 
 .btn:focus {
@@ -2187,20 +2193,20 @@ small {
 	color:#26C6DA ;
 	background:transparent;
 	outline:0;
-	transition:300ms all
+	transition:.3s all
 }
 
 .btn:active,.btn.is-selected {
 	text-decoration:none;
 	background:rgba(0,0,0,04);
 	transform:scale(1.05);
-	transition:200ms all;
+	transition:.2s all;
 	color:#aaa
 }
 
 .btn[disabled],.btn[disabled]:hover,.btn[disabled]:active,.btn.is-disabled,.btn.is-disabled:hover,.btn.is-disabled:focus,.btn.is-disabled:active {
 	color:#CACACA;
-	transition:200ms all
+	transition:.2s all
 }
 
 .btn .icon {
@@ -2220,7 +2226,7 @@ small {
 	color:#00CBE5;
 	border-color:transparent;
 	z-index:99;
-	transition:200ms all,400ms background,400ms width!important
+	transition:.2s all,.4s background,.4s width!important
 }
 
 .signin-sheet-now-present .btn-positive,.signin-sheet-now-present .btn-positive-alt,.signin-sheet-now-present .btn-fav.s-favorited,.signin-sheet-now-present .s-following .follow-btn {
@@ -2493,7 +2499,7 @@ h6 {
 
 .account-remove-check-open .account-remove-check {
 	display:block;
-	animation:popgoesthemodalwindow .2s!important
+	animation:windowDown .2s!important
 }
 
 .js-account-invited-accounts {
@@ -2516,7 +2522,7 @@ h6 {
 }
 
 .column {
-	transition:200ms box-shadow,200ms transform;
+	transition:.2s box-shadow,.2s transform;
 	border-radius:0;
 	position:relative;
 	z-index:1;
@@ -2551,7 +2557,7 @@ h6 {
 }
 
 .column-holder {
-	transition:transform 250ms cubic-bezier(.19,1,.22,1);
+	transition:transform .25s cubic-bezier(.19,1,.22,1);
 	width:100%;
 	height:100%;
 	margin:auto;
@@ -2599,12 +2605,12 @@ h6 {
 }
 
 .icon-user-switch {
-	transition:300ms color
+	transition:.3s color
 }
 
 .bg-r-light-gray .icon-user-switch {
 	color:#fff;
-	transition:300ms color
+	transition:.3s color
 }
 
 .with-add-by-url {
@@ -2629,7 +2635,7 @@ h6 {
 }
 
 .js-modal-panel {
-	animation:popgoesthepanel .3s
+	animation:panel .3s
 }
 
 .js-dropdown,.js-popover {
@@ -2638,11 +2644,11 @@ h6 {
 
 .is-unread .link-complex-target {
 	color:#fff;
-	transition:150ms all
+	transition:.15s all
 }
 
 .is-unread .link-complex-target:hover {
-	transition:150ms all
+	transition:.15s all
 }
 
 .column-scroller {
@@ -2728,7 +2734,7 @@ h6 {
 
 .is-new .column-header,.is-new .column-header-temp {
 	background:linear-gradient(#03A9F4,#00BCD4);
-	transition:200ms all
+	transition:.2s all
 }
 
 .column-header,.column-header-temp {
@@ -2741,7 +2747,7 @@ h6 {
 	box-shadow:0 1px 10px rgba(17,17,17,.35);
 	z-index:50001;
 	color:#fff;
-	transition:200ms all;
+	transition:.2s all;
 	width:328px
 }
 
@@ -2870,7 +2876,7 @@ a:active .column-title-back .icon:after {
 	margin-top:-7px;
 	transform:scale(1);
 	opacity:1;
-	transition:70ms all,80ms margin
+	transition:.07s all,.08s margin
 }
 
 a .column-title-back .icon:after {
@@ -2884,7 +2890,7 @@ a .column-title-back .icon:after {
 	z-index:9;
 	transform:scale(.5);
 	opacity:0;
-	transition:500ms all,150ms opacity
+	transition:.5s all,.15s opacity
 }
 
 .mtd-light .popover .column-title-back .icon:after {
@@ -2919,7 +2925,7 @@ a .column-title-back .icon:after {
 
 .js-column-back:active {
 	color:rgba(76,188,255,.3);
-	transition:150ms all
+	transition:.15s all
 }
 
 .column-temp .column-title-back {
@@ -2930,11 +2936,11 @@ a .column-title-back .icon:after {
 	position:relative;
 	font-size:24px;
 	width:24px;
-	height:24px;transition:200ms all
+	height:24px;transition:.2s all
 }
 
 .is-new .column-type-icon {
-	transition:200ms all
+	transition:.2s all
 }
 
 .column-header-link {
@@ -2953,7 +2959,7 @@ a .column-title-back .icon:after {
 
 .column-header-link:active,.column-header-link:hover,.column-header-link:focus,.mtd-dark a.column-header-link,.mtd-dark a.column-header-link:active,.mtd-dark a.column-header-link:hover,.mtd-dark a.column-header-link:focus {
 	color:#fff;
-	transition:200ms all
+	transition:.2s all
 }
 
 .mdl-account-shared-warning footer.mdl-buttonbar {
@@ -2992,12 +2998,12 @@ a .column-title-back .icon:after {
 	color:#fff;
 	border-color:#222426;
 	border:none;
-	transition:300ms background
+	transition:.3s background
 }
 
 .is-options-open .column-settings-link:active {
 	background:#4DD0E1;
-	transition:300ms background;
+	transition:.3s background;
 	color:#fff
 }
 .column-header:hover .column-settings-link {
@@ -3011,7 +3017,7 @@ a .column-title-back .icon:after {
 
 .is-new .column-message {
 	background:#00BCD4;
-	transition:200ms all
+	transition:.2s all
 }
 
 .column-message {
@@ -3022,7 +3028,7 @@ a .column-title-back .icon:after {
 	box-shadow:0 1px 10px rgba(0,0,0,.25);
 	z-index:50000;
 	position:relative;
-	transition:200ms all;
+	transition:.2s all;
 	color:#fff
 }
 
@@ -3040,7 +3046,7 @@ a .column-title-back .icon:after {
 }
 
 .is-accordion-panel-animating {
-	transition:300ms box-shadow cubic-bezier(.19,1,.22,1),200ms box-shadow cubic-bezier(.19,1,.22,1)
+	transition:.3s box-shadow cubic-bezier(.19,1,.22,1),.2s box-shadow cubic-bezier(.19,1,.22,1)
 }
 
 .column-options .button-tray {
@@ -3062,7 +3068,7 @@ a .column-title-back .icon:after {
 }
 
 .contributor-row {
-	transition:background 200ms cubic-bezier(.19,1,.22,1),height 200ms cubic-bezier(.19,1,.22,1),opacity 200ms cubic-bezier(.19,1,.22,1);
+	transition:background .2s cubic-bezier(.19,1,.22,1),height .2s cubic-bezier(.19,1,.22,1),opacity .2s cubic-bezier(.19,1,.22,1);
 	overflow:hidden
 }
 
@@ -3136,7 +3142,7 @@ a .column-title-back .icon:after {
 }
 
 .chirp-container {
-	transition:padding-top 300ms ease-in-out;
+	transition:padding-top .3s ease-in-out;
 	opacity:1!important
 }
 
@@ -3161,7 +3167,7 @@ a .column-title-back .icon:after {
 }
 
 .stream-item {
-	animation:tweetontimeline .4s cubic-bezier(.19,1,.22,1)
+	animation:tweetIncomingTimeline .4s cubic-bezier(.19,1,.22,1)
 }
 
 .stream-item.is-actionable {
@@ -3174,27 +3180,27 @@ a .column-title-back .icon:after {
 
 .js-replies-before .stream-item {
 	border:0;
-	animation:herecomesthetweetup .4s cubic-bezier(.19,1,.22,1)
+	animation:tweetIncomingUp .4s cubic-bezier(.19,1,.22,1)
 }
 
 .mtd-light .stream-item.is-actionable:hover {
 	background:#fff;
 	box-shadow:0 2px 5px rgba(0,0,0,.4);
-	transition:300ms all
+	transition:.3s all
 }
 
 .mtd-light .stream-item.is-actionable:active {
-	transition:300ms all
+	transition:.3s all
 }
 
 .mtd-dark .stream-item.is-actionable:hover {
 	background:#3A4B54;
 	box-shadow:0 2px 5px rgba(0,0,0,.4);
-	transition:300ms all
+	transition:.3s all
 }
 
 .mtd-dark .stream-item.is-actionable:active {
-	transition:300ms all
+	transition:.3s all
 }
 
 .item-box {
@@ -3359,7 +3365,7 @@ a .column-title-back .icon:after {
 	width:48px;
 	height:48px;
 	border-radius:24px;
-	transition:200ms all
+	transition:.2s all
 }
 
 .mtd-no-round-avatars .avatar {
@@ -3373,11 +3379,11 @@ a .column-title-back .icon:after {
 }
 
 .avatar.compose-account-img:active {
-	transform:scale(10,10)!important
+	transform:scale(1,1)!important
 }
 
 .avatar:hover {
-	transition:200ms all;
+	transition:.2s all;
 	box-shadow:0 5px 10px rgba(17,17,17,.475)
 }
 
@@ -3442,7 +3448,7 @@ a .column-title-back .icon:after {
 .account-link,.account-link:hover,.account-link:active {
 	max-width:100%;
 	color:#292f33;
-	transition:300ms color
+	transition:.3s color
 }
 
 .account-link .username {
@@ -3636,7 +3642,7 @@ a .column-title-back .icon:after {
 .gif-pause,.gif-badge,.gif-play,.gif.is-paused .gif-pause {
 	opacity:0;
 	pointer-events:none;
-	transition:200ms all
+	transition:.2s all
 }
 
 .sprite-gif-pause:before {
@@ -3648,7 +3654,7 @@ a .column-title-back .icon:after {
 	content:"GIF";
 	text-shadow:0 0 30px #000;
 	opacity:0;
-	transition:200ms all
+	transition:.2s all
 }
 
 .is-paused .sprite-gif:before {
@@ -3797,7 +3803,7 @@ a .column-title-back .icon:after {
 
 .tweet-timestamp {
 	padding-left:5px;
-	transition:margin 100ms;
+	transition:margin .1s;
 	margin:0 0 -1px
 }
 
@@ -3854,7 +3860,7 @@ a .column-title-back .icon:after {
 	line-height:20px;
 	height:20px;
 	width:20px;
-	transition:150ms all
+	transition:.15s all
 }
 
 .tweet-action .icon-favorite,.tweet-detail-action .icon-favorite,.tweet-action .icon-close,.tweet-detail-action .icon-close,.tweet-action .icon-move,.tweet-detail-action .icon-move {
@@ -3932,7 +3938,7 @@ a .column-title-back .icon:after {
 	margin-top:-1px;
 	background:#fff;
 	box-shadow:0 2px 5px rgba(0,0,0,.4);
-	animation:materialPop .6s cubic-bezier(.19, 1, .22, 1) 0ms;
+	animation:materialPop .6s cubic-bezier(.19, 1, .22, 1) 0s;
 	border-top:5px solid transparent;
 	box-sizing:border-box;
 	padding:5px;
@@ -3990,17 +3996,17 @@ a .column-title-back .icon:after {
 
 .is-unread {
 	background:#00BCD4;
-	transition:300ms all
+	transition:.3s all
 }
 
 .mtd-light .stream-item.is-unread:hover {
 	background:#2AD1D5;
-	transition:300ms all
+	transition:.3s all
 }
 
 .is-unread:active {
 	background:#30A2B0;
-	transition:300ms all
+	transition:.3s all
 }
 
 .is-unread .txt-mute,.is-unread .conversation-indicator {
@@ -4057,7 +4063,7 @@ a .column-title-back .icon:after {
 	padding:6px 8px;
 	border:none;
 	overflow-y:hidden;
-	transition:height 250ms cubic-bezier(.19,1,.22,1);
+	transition:height .25s cubic-bezier(.19,1,.22,1);
 	border-bottom:2px solid #D2D2D2
 }
 
@@ -4105,26 +4111,17 @@ a .column-title-back .icon:after {
 
 .spinner-button-icon-spinner {
 	z-index:999;
-	background-image:url(https://abs.twimg.com/a/1418162186/img/t1/spinner-rosetta-blue.gif);
 	height:26px;
 	width:26px;
-	-webkit-filter:brightness(60%) contrast(80%);
-	filter:brightness(60%) contrast(80%);
 	margin-left:-15px;
-	margin-top:-12px;
 	opacity:1;
-	transition:100ms all
+	transition:.1s all
 }
 
 .spinner-button-icon-spinner.is-hidden {
 	display:block!important;
 	opacity:0;
 	pointer-events:none
-}
-
-.mtd-light .spinner-button-icon-spinner {
-	-webkit-filter:brightness(100%) hue-rotate(-30deg) contrast(100%);
-	filter:brightness(100%) hue-rotate(-30deg) contrast(100%)
 }
 
 .app-header {
@@ -4219,7 +4216,7 @@ a .column-title-back .icon:after {
 	cursor:pointer;
 	border-top-left-radius:2px;
 	border-bottom-left-radius:2px;
-	transition:200ms all;
+	transition:.2s all;
 	display:block;
 	position:absolute;
 	top:12px
@@ -4239,7 +4236,7 @@ a .column-title-back .icon:after {
 	border-radius:32px;
 	transform:scale(0);
 	z-index:999;
-	animation:tweetButtonPop .5s cubic-bezier(.19,1,.22,1);
+	animation:popIn .5s cubic-bezier(.19,1,.22,1);
 	animation-delay:2s;
 	animation-fill-mode:forwards
 }
@@ -4250,7 +4247,7 @@ a .column-title-back .icon:after {
 	position:fixed;
 	bottom:150px;
 	left:65%;
-	transition:300ms all;
+	transition:.3s all;
 	width:55px;
 	height:55px;
 	top:80%
@@ -4267,7 +4264,7 @@ a .column-title-back .icon:after {
 .tweet-button .icon-compose {
 	font-size:30px;
 	margin-left:-5px;
-	transition:300ms all;
+	transition:.3s all;
 	margin-top:-3px
 }
 
@@ -4287,7 +4284,7 @@ a .column-title-back .icon:after {
 	width:26px;
 	height:26px;
 	position:absolute;
-	transition:150ms all cubic-bezier(.19,1,.22,1);
+	transition:.15s all cubic-bezier(.19,1,.22,1);
 	transform:scale(.85,.85);
 	text-align:center
 }
@@ -4303,7 +4300,7 @@ a .column-title-back .icon:after {
 	position:absolute;
 	z-index:1001;
 	background-size:26px 26px;
-	transition:250ms all cubic-bezier(.19,1,.22,1);
+	transition:.25s all cubic-bezier(.19,1,.22,1);
 	font-style:normal;
 	opacity:0
 }
@@ -4315,7 +4312,7 @@ a .column-title-back .icon:after {
 .tweet-button.is-hidden .icon-compose:before {
 	margin-left:108px;
 	transform:scale(1);
-	transition:250ms all cubic-bezier(.19,1,.22,1)
+	transition:.25s all cubic-bezier(.19,1,.22,1)
 }
 
 .attach-compose-buttons {
@@ -4323,7 +4320,7 @@ a .column-title-back .icon:after {
 }
 
 .attach-compose-buttons .tweet-button {
-	transition:141ms all cubic-bezier(.19,1,.22,1);
+	transition:.141s all cubic-bezier(.19,1,.22,1);
 	border-radius:0;
 	margin-top:-65px;
 	margin-left:-5px;
@@ -4332,7 +4329,7 @@ a .column-title-back .icon:after {
 
 .attach-compose-buttons .icon-compose-dm {
 	margin-left:-4px;
-	transition:200ms all
+	transition:.2s all
 }
 
 .with-nav-border-t:before {
@@ -4421,7 +4418,7 @@ a .column-title-back .icon:after {
 	margin-left:-44px;
 	transform:scale(1);
 	opacity:1;
-	transition:70ms all,80ms margin
+	transition:.07s all,.08s margin
 }
 
 .app-search-fake .icon:after {
@@ -4436,7 +4433,7 @@ a .column-title-back .icon:after {
 	z-index:9;
 	transform:scale(.5);
 	opacity:0;
-	transition:500ms all,150ms opacity
+	transition:.5s all,.15s opacity
 }
 
 .mtd-minimal .app-search-fake .icon {
@@ -4491,6 +4488,11 @@ a .column-title-back .icon:after {
 	top:50px
 }
 
+.message-text>.btn {
+	color:#fff!important;
+	padding-top:14px
+}
+
 .message-banner {
 	position:relative;
 	clear:both;
@@ -4499,10 +4501,12 @@ a .column-title-back .icon:after {
 
 .message-banner .dismiss {
 	position:absolute;
-	right:5px;
+	left:5px;
+	margin-top:10px!important;
+	color:#fff;
 	top:.45em;
-	color:#222;
-	font-size:16px
+	font-size:16px;
+	margin-left:10px
 }
 
 .message-content {
@@ -4529,7 +4533,7 @@ a .column-title-back .icon:after {
 	background:#fff;
 	color:#ddd;
 	border-radius:0;
-	animation:dropmenucomedownnopad .40s 1 cubic-bezier(.19,1,.22,1);
+	animation:menuDownAnimationNoPadding .40s 1 cubic-bezier(.19,1,.22,1);
 	width:auto
 }
 
@@ -4559,13 +4563,13 @@ a .column-title-back .icon:after {
 .accordion-header {
 	padding:9px 5px 9px 8px;
 	color:#fff;
-	transition:200ms all
+	transition:.2s all
 }
 
 .non-actionable .accordion-header {
 	padding:9px 5px 9px 8px;
 	color:#fff!important;
-	transition:200ms all
+	transition:.2s all
 }
 
 .accordion .icon-arrow-d,.accordion .icon-arrow-u {
@@ -4576,7 +4580,7 @@ a .column-title-back .icon:after {
 
 .facet-type {
 	position:relative;
-	transition:500ms background cubic-bezier(.19,1,.22,1),700ms box-shadow cubic-bezier(.19,1,.22,1),200ms transform cubic-bezier(.19,1,.22,1);
+	transition:.5s background cubic-bezier(.19,1,.22,1),.7s box-shadow cubic-bezier(.19,1,.22,1),.2s transform cubic-bezier(.19,1,.22,1);
 	box-shadow:none;
 	color:#fff
 }
@@ -4609,7 +4613,7 @@ a .column-title-back .icon:after {
 	font-size:12px;
 	display:block;
 	color:#fff;
-	transition:250ms opacity;
+	transition:.25s opacity;
 	opacity:1
 }
 
@@ -4622,7 +4626,7 @@ a .column-title-back .icon:after {
 }
 
 .accordion .is-active .facet-subtitle {
-	transition:250ms opacity;
+	transition:.25s opacity;
 	opacity:0
 }
 
@@ -4688,7 +4692,7 @@ a .column-title-back .icon:after {
 	color:#535353;
 	text-align:center;
 	box-shadow:0 3px 10px rgba(17,17,17,.35);
-	animation:popgoesthemodalwindow .3s 1 cubic-bezier(.19,1,.22,1);
+	animation:windowDown .3s 1 cubic-bezier(.19,1,.22,1);
 	border-radius:2px
 }
 
@@ -4707,7 +4711,7 @@ a .column-title-back .icon:after {
 	font-size:16px;
 	height:auto;
 	padding-bottom:3px;
-	transition:200ms all
+	transition:.2s all
 }
 
 .character-count-compose {
@@ -4716,7 +4720,7 @@ a .column-title-back .icon:after {
 	font-size:16px;
 	display:inline;
 	position:relative;
-	transition:200ms all
+	transition:.2s all
 }
 
 .compose-media-bar .compose-media-bar-thumb {
@@ -4813,7 +4817,7 @@ a .column-title-back .icon:after {
 
 .migrate-account-login-twitter-form,.migrate-account-login-step-1-title,.migrate-account-login-arrow {
 	opacity:1;
-	transition:opacity 100ms
+	transition:opacity .1s
 }
 
 .migrate-account-login-arrow {
@@ -4881,7 +4885,7 @@ a .column-title-back .icon:after {
 	height:3px;
 	margin-right:5px;
 	opacity:0;
-	transition:300ms all;
+	transition:.3s all;
 	transition-delay:2s
 }
 
@@ -4891,7 +4895,7 @@ a .column-title-back .icon:after {
 
 .app-header:hover .numbered-badge {
 	opacity:1;
-	transition:150ms all
+	transition:.15s all
 }
 
 .numbered-badge-onnav {
@@ -4905,7 +4909,7 @@ a .column-title-back .icon:after {
 	left:-270px;
 	height:100%;
 	margin-right:0;
-	transition:200ms all
+	transition:.2s all
 }
 
 .drawer-header-title {
@@ -4930,7 +4934,7 @@ a .column-title-back .icon:after {
 .ovl,.overlay {
 	min-width:320px;
 	text-align:center;
-	transition:200ms opacity,0s margin-top!important;
+	transition:.2s opacity,0s margin-top!important;
 	background:rgba(100,100,100,.4);
 	opacity:1;
 	animation:fadeIn .25s 1 cubic-bezier(.19,1,.22,1);
@@ -4988,11 +4992,11 @@ a .column-title-back .icon:after {
 	opacity:1;
 	border-radius:4px;
 	transform-origin:50% 60%;
-	animation:popgoesthemodalwindow .3s 1 cubic-bezier(.19,1,.22,1);
+	animation:windowDown .3s 1 cubic-bezier(.19,1,.22,1);
 	box-shadow:0 30px 70px rgba(17,17,17,.6);
 	overflow:hidden;
 	transform:none;
-	transition:100ms box-shadow,100ms transform
+	transition:.1s box-shadow,.1s transform
 }
 
 .mtd-mobile .mdl {
@@ -5291,7 +5295,7 @@ a .column-title-back .icon:after {
 	width:80px;
 	height:85px;
 	color:#00BCD4;
-	transition:200ms all
+	transition:.2s all
 }
 
 .lst-profile span {
@@ -5511,7 +5515,7 @@ a .column-title-back .icon:after {
 	margin:0 6px 6px 0;
 	cursor:pointer;
 	background:transparent;
-	transition:150ms all;
+	transition:.15s all;
 	-webkit-filter:grayscale(100%) brightness(100%);
 	filter:grayscale(100%) brightness(100%);
 	opacity:.5;
@@ -5520,12 +5524,12 @@ a .column-title-back .icon:after {
 
 .accs li:hover {
 	background:rgba(0,0,0,08);
-	transition:150ms all
+	transition:.15s all
 }
 
 .accs li:active {
 	background:rgba(0,0,0,.16);
-	transition:150ms all
+	transition:.15s all
 }
 
 .accs .acc-avatar {
@@ -5548,7 +5552,7 @@ a .column-title-back .icon:after {
 
 .accs .acc-selected {
 	background:#29B6F6;
-	transition:150ms all;
+	transition:.15s all;
 	-webkit-filter:grayscale(0%);
 	filter:grayscale(0%);
 	opacity:1;
@@ -5557,19 +5561,19 @@ a .column-title-back .icon:after {
 
 .accs .acc-selected i {
 	color:#fff;
-	transition:200ms all
+	transition:.2s all
 }
 
 .accs .acc-selected:hover {
 	border-color:#ddd;
 	background:#00B0FF;
-	transition:200ms all
+	transition:.2s all
 }
 
 .accs .acc-selected:active {
 	border-color:#ddd;
 	background:#2E99CA;
-	transition:200ms all
+	transition:.2s all
 }
 
 .js-accounts-toggle {
@@ -5580,7 +5584,7 @@ a .column-title-back .icon:after {
 	background:#00BCD4;
 	color:#fff;
 	height:100%;
-	transition:300ms all;
+	transition:.3s all;
 	margin-left:100px;
 	width:270px;
 	float:right;
@@ -5589,12 +5593,12 @@ a .column-title-back .icon:after {
 }
 
 .app-content.is-open .drawer {
-	transition:200ms all
+	transition:.2s all
 }
 
 .app-content.is-open .compose {
 	margin-left:0;
-	transition:200ms all;
+	transition:.2s all;
 	float:right;
 	border-radius:0;
 	opacity:1
@@ -5645,7 +5649,7 @@ a .column-title-back .icon:after {
 	left:0;
 	right:0;
 	top:50px;
-	transition:500ms all cubic-bezier(.19,1,.22,1)
+	transition:.5s all cubic-bezier(.19,1,.22,1)
 }
 
 .is-open .compose-content {
@@ -5679,12 +5683,12 @@ a .column-title-back .icon:after {
 
 .compose-send-button-success {
 	color:#00BCD4;
-	margin-left:-18px;
+	margin-left:-21px;
 	margin-top:-17px;
 	z-index:99;
 	font-size:30px;
 	opacity:1;
-	transition:150ms all
+	transition:.12s all
 }
 
 .compose-send-button-success.is-hidden {
@@ -5709,7 +5713,7 @@ a .column-title-back .icon:after {
 	z-index:99;
 	box-shadow:0 3px 7px rgba(17,17,17,.5);
 	opacity:1;
-	transition:150ms all cubic-bezier(.19,1,.22,1);
+	transition:.15s all cubic-bezier(.19,1,.22,1);
 	margin-top:0
 }
 
@@ -5814,7 +5818,7 @@ a .column-title-back .icon:after {
 	margin-right:10px;
 	border-radius:3px;
 	color:#fff;
-	transition:200ms all;
+	transition:.2s all;
 	margin-bottom:5px;
 	-webkit-filter:grayscale(100%);
 	filter:grayscale(100%);
@@ -5834,17 +5838,17 @@ a .column-title-back .icon:after {
 	margin-right:0;
 	margin-bottom:4px;
 	background:transparent;
-	transition:200ms all
+	transition:.2s all
 }
 
 .compose-account-img {
 	display:block;
-	transition:200ms all
+	transition:.2s all
 }
 
 .compose-account:hover,.compose-account:focus {
 	color:#fff;
-	transition:200ms all;
+	transition:.2s all;
 	outline:none
 }
 
@@ -5910,7 +5914,7 @@ a .column-title-back .icon:after {
 }
 
 .inline-reply {
-	transition:all 200ms;
+	transition:all .2s;
 	background:#00C3DC;
 	cursor:default;
 	height:180px;
@@ -5961,7 +5965,7 @@ a .column-title-back .icon:after {
 	margin-left:5px;
 	margin-top:-90px;
 	position:relative;
-	transition:200ms all
+	transition:.2s all
 }
 
 .js-inline-compose-add-image {
@@ -5981,7 +5985,7 @@ a .column-title-back .icon:after {
 }
 
 .inline-reply .compose-text {
-	transition:height 250ms cubic-bezier(.19,1,.22,1);
+	transition:height .25s cubic-bezier(.19,1,.22,1);
 	padding:10px;
 	height:100px!important;
 	width:94%;
@@ -6739,7 +6743,7 @@ input[type="checkbox"] {
 .js-add-column:active {
 	background:#58CDDB;
 	transform:none;
-	transition:100ms all
+	transition:.1s all
 }
 
 .js-add-column:before {
@@ -7128,12 +7132,12 @@ input[type="checkbox"] {
 	border-radius:5px;
 	padding:4px;
 	margin:20px 0 6px;
-	transition:200ms transform;
+	transition:.2s transform;
 	transform:scale(1,1)
 }
 
 .prf-img:active,.prf-img:hover {
-	transition:200ms transform
+	transition:.2s transform
 }
 
 .prf-meta {
@@ -7188,20 +7192,20 @@ input[type="checkbox"] {
 	display:inline-block;
 	vertical-align:middle;
 	zoom:1;
-	transition:200ms all;
+	transition:.2s all;
 	padding-right:0
 }
 
 .prf-stats li:hover {
-	transition:200ms all
+	transition:.2s all
 }
 
 .prf-stats li:active {
-	transition:200ms all
+	transition:.2s all
 }
 
 .prf-stats>li:active>a>strong {
-	transition:200ms all
+	transition:.2s all
 }
 
 .prf-stats a {
@@ -7223,23 +7227,23 @@ input[type="checkbox"] {
 	color:#333;
 	font-size:15px;
 	font-weight:500;
-	transition:200ms all
+	transition:.2s all
 }
 
 .prf-stats a:hover,.prf-stats a:hover strong {
 	text-decoration:none;
 	color:#C2C2C2;
-	transition:200ms all
+	transition:.2s all
 }
 
 .prf-stats a:hover strong {
 	text-decoration:none;
 	color:#969696;
-	transition:200ms all
+	transition:.2s all
 }
 
 .prf-stats>li:active>a {
-	transition:200ms all
+	transition:.2s all
 }
 
 .prf-stats p {
@@ -7265,14 +7269,14 @@ input[type="checkbox"] {
 	font-size:12px;
 	text-transform:uppercase;
 	font-weight:500;
-	transition:200ms all
+	transition:.2s all
 }
 
 .prf .lst-profile i {
 	color:#00BCD4;
 	margin-top:15px;
 	font-size:36px;
-	transition:200ms all
+	transition:.2s all
 }
 
 .prf .lst-profile a {
@@ -7282,17 +7286,17 @@ input[type="checkbox"] {
 }
 
 .prf .lst-profile a:hover span {
-	transition:200ms all
+	transition:.2s all
 }
 
 .prf .lst-profile a:hover i {
 	color:#0CD2EB;
-	transition:200ms all
+	transition:.2s all
 }
 
 .prf .lst-profile a:active i {
 	color:#aaa;
-	transition:200ms all
+	transition:.2s all
 }
 
 .prf .lst-profile li:last-child a {
@@ -7353,7 +7357,7 @@ input[type="checkbox"] {
 .social-proof-animating {
 	height:0;
 	overflow-y:hidden;
-	transition:height 200ms
+	transition:height .2s
 }
 
 .profile-full {
@@ -7411,7 +7415,7 @@ input[type="checkbox"] {
 .lst li {
 	position:relative;
 	padding:5px;
-	transition:200ms all
+	transition:.2s all
 }
 
 .lst .avatar {
@@ -7433,7 +7437,7 @@ input[type="checkbox"] {
 	display:none;
 	position:absolute;
 	z-index:999;
-	transition:200ms all
+	transition:.2s all
 }
 
 .lst-row {
@@ -7444,7 +7448,7 @@ input[type="checkbox"] {
 .lst-group {
 	margin-bottom:10px;
 	line-height:16px;
-	transition:200ms all;
+	transition:.2s all;
 	z-index:9
 }
 
@@ -7462,13 +7466,13 @@ input[type="checkbox"] {
 
 .lst .s-selected {
 	background:rgba(0,0,0,.1);
-	transition:200ms all
+	transition:.2s all
 }
 
 .lst-group .selected {
 	background:#00BBD4;
 	color:#fff;
-	transition:200ms all
+	transition:.2s all
 }
 
 .lst-group.js-setting-list .selected {
@@ -7482,7 +7486,7 @@ input[type="checkbox"] {
 
 .mtd-light .lst-group .selected:active {
 	background:#58CDDB;
-	transition:200ms all
+	transition:.2s all
 }
 
 .lst-group li a:active,.lst-group li a:hover,.lst-group li a:focus {
@@ -7491,7 +7495,7 @@ input[type="checkbox"] {
 
 .mtd-dark .lst-group .selected:active {
 	background:#429BA6;
-	transition:200ms all
+	transition:.2s all
 }
 
 .lst-group .selected .fullname,.lst-group .selected .inner strong,.lst-group .selected .list-link,.lst-group .selected .list-twitter-list,.lst-group .selected .list-subtitle,.lst-group .selected .list-account,.lst-group .selected .list-listmember {
@@ -7548,7 +7552,7 @@ input[type="checkbox"] {
 	line-height:18px;
 	background:#fff;
 	box-shadow:0 2px 5px 0 rgba(0,0,0,.16),0 2px 5px 0 rgba(0,0,0,.23);
-	transition:200ms all;
+	transition:.2s all;
 	margin-bottom:-15px;
 	margin-right:inherit!important;
 	border-radius:2px
@@ -7564,7 +7568,7 @@ input[type="checkbox"] {
 	position:relative;
 	display:block;
 	float:none;
-	transition:200ms all;
+	transition:.2s all;
 	height:32px
 }
 
@@ -7616,7 +7620,7 @@ input[type="checkbox"] {
 	right:50%;
 	margin-right:-15px!important;
 	text-indent:0;
-	animation:dropmenucomedown .3s 1 cubic-bezier(.19,1,.22,1);
+	animation:menuDownAnimation .3s 1 cubic-bezier(.19,1,.22,1);
 	top:20px
 }
 
@@ -7638,7 +7642,7 @@ input[type="checkbox"] {
 
 .pos-t {
 	top:auto;
-	animation:dropmenucomeup .3s 1 cubic-bezier(.19,1,.22,1);
+	animation:menuUp .3s 1 cubic-bezier(.19,1,.22,1);
 	bottom:160%
 }
 
@@ -7657,8 +7661,8 @@ input[type="checkbox"] {
 	background:#fff;
 	border-radius:4px;
 	box-shadow:0 2px 5px rgba(117,117,117,.8);
-	transition:opacity 250ms cubic-bezier(.19,1,.22,1),max-height 200ms cubic-bezier(.19,1,.22,1);
-	animation:popovercomedown .25s cubic-bezier(.19,1,.22,1);
+	transition:opacity .25s cubic-bezier(.19,1,.22,1),max-height .2s cubic-bezier(.19,1,.22,1);
+	animation:leftPopoverDown .25s cubic-bezier(.19,1,.22,1);
 	margin-left:auto;
 	pointer-events:all
 }
@@ -7675,7 +7679,7 @@ input[type="checkbox"] {
 	z-index:1000;
 	left:65px;
 	top:-60px;
-	animation:rtpopovercomedown .25s cubic-bezier(.19,1,.22,1);
+	animation:rightPopoverDown .25s cubic-bezier(.19,1,.22,1);
 	right:0
 }
 
@@ -7706,12 +7710,12 @@ input[type="checkbox"] {
 .card-player,.card-image {
 	max-width:100%;
 	border:0;
-	transition:200ms all;
+	transition:.2s all;
 	box-shadow:0 2px 5px 0 rgba(0,0,0,.16),0 2px 5px 0 rgba(0,0,0,.23)
 }
 
 .media-image {
-	transition:200ms all;
+	transition:.2s all;
 	box-shadow:0 1px 1.5px 0 rgba(0,0,0,.12),0 1px 1px 0 rgba(0,0,0,.24)
 }
 
@@ -7814,7 +7818,7 @@ input[type="checkbox"] {
 .toggle-login-type {
 	font-size:18px;
 	color:#fff;
-	animation:dropmenucomedownnopad .40s 1 cubic-bezier(.19,1,.22,1)
+	animation:menuDownAnimationNoPadding .40s 1 cubic-bezier(.19,1,.22,1)
 }
 
 .app-signin-form {
@@ -7850,18 +7854,18 @@ input[type="checkbox"] {
 
 .media-item {
 	box-shadow:0 2px 5px 0 rgba(0,0,0,.16),0 2px 5px 0 rgba(0,0,0,.23);
-	transition:300ms all
+	transition:.3s all
 }
 
 .media-item:active {
 	box-shadow:0 10px 10px 0 rgba(0,0,0,.22),0 6px 3px 0 rgba(0,0,0,.328)!important;
 	opacity:.7;
-	transition:300ms all
+	transition:.3s all
 }
 
 .media-item:hover {
 	box-shadow:0 10px 10px 0 rgba(0,0,0,.19),0 6px 3px 0 rgba(0,0,0,.23);
-	transition:300ms all
+	transition:.3s all
 
 }
 
@@ -7870,7 +7874,7 @@ input[type="checkbox"] {
 	color:#444;
 	box-shadow:0 10px 30px rgba(17,17,17,.25);
 	border-radius:2px;
-	animation:dropmenucomedownlnopad .40s 1 cubic-bezier(.19,1,.22,1)
+	animation:menuDownAnimationLogin .40s 1 cubic-bezier(.19,1,.22,1)
 }
 
 .form-newto-txt {
@@ -8044,7 +8048,7 @@ input[type="checkbox"] {
 	animation:fadeIn .4s cubic-bezier(.19,1,.22,1);
 	animation-fill-mode:forwards;
 	animation-delay:4s;
-	transition:150ms all cubic-bezier(.19,1,.22,1)
+	transition:.15s all cubic-bezier(.19,1,.22,1)
 }
 
 .mtd-dark a.column-nav-link,.mtd-light a.column-nav-link {
@@ -8054,7 +8058,7 @@ input[type="checkbox"] {
 	font-size:18px;
 	cursor:pointer;
 	overflow:visible;
-	transition:300ms all;
+	transition:.3s all;
 	transition-delay:2s;
 	transform:none!important;
 	box-shadow:none;
@@ -8076,7 +8080,7 @@ input[type="checkbox"] {
 	width:0;
 	box-sizing:border-box;
 	color:rgba(255,255,255,.75);
-	transition:400ms all cubic-bezier(.19,1,.22,1);
+	transition:.4s all cubic-bezier(.19,1,.22,1);
 	transition-delay:1s;
 	display:inline-block;
 	left:initial;
@@ -8090,7 +8094,7 @@ input[type="checkbox"] {
 .column-navigator:hover .column-nav-item,.column-nav-item.is-new {
 	opacity:1;
 	width:40px;
-	transition:200ms all cubic-bezier(.19,1,.22,1),400ms transform
+	transition:.2s all cubic-bezier(.19,1,.22,1),.4s transform
 }
 
 .column-navigator:hover .column-nav-item:not(.is-new) {
@@ -8100,7 +8104,7 @@ input[type="checkbox"] {
 .column-nav-item.is-new {
 	top:0!important;
 	transform:rotate(360deg);
-	transition:200ms all cubic-bezier(.19,1,.22,1),400ms transform
+	transition:.2s all cubic-bezier(.19,1,.22,1),.4s transform
 }
 
 .column-nav-link .icon {
@@ -8181,7 +8185,7 @@ input[type="checkbox"] {
 	margin-left:10px!important;
 	margin-top:-15px!important;
 	width:235px;
-	animation:calendarcomedown .3s cubic-bezier(.19,1,.22,1)
+	animation:calendarMenuDown .3s cubic-bezier(.19,1,.22,1)
 }
 
 .mdl-links span {
@@ -8244,7 +8248,7 @@ input[type="checkbox"] {
 }
 
 .js-tweet-button:hover>.icon-twitter-bird,.js-schedule-button:active>.icon-schedule,.js-schedule-button:hover>.icon-schedule,.js-add-image-button:hover>.icon-camera,.js-dm-button:hover>.icon-message,.js-dm-button:active>.icon-message,.js-add-image-button:active>.icon-camera {
-	transition:200ms all
+	transition:.2s all
 }
 
 .js-add-image-button,.js-tweet-button,.js-dm-button,.js-schedule-button {
@@ -8262,12 +8266,12 @@ input[type="checkbox"] {
 
 .js-tweet-button>.icon-twitter-bird,.js-dm-button>.icon-message,.js-add-image-button>.icon-camera,.js-schedule-button>.icon-schedule {
 	font-size:24px;
-	transition:200ms all
+	transition:.2s all
 }
 
 .js-tweet-button:active .icon-twitter-bird {
 	color:#ddd;
-	transition:200ms all
+	transition:.2s all
 }
 
 .js-send-tweet-button:after {
@@ -8276,7 +8280,7 @@ input[type="checkbox"] {
 }
 
 .inline-reply.is-inline-inactive {
-	transition:all 200ms;
+	transition:all .2s;
 	opacity:0;
 	height:45px
 }
@@ -8310,7 +8314,7 @@ input[type="checkbox"] {
 }
 
 .replies-after .stream-item.is-actionable {
-	animation:herecomesthetweet .4s cubic-bezier(.19,1,.22,1)
+	animation:tweetIncoming .4s cubic-bezier(.19,1,.22,1)
 }
 
 .list-item.is-selected {
@@ -8318,8 +8322,8 @@ input[type="checkbox"] {
 }
 
 .js-message-detail .stream-item {
-	animation:herecomesthetweet .4s cubic-bezier(.19,1,.22,1);
-	transition:300ms all
+	animation:tweetIncoming .4s cubic-bezier(.19,1,.22,1);
+	transition:.3s all
 }
 
 .account-remove-check-message {
@@ -8414,7 +8418,7 @@ input[type="checkbox"] {
 
 .draggable-dragging {
 	box-shadow:0 50px 100px rgba(17,17,17,.8);
-	transition:200ms box-shadow,200ms transform!important;
+	transition:.2s box-shadow,.2s transform!important;
 	z-index:999
 }
 
@@ -8451,7 +8455,7 @@ input[type="checkbox"] {
 	margin-left:-27px;
 	transform:scale(1);
 	opacity:1;
-	transition:70ms all,80ms margin
+	transition:.07s all,.08s margin
 }
 
 .btn-back:after {
@@ -8466,14 +8470,14 @@ input[type="checkbox"] {
 	z-index:9;
 	transform:scale(.5);
 	opacity:0;
-	transition:500ms all,150ms opacity
+	transition:.5s all,.15s opacity
 }
 
 .s-profile .pos-l {
 	bottom:150%;
 	top:auto;
 	z-index:999;
-	animation:dropmenucomeup .2s 1 cubic-bezier(.19,1,.22,1)
+	animation:menuUp .2s 1 cubic-bezier(.19,1,.22,1)
 }
 
 .antiscroll-inner.padding-h--15 {
@@ -8690,7 +8694,7 @@ li.is-selectable a[data-action=report-spam]:before {
 .js-account-manager-container {
 	background:#F8F8F8;
 	box-shadow:0 15px 40px rgba(17,17,17,.4);
-	animation:popgoesthemodalwindow .3s 1 cubic-bezier(.19,1,.22,1);
+	animation:windowDown .3s 1 cubic-bezier(.19,1,.22,1);
 	overflow:hidden
 }
 
@@ -8701,33 +8705,33 @@ li.is-selectable a[data-action=report-spam]:before {
 .account-summary>a.obj-left.item-img {
 	transform:none!important;
 	background:transparent!important;
-	transition:150ms all
+	transition:.15s all
 }
 
 a[rel=url]:active {
 	transform:none!important;
-	transition:150ms all
+	transition:.15s all
 }
 
 a[rel=user]:active {
 	transform:none!important;
 	background:transparent!important;
-	transition:150ms all
+	transition:.15s all
 }
 
 a[rel=hashtag]:active {
 	transform:none!important;
-	transition:150ms all
+	transition:.15s all
 }
 
 .prf-card-inner a:active {
 	transform:none!important;
-	transition:150ms all
+	transition:.15s all
 }
 
 .tweet-stat.txt-small a:active {
 	transform:none!important;
-	transition:150ms all
+	transition:.15s all
 }
 
 .make-text-big {
@@ -8739,7 +8743,7 @@ a[rel=hashtag]:active {
 .card-holder a[rel=mediaPreview]:active {
 	transform:none!important;
 	background:transparent!important;
-	transition:150ms all
+	transition:.15s all
 }
 
 .js-media-added {
@@ -8747,7 +8751,7 @@ a[rel=hashtag]:active {
 	margin-left:10px;
 	box-shadow:0 3px 7px rgba(17,17,17,.5);
 	margin-top:15px;
-	animation:photocomedown .825s cubic-bezier(.19,1,.22,1)
+	animation:mediaDown .825s cubic-bezier(.19,1,.22,1)
 }
 
 .cal header span {
@@ -8851,7 +8855,7 @@ a[rel=hashtag]:active {
 }
 
 .app-search-fake {
-	transition:150ms all cubic-bezier(.19,1,.22,1)
+	transition:.15s all cubic-bezier(.19,1,.22,1)
 }
 
 .tweet-footer {
@@ -8963,7 +8967,7 @@ a[rel=hashtag]:active {
 
 .js-contributor-manager-container {
 	background:#F8F8F8;
-	animation:popgoesthemodalwindow .3s 1 cubic-bezier(.19,1,.22,1);
+	animation:windowDown .3s 1 cubic-bezier(.19,1,.22,1);
 	overflow:hidden
 }
 
@@ -9064,15 +9068,15 @@ a[rel=hashtag]:active {
 
 #emojiButton .btd-icon-smile {
 	font-size:24px;
-	transition:200ms all
+	transition:.2s all
 }
 
 #emojiButton:hover .btd-icon-smile {
-	transition:200ms all
+	transition:.2s all
 }
 
 #emojiButton:active .btd-icon-smile {
-	transition:200ms all
+	transition:.2s all
 }
 
 .emoji-composer-added .js-add-image-button,.emoji-composer-added .js-tweet-button,.emoji-composer-added .js-schedule-button {
@@ -9132,7 +9136,7 @@ a[rel=hashtag]:active {
 	top:5px;
 	z-index:999;
 	color:#fff;
-	transition:150ms all
+	transition:.15s all
 }
 
 .mtd-drawer-button:active {
@@ -9146,7 +9150,7 @@ a[rel=hashtag]:active {
 	margin-left:-14px;
 	transform:scale(1);
 	opacity:1;
-	transition:70ms all,80ms margin
+	transition:.07s all,.08s margin
 }
 
 .mtd-drawer-button:after {
@@ -9161,7 +9165,7 @@ a[rel=hashtag]:active {
 	z-index:9;
 	transform:scale(.5);
 	opacity:0;
-	transition:500ms all,150ms opacity
+	transition:.5s all,.15s opacity
 }
 
 
@@ -9178,7 +9182,7 @@ a[rel=hashtag]:active {
 	z-index:1000;
 	position:absolute;
 	box-shadow:0 15px 40px rgba(17,17,17,.4);
-	transition:300ms all cubic-bezier(.19,1,.22,1);
+	transition:.3s all cubic-bezier(.19,1,.22,1);
 	overflow-x:hidden;
 	overflow-y:scroll;
 	overflow-y:hidden
@@ -9195,12 +9199,12 @@ a[rel=hashtag]:active {
 	background:rgba(100,100,100,.4);
 	height:100%;
 	width:100%;
-	transition:300ms all cubic-bezier(.19,1,.22,1)
+	transition:.3s all cubic-bezier(.19,1,.22,1)
 }
 
 .mtd-nav-drawer-background-hidden {
 	background:rgba(100,100,100,0);
-	transition:400ms all cubic-bezier(.19,1,.22,1);
+	transition:.4s all cubic-bezier(.19,1,.22,1);
 	pointer-events:none
 }
 
@@ -9274,7 +9278,7 @@ a[rel=hashtag]:active {
 }
 
 .js-login-error-message {
-	animation:dropmenucomedownlargenopad .40s 1 cubic-bezier(.19,1,.22,1)
+	animation:menuDownAnimationLargeNoPadding .40s 1 cubic-bezier(.19,1,.22,1)
 }
 
 .app-signin-form .cf.margin-txs {
@@ -9362,7 +9366,7 @@ a[rel=hashtag]:active {
 	font-size:18px;
 	text-align:center;
 	font-weight:400;
-	transition:300ms all cubic-bezier(.19,1,.22,1);
+	transition:.3s all cubic-bezier(.19,1,.22,1);
 	bottom:initial!important
 }
 
@@ -9381,8 +9385,8 @@ a[rel=hashtag]:active {
 
 .js-compose-message-recipient-container .typeahead-user-list {
 	width:240px;
-	transition:200ms all;
-	animation:dropmenucomedownnopad .225s 1 cubic-bezier(.19,1,.22,1)
+	transition:.2s all;
+	animation:menuDownAnimationNoPadding .225s 1 cubic-bezier(.19,1,.22,1)
 }
 
 .js-compose-message-recipient-container .js-typeahead-dropdown {
@@ -9408,7 +9412,7 @@ a[rel=hashtag]:active {
 }
 
 .mdl-col-settings form.frm fieldset {
-	animation:dropmenucomeupnopad .35s 1 cubic-bezier(.19,1,.22,1)
+	animation:menuUpAnimationNoPadding .35s 1 cubic-bezier(.19,1,.22,1)
 }
 
 .mdl-favorite-from-options .txt-r-deep-yellow {
@@ -9455,7 +9459,7 @@ a[rel=hashtag]:active {
 	padding:0 10px;
 	color:inherit;
 	line-height:50px;
-	transition:all 250ms cubic-bezier(.19,1,.22,1);
+	transition:all .25s cubic-bezier(.19,1,.22,1);
 	background:#03A9F4;
 	opacity:0;
 	pointer-events:none;
@@ -9517,7 +9521,7 @@ a[rel=hashtag]:active {
 }
 
 .emoji-popover .emoji-container>.active {
-	animation:dropmenucomeupnopad .25s 1 cubic-bezier(.19,1,.22,1)!important
+	animation:menuUpAnimationNoPadding .25s 1 cubic-bezier(.19,1,.22,1)!important
 }
 
 .btd-emoji.emoji-pop[data-cat="Emoji-HumanImage"] {
@@ -9530,7 +9534,7 @@ a[rel=hashtag]:active {
 }
 
 .startflow-message-wrap .startflow-panel {
-	animation:popgoesthemodalwindow .3s 1 cubic-bezier(.19,1,.22,1)
+	animation:windowDown .3s 1 cubic-bezier(.19,1,.22,1)
 }
 
 .js-twogin-warning-login-anyway-btn {
@@ -9862,7 +9866,7 @@ html.mtd-dark {
 
 .mtd-dark a:active {
 	color:rgba(0,115,126,1);
-	background-color:rgba(0,0,0,05)
+	background-color:rgba(0,0,0,.05)
 }
 
 .mtd-dark .txt-mute a:not(:hover):not(:focus):not(.tweet-action):not([data-action]) {
@@ -10007,13 +10011,13 @@ html.mtd-dark {
 
 .mtd-dark .btn[disabled],.mtd-dark .btn[disabled]:hover,.mtd-dark .btn[disabled]:active,.mtd-dark .btn.is-disabled,.mtd-dark .btn.is-disabled:hover,.mtd-dark .btn.is-disabled:focus,.mtd-dark .btn.is-disabled:active {
 	color:#54707F;
-	transition:200ms all
+	transition:.2s all
 }
 
 .mtd-dark a[rel=user]:active {
 	transform:none!important;
 	background:transparent!important;
-	transition:150ms all
+	transition:.15s all
 }
 
 .mtd-dark ::-moz-selection {
@@ -10034,7 +10038,7 @@ html.mtd-dark {
 	color:#00838F;
 	margin-top:15px;
 	font-size:34px;
-	transition:200ms all
+	transition:.2s all
 }
 
 .mtd-dark .prf .lst-profile a {
@@ -10124,7 +10128,7 @@ html.mtd-dark {
 }
 
 .mtd-dark .dropdown-menu li.is-selectable:hover {
-	background:rgba(16,16,16,05)!important
+	background:rgba(16,16,16,.5)!important
 }
 
 .mtd-dark .dropdown-menu a[href][data-action] {
@@ -10258,7 +10262,7 @@ html.mtd-dark {
 	color:#00CBE5;
 	border-color:transparent;
 	z-index:99;
-	transition:200ms all,400ms background,400ms width!important
+	transition:.2s all,.4s background,.4s width!important
 }
 
 .mtd-dark body.scroll-v a {
@@ -10320,7 +10324,7 @@ article.is-unread .account-link {
 }
 
 .tweet-action[rel="favorite"] i,.tweet-detail-action[rel="favorite"] i {
-	transition:350ms transform,350ms color;
+	transition:.35s transform,.35s color;
 	transform:rotate(0deg);
 	display:block
 }
@@ -10389,7 +10393,7 @@ fieldset .toggle-switch {
 	background-color:#fff;
 	border-radius:9px;
 	box-shadow:0 3px 6px rgba(0,0,0,.25);
-	transition:all 350ms cubic-bezier(.55,0,.1,1)
+	transition:all .35s cubic-bezier(.55,0,.1,1)
 }
 
 .mtd-dark .toggle-switch-label:after {
@@ -10484,7 +10488,7 @@ fieldset .toggle-switch {
 }
 
 .js-column-options .dropdown-menu.js-dropdown {
-	animation:dropmenucomedownnopad .40s 1 cubic-bezier(.19,1,.22,1);
+	animation:menuDownAnimationNoPadding .40s 1 cubic-bezier(.19,1,.22,1);
 	margin-top:0
 }
 
@@ -10525,7 +10529,7 @@ fieldset .toggle-switch {
 	position:relative;
 	top:-3em;
 	opacity:1;
-	transition:all 200ms cubic-bezier(.55,0,.1,1);
+	transition:all .2s cubic-bezier(.55,0,.1,1);
 	pointer-events:auto;
 	padding:8px 12px;
 	min-height:0;
@@ -10572,7 +10576,7 @@ fieldset .toggle-switch {
 .more-tweets-btn-container--visible .more-tweets-btn,.more-tweets-btn-container--mouse-release .more-tweets-btn,.more-tweets-btn-container--loading .more-tweets-btn {
 	opacity:1;
 	top:20px;
-	animation:moretweetsanim .7s 1 cubic-bezier(.55,0,.1,1)
+	animation:moreTweetsButtonDown .7s 1 cubic-bezier(.55,0,.1,1)
 }
 
 .more-tweets-btn-container--mouse-release .more-tweets-btn,.more-tweets-btn-container--loading .more-tweets-btn {
@@ -10635,7 +10639,7 @@ fieldset .toggle-switch {
 }
 
 .typeahead-dropdown {
-	animation:dropmenucomedownnopad .225s 1;
+	animation:menuDownAnimationNoPadding .225s 1;
 	width:240px
 }
 
@@ -10649,7 +10653,7 @@ fieldset .toggle-switch {
 
 .compose-message-recipient-container {
 	display:block!important;
-	transition:200ms all;
+	transition:.2s all;
 	max-height:2000px;
 	opacity:1
 }
@@ -10791,7 +10795,7 @@ fieldset .toggle-switch {
 	background-color:#fff;
 	border-radius:9px;
 	box-shadow:0 3px 6px rgba(0,0,0,.25);
-	transition:all 350ms cubic-bezier(.55,0,.1,1)
+	transition:all .35s cubic-bezier(.55,0,.1,1)
 }
 
 .mtd-dark .toggle-switch-label:after {
@@ -10855,7 +10859,7 @@ fieldset .toggle-switch {
 	margin-top:-41px
 }
 
-html.mtd-dark body:not(.scroll-v) {
+html.mtd-dark body {
 	background:rgb(38,50,56)
 }
 
@@ -10967,7 +10971,7 @@ button.mtd-no-transform-case {
 	width:5px;
 	height:0;
 	background:transparent;
-	transition:right 100ms cubic-bezier(.19,1,.22,1),background 100ms cubic-bezier(.19,1,.22,1),height 150ms cubic-bezier(.19,1,.22,1)
+	transition:right .1s cubic-bezier(.19,1,.22,1),background .1s cubic-bezier(.19,1,.22,1),height .15s cubic-bezier(.19,1,.22,1)
 }
 
 .is-favorite .tweet-dogear {
@@ -11007,7 +11011,7 @@ button.mtd-no-transform-case {
 	position:relative;
 	display:none;
 	padding-left:8px;
-	transition:height 150ms cubic-bezier(.19,1,.22,1);
+	transition:height .15s cubic-bezier(.19,1,.22,1);
 	overflow-y:hidden
 }
 
@@ -11021,15 +11025,15 @@ button.mtd-no-transform-case {
 
 .lst-group li {
 	padding-left:5px;
-	transition:200ms all
+	transition:.2s all
 }
 
 .lst-group li:hover {
 	box-shadow:0 5px 15px 1px rgba(0,0,0,.25)
 }
 
-.lst-group li:active {
-	background:rgba(0,0,0,05)
+.lst-group:not(.js-setting-list) li:active {
+	background:rgba(0,0,0,.5)
 }
 
 .list-link {
@@ -11092,7 +11096,7 @@ button.mtd-no-transform-case {
 }
 
 .js-column-options {
-	transition:height 300ms cubic-bezier(.19,1,.22,1)
+	transition:height .3s cubic-bezier(.19,1,.22,1)
 }
 
 .js-popover-content.scroll-none {
@@ -11146,7 +11150,7 @@ button.mtd-no-transform-case {
 .contributor-row:not([data-state="confirmRemove"]) .contributor-confirm-remove,.contributor-settings-role,.contributor-detail,.contributor-remove {
 	opacity:0;
 	margin-top:-20px;
-	transition:opacity 200ms cubic-bezier(.19,1,.22,1),margin-top 200ms cubic-bezier(.19,1,.22,1)
+	transition:opacity .2s cubic-bezier(.19,1,.22,1),margin-top .2s cubic-bezier(.19,1,.22,1)
 }
 
 .contributor-row[data-state="settings"] .contributor-settings-role,.contributor-row[data-state="settings"] .contributor-confirm-change,.contributor-row[data-state="closed"] .contributor-detail,.contributor-row[data-state="settings"] .contributor-remove {
@@ -11156,7 +11160,7 @@ button.mtd-no-transform-case {
 
 .contributor-row[data-state="confirmRemove"] .contributor-confirm-remove {
 	display:block;
-	animation:popgoesthemodalwindow .2s 1!important
+	animation:windowDown .2s 1!important
 }
 
 .contributor-row[data-state="confirmRemove"] .contributor-confirm-remove.padding-bl {
@@ -11170,7 +11174,7 @@ button.mtd-no-transform-case {
 	margin-left:-30px;
 	transform:scale(1);
 	opacity:1;
-	transition:70ms all,80ms margin
+	transition:.07s all,.08s margin
 }
 
 .drawer-header .drawer-header-title .icon:after {
@@ -11185,7 +11189,7 @@ button.mtd-no-transform-case {
 	z-index:9;
 	transform:scale(.5);
 	opacity:0;
-	transition:500ms all,150ms opacity
+	transition:.5s all,.15s opacity
 }
 
 .conversation-event .item-box {
@@ -11361,7 +11365,7 @@ a.js-dismiss {
 }
 
 .js-tweet-translation {
-	animation:tweetontimeline .4s cubic-bezier(.19,1,.22,1)
+	animation:tweetIncomingTimeline .4s cubic-bezier(.19,1,.22,1)
 }
 
 .tweet-detail .margin-tl.txt-small:before {
@@ -11384,7 +11388,7 @@ a.js-dismiss {
 
 .accordion .icon-arrow-d {
 	transform:rotate(0deg);
-	transition:300ms transform cubic-bezier(.19,1,.22,1)
+	transition:.3s transform cubic-bezier(.19,1,.22,1)
 }
 
 .accordion .is-active .icon-arrow-d {
@@ -11483,7 +11487,7 @@ a.js-dismiss {
 }
 
 .btn-login[type="submit"]:hover,.btn-login[type="submit"]:focus,.login-container .btn-positive:hover,body .login-container .btn-positive:focus {
-	box-shadow:0 3px 10px 3px rgba(0,0,0,0.25);
+	box-shadow:0 3px 10px 3px rgba(0,0,0,0.25)
 }
 
 .mtd-dark body .btn-login[type="submit"]:active,.mtd-dark body .login-container .btn-positive:active {
