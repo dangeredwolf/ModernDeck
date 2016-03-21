@@ -387,6 +387,15 @@
 	}
 }
 
+@keyframes mediaSlideUp {
+	from {
+		bottom:-60px
+	}
+	to {
+		bottom:0
+	}
+}
+
 /* Material Loading animation props */
 
 .preloader-wrapper {
@@ -1269,7 +1278,7 @@ small {
 	overflow-x:auto
 }
 
-.scroll-styled-v,.scroll-styled-h,.scroll-alt,.scroll-v {
+.scroll-styled-v,.scroll-styled-h,.scroll-alt,.scroll-v,.lst-launcher {
 	scrollbar-face-color:#505254;
 	scrollbar-highlight-color:#505254;
 	scrollbar-shadow-color:#505254;
@@ -1279,7 +1288,7 @@ small {
 	scrollbar-arrow-color:#999
 }
 
-.scroll-styled-v::-webkit-scrollbar,.scroll-v::-webkit-scrollbar {
+.scroll-styled-v::-webkit-scrollbar,.scroll-v::-webkit-scrollbar,.lst-launcher::-webkit-scrollbar {
 	width:10px
 }
 
@@ -1287,27 +1296,27 @@ small {
 	height:10px
 }
 
-.scroll-alt::-webkit-scrollbar-track {
+.scroll-alt::-webkit-scrollbar-track,.lst-launcher::-webkit-scrollbar-track, {
 	border-color:#e5e5e5
 }
 
-.scroll-styled-v::-webkit-scrollbar-thumb,.scroll-v::-webkit-scrollbar-thumb,.scroll-styled-h::-webkit-scrollbar-thumb,.scroll-alt::-webkit-scrollbar-thumb {
+.lst-launcher::-webkit-scrollbar-thumb,.scroll-styled-v::-webkit-scrollbar-thumb,.scroll-v::-webkit-scrollbar-thumb,.scroll-styled-h::-webkit-scrollbar-thumb,.scroll-alt::-webkit-scrollbar-thumb {
 	border-radius:5px;
 	background:#D9D9D9;
 	transition:.2s background
 }
 
-.mtd-dark .scroll-styled-v::-webkit-scrollbar-thumb,.mtd-dark .scroll-v::-webkit-scrollbar-thumb,.mtd-dark .scroll-styled-h::-webkit-scrollbar-thumb {
+.mtd-dark .lst-launcher::-webkit-scrollbar-thumb,.mtd-dark .scroll-styled-v::-webkit-scrollbar-thumb,.mtd-dark .scroll-v::-webkit-scrollbar-thumb,.mtd-dark .scroll-styled-h::-webkit-scrollbar-thumb {
 	background:rgba(149,175,191,.52);
 	transition:.2s background
 }
 
-.scroll-styled-v::-webkit-scrollbar-thumb:hover,.scroll-v::-webkit-scrollbar-thumb:hover,.scroll-styled-h::-webkit-scrollbar-thumb:hover,.scroll-alt::-webkit-scrollbar-thumb:hover {
+.lst-launcher::-webkit-scrollbar-thumb:hover,.scroll-styled-v::-webkit-scrollbar-thumb:hover,.scroll-v::-webkit-scrollbar-thumb:hover,.scroll-styled-h::-webkit-scrollbar-thumb:hover,.scroll-alt::-webkit-scrollbar-thumb:hover {
 	background:#c9c9c9;
 	transition:.2s background
 }
 
-.mtd-dark .scroll-styled-v::-webkit-scrollbar-thumb:hover,.mtd-dark .scroll-v::-webkit-scrollbar-thumb:hover,.mtd-dark .scroll-styled-h::-webkit-scrollbar-thumb:hover {
+.mtd-dark .lst-launcher::-webkit-scrollbar-thumb:hover,.mtd-dark .scroll-styled-v::-webkit-scrollbar-thumb:hover,.mtd-dark .scroll-v::-webkit-scrollbar-thumb:hover,.mtd-dark .scroll-styled-h::-webkit-scrollbar-thumb:hover {
 	background:rgb(132,152,165);
 	transition:.2s background
 }
@@ -2632,6 +2641,14 @@ h6 {
 
 .is-shifted-1 .column-panel:not(.column-detail),.is-shifted-2 .column-panel:not(.column-detail-level-2):not(.column-detail) {
 	pointer-events:none
+}
+
+.mtd-dark .modal-content {
+	background:rgb(37, 50, 56)
+}
+
+.mtd-light .modal-content {
+	background:#fff
 }
 
 .js-modal-panel {
@@ -5191,9 +5208,9 @@ a .column-title-back .icon:after {
 .lst-launcher {
 	padding-top:20px;
 	width:100%;
-	height:90%;
+	height:100%;
 	display:block;
-	overflow:hidden
+	overflow:auto
 }
 
 .lst-launcher li {
@@ -6003,7 +6020,12 @@ a .column-title-back .icon:after {
 	position:absolute;
 	right:5%;
 	left:5%;
-	bottom:0
+	padding:10px;
+	background:rgb(37, 50, 56);
+	bottom:0;
+	box-shadow:0 3px 6px rgba(0,0,0,0.7);
+	border-radius:4px;
+	animation:mediaSlideUp .4s cubic-bezier(.19,1,.22,1);
 }
 
 .med-embeditem {
@@ -6017,14 +6039,16 @@ a .column-title-back .icon:after {
 .med-tray {
 	display:inline-block;
 	vertical-align:middle;
-	zoom:1;
 	box-sizing:border-box;
 	position:relative;
 	height:auto;
 	min-width:200px;
 	width:auto;
 	padding-bottom:20px;
-	opacity:0
+	opacity:0;
+	box-shadow:0 3px 6px rgba(0,0,0,0.7);
+	pointer-events:all;
+	animation:windowDown .4s cubic-bezier(.19,1,.22,1);
 }
 
 .med-img {
@@ -7011,12 +7035,11 @@ input[type="checkbox"] {
 	position:relative;
 	border-radius:0;
 	min-height:260px;
-	width:520px;
 	background:#ddd;
 	background-size:100%;
 	text-align:center;
 	text-shadow:0 2px 7px #000;
-	color:#fff
+	color:#fff;
 }
 
 .prf-header .prf-siteurl,.prf-header .prf-bio a,.prf-header .pretty-link {
@@ -11394,4 +11417,23 @@ a.js-dismiss {
 	display:inline-block;
 	max-width:100px;
 	padding-right:10px
+}
+
+.js-media-preview-container {
+	pointer-events:all
+}
+
+.js-mediatable {
+	position:absolute;
+	pointer-events:none;
+	background:rgba(0,0,0,0.3);
+	top:0;
+	left:0;
+	right:0;
+	bottom:0
+}
+
+.mdl.med-fullpanel {
+	background:transparent;
+	box-shadow:none
 }
