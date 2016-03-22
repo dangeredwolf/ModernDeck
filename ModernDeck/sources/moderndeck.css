@@ -9072,7 +9072,8 @@ a[rel=hashtag]:active {
 	margin-left:-14px;
 	transform:scale(1);
 	opacity:1;
-	transition:.07s all,.08s margin
+	transition:70ms all,80ms margin;
+    pointer-events: none;
 }
 
 .mtd-drawer-button:after {
