@@ -12,7 +12,7 @@
 
 /* SUPERCLASSES */
 
-.mdl-drag-handle,.preloader-wrapper+.preloader-wrapper,.is-loaded>.preloader-wrapper,.nav-user-info>.avatar,.release-notes-image,.release-notes-image-bullet,.accordion .icon-arrow-u,.med-fullpanel .tweet-dogear,.tweet-detail-wrapper .tweet-dogear,.js-hide-drawer .icon-compose,.mdl .js-dismiss,.mdl .search-input-control:before,.startflow-panel .txt-center:not(.form-error-message),.add-participant .search-input-control:before,.drawer-content .search-input-control:before,.cf.account-remove-check,.facet-type .search-input-control:before,.accordion .is-active .facet-subtitle,.mdl-dismiss,.mdl-dismiss-media,.mtd-mobile .column-type-icon,.column-type-message .js-column-detail .column-title-back:before,.add-on.with-emphasis,.mtd-minimal .column-navigator,.mtd-dark body.scroll-v .js-modal-context .mdl:before,html body .app-navigator .dropdown-menu,.caret,.js-column-detail .column-title-back.conversation-title:after,.more-tweets-btn-inner-mouse-release,.more-tweets-btn-inner-loading,.more-tweets-btn-container--mouse-release .more-tweets-btn-inner-default,.more-tweets-btn-container--loading .more-tweets-btn-inner-default,.status-message,.app-masthead,.cmp-spinner,.chev-right,.compose-text-title,.cmp button b,.cmp .mdl-header-title:empty,.app-search-tweet-results .column-header-temp,.spinner-centered,.without-tweet-drag-handles .tweet-drag-handle,.account-remove-check,.js-app-settings .obj-left,.tweet-action-item.feature-customtimelines.tweet-drag-handle,.tweet-detail-action-item.feature-customtimelines.tweet-drag-handle,.column-nav-link:after,.more-tweets-btn-inner-mouse-release,.more-tweets-btn-inner-loading,.more-tweets-btn-container--mouse-release .more-tweets-btn-inner-default,.more-tweets-btn-container--loading .more-tweets-btn-inner-default,.list-item .icon-search.list-icon,.js-typeahead-recent-search-item .obj-left,.s-following .follow-btn .btn-loader,.btd-settings,body:not(.btd-ready) #btdsettings,.edit-conversation-name .nbfc,.js-app-add-column,.js-dismiss,.js-schedule-datepicker-holder .popover .padding-as .btn .icon-trash,.js-dismiss.btn.btn-positive i.icon.icon-check.icon-small.padding-rs,.column-close-link.txt-r-dark-gray,.js-app-loading .js-header-container,.js-add-image-button-label,.js-schedule-button-label,.js-tweet-button-label,.js-dm-button .label.padding-ls,.column-nav-flyout,.release-notes-modal .mdl-drag-handle,#datepicker,.search-input-spinner,.search-input-clear-search,.toggle-item-text-truncated,.sch.s-searching .sch-clear,legend,.frm-legend,.action-btn,.med-origlink,.med-flaglink,.hide-detail-view-inline .detail-view-inline,.compose-account-selected,.js-compose-hint.margin-vl.anim.anim-fade-in,#file-upload-input,.s-sending .char-count,.s-profile .mdl-buttonbar,.s-profile h3,.mdl.s-nonav .mdl-inner .mdl-buttonbar,.ovl.is-dragging:before,.is-dragging.overlay:before,.numbered-badge-onheader,.migrate-account-login-step-1 .migrate-tweetdeck-account-warning-wrapper,.migrate-account-login-step-2 .migrate-tweetdeck-account-warning-wrapper,.migrate-account-login-step-3 .migrate-account-login-forms,.migrate-account-login-step-3 .migrate-account-login-about,.migrate-account-login-forms-cancel,.tooltip-arrow,.app-search-in-popover,.app-search-form,.app-header .app-nav-logo-text,.app-header .hide-condensed,.app-header .sprite-logo,.app-header .tweet-button .label,.app-header .app-nav-link .icon-arrow-l-double,.app-header .app-nav-link .icon-arrow-r-double,.app-nav-link .icon-arrow-r-double,.app-nav-tab .icon-user-switch,.tweet-message-status,.icon.icon-move,.tweet-drag-handle,.is-narrow-columns .media-size-medium .media-sensitive-title,.contributor-row[data-contributor-role="contributor"] [data-show-when-contributor-role="admin"],.contributor-row[data-contributor-role="admin"] [data-show-when-contributor-role="contributor"],.contributor-row[data-state-error="closed-error"] [data-hide-when-state-error="closed-error"],.contributor-row[data-state="settings"] [data-hide-when-state="settings"],.contributor-row[data-state-error="settings-error"] [data-hide-when-state-error="settings-error"],[data-show-when-state],[data-show-when-state-error],.is-options-open .column-settings-link .icon-arrow-d,.column-header-link .icon-arrow-u,.column-title-back .attribution,.js-add-to-customtimeline-button,.column-title-editable .js-show-tip.avatar.size24,.account-remove-check,.signin-sheet-now-present .application,.btn-fav-fav-text,.with-add-by-url .list-placeholder.pin-all,.s-thats-you .btn-loader,.s-pending .btn-loader,.s-blocking .follow-btn:hover .block-text,.s-blocking .btn-loader,.s-not-favorited .btn-loader,.btn-fav-faved-text,.s-favorited .btn-loader,.btn-fav-protected-text,.s-protected .btn-loader,.link-clean[href="https://twitter.com/UberFacts"] .sprite-verified,.btn-fav-unfav-text,.btn-fav.s-favorited:hover .btn-fav-faved-text,.s-not-following .btn-loader,.action-text,.s-following .follow-btn:hover .following-text {
+.privacy-info,.mdl-drag-handle,.preloader-wrapper+.preloader-wrapper,.is-loaded>.preloader-wrapper,.nav-user-info>.avatar,.release-notes-image,.release-notes-image-bullet,.accordion .icon-arrow-u,.med-fullpanel .tweet-dogear,.tweet-detail-wrapper .tweet-dogear,.js-hide-drawer .icon-compose,.mdl .js-dismiss,.mdl .search-input-control:before,.startflow-panel .txt-center:not(.form-error-message),.add-participant .search-input-control:before,.drawer-content .search-input-control:before,.cf.account-remove-check,.facet-type .search-input-control:before,.accordion .is-active .facet-subtitle,.mdl-dismiss,.mdl-dismiss-media,.mtd-mobile .column-type-icon,.column-type-message .js-column-detail .column-title-back:before,.add-on.with-emphasis,.mtd-minimal .column-navigator,.mtd-dark body.scroll-v .js-modal-context .mdl:before,html body .app-navigator .dropdown-menu,.caret,.js-column-detail .column-title-back.conversation-title:after,.more-tweets-btn-inner-mouse-release,.more-tweets-btn-inner-loading,.more-tweets-btn-container--mouse-release .more-tweets-btn-inner-default,.more-tweets-btn-container--loading .more-tweets-btn-inner-default,.status-message,.app-masthead,.cmp-spinner,.chev-right,.compose-text-title,.cmp button b,.cmp .mdl-header-title:empty,.app-search-tweet-results .column-header-temp,.spinner-centered,.without-tweet-drag-handles .tweet-drag-handle,.account-remove-check,.js-app-settings .obj-left,.tweet-action-item.feature-customtimelines.tweet-drag-handle,.tweet-detail-action-item.feature-customtimelines.tweet-drag-handle,.column-nav-link:after,.more-tweets-btn-inner-mouse-release,.more-tweets-btn-inner-loading,.more-tweets-btn-container--mouse-release .more-tweets-btn-inner-default,.more-tweets-btn-container--loading .more-tweets-btn-inner-default,.list-item .icon-search.list-icon,.js-typeahead-recent-search-item .obj-left,.s-following .follow-btn .btn-loader,.btd-settings,body:not(.btd-ready) #btdsettings,.edit-conversation-name .nbfc,.js-app-add-column,.js-dismiss,.js-schedule-datepicker-holder .popover .padding-as .btn .icon-trash,.js-dismiss.btn.btn-positive i.icon.icon-check.icon-small.padding-rs,.column-close-link.txt-r-dark-gray,.js-app-loading .js-header-container,.js-add-image-button-label,.js-schedule-button-label,.js-tweet-button-label,.js-dm-button .label.padding-ls,.column-nav-flyout,.release-notes-modal .mdl-drag-handle,#datepicker,.search-input-spinner,.search-input-clear-search,.toggle-item-text-truncated,.sch.s-searching .sch-clear,legend,.frm-legend,.action-btn,.med-origlink,.med-flaglink,.hide-detail-view-inline .detail-view-inline,.compose-account-selected,.js-compose-hint.margin-vl.anim.anim-fade-in,#file-upload-input,.s-sending .char-count,.s-profile .mdl-buttonbar,.s-profile h3,.mdl.s-nonav .mdl-inner .mdl-buttonbar,.ovl.is-dragging:before,.is-dragging.overlay:before,.numbered-badge-onheader,.migrate-account-login-step-1 .migrate-tweetdeck-account-warning-wrapper,.migrate-account-login-step-2 .migrate-tweetdeck-account-warning-wrapper,.migrate-account-login-step-3 .migrate-account-login-forms,.migrate-account-login-step-3 .migrate-account-login-about,.migrate-account-login-forms-cancel,.tooltip-arrow,.app-search-in-popover,.app-search-form,.app-header .app-nav-logo-text,.app-header .hide-condensed,.app-header .sprite-logo,.app-header .tweet-button .label,.app-header .app-nav-link .icon-arrow-l-double,.app-header .app-nav-link .icon-arrow-r-double,.app-nav-link .icon-arrow-r-double,.app-nav-tab .icon-user-switch,.tweet-message-status,.icon.icon-move,.tweet-drag-handle,.is-narrow-columns .media-size-medium .media-sensitive-title,.contributor-row[data-contributor-role="contributor"] [data-show-when-contributor-role="admin"],.contributor-row[data-contributor-role="admin"] [data-show-when-contributor-role="contributor"],.contributor-row[data-state-error="closed-error"] [data-hide-when-state-error="closed-error"],.contributor-row[data-state="settings"] [data-hide-when-state="settings"],.contributor-row[data-state-error="settings-error"] [data-hide-when-state-error="settings-error"],[data-show-when-state],[data-show-when-state-error],.is-options-open .column-settings-link .icon-arrow-d,.column-header-link .icon-arrow-u,.column-title-back .attribution,.js-add-to-customtimeline-button,.column-title-editable .js-show-tip.avatar.size24,.account-remove-check,.signin-sheet-now-present .application,.btn-fav-fav-text,.with-add-by-url .list-placeholder.pin-all,.s-thats-you .btn-loader,.s-pending .btn-loader,.s-blocking .follow-btn:hover .block-text,.s-blocking .btn-loader,.s-not-favorited .btn-loader,.btn-fav-faved-text,.s-favorited .btn-loader,.btn-fav-protected-text,.s-protected .btn-loader,.link-clean[href="https://twitter.com/UberFacts"] .sprite-verified,.btn-fav-unfav-text,.btn-fav.s-favorited:hover .btn-fav-faved-text,.s-not-following .btn-loader,.action-text,.s-following .follow-btn:hover .following-text {
 	display:none
 }
 
@@ -295,65 +295,65 @@
 
 
 @keyframes leftSpin {
-  0% {transform:rotate(130deg)}
-  50% {transform:rotate(-5deg)}
-  100% {transform:rotate(130deg)}
+	0% {transform:rotate(130deg)}
+	50% {transform:rotate(-5deg)}
+	100% {transform:rotate(130deg)}
 }
 
 @keyframes rightSpin {
-  0% {transform:rotate(-130deg)}
-  50% {transform:rotate(5deg)}
-  100% {transform:rotate(-130deg)}
+	0% {transform:rotate(-130deg)}
+	50% {transform:rotate(5deg)}
+	100% {transform:rotate(-130deg)}
 }
 
 
 @keyframes fillUnfillRotate {
-  12.5% {transform:rotate(135deg)} /* .5 * ARCSIZE */
-  25%   {transform:rotate(270deg)} /* 1   * ARCSIZE */
-  37.5% {transform:rotate(405deg)} /* 1.5 * ARCSIZE */
-  50%   {transform:rotate(540deg)} /* 2   * ARCSIZE */
-  62.5% {transform:rotate(675deg)} /* 2.5 * ARCSIZE */
-  75%   {transform:rotate(810deg)} /* 3   * ARCSIZE */
-  87.5% {transform:rotate(945deg)} /* 3.5 * ARCSIZE */
-  100%    {transform:rotate(1080deg)} /* 4   * ARCSIZE */
+	12.5% {transform:rotate(135deg)} /* .5 * ARCSIZE */
+	25%	 {transform:rotate(270deg)} /* 1	 * ARCSIZE */
+	37.5% {transform:rotate(405deg)} /* 1.5 * ARCSIZE */
+	50%	 {transform:rotate(540deg)} /* 2	 * ARCSIZE */
+	62.5% {transform:rotate(675deg)} /* 2.5 * ARCSIZE */
+	75%	 {transform:rotate(810deg)} /* 3	 * ARCSIZE */
+	87.5% {transform:rotate(945deg)} /* 3.5 * ARCSIZE */
+	100%	{transform:rotate(1080deg)} /* 4	 * ARCSIZE */
 }
 
 @keyframes blue-fade-in-out {
-  0% {opacity:1}
-  25% {opacity:1}
-  26% {opacity:0}
-  89% {opacity:0}
-  90% {opacity:1}
-  100% {opacity:1}
+	0% {opacity:1}
+	25% {opacity:1}
+	26% {opacity:0}
+	89% {opacity:0}
+	90% {opacity:1}
+	100% {opacity:1}
 }
 
 @keyframes red-fade-in-out {
-  0% {opacity:0}
-  15% {opacity:0}
-  25% {opacity:1}
-  50% {opacity:1}
-  51% {opacity:0}
+	0% {opacity:0}
+	15% {opacity:0}
+	25% {opacity:1}
+	50% {opacity:1}
+	51% {opacity:0}
 }
 
 @keyframes yellow-fade-in-out {
-  0% {opacity:0}
-  40% {opacity:0}
-  50% {opacity:1}
-  75% {opacity:1}
-  76% {opacity:0}
+	0% {opacity:0}
+	40% {opacity:0}
+	50% {opacity:1}
+	75% {opacity:1}
+	76% {opacity:0}
 }
 
 @keyframes green-fade-in-out {
-  0% {opacity:0}
-  65% {opacity:0}
-  75% {opacity:1}
-  90% {opacity:1}
-  100% {opacity:0}
+	0% {opacity:0}
+	65% {opacity:0}
+	75% {opacity:1}
+	90% {opacity:1}
+	100% {opacity:0}
 }
 
 
 @keyframes containerRotate {
-  to {transform:rotate(360deg)}
+	to {transform:rotate(360deg)}
 }
 
 
@@ -363,27 +363,27 @@
 		right:100%;
 	}
 	60% {
-  		left:100%;
-  		right:-90%;
+			left:100%;
+			right:-90%;
 	}
 	100% {
-	  	left:100%;
-  		right:-90%;
+			left:100%;
+			right:-90%;
 	}
 }
 
 @keyframes indeterminateShort {
 	0% {
-  	left:-200%;
-  	right:100%;
+		left:-200%;
+		right:100%;
 	}
 	60% {
-  	left:107%;
-  	right:-8%;
+		left:107%;
+		right:-8%;
 	}
 	100% {
-  	left:107%;
-  	right:-8%;
+		left:107%;
+		right:-8%;
 	}
 }
 
@@ -399,11 +399,11 @@
 /* Material Loading animation props */
 
 .preloader-wrapper {
-  display:inline-block;
-  position:relative;
-  width:48px;
-  height:48px;
-  box-sizing:border-box
+	display:inline-block;
+	position:relative;
+	width:48px;
+	height:48px;
+	box-sizing:border-box
 }
 
 .med-embeditem>.preloader-wrapper {
@@ -430,31 +430,31 @@
 }
 
 .preloader-wrapper.small {
-  width:36px;
-  height:36px
+	width:36px;
+	height:36px
 }
 
 .preloader-wrapper.tiny {
-  width:20px;
-  height:20px
+	width:20px;
+	height:20px
 }
 
 .preloader-wrapper.big {
-  width:64px;
-  height:64px
+	width:64px;
+	height:64px
 }
 
 .preloader-wrapper.active {
-  animation:containerRotate 1.568s linear infinite
+	animation:containerRotate 1.568s linear infinite
 }
 
 .spinner-layer {
-  position:absolute;
-  box-sizing:border-box;
-  width:100%;
-  height:100%;
-  opacity:0;
-  border-color:#26a69a
+	position:absolute;
+	box-sizing:border-box;
+	width:100%;
+	height:100%;
+	opacity:0;
+	border-color:#26a69a
 }
 
 html.tde-light .spinner-layer {
@@ -462,93 +462,93 @@ html.tde-light .spinner-layer {
 }
 
 .spinner-blue,.spinner-blue-only {
-  border-color:#4285f4
+	border-color:#4285f4
 }
 
 .spinner-red,.spinner-red-only {
-  border-color:#db4437
+	border-color:#db4437
 }
 
 .spinner-yellow,.spinner-yellow-only {
-  border-color:#f4b400
+	border-color:#f4b400
 }
 
 .spinner-green,.spinner-green-only {
-  border-color:#0f9d58
+	border-color:#0f9d58
 }
 
 .active .spinner-layer.spinner-blue {
-  animation:fillUnfillRotate 5.332s cubic-bezier(.4,0,.2,1) infinite both,blue-fade-in-out 5.332s cubic-bezier(.4,0,.2,1) infinite both
+	animation:fillUnfillRotate 5.332s cubic-bezier(.4,0,.2,1) infinite both,blue-fade-in-out 5.332s cubic-bezier(.4,0,.2,1) infinite both
 }
 
 .active .spinner-layer.spinner-red {
-  animation:fillUnfillRotate 5.332s cubic-bezier(.4,0,.2,1) infinite both,red-fade-in-out 5.332s cubic-bezier(.4,0,.2,1) infinite both
+	animation:fillUnfillRotate 5.332s cubic-bezier(.4,0,.2,1) infinite both,red-fade-in-out 5.332s cubic-bezier(.4,0,.2,1) infinite both
 }
 
 .active .spinner-layer.spinner-yellow {
-  animation:fillUnfillRotate 5.332s cubic-bezier(.4,0,.2,1) infinite both,yellow-fade-in-out 5.332s cubic-bezier(.4,0,.2,1) infinite both
+	animation:fillUnfillRotate 5.332s cubic-bezier(.4,0,.2,1) infinite both,yellow-fade-in-out 5.332s cubic-bezier(.4,0,.2,1) infinite both
 }
 
 .active .spinner-layer.spinner-green {
-  animation:fillUnfillRotate 5.332s cubic-bezier(.4,0,.2,1) infinite both,green-fade-in-out 5.332s cubic-bezier(.4,0,.2,1) infinite both
+	animation:fillUnfillRotate 5.332s cubic-bezier(.4,0,.2,1) infinite both,green-fade-in-out 5.332s cubic-bezier(.4,0,.2,1) infinite both
 }
 
 .active .spinner-layer,.active .spinner-layer.spinner-blue-only,.active .spinner-layer.spinner-red-only,.active .spinner-layer.spinner-yellow-only,.active .spinner-layer.spinner-green-only {
-  opacity:1;
-  box-sizing:border-box;
-  animation:fillUnfillRotate 5.332s cubic-bezier(.4,0,.2,1) infinite both
+	opacity:1;
+	box-sizing:border-box;
+	animation:fillUnfillRotate 5.332s cubic-bezier(.4,0,.2,1) infinite both
 }
 
 .gap-patch {
-  position:absolute;
-  top:0;
-  left:45%;
-  width:10%;
-  height:100%;
-  overflow:hidden;
-  border-color:inherit;
-  display:none;
-  box-sizing:border-box
+	position:absolute;
+	top:0;
+	left:45%;
+	width:10%;
+	height:100%;
+	overflow:hidden;
+	border-color:inherit;
+	display:none;
+	box-sizing:border-box
 }
 
 .gap-patch .circle {
-box-sizing:border-box;
-  width:1000%;
-  left:-450%
+	box-sizing:border-box;
+	width:1000%;
+	left:-450%
 }
 
 .left {
-  float:left!important
+	float:left!important
 }
 .right {
-  float:right!important
+	float:right!important
 }
 
 .circle-clipper {
-  display:inline-block;
-  position:relative;
-  width:50%;
-  height:100%;
-  overflow:hidden;
-  text-align:center;
-  box-sizing:border-box;
-  border-color:inherit
+	display:inline-block;
+	position:relative;
+	width:50%;
+	height:100%;
+	overflow:hidden;
+	text-align:center;
+	box-sizing:border-box;
+	border-color:inherit
 }
 
 .circle-clipper .circle {
-  width:200%;
-  height:100%;
-  border-width:5px; /* STROKEWIDTH */
-  border-style:solid;
-  border-color:inherit;
-  border-bottom-color:transparent!important;
-  border-radius:50%;
-  box-sizing:inherit;
-  animation:none;
-  position:absolute;
-  top:0;
-  right:0;
-  bottom:0
+	width:200%;
+	height:100%;
+	border-width:5px; /* STROKEWIDTH */
+	border-style:solid;
+	border-color:inherit;
+	border-bottom-color:transparent!important;
+	border-radius:50%;
+	box-sizing:inherit;
+	animation:none;
+	position:absolute;
+	top:0;
+	right:0;
+	bottom:0
 }
 
 .tiny .circle-clipper .circle {
@@ -556,27 +556,27 @@ box-sizing:border-box;
 }
 
 .circle-clipper.left .circle {
-  left:0;
-  border-right-color:transparent!important;
-  transform:rotate(129deg)
+	left:0;
+	border-right-color:transparent!important;
+	transform:rotate(129deg)
 }
 
 .circle-clipper.right .circle {
-  left:-100%;
-  border-left-color:transparent!important;
-  transform:rotate(-129deg)
+	left:-100%;
+	border-left-color:transparent!important;
+	transform:rotate(-129deg)
 }
 
 .active .circle-clipper.left .circle {
-  animation:leftSpin 1.333s cubic-bezier(.4,0,.2,1) infinite both
+	animation:leftSpin 1.333s cubic-bezier(.4,0,.2,1) infinite both
 }
 
 .active .circle-clipper.right .circle {
-  animation:rightSpin 1.333s cubic-bezier(.4,0,.2,1) infinite both
+	animation:rightSpin 1.333s cubic-bezier(.4,0,.2,1) infinite both
 }
 
 #spinnerContainer.cooldown {
-  animation:containerRotate 1.568s linear infinite,fadeOut .4s cubic-bezier(.4,0,.2,1)
+	animation:containerRotate 1.568s linear infinite,fadeOut .4s cubic-bezier(.4,0,.2,1)
 }
 
 .progress {
@@ -600,7 +600,7 @@ box-sizing:border-box;
 }
 
 .progress>.indeterminate {
-  background-color:#26a69a
+	background-color:#26a69a
 }
 
 .progress>.indeterminate:before {
@@ -615,7 +615,7 @@ box-sizing:border-box;
 }
 
 .progress>.indeterminate:after {
-  content:'';
+	content:'';
 	position:absolute;
 	background-color:inherit;
 	top:0;
@@ -1053,15 +1053,6 @@ body {
 	bottom:0;
 	right:0;
 	overflow:hidden
-}
-
-[class=''] .application {
-	animation:columnFlyin .35s cubic-bezier(.19,1,.22,1);
-	transition:top .2s
-}
-
-.is-application-animating {
-	transition:top .3s
 }
 
 ::selection {
@@ -2507,7 +2498,7 @@ h6 {
 
 .account-remove-check-open .account-remove-check {
 	display:block;
-	animation:windowDown .2s!important
+	animation:windowDown .2s cubic-bezier(.19,1,.22,1)!important
 }
 
 .js-account-invited-accounts {
@@ -2652,11 +2643,11 @@ h6 {
 }
 
 .js-modal-panel {
-	animation:panel .3s
+	animation:panel .3s cubic-bezier(.19,1,.22,1)
 }
 
 .js-dropdown,.js-popover {
-	animation:fadeIn .3s
+	animation:fadeIn .3s cubic-bezier(.19,1,.22,1)
 }
 
 .is-unread .link-complex-target {
@@ -3184,7 +3175,7 @@ a .column-title-back .icon:after {
 }
 
 .spinner-fade-in {
-	animation:fadeIn .2s 1
+	animation:fadeIn .3s cubic-bezier(.19,1,.22,1)
 }
 
 .stream-item {
@@ -3959,7 +3950,7 @@ a .column-title-back .icon:after {
 	margin-top:-1px;
 	background:#fff;
 	box-shadow:0 2px 5px rgba(0,0,0,.4);
-	animation:materialPop .6s cubic-bezier(.19, 1, .22, 1) 0s;
+	animation:materialPop .6s cubic-bezier(.19,1,.22,1);
 	border-top:5px solid transparent;
 	box-sizing:border-box;
 	padding:5px;
@@ -4208,9 +4199,7 @@ a .column-title-back .icon:after {
 	top:0;
 	position:absolute;
 	opacity:0;
-	animation:fadeIn .4s cubic-bezier(.19,1,.22,1);
-	animation-fill-mode:forwards;
-	animation-delay:2s
+	animation:fadeIn .4s cubic-bezier(.19,1,.22,1) forwards 2s
 }
 
 .app-nav-link:focus,.app-nav-link:active {
@@ -4257,9 +4246,7 @@ a .column-title-back .icon:after {
 	border-radius:32px;
 	transform:scale(0);
 	z-index:999;
-	animation:popIn .5s cubic-bezier(.19,1,.22,1);
-	animation-delay:2s;
-	animation-fill-mode:forwards
+	animation:popIn .5s cubic-bezier(.19,1,.22,1) forwards 2s
 }
 
 .mtd-minimal .tweet-button {
@@ -4427,9 +4414,7 @@ a .column-title-back .icon:after {
 	margin-left:-4px;
 	margin-top:-4px;
 	opacity:0;
-	animation:fadeIn .4s cubic-bezier(.19,1,.22,1);
-	animation-fill-mode:forwards;
-	animation-delay:2s
+	animation:fadeIn .4s cubic-bezier(.19,1,.22,1) forwards 2s
 }
 
 .app-search-fake:active .icon:after {
@@ -4554,7 +4539,7 @@ a .column-title-back .icon:after {
 	background:#fff;
 	color:#ddd;
 	border-radius:0;
-	animation:menuDownAnimationNoPadding .40s 1 cubic-bezier(.19,1,.22,1);
+	animation:menuDownAnimationNoPadding .4s cubic-bezier(.19,1,.22,1);
 	width:auto
 }
 
@@ -6023,7 +6008,7 @@ a .column-title-back .icon:after {
 	padding:10px;
 	background:rgb(37, 50, 56);
 	bottom:0;
-	box-shadow:0 3px 6px rgba(0,0,0,0.7);
+	box-shadow:0 3px 6px rgba(0,0,0,.7);
 	border-radius:4px;
 	animation:mediaSlideUp .4s cubic-bezier(.19,1,.22,1);
 }
@@ -6046,7 +6031,7 @@ a .column-title-back .icon:after {
 	width:auto;
 	padding-bottom:20px;
 	opacity:0;
-	box-shadow:0 3px 6px rgba(0,0,0,0.7);
+	box-shadow:0 3px 6px rgba(0,0,0,.7);
 	pointer-events:all;
 	animation:windowDown .4s cubic-bezier(.19,1,.22,1);
 }
@@ -6677,8 +6662,8 @@ input[type="checkbox"] {
 	width:70%;
 	border-bottom:none;
 	margin-left:10px;
-	background:rgba(255,255,255,0.04);
-	box-shadow:0 3px 8px rgba(0,0,0,0.3);
+	background:rgba(255,255,255,.04);
+	box-shadow:0 3px 8px rgba(0,0,0,.3);
 	border-radius:4px;
 }
 
@@ -7181,7 +7166,7 @@ input[type="checkbox"] {
 .prf-stats>li {
 	display:inline-block;
 	width:100%;
-	border-top:2px solid rgba(0,0,0,0.1);
+	border-top:2px solid rgba(0,0,0,.1);
 	box-sizing:border-box
 }
 
@@ -7677,41 +7662,17 @@ input[type="checkbox"] {
 	top:110px
 }
 
-.mtd-dark body.scroll-v .startflow-link-on-background {
-	color:rgba(255,255,255,.53)
-}
-
-.mtd-dark body.scroll-v .startflow-link-on-background:hover,.mtd-dark body.scroll-v .startflow-link-on-background:focus {
-	color:rgba(239,239,239,.75)
-}
-
-.startflow-link-on-background:hover,.startflow-link-on-background:focus {
-	color:#6CD6FD
-}
-
-.app-info {
-	box-sizing:border-box;
-	width:100%;
-	color:#444
-}
-
 .app-info-panel {
 	box-sizing:border-box;
 	padding:30px;
 	position:relative;
-	height:250px;
-	max-width:500px;
 	left:100px
-}
-
-.app-info-panel .l-cell {
-	vertical-align:bottom
 }
 
 .app-info-title {
 	font-size:32px;
 	font-weight:300;
-	color:#444
+	color:#fff
 }
 
 .app-info-byline {
@@ -7720,8 +7681,8 @@ input[type="checkbox"] {
 
 .app-info-text {
 	max-width:400px;
-	margin-top:30px;
-	color:#666
+	text-shadow:0 10px 30px #000;
+	color:#fff
 }
 
 .app-info-text p {
@@ -7755,7 +7716,7 @@ input[type="checkbox"] {
 .toggle-login-type {
 	font-size:18px;
 	color:#fff;
-	animation:menuDownAnimationNoPadding .40s 1 cubic-bezier(.19,1,.22,1)
+	animation:menuDownAnimationNoPadding .4s 1 cubic-bezier(.19,1,.22,1)
 }
 
 .app-signin-form {
@@ -7806,12 +7767,12 @@ input[type="checkbox"] {
 
 }
 
-.startflow-panel,.startflow-panel-rounded,.app-info-panel {
+.startflow-panel,.startflow-panel-rounded {
 	background:#fff;
 	color:#444;
-	box-shadow:0 10px 30px rgba(17,17,17,.25);
+	box-shadow:0 10px 30px rgba(0,0,0,.75);
 	border-radius:2px;
-	animation:menuDownAnimationLogin .40s 1 cubic-bezier(.19,1,.22,1)
+	animation:menuDownAnimationLogin .4s 1 cubic-bezier(.19,1,.22,1)
 }
 
 .form-newto-txt {
@@ -7842,21 +7803,9 @@ input[type="checkbox"] {
 	width:194px
 }
 
-.privacy-info {
-	display:none
-}
-
-.btn-login {
-	font-size:16px;
-	height:39px;
-	margin-top:2px;
-	width:79px
-}
-
 .form-message {
-	color:#fff;
 	font-size:20px;
-	border-radius:5px
+	color:#555
 }
 
 .form-error-message {
@@ -7869,103 +7818,6 @@ input[type="checkbox"] {
 	font-size:20px
 }
 
-.form-warning-message {
-	color:#5c913b;
-	font-size:20px
-}
-
-.yellow-highlight {
-	background:#fffC8E
-}
-
-@media only screen and (max-width:980px) {
-	.app-image {
-		margin-bottom:30px
-	}
-
-	.app-signin-wrap {
-		margin-left:10px;
-		margin-right:10px
-	}
-
-	.app-info-signup {
-		position:static;
-		float:left;
-		margin-top:20px
-	}
-}
-
-@media only screen and (max-width:768px) {
-	.app-signin-form {
-		margin:0 auto;
-		margin-bottom:60px;
-		display:block;
-		position:static
-	}
-
-	.app-info {
-		padding-right:0
-	}
-
-	.app-info-panel {
-		margin-right:0
-	}
-
-	.signin-form {
-		margin-top:40px
-	}
-
-	.startflow {
-		margin-top:30px
-	}
-}
-
-@media only screen and (max-width:350px) {
-	.app-signin-form {
-		width:300px
-	}
-
-	.form-login-username {
-		width:229px
-	}
-
-	.form-login-pwd {
-		width:178px
-	}
-}
-
-.startflow-wrap {
-	box-sizing:border-box;
-	position:relative;
-	margin:0 auto;
-	width:100%;
-	max-width:960px
-}
-
-.startflow-message-wrap {
-	box-sizing:border-box;
-	position:relative;
-	margin:0 auto;
-	width:100%;
-	max-width:670px
-}
-
-.startflow-msg-header {
-	background:#00A9FF;
-	font-size:20px;
-	color:#fff
-}
-
-.startflow-msg-warning {
-	background:#FF904D;
-	font-size:20px;
-	color:#fff
-}
-
-.startflow-message-wrap p {
-	padding:10px 0
-}
-
 .form-verification {
 	width:50%;
 	height:30px;
@@ -7974,7 +7826,6 @@ input[type="checkbox"] {
 }
 
 .column-navigator {
-	counter-reset:column-nav;
 	position:absolute;
 	top:0;
 	left:50px;
@@ -9073,7 +8924,7 @@ a[rel=hashtag]:active {
 	transform:scale(1);
 	opacity:1;
 	transition:70ms all,80ms margin;
-    pointer-events: none;
+	pointer-events: none;
 }
 
 .mtd-drawer-button:after {
@@ -9172,14 +9023,10 @@ a[rel=hashtag]:active {
 
 .mtd-nav-button {
 	text-transform:none;
-	color:#4C4C4C!important;
-	opacity:1;
+	color:#4C4C4C;
 	text-indent:45px;
 	font-weight:500;
 	text-align:left;
-	font-size:14px;
-	padding-top:6px;
-	padding-bottom:6px;
 	height:40px;
 	width:100%
 }
@@ -9201,7 +9048,7 @@ a[rel=hashtag]:active {
 }
 
 .js-login-error-message {
-	animation:menuDownAnimationLargeNoPadding .40s 1 cubic-bezier(.19,1,.22,1)
+	animation:menuDownAnimationLargeNoPadding .4s 1 cubic-bezier(.19,1,.22,1)
 }
 
 .app-signin-form .cf.margin-txs {
@@ -9386,7 +9233,7 @@ a[rel=hashtag]:active {
 	background:#03A9F4;
 	opacity:0;
 	pointer-events:none;
-	z-index:999
+	z-index:99
 }
 
 .mtd-dark .edit-conversation-name {
@@ -10124,8 +9971,8 @@ html.mtd-dark {
 }
 
 .mtd-dark .social-proof-container {
-	border-top:2px solid rgba(0,0,0,0.1);
-	border-bottom:2px solid rgba(0,0,0,0.1)
+	border-top:2px solid rgba(0,0,0,.1);
+	border-bottom:2px solid rgba(0,0,0,.1)
 }
 
 .mtd-dark .drp-h-divider {
@@ -10233,106 +10080,8 @@ article.is-unread .account-link {
 	transform:rotate(73deg)
 }
 
-.toggle-switch {
-	margin-right:10px
-}
-
-fieldset .toggle-switch {
-	position:relative;
-	margin-top:15px;
-	margin-left:73px
-}
-
-.toggle-switch-input {
-	position:absolute;
-	margin-left:-999px;
-	visibility:hidden
-}
-
-.toggle-switch-label {
-	display:block;
-	position:relative;
-	cursor:pointer;
-	outline:none
-}
-
-.toggle-switch-label {
-	padding:2px;
-	height:12px;
-	border-radius:2px
-}
-
-.toggle-switch-label:before,.toggle-switch-label:after {
-	display:block;
-	position:absolute;
-	top:0;
-	left:1px;
-	content:"";
-	bottom:-2px
-}
-
-.toggle-switch-label:before {
-	width:30px;
-	right:1px;
-	background-color:#BDC7CE;
-	border-radius:7px;
-	height:11px;
-	top:4px
-}
-
-.mtd-dark .toggle-switch-label:before {
-	background-color:#56717D
-}
-
-.toggle-switch.enable-transition .toggle-switch-label:before {
-	transition:all .2s ease-in-out
-}
-
-.toggle-switch-label:after {
-	width:18px;
-	background-color:#fff;
-	border-radius:9px;
-	box-shadow:0 3px 6px rgba(0,0,0,.25);
-	transition:all .35s cubic-bezier(.55,0,.1,1)
-}
-
-.mtd-dark .toggle-switch-label:after {
-	background-color:#ccc
-}
-
-.toggle-switch-input:checked+.toggle-switch-label:after {
-	background-color:#1DA2B4
-}
-
-.toggle-switch-input:checked+.toggle-switch-label:before {
-	background-color:#20C9DF
-}
-
-.mtd-dark .toggle-switch-input:checked+.toggle-switch-label:after {
-	background-color:#1A7780
-}
-
-.mtd-dark .toggle-switch-input:checked+.toggle-switch-label:before {
-	background-color:#6CCACB
-}
-
-.toggle-switch-input:checked+.toggle-switch-label:after {
-	margin-left:13px
-}
-
-.toggle-switch-label-text {
-	display:inline-block;
-	margin-left:40px;
-	font-size:15px
-}
-
 .js-display-sensitive-media span {
 	font-size:0
-}
-
-.js-display-sensitive-media span:after {
-	font-size:15px;
-	content:"Show potentially sensitive media"
 }
 
 .js-account-action:active {
@@ -10388,7 +10137,7 @@ fieldset .toggle-switch {
 }
 
 .js-column-options .dropdown-menu.js-dropdown {
-	animation:menuDownAnimationNoPadding .40s 1 cubic-bezier(.19,1,.22,1);
+	animation:menuDownAnimationNoPadding .4s 1 cubic-bezier(.19,1,.22,1);
 	margin-top:0
 }
 
@@ -10634,10 +10383,6 @@ a.js-column-back,a.js-column-back:hover,a.js-column-back:active,a.js-column-back
 	margin-top:10px
 }
 
-.toggle-switch {
-	margin-right:10px
-}
-
 fieldset .toggle-switch {
 	position:relative;
 	margin-top:15px;
@@ -10646,22 +10391,18 @@ fieldset .toggle-switch {
 
 .toggle-switch-input {
 	position:absolute;
-	margin-left:-999px;
+	pointer-events:none;
 	visibility:hidden
 }
 
 .toggle-switch-label {
 	display:block;
 	position:relative;
-	cursor:pointer;
-	outline:none;
-	user-select:none
+	cursor:pointer
 }
 
 .toggle-switch-label {
-	padding:2px;
-	height:12px;
-	border-radius:2px
+	height:16px
 }
 
 .toggle-switch-label:before,.toggle-switch-label:after {
@@ -10686,7 +10427,7 @@ fieldset .toggle-switch {
 	background-color:#56717D
 }
 
-.toggle-switch.enable-transition .toggle-switch-label:before {
+.toggle-switch .toggle-switch-label:before {
 	transition:all .2s ease-in-out
 }
 
@@ -10723,23 +10464,13 @@ fieldset .toggle-switch {
 }
 
 .toggle-switch-label-text {
-	display:inline-block;
 	margin-left:40px;
 	font-size:15px
-}
-
-.js-display-sensitive-media span {
-	font-size:0
 }
 
 .js-display-sensitive-media span:after {
 	font-size:15px;
 	content:"Show potentially sensitive media"
-}
-
-.js-account-action:active {
-	transform:none!important;
-	background:transparent!important
 }
 
 .mtd-light .detail-view-inline-text {
@@ -11349,22 +11080,21 @@ a.js-dismiss {
 	color:#000
 }
 
-
 .startflow-background {
-    background-image:url(https://ton.twimg.com/tweetdeck-web/web/assets/global/backgrounds/login_bg.36f68cdcb5.jpg);
-    background-size:cover;
-    background-position:center
+	background-image:url(https://ton.twimg.com/tweetdeck-web/web/assets/global/backgrounds/login_bg.36f68cdcb5.jpg);
+	background-size:cover;
+	background-position:center
 }
 
 .startflow-background:before {
-    content:"";
-    position:absolute;
-    top:0;
-    right:0;
-    bottom:0;
-    left:0;
-    opacity:.8;
-    background-image:linear-gradient(#00BCD4 0%, transparent 150%)
+	content:"";
+	position:absolute;
+	top:0;
+	right:0;
+	bottom:0;
+	left:0;
+	opacity:.8;
+	background-image:linear-gradient(#00BCD4 0%, transparent 150%)
 }
 
 .btn-login[type="submit"],.login-container .btn-positive {
@@ -11387,7 +11117,7 @@ a.js-dismiss {
 }
 
 .btn-login[type="submit"]:hover,.btn-login[type="submit"]:focus,.login-container .btn-positive:hover,body .login-container .btn-positive:focus {
-	box-shadow:0 3px 10px 3px rgba(0,0,0,0.25)
+	box-shadow:0 3px 10px 3px rgba(0,0,0,.25)
 }
 
 .mtd-dark body .btn-login[type="submit"]:active,.mtd-dark body .login-container .btn-positive:active {
@@ -11427,7 +11157,7 @@ a.js-dismiss {
 .js-mediatable {
 	position:absolute;
 	pointer-events:none;
-	background:rgba(0,0,0,0.3);
+	background:rgba(0,0,0,.3);
 	top:0;
 	left:0;
 	right:0;
@@ -11437,4 +11167,8 @@ a.js-dismiss {
 .mdl.med-fullpanel {
 	background:transparent;
 	box-shadow:none
+}
+
+.login-container {
+	animation:fadeIn .75s cubic-bezier(.19,1,.22,1);
 }
