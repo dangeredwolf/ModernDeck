@@ -12,7 +12,7 @@
 
 /* SUPERCLASSES */
 
-.mdl-dismiss,.privacy-info,.mdl-drag-handle,.preloader-wrapper+.preloader-wrapper,.is-loaded>.preloader-wrapper,.nav-user-info>.avatar,.release-notes-image,.release-notes-image-bullet,.accordion .icon-arrow-u,.med-fullpanel .tweet-dogear,.tweet-detail-wrapper .tweet-dogear,.js-hide-drawer .icon-compose,.mdl-buttonbar>.js-dismiss,.mdl .search-input-control:before,.startflow-panel .txt-center:not(.form-error-message),.add-participant .search-input-control:before,.drawer-content .search-input-control:before,.cf.account-remove-check,.facet-type .search-input-control:before,.accordion .is-active .facet-subtitle,.mdl-dismiss,.mdl-dismiss-media,.mtd-mobile .column-type-icon,.column-type-message .js-column-detail .column-title-back:before,.add-on.with-emphasis,.mtd-minimal .column-navigator,.mtd-dark body.scroll-v .js-modal-context .mdl:before,html body .app-navigator .dropdown-menu,.caret,.js-column-detail .column-title-back.conversation-title:after,.more-tweets-btn-inner-mouse-release,.more-tweets-btn-inner-loading,.more-tweets-btn-container--mouse-release .more-tweets-btn-inner-default,.more-tweets-btn-container--loading .more-tweets-btn-inner-default,.status-message,.app-masthead,.cmp-spinner,.chev-right,.compose-text-title,.cmp button b,.cmp .mdl-header-title:empty,.app-search-tweet-results .column-header-temp,.spinner-centered,.without-tweet-drag-handles .tweet-drag-handle,.account-remove-check,.js-app-settings .obj-left,.tweet-action-item.feature-customtimelines.tweet-drag-handle,.tweet-detail-action-item.feature-customtimelines.tweet-drag-handle,.column-nav-link:after,.more-tweets-btn-inner-mouse-release,.more-tweets-btn-inner-loading,.more-tweets-btn-container--mouse-release .more-tweets-btn-inner-default,.more-tweets-btn-container--loading .more-tweets-btn-inner-default,.list-item .icon-search.list-icon,.js-typeahead-recent-search-item .obj-left,.s-following .follow-btn .btn-loader,.btd-settings,body:not(.btd-ready) #btdsettings,.edit-conversation-name .nbfc,.js-app-add-column,.js-dismiss,.js-schedule-datepicker-holder .popover .padding-as .btn .icon-trash,.js-dismiss.btn.btn-positive i.icon.icon-check.icon-small.padding-rs,.column-close-link.txt-r-dark-gray,.js-app-loading .js-header-container,.js-add-image-button-label,.js-schedule-button-label,.js-tweet-button-label,.js-dm-button .label.padding-ls,.column-nav-flyout,.release-notes-modal .mdl-drag-handle,#datepicker,.search-input-spinner,.search-input-clear-search,.toggle-item-text-truncated,.sch.s-searching .sch-clear,legend,.frm-legend,.action-btn,.med-origlink,.med-flaglink,.hide-detail-view-inline .detail-view-inline,.compose-account-selected,.js-compose-hint.margin-vl.anim.anim-fade-in,#file-upload-input,.s-sending .char-count,.s-profile .mdl-buttonbar,.s-profile h3,.mdl.s-nonav .mdl-inner .mdl-buttonbar,.ovl.is-dragging:before,.is-dragging.overlay:before,.numbered-badge-onheader,.tooltip-arrow,.app-search-in-popover,.app-search-form,.app-header .app-nav-logo-text,.app-header .hide-condensed,.app-header .sprite-logo,.app-header .tweet-button .label,.app-header .app-nav-link .icon-arrow-l-double,.app-header .app-nav-link .icon-arrow-r-double,.app-nav-link .icon-arrow-r-double,.app-nav-tab .icon-user-switch,.tweet-message-status,.icon.icon-move,.tweet-drag-handle,.is-narrow-columns .media-size-medium .media-sensitive-title,.contributor-row[data-contributor-role="contributor"] [data-show-when-contributor-role="admin"],.contributor-row[data-contributor-role="admin"] [data-show-when-contributor-role="contributor"],.contributor-row[data-state-error="closed-error"] [data-hide-when-state-error="closed-error"],.contributor-row[data-state="settings"] [data-hide-when-state="settings"],.contributor-row[data-state-error="settings-error"] [data-hide-when-state-error="settings-error"],[data-show-when-state],[data-show-when-state-error],.is-options-open .column-settings-link .icon-arrow-d,.column-header-link .icon-arrow-u,.column-title-back .attribution,.js-add-to-customtimeline-button,.column-title-editable .js-show-tip.avatar.size24,.account-remove-check,.signin-sheet-now-present .application,.btn-fav-fav-text,.with-add-by-url .list-placeholder.pin-all,.s-thats-you .btn-loader,.s-pending .btn-loader,.s-blocking .follow-btn:hover .block-text,.s-blocking .btn-loader,.s-not-favorited .btn-loader,.btn-fav-faved-text,.s-favorited .btn-loader,.btn-fav-protected-text,.s-protected .btn-loader,.link-clean[href="https://twitter.com/UberFacts"] .sprite-verified,.btn-fav-unfav-text,.btn-fav.s-favorited:hover .btn-fav-faved-text,.s-not-following .btn-loader,.action-text,.s-following .follow-btn:hover .following-text {
+.mdl-dismiss, .privacy-info, .mdl-drag-handle, .preloader-wrapper+.preloader-wrapper, .is-loaded>.preloader-wrapper, .nav-user-info>.avatar, .release-notes-image, .release-notes-image-bullet, .accordion .icon-arrow-u, .med-fullpanel .tweet-dogear, .tweet-detail-wrapper .tweet-dogear, .js-hide-drawer .icon-compose, .mdl-buttonbar>.js-dismiss, .mdl .search-input-control:before, .startflow-panel .txt-center:not(.form-error-message), .add-participant .search-input-control:before, .drawer-content .search-input-control:before, .cf.account-remove-check, .facet-type .search-input-control:before, .accordion .is-active .facet-subtitle, .mdl-dismiss, .mdl-dismiss-media, .mtd-mobile .column-type-icon, .column-type-message .js-column-detail .column-title-back:before, .add-on.with-emphasis, .mtd-minimal .column-navigator, .mtd-dark body.scroll-v .js-modal-context .mdl:before, html body .app-navigator .dropdown-menu, .caret, .js-column-detail .column-title-back.conversation-title:after, .more-tweets-btn-inner-mouse-release, .more-tweets-btn-inner-loading, .more-tweets-btn-container--mouse-release .more-tweets-btn-inner-default, .more-tweets-btn-container--loading .more-tweets-btn-inner-default, .status-message, .app-masthead, .cmp-spinner, .chev-right, .compose-text-title, .cmp button b, .cmp .mdl-header-title:empty, .app-search-tweet-results .column-header-temp, .spinner-centered, .without-tweet-drag-handles .tweet-drag-handle, .account-remove-check, .js-app-settings .obj-left, .tweet-action-item.feature-customtimelines.tweet-drag-handle, .tweet-detail-action-item.feature-customtimelines.tweet-drag-handle, .column-nav-link:after, .more-tweets-btn-inner-mouse-release, .more-tweets-btn-inner-loading, .more-tweets-btn-container--mouse-release .more-tweets-btn-inner-default, .more-tweets-btn-container--loading .more-tweets-btn-inner-default, .list-item .icon-search.list-icon, .js-typeahead-recent-search-item .obj-left, .s-following .follow-btn .btn-loader, .btd-settings, body:not(.btd-ready) #btdsettings, .edit-conversation-name .nbfc, .js-app-add-column, .js-dismiss, .js-schedule-datepicker-holder .popover .padding-as .btn .icon-trash, .js-dismiss.btn.btn-positive i.icon.icon-check.icon-small.padding-rs, .column-close-link.txt-r-dark-gray, .js-app-loading .js-header-container, .js-add-image-button-label, .js-schedule-button-label, .js-tweet-button-label, .js-dm-button .label.padding-ls, .column-nav-flyout, .release-notes-modal .mdl-drag-handle, #datepicker, .search-input-spinner, .search-input-clear-search, .toggle-item-text-truncated, .sch.s-searching .sch-clear, legend, .frm-legend, .action-btn, .med-origlink, .med-flaglink, .hide-detail-view-inline .detail-view-inline, .compose-account-selected, .js-compose-hint.margin-vl.anim.anim-fade-in, #file-upload-input, .s-sending .char-count, .s-profile .mdl-buttonbar, .s-profile h3, .mdl.s-nonav .mdl-inner .mdl-buttonbar, .ovl.is-dragging:before, .is-dragging.overlay:before, .numbered-badge-onheader, .tooltip-arrow, .app-search-in-popover, .app-search-form, .app-header .app-nav-logo-text, .app-header .hide-condensed, .app-header .sprite-logo, .app-header .tweet-button .label, .app-header .app-nav-link .icon-arrow-l-double, .app-header .app-nav-link .icon-arrow-r-double, .app-nav-link .icon-arrow-r-double, .app-nav-tab .icon-user-switch, .tweet-message-status, .icon.icon-move, .tweet-drag-handle, .is-narrow-columns .media-size-medium .media-sensitive-title, .contributor-row[data-contributor-role="contributor"] [data-show-when-contributor-role="admin"], .contributor-row[data-contributor-role="admin"] [data-show-when-contributor-role="contributor"], .contributor-row[data-state-error="closed-error"] [data-hide-when-state-error="closed-error"], .contributor-row[data-state="settings"] [data-hide-when-state="settings"], .contributor-row[data-state-error="settings-error"] [data-hide-when-state-error="settings-error"], [data-show-when-state], [data-show-when-state-error], .is-options-open .column-settings-link .icon-arrow-d, .column-header-link .icon-arrow-u, .column-title-back .attribution, .js-add-to-customtimeline-button, .column-title-editable .js-show-tip.avatar.size24, .account-remove-check, .signin-sheet-now-present .application, .with-add-by-url .list-placeholder.pin-all,.btn-fav>.btn-loader,.btn-fav-protected-text,.s-protected .btn-loader,.s-not-following .btn-loader,.action-text, .s-following .follow-btn:hover .following-text {
 	display:none
 }
 
@@ -49,7 +49,7 @@
 @keyframes materialPop {
 	0% {
 		opacity:0;
-		margin-top:100px
+		margin-top:130px
 	}
 
 	20% {
@@ -1122,7 +1122,8 @@ p {
 
 ul,ol,dl,li,dd {
 	padding:0;
-	margin:0
+	margin:0;
+	display:block
 }
 
 .emoji {
@@ -1352,6 +1353,7 @@ ul,ol,dl,li,dd {
 
 .l-cell {
 	display:table-cell;
+	pointer-events:none;
 	vertical-align:middle
 }
 
@@ -1422,8 +1424,15 @@ ul,ol,dl,li,dd {
 
 .stream-item .nbfc {
 	overflow:hidden;
+	margin-left:-60px;
 	word-break:break-word;
-	word-wrap:break-word
+	word-wrap:break-word;
+	font-size:0
+}
+
+.stream-item .nbfc>a {
+	font-size:0.9rem;
+	margin-left:7px
 }
 
 .nbfc-alt {
@@ -3412,7 +3421,9 @@ a .column-title-back .icon:after {
 }
 
 .account-inline .fullname,.account-inline .username {
-	line-height:1;text-overflow:clip
+	line-height:1;
+	margin-left:5px;
+	text-overflow:clip
 }
 
 .account-inline.is-protected {
@@ -3756,8 +3767,13 @@ a .column-title-back .icon:after {
 	margin-right:2px
 }
 
-.tweet-context,.tweet-img {
-	margin-left:-58px
+.tweet-img {
+	margin-left:-58px;
+	margin-top:20px
+}
+
+.tweet-context {
+	margin-left:-90px
 }
 
 .tweet-avatar {
@@ -3787,7 +3803,6 @@ a .column-title-back .icon:after {
 
 .tweet-actions>li {
 	float:left;
-	display:block;
 	margin:0 0 0 35px
 }
 
@@ -4814,6 +4829,7 @@ a .column-title-back .icon:after {
 	position:absolute;
 	width:100%;
 	padding-top:10px;
+	pointer-events:none;
 	font-weight:500
 }
 
@@ -7076,6 +7092,7 @@ input[type="checkbox"] {
 
 .lst li {
 	position:relative;
+	display:block;
 	padding:5px;
 	transition:.2s all
 }
@@ -7195,8 +7212,8 @@ input[type="checkbox"] {
 
 .drp-h-divider {
 	border-bottom:1px solid #e5e5e5;
-	margin-top:7.5px;
-	margin-bottom:7.5px
+	margin-top:-10px;
+	margin-bottom:5px
 }
 
 .dropdown-menu {
@@ -7224,13 +7241,13 @@ input[type="checkbox"] {
 .dropdown-menu>.js-dropdown-content>ul>li:not(.drp-h-divider) {
 	position:relative;
 	display:block;
+	padding:2px 16px;
 	height:30px;
 	transition:.2s all
 }
 
 .dropdown-menu>.js-dropdown-content>ul>li>a {
 	position:relative;
-	padding:16px 16px;
 	line-height:2
 }
 
@@ -7981,30 +7998,30 @@ input[type="checkbox"] {
 	border-bottom:none!important
 }
 
-li.is-selectable a[data-action=mute] {
+a.tweet-action[data-action=mute] {
 	font-size:0;
 	line-height:0
 }
 
-li.is-selectable a[data-action=mute]:before {
-	font-size:15px;
+a.tweet-action[data-action=mute]:before {
+	font-size:14px;
 	content:"Mute in TweetDeck";
 	display:block;
-	line-height:0;
-	padding:3px;
-	text-indent:14px
+	line-height:2;
+	pointer-events:none
 }
 
-li.is-selectable a[data-action=report-spam] {
+a.tweet-action[data-action=report-spam] {
 	font-size:0;
 	line-height:0
 }
 
-li.is-selectable a[data-action=report-spam]:before {
+a.tweet-action[data-action=report-spam]:before {
 	font-size:14px;
 	content:"Report for Spam";
 	display:block;
-	line-height:16px
+	line-height:2;
+	pointer-events:none
 }
 
 .js-account-action:hover {
@@ -8195,7 +8212,7 @@ a[rel=hashtag]:active {
 }
 
 .tweet-body {
-	margin-top:2px
+	margin-top:4px
 }
 
 .media-sensitive-content p {
@@ -10161,6 +10178,7 @@ button.mtd-no-transform-case {
 
 .lst-group li {
 	padding-left:5px;
+	display:block;
 	transition:.2s all
 }
 
@@ -10653,4 +10671,32 @@ button.mtd-no-transform-case {
 
 .l-column.mdl-column.mdl-column-sml {
 
+}
+
+.btn-fav-faved-text,.btn-fav-fav-text,.btn-fav-unfav-text {
+	position:absolute;
+	top:5px;
+	left:28px;
+	opacity:0;
+	width:60px;
+	text-align:center;
+	transition:opacity 0.3s cubic-bezier(.19,1,.22,1) 0.1s,left 0.25s cubic-bezier(.19,1,.22,1);
+}
+
+.btn-fav-faved-text {
+	left:42px;
+	transition:opacity 0.4s cubic-bezier(.19,1,.22,1) 0.13s,left 0.25s cubic-bezier(.19,1,.22,1);
+}
+
+.s-not-favorited>.btn-fav-fav-text {
+	opacity:1
+}
+
+.s-favorited:not(:hover)>.btn-fav-faved-text {
+	opacity:1;
+	left:28px
+}
+
+.s-favorited:hover>.btn-fav-unfav-text {
+	opacity:1
 }
