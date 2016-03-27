@@ -12,7 +12,7 @@
 
 /* SUPERCLASSES */
 
-.mdl-dismiss, .privacy-info, .mdl-drag-handle, .preloader-wrapper+.preloader-wrapper, .is-loaded>.preloader-wrapper, .nav-user-info>.avatar, .release-notes-image, .release-notes-image-bullet, .accordion .icon-arrow-u, .med-fullpanel .tweet-dogear, .tweet-detail-wrapper .tweet-dogear, .js-hide-drawer .icon-compose, .mdl-buttonbar>.js-dismiss, .mdl .search-input-control:before, .startflow-panel .txt-center:not(.form-error-message), .add-participant .search-input-control:before, .drawer-content .search-input-control:before, .cf.account-remove-check, .facet-type .search-input-control:before, .accordion .is-active .facet-subtitle, .mdl-dismiss, .mdl-dismiss-media, .mtd-mobile .column-type-icon, .column-type-message .js-column-detail .column-title-back:before, .add-on.with-emphasis, .mtd-minimal .column-navigator, .mtd-dark body.scroll-v .js-modal-context .mdl:before, html body .app-navigator .dropdown-menu, .caret, .js-column-detail .column-title-back.conversation-title:after, .more-tweets-btn-inner-mouse-release, .more-tweets-btn-inner-loading, .more-tweets-btn-container--mouse-release .more-tweets-btn-inner-default, .more-tweets-btn-container--loading .more-tweets-btn-inner-default, .status-message, .app-masthead, .cmp-spinner, .chev-right, .compose-text-title, .cmp button b, .cmp .mdl-header-title:empty, .app-search-tweet-results .column-header-temp, .spinner-centered, .without-tweet-drag-handles .tweet-drag-handle, .account-remove-check, .js-app-settings .obj-left, .tweet-action-item.feature-customtimelines.tweet-drag-handle, .tweet-detail-action-item.feature-customtimelines.tweet-drag-handle, .column-nav-link:after, .more-tweets-btn-inner-mouse-release, .more-tweets-btn-inner-loading, .more-tweets-btn-container--mouse-release .more-tweets-btn-inner-default, .more-tweets-btn-container--loading .more-tweets-btn-inner-default, .list-item .icon-search.list-icon, .js-typeahead-recent-search-item .obj-left, .s-following .follow-btn .btn-loader, .btd-settings, body:not(.btd-ready) #btdsettings, .edit-conversation-name .nbfc, .js-app-add-column, .js-dismiss, .js-schedule-datepicker-holder .popover .padding-as .btn .icon-trash, .js-dismiss.btn.btn-positive i.icon.icon-check.icon-small.padding-rs, .column-close-link.txt-r-dark-gray, .js-app-loading .js-header-container, .js-add-image-button-label, .js-schedule-button-label, .js-tweet-button-label, .js-dm-button .label.padding-ls, .column-nav-flyout, .release-notes-modal .mdl-drag-handle, #datepicker, .search-input-spinner, .search-input-clear-search, .toggle-item-text-truncated, .sch.s-searching .sch-clear, legend, .frm-legend, .action-btn, .med-origlink, .med-flaglink, .hide-detail-view-inline .detail-view-inline, .compose-account-selected, .js-compose-hint.margin-vl.anim.anim-fade-in, #file-upload-input, .s-sending .char-count, .s-profile .mdl-buttonbar, .s-profile h3, .mdl.s-nonav .mdl-inner .mdl-buttonbar, .ovl.is-dragging:before, .is-dragging.overlay:before, .numbered-badge-onheader, .tooltip-arrow, .app-search-in-popover, .app-search-form, .app-header .app-nav-logo-text, .app-header .hide-condensed, .app-header .sprite-logo, .app-header .tweet-button .label, .app-header .app-nav-link .icon-arrow-l-double, .app-header .app-nav-link .icon-arrow-r-double, .app-nav-link .icon-arrow-r-double, .app-nav-tab .icon-user-switch, .tweet-message-status, .icon.icon-move, .tweet-drag-handle, .is-narrow-columns .media-size-medium .media-sensitive-title, .contributor-row[data-contributor-role="contributor"] [data-show-when-contributor-role="admin"], .contributor-row[data-contributor-role="admin"] [data-show-when-contributor-role="contributor"], .contributor-row[data-state-error="closed-error"] [data-hide-when-state-error="closed-error"], .contributor-row[data-state="settings"] [data-hide-when-state="settings"], .contributor-row[data-state-error="settings-error"] [data-hide-when-state-error="settings-error"], [data-show-when-state], [data-show-when-state-error], .is-options-open .column-settings-link .icon-arrow-d, .column-header-link .icon-arrow-u, .column-title-back .attribution, .js-add-to-customtimeline-button, .column-title-editable .js-show-tip.avatar.size24, .account-remove-check, .signin-sheet-now-present .application, .with-add-by-url .list-placeholder.pin-all,.btn-fav>.btn-loader,.btn-fav-protected-text,.s-protected .btn-loader,.s-not-following .btn-loader,.action-text, .s-following .follow-btn:hover .following-text {
+.txt-center>.js-dismiss,.s-thats-you .btn-loader,.mdl-dismiss, .privacy-info, .mdl-drag-handle, .preloader-wrapper+.preloader-wrapper, .is-loaded>.preloader-wrapper, .nav-user-info>.avatar, .release-notes-image, .release-notes-image-bullet, .accordion .icon-arrow-u, .med-fullpanel .tweet-dogear, .tweet-detail-wrapper .tweet-dogear, .js-hide-drawer .icon-compose, .mdl-buttonbar>.js-dismiss, .mdl .search-input-control:before, .startflow-panel .txt-center:not(.form-error-message), .add-participant .search-input-control:before, .drawer-content .search-input-control:before, .cf.account-remove-check, .facet-type .search-input-control:before, .accordion .is-active .facet-subtitle, .mdl-dismiss, .mdl-dismiss-media, .mtd-mobile .column-type-icon, .column-type-message .js-column-detail .column-title-back:before, .add-on.with-emphasis, .mtd-minimal .column-navigator, .mtd-dark body.scroll-v .js-modal-context .mdl:before, html body .app-navigator .dropdown-menu, .caret, .js-column-detail .column-title-back.conversation-title:after, .more-tweets-btn-inner-mouse-release, .more-tweets-btn-inner-loading, .more-tweets-btn-container--mouse-release .more-tweets-btn-inner-default, .more-tweets-btn-container--loading .more-tweets-btn-inner-default, .status-message, .app-masthead, .cmp-spinner, .chev-right, .compose-text-title, .cmp button b, .cmp .mdl-header-title:empty, .app-search-tweet-results .column-header-temp, .spinner-centered, .without-tweet-drag-handles .tweet-drag-handle, .account-remove-check, .js-app-settings .obj-left, .tweet-action-item.feature-customtimelines.tweet-drag-handle, .tweet-detail-action-item.feature-customtimelines.tweet-drag-handle, .column-nav-link:after, .more-tweets-btn-inner-mouse-release, .more-tweets-btn-inner-loading, .more-tweets-btn-container--mouse-release .more-tweets-btn-inner-default, .more-tweets-btn-container--loading .more-tweets-btn-inner-default, .list-item .icon-search.list-icon, .js-typeahead-recent-search-item .obj-left, .s-following .follow-btn .btn-loader, .btd-settings, body:not(.btd-ready) #btdsettings, .edit-conversation-name .nbfc, .js-app-add-column, .js-dismiss, .js-schedule-datepicker-holder .popover .padding-as .btn .icon-trash, .js-dismiss.btn.btn-positive i.icon.icon-check.icon-small.padding-rs, .column-close-link.txt-r-dark-gray, .js-app-loading .js-header-container, .js-add-image-button-label, .js-schedule-button-label, .js-tweet-button-label, .js-dm-button .label.padding-ls, .column-nav-flyout, .release-notes-modal .mdl-drag-handle, #datepicker, .search-input-spinner, .search-input-clear-search, .toggle-item-text-truncated, .sch.s-searching .sch-clear, legend, .frm-legend, .action-btn, .med-origlink, .med-flaglink, .hide-detail-view-inline .detail-view-inline, .compose-account-selected, .js-compose-hint.margin-vl.anim.anim-fade-in, #file-upload-input, .s-sending .char-count, .s-profile .mdl-buttonbar, .s-profile h3, .mdl.s-nonav .mdl-inner .mdl-buttonbar, .ovl.is-dragging:before, .is-dragging.overlay:before, .numbered-badge-onheader, .tooltip-arrow, .app-search-in-popover, .app-search-form, .app-header .app-nav-logo-text, .app-header .hide-condensed, .app-header .sprite-logo, .app-header .tweet-button .label, .app-header .app-nav-link .icon-arrow-l-double, .app-header .app-nav-link .icon-arrow-r-double, .app-nav-link .icon-arrow-r-double, .app-nav-tab .icon-user-switch, .tweet-message-status, .icon.icon-move, .tweet-drag-handle, .is-narrow-columns .media-size-medium .media-sensitive-title, .contributor-row[data-contributor-role="contributor"] [data-show-when-contributor-role="admin"], .contributor-row[data-contributor-role="admin"] [data-show-when-contributor-role="contributor"], .contributor-row[data-state-error="closed-error"] [data-hide-when-state-error="closed-error"], .contributor-row[data-state="settings"] [data-hide-when-state="settings"], .contributor-row[data-state-error="settings-error"] [data-hide-when-state-error="settings-error"], [data-show-when-state], [data-show-when-state-error], .is-options-open .column-settings-link .icon-arrow-d, .column-header-link .icon-arrow-u, .column-title-back .attribution, .js-add-to-customtimeline-button, .column-title-editable .js-show-tip.avatar.size24, .account-remove-check, .signin-sheet-now-present .application, .with-add-by-url .list-placeholder.pin-all,.btn-fav>.btn-loader,.btn-fav-protected-text,.s-protected .btn-loader,.s-not-following .btn-loader,.action-text, .s-following .follow-btn:hover .following-text {
 	display:none
 }
 
@@ -249,6 +249,18 @@
 	to {
 		opacity:1;
 		margin-right:0
+	}
+}
+
+@keyframes profileSlide {
+	from {
+		opacity:0;
+		margin-left:-160px
+	}
+
+	to {
+		opacity:1;
+		margin-left:0
 	}
 }
 
@@ -491,7 +503,7 @@
 	border-color:#26a69a
 }
 
-html.tde-light .spinner-layer {
+html.mtd-light .spinner-layer {
 	border-color:#03A9F4
 }
 
@@ -1345,7 +1357,9 @@ ul,ol,dl,li,dd {
 .l-table {
 	display:table;
 	width:100%;
-	height:100%}
+	height:100%;
+	margin-bottom:2px
+}
 
 .l-row {
 	display:table-row
@@ -1378,6 +1392,7 @@ ul,ol,dl,li,dd {
 	bottom:0;
 	overflow-y:auto;
 	overflow-x:hidden;
+	pointer-events:none;
 	width:100%;
 }
 
@@ -1422,7 +1437,7 @@ ul,ol,dl,li,dd {
 	font-size:0
 }
 
-.stream-item .nbfc {
+.stream-item .nbfc:not(.media-item):not(.quoted-tweet) {
 	overflow:hidden;
 	margin-left:-60px;
 	word-break:break-word;
@@ -1431,7 +1446,7 @@ ul,ol,dl,li,dd {
 }
 
 .stream-item .nbfc>a {
-	font-size:0.9rem;
+	font-size:.9rem;
 	margin-left:7px
 }
 
@@ -1979,6 +1994,10 @@ ul,ol,dl,li,dd {
 	vertical-align:top
 }
 
+.stream-item .icon-small-context {
+	padding-left:12px
+}
+
 .icon-dropdown-context {
 	font-size:16px;
 	height:16px;
@@ -2056,14 +2075,6 @@ ul,ol,dl,li,dd {
 
 .mtd-dark .sprite:before {
 	color:#00838F
-}
-
-.sprite-drag {
-	width:1000px;
-	height:55px;
-	cursor:default;
-	display:block;
-	z-index:2
 }
 
 .sprite-verified {
@@ -2370,12 +2381,8 @@ ul,ol,dl,li,dd {
 	height:40px
 }
 
-.btn-extra-padding {
-	padding:10px 55px
-}
-
-.btn-txt-large {
-	font-size:1.2857rem
+.txt-large,.btn-txt-large {
+	font-size:1.2em
 }
 
 .btn-options-tray-space,.btn-options-tray {
@@ -3162,17 +3169,13 @@ a .column-title-back .icon:after {
 	padding:8px 10px
 }
 
-.item-img {
-	width:48px
-}
-
 .item-box-full-bleed {
 	margin:0 -10px -8px
 }
 
 .activity-header {
-	margin:0;
-	height:18px
+	margin:0 0 10px 0;
+	height:18px;
 }
 
 .activity-header .avatar {
@@ -3186,7 +3189,8 @@ a .column-title-back .icon:after {
 }
 
 .activity-header.has-source-avatar {
-	margin-top:6px
+	margin-bottom:6px;
+	margin-top:4px
 }
 
 .activity-header.activity-header-wrapping {
@@ -3423,7 +3427,16 @@ a .column-title-back .icon:after {
 .account-inline .fullname,.account-inline .username {
 	line-height:1;
 	margin-left:5px;
-	text-overflow:clip
+	text-overflow:clip;
+	font-size:12px
+}
+
+.quoted-tweet .fullname {
+	margin-left:60px
+}
+
+.account-inline .fullname {
+	font-size:14px
 }
 
 .account-inline.is-protected {
@@ -3734,12 +3747,24 @@ a .column-title-back .icon:after {
 	margin:0 0 5px 5px
 }
 
+.activity-header-wrapping+.txt-mute>.tweet {
+	padding-left:5px
+}
+
+.activity-header-wrapping+.txt-mute>.tweet .fullname {
+	margin-left:60px
+}
+
 .tweet {
 	padding-left:58px;
 	line-height:1.28578em;
 	word-break:break-word;
 	word-wrap:break-word;
 	display:block
+}
+
+.is-conversation>.tweet-body {
+	margin-left:-15px
 }
 
 .tweet:before,.tweet:after {
@@ -3758,9 +3783,8 @@ a .column-title-back .icon:after {
 }
 
 .tweet-timestamp {
-	padding-left:5px;
 	transition:margin .1s;
-	margin:0 0 -1px
+	font-size:12px
 }
 
 .is-retweet .tweet-timestamp,.is-favorite .tweet-timestamp {
@@ -3772,8 +3796,22 @@ a .column-title-back .icon:after {
 	margin-top:20px
 }
 
+.quoted-tweet .tweet-img {
+	margin-left:0
+}
+
 .tweet-context {
-	margin-left:-90px
+	margin-left:-70px
+}
+
+.tweet-context .nbfc {
+	font-size:0
+}
+
+
+.tweet-context .nbfc>a {
+	font-size:14px;
+	margin-left:10px
 }
 
 .tweet-avatar {
@@ -4793,7 +4831,7 @@ a .column-title-back .icon:after {
 .mdl {
 	display:inline-block;
 	vertical-align:middle;
-	width:643px;
+	width:580px;
 	background:#fff;
 	text-align:left;
 	opacity:1;
@@ -4807,6 +4845,11 @@ a .column-title-back .icon:after {
 	top:0;
 	position:absolute;
 	margin:0;
+	max-height:100%
+}
+
+.s-profile .s-profile {
+	animation:profileSlide .7s cubic-bezier(.19,1,.22,1)
 }
 
 .mtd-mobile .mdl {
@@ -4857,15 +4900,19 @@ a .column-title-back .icon:after {
 	bottom:0
 }
 
-.mdl-content {
+.mdl .mdl-content {
 	height:100%;
 	border-radius:0;
+	padding-top:0
+}
+
+.mdl:not(.s-short) .mdl-content {
 	overflow:hidden;
-	padding-top:20px
 }
 
 .mdl-content.with-scroll {
 	max-height:450px;
+	padding-top:20px;
 	overflow-y:scroll;
 	white-space:nowrap;
 	font-size:1rem
@@ -4948,7 +4995,7 @@ a .column-title-back .icon:after {
 	bottom:10px;
 	right:0;
 	left:0;
-	height:95%;
+	height:97%;
 	width:65%;
 	max-width:1500px;
 	margin:0 auto;
@@ -5777,8 +5824,9 @@ a .column-title-back .icon:after {
 	background:rgb(37,50,56);
 	bottom:0;
 	box-shadow:0 3px 6px rgba(0,0,0,.7);
-	border-radius:4px;
+	border-radius: 4px 4px 0 0;
 	animation:mediaSlideUp .4s cubic-bezier(.19,1,.22,1);
+	pointer-events:all
 }
 
 .med-embeditem {
@@ -5797,7 +5845,7 @@ a .column-title-back .icon:after {
 	height:auto;
 	min-width:200px;
 	width:auto;
-	padding-bottom:20px;
+	padding-bottom:0;
 	opacity:0;
 	box-shadow:0 3px 6px rgba(0,0,0,.7);
 	pointer-events:all;
@@ -5809,7 +5857,7 @@ a .column-title-back .icon:after {
 }
 
 .s-shorter {
-	bottom:150px
+	bottom:160px;
 }
 
 .is-loaded {
@@ -6776,11 +6824,16 @@ input[type="checkbox"] {
 	position:relative;
 	border-radius:0;
 	min-height:260px;
-	background:#ddd;
 	background-size:100%;
 	text-align:center;
 	text-shadow:0 2px 7px #000;
 	color:#fff;
+	background-color:rgb(38,50,56);
+	overflow:hidden
+}
+
+.mtd-light .prf-header {
+	background:#1FC0CF
 }
 
 .prf-header .prf-siteurl,.prf-header .prf-bio a,.prf-header .pretty-link {
@@ -7241,7 +7294,7 @@ input[type="checkbox"] {
 .dropdown-menu>.js-dropdown-content>ul>li:not(.drp-h-divider) {
 	position:relative;
 	display:block;
-	padding:2px 16px;
+	padding:2px 0 2px 16px;
 	height:30px;
 	transition:.2s all
 }
@@ -7998,12 +8051,12 @@ input[type="checkbox"] {
 	border-bottom:none!important
 }
 
-a.tweet-action[data-action=mute] {
+a.tweet-action[data-action=mute],.js-dropdown-content a[data-action="mute"] {
 	font-size:0;
 	line-height:0
 }
 
-a.tweet-action[data-action=mute]:before {
+a.tweet-action[data-action=mute]:before,.js-dropdown-content a[data-action="mute"]:before {
 	font-size:14px;
 	content:"Mute in TweetDeck";
 	display:block;
@@ -8125,16 +8178,7 @@ a[rel=hashtag]:active {
 	position:absolute
 }
 
-.mdl-content.horizontal-flow-container {
-	padding-top:0;
-	overflow-y:hidden
-}
-
-.mdl-content.horizontal-flow-container.with-scroll {
-	padding-top:20px
-}
-
-.follow-from-accounts-button .btn .icon-twitter-bird {
+.follow-from-accounts-button .btn>.icon-twitter-bird {
 	margin-left:-8px
 }
 
@@ -8162,25 +8206,17 @@ a[rel=hashtag]:active {
 	width:0!important
 }
 
-.prf-header[style="background-image: url(https://ton.twimg.com/tweetdeck-web/web/assets/global/backgrounds/td_profile_empty.14bcb2d3ac.jpg)"],.mtd-nd-header-image[style="background-image: url(https://ton.twimg.com/tweetdeck-web/web/assets/global/backgrounds/td_profile_empty@2x.28d11b0d43.jpg)"] {
-	background-image:none!important;
-	background:#1FC0CF
+.mtd-light .prf-header[style="background-image: url(https://ton.twimg.com/tweetdeck-web/web/assets/global/backgrounds/td_profile_empty.14bcb2d3ac.jpg)"],.mtd-light .mtd-nd-header-image[style="background-image: url(https://ton.twimg.com/tweetdeck-web/web/assets/global/backgrounds/td_profile_empty.14bcb2d3ac.jpg)"],.mtd-light .prf-header[style="background-image: url(https://ton.twimg.com/tweetdeck-web/web/assets/global/backgrounds/td_profile_empty@2x.28d11b0d43.jpg)"],.mtd-light .mtd-nd-header-image[style="background-image: url(https://ton.twimg.com/tweetdeck-web/web/assets/global/backgrounds/td_profile_empty@2x.28d11b0d43.jpg)"] {
+	background-image:none!important
 }
 
-.mtd-dark .prf-header[style="background-image: url(https://ton.twimg.com/tweetdeck-web/web/assets/global/backgrounds/td_profile_empty@2x.28d11b0d43.jpg)"],.mtd-dark .mtd-nd-header-image[style="background-image: url(https://ton.twimg.com/tweetdeck-web/web/assets/global/backgrounds/td_profile_empty.9a5654bc44.jpg)"] {
+.mtd-dark .prf-header[style="background-image: url(https://ton.twimg.com/tweetdeck-web/web/assets/global/backgrounds/td_profile_empty.14bcb2d3ac.jpg)"],.mtd-dark .mtd-nd-header-image[style="background-image: url(https://ton.twimg.com/tweetdeck-web/web/assets/global/backgrounds/td_profile_empty.14bcb2d3ac.jpg)"],.mtd-dark .prf-header[style="background-image: url(https://ton.twimg.com/tweetdeck-web/web/assets/global/backgrounds/td_profile_empty@2x.28d11b0d43.jpg)"],.mtd-dark .mtd-nd-header-image[style="background-image: url(https://ton.twimg.com/tweetdeck-web/web/assets/global/backgrounds/td_profile_empty@2x.28d11b0d43.jpg)"] {
 	background-image:none!important;
-	background:rgb(38,50,56)
 }
 
 .js-column-loading-placeholder.list-placeholder p,.js-column-loading-placeholder.list-placeholder.column-loading-placeholder {
 	font-size:0;
 	display:inline
-}
-
-.list-placeholder p .spinner-small {
-	width:32px;
-	height:32px;
-	background:transparent url(https://abs.twimg.com/a/1419352959/img/t1/spinner-rosetta-gray-32x32.gif) no-repeat
 }
 
 #tdesettingslistitem {
@@ -8200,7 +8236,7 @@ a[rel=hashtag]:active {
 }
 
 .tweet-footer {
-	margin-top:6px!important
+	margin-top:10px!important
 }
 
 .tweet-action .icon,.tweet-detail-action .icon {
@@ -8527,7 +8563,7 @@ a[rel=hashtag]:active {
 	transition:.3s all cubic-bezier(.19,1,.22,1);
 	overflow-x:hidden;
 	overflow-y:scroll;
-	overflow-y:hidden
+	overflow-y:hidden;
 }
 
 .mtd-nav-drawer-hidden {
@@ -8558,11 +8594,16 @@ a[rel=hashtag]:active {
 	border:none!important;
 	background-size:400px 200px;
 	background-position:-50px -30px;
-	border-color:#fff;
+	background-color:rgb(38,50,56);
+	border-color:transparent;
 	margin:0;
 	padding:0;
 	margin-left:-2px;
 	margin-top:-2px
+}
+
+.mtd-light {
+
 }
 
 .mtd-nd-header-photo {
@@ -9266,7 +9307,7 @@ html.mtd-dark {
 }
 
 .mtd-dark .account-bio {
-	color:#798488
+	color:#798488;
 }
 
 .mtd-dark .column-message {
@@ -9586,10 +9627,6 @@ article.is-unread .account-link {
 .mtd-dark .gap-chirp {
 	border-top:3px solid #263238;
 	border-bottom:3px solid #263238
-}
-
-.s-tall-fixed .mdl-drag-handle {
-	left:40px
 }
 
 .tweet-action[rel="favorite"] i,.tweet-detail-action[rel="favorite"] i {
@@ -10206,7 +10243,7 @@ button.mtd-no-transform-case {
 }
 
 .js-column-social-proof .stream-item {
-	animation:socialProofPop .35s cubic-bezier(.19,1,.22,1)
+	animation:fadeIn .5s cubic-bezier(.19,1,.22,1)
 }
 
 .js-search .popover {
@@ -10478,6 +10515,10 @@ button.mtd-no-transform-case {
 	padding-right:20px
 }
 
+.mdl-btn-media>.icon {
+	font-size:24px
+}
+
 .js-translate-call-to-action {
 	font-size:12px;
 	text-transform:uppercase;
@@ -10602,6 +10643,10 @@ button.mtd-no-transform-case {
 	color:#fff!important
 }
 
+.mtd-dark .btn-login[type="submit"] {
+	background:#00BCD4;
+}
+
 .btn-login[type="submit"].full-width {
 	width:200px!important
 }
@@ -10647,7 +10692,8 @@ button.mtd-no-transform-case {
 }
 
 .js-media-preview-container {
-	pointer-events:all
+	pointer-events:all;
+	margin:0!important
 }
 
 .js-mediatable {
@@ -10662,6 +10708,7 @@ button.mtd-no-transform-case {
 
 .mdl.med-fullpanel {
 	background:transparent;
+	animation:none;
 	box-shadow:none
 }
 
@@ -10670,7 +10717,35 @@ button.mtd-no-transform-case {
 }
 
 .l-column.mdl-column.mdl-column-sml {
+	top:-50px;
+	left:200px;
+	pointer-events:none;
+	width:100%;
+	background:0;
+	position:absolute
+}
 
+.l-column.mdl-column.mdl-column-sml+.mdl-column.mdl-column-lrg {
+	width:100%
+}
+
+.l-column.mdl-column.mdl-column-sml li {
+	width:120px;
+	display:inline-block;
+	position:relative;
+	text-transform:uppercase;
+	box-shadow:none!important;
+	text-align:center
+}
+
+.l-column.mdl-column.mdl-column-sml .selected {
+	background:transparent;
+	border-bottom:3px #fff solid
+}
+
+.l-column.mdl-column.mdl-column-sml .list-link {
+	padding:16px 0 16px 0;
+	background:none!important
 }
 
 .btn-fav-faved-text,.btn-fav-fav-text,.btn-fav-unfav-text {
@@ -10680,12 +10755,12 @@ button.mtd-no-transform-case {
 	opacity:0;
 	width:60px;
 	text-align:center;
-	transition:opacity 0.3s cubic-bezier(.19,1,.22,1) 0.1s,left 0.25s cubic-bezier(.19,1,.22,1);
+	transition:opacity .3s cubic-bezier(.19,1,.22,1) .1s,left .25s cubic-bezier(.19,1,.22,1);
 }
 
 .btn-fav-faved-text {
 	left:42px;
-	transition:opacity 0.4s cubic-bezier(.19,1,.22,1) 0.13s,left 0.25s cubic-bezier(.19,1,.22,1);
+	transition:opacity .4s cubic-bezier(.19,1,.22,1) .13s,left .25s cubic-bezier(.19,1,.22,1);
 }
 
 .s-not-favorited>.btn-fav-fav-text {
@@ -10699,4 +10774,25 @@ button.mtd-no-transform-case {
 
 .s-favorited:hover>.btn-fav-unfav-text {
 	opacity:1
+}
+
+.med-tweet .account-inline {
+	margin-left:-65px
+}
+
+.js-column-social-proof .username {
+	position:absolute;
+	top:22px;
+	left:70px;
+	font-size:14px;
+	opacity:1;
+	color:#d3dbe1!important
+}
+
+.mtd-light .js-column-social-proof .username {
+	color:#000!important
+}
+
+.tweet-text {
+	margin-bottom:8px
 }
