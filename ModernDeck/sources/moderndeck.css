@@ -103,6 +103,19 @@
 	}
 }
 
+@keyframes windowSlider {
+	from {
+		opacity:.5;
+		margin-left:-700px
+	}
+
+	to {
+		opacity:1;
+		margin-left:0
+	}
+}
+
+
 @keyframes menuDownAnimation {
 	from {
 		opacity:0;
@@ -226,6 +239,19 @@
 		margin-top:0
 	}
 }
+
+@keyframes settingsColumnSlide {
+	from {
+		opacity:0;
+		margin-left:60px
+	}
+
+	to {
+		opacity:1;
+		margin-right:0
+	}
+}
+
 
 @keyframes tweetIncoming {
 	0% {
@@ -1350,7 +1376,7 @@ ul,ol,dl,li,dd {
 	bottom:0;
 	overflow-y:auto;
 	overflow-x:hidden;
-	width:100%
+	width:100%;
 }
 
 .l-fullheight {
@@ -3761,6 +3787,7 @@ a .column-title-back .icon:after {
 
 .tweet-actions>li {
 	float:left;
+	display:block;
 	margin:0 0 0 35px
 }
 
@@ -4749,7 +4776,6 @@ a .column-title-back .icon:after {
 }
 
 .mdl {
-	zoom:1;
 	display:inline-block;
 	vertical-align:middle;
 	width:643px;
@@ -4757,9 +4783,8 @@ a .column-title-back .icon:after {
 	text-align:left;
 	opacity:1;
 	border-radius:4px;
-	animation:windowDown .3s 1 cubic-bezier(.19,1,.22,1);
+	animation:windowSlider .3s 1 cubic-bezier(.19,1,.22,1);
 	box-shadow:0 30px 70px rgba(17,17,17,.6);
-	/* overflow:hidden; */
 	height:100%;
 	border-radius:0;
 	left:0;
@@ -7962,10 +7987,12 @@ li.is-selectable a[data-action=mute] {
 }
 
 li.is-selectable a[data-action=mute]:before {
-	font-size:14px;
+	font-size:15px;
 	content:"Mute in TweetDeck";
 	display:block;
-	line-height:16px
+	line-height:0;
+	padding:3px;
+	text-indent:14px
 }
 
 li.is-selectable a[data-action=report-spam] {
@@ -8497,7 +8524,8 @@ a[rel=hashtag]:active {
 	background:rgba(100,100,100,.4);
 	height:100%;
 	width:100%;
-	transition:.3s all cubic-bezier(.19,1,.22,1)
+	transition:.3s all cubic-bezier(.19,1,.22,1);
+	pointer-events:all;
 }
 
 .mtd-nav-drawer-background-hidden {
@@ -8706,7 +8734,7 @@ a[rel=hashtag]:active {
 }
 
 .mdl-col-settings form.frm fieldset {
-	animation:menuUpAnimationNoPadding .35s 1 cubic-bezier(.19,1,.22,1)
+	animation:settingsColumnSlide .35s 1 cubic-bezier(.19,1,.22,1)
 }
 
 .mdl-favorite-from-options .txt-r-deep-yellow {
@@ -10621,4 +10649,8 @@ button.mtd-no-transform-case {
 
 .login-container {
 	animation:fadeIn .75s cubic-bezier(.19,1,.22,1);
+}
+
+.l-column.mdl-column.mdl-column-sml {
+
 }

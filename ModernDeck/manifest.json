@@ -50,7 +50,7 @@
   "browser_action": {
     "default_icon": "sources/oneclick/InstaTweetDeck.png",
     "default_popup": "extension/ITD.html",
-    "default_title": "__MSG_ButtonHoverTitle__"
+    "default_title": "Launch TweetDeck"
   },
 
   "manifest_version": 2
