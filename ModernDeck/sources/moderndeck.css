@@ -364,40 +364,6 @@
 	100%	{transform:rotate(1080deg)} /* 4	 * ARCSIZE */
 }
 
-@keyframes blue-fade-in-out {
-	0% {opacity:1}
-	25% {opacity:1}
-	26% {opacity:0}
-	89% {opacity:0}
-	90% {opacity:1}
-	100% {opacity:1}
-}
-
-@keyframes red-fade-in-out {
-	0% {opacity:0}
-	15% {opacity:0}
-	25% {opacity:1}
-	50% {opacity:1}
-	51% {opacity:0}
-}
-
-@keyframes yellow-fade-in-out {
-	0% {opacity:0}
-	40% {opacity:0}
-	50% {opacity:1}
-	75% {opacity:1}
-	76% {opacity:0}
-}
-
-@keyframes green-fade-in-out {
-	0% {opacity:0}
-	65% {opacity:0}
-	75% {opacity:1}
-	90% {opacity:1}
-	100% {opacity:0}
-}
-
-
 @keyframes containerRotate {
 	to {transform:rotate(360deg)}
 }
@@ -1641,326 +1607,263 @@ ul,ol,dl,li,dd {
 }
 
 .icon:before {
-	font-family:"tweetdeckregular";
 	font-weight:400;
 	font-style:normal;
-	-webkit-font-smoothing:antialiased
+	-webkit-font-smoothing:antialiased;
+	font-family:"Material Icons"
 }
 
 .icon-twitter-bird:before {
-	content:"\f000"
+	content:"\f000";
+	font-family:"tweetdeckregular"
 }
 
 .icon-mention:before {
-	content:"\e0c9";
-	font-family:"Material Icons"
-}
-
-.icon-following:before {
-	content:"\f002"
+	content:"\e0c9"
 }
 
 .icon-message:before {
-	content:"\e0bf";
-	font-family:"Material Icons"
+	content:"\e0bf"
 }
 
 .icon-home:before {
-	content:"\e88a";
-	font-family:"Material Icons"
+	content:"\e88a"
 }
 
 .icon-hashtag:before {
-	content:"\f005"
+	content:"\f005";
+	font-family:"tweetdeckregular"
 }
 
 .icon-reply:before {
-	content:"\e15e";
-	font-family:"Material Icons"
+	content:"\e15e"
 }
 
 .icon-favorite:before {
-	content:"\e838";
-	font-family:"Material Icons"
+	content:"\e838"
 }
 
 .icon-retweet:before {
-	content:"\f008"
+	content:"\f008";
+	font-family:"tweetdeckregular"
 }
 
 .icon-drafts:before {
-	content:"\f009"
+	content:"\e151"
 }
 
-.icon-search:before {
-	content:"\e8B6";
-	font-family:"Material Icons"
+.icon-search:before,.search-input-control:before {
+	content:"\e8B6"
 }
 
 .icon-trash:before {
-	content:"\e872";
-	font-family:"Material Icons"
+	content:"\e872"
 }
 
-.icon-close:before {
-	content:"\e5cd";
-	font-family:"Material Icons"
+.icon-close:before,.sprite-close:before {
+	content:"\e5cd"
 }
 
 .icon-arrow-r:before {
-	content:"\e5c8";
-	font-family:"Material Icons"
+	content:"\e5c8"
 }
 
-.icon-arrow-l:before {
-	content:"\e5c4";
-	font-family:"Material Icons"
+.tweet-button .icon-compose:after,.btn-back:before,.icon-arrow-l:before {
+	content:"\e5c4"
 }
 
 .icon-protected:before {
-	content:"\e897";
-	font-family:"Material Icons"
+	content:"\e897"
 }
 
 .icon-list:before {
-	content:"\e896";
-	font-family:"Material Icons"
+	content:"\e896"
 }
 
 .icon-camera:before {
-	content:"\e251";
-	font-family:"Material Icons"
+	content:"\e251"
 }
 
 .icon-more:before {
-	content:"\f016"
+	content:"\e5d3"
 }
 
 .icon-settings:before {
-	content:"\f018"
+	content:"\e8b8"
 }
 
 .icon-notifications:before {
-	content:"\e7f4";
-	font-family:"Material Icons"
+	content:"\e7f4"
 }
 
 .icon-user-dd:before {
-	content:"\e5d3";
-	font-family:"Material Icons"
+	content:"\e5d3"
 }
 
 .icon-activity:before {
-	content:"\e8e4";
-	font-family:"Material Icons"
+	content:"\e8e5"
 }
 
 .icon-trending:before {
-	content:"\e8e5";
-	font-family:"Material Icons"
+	content:"\e80e"
 }
 
 .icon-minus:before {
-	content:"\f01e"
+	content:"\e15b"
 }
 
 .icon-plus:before {
-	content:"\f01f"
+	content:"\e145"
 }
 
 .icon-geo:before {
-	content:"\f020"
+	content:"\e0C8"
+}
+
+.sprite-translator:before,.icon-translator:before {
+	content:"\e894"
 }
 
 .icon-check:before {
-	content:"\e5ca";
-	font-family:"Material Icons"
+	content:"\e5ca"
 }
 
 .icon-schedule:before {
-	content:"\e8b5";
-	font-family:"Material Icons"
-}
-
-.icon-dot:before {
-	content:"\f023"
+	content:"\e8b5"
 }
 
 .icon-user:before {
-	content:"\e7fd";
-	font-family:"Material Icons"
+	content:"\e7fd"
 }
 
 .icon-content:before {
-	content:"\e253";
-	font-family:"Material Icons"
+	content:"\e253"
 }
 
 .icon-arrow-d:before {
-	content:"\f026"
+	content:"\e5db"
 }
 
-.icon-arrow-u:before {
-	content:"\f027"
+.icon-arrow-u:before,.icon-pointer-u:before {
+	content:"\e5d8"
+}
+
+.js-send-button:after {
+	content:"\e163";
+	font-size:24px
 }
 
 .icon-share:before {
-	content:"\e80d";
-	font-family:"Material Icons"
+	content:"\e80d"
 }
 
 .icon-info:before {
-	content:"\e88f";
-	font-family:"Material Icons"
+	content:"\e88f"
 }
 
-.icon-verified:before {
-	content:"\f02a"
-}
-
-.icon-translator:before {
-	content:"\f02b"
+.icon-verified:before,.sprite-verified:before,.sprite-verified-mini:before {
+	content:"\e8e8"
 }
 
 .icon-blocked:before {
-	content:"\f02c"
+	content:"\e14b"
 }
 
 .icon-constrain:before {
-	content:"\f02d"
+	content:"\e8aa"
 }
 
 .icon-play-video:before {
-	content:"\f02e"}
-
-.icon-empty:before {
-	content:"\f02f"
+	content:"\e039"
 }
 
 .icon-clear-input:before {
-	content:"\f030"
+	content:"\e14c"
 }
 
-.icon-compose:before {
-	content:"\e150";
-	font-family:"Material Icons"
+.icon-compose:before,.icon-edit:before,.icon-compose-dm:before {
+	content:"\e150"
 }
 
 .icon-mark-read:before {
-	content:"\e877";
-	font-family:"Material Icons"
+	content:"\e877"
 }
 
 .icon-arrow-r-double:before {
-	content:"\f033"
+	content:"\e5da"
 }
 
 .icon-arrow-l-double:before {
-	content:"\f034"
+	content:"\e5d9"
 }
 
 .icon-follow:before {
-	content:"\e7fe";
-	font-family:"Material Icons"
+	content:"\e7fe"
 }
 
 .icon-image:before {
-	content:"\e3f4";
-	font-family:"Material Icons"
+	content:"\e3f4"
 }
 
 .icon-popout:before {
-	content:"\f037"
+	content:"\e895";
+	transform:rotate(-90deg)
 }
 
 .icon-move:before {
-	content:"\f039"
+	content:"\e89f"
 }
 
-.icon-compose-grid:before {
-	content:"\f03a"
+.icon-compose-grid:before,.icon-user-switch:before,.icon-user-switch:before {
+	content:"\e853"
 }
 
 .icon-compose-minigrid:before {
-	content:"\f03b"
+	content:"\e8f0"
 }
 
 .icon-compose-list:before {
-	content:"\f03c"
+	content:"\e8ef"
 }
 
-.icon-edit:before {
-	content:"\f040"
-}
-
-.icon-clear-timeline:before {
-	content:"\e0b8";
-	font-family:"Material Icons"
+.recent-search-clear.list-item-last span:before,.icon-clear-timeline:before {
+	content:"\e0b8"
 }
 
 .icon-sliders:before {
-	content:"\e5d3";
-	font-family:"Material Icons"
+	content:"\e5d3"
 }
 
 .mtd-mobile .icon-sliders:before {
-	content:"\e5d4";
-	font-family:"Material Icons"
+	content:"\e5d4"
 }
 
 .icon-custom-timeline:before {
-	content:"\e431";
-	font-family:"Material Icons"
-}
-
-.icon-compose-dm:before {
-	content:"\e150";
-	font-family:"Material Icons"
-}
-
-.icon-bg-dot:before {
-	content:"\f045"
+	content:"\e431"
 }
 
 .icon-user-team-mgr:before {
-	content:"\e7fb";
-	font-family:"Material Icons"
-}
-
-.icon-user-switch:before {
-	content:"\f047"
+	content:"\e7fb"
 }
 
 .icon-conversation:before {
-	content:"\f048"
+	content:"\e0ca"
 }
 
 .icon-link:before {
-	content:"\f04a"
+	content:"\e157"
 }
 
 .icon-flash:before {
-	content:"\f050"
+	content:"\e3e7"
 }
 
-.icon-user-switch:before {
-	content:"\f047"
-}
-
-.icon-conversation:before {
-	content:"\f048"
-}
-
-.icon-link:before {
-	content:"\f04a"
-}
-
-.icon-flash:before {
-	content:"\f050"
-}
-
-.icon-pointer-u:before {
-	content:"\f051"
+.mtd-nav-activator:before {
+	font-style:normal;
+	font-size:26px;
+	font-weight:400;
+	font-family:"Material Icons";
+	content:"\e5d2"
 }
 
 .icon-xsmall {
@@ -2077,30 +1980,13 @@ ul,ol,dl,li,dd {
 	color:#00838F
 }
 
-.sprite-verified {
+.sprite-translator,.sprite-verified {
 	width:20px;
 	height:20px
-}
-
-.sprite-verified:before {
-	content:"\e8e8"
 }
 
 .sprite-verified-mini {
 	width:16px
-}
-
-.sprite-verified-mini:before {
-	content:"\e8e8"
-}
-
-.sprite-translator {
-	width:20px;
-	height:20px
-}
-
-.sprite-translator:before {
-	content:"\e87a"
 }
 
 .sprite-close {
@@ -2109,11 +1995,6 @@ ul,ol,dl,li,dd {
 	font-size:36px;
 	margin-left:10px;
 	padding-top:20px
-}
-
-.sprite-close:before {
-	content:"\e5cd";
-	line-height:1em
 }
 
 .bing-logo {
@@ -4272,8 +4153,6 @@ a .column-title-back .icon:after {
 }
 
 .tweet-button .icon-compose:before {
-	content:"\E3C9";
-	font-family:"Material Icons";
 	font-size:32px;
 	margin-top:2px;
 	width:26px;
@@ -4285,8 +4164,6 @@ a .column-title-back .icon:after {
 }
 
 .tweet-button .icon-compose:after {
-	content:"\E5C4";
-	font-family:"Material Icons";
 	font-size:32px;
 	margin-left:10px;
 	margin-top:5px;
@@ -6443,12 +6320,10 @@ input[type="checkbox"] {
 }
 
 .search-input-control:before {
-	content:"\e8B6";
 	display:inline;
 	position:absolute;
 	top:10px;
 	font-size:16px;
-	font-family:"Material Icons";
 	color:#ccc
 }
 
@@ -6549,11 +6424,9 @@ input[type="checkbox"] {
 }
 
 .recent-search-clear.list-item-last span:before {
-	content:"\e0b8";
 	font-size:20px;
 	margin-top:10px;
-	display:inline-block;
-	font-family:"Material Icons"
+	display:inline-block
 }
 
 .recent-search-clear.list-item-last span:after {
@@ -7841,9 +7714,7 @@ input[type="checkbox"] {
 }
 
 .btn-back:before {
-	content:"\e5c4";
 	display:block;
-	font-family:"Material Icons";
 	font-size:30px;
 	color:#fff;
 	margin-left:-10px;
@@ -8321,12 +8192,6 @@ a[rel=hashtag]:active {
 	margin-right:8px
 }
 
-.js-send-button:after {
-	content:"\e163";
-	font-size:24px;
-	font-family:"Material Icons"
-}
-
 .js-send-button {
 	font-size:0
 }
@@ -8705,14 +8570,6 @@ a[rel=hashtag]:active {
 
 .mtd-minimal .mtd-nav-activator {
 	margin-top:6px
-}
-
-.mtd-nav-activator:before {
-	font-style:normal;
-	font-size:26px;
-	font-weight:400;
-	font-family:"Material Icons";
-	content:"\E5D2"
 }
 
 .mtd-minimal .mtd-nav-activator:before {
