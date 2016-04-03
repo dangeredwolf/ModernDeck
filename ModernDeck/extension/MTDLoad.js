@@ -1,38 +1,56 @@
 // MTDLoad.js
-// Copyright (c) 2015 Dangered Wolf
+// Copyright (c) 2016 Ryan Dolan (dangered wolf)
 
-const isDev = true;
+"use strict";
+console.log("MTDLoad 6.0");
 
-console.log("MTDLoad 5.4.2");
+var isDev = true;
+var isApp = typeof require !== "undefined";
+var isChromium = typeof chrome !== "undefined"; // NOTE TO SELF: This probably triggers on Microsoft Edge but idk
+var isSafari = typeof safari !== "undefined";
+var isFirefox = !isChromium && !isSafari && !isApp;
+var electron,app,BrowserWindow,mainWindow;
 
-if (typeof chrome !== "undefined") {
-  var isChromium = true;
+if (isApp) {
+
+  electron = require('electron');
+  app = electron.app;
+  BrowserWindow = electron.BrowserWindow;
+
+  app.on('ready',function(){
+    mainWindow = new BrowserWindow({width: 1280, height: 720, autoHideMenuBar: true, frame:true});
+
+    mainWindow.loadURL('file://' + __dirname + '../../../index.html');
+
+    if (isDev) {
+      mainWindow.webContents.openDevTools();
+    }
+
+    //mainWindow.webContents.executeJavaScript("var links=document.querySelectorAll(\"link[title='dark'],link[title='light']\");for(i=0;i<links.length;i++){links[i].href=\"\"}");
+
+    mainWindow.on('closed', function() {
+      app.quit();
+    });
+  });
 }
-
-if (typeof safari !== "undefined") {
-  var isSafari = true;
-}
-
-if (typeof chrome == "undefined" && typeof safari == "undefined") {
-  var isFirefox = true;
-}
-
 
 function InjectDevStyles() {
   console.log("*boops your nose* hey there developer :3");
   console.log("boopstrapping moderndeck.css for extensibility");
   console.log("don't forget to check that moderndeck.css is in manifest.json before shipping, you goof");
 
-  var links = document.querySelectorAll("link[title='dark'],link[title='light']");
+  if (isFirefox) {
+    var links = document.querySelectorAll("link[title='dark'],link[title='light']");
 
-  for (i = 0; i < links.length; i++) {
-    links[i].href = "";
+    for (i = 0; i < links.length; i++) {
+      links[i].href = "";
+    }
   }
 
-  injStyles = document.createElement("link");
+  var injStyles = document.createElement("link");
   injStyles.rel = "stylesheet";
 
-  if (isChromium) {
+  if (isChromium && !isApp) {
     injStyles.href = chrome.extension.getURL("sources/moderndeck.css");
   } else if (isSafari) {
     injStyles.href = safari.extension.baseURI + "sources/moderndeck.css";
@@ -45,19 +63,15 @@ function InjectDevStyles() {
   document.head.appendChild(injStyles);
 }
 
-if (typeof localStorage.mtd_stylesheet_dev_mode !== "undefined" && localStorage.mtd_stylesheet_dev_mode === "true" || isDev) {
-  InjectDevStyles();
-}
-
-if (!isSafari && !isChromium) {
+if ((!isApp && typeof localStorage.mtd_stylesheet_dev_mode !== "undefined" && localStorage.mtd_stylesheet_dev_mode === "true") || isDev || isFirefox) {
   InjectDevStyles();
 }
 
 console.log("Bootstrapping MTDinject");
-InjectScript = document.createElement("script");
+var InjectScript = document.createElement("script");
 
 function MTDURLExchange(url) {
-  injurl = document.createElement("div");
+  var injurl = document.createElement("div");
   injurl.setAttribute("type",url);
   injurl.id = "MTDURLExchange";
   document.head.appendChild(injurl);
