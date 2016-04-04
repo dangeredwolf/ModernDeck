@@ -1379,11 +1379,13 @@ ul,ol,dl,li,dd {
 
 .stream-item .nbfc:not(.media-item):not(.quoted-tweet):not(.account-summary-text) {
 	overflow:hidden;
+	margin:0;
 	margin-left:-60px;
 	word-break:break-word;
 	word-wrap:break-word;
 	font-size:0;
-	margin-top:0
+	margin-top:0;
+	padding:0
 }
 
 .stream-item>.js-show-detail .account-summary .nbfc>a {
@@ -3027,8 +3029,7 @@ a .column-title-back .icon:after {
 }
 
 .activity-header {
-	margin:0;
-	height:18px
+	margin-bottom:4px
 }
 
 .activity-header .avatar {
@@ -3038,7 +3039,7 @@ a .column-title-back .icon:after {
 
 .activity-header .align-below-header {
 	position:relative;
-	top:26px;
+	top:6px;
 }
 
 .activity-header.has-source-avatar {
@@ -10761,4 +10762,12 @@ iframe.report-flow {
 	.prf .lst-profile li:nth-child(5) {
 		width:26%
 	}
+}
+
+.column-type-interactions .stream-item:not(.is-actionable) .activity-header:not(.has-source-avatar):not(.activity-header-wrapping) {
+	margin-bottom:-20px
+}
+
+.list-item .list-text {
+	padding-left:6px
 }
