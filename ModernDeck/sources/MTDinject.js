@@ -90,7 +90,7 @@ function fontParseHelper(a) {
 
 function MTDInit(){
 
-	if (document.getElementsByClassName("js-signin-ui")[0] !== "undefined" && !replacedLoadingSpinnerNew) {
+	if (typeof document.getElementsByClassName("js-signin-ui")[0] !== "undefined" && !replacedLoadingSpinnerNew) {
 		document.getElementsByClassName("js-signin-ui")[0].innerHTML = '<div class="preloader-wrapper big active"><div class="spinner-layer"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div>';
 		replacedLoadingSpinnerNew = true;
 	}
@@ -106,9 +106,9 @@ function MTDInit(){
 		return;
 	}
 
-	TD.controller.stats.dataminrApiRequest = function(){};
-	TD.controller.stats.dataminrAuthRequest = function(){};
-	TD.controller.stats.dataminrClickImpression = function(){};
+	// TD.controller.stats.dataminrApiRequest = function(){};
+	// TD.controller.stats.dataminrAuthRequest = function(){};
+	// TD.controller.stats.dataminrClickImpression = function(){};
 
 	$(document.head).append(make("style").html(
 		fontParseHelper({name:"Roboto300latin",range:"U+0000-00FF,U+0131,U+0152-0153,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2212,U+2215,U+E0FF,U+EFFD,U+F000"}) +
@@ -429,6 +429,9 @@ function FinaliseLoginStuffs() {
 	$(mtd_nd_header_username).html($(".prf-card-inner .username").html()); // Fetch twitter handle and place in nav drawer
 
 	console.log("Finished login stuffs! you are in the nav drawer, I think!");
+
+	// TD.storage.clientController.client = [];
+	// TD.storage.clientController.client.isDirty = false; // Attempts to get around TD bug
 
 	if (profileProblem) {
 		profileProblem = false;

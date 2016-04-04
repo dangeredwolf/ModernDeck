@@ -12,7 +12,7 @@
 
 /* SUPERCLASSES */
 
-.account-summary-text.nbfc>a,.txt-center>.js-dismiss,.s-thats-you .btn-loader,.mdl-dismiss, .privacy-info, .mdl-drag-handle, .preloader-wrapper+.preloader-wrapper, .is-loaded>.preloader-wrapper, .nav-user-info>.avatar, .release-notes-image, .release-notes-image-bullet, .accordion .icon-arrow-u, .med-fullpanel .tweet-dogear, .tweet-detail-wrapper .tweet-dogear, .js-hide-drawer .icon-compose, .mdl-buttonbar>.js-dismiss, .mdl .search-input-control:before, .startflow-panel .txt-center:not(.form-error-message), .add-participant .search-input-control:before, .drawer-content .search-input-control:before, .cf.account-remove-check, .facet-type .search-input-control:before, .accordion .is-active .facet-subtitle, .mdl-dismiss, .mdl-dismiss-media, .mtd-mobile .column-type-icon, .column-type-message .js-column-detail .column-title-back:before, .add-on.with-emphasis, .mtd-minimal .column-navigator, .mtd-dark body.scroll-v .js-modal-context .mdl:before, html body .app-navigator .dropdown-menu, .caret, .js-column-detail .column-title-back.conversation-title:after, .more-tweets-btn-inner-mouse-release, .more-tweets-btn-inner-loading, .more-tweets-btn-container--mouse-release .more-tweets-btn-inner-default, .more-tweets-btn-container--loading .more-tweets-btn-inner-default, .status-message, .app-masthead, .cmp-spinner, .chev-right, .compose-text-title, .cmp button b, .cmp .mdl-header-title:empty, .app-search-tweet-results .column-header-temp, .spinner-centered, .without-tweet-drag-handles .tweet-drag-handle, .account-remove-check, .js-app-settings .obj-left, .tweet-action-item.feature-customtimelines.tweet-drag-handle, .tweet-detail-action-item.feature-customtimelines.tweet-drag-handle, .column-nav-link:after, .more-tweets-btn-inner-mouse-release, .more-tweets-btn-inner-loading, .more-tweets-btn-container--mouse-release .more-tweets-btn-inner-default, .more-tweets-btn-container--loading .more-tweets-btn-inner-default, .list-item .icon-search.list-icon, .js-typeahead-recent-search-item .obj-left, .s-following .follow-btn .btn-loader, .btd-settings, body:not(.btd-ready) #btdsettings, .edit-conversation-name .nbfc, .js-app-add-column, .js-dismiss, .js-schedule-datepicker-holder .popover .padding-as .btn .icon-trash, .js-dismiss.btn.btn-positive i.icon.icon-check.icon-small.padding-rs, .column-close-link.txt-r-dark-gray, .js-app-loading .js-header-container, .js-add-image-button-label, .js-schedule-button-label, .js-tweet-button-label, .js-dm-button .label.padding-ls, .column-nav-flyout, .release-notes-modal .mdl-drag-handle, #datepicker, .search-input-spinner, .search-input-clear-search, .toggle-item-text-truncated, .sch.s-searching .sch-clear, legend, .frm-legend, .action-btn, .med-origlink, .med-flaglink, .hide-detail-view-inline .detail-view-inline, .compose-account-selected, .js-compose-hint.margin-vl.anim.anim-fade-in, #file-upload-input, .s-sending .char-count, .s-profile .mdl-buttonbar, .s-profile h3, .mdl.s-nonav .mdl-inner .mdl-buttonbar, .ovl.is-dragging:before, .is-dragging.overlay:before, .numbered-badge-onheader, .tooltip-arrow, .app-search-in-popover, .app-search-form, .app-header .app-nav-logo-text, .app-header .hide-condensed, .app-header .sprite-logo, .app-header .tweet-button .label, .app-header .app-nav-link .icon-arrow-l-double, .app-header .app-nav-link .icon-arrow-r-double, .app-nav-link .icon-arrow-r-double, .app-nav-tab .icon-user-switch, .tweet-message-status, .icon.icon-move, .tweet-drag-handle, .is-narrow-columns .media-size-medium .media-sensitive-title, .contributor-row[data-contributor-role="contributor"] [data-show-when-contributor-role="admin"], .contributor-row[data-contributor-role="admin"] [data-show-when-contributor-role="contributor"], .contributor-row[data-state-error="closed-error"] [data-hide-when-state-error="closed-error"], .contributor-row[data-state="settings"] [data-hide-when-state="settings"], .contributor-row[data-state-error="settings-error"] [data-hide-when-state-error="settings-error"], [data-show-when-state], [data-show-when-state-error], .is-options-open .column-settings-link .icon-arrow-d, .column-header-link .icon-arrow-u, .column-title-back .attribution, .js-add-to-customtimeline-button, .column-title-editable .js-show-tip.avatar.size24, .account-remove-check, .signin-sheet-now-present .application, .with-add-by-url .list-placeholder.pin-all,.btn-fav>.btn-loader,.btn-fav-protected-text,.s-protected .btn-loader,.s-not-following .btn-loader,.action-text, .s-following .follow-btn:hover .following-text {
+.mdl>header.txt-seamful-black,.accs i,.account-summary-text.nbfc>a,.txt-center>.js-dismiss,.s-thats-you .btn-loader,.mdl-dismiss, .privacy-info, .mdl-drag-handle, .preloader-wrapper+.preloader-wrapper, .is-loaded>.preloader-wrapper, .nav-user-info>.avatar, .release-notes-image, .release-notes-image-bullet, .accordion .icon-arrow-u, .med-fullpanel .tweet-dogear, .tweet-detail-wrapper .tweet-dogear, .js-hide-drawer .icon-compose, .mdl-buttonbar>.js-dismiss, .mdl .search-input-control:before, .startflow-panel .txt-center:not(.form-error-message), .add-participant .search-input-control:before, .drawer-content .search-input-control:before, .cf.account-remove-check, .facet-type .search-input-control:before, .accordion .is-active .facet-subtitle, .mdl-dismiss, .mdl-dismiss-media, .mtd-mobile .column-type-icon, .column-type-message .js-column-detail .column-title-back:before, .add-on.with-emphasis, .mtd-minimal .column-navigator, .mtd-dark body.scroll-v .js-modal-context .mdl:before, html body .app-navigator .dropdown-menu, .caret, .js-column-detail .column-title-back.conversation-title:after, .more-tweets-btn-inner-mouse-release, .more-tweets-btn-inner-loading, .more-tweets-btn-container--mouse-release .more-tweets-btn-inner-default, .more-tweets-btn-container--loading .more-tweets-btn-inner-default, .status-message, .app-masthead, .cmp-spinner, .chev-right, .compose-text-title, .cmp button b, .cmp .mdl-header-title:empty, .app-search-tweet-results .column-header-temp, .spinner-centered, .without-tweet-drag-handles .tweet-drag-handle, .account-remove-check, .js-app-settings .obj-left, .tweet-action-item.feature-customtimelines.tweet-drag-handle, .tweet-detail-action-item.feature-customtimelines.tweet-drag-handle, .column-nav-link:after, .more-tweets-btn-inner-mouse-release, .more-tweets-btn-inner-loading, .more-tweets-btn-container--mouse-release .more-tweets-btn-inner-default, .more-tweets-btn-container--loading .more-tweets-btn-inner-default, .list-item .icon-search.list-icon, .js-typeahead-recent-search-item .obj-left, .s-following .follow-btn .btn-loader, .btd-settings, body:not(.btd-ready) #btdsettings, .edit-conversation-name .nbfc, .js-app-add-column, .js-dismiss, .js-schedule-datepicker-holder .popover .padding-as .btn .icon-trash, .js-dismiss.btn.btn-positive i.icon.icon-check.icon-small.padding-rs, .column-close-link.txt-r-dark-gray, .js-app-loading .js-header-container, .js-add-image-button-label, .js-schedule-button-label, .js-tweet-button-label, .js-dm-button .label.padding-ls, .column-nav-flyout, .release-notes-modal .mdl-drag-handle, #datepicker, .search-input-spinner, .search-input-clear-search, .toggle-item-text-truncated, .sch.s-searching .sch-clear, legend, .frm-legend, .action-btn, .med-origlink, .med-flaglink, .hide-detail-view-inline .detail-view-inline, .compose-account-selected, .js-compose-hint.margin-vl.anim.anim-fade-in, #file-upload-input, .s-sending .char-count, .s-profile .mdl-buttonbar, .s-profile h3, .mdl.s-nonav .mdl-inner .mdl-buttonbar, .ovl.is-dragging:before, .is-dragging.overlay:before, .numbered-badge-onheader, .tooltip-arrow, .app-search-in-popover, .app-search-form, .app-header .app-nav-logo-text, .app-header .hide-condensed, .app-header .sprite-logo, .app-header .tweet-button .label, .app-header .app-nav-link .icon-arrow-l-double, .app-header .app-nav-link .icon-arrow-r-double, .app-nav-link .icon-arrow-r-double, .app-nav-tab .icon-user-switch, .tweet-message-status, .icon.icon-move, .tweet-drag-handle, .is-narrow-columns .media-size-medium .media-sensitive-title, .contributor-row[data-contributor-role="contributor"] [data-show-when-contributor-role="admin"], .contributor-row[data-contributor-role="admin"] [data-show-when-contributor-role="contributor"], .contributor-row[data-state-error="closed-error"] [data-hide-when-state-error="closed-error"], .contributor-row[data-state="settings"] [data-hide-when-state="settings"], .contributor-row[data-state-error="settings-error"] [data-hide-when-state-error="settings-error"], [data-show-when-state], [data-show-when-state-error], .is-options-open .column-settings-link .icon-arrow-d, .column-header-link .icon-arrow-u, .column-title-back .attribution, .js-add-to-customtimeline-button, .column-title-editable .js-show-tip.avatar.size24, .account-remove-check, .signin-sheet-now-present .application, .with-add-by-url .list-placeholder.pin-all,.btn-fav>.btn-loader,.btn-fav-protected-text,.s-protected .btn-loader,.s-not-following .btn-loader,.action-text, .s-following .follow-btn:hover .following-text {
 	display:none
 }
 
@@ -119,22 +119,7 @@ video {
 	}
 }
 
-
-@keyframes menuDownAnimation {
-	from {
-		opacity:0;
-		margin-top:-5px;
-		padding:0 0
-	}
-
-	to {
-		opacity:1;
-		margin-top:0;
-		padding:10px 0
-	}
-}
-
-@keyframes menuDownAnimationNoPadding {
+@keyframes menuDown {
 	from {
 		opacity:0;
 		margin-top:-8px
@@ -146,7 +131,7 @@ video {
 	}
 }
 
-@keyframes menuDownAnimationLogin {
+@keyframes menuDownLogin {
 	from {
 		opacity:0;
 		margin-top:-20px
@@ -158,7 +143,7 @@ video {
 	}
 }
 
-@keyframes menuDownAnimationLargeNoPadding {
+@keyframes menuDownLarge {
 	from {
 		opacity:0;
 		margin-top:-40px
@@ -221,18 +206,16 @@ video {
 @keyframes menuUp {
 	from {
 		opacity:0;
-		bottom:100%;
-		padding:0 0
+		bottom:-50px
 	}
 
 	to {
 		opacity:1;
-		bottom:160%;
-		padding:10px 0
+		bottom:0
 	}
 }
 
-@keyframes menuUpAnimationNoPadding {
+@keyframes menuUpRelative {
 	from {
 		opacity:0;
 		margin-top:20px
@@ -308,18 +291,6 @@ video {
 	100% {
 		opacity:1;
 		transform:translate3d(0,0,0);
-	}
-}
-
-@keyframes panel {
-	from {
-		opacity:0;
-		transform:scale(.3,.3)
-	}
-
-	to {
-		opacity:1;
-		transform:scale(1,1)
 	}
 }
 
@@ -1217,7 +1188,7 @@ ul,ol,dl,li,dd {
 	overflow-x:auto
 }
 
-.scroll-styled-v,.scroll-styled-h,.scroll-alt,.scroll-v,.lst-launcher {
+.scroll-styled-v,.scroll-styled-h,.scroll-alt,.scroll-v,.lst-launcher,.s-tall-fixed {
 	scrollbar-face-color:#505254;
 	scrollbar-highlight-color:#505254;
 	scrollbar-shadow-color:#505254;
@@ -1228,7 +1199,7 @@ ul,ol,dl,li,dd {
 	pointer-events:all
 }
 
-.scroll-styled-v::-webkit-scrollbar,.scroll-v::-webkit-scrollbar,.lst-launcher::-webkit-scrollbar {
+.scroll-styled-v::-webkit-scrollbar,.scroll-v::-webkit-scrollbar,.lst-launcher::-webkit-scrollbar,.s-tall-fixed::-webkit-scrollbar {
 	width:10px
 }
 
@@ -1236,17 +1207,13 @@ ul,ol,dl,li,dd {
 	height:10px
 }
 
-.scroll-alt::-webkit-scrollbar-track,.lst-launcher::-webkit-scrollbar-track, {
-	border-color:#e5e5e5
-}
-
-.lst-launcher::-webkit-scrollbar-thumb,.scroll-styled-v::-webkit-scrollbar-thumb,.scroll-v::-webkit-scrollbar-thumb,.scroll-styled-h::-webkit-scrollbar-thumb,.scroll-alt::-webkit-scrollbar-thumb {
+.lst-launcher::-webkit-scrollbar-thumb,.scroll-styled-v::-webkit-scrollbar-thumb,.scroll-v::-webkit-scrollbar-thumb,.scroll-styled-h::-webkit-scrollbar-thumb,.scroll-alt::-webkit-scrollbar-thumb,.s-tall-fixed::-webkit-scrollbar-thumb {
 	border-radius:5px;
 	background:#D9D9D9;
 	transition:.2s background
 }
 
-.mtd-dark .lst-launcher::-webkit-scrollbar-thumb,.mtd-dark .scroll-styled-v::-webkit-scrollbar-thumb,.mtd-dark .scroll-v::-webkit-scrollbar-thumb,.mtd-dark .scroll-styled-h::-webkit-scrollbar-thumb {
+.mtd-dark .lst-launcher::-webkit-scrollbar-thumb,.mtd-dark .scroll-styled-v::-webkit-scrollbar-thumb,.mtd-dark .scroll-v::-webkit-scrollbar-thumb,.mtd-dark .scroll-styled-h::-webkit-scrollbar-thumb,.mtd-dark .s-tall-fixed::-webkit-scrollbar-thumb {
 	background:rgba(149,175,191,.52);
 	transition:.2s background
 }
@@ -2330,7 +2297,7 @@ ul,ol,dl,li,dd {
 	border-radius:2px
 }
 
-.input-group-button .input-group-input {
+.input-group-button .input-group-input:not(.js-add-to-customtimeline-input) {
 	min-height:30px;
 	border:none
 }
@@ -2402,10 +2369,6 @@ h6 {
 	font-size:1rem;
 	white-space:normal;
 	border-right:none!important
-}
-
-.column.is-focused {
-	box-shadow:inset 0 10px 10px 10px #00BBD5
 }
 
 .is-narrow-columns .column {
@@ -2510,10 +2473,6 @@ h6 {
 	background:#fff
 }
 
-.js-modal-panel {
-	animation:panel .3s cubic-bezier(.19,1,.22,1)
-}
-
 .js-dropdown,.js-popover {
 	animation:fadeIn .3s cubic-bezier(.19,1,.22,1)
 }
@@ -2559,8 +2518,8 @@ h6 {
 .is-shifted-1 .column-panel:nth-child(n+2),.is-shifted-2 .column-panel:nth-child(n+2) {
 	width:100%;
 	pointer-events:all;
-	opacity:1;
-	top:0
+	top:0;
+	opacity:1
 }
 
 .is-shifted-1 .column-detail-level-2 {
@@ -3120,11 +3079,6 @@ a .column-title-back .icon:after {
 
 .mtd-dark .list-item {
 	color:#dbdbdb
-}
-
-.list-item:hover,.list-item:active,.list-item.is-selected {
-	background:#0077FF;
-	color:#fff
 }
 
 .list-item:hover:not(.is-selected) {
@@ -3850,7 +3804,7 @@ a .column-title-back .icon:after {
 }
 
 .tweet-detail-media {
-	margin:15px 0
+	margin:15px 0;
 }
 
 .tweet-stats li {
@@ -4257,13 +4211,12 @@ a .column-title-back .icon:after {
 	color:#fff
 }
 
-.app-search .app-search-fake::-webkit-input-placeholder {
+.js-submittable-input.js-compose-text::-webkit-input-placeholder {
 	color:#fff
 }
 
-.app-search .app-search-fake::-moz-placeholder {
-	color:#fff;
-	opacity:1
+.js-submittable-input.js-compose-text::-moz-placeholder {
+	color:#fff
 }
 
 .app-search-input,.app-search-fake {
@@ -4423,8 +4376,12 @@ a .column-title-back .icon:after {
 	background:#fff;
 	color:#ddd;
 	border-radius:0;
-	animation:menuDownAnimationNoPadding .4s cubic-bezier(.19,1,.22,1);
+	animation:menuDown .4s cubic-bezier(.19,1,.22,1);
 	width:auto
+}
+
+.mtd-light .typeahead {
+	color:#333
 }
 
 .typeahead .fullname {
@@ -4743,7 +4700,7 @@ a .column-title-back .icon:after {
 	top:0;
 	position:absolute;
 	margin:0;
-	max-height:100%
+	max-height:100%;
 }
 
 .s-profile .s-profile {
@@ -4799,20 +4756,13 @@ a .column-title-back .icon:after {
 	font-weight:normal!important
 }
 
-.accs-header>h3 {
-	font-size:16px!important;
-	margin-left:auto!important;
-	margin-right:auto!important;
-	text-align:center!important;
-	font-weight:normal!important
-}
-
 .mdl-inner {
 	position:absolute;
 	top:70px;
 	left:-1px;
 	right:0;
-	bottom:0
+	bottom:0;
+	overflow:visible
 }
 
 .mdl .mdl-content {
@@ -4892,9 +4842,9 @@ a .column-title-back .icon:after {
 .s-fluid .mdl-inner,.s-fluid-height .mdl-inner {
 	position:relative;
 	top:20px;
-	bottom:auto;
-	left:auto;
-	right:auto
+	bottom:0;
+	left:0;
+	right:0
 }
 
 .mdl-favorite-from-options {
@@ -5160,27 +5110,26 @@ a .column-title-back .icon:after {
 }
 
 .accs-header {
-	padding-bottom:18px;
-	font-size:14px;
 	color:#fff;
 	z-index:6;
 	position:absolute;
 	width:100%;
 	margin-left:-15px;
-	margin-top:0
+	padding-top:10px;
+	height:40px;
+	margin-top:0;
+	animation:fadein 0.2s
 }
 
-.accs-header h3 {
-	font-size:16px;
-	text-overflow:ellipsis;
-	height:20px;
-	position:absolute;
+.accs-header>h3 {
+	font-size:18px;
+	text-align:left;
+	text-overflow: ellipsis;
 	white-space:nowrap;
-	padding-left:15px;
-	width:94%;
-	display:block;
+	width:95%;
 	margin:0;
-	overflow:hidden
+	font-weight:500;
+	overflow: hidden;
 }
 
 .accs-header a {
@@ -5190,9 +5139,10 @@ a .column-title-back .icon:after {
 .accs li {
 	position:relative;
 	float:left;
-	width:57px;
-	height:31px;
+	width:60px;
+	height:40px;
 	margin:0 6px 6px 0;
+	pointer-events:all;
 	cursor:pointer;
 	background:transparent;
 	transition:.15s all;
@@ -5202,62 +5152,17 @@ a .column-title-back .icon:after {
 	border-radius:57px
 }
 
-.accs li:hover {
-	background:rgba(0,0,0,.08);
-	transition:.15s all
-}
-
-.accs li:active {
-	background:rgba(0,0,0,.16);
-	transition:.15s all
-}
-
 .accs .acc-avatar {
-	position:absolute;
-	top:0;
-	left:0;
-	display:block;
-	width:31px;
-	height:31px;
-	border-radius:16px
-}
-
-.accs .icon {
-	position:absolute;
-	right:2px;
-	top:4px;
-	font-size:20px;
-	color:#BABABA
+	width:44px;
+	height:44px;
+	border-radius:22px
 }
 
 .accs .acc-selected {
-	background:#29B6F6;
 	transition:.15s all;
 	-webkit-filter:grayscale(0%);
 	filter:grayscale(0%);
 	opacity:1;
-	border-radius:57px
-}
-
-.accs .acc-selected i {
-	color:#fff;
-	transition:.2s all
-}
-
-.accs .acc-selected:hover {
-	border-color:#ddd;
-	background:#00B0FF;
-	transition:.2s all
-}
-
-.accs .acc-selected:active {
-	border-color:#ddd;
-	background:#2E99CA;
-	transition:.2s all
-}
-
-.js-accounts-toggle {
-	visibility:hidden
 }
 
 .compose {
@@ -5738,6 +5643,10 @@ a .column-title-back .icon:after {
 	border-radius: 4px 4px 0 0;
 	animation:mediaSlideUp .4s cubic-bezier(.19,1,.22,1);
 	pointer-events:all
+}
+
+.mtd-light:not(.mtd-dark-media-previews) .med-tweet {
+	background:#fff
 }
 
 .med-embeditem {
@@ -6349,8 +6258,13 @@ input[type="checkbox"] {
 	color:#000;
 	font-size:14px;
 	padding-right:25px;
+	padding-left:20px;
 	width:340px;
 	border-bottom:2px solid #ddd
+}
+
+.is-hidden * {
+	pointer-events:none
 }
 
 .search-input-control:before {
@@ -6359,10 +6273,6 @@ input[type="checkbox"] {
 	top:10px;
 	font-size:16px;
 	color:#ccc
-}
-
-.search-input {
-	padding-left:20px
 }
 
 .facet-type .search-input {
@@ -6415,7 +6325,7 @@ input[type="checkbox"] {
 	width:50px;
 	height:50px;
 	position:absolute;
-	right:-88px;
+	right:-28px;
 	bottom:100px;
 	box-shadow:0 2px 5px 1px rgba(0,0,0,.25);
 	background:#26C6DA;
@@ -6908,6 +6818,15 @@ input[type="checkbox"] {
 	display:block;
 }
 
+.mtd-light .prf-stats>li>a {
+	color:#888
+}
+
+.mtd-light .prf-stats>li>a>strong {
+	color:#333
+}
+
+
 .prf-stats>li>a>strong {
 	float:right;
 	margin-left:-35px;
@@ -7192,7 +7111,7 @@ input[type="checkbox"] {
 
 .drp-h-divider {
 	border-bottom:1px solid #e5e5e5;
-	margin-top:-10px;
+	margin-top:5px;
 	margin-bottom:5px
 }
 
@@ -7201,7 +7120,6 @@ input[type="checkbox"] {
 	z-index:1;
 	right:50%;
 	top:20px;
-	padding:10px 0;
 	text-align:left;
 	font-weight:400;
 	font-size:14.5px;
@@ -7209,32 +7127,48 @@ input[type="checkbox"] {
 	background:#fff;
 	box-shadow:0 2px 5px 0 rgba(0,0,0,.23);
 	transition:.2s all;
-	margin-bottom:-15px;
+	margin-top:-18px;
 	text-indent:0;
 	margin-right:inherit!important;
 	width:220px;
-	margin-right:-15px;
-	animation:menuDownAnimation .3s 1 cubic-bezier(.19,1,.22,1);
+	margin-right:-20px;
+	animation:menuDown .3s 1 cubic-bezier(.19,1,.22,1);
 	border-radius:2px
 }
 
 .dropdown-menu>.js-dropdown-content>ul>li:not(.drp-h-divider) {
 	position:relative;
 	display:block;
-	padding:2px 0 2px 16px;
+	padding:8px 0 0 18px;
 	height:30px;
 	transition:.2s all
 }
 
+.dropdown-menu>.js-dropdown-content>ul>:first-child>a {
+	padding:8px 0 0 15px;
+}
+
+.dropdown-menu>.js-dropdown-content>ul>:last-child>a {
+	padding:0 0 0 15px;
+}
+
 .dropdown-menu>.js-dropdown-content>ul>li>a {
-	position:relative;
-	line-height:2
+	position:absolute;
+	color:#333;
+	line-height:2;
+	top:0;
+	bottom:0;
+	left:0;
+	right:0;
+	padding-left:15px;
+	padding-top:3px
 }
 
 .pos-t {
 	top:auto;
 	animation:menuUp .3s 1 cubic-bezier(.19,1,.22,1);
-	bottom:160%
+	bottom:0;
+	right:0
 }
 
 .ovl-trap {
@@ -7395,7 +7329,7 @@ input[type="checkbox"] {
 	color:#444;
 	box-shadow:0 10px 30px rgba(0,0,0,.75);
 	border-radius:2px;
-	animation:menuDownAnimationLogin .4s 1 cubic-bezier(.19,1,.22,1)
+	animation:menuDownLogin .4s 1 cubic-bezier(.19,1,.22,1)
 }
 
 .form-newto-txt {
@@ -7742,12 +7676,10 @@ input[type="checkbox"] {
 }
 
 .med-tweet .dropdown-menu {
-	top:initial;
-	bottom:160%
 }
 
 .js-account-selector {
-	padding-top:50px
+	padding-top:100px
 }
 
 .draggable-dragging {
@@ -8199,11 +8131,11 @@ a[rel=hashtag]:active {
 }
 
 .media-size-large .media-sensitive-content b {
-	font-size:36px
+	font-size:24px
 }
 
 .tweet-detail-wrapper .media-sensitive-content b {
-	font-size:36px
+	font-size:24px
 }
 
 :not(.tweet-detail-wrapper) .media-size-medium.media-sensitive {
@@ -8212,15 +8144,15 @@ a[rel=hashtag]:active {
 
 .media-sensitive-content {
 	color:transparent;
-	height:100%!important;
+	height: 130%!important;
 	width:100%!important;
-	left:35%;
-	top:35%
+	left: 40%;
+	top: 40%;
 }
 
 .media-size-medium .media-sensitive-content,.media-size-small .media-sensitive-content,.media-size-large .media-sensitive-content {
-	left:42%;
-	width:94%!important
+	left:45%;
+	width:97%!important
 }
 
 .media-sensitive.is-hidden {
@@ -8582,7 +8514,7 @@ a[rel=hashtag]:active {
 }
 
 .js-login-error-message {
-	animation:menuDownAnimationLargeNoPadding .4s 1 cubic-bezier(.19,1,.22,1)
+	animation:menuDownLarge .4s 1 cubic-bezier(.19,1,.22,1)
 }
 
 .app-signin-form .cf.margin-txs {
@@ -8682,7 +8614,7 @@ a[rel=hashtag]:active {
 .js-compose-message-recipient-container .typeahead-user-list {
 	width:240px;
 	transition:.2s all;
-	animation:menuDownAnimationNoPadding .225s 1 cubic-bezier(.19,1,.22,1)
+	animation:menuDown .225s 1 cubic-bezier(.19,1,.22,1)
 }
 
 .js-compose-message-recipient-container .js-typeahead-dropdown {
@@ -8817,7 +8749,7 @@ a[rel=hashtag]:active {
 }
 
 .emoji-popover .emoji-container>.active {
-	animation:menuUpAnimationNoPadding .25s 1 cubic-bezier(.19,1,.22,1)!important
+	animation:menuUpRelative .25s 1 cubic-bezier(.19,1,.22,1)!important
 }
 
 .btd-emoji.emoji-pop[data-cat="Emoji-HumanImage"] {
@@ -9041,6 +8973,11 @@ fieldset .fixed-width-label:not(.radio),fieldset:not(.js-search-filter) .control
 	margin-left:10px
 }
 
+.compose .js-quote-tweet-holder .quoted-tweet {
+	padding-left:5px!important;
+	padding-right:90px!important
+}
+
 .is-options-open .more-tweets-btn-container--hidden {
 	top:-50px!important
 }
@@ -9231,21 +9168,6 @@ html.mtd-dark {
 	background:rgb(38,50,56)
 }
 
-.mtd-dark .accs .acc-selected {
-	background:#00838F;
-	-webkit-filter:grayscale(0%);
-	filter:grayscale(0%);
-	opacity:1
-}
-
-.mtd-dark .accs .acc-selected:hover {
-	background:#009AA8
-}
-
-.mtd-dark .accs .acc-selected:active {
-	background:#227A7F
-}
-
 .mtd-dark .mdl {
 	background: rgb(37, 50, 56);
 }
@@ -9274,6 +9196,10 @@ html.mtd-dark {
 .mtd-dark ::selection {
 	background:#00838F;
 	color:#eee
+}
+
+.cmp-replyto {
+	width:94.75%;
 }
 
 .mtd-dark .cmp-replyto {
@@ -9574,6 +9500,10 @@ article.is-unread .account-link {
 	opacity:.99
 }
 
+.tweet-detail-wrapper .media-sensitive {
+
+}
+
 .mtd-light .tweet-detail-wrapper .media-sensitive {
 	background:#FAFAFA;
 	opacity:.99
@@ -9613,8 +9543,10 @@ article.is-unread .account-link {
 }
 
 .js-column-options .dropdown-menu.js-dropdown {
-	animation:menuDownAnimationNoPadding .4s 1 cubic-bezier(.19,1,.22,1);
-	margin-top:0
+	animation:menuDown .4s 1 cubic-bezier(.19,1,.22,1);
+	margin-top:0;
+	left:0;
+	top:-15px
 }
 
 .js-account-safeguard-checkbox {
@@ -9764,7 +9696,8 @@ article.is-unread .account-link {
 }
 
 .typeahead-dropdown {
-	animation:menuDownAnimationNoPadding .225s 1;
+	animation:menuUpRelative .225s 1,fadeIn .225s 1;
+	top:60px;
 	width:240px
 }
 
@@ -10168,7 +10101,7 @@ button.mtd-no-transform-case {
 }
 
 .js-search .popover {
-	width:400px!important
+	width:400px!important;
 }
 
 .edit-conversation-name .btn {
@@ -10754,4 +10687,64 @@ button.mtd-no-transform-case {
 
 .tweet-stats>li:only-child>a {
 	margin-top:-18px
+}
+
+.cmp-replyto {
+	bottom:0;
+	position:absolute
+}
+
+.s-inreply.s-fluid-height .cf>.pull-right {
+	position:absolute;
+	right:0;
+	bottom:-50px
+}
+
+.cmp-replyto.js-inreply .tweet-avatar {
+	margin-top:-100%;
+	box-shadow:0 3px 9px rgba(17,17,17,.475)
+}
+
+.s-tall-fixed {
+	width:644px;
+	pointer-events:all
+}
+
+.s-profile {
+	overflow-y:auto
+}
+
+iframe.report-flow {
+	border:0;
+	position:absolute;
+	top:0;
+	left:0;
+	bottom:0;
+	right:0;
+	min-width:100%;
+	width:100%;
+	min-height:2000px;
+	height:100%;
+}
+
+.accordion-panel .padding-ts,.accordion-panel .padding-txs {
+	padding-left:32px
+}
+
+.accordion-panel .toggle-switch {
+	margin-left:-7px
+}
+
+.mdl .column-detail-level-2 .column-scroller {
+	top:56px
+}
+
+.typeahead-item.padding-am>.padding-ts {
+	padding-left:32px!important
+}
+
+.quoted-tweet .media-sensitive-title {
+	font-size:14px!important;
+	font-weight:500;
+	padding-top:10px
 }
