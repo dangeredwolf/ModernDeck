@@ -1188,7 +1188,8 @@ ul,ol,dl,li,dd {
 	overflow-x:auto
 }
 
-.scroll-styled-v,.scroll-styled-h,.scroll-alt,.scroll-v,.lst-launcher,.s-tall-fixed {
+
+.scroll-styled-v,.scroll-styled-h,.scroll-alt,.scroll-v,.lst-launcher,.mtd-nav-drawer,.mdl.s-profile {
 	scrollbar-face-color:#505254;
 	scrollbar-highlight-color:#505254;
 	scrollbar-shadow-color:#505254;
@@ -1199,7 +1200,7 @@ ul,ol,dl,li,dd {
 	pointer-events:all
 }
 
-.scroll-styled-v::-webkit-scrollbar,.scroll-v::-webkit-scrollbar,.lst-launcher::-webkit-scrollbar,.s-tall-fixed::-webkit-scrollbar {
+.mdl.s-profile::-webkit-scrollbar,.scroll-styled-v::-webkit-scrollbar,.scroll-v::-webkit-scrollbar,.lst-launcher::-webkit-scrollbar,.mtd-nav-drawer::-webkit-scrollbar {
 	width:10px
 }
 
@@ -1207,25 +1208,21 @@ ul,ol,dl,li,dd {
 	height:10px
 }
 
-.lst-launcher::-webkit-scrollbar-thumb,.scroll-styled-v::-webkit-scrollbar-thumb,.scroll-v::-webkit-scrollbar-thumb,.scroll-styled-h::-webkit-scrollbar-thumb,.scroll-alt::-webkit-scrollbar-thumb,.s-tall-fixed::-webkit-scrollbar-thumb {
+.mdl.s-profile::-webkit-scrollbar-thumb,.mtd-nav-drawer::-webkit-scrollbar-thumb,.lst-launcher::-webkit-scrollbar-thumb,.scroll-styled-v::-webkit-scrollbar-thumb,.scroll-v::-webkit-scrollbar-thumb,.scroll-styled-h::-webkit-scrollbar-thumb,.scroll-alt::-webkit-scrollbar-thumb,.s-tall-fixed::-webkit-scrollbar-thumb {
 	border-radius:5px;
-	background:#D9D9D9;
-	transition:.2s background
+	background:#D9D9D9
 }
 
-.mtd-dark .lst-launcher::-webkit-scrollbar-thumb,.mtd-dark .scroll-styled-v::-webkit-scrollbar-thumb,.mtd-dark .scroll-v::-webkit-scrollbar-thumb,.mtd-dark .scroll-styled-h::-webkit-scrollbar-thumb,.mtd-dark .s-tall-fixed::-webkit-scrollbar-thumb {
-	background:rgba(149,175,191,.52);
-	transition:.2s background
+.mtd-dark .mdl.s-profile::-webkit-scrollbar-thumb,.mtd-dark .mtd-nav-drawer::-webkit-scrollbar-thumb,.mtd-dark .lst-launcher::-webkit-scrollbar-thumb,.mtd-dark .scroll-styled-v::-webkit-scrollbar-thumb,.mtd-dark .scroll-v::-webkit-scrollbar-thumb,.mtd-dark .scroll-styled-h::-webkit-scrollbar-thumb,.mtd-dark .s-tall-fixed::-webkit-scrollbar-thumb {
+	background:rgba(149,175,191,.52)
 }
 
-.lst-launcher::-webkit-scrollbar-thumb:hover,.scroll-styled-v::-webkit-scrollbar-thumb:hover,.scroll-v::-webkit-scrollbar-thumb:hover,.scroll-styled-h::-webkit-scrollbar-thumb:hover,.scroll-alt::-webkit-scrollbar-thumb:hover {
-	background:#c9c9c9;
-	transition:.2s background
+.mdl.s-profile::-webkit-scrollbar-thumb:hover,.mtd-nav-drawer::-webkit-scrollbar-thumb:hover,.lst-launcher::-webkit-scrollbar-thumb:hover,.scroll-styled-v::-webkit-scrollbar-thumb:hover,.scroll-v::-webkit-scrollbar-thumb:hover,.scroll-styled-h::-webkit-scrollbar-thumb:hover,.scroll-alt::-webkit-scrollbar-thumb:hover {
+	background:#c9c9c9
 }
 
-.mtd-dark .lst-launcher::-webkit-scrollbar-thumb:hover,.mtd-dark .scroll-styled-v::-webkit-scrollbar-thumb:hover,.mtd-dark .scroll-v::-webkit-scrollbar-thumb:hover,.mtd-dark .scroll-styled-h::-webkit-scrollbar-thumb:hover {
-	background:rgb(132,152,165);
-	transition:.2s background
+.mtd-dark .mdl.s-profile::-webkit-scrollbar-thumb:hover,.mtd-dark .mtd-nav-drawer::-webkit-scrollbar-thumb:hover,.mtd-dark .lst-launcher::-webkit-scrollbar-thumb:hover,.mtd-dark .scroll-styled-v::-webkit-scrollbar-thumb:hover,.mtd-dark .scroll-v::-webkit-scrollbar-thumb:hover,.mtd-dark .scroll-styled-h::-webkit-scrollbar-thumb:hover {
+	background:rgb(132,152,165)
 }
 
 .antiscroll-wrap {
@@ -1387,10 +1384,6 @@ ul,ol,dl,li,dd {
 	word-wrap:break-word;
 	font-size:0;
 	margin-top:0
-}
-
-.stream-item .nbfc:not(.media-item):not(.quoted-tweet):not(.account-summary-text):not(.txt-small) {
-	margin-top:4px
 }
 
 .stream-item>.js-show-detail .account-summary .nbfc>a {
@@ -4386,11 +4379,17 @@ a .column-title-back .icon:after {
 
 .typeahead .fullname {
 	color:#000;
+	padding-left:8px;
 	font-size:13px
+}
+
+.mtd-dark .typeahead .fullname {
+	color:#ccc
 }
 
 .typeahead .username {
 	color:#999;
+	padding-left:5px;
 	font-size:12px
 }
 
@@ -8418,8 +8417,7 @@ a[rel=hashtag]:active {
 	box-shadow:0 15px 40px rgba(17,17,17,.4);
 	transition:.3s all cubic-bezier(.19,1,.22,1);
 	overflow-x:hidden;
-	overflow-y:scroll;
-	overflow-y:hidden;
+	overflow-y:auto
 }
 
 .mtd-nav-drawer-hidden {
@@ -9025,7 +9023,7 @@ html.mtd-dark {
 	color:#eee
 }
 
-.mtd-dark .txt-mute,.mtd-dark-media-previews .med-fullpanel .txt-mute,.mtd-dark .txt-r-dark-gray {
+.mtd-dark .txt-mute,.mtd-dark-media-previews .med-fullpanel .txt-mute,.mtd-dark .txt-r-dark-gray,.mtd-dark .typeahead .username {
 	color:#6D808B
 }
 
@@ -9921,19 +9919,7 @@ html.mtd-dark body {
 	border-radius:0!important
 }
 
-@media (max-width:1250px) {
-	.mdl.s-full {
-		width:75%;
-	}
-}
-
-@media (max-width:1000px) {
-	.mdl.s-full {
-		width:85%;
-	}
-}
-
-@media (max-width:999px) {
+@media (max-width:900px) {
 	.mdl.s-full {
 		width:90%;
 	}
@@ -10341,7 +10327,7 @@ button.mtd-no-transform-case {
 }
 
 .tweet-stats {
-	margin-top:-25px
+	margin-top: -16px;
 }
 
 .card-holder h3 a,.tweet-detail .card-holder .txt-normal {
@@ -10660,10 +10646,6 @@ button.mtd-no-transform-case {
 	padding-left:55px
 }
 
-.stream-item:not(.is-actionable)>:first-child.item-box>:first-child.activity-header {
-	height:01a
-}
-
 .list-account>:nth-child(2).nbfc {
 	padding-left:10px;
 	padding-right:10px
@@ -10747,4 +10729,36 @@ iframe.report-flow {
 	font-size:14px!important;
 	font-weight:500;
 	padding-top:10px
+}
+
+.med-tweet .tweet-context>.nbfc>a,.med-tweet .tweet-context>.obj-left {
+	padding-left:8px
+}
+
+.mdl.s-profile {
+	overflow-y:auto
+}
+
+@media screen and (max-height:800px) {
+	.prf-stats>li {
+		width:49.6%;
+	}
+	.prf-stats>li:nth-child(2) {
+		margin-top:50px;
+	}
+}
+
+@media screen and (max-height:600px) {
+	.prf .lst-profile li {
+		width:20%;
+		padding-top:0
+	}
+
+	.prf .lst-profile li:nth-child(4) {
+		width:31%
+	}
+
+	.prf .lst-profile li:nth-child(5) {
+		width:26%
+	}
 }
