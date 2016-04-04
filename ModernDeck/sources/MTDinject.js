@@ -182,6 +182,8 @@ function MTDInit(){
 	else
 		setPref("mtd_outlines",false);
 
+	html.addClass("mtd-back-" + getPref("mtd_theme"));
+
 	TD.util.prettyTimeString = function(e) {
 		return TD.i("{{hours12}}:{{minutes}} {{amPm}}, {{day}} {{month}} {{fullYear}}", TD.util.prettyTime(e));
 	};
@@ -319,6 +321,12 @@ function PrefsListener() {
 			html.removeClass("mtd-acc-focus-ring");
 		}
 
+		if (localStorage.mtd_theme !== $("#mtd-theme-control option:selected")[0].value) {
+			html.removeClass("mtd-back-" + localStorage.mtd_theme);
+			localStorage.mtd_theme = $("#mtd-theme-control option:selected")[0].value;
+			html.addClass("mtd-back-" + $("#mtd-theme-control option:selected")[0].value);
+		}
+
 		setTimeout(PrefsListener,500);
 	}
 }
@@ -344,7 +352,7 @@ function MTDSettings() {
 			</ul> </div> </div> <div class="l-column mdl-column mdl-column-lrg"> <div class="l-column-scrollv scroll-v	scroll-alt mdl-col-settings">\
 			\
 			\
-			<form action="#" id="mtd-appearance-form" accept-charset="utf-8" class="frm"><fieldset id="general_settings"><div class="control-group" style="padding-top:10px;"><label class="checkbox">Use rounded profile pictures<input type="checkbox" name="streaming-updates" checked="checked" id="mtd-round-avatars-control"> </label><label class="checkbox">Dark media viewer in light mode<input type="checkbox" name="streaming-updates" checked="checked" id="mtd-dark-media-control"> </label></div></fieldset></form>\
+			<form action="#" id="mtd-appearance-form" accept-charset="utf-8" class="frm"><fieldset id="general_settings"><div class="control-group" style="padding-top:10px;"><label class="checkbox">Use rounded profile pictures<input type="checkbox" name="streaming-updates" checked="checked" id="mtd-round-avatars-control"> </label><label class="checkbox">Dark media viewer in light mode<input type="checkbox" name="streaming-updates" checked="checked" id="mtd-dark-media-control"> </label><label class="control-label">Theme<select name="streaming-updates" id="mtd-theme-control" type="select"><option value="none">None</option><option value="paper">Paper</option><option value="grey">Grey</option><option value="red">Red</option><option value="pink">Pink</option><option value="orange">Orange</option><option value="violet">Violet</option><option value="teal">Teal</option><option value="green">Green</option><option value="yellow">Yellow</option><option value="cyan">Cyan</option><option value="black">Black</option><option value="blue">Blue</option></select></label></div></fieldset></form>\
 			\
 			<form action="#" id="mtd-accessibility-form" accept-charset="utf-8" class="frm" style="display:none;"><fieldset id="general_settings"><label class="checkbox">Always show outlines on focussed items<input type="checkbox" checked="checked" id="mtd-outlines-control"> </label></fieldset></form>\
 			\
@@ -355,6 +363,8 @@ function MTDSettings() {
 			$("#mtd-round-avatars-control").attr("checked",localStorage.mtd_round_avatars === "true" && true || false);
 			$("#mtd-outlines-control").attr("checked",localStorage.mtd_outlines === "true" && true || false);
 			$("#mtd-dark-media-control").attr("checked",localStorage.mtd_dark_media === "true" && true || false);
+			$("#mtd-theme-control").val(localStorage.mtd_theme);
+
 
 			PrefsListener();
 
@@ -628,13 +638,15 @@ function ReloadTheme() {
 		var stuff = $(".application,html");
 		stuff.removeClass("mtd-light mtd-dark");
 
-		if ($("link[title='dark'][disabled]").length > 0) {
+		if (document.querySelector("meta[http-equiv='default-style']").content === "light") {
 			stuff.addClass("mtd-light");
 			MTDDark = false;
 		} else {
 			stuff.addClass("mtd-dark");
 			MTDDark = true;
 		}
+
+		$("html").addClass("mtd-back-" + localStorage.mtd_theme);
 }
 
 function DisableSecureStylesheets() {
@@ -861,6 +873,6 @@ window.addEventListener("keyup",KeyboardShortcutHandler,false);
 	mutations.forEach(function(mutation) {
 		ReloadTheme();
 	});
-})).observe(document.querySelector("link[title='dark']"), {attributes:true});
+})).observe(document.querySelector("meta[http-equiv='default-style']"), {attributes:true});
 
 console.log("MTDinject loaded");
