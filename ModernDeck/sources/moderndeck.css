@@ -10389,7 +10389,7 @@ button.mtd-no-transform-case {
 }
 
 .tweet-stats {
-	margin-top:-25px
+	margin-top: -16px;
 }
 
 .card-holder h3 a,.tweet-detail .card-holder .txt-normal {
