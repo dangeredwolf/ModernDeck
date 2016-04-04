@@ -7145,11 +7145,11 @@ input[type="checkbox"] {
 }
 
 .dropdown-menu>.js-dropdown-content>ul>:first-child>a {
-	padding:8px 0 0 15px;
+	padding:5px 0 0 15px
 }
 
 .dropdown-menu>.js-dropdown-content>ul>:last-child>a {
-	padding:0 0 0 15px;
+	padding:2px 0 0 15px
 }
 
 .dropdown-menu>.js-dropdown-content>ul>li>a {
@@ -10454,7 +10454,7 @@ button.mtd-no-transform-case {
 	margin-top:-60px
 }
 
-.mtd-light .js-search-results-container .facet-title,.mtd-light .facet-subtitle,.facet-content {
+.mtd-light .js-search-results-container .facet-title {
 	color:#000
 }
 
@@ -10770,4 +10770,8 @@ iframe.report-flow {
 
 .list-item .list-text {
 	padding-left:6px
+}
+
+.btn-bg-positive.btn-options-tray-space {
+	color:#fff!important
 }
