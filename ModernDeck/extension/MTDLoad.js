@@ -9,6 +9,7 @@ var isApp = typeof require !== "undefined";
 var isChromium = typeof chrome !== "undefined"; // NOTE TO SELF: This probably triggers on Microsoft Edge but idk
 var isSafari = typeof safari !== "undefined";
 var isFirefox = !isChromium && !isSafari && !isApp;
+var storage = {};
 var electron,app,BrowserWindow,mainWindow;
 
 if (isApp) {
@@ -91,3 +92,26 @@ if (isChromium) {
 
 InjectScript.type = "text/javascript";
 document.head.appendChild(InjectScript);
+
+chrome.runtime.sendMessage("getStorage");
+
+chrome.runtime.onMessage.addListener(function(m) {
+  if (m.name == "sendStorage") {
+    storage = m.storage;
+  }
+});
+
+window.addEventListener("message", function(event) {
+  if (event.source == window &&
+      event.data.type) {
+    if (event.data.type == "setStorage") {
+      chrome.runtime.sendMessage({"name": "setStorage", "content": event.data.message});
+    }
+    else if (event.data.type == "getStorage") {
+      window.postMessage({
+        type: "sendStorage",
+        message: storage
+      }, "*");
+    }
+  }
+});

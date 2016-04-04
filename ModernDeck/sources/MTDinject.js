@@ -37,6 +37,41 @@ var head = $(document.head);
 var body = $(document.body);
 var html = $(document.querySelector("html")); // Only 1 result; faster to find
 
+// Asks MTDLoad for the storage
+window.postMessage({
+	type: "getStorage"
+}, "*");
+
+// Adds each key in the extension storage to localStorage
+window.addEventListener("message", function(e) {
+	console.log(e.data);
+	if (e.source == window) {
+		if (e.data.type == "sendStorage") {
+			var settings = e.data.message;
+			for (var key in settings) {
+				localStorage.setItem(key, settings[key]);
+			}
+		}
+	}
+});
+
+window.addEventListener("beforeunload", function(e){
+	var storage = {}
+	for(var i = 0; i < localStorage.length; i++){
+		var key = localStorage.key(i);
+		if (key == "guestID" || key == "metrics.realtimeData") {
+			continue;
+		} else {
+			storage[key] = localStorage[key];
+		}
+	}
+
+	window.postMessage({
+		type: "setStorage",
+		message: storage
+	}, "*");
+})
+
 Preferences.Appearance = [
 	[
 		"flag",
@@ -69,7 +104,13 @@ if (typeof chrome === "undefined" && typeof safari === "undefined") {
 }
 
 function getPref(id) {
-	return localStorage[id] === "true" && true || localStorage[id] === "false" && false || localStorage[id];
+	if (localStorage[id] === "true") {
+		return true;
+	} else if (localStorage[id] === "false") {
+		return false;
+	} else {
+		return localStorage[id];
+	}
 }
 
 function setPref(id,p) {
