@@ -12,7 +12,7 @@
 
 /* SUPERCLASSES */
 
-.icon.column-nav-updates,.mdl>header.txt-seamful-black,.accs i,.account-summary-text.nbfc>a,.txt-center>.js-dismiss,.s-thats-you .btn-loader,.mdl-dismiss, .privacy-info, .mdl-drag-handle, .preloader-wrapper+.preloader-wrapper, .is-loaded>.preloader-wrapper, .nav-user-info>.avatar, .release-notes-image, .release-notes-image-bullet, .accordion .icon-arrow-u, .med-fullpanel .tweet-dogear, .tweet-detail-wrapper .tweet-dogear, .js-hide-drawer .icon-compose, .mdl-buttonbar>.js-dismiss, .mdl .search-input-control:before, .startflow-panel .txt-center:not(.form-error-message), .add-participant .search-input-control:before, .drawer-content .search-input-control:before, .cf.account-remove-check, .facet-type .search-input-control:before, .accordion .is-active .facet-subtitle, .mdl-dismiss, .mdl-dismiss-media, .mtd-mobile .column-type-icon, .column-type-message .js-column-detail .column-title-back:before, .add-on.with-emphasis, .mtd-minimal .column-navigator, .mtd-dark body.scroll-v .js-modal-context .mdl:before, html body .app-navigator .dropdown-menu, .caret, .js-column-detail .column-title-back.conversation-title:after, .more-tweets-btn-inner-mouse-release, .more-tweets-btn-inner-loading, .more-tweets-btn-container--mouse-release .more-tweets-btn-inner-default, .more-tweets-btn-container--loading .more-tweets-btn-inner-default, .status-message, .app-masthead, .cmp-spinner, .chev-right, .compose-text-title, .cmp button b, .cmp .mdl-header-title:empty, .app-search-tweet-results .column-header-temp, .spinner-centered, .without-tweet-drag-handles .tweet-drag-handle, .account-remove-check, .js-app-settings .obj-left, .tweet-action-item.feature-customtimelines.tweet-drag-handle, .tweet-detail-action-item.feature-customtimelines.tweet-drag-handle, .column-nav-link:after, .more-tweets-btn-inner-mouse-release, .more-tweets-btn-inner-loading, .more-tweets-btn-container--mouse-release .more-tweets-btn-inner-default, .more-tweets-btn-container--loading .more-tweets-btn-inner-default, .list-item .icon-search.list-icon, .js-typeahead-recent-search-item .obj-left, .s-following .follow-btn .btn-loader, .btd-settings, body:not(.btd-ready) #btdsettings, .edit-conversation-name .nbfc, .js-app-add-column, .js-dismiss, .js-schedule-datepicker-holder .popover .padding-as .btn .icon-trash, .js-dismiss.btn.btn-positive i.icon.icon-check.icon-small.padding-rs, .column-close-link.txt-r-dark-gray, .js-app-loading .js-header-container, .js-add-image-button-label, .js-schedule-button-label, .js-tweet-button-label, .js-dm-button .label.padding-ls, .column-nav-flyout, .release-notes-modal .mdl-drag-handle, #datepicker, .search-input-spinner, .search-input-clear-search, .toggle-item-text-truncated, .sch.s-searching .sch-clear, legend, .frm-legend, .action-btn, .med-origlink, .med-flaglink, .hide-detail-view-inline .detail-view-inline, .compose-account-selected, .js-compose-hint.margin-vl.anim.anim-fade-in, #file-upload-input, .s-sending .char-count, .s-profile .mdl-buttonbar, .s-profile h3, .mdl.s-nonav .mdl-inner .mdl-buttonbar, .ovl.is-dragging:before, .is-dragging.overlay:before, .numbered-badge-onheader, .tooltip-arrow, .app-search-in-popover, .app-search-form, .app-header .app-nav-logo-text, .app-header .hide-condensed, .app-header .sprite-logo, .app-header .tweet-button .label, .app-header .app-nav-link .icon-arrow-l-double, .app-header .app-nav-link .icon-arrow-r-double, .app-nav-link .icon-arrow-r-double, .app-nav-tab .icon-user-switch, .tweet-message-status, .icon.icon-move, .tweet-drag-handle, .is-narrow-columns .media-size-medium .media-sensitive-title, .contributor-row[data-contributor-role="contributor"] [data-show-when-contributor-role="admin"], .contributor-row[data-contributor-role="admin"] [data-show-when-contributor-role="contributor"], .contributor-row[data-state-error="closed-error"] [data-hide-when-state-error="closed-error"], .contributor-row[data-state="settings"] [data-hide-when-state="settings"], .contributor-row[data-state-error="settings-error"] [data-hide-when-state-error="settings-error"], [data-show-when-state], [data-show-when-state-error], .is-options-open .column-settings-link .icon-arrow-d, .column-header-link .icon-arrow-u, .column-title-back .attribution, .js-add-to-customtimeline-button, .column-title-editable .js-show-tip.avatar.size24, .account-remove-check, .signin-sheet-now-present .application, .with-add-by-url .list-placeholder.pin-all,.btn-fav>.btn-loader,.btn-fav-protected-text,.s-protected .btn-loader,.s-not-following .btn-loader,.action-text, .s-following .follow-btn:hover .following-text {
+.btn-options-tray>span.label,.btn.js-done,.icon.column-nav-updates,.mdl>header.txt-seamful-black,.accs i,.account-summary-text.nbfc>a,.txt-center>.js-dismiss,.s-thats-you .btn-loader,.mdl-dismiss, .privacy-info, .mdl-drag-handle, .preloader-wrapper+.preloader-wrapper, .is-loaded>.preloader-wrapper, .nav-user-info>.avatar, .release-notes-image, .release-notes-image-bullet, .accordion .icon-arrow-u, .med-fullpanel .tweet-dogear, .tweet-detail-wrapper .tweet-dogear, .js-hide-drawer .icon-compose, .mdl-buttonbar>.js-dismiss, .mdl .search-input-control:before, .startflow-panel .txt-center:not(.form-error-message), .add-participant .search-input-control:before, .drawer-content .search-input-control:before, .cf.account-remove-check, .facet-type .search-input-control:before, .accordion .is-active .facet-subtitle, .mdl-dismiss, .mdl-dismiss-media, .mtd-mobile .column-type-icon, .column-type-message .js-column-detail .column-title-back:before, .add-on.with-emphasis, .mtd-minimal .column-navigator, .mtd-dark body.scroll-v .js-modal-context .mdl:before, html body .app-navigator .dropdown-menu, .caret, .js-column-detail .column-title-back.conversation-title:after, .more-tweets-btn-inner-mouse-release, .more-tweets-btn-inner-loading, .more-tweets-btn-container--mouse-release .more-tweets-btn-inner-default, .more-tweets-btn-container--loading .more-tweets-btn-inner-default, .status-message, .app-masthead, .cmp-spinner, .chev-right, .compose-text-title, .cmp button b, .cmp .mdl-header-title:empty, .app-search-tweet-results .column-header-temp, .spinner-centered, .without-tweet-drag-handles .tweet-drag-handle, .account-remove-check, .js-app-settings .obj-left, .tweet-action-item.feature-customtimelines.tweet-drag-handle, .tweet-detail-action-item.feature-customtimelines.tweet-drag-handle, .column-nav-link:after, .more-tweets-btn-inner-mouse-release, .more-tweets-btn-inner-loading, .more-tweets-btn-container--mouse-release .more-tweets-btn-inner-default, .more-tweets-btn-container--loading .more-tweets-btn-inner-default, .list-item .icon-search.list-icon, .js-typeahead-recent-search-item .obj-left, .s-following .follow-btn .btn-loader, .btd-settings, body:not(.btd-ready) #btdsettings, .edit-conversation-name .nbfc, .js-app-add-column, .js-dismiss, .js-schedule-datepicker-holder .popover .padding-as .btn .icon-trash, .js-dismiss.btn.btn-positive i.icon.icon-check.icon-small.padding-rs, .column-close-link.txt-r-dark-gray, .js-app-loading .js-header-container, .js-add-image-button-label, .js-schedule-button-label, .js-tweet-button-label, .js-dm-button .label.padding-ls, .column-nav-flyout, .release-notes-modal .mdl-drag-handle, #datepicker, .search-input-spinner, .search-input-clear-search, .toggle-item-text-truncated, .sch.s-searching .sch-clear, legend, .frm-legend, .action-btn, .med-origlink, .med-flaglink, .hide-detail-view-inline .detail-view-inline, .compose-account-selected, .js-compose-hint.margin-vl.anim.anim-fade-in, #file-upload-input, .s-sending .char-count, .s-profile .mdl-buttonbar, .s-profile h3, .mdl.s-nonav .mdl-inner .mdl-buttonbar, .ovl.is-dragging:before, .is-dragging.overlay:before, .numbered-badge-onheader, .tooltip-arrow, .app-search-in-popover, .app-search-form, .app-header .app-nav-logo-text, .app-header .hide-condensed, .app-header .sprite-logo, .app-header .tweet-button .label, .app-header .app-nav-link .icon-arrow-l-double, .app-header .app-nav-link .icon-arrow-r-double, .app-nav-link .icon-arrow-r-double, .app-nav-tab .icon-user-switch, .tweet-message-status, .icon.icon-move, .tweet-drag-handle, .is-narrow-columns .media-size-medium .media-sensitive-title, .contributor-row[data-contributor-role="contributor"] [data-show-when-contributor-role="admin"], .contributor-row[data-contributor-role="admin"] [data-show-when-contributor-role="contributor"], .contributor-row[data-state-error="closed-error"] [data-hide-when-state-error="closed-error"], .contributor-row[data-state="settings"] [data-hide-when-state="settings"], .contributor-row[data-state-error="settings-error"] [data-hide-when-state-error="settings-error"], [data-show-when-state], [data-show-when-state-error], .is-options-open .column-settings-link .icon-arrow-d, .column-header-link .icon-arrow-u, .column-title-back .attribution, .js-add-to-customtimeline-button, .column-title-editable .js-show-tip.avatar.size24, .account-remove-check, .signin-sheet-now-present .application, .with-add-by-url .list-placeholder.pin-all,.btn-fav>.btn-loader,.btn-fav-protected-text,.s-protected .btn-loader,.s-not-following .btn-loader,.action-text, .s-following .follow-btn:hover .following-text {
 	display:none
 }
 
@@ -1130,12 +1130,7 @@ ul,ol,dl,li,dd {
 	text-overflow:ellipsis
 }
 
-.txt-base-smallest {
-	font-size:12px!important;
-	font-weight:400
-}
-
-.txt-base-medium,.txt-base-small {
+.txt-base-medium,.txt-base-small,.txt-base-smallest {
 	font-size:14px
 }
 
@@ -1365,15 +1360,15 @@ ul,ol,dl,li,dd {
 	font-size:0
 }
 
-.stream-item .nbfc:not(.media-item):not(.quoted-tweet):not(.account-summary-text) {
+.account-link>.nbfc {
 	overflow:hidden;
 	margin:0;
-	margin-left:-60px;
+	margin-left:-70px;
 	word-break:break-word;
 	word-wrap:break-word;
 	font-size:0;
 	margin-top:0;
-	padding:0
+	padding:0;
 }
 
 .stream-item>.js-show-detail .account-summary .nbfc>a {
@@ -1891,9 +1886,16 @@ ul,ol,dl,li,dd {
 }
 
 .icon-dropdown-context {
-	font-size:16px;
-	height:16px;
-	vertical-align:top
+	font-size:18px;
+	vertical-align:top;
+	position:absolute;
+	top:50%;
+	line-height:20px;
+	margin-top:-10px
+}
+
+.dropdown-text-large strong {
+	margin-left:25px
 }
 
 .icon-match-context {
@@ -2251,7 +2253,7 @@ ul,ol,dl,li,dd {
 
 .btn-options-tray-space,.btn-options-tray {
 	padding:8px;
-	padding-bottom:12px
+	padding-bottom:12px;
 }
 
 .btn-fav {
@@ -4705,6 +4707,7 @@ a .column-title-back .icon:after {
 	height: 40px;
 	color:#fff;
 	box-shadow:0 5px 10px rgba(15,15,15,0.3);
+	background:rgb(38,50,56);
 	z-index:3
 }
 
@@ -5791,7 +5794,7 @@ a:hover .icn-button-next {
 
 .s-checked .checked {
 	display:block;
-	color:#fff
+	color: #5F757E;
 }
 
 .list-link,.list-twitter-list,.list-subtitle,.list-account,.list-listmember,.list-subtitle,.list-filter {
@@ -5849,7 +5852,7 @@ a:hover .icn-button-next {
 }
 
 .list-listmember .content {
-	margin-left:56px;
+	margin-left:60px;
 	margin-right:28px
 }
 
@@ -5863,8 +5866,7 @@ a:hover .icn-button-next {
 .list-listmember .bio {
 	color:#666;
 	font-size:13px;
-	line-height:1.2em;
-	font-style:italic
+	line-height:1.2em
 }
 
 .mtd-dark .list-listmember .bio,.mtd-dark .list-listmember .username {
@@ -5938,6 +5940,10 @@ input,select {
 
 .mtd-dark select,.mtd-dark input {
 	color:#ddd
+}
+
+.mtd-dark optgroup {
+	background:#263238
 }
 
 label,input,select,textarea {
@@ -6060,6 +6066,7 @@ textarea,.l-fullwidth {
 	margin-top:5px;
 	position:absolute;
 	display:block;
+	margin-top:-26px
 }
 
 .s-error input {
@@ -6249,6 +6256,10 @@ input[type="checkbox"] {
 	background:rgba(255,255,255,.04);
 	box-shadow:0 3px 8px rgba(0,0,0,.3);
 	border-radius:4px
+}
+
+.mtd-dark .mdl-column.l-column .search-input {
+	background:#43525A
 }
 
 .mtd-light .mdl-column.l-column .search-input {
@@ -7097,13 +7108,6 @@ input[type="checkbox"] {
 	transition:.2s all
 }
 
-.dropdown-menu>.js-dropdown-content>ul>:first-child>a {
-	padding:5px 0 0 15px
-}
-
-.dropdown-menu>.js-dropdown-content>ul>:last-child>a {
-	padding:2px 0 0 15px
-}
 
 .dropdown-menu>.js-dropdown-content>ul>li>a {
 	position:absolute;
@@ -7113,8 +7117,7 @@ input[type="checkbox"] {
 	bottom:0;
 	left:0;
 	right:0;
-	padding-left:15px;
-	padding-top:3px
+	padding:5px 0 0 15px
 }
 
 .pos-t {
@@ -7364,8 +7367,10 @@ input[type="checkbox"] {
 }
 
 .column-nav-item {
-	position:relative;
+	position:relative!important;
 	width:0;
+	top:0!important;
+	left:0!important;
 	box-sizing:border-box;
 	color:rgba(255,255,255,.75);
 	transition:.4s all cubic-bezier(.19,1,.22,1);
@@ -7394,14 +7399,11 @@ input[type="checkbox"] {
 	transition:.2s all cubic-bezier(.19,1,.22,1),.4s transform;
 }
 
-.column-nav-item.is-new>a {
-	margin-top:32px!important
-}
-
 .column-nav-link .icon {
 	padding-left:1px;
 	vertical-align:-.6em;
-	padding-right:5px
+	padding-right:5px;
+	padding-top:5px
 }
 
 .column-nav-link .attribution {
@@ -9084,7 +9086,7 @@ fieldset .fixed-width-label:not(.radio),fieldset:not(.js-search-filter) .control
 }
 
 .mtd-dark .mdl {
-	background: rgb(37, 50, 56)
+	background:#2E3B41
 }
 
 .mtd-dark-media-previews .med-fullpanel {
@@ -9340,16 +9342,16 @@ fieldset .fixed-width-label:not(.radio),fieldset:not(.js-search-filter) .control
 	background:rgba(25,112,120,.41)!important
 }
 
-.mdl-column.mdl-column-lrg {
+.mdl-column.mdl-column-lrg,.mdl-column.mdl-column-rhs {
 	background:#fff
 }
 
-.mtd-dark .mdl-column.mdl-column-lrg {
-	background:rgb(46,59,65)
+.mtd-dark .mdl-column.mdl-column-lrg,.mtd-dark .mdl-column.mdl-column-rhs {
+	background: rgb(38, 50, 56);
 }
 
 .mtd-dark .mdl-column {
-	background: rgb(37, 50, 56)
+	background:#2E3B41;
 }
 
 article.is-unread .account-link {
@@ -10673,4 +10675,8 @@ iframe.report-flow {
 
 .btn-bg-positive.btn-options-tray-space {
 	color:#fff!important
+}
+
+.list-listmember .icon-small {
+	font-size:24px
 }
