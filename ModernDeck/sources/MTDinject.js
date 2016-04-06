@@ -24,6 +24,8 @@ var wasTweetSheetOpen = false;
 var WantsToBlockCommunications = false;
 var WantsToDisableSecureStylesheets = false;
 
+var loadedPreferences = false;
+
 var FetchProfileInfo = 0;
 
 var elements = function(a,b,c){return $(document.getElementsByClassName(a,b,c))};
@@ -72,28 +74,6 @@ window.addEventListener("beforeunload", function(e){
 	}, "*");
 })
 
-Preferences.Appearance = [
-	[
-		"flag",
-		"mtd-round-avatars",
-		"mtd_round_avatars",
-		"mtd-rounded-profiles-control",
-		"Use rounded profile pictures",
-		true
-	],
-]
-
-Preferences.Accessibility = [
-	[
-		"flag",
-		"mtd-outlines",
-		"mtd_outlines",
-		"mtd-outlines-control",
-		"Always show outlines on focussed items",
-		false
-	]
-]
-
 if (typeof MTDURLExchange === "object" && typeof MTDURLExchange.getAttribute === "function") {
 	MTDBaseURL = MTDURLExchange.getAttribute("type") || "https://dangeredwolf.com/assets/mtdtest/";
 	console.info("MTDURLExchange completed with URL " + MTDBaseURL);
@@ -101,6 +81,26 @@ if (typeof MTDURLExchange === "object" && typeof MTDURLExchange.getAttribute ===
 
 if (typeof chrome === "undefined" && typeof safari === "undefined") {
 	TreatGeckoWithCare = true;
+}
+
+function loadPreferences() {
+	if (getPref("mtd_round_avatars") === false)
+		html.addClass("mtd-no-round-avatars");
+	else
+		setPref("mtd_round_avatars",true);
+
+	if (getPref("mtd_dark_media") === true)
+		html.addClass("mtd-dark-media-previews");
+	else
+		setPref("mtd_dark_media",false);
+
+	if (getPref("mtd_outlines") === true)
+		html.addClass("mtd-acc-focus-ring");
+	else
+		setPref("mtd_outlines",false);
+
+	if (getPref("mtd_theme") !== "" && getPref("mtd_theme") !== null && typeof getPref("mtd_theme") !== "undefined")
+		html.addClass("mtd-back-" + getPref("mtd_theme"));
 }
 
 function getPref(id) {
@@ -126,7 +126,8 @@ function fontParseHelper(a) {
 		throw "you forgot to pass the object";
 	}
 
-	return "@font-face{font-family:'" + (a.family || "Roboto") + "';font-style:" + (a.style || "normal") + ";font-weight:" + (a.weight || "300") + ";src:url(" + MTDBaseURL + "sources/fonts/" + a.name + ".woff2) format('woff2');unicode-range:" + (a.range || "U+0100-024F,U+1E00-1EFF,U+20A0-20AB,U+20AD-20CF,U+2C60-2C7F,U+A720-A7FF") + "}";
+	return "@font-face{font-family:'"+(a.family||"Roboto")+"';font-style:"+(a.style||"normal")+";font-weight:"+(a.weight || "300")+";src:url("+MTDBaseURL+"sources/fonts/"+a.name+".woff2) format('woff2');unicode-range:"+(a.range||
+		"U+0100-024F,U+1E00-1EFF,U+20A0-20CF,U+2C60-2C7F,U+A720-A7FF")+"}";
 }
 
 function MTDInit(){
@@ -207,23 +208,6 @@ function MTDInit(){
 	TD_mustaches["login/2fa_verification_code.mustache"] = TD_mustaches["login/2fa_verification_code.mustache"].replace('<i class="js-spinner-button-active icon-center-16 spinner-button-icon-spinner is-hidden"></i>','<div class="js-spinner-button-active icon-center-16 spinner-button-icon-spinner is-hidden preloader-wrapper active tiny"><div class="spinner-layer small"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div>');
 	TD_mustaches["login/login_form_footer.mustache"] = TD_mustaches["login/login_form_footer.mustache"].replace('<i class="js-spinner-button-active icon-center-16 spinner-button-icon-spinner is-hidden"></i>','<div class="js-spinner-button-active icon-center-16 spinner-button-icon-spinner is-hidden preloader-wrapper active tiny"><div class="spinner-layer small"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div>');
 	TD_mustaches["compose/docked_compose.mustache"] = TD_mustaches["compose/docked_compose.mustache"].replace('<i class="js-spinner-button-active icon-center-16 spinner-button-icon-spinner is-hidden"></i>','<div class="js-spinner-button-active icon-center-16 spinner-button-icon-spinner is-hidden preloader-wrapper active tiny"><div class="spinner-layer small"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div>');
-
-	if (getPref("mtd_round_avatars") === false)
-		html.addClass("mtd-no-round-avatars");
-	else
-		setPref("mtd_round_avatars",true);
-
-	if (getPref("mtd_dark_media") === true)
-		html.addClass("mtd-dark-media-previews");
-	else
-		setPref("mtd_dark_media",false);
-
-	if (getPref("mtd_outlines") === true)
-		html.addClass("mtd-acc-focus-ring");
-	else
-		setPref("mtd_outlines",false);
-
-	html.addClass("mtd-back-" + getPref("mtd_theme"));
 
 	TD.util.prettyTimeString = function(e) {
 		return TD.i("{{hours12}}:{{minutes}} {{amPm}}, {{day}} {{month}} {{fullYear}}", TD.util.prettyTime(e));
@@ -327,37 +311,37 @@ function PrefsListener() {
 		console.log("waiting...");
 
 		if (localStorage.mtd_round_avatars === "true" && !$("#mtd-round-avatars-control")[0].checked) {
-			console.log("Hey false!!");
+			console.log("someone unchecked me!!");
 			localStorage.mtd_round_avatars = false;
 			html.addClass("mtd-no-round-avatars");
 		}
 
 		if (localStorage.mtd_round_avatars === "false" && $("#mtd-round-avatars-control")[0].checked) {
-			console.log("Hey true!!");
+			console.log("someone checked me!!");
 			localStorage.mtd_round_avatars = true;
 			html.removeClass("mtd-no-round-avatars");
 		}
 
 		if (localStorage.mtd_dark_media === "false" && $("#mtd-dark-media-control")[0].checked) {
-			console.log("Hey true!!");
+			console.log("someone checked me!!");
 			localStorage.mtd_dark_media = true;
 			html.addClass("mtd-dark-media-previews");
 		}
 
 		if (localStorage.mtd_dark_media === "true" && !$("#mtd-dark-media-control")[0].checked) {
-			console.log("Hey false!!");
+			console.log("someone unchecked me!!");
 			localStorage.mtd_dark_media = false;
 			html.removeClass("mtd-dark-media-previews");
 		}
 
 		if (localStorage.mtd_outlines === "false" && $("#mtd-outlines-control")[0].checked) {
-			console.log("Hey true!!");
+			console.log("someone checked me!!");
 			localStorage.mtd_outlines = true;
 			html.addClass("mtd-acc-focus-ring");
 		}
 
 		if (localStorage.mtd_outlines === "true" && !$("#mtd-outlines-control")[0].checked) {
-			console.log("Hey false!!");
+			console.log("someone unchecked me!!");
 			localStorage.mtd_outlines = false;
 			html.removeClass("mtd-acc-focus-ring");
 		}
@@ -481,6 +465,8 @@ function FinaliseLoginStuffs() {
 
 	console.log("Finished login stuffs! you are in the nav drawer, I think!");
 
+	loadPreferences();
+
 	// TD.storage.clientController.client = [];
 	// TD.storage.clientController.client.isDirty = false; // Attempts to get around TD bug
 
@@ -500,6 +486,8 @@ function NavigationSetup() {
 		setTimeout(NavigationSetup,100);
 		return;
 	}
+
+	loadPreferences();
 
 	$(".app-header-inner").append(
 		make("a")
