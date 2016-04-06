@@ -5,7 +5,7 @@
 
 "use strict";
 
-var SystemVersion = "6.0 Beta 2";
+var SystemVersion = "6.0 Beta 2.1";
 var MTDBaseURL = "https://dangeredwolf.com/assets/mtdtest/"; // Defaults to streaming if nothing else is available (i.e. legacy firefox)
 
 var msgID = 0;
@@ -58,15 +58,7 @@ window.addEventListener("message", function(e) {
 });
 
 window.addEventListener("beforeunload", function(e){
-	var storage = {}
-	for(var i = 0; i < localStorage.length; i++){
-		var key = localStorage.key(i);
-		if (key == "guestID" || key == "metrics.realtimeData") {
-			continue;
-		} else {
-			storage[key] = localStorage[key];
-		}
-	}
+	savePreferencesToDisk()
 
 	window.postMessage({
 		type: "setStorage",
@@ -81,6 +73,18 @@ if (typeof MTDURLExchange === "object" && typeof MTDURLExchange.getAttribute ===
 
 if (typeof chrome === "undefined" && typeof safari === "undefined") {
 	TreatGeckoWithCare = true;
+}
+
+function savePreferencesToDisk() {
+	var storage = {}
+	for(var i = 0; i < localStorage.length; i++){
+		var key = localStorage.key(i);
+		if (key == "guestID" || key == "metrics.realtimeData") {
+			continue;
+		} else {
+			storage[key] = localStorage[key];
+		}
+	}
 }
 
 function loadPreferences() {
@@ -262,7 +266,7 @@ function WorldTick(){
 					dropdown.remove();
 				},200);
 			}
-    } else if (tar.hasClass("status-message")) {
+    }/* else if (tar.hasClass("status-message")) {
 			console.log("status-message!!!");
 			if (typeof messagesAccounted[this] === "undefined") {
 				var thing = this;
@@ -271,7 +275,7 @@ function WorldTick(){
 				WaitForNotificationDismiss(thing,msgID);
 				messagesAccounted[this] = true;
 			}
-		} else if (tar.hasClass("overlay")) {
+		}*/ else if (tar.hasClass("overlay")) {
 			console.log("overlay!!!");
 			if (!tar.hasClass("is-hidden")) {
 				if (tar.hasClass("is-hidden")) {
@@ -314,42 +318,49 @@ function PrefsListener() {
 			console.log("someone unchecked me!!");
 			localStorage.mtd_round_avatars = false;
 			html.addClass("mtd-no-round-avatars");
+			savePreferencesToDisk();
 		}
 
 		if (localStorage.mtd_round_avatars === "false" && $("#mtd-round-avatars-control")[0].checked) {
 			console.log("someone checked me!!");
 			localStorage.mtd_round_avatars = true;
 			html.removeClass("mtd-no-round-avatars");
+			savePreferencesToDisk();
 		}
 
 		if (localStorage.mtd_dark_media === "false" && $("#mtd-dark-media-control")[0].checked) {
 			console.log("someone checked me!!");
 			localStorage.mtd_dark_media = true;
 			html.addClass("mtd-dark-media-previews");
+			savePreferencesToDisk();
 		}
 
 		if (localStorage.mtd_dark_media === "true" && !$("#mtd-dark-media-control")[0].checked) {
 			console.log("someone unchecked me!!");
 			localStorage.mtd_dark_media = false;
 			html.removeClass("mtd-dark-media-previews");
+			savePreferencesToDisk();
 		}
 
 		if (localStorage.mtd_outlines === "false" && $("#mtd-outlines-control")[0].checked) {
 			console.log("someone checked me!!");
 			localStorage.mtd_outlines = true;
 			html.addClass("mtd-acc-focus-ring");
+			savePreferencesToDisk();
 		}
 
 		if (localStorage.mtd_outlines === "true" && !$("#mtd-outlines-control")[0].checked) {
 			console.log("someone unchecked me!!");
 			localStorage.mtd_outlines = false;
 			html.removeClass("mtd-acc-focus-ring");
+			savePreferencesToDisk();
 		}
 
 		if ($("#mtd-theme-control option:selected").length > 0 && localStorage.mtd_theme !== $("#mtd-theme-control option:selected")[0].value) {
 			html.removeClass("mtd-back-" + localStorage.mtd_theme);
 			localStorage.mtd_theme = $("#mtd-theme-control option:selected")[0].value;
 			html.addClass("mtd-back-" + $("#mtd-theme-control option:selected")[0].value);
+			savePreferencesToDisk();
 		}
 
 		setTimeout(PrefsListener,500);
