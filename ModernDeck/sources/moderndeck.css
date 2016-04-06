@@ -631,13 +631,12 @@ html.mtd-light .spinner-layer {
 	background:#eee!important
 }
 
-.mtd-back-paper .is-new .column-header,.mtd-back-paper .is-new .column-header-temp {
-	background:linear-gradient(#eee,#00BCD4)!important;
-	transition:.2s all
-}
-
 .mtd-back-paper .js-dm-participants-back:after,.mtd-back-paper .conversation-title .title-content b,.mtd-back-paper .js-tweet-social-proof-back:after,.mtd-back-paper .js-column-detail .column-title-back:before,.mtd-back-paper .js-hide-drawer.app-nav-tab:after,.mtd-back-paper .app-nav-tab,.mtd-back-paper .drawer-header-title.drawer-column-header-title,.mtd-back-paper .btn-back:before,.mtd-back-paper .mdl-header-title,.mtd-back-paper .column-header-temp,.mtd-back-paper .mdl-column.l-column .search-input,.mtd-back-paper .numbered-badge,.mtd-back-paper .app-search .app-search-fake,.mtd-back-paper .column-message,.mtd-back-paper .app-nav-link,.mtd-back-paper .column-title,.mtd-back-paper .column-header .icon {
 	color:#555!important
+}
+
+.mtd-back-paper .more-tweets-btn {
+	background:#eee
 }
 
 .mtd-back-paper .more-tweets-btn,.mtd-back-paper .selected .list-link strong {
@@ -676,6 +675,11 @@ html.mtd-light .spinner-layer {
 
 .mtd-back-paper .mdl-column.l-column .search-input:input-placeholder {
 	color:#555
+}
+
+.mtd-back-paper .btn-compose,.mtd-back-paper .btn-compose:hover,.mtd-back-paper .btn-compose:active,.mtd-back-paper .btn-compose:focus {
+	background:#f6f6f6!important;
+	color:#666!important
 }
 
 .mtd-back-grey .mdl-header.js-mdl-header,.mtd-back-grey .mdl-column .pin-top .search-input-list,.mtd-back-grey.mtd-light .app-navigator .js-hide-drawer,.mtd-dark.mtd-back-grey .app-navigator .js-hide-drawer,.mtd-back-grey .edit-conversation-name,.mtd-back-grey .drawer-header,.mtd-back-grey .column:not(.is-new) .column-message,.mtd-back-grey body,.mtd-back-grey .column-header,.mtd-back-grey .column-header-temp {
@@ -3277,6 +3281,7 @@ a .column-title-back .icon:after {
 }
 
 .account-inline .fullname {
+	font-size:14px;
 	margin-left:14px
 }
 
@@ -3284,8 +3289,8 @@ a .column-title-back .icon:after {
 	margin-left:60px
 }
 
-.account-inline .fullname {
-	font-size:14px
+.med-tweet .fullname {
+	margin-left:76px
 }
 
 .account-inline.is-protected {
@@ -6779,7 +6784,7 @@ input[type="checkbox"] {
 }
 
 .prf-stats>li>a {
-	padding:15px;
+	padding: 15px 0 15px 10px;
 	width:100%;
 	height: 20px;
 	display:block
@@ -8043,7 +8048,6 @@ a[rel=hashtag]:active {
 }
 
 .media-sensitive-content p {
-	margin-top:5px;
 	color:#777;
 	margin-bottom:3px
 }
@@ -9341,7 +9345,7 @@ fieldset .fixed-width-label:not(.radio),fieldset:not(.js-search-filter) .control
 	background:#fff
 }
 
-.mtd-dark .mdl-column.mdl-column-lrg,.mtd-dark .mdl-column.mdl-column-rhs {
+.mtd-dark .mdl-column.mdl-column-rhs {
 	background: rgb(38, 50, 56);
 }
 
