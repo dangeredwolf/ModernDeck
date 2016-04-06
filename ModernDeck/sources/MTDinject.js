@@ -362,7 +362,7 @@ function PrefsListener() {
 			html.removeClass("mtd-acc-focus-ring");
 		}
 
-		if (localStorage.mtd_theme !== $("#mtd-theme-control option:selected")[0].value) {
+		if ($("#mtd-theme-control option:selected").length > 0 && localStorage.mtd_theme !== $("#mtd-theme-control option:selected")[0].value) {
 			html.removeClass("mtd-back-" + localStorage.mtd_theme);
 			localStorage.mtd_theme = $("#mtd-theme-control option:selected")[0].value;
 			html.addClass("mtd-back-" + $("#mtd-theme-control option:selected")[0].value);
@@ -393,7 +393,7 @@ function MTDSettings() {
 			</ul> </div> </div> <div class="l-column mdl-column mdl-column-lrg"> <div class="l-column-scrollv scroll-v	scroll-alt mdl-col-settings">\
 			\
 			\
-			<form action="#" id="mtd-appearance-form" accept-charset="utf-8" class="frm"><fieldset id="general_settings"><div class="control-group" style="padding-top:10px;"><label class="checkbox">Use rounded profile pictures<input type="checkbox" name="streaming-updates" checked="checked" id="mtd-round-avatars-control"> </label><label class="checkbox">Dark media viewer in light mode<input type="checkbox" name="streaming-updates" checked="checked" id="mtd-dark-media-control"> </label><label class="control-label">Theme<select name="streaming-updates" id="mtd-theme-control" type="select"><option value="none">Default</option><option value="paper">Paper</option><option value="grey">Grey</option><option value="red">Red</option><option value="pink">Pink</option><option value="orange">Orange</option><option value="violet">Violet</option><option value="teal">Teal</option><option value="green">Green</option><option value="yellow">Yellow</option><option value="cyan">Cyan</option><option value="black">Black</option><option value="blue">Blue</option></select></label></div></fieldset></form>\
+			<form action="#" id="mtd-appearance-form" accept-charset="utf-8" class="frm"><fieldset id="general_settings"><div class="control-group" style="padding-top:10px;"><label class="checkbox">Use rounded profile pictures<input type="checkbox" name="streaming-updates" checked="checked" id="mtd-round-avatars-control"> </label><label class="checkbox">Dark media viewer in light mode<input type="checkbox" name="streaming-updates" checked="checked" id="mtd-dark-media-control"> </label><label class="control-label">Theme<select id="mtd-theme-control" type="select"><option value="default" selected="selected">Default</option><option value="paper">Paper</option><option value="grey">Grey</option><option value="red">Red</option><option value="pink">Pink</option><option value="orange">Orange</option><option value="violet">Violet</option><option value="teal">Teal</option><option value="green">Green</option><option value="yellow">Yellow</option><option value="cyan">Cyan</option><option value="black">Black</option><option value="blue">Blue</option></select></label></div></fieldset></form>\
 			\
 			<form action="#" id="mtd-accessibility-form" accept-charset="utf-8" class="frm" style="display:none;"><fieldset id="general_settings"><label class="checkbox">Always show outlines on focussed items<input type="checkbox" checked="checked" id="mtd-outlines-control"> </label></fieldset></form>\
 			\

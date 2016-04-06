@@ -12,7 +12,7 @@
 
 /* SUPERCLASSES */
 
-.btn-options-tray>span.label,.btn.js-done,.icon.column-nav-updates,.mdl>header.txt-seamful-black,.accs i,.account-summary-text.nbfc>a,.txt-center>.js-dismiss,.s-thats-you .btn-loader,.mdl-dismiss, .privacy-info, .mdl-drag-handle, .preloader-wrapper+.preloader-wrapper, .is-loaded>.preloader-wrapper, .nav-user-info>.avatar, .release-notes-image, .release-notes-image-bullet, .accordion .icon-arrow-u, .med-fullpanel .tweet-dogear, .tweet-detail-wrapper .tweet-dogear, .js-hide-drawer .icon-compose, .mdl-buttonbar>.js-dismiss, .mdl .search-input-control:before, .startflow-panel .txt-center:not(.form-error-message), .add-participant .search-input-control:before, .drawer-content .search-input-control:before, .cf.account-remove-check, .facet-type .search-input-control:before, .accordion .is-active .facet-subtitle, .mdl-dismiss, .mdl-dismiss-media, .mtd-mobile .column-type-icon, .column-type-message .js-column-detail .column-title-back:before, .add-on.with-emphasis, .mtd-minimal .column-navigator, .mtd-dark body.scroll-v .js-modal-context .mdl:before, html body .app-navigator .dropdown-menu, .caret, .js-column-detail .column-title-back.conversation-title:after, .more-tweets-btn-inner-mouse-release, .more-tweets-btn-inner-loading, .more-tweets-btn-container--mouse-release .more-tweets-btn-inner-default, .more-tweets-btn-container--loading .more-tweets-btn-inner-default, .status-message, .app-masthead, .cmp-spinner, .chev-right, .compose-text-title, .cmp button b, .cmp .mdl-header-title:empty, .app-search-tweet-results .column-header-temp, .spinner-centered, .without-tweet-drag-handles .tweet-drag-handle, .account-remove-check, .js-app-settings .obj-left, .tweet-action-item.feature-customtimelines.tweet-drag-handle, .tweet-detail-action-item.feature-customtimelines.tweet-drag-handle, .column-nav-link:after, .more-tweets-btn-inner-mouse-release, .more-tweets-btn-inner-loading, .more-tweets-btn-container--mouse-release .more-tweets-btn-inner-default, .more-tweets-btn-container--loading .more-tweets-btn-inner-default, .list-item .icon-search.list-icon, .js-typeahead-recent-search-item .obj-left, .s-following .follow-btn .btn-loader, .btd-settings, body:not(.btd-ready) #btdsettings, .edit-conversation-name .nbfc, .js-app-add-column, .js-dismiss, .js-schedule-datepicker-holder .popover .padding-as .btn .icon-trash, .js-dismiss.btn.btn-positive i.icon.icon-check.icon-small.padding-rs, .column-close-link.txt-r-dark-gray, .js-app-loading .js-header-container, .js-add-image-button-label, .js-schedule-button-label, .js-tweet-button-label, .js-dm-button .label.padding-ls, .column-nav-flyout, .release-notes-modal .mdl-drag-handle, #datepicker, .search-input-spinner, .search-input-clear-search, .toggle-item-text-truncated, .sch.s-searching .sch-clear, legend, .frm-legend, .action-btn, .med-origlink, .med-flaglink, .hide-detail-view-inline .detail-view-inline, .compose-account-selected, .js-compose-hint.margin-vl.anim.anim-fade-in, #file-upload-input, .s-sending .char-count, .s-profile .mdl-buttonbar, .s-profile h3, .mdl.s-nonav .mdl-inner .mdl-buttonbar, .ovl.is-dragging:before, .is-dragging.overlay:before, .numbered-badge-onheader, .tooltip-arrow, .app-search-in-popover, .app-search-form, .app-header .app-nav-logo-text, .app-header .hide-condensed, .app-header .sprite-logo, .app-header .tweet-button .label, .app-header .app-nav-link .icon-arrow-l-double, .app-header .app-nav-link .icon-arrow-r-double, .app-nav-link .icon-arrow-r-double, .app-nav-tab .icon-user-switch, .tweet-message-status, .icon.icon-move, .tweet-drag-handle, .is-narrow-columns .media-size-medium .media-sensitive-title, .contributor-row[data-contributor-role="contributor"] [data-show-when-contributor-role="admin"], .contributor-row[data-contributor-role="admin"] [data-show-when-contributor-role="contributor"], .contributor-row[data-state-error="closed-error"] [data-hide-when-state-error="closed-error"], .contributor-row[data-state="settings"] [data-hide-when-state="settings"], .contributor-row[data-state-error="settings-error"] [data-hide-when-state-error="settings-error"], [data-show-when-state], [data-show-when-state-error], .is-options-open .column-settings-link .icon-arrow-d, .column-header-link .icon-arrow-u, .column-title-back .attribution, .js-add-to-customtimeline-button, .column-title-editable .js-show-tip.avatar.size24, .account-remove-check, .signin-sheet-now-present .application, .with-add-by-url .list-placeholder.pin-all,.btn-fav>.btn-loader,.btn-fav-protected-text,.s-protected .btn-loader,.s-not-following .btn-loader,.action-text, .s-following .follow-btn:hover .following-text {
+/*.btn-options-tray>span.label,*/.btn.js-done,.icon.column-nav-updates,.mdl>header.txt-seamful-black,.accs i,.account-summary-text.nbfc>a,.txt-center>.js-dismiss,.s-thats-you .btn-loader,.mdl-dismiss, .privacy-info, .mdl-drag-handle, .preloader-wrapper+.preloader-wrapper, .is-loaded>.preloader-wrapper, .nav-user-info>.avatar, .release-notes-image, .release-notes-image-bullet, .accordion .icon-arrow-u, .med-fullpanel .tweet-dogear, .tweet-detail-wrapper .tweet-dogear, .js-hide-drawer .icon-compose, .mdl-buttonbar>.js-dismiss, .mdl .search-input-control:before, .startflow-panel .txt-center:not(.form-error-message), .add-participant .search-input-control:before, .drawer-content .search-input-control:before, .cf.account-remove-check, .facet-type .search-input-control:before, .accordion .is-active .facet-subtitle, .mdl-dismiss, .mdl-dismiss-media, .mtd-mobile .column-type-icon, .column-type-message .js-column-detail .column-title-back:before, .add-on.with-emphasis, .mtd-minimal .column-navigator, .mtd-dark body.scroll-v .js-modal-context .mdl:before, html body .app-navigator .dropdown-menu, .caret, .js-column-detail .column-title-back.conversation-title:after, .more-tweets-btn-inner-mouse-release, .more-tweets-btn-inner-loading, .more-tweets-btn-container--mouse-release .more-tweets-btn-inner-default, .more-tweets-btn-container--loading .more-tweets-btn-inner-default, .status-message, .app-masthead, .cmp-spinner, .chev-right, .compose-text-title, .cmp button b, .cmp .mdl-header-title:empty, .app-search-tweet-results .column-header-temp, .spinner-centered, .without-tweet-drag-handles .tweet-drag-handle, .account-remove-check, .js-app-settings .obj-left, .tweet-action-item.feature-customtimelines.tweet-drag-handle, .tweet-detail-action-item.feature-customtimelines.tweet-drag-handle, .column-nav-link:after, .more-tweets-btn-inner-mouse-release, .more-tweets-btn-inner-loading, .more-tweets-btn-container--mouse-release .more-tweets-btn-inner-default, .more-tweets-btn-container--loading .more-tweets-btn-inner-default, .list-item .icon-search.list-icon, .js-typeahead-recent-search-item .obj-left, .s-following .follow-btn .btn-loader, .btd-settings, body:not(.btd-ready) #btdsettings, .edit-conversation-name .nbfc, .js-app-add-column, .js-dismiss, .js-schedule-datepicker-holder .popover .padding-as .btn .icon-trash, .js-dismiss.btn.btn-positive i.icon.icon-check.icon-small.padding-rs, .column-close-link.txt-r-dark-gray, .js-app-loading .js-header-container, .js-add-image-button-label, .js-schedule-button-label, .js-tweet-button-label, .js-dm-button .label.padding-ls, .column-nav-flyout, .release-notes-modal .mdl-drag-handle, #datepicker, .search-input-spinner, .search-input-clear-search, .toggle-item-text-truncated, .sch.s-searching .sch-clear, legend, .frm-legend, .action-btn, .med-origlink, .med-flaglink, .hide-detail-view-inline .detail-view-inline, .compose-account-selected, .js-compose-hint.margin-vl.anim.anim-fade-in, #file-upload-input, .s-sending .char-count, .s-profile .mdl-buttonbar, .s-profile h3, .mdl.s-nonav .mdl-inner .mdl-buttonbar, .ovl.is-dragging:before, .is-dragging.overlay:before, .numbered-badge-onheader, .tooltip-arrow, .app-search-in-popover, .app-search-form, .app-header .app-nav-logo-text, .app-header .hide-condensed, .app-header .sprite-logo, .app-header .tweet-button .label, .app-header .app-nav-link .icon-arrow-l-double, .app-header .app-nav-link .icon-arrow-r-double, .app-nav-link .icon-arrow-r-double, .app-nav-tab .icon-user-switch, .tweet-message-status, .icon.icon-move, .tweet-drag-handle, .is-narrow-columns .media-size-medium .media-sensitive-title, .contributor-row[data-contributor-role="contributor"] [data-show-when-contributor-role="admin"], .contributor-row[data-contributor-role="admin"] [data-show-when-contributor-role="contributor"], .contributor-row[data-state-error="closed-error"] [data-hide-when-state-error="closed-error"], .contributor-row[data-state="settings"] [data-hide-when-state="settings"], .contributor-row[data-state-error="settings-error"] [data-hide-when-state-error="settings-error"], [data-show-when-state], [data-show-when-state-error], .is-options-open .column-settings-link .icon-arrow-d, .column-header-link .icon-arrow-u, .column-title-back .attribution, .js-add-to-customtimeline-button, .column-title-editable .js-show-tip.avatar.size24, .account-remove-check, .signin-sheet-now-present .application, .with-add-by-url .list-placeholder.pin-all,.btn-fav>.btn-loader,.btn-fav-protected-text,.s-protected .btn-loader,.s-not-following .btn-loader,.action-text, .s-following .follow-btn:hover .following-text {
 	display:none
 }
 
@@ -623,10 +623,11 @@ html.mtd-light .spinner-layer {
 
 /* MODERNDECK COLOURS */
 
+.mtd-back-paper .l-column.mdl-column.mdl-column-sml .selected {
+	border-color:#555
+}
 
-/* start paper
-
-.mtd-back-paper .mdl:before,.mtd-back-paper .mdl-column .pin-top .search-input-list,.mtd-back-paper.mtd-light .app-navigator .js-hide-drawer,.mtd-dark.mtd-back-paper .app-navigator .js-hide-drawer,.mtd-back-paper .edit-conversation-name,.mtd-back-paper .drawer-header,.mtd-back-paper .column:not(.is-new) .column-message,.mtd-back-paper body,.mtd-back-paper .column-header,.mtd-back-paper .column-header-temp {
+.mtd-back-paper .mdl-header.js-mdl-header,.mtd-back-paper .mdl-column .pin-top .search-input-list,.mtd-back-paper.mtd-light .app-navigator .js-hide-drawer,.mtd-dark.mtd-back-paper .app-navigator .js-hide-drawer,.mtd-back-paper .edit-conversation-name,.mtd-back-paper .drawer-header,.mtd-back-paper .column:not(.is-new) .column-message,.mtd-back-paper body,.mtd-back-paper .column-header,.mtd-back-paper .column-header-temp {
 	background:#eee!important
 }
 
@@ -639,7 +640,7 @@ html.mtd-light .spinner-layer {
 	color:#555!important
 }
 
-.mtd-back-paper .more-tweets-btn {
+.mtd-back-paper .more-tweets-btn,.mtd-back-paper .selected .list-link strong {
 	color:#555!important
 }
 
@@ -648,7 +649,7 @@ html.mtd-light .spinner-layer {
 	opacity:.5
 }
 
-.mtd-dark.mtd-back-paper a.column-nav-link,.mtd-light.mtd-back-paper a.column-nav-link,.mtd-back-paper .column-nav-item {
+.mtd-dark.mtd-back-paper a.column-nav-link,.mtd-light.mtd-back-paper a.column-nav-link,.mtd-back-paper .column-nav-item,.mtd-back-paper .js-setting-list .list-link strong {
 	color:rgba(85,85,85,.75)!important
 }
 
@@ -677,9 +678,7 @@ html.mtd-light .spinner-layer {
 	color:#555
 }
 
-/* end paper */
-
-.mtd-back-grey .mdl:before,.mtd-back-grey .mdl-column .pin-top .search-input-list,.mtd-back-grey.mtd-light .app-navigator .js-hide-drawer,.mtd-dark.mtd-back-grey .app-navigator .js-hide-drawer,.mtd-back-grey .edit-conversation-name,.mtd-back-grey .drawer-header,.mtd-back-grey .column:not(.is-new) .column-message,.mtd-back-grey body,.mtd-back-grey .column-header,.mtd-back-grey .column-header-temp {
+.mtd-back-grey .mdl-header.js-mdl-header,.mtd-back-grey .mdl-column .pin-top .search-input-list,.mtd-back-grey.mtd-light .app-navigator .js-hide-drawer,.mtd-dark.mtd-back-grey .app-navigator .js-hide-drawer,.mtd-back-grey .edit-conversation-name,.mtd-back-grey .drawer-header,.mtd-back-grey .column:not(.is-new) .column-message,.mtd-back-grey body,.mtd-back-grey .column-header,.mtd-back-grey .column-header-temp {
 	background:#555
 }
 
@@ -688,7 +687,7 @@ html.mtd-light .spinner-layer {
 	transition:.2s all
 }
 
-.mtd-back-red .mdl:before,.mtd-back-red .mdl-column .pin-top .search-input-list,.mtd-back-red.mtd-light .app-navigator .js-hide-drawer,.mtd-dark.mtd-back-red .app-navigator .js-hide-drawer,.mtd-back-red .edit-conversation-name,.mtd-back-red .drawer-header,.mtd-back-red .column:not(.is-new) .column-message,.mtd-back-red body,.mtd-back-red .column-header,.mtd-back-red .column-header-temp {
+.mtd-back-red .mdl-header.js-mdl-header,.mtd-back-red .mdl-column .pin-top .search-input-list,.mtd-back-red.mtd-light .app-navigator .js-hide-drawer,.mtd-dark.mtd-back-red .app-navigator .js-hide-drawer,.mtd-back-red .edit-conversation-name,.mtd-back-red .drawer-header,.mtd-back-red .column:not(.is-new) .column-message,.mtd-back-red body,.mtd-back-red .column-header,.mtd-back-red .column-header-temp {
 	background:#F44336!important
 }
 
@@ -697,7 +696,7 @@ html.mtd-light .spinner-layer {
 	transition:.2s all
 }
 
-.mtd-back-pink .mdl:before,.mtd-back-pink .mdl-column .pin-top .search-input-list,.mtd-back-pink.mtd-light .app-navigator .js-hide-drawer,.mtd-dark.mtd-back-pink .app-navigator .js-hide-drawer,.mtd-back-pink .edit-conversation-name,.mtd-back-pink .drawer-header,.mtd-back-pink .column:not(.is-new) .column-message,.mtd-back-pink body,.mtd-back-pink .column-header,.mtd-back-pink .column-header-temp {
+.mtd-back-pink .mdl-header.js-mdl-header,.mtd-back-pink .mdl-column .pin-top .search-input-list,.mtd-back-pink.mtd-light .app-navigator .js-hide-drawer,.mtd-dark.mtd-back-pink .app-navigator .js-hide-drawer,.mtd-back-pink .edit-conversation-name,.mtd-back-pink .drawer-header,.mtd-back-pink .column:not(.is-new) .column-message,.mtd-back-pink body,.mtd-back-pink .column-header,.mtd-back-pink .column-header-temp {
 	background:#E91E63!important
 }
 
@@ -706,7 +705,7 @@ html.mtd-light .spinner-layer {
 	transition:.2s all
 }
 
-.mtd-back-orange .mdl:before,.mtd-back-orange .mdl-column .pin-top .search-input-list,.mtd-back-orange.mtd-light .app-navigator .js-hide-drawer,.mtd-dark.mtd-back-orange .app-navigator .js-hide-drawer,.mtd-back-orange .edit-conversation-name,.mtd-back-orange .drawer-header,.mtd-back-orange .column:not(.is-new) .column-message,.mtd-back-orange body,.mtd-back-orange .column-header,.mtd-back-orange .column-header-temp {
+.mtd-back-orange .mdl-header.js-mdl-header,.mtd-back-orange .mdl-column .pin-top .search-input-list,.mtd-back-orange.mtd-light .app-navigator .js-hide-drawer,.mtd-dark.mtd-back-orange .app-navigator .js-hide-drawer,.mtd-back-orange .edit-conversation-name,.mtd-back-orange .drawer-header,.mtd-back-orange .column:not(.is-new) .column-message,.mtd-back-orange body,.mtd-back-orange .column-header,.mtd-back-orange .column-header-temp {
 	background:#FF5722!important
 }
 
@@ -715,7 +714,7 @@ html.mtd-light .spinner-layer {
 	transition:.2s all
 }
 
-.mtd-back-violet .mdl:before,.mtd-back-violet .mdl-column .pin-top .search-input-list,.mtd-back-violet.mtd-light .app-navigator .js-hide-drawer,.mtd-dark.mtd-back-violet .app-navigator .js-hide-drawer,.mtd-back-violet .edit-conversation-name,.mtd-back-violet .drawer-header,.mtd-back-violet .column:not(.is-new) .column-message,.mtd-back-violet body,.mtd-back-violet .column-header,.mtd-back-violet .column-header-temp {
+.mtd-back-violet .mdl-header.js-mdl-header,.mtd-back-violet .mdl-column .pin-top .search-input-list,.mtd-back-violet.mtd-light .app-navigator .js-hide-drawer,.mtd-dark.mtd-back-violet .app-navigator .js-hide-drawer,.mtd-back-violet .edit-conversation-name,.mtd-back-violet .drawer-header,.mtd-back-violet .column:not(.is-new) .column-message,.mtd-back-violet body,.mtd-back-violet .column-header,.mtd-back-violet .column-header-temp {
 	background:#673AB7!important
 }
 
@@ -724,7 +723,7 @@ html.mtd-light .spinner-layer {
 	transition:.2s all
 }
 
-.mtd-back-teal .mdl:before,.mtd-back-teal .mdl-column .pin-top .search-input-list,.mtd-back-teal.mtd-light .app-navigator .js-hide-drawer,.mtd-dark.mtd-back-teal .app-navigator .js-hide-drawer,.mtd-back-teal .edit-conversation-name,.mtd-back-teal .drawer-header,.mtd-back-teal .column:not(.is-new) .column-message,.mtd-back-teal body,.mtd-back-teal .column-header,.mtd-back-teal .column-header-temp {
+.mtd-back-teal .mdl-header.js-mdl-header,.mtd-back-teal .mdl-column .pin-top .search-input-list,.mtd-back-teal.mtd-light .app-navigator .js-hide-drawer,.mtd-dark.mtd-back-teal .app-navigator .js-hide-drawer,.mtd-back-teal .edit-conversation-name,.mtd-back-teal .drawer-header,.mtd-back-teal .column:not(.is-new) .column-message,.mtd-back-teal body,.mtd-back-teal .column-header,.mtd-back-teal .column-header-temp {
 	background:#009688!important
 }
 
@@ -733,7 +732,7 @@ html.mtd-light .spinner-layer {
 	transition:.2s all
 }
 
-.mtd-back-green .mdl:before,.mtd-back-green .mdl-column .pin-top .search-input-list,.mtd-back-green.mtd-light .app-navigator .js-hide-drawer,.mtd-dark.mtd-back-green .app-navigator .js-hide-drawer,.mtd-back-green .edit-conversation-name,.mtd-back-green .drawer-header,.mtd-back-green .column:not(.is-new) .column-message,.mtd-back-green body,.mtd-back-green .column-header,.mtd-back-green .column-header-temp {
+.mtd-back-green .mdl-header.js-mdl-header,.mtd-back-green .mdl-column .pin-top .search-input-list,.mtd-back-green.mtd-light .app-navigator .js-hide-drawer,.mtd-dark.mtd-back-green .app-navigator .js-hide-drawer,.mtd-back-green .edit-conversation-name,.mtd-back-green .drawer-header,.mtd-back-green .column:not(.is-new) .column-message,.mtd-back-green body,.mtd-back-green .column-header,.mtd-back-green .column-header-temp {
 	background:#4CAF50!important
 }
 
@@ -742,7 +741,7 @@ html.mtd-light .spinner-layer {
 	transition:.2s all
 }
 
-.mtd-back-yellow .mdl:before,.mtd-back-yellow .mdl-column .pin-top .search-input-list,.mtd-back-yellow.mtd-light .app-navigator .js-hide-drawer,.mtd-dark.mtd-back-yellow .app-navigator .js-hide-drawer,.mtd-back-yellow .edit-conversation-name,.mtd-back-yellow .drawer-header,.mtd-back-yellow .column:not(.is-new) .column-message,.mtd-back-yellow body,.mtd-back-yellow .column-header,.mtd-back-yellow .column-header-temp {
+.mtd-back-yellow .mdl-header.js-mdl-header,.mtd-back-yellow .mdl-column .pin-top .search-input-list,.mtd-back-yellow.mtd-light .app-navigator .js-hide-drawer,.mtd-dark.mtd-back-yellow .app-navigator .js-hide-drawer,.mtd-back-yellow .edit-conversation-name,.mtd-back-yellow .drawer-header,.mtd-back-yellow .column:not(.is-new) .column-message,.mtd-back-yellow body,.mtd-back-yellow .column-header,.mtd-back-yellow .column-header-temp {
 	background:#FFC107!important
 }
 
@@ -751,7 +750,7 @@ html.mtd-light .spinner-layer {
 	transition:.2s all
 }
 
-.mtd-back-cyan .mdl:before,.mtd-back-cyan .mdl-column .pin-top .search-input-list,.mtd-back-cyan.mtd-light .app-navigator .js-hide-drawer,.mtd-dark.mtd-back-cyan .app-navigator .js-hide-drawer,.mtd-back-cyan .edit-conversation-name,.mtd-back-cyan .drawer-header,.mtd-back-cyan .column:not(.is-new) .column-message,.mtd-back-cyan body,.mtd-back-cyan .column-header,.mtd-back-cyan .column-header-temp {
+.mtd-back-cyan .mdl-header.js-mdl-header,.mtd-back-cyan .mdl-column .pin-top .search-input-list,.mtd-back-cyan.mtd-light .app-navigator .js-hide-drawer,.mtd-dark.mtd-back-cyan .app-navigator .js-hide-drawer,.mtd-back-cyan .edit-conversation-name,.mtd-back-cyan .drawer-header,.mtd-back-cyan .column:not(.is-new) .column-message,.mtd-back-cyan body,.mtd-back-cyan .column-header,.mtd-back-cyan .column-header-temp {
 	background:#00BCD4!important
 }
 
@@ -760,16 +759,16 @@ html.mtd-light .spinner-layer {
 	transition:.2s all
 }
 
-.mtd-back-black .mdl:before,.mtd-back-black .mdl-column .pin-top .search-input-list,.mtd-back-black.mtd-light .app-navigator .js-hide-drawer,.mtd-dark.mtd-back-black .app-navigator .js-hide-drawer,.mtd-back-black .edit-conversation-name,.mtd-back-black .drawer-header,.mtd-back-black .column:not(.is-new) .column-message,.mtd-back-black body,.mtd-back-black .column-header,.mtd-back-black .column-header-temp {
-	background:#333!important
+.mtd-back-black .mdl-header.js-mdl-header,.mtd-back-black .mdl-column .pin-top .search-input-list,.mtd-back-black.mtd-light .app-navigator .js-hide-drawer,.mtd-dark.mtd-back-black .app-navigator .js-hide-drawer,.mtd-back-black .edit-conversation-name,.mtd-back-black .drawer-header,.mtd-back-black .column:not(.is-new) .column-message,.mtd-back-black body,.mtd-back-black .column-header,.mtd-back-black .column-header-temp {
+	background:#000!important
 }
 
 .mtd-back-black .is-new .column-header,.mtd-back-black .is-new .column-header-temp {
-	background:linear-gradient(#333,#00BCD4)!important;
+	background:linear-gradient(#000,#0E4B50)!important;
 	transition:.2s all
 }
 
-.mtd-back-blue .mdl:before,.mtd-back-blue .mdl-column .pin-top .search-input-list,.mtd-back-blue.mtd-light .app-navigator .js-hide-drawer,.mtd-dark.mtd-back-blue .app-navigator .js-hide-drawer,.mtd-back-blue .edit-conversation-name,.mtd-back-blue .drawer-header,.mtd-back-blue .column:not(.is-new) .column-message,.mtd-back-blue body,.mtd-back-blue .column-header,.mtd-back-blue .column-header-temp {
+.mtd-back-blue .mdl-header.js-mdl-header,.mtd-back-blue .mdl-column .pin-top .search-input-list,.mtd-back-blue.mtd-light .app-navigator .js-hide-drawer,.mtd-dark.mtd-back-blue .app-navigator .js-hide-drawer,.mtd-back-blue .edit-conversation-name,.mtd-back-blue .drawer-header,.mtd-back-blue .column:not(.is-new) .column-message,.mtd-back-blue body,.mtd-back-blue .column-header,.mtd-back-blue .column-header-temp {
 	background:#2196F3!important
 }
 
@@ -829,7 +828,7 @@ html.mtd-light .spinner-layer {
 	text-align:left
 }
 
-.mtd-classic .mdl:before {
+.mtd-classic .mdl-header.js-mdl-header {
 	box-shadow:none;
 	background:transparent!important
 }
@@ -840,7 +839,7 @@ html.mtd-light .spinner-layer {
 	font-family:"San Francisco",Roboto!important
 }
 
-.mtd-theme-ios .mdl-column .pin-top .search-input-list,.mtd-theme-ios .mdl:before,.mtd-theme-ios.mtd-back-paper .is-new .column-header,.mtd-theme-ios .mtd-back-paper.is-new .column-header-temp,.mtd-theme-ios .app-header,.mtd-theme-ios .column-header,.mtd-theme-ios .column-header-temp {
+.mtd-theme-ios .mdl-column .pin-top .search-input-list,.mtd-theme-ios .mdl-header.js-mdl-header,.mtd-theme-ios.mtd-back-paper .is-new .column-header,.mtd-theme-ios .mtd-back-paper.is-new .column-header-temp,.mtd-theme-ios .app-header,.mtd-theme-ios .column-header,.mtd-theme-ios .column-header-temp {
 	background:#fff!important
 }
 
@@ -1132,6 +1131,10 @@ ul,ol,dl,li,dd {
 
 .txt-base-medium,.txt-base-small,.txt-base-smallest {
 	font-size:14px
+}
+
+.account-stats .txt-base-smallest {
+	font-size:12px
 }
 
 .txt-base-large,.txt-base-largest {
@@ -1641,7 +1644,7 @@ ul,ol,dl,li,dd {
 	content:"\e8B6"
 }
 
-.icon-trash:before {
+.icon-trash:before,button.btn-options-tray[data-action="remove"]>.icon-close:before {
 	content:"\e872"
 }
 
@@ -3281,6 +3284,10 @@ a .column-title-back .icon:after {
 	font-size:12px
 }
 
+.account-inline .fullname {
+	margin-left:14px
+}
+
 .quoted-tweet .fullname {
 	margin-left:60px
 }
@@ -3598,7 +3605,7 @@ a .column-title-back .icon:after {
 }
 
 .activity-header-wrapping+.txt-mute>.tweet .fullname {
-	margin-left:60px
+	margin-left:70px
 }
 
 .tweet {
@@ -7714,7 +7721,7 @@ input[type="checkbox"] {
 }
 
 .facet-type .control-group select,.facet-type .control-group input:not([type=checkbox]) {
-	width:63%
+	width:55%
 }
 
 .facet-type .control-group select::-webkit-input-placeholder,.facet-type .control-group input::-webkit-input-placeholder {
@@ -8044,7 +8051,7 @@ a[rel=hashtag]:active {
 }
 
 .tweet-body {
-	margin-top:4px
+	margin-top:2px
 }
 
 .media-sensitive-content p {
@@ -8937,12 +8944,12 @@ fieldset .fixed-width-label:not(.radio),fieldset:not(.js-search-filter) .control
 	box-shadow:-6px 1px 10px rgba(17,17,17,.35)
 }
 
-.mtd-dark .column-header,.mtd-dark .column-header-temp {
+.mtd-dark:not(.mtd-back-paper) .column-header,.mtd-dark:not(.mtd-back-paper) .column-header-temp {
 	background:linear-gradient(rgb(38,50,56),rgb(38,50,56));
 	overflow:hidden
 }
 
-.mtd-dark .is-new .column-header,.mtd-dark .is-new .column-header-temp {
+.mtd-dark:not(.mtd-back-paper) .is-new .column-header,.mtd-dark:not(.mtd-back-paper) .is-new .column-header-temp {
 	background:linear-gradient(rgb(38,50,56),#0E4B50)
 }
 
@@ -8957,7 +8964,7 @@ fieldset .fixed-width-label:not(.radio),fieldset:not(.js-search-filter) .control
 }
 
 .mtd-dark .column {
-	background:rgb(52,66,72)
+	background:rgb(52,66,72);
 }
 
 .mtd-dark .account-link,.mtd-dark-media-previews .med-fullpanel .account-link {
@@ -9053,7 +9060,7 @@ fieldset .fixed-width-label:not(.radio),fieldset:not(.js-search-filter) .control
 }
 
 .mtd-dark .app-columns-container {
-	background:rgb(38,50,56)
+	background:rgb(38,50,56);
 }
 
 .mtd-dark .btn-options-tray:not([disabled]):not(.is-disabled) {
@@ -10183,7 +10190,7 @@ button.mtd-no-transform-case {
 }
 
 .mtd-dark .app-content {
-	background:#263238
+	background:#263238;
 }
 
 .tweet-detail .txt-small {
