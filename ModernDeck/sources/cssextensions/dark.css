@@ -1,0 +1,418 @@
+.account-summary-text .fullname,.prf-stats a strong,.js-item-launch a.btn:not([disabled]):not(.is-disabled),html,.media-sensitive-content p,.compose .typeahead-item strong.fullname,.account-remove-check-message,.media-sensitive-title {
+  color:#eee
+}
+
+.compose .typeahead-item span.username {
+	color:rgba(255,255,255,.3)
+}
+
+.tweet-action[data-actions-menu-position]:focus,.tweet-actions .tweet-action.is-selected,.tweet-detail-actions .tweet-action.is-selected,.tweet-detail-actions .js-reply-action.is-selected{
+	color:#00838F
+}
+
+.mtd-back-default .js-setting-list>li:not(.selected)>.list-link strong {
+	color:#6D808B
+}
+
+.js-setting-list .selected strong {
+	color:#fff
+}
+
+.mtd-about-title {
+	color:#ddd
+}
+
+.edit-conversation-name {
+	background:#263238
+}
+
+.column-header,.column-header-temp {
+	background:linear-gradient(rgb(38,50,56),rgb(38,50,56));
+	overflow:hidden
+}
+
+.is-new .column-header,.is-new .column-header-temp {
+	background:linear-gradient(rgb(38,50,56),#0E4B50)
+}
+
+.txt-mute,.txt-r-dark-gray,.typeahead .username {
+	color:#6D808B
+}
+
+.column-title .attribution {
+	font-weight:400;
+	font-size:13px;
+	color:rgba(255,255,255,.74)
+}
+
+.column {
+	background:rgb(52,66,72)
+}
+
+.account-link {
+	color:#D3DBE1
+}
+
+body[class=""],html.js {
+	background:rgb(38,50,56)
+}
+
+a {
+	color:#009EAD
+}
+
+a:active {
+	color:rgb(0,115,126);
+	background-color:rgba(0,0,0,.05)
+}
+
+.txt-mute a:not(:hover):not(:focus):not(.tweet-action):not([data-action]) {
+	color:#708795;
+	text-decoration:none
+}
+
+.is-new .column-message {
+	background:#0E4B50
+}
+
+.column-content {
+	border-right:3px solid rgb(38,50,56)
+}
+
+.tweet-action,.tweet-detail-action {
+ color:rgba(149,175,191,.52)
+}
+
+a.tweet-action:active,a.tweet-action:hover,.tweet-detail-action:active,.tweet-detail-action:hover,.stream-item.is-actionable a.tweet-action:hover,.stream-item.is-actionable a.tweet-detail-action:hover,.stream-item.is-actionable a.tweet-action:focus,.stream-item.is-actionable a.tweet-detail-action:focus,.stream-item.is-actionable a.tweet-action:active,.stream-item.is-actionable a.tweet-detail-action:active,.stream-item.is-actionable a.tweet-action.is-selected,.stream-item.is-actionable a.is-selected.tweet-detail-action {
+	color:#8498A5;
+	text-decoration:none
+}
+
+.column-options .button-tray,.column-options,.facet-type,.is-options-open .column-settings-link {
+	background:#00838F
+}
+
+
+.toggle-item:active {
+	color:rgba(255,255,255,.3)
+}
+
+.btn-compose,.compose {
+	background:#00838F
+}
+
+.btn:not([disabled]):not(.is-disabled) {
+	color:#00838F
+}
+
+.compose-text-container {
+	background:#263238
+}
+
+.character-count-compose {
+	text-shadow:none;
+	color:#fff
+}
+
+.invalid-char-count {
+	color:#EC6262
+}
+
+.btn:active,.btn.is-selected {
+	background-color:rgba(255,255,255,.1)
+}
+
+body.scroll-v .btn:active,body.scroll-v .btn.is-selected {
+	background-color:rgba(0,0,0,.04)!important
+}
+
+.app-nav-link.is-selected,.app-nav-link:hover,.column-nav-link.is-selected,.column-nav-link:hover {
+	color:inherit
+}
+
+.app-columns-container {
+	background:rgb(38,50,56)
+}
+
+.btn-options-tray:not([disabled]):not(.is-disabled) {
+	color:#fff
+}
+
+.mtd-nav-drawer {
+	background:#2E3B41
+}
+
+.mtd-nav-divider {
+	background:#38454B
+}
+
+.mtd-nav-button {
+	color:#E7E7E7!important
+}
+
+.mtd-nav-drawer-icon {
+	-webkit-filter:brightness(400%);
+	filter:brightness(400%)
+}
+
+.account-bio {
+	color:#798488
+}
+
+.column-message {
+	background:rgb(38,50,56)
+}
+
+.mdl {
+	background:#2E3B41
+}
+
+.mtd-dark-media-previews .med-fullpanel {
+	background:rgb(53,63,70);
+	color:#eee
+}
+
+.btn[disabled],.btn[disabled]:hover,.btn[disabled]:active,.btn.is-disabled,.btn.is-disabled:hover,.btn.is-disabled:focus,.btn.is-disabled:active {
+	color:#54707F;
+	transition:.2s all
+}
+
+a[rel=user]:active {
+	transform:none!important;
+	background:transparent!important;
+	transition:.15s all
+}
+
+::-moz-selection {
+	background:#00838F;
+	color:#eee
+}
+
+::selection {
+	background:#00838F;
+	color:#eee
+}
+
+.cmp-replyto {
+	background:#3D4F59
+}
+
+.prf .lst-profile a {
+	color:#00838F
+}
+
+.prf-meta {
+	background:#2E3B41
+}
+
+.column-background-fill {
+	background:rgb(55,71,79)
+}
+
+.lst-group h3 {
+	color: #546671
+}
+
+.list-account .fullname {
+	color:#e8e8e8
+}
+
+.list-account .username {
+	color:#798488
+}
+
+.lst-group .selected {
+	background:#00838F;
+	color:#fff
+}
+
+
+.lst-group .selected a .username {
+	color:rgba(255,255,255,.5)
+}
+
+.js-add-column,.mdl .js-add-column {
+	background:#00838F
+}
+
+.js-add-column:active {
+	background:#429BA6!important
+}
+
+.tweet-detail-wrapper {
+	background:#3A4B54
+}
+
+.txt-normal {
+	color:#DADADA
+}
+
+.social-proof-for-tweet-title {
+	color:#8899A6
+}
+
+.dropdown-menu {
+	background:#263238;
+	box-shadow:0 2px 5px rgba(0,0,0,.34)
+}
+
+.dropdown-menu li.is-selectable:hover {
+	background:rgba(16,16,16,.5)!important
+}
+
+.dropdown-menu a[href][data-action] {
+	color:#E0E0E0
+}
+
+
+
+.dropdown-menu a[href][data-action]:active {
+	background-color:rgb(52,66,72)
+}
+
+.dropdown-menu .is-selected {
+	background:#242F35
+}
+
+.tooltip-inner {
+	background:#263238;
+	color:#DEDEDE;
+	box-shadow:0 3px 10px rgba(41,41,41,.35);
+	border-radius:2px
+}
+
+.account-stats a {
+	color:#00838F
+}
+
+.drawer-header {
+	background:#263238
+}
+
+.js-account-manager-container {
+	background:#344248
+}
+
+.contributor-manager,.js-contributor-manager-container,.contributor-adder-block {
+	background:#344248
+}
+
+.contributor-row {
+	background:#344248!important
+}
+
+.btn-negative:not([disabled]):not(.is-disabled) {
+	color:#EA6B6B
+}
+
+.btn-negative:not([disabled]):not(.is-disabled):hover {
+	color:#FF2727
+}
+
+.btn-negative:active,.btn-negative.is-selected {
+	color:#B30000
+}
+
+.btn-negative[disabled],.btn-negative[disabled]:hover,.btn-negative[disabled]:active,.btn-negative.is-disabled,.btn-negative.is-disabled:hover,.btn-negative.is-disabled:focus,.btn-negative.is-disabled:active {
+	color:rgba(244,101,101,.45)
+}
+
+.contributor-adder input.js-username-input.js-submittable-input {
+	border-bottom:3px solid #00838F
+}
+
+.compose-text {
+	color:#eee;
+	border-bottom:none
+}
+
+.compose-text::-webkit-input-placeholder {
+	color:#6D7B83
+}
+
+.app-search .compose-text::-moz-placeholder {
+	color:#6D7B83;
+	opacity:1
+}
+
+textarea:not(.compose-text):not(.js-compose-text) {
+	display:inline-block;
+	width:100%;
+	padding:4px 8px;
+	font-size:13px;
+	line-height:18px;
+	color:#fff;
+	border-bottom:2px solid #667A86;
+	border-radius:0;
+	background:transparent
+}
+
+.social-proof-container {
+	border-top:2px solid rgba(0,0,0,.1);
+	border-bottom:2px solid rgba(0,0,0,.1)
+}
+
+.drp-h-divider {
+	border-bottom:1px solid #323E43
+}
+
+.is-unread .txt-mute,.is-unread .conversation-indicator {
+	color:rgba(255,255,255,.7);
+	text-decoration:none
+}
+
+.stream-item.is-unread {
+	background:#00838F
+}
+
+.stream-item.is-unread:hover {
+	background:#20A0AC
+}
+
+.stream-item.is-unread:active {
+	background:#30787F
+}
+
+body.scroll-v ::selection {
+	background:rgba(102,227,228,.57);
+	color:inherit
+}
+
+body.scroll-v .mdl,body.scroll-v .modal-content {
+	background:#fff
+}
+
+body.scroll-v .btn:not([disabled]):not(.is-disabled),body.scroll-v .btn-positive,body.scroll-v .btn-positive-alt,body.scroll-v .btn-fav.s-favorited,body.scroll-v .s-following .follow-btn {
+	color:#00CBE5;
+	border-color:transparent;
+	z-index:5;
+	transition:.2s all,.4s background,.4s width!important
+}
+
+body.scroll-v a {
+	color:#00BCD4
+}
+
+body.scroll-v a:hover,body.scroll-v a:focus {
+	color:rgb(11,202,226)
+}
+
+body.scroll-v a:active {
+	color:rgb(13,168,188)
+}
+
+.lst-group .list-link:active {
+	background:rgba(25,112,120,.41)!important
+}
+
+.mdl-column.mdl-column-rhs {
+	background: rgb(38,50,56)
+}
+
+.mdl-column {
+	background:#2E3B41
+}
+
+.gap-chirp-text {
+	color:#00838F
+}
