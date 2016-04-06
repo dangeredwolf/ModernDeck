@@ -2752,14 +2752,6 @@ a .column-title-back .icon:after {
 	color:#7DCEFF
 }
 
-.btn.js-toggle-tweets {
-	border-radius:7px 0 0 7px
-}
-
-.btn.js-toggle-users {
-	border-radius:0 7px 7px 0
-}
-
 .js-tooltip-target.link-complex-target {
 	font-size:0
 }
@@ -8022,10 +8014,6 @@ a[rel=hashtag]:active {
 	display:inline
 }
 
-#tdesettingslistitem {
-	margin-top:10px
-}
-
 .hide-detail-view-inline .column-navigator {
 	left:240px!important
 }
@@ -8563,7 +8551,7 @@ a[rel=hashtag]:active {
 	color:#fff
 }
 
-.mtd-dark .js-setting-list .list-link strong {
+.mtd-dark.mtd-back-default .js-setting-list>li:not(.selected)>.list-link strong {
 	color:#6D808B
 }
 
@@ -10686,4 +10674,33 @@ iframe.report-flow {
 
 .list-listmember .icon-small {
 	font-size:24px
+}
+
+.js-toggle.padding-al {
+	padding:0!important
+}
+
+.js-toggle.padding-al button {
+	padding:15px
+}
+
+.js-toggle.padding-al button>span {
+	color:rgba(255,255,255,0.5);
+	font-size:15px;
+	font-weight:500;
+}
+
+.mtd-dark.mtd-back-default .js-toggle.padding-al button>span {
+	color: #647883;
+	font-size:15px;
+	font-weight:500;
+}
+
+.js-toggle.padding-al button.is-selected>span {
+	color:#fff
+}
+
+.js-toggle.padding-al button.is-selected {
+	background:transparent;
+	border-bottom:4px #fff solid
 }
