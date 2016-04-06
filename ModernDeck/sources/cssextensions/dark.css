@@ -1,4 +1,4 @@
-.account-summary-text .fullname,.prf-stats a strong,.js-item-launch a.btn:not([disabled]):not(.is-disabled),html,.media-sensitive-content p,.compose .typeahead-item strong.fullname,.account-remove-check-message,.media-sensitive-title {
+.media-sensitive,.account-summary-text .fullname,.prf-stats a strong,.js-item-launch a.btn:not([disabled]):not(.is-disabled),html,.media-sensitive-content p,.compose .typeahead-item strong.fullname,.account-remove-check-message,.media-sensitive-title {
   color:#eee
 }
 
@@ -83,7 +83,7 @@ a:active {
  color:rgba(149,175,191,.52)
 }
 
-a.tweet-action:active,a.tweet-action:hover,.tweet-detail-action:active,.tweet-detail-action:hover,.stream-item.is-actionable a.tweet-action:hover,.stream-item.is-actionable a.tweet-detail-action:hover,.stream-item.is-actionable a.tweet-action:focus,.stream-item.is-actionable a.tweet-detail-action:focus,.stream-item.is-actionable a.tweet-action:active,.stream-item.is-actionable a.tweet-detail-action:active,.stream-item.is-actionable a.tweet-action.is-selected,.stream-item.is-actionable a.is-selected.tweet-detail-action {
+.tweet-action:active,.tweet-action:hover,.tweet-detail-action:active,.tweet-detail-action:hover,.stream-item.is-actionable .tweet-action:hover,.stream-item.is-actionable .tweet-detail-action:hover,.stream-item.is-actionable .tweet-action:focus,.stream-item.is-actionable .tweet-detail-action:focus,.stream-item.is-actionable .tweet-action:active,.stream-item.is-actionable .tweet-detail-action:active,.stream-item.is-actionable .tweet-action.is-selected,.stream-item.is-actionable a.is-selected.tweet-detail-action {
 	color:#8498A5;
 	text-decoration:none
 }
@@ -91,7 +91,6 @@ a.tweet-action:active,a.tweet-action:hover,.tweet-detail-action:active,.tweet-de
 .column-options .button-tray,.column-options,.facet-type,.is-options-open .column-settings-link {
 	background:#00838F
 }
-
 
 .toggle-item:active {
 	color:rgba(255,255,255,.3)
@@ -415,4 +414,71 @@ body.scroll-v a:active {
 
 .gap-chirp-text {
 	color:#00838F
+}
+
+.mdl.s-profile::-webkit-scrollbar-thumb,.mtd-nav-drawer::-webkit-scrollbar-thumb,.lst-launcher::-webkit-scrollbar-thumb,.scroll-styled-v::-webkit-scrollbar-thumb,.scroll-v::-webkit-scrollbar-thumb,.scroll-styled-h::-webkit-scrollbar-thumb,.s-tall-fixed::-webkit-scrollbar-thumb {
+  border-radius:5px;
+  background:rgba(149,175,191,.52)
+}
+
+.mdl.s-profile::-webkit-scrollbar-thumb:hover,.mtd-nav-drawer::-webkit-scrollbar-thumb:hover,.lst-launcher::-webkit-scrollbar-thumb:hover,.scroll-styled-v::-webkit-scrollbar-thumb:hover,.scroll-v::-webkit-scrollbar-thumb:hover,.scroll-styled-h::-webkit-scrollbar-thumb:hover {
+	background:rgb(132,152,165)
+}
+
+.sprite:before {
+	color:#00838F
+}
+
+.application:not(.hide-detail-view-inline) .btn-compose:active,.application:not(.hide-detail-view-inline) .tweet-button.btn-compose:focus {
+	background:#009CB0
+}
+
+.s-following .follow-btn:hover {
+	color:#E15F5F
+}
+
+.btn-compose,.btn-compose:hover,.btn-compose:focus {
+	background:#00C3DC
+}
+
+.modal-content {
+	background:rgb(37,50,56)
+}
+
+.column-scroller,.column-detail-level-2 {
+	background:rgb(52,66,72)
+}
+
+.stream-item.is-actionable:hover {
+	background:#3A4B54
+}
+
+.list-item,.list-item.is-actionable.item-box.is-selected {
+	color:#dbdbdb
+}
+
+.list-item.is-actionable.item-box.is-selected,.js-typeahead-recent-search-clear.js-typeahead-item.is-selected {
+	background:#384850
+}
+
+.js-typeahead-item.is-actionable:active {
+	background:#3C4D56;
+	color:#D7D7D7
+}
+
+.js-typeahead-recent-search-clear.js-typeahead-item.recent-search-clear:active {
+	background:#36474F;
+	color:#DFDFDF
+}
+
+.list-placeholder,.mdl-placeholder {
+	color:#6D7B83
+}
+
+.is-selected-tweet {
+	background:#3A4F56
+}
+
+.tweet-translation-original-text {
+	color:#697F8C
 }
