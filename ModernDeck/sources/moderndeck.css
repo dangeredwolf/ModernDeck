@@ -10739,3 +10739,63 @@ iframe.report-flow {
 .compose-remember-state {
 	margin-bottom:5px
 }
+
+#mtd-theme-control>option[value="paper"] {
+	background:#eee;
+	color:#333
+}
+
+#mtd-theme-control>option[value="grey"] {
+	background:#555;
+	color:#fff
+}
+
+#mtd-theme-control>option[value="red"] {
+	background:#F44336;
+	color:#fff
+}
+
+#mtd-theme-control>option[value="pink"] {
+	background:#E91E63;
+	color:#fff
+}
+
+#mtd-theme-control>option[value="orange"] {
+	background:#FF5722;
+	color:#fff
+}
+
+#mtd-theme-control>option[value="violet"] {
+	background:#673AB7;
+	color:#fff
+}
+
+#mtd-theme-control>option[value="teal"] {
+	background:#009688;
+	color:#fff
+}
+
+#mtd-theme-control>option[value="green"] {
+	background:#4CAF50;
+	color:#fff
+}
+
+#mtd-theme-control>option[value="yellow"] {
+	background:#FFC107;
+	color:#fff
+}
+
+#mtd-theme-control>option[value="cyan"] {
+	background:#00BCD4;
+	color:#fff
+}
+
+#mtd-theme-control>option[value="black"] {
+	background:#000;
+	color:#fff
+}
+
+#mtd-theme-control>option[value="blue"] {
+	background:#2196F3;
+	color:#fff
+}
