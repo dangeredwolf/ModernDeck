@@ -5,7 +5,7 @@
 
 "use strict";
 
-var SystemVersion = "6.0";
+var SystemVersion = "6.0 Beta 2";
 var MTDBaseURL = "https://dangeredwolf.com/assets/mtdtest/"; // Defaults to streaming if nothing else is available (i.e. legacy firefox)
 
 var msgID = 0;
