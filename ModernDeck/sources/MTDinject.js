@@ -58,24 +58,7 @@ window.addEventListener("message", function(e) {
 });
 
 window.addEventListener("beforeunload", function(e){
-<<<<<<< HEAD
-	savePreferencesToDisk()
-=======
-	var storage = {}
-	for (var i = 0; i < localStorage.length; i++){
-		var key = localStorage.key(i);
-		if (key == "guestID" || key == "metrics.realtimeData") {
-			continue;
-		} else {
-			storage[key] = localStorage[key];
-		}
-	}
->>>>>>> origin/master
-
-	window.postMessage({
-		type: "setStorage",
-		message: storage
-	}, "*");
+	savePreferencesToDisk();
 })
 
 if (typeof MTDURLExchange === "object" && typeof MTDURLExchange.getAttribute === "function") {
@@ -87,7 +70,6 @@ if (typeof chrome === "undefined" && typeof safari === "undefined") {
 	TreatGeckoWithCare = true;
 }
 
-<<<<<<< HEAD
 function savePreferencesToDisk() {
 	var storage = {}
 	for(var i = 0; i < localStorage.length; i++){
@@ -98,9 +80,13 @@ function savePreferencesToDisk() {
 			storage[key] = localStorage[key];
 		}
 	}
+	
+	window.postMessage({
+		type: "setStorage",
+		message: storage
+	}, "*");
 }
 
-=======
 function enableStylesheetExtension(name) {
 	var url = MTDBaseURL + "sources/cssextensions/" + name + ".css";
 
