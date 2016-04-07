@@ -22,7 +22,7 @@ if (chrome !== "undefined") {
 
   chrome.webRequest.onBeforeRequest.addListener(function(details) {
 
-      if (details.url.indexOf("app-dark") > -1 || details.url.indexOf("app-light") > -1) {
+      if (details.url.indexOf(".css") > -1) {
         return {cancel:true};
       }
 
