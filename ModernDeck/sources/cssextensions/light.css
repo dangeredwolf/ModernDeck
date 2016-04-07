@@ -177,10 +177,238 @@
 	color:#999
 }
 
-.is-selected-tweet {
+.is-selected-tweet,.app-content {
 	background:#eee
 }
 
 .tweet-translation-original-text {
 	color:#888
+}
+
+.typeahead {
+	color:#333
+}
+
+.typeahead .fullname {
+	color:#000
+}
+
+.typeahead .username {
+	color:#999
+}
+
+.popover .facet-type.is-expanded {
+	background:#26C6DA
+}
+
+.mtd-dark-media-previews .med-fullpanel {
+	background:rgb(53,63,70);
+	color:#eee
+}
+
+.ovl,.overlay {
+	background:rgba(100,100,100,.4);
+}
+
+.mdl {
+	background:#fff
+}
+
+.mdl-header {
+	background:#29B6F6
+}
+
+.compose-send-button-success {
+	color:#00BCD4
+}
+
+.compose-reply-tweet {
+	background:#fff
+}
+
+.tweet-detail-wrapper .media-sensitive {
+	background:#FAFAFA
+}
+
+.more-tweets-btn {
+	background:#00BCD4
+}
+
+.more-tweets-btn:active,.more-tweets-btn:focus,.more-tweets-btn:hover,.more-tweets-btn:active {
+	background:#00BCD4!important
+}
+
+.more-tweets-btn:active {
+	background:#58CDDB!important
+}
+
+.compose-message-recipient-list,.compose-message-recipient-input-container {
+	background:#fff
+}
+
+.add-participant .js-username-input.js-submittable-input {
+	border-bottom:2px solid #ccc
+}
+
+.compose-media-grid-holder {
+	background:#fff
+}
+
+.app-navigator .js-hide-drawer {
+	 box-shadow:0 -3px 5px rgba(17,17,17,.15);
+	 background:#03A9F4
+}
+
+.toggle-switch-label:before {
+	background-color:#BDC7CE;
+}
+
+.toggle-switch-label:after {
+	background-color:#fff
+}
+
+.toggle-switch-input:checked+.toggle-switch-label:after {
+	background-color:#1DA2B4
+}
+
+.toggle-switch-input:checked+.toggle-switch-label:before {
+	background-color:#20C9DF
+}
+
+.detail-view-inline-text {
+	border-bottom:3px solid #00BCD4
+}
+
+.js-quote-tweet-holder .quoted-tweet {
+	background:#fff
+}
+
+.is-favorite.is-retweet .tweet-dogear {
+	background:#1FC9DF
+}
+
+.mtd-acc-focus-ring a:focus,.mtd-acc-focus-ring button:focus {
+	outline:rgb(11,202,226) solid 3px
+}
+
+option {
+	color:#333
+}
+
+.icon-follow-color {
+	color:#00BCD4
+}
+
+.app-columns-container {
+	background:#f9f9f9
+}
+
+.compose-media-bar-holder {
+	background:#fff
+}
+
+.compose-media-info-bar-holder {
+	background:#fff;
+	color:#999
+}
+
+.compose-media-info-bar {
+	background:#ddd
+}
+
+.inline-reply {
+	background:#00C3DC
+}
+
+html:not(.mtd-dark-media-previews) .med-tweet {
+	background:#fff
+}
+
+.text-like-keyboard-key {
+	background:#333
+}
+
+.list-twitter-list .inner strong,.list-account {
+	color:#333
+}
+
+.list-account .username {
+	opacity:.75
+}
+
+.list-listmember .username {
+	color:#999
+}
+
+.list-listmember .bio {
+	color:#666
+}
+
+input,textarea,select,.uneditable-input {
+	border-bottom:2px solid #ddd
+}
+
+.frm {
+	color:#444
+}
+
+::placeholder,input::placeholder,textarea::placeholder {
+	color:#a8a8a8
+}
+
+.search-input {
+	color:#000;
+	border-bottom:2px solid #ddd
+}
+
+.mdl-column.l-column .search-input {
+	background:rgba(255,255,255,.04);
+	color:#000
+}
+
+.mdl-column.l-column .search-input::-webkit-input-placeholder {
+	color:#555
+}
+
+.mdl-column.l-column .search-input::-moz-placeholder {
+	color:#555
+}
+
+.js-add-column,.js-add-column:hover,.js-add-column:focus,.js-add-column:active {
+	background:#26C6DA;
+	box-shadow:0 5px 15px 1px rgba(0,0,0,.25)
+}
+
+.js-add-column:active {
+	background:#58CDDB
+}
+
+.recent-search-clear.list-item-last {
+	background:#fff;
+	color:#000
+}
+
+#caldays span {
+	color:#5a5a5a
+}
+
+.caldisabled[href],.caldisabled[href]:hover,.caldisabled[href]:active {
+	color:rgba(128,128,128,.5)!important
+}
+
+#calcurrent {
+	background:#00BCD4!important
+}
+
+.cal {
+	color:#666
+}
+
+.prf-header {
+	background-color:#1FC0CF
+}
+
+.prf-follow-status {
+	background:#fff;
+	color:#333
 }
