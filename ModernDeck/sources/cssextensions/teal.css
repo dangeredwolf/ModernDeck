@@ -1,0 +1,19 @@
+/*
+  teal.css
+
+  Copyright 2014-2016 Ryan Dolan (@dangeredwolf)
+  Released under the MIT Licence
+*/
+
+
+.mdl-header.js-mdl-header,.mtd-back-teal.mtd-light .app-navigator .js-hide-drawer,.app-navigator .js-hide-drawer,.edit-conversation-name,.drawer-header,.column:not(.is-new) .column-message,body,.column-header,.column-header-temp {
+	background:#009688!important
+}
+
+.is-new .column-header,.is-new .column-header-temp {
+	background:linear-gradient(#009688,#00BCD4)!important
+}
+
+.mtd-nd-header-image {
+	background-color:#009688!important
+}

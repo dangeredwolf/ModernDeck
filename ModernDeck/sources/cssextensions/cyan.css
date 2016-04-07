@@ -1,0 +1,11 @@
+.mdl-header.js-mdl-header,.mtd-back-cyan.mtd-light .app-navigator .js-hide-drawer,.app-navigator .js-hide-drawer,.edit-conversation-name,.drawer-header,.column:not(.is-new) .column-message,body,.column-header,.column-header-temp {
+	background:#00BCD4!important
+}
+
+.is-new .column-header,.is-new .column-header-temp {
+	background:linear-gradient(#00BCD4,#eee)!important
+}
+
+.mtd-nd-header-image {
+	background-color:#00BCD4!important
+}

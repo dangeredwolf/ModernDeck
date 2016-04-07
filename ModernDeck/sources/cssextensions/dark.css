@@ -1,3 +1,11 @@
+/*
+  dark.css
+
+  Copyright 2014-2016 Ryan Dolan (@dangeredwolf)
+  Released under the MIT Licence
+*/
+
+
 .media-sensitive,.account-summary-text .fullname,.prf-stats a strong,.js-item-launch a.btn:not([disabled]):not(.is-disabled),html,.media-sensitive-content p,.compose .typeahead-item strong.fullname,.account-remove-check-message,.media-sensitive-title {
   color:#eee
 }
@@ -92,10 +100,6 @@ a:active {
 	background:#00838F
 }
 
-.toggle-item:active {
-	color:rgba(255,255,255,.3)
-}
-
 .btn-compose,.compose {
 	background:#00838F
 }
@@ -166,7 +170,7 @@ body.scroll-v .btn:active,body.scroll-v .btn.is-selected {
 	background:#2E3B41
 }
 
-.mtd-dark-media-previews .med-fullpanel {
+.med-fullpanel {
 	background:rgb(53,63,70);
 	color:#eee
 }
@@ -262,8 +266,6 @@ a[rel=user]:active {
 .dropdown-menu a[href][data-action] {
 	color:#E0E0E0
 }
-
-
 
 .dropdown-menu a[href][data-action]:active {
 	background-color:rgb(52,66,72)
@@ -481,4 +483,253 @@ body.scroll-v a:active {
 
 .tweet-translation-original-text {
 	color:#697F8C
+}
+
+.typeahead .fullname {
+	color:#ccc
+}
+
+.ovl,.overlay {
+	background:rgba(88,100,107,.4)
+}
+
+.mdl-header {
+	background:rgb(38,50,56)
+}
+
+.compose-send-button-success {
+	color:#00838F
+}
+
+.compose-reply-tweet {
+	background:#263238
+}
+
+.tweet-detail-wrapper .media-sensitive {
+	background:#3A4B54
+}
+
+.lst-modal,.typeahead {
+	background:#1E272C
+}
+
+.more-tweets-btn {
+	background:#00838F
+}
+
+.more-tweets-btn:focus,.more-tweets-btn:hover,.more-tweets-btn:active {
+	background:#00838F!important
+}
+
+.more-tweets-btn:active {
+	background:#2F9099!important
+}
+
+.compose-message-recipient-list,.compose-message-recipient-input-container {
+	background:#263238
+}
+
+.add-participant .js-username-input.js-submittable-input {
+	border-bottom:2px solid #667A86
+}
+
+.compose-media-grid-holder {
+	background:#263238
+}
+
+.add-participant input::-webkit-input-placeholder {
+	color:#667A86
+}
+
+.add-participant input::-moz-placeholder {
+	 color:#667A86;
+	 opacity:1
+}
+
+.app-navigator .js-hide-drawer {
+	 background:#263238;
+	 box-shadow:0 -5px 10px rgba(17,17,17,.35)
+}
+
+.toggle-switch-label:before {
+	background-color:#56717D
+}
+
+.toggle-switch-label:after {
+	background-color:#ccc
+}
+
+.toggle-switch-input:checked+.toggle-switch-label:before {
+	background-color:#6CCACB
+}
+
+.toggle-switch-input:checked+.toggle-switch-label:after {
+	background-color:#1A7780
+}
+
+body {
+	background:rgb(38,50,56)
+}
+
+.emoji-popover .category-chooser {
+	background:#263238!important
+}
+
+body.scroll-v select,body.scroll-v input {
+	color:#333;
+	border-bottom:2px solid #ccc;
+	border-radius:0!important
+}
+
+.js-quote-tweet-holder .quoted-tweet {
+	background:#263238
+}
+
+html.mtd-acc-focus-ring a:focus,html.mtd-acc-focus-ring button:focus {
+	outline:rgb(16,148,160) solid 3px
+}
+
+.is-favorite.is-retweet .tweet-dogear {
+	background:#00838F
+}
+
+option {
+	color:#eee;
+	background:#2E3B41
+}
+
+.icon-follow-color {
+	color:#00838F
+}
+
+.app-content {
+	background:#263238
+}
+
+.compose-media-bar-holder {
+	background:#263238
+}
+
+.inline-reply {
+	background:#00838F
+}
+
+.med-tweet {
+  background:rgb(37,50,56);
+}
+
+.text-like-keyboard-key {
+	background:#263238
+}
+
+.list-twitter-list .inner strong {
+	color:#eaeaea
+}
+
+.list-listmember .bio,.list-listmember .username {
+	color:#637983
+}
+
+select,input {
+	color:#ddd
+}
+
+optgroup {
+	background:#263238
+}
+
+input,textarea,select,.uneditable-input {
+	border-bottom:2px solid #54707F
+}
+
+.frm {
+	color:#e5e5e5
+}
+
+.search-input {
+	color:#fff;
+	border-bottom:2px solid rgba(255,255,255,.7)
+}
+
+.mdl-column.l-column .search-input {
+	background:#43525A;
+  color:#fff;
+}
+
+.mdl-column.l-column .search-input::-webkit-input-placeholder {
+	color:#fff
+}
+
+.mdl-column.l-column .search-input::-moz-placeholder {
+	color:#fff;
+	opacity:1
+}
+
+.mdl-column.l-column .search-input:input-placeholder {
+	color:#fff
+}
+
+.recent-search-clear.is-actionable.list-item-last {
+	background-color:#263238;
+	color:#DBDBDB
+}
+
+#caldays span {
+	color:#677B86
+}
+
+.caldisabled[href],.caldisabled[href]:hover,.caldisabled[href]:active {
+	color:rgb(102,122,134)!important
+}
+
+#calcurrent {
+	background:#00838F!important
+}
+
+.cal {
+	color:#ddd
+}
+
+.prf-header {
+	background-color:rgb(38,50,56)
+}
+
+.prf-follow-status {
+	background:#2E3B41;
+	color:#eee
+}
+
+.lst-group .selected:active {
+	background:#429BA6
+}
+
+.popover {
+	background:#263238
+}
+
+.mdl-links span {
+	color:#50717F
+}
+
+.js-translate-call-to-action {
+	color:#697F8C
+}
+
+.tweet-detail .margin-tl.txt-small:before {
+	background:#4D6D7F
+}
+
+.btn-login[type="submit"],.login-container .btn-positive {
+	background:#00BCD4
+}
+
+.btn-login[type="submit"]:active,.login-container .btn-positive:active {
+	background:#00CDE8!important;
+	transform:none!important
+}
+
+.js-toggle.padding-al button>span {
+	color:#647883;
+	font-size:15px;
+	font-weight:500
 }

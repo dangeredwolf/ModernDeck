@@ -5,7 +5,7 @@
 
 "use strict";
 
-var SystemVersion = "6.0 Beta 2.1";
+var SystemVersion = "6.0 Beta 3";
 var MTDBaseURL = "https://dangeredwolf.com/assets/mtdtest/"; // Defaults to streaming if nothing else is available (i.e. legacy firefox)
 
 var msgID = 0;
@@ -80,7 +80,7 @@ function savePreferencesToDisk() {
 			storage[key] = localStorage[key];
 		}
 	}
-	
+
 	window.postMessage({
 		type: "setStorage",
 		message: storage
@@ -110,7 +110,6 @@ function disableExtraStylesheetExtensions() {
 	$("head>link.mtd-stylesheet-extension:not([href='" + MTDBaseURL + "sources/cssextensions/dark.css']):not([href='" + MTDBaseURL + "sources/cssextensions/light.css'])").remove();
 }
 
->>>>>>> origin/master
 function loadPreferences() {
 	if (getPref("mtd_round_avatars") === false)
 		html.addClass("mtd-no-round-avatars");
@@ -175,6 +174,8 @@ function MTDInit(){
 		setTimeout(MTDInit,500);
 		return;
 	}
+
+	enableStylesheetExtension("dark")
 
 	// TD.controller.stats.dataminrApiRequest = function(){};
 	// TD.controller.stats.dataminrAuthRequest = function(){};
@@ -383,13 +384,9 @@ function PrefsListener() {
 		if ($("#mtd-theme-control option:selected").length > 0 && localStorage.mtd_theme !== $("#mtd-theme-control option:selected")[0].value) {
 			//html.removeClass("mtd-back-" + localStorage.mtd_theme);
 			localStorage.mtd_theme = $("#mtd-theme-control option:selected")[0].value;
-<<<<<<< HEAD
 			html.addClass("mtd-back-" + $("#mtd-theme-control option:selected")[0].value);
+			enableStylesheetExtension($("#mtd-theme-control option:selected")[0].value || "default");
 			savePreferencesToDisk();
-=======
-			//html.addClass("mtd-back-" + $("#mtd-theme-control option:selected")[0].value);
-			enableStylesheetExtension($("#mtd-theme-control option:selected")[0].value)
->>>>>>> origin/master
 		}
 
 		setTimeout(PrefsListener,500);
@@ -428,7 +425,7 @@ function MTDSettings() {
 			$("#mtd-round-avatars-control").attr("checked",localStorage.mtd_round_avatars === "true" && true || false);
 			$("#mtd-outlines-control").attr("checked",localStorage.mtd_outlines === "true" && true || false);
 			$("#mtd-dark-media-control").attr("checked",localStorage.mtd_dark_media === "true" && true || false);
-			$("#mtd-theme-control").val(localStorage.mtd_theme);
+			$("#mtd-theme-control").val(localStorage.mtd_theme || default);
 
 
 			PrefsListener();
@@ -708,32 +705,16 @@ function ReloadTheme() {
 		if (document.querySelector("meta[http-equiv='default-style']").content === "light") {
 			disableStylesheetExtension("dark");
 			enableStylesheetExtension("light");
+			html.addClass("mtd-light").removeClass("mtd-dark")
 			MTDDark = false;
 		} else {
-			disableStylesheetExtension("dark");
-			enableStylesheetExtension("light");
+			enableStylesheetExtension("dark");
+			disableStylesheetExtension("light");
+			html.addClass("mtd-dark").removeClass("mtd-light")
 			MTDDark = true;
 		}
 
-		enableStylesheetExtension(localStorage.mtd_theme);
-}
-
-function DisableSecureStylesheets() {
-	if (!WantsToDisableSecureStylesheets) {
-		console.log("Are you sure you want to disable secure stylesheets?");
-		console.log("Bugfix and security updates will become slower and rely on core extension updates.");
-		console.log("Run this command again to disable it.");
-		WantsToDisableSecureStylesheets = true;
-		return;
-	} else {
-		localStorage.mtd_flag_block_secure_ss = true;
-		console.log("Secure stylesheets have been disabled");
-	}
-}
-
-function EnableSecureStylesheets() {
-	localStorage.mtd_flag_block_secure_ss = false;
-	console.log("Thanks! For quicker updates and improvements, you have now enabled optional secure stylesheets.");
+		enableStylesheetExtension(localStorage.mtd_theme || "default");
 }
 
 function diag() {
