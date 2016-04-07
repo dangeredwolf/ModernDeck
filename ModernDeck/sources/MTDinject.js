@@ -171,6 +171,8 @@ function MTDInit(){
 		return;
 	}
 
+	enableStylesheetExtension("dark")
+
 	// TD.controller.stats.dataminrApiRequest = function(){};
 	// TD.controller.stats.dataminrAuthRequest = function(){};
 	// TD.controller.stats.dataminrClickImpression = function(){};
@@ -373,7 +375,7 @@ function PrefsListener() {
 			//html.removeClass("mtd-back-" + localStorage.mtd_theme);
 			localStorage.mtd_theme = $("#mtd-theme-control option:selected")[0].value;
 			//html.addClass("mtd-back-" + $("#mtd-theme-control option:selected")[0].value);
-			enableStylesheetExtension($("#mtd-theme-control option:selected")[0].value)
+			enableStylesheetExtension($("#mtd-theme-control option:selected")[0].value || "default")
 		}
 
 		setTimeout(PrefsListener,500);
@@ -412,7 +414,7 @@ function MTDSettings() {
 			$("#mtd-round-avatars-control").attr("checked",localStorage.mtd_round_avatars === "true" && true || false);
 			$("#mtd-outlines-control").attr("checked",localStorage.mtd_outlines === "true" && true || false);
 			$("#mtd-dark-media-control").attr("checked",localStorage.mtd_dark_media === "true" && true || false);
-			$("#mtd-theme-control").val(localStorage.mtd_theme);
+			$("#mtd-theme-control").val(localStorage.mtd_theme || default);
 
 
 			PrefsListener();
@@ -695,13 +697,13 @@ function ReloadTheme() {
 			html.addClass("mtd-light").removeClass("mtd-dark")
 			MTDDark = false;
 		} else {
-			disableStylesheetExtension("dark");
-			enableStylesheetExtension("light");
+			enableStylesheetExtension("dark");
+			disableStylesheetExtension("light");
 			html.addClass("mtd-dark").removeClass("mtd-light")
 			MTDDark = true;
 		}
 
-		enableStylesheetExtension(localStorage.mtd_theme);
+		enableStylesheetExtension(localStorage.mtd_theme || "default");
 }
 
 function diag() {
