@@ -692,32 +692,16 @@ function ReloadTheme() {
 		if (document.querySelector("meta[http-equiv='default-style']").content === "light") {
 			disableStylesheetExtension("dark");
 			enableStylesheetExtension("light");
+			html.addClass("mtd-light").removeClass("mtd-dark")
 			MTDDark = false;
 		} else {
 			disableStylesheetExtension("dark");
 			enableStylesheetExtension("light");
+			html.addClass("mtd-dark").removeClass("mtd-light")
 			MTDDark = true;
 		}
 
 		enableStylesheetExtension(localStorage.mtd_theme);
-}
-
-function DisableSecureStylesheets() {
-	if (!WantsToDisableSecureStylesheets) {
-		console.log("Are you sure you want to disable secure stylesheets?");
-		console.log("Bugfix and security updates will become slower and rely on core extension updates.");
-		console.log("Run this command again to disable it.");
-		WantsToDisableSecureStylesheets = true;
-		return;
-	} else {
-		localStorage.mtd_flag_block_secure_ss = true;
-		console.log("Secure stylesheets have been disabled");
-	}
-}
-
-function EnableSecureStylesheets() {
-	localStorage.mtd_flag_block_secure_ss = false;
-	console.log("Thanks! For quicker updates and improvements, you have now enabled optional secure stylesheets.");
 }
 
 function diag() {

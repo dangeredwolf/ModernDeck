@@ -1,3 +1,10 @@
+/*
+  light.css
+
+  Copyright 2014-2016 Ryan Dolan (@dangeredwolf)
+  Released under the MIT Licence
+*/
+
 .tweet-action[data-actions-menu-position]:focus {
 	color:#26C6DA
 }
@@ -222,7 +229,7 @@
 	color:#00BCD4
 }
 
-.compose-reply-tweet {
+.compose-reply-tweet,.tweet-detail-wrapper {
 	background:#fff
 }
 
@@ -411,4 +418,32 @@ input,textarea,select,.uneditable-input {
 .prf-follow-status {
 	background:#fff;
 	color:#333
+}
+
+.lst-group .selected:active {
+	background:#58CDDB
+}
+
+.popover {
+	background:#fff
+}
+
+.mdl-links span {
+	color:#bbb
+}
+
+.mtd-dark-media-previews .med-fullpanel .tweet-timestamp a {
+	color:#677985!important
+}
+
+.tweet-detail .margin-tl.txt-small:before {
+	background:#ccc
+}
+
+.btn-login[type="submit"],.login-container .btn-positive {
+	background:#00BCD4
+}
+
+.js-search-results-container .facet-title {
+	color:#000
 }

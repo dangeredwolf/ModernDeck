@@ -1,0 +1,60 @@
+/*
+  classic.css
+
+  Copyright 2014-2016 Ryan Dolan (@dangeredwolf)
+  Released under the MIT Licence
+*/
+
+* {
+	font-family:sans-serif!important
+}
+
+.column-head-title {
+	font-size:18px!important
+}
+
+.column-title .attribution {
+	font-size:13px!important
+}
+
+.column-title {
+	margin-top:0!important
+}
+
+.dropdown-menu {
+	position:absolute!important;
+	z-index:1!important;
+	padding:12px 0!important;
+	padding-top:5px!important;
+	border-radius:2px!important;
+	text-align:left!important;
+	font-weight:normal!important;
+	font-size:12px!important;
+	margin-bottom:0!important;
+	line-height:18px!important;
+	background:#fff!important
+}
+
+.dropdown-menu li {
+	height:24px!important
+}
+
+.drp-h-divider {
+	margin-bottom:0!important
+}
+
+li.is-selectable a[data-action=mute]:before {
+	font-size:12px!important
+}
+
+.mdl-header-title {
+	padding-left:18px!important;
+	font-weight:500!important;
+	font-size:16px!important;
+	text-align:left!important
+}
+
+.mdl-header.js-mdl-header {
+	box-shadow:none!important;
+	background:transparent!important
+}

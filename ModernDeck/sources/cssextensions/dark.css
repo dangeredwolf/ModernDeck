@@ -1,3 +1,11 @@
+/*
+  dark.css
+
+  Copyright 2014-2016 Ryan Dolan (@dangeredwolf)
+  Released under the MIT Licence
+*/
+
+
 .media-sensitive,.account-summary-text .fullname,.prf-stats a strong,.js-item-launch a.btn:not([disabled]):not(.is-disabled),html,.media-sensitive-content p,.compose .typeahead-item strong.fullname,.account-remove-check-message,.media-sensitive-title {
   color:#eee
 }
@@ -689,4 +697,39 @@ input,textarea,select,.uneditable-input {
 .prf-follow-status {
 	background:#2E3B41;
 	color:#eee
+}
+
+.lst-group .selected:active {
+	background:#429BA6
+}
+
+.popover {
+	background:#263238
+}
+
+.mdl-links span {
+	color:#50717F
+}
+
+.js-translate-call-to-action {
+	color:#697F8C
+}
+
+.tweet-detail .margin-tl.txt-small:before {
+	background:#4D6D7F
+}
+
+.btn-login[type="submit"],.login-container .btn-positive {
+	background:#00BCD4
+}
+
+.btn-login[type="submit"]:active,.login-container .btn-positive:active {
+	background:#00CDE8!important;
+	transform:none!important
+}
+
+.js-toggle.padding-al button>span {
+	color:#647883;
+	font-size:15px;
+	font-weight:500
 }

@@ -1,0 +1,18 @@
+/*
+  red.css
+
+  Copyright 2014-2016 Ryan Dolan (@dangeredwolf)
+  Released under the MIT Licence
+*/
+
+.mdl-header.js-mdl-header,.mtd-back-red.mtd-light .app-navigator .js-hide-drawer,.app-navigator .js-hide-drawer,.edit-conversation-name,.drawer-header,.column:not(.is-new) .column-message,body,.column-header,.column-header-temp {
+	background:#F44336!important
+}
+
+.is-new .column-header,.is-new .column-header-temp {
+	background:linear-gradient(#F44336,#00BCD4)!important
+}
+
+.mtd-nd-header-image {
+	background-color:#F44336!important
+}
