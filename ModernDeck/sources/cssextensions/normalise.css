@@ -1,0 +1,124 @@
+audio:not([controls]) {
+	display:none;
+	height:0
+}
+
+input,textarea,keygen,select,button {
+	font-family:inherit
+}
+
+a:focus {
+	outline:thin
+}
+
+a:active,a:hover {
+	outline:0
+}
+
+b,strong {
+	font-weight:500
+}
+
+q {
+	quotes:"\201C" "\201D" "\2018" "\2019"
+}
+
+small {
+	font-size:80%
+}
+
+img {
+	border:0
+}
+
+fieldset {
+	margin:0 2px;
+	padding:.35em .625em .75em
+}
+
+button,input,select,textarea {
+	font-size:100%;
+	line-height:normal;
+	pointer-events:all;
+	margin:0
+}
+
+button,html input[type="button"],input[type="reset"],input[type="submit"] {
+	cursor:pointer
+}
+
+button[disabled],input[disabled] {
+	cursor:default
+}
+
+input[type="checkbox"],input[type="radio"] {
+	box-sizing:border-box;
+	padding:0
+}
+
+input[type="search"] {
+	-webkit-appearance:textfield;
+	-moz-appearance:textfield;
+	box-sizing:content-box
+}
+
+input[type="search"]::-webkit-search-cancel-button,input[type="search"]::-webkit-search-decoration {
+	-webkit-appearance:none
+}
+
+textarea {
+	overflow:auto;
+	vertical-align:top
+}
+
+table {
+	border-collapse:collapse;
+	border-spacing:0
+}
+
+html {
+	height:100%;
+	font-family:Roboto;
+	font-weight:normal;
+	font-size:14px;
+	color:#333;
+	line-height:1.3;
+	overflow:hidden;
+	pointer-events:none
+}
+
+body {
+	height:100%;
+	overflow:hidden;
+	margin:0;
+	background:#03A9F4;
+	pointer-events:none
+}
+
+::selection {
+	opacity:1;
+	text-shadow:none;
+	transition:.2s all
+}
+
+::-moz-selection {
+	opacity:1;
+	text-shadow:none;
+	transition:.2s all
+}
+
+a,a:hover {
+	pointer-events:all;
+	text-decoration:none;
+	transition:.15s background,.15s transform,.15s color
+}
+
+p {
+	margin:0
+}
+
+ul,ol,dl,li,dd {
+	padding:0;
+	margin:0;
+	display:block
+}

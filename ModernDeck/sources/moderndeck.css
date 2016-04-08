@@ -9,325 +9,19 @@
 			For a complete list of open source projects included in this, view the "LICENCES" file in the open source project @ github.com/dangeredwolf/ModernDeck
  */
 
+@import "cssextensions/normalise.css";
 @import "cssextensions/animations.css";
+@import "cssextensions/spinner.css";
 @import "cssextensions/superclasses.css";
 @import "cssextensions/marginclasses.css";
 
 /* Material Loading animation props */
 
-.preloader-wrapper {
-	display:inline-block;
-	position:relative;
-	width:48px;
-	height:48px;
-	box-sizing:border-box
-}
 
-.med-embeditem>.preloader-wrapper {
-	top:50%;
-	position:absolute;
-	margin-top:-20px
-}
+/* NORMAL STUFF */
 
-.column-loading-placeholder>.preloader-wrapper {
-	left:50%;
-	margin-left:-20px;
-	margin-top:20px
-}
-
-.chirp-container>.preloader-wrapper {
-	margin-bottom:50px;
-	margin-top:50px;
-	left:50%;
-	margin-left:-20px
-}
-
-.preloader-wrapper.small {
-	width:36px;
-	height:36px
-}
-
-.preloader-wrapper.tiny {
-	width:20px;
-	height:20px
-}
-
-.preloader-wrapper.big {
-	width:64px;
-	height:64px
-}
-
-.preloader-wrapper.active {
-	animation:containerRotate 1.568s linear infinite
-}
-
-.spinner-layer {
-	position:absolute;
-	box-sizing:border-box;
-	width:100%;
-	height:100%;
-	opacity:0;
-	border-color:#26a69a
-}
-
-body.scroll-v .spinner-layer {
-	border-color:#03A9F4
-}
-
-.spinner-blue,.spinner-blue-only {
-	border-color:#4285f4
-}
-
-.spinner-red,.spinner-red-only {
-	border-color:#db4437
-}
-
-.spinner-yellow,.spinner-yellow-only {
-	border-color:#f4b400
-}
-
-.spinner-green,.spinner-green-only {
-	border-color:#0f9d58
-}
-
-.active .spinner-layer.spinner-blue {
-	animation:fillUnfillRotate 5.332s cubic-bezier(.4,0,.2,1) infinite both,blue-fade-in-out 5.332s cubic-bezier(.4,0,.2,1) infinite both
-}
-
-.active .spinner-layer.spinner-red {
-	animation:fillUnfillRotate 5.332s cubic-bezier(.4,0,.2,1) infinite both,red-fade-in-out 5.332s cubic-bezier(.4,0,.2,1) infinite both
-}
-
-.active .spinner-layer.spinner-yellow {
-	animation:fillUnfillRotate 5.332s cubic-bezier(.4,0,.2,1) infinite both,yellow-fade-in-out 5.332s cubic-bezier(.4,0,.2,1) infinite both
-}
-
-.active .spinner-layer.spinner-green {
-	animation:fillUnfillRotate 5.332s cubic-bezier(.4,0,.2,1) infinite both,green-fade-in-out 5.332s cubic-bezier(.4,0,.2,1) infinite both
-}
-
-.active .spinner-layer,.active .spinner-layer.spinner-blue-only,.active .spinner-layer.spinner-red-only,.active .spinner-layer.spinner-yellow-only,.active .spinner-layer.spinner-green-only {
-	opacity:1;
-	box-sizing:border-box;
-	animation:fillUnfillRotate 5.332s cubic-bezier(.4,0,.2,1) infinite both
-}
-
-.gap-patch {
-	position:absolute;
-	top:0;
-	left:45%;
-	width:10%;
-	height:100%;
-	overflow:hidden;
-	border-color:inherit;
-	display:none;
-	box-sizing:border-box
-}
-
-.gap-patch .circle {
-	box-sizing:border-box;
-	width:1000%;
-	left:-450%
-}
-
-.circle-clipper {
-	display:inline-block;
-	position:relative;
-	width:50%;
-	height:100%;
-	overflow:hidden;
-	text-align:center;
-	box-sizing:border-box;
-	border-color:inherit
-}
-
-.circle-clipper .circle {
-	width:200%;
-	height:100%;
-	border-width:5px; /* STROKEWIDTH */
-	border-style:solid;
-	border-color:inherit;
-	border-bottom-color:transparent!important;
-	border-radius:50%;
-	box-sizing:inherit;
-	animation:none;
-	position:absolute;
-	top:0;
-	right:0;
-	bottom:0
-}
-
-.tiny .circle-clipper .circle {
-	border-width:3px
-}
-
-.circle-clipper.left .circle {
-	left:0;
-	border-right-color:transparent!important;
-	transform:rotate(129deg)
-}
-
-.circle-clipper.right .circle {
-	left:-100%;
-	border-left-color:transparent!important;
-	transform:rotate(-129deg)
-}
-
-.active .circle-clipper.left .circle {
-	animation:leftSpin 1.333s cubic-bezier(.4,0,.2,1) infinite both
-}
-
-.active .circle-clipper.right .circle {
-	animation:rightSpin 1.333s cubic-bezier(.4,0,.2,1) infinite both
-}
-
-#spinnerContainer.cooldown {
-	animation:containerRotate 1.568s linear infinite,fadeOut .4s cubic-bezier(.4,0,.2,1)
-}
-
-.progress {
-	position:relative;
-	height:4px;
-	display:block;
-	width:100%;
-	background-color:#235450;
-	border-radius:2px;
-	margin:.5rem 0 1rem 0;
-	overflow:hidden
-}
-
-.progress>.determinate {
-	position:absolute;
-	top:0;
-	left:0;
-	bottom:0;
-	background-color:#26a69a;
-	transition:width .3s linear
-}
-
-.progress>.indeterminate {
-	background-color:#26a69a
-}
-
-.progress>.indeterminate:before {
-	content:'';
-	position:absolute;
-	background-color:inherit;
-	top:0;
-	left:0;
-	bottom:0;
-	will-change:left,right;
-	animation:indeterminate 2.1s cubic-bezier(.65,.815,.735,.395) infinite
-}
-
-.progress>.indeterminate:after {
-	content:'';
-	position:absolute;
-	background-color:inherit;
-	top:0;
-	left:0;
-	bottom:0;
-	will-change:left,right;
-	animation:indeterminateShort 2.1s cubic-bezier(.165,.84,.44,1) infinite 1.15s
-}
-
-/* NORMALISE / SETUP */
-
-audio:not([controls]) {
-	display:none;
-	height:0
-}
-
-input,textarea,keygen,select,button {
-	font-family:inherit
-}
-
-a:focus {
-	outline:thin
-}
-
-a:active,a:hover {
-	outline:0
-}
-
-b,strong {
-	font-weight:500
-}
-
-q {
-	quotes:"\201C" "\201D" "\2018" "\2019"
-}
-
-small {
-	font-size:80%
-}
-
-img {
-	border:0
-}
-
-fieldset {
-	margin:0 2px;
-	padding:.35em .625em .75em
-}
-
-button,input,select,textarea {
-	font-size:100%;
-	line-height:normal;
-	pointer-events:all;
-	margin:0
-}
-
-button,html input[type="button"],input[type="reset"],input[type="submit"] {
-	cursor:pointer
-}
-
-button[disabled],input[disabled] {
-	cursor:default
-}
-
-input[type="checkbox"],input[type="radio"] {
-	box-sizing:border-box;
-	padding:0
-}
-
-input[type="search"] {
-	-webkit-appearance:textfield;
-	-moz-appearance:textfield;
-	box-sizing:content-box
-}
-
-input[type="search"]::-webkit-search-cancel-button,input[type="search"]::-webkit-search-decoration {
-	-webkit-appearance:none
-}
-
-textarea {
-	overflow:auto;
-	vertical-align:top
-}
-
-table {
-	border-collapse:collapse;
-	border-spacing:0
-}
-
-html {
-	height:100%;
-	font-family:Roboto;
-	font-weight:normal;
-	font-size:14px;
-	color:#333;
-	line-height:1.3;
-	overflow:hidden;
-	pointer-events:none
-}
-
-body {
-	height:100%;
-	overflow:hidden;
-	margin:0;
-	background:#03A9F4;
-	pointer-events:none
+body.scroll-v {
+	background:rgb(38,50,56)
 }
 
 .application {
@@ -339,42 +33,6 @@ body {
 	right:0;
 	overflow:hidden;
 	pointer-events:none
-}
-
-::selection {
-	opacity:1;
-	background:rgba(0,188,212,.26);
-	color:#444;
-	text-shadow:none;
-	transition:.2s all
-}
-
-::-moz-selection {
-	opacity:1;
-	background:rgba(0,188,212,.26);
-	color:#444;
-	text-shadow:none;
-	transition:.2s all
-}
-
-body.scroll-v {
-	background:rgb(38,50,56)
-}
-
-a,a:hover {
-	pointer-events:all;
-	text-decoration:none;
-	transition:.15s background,.15s transform,.15s color
-}
-
-p {
-	margin:0
-}
-
-ul,ol,dl,li,dd {
-	padding:0;
-	margin:0;
-	display:block
 }
 
 .emoji {
@@ -2971,28 +2629,9 @@ a .column-title-back .icon:after {
 	margin-left:45px;
 	border-radius:32px;
 	transform:scale(0);
+	color:#fff!important;
 	z-index:5;
 	animation:popIn .5s cubic-bezier(.19,1,.22,1) forwards 2s
-}
-
-.mtd-minimal .tweet-button {
-	margin-top:4px;
-	box-shadow:rgba(0,0,0,.75) 0 2px 5px;
-	position:fixed;
-	bottom:150px;
-	left:65%;
-	transition:.3s all;
-	width:55px;
-	height:55px;
-	top:80%
-}
-
-.mtd-minimal .hide-detail-view-inline .tweet-button {
-	left:0
-}
-
-.mtd-minimal .js-hide-drawer {
-	top:35px
 }
 
 .tweet-button .icon-compose {
@@ -3000,14 +2639,6 @@ a .column-title-back .icon:after {
 	margin-left:-5px;
 	transition:.3s all;
 	margin-top:-3px
-}
-
-.mtd-minimal .tweet-button .icon-compose:before {
-	font-size:36px
-}
-
-.mtd-minimal .tweet-button .icon-compose {
-	margin-left:1px
 }
 
 .tweet-button .icon-compose:before {
@@ -3163,11 +2794,6 @@ a .column-title-back .icon:after {
 	transition:.5s all,.15s opacity
 }
 
-.mtd-minimal .app-search-fake .icon {
-	text-shadow:#000 0 2px 5px;
-	font-size:28px
-}
-
 .app-search-button {
 	position:absolute;
 	top:7px;
@@ -3191,11 +2817,6 @@ a .column-title-back .icon:after {
 	right:0;
 	pointer-events:all;
 	z-index:6
-}
-
-.mtd-minimal .app-search-fake {
-	margin-top:7px;
-	display:none
 }
 
 .app-search-tweet-results {
@@ -3647,10 +3268,6 @@ a .column-title-back .icon:after {
 
 .mdl-column-lrg {
 	width:445px
-}
-
-.mtd-mobile .mdl-column-lrg {
-	width:300px
 }
 
 .mdl-column-med {
@@ -6681,9 +6298,7 @@ a[rel=user]:active {
 	background:#F9F9F9!important
 }
 
-.btn-light-gray:hover {
-	background:transparent!important
-}
+
 
 .btn-compose.is-hidden {
 	display:inline-block!important;
@@ -7125,7 +6740,7 @@ a[rel=user]:active {
 	background:#fff!important
 }
 
-.emoji-popover .emoji-container>.active {
+.emoji-popover .emoji-container>{
 	animation:menuUpRelative .25s 1 cubic-bezier(.19,1,.22,1)!important
 }
 

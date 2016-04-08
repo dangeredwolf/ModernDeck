@@ -1,0 +1,52 @@
+/*
+  progress.css
+
+  Copyright 2014-2016 Ryan Dolan (@dangeredwolf)
+  Released under the MIT Licence
+*/
+
+.progress {
+	position:relative;
+	height:4px;
+	display:block;
+	width:100%;
+	background-color:#235450;
+	border-radius:2px;
+	margin:.5rem 0 1rem 0;
+	overflow:hidden
+}
+
+.progress>.determinate {
+	position:absolute;
+	top:0;
+	left:0;
+	bottom:0;
+	background-color:#26a69a;
+	transition:width .3s linear
+}
+
+.progress>.indeterminate {
+	background-color:#26a69a
+}
+
+.progress>.indeterminate:before {
+	content:'';
+	position:absolute;
+	background-color:inherit;
+	top:0;
+	left:0;
+	bottom:0;
+	will-change:left,right;
+	animation:indeterminate 2.1s cubic-bezier(.65,.815,.735,.395) infinite
+}
+
+.progress>.indeterminate:after {
+	content:'';
+	position:absolute;
+	background-color:inherit;
+	top:0;
+	left:0;
+	bottom:0;
+	will-change:left,right;
+	animation:indeterminateShort 2.1s cubic-bezier(.165,.84,.44,1) infinite 1.15s
+}

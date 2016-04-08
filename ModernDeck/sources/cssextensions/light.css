@@ -613,3 +613,16 @@ input,textarea,select,.uneditable-input {
 	color:#999
 }
 
+.spinner-default {
+	border-color:#03A9F4
+}
+
+::selection {
+	background:rgba(0,188,212,.26);
+	color:#444
+}
+
+::-moz-selection {
+	background:rgba(0,188,212,.26);
+	color:#444
+}

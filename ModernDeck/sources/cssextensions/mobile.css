@@ -33,3 +33,7 @@
 .icon-sliders:before {
 	content:"\e5d4"
 }
+
+.mdl-column-lrg {
+	width:300px
+}
