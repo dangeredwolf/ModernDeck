@@ -5,6 +5,69 @@
   Released under the MIT Licence
 */
 
+a,a:hover {
+	color:#00BCD4
+}
+
+a:active {
+	color:rgb(13,168,188);
+	background-color:rgba(0,0,0,.05)
+}
+
+.btn:not([disabled]):not(.is-disabled) {
+	color:#00BCD4
+}
+
+.btn:focus {
+	color:#26C6DA
+}
+
+.btn:active {
+  color:#aaa;
+  background:rgba(0,0,0,.04);
+}
+
+.btn[disabled],.btn[disabled]:hover,.btn[disabled]:active,.btn.is-disabled,.btn.is-disabled:hover,.btn.is-disabled:focus,.btn.is-disabled:active {
+	color:#CACACA
+}
+
+.btn-positive,.btn-positive-alt,.btn-fav.s-favorited,.s-following .follow-btn {
+	color:#00CBE5
+}
+
+.btn-positive[disabled],[disabled].btn-positive-alt,[disabled].btn-fav.s-favorited,.s-following [disabled].follow-btn,.btn-positive[disabled]:hover,[disabled].btn-positive-alt:hover,[disabled].btn-fav.s-favorited:hover,.s-following [disabled].follow-btn:hover,.btn-positive[disabled]:active,[disabled].btn-positive-alt:active,[disabled].btn-fav.s-favorited:active,.s-following [disabled].follow-btn:active,.btn-positive.is-disabled,.is-disabled.btn-positive-alt,.is-disabled.btn-fav.s-favorited,.s-following .is-disabled.follow-btn,.btn-positive.is-disabled:hover,.is-disabled.btn-positive-alt:hover,.is-disabled.btn-fav.s-favorited:hover,.s-following .is-disabled.follow-btn:hover,.btn-positive.is-disabled:focus,.is-disabled.btn-positive-alt:focus,.is-disabled.btn-fav.s-favorited:focus,.s-following .is-disabled.follow-btn:focus,.btn-positive.is-disabled:active,.is-disabled.btn-positive-alt:active,.is-disabled.btn-fav.s-favorited:active,.s-following .is-disabled.follow-btn:active {
+	color:#dedede
+}
+
+.btn-positive-alt:active,.btn-fav.s-favorited:active,.s-following .follow-btn:active,.btn-positive-alt.is-selected,.is-selected.btn-fav.s-favorited,.s-following .is-selected.follow-btn {
+	color:#C22727
+}
+
+.btn-compose {
+	color:#fff!important;
+	box-shadow:0 1px 2px 1px rgba(0,0,0,.25)
+}
+
+.btn-negative {
+	color:#D80000
+}
+
+.btn-negative:hover {
+	color:#FF2727
+}
+
+.btn-negative:focus {
+	color:#a00
+}
+
+.btn-negative:active,.btn-negative.is-selected {
+	color:#B30000
+}
+
+.btn-negative[disabled],.btn-negative[disabled]:hover,.btn-negative[disabled]:active,.btn-negative.is-disabled,.btn-negative.is-disabled:hover,.btn-negative.is-disabled:focus,.btn-negative.is-disabled:active {
+	color:rgba(178,0,0,.3)
+}
+
 .tweet-action[data-actions-menu-position]:focus {
 	color:#26C6DA
 }
@@ -88,12 +151,12 @@
 	background:#00C3DC
 }
 
-.popover .column-title-back .icon:after {
-	background:rgba(0,0,0,.1)
-}
-
 .btn-compose:active {
 	background:#58CDDB
+}
+
+.popover .column-title-back .icon:after {
+	background:rgba(0,0,0,.1)
 }
 
 .modal-content,.stream-item.is-actionable:hover {
@@ -537,3 +600,16 @@ input,textarea,select,.uneditable-input {
 .mtd-nav-drawer {
 	background:#fbfbfb
 }
+
+.facet-type.is-active,.facet-type:active {
+	background:#58CDDB
+}
+
+.stream-item.is-actionable .tweet-action,.stream-item.is-actionable .tweet-detail-action {
+ color:#D9D9D9
+}
+
+.stream-item.is-actionable .tweet-action:hover,.stream-item.is-actionable .tweet-detail-action:hover,.stream-item.is-actionable .tweet-action:focus,.stream-item.is-actionable .tweet-detail-action:focus,.stream-item.is-actionable .tweet-action:active,.stream-item.is-actionable .tweet-detail-action:active,.stream-item.is-actionable .tweet-action.is-selected,.stream-item.is-actionable .is-selected.tweet-detail-action {
+	color:#999
+}
+
