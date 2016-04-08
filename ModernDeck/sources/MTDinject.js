@@ -689,7 +689,7 @@ function NavigationSetup() {
 }
 
 function KeyboardShortcutHandler(e) {
-	if (document.querySelector("input:focus,textarea:focus") !== null || e.keyCode !== 81) {
+	if (e.keyCode !== 81 || document.querySelector("input:focus,textarea:focus") !== null) {
 		return; // uses querySelector for optimal speed
 	}
 

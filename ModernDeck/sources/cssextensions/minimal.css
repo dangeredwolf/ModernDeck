@@ -23,7 +23,7 @@
 }
 
 .js-hide-drawer {
-	top:0;
+	top:35px!important;
 	margin-top:-30px!important;
 	max-height:35px;
 	min-height:35px
@@ -35,4 +35,38 @@
 
 .app-content {
 	top:0
+}
+
+.tweet-button {
+	margin-top:4px;
+	box-shadow:rgba(0,0,0,.75) 0 2px 5px;
+	position:fixed;
+	bottom:150px;
+	left:65%;
+	transition:.3s all;
+	width:55px;
+	height:55px;
+	top:80%
+}
+
+.hide-detail-view-inline .tweet-button {
+	left:0
+}
+
+.tweet-button .icon-compose:before {
+	font-size:36px
+}
+
+.tweet-button .icon-compose {
+	margin-left:1px
+}
+
+.app-search-fake .icon {
+	text-shadow:#000 0 2px 5px;
+	font-size:28px
+}
+
+.app-search-fake {
+	margin-top:7px;
+	display:none
 }

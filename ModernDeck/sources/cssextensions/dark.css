@@ -43,7 +43,7 @@
 	background:linear-gradient(rgb(38,50,56),#0E4B50)
 }
 
-.txt-mute,.txt-r-dark-gray,.typeahead .username {
+.txt-mute,.txt-r-dark-gray,.typeahead .username,.l-column.mdl-column.mdl-column-sml .list-link {
 	color:#6D808B
 }
 
@@ -65,11 +65,11 @@ body[class=""],html.js {
 	background:rgb(38,50,56)
 }
 
-a {
+a,a:hover {
 	color:#009EAD
 }
 
-a:active {
+a:active,a:focus {
 	color:rgb(0,115,126);
 	background-color:rgba(0,0,0,.05)
 }
@@ -318,6 +318,10 @@ a[rel=user]:active {
 	color:rgba(244,101,101,.45)
 }
 
+.signin-sheet-now-present .btn-positive,.signin-sheet-now-present .btn-positive-alt,.signin-sheet-now-present .btn-fav.s-favorited,.signin-sheet-now-present .s-following .follow-btn {
+	color:#29B6F6
+}
+
 .contributor-adder input.js-username-input.js-submittable-input {
 	border-bottom:3px solid #00838F
 }
@@ -431,16 +435,12 @@ body.scroll-v a:active {
 	color:#00838F
 }
 
-.application:not(.hide-detail-view-inline) .btn-compose:active,.application:not(.hide-detail-view-inline) .tweet-button.btn-compose:focus {
+.btn-compose:active,.btn-compose:focus {
 	background:#009CB0
 }
 
 .s-following .follow-btn:hover {
 	color:#E15F5F
-}
-
-.btn-compose,.btn-compose:hover,.btn-compose:focus {
-	background:#00C3DC
 }
 
 .modal-content {
@@ -750,4 +750,8 @@ input,textarea,select,.uneditable-input {
 .startflow ::-moz-selection {
 	background:rgba(102,227,228,.57);
 	color:#666
+}
+
+.spinner-layer {
+	border-color:#26a69a
 }
