@@ -74,10 +74,6 @@
 	border-color:#26a69a
 }
 
-html .spinner-layer {
-	border-color:#03A9F4
-}
-
 .spinner-blue,.spinner-blue-only {
 	border-color:#4285f4
 }
@@ -148,9 +144,7 @@ html .spinner-layer {
 .circle-clipper .circle {
 	width:200%;
 	height:100%;
-	border-width:5px; /* STROKEWIDTH */
-	border-style:solid;
-	border-color:inherit;
+	border:5px solid inherit; /* STROKEWIDTH */
 	border-bottom-color:transparent!important;
 	border-radius:50%;
 	box-sizing:inherit;
@@ -362,7 +356,7 @@ body {
 }
 
 body.scroll-v {
-	background:#0ED0D2
+	background:rgb(38,50,56)
 }
 
 a {
@@ -2772,7 +2766,7 @@ a .column-title-back .icon:after {
 	color:#13B33F
 }
 
-.is-favorite .icon-favorite-toggle,.btn:not(.btn-fav-fav-text)>.icon-favorite-color {
+.is-favorite .icon-favorite-toggle,.icon-favorite-color {
 	color:#FF9101
 }
 

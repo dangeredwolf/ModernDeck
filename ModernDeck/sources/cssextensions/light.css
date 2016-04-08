@@ -537,3 +537,7 @@ input,textarea,select,.uneditable-input {
 .mtd-nav-drawer {
 	background:#fbfbfb
 }
+
+.spinner-layer {
+	border-color:#03A9F4
+}
