@@ -1,0 +1,335 @@
+/*
+  animations.css
+
+  Copyright 2014-2016 Ryan Dolan (@dangeredwolf)
+  Released under the MIT Licence
+*/
+
+@keyframes materialPop {
+	0% {
+		opacity:0;
+		margin-top:130px
+	}
+
+	20% {
+		opacity:.3;
+		margin-top:40px
+	}
+
+	100% {
+		border-radius:3px;
+		opacity:1
+	}
+}
+
+@keyframes moreTweetsButtonDown {
+	0% {
+		opacity:1;
+		top:-40px
+	}
+
+	60% {
+		opacity:1;
+		top:25px
+	}
+
+	100% {
+		top:20px
+	}
+}
+
+@keyframes socialProofPop {
+	0% {
+		opacity:0;
+		margin-top:100px
+	}
+
+	100% {
+		opacity:1;
+		margin-top:0
+	}
+}
+
+@keyframes windowDown {
+	from {
+		opacity:.5;
+		transform:scale(1.125,1.125)
+	}
+
+	to {
+		opacity:1;
+		transform:scale(1,1)
+	}
+}
+
+@keyframes windowSlider {
+	from {
+		opacity:.5;
+		margin-left:-700px
+	}
+
+	to {
+		opacity:1;
+		margin-left:0
+	}
+}
+
+@keyframes menuDown {
+	from {
+		opacity:0;
+		margin-top:-8px
+	}
+
+	to {
+		opacity:1;
+		margin-top:0
+	}
+}
+
+@keyframes menuDownLogin {
+	from {
+		opacity:0;
+		margin-top:-20px
+	}
+
+	to {
+		opacity:1;
+		margin-top:10px
+	}
+}
+
+@keyframes menuDownLarge {
+	from {
+		opacity:0;
+		margin-top:-40px
+	}
+
+	to {
+		opacity:1;
+		margin-top:0
+	}
+}
+
+@keyframes leftPopoverDown {
+	from {
+		opacity:0;
+		margin-top:-15px
+	}
+
+	to {
+		opacity:1;
+		margin-top:5px
+	}
+}
+
+@keyframes rightPopoverDown {
+	from {
+		opacity:0;
+		top:-85px
+	}
+
+	to {
+		opacity:1;
+		top:-60px
+	}
+}
+
+@keyframes calendarMenuDown {
+	from {
+		opacity:0;
+		margin-top:-40px
+	}
+
+	to {
+		opacity:1;
+		margin-top:-15px
+	}
+}
+
+@keyframes mediaDown {
+	from {
+		opacity:0;
+		margin-top:-198px
+	}
+
+	to {
+		opacity:1;
+		margin-top:15px
+	}
+}
+
+@keyframes menuUp {
+	from {
+		opacity:0;
+		bottom:-50px
+	}
+
+	to {
+		opacity:1;
+		bottom:0
+	}
+}
+
+@keyframes menuUpRelative {
+	from {
+		opacity:0;
+		margin-top:20px
+	}
+
+	to {
+		opacity:1;
+		margin-top:0
+	}
+}
+
+@keyframes settingsColumnSlide {
+	from {
+		opacity:0;
+		margin-left:60px
+	}
+
+	to {
+		opacity:1;
+		margin-right:0
+	}
+}
+
+@keyframes profileSlide {
+	from {
+		opacity:0;
+		margin-left:-160px
+	}
+
+	to {
+		opacity:1;
+		margin-left:0
+	}
+}
+
+@keyframes tweetIncoming {
+	0% {
+		opacity:0;
+		border-radius:99px 99px 0 0;
+		margin-top:100px;
+		overflow:hidden
+	}
+
+	100% {
+		opacity:1;
+		border-radius:0 0 0 0;
+		margin-top:0;
+		overflow:hidden
+	}
+}
+
+@keyframes tweetIncomingTimeline {
+	0% {
+		opacity:0;
+		margin-top:-50px
+	}
+
+	20% {opacity:0}
+
+	100% {
+		opacity:1;
+		margin-top:0
+	}
+}
+
+@keyframes tweetIncomingUp {
+	0% {
+		opacity:0;
+		transform:translate3d(0,-100px,0);
+	}
+
+	100% {
+		opacity:1;
+		transform:translate3d(0,0,0);
+	}
+}
+
+@keyframes fadeIn {
+	from {opacity:0}
+	to {opacity:1}
+}
+
+@keyframes fadeOut {
+	from {opacity:1}
+	to {opacity:0}
+}
+
+@keyframes columnFlyin {
+	from {top:200%}
+	to {top:0}
+}
+
+@keyframes popIn {
+	from {transform:scale(0)}
+	to {transform:scale(1)}
+}
+
+@keyframes leftSpin {
+	0% {transform:rotate(130deg)}
+	50% {transform:rotate(-5deg)}
+	100% {transform:rotate(130deg)}
+}
+
+@keyframes rightSpin {
+	0% {transform:rotate(-130deg)}
+	50% {transform:rotate(5deg)}
+	100% {transform:rotate(-130deg)}
+}
+
+@keyframes fillUnfillRotate {
+	12.5% {transform:rotate(135deg)} /* .5 * ARCSIZE */
+	25%	 {transform:rotate(270deg)} /* 1	 * ARCSIZE */
+	37.5% {transform:rotate(405deg)} /* 1.5 * ARCSIZE */
+	50%	 {transform:rotate(540deg)} /* 2	 * ARCSIZE */
+	62.5% {transform:rotate(675deg)} /* 2.5 * ARCSIZE */
+	75%	 {transform:rotate(810deg)} /* 3	 * ARCSIZE */
+	87.5% {transform:rotate(945deg)} /* 3.5 * ARCSIZE */
+	100%	{transform:rotate(1080deg)} /* 4	 * ARCSIZE */
+}
+
+@keyframes containerRotate {
+	to {transform:rotate(360deg)}
+}
+
+@keyframes indeterminate {
+	0% {
+		left:-35%;
+		right:100%;
+	}
+	60% {
+			left:100%;
+			right:-90%;
+	}
+	100% {
+			left:100%;
+			right:-90%;
+	}
+}
+
+@keyframes indeterminateShort {
+	0% {
+		left:-200%;
+		right:100%;
+	}
+	60% {
+		left:107%;
+		right:-8%;
+	}
+	100% {
+		left:107%;
+		right:-8%;
+	}
+}
+
+@keyframes mediaSlideUp {
+	from {
+		bottom:-60px
+	}
+	to {
+		bottom:0
+	}
+}

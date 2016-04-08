@@ -362,15 +362,15 @@ textarea:not(.compose-text):not(.js-compose-text) {
 	text-decoration:none
 }
 
-.stream-item.is-unread {
+.is-unread {
 	background:#00838F
 }
 
-.stream-item.is-unread:hover {
+.is-unread:hover {
 	background:#20A0AC
 }
 
-.stream-item.is-unread:active {
+.is-unread:active {
 	background:#30787F
 }
 
@@ -732,4 +732,22 @@ input,textarea,select,.uneditable-input {
 	color:#647883;
 	font-size:15px;
 	font-weight:500
+}
+
+.lst-group.js-setting-list .selected {
+	color:#fff
+}
+
+.js-column-social-proof .username {
+	color:#d3dbe1!important
+}
+
+.startflow ::selection {
+	background:rgba(102,227,228,.57);
+	color:#666
+}
+
+.startflow ::-moz-selection {
+	background:rgba(102,227,228,.57);
+	color:#666
 }

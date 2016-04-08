@@ -1,0 +1,38 @@
+/*
+  minimal.css
+
+  Copyright 2014-2016 Ryan Dolan (@dangeredwolf)
+  Released under the MIT Licence
+*/
+
+.btn-compose.is-hidden {
+	top:10px
+}
+
+.mtd-nav-activator {
+	margin-top:6px
+}
+
+.mtd-nav-activator:before {
+	text-shadow:#000 0 2px 5px
+}
+
+.mtd-appbar-notification {
+	text-shadow:#000 0 2px 5px;
+	margin-top:15px
+}
+
+.js-hide-drawer {
+	top:0;
+	margin-top:-30px!important;
+	max-height:35px;
+	min-height:35px
+}
+
+.app-header {
+	height:54px
+}
+
+.app-content {
+	top:0
+}

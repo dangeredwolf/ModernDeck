@@ -1,0 +1,35 @@
+/*
+  mobile.css
+
+  Copyright 2014-2016 Ryan Dolan (@dangeredwolf)
+  Released under the MIT Licence
+*/
+
+.column-options,.column,.column-header,.column-content {
+	width:100%!important
+}
+
+.mdl {
+	width:100%;
+	top:50px
+}
+
+.mdl-column-sml {
+	width:120px
+}
+
+.mdl-column-med:not(.mdl-column-rhs) {
+	width:50px
+}
+
+.mtd-nav-activator:before {
+	text-shadow:none
+}
+
+.mtd-nav-activator {
+	margin-top:5px
+}
+
+.icon-sliders:before {
+	content:"\e5d4"
+}

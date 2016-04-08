@@ -88,6 +88,10 @@
 	background:#00C3DC
 }
 
+.popover .column-title-back .icon:after {
+	background:rgba(0,0,0,.1)
+}
+
 .btn-compose:active {
 	background:#58CDDB
 }
@@ -446,4 +450,90 @@ input,textarea,select,.uneditable-input {
 
 .js-search-results-container .facet-title {
 	color:#000
+}
+
+.btn-compose:hover,.btn-compose:focus {
+	background:#00C3DC;
+	box-shadow:0 3px 6px 2px rgba(0,0,0,.25)
+}
+
+.is-unread {
+	background:#00BCD4
+}
+
+.stream-item.is-unread:hover {
+	background:#2AD1D5
+}
+
+.is-unread:active {
+	background:#30A2B0
+}
+
+.is-unread .txt-mute,.is-unread .conversation-indicator {
+	color:rgba(255,255,255,.7)
+}
+
+.is-unread.is-selected-tweet {
+	background:#2AD1D5
+}
+
+.prf-stats>li>a {
+	color:#888
+}
+
+.prf-stats>li>a>strong {
+	color:#333
+}
+
+.lst-group.js-setting-list .selected {
+	color:#000
+}
+
+.lst-group .selected a {
+	color:#000
+}
+
+.mtd-nd-header-image {
+	background-color:rgb(38,50,56)
+}
+
+.popover .column-header {
+	background:#f5f5f5;
+	color:#333
+}
+
+.popover .js-column-back,.popover .js-column-detail .column-title-back:before {
+	color:#666
+}
+
+.detail-view-inline-text {
+	border-bottom:3px solid #00BCD4
+}
+
+.mtd-no-chars-suggestions {
+	color:#333
+}
+
+.mtd-minimal .app-header {
+	background:none
+}
+
+.tweet-detail .txt-small a {
+	color:#979797
+}
+
+.js-column-social-proof .username {
+	color:#000!important
+}
+
+.mdl-column-small {
+	background:#F8F8F8
+}
+
+.mdl-column-med {
+	background:#fff
+}
+
+.mtd-nav-drawer {
+	background:#fbfbfb
 }
