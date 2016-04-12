@@ -57,7 +57,7 @@
 	background:rgb(52,66,72)
 }
 
-.account-link {
+.account-link,.account-link:hover,.account-link:focus {
 	color:#D3DBE1
 }
 
