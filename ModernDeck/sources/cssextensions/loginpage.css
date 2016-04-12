@@ -1,0 +1,29 @@
+/*
+  loginpage.css
+
+  Copyright 2014-2016 Ryan Dolan (@dangeredwolf)
+  Released under the MIT Licence
+*/
+
+::selection {
+	background:rgba(102,227,228,.57);
+	color:inherit
+}
+
+.mdl,.modal-content {
+	background:#fff
+}
+
+a:active,.signin-sheet-now-present .btn-positive,a:hover,a:focus,.btn:not([disabled]):not(.is-disabled),.btn-positive,.btn-positive-alt,.btn-fav.s-favorited,.s-following .follow-btn,a {
+	color:#00BCD4
+}
+
+select,input {
+	color:#333;
+	border-bottom:2px solid #ccc;
+	border-radius:0!important
+}
+
+.btn:active,.btn.is-selected {
+	background-color:rgba(0,0,0,.04)!important
+}

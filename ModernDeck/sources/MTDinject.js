@@ -6,7 +6,7 @@
 "use strict";
 
 var SystemVersion = "6.0 Beta 3";
-var MTDBaseURL = "https://dangeredwolf.com/assets/mtdtest/"; // Defaults to streaming if nothing else is available (i.e. legacy firefox)
+var MTDBaseURL = "https://raw.githubusercontent.com/dangeredwolf/ModernDeck/master/ModernDeck/"; // Defaults to streaming if nothing else is available (i.e. legacy firefox)
 
 var msgID = 0;
 var messagesAccounted = [];
@@ -21,23 +21,21 @@ var FindProfButton;
 var TreatGeckoWithCare = false;
 var profileProblem = false;
 var wasTweetSheetOpen = false;
-var WantsToBlockCommunications = false;
-var WantsToDisableSecureStylesheets = false;
 
 var loadedPreferences = false;
 
 var FetchProfileInfo = 0;
 
-var elements = function(a,b,c){return $(document.getElementsByClassName(a,b,c))};
-var find1Obj = function(selector){return $(document.querySelector(selector))};
-
 var Preferences = [];
 var openmodal;
 
-var make = function(a){return $(document.createElement(a))};
-var head = $(document.head);
-var body = $(document.body);
-var html = $(document.querySelector("html")); // Only 1 result; faster to find
+const make = function(a){return $(document.createElement(a))};
+const head = $(document.head);
+const body = $(document.body);
+const html = $(document.querySelector("html")); // Only 1 result; faster to find
+
+const elements = function(a,b,c){return $(document.getElementsByClassName(a,b,c))};
+const find1Obj = function(selector){return $(document.querySelector(selector))};
 
 // Asks MTDLoad for the storage
 window.postMessage({
@@ -57,9 +55,7 @@ window.addEventListener("message", function(e) {
 	}
 });
 
-window.addEventListener("beforeunload", function(e){
-	savePreferencesToDisk();
-})
+window.addEventListener("beforeunload",savePreferencesToDisk);
 
 if (typeof MTDURLExchange === "object" && typeof MTDURLExchange.getAttribute === "function") {
 	MTDBaseURL = MTDURLExchange.getAttribute("type") || "https://dangeredwolf.com/assets/mtdtest/";
@@ -68,6 +64,13 @@ if (typeof MTDURLExchange === "object" && typeof MTDURLExchange.getAttribute ===
 
 if (typeof chrome === "undefined" && typeof safari === "undefined") {
 	TreatGeckoWithCare = true;
+}
+
+function exists(thing) {
+	if (thing === true || (typeof thing === "object" && thing !== null && thing.length > 0)) {
+		return true;
+	}
+	return false;
 }
 
 function savePreferencesToDisk() {
@@ -200,7 +203,12 @@ function MTDInit(){
 	};
 
 	$(document.getElementsByClassName("application")[0].childNodes).each(function(obj){
-
+		obj.removeChild = function(rmnode){
+			$(rmnode).addClass("mtd-modal-window-fade-out");
+			setTimeout(function(){
+				rmnode.remove();
+			},200);
+		};
 	})
 
 	if (find1Obj(".js-modal").length > 0) {
@@ -244,14 +252,6 @@ function MTDInit(){
 
 	NavigationSetup();
 
-}
-
-function WaitForLogin() {
-	if (find1Obj(".app-signin-form").length > 0) {
-		html.removeClass("signin-sheet-now-present");
-		return;
-	}
-	setTimeout(WaitForLogin,500);
 }
 
 function SendNotificationMessage(txt) {
@@ -920,9 +920,23 @@ ReloadTheme();
 window.addEventListener("keyup",KeyboardShortcutHandler,false);
 
 (new MutationObserver(function(mutations) {
-	mutations.forEach(function(mutation) {
-		ReloadTheme();
-	});
+	ReloadTheme();
 })).observe(document.querySelector("meta[http-equiv='default-style']"), {attributes:true});
+
+(new MutationObserver(function(mutations) {
+	if ($(".app-signin-form").length > 0) {
+		html.addClass("signin-sheet-now-present");
+		enableStylesheetExtension("loginpage");
+	} else {
+		html.removeClass("signin-sheet-now-present");
+		disableStylesheetExtension("loginpage");
+	}
+})).observe(html[0], {attributes:true});
+
+(new MutationObserver(function(mutations) {
+	if (body.hasClass("btd-ready")) {
+		enableStylesheetExtension("btdsupport");
+	}
+})).observe(body[0], {attributes:true});
 
 console.log("MTDinject loaded");

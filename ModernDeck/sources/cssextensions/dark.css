@@ -5,8 +5,7 @@
   Released under the MIT Licence
 */
 
-
-.med-fullpanel,.media-sensitive,.account-summary-text .fullname,.prf-stats a strong,.js-item-launch a.btn:not([disabled]):not(.is-disabled),html,.media-sensitive-content p,.compose .typeahead-item strong.fullname,.account-remove-check-message,.media-sensitive-title {
+.list-item,.list-item.is-actionable.item-box.is-selected,.tooltip-inner,.list-account .fullname,option,.dropdown-menu a[href][data-action],.frm,.med-fullpanel,.media-sensitive,.account-summary-text .fullname,.prf-stats a strong,.js-item-launch a.btn:not([disabled]):not(.is-disabled),html,.media-sensitive-content p,.compose .typeahead-item strong.fullname,.account-remove-check-message,.media-sensitive-title {
   color:#eee
 }
 
@@ -18,7 +17,7 @@
 	background:#344248
 }
 
-.gap-chirp-text,body.scroll-v a:active,.sprite:before,.compose-send-button-success,.more-tweets-btn,.more-tweets-btn:focus,.more-tweets-btn:hover,.more-tweets-btn:active,.account-stats a,.prf .lst-profile a,.icon-follow-color,.tweet-action[data-actions-menu-position]:focus,.tweet-actions .tweet-action.is-selected,.tweet-detail-actions .tweet-action.is-selected,.tweet-detail-actions .js-reply-action.is-selected{
+.gap-chirp-text,.sprite:before,.compose-send-button-success,.more-tweets-btn,.more-tweets-btn:focus,.more-tweets-btn:hover,.more-tweets-btn:active,.account-stats a,.prf .lst-profile a,.icon-follow-color,.tweet-action[data-actions-menu-position]:focus,.tweet-actions .tweet-action.is-selected,.tweet-detail-actions .tweet-action.is-selected,.tweet-detail-actions .js-reply-action.is-selected{
 	color:#00838F
 }
 
@@ -26,7 +25,7 @@
 	background:#3A4B54
 }
 
-#calcurrent,.btn-compose,.compose,.column-options .button-tray,.column-options,.facet-type,.is-options-open .column-settings-link,.inline-reply,.is-favorite.is-retweet .tweet-dogear,.is-unread,.js-add-column,.mdl .js-add-column {
+div.drawer[data-drawer="compose"],.lst-group .selected,#calcurrent,.btn-compose,.compose,.column-options .button-tray,.column-options,.facet-type,.is-options-open .column-settings-link,.inline-reply,.is-favorite.is-retweet .tweet-dogear,.is-unread,.js-add-column,.mdl .js-add-column {
 	background:#00838F
 }
 
@@ -34,7 +33,7 @@
 	color:#6D808B
 }
 
-.mtd-nav-button,.js-setting-list .selected strong,.lst-group.js-setting-list .selected,.character-count-compose,.btn-options-tray:not([disabled]):not(.is-disabled) {
+.search-input,textarea:not(.compose-text):not(.js-compose-text),.lst-group .selected,.search-input,.mtd-nav-button,.js-setting-list .selected strong,.lst-group.js-setting-list .selected,.character-count-compose,.btn-options-tray:not([disabled]):not(.is-disabled) {
 	color:#fff
 }
 
@@ -42,20 +41,19 @@
 	background:#0E4B50
 }
 
-.text-like-keyboard-key,.js-quote-tweet-holder .quoted-tweet,.app-content,.compose-media-bar-holder,optgroup,.edit-conversation-name,.popover,.compose-text-container,.drawer-header,.compose-reply-tweet,.compose-message-recipient-list,.compose-message-recipient-input-container,.compose-media-grid-holder {
+.application,.tooltip-inner,.dropdown-menu,.app-navigator .js-hide-drawer,.app-columns-container,.column-message,body[class=""],html.js,.prf-header,body,.mdl-column.mdl-column-rhs,.mdl-header,.text-like-keyboard-key,.js-quote-tweet-holder .quoted-tweet,.app-content,.compose-media-bar-holder,optgroup,.edit-conversation-name,.popover,.compose-text-container,.drawer-header,.compose-reply-tweet,.compose-message-recipient-list,.compose-message-recipient-input-container,.compose-media-grid-holder {
 	background:#263238
 }
 
 .column-header,.column-header-temp {
-	background:linear-gradient(rgb(38,50,56),rgb(38,50,56));
-	overflow:hidden
+	background:linear-gradient(#263238,#263238)
 }
 
 .is-new .column-header,.is-new .column-header-temp {
-	background:linear-gradient(rgb(38,50,56),#0E4B50)
+	background:linear-gradient(#263238,#0E4B50)
 }
 
-.account-link,.account-link:hover,.account-link:focus,.mtd-about-title,.cal,select,input {
+.account-link,.account-link:hover,.account-link:focus,.mtd-about-title,.cal,select,input,.txt-normal {
 	color:#D3DBE1
 }
 
@@ -68,12 +66,12 @@ a:active,a:focus {
 	background-color:rgba(0,0,0,.05)
 }
 
-.txt-mute a:not(:hover):not(:focus):not(.tweet-action):not([data-action]) {
+.txt-mute a:not(:hover):not(:focus):not(.tweet-action):not([data-action]),.lst-group h3 {
 	color:#708795
 }
 
 .column-content {
-	border-right:3px solid rgb(38,50,56)
+	border-right:3px solid #263238
 }
 
 .tweet-action,.tweet-detail-action {
@@ -84,27 +82,19 @@ a:active,a:focus {
 	color:#8498A5
 }
 
-.btn:active,.btn.is-selected {
+.btn:active,.btn.is-selected,.dropdown-menu .is-selected {
 	background-color:rgba(255,255,255,.1)
-}
-
-body.scroll-v .btn:active,body.scroll-v .btn.is-selected {
-	background-color:rgba(0,0,0,.04)!important
 }
 
 .app-nav-link.is-selected,.app-nav-link:hover,.column-nav-link.is-selected,.column-nav-link:hover {
 	color:inherit
 }
 
-.app-columns-container,.column-message,body[class=""],html.js,.prf-header,body,.mdl-column.mdl-column-rhs,.mdl-header {
-	background:rgb(38,50,56)
-}
-
-.mtd-nav-drawer,.mdl,.prf-meta,.mdl-column {
+option,.mtd-nav-drawer,.mdl,.prf-meta,.mdl-column,.med-fullpanel {
 	background:#2E3B41
 }
 
-.mtd-nav-divider,.tweet-detail .margin-tl.txt-small:before,.cmp-replyto {
+.mtd-nav-divider,.tweet-detail .margin-tl.txt-small:before,.cmp-replyto,.column-background-fill {
 	background:#38454B
 }
 
@@ -113,15 +103,7 @@ body.scroll-v .btn:active,body.scroll-v .btn.is-selected {
 	filter:brightness(400%)
 }
 
-.account-bio,.list-account .username {
-	color:#798488
-}
-
-.med-fullpanel {
-	background:#353F46
-}
-
-.btn[disabled],.btn[disabled]:hover,.btn[disabled]:active,.btn.is-disabled,.btn.is-disabled:hover,.btn.is-disabled:focus,.btn.is-disabled:active {
+.social-proof-for-tweet-title,.account-bio,.list-account .username,.btn[disabled],.btn[disabled]:hover,.btn[disabled]:active,.btn.is-disabled,.btn.is-disabled:hover,.btn.is-disabled:focus,.btn.is-disabled:active {
 	color:#54707F;
 	transition:.2s all
 }
@@ -136,59 +118,15 @@ body.scroll-v .btn:active,body.scroll-v .btn.is-selected {
 	color:#eee
 }
 
-.column-background-fill {
-	background:#37474F
-}
-
-.lst-group h3 {
-	color:#546671
-}
-
-.list-account .fullname {
-	color:#e8e8e8
-}
-
-.lst-group .selected {
-	background:#00838F;
-	color:#fff
-}
-
 .lst-group .selected a .username {
 	color:rgba(255,255,255,.5)
 }
 
-.js-add-column:active,.btn-compose:active,.btn-compose:focus {
+.js-add-column:active,.btn-compose:active,.btn-compose:focus,.lst-group .selected:active {
 	background:#429BA6
 }
 
-.txt-normal {
-	color:#DADADA
-}
-
-.social-proof-for-tweet-title {
-	color:#8899A6
-}
-
-.dropdown-menu {
-	background:#263238;
-	box-shadow:0 2px 5px rgba(0,0,0,.34)
-}
-
-.dropdown-menu li.is-selectable:hover {
-	background:rgba(16,16,16,.5)!important
-}
-
-.dropdown-menu a[href][data-action] {
-	color:#E0E0E0
-}
-
-.dropdown-menu .is-selected {
-	background:#242F35
-}
-
 .tooltip-inner {
-	background:#263238;
-	color:#DEDEDE;
 	box-shadow:0 3px 10px rgba(41,41,41,.35)
 }
 
@@ -208,10 +146,6 @@ body.scroll-v .btn:active,body.scroll-v .btn.is-selected {
 	color:rgba(244,101,101,.45)
 }
 
-.signin-sheet-now-present .btn-positive,.signin-sheet-now-present .btn-positive-alt,.signin-sheet-now-present .btn-fav.s-favorited,.signin-sheet-now-present .s-following .follow-btn {
-	color:#29B6F6
-}
-
 .contributor-adder input.js-username-input.js-submittable-input {
 	border-bottom:3px solid #00838F
 }
@@ -226,23 +160,19 @@ body.scroll-v .btn:active,body.scroll-v .btn.is-selected {
 }
 
 .app-search .compose-text::-moz-placeholder {
-	color:#6D7B83;
-	opacity:1
+	color:#6D7B83
 }
 
-textarea:not(.compose-text):not(.js-compose-text) {
-	width:100%;
-	color:#fff;
-	border-bottom:2px solid #667A86
+textarea {
+	border-color:#667A86
 }
 
 .social-proof-container {
-	border-top:2px solid rgba(0,0,0,.1);
-	border-bottom:2px solid rgba(0,0,0,.1)
+	border-color:rgba(0,0,0,.1)
 }
 
 .drp-h-divider {
-	border-bottom:1px solid #323E43
+	border-color:#323E43
 }
 
 .is-unread .txt-mute,.is-unread .conversation-indicator {
@@ -253,30 +183,17 @@ textarea:not(.compose-text):not(.js-compose-text) {
 	background:#20A0AC
 }
 
-body.scroll-v ::selection {
-	background:rgba(102,227,228,.57);
-	color:inherit
-}
-
-body.scroll-v .mdl,body.scroll-v .modal-content {
-	background:#fff
-}
-
-body.scroll-v a:hover,body.scroll-v a:focus,body.scroll-v .btn:not([disabled]):not(.is-disabled),body.scroll-v .btn-positive,body.scroll-v .btn-positive-alt,body.scroll-v .btn-fav.s-favorited,body.scroll-v .s-following .follow-btn,body.scroll-v a {
-	color:#00BCD4
-}
-
 .lst-group .list-link:active {
-	background:rgba(25,112,120,.41)!important
+	background:rgba(25,112,120,.5)
 }
 
 .mdl.s-profile::-webkit-scrollbar-thumb,.mtd-nav-drawer::-webkit-scrollbar-thumb,.lst-launcher::-webkit-scrollbar-thumb,.scroll-styled-v::-webkit-scrollbar-thumb,.scroll-v::-webkit-scrollbar-thumb,.scroll-styled-h::-webkit-scrollbar-thumb,.s-tall-fixed::-webkit-scrollbar-thumb {
   border-radius:5px;
-  background:rgba(149,175,191,.52)
+  background:rgba(149,175,191,.5)
 }
 
 .mdl.s-profile::-webkit-scrollbar-thumb:hover,.mtd-nav-drawer::-webkit-scrollbar-thumb:hover,.lst-launcher::-webkit-scrollbar-thumb:hover,.scroll-styled-v::-webkit-scrollbar-thumb:hover,.scroll-v::-webkit-scrollbar-thumb:hover,.scroll-styled-h::-webkit-scrollbar-thumb:hover {
-	background:rgb(132,152,165)
+	background:#8498A5
 }
 
 .s-following .follow-btn:hover {
@@ -285,10 +202,6 @@ body.scroll-v a:hover,body.scroll-v a:focus,body.scroll-v .btn:not([disabled]):n
 
 .modal-content {
 	background:rgb(37,50,56)
-}
-
-.list-item,.list-item.is-actionable.item-box.is-selected {
-	color:#dbdbdb
 }
 
 .list-item.is-actionable.item-box.is-selected,.js-typeahead-recent-search-clear.js-typeahead-item.is-selected {
@@ -343,7 +256,6 @@ body.scroll-v a:hover,body.scroll-v a:focus,body.scroll-v .btn:not([disabled]):n
 }
 
 .app-navigator .js-hide-drawer {
-	 background:#263238;
 	 box-shadow:0 -5px 10px rgba(17,17,17,.35)
 }
 
@@ -367,19 +279,12 @@ body.scroll-v a:hover,body.scroll-v a:focus,body.scroll-v .btn:not([disabled]):n
 	background:#263238!important
 }
 
-body.scroll-v select,body.scroll-v input {
-	color:#333;
-	border-bottom:2px solid #ccc;
-	border-radius:0!important
-}
-
 html.mtd-acc-focus-ring a:focus,html.mtd-acc-focus-ring button:focus {
 	outline:rgb(16,148,160) solid 3px
 }
 
 option {
-	color:#eee;
-	background:#2E3B41
+	color:#eee
 }
 
 .med-tweet {
@@ -398,12 +303,7 @@ input,textarea,select,.uneditable-input {
 	border-bottom:2px solid #54707F
 }
 
-.frm {
-	color:#e5e5e5
-}
-
 .search-input {
-	color:#fff;
 	border-bottom:2px solid rgba(255,255,255,.7)
 }
 
@@ -411,8 +311,6 @@ input,textarea,select,.uneditable-input {
 	background:#43525A;
   color:#fff;
 }
-
-
 
 .recent-search-clear.is-actionable.list-item-last {
 	background-color:#263238;
@@ -424,20 +322,16 @@ input,textarea,select,.uneditable-input {
 }
 
 .caldisabled[href],.caldisabled[href]:hover,.caldisabled[href]:active {
-	color:rgb(102,122,134)!important
+	color:#667A86!important
 }
 
 .prf-header {
-	background-color:rgb(38,50,56) /* IMPORTANT: This needs to be background colour because background image is SOMETIMES laid over it */
+	background-color:#263238 /* IMPORTANT: This needs to be background colour because background image is SOMETIMES laid over it */
 }
 
 .prf-follow-status {
 	background:#2E3B41;
 	color:#eee
-}
-
-.lst-group .selected:active {
-	background:#429BA6
 }
 
 .mdl-links span {

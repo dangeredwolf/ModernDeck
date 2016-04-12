@@ -1,0 +1,132 @@
+/*
+  btdsupport.css
+
+  Support Library for running Better TweetDeck alongside ModernDeck
+
+  Copyright 2014-2016 Ryan Dolan (@dangeredwolf)
+  Released under the MIT Licence
+*/
+
+.btd-ready .column-title>.attribution,.btd-ready .column-head-title {
+	width:inherit!important;
+	display:inline!important;
+	height:inherit!important;
+	line-height:inherit!important;
+	text-align:inherit!important
+}
+
+.btd-ready .column-head-title {
+	padding-left:10px
+}
+
+.btd-no_columns_icons header>i.column-type-icon.icon {
+	display:inline-block;
+	padding-top:2px
+}
+
+#emojiButton {
+	width:35px!important;
+	height:35px;
+	margin-top:-80px;
+	margin-left:7px;
+	background:transparent!important;
+	box-shadow:none!important;
+	font-size:0
+}
+
+#emojiButton .btd-icon-smile {
+	font-size:24px;
+	transition:.2s all
+}
+
+#emojiButton:hover .btd-icon-smile {
+	transition:.2s all
+}
+
+#emojiButton:active .btd-icon-smile {
+	transition:.2s all
+}
+
+.emoji-composer-added .js-add-image-button,.emoji-composer-added .js-tweet-button,.emoji-composer-added .js-schedule-button {
+	margin-left:-3px
+}
+
+.emoji-composer-added .js-dm-button {
+	margin-left:-7px
+}
+
+.btd-small_icons_compose .compose:after {
+	content:"MTD Warning:Better TweetDeck Small Composer Icons Conflict with ModernDeck. Please disable them in Better TweetDeck";
+	font-size:16px;
+	padding:15px;
+	padding-top:7px;
+	display:block
+}
+
+.btd-small_icons_compose .compose-content {
+	margin-top:75px
+}
+
+.btd-settings {
+	padding-top:17px;
+	display:block;
+	position:absolute;
+	margin-left:57px!important
+}
+
+.btd-minimal_mode .app-columns {
+	margin-top:-4px;
+	margin-left:-6px;
+	padding:0 0 0 6px!important
+}
+
+.emoji-popover .emojis-compose-panel .emoji-container::before {
+	background-image:none!important
+}
+
+.emoji-popover {
+	width:88%;
+	margin-top:-20px
+}
+
+.emoji-popover .emojis-compose-panel .emoji-container {
+	width:100%!important
+}
+
+.emoji-popover .category-chooser {
+	background:#fff!important
+}
+
+.emoji-popover .emoji-container>{
+	animation:menuUpRelative .25s 1 cubic-bezier(.19,1,.22,1)!important
+}
+
+.btd-emoji.emoji-pop[data-cat="Emoji-HumanImage"] {
+	margin-left:35px
+}
+
+.category-chooser .btd-emoji.emoji-pop:not(.active) {
+	-webkit-filter:grayscale(100%);
+	filter:grayscale(100%)
+}
+
+.btd-settings {
+	top:-100px
+}
+
+.btd-no_columns_icons header > h1.column-title {
+	padding-left:30px!important
+}
+
+.btd-dark-theme.btd-minimal_mode .compose {
+  background-color:inherit!important
+}
+
+.btd-icon-smile:before {
+  content:"\e24e";
+  font-family:"Material"!important
+}
+
+.btd-blurred_modals.btd-open-modal-on .ovl, .btd-blurred_modals.btd-open-modal-on .overlay {
+  background-color:rgba(88,100,107,.4)
+}
