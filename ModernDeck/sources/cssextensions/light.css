@@ -634,3 +634,9 @@ input,textarea,select,.uneditable-input {
 	background:rgba(0,188,212,.26);
 	color:#444
 }
+
+.tooltip-inner {
+	background:#fff;
+	color:#535353;
+	box-shadow:0 3px 10px rgba(17,17,17,.35)
+}

@@ -3010,10 +3010,7 @@ a .column-title-back .icon:after {
 .tooltip-inner {
 	max-width:200px;
 	padding:5px 8px 4px;
-	background:#fff;
-	color:#535353;
 	text-align:center;
-	box-shadow:0 3px 10px rgba(17,17,17,.35);
 	animation:windowDown .3s 1 cubic-bezier(.19,1,.22,1);
 	border-radius:2px
 }
@@ -3024,7 +3021,8 @@ a .column-title-back .icon:after {
 	padding:0;
 	border:none;
 	vertical-align:middle;
-	background:transparent
+	background:transparent;
+	text-shadow:none
 }
 
 .character-count:disabled {
