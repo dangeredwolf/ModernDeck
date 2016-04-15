@@ -17,8 +17,12 @@
 	background:#344248
 }
 
-.gap-chirp-text,.sprite:before,.compose-send-button-success,.more-tweets-btn,.more-tweets-btn:focus,.more-tweets-btn:hover,.more-tweets-btn:active,.account-stats a,.prf .lst-profile a,.icon-follow-color,.tweet-action[data-actions-menu-position]:focus,.tweet-actions .tweet-action.is-selected,.tweet-detail-actions .tweet-action.is-selected,.tweet-detail-actions .js-reply-action.is-selected{
+.gap-chirp-text,.sprite:before,.compose-send-button-success,.more-tweets-btn:focus,.more-tweets-btn:hover,.more-tweets-btn:active,.account-stats a,.prf .lst-profile a,.icon-follow-color,.tweet-action[data-actions-menu-position]:focus,.tweet-actions .tweet-action.is-selected,.tweet-detail-actions .tweet-action.is-selected,.tweet-detail-actions .js-reply-action.is-selected{
 	color:#00838F
+}
+
+.more-tweets-btn,.more-tweets-btn:hover {
+  background:#00838f
 }
 
 .tweet-detail-wrapper .media-sensitive,.stream-item.is-actionable:hover,.tweet-detail-wrapper {
@@ -238,7 +242,7 @@ textarea {
 	background:#1E272C
 }
 
-.more-tweets-btn:active {
+.more-tweets-btn:active,.more-tweets-btn:focus {
 	background:#2F9099!important
 }
 

@@ -54,7 +54,7 @@ body.scroll-v {
 }
 
 .txt-base-medium,.txt-base-small,.txt-base-smallest {
-	font-size:0.85em
+	font-size:1em
 }
 
 .account-stats .txt-base-smallest {
@@ -2260,7 +2260,7 @@ a .column-title-back .icon:after {
 .tweet-footer {
 	left:50%;
 	margin-top:-25px;
-	margin-left:-100px;
+	margin-left:-70px;
 	position:absolute;
 	height:10px
 }
@@ -5484,7 +5484,7 @@ input[type="checkbox"] {
 .column-navigator {
 	position:absolute;
 	top:0;
-	left:50px;
+	left:100px;
 	bottom:0;
 	right:0;
 	overflow:visible;
@@ -5492,7 +5492,7 @@ input[type="checkbox"] {
 	animation:fadeIn .4s cubic-bezier(.19,1,.22,1);
 	animation-fill-mode:forwards;
 	animation-delay:4s;
-	transition:.15s all cubic-bezier(.19,1,.22,1)
+	transition:.15s all cubic-bezier(.19,1,.22,1);
 }
 
 .column-nav-link {
@@ -6473,7 +6473,7 @@ a[rel=user]:active {
 	width:20px;
 	height:20px;
 	margin-left:7px;
-	margin-top:-2px
+	margin-top:2px
 }
 
 .js-show-drawer.app-nav-tab {
@@ -7520,7 +7520,7 @@ button.mtd-no-transform-case {
 }
 
 .tweet-stats {
-	margin-top: -16px
+	margin-top:-27px
 }
 
 .tweet-detail .card-holder .txt-small a {
@@ -7771,7 +7771,8 @@ button.mtd-no-transform-case {
 }
 
 .tweet-text {
-	margin-bottom:8px
+	margin-bottom:8px;
+	font-size:0.85em
 }
 
 .activity-header+.account-summary .fullname {
