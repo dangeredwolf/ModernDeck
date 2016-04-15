@@ -5362,44 +5362,6 @@ input[type="checkbox"] {
 	box-shadow:0 10px 10px 0 rgba(0,0,0,.19),0 6px 3px 0 rgba(0,0,0,.23)
 }
 
-.startflow {
-	margin-top:55px
-}
-
-.app-signin-wrap {
-	position:relative;
-	margin:0 auto;
-	max-width:800px;
-	top:110px
-}
-
-@media (max-width:800px) {
-	.app-signin-form {
-		margin-top:150px
-	}
-}
-
-.app-info-panel {
-	position:relative;
-	pointer-events:none;
-	left:0
-}
-
-.app-info-title {
-	font-size:32px;
-	color:#fff
-}
-
-.app-info-text {
-	width:400px;
-	text-shadow:0 10px 30px #000;
-	color:#fff
-}
-
-.app-info-text p {
-	padding-top:15px
-}
-
 .form-legend {
 	box-sizing:border-box;
 	width:100%;
@@ -5408,12 +5370,6 @@ input[type="checkbox"] {
 	text-align:center;
 	font-weight:300;
 	font-size:32px
-}
-
-.form-login>.form-legend {
-	text-align:left;
-	font-weight:500;
-	font-size:20px
 }
 
 .media-item {
@@ -5430,55 +5386,6 @@ input[type="checkbox"] {
 .media-item:hover {
 	box-shadow:0 10px 10px 0 rgba(0,0,0,.19),0 6px 3px 0 rgba(0,0,0,.23);
 	transition:.3s all
-
-}
-
-.startflow-panel,.startflow-panel-rounded {
-	background:#fff;
-	color:#444;
-	box-shadow:0 10px 30px rgba(0,0,0,.75);
-	border-radius:2px;
-	animation:menuDownLogin .4s 1 cubic-bezier(.19,1,.22,1)
-}
-
-.form-newto-txt {
-	font-size:18px;
-	line-height:30px
-}
-
-.form-login-pwd,.form-login-email,.form-login-username {
-	height:20px;
-	font-size:16px;
-	padding:10px 8px
-}
-
-.form-login-pwd::placeholder,.form-login-email::placeholder,.form-login-username::placeholder {
-	color:#939393
-}
-
-.form-login-username {
-	width:256px
-}
-
-.form-login-pwd::placeholder,.form-login-email::placeholder,.form-login-username::placeholder {
-	color:#939393
-}
-
-.form-message {
-	font-size:20px;
-	color:#555
-}
-
-.form-error-message {
-	color:#DE798A;
-	font-size:20px
-}
-
-.form-verification {
-	width:50%;
-	height:30px;
-	padding:5px 8px;
-	color:#000
 }
 
 .column-navigator {
@@ -5723,19 +5630,6 @@ input[type="checkbox"] {
 .js-typeahead-user-item[data-user-id="2927859037"] .avatar,.item-img[href="https://twitter.com/ModernDeck"] .avatar,.account-link[href="https://twitter.com/ModernDeck"] .avatar,.js-account-item[data-account-key="twitter:2927859037"] .avatar,.account-settings-row[data-user-id="2927859037"] .avatar,.avatar[alt="@ModernDeck"] {
 	box-shadow:none!important;
 	border-radius:0!important
-}
-
-.js-accounts-column-holder .startflow-link {
-	padding-bottom:15px;
-	color:#00BFFF
-}
-
-.js-accounts-column-holder .startflow-link:hover {
-	color:rgba(0,191,255,.75)
-}
-
-.js-accounts-column-holder .startflow-link:active {
-	color:#898989
 }
 
 .replies-after .stream-item.is-actionable {
@@ -6061,10 +5955,6 @@ a[rel=user]:active {
 	opacity:0;
 	margin-top:5px;
 	margin-bottom:5px
-}
-
-.startflow-message-wrap .bg-r-dark-blue .margin-rxl {
-	z-index:5
 }
 
 .js-action-url:active {
@@ -6420,35 +6310,6 @@ a[rel=user]:active {
 	color:#4B4B4C!important
 }
 
-.form-login h2 {
-	font-weight:400;
-	font-size:22px
-}
-
-.form-login p {
-	padding-top:5px;
-	padding-bottom:5px
-}
-
-.js-login-error-message {
-	animation:menuDownLarge .4s 1 cubic-bezier(.19,1,.22,1)
-}
-
-.app-signin-form .cf.margin-txs {
-	font-size:0;
-	padding-top:18px
-}
-
-.js-login-forgot-password {
-	padding-left:25px;
-	text-transform:uppercase
-}
-
-.signin-sheet-now-present .align-top[type="submit"]:not(.btn-login) {
-	text-transform:none;
-	margin-top:4px
-}
-
 .mtd-nav-drawer-icon {
 	width:20px;
 	height:20px;
@@ -6598,34 +6459,6 @@ a[rel=user]:active {
 
 .column-content.column-dm-participants {
 	top:100px
-}
-
-.startflow-message-wrap .startflow-panel {
-	animation:windowDown .3s 1 cubic-bezier(.19,1,.22,1)
-}
-
-.js-twogin-warning-login-anyway-btn {
-	font-size:0
-}
-
-.js-twogin-warning-login-anyway-btn:after {
-	content:"I'll use this account (unrecommended)";
-	font-size:16px;
-	padding-bottom:15px;
-	display:block
-}
-
-.js-twogin-warning-logout-btn.btn-txt-large:after {
-	content:"I'll use my own account.";
-	font-size:20px
-}
-
-.js-twogin-warning-logout-btn.btn-txt-large {
-	font-size:0
-}
-
-body.scroll-v .mdl .startflow-panel {
-	animation:none
 }
 
 .app-header:hover .mtd-appbar-notification:not(.mtd-appbar-notification-hidden) {
@@ -7437,27 +7270,6 @@ button.mtd-no-transform-case {
 	padding-bottom:6px!important
 }
 
-.startflow-panel .bg-r-dark-blue {
-	background:rgb(14,208,210)
-}
-
-.startflow-panel .bg-r-dark-blue h1 {
-	margin:0!important
-}
-
-.startflow-panel .txt-large.padding-tn {
-	font-size:16px!important
-}
-
-.startflow-panel .txt-large.padding-tn:before {
-	font-weight:500;
-	font-size:20px!important;
-	content:"Your account uses two factor authentication";
-	display:block;
-	padding-right:50px;
-	padding-bottom:20px
-}
-
 .follow-from-accounts-username {
 	margin-top:7px;
 	left:120px;
@@ -7611,23 +7423,6 @@ button.mtd-no-transform-case {
 	margin-top:-60px
 }
 
-.startflow-background {
-	background-image:url(https://ton.twimg.com/tweetdeck-web/web/assets/global/backgrounds/login_bg.36f68cdcb5.jpg);
-	background-size:cover;
-	background-position:center
-}
-
-.startflow-background:before {
-	content:"";
-	position:absolute;
-	top:0;
-	right:0;
-	bottom:0;
-	left:0;
-	opacity:.8;
-	background-image:linear-gradient(#00BCD4 0%, transparent 150%)
-}
-
 .btn-login[type="submit"],.login-container .btn-positive {
 	width:300px;
 	border-radius:3px;
@@ -7638,12 +7433,6 @@ button.mtd-no-transform-case {
 
 .btn-login[type="submit"].full-width {
 	width:200px!important
-}
-
-.login-container .btn-positive {
-	width:277px!important;
-	padding-top:14px;
-	padding-bottom:0
 }
 
 .btn-login[type="submit"]:hover,.btn-login[type="submit"]:focus,.login-container .btn-positive:hover,body .login-container .btn-positive:focus {
@@ -7690,10 +7479,6 @@ button.mtd-no-transform-case {
 	background:transparent;
 	animation:none;
 	box-shadow:none
-}
-
-.login-container {
-	animation:fadeIn .75s cubic-bezier(.19,1,.22,1)
 }
 
 .l-column.mdl-column.mdl-column-sml {
@@ -7943,64 +7728,57 @@ iframe.report-flow {
 	margin-bottom:5px
 }
 
+#mtd-theme-control>option {
+	color:#fff
+}
+
 #mtd-theme-control>option[value="paper"] {
 	background:#eee;
 	color:#333
 }
 
 #mtd-theme-control>option[value="grey"] {
-	background:#555;
-	color:#fff
+	background:#555
 }
 
 #mtd-theme-control>option[value="red"] {
-	background:#F44336;
-	color:#fff
+	background:#F44336
 }
 
 #mtd-theme-control>option[value="pink"] {
-	background:#E91E63;
-	color:#fff
+	background:#E91E63
 }
 
 #mtd-theme-control>option[value="orange"] {
-	background:#FF5722;
-	color:#fff
+	background:#FF5722
 }
 
 #mtd-theme-control>option[value="violet"] {
-	background:#673AB7;
-	color:#fff
+	background:#673AB7
 }
 
 #mtd-theme-control>option[value="teal"] {
-	background:#009688;
-	color:#fff
+	background:#009688
 }
 
 #mtd-theme-control>option[value="green"] {
-	background:#4CAF50;
-	color:#fff
+	background:#4CAF50
 }
 
 #mtd-theme-control>option[value="yellow"] {
-	background:#FFC107;
-	color:#fff
+	background:#FFC107
 }
 
 #mtd-theme-control>option[value="cyan"] {
-	background:#00BCD4;
-	color:#fff
+	background:#00BCD4
 }
 
 #mtd-theme-control>option[value="black"] {
-	background:#000;
-	color:#fff
+	background:#000
 }
 
 #mtd-theme-control>option[value="blue"] {
-	background:#2196F3;
-	color:#fff
+	background:#2196F3
 }
 
 textarea:not(.compose-text):not(.js-compose-text) {

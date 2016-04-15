@@ -277,58 +277,6 @@ function WaitForNotificationDismiss(node,prevmsgID) {
 	setTimeout(function(){WaitForNotificationDismiss(node,prevmsgID);},500);
 }
 
-function WorldTick(){
-
-	// TODO: ADD THINGS FOR js-modal
-
-	$(document).on('DOMNodeInserted', function(e) {
-		var tar = $(e.target);
-    if (tar.hasClass("dropdown")) {
-			console.log("dropdown!!!");
-			e.target.parentNode.removeChild = function(dropdown){
-				$(dropdown).addClass("mtd-dropdown-fade-out");
-				setTimeout(function(){
-					dropdown.remove();
-				},200);
-			}
-    }/* else if (tar.hasClass("status-message")) {
-			console.log("status-message!!!");
-			if (typeof messagesAccounted[this] === "undefined") {
-				var thing = this;
-				msgID++;
-				SendNotificationMessage(this.childNodes[1].innerHTML);
-				WaitForNotificationDismiss(thing,msgID);
-				messagesAccounted[this] = true;
-			}
-		}*/ else if (tar.hasClass("overlay")) {
-			console.log("overlay!!!");
-			if (!tar.hasClass("is-hidden")) {
-				if (tar.hasClass("is-hidden")) {
-					tar.addClass("mtd-modal-window-fade-out");
-					setTimeout(function(){
-						tar.remove();
-					},300);
-				}
-			} else {
-				var observer = new MutationObserver(function(mutations) {
-					console.log("its gone now!");
-				  if (tar.hasClass("is-hidden")) {
-						tar.addClass("mtd-modal-window-fade-out");
-						setTimeout(function(){
-							tar.remove();
-							observer.disconnect();
-						},300);
-					}
-				});
-				observer.observe(e.target, { attributes: true, childList: false, characterData: false });
-			}
-		}
-	});
-
-}
-
-setTimeout(WorldTick,600);
-
 function ResetSettingsUI() {
 	$("#mtd-appearance-form,#mtd-accessibility-form,#mtd-about-form").css("display","none");
 	$("#mtd-appearance-li,#mtd-accessibility-li,#mtd-about-li").removeClass("selected");
@@ -700,7 +648,7 @@ function KeyboardShortcutHandler(e) {
 	}
 }
 
-function ReloadTheme() {
+function checkIfUserSelectedNewTheme() {
 
 		if (document.querySelector("meta[http-equiv='default-style']").content === "light") {
 			disableStylesheetExtension("dark");
@@ -902,41 +850,71 @@ function outtaSpaceSuggestions() {
 	setTimeout(outtaSpaceSuggestions,2000);
 }
 
-function spawnModule(fun,del) {
-	if (typeof fun === "undefined") {
-		console.error("WARNING: MTD attempted to spawn a module that doesn't exist. This is a software bug.");
-	}
-	setTimeout(fun,del);
-}
-
-spawnModule(MTDInit,0);
-spawnModule(WorldTick,0);
-//spawnModule(outtaSpaceSuggestions,7000);
-
-html.addClass("mtd-preferences-differentiator mtd-api-ver-5-4 mtd-js-loaded");
-
-ReloadTheme();
-
-window.addEventListener("keyup",KeyboardShortcutHandler,false);
-
-(new MutationObserver(function(mutations) {
-	ReloadTheme();
-})).observe(document.querySelector("meta[http-equiv='default-style']"), {attributes:true});
-
-(new MutationObserver(function(mutations) {
-	if ($(".app-signin-form").length > 0) {
+function checkIfSigninFormIsPresent() {
+	if ($(".app-signin-form").length > 0 || $(".js-app-loading.login-container").length > 0) {
 		html.addClass("signin-sheet-now-present");
 		enableStylesheetExtension("loginpage");
 	} else {
 		html.removeClass("signin-sheet-now-present");
 		disableStylesheetExtension("loginpage");
 	}
-})).observe(html[0], {attributes:true});
+}
 
-(new MutationObserver(function(mutations) {
+function checkIfBTDIsInstalled() {
 	if (body.hasClass("btd-ready")) {
 		enableStylesheetExtension("btdsupport");
 	}
-})).observe(body[0], {attributes:true});
+}
+
+function onElementAddedToDOM(e) {
+	var tar = $(e.target);
+	if (tar.hasClass("dropdown")) {
+		console.log("dropdown!!!");
+		e.target.parentNode.removeChild = function(dropdown){
+			$(dropdown).addClass("mtd-dropdown-fade-out");
+			setTimeout(function(){
+				dropdown.remove();
+			},200);
+		}
+	} else if (tar.hasClass("overlay")) {
+		console.log("overlay!!!");
+		if (!tar.hasClass("is-hidden")) {
+			if (tar.hasClass("is-hidden")) {
+				tar.addClass("mtd-modal-window-fade-out");
+				setTimeout(function(){
+					tar.remove();
+				},300);
+			}
+		} else {
+			var observer = new MutationObserver(function(mutations) {
+				console.log("its gone now!");
+				if (tar.hasClass("is-hidden")) {
+					tar.addClass("mtd-modal-window-fade-out");
+					setTimeout(function(){
+						tar.remove();
+						observer.disconnect();
+					},300);
+				}
+			});
+			observer.observe(e.target, { attributes: true, childList: false, characterData: false });
+		}
+	}
+}
+
+setTimeout(MTDInit,0);
+//setTimeout(outtaSpaceSuggestions,7000);
+
+html.addClass("mtd-preferences-differentiator mtd-api-ver-6-0 mtd-js-loaded");
+
+window.addEventListener("keyup",KeyboardShortcutHandler,false);
+
+(new MutationObserver(checkIfUserSelectedNewTheme)).observe(document.querySelector("meta[http-equiv='default-style']"),{attributes:true});
+(new MutationObserver(checkIfSigninFormIsPresent)).observe(document.querySelector(".js-app-loading"),{attributes:true});
+(new MutationObserver(checkIfBTDIsInstalled)).observe(body[0],{attributes:true});
+(new MutationObserver(onElementAddedToDOM)).observe(html[0],{attributes:false,subtree:true,childList:true});
+
+checkIfUserSelectedNewTheme();
+checkIfSigninFormIsPresent();
+checkIfBTDIsInstalled();
 
 console.log("MTDinject loaded");
