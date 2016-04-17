@@ -1194,13 +1194,17 @@ h6 {
 	z-index:5
 }
 
-.column-holder .column-panel:nth-child(2)>.column-header,.is-shifted-1 .column-detail-level-2>.column-header {
+.column-holder .column-panel:nth-child(2) .js-column-back,.is-shifted-1 .column-detail-level-2 .js-column-back,.column-holder .column-panel:nth-child(2)>.column-header,.is-shifted-1 .column-detail-level-2>.column-header {
 	pointer-events:none
 }
 
 .column-holder .column-panel:nth-child(3) {
 	width:0;
 	overflow:hidden
+}
+
+.is-shifted-1 .column-panel:nth-child(n+2) .js-column-back, .is-shifted-2 .column-panel:nth-child(n+2) .js-column-back,.is-shifted-1 .column-panel:nth-child(n+2)>.column-header,.is-shifted-2 .column-panel:nth-child(n+2)>column-header {
+	pointer-events:all
 }
 
 .is-shifted-1 .column-panel:nth-child(n+2),.is-shifted-2 .column-panel:nth-child(n+2) {
@@ -1348,7 +1352,7 @@ h6 {
 	font-size:16px;
 	padding-left:23px;
 	position:relative;
-	width:30px
+	width: 100%;
 }
 
 .column-title-back .icon {
@@ -1501,7 +1505,8 @@ a .column-title-back .icon:after {
 	z-index:7;
 	position:relative;
 	transition:.2s all;
-	color:#fff
+	color:#fff;
+	padding-top:0!important
 }
 
 .facet-content .icon {
@@ -1513,6 +1518,7 @@ a .column-title-back .icon:after {
 	box-shadow:0 3px 6px rgba(17,17,17,.1);
 	width:328px;
 	overflow:visible;
+	pointer-events:all;
 	z-index:4
 }
 
@@ -1963,6 +1969,10 @@ a .column-title-back .icon:after {
 	height:91px
 }
 
+.media-size-small,.media-size-medium,.quoted-tweet {
+	margin-bottom:50px
+}
+
 .media-item:first-child {
 	margin-top:0
 }
@@ -2266,11 +2276,11 @@ a .column-title-back .icon:after {
 
 .tweet-footer {
 	left:50%;
-	margin-top:-25px;
+	margin-top:-30px;
 	margin-bottom:35px;
 	margin-left:-70px;
 	position:absolute;
-	height:10px
+	height:10px;
 }
 
 .js-mediatable .tweet-footer {
@@ -2304,6 +2314,7 @@ a .column-title-back .icon:after {
 .quoted-tweet {
 	border:none;
 	font-size:0.9em;
+	margin-top:0;
 	box-shadow:0 3px 7px rgba(17,17,17,.5)
 }
 
@@ -2855,13 +2866,10 @@ a .column-title-back .icon:after {
 	padding-top:120px
 }
 
-.accordion,.accordion-popover {
-	color:#ddd /*???*/
-}
-
 .accordion-header {
 	padding:9px 5px 9px 8px;
 	color:#fff;
+	pointer-events:all;
 	transition:.2s all
 }
 
@@ -5986,7 +5994,7 @@ a[rel=user]:active {
 }
 
 .hide-detail-view-inline .column-navigator {
-	left:240px!important
+	left:270px!important
 }
 
 .hide-detail-view-inline .app-search-fake {
@@ -6136,16 +6144,13 @@ a[rel=user]:active {
 	background:#F9F9F9!important
 }
 
-
-
 .btn-compose.is-hidden {
 	display:inline-block!important;
 	border-radius:0;
 	width:271px;
 	margin-left:-5px;
 	margin-top:-4px;
-	box-shadow:none!important;
-	background:none
+	box-shadow:none!important
 }
 
 .is-hidden .icon-compose {
@@ -7336,7 +7341,8 @@ button.mtd-no-transform-case {
 .tweet-detail .margin-tl.txt-small a {
 	float:right;
 	position:absolute;
-	width:50%
+	width:50%;
+	text-overflow:ellipsis
 }
 
 .tweet-detail .margin-tl.txt-small a:nth-child(2) {
@@ -7804,7 +7810,7 @@ textarea:not(.compose-text):not(.js-compose-text) {
 
 .tweet-text.with-linebreaks {
 	margin-bottom:35px;
-	margin-top:0
+	margin-top:0;
 }
 
 .js-dropdown-content>ul {
@@ -7812,7 +7818,7 @@ textarea:not(.compose-text):not(.js-compose-text) {
 }
 
 .js-media.item-box-full-bleed {
-	margin-top:10px
+	margin-top:20px!important
 }
 
 .js-quoted-tweet-text.with-linebreaks {

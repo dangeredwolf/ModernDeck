@@ -5,7 +5,7 @@
   Released under the MIT Licence
 */
 
-.list-item,.list-item.is-actionable.item-box.is-selected,.tooltip-inner,.list-account .fullname,option,.dropdown-menu a[href][data-action],.frm,.med-fullpanel,.media-sensitive,.account-summary-text .fullname,.prf-stats a strong,.js-item-launch a.btn:not([disabled]):not(.is-disabled),html,.media-sensitive-content p,.compose .typeahead-item strong.fullname,.account-remove-check-message,.media-sensitive-title {
+.account-summary-text .fullname, .compose-reply-tweet .fullname, .compose-reply-tweet, .compose .typeahead-item strong.fullname,.list-item,.list-item.is-actionable.item-box.is-selected,.tooltip-inner,.list-account .fullname,option,.dropdown-menu a[href][data-action],.frm,.med-fullpanel,.media-sensitive,.account-summary-text .fullname,.prf-stats a strong,.js-item-launch a.btn:not([disabled]):not(.is-disabled),html,.media-sensitive-content p,.compose .typeahead-item strong.fullname,.account-remove-check-message,.media-sensitive-title {
   color:#eee
 }
 
@@ -17,7 +17,7 @@
 	background:#344248
 }
 
-.gap-chirp-text,.sprite:before,.compose-send-button-success,.more-tweets-btn:focus,.more-tweets-btn:hover,.more-tweets-btn:active,.account-stats a,.prf .lst-profile a,.icon-follow-color,.tweet-action[data-actions-menu-position]:focus,.tweet-actions .tweet-action.is-selected,.tweet-detail-actions .tweet-action.is-selected,.tweet-detail-actions .js-reply-action.is-selected{
+.gap-chirp-text,.sprite:before,.compose-send-button-success,.more-tweets-btn:focus,.more-tweets-btn:hover,.more-tweets-btn:active,.account-stats a,.prf .lst-profile a,.icon-follow-color,.tweet-action[data-actions-menu-position]:focus,.tweet-actions .tweet-action.is-selected,.tweet-detail-actions .tweet-action.is-selected,.tweet-detail-actions .js-reply-action.is-selected {
 	color:#00838F
 }
 
