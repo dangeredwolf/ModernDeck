@@ -851,7 +851,7 @@ function outtaSpaceSuggestions() {
 }
 
 function checkIfSigninFormIsPresent() {
-	if ($(".app-signin-form").length > 0 || $(".js-app-loading.login-container").length > 0) {
+	if ($(".app-signin-form").length > 0 || $("body>.js-app-loading.login-container:not(style='display: none;')").length > 0) {
 		html.addClass("signin-sheet-now-present");
 		enableStylesheetExtension("loginpage");
 	} else {
@@ -910,6 +910,7 @@ window.addEventListener("keyup",KeyboardShortcutHandler,false);
 
 (new MutationObserver(checkIfUserSelectedNewTheme)).observe(document.querySelector("meta[http-equiv='default-style']"),{attributes:true});
 (new MutationObserver(checkIfSigninFormIsPresent)).observe(document.querySelector(".js-app-loading"),{attributes:true});
+(new MutationObserver(checkIfSigninFormIsPresent)).observe(body[0],{attributes:true});
 (new MutationObserver(checkIfBTDIsInstalled)).observe(body[0],{attributes:true});
 (new MutationObserver(onElementAddedToDOM)).observe(html[0],{attributes:false,subtree:true,childList:true});
 

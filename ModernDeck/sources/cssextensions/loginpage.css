@@ -31,7 +31,7 @@ select,input {
 }
 
 .startflow {
-	margin-top:55px
+	height:100%
 }
 
 .app-signin-wrap {
@@ -169,7 +169,8 @@ body.scroll-v .mdl .startflow-panel {
 }
 
 .login-container {
-	animation:fadeIn .75s cubic-bezier(.19,1,.22,1)
+	animation:fadeIn .75s cubic-bezier(.19,1,.22,1);
+	height: 100%;
 }
 
 .form-login h2 {
