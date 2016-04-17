@@ -54,7 +54,7 @@ body.scroll-v {
 }
 
 .txt-base-medium,.txt-base-small,.txt-base-smallest {
-	font-size:1em
+	font-size:0.95em
 }
 
 .account-stats .txt-base-smallest {
@@ -948,7 +948,7 @@ body.scroll-v {
 }
 
 .txt-large,.btn-txt-large {
-	font-size:1.2em
+	font-size:1.1em
 }
 
 .btn-options-tray-space,.btn-options-tray {
@@ -1058,7 +1058,7 @@ h6 {
 	height:100%;
 	margin:0 0 0 0;
 	background:#F9F9F9;
-	font-size:1rem;
+	font-size:0.9rem;
 	white-space:normal;
 	border-right:none!important
 }
@@ -1194,6 +1194,10 @@ h6 {
 	z-index:5
 }
 
+.column-holder .column-panel:nth-child(2)>.column-header,.is-shifted-1 .column-detail-level-2>.column-header {
+	pointer-events:none
+}
+
 .column-holder .column-panel:nth-child(3) {
 	width:0;
 	overflow:hidden
@@ -1253,6 +1257,7 @@ h6 {
 	z-index:7;
 	color:#fff;
 	transition:.2s all;
+	pointer-events:all;
 	width:328px
 }
 
@@ -1816,7 +1821,7 @@ a .column-title-back .icon:after {
 }
 
 .quoted-tweet .fullname {
-	margin-left:60px
+	margin-left:70px
 }
 
 .med-tweet .fullname {
@@ -2135,7 +2140,7 @@ a .column-title-back .icon:after {
 	line-height:1.28578em;
 	word-break:break-word;
 	word-wrap:break-word;
-	display:block
+	display:block;
 }
 
 .is-conversation>.tweet-body {
@@ -2164,6 +2169,8 @@ a .column-title-back .icon:after {
 
 .tweet-timestamp {
 	transition:margin .1s;
+	position:absolute;
+	right:10px;
 	font-size:12px
 }
 
@@ -2260,11 +2267,17 @@ a .column-title-back .icon:after {
 .tweet-footer {
 	left:50%;
 	margin-top:-25px;
+	margin-bottom:35px;
 	margin-left:-70px;
 	position:absolute;
 	height:10px
 }
 
+.js-mediatable .tweet-footer {
+	margin-top:0;
+	margin-left:0;
+	left:90px
+}
 
 .in-tweet-divider {
 	position:relative;
@@ -2290,6 +2303,7 @@ a .column-title-back .icon:after {
 
 .quoted-tweet {
 	border:none;
+	font-size:0.9em;
 	box-shadow:0 3px 7px rgba(17,17,17,.5)
 }
 
@@ -2974,24 +2988,20 @@ a .column-title-back .icon:after {
 	bottom:0;
 	padding:0;
 	border:none;
+	font-size:16px;
 	vertical-align:middle;
 	background:transparent;
 	text-shadow:none
 }
 
 .character-count:disabled {
-	width:30px;
-	color:#fff;
-	font-size:16px;
 	height:auto;
 	padding-bottom:3px;
 	transition:.2s all
 }
 
 .character-count-compose {
-	color:#000;
 	text-align:right;
-	font-size:16px;
 	display:inline;
 	position:relative;
 	transition:.2s all
@@ -3195,7 +3205,7 @@ a .column-title-back .icon:after {
 
 .mdl-column {
 	display:inline-block;
-	font-size:1rem;
+	font-size:0.9rem;
 	white-space:normal;
 	float:none;
 	margin-top:inherit
@@ -3640,7 +3650,7 @@ a .column-title-back .icon:after {
 	resize:none;
 	border:none;
 	color:#444;
-	font-size:1rem;
+	font-size:0.9rem;
 	text-overflow:ellipsis;
 	padding-left:15px!important;
 	border-radius:2px;
@@ -3892,9 +3902,10 @@ a .column-title-back .icon:after {
 
 .js-inline-compose-pop,.js-inline-compose-close,.js-inline-compose-add-image {
 	margin-left:5px;
-	margin-top:-90px;
+	margin-top:-95px;
 	position:relative;
-	transition:.2s all
+	transition:.2s all;
+	padding:5px
 }
 
 .js-inline-compose-add-image {
@@ -4006,7 +4017,6 @@ a .column-title-back .icon:after {
 	width:auto;
 	padding-bottom:0;
 	opacity:0;
-	box-shadow:0 3px 6px rgba(0,0,0,.7);
 	pointer-events:all;
 	animation:windowDown .4s cubic-bezier(.19,1,.22,1)
 }
@@ -5996,7 +6006,7 @@ a[rel=user]:active {
 }
 
 .tweet-body {
-	margin-top:2px
+	margin-top:2px;
 }
 
 .media-sensitive-content p {
@@ -6035,9 +6045,14 @@ a[rel=user]:active {
 	top:40%
 }
 
-.media-size-medium .media-sensitive-content,.media-size-small .media-sensitive-content,.media-size-large .media-sensitive-content {
+.media-size-medium .media-sensitive-content,.media-size-small .media-sensitive-content {
 	left:45%;
 	width:97%!important
+}
+
+.media-size-large .media-sensitive-content {
+	left:20%;
+	width:70%!important
 }
 
 .media-sensitive.is-hidden {
@@ -6296,7 +6311,6 @@ a[rel=user]:active {
 
 .mtd-nav-button {
 	text-transform:none;
-	color:#4C4C4C;
 	text-indent:45px;
 	font-weight:500;
 	text-align:left;
@@ -6306,8 +6320,7 @@ a[rel=user]:active {
 
 .mtd-nav-button:active {
 	opacity:1;
-	transform:none;
-	color:#4B4B4C!important
+	transform:none
 }
 
 .mtd-nav-drawer-icon {
@@ -7556,8 +7569,7 @@ button.mtd-no-transform-case {
 }
 
 .tweet-text {
-	margin-bottom:8px;
-	font-size:0.85em
+	margin-bottom:8px
 }
 
 .activity-header+.account-summary .fullname {
@@ -7797,4 +7809,38 @@ textarea:not(.compose-text):not(.js-compose-text) {
 
 .js-dropdown-content>ul {
 	padding-left:0
+}
+
+.js-media.item-box-full-bleed {
+	margin-top:10px
+}
+
+.js-quoted-tweet-text.with-linebreaks {
+	margin:5px
+}
+
+.js-mediatable .tweet-body {
+	font-size:0.9rem;
+}
+
+.cmp-replyto .tweet-header {
+	margin-top:-37px
+}
+
+.cmp-replyto .tweet-img {
+	margin-top:45px;
+	margin-left:-50px
+}
+
+.cmp-replyto.js-inreply {
+	min-height:20px
+}
+
+.cmp-replyto .tweet-text {
+	padding-top:10px;
+	padding-left:10px
+}
+
+.cmp-replyto .account-inline {
+	margin-left:69px
 }
