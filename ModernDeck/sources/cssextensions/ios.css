@@ -6,19 +6,19 @@
 */
 
 
-.mtd-theme-ios {
+html {
 	font-family:"San Francisco",Roboto!important
 }
 
-.mtd-theme-ios .mdl-column .pin-top .search-input-list,.mtd-theme-ios .mdl-header.js-mdl-header,.mtd-theme-ios.mtd-back-paper .is-new .column-header,.mtd-theme-ios .mtd-back-paper.is-new .column-header-temp,.mtd-theme-ios .app-header,.mtd-theme-ios .column-header,.mtd-theme-ios .column-header-temp {
+.mdl-column .pin-top .search-input-list,.mdl-header.js-mdl-header,.mtd-theme-ios.mtd-back-paper .is-new .column-header,.mtd-back-paper.is-new .column-header-temp,.app-header,.column-header,.column-header-temp {
 	background:#fff!important
 }
 
-.mtd-theme-ios .app-header {
+.app-header {
 	border-bottom:2px solid #eee
 }
 
-.mtd-theme-ios .column-header,.mtd-theme-ios .column-header-temp {
+.column-header,.column-header-temp {
 	border-right:3px solid #eee
 }
 
@@ -26,74 +26,74 @@
 	color:#00BCD4!important
 }
 
-.mtd-theme-ios .column-holder .column-panel {
+.column-holder .column-panel {
 	top:0!important;
 	left:0
 }
 
-.mtd-theme-ios .column-holder .column-panel:nth-child(2) {
+.column-holder .column-panel:nth-child(2) {
 	opacity:1
 }
 
-.mtd-theme-ios .is-shifted-1 .column-panel:not(.column-detail):not(.column-detail-level-2),.is-shifted-2 .column-panel:not(.column-detail-level-2):not(.column-detail) {
+.is-shifted-1 .column-panel:not(.column-detail):not(.column-detail-level-2),.is-shifted-2 .column-panel:not(.column-detail-level-2):not(.column-detail) {
 	left:-30%
 }
 
-.mtd-theme-ios .column-panel {
+.column-panel {
 	transition:.4s left cubic-bezier(.19,1,.22,1)
 }
 
-.mtd-theme-ios .column-panel:nth-child(n+2),.mtd-theme-ios .column-panel:nth-child(n+2) {
+.column-panel:nth-child(n+2),.column-panel:nth-child(n+2) {
 	left:100%;
 	box-shadow:none
 }
 
-.mtd-theme-ios .is-shifted-1 .column-panel:nth-child(n+2),.mtd-theme-ios .is-shifted-2 .column-panel:nth-child(n+2) {
+.is-shifted-1 .column-panel:nth-child(n+2),.is-shifted-2 .column-panel:nth-child(n+2) {
 	left:0;
 	box-shadow:0 4px 10px rgba(0,0,0,.4);
 	transition:.4s left cubic-bezier(.19,1,.22,1)
 }
 
-.mtd-theme-ios .column-holder {
+.column-holder {
 	overflow:hidden
 }
 
-.mtd-theme-ios .column-title-back .column-head-title {
+.column-title-back .column-head-title {
 	font-size:17px;
 	padding-top:2px;
 	margin-left:-32px;
 	color:#00c3dc
 }
 
-.mtd-theme-ios .column-title-back .icon {
+.column-title-back .icon {
 	color:#00c3dc!important
 }
 
-.mtd-theme-ios .icon-arrow-l {
+.icon-arrow-l {
 	margin-top:2px
 }
 
-.mtd-theme-ios .icon-arrow-l:before {
+.icon-arrow-l:before {
 	content:"\e314";
 	margin-left:-5px;
 	padding-top:5px;
 	font-size:36px
 }
 
-.mtd-theme-ios .tweet-detail-wrapper {
+.tweet-detail-wrapper {
 	animation:none
 }
 
-.mtd-theme-ios .is-shifted-1 .column-panel:not(.column-detail):not(.column-detail-level-2) .column-header,.mtd-theme-ios .column-header,.mtd-theme-ios .column-header-temp {
+.is-shifted-1 .column-panel:not(.column-detail):not(.column-detail-level-2) .column-header,.column-header,.column-header-temp {
 	box-shadow:none;
 	border-bottom:2px solid #eee
 }
 
-.mtd-theme-ios .column-title-back {
+.column-title-back {
 	width:100%
 }
 
-.mtd-theme-ios .js-column-detail .column-title-back:before {
+.js-column-detail .column-title-back:before {
 	color:#000;
 	font-weight:500;
 	text-align:center;
@@ -103,7 +103,7 @@
 	width:100%
 }
 
-.mtd-theme-ios .mdl {
+.mdl {
 	border-radius:8px
 }
 

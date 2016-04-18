@@ -5,7 +5,7 @@
   Released under the MIT Licence
 */
 
-.mdl-header.js-mdl-header,.mtd-back-violet.mtd-light .app-navigator .js-hide-drawer,.app-navigator .js-hide-drawer,.edit-conversation-name,.drawer-header,.column:not(.is-new) .column-message,body,.column-header,.column-header-temp {
+.mdl-header.js-mdl-header,.application,.mtd-light .app-navigator .js-hide-drawer,.app-navigator .js-hide-drawer,.edit-conversation-name,.drawer-header,.column:not(.is-new) .column-message,body,.column-header,.column-header-temp {
 	background:#673AB7!important
 }
 
