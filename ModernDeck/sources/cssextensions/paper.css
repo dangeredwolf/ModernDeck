@@ -17,6 +17,10 @@
 	background-color:#eee!important
 }
 
+.is-options-open .column-settings-link {
+	color:#fff
+}
+
 .title-content .txt-mute,.mtd-nd-header-username,.column-title .attribution,.compose-remember-state,.more-tweets-btn,.selected .list-link strong,.account-selector-grid-mode,.account-selector-grid-mode:hover,.account-selector-grid-mode,.account-selector-grid-mode.is-selected,.js-dm-participants-back:after,.conversation-title .title-content b,.js-tweet-social-proof-back:after,.js-column-detail .column-title-back:before,.js-hide-drawer.app-nav-tab:after,.app-nav-tab,.drawer-header-title.drawer-column-header-title,.btn-back:before,.mdl-header-title,.column-header-temp,.mdl-column.l-column .search-input,.numbered-badge,.app-search .app-search-fake,.column-message,.app-nav-link,.column-title,.column-header .icon {
 	color:#555!important
 }
@@ -44,4 +48,9 @@ a .column-title-back .icon:after,.drawer-header:active .drawer-header-title .ico
 
 .js-add-image-button,.js-tweet-button,.js-dm-button,.js-schedule-button {
 	color:#777!important
+}
+
+input.column-title-edit-box {
+	border-bottom:3px solid #666;
+	color:#666
 }

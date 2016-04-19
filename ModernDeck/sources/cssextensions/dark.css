@@ -61,7 +61,7 @@ div.drawer[data-drawer="compose"],.lst-group .selected,#calcurrent,.btn-compose,
 	color:#D3DBE1
 }
 
-a,a:hover,.btn:not([disabled]):not(.is-disabled):not(.btn-options-tray):not(.mtd-nav-button) {
+a,a:hover,.btn:not([disabled]):not(.is-disabled):not(.btn-options-tray):not(.mtd-nav-button):not(.btn-bg-negative) {
 	color:#009EAD
 }
 
