@@ -7850,3 +7850,10 @@ textarea:not(.compose-text):not(.js-compose-text) {
 .cmp-replyto .account-inline {
 	margin-left:69px
 }
+
+/* Theme standard message banners */
+
+body>.message-banner[style="color: rgb(85, 85, 85); background-color: rgb(178, 213, 237);"] {
+	background-color:transparent!important;
+	color:inherit!important
+}
