@@ -14,7 +14,7 @@ a:active {
 	background-color:rgba(0,0,0,.05)
 }
 
-.prf-follow-status,.accs-header,.mtd-no-chars-suggestions,option,.typeahead,.list-twitter-list .inner strong,.list-account,.mtd-about-title,.character-count-compose,.prf-stats>li>a>strong {
+.form-legend,.prf-follow-status,.accs-header,.mtd-no-chars-suggestions,option,.typeahead,.list-twitter-list .inner strong,.list-account,.mtd-about-title,.character-count-compose,.prf-stats>li>a>strong {
 	color:#333
 }
 
@@ -92,7 +92,7 @@ a:active {
 	color:#26C6DA!important
 }
 
-.js-account-manager-container,html,body {
+.js-account-manager-container {
   background:#f8f8f8
 }
 
@@ -109,7 +109,7 @@ a:active {
 	color:#fff
 }
 
-.edit-conversation-name,.app-navigator .js-hide-drawer,.column-message,.app-navigator .js-hide-drawer {
+.edit-conversation-name,.app-navigator .js-hide-drawer,.column-message,.app-navigator .js-hide-drawer,html,body {
 	background:#03A9F4
 }
 

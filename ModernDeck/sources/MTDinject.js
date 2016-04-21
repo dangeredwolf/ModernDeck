@@ -909,13 +909,15 @@ html.addClass("mtd-preferences-differentiator mtd-api-ver-6-0 mtd-js-loaded");
 window.addEventListener("keyup",KeyboardShortcutHandler,false);
 
 (new MutationObserver(checkIfUserSelectedNewTheme)).observe(document.querySelector("meta[http-equiv='default-style']"),{attributes:true});
-(new MutationObserver(checkIfSigninFormIsPresent)).observe(document.querySelector(".js-app-loading"),{attributes:true});
-(new MutationObserver(checkIfSigninFormIsPresent)).observe(body[0],{attributes:true});
+(new MutationObserver(checkIfSigninFormIsPresent)).observe(body[0],{childList:true,attributes:true});
+(new MutationObserver(checkIfSigninFormIsPresent)).observe(head[0],{childList:true,attributes:true});
+(new MutationObserver(checkIfSigninFormIsPresent)).observe(html[0],{childList:true,attributes:true});
 (new MutationObserver(checkIfBTDIsInstalled)).observe(body[0],{attributes:true});
 (new MutationObserver(onElementAddedToDOM)).observe(html[0],{attributes:false,subtree:true,childList:true});
 
 checkIfUserSelectedNewTheme();
 checkIfSigninFormIsPresent();
 checkIfBTDIsInstalled();
+setTimeout(checkIfSigninFormIsPresent,500);
 
 console.log("MTDinject loaded");
