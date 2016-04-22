@@ -96,7 +96,7 @@ a:active {
   background:#f8f8f8
 }
 
-.media-sensitive-content p {
+.media-sensitive-content p,.char-count {
 	color:#777
 }
 
@@ -480,4 +480,8 @@ input,textarea,select,.uneditable-input {
 
 textarea {
 	border-color:#333
+}
+
+.over-char-count:disabled {
+	color:#a93730
 }

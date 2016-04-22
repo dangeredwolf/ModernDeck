@@ -10,6 +10,7 @@
  */
 
 @import "cssextensions/normalise.css";
+@import "cssextensions/coredefinitions.css";
 @import "cssextensions/animations.css";
 @import "cssextensions/spinner.css";
 @import "cssextensions/superclasses.css";
@@ -33,14 +34,6 @@ body.scroll-v {
 	pointer-events:none
 }
 
-.txt-left {
-	text-align:left!important
-}
-
-.txt-right {
-	text-align:right!important
-}
-
 .txt-mute,.txt-r-dark-gray,.txt-mute a:not(:hover):not(:focus):not(.tweet-action),.txt-normal {
 	color:#979797
 }
@@ -59,10 +52,6 @@ body.scroll-v {
 
 .account-stats .txt-base-smallest {
 	font-size:12px
-}
-
-.txt-base-large,.txt-base-largest {
-	font-size:1.35em!important
 }
 
 .txt-capitalize {
@@ -874,7 +863,7 @@ body.scroll-v {
 	color:inherit
 }
 
-.btn {
+button {
 	position:relative;
 	display:inline-block;
 	pointer-events:all;
@@ -895,7 +884,7 @@ body.scroll-v {
 	transition:.2s all
 }
 
-.btn:hover,.btn:focus {
+button:hover,button:focus {
 	background:transparent;
 	outline:0
 }
@@ -904,15 +893,15 @@ body.scroll-v {
 	transform:scale(.95)
 }
 
-.btn .icon {
+button .icon {
 	line-height:1em
 }
 
-.btn .label,.btn .icon {
+button .label,button .icon {
 	vertical-align:middle
 }
 
-.btn-neutral[disabled],.btn-neutral[disabled]:hover,.btn-neutral[disabled]:active,.btn-neutral.is-disabled,.btn-neutral.is-disabled:hover,.btn-neutral.is-disabled:focus,.btn-neutral.is-disabled:active,[disabled].btn-neutral-negative,[disabled].btn-neutral-positive,[disabled].btn-options-tray,[disabled].btn-neutral-negative:hover,[disabled].btn-neutral-positive:hover,[disabled].btn-options-tray:hover,[disabled].btn-neutral-negative:active,[disabled].btn-neutral-positive:active,[disabled].btn-options-tray:active,.is-disabled.btn-neutral-negative,.is-disabled.btn-neutral-positive,.is-disabled.btn-options-tray,.is-disabled.btn-neutral-negative:hover,.is-disabled.btn-neutral-positive:hover,.is-disabled.btn-options-tray:hover,.is-disabled.btn-neutral-negative:focus,.is-disabled.btn-neutral-positive:focus,.is-disabled.btn-options-tray:focus,.is-disabled.btn-neutral-negative:active,.is-disabled.btn-neutral-positive:active,.is-disabled.btn-options-tray:active {
+button[disabled],button.is-disabled {
 	opacity:.3
 }
 
@@ -929,7 +918,7 @@ body.scroll-v {
 	color:rgba(255,255,255,.8)
 }
 
-.btn-options-tray[disabled],.btn-options-tray[disabled]:hover,.btn-options-tray[disabled]:active,.btn-options-tray.is-disabled,.btn-options-tray.is-disabled:hover,.btn-options-tray.is-disabled:focus,.btn-options-tray.is-disabled:active {
+.btn-options-tray[disabled],.btn-options-tray.is-disabled {
 	color:#4CBCFF
 }
 
@@ -947,7 +936,7 @@ body.scroll-v {
 	height:40px
 }
 
-.txt-large,.btn-txt-large {
+.txt-large,.btn-txt-large,.txt-base-large,.txt-base-largest {
 	font-size:1.1em
 }
 
@@ -981,7 +970,7 @@ body.scroll-v {
 	width:100%
 }
 
-.button-group-toggle .btn {
+.button-group-toggle button {
 	width:50%
 }
 
@@ -990,33 +979,7 @@ body.scroll-v {
 }
 
 .input-group-button .input-group-input:not(.js-add-to-customtimeline-input) {
-	min-height:30px;
-	border:none
-}
-
-.input-group-button .btn {
-	border:none
-}
-
-h1 {
-	font-size:20px
-}
-
-h2 {
-	font-size:14px
-}
-
-.h3,h3 {
-	font-size:1.1429rem
-}
-
-h4 {
-	font-size:14px;
-	font-weight:400
-}
-
-h6 {
-	font-size:11px
+	min-height:30px
 }
 
 .column-detail-level-2>header>a .js-tooltip-target.link-complex-target {
@@ -1031,14 +994,6 @@ h6 {
 .js-account-invited-accounts {
 	position:relative;
 	top:-1px
-}
-
-.account-stats a {
-	text-decoration:none
-}
-
-.account-stats a:hover {
-	color:#2b7bb9
 }
 
 .app-columns {
@@ -1056,7 +1011,7 @@ h6 {
 	overflow:hidden;
 	width:328px;
 	height:100%;
-	margin:0 0 0 0;
+	margin:0;
 	background:#F9F9F9;
 	font-size:0.9rem;
 	white-space:normal;
@@ -3229,7 +3184,7 @@ a .column-title-back .icon:after {
 
 .mdl-column-med {
 	width:260px;
-	border-radius:0 0 0 0;
+	border-radius:0;
 	z-index:5
 }
 
@@ -3348,31 +3303,15 @@ a .column-title-back .icon:after {
 	content:"TweetDeck Settings"
 }
 
-#general_settings .inline-block:after {
-	content:" ModernDeck";
-	padding-left:8px
-}
-
 .mdl-links {
 	position:absolute;
-	bottom:5px;
+	bottom:0;
 	right:15px;
 	left:15px;
-	color:rgba(0,0,0,0);
+	color:transparent;
 	font-size:12px;
+	padding-bottom:15px;
 	text-align:center
-}
-
-.mdl-account-shared-warning {
-	height:300px
-}
-
-.mdl-account-shared-warning .mdl-content {
-	box-sizing:border-box;
-	background:#fff;
-	border:none;
-	padding:1rem;
-	font-size:1.2857rem
 }
 
 .cmp {
@@ -3388,10 +3327,6 @@ a .column-title-back .icon:after {
 	border:none
 }
 
-.cmp textarea:focus {
-	box-shadow:none
-}
-
 .cmp .cmp-file-upload {
 	position:absolute;
 	left:-3000px;
@@ -3401,25 +3336,6 @@ a .column-title-back .icon:after {
 
 .cmp-inner {
 	position:relative
-}
-
-.cmp .set-content b {
-	white-space:nowrap;
-	overflow:hidden;
-	text-overflow:ellipsis;
-	display:inline-block;
-	width:120px
-}
-
-.cmp .set-content {
-	width:auto;
-	padding:4px 10px
-}
-
-.cmp .set-content b {
-	display:inline-block;
-	vertical-align:middle;
-	zoom:1
 }
 
 .cmp-message {
@@ -3443,37 +3359,14 @@ a .column-title-back .icon:after {
 	border-radius:3px
 }
 
-.cmp-info {
-	display:none;
-	position:absolute;
-	bottom:1px;
-	right:1px;
-	left:1px;
-	color:#333;
-	background:#eee;
-	border-radius:0 0 3px 3px;
-	border-top:1px solid #c5c5c5
-}
-
-.cmp-info p {
-	display:none;
-	padding:5px 10px
-}
-
-.char-count:disabled {
+.char-count {
 	width:50px;
 	height:auto;
 	border:0;
 	padding:0;
 	font-size:16px;
-	color:#777;
 	text-align:right;
-	vertical-align:middle;
-	background:transparent
-}
-
-.over-char-count:disabled {
-	color:#a93730
+	vertical-align:middle
 }
 
 .cmp-replyto {
@@ -5854,34 +5747,8 @@ input[type="checkbox"] {
 }
 
 .js-reply-charcount {
-	padding-top:0!important;
-	border-bottom:none!important
-}
-
-a.tweet-action[data-action=mute],.js-dropdown-content a[data-action="mute"] {
-	font-size:0;
-	line-height:0
-}
-
-a.tweet-action[data-action=mute]:before,.js-dropdown-content a[data-action="mute"]:before {
-	font-size:14px;
-	content:"Mute in TweetDeck";
-	display:block;
-	line-height:2;
-	pointer-events:none
-}
-
-a.tweet-action[data-action=report-spam] {
-	font-size:0;
-	line-height:0
-}
-
-a.tweet-action[data-action=report-spam]:before {
-	font-size:14px;
-	content:"Report for Spam";
-	display:block;
-	line-height:2;
-	pointer-events:none
+	padding-top:0;
+	border-bottom:none
 }
 
 .js-account-action:focus,.js-account-action:hover {
@@ -6530,12 +6397,6 @@ fieldset .fixed-width-label:not(.radio),fieldset:not(.js-search-filter) .control
 
 #general_settings .control-group label.checkbox,#general_settings .control-group label.radio {
 	margin-left:88px
-}
-
-#general_settings .mdl-links {
-	margin-bottom:-400px;
-	display:block;
-	padding-bottom:15px
 }
 
 .js-display-sensitive-media.checkbox {
@@ -7630,16 +7491,14 @@ button.mtd-no-transform-case {
 	overflow-y:auto
 }
 
-iframe.report-flow {
+.report-flow {
 	border:0;
 	position:absolute;
 	top:0;
 	left:0;
 	bottom:0;
 	right:0;
-	min-width:100%;
 	width:100%;
-	min-height:2000px;
 	height:100%
 }
 
