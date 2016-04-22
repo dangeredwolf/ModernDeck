@@ -8,34 +8,31 @@
 var SystemVersion = "6.0 Beta 3";
 var MTDBaseURL = "https://raw.githubusercontent.com/dangeredwolf/ModernDeck/master/ModernDeck/"; // Defaults to streaming if nothing else is available (i.e. legacy firefox)
 
-var msgID = 0;
+var msgID,
+FetchProfileInfo,
+loginIntervalTick = 0;
+
 var messagesAccounted = [];
 
 var MTDDark = true;
 
-var addedColumnsLoadingTagAndIsWaiting = false;
-var replacedLoadingSpinnerNew = false;
+var addedColumnsLoadingTagAndIsWaiting,
+replacedLoadingSpinnerNew,
+loadedPreferences,
+wasTweetSheetOpen,
+profileProblem,
+TreatGeckoWithCare = false;
+
 var progress = null;
-var FindProfButton;
 
-var TreatGeckoWithCare = false;
-var profileProblem = false;
-var wasTweetSheetOpen = false;
-
-var loadedPreferences = false;
-
-var FetchProfileInfo = 0;
-
-var Preferences = [];
-var openmodal;
+var FindProfButton,
+loginInterval,
+openModal;
 
 const make = function(a){return $(document.createElement(a))};
 const head = $(document.head);
 const body = $(document.body);
 const html = $(document.querySelector("html")); // Only 1 result; faster to find
-
-const elements = function(a,b,c){return $(document.getElementsByClassName(a,b,c))};
-const find1Obj = function(selector){return $(document.querySelector(selector))};
 
 // Asks MTDLoad for the storage
 window.postMessage({
@@ -178,11 +175,7 @@ function MTDInit(){
 		return;
 	}
 
-	enableStylesheetExtension("dark")
-
-	// TD.controller.stats.dataminrApiRequest = function(){};
-	// TD.controller.stats.dataminrAuthRequest = function(){};
-	// TD.controller.stats.dataminrClickImpression = function(){};
+	enableStylesheetExtension("dark");
 
 	$(document.head).append(make("style").html(
 		fontParseHelper({name:"Roboto300latin",range:"U+0000-00FF,U+0131,U+0152-0153,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2212,U+2215,U+E0FF,U+EFFD,U+F000"}) +
@@ -195,14 +188,14 @@ function MTDInit(){
 		fontParseHelper({family:"Font Awesome",weight:"400",name:"fontawesome",range:"U+0000-F000"})
 	));
 
-	document.getElementsByClassName("js-modals-container")[0].removeChild = function(rmnode){
+	document.querySelector(".js-modals-container").removeChild = function(rmnode){
 		$(rmnode).addClass("mtd-modal-window-fade-out");
 		setTimeout(function(){
 			rmnode.remove();
 		},200);
 	};
 
-	$(document.getElementsByClassName("application")[0].childNodes).each(function(obj){
+	$(document.querySelector(".application").childNodes).each(function(obj){
 		obj.removeChild = function(rmnode){
 			$(rmnode).addClass("mtd-modal-window-fade-out");
 			setTimeout(function(){
@@ -211,8 +204,8 @@ function MTDInit(){
 		};
 	})
 
-	if (find1Obj(".js-modal").length > 0) {
-		find1Obj(".js-modal").on("removeChild",function(rmnode){
+	if ($(".js-modal").length > 0) {
+		$(".js-modal").on("removeChild",function(rmnode){
 			$(rmnode).addClass("mtd-modal-window-fade-out");
 			setTimeout(function(){
 				rmnode.remove();
@@ -220,7 +213,7 @@ function MTDInit(){
 		});
 	}
 
-	body.on("removeChild",function(i) {
+	body.removeChild = function(i) {
 		if ($(i).hasClass("tooltip")) {
 			setTimeout(function(){
 				i.remove(); // Tooltips automagically animate themselves out. But here we clean them up as well ourselves.
@@ -228,7 +221,7 @@ function MTDInit(){
 		} else {
 	 		i.remove();
 		}
- 	});
+ 	};
 
 	$("link[rel=\"shortcut icon\"]").attr("href",MTDBaseURL + "sources/favicon.ico");
 	$(document.querySelector("audio")).attr("src",GetURL("sources/alert_2.mp3"));
@@ -458,16 +451,16 @@ function FinaliseLoginStuffs() {
 	if (profileProblem) {
 		profileProblem = false;
 		if (wasTweetSheetOpen) {
-			find1Obj(".js-show-drawer.btn-compose").click();
+			$(".js-show-drawer.btn-compose").click();
 		} else {
-			find1Obj(".js-hide-drawer[data-title='Accounts']").click();
+			$(".js-hide-drawer[data-title='Accounts']").click();
 		}
 		console.log("repaired profile problem with tweet thing");
 	}
 }
 
 function NavigationSetup() {
-	if (find1Obj(".app-header-inner").length < 1) {
+	if ($(".app-header-inner").length < 1) {
 		setTimeout(NavigationSetup,100);
 		return;
 	}
@@ -700,9 +693,9 @@ function closediag() {
 }
 
 function attemptdiag() {
-	openmodal = find1Obj("#open-modal,.js-app-loading");
+	openModal = $("#open-modal,.js-app-loading");
 
-	openmodal.append(
+	openModal.append(
 			make("div")
 			.addClass("mdl s-tall-fixed")
 			.append(
@@ -759,9 +752,9 @@ function attemptdiag() {
 
 function dxdiag() {
 
-		openmodal = find1Obj("#open-modal,.js-app-loading");
+		openModal = $("#open-modal,.js-app-loading");
 
-		openmodal.append(
+		openModal.append(
 				make("div")
 				.addClass("mdl s-tall-fixed")
 				.append(
@@ -796,7 +789,7 @@ function dxdiag() {
 }
 
 function addSpaceSuggestion(mtdtxt,clickd) {
-	find1Obj(".mtd-no-chars-suggestions").append(
+	$(".mtd-no-chars-suggestions").append(
 		make("button")
 		.addClass("btn mtd-no-transform-case")
 		.html(mtdtxt)
@@ -806,17 +799,17 @@ function addSpaceSuggestion(mtdtxt,clickd) {
 }
 
 function checkSpaceSuggestions() {
-	var tweetTxt = find1Obj(".compose-text").val();
+	var tweetTxt = $(".compose-text").val();
 
 	if (tweetTxt.match(/ ( )+/g) !== null) {
 		addSpaceSuggestion("Trim excess space inside",function(){
-			find1Obj(".compose-text").val(tweetTxt.replace(/ ( )+/g," "));
+			$(".compose-text").val(tweetTxt.replace(/ ( )+/g," "));
 		});
 	}
 
 	if (tweetTxt.match(/(^\s+)|([^\w|.|\.|\!|\?]+?$)/gm) !== null) {
 		addSpaceSuggestion("Trim excess space around edges",function(){
-			find1Obj(".compose-text").val(tweetTxt.replace(/(^\s+)|([^\w|.|\.|\!|\?]+?$)/gm,""));
+			$(".compose-text").val(tweetTxt.replace(/(^\s+)|([^\w|.|\.|\!|\?]+?$)/gm,""));
 		});
 	}
 
@@ -909,15 +902,12 @@ html.addClass("mtd-preferences-differentiator mtd-api-ver-6-0 mtd-js-loaded");
 window.addEventListener("keyup",KeyboardShortcutHandler,false);
 
 (new MutationObserver(checkIfUserSelectedNewTheme)).observe(document.querySelector("meta[http-equiv='default-style']"),{attributes:true});
-(new MutationObserver(checkIfSigninFormIsPresent)).observe(body[0],{childList:true,attributes:true});
-(new MutationObserver(checkIfSigninFormIsPresent)).observe(head[0],{childList:true,attributes:true});
-(new MutationObserver(checkIfSigninFormIsPresent)).observe(html[0],{childList:true,attributes:true});
 (new MutationObserver(checkIfBTDIsInstalled)).observe(body[0],{attributes:true});
 (new MutationObserver(onElementAddedToDOM)).observe(html[0],{attributes:false,subtree:true,childList:true});
 
 checkIfUserSelectedNewTheme();
 checkIfSigninFormIsPresent();
 checkIfBTDIsInstalled();
-setTimeout(checkIfSigninFormIsPresent,500);
+loginInterval = setInterval(checkIfSigninFormIsPresent,500);
 
 console.log("MTDinject loaded");
