@@ -39,6 +39,14 @@ a:active {
 	color:#979797
 }
 
+.scroll-styled-v,.scroll-styled-h,.scroll-alt,.scroll-v,.lst-launcher,.mtd-nav-drawer,.mdl.s-profile {
+	scrollbar-face-color:#505254;
+	scrollbar-highlight-color:#505254;
+	scrollbar-shadow-color:#505254;
+	scrollbar-darkshadow-color:#505254;
+	scrollbar-track-color:#3c3c3c
+}
+
 .btn[disabled],.btn[disabled]:hover,.btn[disabled]:active,.btn.is-disabled,.btn.is-disabled:hover,.btn.is-disabled:focus,.btn.is-disabled:active {
 	color:#CACACA
 }

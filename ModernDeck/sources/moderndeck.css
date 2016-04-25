@@ -34,10 +34,6 @@ body.scroll-v {
 	pointer-events:none
 }
 
-.txt-mute,.txt-r-dark-gray,.txt-mute a:not(:hover):not(:focus):not(.tweet-action),.txt-normal {
-	color:#979797
-}
-
 .txt-ellipsis {
 	max-width:100%;
 	vertical-align:bottom;
@@ -71,11 +67,6 @@ body.scroll-v {
 }
 
 .scroll-styled-v,.scroll-styled-h,.scroll-alt,.scroll-v,.lst-launcher,.mtd-nav-drawer,.mdl.s-profile {
-	scrollbar-face-color:#505254;
-	scrollbar-highlight-color:#505254;
-	scrollbar-shadow-color:#505254;
-	scrollbar-darkshadow-color:#505254;
-	scrollbar-track-color:#3c3c3c;
 	pointer-events:all
 }
 
@@ -218,14 +209,6 @@ body.scroll-v {
 
 .row {
 	margin:11px 0
-}
-
-.inline {
-	display:inline!important
-}
-
-.inline-block {
-	display:inline-block!important
 }
 
 .no-wrap {
@@ -1925,7 +1908,7 @@ a .column-title-back .icon:after {
 }
 
 .media-size-small,.media-size-medium,.quoted-tweet {
-	margin-bottom:50px
+	margin-bottom:50px!important
 }
 
 .media-item:first-child {
@@ -2192,7 +2175,7 @@ a .column-title-back .icon:after {
 
 .tweet-actions>li {
 	float:left;
-	margin:0 0 0 35px
+	margin:0 0 0 25px
 }
 
 .tweet-action,.tweet-detail-action {
@@ -2230,12 +2213,12 @@ a .column-title-back .icon:after {
 }
 
 .tweet-footer {
-	left:50%;
+	left:15%;
+	right:0;
 	margin-top:-30px;
 	margin-bottom:35px;
-	margin-left:-70px;
 	position:absolute;
-	height:10px;
+	height:10px
 }
 
 .js-mediatable .tweet-footer {
@@ -3807,10 +3790,6 @@ a .column-title-back .icon:after {
 	position:relative;
 	transition:.2s all;
 	padding:5px
-}
-
-.js-inline-compose-add-image {
-	display:inline-block!important
 }
 
 .js-inline-compose-close {
@@ -5632,10 +5611,6 @@ input[type="checkbox"] {
 	padding-right:2px
 }
 
-.not-actionable .facet-subtitle {
-	color:transparent
-}
-
 .dropdown-menu b.non-selectable-item {
 	padding-top:5px
 }
@@ -7152,10 +7127,6 @@ button.mtd-no-transform-case {
 
 .will-animate {
 	transform:translateZ(0)
-}
-
-.more-tweets-btn.is-hidden {
-	display:inline-block!important
 }
 
 .js-column-message {
