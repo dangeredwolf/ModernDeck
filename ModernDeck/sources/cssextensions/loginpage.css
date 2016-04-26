@@ -26,7 +26,7 @@ select,input {
 	border-radius:0!important
 }
 
-.btn:active,.btn.is-selected {
+.btn:not(.btn-positive):active,.btn.is-selected {
 	background-color:rgba(0,0,0,.04)!important
 }
 
@@ -169,8 +169,8 @@ body.scroll-v .mdl .startflow-panel {
 }
 
 .login-container {
-	animation:fadeIn .75s cubic-bezier(.19,1,.22,1);
-	height: 100%;
+	animation:windowSlider .75s cubic-bezier(.19,1,.22,1);
+	height:100%
 }
 
 .form-login h2 {
@@ -204,6 +204,6 @@ body.scroll-v .mdl .startflow-panel {
 
 .login-container .btn-positive {
 	width:277px!important;
-	padding-top:14px;
-	padding-bottom:0
+	padding:10px 0 10px 10px;
+	text-align:center
 }

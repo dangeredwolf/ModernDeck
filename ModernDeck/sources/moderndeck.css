@@ -9,7 +9,6 @@
 			For a complete list of open source projects included in this, view the "LICENCES" file in the open source project @ github.com/dangeredwolf/ModernDeck
  */
 
-@import "cssextensions/normalise.css";
 @import "cssextensions/coredefinitions.css";
 @import "cssextensions/animations.css";
 @import "cssextensions/spinner.css";

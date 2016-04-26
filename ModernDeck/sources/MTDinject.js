@@ -843,13 +843,18 @@ function outtaSpaceSuggestions() {
 	setTimeout(outtaSpaceSuggestions,2000);
 }
 
+// warning: for some shitty ass reason this doesnt work if the console.logs arent there DONT ASK WH I DONT KNOW
+
 function checkIfSigninFormIsPresent() {
-	if ($(".app-signin-form").length > 0 || $("body>.js-app-loading.login-container:not(style='display: none;')").length > 0) {
-		html.addClass("signin-sheet-now-present");
+	if ($(".app-signin-form").length > 0 || $("body>.js-app-loading.login-container:not([style])").length > 0) {
+		if (!html.hasClass("signin-sheet-now-present")) {
+			html.addClass("signin-sheet-now-present");
+		}
+		loginIntervalTick++;
 		enableStylesheetExtension("loginpage");
-	} else {
-		html.removeClass("signin-sheet-now-present");
-		disableStylesheetExtension("loginpage");
+		if (loginIntervalTick > 5) {
+			clearInterval(loginInterval);
+		}
 	}
 }
 
