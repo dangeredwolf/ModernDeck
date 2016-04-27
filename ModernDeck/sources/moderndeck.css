@@ -213,8 +213,7 @@ body.scroll-v {
 
 .horizontal-flow-container {
 	overflow:visible;
-	white-space:nowrap;
-	font-size:0
+	white-space:nowrap
 }
 
 .account-link>.nbfc {
@@ -223,7 +222,6 @@ body.scroll-v {
 	margin-left:-70px;
 	word-break:break-word;
 	word-wrap:break-word;
-	font-size:0;
 	margin-top:0;
 	padding:0
 }
@@ -960,10 +958,6 @@ button[disabled],button.is-disabled {
 	min-height:30px
 }
 
-.column-detail-level-2>header>a .js-tooltip-target.link-complex-target {
-	font-size:0
-}
-
 .account-remove-check-open .account-remove-check {
 	display:block;
 	animation:windowDown .2s cubic-bezier(.19,1,.22,1)!important
@@ -1321,16 +1315,12 @@ a .column-title-back .icon:after {
 	font-weight:400;
 	margin-left:0;
 	text-align:left;
-	font-size:0;
 	display:block!important
 }
 
+
 .link-complex.txt-medium.block.cf:hover .link-complex.txt-medium.block.cf:active {
 	color:#7DCEFF
-}
-
-.js-tooltip-target.link-complex-target {
-	font-size:0
 }
 
 .js-column-back:active {
@@ -1446,8 +1436,7 @@ a .column-title-back .icon:after {
 }
 
 .column-options .button-tray {
-	text-align:justify;
-	font-size:0
+	text-align:justify
 }
 
 .button-tray:before,.button-tray:after {
@@ -2051,10 +2040,6 @@ a .column-title-back .icon:after {
 	margin-left:-70px
 }
 
-.tweet-context .nbfc {
-	font-size:0
-}
-
 .tweet-context .nbfc>a {
 	font-size:14px;
 	margin-left: -3px
@@ -2164,7 +2149,7 @@ a .column-title-back .icon:after {
 	box-shadow:0 3px 7px rgba(17,17,17,.5)
 }
 
-.txt-base-smallest .quoted-tweet {
+.txt-base-smallest .quoted-tweet,.tweet-message-status i {
 	font-size:1em
 }
 
@@ -2208,7 +2193,6 @@ a .column-title-back .icon:after {
 
 .tweet-detail-actions {
 	display:block;
-	font-size:0;
 	width:100%;
 	padding-left:0;
 	margin-top:45px
@@ -2249,10 +2233,6 @@ a .column-title-back .icon:after {
 	padding-top:7px;
 	display:none;
 	width:20px
-}
-
-.tweet-message-status i {
-	font-size:1em
 }
 
 .tweet-message-attachment {
@@ -2938,11 +2918,10 @@ a .column-title-back .icon:after {
 }
 
 .accs-header {
-	font-size:0!important;
-	margin-left:auto!important;
-	margin-right:auto!important;
-	text-align:center!important;
-	font-weight:normal!important
+	margin-left:auto;
+	margin-right:auto;
+	text-align:center;
+	font-weight:normal
 }
 
 .mdl-inner {
@@ -3535,12 +3514,6 @@ a .column-title-back .icon:after {
 	opacity:.7;
 	z-index:3
 }
-
-.compose-remember-state {
-	color:#fff;
-	font-size:0
-}
-
 .compose-remember-state:before {
 	content:"Keep Open";
 	font-size:14px;
@@ -4265,7 +4238,6 @@ input[type="checkbox"] {
 
 .js-add-column {
 	border-radius:30px;
-	font-size:0;
 	width:50px;
 	height:50px;
 	position:absolute;
@@ -4313,7 +4285,6 @@ input[type="checkbox"] {
 
 .recent-search-clear.list-item-last span {
 	margin-top:-10px;
-	font-size:0;
 	display:block
 }
 
@@ -4384,8 +4355,7 @@ input[type="checkbox"] {
 
 .input-prepend {
 	vertical-align:middle;
-	display:inline-block;
-	font-size:0
+	display:inline-block
 }
 
 #calroot {
@@ -5232,8 +5202,7 @@ input[type="checkbox"] {
 	height:35px;
 	margin-top:-80px;
 	background:transparent!important;
-	box-shadow:none!important;
-	font-size:0
+	box-shadow:none!important
 }
 
 .js-add-image-button {
@@ -5372,10 +5341,6 @@ input[type="checkbox"] {
 	margin-left:-10px
 }
 
-.list-filter.cf {
-	font-size:0
-}
-
 .list-filter.cf>em {
 	font-size:16px;
 	text-align:right;
@@ -5486,17 +5451,11 @@ a[rel=user]:active {
 }
 
 .js-send-tweet-button.spinner-button-is-active:after {
-	font-size:0!important;
 	width:0!important
 }
 
 .prf-header[style="background-image: url(https://ton.twimg.com/tweetdeck-web/web/assets/global/backgrounds/td_profile_empty.14bcb2d3ac.jpg)"],.mtd-nd-header-image[style="background-image: url(https://ton.twimg.com/tweetdeck-web/web/assets/global/backgrounds/td_profile_empty.14bcb2d3ac.jpg)"],.prf-header[style="background-image: url(https://ton.twimg.com/tweetdeck-web/web/assets/global/backgrounds/td_profile_empty@2x.28d11b0d43.jpg)"],.mtd-nd-header-image[style="background-image: url(https://ton.twimg.com/tweetdeck-web/web/assets/global/backgrounds/td_profile_empty@2x.28d11b0d43.jpg)"] {
 	background-image:none!important
-}
-
-.js-column-loading-placeholder.list-placeholder p,.js-column-loading-placeholder.list-placeholder.column-loading-placeholder {
-	font-size:0;
-	display:inline
 }
 
 .hide-detail-view-inline .column-navigator {
@@ -5592,10 +5551,6 @@ a[rel=user]:active {
 	margin-right:8px
 }
 
-.js-send-button {
-	font-size:0
-}
-
 .contributor-manager {
 	background:#F9F9F9
 }
@@ -5633,10 +5588,6 @@ a[rel=user]:active {
 	top:15px;
 	left:10px;
 	line-height:.8
-}
-
-.js-contributor-manager-back span {
-	font-size:0!important
 }
 
 .js-contributor-manager-back span:after {
@@ -6030,10 +5981,6 @@ fieldset .fixed-width-label:not(.radio),fieldset:not(.js-search-filter) .control
 	display:block
 }
 
-#general_settings .obj-left:last-child b {
-	font-size:0
-}
-
 #general_settings .obj-left:last-child b:after {
 	font-size:24px;
 	content:"Fonts"
@@ -6041,10 +5988,6 @@ fieldset .fixed-width-label:not(.radio),fieldset:not(.js-search-filter) .control
 
 #general_settings .control-group label.checkbox,#general_settings .control-group label.radio {
 	margin-left:88px
-}
-
-.js-display-sensitive-media.checkbox {
-	font-size:0
 }
 
 .js-display-sensitive-media.checkbox:after {
@@ -6207,10 +6150,6 @@ fieldset .fixed-width-label:not(.radio),fieldset:not(.js-search-filter) .control
 	transform:rotate(73deg)
 }
 
-.js-display-sensitive-media span {
-	font-size:0
-}
-
 .js-account-action:active {
 	transform:none!important;
 	background:transparent!important
@@ -6256,10 +6195,6 @@ fieldset .fixed-width-label:not(.radio),fieldset:not(.js-search-filter) .control
 	display:inline;
 	position:absolute;
 	margin-left:170px
-}
-
-.js-account-safeguard-text {
-	font-size:0
 }
 
 .js-account-safeguard-text:after {
@@ -6701,10 +6636,6 @@ button.mtd-no-transform-case {
 	top:-50px
 }
 
-.column-title-back.conversation-title {
-	font-size:0
-}
-
 .contributor-row:not([data-state="confirmRemove"]) .contributor-confirm-remove,.contributor-settings-role,.contributor-detail,.contributor-remove {
 	opacity:0;
 	margin-top:-20px;
@@ -6772,10 +6703,6 @@ button.mtd-no-transform-case {
 
 .js-column-message {
 	overflow:visible
-}
-
-.tweet-detail .txt-small {
-	font-size:0!important
 }
 
 .tweet-detail .txt-small a {

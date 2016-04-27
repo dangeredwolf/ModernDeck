@@ -232,7 +232,9 @@ summary
 .js-quote-tweet-holder,
 .prf-follow-status.s-follows,
 .prf-follow-state .follow-combo,
-.is-replied .tweet-message-status
+.is-replied .tweet-message-status,
+.js-column-loading-placeholder.list-placeholder p,
+.js-column-loading-placeholder.list-placeholder.column-loading-placeholder
 {
 	display:inline
 }
@@ -356,7 +358,8 @@ article.is-unread .account-link,
 .caloff:hover,
 #calcurrent,
 .app-search .app-search-fake,
-.accordion-header
+.accordion-header,
+.compose-remember-state
 {
   color:#fff;
 }
@@ -439,4 +442,37 @@ a.btn,
 
 .js-submittable-input.js-compose-text::-moz-placeholder {
 	color:#fff
+}
+
+#general_settings .obj-left:last-child b,
+.js-display-sensitive-media.checkbox,
+.js-contributor-manager-back span,
+.js-send-button,
+.js-column-loading-placeholder.list-placeholder p,
+.js-column-loading-placeholder.list-placeholder.column-loading-placeholder,
+.js-send-tweet-button.spinner-button-is-active:after,
+.list-filter.cf,
+.js-add-image-button,
+.js-tweet-button,
+.js-dm-button,
+.js-schedule-button,
+.recent-search-clear.list-item-last span,
+.tweet-context .nbfc,
+.column-title-back .column-head-title,
+.js-tooltip-target.link-complex-target,
+.column-detail-level-2>header>a .js-tooltip-target.link-complex-target,
+.tweet-detail .txt-small,
+.column-title-back.conversation-title,
+.js-account-safeguard-text,
+.js-display-sensitive-media span,
+.horizontal-flow-container,
+.account-link>.nbfc,
+.column-options .button-tray,
+.tweet-detail-actions,
+.accs-header,
+.compose-remember-state,
+.js-add-column,
+.input-prepend
+{
+	font-size:0
 }
