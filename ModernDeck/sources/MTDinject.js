@@ -412,6 +412,7 @@ function PrepareLoginStuffs() {
 		return;
 	}
 	FindProfButton.click();
+	disableStylesheetExtension("loginpage");
 	setTimeout(FinaliseLoginStuffs,0);
 
 	$(".js-click-trap").addClass("is-hidden").delay(50).queue(function(){$(this).addClass("is-hidden")});
