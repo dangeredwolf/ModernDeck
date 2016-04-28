@@ -24,7 +24,7 @@ a:focus
 .account-link,
 .account-link:hover,
 .account-link:focus,
-.mtd-about-title,
+.mtd-about-title.list-placeholder,
 .cal,
 select,
 input,

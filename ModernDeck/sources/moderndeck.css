@@ -5569,7 +5569,8 @@ a[rel=user]:active,.card-holder a[rel=mediaPreview]:active {
 }
 
 .mtd-about-title {
-	padding-top:5px
+	padding-top:10px;
+	padding-bottom:5px
 }
 
 .mtd-version-title {
