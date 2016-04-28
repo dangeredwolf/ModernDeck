@@ -5,6 +5,16 @@
   Released under the MIT Licence
 */
 
+.txt-r-deep-yellow
+{
+	color:#FF9701
+}
+
+.txt-r-medium-green
+{
+	color:#3BB740
+}
+
 .link-complex[rel="viewDetails"]>.link-complex-target,
 .cmp-info,
 .mdl-links a,
@@ -141,7 +151,9 @@ legend,
 .s-not-following .btn-loader,
 .action-text
 .btn-loader,
-.action-text
+.action-text:not(.unfollow-text),
+.btn-relation-group:not(.s-following) .unfollow-text,
+.l-table.column-drag-drop-overlay-inner
 {
 	display:none
 }
@@ -160,7 +172,12 @@ button[data-user-id="892388300"],
 .account-settings-row .icon-arrow-u,
 .is-hidden,
 .compose-account b,
-.btn-back
+.btn-back,
+.compose-header,
+.compose-title-text,
+.search-input-perform-search,
+.search-input-clear-search,
+.search-input-spinner
 {
 	display:none!important
 }
@@ -234,12 +251,16 @@ summary
 .prf-follow-state .follow-combo,
 .is-replied .tweet-message-status,
 .js-column-loading-placeholder.list-placeholder p,
-.js-column-loading-placeholder.list-placeholder.column-loading-placeholder
+.js-column-loading-placeholder.list-placeholder.column-loading-placeholder,
+.control-s .control-label,
+.control-s .controls
 {
 	display:inline
 }
 
-.inline
+.inline,
+.mtd-mute-text,
+.list-filter em
 {
 	display:inline!important
 }
@@ -294,7 +315,8 @@ video,
 }
 
 #caltoday,
-.js-account-action:focus,.js-account-action:hover
+.js-account-action:focus,
+.js-account-action:hover
 {
 	background:transparent
 }
@@ -304,14 +326,6 @@ video,
 .text-hidden.btn-positive-alt,
 .text-hidden.btn-fav.s-favorited,
 .s-following .text-hidden.follow-btn,
-.btn-positive.text-hidden:link,
-.text-hidden.btn-positive-alt:link,
-.text-hidden.btn-fav.s-favorited:link,
-.s-following .text-hidden.follow-btn:link,
-.btn-positive.text-hidden:visited,
-.text-hidden.btn-positive-alt:visited,
-.text-hidden.btn-fav.s-favorited:visited,
-.s-following .text-hidden.follow-btn:visited,
 .btn-positive.text-hidden:hover,
 .text-hidden.btn-positive-alt:hover,
 .text-hidden.btn-fav.s-favorited:hover,
@@ -359,7 +373,81 @@ article.is-unread .account-link,
 #calcurrent,
 .app-search .app-search-fake,
 .accordion-header,
-.compose-remember-state
+.compose-remember-state,
+.icon-user-switch,
+.is-unread .link-complex-target,
+.mdl-header-title a,
+.facet-type,
+.facet-subtitle,
+.numbered-badge,
+.mdl-header,
+.mdl-header-title,
+.accs-header,
+.compose,
+.compose-account,
+.inline-reply,
+.js-save.block i,
+.js-cancel.block i,
+.mtd-drawer-button,
+.mtd-drawer-button:hover,
+.mtd-drawer-button:focus,
+.mtd-nd-header-username,
+.mtd-appbar-notification,
+.conversation-name,
+.js-dm-participants-back:after,
+.js-column-back,
+.js-column-back:hover,
+.js-column-back:active,
+.js-column-back:focus,
+.js-column-detail .column-title-back:before,
+.conversation-title .title-content,
+.drawer-header-title.drawer-column-header-title,
+.column-header,
+.column-header-temp,
+.column-title,
+.column-title-edit-box,
+.column-header-link,
+.is-options-open .column-settings-link,
+.column-message,
+.video-overlay,
+.app-nav-tab,
+.message-banner .dismiss,
+.text-like-keyboard-key,
+.control-s .control-label,
+.search-input-perform-search,
+.search-input-clear-search,
+.search-input-spinner,
+.toggle-item.is-selected,
+.prf-header,
+.prf-header .prf-siteurl:hover,
+.prf-header .prf-bio a:hover,
+.prf-header .pretty-link:hover,
+.prf .fullname,
+.prf .username,
+.lst-group .selected,
+.lst-group .selected .fullname,
+.lst-group .selected .inner strong,
+.lst-group .selected .list-link,
+.lst-group .selected .list-twitter-list,
+.lst-group .selected .list-subtitle,
+.lst-group .selected .list-account,
+.lst-group .selected .list-listmember,
+.lst-group.js-setting-list .selected .fullname,
+.lst-group.js-setting-list .selected .inner strong,
+.lst-group.js-setting-list .selected .list-link,
+.lst-group.js-setting-list .selected .list-twitter-list,
+.lst-group.js-setting-list .selected .list-subtitle,
+.lst-group.js-setting-list .selected .list-account,
+.lst-group.js-setting-list .selected .list-listmember,
+.lst-group .selected .username,
+.lst-group .selected .bytext,
+.lst-group .selected .subtitle,
+.lst-group .selected .icon-protected,
+.column-title-back:after,
+.js-tweet-social-proof-back:after,
+.facet-type .control-group select,
+.facet-type .control-group input,
+.js-hide-drawer.app-nav-tab:after
 {
   color:#fff;
 }
@@ -426,7 +514,9 @@ a.btn,
 	visibility:visible
 }
 
-.app-search .app-search-form
+.app-search .app-search-form,
+#prev-month,
+#next-month
 {
 	position:absolute
 }
@@ -436,11 +526,17 @@ a.btn,
 	position:fixed
 }
 
-.js-submittable-input.js-compose-text::-webkit-input-placeholder {
+.js-submittable-input.js-compose-text::-webkit-input-placeholder,
+.facet-type .control-group select::-webkit-input-placeholder,
+.facet-type .control-group input::-webkit-input-placeholder
+{
 	color:#fff
 }
 
-.js-submittable-input.js-compose-text::-moz-placeholder {
+.js-submittable-input.js-compose-text::-moz-placeholder,
+.facet-type .control-group select::-moz-placeholder,
+.facet-type .control-group input::-moz-placeholder
+{
 	color:#fff
 }
 
@@ -475,4 +571,60 @@ a.btn,
 .input-prepend
 {
 	font-size:0
+}
+
+.message-text>.btn,
+.more-tweets-btn,
+.edit-conversation-name .btn,
+.btn-login[type="submit"],
+.login-container .btn-positive,
+.btn-options-tray-space,
+.app-nav-link,
+.tweet-button
+{
+	color:#fff!important
+}
+
+.toggle-switch,
+.pin-bottom.margin-a--15 .checkbox,
+.scroll-styled-v,
+.scroll-styled-h,
+.scroll-alt,
+.scroll-v,
+.lst-launcher,
+.mtd-nav-drawer,
+.mdl.s-profile,
+.mdl-col-settings,
+.app-header a,
+.app-header button
+{
+	pointer-events:all
+}
+
+.is-shifted-1 .column-panel:nth-child(n+2) .js-column-back,
+.is-shifted-2 .column-panel:nth-child(n+2) .js-column-back,
+.is-shifted-1 .column-panel:nth-child(n+2)>.column-header,
+.is-shifted-2 .column-panel:nth-child(n+2)>.column-header
+{
+	pointer-events:all!important
+}
+
+.mtd-about-title,
+.mtd-version-title,
+.account-link>.nbfc,
+button,
+a.btn,
+.column,
+.mdl-account-shared-warning footer.mdl-buttonbar
+{
+	margin:0
+}
+
+.conversation-name,
+.l-column.mdl-column.mdl-column-sml .selected,
+.js-toggle.padding-al button.is-selected,
+.facet-type .control-group select,
+.facet-type .control-group input
+{
+	border-bottom:2px solid #fff
 }

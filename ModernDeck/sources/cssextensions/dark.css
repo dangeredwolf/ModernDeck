@@ -43,7 +43,7 @@ input,
 .tooltip-inner,
 .list-account .fullname,
 option,
-.dropdown-menu a[href][data-action],
+.dropdown-menu a[data-action],
 .frm,
 .med-fullpanel,
 .media-sensitive,
@@ -64,7 +64,7 @@ html,
 	color:rgba(255,255,255,.3)
 }
 
-.dropdown-menu a[href][data-action]:active,
+.dropdown-menu a[data-action]:active,
 .column,
 .column-scroller,
 .column-detail-level-2,
@@ -228,8 +228,7 @@ optgroup,
 }
 
 .btn:active,
-.btn.is-selected,
-.dropdown-menu .is-selected
+.btn.is-selected
 {
 	background-color:rgba(255,255,255,.1)
 }
@@ -312,6 +311,7 @@ option,
 }
 
 .invalid-char-count,
+.unfollow-text,
 .btn-negative:not([disabled]):not(.is-disabled)
 {
 	color:#EA6B6B
