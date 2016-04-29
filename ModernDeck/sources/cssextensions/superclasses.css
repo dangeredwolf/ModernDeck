@@ -596,7 +596,8 @@ a.btn,
 .mdl.s-profile,
 .mdl-col-settings,
 .app-header a,
-.app-header button
+.app-header button,
+article.is-actionable
 {
 	pointer-events:all
 }
@@ -607,6 +608,10 @@ a.btn,
 .is-shifted-2 .column-panel:nth-child(n+2)>.column-header
 {
 	pointer-events:all!important
+}
+
+.column-drag-drop-overlay {
+	pointer-events:none
 }
 
 .mtd-about-title,

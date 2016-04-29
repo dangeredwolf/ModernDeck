@@ -15,6 +15,7 @@
 @import "cssextensions/superclasses.css";
 @import "cssextensions/marginclasses.css";
 @import "cssextensions/btdsupport.css";
+@import "cssextensions/waves.css";
 
 /* NORMAL STUFF */
 
@@ -66,11 +67,13 @@ body.scroll-v {
 }
 
 .mdl.s-profile::-webkit-scrollbar,.scroll-styled-v::-webkit-scrollbar,.scroll-v::-webkit-scrollbar,.lst-launcher::-webkit-scrollbar,.mtd-nav-drawer::-webkit-scrollbar {
-	width:10px
+	width:10px;
+	pointer-events:all
 }
 
 .scroll-styled-h::-webkit-scrollbar,.scroll-h::-webkit-scrollbar {
-	height:10px
+	height:10px;
+	pointer-events:all
 }
 
 .antiscroll-wrap {

@@ -243,6 +243,12 @@ function MTDInit(){
 		return TD.i("{{hours12}}:{{minutes}} {{amPm}}, {{day}} {{month}} {{fullYear}}", TD.util.prettyTime(e));
 	};
 
+	head.append(
+		make("script")
+			.attr("type","text/javascript")
+			.attr("src",MTDBaseURL + "sources/libraries/waves.js")
+	)
+
 	NavigationSetup();
 
 }
@@ -910,6 +916,19 @@ window.addEventListener("keyup",KeyboardShortcutHandler,false);
 (new MutationObserver(checkIfUserSelectedNewTheme)).observe(document.querySelector("meta[http-equiv='default-style']"),{attributes:true});
 (new MutationObserver(checkIfBTDIsInstalled)).observe(body[0],{attributes:true});
 (new MutationObserver(onElementAddedToDOM)).observe(html[0],{attributes:false,subtree:true,childList:true});
+
+var insertedNodes = [];
+new MutationObserver(function(mutations) {
+	console.log("new thing!");
+    mutations.forEach(function(mutation) {
+			console.log("new thing!!");
+      for (var i = 0; i < mutation.addedNodes.length; i++)
+				if ($(mutation.addedNodes[i]).hasClass("btn") || $(mutation.addedNodes[i]).hasClass("list-link"))
+          console.log("new button!");
+    })
+}).observe(body[0], {
+    childList: true
+});
 
 checkIfUserSelectedNewTheme();
 checkIfSigninFormIsPresent();
