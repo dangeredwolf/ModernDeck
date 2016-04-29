@@ -104,7 +104,7 @@ html,
 div.drawer[data-drawer="compose"],
 .lst-group .selected,
 #calcurrent,
-.btn-compose,
+.btn-compose:not(.js-hide-drawer),
 .compose,
 .column-options .button-tray,
 .column-options,
@@ -298,8 +298,8 @@ option,
 }
 
 .js-add-column:active,
-.btn-compose:active,
-.btn-compose:focus,
+.btn-compose:not(.js-hide-drawer):active,
+.btn-compose:not(.js-hide-drawer):focus,
 .lst-group .selected:active
 {
 	background:#429BA6

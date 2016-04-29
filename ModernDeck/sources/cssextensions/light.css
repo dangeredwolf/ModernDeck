@@ -162,7 +162,7 @@ option,
 	color:#C22727
 }
 
-.btn-compose
+.btn-compose:not(.js-hide-drawer)
 {
 	box-shadow:0 1px 2px 1px rgba(0,0,0,.25)
 }
@@ -319,14 +319,14 @@ body,
 	color:#EC1313
 }
 
-.btn-compose,
-.btn-compose:hover,
-.btn-compose:focus
+.btn-compose:not(.js-hide-drawer),
+.btn-compose:not(.js-hide-drawer):hover,
+.btn-compose:not(.js-hide-drawer):focus
 {
-	background:#00C3DC
+	background: #00bcd4;
 }
 
-.btn-compose:active
+.btn-compose:not(.js-hide-drawer):active
 {
 	background:#58CDDB
 }
@@ -736,8 +736,8 @@ textarea::placeholder
 	background:#ccc
 }
 
-.btn-compose:hover,
-.btn-compose:focus
+.btn-compose:not(.js-hide-drawer):hover,
+.btn-compose:not(.js-hide-drawer):focus
 {
 	background:#00C3DC;
 	box-shadow:0 3px 6px 2px rgba(0,0,0,.25)
