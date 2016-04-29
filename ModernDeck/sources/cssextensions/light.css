@@ -568,12 +568,7 @@ html:not(.mtd-dark-media-previews) .med-tweet,
 .more-tweets-btn:hover,
 .more-tweets-btn:active
 {
-	background:#00BCD4!important
-}
-
-.more-tweets-btn:active
-{
-	background:#58CDDB!important
+	background:#00BCD4
 }
 
 .add-participant .js-username-input.js-submittable-input
