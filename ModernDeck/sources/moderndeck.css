@@ -1744,6 +1744,7 @@ a .column-title-back .icon:after {
 
 .media-size-medium {
 	width:101%;
+	min-height:80px;
 	max-height:116px;
 	border-radius:2px
 }
@@ -1833,7 +1834,12 @@ a .column-title-back .icon:after {
 }
 
 .media-grid-2,.media-grid-3,.media-grid-4 {
+	position:static;
 	height:100%;
+	top:0;
+	bottom:0;
+	left:0;
+	right:0;
 	padding:0
 }
 
