@@ -1,0 +1,138 @@
+/*
+  spinner.css
+
+  Copyright 2014-2016 Ryan Dolan (@dangeredwolf)
+  Released under the MIT Licence
+*/
+
+.preloader-wrapper {
+	display:inline-block;
+	position:relative;
+	width:48px;
+	height:48px;
+	box-sizing:border-box
+}
+
+.med-embeditem>.preloader-wrapper {
+	top:50%;
+	position:absolute;
+	margin-top:-20px
+}
+
+.column-loading-placeholder>.preloader-wrapper {
+	left:50%;
+	margin-left:-20px;
+	margin-top:20px
+}
+
+.chirp-container>.preloader-wrapper {
+	margin-bottom:50px;
+	margin-top:50px;
+	left:50%;
+	margin-left:-20px
+}
+
+.preloader-wrapper.small {
+	width:36px;
+	height:36px
+}
+
+.preloader-wrapper.tiny {
+	width:20px;
+	height:20px
+}
+
+.preloader-wrapper.big {
+	width:64px;
+	height:64px
+}
+
+.preloader-wrapper {
+	animation:containerRotate 1.568s linear infinite
+}
+
+body.scroll-v .spinner-layer {
+	border-color:#26a69a
+}
+
+.spinner-layer {
+	position:absolute;
+	box-sizing:border-box;
+	width:100%;
+	height:100%;
+	opacity:1;
+	animation:fillUnfillRotate 5.332s cubic-bezier(.4,0,.2,1) infinite both
+}
+
+.gap-patch {
+	position:absolute;
+	top:0;
+	left:45%;
+	width:10%;
+	height:100%;
+	overflow:hidden;
+	border-color:inherit;
+	display:none;
+	box-sizing:border-box
+}
+
+.gap-patch .circle {
+	box-sizing:border-box;
+	width:1000%;
+	left:-450%
+}
+
+.circle-clipper {
+	display:inline-block;
+	position:relative;
+	width:50%;
+	height:100%;
+	overflow:hidden;
+	text-align:center;
+	box-sizing:border-box;
+	border-color:inherit
+}
+
+.circle-clipper .circle {
+	width:200%;
+	height:100%;
+	border-width:5px;
+	border-color:inherit;
+	border-style:solid;
+	border-bottom-color:transparent;
+	border-radius:50%;
+	box-sizing:inherit;
+	animation:none;
+	position:absolute;
+	top:0;
+	right:0;
+	bottom:0
+}
+
+.tiny .circle-clipper .circle {
+	border-width:3px
+}
+
+.circle-clipper.left .circle {
+	left:0;
+	border-right-color:transparent;
+	transform:rotate(129deg)
+}
+
+.circle-clipper.right .circle {
+	left:-100%;
+	border-left-color:transparent;
+	transform:rotate(-129deg)
+}
+
+.circle-clipper.left .circle {
+	animation:leftSpin 1.333s cubic-bezier(.4,0,.2,1) infinite both
+}
+
+.circle-clipper.right .circle {
+	animation:rightSpin 1.333s cubic-bezier(.4,0,.2,1) infinite both
+}
+
+#spinnerContainer {
+	animation:containerRotate 1.568s linear infinite,fadeOut .4s cubic-bezier(.4,0,.2,1)
+}

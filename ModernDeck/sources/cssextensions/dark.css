@@ -1,0 +1,657 @@
+/*
+  dark.css
+
+  Copyright 2014-2016 Ryan Dolan (@dangeredwolf)
+  Released under the MIT Licence
+*/
+
+a,
+a:hover,
+.btn:not([disabled]):not(.is-disabled):not(.btn-options-tray):not(.mtd-nav-button):not(.btn-bg-negative),
+.calweek a:hover,
+#caltoday
+{
+	color:#009EAD
+}
+
+a:active,
+a:focus
+{
+	color:#00737E;
+	background-color:rgba(0,0,0,.05)
+}
+
+.account-link,
+.account-link:hover,
+.account-link:focus,
+.mtd-about-title.list-placeholder,
+.cal,
+select,
+input,
+.txt-normal,
+.account-bio
+{
+	color:#D3DBE1
+}
+
+.account-summary-text .fullname,
+.compose-reply-tweet .fullname,
+.compose-reply-tweet,
+.compose .typeahead-item strong.fullname,
+.list-item,
+.list-item.is-actionable.item-box.is-selected,
+.tooltip-inner,
+.list-account .fullname,
+option,
+.dropdown-menu a[data-action],
+.frm,
+.med-fullpanel,
+.media-sensitive,
+.account-summary-text .fullname,
+.prf-stats a strong,
+.js-item-launch a.btn:not([disabled]):not(.is-disabled),
+html,
+.media-sensitive-content p,
+.compose .typeahead-item strong.fullname,
+.account-remove-check-message,
+.media-sensitive-title
+{
+  color:#eee
+}
+
+.compose .typeahead-item span.username
+{
+	color:rgba(255,255,255,.3)
+}
+
+.dropdown-menu a[data-action]:active,
+.column,
+.column-scroller,
+.column-detail-level-2,
+.js-account-manager-container,
+.contributor-manager,
+.js-contributor-manager-container,
+.contributor-adder-block,
+.contributor-row
+{
+	background:#344248
+}
+
+.gap-chirp-text,
+.sprite:before,
+.compose-send-button-success,
+.more-tweets-btn:focus,
+.more-tweets-btn:hover,
+.more-tweets-btn:active,
+.account-stats a,
+.prf .lst-profile a,
+.icon-follow-color,
+.tweet-action[data-actions-menu-position]:focus,
+.tweet-actions .tweet-action.is-selected,
+.tweet-detail-actions .tweet-action.is-selected,
+.tweet-detail-actions .js-reply-action.is-selected
+{
+	color:#00838F
+}
+
+.tweet-detail-wrapper .media-sensitive,
+.stream-item.is-actionable:not(.is-unread):hover,
+.tweet-detail-wrapper
+{
+	background:#3A4B54
+}
+
+div.drawer[data-drawer="compose"],
+.lst-group .selected,
+#calcurrent,
+.btn-compose,
+.compose,
+.column-options .button-tray,
+.column-options,
+.facet-type,
+.is-options-open .column-settings-link,
+.inline-reply,
+.is-favorite.is-retweet .tweet-dogear,
+.is-unread,
+.js-add-column,
+.mdl .js-add-column,
+.list-item.is-selected,
+.more-tweets-btn,
+.more-tweets-btn:hover
+{
+	background:#00838F
+}
+
+.mtd-back-default .js-setting-list>li:not(.selected)>.list-link strong,
+.txt-mute,
+.txt-r-dark-gray,
+.typeahead .username,
+.l-column.mdl-column.mdl-column-sml .list-link
+{
+	color:#6D808B
+}
+
+.search-input,
+textarea:not(.compose-text):not(.js-compose-text),
+.lst-group .selected,
+.search-input,
+.mtd-nav-button,
+.js-setting-list .selected strong,
+.lst-group.js-setting-list .selected,
+.character-count-compose,
+.btn-options-tray:not([disabled]):not(.is-disabled)
+{
+	color:#fff
+}
+
+.is-new .column-message,
+.is-unread:active
+{
+	background:#0E4B50
+}
+
+.application,
+.tooltip-inner,
+.dropdown-menu,
+.app-navigator .js-hide-drawer,
+.app-columns-container,
+.column-message,
+body[class=""],
+html.js,
+.prf-header,
+body,
+.mdl-column.mdl-column-rhs,
+.mdl-header,
+.text-like-keyboard-key,
+.js-quote-tweet-holder .quoted-tweet,
+.app-content,
+.compose-media-bar-holder,
+optgroup,
+.edit-conversation-name,
+.popover,
+.compose-text-container,
+.drawer-header,
+.compose-reply-tweet,
+.compose-message-recipient-list,
+.compose-message-recipient-input-container,
+.compose-media-grid-holder
+{
+	background:#263238
+}
+
+.column-header,
+.column-header-temp
+{
+	background:linear-gradient(#263238,#263238)
+}
+
+.is-new .column-header,
+.is-new .column-header-temp
+{
+	background:linear-gradient(#263238,#0E4B50)
+}
+
+.txt-mute a:not(:hover):not(:focus):not(.tweet-action):not([data-action]),
+.lst-group h3
+{
+	color:#708795
+}
+
+.column-content
+{
+	border-right:3px solid #263238
+}
+
+.tweet-action,
+.tweet-detail-action
+{
+ color:rgba(149,
+   175,
+   191,
+   .52)
+}
+
+.tweet-action:active,
+.tweet-action:hover,
+.tweet-detail-action:active,
+.tweet-detail-action:hover,
+.stream-item.is-actionable .tweet-action:hover,
+.stream-item.is-actionable .tweet-detail-action:hover,
+.stream-item.is-actionable .tweet-action:focus,
+.stream-item.is-actionable .tweet-detail-action:focus,
+.stream-item.is-actionable .tweet-action:active,
+.stream-item.is-actionable .tweet-detail-action:active,
+.stream-item.is-actionable .tweet-action.is-selected,
+.stream-item.is-actionable a.is-selected.tweet-detail-action
+{
+	color:#8498A5
+}
+
+.btn:active,
+.btn.is-selected
+{
+	background-color:rgba(255,255,255,.1)
+}
+
+.app-nav-link.is-selected,
+.app-nav-link:hover,
+.column-nav-link.is-selected,
+.column-nav-link:hover
+{
+	color:inherit
+}
+
+option,
+.mtd-nav-drawer,
+.mdl,
+.prf-meta,
+.mdl-column,
+.med-fullpanel
+{
+	background:#2E3B41
+}
+
+.mtd-nav-divider,
+.tweet-detail .margin-tl.txt-small:before,
+.cmp-replyto,
+.column-background-fill
+{
+	background:#38454B
+}
+
+.mtd-nav-drawer-icon
+{
+	-webkit-filter:brightness(400%);
+	filter:brightness(400%)
+}
+
+.social-proof-for-tweet-title,
+.account-bio,
+.list-account .username,
+.btn[disabled],
+.btn[disabled]:hover,
+.btn[disabled]:active,
+.btn.is-disabled,
+.btn.is-disabled:hover,
+.btn.is-disabled:focus,
+.btn.is-disabled:active
+{
+	color:#54707F;
+	transition:.2s all
+}
+
+::-moz-selection
+{
+	background:#00838F;
+	color:#eee
+}
+
+::selection
+{
+	background:#00838F;
+	color:#eee
+}
+
+.lst-group .selected a .username
+{
+	color:rgba(255,255,255,.5)
+}
+
+.js-add-column:active,
+.btn-compose:active,
+.btn-compose:focus,
+.lst-group .selected:active
+{
+	background:#429BA6
+}
+
+.tooltip-inner
+{
+	box-shadow:0 3px 10px rgba(41,41,41,.35)
+}
+
+.invalid-char-count,
+.unfollow-text,
+.btn-negative:not([disabled]):not(.is-disabled)
+{
+	color:#EA6B6B
+}
+
+.btn-negative:not([disabled]):not(.is-disabled):hover
+{
+	color:#FF2727
+}
+
+.btn-negative:active,
+.btn-negative.is-selected
+{
+	color:#B30000
+}
+
+.btn-negative[disabled],
+.btn-negative[disabled]:hover,
+.btn-negative[disabled]:active,
+.btn-negative.is-disabled,
+.btn-negative.is-disabled:hover,
+.btn-negative.is-disabled:focus,
+.btn-negative.is-disabled:active
+{
+	color:rgba(244,101,101,.45)
+}
+
+.contributor-adder input.js-username-input.js-submittable-input
+{
+	border-bottom:3px solid #00838F
+}
+
+.compose-text
+{
+	color:#eee;
+	border-bottom:none
+}
+
+.compose-text::-webkit-input-placeholder
+{
+	color:#6D7B83
+}
+
+.app-search .compose-text::-moz-placeholder
+{
+	color:#6D7B83
+}
+
+textarea
+{
+	border-color:#667A86
+}
+
+.social-proof-container
+{
+	border-color:rgba(0,0,0,.1)
+}
+
+.drp-h-divider
+{
+	border-color:#323E43
+}
+
+.is-unread .txt-mute,
+.is-unread .conversation-indicator
+{
+	color:rgba(255,255,255,.7)
+}
+
+.lst-group .list-link:active
+{
+	background:rgba(25,112,120,.5)
+}
+
+.mdl.s-profile::-webkit-scrollbar-thumb,
+.mtd-nav-drawer::-webkit-scrollbar-thumb,
+.lst-launcher::-webkit-scrollbar-thumb,
+.scroll-styled-v::-webkit-scrollbar-thumb,
+.scroll-v::-webkit-scrollbar-thumb,
+.scroll-styled-h::-webkit-scrollbar-thumb,
+.s-tall-fixed::-webkit-scrollbar-thumb
+{
+  border-radius:5px;
+  background:rgba(149,175,191,.5)
+}
+
+.mdl.s-profile::-webkit-scrollbar-thumb:hover,
+.mtd-nav-drawer::-webkit-scrollbar-thumb:hover,
+.lst-launcher::-webkit-scrollbar-thumb:hover,
+.scroll-styled-v::-webkit-scrollbar-thumb:hover,
+.scroll-v::-webkit-scrollbar-thumb:hover,
+.scroll-styled-h::-webkit-scrollbar-thumb:hover
+{
+	background:#8498A5
+}
+
+.s-following .follow-btn:hover
+{
+	color:#E15F5F
+}
+
+.modal-content
+{
+	background:rgb(37,50,56)
+}
+
+.list-item.is-actionable.item-box.is-selected,
+.js-typeahead-recent-search-clear.js-typeahead-item.is-selected
+{
+	background:#384850
+}
+
+.js-typeahead-item.is-actionable:active
+{
+	background:#3C4D56;
+	color:#D7D7D7
+}
+
+.js-typeahead-recent-search-clear.js-typeahead-item.recent-search-clear:active
+{
+	background:#36474F;
+	color:#DFDFDF
+}
+
+.list-placeholder,
+.mdl-placeholder
+{
+	color:#6D7B83
+}
+
+.is-selected-tweet
+{
+	background:#3A4F56
+}
+
+.typeahead .fullname
+{
+	color:#ccc
+}
+
+.ovl,
+.overlay
+{
+	background:rgba(88,100,107,.4)
+}
+
+.lst-modal,
+.typeahead
+{
+	background:#1E272C
+}
+
+.more-tweets-btn:active,
+.more-tweets-btn:focus
+{
+	background:#2F9099!important
+}
+
+.add-participant .js-username-input.js-submittable-input
+{
+	border-bottom:2px solid #667A86
+}
+
+.add-participant input::-webkit-input-placeholder
+{
+	color:#667A86
+}
+
+.add-participant input::-moz-placeholder
+{
+	 color:#667A86;
+	 opacity:1
+}
+
+.app-navigator .js-hide-drawer
+{
+	 box-shadow:0 -5px 10px rgba(17, 17, 17, .35)
+}
+
+.toggle-switch-label:before
+{
+	background-color:#56717D
+}
+
+.toggle-switch-label:after
+{
+	background-color:#ccc
+}
+
+.toggle-switch-input:checked+.toggle-switch-label:before
+{
+	background-color:#6CCACB
+}
+
+.toggle-switch-input:checked+.toggle-switch-label:after
+{
+	background-color:#1A7780
+}
+
+.emoji-popover .category-chooser
+{
+	background:#263238!important
+}
+
+html.mtd-acc-focus-ring a:focus,
+html.mtd-acc-focus-ring button:focus
+{
+	outline:rgb(16,148,160) solid 3px
+}
+
+option
+{
+	color:#eee
+}
+
+.med-tweet
+{
+  background:rgb(37,50,56);
+}
+
+.list-twitter-list .inner strong
+{
+	color:#eaeaea
+}
+
+.list-listmember .bio,
+.list-listmember .username
+{
+	color:#637983
+}
+
+input,
+textarea,
+select,
+.uneditable-input
+{
+	border-bottom:2px solid #54707F
+}
+
+.search-input
+{
+	border-bottom:2px solid rgba(255,255,255,.7)
+}
+
+.mdl-column.l-column .search-input
+{
+	background:#43525A;
+  color:#fff;
+}
+
+.recent-search-clear.is-actionable.list-item-last
+{
+	background-color:#263238;
+	color:#DBDBDB
+}
+
+#caldays span
+{
+	color:#677B86
+}
+
+.caldisabled[href],
+.caldisabled[href]:hover,
+.caldisabled[href]:active
+{
+	color:#667A86!important
+}
+
+.prf-header
+{
+	background-color:#263238 /* IMPORTANT: This needs to be background colour because background image is SOMETIMES laid over it */
+}
+
+.prf-follow-status
+{
+	background:#2E3B41;
+	color:#eee
+}
+
+.mdl-links span
+{
+	color:#50717F
+}
+
+.js-translate-call-to-action,
+.tweet-translation-original-text
+{
+	color:#697F8C
+}
+
+.btn-login[type="submit"],
+.login-container .btn-positive
+{
+	background:#00BCD4
+}
+
+.btn-login[type="submit"]:active,
+.login-container .btn-positive:active
+{
+	background:#00CDE8
+}
+
+.js-toggle.padding-al button>span
+{
+	color:#647883
+}
+
+.js-column-social-proof .username
+{
+	color:#d3dbe1
+}
+
+.spinner-layer
+{
+	border-color:#26a69a
+}
+
+.startflow ::selection
+{
+	background:rgba(102,227,228,.57);
+	color:#666
+}
+
+.startflow ::-moz-selection
+{
+	background:rgba(102,227,228,.57);
+	color:#666
+}
+
+.mdl-column.l-column .search-input::-webkit-input-placeholder
+{
+	color:#fff
+}
+
+.mdl-column.l-column .search-input::-moz-placeholder
+{
+	color:#fff
+}
+
+.mdl-column.l-column .search-input:input-placeholder
+{
+	color:#fff
+}

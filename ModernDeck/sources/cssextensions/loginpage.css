@@ -1,0 +1,209 @@
+/*
+  loginpage.css
+
+  Copyright 2014-2016 Ryan Dolan (@dangeredwolf)
+  Released under the MIT Licence
+*/
+
+@import "animations.css";
+
+::selection {
+	background:rgba(102,227,228,.57);
+	color:inherit
+}
+
+.mdl,.modal-content {
+	background:#fff
+}
+
+a:active,.signin-sheet-now-present .btn-positive,a:hover,a:focus,.btn:not([disabled]):not(.is-disabled),.btn-positive,.btn-positive-alt,.btn-fav.s-favorited,.s-following .follow-btn,a {
+	color:#00BCD4
+}
+
+select,input {
+	color:#333;
+	border-bottom:2px solid #ccc;
+	border-radius:0!important
+}
+
+.btn:not(.btn-positive):active,.btn.is-selected {
+	background-color:rgba(0,0,0,.04)!important
+}
+
+.startflow {
+	height:100%
+}
+
+.app-signin-wrap {
+	position:relative;
+	margin:0 auto;
+	max-width:800px;
+	top:110px
+}
+
+@media (max-width:800px) {
+	.app-signin-form {
+		margin-top:150px
+	}
+}
+
+.app-info-panel {
+	position:relative;
+	pointer-events:none;
+	left:0
+}
+
+.app-info-title {
+	font-size:32px;
+	color:#fff
+}
+
+.app-info-text {
+	width:400px;
+	text-shadow:0 10px 30px #000;
+	color:#fff
+}
+
+.app-info-text p {
+	padding-top:15px
+}
+
+.form-legend {
+	text-align:left;
+	font-weight:500;
+	font-size:20px
+}
+
+.startflow-panel,.startflow-panel-rounded {
+	background:#fff;
+	color:#444;
+	box-shadow:0 10px 30px rgba(0,0,0,.75);
+	border-radius:2px;
+	animation:menuDownLogin .4s 1 cubic-bezier(.19,1,.22,1)
+}
+
+.form-login-pwd,.form-login-email,.form-login-username {
+	height:20px;
+	font-size:16px;
+	padding:10px 8px
+}
+
+.form-login-pwd::placeholder,.form-login-email::placeholder,.form-login-username::placeholder {
+	color:#939393
+}
+
+.form-login-username {
+	width:256px
+}
+
+.form-login-pwd::placeholder,.form-login-email::placeholder,.form-login-username::placeholder {
+	color:#939393
+}
+
+.form-message {
+	font-size:20px;
+	color:#555
+}
+
+.form-error-message {
+	color:#DE798A;
+	font-size:20px
+}
+
+.form-verification {
+	width:50%;
+	height:30px;
+	padding:5px 8px;
+	color:#000
+}
+
+.startflow-message-wrap .bg-r-dark-blue .margin-rxl {
+	z-index:5
+}
+
+.startflow-message-wrap .startflow-panel {
+	animation:windowDown .3s 1 cubic-bezier(.19,1,.22,1)
+}
+
+body.scroll-v .mdl .startflow-panel {
+	animation:none
+}
+
+.startflow-panel .bg-r-dark-blue {
+	background:rgb(14,208,210)
+}
+
+.startflow-panel .bg-r-dark-blue h1 {
+	margin:0!important
+}
+
+.startflow-panel .txt-large.padding-tn {
+	font-size:16px!important
+}
+
+.startflow-panel .txt-large.padding-tn:before {
+	font-weight:500;
+	font-size:20px!important;
+	content:"Your account uses two factor authentication";
+	display:block;
+	padding-right:50px;
+	padding-bottom:20px
+}
+
+
+.startflow-background {
+	background-image:url(https://ton.twimg.com/tweetdeck-web/web/assets/global/backgrounds/login_bg.36f68cdcb5.jpg);
+	background-size:cover;
+	background-position:center
+}
+
+.startflow-background:before {
+	content:"";
+	position:absolute;
+	top:0;
+	right:0;
+	bottom:0;
+	left:0;
+	opacity:.8;
+	background-image:linear-gradient(#00BCD4 0%, transparent 150%)
+}
+
+.login-container {
+	animation:windowSlider .75s cubic-bezier(.19,1,.22,1);
+	height:100%
+}
+
+.form-login h2 {
+	font-weight:400;
+	font-size:22px
+}
+
+.form-login p {
+	padding-top:5px;
+	padding-bottom:5px
+}
+
+.js-login-error-message {
+	animation:menuDownLarge .4s 1 cubic-bezier(.19,1,.22,1)
+}
+
+.app-signin-form .cf.margin-txs {
+	font-size:0;
+	padding-top:18px
+}
+
+.js-login-forgot-password {
+	padding-left:25px;
+	text-transform:uppercase
+}
+
+.signin-sheet-now-present .align-top[type="submit"]:not(.btn-login) {
+	text-transform:none;
+	margin-top:4px
+}
+
+.login-container .btn-positive {
+	width:277px!important;
+	padding:10px 0 10px 10px;
+	text-align:center
+}

@@ -3,7 +3,9 @@
   "short_name": "ModernDeck",
 
   "description": "The world's most loved twitter client.",
-  "version": "5.4",
+  "version": "6.0",
+
+  "minimum_edge_version": "33.14281.1000.0",
 
   "permissions": [
     "webRequest",
@@ -13,20 +15,21 @@
     "https://dangeredwolf.com/",
     "https://ton.twimg.com/",
     "contextMenus",
-    "tabs"
+    "tabs",
+    "storage"
   ],
 
   "content_scripts": [
     {
       "matches": ["https://tweetdeck.twitter.com/*"],
-      "js": ["extension/TDELoad.js"],
-      "css": ["sources/enhancer.min.css"],
+      "js": ["extension/MTDLoad.js"],
+      "css": ["sources/dev.css"],
       "run_at": "document_end"
     }
   ],
 
   "background": {
-    "scripts": ["extension/TDEBackground.js"],
+    "scripts": ["extension/MTDBackground.js"],
     "persistent": true
   },
 
@@ -48,7 +51,7 @@
   "browser_action": {
     "default_icon": "sources/oneclick/InstaTweetDeck.png",
     "default_popup": "extension/ITD.html",
-    "default_title": "__MSG_ButtonHoverTitle__"
+    "default_title": "Launch TweetDeck"
   },
 
   "manifest_version": 2

@@ -1,0 +1,72 @@
+/*
+  coredefinitions.css
+*/
+
+html {
+  font-family:Roboto
+}
+
+body {
+  margin:0
+}
+
+button,
+input,
+select,
+textarea,
+a {
+  font:inherit;
+  text-decoration:none;
+  pointer-events:all
+}
+
+li {
+    display:block
+}
+
+ul,menu,dir {
+	margin:0;
+	-webkit-padding-start:0
+}
+
+ol ul,ul ol,ul ul,ol ol {
+  -webkit-margin-before:0;
+  -webkit-margin-after:0;
+	-webkit-padding-start:40px
+}
+
+body,html {
+  position:absolute;
+  top:0;
+  bottom:0;
+  left:0;
+  right:0
+}
+
+p {
+  -webkit-margin-before:0;
+  -webkit-margin-after:0;
+  -webkit-margin-start:0;
+  -webkit-margin-end:0
+}
+
+h1 {
+	font-size:20px
+}
+
+h2 {
+	font-size:14px
+}
+
+h3 {
+	font-size:1.1429rem
+}
+
+h4 {
+	font-size:14px;
+	font-weight:400
+}
+
+h6 {
+	font-size:11px
+}
