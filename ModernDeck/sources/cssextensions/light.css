@@ -6,17 +6,18 @@
 */
 
 a,
-a:hover,
-.btn:not([disabled]):not(.is-disabled):not(.btn-options-tray):not(.mtd-nav-button),
+a:not(.column-header-link):not(.js-column-back):hover,
+.calweek a:hover,
+.btn:not([disabled]):not(.is-disabled):not(.btn-options-tray):not(.mtd-nav-button):not(.btn-bg-negative),
 .compose-send-button-success,
 .icon-follow-color,
-.calweek a:hover,
 #caltoday
 {
 	color:#00BCD4
 }
 
-a:active
+a:active,
+a:focus
 {
 	color:#0DA8BC;
 	background-color:rgba(0,0,0,.05)

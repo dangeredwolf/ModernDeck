@@ -870,10 +870,6 @@ button .label,button i {
 	vertical-align:middle
 }
 
-button[disabled],button.is-disabled {
-	opacity:.3
-}
-
 .btn-positive,.btn-positive-alt,.btn-fav.s-favorited,.s-following .follow-btn {
 	z-index:5;
 	transition:.2s all,.4s background,.4s width!important
@@ -1266,20 +1262,6 @@ a .column-title-back .icon:after {
 	margin-left:0;
 	text-align:left;
 	display:block!important
-}
-
-
-.link-complex.txt-medium.block.cf:hover .link-complex.txt-medium.block.cf:active {
-	color:#7DCEFF
-}
-
-.js-column-back:active {
-	color:rgba(76,188,255,.3);
-	transition:.15s all
-}
-
-.column-temp .column-title-back {
-	color:inherit
 }
 
 .column-type-icon {
@@ -1935,7 +1917,7 @@ a .column-title-back .icon:after {
 .emoji {
 	width:1em;
 	height:1em;
-	padding:0 05em 0 .1em;
+	padding:0 .5em 0 .1em;
 	vertical-align:-.1em
 }
 
@@ -5991,7 +5973,7 @@ fieldset .fixed-width-label:not(.radio),fieldset:not(.js-search-filter) .control
 	pointer-events:none
 }
 
-a.js-column-back,a.js-column-back:hover,a.js-column-back:active,a.js-column-back:focus {
+.js-column-back,.js-column-back:hover,.js-column-back:active,.js-column-back:focus {
 	background:transparent;
 	transform:none
 }
