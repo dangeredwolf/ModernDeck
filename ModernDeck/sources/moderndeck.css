@@ -213,23 +213,10 @@ body.scroll-v {
 
 .account-link>.nbfc {
 	overflow:hidden;
-	margin-left:-70px;
 	word-break:break-word;
 	word-wrap:break-word;
 	margin-top:0;
-	padding:0
-}
-
-.stream-item>.js-show-detail .account-summary .nbfc>a {
-	font-weight:500;
-	font-size:14px;
-	padding-left:10px
-}
-
-.stream-item .nbfc>a:not(.gif-pause):not(.gif-play) {
-	font-weight:500;
-	font-size:14px;
-	padding-left:10px
+	padding:5px 5px 0 0
 }
 
 .align-below-header+.nbfc {
@@ -1612,37 +1599,18 @@ a .column-title-back .icon:after {
 	box-sizing:border-box;
 	position:relative;
 	max-width:100%;
-	text-overflow:clip
+	text-overflow:ellipsis;
 }
 
 .account-inline .fullname,.account-inline .username {
 	line-height:1;
 	margin-left:5px;
-	text-overflow:clip;
+	text-overflow:ellipsis;
 	font-size:12px
 }
 
 .account-inline .fullname {
-	font-size:14px;
-	margin-left:14px
-}
-
-.quoted-tweet .fullname {
-	margin-left:70px
-}
-
-.med-tweet .fullname {
-	margin-left:76px
-}
-
-.account-inline.is-protected {
-	padding-right:18px
-}
-
-.account-inline .icon-protected {
-	position:absolute;
-	right:0;
-	font-size:16px
+	font-size:14px
 }
 
 .fullname-badged-container,.fullname-badged {
@@ -1889,16 +1857,7 @@ a .column-title-back .icon:after {
 	margin:0 0 5px 5px
 }
 
-.activity-header-wrapping+.txt-mute>.tweet {
-	padding-left:5px
-}
-
-.activity-header-wrapping+.txt-mute>.tweet .fullname {
-	margin-left:70px
-}
-
 .tweet {
-	padding-left:58px;
 	line-height:1.28578em;
 	word-break:break-word;
 	word-wrap:break-word;
@@ -1933,16 +1892,12 @@ a .column-title-back .icon:after {
 	transition:margin .1s;
 	position:absolute;
 	right:10px;
+	line-height:1em;
 	font-size:12px
 }
 
 .is-retweet .tweet-timestamp,.is-favorite .tweet-timestamp {
 	margin-right:2px
-}
-
-.tweet-img {
-	margin-left:-58px;
-	margin-top:20px
 }
 
 .quoted-tweet .tweet-img {
@@ -2021,8 +1976,9 @@ a .column-title-back .icon:after {
 .tweet-footer {
 	left:15%;
 	right:0;
-	margin-top:-30px;
-	margin-bottom:35px;
+	bottom:0;
+	margin-top:40px;
+	margin-bottom:25px;
 	position:absolute;
 	height:10px
 }
@@ -6582,15 +6538,15 @@ button.mtd-no-transform-case {
 }
 
 .tweet-text {
-	margin-bottom:8px
+	padding-left:55px
+}
+
+.cmp-replyto .tweet-text {
+	padding-left:0
 }
 
 .activity-header+.account-summary .fullname {
 	padding-left:3px
-}
-
-.activity-header+.account-summary>.account-summary-text.nbfc {
-	padding-left:55px
 }
 
 .list-account>:nth-child(2).nbfc {
@@ -6834,14 +6790,6 @@ textarea:not(.compose-text):not(.js-compose-text) {
 	min-height:20px
 }
 
-.cmp-replyto .tweet-text {
-	padding-top:10px;
-	padding-left:10px
-}
-
-.cmp-replyto .account-inline {
-	margin-left:69px
-}
 
 /* Theme standard message banners */
 
