@@ -1072,7 +1072,7 @@ button .label,button i {
 	width:100%;
 	opacity:0;
 	pointer-events:none;
-	z-index:5
+	z-index: 10;
 }
 
 .column-holder .column-panel:nth-child(2) .js-column-back,.is-shifted-1 .column-detail-level-2 .js-column-back,.column-holder .column-panel:nth-child(2)>.column-header,.is-shifted-1 .column-detail-level-2>.column-header {
@@ -1088,7 +1088,8 @@ button .label,button i {
 	width:100%;
 	pointer-events:all;
 	top:0;
-	opacity:1
+	opacity:1;
+	bottom: 0;
 }
 
 .is-shifted-1 .column-detail-level-2 {
@@ -5247,11 +5248,6 @@ a[rel=user]:active,.card-holder a[rel=mediaPreview]:active {
 	line-height:.8
 }
 
-.js-contributor-manager-back span:after {
-	font-size:16px;
-	content:"Manage Team";
-	font-weight:400
-}
 
 .js-contributor-manager-back {
 	width:100%
