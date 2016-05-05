@@ -8,12 +8,13 @@
 a,
 a:not(.column-header-link):not(.js-column-back):hover,
 .calweek a:hover,
-.btn:not([disabled]):not(.is-disabled):not(.btn-options-tray):not(.mtd-nav-button):not(.btn-bg-negative),
+.btn:not([disabled]):not(.is-disabled):not(.btn-options-tray):not(.mtd-nav-button):not(.btn-bg-negative):not(.btn-negative),
 .compose-send-button-success,
 .icon-follow-color,
 #caltoday
 {
-	color:#009EAD
+	color:#009EAD;
+	transition:color .3s
 }
 
 a:active,
@@ -193,7 +194,7 @@ optgroup,
 	background:linear-gradient(#263238,#0E4B50)
 }
 
-.txt-mute a:not(:hover):not(:focus):not(.tweet-action):not([data-action]),
+.txt-mute a:not(:focus):not(.tweet-action):not([data-action]),
 .lst-group h3
 {
 	color:#708795
@@ -570,14 +571,15 @@ select,
 	color:#DBDBDB
 }
 
-#caldays span
+#caldays span,
+.caloff
 {
 	color:#677B86
 }
 
-.caldisabled[href],
-.caldisabled[href]:hover,
-.caldisabled[href]:active
+.caldisabled,
+.caldisabled:hover,
+.caldisabled:active
 {
 	color:#667A86!important
 }

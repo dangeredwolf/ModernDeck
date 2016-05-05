@@ -70,3 +70,39 @@ h4 {
 h6 {
 	font-size:11px
 }
+
+
+label {
+	display:block;
+	margin-bottom:12px;
+	line-height:inherit
+}
+
+fieldset {
+	padding:0;
+	margin:0;
+	border:0
+}
+
+select {
+	-webkit-appearance:menulist;
+	-moz-appearance:menulist
+}
+
+input:before,textarea:before,select:before {
+	-webkit-appearance:initial;
+	-moz-appearance:initial
+}
+
+textarea {
+	resize:none
+}
+
+input,select {
+	word-break:normal!important;
+	word-wrap:normal!important
+}
+
+input[type="checkbox"] {
+	height:auto
+}

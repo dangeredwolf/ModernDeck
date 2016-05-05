@@ -137,9 +137,8 @@ body.scroll-v {
 
 .l-table {
 	display:table;
-	width:100%;
 	height:100%;
-	margin-bottom:2px
+	margin-bottom:2px;
 }
 
 .l-row {
@@ -1584,8 +1583,7 @@ a .column-title-back .icon:after {
 }
 
 .account-link,.account-link:hover,.account-link:active {
-	max-width:100%;
-	transition:.3s color
+	max-width:100%
 }
 
 .account-link .username {
@@ -1603,15 +1601,15 @@ a .column-title-back .icon:after {
 	text-overflow:ellipsis;
 }
 
-.account-inline .fullname,.account-inline .username {
+.account-inline .fullname,.account-inline .username,.account-link.txt-bold {
 	line-height:1;
-	margin-left:5px;
 	text-overflow:ellipsis;
-	font-size:12px
+	font-size:14px;
+	margin-left:5px
 }
 
-.account-inline .fullname {
-	font-size:14px
+.account-inline .username {
+	font-size:12px
 }
 
 .fullname-badged-container,.fullname-badged {
@@ -1901,14 +1899,6 @@ a .column-title-back .icon:after {
 	margin-right:2px
 }
 
-.quoted-tweet .tweet-img {
-	margin-left:0
-}
-
-.tweet-context {
-	margin-left:-70px
-}
-
 .tweet-context .nbfc>a {
 	font-size:14px;
 	margin-left:-3px
@@ -2095,7 +2085,8 @@ a .column-title-back .icon:after {
 }
 
 .tweet-message .tweet-body {
-	padding-right:8px
+	padding-right:8px;
+	padding-left:8px
 }
 
 .conversation-indicator {
@@ -4175,8 +4166,9 @@ input[type="checkbox"] {
 	margin-top:4px
 }
 
-.calweek {
-	clear:left
+.calweek,#caltitle {
+	clear:left;
+	animation:menuDownLarge .3s cubic-bezier(.19,1,.22,1)
 }
 
 .calweek a {
@@ -4201,7 +4193,6 @@ input[type="checkbox"] {
 }
 
 .cal header {
-	border-bottom:1px soild #eee;
 	padding:5px;
 	text-align:center
 }
@@ -5104,7 +5095,7 @@ a[rel=user]:active,.card-holder a[rel=mediaPreview]:active {
 	padding-top:15px
 }
 
-#next-month .icon,#prevmonth i {
+#next-month i,#prev-month i {
 	font-size:20px;
 	font-weight:700
 }
@@ -5156,10 +5147,6 @@ a[rel=user]:active,.card-holder a[rel=mediaPreview]:active {
 
 .tweet-action .icon-retweet,.tweet-detail-action .icon-retweet {
 	font-size:24px
-}
-
-.tweet-body {
-	margin-top:2px
 }
 
 .media-sensitive-content {
@@ -6533,14 +6520,6 @@ button.mtd-no-transform-case {
 	color:#d3dbe1!important
 }
 
-.tweet-text {
-	padding-left:55px
-}
-
-.cmp-replyto .tweet-text {
-	padding-left:0
-}
-
 .activity-header+.account-summary .fullname {
 	padding-left:3px
 }
@@ -6754,10 +6733,15 @@ textarea:not(.compose-text):not(.js-compose-text) {
 
 .tweet-text.with-linebreaks {
 	margin-bottom:35px;
-	margin-top:0
+	margin-top:0;
+	padding-left:53px
 }
 
-.js-dropdown-content>ul {
+.txt-mute .tweet-text {
+	padding-left:6px
+}
+
+.js-dropdown-content>ul,.tweet-message .tweet-text,.quoted-tweet .tweet-text,.tweet-detail-wrapper .tweet-text {
 	padding-left:0
 }
 
@@ -6794,6 +6778,9 @@ body>.message-banner[style="color: rgb(85, 85, 85); background-color: rgb(178, 2
 	color:inherit!important
 }
 
+
+
+
 .s-following .following-text,.s-following .unfollow-text {
 	transition:margin-left 0.3s cubic-bezier(.19,1,.22,1),opacity 0.3s cubic-bezier(.19,1,.22,1);
 	opacity:1;
@@ -6816,4 +6803,8 @@ body>.message-banner[style="color: rgb(85, 85, 85); background-color: rgb(178, 2
 
 .s-following .follow-btn:hover .following-text {
 	margin-left:18px
+}
+
+.activity-header-wrapping.activity-header.has-source-avatar>.nbfc {
+	font-size:0
 }
