@@ -5,7 +5,7 @@
 
 "use strict";
 
-var SystemVersion = "6.0 Beta Build 2016.05.06.1";
+var SystemVersion = "6.0 Beta Build 2016.05.06.2";
 var MTDBaseURL = "https://raw.githubusercontent.com/dangeredwolf/ModernDeck/master/ModernDeck/"; // Defaults to streaming if nothing else is available (i.e. legacy firefox)
 
 var msgID,
@@ -137,6 +137,8 @@ function loadPreferences() {
 		html.addClass("mtd-acc-focus-ring");
 	else
 		setPref("mtd_outlines",false);
+
+		disableExtraStylesheetExtensions();
 
 	if (getPref("mtd_theme") !== "" && getPref("mtd_theme") !== null && typeof getPref("mtd_theme") !== "undefined")
 		enableStylesheetExtension(getPref("mtd_theme"));
@@ -411,7 +413,11 @@ function MTDSettings() {
 
 function PrepareLoginStuffs() {
 	var profileInfo = getProfileInfo();
-	var bannerPhoto = profileInfo._profileBannerURL.search("empty") > 0 ? "" : profileInfo._profileBannerURL;
+	if (typeof profileInfo._profileBannerURL === "undefined" || profileInfo.profileImageURL === "undefined") {
+		setTimeout(PrepareLoginStuffs,150);
+		return;
+	}
+	var bannerPhoto = profileInfo._profileBannerURL.search("empty") > 0 ? "" : profileInfo._profileBannerURL();
 	var avatarPhoto = profileInfo.profileImageURL.replace("_normal","");
 	var name = profileInfo.name;
 	var username = profileInfo.screenName;
