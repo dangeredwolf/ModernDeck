@@ -110,6 +110,10 @@ function disableExtraStylesheetExtensions() {
 	$("head>link.mtd-stylesheet-extension:not([href='" + MTDBaseURL + "sources/cssextensions/dark.css']):not([href='" + MTDBaseURL + "sources/cssextensions/light.css'])").remove();
 }
 
+function getProfileInfo() {
+	return TD.cache.twitterUsers.getByScreenName(TD.storage.accountController.getPreferredAccount("twitter").state.username).results[0];
+}
+
 function loadPreferences() {
 	if (getPref("mtd_round_avatars") === false)
 		html.addClass("mtd-no-round-avatars");
