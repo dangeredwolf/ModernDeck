@@ -706,7 +706,8 @@ i {
 }
 
 .stream-item .icon-small-context {
-	padding-left:12px
+	padding-right:12px;
+	padding-top:4px
 }
 
 .icon-dropdown-context {
@@ -819,7 +820,7 @@ i {
 	color:inherit
 }
 
-button,a.btn {
+button,a.btn,a.js-create-list {
 	position:relative;
 	display:inline-block;
 	pointer-events:all;
@@ -931,7 +932,7 @@ button .label,button i {
 
 .account-remove-check-open .account-remove-check {
 	display:block;
-	animation:windowDown .2s cubic-bezier(.19,1,.22,1)!important
+	animation:windowDown .2s cubic-bezier(.19,1,.22,1)
 }
 
 .js-account-invited-accounts {
@@ -956,7 +957,8 @@ button .label,button i {
 	height:100%;
 	font-size:0.9rem;
 	white-space:normal;
-	border-right:none!important
+	border-right:none!important;
+	animation: windowSlider 1s cubic-bezier(.19,1,.22,1)!important;
 }
 
 .is-narrow-columns .column {
@@ -3720,60 +3722,6 @@ a:hover .icn-button-next {
 	opacity:0
 }
 
-input,select {
-	margin:0;
-	padding:0;
-	border:0;
-	font-weight:400;
-	font-style:normal;
-	font-size:100%;
-	line-height:1
-}
-
-label,input,select,textarea {
-	font-size:13px;
-	font-weight:400;
-	line-height:normal
-}
-
-input,textarea,select,.uneditable-input {
-	display:inline-block;
-	width:85%;
-	height:32px;
-	padding:4px 8px;
-	font-size:13px;
-	line-height:18px;
-	color:#444;
-	border-radius:0;
-	box-sizing:content-box;
-	background:transparent
-}
-
-input:focus,textarea:focus,select:focus,.uneditable-input:focus {
-	outline:0
-}
-
-input:disabled {
-	border-color:#ddd;
-	border-width:0
-}
-
-input[type="checkbox"],input[type="radio"] {
-	width:auto;
-	height:auto;
-	cursor:pointer;
-	border:0
-}
-
-input[type="checkbox"] {
-	margin-top:1px
-}
-
-input[type="button"],input[type="reset"],input[type="submit"] {
-	width:auto;
-	height:auto
-}
-
 .frm {
 	padding:15px
 }
@@ -4788,7 +4736,7 @@ input[type="checkbox"] {
 	transition:.4s all cubic-bezier(.19,1,.22,1);
 	transition-delay:1s;
 	display:inline-block;
-	left:initial;
+	left:initial!important;
 	box-shadow:none!important;
 	background:none;
 	transform:translate3d(15px,0,0);

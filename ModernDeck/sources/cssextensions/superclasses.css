@@ -236,7 +236,9 @@ header,
 hgroup,
 nav,
 section,
-summary
+summary,
+li,
+ul
 {
 	display:block
 }

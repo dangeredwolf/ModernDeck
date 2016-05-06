@@ -2,11 +2,13 @@
   coredefinitions.css
 */
 
-html {
+html
+{
   font-family:Roboto
 }
 
-body {
+body
+{
   margin:0
 }
 
@@ -14,28 +16,137 @@ button,
 input,
 select,
 textarea,
-a {
+label,
+a
+{
   font:inherit;
   text-decoration:none;
   pointer-events:all
 }
 
-li {
-    display:block
-}
-
-ul,menu,dir {
+input,
+select
+{
 	margin:0;
-	-webkit-padding-start:0
+	padding:0;
+	border:0;
+  font:inherit 400 normal 100%;
+	line-height:1
 }
 
-ol ul,ul ol,ul ul,ol ol {
+label,
+input,
+textarea,
+select,
+.uneditable-input
+{
+	display:inline-block;
+	width:85%;
+	height:32px;
+	padding:4px 8px;
+	font-size:13px;
+  font-weight:400;
+	line-height:18px;
+	border-radius:0;
+	box-sizing:content-box;
+	background:transparent
+}
+
+input:focus,
+textarea:focus,
+select:focus,
+.uneditable-input:focus
+{
+	outline:0
+}
+
+input[type="checkbox"],
+input[type="radio"]
+{
+	width:auto;
+	height:auto;
+	cursor:pointer;
+	border:0
+}
+
+input[type="checkbox"]
+{
+	margin-top:1px
+}
+
+input[type="button"],
+input[type="reset"],
+input[type="submit"]
+{
+	width:auto;
+	height:auto
+}
+
+label
+{
+	display:block;
+	margin-bottom:12px;
+	line-height:inherit
+}
+
+fieldset
+{
+	padding:0;
+	margin:0;
+	border:0
+}
+
+select
+{
+	-webkit-appearance:menulist;
+	-moz-appearance:menulist
+}
+
+input:before,textarea:before,select:before
+{
+	-webkit-appearance:initial;
+	-moz-appearance:initial
+}
+
+textarea
+{
+	resize:none
+}
+
+input,select
+{
+	word-break:normal!important;
+	word-wrap:normal!important
+}
+
+input[type="checkbox"]
+{
+	height:auto
+}
+
+ul,
+menu,
+dir
+{
+	margin:0;
+	-webkit-padding-start:0;
+  -webkit-appearance:none;
+	-moz-appearance:none
+}
+
+ol ul,
+ul ol,
+ul ul,
+ol ol
+{
   -webkit-margin-before:0;
   -webkit-margin-after:0;
 	-webkit-padding-start:40px
 }
 
-body,html {
+body,
+html
+{
   position:absolute;
   top:0;
   bottom:0;
@@ -43,66 +154,43 @@ body,html {
   right:0
 }
 
-p {
+p
+{
   -webkit-margin-before:0;
   -webkit-margin-after:0;
   -webkit-margin-start:0;
   -webkit-margin-end:0
 }
 
-h1 {
+strong,
+b,
+.txt-bold
+{
+    font-weight:500
+}
+
+h1
+{
 	font-size:20px
 }
 
-h2 {
+h2
+{
 	font-size:14px
 }
 
-h3 {
+h3
+{
 	font-size:1.1429rem
 }
 
-h4 {
+h4
+{
 	font-size:14px;
 	font-weight:400
 }
 
-h6 {
+h6
+{
 	font-size:11px
-}
-
-
-label {
-	display:block;
-	margin-bottom:12px;
-	line-height:inherit
-}
-
-fieldset {
-	padding:0;
-	margin:0;
-	border:0
-}
-
-select {
-	-webkit-appearance:menulist;
-	-moz-appearance:menulist
-}
-
-input:before,textarea:before,select:before {
-	-webkit-appearance:initial;
-	-moz-appearance:initial
-}
-
-textarea {
-	resize:none
-}
-
-input,select {
-	word-break:normal!important;
-	word-wrap:normal!important
-}
-
-input[type="checkbox"] {
-	height:auto
 }

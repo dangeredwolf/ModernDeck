@@ -5,7 +5,7 @@
 
 "use strict";
 
-var SystemVersion = "6.0 Beta Build 2016.05.05.1";
+var SystemVersion = "6.0 Beta Build 2016.05.06.1";
 var MTDBaseURL = "https://raw.githubusercontent.com/dangeredwolf/ModernDeck/master/ModernDeck/"; // Defaults to streaming if nothing else is available (i.e. legacy firefox)
 
 var msgID,
@@ -112,6 +112,14 @@ function disableExtraStylesheetExtensions() {
 
 function getProfileInfo() {
 	return TD.cache.twitterUsers.getByScreenName(TD.storage.accountController.getPreferredAccount("twitter").state.username).results[0];
+}
+
+function getAccountStatus() {
+	return TD.storage.accountController.getPreferredAccount("twitter");
+}
+
+function getAllAccountStatus() {
+	return TD.storage.accountController.getAccountsForService("twitter");
 }
 
 function loadPreferences() {
@@ -402,72 +410,25 @@ function MTDSettings() {
 }
 
 function PrepareLoginStuffs() {
-	//console.log("Start prepare login stuffs");
-	if (typeof $ === "undefined") {
-		setTimeout(PrepareLoginStuffs,200);
-		return;
-	}
+	var profileInfo = getProfileInfo();
+	var bannerPhoto = profileInfo._profileBannerURL.search("empty") > 0 ? "" : profileInfo._profileBannerURL;
+	var avatarPhoto = profileInfo.profileImageURL.replace("_normal","");
+	var name = profileInfo.name;
+	var username = profileInfo.screenName;
 
-	FetchProfileInfo = 0;
+	$(mtd_nd_header_image).attr("style","background-image:url(" + bannerPhoto + ");"); // Fetch header and place in nav drawer
+	$(mtd_nd_header_photo).attr("src",avatarPhoto)
+	.mouseup(function(){
+		var profileLinkyThing = $(document.querySelector('.avatar.tweet-avatar.pull-right[alt="' + username + '\'s avatar"]')).parents(".account-link");
 
-	FindProfButton = $(".account-settings-row:first-child a[rel='user']");
-	if (FindProfButton.length < 1) {
-		$(".js-show-drawer.js-header-action").click();
-		profileProblem = true;
-		if (document.querySelector(".js-app.hide-detail-view-inline") !== null) {
-			wasTweetSheetOpen = true;
+		if (profileLinkyThing.length > -1) {
+			MTDPrepareWindows();
+			profileLinkyThing.click();
 		}
-		console.log("profile problem!");
-		setTimeout(PrepareLoginStuffs,50);
-		return;
-	}
-	FindProfButton.click();
-	disableStylesheetExtension("loginpage");
-	setTimeout(FinaliseLoginStuffs,0);
-
-	$(".js-click-trap").addClass("is-hidden").delay(50).queue(function(){$(this).addClass("is-hidden")});
-}
-
-function FinaliseLoginStuffs() {
-	$(".js-click-trap").addClass("is-hidden");
-
-	if ($(".prf-header").length < 1) {
-		FetchProfileInfo++;
-
-		if (FetchProfileInfo > 10) {
-			console.log("this is not even working, uh lets try again");
-			setTimeout(PrepareLoginStuffs,0);
-			return;
-		}
-		setTimeout(FinaliseLoginStuffs,50);
-		return;
-	}
-
-	if ($(".prf-header").attr("style").search("td_profile_empty") > 0) {
-		$(mtd_nd_header_image).attr("style",$(".prf-header").attr("style")); // Fetch header and place in nav drawer
-	}
-
-	$(".prf-card-inner .username>.prf-follow-status").remove();
-
-	$(mtd_nd_header_photo).attr("src",$(".prf-img>img").attr("src")); // Fetch profile picture and place in nav drawer
-	$(mtd_nd_header_username).html($(".prf-card-inner .username").html()); // Fetch twitter handle and place in nav drawer
-
-	console.log("Finished login stuffs! you are in the nav drawer, I think!");
+	}); // Fetch profile picture and place in nav drawer
+	$(mtd_nd_header_username).html(name); // Fetch twitter handle and place in nav drawer
 
 	loadPreferences();
-
-	// TD.storage.clientController.client = [];
-	// TD.storage.clientController.client.isDirty = false; // Attempts to get around TD bug
-
-	if (profileProblem) {
-		profileProblem = false;
-		if (wasTweetSheetOpen) {
-			$(".js-show-drawer.btn-compose").click();
-		} else {
-			$(".js-hide-drawer[data-title='Accounts']").click();
-		}
-		console.log("repaired profile problem with tweet thing");
-	}
 }
 
 function NavigationSetup() {
