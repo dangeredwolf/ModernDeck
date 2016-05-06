@@ -413,7 +413,7 @@ function MTDSettings() {
 
 function PrepareLoginStuffs() {
 	var profileInfo = getProfileInfo();
-	if (typeof profileInfo._profileBannerURL === "undefined" || profileInfo.profileImageURL === "undefined") {
+	if (typeof profileInfo === "undefined" || typeof profileInfo._profileBannerURL === "undefined" || profileInfo.profileImageURL === "undefined") {
 		setTimeout(PrepareLoginStuffs,150);
 		return;
 	}
