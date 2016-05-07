@@ -6,7 +6,7 @@
 */
 
 a,
-a:not(.column-header-link):not(.js-column-back):hover,
+a:not(.column-header-link):not(.js-column-back):not(.js-tweet-social-proof-back):hover,
 .calweek a:hover,
 .btn:not([disabled]):not(.is-disabled):not(.btn-options-tray):not(.mtd-nav-button):not(.btn-bg-negative):not(.btn-negative),
 .compose-send-button-success,

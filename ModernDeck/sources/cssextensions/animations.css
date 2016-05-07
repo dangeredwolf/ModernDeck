@@ -5,23 +5,6 @@
   Released under the MIT Licence
 */
 
-@keyframes materialPop {
-	0% {
-		opacity:0;
-		margin-top:130px
-	}
-
-	20% {
-		opacity:.3;
-		margin-top:40px
-	}
-
-	100% {
-		border-radius:3px;
-		opacity:1
-	}
-}
-
 @keyframes moreTweetsButtonDown {
 	0% {
 		opacity:1;
@@ -217,7 +200,7 @@
 	100% {
 		opacity:1;
 		border-radius:0 0 0 0;
-		margin-top:0;
+		margin-top:6px;
 		overflow:hidden
 	}
 }

@@ -138,6 +138,7 @@ body.scroll-v {
 .l-table {
 	display:table;
 	height:100%;
+	width:100%;
 	margin-bottom:2px;
 }
 
@@ -1033,15 +1034,17 @@ button .label,button i {
 
 .column-panel {
 	position:absolute;
+	left:0;
 	top:0;
 	bottom:0;
-	transition:opacity cubic-bezier(.19,1,.22,1) .2s;
+	transition:opacity cubic-bezier(.19,1,.22,1) .5s,left cubic-bezier(.19,1,.22,1) .5s;
 	z-index:5;
 	width:100%
 }
 
-.is-shifted-1 .column-panel:not(.column-detail),.is-shifted-2 .column-panel:not(.column-detail-level-2):not(.column-detail) {
-	pointer-events:none
+.is-shifted-1 .column-panel:not(.column-detail),.is-shifted-2 .column-panel:not(.column-detail-level-2):not(.column-detail),.is-shifted-2 .column-holder .column-panel:nth-child(2) {
+	pointer-events:none;
+	left:-50%
 }
 
 .modal-content {
@@ -1071,40 +1074,38 @@ button .label,button i {
 
 .column-holder .column-panel:nth-child(2) {
 	width:100%;
-	opacity:0;
+	left:100%;
 	pointer-events:none;
-	z-index: 10;
+	transition:left cubic-bezier(.19,1,.22,1) .3s;
+	z-index:9
 }
 
-.column-holder .column-panel:nth-child(2) .js-column-back,.is-shifted-1 .column-detail-level-2 .js-column-back,.column-holder .column-panel:nth-child(2)>.column-header,.is-shifted-1 .column-detail-level-2>.column-header {
-	pointer-events:none
+.column-holder .column-panel:nth-child(2) .js-column-back,.is-shifted-1 .column-detail-level-2 .js-column-back,.is-shifted-1 .column-detail-level-2>.column-header {
+	pointer-events:none!important
 }
 
 .column-holder .column-panel:nth-child(3) {
 	width:0;
+	left:100%;
 	overflow:hidden
 }
 
-.is-shifted-1 .column-panel:nth-child(n+2),.is-shifted-2 .column-panel:nth-child(n+2) {
+.is-shifted-1 .column-panel:nth-child(n+2),.is-shifted-2 .column-detail-level-2,.is-shifted-2 .column-panel:nth-child(n+3) {
 	width:100%;
 	pointer-events:all;
-	top:0;
+	left:0;
 	opacity:1;
-	bottom: 0;
+	transition:opacity cubic-bezier(.19,1,.22,1) .3s,left cubic-bezier(.19,1,.22,1) .3s;
 }
 
 .is-shifted-1 .column-detail-level-2 {
 	pointer-events:none!important;
-	top:100%!important;
-	opacity:0!important
+	left:100%!important
 }
 
 .column-detail-level-2 {
-	z-index:6!important
-}
-
-.is-shifted-2 .column-panel:nth-child(2) {
-	width:0
+	z-index:10!important;
+	opacity:1
 }
 
 .is-shifted-2 .column-panel:nth-child(2n+1) {
@@ -2018,10 +2019,10 @@ a .column-title-back .icon:after {
 .tweet-detail-wrapper {
 	margin-top:-1px;
 	box-shadow:0 2px 5px rgba(0,0,0,.4);
-	animation:materialPop .6s cubic-bezier(.19,1,.22,1);
 	border-top:5px solid transparent;
 	box-sizing:border-box;
 	padding:5px;
+	animation:fadeIn .15s;
 	margin-top:7px
 }
 
@@ -6085,7 +6086,7 @@ button.mtd-no-transform-case {
 }
 
 .js-column-social-proof .stream-item {
-	animation:fadeIn .5s cubic-bezier(.19,1,.22,1)
+	animation:profileSlide .5s cubic-bezier(.19,1,.22,1)
 }
 
 .js-search .popover {
@@ -6218,6 +6219,7 @@ button.mtd-no-transform-case {
 .tweet-detail .txt-small a {
 	font-size:12px!important;
 	text-transform:uppercase;
+	padding:10px 3px;
 	font-weight:500
 }
 
@@ -6255,7 +6257,7 @@ button.mtd-no-transform-case {
 }
 
 .tweet-stats {
-	margin-top:-27px
+	margin-top:-27px;
 }
 
 .tweet-detail .card-holder .txt-small a {
@@ -6455,17 +6457,12 @@ button.mtd-no-transform-case {
 	left:28px
 }
 
-.med-tweet .account-inline {
-	margin-left:-65px
-}
-
 .js-column-social-proof .username {
 	position:absolute;
 	top:35px;
 	left:65px;
 	font-size:14px;
-	opacity:0.7;
-	color:#d3dbe1!important
+	opacity:.7
 }
 
 .activity-header+.account-summary .fullname {
@@ -6755,4 +6752,24 @@ body>.message-banner[style="color: rgb(85, 85, 85); background-color: rgb(178, 2
 
 .activity-header-wrapping.activity-header.has-source-avatar>.nbfc {
 	font-size:0
+}
+
+
+@keyframes dontTouchMe {
+	0% {
+		transform:scale(1) rotate(0deg)
+	}
+
+	50% {
+		transform:scale(1.05) rotateX(120deg);
+		-webkit-filter:grayscale(100%)
+	}
+
+	100% {
+		transform:scale(1)
+	}
+}
+
+.mtd-dont-touch-me {
+	animation:dontTouchMe 5s cubic-bezier(0.5,0.7,0.5,1) infinite both
 }
