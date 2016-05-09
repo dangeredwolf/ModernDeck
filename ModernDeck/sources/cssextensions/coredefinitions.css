@@ -119,11 +119,6 @@ input,select
 	word-wrap:normal!important
 }
 
-input[type="checkbox"]
-{
-	height:auto
-}
-
 ul,
 menu,
 dir

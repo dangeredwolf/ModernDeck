@@ -62,6 +62,10 @@ body.scroll-v {
 	overflow-y:auto
 }
 
+html.scroll-v {
+	overflow-y:hidden
+}
+
 .scroll-h {
 	overflow-x:auto
 }
@@ -138,8 +142,7 @@ body.scroll-v {
 .l-table {
 	display:table;
 	height:100%;
-	width:100%;
-	margin-bottom:2px;
+	margin-bottom:2px
 }
 
 .l-row {
@@ -217,6 +220,10 @@ body.scroll-v {
 	word-wrap:break-word;
 	margin-top:0;
 	padding:5px 5px 0 0
+}
+
+.js-mediatable .account-link>.nbfc {
+	padding:0
 }
 
 .align-below-header+.nbfc {
@@ -1080,7 +1087,7 @@ button .label,button i {
 	z-index:9
 }
 
-.column-holder .column-panel:nth-child(2) .js-column-back,.is-shifted-1 .column-detail-level-2 .js-column-back,.is-shifted-1 .column-detail-level-2>.column-header {
+.is-shifted-1 .column-detail-level-2 .js-column-back,.is-shifted-1 .column-detail-level-2>.column-header {
 	pointer-events:none!important
 }
 
@@ -1095,7 +1102,8 @@ button .label,button i {
 	pointer-events:all;
 	left:0;
 	opacity:1;
-	transition:opacity cubic-bezier(.19,1,.22,1) .3s,left cubic-bezier(.19,1,.22,1) .3s;
+	transition:left cubic-bezier(.19,1,.22,1) .3s;
+	animation:none;
 }
 
 .is-shifted-1 .column-detail-level-2 {
@@ -1594,7 +1602,7 @@ a .column-title-back .icon:after {
 }
 
 .account-link .fullname {
-	line-height:1
+	line-height:1;
 }
 
 .account-inline {
@@ -1919,23 +1927,25 @@ a .column-title-back .icon:after {
 
 .tweet-actions {
 	visibility:visible;
-	float:right;
-	margin-left:-50px;
-	padding-top:0!important
+	margin-left:auto;
+	margin-right:auto;
+	width:auto!important;
+	max-width:213px;
+	padding-top:0!important;
+	min-height:10px;
 }
 
-.message-stream-item .tweet-footer {
-	margin-left:50px
+.med-fullpanel .tweet-actions {
+	margin:0;
+	float:left;
+	margin-left:-20px;
+	margin-bottom:-15px;
+	margin-top:5px
 }
 
 .tweet-actions>li {
 	float:left;
-	margin:0 0 0 25px
-}
-
-.tweet-action,.tweet-detail-action {
-	display:block;
-	color:#787878
+	margin:0 0 0 20px
 }
 
 .tweet-action .icon,.tweet-detail-action i {
@@ -1959,27 +1969,13 @@ a .column-title-back .icon:after {
 	margin-top:1px
 }
 
-.is-retweet .icon-retweet-toggle {
-	color:#13B33F
-}
-
-.is-favorite .icon-favorite-toggle,.btn:not(.btn-fav-fav-text)>.icon-favorite-color,.obj-left>.icon-favorite-color {
-	color:#FF9101
-}
-
 .tweet-footer {
-	left:15%;
-	right:0;
-	bottom:0;
-	margin-top:40px;
-	margin-bottom:25px;
-	position:absolute;
-	height:10px
+	margin-top:10px
 }
 
 .js-mediatable .tweet-footer {
-	margin-top:0;
-	margin-left:0;
+	margin:0;
+	margin-bottom:15px;
 	left:90px
 }
 
@@ -2071,7 +2067,6 @@ a .column-title-back .icon:after {
 }
 
 .social-proof-for-tweet-title {
-	color:#999;
 	padding-top:15px!important
 }
 
@@ -2093,7 +2088,6 @@ a .column-title-back .icon:after {
 }
 
 .conversation-indicator {
-	color:#999;
 	padding-top:7px;
 	display:none;
 	width:20px
@@ -2106,52 +2100,22 @@ a .column-title-back .icon:after {
 }
 
 .rpl {
-	padding:10px;
-	border-bottom:#3c3c3c
+	padding:10px
 }
 
 .rpl textarea {
-	resize:none;
-	width:93%;
-	height:40px;
-	padding:6px 8px;
 	border:0;
-	overflow-y:hidden;
 	transition:height .25s cubic-bezier(.19,1,.22,1);
-	border-bottom:2px solid #D2D2D2
 }
 
 .rpl input {
 	width:50px;
 	padding-top:8px;
 	border:0;
-	text-align:right;
-	color:inherit;
-	background:transparent;
-	vertical-align:top
-}
-
-.rpl input:focus {
-	border:0;
-	box-shadow:none
-}
-
-.rpl input.over-char-count {
-	color:#f44
-}
-
-.rpl .rpl-account {
-	padding-top:6px
-}
-
-.rpl .rpl-actions {
-	display:none;
-	padding-top:10px
 }
 
 .rpl.s-replying textarea {
-	height:100px;
-	overflow-y:scroll
+	height:150px
 }
 
 .spinner-button-container {
@@ -2595,7 +2559,6 @@ a .column-title-back .icon:after {
 	text-align:right;
 	display:inline;
 	position:relative;
-	transition:.2s all
 }
 
 .compose-media-bar .compose-media-bar-thumb {
@@ -2631,6 +2594,7 @@ a .column-title-back .icon:after {
 	left:-270px;
 	height:100%;
 	margin-right:0;
+	overflow:hidden;
 	transition:.2s all
 }
 
@@ -2641,6 +2605,10 @@ a .column-title-back .icon:after {
 
 .drawer-content {
 	top:55px
+}
+
+.js-account-manager-container .drawer-content {
+	top:0
 }
 
 .ovl-plain,.ovl,.overlay {
@@ -2850,7 +2818,6 @@ a .column-title-back .icon:after {
 	width:271px;
 	height:46px;
 	text-align:left;
-	color:#666;
 	vertical-align:middle;
 	margin-left:24px;
 	margin-right:0;
@@ -3153,10 +3120,6 @@ a .column-title-back .icon:after {
 	padding-bottom:30px
 }
 
-.compose-text::placeholder {
-	color:#666
-}
-
 .compose-send-button-success {
 	margin-left:-21px;
 	margin-top:-17px;
@@ -3189,19 +3152,13 @@ a .column-title-back .icon:after {
 
 .compose-reply-tweet-remove {
 	position:absolute;
-	top:-6px;
-	right:0;
-	color:#9B9B9B;
+	top:-8px;
+	right:-8px;
 	z-index:5
 }
 
 .compose-reply-tweet-remove .icon-close {
 	font-size:28px
-}
-
-.compose-reply-tweet .username {
-	color:#999;
-	font-size:12px
 }
 
 .compose-message-avatar {
@@ -3217,7 +3174,6 @@ a .column-title-back .icon:after {
 	height:32px;
 	padding-left:32px;
 	border:0;
-	color:#444;
 	font-size:1rem;
 	box-shadow:0 3px 7px rgba(17,17,17,.5)
 }
@@ -3316,18 +3272,6 @@ a .column-title-back .icon:after {
 	right:0
 }
 
-.os-windows .compose-remember-state:before {
-	content:"Keep Open";
-	font-size:14px;
-	display:block;
-	position:absolute;
-	width:90px;
-	margin-left:-95px;
-	margin-top:-2px;
-	text-align:right;
-	right:initial
-}
-
 .inline-reply {
 	transition:all .2s;
 	cursor:default;
@@ -3336,27 +3280,28 @@ a .column-title-back .icon:after {
 	margin-top:8px;
 	width:107%;
 	box-sizing:border-box;
-	box-shadow:0 2px 7px rgba(17,17,17,.25)
+	box-shadow:0 2px 8px #000
 }
 
 .inline-reply .compose-text-container {
 	display:inline-block;
 	width:100%;
-	height:170px;
-	border-radius:2px;
+	height:180px;
+	border-radius:0;
 	margin-left:-1px
 }
 
 .inline-reply>.padding-axl {
-	padding:5px!important;
-	padding-left:6px!important;
-	padding-right:7px!important;
-	padding-bottom:0!important
+	padding:0!important
 }
 
 .js-inline-reply .pull-right {
 	margin-top:-55px;
 	margin-right:-5px
+}
+
+.js-inline-reply .pull-right[for] {
+	margin-top:-80px;
 }
 
 .inline-reply .compose-text-container {
@@ -3387,13 +3332,9 @@ a .column-title-back .icon:after {
 }
 
 .inline-reply .compose-text {
-	transition:height .25s cubic-bezier(.19,1,.22,1);
 	padding:10px;
-	height:100px!important;
-	width:94%;
-	border-radius:2px;
-	box-shadow:none;
-	margin-bottom:-31px
+	height:140px!important;
+	width:100%;
 }
 
 .detail-view-inline {
@@ -3449,7 +3390,7 @@ a .column-title-back .icon:after {
 	position:absolute;
 	right:5%;
 	left:5%;
-	padding:10px;
+	padding:8px;
 	bottom:0;
 	box-shadow:0 3px 6px rgba(0,0,0,.7);
 	border-radius:4px 4px 0 0;
@@ -3870,8 +3811,7 @@ input[type="checkbox"] {
 }
 
 .checkbox-reversed input[type="checkbox"] {
-	float:none;
-	margin-left:5px;
+	float:right;
 	height:auto
 }
 
@@ -4439,33 +4379,9 @@ input[type="checkbox"] {
 	height:35px
 }
 
-.profile-icon {
-	color:#8899a6
-}
-
 .profile-full-avatar {
 	position:relative;
 	top:1px
-}
-
-.profile-full-bio-count {
-	color:#292f33
-}
-
-.profile-full {
-	background:#444
-}
-
-.profile-icon {
-	color:#ccd6dd
-}
-
-.profile-full-avatar {
-	background:#444
-}
-
-.profile-full-bio-count {
-	color:#666
 }
 
 .lst li {
@@ -4511,8 +4427,7 @@ input[type="checkbox"] {
 .lst-group h3 {
 	padding:10px 12px 5px;
 	font-size:13px;
-	font-weight:500;
-	color:#555
+	font-weight:500
 }
 
 .lst.l-compose-box {
@@ -4893,8 +4808,8 @@ input[type="checkbox"] {
 	border-radius:0!important
 }
 
-.replies-after .stream-item.is-actionable,.js-message-detail .stream-item {
-	animation:tweetIncoming .4s cubic-bezier(.19,1,.22,1)
+.replies-after .stream-item.is-actionable {
+	animation:tweetIncomingTimeline .4s cubic-bezier(.19,1,.22,1)
 }
 
 .tweet-button span.label {
@@ -5393,25 +5308,6 @@ a[rel=user]:active,.card-holder a[rel=mediaPreview]:active {
 	height:0!important
 }
 
-.mtd-appbar-notification {
-	margin-top:10px;
-	top:0;
-	position:absolute;
-	margin-left:-5px;
-	margin-right:auto;
-	width:100%;
-	padding-left:0;
-	font-size:18px;
-	text-align:center;
-	font-weight:400;
-	transition:.3s all cubic-bezier(.19,1,.22,1);
-	bottom:initial!important
-}
-
-.mtd-appbar-notification-hidden {
-	margin-top:-80px
-}
-
 .js-app-settings {
 	margin-top:-100px
 }
@@ -5483,7 +5379,7 @@ a[rel=user]:active,.card-holder a[rel=mediaPreview]:active {
 
 .conversation-name {
 	position:relative;
-	width:220px
+	width:200px
 }
 
 .js-dm-participants-back:after {
@@ -5499,11 +5395,6 @@ a[rel=user]:active,.card-holder a[rel=mediaPreview]:active {
 
 .column-content.column-dm-participants {
 	top:100px
-}
-
-.app-header:hover .mtd-appbar-notification:not(.mtd-appbar-notification-hidden) {
-	margin-left:50%!important;
-	width:50%!important
 }
 
 .more-tweets-btn-container.more-tweets-btn-container--hidden {
@@ -5801,7 +5692,8 @@ fieldset .fixed-width-label:not(.radio),fieldset:not(.js-search-filter) .control
 
 .compose-message-recipient-name {
 	padding-left:30px!important;
-	padding-top:5px
+	padding-top:5px;
+	color:#fff
 }
 
 .compose-message-recipient {
@@ -5821,7 +5713,7 @@ fieldset .fixed-width-label:not(.radio),fieldset:not(.js-search-filter) .control
 	padding-bottom:3px;
 	padding-left:10px;
 	margin-left:8px;
-	padding-top:3px
+	padding-top:8px
 }
 
 .js-compose-message-recipient-input-container.compose-message-recipient-input-container.position-rel.bg-r-white {
@@ -5837,7 +5729,8 @@ fieldset .fixed-width-label:not(.radio),fieldset:not(.js-search-filter) .control
 .typeahead-dropdown {
 	animation:menuUpRelative .225s 1,fadeIn .225s 1;
 	top:60px;
-	width:240px
+	width:240px;
+	overflow-x:hidden
 }
 
 .typeahead-dropdown.is-hidden {
@@ -5938,6 +5831,7 @@ fieldset .toggle-switch {
 
 .toggle-switch-label:after {
 	width:18px;
+	height:18px;
 	border-radius:9px;
 	box-shadow:0 3px 6px rgba(0,0,0,.25);
 	transition:all .35s cubic-bezier(.55,0,.1,1)
@@ -6094,7 +5988,7 @@ button.mtd-no-transform-case {
 }
 
 .edit-conversation-name .btn {
-	padding:10px;
+	padding:5px;
 	width:40px;
 }
 
@@ -6369,10 +6263,6 @@ button.mtd-no-transform-case {
 	margin-bottom:-10px
 }
 
-.cf.margin-tl>label {
-	color:#444
-}
-
 .add-account>fieldset>.form-login-username {
 	width:200px!important
 }
@@ -6455,14 +6345,6 @@ button.mtd-no-transform-case {
 .s-favorited:not(:hover)>.btn-fav-faved-text {
 	opacity:1;
 	left:28px
-}
-
-.js-column-social-proof .username {
-	position:absolute;
-	top:35px;
-	left:65px;
-	font-size:14px;
-	opacity:.7
 }
 
 .activity-header+.account-summary .fullname {
@@ -6677,9 +6559,13 @@ textarea:not(.compose-text):not(.js-compose-text) {
 }
 
 .tweet-text.with-linebreaks {
-	margin-bottom:35px;
+	margin-bottom:5px;
 	margin-top:0;
 	padding-left:53px
+}
+
+.compose-reply-tweet .tweet-text {
+	padding-left:0
 }
 
 .txt-mute .tweet-text {
@@ -6699,7 +6585,9 @@ textarea:not(.compose-text):not(.js-compose-text) {
 }
 
 .js-mediatable .tweet-body {
-	font-size:0.9rem
+	font-size:0.9rem;
+	margin-left:55px;
+	margin-top:-3px
 }
 
 .cmp-replyto .tweet-header {
@@ -6772,4 +6660,37 @@ body>.message-banner[style="color: rgb(85, 85, 85); background-color: rgb(178, 2
 
 .mtd-dont-touch-me {
 	animation:dontTouchMe 5s cubic-bezier(0.5,0.7,0.5,1) infinite both
+}
+
+.med-embeditem>.l-table {
+	width:100%
+}
+
+.compose-reply-tweet .username,.compose-reply-tweet .fullname {
+	line-height:-11px
+}
+
+.status-message {
+    box-shadow:0 4px 8px #000;
+    position:absolute;
+    z-index:20;
+    max-width:270px;
+    display:block;
+    text-align:left;
+    padding:5px;
+    bottom:20px!important;
+    transition:right .5s;
+    border-radius:3px;
+    right:-290px
+}
+
+.status-message[style="bottom: 0px;"] {
+	right:0;
+}
+
+.status-message-text {
+  display:block;
+  padding:5px;
+  font-size:14px;
+  line-height:1.2em
 }

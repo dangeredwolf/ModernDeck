@@ -5,17 +5,21 @@
   Released under the MIT Licence
 */
 
-.txt-r-deep-yellow
+.txt-r-deep-yellow,
+.is-favorite .icon-favorite-toggle,
+.btn:not(.btn-fav-fav-text)>.icon-favorite-color,
+.obj-left>.icon-favorite-color
 {
 	color:#FF9701
 }
 
-.txt-r-medium-green
+.txt-r-medium-green,
+.is-retweet .icon-retweet-toggle
 {
-	color:#3BB740
+	color:#13B33F
 }
 
-.link-complex[rel="viewDetails"]>.link-complex-target,
+.link-complex[rel="viewDetails"],
 .cmp-info,
 .mdl-links a,
 .btn.js-done,
@@ -59,7 +63,6 @@
 .more-tweets-btn-inner-loading,
 .more-tweets-btn-container--mouse-release .more-tweets-btn-inner-default,
 .more-tweets-btn-container--loading .more-tweets-btn-inner-default,
-.status-message,
 .app-masthead,
 .cmp-spinner,
 .chev-right,
@@ -147,14 +150,17 @@ legend,
 .account-remove-check,
 .with-add-by-url .list-placeholder.pin-all,
 .btn-fav>.btn-loader,
+.app-title,
 .btn-fav-protected-text,
 .s-protected .btn-loader,
 .s-not-following .btn-loader,
 .action-text,
+.btn-options-tray.is-invisible,
 .btn-loader,
 .action-text:not(.unfollow-text),
 .btn-relation-group:not(.s-following) .unfollow-text,
-.l-table.column-drag-drop-overlay-inner
+.l-table.column-drag-drop-overlay-inner,
+.js-account-manager-container .drawer-header
 {
 	display:none
 }
@@ -226,6 +232,8 @@ button[data-user-id="892388300"],
 .s-protected .btn-fav-protected-text,
 .btn-fav.s-favorited:hover .btn-fav-unfav-text,
 .cf,
+.tweet-action,
+.tweet-detail-action,
 article,
 aside,
 details,
@@ -287,7 +295,6 @@ video,
 
 .contributor-row[data-state-error="closed-error"] [data-show-when-state-error="closed-error"],
 .contributor-row[data-state-error="settings-error"] [data-show-when-state-error="settings-error"],
-.is-narrow-columns .toggle-item-text-truncated
 {
 	display:inherit
 }
@@ -565,7 +572,6 @@ a.btn,
 .js-account-safeguard-text,
 .js-display-sensitive-media span,
 .horizontal-flow-container,
-.account-link>.nbfc,
 .column-options .button-tray,
 .tweet-detail-actions,
 .accs-header,
@@ -600,7 +606,8 @@ a.btn,
 .mdl-col-settings,
 .app-header a,
 .app-header button,
-article.is-actionable
+article.is-actionable,
+conversation-title
 {
 	pointer-events:all
 }
@@ -613,7 +620,9 @@ article.is-actionable
 	pointer-events:all!important
 }
 
-.column-drag-drop-overlay {
+.column-drag-drop-overlay,
+.edit-conversation-name:not(.is-visible) .btn
+{
 	pointer-events:none
 }
 

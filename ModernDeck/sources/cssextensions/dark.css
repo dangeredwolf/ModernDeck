@@ -6,11 +6,12 @@
 */
 
 a,
-a:not(.column-header-link):not(.js-column-back):not(.js-tweet-social-proof-back):hover,
+a:not([href="#"]):not(.column-header-link):not(.js-column-back):not(.js-tweet-social-proof-back):hover,
 .calweek a:hover,
 .btn:not([disabled]):not(.is-disabled):not(.btn-options-tray):not(.mtd-nav-button):not(.btn-bg-negative):not(.btn-negative),
 .compose-send-button-success,
 .icon-follow-color,
+.tweet-actions.is-visible .icon-reply,
 #caltoday
 {
 	color:#009EAD;
@@ -114,7 +115,6 @@ div.drawer[data-drawer="compose"],
 .column-options,
 .facet-type,
 .is-options-open .column-settings-link,
-.inline-reply,
 .is-favorite.is-retweet .tweet-dogear,
 .is-unread,
 .js-add-column,
@@ -132,6 +132,18 @@ div.drawer[data-drawer="compose"],
 .typeahead .username,
 .l-column.mdl-column.mdl-column-sml .list-link
 {
+	color:#6D808B
+}
+
+input::-webkit-input-placeholder,textarea::-webkit-input-placeholder {
+	color:#6D808B
+}
+
+input::-moz-placeholder,textarea::-moz-placeholder {
+	color:#6D808B
+}
+
+input::placeholder,textarea::placeholder,textarea::placeholder {
 	color:#6D808B
 }
 
@@ -173,12 +185,13 @@ body,
 optgroup,
 .edit-conversation-name,
 .popover,
-.compose-text-container,
 .drawer-header,
 .compose-reply-tweet,
 .compose-message-recipient-list,
 .compose-message-recipient-input-container,
-.compose-media-grid-holder
+.compose-media-grid-holder,
+.drawer .compose-text-container,
+.status-message
 {
 	background:#263238
 }
@@ -353,16 +366,6 @@ option,
 	border-bottom:none
 }
 
-.compose-text::-webkit-input-placeholder
-{
-	color:#6D7B83
-}
-
-.app-search .compose-text::-moz-placeholder
-{
-	color:#6D7B83
-}
-
 textarea
 {
 	border-color:#667A86
@@ -476,11 +479,6 @@ textarea
 .add-participant .js-username-input.js-submittable-input
 {
 	border-bottom:2px solid #667A86
-}
-
-.add-participant input::-webkit-input-placeholder
-{
-	color:#667A86
 }
 
 .add-participant input::-moz-placeholder

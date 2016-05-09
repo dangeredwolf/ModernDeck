@@ -11,6 +11,7 @@ a:not(.column-header-link):not(.js-column-back):hover,
 .btn:not([disabled]):not(.is-disabled):not(.btn-options-tray):not(.mtd-nav-button):not(.btn-bg-negative),
 .compose-send-button-success,
 .icon-follow-color,
+.tweet-actions.is-visible .icon-reply,
 #caltoday
 {
 	color:#00BCD4
@@ -223,7 +224,9 @@ option,
 	color:#26C6DA!important
 }
 
-.js-account-manager-container
+.js-account-manager-container,
+.status-message,
+.tooltip-inner
 {
   background:#f8f8f8
 }
@@ -820,7 +823,7 @@ textarea::placeholder
 .stream-item.is-actionable .tweet-action,
 .stream-item.is-actionable .tweet-detail-action
 {
- color:#D9D9D9
+ color:#bbb
 }
 
 .spinner-default
@@ -864,4 +867,10 @@ textarea
 .column-content
 {
 	border-right:3px solid rgb(233,233,233);
+}
+
+.tweet-action,
+.tweet-detail-action
+{
+	color:#787878
 }
