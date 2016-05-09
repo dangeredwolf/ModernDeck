@@ -459,7 +459,7 @@ i {
 }
 
 .icon-favorite:before {
-	content:"\e838"
+	content:"\e87d"
 }
 
 .icon-drafts:before {
@@ -1964,7 +1964,7 @@ a .column-title-back .icon:after {
 }
 
 .is-favorite .icon-favorite-toggle,.btn:not(.btn-fav-fav-text)>.icon-favorite-color,.obj-left>.icon-favorite-color {
-	color:#FF9101
+	color:#BE1931
 }
 
 .tweet-footer {
@@ -5692,7 +5692,7 @@ fieldset .fixed-width-label:not(.radio),fieldset:not(.js-search-filter) .control
 }
 
 .anim-bounce-in.tweet-action[rel="favorite"] i,.anim-bounce-in.tweet-detail-action[rel="favorite"] i {
-	transform:rotate(73deg)
+	//TODO: animate heart pop;
 }
 
 .js-account-action:active {

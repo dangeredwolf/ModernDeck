@@ -154,7 +154,7 @@ legend,
 .btn-loader,
 .action-text:not(.unfollow-text),
 .btn-relation-group:not(.s-following) .unfollow-text,
-.l-table.column-drag-drop-overlay-inner
+.column-drag-drop-overlay
 {
 	display:none
 }
