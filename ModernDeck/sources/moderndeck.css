@@ -4126,8 +4126,9 @@ input[type="checkbox"] {
 .prf-header {
 	position:relative;
 	border-radius:0;
-	min-height:260px;
-	background-size:100%;
+	min-height:322px;
+	background-size:100%!important;
+	background-repeat:no-repeat!important;
 	text-align:center;
 	text-shadow:0 2px 7px #000;
 	overflow:hidden
