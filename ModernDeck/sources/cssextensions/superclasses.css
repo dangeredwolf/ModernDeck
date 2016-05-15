@@ -184,7 +184,8 @@ button[data-user-id="892388300"],
 .compose-title-text,
 .search-input-perform-search,
 .search-input-clear-search,
-.search-input-spinner
+.search-input-spinner,
+.s-pending .btn-loader
 {
 	display:none!important
 }
@@ -231,6 +232,7 @@ button[data-user-id="892388300"],
 .s-favorited .btn-fav-faved-text,
 .s-protected .btn-fav-protected-text,
 .btn-fav.s-favorited:hover .btn-fav-unfav-text,
+.follow-btn:disabled>.btn-loader,
 .cf,
 .tweet-action,
 .tweet-detail-action,

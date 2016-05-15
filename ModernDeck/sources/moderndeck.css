@@ -3277,8 +3277,8 @@ a .column-title-back .icon:after {
 	display:block;
 	position:absolute;
 	width:90px;
-	margin-left:-25px;
-	right:0
+	right:15px;
+	bottom:5px
 }
 
 .inline-reply {
@@ -6507,7 +6507,10 @@ button.mtd-no-transform-case {
 }
 
 .compose-remember-state {
-	margin-bottom:5px
+	margin-bottom:5px;
+	width:50%;
+	min-height:12px;
+	max-height:10px
 }
 
 #mtd-theme-control>option[value="paper"] {
