@@ -10,9 +10,7 @@
   "permissions": [
     "webRequest",
     "webRequestBlocking",
-    "https://tweetdeck.twitter.com/",
-    "https://tweetdeckenhancer.com/",
-    "https://dangeredwolf.com/",
+    "https://*.twitter.com/",
     "https://ton.twimg.com/",
     "contextMenus",
     "tabs",
