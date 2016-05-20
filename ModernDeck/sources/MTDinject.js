@@ -29,10 +29,10 @@ var FindProfButton,
 loginInterval,
 openModal;
 
-const make = function(a){return $(document.createElement(a))};
-const head = $(document.head);
-const body = $(document.body);
-const html = $(document.querySelector("html")); // Only 1 result; faster to find
+var make = function(a){return $(document.createElement(a))};
+var head = $(document.head);
+var body = $(document.body);
+var html = $(document.querySelector("html")); // Only 1 result; faster to find
 
 // Asks MTDLoad for the storage
 window.postMessage({
