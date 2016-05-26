@@ -19,6 +19,9 @@
 	color:#13B33F
 }
 
+.ovl-plain,
+.ovl,
+.overlay,
 .link-complex[rel="viewDetails"],
 .cmp-info,
 .mdl-links a,
@@ -160,7 +163,8 @@ legend,
 .action-text:not(.unfollow-text),
 .btn-relation-group:not(.s-following) .unfollow-text,
 .l-table.column-drag-drop-overlay-inner,
-.js-account-manager-container .drawer-header
+.js-account-manager-container .drawer-header,
+.btn-options-tray>.label
 {
 	display:none
 }
@@ -198,6 +202,8 @@ button[data-user-id="892388300"],
 .sch.s-searching .sch-spinner,
 .search-input-control.has-value .search-input-clear-search,
 .search-input-control.is-waiting-for-response .search-input-spinner,
+.overlay.mtd-modal-window-fade-out,
+.dropdown-menu.mtd-dropdown-fade-out
 .s-working .working,
 .s-nonmember .nonmember,
 .s-member .member,
@@ -208,10 +214,12 @@ button[data-user-id="892388300"],
 .app-search-in-popover,
 .rpl.s-replying .rpl-actions,
 .img-strip-media img,
+.account-remove-check-open .account-remove-check,
 .contributor-row[data-state="closed"] [data-show-when-state="closed"],
 .contributor-row[data-state="settings"] [data-show-when-state="settings"],
 .contributor-row[data-state="settings"] [data-show-when-state="settings confirmRemove"],
 .contributor-row[data-state="confirmRemove"] [data-show-when-state="settings confirmRemove"],
+.contributor-row[data-state="confirmRemove"] .contributor-confirm-remove,
 .contributor-row[data-state-error="confirmRemove-removing-error"] [data-show-when-state-error="confirmRemove-removing-error"],
 .contributor-row[data-state="confirmRemove-removing"] [data-show-when-state="confirmRemove-removing"],
 .contributor-row[data-state-error="confirmRemove-error"] [data-show-when-state-error="confirmRemove-error"],
@@ -236,6 +244,7 @@ button[data-user-id="892388300"],
 .cf,
 .tweet-action,
 .tweet-detail-action,
+.compose-account-img,
 article,
 aside,
 details,
@@ -253,7 +262,12 @@ ul
 	display:block
 }
 
-.block
+.block,
+.popover.is-hidden,
+.js-modal[style="display:none;"],
+.typeahead[style="display:none;"],
+.js-hide-drawer.is-hidden,
+.media-sensitive.is-hidden
 {
 	display:block!important
 }
@@ -281,6 +295,9 @@ ul
 .button-tray:after,
 .tweet-detail-action,
 .is-options-open .column-settings-link .icon-arrow-u,
+.s-sending .cmp-spinner,
+.input-prepend,
+.button-group,
 audio,
 canvas
 {
@@ -321,7 +338,9 @@ video,
 .media-preview,
 .mdl:not(.s-short) .mdl-content,
 .app-search-tweet-results,
-.scroll-none
+.scroll-none,
+.contributor-row,
+.antiscroll-wrap
 {
 	overflow:hidden
 }
@@ -528,12 +547,23 @@ a.btn,
 
 .app-search .app-search-form,
 #prev-month,
-#next-month
+#next-month,
+.pin-all,
+.media-grid-2,
+.media-grid-3,
+.media-grid-4,
+.app-columns-container,
+.app-content,
+.antiscroll-inner
 {
 	position:absolute
 }
 
-.app-search .app-search-fake
+.app-search .app-search-fake,
+.ovl-plain,
+.ovl,
+.overlay,
+.ovl-trap
 {
 	position:fixed
 }
@@ -609,7 +639,7 @@ a.btn,
 .app-header a,
 .app-header button,
 article.is-actionable,
-conversation-title
+.conversation-title
 {
 	pointer-events:all
 }
@@ -623,7 +653,18 @@ conversation-title
 }
 
 .column-drag-drop-overlay,
-.edit-conversation-name:not(.is-visible) .btn
+.edit-conversation-name:not(.is-visible) .btn,
+.popover.is-hidden,
+.js-modal[style="display: none;"],
+.typeahead[style="display: none;"],
+.is-hidden *,
+.js-hide-drawer.is-hidden,
+.media-sensitive.is-hidden,
+.mtd-nav-drawer.mtd-nav-drawer-hidden,
+.mtd-nav-drawer-background.mtd-nav-drawer-background-hidden,
+.pin-bottom.margin-a--15,
+.compose-message-recipient-container.is-hidden,
+.l-cell
 {
 	pointer-events:none
 }
@@ -646,4 +687,145 @@ a.btn,
 .facet-type .control-group input
 {
 	border-bottom:2px solid #fff
+}
+
+.is-options-open .column-settings-link,
+.rpl textarea,
+.rpl input,
+.js-submittable-input.js-compose-text,
+.mdl-inner .column-content,
+.cmp textarea,
+.embed-modal .mdl-content,
+.embed-iframe,
+.list-account,
+.prf .lst-profile a
+{
+	border:0
+}
+
+.popover.is-hidden,
+.s-following .follow-btn:hover .following-text,
+.s-following .follow-btn:not(:hover) .unfollow-text,
+.accordion .is-active .facet-subtitle,
+.js-modal[style="display:none;"],
+.typeahead[style="display:none;"],
+.contributor-row[data-state="initial"],
+.spinner-button-is-active,.text-hidden.btn-positive,
+.js-hide-drawer.is-hidden,
+.media-sensitive.is-hidden,
+.compose-message-recipient-container.is-hidden
+{
+	opacity:0
+}
+
+.cf:after,
+.tweet:after,
+.message-banner
+{
+	clear:both
+}
+
+.js-add-column:active,
+.column-navigator:hover .column-nav-item:not(.is-new)
+{
+	transform:none
+}
+
+.antiscroll-inner,
+.pin-all,
+.column-holder,
+.column-panel,
+.column-scroller,
+.media-grid-2,
+.media-grid-3,
+.media-grid-4,
+.app-columns-container,
+.app-content,
+.ovl-plain,
+.ovl,
+.overlay,
+.dropdown-menu a,
+.ovl-trap,
+.column-nav-flyout .column-nav-item,
+.js-mediatable,
+.report-flow,
+.application
+{
+	top:0;
+	bottom:0;
+	left:0;
+	right:0;
+}
+
+.prf-bio,
+.account-link>.nbfc,
+.column-temp,
+.column-scroller,
+.tweet,
+.compose-reply-tweet,
+.nbfc-alt
+{
+	word-break:break-word;
+	word-wrap:break-word
+}
+
+.ovl-block,
+.ovl-plain:before,
+.ovl:before,
+.overlay:before,
+.mdl,
+.mdl-placeholder,
+.lst-launcher a,
+.char-count,
+.s-sending .cmp-spinner,
+.list-option-type h4,
+.js-add-column:before,
+.input-prepend,
+.prf-img,
+.prf .lst-profile span,
+.prf .lst-profile i,
+.prf .lst-profile a,
+.lst .avatar,
+.media-img,
+.l-cell,
+.icon-middle,
+button,
+button .label,
+button i
+a.btn,
+a.js-create-list,
+.button-group,
+.avatar.frm-justify-row,
+.message-text,
+.character-count,
+.character-count-compose,
+.med-fullpanel iframe,
+.med-tray,
+.prf-stats>li
+{
+	vertical-align:middle;
+}
+
+.align-middle
+{
+	vertical-align:middle!important
+}
+
+
+.icon-tt,
+.activity-indicator
+{
+	vertical-align:text-top
+}
+
+.icon-tb
+{
+	vertical-align:text-bottom
+}
+
+.icon-bot,
+.lst-profile li,
+.txt-ellipsis
+{
+	vertical-align:bottom
 }

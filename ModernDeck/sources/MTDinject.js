@@ -5,7 +5,7 @@
 
 "use strict";
 
-var SystemVersion = "6.0 Beta Build 2016.05.16.1";
+var SystemVersion = "6.0 Beta Build 2016.05.25.1";
 var MTDBaseURL = "https://raw.githubusercontent.com/dangeredwolf/ModernDeck/master/ModernDeck/"; // Defaults to streaming if nothing else is available (i.e. legacy firefox)
 
 var msgID,
@@ -61,6 +61,28 @@ if (typeof MTDURLExchange === "object" && typeof MTDURLExchange.getAttribute ===
 
 if (typeof chrome === "undefined" && typeof safari === "undefined") {
 	TreatGeckoWithCare = true;
+}
+
+function mutationObserver(obj,func,parms) {
+	if (typeof MutationObserver !== "undefined") {
+		(new MutationObserver(func)).observe(obj,parms);
+	} else {
+		if (parms.attributes) {
+			html.on("DOMAttrModified",func);
+			html.on("DOMAttributeNameChanged",func);
+			html.on("DOMElementNameChanged",func);
+		}
+		if (parms.characterData) {
+			html.on("DOMCharacterDataModified",func);
+		}
+		if (parms.subtree) {
+			html.on("DOMSubtreeModified",func);
+		}
+		if (parms.childList) {
+			html.on("DOMNodeInserted",func);
+			html.on("DOMNodeRemoved",func);
+		}
+	}
 }
 
 function exists(thing) {
@@ -167,7 +189,7 @@ function fontParseHelper(a) {
 		throw "you forgot to pass the object";
 	}
 
-	return "@font-face{font-family:'"+(a.family||"Roboto")+"';font-style:"+(a.style||"normal")+";font-weight:"+(a.weight || "300")+";src:url("+MTDBaseURL+"sources/fonts/"+a.name+".woff2) format('woff2');unicode-range:"+(a.range||
+	return "@font-face{font-family:'"+(a.family||"Roboto")+"';font-style:"+(a.style||"normal")+";font-weight:"+(a.weight || "300")+";src:url("+MTDBaseURL+"sources/fonts/"+a.name+".woff) format('woff');unicode-range:"+(a.range||
 		"U+0100-024F,U+1E00-1EFF,U+20A0-20CF,U+2C60-2C7F,U+A720-A7FF")+"}";
 }
 
@@ -862,7 +884,7 @@ function onElementAddedToDOM(e) {
 				},300);
 			}
 		} else {
-			var observer = new MutationObserver(function(mutations) {
+			var observer = mutationObserver(e.target,function(mutations) {
 				console.log("its gone now!");
 				if (tar.hasClass("is-hidden")) {
 					tar.addClass("mtd-modal-window-fade-out");
@@ -871,8 +893,7 @@ function onElementAddedToDOM(e) {
 						observer.disconnect();
 					},300);
 				}
-			});
-			observer.observe(e.target, { attributes: true, childList: false, characterData: false });
+			},{ attributes: true, childList: false, characterData: false });
 		}
 	}
 }
@@ -884,22 +905,37 @@ html.addClass("mtd-preferences-differentiator mtd-api-ver-6-0 mtd-js-loaded");
 
 window.addEventListener("keyup",KeyboardShortcutHandler,false);
 
-(new MutationObserver(checkIfUserSelectedNewTheme)).observe(document.querySelector("meta[http-equiv='default-style']"),{attributes:true});
-(new MutationObserver(checkIfBTDIsInstalled)).observe(body[0],{attributes:true});
-(new MutationObserver(onElementAddedToDOM)).observe(html[0],{attributes:false,subtree:true,childList:true});
+mutationObserver(document.querySelector("meta[http-equiv='default-style']"),checkIfUserSelectedNewTheme,{attributes:true});
+//(new MutationObserver(checkIfUserSelectedNewTheme)).observe(document.querySelector("meta[http-equiv='default-style']"),{attributes:true});
+mutationObserver(body[0],checkIfBTDIsInstalled,{attributes:true});
+//(new MutationObserver(checkIfBTDIsInstalled)).observe(body[0],{attributes:true});
+//(new MutationObserver(onElementAddedToDOM)).observe(html[0],{attributes:false,subtree:true,childList:true});
+mutationObserver(html[0],onElementAddedToDOM,{attributes:false,subtree:true,childList:true})
 
-var insertedNodes = [];
-new MutationObserver(function(mutations) {
-	console.log("new thing!");
-    mutations.forEach(function(mutation) {
-			console.log("new thing!!");
-      for (var i = 0; i < mutation.addedNodes.length; i++)
-				if ($(mutation.addedNodes[i]).hasClass("btn") || $(mutation.addedNodes[i]).hasClass("list-link"))
-          console.log("new button!");
-    })
-}).observe(body[0], {
-    childList: true
-});
+// mutationObserver(body[0],
+// 	function(mutations) {
+// 		console.log("new thing!");
+// 	    mutations.forEach(function(mutation) {
+// 				console.log("new thing!!");
+// 	      for (var i = 0; i < mutation.addedNodes.length; i++)
+// 					if ($(mutation.addedNodes[i]).hasClass("btn") || $(mutation.addedNodes[i]).hasClass("list-link"))
+// 	          console.log("new button!");
+// 	    })
+// 	},
+// {childList:true});
+
+// var insertedNodes = [];
+// new MutationObserver(function(mutations) {
+// 	console.log("new thing!");
+// 		mutations.forEach(function(mutation) {
+// 			console.log("new thing!!");
+// 			for (var i = 0; i < mutation.addedNodes.length; i++)
+// 				if ($(mutation.addedNodes[i]).hasClass("btn") || $(mutation.addedNodes[i]).hasClass("list-link"))
+// 					console.log("new button!");
+// 		})
+// }).observe(body[0], {
+//     childList: true
+// });
 
 checkIfUserSelectedNewTheme();
 checkIfSigninFormIsPresent();

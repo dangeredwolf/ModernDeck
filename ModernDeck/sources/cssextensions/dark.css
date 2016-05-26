@@ -328,6 +328,7 @@ option,
 
 .invalid-char-count,
 .unfollow-text,
+#add-filter:not([disabled]),
 .btn-negative:not([disabled]):not(.is-disabled)
 {
 	color:#EA6B6B

@@ -12,7 +12,10 @@ a:not(.column-header-link):not(.js-column-back):hover,
 .compose-send-button-success,
 .icon-follow-color,
 .tweet-actions.is-visible .icon-reply,
-#caltoday
+#caltoday,
+.lst-profile a,
+.lst-profile a:hover,
+.lst-profile a:active
 {
 	color:#00BCD4
 }

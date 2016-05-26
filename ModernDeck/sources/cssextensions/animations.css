@@ -189,6 +189,18 @@
 	}
 }
 
+@keyframes columnStreamItemSlide {
+	from {
+		opacity:0;
+		margin-left:160px
+	}
+
+	to {
+		opacity:1;
+		margin-left:0
+	}
+}
+
 @keyframes tweetIncoming {
 	0% {
 		opacity:0;
@@ -315,4 +327,145 @@
 	to {
 		bottom:0
 	}
+}
+
+@keyframes dontTouchMe {
+	0% {
+		transform:scale(1) rotate(0deg)
+	}
+
+	50% {
+		transform:scale(1.05) rotateX(120deg);
+		-webkit-filter:grayscale(100%);
+		-moz-filter:grayscale(100%)
+	}
+
+	100% {
+		transform:scale(1)
+	}
+}
+
+.account-remove-check-open .account-remove-check,.contributor-row[data-state="confirmRemove"] .contributor-confirm-remove {
+	animation:windowDown .2s cubic-bezier(.19,1,.22,1)!important
+}
+
+.column {
+	animation:windowSlider 1s cubic-bezier(.19,1,.22,1)!important
+}
+
+.js-dropdown,.js-popover {
+	animation:fadeIn .3s cubic-bezier(.19,1,.22,1)
+}
+
+.mdl.med-fullpanel,.typeahead-dropdown.is-hidden,.is-shifted-1 .column-panel:nth-child(n+2),.is-shifted-2 .column-detail-level-2,.is-shifted-2 .column-panel:nth-child(n+3),.popover.is-hidden,.js-message-detail>.stream-item,.tweet-detail-wrapper .stream-item,.js-modal[style="display:none;"],.typeahead[style="display:none;"] {
+	animation:none
+}
+
+.draggable-dragging .chirp-container {
+	animation:none!important
+}
+
+.overlay.mtd-modal-window-fade-out,.dropdown-menu.mtd-dropdown-fade-out,.accs-header {
+	animation:fadeOut .2s cubic-bezier(.19,1,.22,1)
+}
+
+.stream-item,.js-tweet-translation,.replies-after .stream-item.is-actionable {
+	animation:tweetIncomingTimeline .4s cubic-bezier(.19,1,.22,1)
+}
+
+.tweet-detail-wrapper,.ovl,.overlay {
+	animation:fadeIn .25s cubic-bezier(.19,1,.22,1)
+}
+
+.app-nav-link,.app-search-fake i {
+	animation:fadeIn .4s forwards cubic-bezier(.19,1,.22,1)
+}
+
+.tweet-button {
+	animation:popIn .5s forwards cubic-bezier(.19,1,.22,1)
+}
+
+.typeahead,.js-column-options .dropdown-menu {
+	animation:menuDown .4s cubic-bezier(.19,1,.22,1)
+}
+
+.tooltip-inner,.js-contributor-manager-container,.js-account-manager-container {
+	animation:windowDown .3s cubic-bezier(.19,1,.22,1)
+}
+
+.mdl {
+	animation:windowSlider .3s cubic-bezier(.19,1,.22,1)
+}
+
+.s-profile .s-profile {
+	animation:profileSlide .7s cubic-bezier(.19,1,.22,1)
+}
+
+.med-tweet {
+	animation:mediaSlideUp .4s cubic-bezier(.19,1,.22,1)
+}
+
+.med-tray {
+	animation:windowDown .4s cubic-bezier(.19,1,.22,1)
+}
+
+.calweek,#caltitle {
+	animation:menuDownLarge .3s cubic-bezier(.19,1,.22,1)
+}
+
+.dropdown-menu {
+	animation:menuDown .3s cubic-bezier(.19,1,.22,1)
+}
+
+.pos-t {
+	animation:menuUp .3s cubic-bezier(.19,1,.22,1)
+}
+
+.popover {
+	animation:leftPopoverDown .25s cubic-bezier(.19,1,.22,1)
+}
+
+.popover-position-rt {
+  animation:rightPopoverDown .25s cubic-bezier(.19,1,.22,1)
+}
+
+.column-navigator {
+	animation:fadeIn .4s forwards 4s cubic-bezier(.19,1,.22,1)
+}
+
+.js-schedule-datepicker-holder>.popover {
+	animation:calendarMenuDown .3s cubic-bezier(.19,1,.22,1)
+}
+
+.js-media-added {
+	animation:mediaDown .825s cubic-bezier(.19,1,.22,1)
+}
+
+.js-modal[style="display:none;"] {
+	animation:fadeOut .2s forwards cubic-bezier(.19,1,.22,1)
+}
+
+.js-compose-message-recipient-container .typeahead-user-list {
+	animation:menuDown .225s cubic-bezier(.19,1,.22,1)
+}
+
+.mdl-col-settings form.frm fieldset {
+	animation:settingsColumnSlide .35s cubic-bezier(.19,1,.22,1)
+}
+
+.more-tweets-btn-container--visible .more-tweets-btn,.more-tweets-btn-container--loading .more-tweets-btn {
+	animation:moreTweetsButtonDown .7s cubic-bezier(.55,0,.1,1)
+}
+
+.typeahead-dropdown {
+	animation:menuUpRelative .325s cubic-bezier(.19,1,.22,1),
+	fadeIn .325s cubic-bezier(.19,1,.22,1)
+}
+
+.js-column-social-proof .stream-item {
+	animation:columnStreamItemSlide .5s cubic-bezier(.19,1,.22,1)
+}
+
+.mtd-dont-touch-me {
+	animation:dontTouchMe 5s cubic-bezier(0.5,0.7,0.5,1) infinite both
 }

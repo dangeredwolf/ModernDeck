@@ -1,0 +1,347 @@
+/*
+  animations_legacy.css
+
+  Copyright 2014-2016 Ryan Dolan (@dangeredwolf)
+  Released under the MIT Licence
+*/
+
+.antiscroll-scrollbar
+{
+	transition:.3s opacity
+}
+
+.s-with-reply,
+.column-scroller
+{
+	transition:top .15s cubic-bezier(.19,1,.22,1)
+}
+
+.is-actionable,
+.is-actionable:active,
+button,
+a.btn,
+a.js-create-list,
+.column-header,
+.column-header-temp,
+.column-type-icon,
+.column-header-link,
+.avatar,
+.avatar:hover,
+.prf-stats>li,
+.prf .lst-profile span,
+.prf .lst-profile i,
+.lst li,
+.lst-modal,
+.lst-group,
+.dropdown-menu,
+.dropdown-menu li:not(.drp-h-divider),
+.card-player,
+.card-image,
+.media-image,
+.js-compose-message-recipient-container .typeahead-user-list,
+.compose-message-recipient-container,
+.lst-group li,
+.column-message,
+.app-nav-tab,
+.attach-compose-buttons .icon-compose-dm,
+.accordion-header,
+.character-count-compose,
+.character-count,
+.drawer,
+.lst-profile a,
+.compose-account,
+.compose-account-img,
+.js-inline-compose-pop,
+.js-inline-compose-close,
+.js-inline-compose-add-image,
+.more-tweets-btn,
+.inline-reply
+{
+	transition:.25s all cubic-bezier(.19,1,.22,1)
+}
+
+.btn-positive,
+.btn-positive-alt,
+.btn-fav.s-favorited,
+.s-following .follow-btn
+{
+	transition:.25s all cubic-bezier(.19,1,.22,1),
+  .4s background cubic-bezier(.19,1,.22,1),
+  .4s width cubic-bezier(.19,1,.22,1)!important
+}
+.column
+{
+	transition:.25s box-shadow cubic-bezier(.19,1,.22,1),
+  .25s transform cubic-bezier(.19,1,.22,1)
+}
+
+.column-holder
+{
+	transition:transform .25s cubic-bezier(.19,1,.22,1)
+}
+
+.column-panel
+{
+	transition:opacity cubic-bezier(.19,1,.22,1) .5s,
+  left cubic-bezier(.19,1,.22,1) .5s;
+}
+
+.is-unread .link-complex-target,
+.account-summary>a.obj-left.item-img,
+a[rel=user]:active,
+.card-holder a[rel=mediaPreview]:active,
+.tweet-action .icon,.tweet-detail-action i,
+.accs li,
+.accs .acc-selected,
+.compose-send-button-success,
+.compose-reply-tweet
+{
+	transition:.15s all
+}
+
+.column-holder .column-panel:nth-child(2),
+.is-shifted-1 .column-panel:nth-child(n+2),
+.is-shifted-2 .column-detail-level-2,
+.is-shifted-2 .column-panel:nth-child(n+3)
+{
+	transition:left cubic-bezier(.19,1,.22,1) .3s
+}
+
+a:active .column-title-back .icon:after
+{
+	transition:.07s all,
+  .08s margin
+}
+
+a .column-title-back .icon:after
+{
+	transition:.5s all,
+  .15s opacity
+}
+
+.is-options-open .column-settings-link
+{
+	transition:.3s background
+}
+
+.chirp-container
+{
+	transition:padding-top .3s ease-in-out
+}
+
+.stream-item
+{
+	transition:.3s box-shadow,
+  .3s background
+}
+
+.prf-img,
+.prf-img:active,
+.prf-img:hover
+{
+	transition:.2s transform
+}
+
+.column-navigator:hover .column-nav-item,
+.column-nav-item.is-new
+{
+	transition:.2s all cubic-bezier(.19,1,.22,1),.4s transform
+}
+
+.toggle-switch .toggle-switch-label:before
+{
+	transition:all .2s ease-in-out
+}
+
+.embed-modal
+{
+	transition:height .4s
+}
+
+.js-add-column:active,
+.spinner-button-icon-spinner
+{
+	transition:.1s all
+}
+
+.social-proof-animating
+{
+	transition:height .2s
+}
+
+.popover
+{
+	transition:opacity .25s cubic-bezier(.19,1,.22,1),max-height .2s cubic-bezier(.19,1,.22,1)
+}
+
+.media-sensitive,
+.facet-subtitle
+{
+	transition:opacity .25s cubic-bezier(.19,1,.22,1)
+}
+
+
+.media-item,
+.tweet-button>i
+{
+	transition:.3s all
+}
+
+.column-navigator,
+.app-search-fake,
+.tweet-button>i:before,
+.attach-compose-buttons .tweet-button
+{
+	transition:.15s all cubic-bezier(.19,1,.22,1)
+}
+
+.column-nav-link,
+.numbered-badge
+{
+	transition:.3s all 2s
+}
+
+.column-nav-item
+{
+	transition:.4s all cubic-bezier(.19,1,.22,1) 1s
+}
+
+.js-modal[style="display:none;"]
+{
+	transition:margin-top 1s .2s!important
+}
+
+.mtd-drawer-button
+{
+	transition:.15s all
+}
+
+.mtd-drawer-button:after,
+.drawer-header .drawer-header-title .icon:after
+{
+	transition:.5s all,.15s opacity
+}
+
+.mtd-drawer-button:active:after,
+.drawer-header:active .drawer-header-title .icon:after
+{
+	transition:.07s all,.08s margin
+}
+
+.mtd-nav-drawer,
+.mtd-nav-drawer-background
+{
+	transition:.3s all cubic-bezier(.19,1,.22,1)
+}
+
+.mtd-nav-drawer-background-hidden
+{
+	transition:.4s all cubic-bezier(.19,1,.22,1)
+}
+
+.edit-conversation-name,
+.tweet-button>i:after,
+.tweet-button.is-hidden>i:before
+{
+  transition:all .25s cubic-bezier(.19,1,.22,1)
+}
+
+.tweet-action[rel="favorite"] i,.tweet-detail-action[rel="favorite"] i
+{
+	transition:.35s transform,.35s color
+}
+
+.more-tweets-btn-container--hidden .more-tweets-btn
+{
+	transition:none
+}
+
+.toggle-switch-label:after
+{
+	transition:all .35s cubic-bezier(.55,0,.1,1)
+}
+
+.tweet-dogear
+{
+	transition:right .1s cubic-bezier(.19,1,.22,1),background .1s cubic-bezier(.19,1,.22,1),height .15s cubic-bezier(.19,1,.22,1)
+}
+
+.accordion-panel,
+.js-column-options
+{
+	transition:height .2s cubic-bezier(.19,1,.22,1)
+}
+
+.contributor-row:not([data-state="confirmRemove"]) .contributor-confirm-remove,.contributor-settings-role,.contributor-detail,.contributor-remove
+{
+	transition:opacity .2s cubic-bezier(.19,1,.22,1),
+  margin-top .2s cubic-bezier(.19,1,.22,1)
+}
+
+.accordion .icon-arrow-d
+{
+	transition:.3s transform cubic-bezier(.19,1,.22,1)
+}
+
+.btn-fav-faved-text,.btn-fav-fav-text,.btn-fav-unfav-text
+{
+	transition:opacity .3s cubic-bezier(.19,1,.22,1) .1s,
+  left .25s cubic-bezier(.19,1,.22,1)
+}
+
+.btn-fav-faved-text
+{
+	transition:opacity .4s cubic-bezier(.19,1,.22,1) .13s,
+  left .25s cubic-bezier(.19,1,.22,1)
+}
+
+.s-following .follow-btn:not(:hover) .unfollow-text,.s-following .following-text,.s-following .unfollow-text
+{
+	transition:margin-left 0.3s cubic-bezier(.19,1,.22,1),
+  opacity 0.3s cubic-bezier(.19,1,.22,1)
+}
+
+.s-following .follow-btn:hover .following-text,.s-following .follow-btn:not(:hover) .unfollow-text
+{
+	transition:margin-left 0.3s cubic-bezier(.19,1,.22,1),
+  opacity 0.3s cubic-bezier(.19,1,.22,1) 0.15s
+}
+
+.status-message
+{
+  transition:right .5s
+}
+
+.is-accordion-panel-animating
+{
+	transition:.3s box-shadow cubic-bezier(.19,1,.22,1),.2s height cubic-bezier(.19,1,.22,1)
+}
+
+.contributor-row
+{
+	transition:background .2s cubic-bezier(.19,1,.22,1),height .2s cubic-bezier(.19,1,.22,1),opacity .2s cubic-bezier(.19,1,.22,1)
+}
+
+.rpl textarea {
+	transition:height .25s cubic-bezier(.19,1,.22,1)
+}
+
+.app-content {
+	transition:transform .2s cubic-bezier(.19,1,.22,1)
+}
+
+.facet-type {
+	transition:.5s background cubic-bezier(.19,1,.22,1),.7s box-shadow cubic-bezier(.19,1,.22,1),.2s transform cubic-bezier(.19,1,.22,1)
+}
+
+.ovl,.overlay {
+	transition:.2s opacity,0s margin-top!important
+}
+
+.compose-title {
+	transition:margin .25s
+}
+
+.compose-content {
+	transition:.5s all cubic-bezier(.19,1,.22,1)
+}
