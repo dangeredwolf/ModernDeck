@@ -3119,7 +3119,7 @@ a .column-title-back .icon:after {
 	min-width:200px;
 	width:auto;
 	padding-bottom:0;
-	opacity:0!important;
+	opacity:1!important;
 	pointer-events:all
 }
 
