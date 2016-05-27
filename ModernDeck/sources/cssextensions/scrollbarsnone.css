@@ -24,3 +24,7 @@
 	height:0;
 	pointer-events:all
 }
+
+.needs-scroll-bottom-offset.scroll-styled-h {
+	bottom:0
+}

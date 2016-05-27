@@ -5,7 +5,7 @@
 
 "use strict";
 
-var SystemVersion = "6.0 Beta Build 2016.05.26.2";
+var SystemVersion = "6.0 Beta Build 2016.05.27.1";
 var MTDBaseURL = "https://raw.githubusercontent.com/dangeredwolf/ModernDeck/master/ModernDeck/"; // Defaults to streaming if nothing else is available (i.e. legacy firefox)
 
 var msgID,
@@ -28,6 +28,11 @@ var progress = null;
 var FindProfButton,
 loginInterval,
 openModal;
+
+var isChrome = typeof chrome !== "undefined";
+var isOpera = typeof opera !== "undefined";
+var isSafari = typeof safari !== "undefined";
+var isFireFox = !isChrome && !isOpera && !isSafari;
 
 var make = function(a){return $(document.createElement(a))};
 var head = $(document.head);
@@ -129,10 +134,6 @@ function disableStylesheetExtension(name) {
 	$('head>link[href="' + MTDBaseURL + "sources/cssextensions/" + name + '.css"]').remove();
 }
 
-function disableExtraStylesheetExtensions() {
-	$("head>link.mtd-stylesheet-extension:not([href='" + MTDBaseURL + "sources/cssextensions/dark.css']):not([href='" + MTDBaseURL + "sources/cssextensions/light.css'])").remove();
-}
-
 function getProfileInfo() {
 	return TD.cache.twitterUsers.getByScreenName(TD.storage.accountController.getPreferredAccount("twitter").state.username).results[0];
 }
@@ -146,6 +147,8 @@ function getAllAccountStatus() {
 }
 
 function loadPreferences() {
+	disableStylesheetExtension("loginpage");
+
 	if (getPref("mtd_round_avatars") === false)
 		enableStylesheetExtension("squareavatars");
 	else
@@ -156,12 +159,15 @@ function loadPreferences() {
 	else if (getPref("mtd_hearts") !== false)
 		setPref("mtd_hearts",true);
 
+	if (getPref("mtd_sensitive_alt") === true)
+		enableStylesheetExtension("altsensitive");
+	else if (getPref("mtd_sensitive_alt") !== false)
+		setPref("mtd_sensitive_alt",false);
+
 	if (getPref("mtd_outlines") === true)
 		html.addClass("mtd-acc-focus-ring");
 	else
 		setPref("mtd_outlines",false);
-
-		disableExtraStylesheetExtensions();
 
 	if (getPref("mtd_theme") !== "" && getPref("mtd_theme") !== null && typeof getPref("mtd_theme") !== "undefined")
 		enableStylesheetExtension(getPref("mtd_theme"));
@@ -214,6 +220,11 @@ function MTDInit(){
 	}
 
 	enableStylesheetExtension("dark");
+
+	if (isChrome) {
+		if (parseInt((navigator.userAgent.match(/Chrome\/\d\d/g)+"").substring(7)) <= 42)
+			enableStylesheetExtension("animations_legacy");
+	}
 
 	$(document.head).append(make("style").html(
 		fontParseHelper({name:"Roboto300latin",range:"U+0000-00FF,U+0131,U+0152-0153,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2212,U+2215,U+E0FF,U+EFFD,U+F000"}) +
@@ -352,6 +363,20 @@ function PrefsListener() {
 			savePreferencesToDisk();
 		}
 
+		if (localStorage.mtd_sensitive_alt === "false" && $("#mtd-sensitive-alt")[0].checked) {
+			console.log("someone ticked me!!");
+			localStorage.mtd_sensitive_alt = true;
+			enableStylesheetExtension("altsensitive");
+			savePreferencesToDisk();
+		}
+
+		if (localStorage.mtd_sensitive_alt === "true" && !$("#mtd-sensitive-alt")[0].checked) {
+			console.log("someone unticked me!!");
+			localStorage.mtd_sensitive_alt = false;
+			disableStylesheetExtension("altsensitive");
+			savePreferencesToDisk();
+		}
+
 		if (localStorage.mtd_outlines === "false" && $("#mtd-outlines-control")[0].checked) {
 			console.log("someone ticked me!!");
 			localStorage.mtd_outlines = true;
@@ -408,11 +433,12 @@ function MTDSettings() {
 			\
 			<form action="#" id="mtd-appearance-form" accept-charset="utf-8" class="frm"><fieldset id="general_settings"><div class="control-group" style="padding-top:10px;">\
 			<label class="checkbox">Use rounded profile pictures<input type="checkbox" checked="checked" id="mtd-round-avatars-control"></label>\
+			<label class="checkbox">Use alternate sensitive media workflow<input type="checkbox" checked="checked" id="mtd-sensitive-alt"></label>\
 			<label class="checkbox">Use Hearts instead of Stars<input type="checkbox" checked="checked" id="mtd-hearts"></label>\
 			<label class="control-label">Theme\
 			<select id="mtd-theme-control" type="select">\
-			<optgroup label="Complete Themes">\
 			<option value="default" selected="selected">Default</option>\
+			<optgroup label="Complete Themes">\
 			<option value="paper">Paper</option>\
 			<option value="amoled">AMOLED</option>\
 			</optgroup><optgroup label="Complementary Themes">\
@@ -444,12 +470,12 @@ function MTDSettings() {
 			\
 			</div> </div> </div>');
 
-			$("#mtd-round-avatars-control").attr("checked",localStorage.mtd_round_avatars === "true" && true || false);
-			$("#mtd-outlines-control").attr("checked",localStorage.mtd_outlines === "true" && true || false);
-			$("#mtd-hearts").attr("checked",localStorage.mtd_hearts === "true" && true || false);
-			$("#mtd-theme-control").val(localStorage.mtd_theme || "default");
-			$("#mtd-scrollbar-style").val(localStorage.mtd_scrollbar_style || "default");
-
+			$("#mtd-round-avatars-control").attr("checked",getPref("mtd_round_avatars"));
+			$("#mtd-sensitive-alt").attr("checked",getPref("mtd_sensitive_alt"));
+			$("#mtd-outlines-control").attr("checked",getPref("mtd_outlines"));
+			$("#mtd-hearts").attr("checked",getPref("mtd_hearts"));
+			$("#mtd-theme-control").val(getPref("mtd_theme"));
+			$("#mtd-scrollbar-style").val(getPref("mtd_scrollbar_style"));
 
 			PrefsListener();
 
@@ -834,7 +860,15 @@ function addSpaceSuggestion(mtdtxt,clickd) {
 		.addClass("btn mtd-no-transform-case")
 		.html(mtdtxt)
 		.click(clickd)
-		.click(function(){this.remove()})
+		.click(function(){
+			this.remove();
+			$(".character-count-compose").val(140-$(".compose-text").val().length);
+			if ($(".compose-text").val().length>140) {
+				$(".character-count-compose").addClass("invalid-char-count")
+			} else {
+				$(".character-count-compose").removeClass("invalid-char-count")
+			}
+		})
 	);
 }
 
@@ -847,11 +881,199 @@ function checkSpaceSuggestions() {
 		});
 	}
 
-	if (tweetTxt.match(/(^\s+)|([^\w|.|\.|\!|\?]+?$)/gm) !== null) {
-		addSpaceSuggestion("Trim excess space around edges",function(){
-			$(".compose-text").val(tweetTxt.replace(/(^\s+)|([^\w|.|\.|\!|\?]+?$)/gm,""));
+	if (tweetTxt.match(/([.|\.|\?|\!|\s]$)|,(?!\D)/g) !== null) {
+		addSpaceSuggestion("Trim excess punctuation",function(){
+			$(".compose-text").val(tweetTxt.replace(/([.|\.|\?|\!|\s]$)|,(?!\D)/g,""));
 		});
 	}
+
+	if (tweetTxt.match(/(\s\s+)|([.|\.|\!|\?|\s]+?$)/gm) !== null) {
+		addSpaceSuggestion("Trim excess space around edges",function(){
+			$(".compose-text").val(tweetTxt.replace(/(\s\s+)|([.|\.|\!|\?|\s]+?$)/gm,""));
+		});
+	}
+
+	//if (tweetTxt.match(/(??)|(!?)|(?!)|(!!)|(\(c\))/gm) !== null) {
+		addSpaceSuggestion("Use ligatures to free up some space",function(){
+			$(".compose-text").val(tweetTxt
+			 .replace(/\?\?/gm,"⁇")
+			 .replace(/\!\?/gm,"⁉")
+			 .replace(/\?\!/gm,"⁈")
+			 .replace(/\!\!/gm,"‼")
+			 .replace(/\(c\)/gm,"Ⓒ")
+			 .replace(/\(C\)/gm,"Ⓒ")
+			 .replace(/\(r\)/gm,"Ⓡ")
+			 .replace(/\(R\)/gm,"Ⓡ")
+			 .replace(/\(p\)/gm,"Ⓟ")
+			 .replace(/\(P\)/gm,"Ⓟ")
+			 .replace(/\(tm\)/gm,"™")
+			 .replace(/\(TM\)/gm,"™")
+			 .replace(/\(sm\)/gm,"℠")
+			 .replace(/\(SM\)/gm,"℠")
+			 .replace(/0\/000/gm,"‱")
+			 .replace(/0\/00/gm,"‰")
+			 .replace(/0\/0/gm,"%")
+			 .replace(/ae/gm,"æ")
+			 .replace(/AE/gm,"Æ")
+			 .replace(/AU/gm,"Ꜷ")
+			 .replace(/AV/gm,"Ꜹ")
+			 .replace(/av/gm,"ꜹ")
+			 .replace(/au/gm,"ꜷ")
+			 .replace(/AO/gm,"Ꜵ")
+			 .replace(/ao/gm,"ꜵ")
+			 .replace(/===/gm,"⩶")
+			 .replace(/==/gm,"⩵")
+			 .replace(/iii/gm,"ⅲ")
+			 .replace(/ii/gm,"ⅱ")
+			 .replace(/10\./gm,"⒑")
+			 .replace(/11\./gm,"⒒")
+			 .replace(/12\./gm,"⒓")
+			 .replace(/13\./gm,"⒔")
+			 .replace(/14\./gm,"⒕")
+			 .replace(/15\./gm,"⒖")
+			 .replace(/16\./gm,"⒗")
+			 .replace(/17\./gm,"⒘")
+			 .replace(/18\./gm,"⒙")
+			 .replace(/19\./gm,"⒚")
+			 .replace(/1\./gm,"⒈")
+			 .replace(/1\,/gm,"🄂")
+			 .replace(/1\./gm,"⒈")
+			 .replace(/2\,/gm,"🄃")
+			 .replace(/2\./gm,"⒉")
+			 .replace(/3\,/gm,"🄄")
+			 .replace(/3\./gm,"⒊")
+			 .replace(/4\,/gm,"🄅")
+			 .replace(/4\./gm,"⒋")
+			 .replace(/5\,/gm,"🄆")
+			 .replace(/5\./gm,"⒌")
+			 .replace(/6\,/gm,"🄇")
+			 .replace(/6\./gm,"⒍")
+			 .replace(/7\,/gm,"🄈")
+			 .replace(/7\./gm,"⒎")
+			 .replace(/8\,/gm,"🄉")
+			 .replace(/8\./gm,"⒏")
+			 .replace(/9\,/gm,"🄊")
+			 .replace(/9\./gm,"⒐")
+			 .replace(/0\,/gm,"🄁")
+			 .replace(/0\./gm,"🄀")
+			 .replace(/\.\.\./gm,"…")
+			 .replace(/\\\\/gm,"⳹")
+			 .replace(/\/\/\//gm,"⫻")
+			 .replace(/\<\<\</gm,"⋘")
+			 .replace(/\<\</gm,"≪")
+			 .replace(/\>\>\>/gm,"⋙")
+			 .replace(/\>\>/gm,"≫")
+			 .replace(/\/\//gm,"⫽")
+			 .replace(/\.\./gm,"‥")
+			 .replace(/···/gm,"⋯")
+			 .replace(/·,/gm,"ꓻ")
+			 .replace(/\(1\)/gm,"⑴")
+			 .replace(/\(10\)/gm,"⑽")
+			 .replace(/\(11\)/gm,"⑾")
+			 .replace(/\(12\)/gm,"⑿")
+			 .replace(/\(13\)/gm,"⒀")
+			 .replace(/\(14\)/gm,"⒁")
+			 .replace(/\(15\)/gm,"⒂")
+			 .replace(/\(16\)/gm,"⒃")
+			 .replace(/\(17\)/gm,"⒄")
+			 .replace(/\(18\)/gm,"⒅")
+			 .replace(/\(19\)/gm,"⒆")
+			 .replace(/\(20\)/gm,"⒇")
+			 .replace(/\(2\)/gm,"⑵")
+			 .replace(/\(3\)/gm,"⑶")
+			 .replace(/\(4\)/gm,"⑷")
+			 .replace(/\(5\)/gm,"⑸")
+			 .replace(/\(6\)/gm,"⑹")
+			 .replace(/\(7\)/gm,"⑺")
+			 .replace(/\(8\)/gm,"⑻")
+			 .replace(/\(9\)/gm,"⑼")
+			 .replace(/\(a\)/gm,"⒜")
+			 .replace(/\(A\)/gm,"🄐")
+			 .replace(/\(b\)/gm,"⒝")
+			 .replace(/\(B\)/gm,"🄑")
+			 .replace(/\(c\)/gm,"⒞")
+			 .replace(/\(C\)/gm,"🄒")
+			 .replace(/\(d\)/gm,"⒟")
+			 .replace(/\(D\)/gm,"🄓")
+			 .replace(/\(e\)/gm,"⒠")
+			 .replace(/\(E\)/gm,"🄔")
+			 .replace(/\(f\)/gm,"⒡")
+			 .replace(/\(F\)/gm,"🄕")
+			 .replace(/\(g\)/gm,"⒢")
+			 .replace(/\(G\)/gm,"🄖")
+			 .replace(/\(h\)/gm,"⒣")
+			 .replace(/\(H\)/gm,"🄗")
+			 .replace(/\(i\)/gm,"⒤")
+			 .replace(/\(I\)/gm,"🄘")
+			 .replace(/\(l\)/gm,"🄘")
+			 .replace(/\(j\)/gm,"⒥")
+			 .replace(/\(J\)/gm,"🄙")
+			 .replace(/\(k\)/gm,"⒦")
+			 .replace(/\(K\)/gm,"🄚")
+			 .replace(/\(L\)/gm,"🄛")
+			 .replace(/\(m\)/gm,"⒨")
+			 .replace(/\(M\)/gm,"🄜")
+			 .replace(/\(n\)/gm,"⒩")
+			 .replace(/\(N\)/gm,"🄝")
+			 .replace(/\(o\)/gm,"⒪")
+			 .replace(/\(O\)/gm,"🄞")
+			 .replace(/\(p\)/gm,"⒫")
+			 .replace(/\(P\)/gm,"🄟")
+			 .replace(/\(q\)/gm,"⒬")
+			 .replace(/\(Q\)/gm,"🄠")
+			 .replace(/\(r\)/gm,"⒭")
+			 .replace(/\(R\)/gm,"🄡")
+			 .replace(/\(s\)/gm,"⒮")
+			 .replace(/\(S\)/gm,"🄢")
+			 .replace(/\(t\)/gm,"⒯")
+			 .replace(/\(T\)/gm,"🄣")
+			 .replace(/\(u\)/gm,"⒰")
+			 .replace(/\(U\)/gm,"🄤")
+			 .replace(/\(v\)/gm,"⒱")
+			 .replace(/\(V\)/gm,"🄥")
+			 .replace(/\(w\)/gm,"⒲")
+			 .replace(/\(W\)/gm,"🄦")
+			 .replace(/\(x\)/gm,"⒳")
+			 .replace(/\(X\)/gm,"🄧")
+			 .replace(/\(y\)/gm,"⒴")
+			 .replace(/\(Y\)/gm,"🄨")
+			 .replace(/\(z\)/gm,"⒵")
+			 .replace(/\(Z\)/gm,"🄩")
+			 .replace(/\(-\)/gm,"㈠")
+			 .replace(/\'\'\'\'/gm,"⁗")
+			 .replace(/\'\'\'/gm,"‴")
+			 .replace(/\(\(/,"⸨")
+			 .replace(/\(ー\)/gm,"㈠")
+			 .replace(/11./gm,"⒒")
+			 .replace(/oo/gm,"ꝏ")
+			 .replace(/\'\'/gm,"\"")
+			 .replace(/OO/gm,"Ꝏ")
+			 .replace(/ls/gm,"ʪ")
+			 .replace(/lt/gm,"₶")
+			 .replace(/lz/gm,"ʫ")
+			 .replace(/III/gm,"Ⅲ")
+			 .replace(/lj/gm,"ǉ")
+			 .replace(/Lj/gm,"ǈ")
+			 .replace(/LJ/gm,"Ĳ")
+			 .replace(/IV/gm,"Ⅳ")
+			 .replace(/IX/gm,"Ⅸ")
+			 .replace(/II/gm,"‖")
+			 .replace(/ij/gm,"ĳ")
+			 .replace(/IJ/gm,"Ĳ")
+			 .replace(/iv/gm,"ⅳ")
+			 .replace(/ix/gm,"ⅸ")
+			 .replace(/dz/gm,"ǳ")
+			 .replace(/Dz/gm,"ǲ")
+			 .replace(/DZ/gm,"Ǳ")
+			 .replace(/ffl/gm,"ﬄ")
+			 .replace(/ffi/gm,"ﬃ")
+			 .replace(/ff/gm,"ﬀ")
+			 .replace(/fi/gm,"ﬁ")
+			 .replace(/fl/gm,"ﬂ")
+			 .replace(/aa/gm,"ꜳ")
+			 .replace(/AA/gm,"Ꜳ"));
+		});
+	//}
 
 }
 
@@ -859,28 +1081,30 @@ function checkSpaceSuggestions() {
 
 function outtaSpaceSuggestions() {
 
-	if (typeof $(".js-media-added")[0] !== "undefined" && typeof $(".character-count-compose")[0] !== "undefined") {
-		if (parseInt($(".character-count-compose")[0].value) < 0) {
+	if ($(".js-media-added").length > 0 && $(".character-count-compose").length > 0) {
+		if (parseInt($(".character-count-compose").val()) < 0) {
 
-			if (typeof $(".mtd-out-of-space-suggestions")[0] === "undefined") {
+			if ($(".mtd-out-of-space-suggestions").length <= 0) {
 
-				NoCharsNotification = document.createElement("div");
-				NoCharsNotification.className = "compose-media-bar-holder padding-al mtd-out-of-space-suggestions";
-				NoCharsNotification.innerHTML = '<div class="compose-media-bar"><div class="mtd-no-chars-suggestions"><div class="txt weight-light txt-extra-large margin-b--10">Oops, you\'re over the character limit.</div>Here are suggestions to help:<br></div></div>';
+				$(".js-media-added").append(
+					make("div")
+					.addClass("compose-media-bar-holder padding-al mtd-out-of-space-suggestions")
+					.html('<div class="compose-media-bar"><div class="mtd-no-chars-suggestions"><div class="txt weight-light txt-extra-large margin-b--10">Oops, you\'re over the character limit.</div>Here are suggestions to help:<br></div></div>')
+				).removeClass("is-hidden");
 
-				$(".js-media-added")[0].appendChild(NoCharsNotification);
-				$(".js-media-added")[0].className = "js-media-added";
-
+				checkSpaceSuggestions();
+			} else {
+				$(".mtd-no-chars-suggestions>button").remove();
 				checkSpaceSuggestions();
 			}
 
-		} else if (typeof $(".mtd-out-of-space-suggestions")[0] !== "undefined" && parseInt($(".character-count-compose")[0].value) >= 0) {
-			$(".mtd-out-of-space-suggestions")[0].remove();
-			$(".js-media-added")[0].className = "js-media-added is-hidden";
+		} else if ($(".mtd-out-of-space-suggestions").length > 0 && parseInt($(".character-count-compose").val()) >= 0) {
+			$(".mtd-out-of-space-suggestions").remove();
+			$(".js-media-added").addClass("is-hidden");
 		}
 	}
 
-	setTimeout(outtaSpaceSuggestions,2000);
+	setTimeout(outtaSpaceSuggestions,1000);
 }
 
 // warning: for some shitty ass reason this doesnt work if the console.logs arent there DONT ASK WH I DONT KNOW
@@ -939,17 +1163,14 @@ function onElementAddedToDOM(e) {
 }
 
 setTimeout(MTDInit,0);
-//setTimeout(outtaSpaceSuggestions,7000);
+setTimeout(outtaSpaceSuggestions,7000);
 
 html.addClass("mtd-preferences-differentiator mtd-api-ver-6-0 mtd-js-loaded");
 
 window.addEventListener("keyup",KeyboardShortcutHandler,false);
 
 mutationObserver(document.querySelector("meta[http-equiv='default-style']"),checkIfUserSelectedNewTheme,{attributes:true});
-//(new MutationObserver(checkIfUserSelectedNewTheme)).observe(document.querySelector("meta[http-equiv='default-style']"),{attributes:true});
 mutationObserver(body[0],checkIfBTDIsInstalled,{attributes:true});
-//(new MutationObserver(checkIfBTDIsInstalled)).observe(body[0],{attributes:true});
-//(new MutationObserver(onElementAddedToDOM)).observe(html[0],{attributes:false,subtree:true,childList:true});
 mutationObserver(html[0],onElementAddedToDOM,{attributes:false,subtree:true,childList:true})
 
 // mutationObserver(body[0],

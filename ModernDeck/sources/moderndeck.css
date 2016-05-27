@@ -1531,6 +1531,7 @@ a .column-title-back .icon:after {
 	margin-left:-115px;
 	margin-top:-58px;
 	top:50%;
+	bottom:0;
 	width:230px;
 	height:116px
 }
@@ -1602,10 +1603,6 @@ a .column-title-back .icon:after {
 .is-wide-columns .media-size-small {
 	max-height:130px;
 	min-height:91px
-}
-
-.media-size-small,.media-size-medium,.quoted-tweet {
-	margin-bottom:50px!important
 }
 
 .media-item:first-child {
@@ -4596,17 +4593,18 @@ a[rel=user]:active,.card-holder a[rel=mediaPreview]:active {
 }
 
 .media-sensitive-content p {
-	margin-bottom:3px
+	margin-bottom:3px;
+	margin-top:10px
 }
 
 .media-sensitive-content b {
-	font-size:18px;
+	font-size:12px;
 	line-height:initial;
-	font-weight:300
+	font-weight:500
 }
 
 .tweet-detail-wrapper .media-sensitive-content b,.media-size-large .media-sensitive-content b {
-	font-size:24px
+	font-size:14px
 }
 
 :not(.tweet-detail-wrapper) .media-size-medium.media-sensitive {
@@ -5125,7 +5123,7 @@ fieldset .fixed-width-label:not(.radio),fieldset:not(.js-search-filter) .control
 }
 
 .tweet-detail-wrapper .media-sensitive {
-	opacity:.99
+	opacity:.99;
 }
 
 .js-app-add-column {
@@ -6018,7 +6016,7 @@ button.mtd-no-transform-case {
 	background:#00BCD4
 }
 
-#mtd-theme-control option[value="black"] {
+#mtd-theme-control option[value="black"],#mtd-theme-control option[value="amoled"] {
 	background:#000
 }
 
@@ -6203,6 +6201,10 @@ ul.tweet-stats:nth-child(2) {
 	margin-left:5px
 }
 
+.column .quoted-tweet .tweet-img {
+	display:none
+}
+
 .compose .quoted-tweet .account-link>.nbfc {
 	position:absolute
 }
@@ -6214,4 +6216,12 @@ ul.tweet-stats:nth-child(2) {
 
 .compose .quoted-tweet .sprite-close {
 	padding-top:0
+}
+
+.cmp-replyto .tweet-text {
+	padding-left:55px
+}
+
+.accs-header {
+	padding-left:15px
 }

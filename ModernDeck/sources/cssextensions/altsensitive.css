@@ -1,0 +1,45 @@
+/*
+  altsensitive.css
+
+  Copyright 2014-2016 Ryan Dolan (@dangeredwolf)
+  Released under the MIT Licence
+*/
+
+.media-sensitive-content p {
+    font-size:0
+}
+
+.media-sensitive-content p:before {
+    font-size:12px;
+    content:"Click here to open this photo anyways"
+}
+
+.mdl .chirp-container .media-sensitive-content p:before {
+    font-size:12px;
+    content:"Open details of this tweet to view this media."
+}
+
+.mdl .chirp-container .media-sensitive-content {
+    left:40%
+}
+
+.media-sensitive-content a {
+    display:none
+}
+
+.media-item.is-invisible,.media-item,.mdl .chirp-container .media-sensitive {
+    visibility:visible!important
+}
+
+.mdl .media-sensitive {
+    visibility:hidden!important
+}
+
+
+.media-sensitive {
+    pointer-events:none
+}
+
+.media-sensitive-content {
+    padding-top:40px!important
+}
