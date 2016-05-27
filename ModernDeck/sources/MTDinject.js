@@ -5,7 +5,7 @@
 
 "use strict";
 
-var SystemVersion = "6.0 Beta Build 2016.05.27.1";
+var SystemVersion = "6.0 Beta Build 2016.05.27.2";
 var MTDBaseURL = "https://raw.githubusercontent.com/dangeredwolf/ModernDeck/master/ModernDeck/"; // Defaults to streaming if nothing else is available (i.e. legacy firefox)
 
 var msgID,
@@ -532,6 +532,17 @@ function NavigationSetup() {
 	}
 
 	loadPreferences();
+
+	$(".column-scroller,.more-tweets-btn-container").each(function(a,b){ // Fixes a bug in TweetDeck's JS caused by ModernDeck having different animations in column preferences
+		var c = $(b);
+		mutationObserver(b,function(){
+			if (c.attr("style") !== "undefined") {
+				var num = parseInt(c.attr("style").match(/[\-\d]+/g));
+				if (num < 0)
+					c.attr("style","top: 0px;")
+			}
+		},{attributes:true});
+	})
 
 	$(".app-header-inner").append(
 		make("a")
