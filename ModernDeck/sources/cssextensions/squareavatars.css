@@ -1,0 +1,10 @@
+/*
+  squareavatars.css
+
+  Copyright 2014-2016 Ryan Dolan (@dangeredwolf)
+  Released under the MIT Licence
+*/
+
+.mtd-no-round-avatars .avatar {
+	border-radius:5px!important
+}

@@ -1,5 +1,8 @@
 /*
   coredefinitions.css
+
+  Copyright 2014-2016 Ryan Dolan (@dangeredwolf)
+  Released under the MIT Licence
 */
 
 html
@@ -30,7 +33,7 @@ select
 	margin:0;
 	padding:0;
 	border:0;
-  font:inherit 400 normal 100%;
+	font:inherit 400 normal 100%;
 	line-height:1
 }
 
@@ -45,7 +48,7 @@ select,
 	height:32px;
 	padding:4px 8px;
 	font-size:13px;
-  font-weight:400;
+	font-weight:400;
 	line-height:18px;
 	border-radius:0;
 	box-sizing:content-box;
@@ -125,7 +128,7 @@ dir
 {
 	margin:0;
 	-webkit-padding-start:0;
-  -webkit-appearance:none;
+	-webkit-appearance:none;
 	-moz-appearance:none
 }
 
@@ -134,8 +137,8 @@ ul ol,
 ul ul,
 ol ol
 {
-  -webkit-margin-before:0;
-  -webkit-margin-after:0;
+	-webkit-margin-before:0;
+	-webkit-margin-after:0;
 	-webkit-padding-start:40px
 }
 

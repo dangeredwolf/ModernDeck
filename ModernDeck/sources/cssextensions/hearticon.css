@@ -1,0 +1,27 @@
+/*
+  hearticon.css
+
+  Copyright 2014-2016 Ryan Dolan (@dangeredwolf)
+  Released under the MIT Licence
+*/
+
+.icon-favorite:before {
+    content:"\f055";
+    font-family:"TD"
+}
+
+.is-favorite .tweet-dogear {
+	background:#e91e63
+}
+
+.txt-r-deep-yellow,
+.is-favorite .icon-favorite-toggle,
+.btn:not(.btn-fav-fav-text)>.icon-favorite-color,
+.obj-left>.icon-favorite-color
+{
+	color:#e91e63
+}
+
+.anim-bounce-in.tweet-action[rel="favorite"] i,.anim-bounce-in.tweet-detail-action[rel="favorite"] i {
+	transform:rotate(0deg)
+}

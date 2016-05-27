@@ -1,0 +1,127 @@
+/*
+  amoled.css
+
+  Copyright 2014-2016 Ryan Dolan (@dangeredwolf)
+  Released under the MIT Licence
+*/
+
+.mdl-column,
+.column-options .button-tray,
+.column-options,
+.facet-type,
+.application,
+.tooltip-inner,
+.dropdown-menu,
+.app-columns-container,
+.column-message,
+body[class=""],
+html.js,
+.prf-header,
+body,
+.mdl-header,
+.js-quote-tweet-holder .quoted-tweet,
+.app-content,
+.compose-media-bar-holder,
+optgroup,
+.edit-conversation-name,
+.popover,
+.drawer-header,
+.compose-reply-tweet,
+.compose-message-recipient-list,
+.compose-message-recipient-input-container,
+.compose-media-grid-holder,
+.drawer .compose-text-container,
+.status-message,
+.tweet-detail-wrapper .media-sensitive,
+.stream-item.is-actionable:not(.is-unread):hover,
+.tweet-detail-wrapper,
+.compose,
+.app-content.is-open .compose,
+.tweet-button.is-hidden,
+div.drawer[data-drawer="compose"],
+.dropdown-menu a[data-action]:active,
+.column,
+.column-scroller,
+.column-detail-level-2,
+.js-account-manager-container,
+.contributor-manager,
+.js-contributor-manager-container,
+.contributor-adder-block,
+.contributor-row,
+.mdl-header.js-mdl-header,
+.app-navigator .js-hide-drawer,
+.column:not(.is-new) .column-message,
+.column-header,
+.column-header-temp,
+.mtd-nav-drawer,
+.mdl:not(.med-fullpanel),
+.prf-meta,
+.med-fullpanel,
+.modal-content,
+.med-tweet,
+.mdl-column.l-column .search-input,
+.is-selected-tweet,
+.prf-follow-status
+{
+	background:#000!important
+}
+
+option
+{
+  background:#000
+}
+
+.is-new .column-header,
+.is-new .column-header-temp
+{
+	background:linear-gradient(#000,#0E4B50)!important
+}
+
+.mtd-nd-header-image
+{
+	background-color:#000!important
+}
+
+.stream-item.is-actionable:hover,
+.compose-text-container,
+.compose-reply-tweet,
+.med-tweet,
+.status-message,
+.column-message,
+.column-options,
+.quoted-tweet,
+.tweet-detail-wrapper,
+.dropdown-menu,
+.mdl-column.l-column .search-input,
+.is-selected-tweet,
+.prf-follow-status
+{
+	box-shadow:0 2px 8px rgb(100,100,100)
+}
+
+.column-content,
+.mtd-nav-divider,
+.tweet-detail .margin-tl.txt-small:before,
+.cmp-replyto,
+.column-background-fill
+{
+	border-right-color:transparent
+}
+
+.mtd-nav-drawer-background,
+.ovl,
+.overlay
+{
+	background:rgba(0,0,0,.4)
+}
+
+.mtd-nav-drawer-background-hidden,
+.mdl-column.mdl-column-sml.l-column,
+.mdl.med-fullpanel,
+.mtd-nav-divider,
+.tweet-detail .margin-tl.txt-small:before,
+.cmp-replyto,
+.column-background-fill
+{
+	background:transparent!important
+}

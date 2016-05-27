@@ -1,0 +1,26 @@
+/*
+  scrollbarsnarrow.css
+
+  Copyright 2014-2016 Ryan Dolan (@dangeredwolf)
+  Released under the MIT Licence
+*/
+
+.mdl.s-profile::-webkit-scrollbar,.scroll-styled-v::-webkit-scrollbar,.scroll-v::-webkit-scrollbar,.lst-launcher::-webkit-scrollbar,.mtd-nav-drawer::-webkit-scrollbar {
+	width:5px;
+	pointer-events:all
+}
+
+.mdl.s-profile::scrollbar,.scroll-styled-v::scrollbar,.scroll-v::scrollbar,.lst-launcher::scrollbar,.mtd-nav-drawer::scrollbar {
+	width:5px;
+	pointer-events:all
+}
+
+.scroll-styled-h::-webkit-scrollbar,.scroll-h::-webkit-scrollbar {
+	height:5px;
+	pointer-events:all
+}
+
+.scroll-styled-h::scrollbar,.scroll-h::scrollbar {
+	height:5px;
+	pointer-events:all
+}

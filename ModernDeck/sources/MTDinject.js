@@ -5,7 +5,7 @@
 
 "use strict";
 
-var SystemVersion = "6.0 Beta Build 2016.05.25.1";
+var SystemVersion = "6.0 Beta Build 2016.05.26.1";
 var MTDBaseURL = "https://raw.githubusercontent.com/dangeredwolf/ModernDeck/master/ModernDeck/"; // Defaults to streaming if nothing else is available (i.e. legacy firefox)
 
 var msgID,
@@ -110,6 +110,9 @@ function savePreferencesToDisk() {
 }
 
 function enableStylesheetExtension(name) {
+	if (name === "default")
+		return;
+
 	var url = MTDBaseURL + "sources/cssextensions/" + name + ".css";
 
 	if (document.querySelector('head>link[href="' + url + '"]') === null) {
@@ -119,9 +122,7 @@ function enableStylesheetExtension(name) {
 			.attr("href",url)
 			.addClass("mtd-stylesheet-extension")
 		)
-	} else {
-		return;
-	}
+	} else return;
 }
 
 function disableStylesheetExtension(name) {
@@ -146,14 +147,14 @@ function getAllAccountStatus() {
 
 function loadPreferences() {
 	if (getPref("mtd_round_avatars") === false)
-		html.addClass("mtd-no-round-avatars");
+		enableStylesheetExtension("squareavatars");
 	else
 		setPref("mtd_round_avatars",true);
 
-	if (getPref("mtd_dark_media") === true)
-		html.addClass("mtd-dark-media-previews");
-	else
-		setPref("mtd_dark_media",false);
+	if (getPref("mtd_hearts") === true)
+		enableStylesheetExtension("hearticon");
+	else if (getPref("mtd_hearts") !== false)
+		setPref("mtd_hearts",true);
 
 	if (getPref("mtd_outlines") === true)
 		html.addClass("mtd-acc-focus-ring");
@@ -164,16 +165,18 @@ function loadPreferences() {
 
 	if (getPref("mtd_theme") !== "" && getPref("mtd_theme") !== null && typeof getPref("mtd_theme") !== "undefined")
 		enableStylesheetExtension(getPref("mtd_theme"));
+
+	if (getPref("mtd_scrollbar_style") !== "" && getPref("mtd_scrollbar_style") !== null && typeof getPref("mtd_scrollbar_style") !== "undefined")
+		enableStylesheetExtension(getPref("mtd_scrollbar_style"));
 }
 
 function getPref(id) {
-	if (localStorage[id] === "true") {
+	if (localStorage[id] === "true")
 		return true;
-	} else if (localStorage[id] === "false") {
+	else if (localStorage[id] === "false")
 		return false;
-	} else {
+	else
 		return localStorage[id];
-	}
 }
 
 function setPref(id,p) {
@@ -185,9 +188,8 @@ function GetURL(url) {
 }
 
 function fontParseHelper(a) {
-	if (typeof a !== "object" || a === null) {
+	if (typeof a !== "object" || a === null)
 		throw "you forgot to pass the object";
-	}
 
 	return "@font-face{font-family:'"+(a.family||"Roboto")+"';font-style:"+(a.style||"normal")+";font-weight:"+(a.weight || "300")+";src:url("+MTDBaseURL+"sources/fonts/"+a.name+".woff) format('woff');unicode-range:"+(a.range||
 		"U+0100-024F,U+1E00-1EFF,U+20A0-20CF,U+2C60-2C7F,U+A720-A7FF")+"}";
@@ -323,52 +325,59 @@ function PrefsListener() {
 		console.log("waiting...");
 
 		if (localStorage.mtd_round_avatars === "true" && !$("#mtd-round-avatars-control")[0].checked) {
-			console.log("someone unchecked me!!");
+			console.log("someone unticked me!!");
 			localStorage.mtd_round_avatars = false;
-			html.addClass("mtd-no-round-avatars");
+			enableStylesheetExtension("squareavatars");
 			savePreferencesToDisk();
 		}
 
 		if (localStorage.mtd_round_avatars === "false" && $("#mtd-round-avatars-control")[0].checked) {
-			console.log("someone checked me!!");
+			console.log("someone ticked me!!");
 			localStorage.mtd_round_avatars = true;
 			html.removeClass("mtd-no-round-avatars");
 			savePreferencesToDisk();
 		}
 
-		if (localStorage.mtd_dark_media === "false" && $("#mtd-dark-media-control")[0].checked) {
-			console.log("someone checked me!!");
-			localStorage.mtd_dark_media = true;
-			html.addClass("mtd-dark-media-previews");
+		if (localStorage.mtd_hearts === "false" && $("#mtd-hearts")[0].checked) {
+			console.log("someone ticked me!!");
+			localStorage.mtd_hearts = true;
+			enableStylesheetExtension("hearticon");
 			savePreferencesToDisk();
 		}
 
-		if (localStorage.mtd_dark_media === "true" && !$("#mtd-dark-media-control")[0].checked) {
-			console.log("someone unchecked me!!");
-			localStorage.mtd_dark_media = false;
-			html.removeClass("mtd-dark-media-previews");
+		if (localStorage.mtd_hearts === "true" && !$("#mtd-hearts")[0].checked) {
+			console.log("someone unticked me!!");
+			localStorage.mtd_hearts = false;
+			disableStylesheetExtension("hearticon");
 			savePreferencesToDisk();
 		}
 
 		if (localStorage.mtd_outlines === "false" && $("#mtd-outlines-control")[0].checked) {
-			console.log("someone checked me!!");
+			console.log("someone ticked me!!");
 			localStorage.mtd_outlines = true;
 			html.addClass("mtd-acc-focus-ring");
 			savePreferencesToDisk();
 		}
 
 		if (localStorage.mtd_outlines === "true" && !$("#mtd-outlines-control")[0].checked) {
-			console.log("someone unchecked me!!");
+			console.log("someone unticked me!!");
 			localStorage.mtd_outlines = false;
 			html.removeClass("mtd-acc-focus-ring");
 			savePreferencesToDisk();
 		}
 
 		if ($("#mtd-theme-control option:selected").length > 0 && localStorage.mtd_theme !== $("#mtd-theme-control option:selected")[0].value) {
-			//html.removeClass("mtd-back-" + localStorage.mtd_theme);
+			disableStylesheetExtension(localStorage.mtd_theme);
 			localStorage.mtd_theme = $("#mtd-theme-control option:selected")[0].value;
 			html.addClass("mtd-back-" + $("#mtd-theme-control option:selected")[0].value);
 			enableStylesheetExtension($("#mtd-theme-control option:selected")[0].value || "default");
+			savePreferencesToDisk();
+		}
+
+		if ($("#mtd-scrollbar-style option:selected").length > 0 && localStorage.mtd_scrollbar_style !== $("#mtd-scrollbar-style option:selected")[0].value) {
+			disableStylesheetExtension(localStorage.mtd_scrollbar_style);
+			localStorage.mtd_scrollbar_style = $("#mtd-scrollbar-style option:selected")[0].value;
+			enableStylesheetExtension($("#mtd-scrollbar-style option:selected")[0].value || "default");
 			savePreferencesToDisk();
 		}
 
@@ -397,9 +406,39 @@ function MTDSettings() {
 			</ul> </div> </div> <div class="l-column mdl-column mdl-column-lrg"> <div class="l-column-scrollv scroll-v	scroll-alt mdl-col-settings">\
 			\
 			\
-			<form action="#" id="mtd-appearance-form" accept-charset="utf-8" class="frm"><fieldset id="general_settings"><div class="control-group" style="padding-top:10px;"><label class="checkbox">Use rounded profile pictures<input type="checkbox" name="streaming-updates" checked="checked" id="mtd-round-avatars-control"> </label><label class="checkbox">Dark media viewer in light mode<input type="checkbox" name="streaming-updates" checked="checked" id="mtd-dark-media-control"> </label><label class="control-label">Theme<select id="mtd-theme-control" type="select"><option value="default" selected="selected">Default</option><option value="paper">Paper</option><option value="grey">Grey</option><option value="red">Red</option><option value="pink">Pink</option><option value="orange">Orange</option><option value="violet">Violet</option><option value="teal">Teal</option><option value="green">Green</option><option value="yellow">Yellow</option><option value="cyan">Cyan</option><option value="black">Black</option><option value="blue">Blue</option></select></label></div></fieldset></form>\
+			<form action="#" id="mtd-appearance-form" accept-charset="utf-8" class="frm"><fieldset id="general_settings"><div class="control-group" style="padding-top:10px;">\
+			<label class="checkbox">Use rounded profile pictures<input type="checkbox" checked="checked" id="mtd-round-avatars-control"></label>\
+			<label class="checkbox">Use Hearts instead of Stars<input type="checkbox" checked="checked" id="mtd-hearts"></label>\
+			<label class="control-label">Theme\
+			<select id="mtd-theme-control" type="select">\
+			<optgroup label="Complete Themes">\
+			<option value="default" selected="selected">Default</option>\
+			<option value="paper">Paper</option>\
+			<option value="amoled">AMOLED</option>\
+			</optgroup><optgroup label="Complementary Themes">\
+			<option value="grey">Grey</option>\
+			<option value="red">Red</option>\
+			<option value="pink">Pink</option>\
+			<option value="orange">Orange</option>\
+			<option value="violet">Violet</option>\
+			<option value="teal">Teal</option>\
+			<option value="green">Green</option>\
+			<option value="yellow">Yellow</option>\
+			<option value="cyan">Cyan</option>\
+			<option value="black">Black</option>\
+			<option value="blue">Blue</option>\
+			</optgroup></select>\
 			\
-			<form action="#" id="mtd-accessibility-form" accept-charset="utf-8" class="frm" style="display:none;"><fieldset id="general_settings"><label class="checkbox">Always show outlines on focussed items<input type="checkbox" checked="checked" id="mtd-outlines-control"> </label></fieldset></form>\
+			\
+			\
+			\
+			<label class="control-label">Scroll Bar Style<select id="mtd-scrollbar-style" type="select">\
+			<option value="default" selected="selected">Default</option>\
+			<option value="scrollbarsnarrow">Narrow</option>\
+			<option value="scrollbarsnone">Hidden</option>\
+			</select></label></label></div></fieldset></form>\
+			\
+			<form action="#" id="mtd-accessibility-form" accept-charset="utf-8" class="frm" style="display:none;"><fieldset id="general_settings"><label class="checkbox">Always show outlines on focused items<input type="checkbox" checked="checked" id="mtd-outlines-control"> </label></fieldset></form>\
 			\
 			<form action="#" id="mtd-about-form" accept-charset="utf-8" class="frm" style="display:none;"><fieldset id="general_settings"><img src="' + MTDBaseURL + 'sources/mtdabout.png" class="mtd-logo"><h1 class="list-placeholder mtd-about-title">ModernDeck</h1><h2 class="mtd-version-title">You\'re running version ' + SystemVersion + '</h2><div class="mdl-links" style="margin-bottom:-10px"> <a href="https://dangeredwolf.com/TweetDeckEnhancer/privacy.txt" style="display:none" target="_blank">Privacy Policy</a> </div></fieldset></form>\
 			\
@@ -407,8 +446,9 @@ function MTDSettings() {
 
 			$("#mtd-round-avatars-control").attr("checked",localStorage.mtd_round_avatars === "true" && true || false);
 			$("#mtd-outlines-control").attr("checked",localStorage.mtd_outlines === "true" && true || false);
-			$("#mtd-dark-media-control").attr("checked",localStorage.mtd_dark_media === "true" && true || false);
+			$("#mtd-hearts").attr("checked",localStorage.mtd_hearts === "true" && true || false);
 			$("#mtd-theme-control").val(localStorage.mtd_theme || "default");
+			$("#mtd-scrollbar-style").val(localStorage.mtd_scrollbar_style || "default");
 
 
 			PrefsListener();
