@@ -94,7 +94,8 @@ option
 .dropdown-menu,
 .mdl-column.l-column .search-input,
 .is-selected-tweet,
-.prf-follow-status
+.prf-follow-status,
+.compose-media-bar-holder
 {
 	box-shadow:0 2px 8px rgb(100,100,100)
 }

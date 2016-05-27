@@ -5058,7 +5058,7 @@ fieldset .fixed-width-label:not(.radio),fieldset:not(.js-search-filter) .control
 }
 
 .margin-t--12.margin-b--30 {
-	margin-top:-47px!important
+	margin-top:-47px!important;
 }
 
 .js-quote-tweet-holder .quoted-tweet {
@@ -6191,4 +6191,27 @@ ul.tweet-stats:nth-child(2) {
 	text-transform:lowercase;
 	width:0;
 	height:0
+}
+
+.js-quote-tweet-holder:not(.is-hidden)+div+div+.margin-t--12 {
+	margin-top:-115px!important
+}
+
+.quoted-tweet .tweet-avatar,.quoted-tweet .tweet-img {
+	height:24px;
+	width:24px;
+	margin-left:5px
+}
+
+.compose .quoted-tweet .account-link>.nbfc {
+	position:absolute
+}
+
+.compose .quoted-tweet .js-quoted-tweet-text {
+	padding-top:10px;
+	padding-left:5px
+}
+
+.compose .quoted-tweet .sprite-close {
+	padding-top:0
 }
