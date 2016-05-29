@@ -160,7 +160,7 @@ html.scroll-v {
 	position:absolute;
 	top:0;
 	bottom:0;
-	pointer-events:none;
+	pointer-events:all;
 	overflow-y:auto;
 	overflow-x:hidden;
 	width:100%;
@@ -3595,7 +3595,11 @@ input[type="checkbox"] {
 	margin-top:-5px;
 	position:absolute;
 	left:0;
-	color:rgba(255,255,255,.94)
+	color:#fff
+}
+
+.js-search-results-container .js-add-column:before {
+	margin-top:-15px
 }
 
 .js-tweet-results.app-search-tweet-results {
@@ -6224,4 +6228,44 @@ ul.tweet-stats:nth-child(2) {
 
 .accs-header {
 	padding-left:15px
+}
+
+.mtd-whats-new h1:not(.column-title) {
+	font-weight:300;
+	text-align:center;
+	width:100%;
+	padding-top:5px
+}
+
+.mtd-whats-new h2 {
+	font-weight:300;
+	text-align:center;
+	width:100%;
+	padding-top:5px;
+	font-size:32px
+}
+
+.mtd-whats-new h3:not(.mdl-header-title) {
+	font-weight:400;
+	text-align:center;
+	width:100%;
+	padding-top:5px;
+	font-size:24px
+}
+
+.mtd-whats-new p {
+	padding:20px;
+	padding-right:40px;
+	width:90%;
+	text-align:center;
+	line-height:2em
+}
+
+.mtd-whats-new .column-header {
+	margin-left:auto;
+	margin-right:auto
+}
+
+.mtd-whats-new .attribution {
+	padding-left:5px
 }

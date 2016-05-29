@@ -345,6 +345,56 @@
 	}
 }
 
+@keyframes colourDemo {
+	0% {
+		background:#F44336
+	}
+
+	9% {
+		background:#FF5722
+	}
+
+	18% {
+		background:#FFC107
+	}
+
+	27% {
+		background:#4CAF50
+	}
+
+	36% {
+		background:#009688
+	}
+
+	45% {
+		background:#2196F3
+	}
+
+	54% {
+		background:#00BCD4
+	}
+
+	63% {
+		background:#673AB7
+	}
+
+	72% {
+		background:#E91E63
+	}
+
+	81% {
+		background:#555
+	}
+
+	90% {
+		background:#000
+	}
+
+	100% {
+		background:#F44336
+	}
+}
+
 .account-remove-check-open .account-remove-check,.contributor-row[data-state="confirmRemove"] .contributor-confirm-remove {
 	animation:windowDown .2s cubic-bezier(.19,1,.22,1)!important
 }
@@ -472,4 +522,8 @@
 
 .compose .quoted-tweet {
 	animation:menuUpRelative .3s cubic-bezier(.19,1,.22,1)
+}
+
+.mtd-colours-demo {
+	animation:colourDemo 10s infinite;
 }
