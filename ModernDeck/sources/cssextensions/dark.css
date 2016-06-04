@@ -6,7 +6,7 @@
 */
 
 a,
-a:not([href="#"]):not(.column-header-link):not(.js-column-back):not(.js-tweet-social-proof-back):hover,
+a:not([href="#"]):not(.column-header-link):not(.js-column-back):not(.js-tweet-social-proof-back):not(.account-selector-grid-mode):not(.account-link):hover,
 .calweek a:hover,
 .btn:not([disabled]):not(.is-disabled):not(.btn-options-tray):not(.mtd-nav-button):not(.btn-bg-negative):not(.btn-negative),
 .compose-send-button-success,
@@ -130,7 +130,8 @@ div.drawer[data-drawer="compose"],
 .txt-mute,
 .txt-r-dark-gray,
 .typeahead .username,
-.l-column.mdl-column.mdl-column-sml .list-link
+.l-column.mdl-column.mdl-column-sml .list-link,
+.lst-group .list-account .username
 {
 	color:#6D808B
 }
@@ -222,10 +223,7 @@ optgroup,
 .tweet-action,
 .tweet-detail-action
 {
- color:rgba(149,
-   175,
-   191,
-   .52)
+ color:rgba(149,175,191,.52)
 }
 
 .tweet-action:active,
@@ -276,12 +274,6 @@ option,
 	background:#38454B
 }
 
-.mtd-nav-drawer-icon
-{
-	-webkit-filter:brightness(400%);
-	filter:brightness(400%)
-}
-
 .social-proof-for-tweet-title,
 .account-bio,
 .btn[disabled],
@@ -306,11 +298,6 @@ option,
 {
 	background:#00838F;
 	color:#eee
-}
-
-.lst-group .selected a .username
-{
-	color:rgba(255,255,255,.5)
 }
 
 .js-add-column:active,

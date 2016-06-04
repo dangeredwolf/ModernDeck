@@ -435,8 +435,12 @@
 	animation:popIn .5s forwards cubic-bezier(.19,1,.22,1)
 }
 
-.typeahead,.js-column-options .dropdown-menu {
+.js-column-options .dropdown-menu {
 	animation:menuDown .4s cubic-bezier(.19,1,.22,1)
+}
+
+.typeahead {
+	animation:menuDownLarge .4s cubic-bezier(.19,1,.22,1)
 }
 
 .tooltip-inner,.js-contributor-manager-container,.js-account-manager-container {

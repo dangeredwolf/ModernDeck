@@ -6,8 +6,7 @@
 */
 
 .icon-favorite:before {
-    content:"\f055";
-    font-family:"TD"
+    content:"\e87d"
 }
 
 .is-favorite .tweet-dogear {
