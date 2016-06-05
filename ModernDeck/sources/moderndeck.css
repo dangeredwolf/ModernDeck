@@ -6464,3 +6464,22 @@ ul.tweet-stats:nth-child(2) {
     margin-right: 2rem;
     text-overflow: ellipsis;
 }
+
+#actions-modal .s-inreply .js-inreply {
+    background-color: rgba(17, 17, 17, 0.025);
+    padding: 1rem;
+}
+
+#actions-modal .s-inreply .accs.js-account-selector {
+    padding-top: 56px;
+}
+
+#actions-modal .s-inreply .js-mdl-header.mdl-header {
+    height: auto;
+    min-height: 40px;
+}
+
+#actions-modal .s-inreply.s-fluid-height .cf>.pull-right {
+    bottom: -24px;
+    right: 16px;
+}
