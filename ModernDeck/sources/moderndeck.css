@@ -2985,6 +2985,10 @@ a .column-title-back .icon:after {
 	right:14px
 }
 
+.media-grid-container .compose-media-grid-remove .sprite-close {
+    padding-top: 0;
+}
+
 .compose-media-compressed .compose-media-bar-thumb {
 	width:auto
 }
