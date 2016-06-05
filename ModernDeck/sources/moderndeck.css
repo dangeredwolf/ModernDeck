@@ -6455,3 +6455,8 @@ ul.tweet-stats:nth-child(2) {
 .spinner-layer, .spinner-default {
     border-color: currentColor;
 }
+
+.js-conversation-header {
+    margin-right: 2rem;
+    text-overflow: ellipsis;
+}
