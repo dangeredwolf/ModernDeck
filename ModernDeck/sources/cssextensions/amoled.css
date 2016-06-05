@@ -16,7 +16,6 @@
 .column-message,
 body[class=""],
 html.js,
-.prf-header,
 body,
 .mdl-header,
 .js-quote-tweet-holder .quoted-tweet,
@@ -61,7 +60,8 @@ div.drawer[data-drawer="compose"],
 .med-tweet,
 .mdl-column.l-column .search-input,
 .is-selected-tweet,
-.prf-follow-status
+.prf-follow-status,
+.typeahead
 {
 	background:#000!important
 }
@@ -77,7 +77,8 @@ option
 	background:linear-gradient(#000,#0E4B50)!important
 }
 
-.mtd-nd-header-image
+.mtd-nd-header-image,
+.prf-header
 {
 	background-color:#000!important
 }
@@ -95,9 +96,12 @@ option
 .mdl-column.l-column .search-input,
 .is-selected-tweet,
 .prf-follow-status,
-.compose-media-bar-holder
+.compose-media-bar-holder,
+.compose-message-recipient-input-container,
+.typeahead,
+.lst .s-selected
 {
-	box-shadow:0 2px 8px rgb(100,100,100)
+	box-shadow:0 2px 8px #344248!important
 }
 
 .column-content,
@@ -113,7 +117,7 @@ option
 .ovl,
 .overlay
 {
-	background:rgba(0,0,0,.4)
+	background:rgba(0,0,0,.4)!important
 }
 
 .mtd-nav-drawer-background-hidden,
@@ -125,4 +129,8 @@ option
 .column-background-fill
 {
 	background:transparent!important
+}
+
+.compose .typeahead-item span.username {
+	color:#344248
 }

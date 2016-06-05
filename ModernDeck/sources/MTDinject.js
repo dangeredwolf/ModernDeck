@@ -5,7 +5,7 @@
 
 "use strict";
 
-var SystemVersion = "6.0 Nightly Build 2016.05.28.1";
+var SystemVersion = "6.0 RC1 (Build 2016.06.04.1)";
 var MTDBaseURL = "https://raw.githubusercontent.com/dangeredwolf/ModernDeck/master/ModernDeck/"; // Defaults to streaming if nothing else is available (i.e. legacy firefox)
 
 var msgID,
@@ -39,7 +39,7 @@ var head = $(document.head);
 var body = $(document.body);
 var html = $(document.querySelector("html")); // Only 1 result; faster to find
 
-var welcomeScreenHtml = '<div class="js-modal-panel mdl s-short is-inverted-dark mtd-whats-new"><header class="js-mdl-header mdl-header"><h3 class="mdl-header-title">Welcome to ModernDeck 6.0</h3></header><div class="mdl-inner"><div class="mdl-content js-mdl-content horizontal-flow-container"><div style="width:100%" class="l-column mdl-column mdl-column-lrg"><div class="l-column-scrollv scroll-v	scroll-alt"><h1>New in ModernDeck 6.0</h1><h2>Themes</h2><header class="js-column-header js-action-header column-header mtd-colours-demo"><i class="pull-left margin-hs column-type-icon icon icon-home"></i><h1 class="column-title txt-ellipsis"><span class="column-head-title">Home</span><span class="attribution txt-mute txt-sub-antialiased">@dangeredwolf</span></h1><a class="js-action-header-button column-header-link column-settings-link"><i class="icon icon-sliders"></i></a></header><p>People\'s personalities are far more than just black and white. Make your TweetDeck experience truly personal with a variety of styles to suit whatever your tastes might be. This and many of the other options are adjustable inside of <b>ModernDeck Settings</b></p><h2>Refreshed UI</h2><p style="padding-top:0">ModernDeck 6.0 has a refreshed UI, taking advantage of an all-new edge-to-edge design that snaps to the left side. This helps take better advantage of screen real estate while still being elegant to use, and isn\'t a bad match with ModernDeck\'s navigation drawer.</p><h2>Tweet Shortener Assistant</h2><p style="padding-top:0">Have you ever dealt with a moment where you\'re just barely over the 140 character limit and need to cut down the size a bit? In ModernDeck 6.0, we have you covered. If you go over the 140 character limit, we\'ll prompt you with suggestions of what ways it detects will help shorten your tweet. This uses a number of algorithms such as checking for excess spacing and punctuation, to more advanced ones such as detecting and replacing applicable letters with liguatures, a Unicode feature that allows combining of certain letters to replace 2, 3, or sometimes even 4 characters, into what Twitter registers as just 1 character, and oftentimes looks about the same. All of these are suggestions, so you can click on the one you want, and you\'ll get no more, no less, than you asked for. Then you can finally send that Tweet, and you\'ve saved some precious time.</p><h3>Hearts or Stars</h3><p style="padding-top:0">ModernDeck allows you to pick between hearts and stars. The new default is hearts.</p><h3>Change How the Scroll Bar Looks</h3><p style="padding-top:0">In ModernDeck 6.0, you now have the option to change the scroll bar\'s appearance, such as either making it narrower, or making it never appear outright, to help build a cleaner TweetDeck experience to your specification.</p><h3>A New Option for dealing with Sensitive Media</h3><p style="padding-top:0">ModernDeck 6.0 also introduces another new feature, which changes the workflow of dealing with sensitive media, if you have it enabled to ask beforehand. Before, you had to click a tiny "View" link beforehand. Now, simply click anywhere on the designated background, and it will open up a preview of the image, as expected, but the thumbnail itself never shows content marked as sensitive.</p><h3>Faster and More Reliable CSS Extension Engine</h3><p style="padding-top:0">Building a truly versatile theming system wasn\'t as easy as slapping a feature on top of the old codebase. It\'s possible to do it that way, but it\'d hurt performance by creating extra overhead created by having to load all themes into memory at once, only to render one. Much of ModernDeck\'s CSS/UI codebase, kept in one single CSS file, has been broken up and componentified into separate silos, called CSS extensions, and besides critical system extensions, most of these extensions can be swapped in or out at any time, making it easier for the browser to discard an old theme, and load a new theme into memory, all transparently, in real-time, with virtually no hiccup on average, modern hardware. Any UI tweaks from themes to hearts to even more are now all extensions that run on top of ModernDeck. This architecture carries through much of the system now. For example, all animations are kept in animations.css. By keeping similar items in the same place, it makes it easier for the CSS to reference, as well as making it easier to develop ModernDeck in the future. This took an enormous amount of work, but now we\'re left with a more functional, stable, as well as modular ModernDeck.</p></div></div></div></div></div>';
+var welcomeScreenHtml = '<div class="mdl-content horizontal-flow-container"><div style="width:100%"class="l-column mdl-column mdl-column-lrg"><div class="l-column-scrollv scroll-v	scroll-alt"><h1>New in ModernDeck 6.0</h1><h2>Themes</h2><header class="js-column-header js-action-header column-header mtd-colours-demo"><i class="pull-left margin-hs column-type-icon icon icon-home"></i><h1 class="column-title txt-ellipsis"><span class="column-head-title">Home</span><span class="attribution txt-mute txt-sub-antialiased">@dangeredwolf</span></h1><a class="js-action-header-button column-header-link column-settings-link"><i class="icon icon-sliders"></i></a></header><p>People\'s personalities are far more than just black and white. Make your TweetDeck experience truly personal with a variety of styles to suit whatever your tastes might be. This and many of the other options are adjustable with <i class="icon icon-mtd-settings"></i><b>ModernDeck Settings</b></p><h2>Refreshed Icons</h2><br><i class="icon icon-tweetdeck icon-xxlarge"></i><i class="icon icon-moderndeck icon-xxlarge"></i><i class="icon icon-hashtag icon-xxlarge"></i><i class="icon icon-retweet icon-xxlarge"></i><i class="icon icon-mtd-settings icon-xxlarge"></i><p style="padding-top:0">As of this release, 100% of icons are either created inhouse for ModernDeck, or are borrowed from the material design icon library. This includes the new Retweet icon, which was obvious from the beginning that an inhouse solution was mandatory.</p><h2>Refreshed UI</h2><p style="padding-top:0">ModernDeck 6.0 has a refreshed UI, taking advantage of an all-new edge-to-edge design that snaps to the left side. This helps take better advantage of screen real estate while still being elegant to use, and isn\'t a bad match with ModernDeck\'s navigation drawer.</p><h2>Tweet Shortener Assistant</h2><p style="padding-top:0">Have you ever dealt with a moment where you\'re just barely over the 140 character limit and need to cut down the size a bit? In ModernDeck 6.0, we have you covered. If you go over the 140 character limit, we\'ll prompt you with suggestions of what ways it detects will help shorten your tweet. This uses a number of algorithms such as checking for excess spacing and punctuation, to more advanced ones such as detecting and replacing applicable letters with liguatures, a Unicode feature that allows combining of certain letters to replace 2, 3, or sometimes even 4 characters, into what Twitter registers as just 1 character, and oftentimes looks about the same. All of these are suggestions, so you can click on the one you want, and you\'ll get no more, no less, than you asked for. Then you can finally send that Tweet, and you\'ve saved some precious time.</p><h3>Hearts or Stars</h3><p style="padding-top:0">ModernDeck allows you to pick between hearts and stars. The new default is hearts.</p><h3>Change How the Scroll Bar Looks</h3><p style="padding-top:0">In ModernDeck 6.0, you now have the option to change the scroll bar\'s appearance, such as either making it narrower, or making it never appear outright, to help build a cleaner TweetDeck experience to your specification.</p><h3>A New Option for dealing with Sensitive Media</h3><p style="padding-top:0">ModernDeck 6.0 also introduces another new feature, which changes the workflow of dealing with sensitive media, if you have it enabled to ask beforehand. Before, you had to click a tiny "View" link beforehand. Now, simply click anywhere on the designated background, and it will open up a preview of the image, as expected, but the thumbnail itself never shows content marked as sensitive.</p><h3>Faster and More Reliable CSS Extension Engine</h3><p style="padding-top:0">Building a truly versatile theming system wasn\'t as easy as slapping a feature on top of the old codebase. It\'s possible to do it that way, but it\'d hurt performance by creating extra overhead created by having to load all themes into memory at once, only to render one. Much of ModernDeck\'s CSS/UI codebase, kept in one single CSS file, has been broken up and componentified into separate silos, called CSS extensions, and besides critical system extensions, most of these extensions can be swapped in or out at any time, making it easier for the browser to discard an old theme, and load a new theme into memory, all transparently, in real-time, with virtually no hiccup on average, modern hardware. Any UI tweaks from themes to hearts to even more are now all extensions that run on top of ModernDeck. This architecture carries through much of the system now. For example, all animations are kept in animations.css. By keeping similar items in the same place, it makes it easier for the CSS to reference, as well as making it easier to develop ModernDeck in the future. This took an enormous amount of work, but now we\'re left with a more functional, stable, as well as modular ModernDeck.</p></div></div></div>';
 // Asks MTDLoad for the storage
 window.postMessage({
 	type: "getStorage"
@@ -188,6 +188,7 @@ function getPref(id) {
 
 function setPref(id,p) {
 	localStorage[id] = p;
+	savePreferencesToDisk();
 }
 
 function GetURL(url) {
@@ -235,6 +236,7 @@ function MTDInit(){
 		fontParseHelper({weight:"500",name:"Roboto500latin",range:"U+0000-00FF,U+0131,U+0152-0153,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2212,U+2215,U+E0FF,U+EFFD,U+F000"}) +
 		fontParseHelper({weight:"500",name:"Roboto500latinext"}) +
 		fontParseHelper({family:"Material",weight:"400",name:"MaterialIcons",range:"U+0000-F000"}) +
+		fontParseHelper({family:"MD",weight:"400",name:"mdvectors",range:"U+E000-FFFF"}) +
 		fontParseHelper({family:"Font Awesome",weight:"400",name:"fontawesome",range:"U+0000-F000"})
 	));
 
@@ -275,7 +277,7 @@ function MTDInit(){
 
 	$("link[rel=\"shortcut icon\"]").attr("href",MTDBaseURL + "sources/favicon.ico");
 	$(document.querySelector("audio")).attr("src",GetURL("sources/alert_2.mp3"));
-	TD_mustaches["settings/global_setting_filter_row.mustache"]='<li class="list-filter cf"> {{_i}}<div class="mtd-mute-text mtd-mute-text-{{getDisplayType}}"></div> {{>text/global_filter_value}}{{/i}} <input type="button" name="remove-filter" value="{{_i}}Remove{{/i}}" data-id="{{id}}" class="js-remove-filter small btn btn-negative"> </li>';
+	TD_mustaches["settings/global_setting_filter_row.mustache"]='<li class="list-filter cf"> {{_i}}<div class="mtd-mute-text mtd-mute-text-{{getDisplayType}}"></div> {{>text/global_filter_value}}{{/i}} <input type="button" name="remove-filter" value="{{_i}}Remove{{/i}}" data-id="{{id}}"class="js-remove-filter small btn btn-negative"> </li>';
 	TD_mustaches["column_loading_placeholder.mustache"] = TD_mustaches["column_loading_placeholder.mustache"].replace("<span class=\"spinner-small\"></span>",'<div class="preloader-wrapper active"><div class="spinner-layer small"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div>');
 	TD_mustaches["spinner_large.mustache"] = '<div class="preloader-wrapper active"><div class="spinner-layer "><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div>';
 	TD_mustaches["spinner_large_white.mustache"] = '<div class="preloader-wrapper active"><div class="spinner-layer "><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div>';
@@ -336,75 +338,64 @@ function PrefsListener() {
 	if (document.querySelector("#mtd-round-avatars-control") !== null ) {
 		console.log("waiting...");
 
-		if (localStorage.mtd_round_avatars === "true" && !$("#mtd-round-avatars-control")[0].checked) {
+		if (getPref("mtd_round_avatars") && !$("#mtd-round-avatars-control").is(":checked")) {
 			console.log("someone unticked me!!");
-			localStorage.mtd_round_avatars = false;
+			setPref("mtd_round_avatars",false);
 			enableStylesheetExtension("squareavatars");
-			savePreferencesToDisk();
 		}
 
-		if (localStorage.mtd_round_avatars === "false" && $("#mtd-round-avatars-control")[0].checked) {
+		if (!getPref("mtd_round_avatars") && $("#mtd-round-avatars-control").is(":checked")) {
 			console.log("someone ticked me!!");
-			localStorage.mtd_round_avatars = true;
-			html.removeClass("mtd-no-round-avatars");
-			savePreferencesToDisk();
+			setPref("mtd_round_avatars",true);
+			disableStylesheetExtension("squareavatars");
 		}
 
-		if (localStorage.mtd_hearts === "false" && $("#mtd-hearts")[0].checked) {
+		if (!getPref("mtd_hearts") && $("#mtd-hearts").is(":checked")) {
 			console.log("someone ticked me!!");
-			localStorage.mtd_hearts = true;
+			setPref("mtd_hearts",true);
 			enableStylesheetExtension("hearticon");
-			savePreferencesToDisk();
 		}
 
-		if (localStorage.mtd_hearts === "true" && !$("#mtd-hearts")[0].checked) {
+		if (getPref("mtd_hearts") && !$("#mtd-hearts").is(":checked")) {
 			console.log("someone unticked me!!");
-			localStorage.mtd_hearts = false;
+			setPref("mtd_hearts",false);
 			disableStylesheetExtension("hearticon");
-			savePreferencesToDisk();
 		}
 
-		if (localStorage.mtd_sensitive_alt === "false" && $("#mtd-sensitive-alt")[0].checked) {
+		if (!getPref("mtd_sensitive_alt") && $("#mtd-sensitive-alt").is(":checked")) {
 			console.log("someone ticked me!!");
-			localStorage.mtd_sensitive_alt = true;
+			setPref("mtd_sensitive_alt",true);
 			enableStylesheetExtension("altsensitive");
-			savePreferencesToDisk();
 		}
 
-		if (localStorage.mtd_sensitive_alt === "true" && !$("#mtd-sensitive-alt")[0].checked) {
+		if (getPref("mtd_sensitive_alt") && !$("#mtd-sensitive-alt").is(":checked")) {
 			console.log("someone unticked me!!");
-			localStorage.mtd_sensitive_alt = false;
+			setPref("mtd_sensitive_alt",false);
 			disableStylesheetExtension("altsensitive");
-			savePreferencesToDisk();
 		}
 
-		if (localStorage.mtd_outlines === "false" && $("#mtd-outlines-control")[0].checked) {
+		if (localStorage.mtd_outlines === "false" && $("#mtd-outlines-control").is(":checked")) {
 			console.log("someone ticked me!!");
-			localStorage.mtd_outlines = true;
+			setPref("mtd_outlines",true);
 			html.addClass("mtd-acc-focus-ring");
-			savePreferencesToDisk();
 		}
 
-		if (localStorage.mtd_outlines === "true" && !$("#mtd-outlines-control")[0].checked) {
+		if (localStorage.mtd_outlines === "true" && !$("#mtd-outlines-control").is(":checked")) {
 			console.log("someone unticked me!!");
-			localStorage.mtd_outlines = false;
+			setPref("mtd_outlines",false);
 			html.removeClass("mtd-acc-focus-ring");
-			savePreferencesToDisk();
 		}
 
-		if ($("#mtd-theme-control option:selected").length > 0 && localStorage.mtd_theme !== $("#mtd-theme-control option:selected")[0].value) {
-			disableStylesheetExtension(localStorage.mtd_theme);
-			localStorage.mtd_theme = $("#mtd-theme-control option:selected")[0].value;
-			html.addClass("mtd-back-" + $("#mtd-theme-control option:selected")[0].value);
-			enableStylesheetExtension($("#mtd-theme-control option:selected")[0].value || "default");
-			savePreferencesToDisk();
+		if ($("#mtd-theme-control option:selected").length > 0 && localStorage.mtd_theme !== $("#mtd-theme-control option:selected").val()) {
+			disableStylesheetExtension(getPref("mtd_theme"));
+			setPref("mtd_theme",$("#mtd-theme-control option:selected").val())
+			enableStylesheetExtension($("#mtd-theme-control option:selected").val() || "default");
 		}
 
-		if ($("#mtd-scrollbar-style option:selected").length > 0 && localStorage.mtd_scrollbar_style !== $("#mtd-scrollbar-style option:selected")[0].value) {
-			disableStylesheetExtension(localStorage.mtd_scrollbar_style);
-			localStorage.mtd_scrollbar_style = $("#mtd-scrollbar-style option:selected")[0].value;
-			enableStylesheetExtension($("#mtd-scrollbar-style option:selected")[0].value || "default");
-			savePreferencesToDisk();
+		if ($("#mtd-scrollbar-style option:selected").length > 0 && localStorage.mtd_scrollbar_style !== $("#mtd-scrollbar-style option:selected").val()) {
+			disableStylesheetExtension(getPref("mtd_scrollbar_style"));
+			setPref("mtd_scrollbar_style",$("#mtd-scrollbar-style option:selected").val());
+			enableStylesheetExtension($("#mtd-scrollbar-style option:selected").val() || "default");
 		}
 
 		setTimeout(PrefsListener,500);
@@ -422,17 +413,17 @@ function MTDSettings() {
 			$("#settings-modal .mdl .js-header-title").removeClass("js-header-title");
 			$("#settings-modal .mdl .mdl-header-title").html("ModernDeck Settings");
 			mtdsettingsmodalinner.html('<div class="mdl-content js-mdl-content horizontal-flow-container"> <div class="l-column mdl-column mdl-column-sml"> <div class="l-column-scrollv scroll-v	scroll-alt "> <ul class="lst-group js-setting-list">\
-			<li id="mtd-appearance-li" class="selected"><a href="#" class="list-link" id="mtd_settings_appearance_button" data-action="general"><strong>Appearance</strong></a></li>\
+			<li id="mtd-appearance-li"class="selected"><a href="#"class="list-link" id="mtd_settings_appearance_button" data-action="general"><strong>Appearance</strong></a></li>\
 			\
-			<li id="mtd-accessibility-li"><a href="#" class="list-link" id="mtd_settings_accessibility_button" data-action="general"><strong>Accessibility</strong></a></li>\
+			<li id="mtd-accessibility-li"><a href="#"class="list-link" id="mtd_settings_accessibility_button" data-action="general"><strong>Accessibility</strong></a></li>\
 			\
-			<li id="mtd-about-li"><a href="#" class="list-link" id="mtd_settings_about_button" data-action="general"><strong>About</strong></a></li>\
+			<li id="mtd-about-li"><a href="#"class="list-link" id="mtd_settings_about_button" data-action="general"><strong>About</strong></a></li>\
 			\
 			\
 			</ul> </div> </div> <div class="l-column mdl-column mdl-column-lrg"> <div class="l-column-scrollv scroll-v	scroll-alt mdl-col-settings">\
 			\
 			\
-			<form action="#" id="mtd-appearance-form" accept-charset="utf-8" class="frm"><fieldset id="general_settings"><div class="control-group" style="padding-top:10px;">\
+			<form action="#" id="mtd-appearance-form" accept-charset="utf-8"class="frm"><fieldset id="general_settings"><div class="control-group" style="padding-top:10px;">\
 			<label class="checkbox">Use rounded profile pictures<input type="checkbox" checked="checked" id="mtd-round-avatars-control"></label>\
 			<label class="checkbox">Use alternate sensitive media workflow<input type="checkbox" checked="checked" id="mtd-sensitive-alt"></label>\
 			<label class="checkbox">Use Hearts instead of Stars<input type="checkbox" checked="checked" id="mtd-hearts"></label>\
@@ -465,9 +456,9 @@ function MTDSettings() {
 			<option value="scrollbarsnone">Hidden</option>\
 			</select></label></label></div></fieldset></form>\
 			\
-			<form action="#" id="mtd-accessibility-form" accept-charset="utf-8" class="frm" style="display:none;"><fieldset id="general_settings"><label class="checkbox">Always show outlines on focused items<input type="checkbox" checked="checked" id="mtd-outlines-control"> </label></fieldset></form>\
+			<form action="#" id="mtd-accessibility-form" accept-charset="utf-8"class="frm" style="display:none;"><fieldset id="general_settings"><label class="checkbox">Always show outlines on focused items<input type="checkbox" checked="checked" id="mtd-outlines-control"> </label></fieldset></form>\
 			\
-			<form action="#" id="mtd-about-form" accept-charset="utf-8" class="frm" style="display:none;"><fieldset id="general_settings"><img src="' + MTDBaseURL + 'sources/mtdabout.png" class="mtd-logo"><h1 class="list-placeholder mtd-about-title">ModernDeck</h1><h2 class="mtd-version-title">You\'re running version ' + SystemVersion + '</h2><div class="mdl-links" style="margin-bottom:-10px"> <a href="https://dangeredwolf.com/TweetDeckEnhancer/privacy.txt" style="display:none" target="_blank">Privacy Policy</a> </div></fieldset></form>\
+			<form action="#" id="mtd-about-form" accept-charset="utf-8"class="frm" style="display:none;"><fieldset id="general_settings"><img src="' + MTDBaseURL + 'sources/mtdabout.png"class="mtd-logo"><h1 class="list-placeholder mtd-about-title">ModernDeck</h1><h2 class="mtd-version-title">You\'re running version ' + SystemVersion + '</h2><div class="mdl-links" style="margin-bottom:-10px"> <a href="https://dangeredwolf.com/TweetDeckEnhancer/privacy.txt" style="display:none" target="_blank">Privacy Policy</a> </div></fieldset></form>\
 			\
 			</div> </div> </div>');
 
@@ -500,10 +491,10 @@ function MTDSettings() {
 		},100);
 }
 
-function PrepareLoginStuffs() {
+function LoginStuffs() {
 	var profileInfo = getProfileInfo();
 	if (profileInfo === null || typeof profileInfo === "undefined" || typeof profileInfo._profileBannerURL === "undefined" || profileInfo.profileImageURL === "undefined") {
-		setTimeout(PrepareLoginStuffs,150);
+		setTimeout(LoginStuffs,150);
 		return;
 	}
 	var bannerPhoto = profileInfo._profileBannerURL.search("empty") > 0 ? "" : profileInfo._profileBannerURL();
@@ -523,6 +514,17 @@ function PrepareLoginStuffs() {
 	}); // Fetch profile picture and place in nav drawer
 	$(mtd_nd_header_username).html(name); // Fetch twitter handle and place in nav drawer
 
+	if (!getPref("has_opened_mtd6")) {
+		setTimeout(function(){$(".js-app-settings").click()},10);
+		setTimeout(function() {
+			$("a[data-action='globalSettings']").click();
+			$("#settings-modal .mdl-header-title").html("Welcome to ModernDeck 6.0").removeClass("js-header-title");
+			$("#settings-modal .mdl").addClass("mtd-whats-new");
+			$("#settings-modal .mdl-inner").html(welcomeScreenHtml);
+		},20);
+		setPref("has_opened_mtd6",true)
+	}
+
 	loadPreferences();
 }
 
@@ -537,7 +539,7 @@ function NavigationSetup() {
 	$(".column-scroller,.more-tweets-btn-container").each(function(a,b){ // Fixes a bug in TweetDeck's JS caused by ModernDeck having different animations in column preferences
 		var c = $(b);
 		mutationObserver(b,function(){
-			if (c.attr("style") !== "undefined") {
+			if (typeof c.attr("style") !== "undefined") {
 				var num = parseInt(c.attr("style").match(/[\-\d]+/g));
 				if (num < 0)
 					c.attr("style","top: 0px;")
@@ -571,7 +573,7 @@ function NavigationSetup() {
 			make("img")
 			.attr("id","mtd_nd_header_image")
 			.addClass("mtd-nd-header-image")
-			.attr("style","background:#00BCD4"),
+			.attr("style",""),
 			make("img")
 			.addClass("avatar size73 mtd-nd-header-photo")
 			.attr("id","mtd_nd_header_photo")
@@ -584,9 +586,8 @@ function NavigationSetup() {
 			.addClass("btn mtd-nav-button mtd-settings-button")
 			.attr("id","tdset")
 			.append(
-				make("img")
-				.attr("src",MTDBaseURL + "sources/tweetdecksmall.png")
-				.addClass("mtd-nav-drawer-icon")
+				make("i")
+				.addClass("icon icon-td-settings")
 			)
 			.click(function(){
 				MTDPrepareWindows();
@@ -599,9 +600,8 @@ function NavigationSetup() {
 			.addClass("btn mtd-nav-button")
 			.attr("id","mtdsettings")
 			.append(
-				make("img")
-				.attr("src",MTDBaseURL + "sources/MTDsmall.png")
-				.addClass("mtd-nav-drawer-icon")
+				make("i")
+				.addClass("icon icon-mtd-settings")
 			)
 			.click(MTDSettings)
 			.append("ModernDeck Settings"),
@@ -609,9 +609,8 @@ function NavigationSetup() {
 			.addClass("btn mtd-nav-button")
 			.attr("id","btdsettings")
 			.append(
-				make("img")
-				.attr("src",MTDBaseURL + "sources/BTDsmall.png")
-				.addClass("mtd-nav-drawer-icon")
+				make("i")
+				.addClass("icon-btd-settings")
 			)
 			.click(function(){
 				MTDPrepareWindows();
@@ -627,9 +626,8 @@ function NavigationSetup() {
 			.addClass("btn mtd-nav-button")
 			.attr("id","mtd_signout")
 			.append(
-				make("img")
-				.attr("src",MTDBaseURL + "sources/logout.png")
-				.addClass("mtd-nav-drawer-icon")
+				make("i")
+				.addClass("icon icon-logout")
 			)
 			.click(function(){
 				MTDPrepareWindows();
@@ -641,9 +639,8 @@ function NavigationSetup() {
 			.addClass("btn mtd-nav-button")
 			.attr("id","tdaccsbutton")
 			.append(
-				make("img")
-				.attr("src",MTDBaseURL + "sources/accounts.png")
-				.addClass("mtd-nav-drawer-icon")
+				make("i")
+				.addClass("icon icon-twitter-bird")
 			)
 			.click(function(){
 				MTDPrepareWindows();
@@ -656,9 +653,8 @@ function NavigationSetup() {
 			.addClass("btn mtd-nav-button")
 			.attr("id","kbshortcuts")
 			.append(
-				make("img")
-				.attr("src",MTDBaseURL + "sources/KBshortcuts.png")
-				.addClass("mtd-nav-drawer-icon")
+				make("i")
+				.addClass("icon icon-keyboard")
 			)
 			.click(function(){
 				MTDPrepareWindows();
@@ -670,9 +666,8 @@ function NavigationSetup() {
 			.addClass("btn mtd-nav-button")
 			.attr("id","addcolumn")
 			.append(
-				make("img")
-				.attr("src",MTDBaseURL + "sources/AddColumn.png")
-				.addClass("mtd-nav-drawer-icon")
+				make("i")
+				.addClass("icon icon-plus")
 			)
 			.click(function(){
 				MTDPrepareWindows();
@@ -704,7 +699,7 @@ function NavigationSetup() {
 		btdsettings.remove();
 	}
 
-	PrepareLoginStuffs();
+	LoginStuffs();
 }
 
 function KeyboardShortcutHandler(e) {

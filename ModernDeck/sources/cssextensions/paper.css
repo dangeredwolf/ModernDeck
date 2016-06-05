@@ -21,7 +21,7 @@
 	color:#fff
 }
 
-.title-content .txt-mute,.mtd-nd-header-username,.column-title .attribution,.compose-remember-state,.more-tweets-btn,.selected .list-link strong,.account-selector-grid-mode,.account-selector-grid-mode:hover,.account-selector-grid-mode,.account-selector-grid-mode.is-selected,.js-dm-participants-back:after,.conversation-title .title-content b,.js-tweet-social-proof-back:after,.js-column-detail .column-title-back:before,.js-hide-drawer.app-nav-tab:after,.app-nav-tab,.drawer-header-title.drawer-column-header-title,.btn-back:before,.mdl-header-title,.column-header-temp,.mdl-column.l-column .search-input,.numbered-badge,.app-search .app-search-fake,.column-message,.app-nav-link,.column-title,.column-header .icon {
+.js-compose-stay-open,.js-compose-stay-open:before,.mdl-header-title a,.title-content .txt-mute,.mtd-nd-header-username,.column-title .attribution,.compose-remember-state,.more-tweets-btn,.selected .list-link strong,.account-selector-grid-mode,.account-selector-grid-mode:hover,.account-selector-grid-mode,.account-selector-grid-mode.is-selected,.js-dm-participants-back:after,.conversation-title .title-content b,.js-tweet-social-proof-back:after,.js-column-detail .column-title-back:before,.js-hide-drawer.app-nav-tab:after,.app-nav-tab,.drawer-header-title.drawer-column-header-title,.btn-back:before,.mdl-header-title,.column-header-temp,.mdl-column.l-column .search-input,.numbered-badge,.app-search .app-search-fake,.column-message,.app-nav-link,.column-title,.column-header .icon,.btn-compose.tweet-button>.icon-compose {
 	color:#555!important
 }
 
@@ -37,7 +37,7 @@ a .column-title-back .icon:after,.drawer-header:active .drawer-header-title .ico
 	background:rgba(85,85,85,.2)!important
 }
 
-.conversation-name,.mdl-column.l-column .search-input,.column-title-edit-box {
+.conversation-name,.column-title-edit-box {
 	border-bottom:2px solid #555!important
 }
 
@@ -53,4 +53,13 @@ a .column-title-back .icon:after,.drawer-header:active .drawer-header-title .ico
 input.column-title-edit-box {
 	border-bottom:3px solid #666;
 	color:#666
+}
+
+.tweet-button.js-hide-drawer {
+	background:transparent!important
+}
+
+.spinner-layer,.spinner-default
+{
+	border-color:#555!important
 }

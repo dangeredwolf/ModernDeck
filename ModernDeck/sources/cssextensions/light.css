@@ -6,7 +6,7 @@
 */
 
 a,
-a:not(.column-header-link):not(.js-column-back):hover,
+a:not(.column-header-link):not(.js-column-back):not(.list-account):not(.account-selector-grid-mode):not(.account-link):hover,
 .calweek a:hover,
 .btn:not([disabled]):not(.is-disabled):not(.btn-options-tray):not(.mtd-nav-button):not(.btn-bg-negative),
 .compose-send-button-success,
@@ -20,10 +20,14 @@ a:not(.column-header-link):not(.js-column-back):hover,
 	color:#00BCD4
 }
 
-a:active,
-a:focus
+a:not(.list-account):not(.js-column-back):not(.column-header-link):active,
+a:not(.list-account):not(.js-column-back):not(.column-header-link):focus
 {
 	color:#0DA8BC;
+}
+
+a:active,
+a:focus {
 	background-color:rgba(0,0,0,.05)
 }
 
@@ -37,8 +41,7 @@ option,
 .list-account,
 .mtd-about-title,
 .character-count-compose,
-.prf-stats li strong,
-.dropdown-menu a
+.prf-stats li strong
 {
 	color:#333
 }
@@ -86,7 +89,10 @@ option,
 .txt-r-dark-gray,
 .txt-mute a:not(:hover):not(:focus):not(.tweet-action),
 .txt-normal,
-.caloff
+.caloff,
+.l-column.mdl-column.mdl-column-sml .list-link,
+.typeahead .username,
+.lst-group .list-account .username
 {
 	color:#979797
 }
@@ -768,7 +774,7 @@ textarea::placeholder
 
 .prf-stats>li>a
 {
-	color:#888
+	color:#888!important
 }
 
 .mtd-nd-header-image
@@ -797,7 +803,8 @@ textarea::placeholder
 	color:#979797
 }
 
-.js-column-social-proof .username
+.js-column-social-proof .username,
+.dropdown-menu a
 {
 	color:#000!important
 }
@@ -812,9 +819,9 @@ textarea::placeholder
 	background:#fbfbfb
 }
 
-.spinner-layer
+.spinner-layer,.spinner-default
 {
-	border-color:#03A9F4
+	border-color:#00BCD4
 }
 
 .facet-type.is-active,
@@ -827,11 +834,6 @@ textarea::placeholder
 .stream-item.is-actionable .tweet-detail-action
 {
  color:#bbb
-}
-
-.spinner-default
-{
-	border-color:#03A9F4
 }
 
 ::selection

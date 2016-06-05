@@ -167,6 +167,10 @@ html.scroll-v {
 	z-index:4
 }
 
+.mdl-column-sml>.l-column-scrollv {
+	pointer-events:none
+}
+
 .mdl-column-lrg>.l-column-scrollv.scroll-styled-v {
 	pointer-events:all
 }
@@ -374,16 +378,9 @@ html.scroll-v {
 
 /* ICONS */
 
-@font-face { /* Default tweetdeck font */
-	font-family:'TD';
-	src:url("https://ton.twimg.com/tweetdeck-web/web/assets/fonts/tweetdeck-regular-webfont.a0c9bb7e2c.woff") format("woff");
-	font-weight:normal;
-	font-style:normal
-}
-
 i {
 	display:inline-block;
-	vertical-align:baseline;
+	vertical-align:middle;
 	font-size:20px;
 	height:1em;
 	width:1em
@@ -396,25 +393,84 @@ i {
 	font-family:"Material"
 }
 
-.icon-twitter-bird:before,.icon-hashtag:before,.icon-retweet:before {
-	font-family:"TD";
-	margin-top:20px
+.icon-twitter-bird:before,.icon-logout:before,.icon-tweetdeck:before,.icon-moderndeck:before,.icon-mtdmini:before,.icon-hashtag:before,.icon-settings:before,.icon-td-settings:before,.icon-retweet:before,.icon-mtd-settings:before,.icon-btd:before,.icon-btd-settings:before,.icon-quote-tweet:before,.icon-compose-grid:before,.icon-user-switch:before,.icon-user-switch:before,.icon-compose-minigrid:before,.icon-compose-list:before {
+	font-family:"MD"
 }
 
 .icon-twitter-bird:before {
 	content:"\f000"
 }
 
-.icon-mention:before {
-	content:"\e0c9"
+.icon-logout:before {
+	content:"\f001"
+}
+
+.icon-tweetdeck:before {
+	content:"\f002"
+}
+
+.icon-moderndeck:before {
+	content:"\f003"
+}
+
+.icon-mtdmini:before {
+	content:"\f004"
 }
 
 .icon-hashtag:before {
 	content:"\f005"
 }
 
+.icon-settings:before {
+	content:"\f006"
+}
+
+.icon-td-settings:before {
+	content:"\f007"
+}
+
 .icon-retweet:before {
 	content:"\f008"
+}
+
+.icon-mtd-settings:before {
+	content:"\f009"
+}
+
+.icon-btd:before {
+	content:"\f00a"
+}
+
+.icon-btd-settings:before {
+	content:"\f00c"
+}
+
+.icon-quote-tweet:before {
+	content:"\f01d"
+}
+
+.icon-compose-grid:before,.icon-user-switch:before,.icon-user-switch:before {
+	content:"\f03a"
+}
+
+.icon-compose-minigrid:before {
+	content:"\f03b"
+}
+
+.icon-compose-list:before {
+	content:"\f03c"
+}
+
+.icon-keyboard:before {
+	content:"\e312"
+}
+
+.icon-favorite:before {
+	content:"\e838"
+}
+
+.icon-mention:before {
+	content:"\e0c9"
 }
 
 .icon-message:before {
@@ -427,10 +483,6 @@ i {
 
 .icon-reply:before {
 	content:"\e15e"
-}
-
-.icon-favorite:before {
-	content:"\e838"
 }
 
 .icon-drafts:before {
@@ -472,10 +524,6 @@ i {
 
 .icon-more:before,.icon-user-dd:before,.icon-sliders:before {
 	content:"\e5d3"
-}
-
-.icon-settings:before {
-	content:"\e8b8"
 }
 
 .icon-notifications:before {
@@ -596,19 +644,6 @@ i {
 	content:"\e89f"
 }
 
-.icon-compose-grid:before,.icon-user-switch:before,.icon-user-switch:before {
-	content:"\e853"
-}
-
-.icon-compose-minigrid:before {
-	content:"\e8f0";
-	-webkit-font-smoothing:none
-}
-
-.icon-compose-list:before {
-	content:"\e8ef"
-}
-
 .recent-search-clear.list-item-last span:before,.icon-clear-timeline:before {
 	content:"\e0b8";
 	font-family:"Material"
@@ -634,12 +669,32 @@ i {
 	content:"\e3e7"
 }
 
+.icon-analytics:before {
+	content:"\e01d"
+}
+
 .mtd-nav-activator:before {
 	font-style:normal;
 	font-size:26px;
 	font-weight:400;
 	font-family:"Material";
 	content:"\e5d2"
+}
+
+.mtd-nav-button i:before {
+	margin-left:-30px
+}
+
+.mtd-nav-button i {
+	position:absolute;
+	left:-3px;
+	margin-top:-1px;
+	margin-bottom:auto;
+	font-size:27px
+}
+
+.mtd-nav-button .icon-keyboard,.mtd-nav-button .icon-plus {
+	margin-top:-4px
 }
 
 .is-new>.icon-dot:before {
@@ -669,6 +724,18 @@ i {
 	height:48px;
 	width:48px;
 	line-height:48px
+}
+
+.icon-xxlarge {
+	font-size:64px;
+	height:64px;
+	width:64px;
+	margin-left:40px;
+	line-height:64px
+}
+
+.icon-xxlarge.icon-retweet {
+	margin-top:-15px
 }
 
 .icon-small-context {
@@ -798,7 +865,7 @@ button:hover,button:focus {
 	outline:0
 }
 
-.btn:active,.btn.is-selected {
+.btn:not(.js-add-column):active,.btn.is-selected {
 	transform:scale(.95)
 }
 
@@ -1792,18 +1859,12 @@ a .column-title-back .icon:after {
 	font-size:17px
 }
 
-.tweet-action .icon-retweet,.tweet-detail-action .icon-retweet {
-	font-size:22px;
-	line-height:0em
-}
-
 .tweet-action .icon-favorite,.tweet-detail-action .icon-favorite,.tweet-action .icon-more,.tweet-detail-action .icon-more {
 	margin-top:1px
 }
 
 .tweet-footer {
-	margin-top:10px;
-	margin-bottom:-10px;
+	margin-top:10px
 }
 
 .js-mediatable .tweet-footer {
@@ -2936,11 +2997,7 @@ a .column-title-back .icon:after {
 	margin-bottom:5px;
 	-webkit-filter:grayscale(100%);
 	filter:grayscale(100%);
-	opacity:.25
-}
-
-.compose-account-names {
-	opacity:.47
+	opacity:.35
 }
 
 .is-list .compose-account {
@@ -2964,21 +3021,13 @@ a .column-title-back .icon:after {
 
 .account-selector-grid-mode {
 	opacity:.3;
+	padding:5px;
 	margin-right:3px!important
 }
 
 .is-selected.account-selector-grid-mode {
 	opacity:.7;
 	z-index:3
-}
-.compose-remember-state:before {
-	content:"Keep Open";
-	font-size:14px;
-	display:block;
-	position:absolute;
-	width:90px;
-	right:15px;
-	bottom:5px
 }
 
 .inline-reply {
@@ -3473,7 +3522,7 @@ input[type="checkbox"] {
 .checkbox input[type="checkbox"],.radio input[type="radio"] {
 	float:left;
 	margin-top:2px;
-	margin-left:-18px
+	margin-left:-27px
 }
 
 .checkbox-reversed input[type="checkbox"] {
@@ -4269,7 +4318,7 @@ input[type="checkbox"] {
 	padding-left:1px;
 	vertical-align:-.6em;
 	padding-right:5px;
-	padding-top:5px
+	padding-top:5px;
 }
 
 .column-nav-link .attribution {
@@ -4303,9 +4352,9 @@ input[type="checkbox"] {
 
 .compose-content .account-selector-grid-toggle {
 	position:fixed;
-	width:70px;
-	bottom:7px;
-	left:-260px;
+	width:100px;
+	bottom:15px;
+	left:-258px;
 	float:none
 }
 
@@ -4578,14 +4627,7 @@ a[rel=user]:active,.card-holder a[rel=mediaPreview]:active {
 }
 
 .tweet-action .icon-retweet,.tweet-detail-action .icon-retweet {
-	font-size:24px;
-	padding-top:11px;
-}
-
-
-.tweet-detail-action .icon-retweet {
-	top:3px!important;
-	position:relative!important
+	padding-top:2px;
 }
 
 .media-sensitive-content {
@@ -4826,15 +4868,6 @@ a[rel=user]:active,.card-holder a[rel=mediaPreview]:active {
 .mtd-nav-button:active {
 	opacity:1;
 	transform:none
-}
-
-.mtd-nav-drawer-icon {
-	width:20px;
-	height:20px;
-	padding-right:25px;
-	padding-bottom:5px;
-	position:absolute;
-	margin-left:-40px
 }
 
 .mtd-settings-button {
@@ -5469,7 +5502,7 @@ button.mtd-no-transform-case {
 }
 
 .column-nav-item.is-new .obj-left {
-	margin-top:-30px
+	margin-top:-30px;
 }
 
 .lst-group li {
@@ -5519,10 +5552,6 @@ button.mtd-no-transform-case {
 
 .js-popover-content.scroll-none {
 	border-radius:4px
-}
-
-.pin-bottom.margin-a--15 {
-	margin-bottom:7px!important
 }
 
 .js-account-manager-container {
@@ -5862,6 +5891,8 @@ button.mtd-no-transform-case {
 
 .cmp-replyto {
 	bottom:0;
+	right:0;
+	left:0;
 	position:absolute
 }
 
@@ -6181,8 +6212,11 @@ ul.tweet-stats:nth-child(2) {
 }
 
 .btn .icon {
-    line-height: 1em;
-    vertical-align: middle
+    line-height:1em
+}
+
+.btn .icon.icon-twitter-bird {
+    line-height:1.25em
 }
 
 .facet-type .control-label {
@@ -6196,7 +6230,7 @@ ul.tweet-stats:nth-child(2) {
 }
 
 .js-quote-tweet-holder:not(.is-hidden)+div+div+.margin-t--12 {
-	margin-top:-115px!important
+	margin-top:-70px!important
 }
 
 .quoted-tweet .tweet-avatar,.quoted-tweet .tweet-img {
@@ -6268,4 +6302,48 @@ ul.tweet-stats:nth-child(2) {
 
 .mtd-whats-new .attribution {
 	padding-left:5px
+}
+
+.compose .quoted-tweet .js-media-preview-container {
+	padding-left:10px
+}
+
+.lst-group .selected a .username
+{
+	color:rgba(255,255,255,.75)
+}
+
+.compose-account .txt-base-small {
+	padding-left:45px;
+	padding-top:5px
+}
+
+.js-conversation-header .account-inline {
+	padding-left:7px
+}
+
+.js-compose-stay-open {
+	-webkit-appearance:none;
+	-moz-appearance:none;
+	color:#fff;
+	position:absolute;
+	font-size:24px;
+	cursor:pointer;
+	opacity:.7;
+	height:60px;
+	bottom:-5px;
+	right:0
+}
+
+.js-compose-stay-open:before {
+	content:"\e898";
+	font-family:"Material"
+}
+
+.js-compose-stay-open:checked:before {
+	content:"\e897"
+}
+
+.account-selector-grid-mode:active,.js-compose-stay-open:active {
+	background:rgba(0,0,0,0.1)
 }
