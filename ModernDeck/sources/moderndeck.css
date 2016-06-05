@@ -6347,3 +6347,109 @@ ul.tweet-stats:nth-child(2) {
 .account-selector-grid-mode:active,.js-compose-stay-open:active {
 	background:rgba(0,0,0,0.1)
 }
+
+.column-panel {
+	overflow: hidden;
+ /* stops panels' shadows from overlaying onto the other panels */
+}
+
+.is-new .column-message, .btn-login[type="submit"], .login-container .btn-positive, .more-tweets-btn, .is-unread, .more-tweets-btn, .compose {
+	position: relative;
+}
+
+.more-tweets-btn-container--visible .more-tweets-btn: before, .more-tweets-btn-container--loading .more-tweets-btn:before, .is-new .column-message:before, .btn-login[type="submit"]:before, .login-container .btn-positive:before, .more-tweets-btn:before, .is-unread:before, .more-tweets-btn:before,.compose:before, .js-show-drawer:before, .js-column .column-header:before, .js-column.is-new .column-header:after, .is-options-open .column-settings-link:before, .is-options-open .column-settings-link:before, .column-options:before, .column-options .button-tray:before, .column-options .button-tray:before, .column-options:before, .facet-type:before, .btn:not([disabled]):not(.is-disabled):not(.btn-options-tray):not(.mtd-nav-button):not(.btn-bg-negative):not(.btn-positive):after, .js-toggle-button:before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	border-radius: inherit;
+	width: 100%;
+	height: 100%;
+	background-color: currentColor;
+	color: transparent;
+	z-index: -1;
+}
+
+/* separates background to the :psuedo selectors, for better customizability */
+.js-column.is-new .column-header:before {
+	background: linear-gradient(rgba(255,255,255,0),rgba(0,0,0,0.15));
+}
+
+.js-column .column-header:before {
+	background: transparent;
+	transition: background-image 250ms ease;
+	z-index: -1;
+}
+
+.js-column.is-new .column-header:after {
+	background: linear-gradient(rgba(255,255,255,0), currentColor);
+	z-index: -2;
+	transition: background-image 250ms ease;
+}
+
+.js-show-drawer:before, .app-content.is-open .compose:before, .prf-header:before {
+	z-index: 0;
+	border-radius: inherit;
+}
+
+.toggle-switch-input:checked+.toggle-switch-label:after {
+	background: currentColor;
+	color: #20C9DF;
+	-webkit-filter: brightness(80%);
+}
+
+.toggle-switch-input:checked+.toggle-switch-label:before {
+	background: currentColor;
+	color: #20C9DF;
+}
+
+.column-header-link:last-of-type {
+	background: transparent;
+	border-radius: 100%;
+	position: absolute;
+	padding: 4px;
+	bottom: initial;
+	right: 10px;
+	height: 32px;
+	width: 32px;
+	display: flex;
+	top: 50%;
+	margin-top: -16px;
+	flex-direction: column;
+	justify-content: center;
+	box-sizing: border-box;
+	text-align: center;
+}
+
+.column-header-link i.icon-sliders {
+	margin-top: 0;
+	line-height: 0;
+	vertical-align: 0;
+	height: 0;
+	display: block;
+	font-size: 20px;
+	margin-left: 2px;
+}
+
+.is-options-open .column-settings-link:active {
+	color: #FFF;
+}
+
+.is-options-open .column-settings-link, .column-options, .column-options .button-tray,.column-options .button-tray, .column-options, .facet-type {
+	background: transparent;
+}
+
+.mtd-nd-header-image {
+	background-color: currentColor !important;
+}
+
+.spinner-layer, .spinner-default {
+	border-color: currentColor;
+}
+
+/* In the themes, the entire design's accent color is replaced with this */
+.more-tweets-btn-container--visible .more-tweets-btn:before, .spinner-layer, .spinner-default, a:not(.list-account):not(.js-column-back):not(.column-header-link):focus, .more-tweets-btn-container--loading .more-tweets-btn:before, .mtd-nd-header-image, .is-new .column-message:before, a, a:not(.column-header-link):not(.js-column-back):not(.list-account):not(.account-selector-grid-mode):not(.account-link):hover, .calweek a:hover, .btn:not([disabled]):not(.is-disabled):not(.btn-options-tray):not(.mtd-nav-button):not(.btn-bg-negative), .compose-send-button-success, .icon-follow-color, .tweet-actions.is-visible .icon-reply, #caltoday, .lst-profile a, .lst-profile a:hover, .lst-profile a:active, .btn-login[type="submit"]:before, .login-container .btn-positive:before, .more-tweets-btn:before, .js-toggle-button:before, .is-unread:before, .more-tweets-btn:before, .compose:before, .js-show-drawer:before, .js-column .column-header:before, .toggle-switch-input:checked+.toggle-switch-label:after, .js-column.is-new .column-header:after, a, a:not(.column-header-link):not(.js-column-back):not(.list-account):not(.account-selector-grid-mode):not(.account-link):hover, .calweek a:hover, .btn:not([disabled]):not(.is-disabled):not(.btn-options-tray):not(.mtd-nav-button):not(.btn-bg-negative):not(.btn-positive):before, .compose-send-button-success, .icon-follow-color, .tweet-actions.is-visible .icon-reply, #caltoday, .lst-profile a, .lst-profile a:hover, .lst-profile a:active, .toggle-switch-input:checked+.toggle-switch-label:before, .btn:focus, .is-options-open .column-settings-link:before, .is-options-open .column-settings-link:before, .is-options-open .column-settings-link:before, .column-options:before, .column-options .button-tray:before, .column-options .button-tray:before, .column-options:before, .facet-type:before,.btn:not([disabled]):not(.is-disabled):not(.btn-options-tray):not(.mtd-nav-button):not(.btn-bg-negative):not(.btn-negative) {
+	color: #4790ed;
+}
