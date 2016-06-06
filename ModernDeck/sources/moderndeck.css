@@ -3509,8 +3509,7 @@ input[type="checkbox"]:active {
 
 input[type="checkbox"]:before {
 	content:"\e835";
-	font-family:"Material";
-	color:#000
+	font-family:"Material"
 }
 
 input[type="checkbox"]:checked:before {

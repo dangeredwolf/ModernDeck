@@ -27,8 +27,8 @@ a:not(.list-account):not(.js-column-back):not(.column-header-link):focus
 	color:#0DA8BC;
 }
 
-a:not(.compose-account):not(.js-toggle-item):active,
-a:not(.compose-account):not(.js-toggle-item):focus {
+a:not(.compose-account):not(.js-toggle-item):not(.column-header-link):active,
+a:not(.compose-account):not(.js-toggle-item):not(.column-header-link):focus {
 	background-color:rgba(0,0,0,.05)
 }
 
@@ -74,8 +74,7 @@ option,
 	color:#4c4c4c
 }
 
-.btn:focus,
-.is-options-open .column-settings-link:active
+.btn:focus
 {
 	color:#26C6DA
 }
@@ -435,7 +434,7 @@ html:not(.mtd-dark-media-previews) .med-tweet,
 .facet-type,
 .is-options-open .column-settings-link
 {
-	background:#26C6DA
+	background:#26C6DA!important
 }
 
 .lst-group.js-setting-list .selected {

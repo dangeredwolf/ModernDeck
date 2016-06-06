@@ -541,8 +541,7 @@ function NavigationSetup() {
 		mutationObserver(b,function(){
 			if (typeof c.attr("style") !== "undefined") {
 				var num = parseInt(c.attr("style").match(/[\-\d]+/g));
-				var filterOptionsHeight = $(".column-scroller").parent().children(".column-options").children('.js-column-message[style]')[0].style.height;
-				var hasFilterOptionsVisible = parseInt(filterOptionsHeight.replace("px","")) > 0;
+				var hasFilterOptionsVisible = parseInt(c.parent().children(".column-options").children('.js-column-message[style]')[0].style.height.replace("px","")) > 0;
 				if ((!hasFilterOptionsVisible && num < 0) || (hasFilterOptionsVisible && num < 21))
 					c.attr("style","top: " + ((!hasFilterOptionsVisible && "0") || "22") + "px;")
 			}
