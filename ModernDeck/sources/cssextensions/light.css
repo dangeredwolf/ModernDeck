@@ -40,7 +40,8 @@ option,
 .list-account,
 .mtd-about-title,
 .character-count-compose,
-.prf-stats li strong
+.prf-stats li strong,
+.inline-account-safeguard-checkbox
 {
 	color:#333
 }
