@@ -1238,10 +1238,7 @@ a .column-title-back .icon:after {
 
 .column-header-link i {
 	line-height:1;
-	margin-top:10px
-}
-
-.column-header-link .icon-sliders {
+	margin-top:10px;
 	vertical-align:-2px;
 	font-size:22px
 }
