@@ -824,8 +824,13 @@ i {
 	width:36px;
 	height:36px;
 	font-size:36px;
-	margin-left:10px;
-	padding-top:20px
+	position:absolute;
+	right:0;
+	top:15px
+}
+
+.compose-media-grid-holder .sprite-close {
+	top:0
 }
 
 .bing-logo {
@@ -1656,7 +1661,8 @@ a .column-title-back .icon:after {
 
 .is-wide-columns .media-size-large {
 	max-height:350px;
-	min-height:160px
+	min-height:160px;
+	overflow:hidden
 }
 
 .is-wide-columns .media-size-medium {
@@ -5322,10 +5328,6 @@ fieldset .fixed-width-label:not(.radio),fieldset:not(.js-search-filter) .control
 	top:120px
 }
 
-.media-grid-container .compose-media-grid-remove .sprite-close {
-	margin-left:0!important
-}
-
 .compose-media-grid-holder {
 	padding-bottom:45px!important
 }
@@ -6344,4 +6346,8 @@ ul.tweet-stats:nth-child(2) {
 
 .account-selector-grid-mode:active,.js-compose-stay-open:active {
 	background:rgba(0,0,0,0.1)
+}
+
+.gif-play {
+	cursor:pointer
 }

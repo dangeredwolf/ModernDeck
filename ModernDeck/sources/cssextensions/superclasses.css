@@ -19,8 +19,11 @@
 	color:#13B33F
 }
 
+.is-paused .gif-pause,
+.is-gif:not(.is-paused) .gif-play,
 .ovl-plain,
 .ovl,
+.gif-badge,
 .overlay,
 .link-complex[rel="viewDetails"],
 .cmp-info,
@@ -548,6 +551,7 @@ a.btn,
 #prev-month,
 #next-month,
 .pin-all,
+.gif-pause,
 .media-grid-2,
 .media-grid-3,
 .media-grid-4,
@@ -733,6 +737,7 @@ a.btn,
 
 .antiscroll-inner,
 .pin-all,
+.gif-pause,
 .column-holder,
 .column-panel,
 .column-scroller,
