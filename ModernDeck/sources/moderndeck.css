@@ -3662,7 +3662,8 @@ input[type="checkbox"] {
 
 .recent-search-clear.list-item-last span:before {
 	font-size:20px;
-	margin-top:10px;
+	margin-top:5px;
+	margin-bottom:1px;
 	display:inline-block
 }
 
