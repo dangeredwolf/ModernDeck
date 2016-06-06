@@ -497,7 +497,7 @@ function LoginStuffs() {
 		setTimeout(LoginStuffs,150);
 		return;
 	}
-	var bannerPhoto = profileInfo._profileBannerURL.search("empty") > 0 ? "" : profileInfo._profileBannerURL();
+	var bannerPhoto = profileInfo._profileBannerURL.search("empty") > 0 ? "" : profileInfo._profileBannerURL;
 	var avatarPhoto = profileInfo.profileImageURL.replace("_normal","");
 	var name = profileInfo.name;
 	var username = profileInfo.screenName;
