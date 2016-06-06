@@ -541,8 +541,10 @@ function NavigationSetup() {
 		mutationObserver(b,function(){
 			if (typeof c.attr("style") !== "undefined") {
 				var num = parseInt(c.attr("style").match(/[\-\d]+/g));
-				if (num < 0)
-					c.attr("style","top: 0px;")
+				var filterOptionsHeight = $(".column-scroller").parent().children(".column-options").children('.js-column-message[style]')[0].style.height;
+				var hasFilterOptionsVisible = parseInt(filterOptionsHeight.replace("px","")) > 0;
+				if ((!hasFilterOptionsVisible && num < 0) || (hasFilterOptionsVisible && num < 21))
+					c.attr("style","top: " + ((!hasFilterOptionsVisible && "0") || "22") + "px;")
 			}
 		},{attributes:true});
 	})
