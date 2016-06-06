@@ -26,8 +26,8 @@ a:not(.list-account):not(.js-column-back):not(.column-header-link):focus
 	color:#0DA8BC;
 }
 
-a:not(.compose-account):active,
-a:not(.compose-account):focus {
+a:not(.compose-account):not(.js-toggle-item):active,
+a:not(.compose-account):not(.js-toggle-item):focus {
 	background-color:rgba(0,0,0,.05)
 }
 
