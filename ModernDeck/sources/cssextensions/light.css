@@ -168,9 +168,10 @@ option,
 .s-following .follow-btn:active,
 .btn-positive-alt.is-selected,
 .is-selected.btn-fav.s-favorited,
-.s-following .is-selected.follow-btn
+.s-following .is-selected.follow-btn,
+.s-following .follow-btn:hover
 {
-	color:#C22727
+	color:#C22727!important
 }
 
 .btn-compose:not(.js-hide-drawer)
@@ -185,25 +186,24 @@ option,
 	color:#fff!important
 }
 
+.invalid-char-count,
+.unfollow-text,
+#add-filter:not([disabled]),
 .btn-negative
 {
-	color:#D80000
+	color:#D80000!important
 }
 
-.btn-negative:hover
+.btn-negative:not([disabled]):not(.is-disabled):hover
 {
-	color:#FF2727
+	color:#FF2727!important
 }
 
-.btn-negative:focus
-{
-	color:#a00
-}
-
+.btn-negative:focus,
 .btn-negative:active,
 .btn-negative.is-selected
 {
-	color:#B30000
+	color:#B30000!important
 }
 
 .btn-negative[disabled],
@@ -214,7 +214,7 @@ option,
 .btn-negative.is-disabled:focus,
 .btn-negative.is-disabled:active
 {
-	color:rgba(178,0,0,.3)
+	color:rgba(178,0,0,.3)!important
 }
 
 .tweet-action[data-actions-menu-position]:focus
@@ -325,11 +325,6 @@ body,
 .sprite:before
 {
 	color:#0EC5D5
-}
-
-.s-following .follow-btn:hover
-{
-	color:#EC1313
 }
 
 .btn-compose:not(.js-hide-drawer),
@@ -862,11 +857,6 @@ textarea::placeholder
 textarea
 {
 	border-color:#333
-}
-
-.over-char-count:disabled
-{
-	color:#a93730
 }
 
 .column-content
