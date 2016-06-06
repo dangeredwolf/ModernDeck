@@ -4492,8 +4492,7 @@ input[type="checkbox"]:checked:before {
 .facet-type .control-group select,.facet-type .control-group input:not([type=checkbox]) {
 	width:55%;
 	float:right;
-	display:block;
-
+	display:block
 }
 
 .app-nav-link.js-header-add-column .obj-left {
@@ -6398,4 +6397,8 @@ ul.tweet-stats:nth-child(2) {
 	position:absolute;
 	bottom:22px;
 	left:20px
+}
+
+.js-column-options input[type="checkbox"]:before {
+	color:#fff!important
 }

@@ -687,7 +687,7 @@ a.btn,
 .l-column.mdl-column.mdl-column-sml .selected,
 .js-toggle.padding-al button.is-selected,
 .facet-type .control-group select,
-.facet-type .control-group input
+.facet-type .control-group input:not([type="checkbox"])
 {
 	border-bottom:2px solid #fff
 }
