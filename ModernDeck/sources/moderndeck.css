@@ -3497,8 +3497,26 @@ textarea,.l-fullwidth {
 }
 
 input[type="checkbox"] {
-	height:auto
+	-webkit-appearance:none;
+	-moz-appearance:none;
+	font-size:24px;
+	vertical-align:middle
 }
+
+input[type="checkbox"]:active {
+	opacity:0.5
+}
+
+input[type="checkbox"]:before {
+	content:"\e835";
+	font-family:"Material";
+	color:#000
+}
+
+input[type="checkbox"]:checked:before {
+	content:"\e834"
+}
+
 
 .input-with-icon {
 	padding-right:25px
@@ -3523,9 +3541,7 @@ input[type="checkbox"] {
 }
 
 .checkbox input[type="checkbox"],.radio input[type="radio"] {
-	float:left;
-	margin-top:2px;
-	margin-left:-27px
+	float:left
 }
 
 .checkbox-reversed input[type="checkbox"] {
@@ -5205,7 +5221,7 @@ fieldset .fixed-width-label:not(.radio),fieldset:not(.js-search-filter) .control
 }
 
 .js-account-safeguard-text:after {
-	font-size:12px;
+	font-size:14px;
 	content:"Ready?";
 	margin-right:5px
 }
@@ -6325,7 +6341,7 @@ ul.tweet-stats:nth-child(2) {
 .js-compose-stay-open {
 	-webkit-appearance:none;
 	-moz-appearance:none;
-	color:#fff;
+	color:#fff!important;
 	position:absolute;
 	font-size:24px;
 	cursor:pointer;
@@ -6336,12 +6352,13 @@ ul.tweet-stats:nth-child(2) {
 }
 
 .js-compose-stay-open:before {
-	content:"\e898";
-	font-family:"Material"
+	content:"\e898"!important;
+	font-family:"Material";
+	color:#fff!important
 }
 
 .js-compose-stay-open:checked:before {
-	content:"\e897"
+	content:"\e897"!important
 }
 
 .account-selector-grid-mode:active,.js-compose-stay-open:active {
@@ -6350,4 +6367,36 @@ ul.tweet-stats:nth-child(2) {
 
 .gif-play {
 	cursor:pointer
+}
+
+#account-safeguard-checkbox {
+	-webkit-appearance:none;
+	-moz-appearance:none;
+	color:#fff;
+	position:absolute;
+	font-size:24px;
+	cursor:pointer;
+	height:60px;
+	top:0;
+	right:-15px
+}
+
+#account-safeguard-checkbox:active {
+	opacity:0.5
+}
+
+#account-safeguard-checkbox:before {
+	content:"\e835";
+	font-family:"Material";
+	color:#fff
+}
+
+#account-safeguard-checkbox:checked:before {
+	content:"\e834"
+}
+
+#inline-account-safeguard-checkbox {
+	position:absolute;
+	bottom:22px;
+	left:20px
 }
