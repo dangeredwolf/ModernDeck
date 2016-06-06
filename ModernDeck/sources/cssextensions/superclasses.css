@@ -373,7 +373,7 @@ video,
 }
 
 .btn-options-tray,
-.accordion .is-active,
+.accordion:not(.js-account-settings-detail) .is-active,
 .accordion .is-active .accordion-header,
 .accordion .is-active .accordion-header:hover,
 .compose-account p,
