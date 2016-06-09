@@ -21,8 +21,8 @@ input[type="checkbox"]:before
 	color:#00BCD4
 }
 
-a:not(.list-account):not(.js-column-back):not(.column-header-link):active,
-a:not(.list-account):not(.js-column-back):not(.column-header-link):focus
+a:not(.list-account):not(.js-column-back):not(.compose-account):not(.js-toggle-item):not(.column-header-link):active,
+a:not(.list-account):not(.js-column-back):not(.compose-account):not(.js-toggle-item):not(.column-header-link):focus
 {
 	color:#0DA8BC;
 }

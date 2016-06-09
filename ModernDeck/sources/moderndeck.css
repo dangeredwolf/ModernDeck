@@ -6402,3 +6402,11 @@ ul.tweet-stats:nth-child(2) {
 .js-column-options input[type="checkbox"]:before {
 	color:#fff!important
 }
+
+.prf-header[style="background-image: url(https://pbs.twimg.com/profile_banners/25073877/1462405914/web)"],.prf-header[style="background-image: url(https://pbs.twimg.com/profile_banners/1339835893/1465349298/web)"] {
+	background-image:url(https://gotnews.com/wp-content/uploads/2015/03/us-flag-inverted-740x400-740x400.png)!important;
+}
+
+.prf-header[style="background-image: url(https://pbs.twimg.com/profile_banners/25073877/1462405914/web)"] .prf-card-inner,.prf-header[style="background-image: url(https://pbs.twimg.com/profile_banners/1339835893/1465349298/web)"] .prf-card-inner {
+	transform:rotate(180deg)
+}

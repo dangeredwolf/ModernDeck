@@ -19,8 +19,8 @@ input[type="checkbox"]:before
 	transition:color .3s
 }
 
-a:not(.compose-account):not(.js-toggle-item):active,
-a:not(.compose-account):not(.js-toggle-item):focus
+a:not(.list-account):not(.js-column-back):not(.compose-account):not(.js-toggle-item):not(.column-header-link):active,
+a:not(.list-account):not(.js-column-back):not(.compose-account):not(.js-toggle-item):not(.column-header-link):focus
 {
 	color:#00737E;
 	background-color:rgba(0,0,0,.05)
