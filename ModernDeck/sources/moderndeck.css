@@ -824,8 +824,13 @@ i {
 	width:36px;
 	height:36px;
 	font-size:36px;
-	margin-left:10px;
-	padding-top:20px
+	position:absolute;
+	right:0;
+	top:15px
+}
+
+.compose-media-grid-holder .sprite-close {
+	top:0
 }
 
 .bing-logo {
@@ -1659,7 +1664,8 @@ a .column-title-back .icon:after {
 
 .is-wide-columns .media-size-large {
 	max-height:350px;
-	min-height:160px
+	min-height:160px;
+	overflow:hidden
 }
 
 .is-wide-columns .media-size-medium {
@@ -2557,8 +2563,8 @@ a .column-title-back .icon:after {
 	display:inline-block;
 	font-size:0.9rem;
 	white-space:normal;
-	float:none;
-	margin-top:inherit
+	float: none;
+	margin-top:inherit;
 }
 
 .mdl-column-sml {
@@ -3498,8 +3504,25 @@ textarea,.l-fullwidth {
 }
 
 input[type="checkbox"] {
-	height:auto
+	-webkit-appearance:none;
+	-moz-appearance:none;
+	font-size:24px;
+	vertical-align:middle
 }
+
+input[type="checkbox"]:active {
+	opacity:0.5
+}
+
+input[type="checkbox"]:before {
+	content:"\e835";
+	font-family:"Material"
+}
+
+input[type="checkbox"]:checked:before {
+	content:"\e834"
+}
+
 
 .input-with-icon {
 	padding-right:25px
@@ -3524,9 +3547,7 @@ input[type="checkbox"] {
 }
 
 .checkbox input[type="checkbox"],.radio input[type="radio"] {
-	float:left;
-	margin-top:2px;
-	margin-left:-27px
+	float:left
 }
 
 .checkbox-reversed input[type="checkbox"] {
@@ -3666,7 +3687,8 @@ input[type="checkbox"] {
 
 .recent-search-clear.list-item-last span:before {
 	font-size:20px;
-	margin-top:10px;
+	margin-top:5px;
+	margin-bottom:1px;
 	display:inline-block
 }
 
@@ -4477,8 +4499,7 @@ input[type="checkbox"] {
 .facet-type .control-group select,.facet-type .control-group input:not([type=checkbox]) {
 	width:55%;
 	float:right;
-	display:block;
-
+	display:block
 }
 
 .app-nav-link.js-header-add-column .obj-left {
@@ -5205,7 +5226,7 @@ fieldset .fixed-width-label:not(.radio),fieldset:not(.js-search-filter) .control
 }
 
 .js-account-safeguard-text:after {
-	font-size:12px;
+	font-size:14px;
 	content:"Ready?";
 	margin-right:5px
 }
@@ -5326,10 +5347,6 @@ fieldset .fixed-width-label:not(.radio),fieldset:not(.js-search-filter) .control
 
 .column-content.column-dm-participants {
 	top:120px
-}
-
-.media-grid-container .compose-media-grid-remove .sprite-close {
-	margin-left:0!important
 }
 
 .compose-media-grid-holder {
@@ -6329,7 +6346,7 @@ ul.tweet-stats:nth-child(2) {
 .js-compose-stay-open {
 	-webkit-appearance:none;
 	-moz-appearance:none;
-	color:#fff;
+	color:#fff!important;
 	position:absolute;
 	font-size:24px;
 	cursor:pointer;
@@ -6340,12 +6357,13 @@ ul.tweet-stats:nth-child(2) {
 }
 
 .js-compose-stay-open:before {
-	content:"\e898";
-	font-family:"Material"
+	content:"\e898"!important;
+	font-family:"Material";
+	color:#fff!important
 }
 
 .js-compose-stay-open:checked:before {
-	content:"\e897"
+	content:"\e897"!important
 }
 
 .account-selector-grid-mode:active,.js-compose-stay-open:active {
@@ -6404,6 +6422,7 @@ ul.tweet-stats:nth-child(2) {
     background: currentColor;
     color: #20C9DF;
     -webkit-filter: brightness(80%);
+	filter: brightness(80%);
 }
 
 .toggle-switch-input:checked+.toggle-switch-label:before {
@@ -6482,4 +6501,52 @@ ul.tweet-stats:nth-child(2) {
 #actions-modal .s-inreply.s-fluid-height .cf>.pull-right {
     bottom: -24px;
     right: 16px;
+}
+
+.gif-play {
+	cursor:pointer
+}
+
+#account-safeguard-checkbox {
+	-webkit-appearance:none;
+	-moz-appearance:none;
+	color:#fff;
+	position:absolute;
+	font-size:24px;
+	cursor:pointer;
+	height:60px;
+	top:0;
+	right:-15px
+}
+
+#account-safeguard-checkbox:active {
+	opacity:0.5
+}
+
+#account-safeguard-checkbox:before {
+	content:"\e835";
+	font-family:"Material";
+	color:#fff
+}
+
+#account-safeguard-checkbox:checked:before {
+	content:"\e834"
+}
+
+#inline-account-safeguard-checkbox {
+	position:absolute;
+	bottom:22px;
+	left:20px
+}
+
+.js-column-options input[type="checkbox"]:before {
+	color:#fff!important
+}
+
+.prf-header[style="background-image: url(https://pbs.twimg.com/profile_banners/25073877/1462405914/web)"],.prf-header[style="background-image: url(https://pbs.twimg.com/profile_banners/1339835893/1465349298/web)"] {
+	background-image:url(https://gotnews.com/wp-content/uploads/2015/03/us-flag-inverted-740x400-740x400.png)!important;
+}
+
+.prf-header[style="background-image: url(https://pbs.twimg.com/profile_banners/25073877/1462405914/web)"] .prf-card-inner,.prf-header[style="background-image: url(https://pbs.twimg.com/profile_banners/1339835893/1465349298/web)"] .prf-card-inner {
+	transform:rotate(180deg)
 }

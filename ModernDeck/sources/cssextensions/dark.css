@@ -12,13 +12,14 @@ a:not([href="#"]):not(.column-header-link):not(.js-column-back):not(.js-tweet-so
 .compose-send-button-success,
 .icon-follow-color,
 .tweet-actions.is-visible .icon-reply,
-#caltoday
+#caltoday,
+input[type="checkbox"]:before
 {
 	transition:color .3s
 }
 
-a:active,
-a:focus
+a:not(.list-account):not(.js-column-back):not(.compose-account):not(.js-toggle-item):not(.column-header-link):active,
+a:not(.list-account):not(.js-column-back):not(.compose-account):not(.js-toggle-item):not(.column-header-link):focus
 {
 	color:#00737E;
 	background-color:rgba(0,0,0,.05)
@@ -297,18 +298,18 @@ option,
 #add-filter:not([disabled]),
 .btn-negative:not([disabled]):not(.is-disabled)
 {
-	color:#EA6B6B
+	color:#EA6B6B!important
 }
 
 .btn-negative:not([disabled]):not(.is-disabled):hover
 {
-	color:#FF2727
+	color:#FF2727!important
 }
 
 .btn-negative:active,
 .btn-negative.is-selected
 {
-	color:#B30000
+	color:#B30000!important
 }
 
 .btn-negative[disabled],
@@ -319,7 +320,7 @@ option,
 .btn-negative.is-disabled:focus,
 .btn-negative.is-disabled:active
 {
-	color:rgba(244,101,101,.45)
+	color:rgba(244,101,101,.45)!important
 }
 
 .contributor-adder input.js-username-input.js-submittable-input

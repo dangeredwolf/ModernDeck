@@ -43,7 +43,7 @@ function InjectDevStyles() {
   if (isFirefox) {
     var links = document.querySelectorAll("link[title='dark'],link[title='light']");
 
-    for (i = 0; i < links.length; i++) {
+    for (var i = 0; i < links.length; i++) {
       links[i].href = "";
     }
   }
