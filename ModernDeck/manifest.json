@@ -1,10 +1,11 @@
 {
   "name": "ModernDeck",
   "short_name": "ModernDeck",
-
   "description": "The world's most loved Twitter client.",
   "version": "6.0",
-
+  "version_name": "6.0-alpha Build 1",
+  "manifest_version": 2,
+  
   "permissions": [
     "webRequest",
     "webRequestBlocking",
@@ -40,40 +41,15 @@
 
   "web_accessible_resources": [
     "sources",
-    "sources/*",
-    "sources/MTDinject.js",
-    "sources/moderndeck.css",
-    "sources/moderndeck.min.css",
-    "sources/accounts.png",
-    "sources/AddColumn.png",
-    "sources/alert_2.mp3",
-    "sources/BTDsmall.png",
-    "sources/dev.css",
-    "sources/favicon.ico",
-    "sources/KBshortcuts.png",
-    "sources/logout.png",
-    "sources/mtdabout.png",
-    "sources/MTDsmall.png",
-    "sources/TweetDeck.png",
-    "sources/tweetdecksmall.png",
-    "sources/fonts/Roboto300latinext.woff2",
-    "sources/fonts/Roboto300latin.woff2",
-    "sources/fonts/Roboto400latinext.woff2",
-    "sources/fonts/Roboto400latin.woff2",
-    "sources/fonts/Roboto500latinext.woff2",
-    "sources/fonts/Roboto500latin.woff2",
-    "sources/fonts/MaterialIcons.woff2",
-    "sources/fonts/fontawesome.woff2",
-    "sources/fonts/MaterialIcons.woff2"
+    "sources/*"
   ],
-
+  
   "browser_action": {
+    "browser_style": false,
     "default_icon": "sources/oneclick/InstaTweetDeck.png",
-    "default_popup": "extension/ITD.html",
-    "default_title": "Launch TweetDeck"
+    "default_title": "Launch TweetDeck",
+    "default_popup": "extension/ITD.html"
   },
-
-  "manifest_version": 2,
 
   "applications": {
     "gecko": {
