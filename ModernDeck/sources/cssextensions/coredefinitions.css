@@ -33,7 +33,7 @@ select
 	margin:0;
 	padding:0;
 	border:0;
-	font:inherit 400 normal 100%;
+	font:inherit;
 	line-height:1
 }
 

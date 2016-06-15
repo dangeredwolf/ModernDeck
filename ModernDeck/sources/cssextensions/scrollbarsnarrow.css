@@ -5,12 +5,12 @@
   Released under the MIT Licence
 */
 
-.mdl.s-profile::-webkit-scrollbar,.scroll-styled-v::-webkit-scrollbar,.scroll-v::-webkit-scrollbar,.lst-launcher::-webkit-scrollbar,.mtd-nav-drawer::-webkit-scrollbar {
+.mdl.s-profile::-webkit-scrollbar,.scroll-styled-v::-webkit-scrollbar,.scroll-v::-webkit-scrollbar,.lst-launcher::-webkit-scrollbar,.mtd-nav-drawer::-webkit-scrollbar,.emoji-container>div::-webkit-scrollbar,.emoji-container::-webkit-scrollbar {
 	width:5px;
 	pointer-events:all
 }
 
-.mdl.s-profile::scrollbar,.scroll-styled-v::scrollbar,.scroll-v::scrollbar,.lst-launcher::scrollbar,.mtd-nav-drawer::scrollbar {
+.mdl.s-profile::scrollbar,.scroll-styled-v::scrollbar,.scroll-v::scrollbar,.lst-launcher::scrollbar,.mtd-nav-drawer::scrollbar,.emoji-container>div::scrollbar,.emoji-container::scrollbar {
 	width:5px;
 	pointer-events:all
 }

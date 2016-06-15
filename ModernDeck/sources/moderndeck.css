@@ -20,6 +20,10 @@
 
 /* NORMAL STUFF */
 
+img.spinner-centered { /* PART OF LOADING SCREEN, DON'T MERGE TO SUPERCLASSES */
+	display:none
+}
+
 body.scroll-v {
 	background:#263238
 }
@@ -69,7 +73,7 @@ html.scroll-v {
 	overflow-x:auto
 }
 
-.mdl.s-profile::-webkit-scrollbar,.scroll-styled-v::-webkit-scrollbar,.scroll-v::-webkit-scrollbar,.lst-launcher::-webkit-scrollbar,.mtd-nav-drawer::-webkit-scrollbar {
+.mdl.s-profile::-webkit-scrollbar,.scroll-styled-v::-webkit-scrollbar,.scroll-v::-webkit-scrollbar,.lst-launcher::-webkit-scrollbar,.mtd-nav-drawer::-webkit-scrollbar,.emoji-container>div::-webkit-scrollbar,.emoji-container::-webkit-scrollbar {
 	width:10px;
 	pointer-events:all
 }
@@ -82,6 +86,11 @@ html.scroll-v {
 .antiscroll-inner {
 	overflow-y:scroll;
 	overflow-x:hidden
+}
+
+.emoji-container>div,.emoji-container {
+	overflow-y:scroll!important;
+	overflow-x:hidden!important
 }
 
 .antiscroll-inner::-webkit-scrollbar {
@@ -857,7 +866,7 @@ button,a.btn,a.js-create-list,input[type="button"] {
 	text-decoration:none;
 	cursor:pointer;
 	font-size:14px;
-	font-weight:400;
+	font-weight:500;
 	border:0;
 	border-color:transparent;
 	background:transparent;
@@ -1125,7 +1134,7 @@ button:hover,button:focus {
 	padding-left:3px!important;
 	position:absolute;
 	width:100%;
-	padding-top:3px;
+	padding-top:5px;
 	margin-left:0!important;
 	margin-top:-2px!important
 }
@@ -3556,7 +3565,7 @@ input[type="radio"]:checked:before {
 
 .checkbox-reversed input[type="checkbox"] {
 	float:right;
-	height:auto
+	height:25px
 }
 
 .checkbox span {
@@ -5107,7 +5116,8 @@ fieldset .fixed-width-label:not(.radio),fieldset:not(.js-search-filter) .control
 
 .mtd-mute-text:before {
 	font-size:16px;
-	font-weight:600
+	font-weight:600;
+	padding-right:10px
 }
 
 .mtd-mute-text-:before {
@@ -5155,7 +5165,7 @@ fieldset .fixed-width-label:not(.radio),fieldset:not(.js-search-filter) .control
 }
 
 .column-type-icon {
-	padding-top:2px
+	padding-top:4px
 }
 
 .contributor-list {
@@ -6038,10 +6048,8 @@ button.mtd-no-transform-case {
 }
 
 .compose-remember-state {
-	margin-bottom:5px;
-	width:50%;
-	min-height:12px;
-	max-height:10px
+	width:50px;
+	cursor:pointer
 }
 
 #mtd-theme-control option[value="paper"] {
@@ -6433,4 +6441,43 @@ ul.tweet-stats:nth-child(2) {
 
 input[type="button"] {
 	border-bottom:0
+}
+
+p[lang="ar"] {
+	direction:rtl
+}
+
+.contributor-row .account-summary-text {
+	padding-left:45px
+}
+
+.contributor-detail {
+	padding-top:5px;
+	font-size:0;
+	font-weight:500
+}
+
+.contributor-detail>span {
+	font-size:14px
+}
+
+.contributor-detail>a {
+	padding-left:15px;
+	padding-top:2px;
+	text-transform:uppercase;
+	font-size:0
+}
+
+.contributor-detail>a:before {
+	content:"Change";
+	font-size:14px
+}
+
+.contributor-settings-role>.radio {
+	padding-left:0
+}
+
+.contributor-settings-role>.radio .nbfc {
+	width:180px;
+	padding-left:35px
 }

@@ -94,7 +94,8 @@ option,
 .caloff,
 .l-column.mdl-column.mdl-column-sml .list-link,
 .typeahead .username,
-.lst-group .list-account .username
+.lst-group .list-account .username,
+html .btd-grayscale_notification_icons i.icon.activity-indicator
 {
 	color:#979797
 }
@@ -186,6 +187,12 @@ option,
 .js-edit.btn-neutral-positive
 {
 	color:#fff!important
+}
+
+.emoji-popover .category-chooser,
+.btd-dark-theme.btd-minimal_mode .compose-reply-tweet
+{
+	background:#fff!important
 }
 
 .invalid-char-count,

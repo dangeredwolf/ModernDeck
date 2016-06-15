@@ -134,7 +134,8 @@ div.drawer[data-drawer="compose"],
 .txt-r-dark-gray,
 .typeahead .username,
 .l-column.mdl-column.mdl-column-sml .list-link,
-.lst-group .list-account .username
+.lst-group .list-account .username,
+html .btd-grayscale_notification_icons i.icon.activity-indicator
 {
 	color:#6D808B
 }
@@ -198,6 +199,11 @@ optgroup,
 .status-message
 {
 	background:#263238
+}
+
+
+.btd-dark-theme.btd-minimal_mode .compose-reply-tweet {
+	background:#263238!important
 }
 
 .column-header,
