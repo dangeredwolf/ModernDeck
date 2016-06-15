@@ -6,13 +6,13 @@
 */
 
 .mdl-header.js-mdl-header,.application,.mtd-light .app-navigator .js-hide-drawer,.app-navigator .js-hide-drawer,.edit-conversation-name,.drawer-header,.column:not(.is-new) .column-message,body,.column-header,.column-header-temp {
-	background:#F44336!important
+	background:#E53935!important
 }
 
 .is-new .column-header,.is-new .column-header-temp {
-	background:linear-gradient(#F44336,#00BCD4)!important
+	background:linear-gradient(#E53935,#00BCD4)!important
 }
 
 .mtd-nd-header-image {
-	background-color:#F44336!important
+	background-color:#E53935!important
 }
