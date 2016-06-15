@@ -236,8 +236,8 @@ function MTDInit(){
 		fontParseHelper({weight:"500",name:"Roboto500latin",range:"U+0000-00FF,U+0131,U+0152-0153,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2212,U+2215,U+E0FF,U+EFFD,U+F000"}) +
 		fontParseHelper({weight:"500",name:"Roboto500latinext"}) +
 		fontParseHelper({family:"Material",weight:"400",name:"MaterialIcons",range:"U+0000-F000"}) +
-		fontParseHelper({family:"MD",weight:"400",name:"mdvectors",range:"U+E000-FFFF"}) +
-		fontParseHelper({family:"Font Awesome",weight:"400",name:"fontawesome",range:"U+0000-F000"})
+		fontParseHelper({family:"MD",weight:"400",name:"mdvectors",range:"U+E000-FFFF"})
+		// fontParseHelper({family:"Font Awesome",weight:"400",name:"fontawesome",range:"U+0000-F000"})
 	));
 
 	document.querySelector(".js-modals-container").removeChild = function(rmnode){
