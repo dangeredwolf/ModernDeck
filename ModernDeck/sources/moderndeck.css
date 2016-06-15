@@ -6481,3 +6481,7 @@ p[lang="ar"] {
 	width:180px;
 	padding-left:35px
 }
+
+.scroll-conversation .js-replies-before .js-media-preview-container.margin-vm,.scroll-conversation .js-replies-to .js-media-preview-container.margin-vm {
+	padding-left:53px
+}
