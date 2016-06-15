@@ -295,11 +295,11 @@ function MTDInit(){
 		return TD.i("{{hours12}}:{{minutes}} {{amPm}}, {{day}} {{month}} {{fullYear}}", TD.util.prettyTime(e));
 	};
 
-	head.append(
-		make("script")
-			.attr("type","text/javascript")
-			.attr("src",MTDBaseURL + "sources/libraries/waves.js")
-	)
+	// head.append(
+	// 	make("script")
+	// 		.attr("type","text/javascript")
+	// 		.attr("src",MTDBaseURL + "sources/libraries/waves.js")
+	// )
 
 	NavigationSetup();
 
