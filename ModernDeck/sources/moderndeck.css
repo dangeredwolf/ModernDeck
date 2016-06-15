@@ -847,7 +847,7 @@ i {
 	color:inherit
 }
 
-button,a.btn,a.js-create-list {
+button,a.btn,a.js-create-list,input[type="button"] {
 	position:relative;
 	display:inline-block;
 	pointer-events:all;
@@ -2390,6 +2390,7 @@ a .column-title-back .icon:after {
 .character-count-compose {
 	text-align:right;
 	display:inline;
+	padding-top:5px;
 	position:relative
 }
 
@@ -2683,8 +2684,8 @@ a .column-title-back .icon:after {
 }
 
 .mdl-links {
-	position:fixed;
-	bottom:0;
+	position:absolute;
+	bottom:-350px;
 	left:0;
 	width:500px;
 	color:transparent;
@@ -3496,11 +3497,13 @@ textarea,.l-fullwidth {
 	font-style:italic
 }
 
-input[type="checkbox"] {
+input[type="checkbox"],input[type="radio"] {
 	-webkit-appearance:none;
 	-moz-appearance:none;
 	font-size:24px;
-	vertical-align:middle
+	padding:0;
+	margin-right:10px;
+	display:block
 }
 
 input[type="checkbox"]:active {
@@ -3516,6 +3519,14 @@ input[type="checkbox"]:checked:before {
 	content:"\e834"
 }
 
+input[type="radio"]:before {
+	content:"\e836";
+	font-family:"Material"
+}
+
+input[type="radio"]:checked:before {
+	content:"\e837"
+}
 
 .input-with-icon {
 	padding-right:25px
@@ -3560,7 +3571,7 @@ input[type="checkbox"]:checked:before {
 }
 
 .fixed-width-label {
-	width:90px
+	width:95px
 }
 
 .js-fhf-body.pin-all {
@@ -4934,11 +4945,18 @@ a[rel=user]:active,.card-holder a[rel=mediaPreview]:active {
 }
 
 .mtd-logo {
-	width:250px;
+	width:300px;
+	font-size:300px;
+	line-height:1;
 	display:block;
 	margin-left:auto;
 	margin-right:auto;
-	margin-top:10px
+	margin-top:10px;
+	margin-bottom:-100px
+}
+
+.mtd-logo:before {
+	line-height:1
 }
 
 .mtd-about-title {
@@ -5003,6 +5021,7 @@ a[rel=user]:active,.card-holder a[rel=mediaPreview]:active {
 	content:"Streaming";
 	font-size:24px;
 	margin-bottom:15px;
+	margin-top:35px;
 	display:block;
 	font-weight:300;
 	text-align:center
@@ -5066,7 +5085,8 @@ fieldset .fixed-width-label:not(.radio),fieldset:not(.js-search-filter) .control
 .mdl .checkbox,.mdl .radio {
 	display:block;
 	pointer-events:all;
-	margin-bottom:15px
+	margin-bottom:15px;
+	vertical-align:middle
 }
 
 #link-shortening {
@@ -6409,4 +6429,8 @@ ul.tweet-stats:nth-child(2) {
 
 .prf-header[style="background-image: url(https://pbs.twimg.com/profile_banners/25073877/1462405914/web)"] .prf-card-inner,.prf-header[style="background-image: url(https://pbs.twimg.com/profile_banners/1339835893/1465349298/web)"] .prf-card-inner {
 	transform:rotate(180deg)
+}
+
+input[type="button"] {
+	border-bottom:0
 }

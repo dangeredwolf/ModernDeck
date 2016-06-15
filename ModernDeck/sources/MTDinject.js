@@ -5,7 +5,7 @@
 
 "use strict";
 
-var SystemVersion = "6.0 RC2 (Build 2016.06.08.1)";
+var SystemVersion = "6.0 RC3 (Build 2016.06.14.1)";
 var MTDBaseURL = "https://raw.githubusercontent.com/dangeredwolf/ModernDeck/master/ModernDeck/"; // Defaults to streaming if nothing else is available (i.e. legacy firefox)
 
 var msgID,
@@ -458,7 +458,7 @@ function MTDSettings() {
 			\
 			<form action="#" id="mtd-accessibility-form" accept-charset="utf-8"class="frm" style="display:none;"><fieldset id="general_settings"><label class="checkbox">Always show outlines on focused items<input type="checkbox" checked="checked" id="mtd-outlines-control"> </label></fieldset></form>\
 			\
-			<form action="#" id="mtd-about-form" accept-charset="utf-8"class="frm" style="display:none;"><fieldset id="general_settings"><img src="' + MTDBaseURL + 'sources/mtdabout.png"class="mtd-logo"><h1 class="list-placeholder mtd-about-title">ModernDeck</h1><h2 class="mtd-version-title">You\'re running version ' + SystemVersion + '</h2><div class="mdl-links" style="margin-bottom:-10px"> <a href="https://dangeredwolf.com/TweetDeckEnhancer/privacy.txt" style="display:none" target="_blank">Privacy Policy</a> </div></fieldset></form>\
+			<form action="#" id="mtd-about-form" accept-charset="utf-8"class="frm" style="display:none;"><fieldset id="general_settings"><i class="icon icon-moderndeck mtd-logo"></i><h1 class="list-placeholder mtd-about-title">ModernDeck</h1><h2 class="mtd-version-title">You\'re running version ' + SystemVersion + '</h2><div class="mdl-links" style="margin-bottom:-10px"> <a href="https://dangeredwolf.com/TweetDeckEnhancer/privacy.txt" style="display:none" target="_blank">Privacy Policy</a> </div></fieldset></form>\
 			\
 			</div> </div> </div>');
 
@@ -1085,9 +1085,9 @@ function checkSpaceSuggestions() {
 
 }
 
-// TODO: write this future library as jquery
-
 function outtaSpaceSuggestions() {
+
+	$("button.js-retweet-button.is-disabled.js-show-tip").removeClass("is-disabled js-show-tip").attr("title","");
 
 	if ($(".js-media-added").length > 0 && $(".character-count-compose").length > 0) {
 		if (parseInt($(".character-count-compose").val()) < 0) {
@@ -1112,7 +1112,6 @@ function outtaSpaceSuggestions() {
 		}
 	}
 
-	setTimeout(outtaSpaceSuggestions,1000);
 }
 
 // warning: for some shitty ass reason this doesnt work if the console.logs arent there DONT ASK WH I DONT KNOW
@@ -1171,7 +1170,10 @@ function onElementAddedToDOM(e) {
 }
 
 setTimeout(MTDInit,0);
-setTimeout(outtaSpaceSuggestions,7000);
+setTimeout(function(){
+	setInterval(outtaSpaceSuggestions,800);
+},4000);
+
 
 html.addClass("mtd-preferences-differentiator mtd-api-ver-6-0 mtd-js-loaded");
 

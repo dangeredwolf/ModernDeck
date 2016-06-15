@@ -16,7 +16,9 @@ a:not(.column-header-link):not(.js-column-back):not(.list-account):not(.account-
 .lst-profile a,
 .lst-profile a:hover,
 .lst-profile a:active,
-input[type="checkbox"]:before
+input[type="checkbox"]:checked:before,
+input[type="radio"]:checked:before,
+.mtd-logo
 {
 	color:#00BCD4
 }

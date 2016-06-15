@@ -69,13 +69,16 @@ input[type="radio"]
 	width:auto;
 	height:auto;
 	cursor:pointer;
-	border:0
+	border:0;
+	vertical-align:middle;
+	padding:0;
+	margin-right:10px
 }
 
-input[type="checkbox"]
+/*input[type="checkbox"]
 {
 	margin-top:1px
-}
+}*/
 
 input[type="button"],
 input[type="reset"],

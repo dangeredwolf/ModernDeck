@@ -13,7 +13,9 @@ a:not([href="#"]):not(.column-header-link):not(.js-column-back):not(.js-tweet-so
 .icon-follow-color,
 .tweet-actions.is-visible .icon-reply,
 #caltoday,
-input[type="checkbox"]:before
+input[type="checkbox"]:checked:before,
+input[type="radio"]:checked:before,
+.mtd-logo
 {
 	color:#009EAD;
 	transition:color .3s
