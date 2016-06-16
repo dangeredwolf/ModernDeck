@@ -8,6 +8,8 @@
 a,
 a:not(.column-header-link):not(.js-column-back):not(.list-account):not(.account-selector-grid-mode):not(.account-link):hover,
 .calweek a:hover,
+a:not(.list-account):not(.js-column-back):not(.compose-account):not(.js-toggle-item):not(.column-header-link):active,
+a:not(.list-account):not(.js-column-back):not(.compose-account):not(.js-toggle-item):not(.column-header-link):focus,
 .btn:not([disabled]):not(.is-disabled):not(.btn-options-tray):not(.mtd-nav-button):not(.btn-bg-negative),
 .compose-send-button-success,
 .icon-follow-color,
@@ -21,12 +23,6 @@ input[type="radio"]:checked:before,
 .mtd-logo
 {
 	color:#00BCD4
-}
-
-a:not(.list-account):not(.js-column-back):not(.compose-account):not(.js-toggle-item):not(.column-header-link):active,
-a:not(.list-account):not(.js-column-back):not(.compose-account):not(.js-toggle-item):not(.column-header-link):focus
-{
-	color:#0DA8BC;
 }
 
 a:not(.compose-account):not(.js-toggle-item):not(.column-header-link):active,
@@ -269,18 +265,6 @@ html .btd-grayscale_notification_icons i.icon.activity-indicator
 	color:#fff
 }
 
-.edit-conversation-name,
-.app-navigator .js-hide-drawer,
-.column-message,
-.app-navigator .js-hide-drawer,
-.drawer-header,
-html,
-body,
-.is-options-open .column-settings-link
-{
-	background:#03A9F4
-}
-
 .mtd-dark-media-previews .med-fullpanel .txt-mute
 {
 	color:#6D808B
@@ -401,13 +385,13 @@ html:not(.mtd-dark-media-previews) .med-tweet,
 .is-new .column-header,
 .is-new .column-header-temp
 {
-	background:linear-gradient(#03A9F4,#00BCD4)
+	/* background:linear-gradient(#03A9F4,#00BCD4) */
 }
 
 .column-header,
 .column-header-temp
 {
-	background:linear-gradient(#03A9F4,#03A9F4)
+	background:linear-gradient(#03A9F4,#03A9F4);
 }
 
 .column-temp .column-header,
@@ -428,6 +412,7 @@ html:not(.mtd-dark-media-previews) .med-tweet,
 {
 	background:#00BCD4
 }
+
 
 .js-add-column,
 .js-add-column:hover,
@@ -725,7 +710,7 @@ textarea::placeholder
 
 .prf-header
 {
-	background-color:#1FC0CF
+	background-color:#1FC0CF;
 }
 
 .lst-group .selected:active

@@ -419,7 +419,6 @@ article.is-unread .account-link,
 .mdl-header,
 .mdl-header-title,
 .accs-header,
-.compose,
 .compose-account,
 .inline-reply,
 .js-save.block i,
@@ -517,12 +516,12 @@ article.is-unread .account-link,
 
 .txt-left
 {
-	text-align:left!important
+	text-align:left!important;
 }
 
 .txt-right
 {
-	text-align:right!important
+	text-align:right!important;
 }
 
 button,

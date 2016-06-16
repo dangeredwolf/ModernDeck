@@ -5,8 +5,8 @@
 console.log("MTDLoad 6.0");
 
 var isDev = true;
-var isApp = typeof require !== "undefined";
-var isChromium = typeof chrome !== "undefined"; // NOTE TO SELF: This probably triggers on Microsoft Edge but idk
+var isApp = typeof module !== 'undefined' && this.module !== module; // Atom Electron/node-webkit detection
+var isChromium = typeof chrome.loadTimes !== "undefined"; // NOTE TO SELF: This probably triggers on Microsoft Edge but idk
 var isSafari = typeof safari !== "undefined";
 var isFirefox = !isChromium && !isSafari && !isApp;
 var storage = {};
@@ -36,9 +36,6 @@ if (isApp) {
 }
 
 function InjectDevStyles() {
-  console.log("*boops your nose* hey there developer :3");
-  console.log("boopstrapping moderndeck.css for extensibility");
-  console.log("don't forget to check that moderndeck.css is in manifest.json before shipping, you goof");
 
   if (isFirefox) {
     var links = document.querySelectorAll("link[title='dark'],link[title='light']");

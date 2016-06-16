@@ -17,7 +17,6 @@ input[type="checkbox"]:checked:before,
 input[type="radio"]:checked:before,
 .mtd-logo
 {
-	color:#009EAD;
 	transition:color .3s
 }
 
@@ -109,26 +108,6 @@ html,
 	background:#3A4B54
 }
 
-div.drawer[data-drawer="compose"],
-.lst-group .selected,
-#calcurrent,
-.btn-compose:not(.js-hide-drawer),
-.compose,
-.column-options .button-tray,
-.column-options,
-.facet-type,
-.is-options-open .column-settings-link,
-.is-favorite.is-retweet .tweet-dogear,
-.is-unread,
-.js-add-column,
-.mdl .js-add-column,
-.list-item.is-selected,
-.more-tweets-btn,
-.more-tweets-btn:hover
-{
-	background:#00838F
-}
-
 .mtd-back-default .js-setting-list>li:not(.selected)>.list-link strong,
 .txt-mute,
 .txt-r-dark-gray,
@@ -137,7 +116,7 @@ div.drawer[data-drawer="compose"],
 .lst-group .list-account .username,
 html .btd-grayscale_notification_icons i.icon.activity-indicator
 {
-	color:#6D808B
+	color:#6D808B;
 }
 
 input::-webkit-input-placeholder,textarea::-webkit-input-placeholder {
