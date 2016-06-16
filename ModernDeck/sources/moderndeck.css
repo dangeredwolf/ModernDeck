@@ -20,6 +20,10 @@
 
 /* NORMAL STUFF */
 
+img.spinner-centered { /* PART OF LOADING SCREEN, DON'T MERGE TO SUPERCLASSES */
+	display:none
+}
+
 body.scroll-v {
 	background:#263238
 }
@@ -69,7 +73,7 @@ html.scroll-v {
 	overflow-x:auto
 }
 
-.mdl.s-profile::-webkit-scrollbar,.scroll-styled-v::-webkit-scrollbar,.scroll-v::-webkit-scrollbar,.lst-launcher::-webkit-scrollbar,.mtd-nav-drawer::-webkit-scrollbar {
+.mdl.s-profile::-webkit-scrollbar,.scroll-styled-v::-webkit-scrollbar,.scroll-v::-webkit-scrollbar,.lst-launcher::-webkit-scrollbar,.mtd-nav-drawer::-webkit-scrollbar,.emoji-container>div::-webkit-scrollbar,.emoji-container::-webkit-scrollbar {
 	width:10px;
 	pointer-events:all
 }
@@ -82,6 +86,11 @@ html.scroll-v {
 .antiscroll-inner {
 	overflow-y:scroll;
 	overflow-x:hidden
+}
+
+.emoji-container>div,.emoji-container {
+	overflow-y:scroll!important;
+	overflow-x:hidden!important
 }
 
 .antiscroll-inner::-webkit-scrollbar {
@@ -854,7 +863,7 @@ i {
 	color:inherit
 }
 
-button,a.btn,a.js-create-list {
+button,a.btn,a.js-create-list,input[type="button"] {
 	position:relative;
 	display:inline-block;
 	pointer-events:all;
@@ -864,7 +873,7 @@ button,a.btn,a.js-create-list {
 	text-decoration:none;
 	cursor:pointer;
 	font-size:14px;
-	font-weight:400;
+	font-weight:500;
 	border:0;
 	border-color:transparent;
 	background:transparent;
@@ -1139,7 +1148,7 @@ button:hover,button:focus {
 	padding-left:3px!important;
 	position:absolute;
 	width:100%;
-	padding-top:3px;
+	padding-top:5px;
 	margin-left:0!important;
 	margin-top:-2px!important
 }
@@ -2439,6 +2448,7 @@ a .column-title-back .icon:after {
 .character-count-compose {
 	text-align:right;
 	display:inline;
+	padding-top:5px;
 	position:relative
 }
 
@@ -3582,11 +3592,13 @@ textarea,.l-fullwidth {
 	font-style:italic
 }
 
-input[type="checkbox"] {
+input[type="checkbox"],input[type="radio"] {
 	-webkit-appearance:none;
 	-moz-appearance:none;
 	font-size:24px;
-	vertical-align:middle
+	padding:0;
+	margin-right:10px;
+	display:block
 }
 
 input[type="checkbox"]:active {
@@ -3603,6 +3615,14 @@ input[type="checkbox"]:checked:before {
 	content:"\e834"
 }
 
+input[type="radio"]:before {
+	content:"\e836";
+	font-family:"Material"
+}
+
+input[type="radio"]:checked:before {
+	content:"\e837"
+}
 
 .input-with-icon {
 	padding-right:25px
@@ -3634,7 +3654,7 @@ input[type="checkbox"]:checked:before {
 
 .checkbox-reversed input[type="checkbox"] {
 	float:right;
-	height:auto
+	height:25px
 }
 
 .checkbox span {
@@ -3650,7 +3670,7 @@ input[type="checkbox"]:checked:before {
 }
 
 .fixed-width-label {
-	width:90px
+	width:95px
 }
 
 .js-fhf-body.pin-all {
@@ -5070,6 +5090,10 @@ a[rel=user]:active,.card-holder a[rel=mediaPreview]:active {
 	float: left;
 }
 
+.mtd-logo:before {
+	line-height:1
+}
+
 .mtd-about-title {
 	padding-top:10px;
 	padding-bottom:5px
@@ -5202,6 +5226,7 @@ fieldset .fixed-width-label:not(.radio),fieldset:not(.js-search-filter) .control
 	display:block;
 	pointer-events:all;
 	margin-bottom: 1rem;
+	vertical-align:middle
 }
 
 #link-shortening {
@@ -5220,7 +5245,8 @@ fieldset .fixed-width-label:not(.radio),fieldset:not(.js-search-filter) .control
 
 .mtd-mute-text:before {
 	font-size:16px;
-	font-weight:600
+	font-weight:600;
+	padding-right:10px
 }
 
 .mtd-mute-text-:before {
@@ -5268,7 +5294,7 @@ fieldset .fixed-width-label:not(.radio),fieldset:not(.js-search-filter) .control
 }
 
 .column-type-icon {
-	padding-top:2px
+	padding-top:4px
 }
 
 .contributor-list {
@@ -6189,10 +6215,8 @@ button.mtd-no-transform-case {
 }
 
 .compose-remember-state {
-	margin-bottom:5px;
-	width:50%;
-	min-height:12px;
-	max-height:10px
+	width:50px;
+	cursor:pointer
 }
 
 #mtd-theme-control option[value="paper"] {
@@ -6827,6 +6851,7 @@ fieldset .toggle-switch input {
     border-radius: 3px;
 }
 
+
 #global-settings > div:first-of-type .nbfc.margin-t--2 {
     margin-top: 0 !important;
     margin-left: 3rem;
@@ -6859,4 +6884,51 @@ fieldset .toggle-switch input {
 
 .keyboard-shortcut-title b {
     font-weight: 400;
+}
+
+input[type="button"] {
+	border-bottom:0
+}
+
+p[lang="ar"] {
+	direction:rtl
+}
+
+.contributor-row .account-summary-text {
+	padding-left:45px
+}
+
+.contributor-detail {
+	padding-top:5px;
+	font-size:0;
+	font-weight:500
+}
+
+.contributor-detail>span {
+	font-size:14px
+}
+
+.contributor-detail>a {
+	padding-left:15px;
+	padding-top:2px;
+	text-transform:uppercase;
+	font-size:0
+}
+
+.contributor-detail>a:before {
+	content:"Change";
+	font-size:14px
+}
+
+.contributor-settings-role>.radio {
+	padding-left:0
+}
+
+.contributor-settings-role>.radio .nbfc {
+	width:180px;
+	padding-left:35px
+}
+
+.scroll-conversation .js-replies-before .js-media-preview-container.margin-vm,.scroll-conversation .js-replies-to .js-media-preview-container.margin-vm {
+	padding-left:53px
 }

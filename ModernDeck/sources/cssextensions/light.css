@@ -18,7 +18,9 @@ a:not(.list-account):not(.js-column-back):not(.compose-account):not(.js-toggle-i
 .lst-profile a,
 .lst-profile a:hover,
 .lst-profile a:active,
-input[type="checkbox"]:before
+input[type="checkbox"]:checked:before,
+input[type="radio"]:checked:before,
+.mtd-logo
 {
 	color:#00BCD4
 }
@@ -88,7 +90,8 @@ option,
 .caloff,
 .l-column.mdl-column.mdl-column-sml .list-link,
 .typeahead .username,
-.lst-group .list-account .username
+.lst-group .list-account .username,
+html .btd-grayscale_notification_icons i.icon.activity-indicator
 {
 	color:#979797
 }
@@ -180,6 +183,12 @@ option,
 .js-edit.btn-neutral-positive
 {
 	color:#fff!important
+}
+
+.emoji-popover .category-chooser,
+.btd-dark-theme.btd-minimal_mode .compose-reply-tweet
+{
+	background:#fff!important
 }
 
 .invalid-char-count,

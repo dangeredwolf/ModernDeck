@@ -166,7 +166,10 @@ legend,
 .btn-relation-group:not(.s-following) .unfollow-text,
 .l-table.column-drag-drop-overlay-inner,
 .js-account-manager-container .drawer-header,
-.btn-options-tray>.label
+.btn-options-tray>.label,
+.contributor-row>div:not(.account-summary),
+#__lpform_username_numspan
+#__lpform_password_numspan /* fixes lastpass UI bug */
 {
 	display:none
 }
@@ -259,7 +262,8 @@ nav,
 section,
 summary,
 li,
-ul
+ul,
+.contributor-row[data-state="confirmAdd"]>.contributor-confirm-add
 {
 	display:block
 }
@@ -341,7 +345,6 @@ video,
 .mdl:not(.s-short) .mdl-content,
 .app-search-tweet-results,
 .scroll-none,
-.contributor-row,
 .antiscroll-wrap
 {
 	overflow:hidden

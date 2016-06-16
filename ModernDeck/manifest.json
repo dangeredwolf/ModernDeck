@@ -1,9 +1,9 @@
 {
   "name": "ModernDeck",
   "short_name": "ModernDeck",
-  "description": "The world's most loved Twitter client.",
-  "version": "6.0",
-  "version_name": "6.0-alpha Build 1",
+  "description": "TweetDeck, just more beautiful, colourful, customisable, fast, and fun than ever.",
+  "version": "2016.06.16.1",
+  "version_name": "6.0",
   "manifest_version": 2,
   
   "permissions": [
@@ -34,9 +34,7 @@
       "24": "AppIcon24.png",
       "32": "AppIcon32.png",
       "48": "AppIcon48.png",
-      "64": "AppIcon64.png",
-      "128": "Icon.png",
-      "500": "sources/mtdabout.png"
+      "64": "AppIcon64.png"
    },
 
   "web_accessible_resources": [
@@ -49,13 +47,5 @@
     "default_icon": "sources/oneclick/InstaTweetDeck.png",
     "default_title": "Launch TweetDeck",
     "default_popup": "extension/ITD.html"
-  },
-
-  "applications": {
-    "gecko": {
-      "id": "ModernDeck@ModernDeck.com",
-      "strict_min_version": "42.0",
-      "strict_max_version": "*"
-    }
   }
 }

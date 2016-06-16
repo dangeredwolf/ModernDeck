@@ -332,7 +332,10 @@
 	}
 }
 
-.account-remove-check-open .account-remove-check,.contributor-row[data-state="confirmRemove"] .contributor-confirm-remove {
+.account-remove-check-open .account-remove-check,
+.contributor-row[data-state="confirmRemove"] .contributor-confirm-remove,
+.contributor-row[data-state="settings"] .contributor-settings
+{
 	-webkit-animation:windowDown .2s cubic-bezier(.19,1,.22,1)!important
 }
 

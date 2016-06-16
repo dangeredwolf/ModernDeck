@@ -5,24 +5,24 @@
   Released under the MIT Licence
 */
 
-.mdl.s-profile::-webkit-scrollbar,.scroll-styled-v::-webkit-scrollbar,.scroll-v::-webkit-scrollbar,.lst-launcher::-webkit-scrollbar,.mtd-nav-drawer::-webkit-scrollbar {
+.mdl.s-profile::-webkit-scrollbar,.scroll-styled-v::-webkit-scrollbar,.scroll-v::-webkit-scrollbar,.lst-launcher::-webkit-scrollbar,.mtd-nav-drawer::-webkit-scrollbar,.emoji-container>div::-webkit-scrollbar,.emoji-container::-webkit-scrollbar {
 	width:0;
-	pointer-events:all
+	pointer-events:none
 }
 
-.mdl.s-profile::scrollbar,.scroll-styled-v::scrollbar,.scroll-v::scrollbar,.lst-launcher::scrollbar,.mtd-nav-drawer::scrollbar {
+.mdl.s-profile::scrollbar,.scroll-styled-v::scrollbar,.scroll-v::scrollbar,.lst-launcher::scrollbar,.mtd-nav-drawer::scrollbar,.emoji-container>div::scrollbar,.emoji-container::scrollbar {
 	width:0;
-	pointer-events:all
+	pointer-events:none
 }
 
 .scroll-styled-h::-webkit-scrollbar,.scroll-h::-webkit-scrollbar {
 	height:0;
-	pointer-events:all
+	pointer-events:none
 }
 
 .scroll-styled-h::scrollbar,.scroll-h::scrollbar {
 	height:0;
-	pointer-events:all
+	pointer-events:none
 }
 
 .needs-scroll-bottom-offset.scroll-styled-h {

@@ -13,7 +13,9 @@ a:not([href="#"]):not(.column-header-link):not(.js-column-back):not(.js-tweet-so
 .icon-follow-color,
 .tweet-actions.is-visible .icon-reply,
 #caltoday,
-input[type="checkbox"]:before
+input[type="checkbox"]:checked:before,
+input[type="radio"]:checked:before,
+.mtd-logo
 {
 	transition:color .3s
 }
@@ -111,7 +113,8 @@ html,
 .txt-r-dark-gray,
 .typeahead .username,
 .l-column.mdl-column.mdl-column-sml .list-link,
-.lst-group .list-account .username
+.lst-group .list-account .username,
+html .btd-grayscale_notification_icons i.icon.activity-indicator
 {
 	color:#6D808B;
 }
@@ -175,6 +178,11 @@ optgroup,
 .status-message
 {
 	background:#263238
+}
+
+
+.btd-dark-theme.btd-minimal_mode .compose-reply-tweet {
+	background:#263238!important
 }
 
 .column-header,

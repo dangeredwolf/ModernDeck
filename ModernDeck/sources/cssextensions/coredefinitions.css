@@ -33,7 +33,7 @@ select
 	margin:0;
 	padding:0;
 	border:0;
-	font:inherit 400 normal 100%;
+	font:inherit;
 	line-height:1
 }
 
@@ -69,13 +69,16 @@ input[type="radio"]
 	width:auto;
 	height:auto;
 	cursor:pointer;
-	border:0
+	border:0;
+	vertical-align:middle;
+	padding:0;
+	margin-right:10px
 }
 
-input[type="checkbox"]
+/*input[type="checkbox"]
 {
 	margin-top:1px
-}
+}*/
 
 input[type="button"],
 input[type="reset"],

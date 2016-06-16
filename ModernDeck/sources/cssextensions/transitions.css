@@ -222,6 +222,11 @@ a .column-title-back .icon:after
 	transition:.5s all,.15s opacity
 }
 
+.btd-actions_on_hover .js-stream-item .js-tweet-actions
+{
+	transition:.25s margin-top,.15s opacity
+}
+
 .mtd-drawer-button:active:after,
 .drawer-header:active .drawer-header-title .icon:after
 {

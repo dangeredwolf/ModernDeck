@@ -1,7 +1,6 @@
-
-The MIT Licence (MIT)
-
-Copyright (c) 2014-2016 dangered wolf (Ryan Dolan)
+=== ModernDeck ===
+Made with <3
+Copyright 2014-2016 Ryan Dolan (dangeredwolf)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -20,11 +19,6 @@ SOFTWARE.
 
 Both the above copyright notice and permission notice shall be included in all
 copies or substantial portions of the Software.
-
-=== ModernDeck ===
-Made with <3
-Copyright 2014-2016 Ryan Dolan (dangeredwolf)
-Released under the MIT licence
 
 === Original TweetDeck CSS Notice ===
 Certain CSS parts, logos, layouts, and other intellectual property distributed within ModernDeck, may be property of Twitter, and each of these parts may or may not have been substantially modified.
