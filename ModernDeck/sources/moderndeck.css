@@ -2639,7 +2639,8 @@ a .column-title-back .icon:after {
 .mdl-column-rhs {
 	width:385px;
 	bottom:0;
-	top:-70px;
+	top:-1rem;
+	right: 0;
 	position:absolute;
 	height:auto
 }
