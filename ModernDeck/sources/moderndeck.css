@@ -6443,8 +6443,13 @@ input[type="button"] {
 	border-bottom:0
 }
 
-p[lang="ar"] {
-	direction:rtl
+[lang="ar"],[lang="fa"],[lang="ha"],[lang="he"],[lang="ks"],[lang="ku"],[lang="ps"],[lang="ur"],[lang="yi"] {
+    direction: rtl
+}
+
+[lang="ar"] a[rel="hashtag"],[lang="ar"] a[rel="user"],[lang="fa"] a[rel="hashtag"],[lang="fa"] a[rel="user"],[lang="ha"] a[rel="hashtag"],[lang="ha"] a[rel="user"],[lang="he"] a[rel="hashtag"],[lang="he"] a[rel="user"],[lang="ks"] a[rel="hashtag"],[lang="ks"] a[rel="user"],[lang="ku"] a[rel="hashtag"],[lang="ku"] a[rel="user"],[lang="ps"] a[rel="hashtag"],[lang="ps"] a[rel="user"],[lang="ur"] a[rel="hashtag"],[lang="ur"] a[rel="user"],[lang="yi"] a[rel="hashtag"],[lang="yi"] a[rel="user"] {
+    direction: ltr;
+    unicode-bidi: isolate
 }
 
 .contributor-row .account-summary-text {
