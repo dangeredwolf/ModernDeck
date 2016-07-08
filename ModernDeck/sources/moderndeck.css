@@ -2,7 +2,7 @@
 			moderndeck.css
 
 
-			ModernDeck 6.0 [codename Utopian Paradise]
+			ModernDeck 6.1 [codename Sweet Paradise]
 			Copyright 2014-2016 Ryan Dolan (@dangeredwolf)
 			Released under the MIT Licence
 
@@ -699,7 +699,7 @@ i {
 	left:-3px;
 	margin-top:-1px;
 	margin-bottom:auto;
-	font-size:27px
+	font-size: 24px;
 }
 
 .mtd-nav-button .icon-keyboard,.mtd-nav-button .icon-plus {
@@ -2543,7 +2543,7 @@ a .column-title-back .icon:after {
 	overflow:visible
 }
 
-.mdl .mdl-content {
+.mdl:not(.) .mdl-content {
 	height:100%;
 	border-radius:0;
 	padding-top:0
@@ -2563,7 +2563,18 @@ a .column-title-back .icon:after {
 	font-size:28px;
 	padding-left:10px;
 	padding-right:10px;
-	font-weight:300
+	font-weight:300;
+	pointer-events:none
+}
+
+.mdl-placeholder>*::selection {
+	background:transparent;
+	color:inherit
+}
+
+.mdl-placeholder>*::-moz-selection {
+	background:transparent;
+	color:inherit
 }
 
 .mdl-column {
@@ -2643,7 +2654,8 @@ a .column-title-back .icon:after {
 	text-align:left;
 	margin-left:24px;
 	margin-right:0;
-	margin-bottom:15px
+	margin-bottom:15px;
+	transition:.2s all
 }
 
 .lst-launcher .btn i {
@@ -5274,7 +5286,11 @@ fieldset .fixed-width-label:not(.radio),fieldset:not(.js-search-filter) .control
 	pointer-events:auto;
 	padding:8px 12px;
 	min-height:0;
-	box-shadow:0 2px 5px 0 rgba(0,0,0,.16),0 2px 5px 0 rgba(0,0,0,.23)
+	box-shadow:0 2px 5px 0 rgba(0,0,0,.16),0 2px 5px 0 rgba(0,0,0,.23);
+}
+
+.mdl .more-tweets-btn {
+	top:-5.75em
 }
 
 .more-tweets-btn:active,.more-tweets-btn:hover,.more-tweets-btn:focus {
@@ -6489,4 +6505,8 @@ input[type="button"] {
 
 .scroll-conversation .js-replies-before .js-media-preview-container.margin-vm,.scroll-conversation .js-replies-to .js-media-preview-container.margin-vm {
 	padding-left:53px
+}
+
+.mdl .column-scroller {
+	top:0!important
 }

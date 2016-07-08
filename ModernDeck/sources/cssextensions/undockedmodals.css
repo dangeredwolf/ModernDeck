@@ -1,10 +1,14 @@
 @import "animations.css";
 
-.mdl {
+.mdl:not(.med-fullpanel) {
 	animation:windowDown .3s cubic-bezier(.19,1,.22,1);
 	width:600px;
 	margin:0 auto;
-	max-height:900px
+	max-height:900px;
+	bottom:auto;
+	top:auto;
+	height:auto;
+	padding-bottom:30px
 }
 
 .mdl.s-profile.s-fluid {
@@ -82,4 +86,62 @@
 .social-proof-container {
 	position:absolute!important;
 	top:308px
+}
+
+.s-fluid .mdl-inner, .s-fluid-height .mdl-inner {
+	position:relative;
+	width:auto!important;
+	height:auto!important
+}
+
+.s-tall-fixed.s-fluid .mdl-content {
+	min-width:350px;
+	padding-bottom:30px
+}
+
+.mtd-nav-drawer-background {
+	background:transparent
+}
+
+.mtd-nav-drawer {
+	height:auto;
+	padding-bottom:10px
+}
+
+.mtd-nav-drawer-hidden {
+	margin-top:-40px;
+	margin-left:0;
+	opacity:0;
+	pointer-events:none
+}
+
+#mtd_nd_header_image,.mdl-links {
+	display:none
+}
+
+.mtd-nd-header-photo.avatar {
+	height:36px!important;
+	width:36px!important;
+	margin-top:10px;
+	margin-left:10px
+}
+
+.mtd-nd-header-username {
+	margin-top:20px;
+	margin-left:60px;
+	text-align:left;
+	text-shadow:none
+}
+
+.mtd-settings-button {
+	margin-top:60px
+}
+
+.mtd-nav-drawer-hidden .mtd-nav-button {
+	pointer-events:none
+}
+
+.settings-modal .mdl {
+	height:600px;
+	overflow:hidden
 }

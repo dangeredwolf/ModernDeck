@@ -134,3 +134,7 @@ option
 .compose .typeahead-item span.username {
 	color:#344248
 }
+
+.mdl:not(.med-fullpanel),.mtd-nav-drawer {
+	box-shadow:0 3px 16px #344248!important
+}

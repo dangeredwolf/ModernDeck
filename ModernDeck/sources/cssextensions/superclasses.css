@@ -168,6 +168,7 @@ legend,
 .js-account-manager-container .drawer-header,
 .btn-options-tray>.label,
 .contributor-row>div:not(.account-summary),
+.mdl .js-customtimeline-description,
 #__lpform_username_numspan
 #__lpform_password_numspan /* fixes lastpass UI bug */
 {
