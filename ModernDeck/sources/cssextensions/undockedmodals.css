@@ -8,14 +8,13 @@
 	bottom:auto;
 	top:auto;
 	height:auto;
-	padding-bottom:30px
+	/*padding-bottom:30px*/
 }
 
 .mdl.s-profile.s-fluid {
-	max-height:560px;
-	height:auto;
-	width:600px!important;
-	margin-top:-280px
+	max-height:560px!important;
+	height:auto!important;
+	width:600px!important
 }
 
 .prf-stats>li {
@@ -39,7 +38,7 @@
 }
 
 .s-tall-fixed {
-	height:650px
+	min-height:550px!important
 }
 
 .s-inreply {
@@ -144,4 +143,16 @@
 .settings-modal .mdl {
 	height:600px;
 	overflow:hidden
+}
+
+.js-user-actions-menu {
+	position:absolute;
+	top:-300px;
+	left:-40px;
+	color:#fff!important;
+	margin:0
+}
+
+.js-add-column {
+	right:-66px!important
 }

@@ -927,7 +927,7 @@ button:hover,button:focus {
 .s-not-following .follow-text {
 	display:block;
 	min-width:auto;
-	margin-left:1px
+	margin-left:2px
 }
 
 .button-group .btn {
@@ -2606,7 +2606,7 @@ a .column-title-back .icon:after {
 	bottom:0;
 	top:-70px;
 	position:absolute;
-	height:auto
+	height:auto;
 }
 
 .s-fluid .mdl-inner,.s-fluid-height .mdl-inner {
@@ -4081,14 +4081,14 @@ input[type="radio"]:checked:before {
 .social-proof-container {
 	line-height:18px;
 	text-align:left;
-	position:fixed;
-	top:328px
+	position: absolute;
+	top:328px;
 }
 
 .social-proof-names {
 	display:inline-block;
 	position:relative;
-	float:none
+	float:none;
 }
 
 .social-proof-animating {
@@ -5520,6 +5520,10 @@ button.mtd-no-transform-case {
 	font-size:25px
 }
 
+.js-user-actions-menu i:before {
+	content:"\e5d4"
+}
+
 .tweet-dogear {
 	position:absolute;
 	top:0;
@@ -5637,12 +5641,14 @@ button.mtd-no-transform-case {
 
 .contributor-row:not([data-state="confirmRemove"]) .contributor-confirm-remove,.contributor-settings-role,.contributor-detail,.contributor-remove {
 	opacity:0;
-	margin-top:-20px
+	margin-top:-20px;
+	pointer-events:none
 }
 
 .contributor-row[data-state="settings"] .contributor-settings-role,.contributor-row[data-state="settings"] .contributor-confirm-change,.contributor-row[data-state="closed"] .contributor-detail,.contributor-row[data-state="settings"] .contributor-remove {
 	margin-top:0;
-	opacity:1
+	opacity:1;
+	pointer-events:all
 }
 
 .contributor-row[data-state="confirmRemove"] .contributor-confirm-remove.padding-bl {
@@ -6511,4 +6517,116 @@ input[type="button"] {
 
 .mdl .column-scroller {
 	top:0!important
+}
+
+.contributor-settings-role {
+	padding-bottom:0!important
+}
+
+.account-summary .tweet-avatar {
+	width:24px;
+	height:24px;
+	margin-top:-4px;
+	margin-left:6px;
+	float:right
+}
+
+.account-bio {
+	padding-left:3px;
+	margin-top:7px
+}
+
+.activity-header>.txt-mute {
+	display:none
+}
+
+.account-summary>.account-summary-text>.account-link {
+	margin-top:7px
+}
+
+.prf-actions .js-follow-button {
+	min-width:52px!important;
+	min-height:51px!important;
+	font-size:18px;
+	padding-top:12px;
+	text-align:left;
+	margin-top:-52px;
+	margin-left:-75px;
+	border-radius:32px;
+	background:#00838F!important;
+	z-index:5;
+	box-shadow:0 2px 5px 1px rgba(0,0,0,.25)
+}
+
+.prf-actions .action-text>i {
+	display:none
+}
+
+.prf-actions .action-text {
+	font-size:0
+}
+
+.prf-actions .action-text:after {
+	font-size:28px;
+	font-family:"Material";
+	color:#fff
+}
+
+.prf-actions .follow-text:after {
+	content:"\e7fe";
+	font-size:24px;
+}
+
+.prf-actions .thats-you-text {
+	margin-top:6px
+}
+
+.prf-actions .thats-you-text:after {
+	content:"\e150";
+	font-size:28px;
+	margin-left:2px
+}
+
+.js-user-actions-menu {
+	position:absolute;
+	top:-320px;
+	left:-40px;
+	color:#fff!important;
+	margin:0
+}
+
+.prf-follow-state .dropdown-menu {
+	top:-300px
+}
+
+.prf-actions .unfollow-text:after {
+	content:"\e7f6"
+}
+
+.prf-actions .following-text:after {
+	content:"\e5ca"
+}
+
+.prf-actions .block-text:after {
+	content:"\e14b"
+}
+
+.prf-actions .unblock-text:after {
+	content:"\e166"
+}
+
+.prf-actions .pending-text:after {
+	content:"\e8b5"
+}
+
+.prf-actions .cancel-req-text:after {
+	content:"\e5cd"
+}
+
+.social-proof-container.is-hidden {
+	margin-bottom:-20px!important
+}
+
+.prf-actions .js-follow-button:hover,.prf-actions .js-follow-button:focus,.prf-actions .js-follow-button:active {
+	box-shadow:0 5px 15px 1px rgba(0,0,0,.25)
 }
