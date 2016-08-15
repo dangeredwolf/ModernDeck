@@ -213,7 +213,9 @@ html.scroll-v {
 
 .horizontal-flow-container {
 	overflow:visible;
-	white-space:nowrap
+	white-space:nowrap;
+	height:100%;
+	width:100%
 }
 
 .account-link>.nbfc {
