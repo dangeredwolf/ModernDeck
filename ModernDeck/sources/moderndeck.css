@@ -1133,12 +1133,14 @@ button:hover,button:focus {
 	font-size:20px;
 	font-weight:400;
 	height:100%;
-	padding-left:3px!important;
 	position:absolute;
-	width:100%;
+	left:10px;
+	right:20px;
 	padding-top:5px;
 	margin-left:0!important;
-	margin-top:-2px!important
+	margin-top:-2px!important;
+	word-wrap:break-word!important;
+	text-overflow:ellipsis!important
 }
 
 .mdl .column-title {
@@ -1149,7 +1151,9 @@ button:hover,button:focus {
 	font-weight:400;
 	font-size:13px;
 	display:inline;
-	color:rgba(255,255,255,.74)
+	color:rgba(255,255,255,.74);
+	text-overflow:ellipsis;
+    overflow:hidden
 }
 
 .column-type-message .column-title {
@@ -3173,18 +3177,18 @@ a .column-title-back .icon:after {
 	right:5%;
 	left:5%;
 	padding:8px;
-	bottom:0;
+	bottom: -20px;
 	box-shadow:0 3px 6px rgba(0,0,0,.7);
 	border-radius:4px 4px 0 0;
-	pointer-events:all
+	pointer-events:all;
 }
 
 .med-embeditem {
 	position:absolute;
-	bottom:85px;
+	bottom: 135px;
 	top:0;
 	width:100%;
-	text-align:center
+	text-align:center;
 }
 
 .med-tray {
@@ -4206,8 +4210,8 @@ input[type="radio"]:checked:before {
 	margin-top:-18px;
 	text-indent:0;
 	width:220px;
-	margin-right:-20px;
-	border-radius:2px
+	margin-right: -10px;
+	border-radius:2px;
 }
 
 .dropdown-menu li:not(.drp-h-divider) {
@@ -4396,7 +4400,8 @@ input[type="radio"]:checked:before {
 	text-align:left;
 	display:inline;
 	padding-left:40px;
-	font-weight:500
+	font-weight:500;
+	text-overflow:ellipsis
 }
 
 .media-img {
@@ -4956,7 +4961,7 @@ a[rel=user]:active,.card-holder a[rel=mediaPreview]:active {
 
 .js-compose-message-recipient-container .js-typeahead-dropdown {
 	left:10px;
-	z-index:5
+	z-index:5;
 }
 
 .mdl-favorite-from-options .txt-r-deep-yellow {
@@ -5354,9 +5359,9 @@ fieldset .fixed-width-label:not(.radio),fieldset:not(.js-search-filter) .control
 }
 
 .typeahead-dropdown {
-	top:60px;
+	top:70px;
 	width:240px;
-	overflow-x:hidden
+	overflow-x:hidden;
 }
 
 .dropdown-menu ul {
@@ -5520,7 +5525,7 @@ button.mtd-no-transform-case {
 	font-size:25px
 }
 
-.js-user-actions-menu i:before {
+.mdl .js-user-actions-menu i:before {
 	content:"\e5d4"
 }
 
@@ -5875,7 +5880,8 @@ button.mtd-no-transform-case {
 
 .mdl.med-fullpanel {
 	background:transparent;
-	box-shadow:none
+	box-shadow:none;
+	top:10px
 }
 
 .l-column.mdl-column.mdl-column-sml {
@@ -6190,14 +6196,6 @@ body>.message-banner[style="color: rgb(85, 85, 85); background-color: rgb(178, 2
 	opacity:1;
 	margin-top:-8px;
 	position:absolute
-}
-
-.follow-btn:not(:hover) .unfollow-text {
-	margin-left:-19px
-}
-
-.s-following .follow-btn:hover .following-text {
-	margin-left:18px
 }
 
 .activity-header-wrapping.activity-header.has-source-avatar>.nbfc {
@@ -6523,7 +6521,7 @@ input[type="button"] {
 	padding-bottom:0!important
 }
 
-.account-summary .tweet-avatar {
+.js-stream-item-content>.account-summary .tweet-avatar {
 	width:24px;
 	height:24px;
 	margin-top:-4px;
@@ -6548,10 +6546,11 @@ input[type="button"] {
 	min-width:52px!important;
 	min-height:51px!important;
 	font-size:18px;
-	padding-top:12px;
+	padding-top:8px;
+	padding-left:12px;
 	text-align:left;
 	margin-top:-52px;
-	margin-left:-75px;
+	margin-left:-65px;
 	border-radius:32px;
 	background:#00838F!important;
 	z-index:5;
@@ -6587,7 +6586,7 @@ input[type="button"] {
 	margin-left:2px
 }
 
-.js-user-actions-menu {
+.mdl .js-user-actions-menu {
 	position:absolute;
 	top:-320px;
 	left:-40px;
@@ -6629,4 +6628,8 @@ input[type="button"] {
 
 .prf-actions .js-follow-button:hover,.prf-actions .js-follow-button:focus,.prf-actions .js-follow-button:active {
 	box-shadow:0 5px 15px 1px rgba(0,0,0,.25)
+}
+
+.s-following .follow-btn:hover {
+	background-color:#EA6B6B!important
 }

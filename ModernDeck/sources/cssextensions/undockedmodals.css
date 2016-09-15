@@ -14,7 +14,8 @@
 .mdl.s-profile.s-fluid {
 	max-height:560px!important;
 	height:auto!important;
-	width:600px!important
+	width:600px!important;
+	overflow:hidden!important
 }
 
 .prf-stats>li {
@@ -145,7 +146,7 @@
 	overflow:hidden
 }
 
-.js-user-actions-menu {
+.mdl .js-user-actions-menu {
 	position:absolute;
 	top:-300px;
 	left:-40px;
