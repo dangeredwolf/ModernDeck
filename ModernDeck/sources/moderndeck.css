@@ -2244,7 +2244,9 @@ a .column-title-back .icon:after {
 
 .message-banner {
 	position:relative;
-	text-align:center
+	text-align:center;
+	color:#fff!important;
+	background:transparent!important
 }
 
 .message-banner .dismiss {

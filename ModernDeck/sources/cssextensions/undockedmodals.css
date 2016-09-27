@@ -157,3 +157,24 @@
 .js-add-column {
 	right:-66px!important
 }
+
+.mdl-drag-handle {
+	display:block;
+	position:absolute;
+	top:0;
+	left:0;
+	width:180px;
+	height:30px;
+	pointer-events:all;
+	opacity:0;
+	z-index:12
+}
+
+.s-profile .mdl-drag-handle {
+	width:auto;
+	right:50px
+}
+
+.mtd-light .mtd-nd-header-username {
+	color:#000
+}

@@ -1,11 +1,11 @@
 // MTDinject.js
-// Copyright (c) 2016 Dangered Wolf, Jumono
+// Copyright (c) 2016 Dangered Wolf
 
 // made with love <3
 
 "use strict";
 
-var SystemVersion = "6.1 Development Build 2016.09.15.1";
+var SystemVersion = "6.1 Development Build 2016.09.27.1";
 var MTDBaseURL = "https://raw.githubusercontent.com/dangeredwolf/ModernDeck/master/ModernDeck/"; // Defaults to streaming if nothing else is available (i.e. legacy firefox)
 
 var msgID,
@@ -154,6 +154,11 @@ function loadPreferences() {
 		enableStylesheetExtension("squareavatars");
 	else
 		setPref("mtd_round_avatars",true);
+
+	if (getPref("mtd_undocked_modals") === true)
+		enableStylesheetExtension("undockedmodals");
+	else
+		setPref("mtd_undocked_modals",false);
 
 	if (getPref("mtd_hearts") === true)
 		enableStylesheetExtension("hearticon");
@@ -374,25 +379,37 @@ function PrefsListener() {
 			disableStylesheetExtension("altsensitive");
 		}
 
-		if (localStorage.mtd_outlines === "false" && $("#mtd-outlines-control").is(":checked")) {
+		if (!getPref("mtd_undocked_modals") && $("#mtd-undocked-modals").is(":checked")) {
+			console.log("someone ticked me!!");
+			setPref("mtd_undocked_modals",true);
+			enableStylesheetExtension("undockedmodals");
+		}
+
+		if (getPref("mtd_undocked_modals") && !$("#mtd-undocked-modals").is(":checked")) {
+			console.log("someone unticked me!!");
+			setPref("mtd_undocked_modals",false);
+			disableStylesheetExtension("undockedmodals");
+		}
+
+		if (!getPref("mtd_outlines") && $("#mtd-outlines-control").is(":checked")) {
 			console.log("someone ticked me!!");
 			setPref("mtd_outlines",true);
 			html.addClass("mtd-acc-focus-ring");
 		}
 
-		if (localStorage.mtd_outlines === "true" && !$("#mtd-outlines-control").is(":checked")) {
+		if (getPref("mtd_outlines") && !$("#mtd-outlines-control").is(":checked")) {
 			console.log("someone unticked me!!");
 			setPref("mtd_outlines",false);
 			html.removeClass("mtd-acc-focus-ring");
 		}
 
-		if ($("#mtd-theme-control option:selected").length > 0 && localStorage.mtd_theme !== $("#mtd-theme-control option:selected").val()) {
+		if ($("#mtd-theme-control option:selected").length > 0 && getPref("mtd_theme") !== $("#mtd-theme-control option:selected").val()) {
 			disableStylesheetExtension(getPref("mtd_theme"));
 			setPref("mtd_theme",$("#mtd-theme-control option:selected").val())
 			enableStylesheetExtension($("#mtd-theme-control option:selected").val() || "default");
 		}
 
-		if ($("#mtd-scrollbar-style option:selected").length > 0 && localStorage.mtd_scrollbar_style !== $("#mtd-scrollbar-style option:selected").val()) {
+		if ($("#mtd-scrollbar-style option:selected").length > 0 && getPref("mtd_scrollbar_style") !== $("#mtd-scrollbar-style option:selected").val()) {
 			disableStylesheetExtension(getPref("mtd_scrollbar_style"));
 			setPref("mtd_scrollbar_style",$("#mtd-scrollbar-style option:selected").val());
 			enableStylesheetExtension($("#mtd-scrollbar-style option:selected").val() || "default");
@@ -425,6 +442,7 @@ function MTDSettings() {
 			\
 			<form action="#" id="mtd-appearance-form" accept-charset="utf-8"class="frm"><fieldset id="general_settings"><div class="control-group" style="padding-top:10px;">\
 			<label class="checkbox">Use rounded profile pictures<input type="checkbox" checked="checked" id="mtd-round-avatars-control"></label>\
+			<label class="checkbox">Undocked windowing/nav drawer (experimental)<input type="checkbox" id="mtd-undocked-modals"></label>\
 			<label class="checkbox">Use alternate sensitive media workflow<input type="checkbox" checked="checked" id="mtd-sensitive-alt"></label>\
 			<label class="checkbox">Use Hearts instead of Stars<input type="checkbox" checked="checked" id="mtd-hearts"></label>\
 			<label class="control-label">Theme\
@@ -463,6 +481,7 @@ function MTDSettings() {
 			</div> </div> </div>');
 
 			$("#mtd-round-avatars-control").attr("checked",getPref("mtd_round_avatars"));
+			$("#mtd-undocked-modals").attr("checked",getPref("mtd_undocked_modals"));
 			$("#mtd-sensitive-alt").attr("checked",getPref("mtd_sensitive_alt"));
 			$("#mtd-outlines-control").attr("checked",getPref("mtd_outlines"));
 			$("#mtd-hearts").attr("checked",getPref("mtd_hearts"));
@@ -729,7 +748,7 @@ function checkIfUserSelectedNewTheme() {
 			MTDDark = true;
 		}
 
-		enableStylesheetExtension(localStorage.mtd_theme || "default");
+		enableStylesheetExtension(getPref("mtd_theme") || "default");
 }
 
 function diag() {
@@ -805,9 +824,9 @@ function attemptdiag() {
 							<br>MTDBaseURL: ' + MTDBaseURL + '\
 							<br>MTDDark: ' + MTDDark + '\
 							<br>FetchProfileInfo: ' + FetchProfileInfo + '\
-							<br>mtd_round_avatars: ' + localStorage.mtd_round_avatars + '\
-							<br>mtd_flag_block_secure_ss: ' + localStorage.mtd_flag_block_secure_ss + '\
-							<br>mtd_flag_block_communications: ' + localStorage.mtd_flag_block_communications + '\
+							<br>mtd_round_avatars: ' + getPref("mtd_round_avatars") + '\
+							<br>mtd_flag_block_secure_ss: ' + getPref("mtd_flag_block_secure_ss") + '\
+							<br>mtd_flag_block_communications: ' + getPref("mtd_flag_block_communications") + '\
 							<br>mtd_nd_header_image: ' + (typeof $("#mtd_nd_header_image")[0] !== "undefined" && $("#mtd_nd_header_image")[0].style.cssText) + '\
 							<br>mtd_nd_header_username: ' + (typeof $("#mtd_nd_header_username")[0] !== "undefined" && $("#mtd_nd_header_username")[0].innerHTML) + '\
 							<br>mtd_nd_header_photo: ' + (typeof $("#mtd_nd_header_photo")[0] !== "undefined" && $("#mtd_nd_header_photo")[0].src) + '\
