@@ -71,5 +71,11 @@
     "default_title": "Launch TweetDeck"
   },
 
-  "manifest_version": 2
+  "manifest_version": 2,
+
+  "applications": {
+     "gecko": {
+          "id": "thejumono@gmail.com"
+     }
+  }
 }
