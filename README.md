@@ -37,4 +37,4 @@ Installation
 
 **Firefox**
 
-This version of ModernDeck currently cannot be used with Firefox without additional directory configuration. Bap @jumono for help. :3
+It's compatible with it, but since addon signing is a thing and I lost accesss to my firefox account, I cannot put it there and have you guys enjoying it, sorry I failed you all xoxo -TheJumono
