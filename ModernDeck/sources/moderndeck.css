@@ -221,7 +221,8 @@ html.scroll-v {
 .account-link>.nbfc {
 	overflow:hidden;
 	margin-top:0;
-	padding:5px 5px 0 0
+	padding:5px 5px 0 0;
+	margin-left: 50px;
 }
 
 .js-mediatable .account-link>.nbfc {
@@ -1541,7 +1542,6 @@ a .column-title-back .icon:after {
 	position:relative;
 	max-width:100%;
 	text-overflow:ellipsis;
-	margin-left:50px;
 }
 
 .account-inline .fullname,.account-inline .username,.account-link.txt-bold {
@@ -1807,7 +1807,9 @@ a .column-title-back .icon:after {
 	padding:0 .5em 0 .1em;
 	vertical-align:-.1em
 }
-
+.tweet-body{
+	margin-left: 55px;
+}
 .tweet:hover .tweet-actions,.is-selected-tweet .tweet-actions {
 	padding-top:4px
 }
@@ -1992,7 +1994,7 @@ a .column-title-back .icon:after {
 
 .tweet-message .tweet-body {
 	padding-right:8px;
-	padding-left:8px
+	padding-left:8px;
 }
 
 .conversation-indicator {
@@ -6154,7 +6156,6 @@ textarea:not(.compose-text):not(.js-compose-text) {
 .tweet-text.with-linebreaks {
 	margin-bottom:5px;
 	margin-top:0;
-	padding-left:53px
 }
 
 .tweet-text:not(.with-linebreaks) {
