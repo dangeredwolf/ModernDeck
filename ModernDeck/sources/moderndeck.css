@@ -1540,7 +1540,8 @@ a .column-title-back .icon:after {
 	box-sizing:border-box;
 	position:relative;
 	max-width:100%;
-	text-overflow:ellipsis
+	text-overflow:ellipsis;
+	margin-left:50px;
 }
 
 .account-inline .fullname,.account-inline .username,.account-link.txt-bold {
