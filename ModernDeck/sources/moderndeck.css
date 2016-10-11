@@ -1396,7 +1396,6 @@ a .column-title-back .icon:after {
 }
 
 .activity-header.has-source-avatar {
-	margin-bottom:6px;
 	margin-top:4px
 }
 
@@ -6543,8 +6542,8 @@ input[type="button"] {
 	margin-top:7px
 }
 
-.activity-header>.txt-mute {
-	display:none
+.inline>.nbfc{
+	margin-left:0px
 }
 
 .account-summary>.account-summary-text>.account-link {
