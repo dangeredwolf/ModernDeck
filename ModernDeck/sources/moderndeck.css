@@ -1818,7 +1818,8 @@ a .column-title-back .icon:after {
 	position:absolute;
 	right:10px;
 	line-height:1em;
-	font-size:12px
+	font-size:12px;
+	padding-top: 8px;
 }
 
 .tweet-context .nbfc>a {
@@ -4654,6 +4655,10 @@ a[rel=user]:active,.card-holder a[rel=mediaPreview]:active {
 
 #next-month {
 	margin-left:30px
+}
+
+.flex-row{
+	display:flex;
 }
 
 .follow-from-accounts-button .btn>.icon-twitter-bird {
