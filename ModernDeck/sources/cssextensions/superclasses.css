@@ -14,7 +14,8 @@
 }
 
 .txt-r-medium-green,
-.is-retweet .icon-retweet-toggle
+.is-retweet .icon-retweet-toggle,
+.icon-retweet-color
 {
 	color:#13B33F
 }
@@ -169,6 +170,7 @@ legend,
 .btn-options-tray>.label,
 .contributor-row>div:not(.account-summary),
 .mdl .js-customtimeline-description,
+.heart-anim,
 #__lpform_username_numspan
 #__lpform_password_numspan /* fixes lastpass UI bug */
 {
@@ -195,7 +197,8 @@ button[data-user-id="892388300"],
 .search-input-perform-search,
 .search-input-clear-search,
 .search-input-spinner,
-.s-pending .btn-loader
+.s-pending .btn-loader,
+.heart-anim
 {
 	display:none!important
 }
@@ -274,7 +277,8 @@ ul,
 .js-modal[style="display:none;"],
 .typeahead[style="display:none;"],
 .js-hide-drawer.is-hidden,
-.media-sensitive.is-hidden
+.media-sensitive.is-hidden,
+.icon-favorite.is-invisible
 {
 	display:block!important
 }
@@ -549,6 +553,11 @@ a.btn,
 .column-header:hover .column-settings-link
 {
 	visibility:visible
+}
+
+.icon-favorite.is-invisible
+{
+	visibility:visible!important
 }
 
 .app-search .app-search-form,

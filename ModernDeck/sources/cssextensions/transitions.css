@@ -11,7 +11,9 @@
 }
 
 .s-with-reply,
-.column-scroller
+.column-scroller,
+.column-content,
+.column-options
 {
 	transition:top .15s cubic-bezier(.19,1,.22,1)
 }

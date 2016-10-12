@@ -167,7 +167,7 @@ strong,
 b,
 .txt-bold
 {
-    font-weight:500
+  font-weight:500
 }
 
 h1
@@ -196,38 +196,45 @@ h6
 	font-size:11px
 }
 
-iframe {
+iframe
+{
 	border:0
 }
 
-label {
+label
+{
 	display:block;
 	margin-bottom:12px;
 	line-height:inherit
 }
 
-fieldset {
+fieldset
+{
 	padding:0;
 	margin:0;
 	border:0
 }
 
-select {
+select
+{
 	-webkit-appearance:menulist;
 	-moz-appearance:menulist
 }
 
-input:before,textarea:before,select:before {
+input:before,textarea:before,select:before
+{
 	-webkit-appearance:initial;
 	-moz-appearance:initial;
 	color:#ddd
 }
 
-textarea {
+textarea
+{
 	resize:none
 }
 
-input,select {
+input,select
+{
 	word-break:normal!important;
 	word-wrap:normal!important
 }

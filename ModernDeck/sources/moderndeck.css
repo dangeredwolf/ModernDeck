@@ -221,7 +221,11 @@ html.scroll-v {
 .account-link>.nbfc {
 	overflow:hidden;
 	margin-top:0;
-	padding:5px 5px 0 0
+	padding:5px 5px 0 50px
+}
+
+.quoted-tweet .account-link>.nbfc,.tweet.txt-mute .account-link>.nbfc {
+	padding-left:0
 }
 
 .js-mediatable .account-link>.nbfc {
@@ -6236,19 +6240,8 @@ body>.message-banner[style="color: rgb(85, 85, 85); background-color: rgb(178, 2
   line-height:1.2em
 }
 
-.column:not(.is-options-open) .js-column-options {
+.js-column-options.scroll-none {
 	height:0!important
-}
-
-.column-scroller {
-	position:absolute;
-	bottom:0;
-	left:0;
-	right:0;
-}
-
-.column-scroller[style="top: -77px;"],.more-tweets-btn-container[style="top: -77px;"],.column-scroller[style="top: -75px;"],.more-tweets-btn-container[style="top: -75px;"],.column-scroller[style="top: -135px;"],.more-tweets-btn-container[style="top: -135px;"],.column-scroller[style="top: -137px;"],.more-tweets-btn-container[style="top: -137px;"],.column-scroller[style="top: -79px;"],.more-tweets-btn-container[style="top: -79px;"],.column-scroller[style="top: -93px;"],.more-tweets-btn-container[style="top: -93px;"],.column-scroller[style="top: -64px;"],.more-tweets-btn-container[style="top: -64px;"] {
-	top:0!important
 }
 
 .accordion-divider-t>.button-group {
