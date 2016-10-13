@@ -221,15 +221,11 @@ html.scroll-v {
 .account-link>.nbfc {
 	overflow:hidden;
 	margin-top:0;
-	padding:5px 5px 0 50px
+	padding:5px 5px 0 49px
 }
 
 .quoted-tweet .account-link>.nbfc,.tweet.txt-mute .account-link>.nbfc {
 	padding-left:0
-}
-
-.js-mediatable .account-link>.nbfc {
-	padding:0
 }
 
 .align-below-header+.nbfc {
@@ -931,7 +927,8 @@ button:hover,button:focus {
 .s-not-following .follow-text {
 	display:block;
 	min-width:auto;
-	margin-left:2px
+	margin-left:1px;
+	margin-top:2px
 }
 
 .button-group .btn {
@@ -977,7 +974,7 @@ button:hover,button:focus {
 	height:100%;
 	font-size:0.9rem;
 	white-space:normal;
-	border-right:none!important
+	border-right:0!important
 }
 
 .is-narrow-columns .column {
@@ -1542,7 +1539,7 @@ a .column-title-back .icon:after {
 	line-height:1;
 	text-overflow:ellipsis;
 	font-size:14px;
-	margin-left:5px
+	margin-left:3px
 }
 
 .account-inline .username {
@@ -1920,7 +1917,6 @@ a .column-title-back .icon:after {
 }
 
 .tweet-detail-wrapper {
-	margin-top:-1px;
 	box-shadow:0 2px 5px rgba(0,0,0,.4);
 	border-top:5px solid transparent;
 	box-sizing:border-box;
@@ -2200,7 +2196,7 @@ a .column-title-back .icon:after {
 	width:42px;
 	border-radius:0;
 	border:0;
-	outline:none;
+	outline:0;
 	display:block;
 	top:0;
 	position:fixed;
@@ -2490,7 +2486,6 @@ a .column-title-back .icon:after {
 	width:580px;
 	text-align:left;
 	opacity:1;
-	border-radius:4px;
 	box-shadow:0 30px 70px rgba(17,17,17,.6);
 	height:100%;
 	border-radius:0;
@@ -2513,6 +2508,10 @@ a .column-title-back .icon:after {
 
 .s-tall-fixed .mdl-header {
 	height:24px
+}
+
+.mdl-header.js-drag-handle {
+	pointer-events:all
 }
 
 .mdl-header-title {
@@ -2545,12 +2544,6 @@ a .column-title-back .icon:after {
 	right:0;
 	bottom:0;
 	overflow:visible
-}
-
-.mdl:not(.) .mdl-content {
-	height:100%;
-	border-radius:0;
-	padding-top:0
 }
 
 .mdl-content.with-scroll {
@@ -3175,7 +3168,7 @@ a .column-title-back .icon:after {
 	right:5%;
 	left:5%;
 	padding:8px;
-	bottom: -20px;
+	bottom:-5px;
 	box-shadow:0 3px 6px rgba(0,0,0,.7);
 	border-radius:4px 4px 0 0;
 	pointer-events:all;
@@ -3494,7 +3487,6 @@ textarea,.l-fullwidth {
 
 .is-new>.column-nav-updates.icon-dot {
 	right:0;
-	margin-top:5px;
 	position:absolute;
 	display:block;
 	margin-top:-26px
@@ -3658,7 +3650,7 @@ input[type="radio"]:checked:before {
 
 .mdl-column.l-column .search-input {
 	width:70%;
-	border-bottom:none;
+	border-bottom:0;
 	margin-left:10px;
 	box-shadow:0 3px 8px rgba(0,0,0,.3);
 	border-radius:4px
@@ -4135,7 +4127,7 @@ input[type="radio"]:checked:before {
 }
 
 .lst li:last-child {
-	border-bottom:none
+	border-bottom:0
 }
 
 .lst-modal {
@@ -4343,7 +4335,7 @@ input[type="radio"]:checked:before {
 }
 
 .column-nav-link:focus,.column-nav-link:active {
-	outline:none;
+	outline:0;
 	color:rgba(255,255,255,.2);
 	transform:none!important
 }
@@ -4352,7 +4344,6 @@ input[type="radio"]:checked:before {
 	position:relative!important;
 	width:0;
 	top:0!important;
-	left:0!important;
 	box-sizing:border-box;
 	color:rgba(255,255,255,.75);
 	display:inline-block;
@@ -4603,7 +4594,7 @@ input[type="radio"]:checked:before {
 
 .js-reply-charcount {
 	padding-top:0;
-	border-bottom:none
+	border-bottom:0
 }
 
 .js-account-manager-container {
@@ -4975,10 +4966,7 @@ a[rel=user]:active,.card-holder a[rel=mediaPreview]:active {
 	font-size:300px;
 	line-height:1;
 	display:block;
-	margin-left:auto;
-	margin-right:auto;
-	margin-top:10px;
-	margin-bottom:-100px
+	margin:10px auto -100px auto
 }
 
 .mtd-logo:before {
@@ -5498,7 +5486,7 @@ button.mtd-no-transform-case {
 }
 
 .compose-account:focus {
-	outline:none
+	outline:0
 }
 
 .btn-options-tray[data-action="right"] {
@@ -6184,7 +6172,7 @@ body>.message-banner[style="color: rgb(85, 85, 85); background-color: rgb(178, 2
 
 .s-following .following-text,.s-following .unfollow-text {
 	opacity:1;
-	margin-top:-8px;
+	margin-top:-10px;
 	position:absolute
 }
 
@@ -6444,11 +6432,11 @@ input[type="button"] {
 	border-bottom:0
 }
 
-[lang="ar"],[lang="fa"],[lang="ha"],[lang="he"],[lang="ks"],[lang="ku"],[lang="ps"],[lang="ur"],[lang="yi"] {
+p[lang="ar"],p[lang="fa"],p[lang="ha"],p[lang="he"],p[lang="ks"],p[lang="ku"],p[lang="ps"],p[lang="ur"],p[lang="yi"] {
     direction: rtl
 }
 
-[lang="ar"] a[rel="hashtag"],[lang="ar"] a[rel="user"],[lang="fa"] a[rel="hashtag"],[lang="fa"] a[rel="user"],[lang="ha"] a[rel="hashtag"],[lang="ha"] a[rel="user"],[lang="he"] a[rel="hashtag"],[lang="he"] a[rel="user"],[lang="ks"] a[rel="hashtag"],[lang="ks"] a[rel="user"],[lang="ku"] a[rel="hashtag"],[lang="ku"] a[rel="user"],[lang="ps"] a[rel="hashtag"],[lang="ps"] a[rel="user"],[lang="ur"] a[rel="hashtag"],[lang="ur"] a[rel="user"],[lang="yi"] a[rel="hashtag"],[lang="yi"] a[rel="user"] {
+p[lang="ar"] a[rel="hashtag"],p[lang="ar"] a[rel="user"],p[lang="fa"] a[rel="hashtag"],p[lang="fa"] a[rel="user"],p[lang="ha"] a[rel="hashtag"],p[lang="ha"] a[rel="user"],p[lang="he"] a[rel="hashtag"],p[lang="he"] a[rel="user"],p[lang="ks"] a[rel="hashtag"],p[lang="ks"] a[rel="user"],p[lang="ku"] a[rel="hashtag"],p[lang="ku"] a[rel="user"],p[lang="ps"] a[rel="hashtag"],p[lang="ps"] a[rel="user"],p[lang="ur"] a[rel="hashtag"],p[lang="ur"] a[rel="user"],p[lang="yi"] a[rel="hashtag"],p[lang="yi"] a[rel="user"] {
     direction: ltr;
     unicode-bidi: isolate
 }
@@ -6531,7 +6519,6 @@ input[type="button"] {
 	margin-top:-52px;
 	margin-left:-65px;
 	border-radius:32px;
-	background:#00838F!important;
 	z-index:5;
 	box-shadow:0 2px 5px 1px rgba(0,0,0,.25)
 }
@@ -6552,11 +6539,12 @@ input[type="button"] {
 
 .prf-actions .follow-text:after {
 	content:"\e7fe";
-	font-size:24px;
+	font-size:24px
 }
 
 .prf-actions .thats-you-text {
-	margin-top:6px
+	margin-top:7px;
+	margin-left:-2px
 }
 
 .prf-actions .thats-you-text:after {

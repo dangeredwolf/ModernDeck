@@ -281,6 +281,11 @@ body,
 	background:#03A9F4
 }
 
+.prf-actions .js-follow-button
+{
+	background:#00bcd4!important
+}
+
 .mtd-dark-media-previews .med-fullpanel .txt-mute
 {
 	color:#6D808B

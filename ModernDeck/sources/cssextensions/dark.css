@@ -129,6 +129,11 @@ div.drawer[data-drawer="compose"],
 	background:#00838F
 }
 
+.prf-actions .js-follow-button
+{
+	background:#00838F!important
+}
+
 .mtd-back-default .js-setting-list>li:not(.selected)>.list-link strong,
 .txt-mute,
 .txt-r-dark-gray,
