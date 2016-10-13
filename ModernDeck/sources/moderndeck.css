@@ -985,7 +985,7 @@ button:hover,button:focus {
 }
 
 .is-wide-columns .column {
-	width:352px
+	width:352px;
 }
 
 .column-temp {
@@ -1009,17 +1009,9 @@ button:hover,button:focus {
 	position:absolute;
 	top:54px;
 	left:0;
+	right:0;
 	bottom:0;
-	width:325px;
 	opacity:1!important
-}
-
-.is-narrow-columns .column-content {
-	width:280px
-}
-
-.is-wide-columns .column-content {
-	width:350px
 }
 
 .drawer-header-title.drawer-column-header-title {
@@ -1307,7 +1299,6 @@ a .column-title-back .icon:after {
 
 .column-options {
 	box-shadow:0 3px 6px rgba(17,17,17,.1);
-	width:328px;
 	overflow:visible;
 	pointer-events:all;
 	z-index:4
@@ -2460,7 +2451,8 @@ a .column-title-back .icon:after {
 }
 
 .js-account-manager-container .drawer-content {
-	top:0
+	top:0;
+	overflow-x:hidden
 }
 
 .ovl-plain,.ovl,.overlay {
@@ -5157,14 +5149,6 @@ fieldset .fixed-width-label:not(.radio),fieldset:not(.js-search-filter) .control
 	content:"Source "
 }
 
-.is-wide-columns .column-options {
-	width:353px
-}
-
-.is-narrow-columns .column-options {
-	width:283px
-}
-
 .margin-t--12.margin-b--30 {
 	margin-top:-47px!important;
 }
@@ -5569,13 +5553,13 @@ button.mtd-no-transform-case {
 
 .accordion-panel {
 	position:relative;
-	display:none;
+	height:0;
 	padding-left:8px;
-	overflow-y:hidden
+	overflow-y:hidden;
 }
 
 .is-expanded .accordion-panel {
-	display:block
+	height:inherit /* Hack to fix derpiness of panel in 6.1 tree */
 }
 
 .column-nav-item.is-new .obj-left {
@@ -5801,7 +5785,7 @@ button.mtd-no-transform-case {
 	transform:rotate(0deg)
 }
 
-.accordion .is-active .icon-arrow-d {
+.accordion .is-expanded .icon-arrow-d {
 	transform:rotate(180deg)
 }
 
@@ -6241,7 +6225,7 @@ body>.message-banner[style="color: rgb(85, 85, 85); background-color: rgb(178, 2
 }
 
 .js-column-options.scroll-none {
-	height:0!important
+	height:0
 }
 
 .accordion-divider-t>.button-group {
