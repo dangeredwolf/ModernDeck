@@ -701,7 +701,7 @@ i {
 	left:-3px;
 	margin-top:-1px;
 	margin-bottom:auto;
-	font-size: 24px;
+	font-size: 24px
 }
 
 .mtd-nav-button .icon-keyboard,.mtd-nav-button .icon-plus {
@@ -982,7 +982,7 @@ button:hover,button:focus {
 }
 
 .is-wide-columns .column {
-	width:352px;
+	width:352px
 }
 
 .column-temp {
@@ -1238,7 +1238,7 @@ a .column-title-back .icon:after {
 	position:relative;
 	font-size:24px;
 	width:24px;
-	height:24px;
+	height:24px
 }
 
 .column-header-link {
@@ -2601,7 +2601,7 @@ a .column-title-back .icon:after {
 	bottom:0;
 	top:-70px;
 	position:absolute;
-	height:auto;
+	height:auto
 }
 
 .s-fluid .mdl-inner,.s-fluid-height .mdl-inner {
@@ -3171,7 +3171,7 @@ a .column-title-back .icon:after {
 	bottom:-5px;
 	box-shadow:0 3px 6px rgba(0,0,0,.7);
 	border-radius:4px 4px 0 0;
-	pointer-events:all;
+	pointer-events:all
 }
 
 .med-embeditem {
@@ -3179,7 +3179,7 @@ a .column-title-back .icon:after {
 	bottom: 135px;
 	top:0;
 	width:100%;
-	text-align:center;
+	text-align:center
 }
 
 .med-tray {
@@ -4076,13 +4076,13 @@ input[type="radio"]:checked:before {
 	line-height:18px;
 	text-align:left;
 	position: absolute;
-	top:328px;
+	top:328px
 }
 
 .social-proof-names {
 	display:inline-block;
 	position:relative;
-	float:none;
+	float:none
 }
 
 .social-proof-animating {
@@ -4201,7 +4201,7 @@ input[type="radio"]:checked:before {
 	text-indent:0;
 	width:220px;
 	margin-right: -10px;
-	border-radius:2px;
+	border-radius:2px
 }
 
 .dropdown-menu li:not(.drp-h-divider) {
@@ -4364,7 +4364,7 @@ input[type="radio"]:checked:before {
 	padding-left:1px;
 	vertical-align:-.6em;
 	padding-right:5px;
-	padding-top:5px;
+	padding-top:5px
 }
 
 .column-nav-link .attribution {
@@ -4673,7 +4673,7 @@ a[rel=user]:active,.card-holder a[rel=mediaPreview]:active {
 }
 
 .tweet-action .icon-retweet,.tweet-detail-action .icon-retweet {
-	padding-top:2px;
+	padding-top:2px
 }
 
 .media-sensitive-content {
@@ -4950,7 +4950,7 @@ a[rel=user]:active,.card-holder a[rel=mediaPreview]:active {
 
 .js-compose-message-recipient-container .js-typeahead-dropdown {
 	left:10px;
-	z-index:5;
+	z-index:5
 }
 
 .mdl-favorite-from-options .txt-r-deep-yellow {
@@ -5138,7 +5138,7 @@ fieldset .fixed-width-label:not(.radio),fieldset:not(.js-search-filter) .control
 }
 
 .margin-t--12.margin-b--30 {
-	margin-top:-47px!important;
+	margin-top:-47px!important
 }
 
 .js-quote-tweet-holder .quoted-tweet {
@@ -5205,7 +5205,7 @@ fieldset .fixed-width-label:not(.radio),fieldset:not(.js-search-filter) .control
 }
 
 .tweet-detail-wrapper .media-sensitive {
-	opacity:.99;
+	opacity:.99
 }
 
 .js-app-add-column {
@@ -5271,7 +5271,7 @@ fieldset .fixed-width-label:not(.radio),fieldset:not(.js-search-filter) .control
 	pointer-events:auto;
 	padding:8px 12px;
 	min-height:0;
-	box-shadow:0 2px 5px 0 rgba(0,0,0,.16),0 2px 5px 0 rgba(0,0,0,.23);
+	box-shadow:0 2px 5px 0 rgba(0,0,0,.16),0 2px 5px 0 rgba(0,0,0,.23)
 }
 
 .mdl .more-tweets-btn {
@@ -5339,7 +5339,7 @@ fieldset .fixed-width-label:not(.radio),fieldset:not(.js-search-filter) .control
 .typeahead-dropdown {
 	top:70px;
 	width:240px;
-	overflow-x:hidden;
+	overflow-x:hidden
 }
 
 .dropdown-menu ul {
@@ -5539,19 +5539,23 @@ button.mtd-no-transform-case {
 	width:3px
 }
 
+.is-active:not(.is-expanded) .accordion-panel {
+	height:0!important
+}
+
 .accordion-panel {
 	position:relative;
 	height:0;
 	padding-left:8px;
-	overflow-y:hidden;
+	overflow-y:hidden
 }
 
 .is-expanded .accordion-panel {
-	height:inherit /* Hack to fix derpiness of panel in 6.1 tree */
+	height:inherit /* Hack to fix derpiness of panel in 6.1 tree; */
 }
 
 .column-nav-item.is-new .obj-left {
-	margin-top:-30px;
+	margin-top:-30px
 }
 
 .lst-group li {
@@ -5644,7 +5648,7 @@ button.mtd-no-transform-case {
 	margin-top:-48px;
 	margin-left:-30px;
 	transform:scale(1);
-	opacity:1;
+	opacity:1
 }
 
 .drawer-header .drawer-header-title .icon:after {
@@ -5900,7 +5904,7 @@ button.mtd-no-transform-case {
 	left:28px;
 	opacity:0;
 	width:60px;
-	text-align:center;
+	text-align:center
 }
 
 .btn-fav-faved-text {
@@ -6239,7 +6243,7 @@ ul.tweet-stats:nth-child(2) {
 
 .cmp-replyto .tweet-text {
 	font-size:0.9em;
-	margin-top:2px;
+	margin-top:2px
 }
 
 .btn .icon {
@@ -6421,7 +6425,7 @@ ul.tweet-stats:nth-child(2) {
 }
 
 .prf-header[style="background-image: url(https://pbs.twimg.com/profile_banners/25073877/1462405914/web)"],.prf-header[style="background-image: url(https://pbs.twimg.com/profile_banners/1339835893/1465349298/web)"] {
-	background-image:url(https://gotnews.com/wp-content/uploads/2015/03/us-flag-inverted-740x400-740x400.png)!important;
+	background-image:url(https://gotnews.com/wp-content/uploads/2015/03/us-flag-inverted-740x400-740x400.png)!important
 }
 
 .prf-header[style="background-image: url(https://pbs.twimg.com/profile_banners/25073877/1462405914/web)"] .prf-card-inner,.prf-header[style="background-image: url(https://pbs.twimg.com/profile_banners/1339835893/1465349298/web)"] .prf-card-inner {

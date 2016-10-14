@@ -70,7 +70,8 @@
 
 .mdl.s-fluid {
 	height:auto!important;
-	width:auto!important
+	width:auto!important;
+	min-width:400px;
 }
 
 .mdl.s-fluid-height {
