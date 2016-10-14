@@ -522,7 +522,7 @@ html:not(.mtd-dark-media-previews) .med-tweet,
 }
 
 .list-item-button,
-.list-placeholder,
+.list-placeholder:not(.mtd-about-title),
 .mdl-placeholder,
 .input-clear-control
 {
@@ -706,7 +706,8 @@ textarea::placeholder
 .js-add-column,
 .js-add-column:hover,
 .js-add-column:focus,
-.js-add-column:active
+.js-add-column:active,
+.draggable-dragging.column
 {
 	box-shadow:0 5px 15px 1px rgba(0,0,0,.25)
 }

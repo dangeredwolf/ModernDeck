@@ -2697,8 +2697,8 @@ a .column-title-back .icon:after {
 	bottom:5px
 }
 
-.settings-modal .js-header-title:after {
-	content:"TweetDeck Settings"
+.settings-modal .js-header-title:before {
+	content:"TweetDeck "
 }
 
 .mdl-links {

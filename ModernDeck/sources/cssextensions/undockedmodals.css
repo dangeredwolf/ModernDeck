@@ -50,7 +50,13 @@
 
 .cmp-replyto {
 	position:relative;
-	margin-top:100px
+	height:100px;
+	margin-top:100px;
+	margin-bottom:-40px
+}
+
+.s-inreply .tweet-context {
+	display:none
 }
 
 .mdl {
@@ -68,7 +74,7 @@
 }
 
 .mdl.s-fluid-height {
-	height:auto!important
+	height:auto!important;
 }
 
 .med-fullpanel {

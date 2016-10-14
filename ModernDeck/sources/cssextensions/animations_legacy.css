@@ -339,7 +339,7 @@
 	-webkit-animation:windowDown .2s cubic-bezier(.19,1,.22,1)!important
 }
 
-.column {
+.column:not(.draggable-dragging) {
 	-webkit-animation:windowSlider 1s cubic-bezier(.19,1,.22,1)!important
 }
 
@@ -359,7 +359,7 @@
 	-webkit-animation:fadeOut .2s cubic-bezier(.19,1,.22,1)
 }
 
-.stream-item,.js-tweet-translation,.replies-after .stream-item.is-actionable {
+.column:not(.draggable-dragging) .stream-item,.js-tweet-translation,.replies-after .stream-item.is-actionable {
 	-webkit-animation:tweetIncomingTimeline .4s cubic-bezier(.19,1,.22,1)
 }
 

@@ -71,10 +71,11 @@ a.js-create-list,
   .4s background cubic-bezier(.19,1,.22,1),
   .4s width cubic-bezier(.19,1,.22,1)!important
 }
-.column
+.column:not(.draggable-dragging)
 {
 	transition:.25s box-shadow cubic-bezier(.19,1,.22,1),
   .25s transform cubic-bezier(.19,1,.22,1)
+  .35s left cubic-bezier(.19,1,.22,1)
 }
 
 .column-holder
