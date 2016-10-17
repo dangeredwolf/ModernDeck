@@ -5,8 +5,6 @@ ModernDeck
 
 An extension that adds nice things to TweetDeck, like a material design interface.
 
-[https://tweetdeckenhancer.com](https://tweetdeckenhancer.com)
-
 Installation
 ==================
 
