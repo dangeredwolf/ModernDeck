@@ -4394,7 +4394,9 @@ input[type="radio"]:checked:before {
 }
 
 .media-img {
-	max-width:100%!important
+	max-width:100%!important;
+    min-width:100px;
+    min-height:100px
 }
 
 .compose-content .account-selector-grid-toggle {
