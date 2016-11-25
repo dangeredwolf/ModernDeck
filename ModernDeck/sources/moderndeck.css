@@ -268,11 +268,6 @@ html.scroll-v {
 	overflow:visible;
 	clip:auto
 }
-
-.is-invisible {
-	visibility:hidden!important
-}
-
 .is-loading {
 	width:100%!important;
 	height:100%!important;
