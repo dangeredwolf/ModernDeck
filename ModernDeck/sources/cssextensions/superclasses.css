@@ -1,4 +1,4 @@
-.txt-r-deep-yellow,.is-favorite .icon-favorite-toggle,.btn:not(.btn-fav-fav-text)>.icon-favorite-color,.obj-left>.icon-favorite-color {
+.txt-r-deep-yellow,.is-favorite .icon-favorite-toggle,.btn:not(.btn-fav-fav-text)>.icon-favorite-color,.obj-left>.icon-favorite-color,.pull-right.icon-favorite-color {
     color: #FF9701
 }
 
@@ -128,7 +128,7 @@ button,a.btn,.column-header {
     font-size: 0
 }
 
-.message-text>.btn,.more-tweets-btn,.edit-conversation-name .btn,.btn-login[type="submit"],.login-container .btn-positive,.btn-options-tray-space,.app-nav-link,.tweet-button {
+.message-text>.btn,.more-tweets-btn,.edit-conversation-name .btn,.btn-login[type="submit"],.login-container .btn-positive,.btn-options-tray-space,.app-nav-link,.tweet-button,.lst-group .selected .list-link {
     color: #fff!important
 }
 

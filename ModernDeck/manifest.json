@@ -3,7 +3,7 @@
   "short_name": "ModernDeck",
 
   "description": "TweetDeck, just more beautiful, colourful, customisable, fast, and fun than ever.",
-  "version": "6.1.1",
+  "version": "6.1.2",
 
   "permissions": [
     "webRequest",
@@ -19,7 +19,7 @@
     {
       "matches": ["https://tweetdeck.twitter.com/*"],
       "js": ["extension/MTDLoad.js"],
-      "css": ["sources/dev.css"],
+      "css": ["sources/moderndeck.min.css"],
       "run_at": "document_end"
     }
   ],
@@ -39,30 +39,9 @@
   "web_accessible_resources": [
     "sources",
     "sources/*",
-    "sources/MTDinject.js",
-    "sources/moderndeck.css",
-    "sources/moderndeck.min.css",
-    "sources/accounts.png",
-    "sources/AddColumn.png",
-    "sources/alert_2.mp3",
-    "sources/BTDsmall.png",
-    "sources/dev.css",
-    "sources/favicon.ico",
-    "sources/KBshortcuts.png",
-    "sources/logout.png",
-    "sources/mtdabout.png",
-    "sources/MTDsmall.png",
-    "sources/TweetDeck.png",
-    "sources/tweetdecksmall.png",
-    "sources/fonts/Roboto300latinext.woff2",
-    "sources/fonts/Roboto300latin.woff2",
-    "sources/fonts/Roboto400latinext.woff2",
-    "sources/fonts/Roboto400latin.woff2",
-    "sources/fonts/Roboto500latinext.woff2",
-    "sources/fonts/Roboto500latin.woff2",
-    "sources/fonts/MaterialIcons.woff2",
-    "sources/fonts/fontawesome.woff2",
-    "sources/fonts/MaterialIcons.woff2"
+    "sources/cssextensions/*",
+    "sources/fonts/*",
+    "sources/libraries/*"
   ],
 
   "browser_action": {

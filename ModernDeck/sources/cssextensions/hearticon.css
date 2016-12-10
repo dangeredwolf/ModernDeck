@@ -16,7 +16,8 @@
 .txt-r-deep-yellow,
 .is-favorite .icon-favorite-toggle,
 .btn:not(.btn-fav-fav-text)>.icon-favorite-color,
-.obj-left>.icon-favorite-color
+.obj-left>.icon-favorite-color,
+.pull-right.icon-favorite-color
 {
 	color:#e91e63
 }

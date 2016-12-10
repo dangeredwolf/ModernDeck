@@ -5,7 +5,7 @@
 
 "use strict";
 
-var SystemVersion = "6.1.1 (Built 2016.11.06)";
+var SystemVersion = "6.1.2 Dev Build 2016.11.06";
 var MTDBaseURL = "https://raw.githubusercontent.com/dangeredwolf/ModernDeck/master/ModernDeck/"; // Defaults to streaming if nothing else is available (i.e. legacy firefox)
 
 var msgID,
@@ -299,6 +299,26 @@ function MTDInit(){
 	TD.util.prettyTimeString = function(e) {
 		return TD.i("{{hours12}}:{{minutes}} {{amPm}}, {{day}} {{month}} {{fullYear}}", TD.util.prettyTime(e));
 	};
+
+	TD.util.prettyNumber = function(e) {
+		//if (!TD.util.isValidNumber(e) || typeof e !== "string")
+			//return "";
+			var yip = parseInt(e, 10)
+		if (yip >= 100000000) {
+			return parseInt(yip/1000000) + "M";
+		} else if (yip >= 10000000) {
+			return parseInt(yip/100000)/10 + "M";
+		} else if (yip >= 1000000) {
+			return parseInt(yip/10000)/100 + "M";
+		} else if (yip >= 100000) {
+			return parseInt(yip/1000) + "K";
+		} else if (yip >= 10000) {
+			return parseInt(yip/100)/10 + "K";
+		} else if (yip >= 1000) {
+			yip = yip.toString().substring(0,1) + "," + yip.toString().substring(1);
+		}
+		return yip;
+	}
 
 	// head.append(
 	// 	make("script")
