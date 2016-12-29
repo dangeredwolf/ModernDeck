@@ -11,13 +11,6 @@
 	/*padding-bottom:30px*/
 }
 
-.mdl.s-profile.s-fluid {
-	max-height:560px!important;
-	height:auto!important;
-	width:600px!important;
-	overflow:hidden!important
-}
-
 .prf-stats>li {
 	width:49.6%;
 }

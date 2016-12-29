@@ -106,7 +106,8 @@ html .btd-grayscale_notification_icons i.icon.activity-indicator
 .scroll-v,
 .lst-launcher,
 .mtd-nav-drawer,
-.mdl.s-profile
+.mdl.s-profile,
+#lists-modal .mdl-content
 {
 	scrollbar-face-color:#505254;
 	scrollbar-highlight-color:#505254;
@@ -319,7 +320,8 @@ body,
 .scroll-v::-webkit-scrollbar-thumb,
 .scroll-styled-h::-webkit-scrollbar-thumb,
 .scroll-alt::-webkit-scrollbar-thumb,
-.s-tall-fixed::-webkit-scrollbar-thumb
+.s-tall-fixed::-webkit-scrollbar-thumb,
+#lists-modal .mdl-content::-webkit-scrollbar-thumb
 {
 	border-radius:5px;
 	background:#D9D9D9
@@ -331,7 +333,8 @@ body,
 .scroll-styled-v::-webkit-scrollbar-thumb:hover,
 .scroll-v::-webkit-scrollbar-thumb:hover,
 .scroll-styled-h::-webkit-scrollbar-thumb:hover,
-.scroll-alt::-webkit-scrollbar-thumb:hover
+.scroll-alt::-webkit-scrollbar-thumb:hover,
+#lists-modal .mdl-content::-webkit-scrollbar-thumb:hover
 {
 	background:#c9c9c9
 }

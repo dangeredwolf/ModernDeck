@@ -267,7 +267,7 @@ optgroup,
 .column-nav-link.is-selected,
 .column-nav-link:hover
 {
-	color:inherit
+	color:inherit!important
 }
 
 option,
@@ -400,7 +400,8 @@ textarea
 .scroll-styled-v::-webkit-scrollbar-thumb,
 .scroll-v::-webkit-scrollbar-thumb,
 .scroll-styled-h::-webkit-scrollbar-thumb,
-.s-tall-fixed::-webkit-scrollbar-thumb
+.s-tall-fixed::-webkit-scrollbar-thumb,
+#lists-modal .mdl-content::-webkit-scrollbar-thumb
 {
   border-radius:5px;
   background:rgba(149,175,191,.5)
@@ -411,7 +412,8 @@ textarea
 .lst-launcher::-webkit-scrollbar-thumb:hover,
 .scroll-styled-v::-webkit-scrollbar-thumb:hover,
 .scroll-v::-webkit-scrollbar-thumb:hover,
-.scroll-styled-h::-webkit-scrollbar-thumb:hover
+.scroll-styled-h::-webkit-scrollbar-thumb:hover,
+#lists-modal .mdl-content::-webkit-scrollbar-thumb:hover
 {
 	background:#8498A5
 }

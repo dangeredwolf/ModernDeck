@@ -2,7 +2,7 @@
 			moderndeck.css
 
 
-			ModernDeck 6.1 [codename Sweet Paradise]
+			ModernDeck 6.1.2 [codename Sweet Paradise]
 			Copyright 2014-2016 Ryan Dolan (@dangeredwolf)
 			Released under the MIT Licence
 
@@ -73,7 +73,7 @@ html.scroll-v {
 	overflow-x:auto
 }
 
-.mdl.s-profile::-webkit-scrollbar,.scroll-styled-v::-webkit-scrollbar,.scroll-v::-webkit-scrollbar,.lst-launcher::-webkit-scrollbar,.mtd-nav-drawer::-webkit-scrollbar,.emoji-container>div::-webkit-scrollbar,.emoji-container::-webkit-scrollbar {
+#lists-modal .mdl-content::-webkit-scrollbar,.mdl.s-profile::-webkit-scrollbar,.scroll-styled-v::-webkit-scrollbar,.scroll-v::-webkit-scrollbar,.lst-launcher::-webkit-scrollbar,.mtd-nav-drawer::-webkit-scrollbar,.emoji-container>div::-webkit-scrollbar,.emoji-container::-webkit-scrollbar {
 	width:10px;
 	pointer-events:all
 }
@@ -94,11 +94,6 @@ html.scroll-v {
 }
 
 .antiscroll-inner::-webkit-scrollbar {
-	width:0;
-	height:0
-}
-
-.antiscroll-inner::scrollbar {
 	width:0;
 	height:0
 }
@@ -708,8 +703,8 @@ i {
 	margin-top:-4px
 }
 
-.is-new>.icon-dot:before {
-	content:"\e031"
+.is-new>.icon-dot {
+	background:#fff
 }
 
 .icon-xsmall {
@@ -1161,9 +1156,10 @@ button:hover,button:focus {
 	left:0;
 	margin-left:40px;
 	border-color:#fff;
-	text-align:center;
+	text-align:left;
 	font-weight:500;
-	padding-bottom:0
+	padding-bottom:0;
+	z-index:5
 }
 
 .column-title-editable.with-image-attribution {
@@ -3254,9 +3250,9 @@ a:hover .icn-button-next {
 }
 
 .embed-modal textarea {
-	height:auto;
+	height:100px;
 	width:100%;
-	resize:vertical
+	resize:vertical;
 }
 
 .embed-iframe {
@@ -3296,10 +3292,13 @@ a:hover .icn-button-next {
 }
 
 .keyboard-shortcut-list {
-	width:50%;
-	padding-left:25px;
-	font-size:13px;
-	box-sizing:border-box
+	width: 49.5%;
+	padding-left:20px;
+	box-sizing:border-box;
+	margin-top:0;
+	margin-bottom:0;
+	-webkit-margin-after:0;
+	top:0
 }
 
 .keyboard-shortcut-definition {
@@ -3492,9 +3491,13 @@ textarea,.l-fullwidth {
 
 .is-new>.column-nav-updates.icon-dot {
 	right:0;
+	left:3px;
 	position:absolute;
+	width:100%;
 	display:block;
-	margin-top:-26px
+	bottom:-7px;
+	height:3px;
+	opacity:0.5
 }
 
 .s-error input {
@@ -4248,6 +4251,7 @@ input[type="radio"]:checked:before {
 .popover-position-rt {
 	z-index:6;
 	left:65px;
+	position:absolute;
 	top:-60px;
 	right:0
 }
@@ -5751,12 +5755,12 @@ button.mtd-no-transform-case {
 .tweet-detail .margin-tl.txt-small a {
 	float:right;
 	position:absolute;
-	width:50%;
+	width:90%;
 	text-overflow:ellipsis
 }
 
 .tweet-detail .margin-tl.txt-small a:nth-child(2) {
-	width:50%;
+	width:90%;
 	margin-top:30px
 }
 
@@ -6004,7 +6008,9 @@ button.mtd-no-transform-case {
 	border:0;
 	position:absolute;
 	width:100%;
-	height:100%
+	height:100%;
+	min-width:300px;
+	min-height:400px
 }
 
 .accordion-panel .padding-ts,.accordion-panel .padding-txs {
@@ -6165,7 +6171,8 @@ textarea:not(.compose-text):not(.js-compose-text) {
 .tweet-text.with-linebreaks {
 	margin-bottom:5px;
 	margin-top:0;
-	padding-left:53px
+	padding-left:53px;
+	min-height:20px
 }
 
 .tweet-text:not(.with-linebreaks) {
@@ -6621,7 +6628,7 @@ p[lang="ar"] a[rel="hashtag"],p[lang="ar"] a[rel="user"],p[lang="fa"] a[rel="has
 	box-shadow:0 5px 15px 1px rgba(0,0,0,.25)
 }
 
-.s-following .follow-btn:hover {
+.prf-follow-state .s-following .follow-btn:hover {
 	background-color:#EA6B6B!important
 }
 
@@ -6644,4 +6651,20 @@ p[lang="ar"] a[rel="hashtag"],p[lang="ar"] a[rel="user"],p[lang="fa"] a[rel="has
 
 legend.frm-legend+div+.control-group>.control-label,legend.frm-legend+div+div+.control-group>.control-label,legend.frm-legend+div+div+div+div+.control-group>.control-label,legend.frm-legend+div+div+div+.control-group>.control-label {
 	margin-top:20px
+}
+
+.recent-searches-fixed-list>h4 {
+	display:none
+}
+
+.modal-content>.margin-b--10.txt-seamful-black {
+	margin-bottom:0!important
+}
+
+form#list_details.frm {
+	padding-top:0
+}
+
+#lists-modal .mdl-content {
+	overflow-y:auto!important
 }
