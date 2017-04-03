@@ -1,3 +1,10 @@
+/*
+  superclasses.css
+
+  Copyright (c) 2014-2017 Dangered Wolf
+  Released under the MIT Licence
+*/
+
 .txt-r-deep-yellow,.is-favorite .icon-favorite-toggle,.btn:not(.btn-fav-fav-text)>.icon-favorite-color,.obj-left>.icon-favorite-color,.pull-right.icon-favorite-color {
     color: #FF9701
 }

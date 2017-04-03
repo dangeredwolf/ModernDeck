@@ -1,12 +1,12 @@
 // MTDinject.js
-// Copyright (c) 2016 Dangered Wolf
+// Copyright (c) 2017 Dangered Wolf
 
 // made with love <3
 
 "use strict";
 
-var SystemVersion = "6.1.3 Dev Build 2017.03.09";
-var MTDBaseURL = "https://raw.githubusercontent.com/dangeredwolf/ModernDeck/master/ModernDeck/"; // Defaults to streaming if nothing else is available (i.e. legacy firefox)
+var SystemVersion = "Developer Build 2017.03.09";
+var MTDBaseURL = "https://raw.githubusercontent.com/dangeredwolf/ModernDeck/stable/ModernDeck/"; // Defaults to streaming if nothing else is available (i.e. legacy firefox)
 
 var msgID,
 FetchProfileInfo,
