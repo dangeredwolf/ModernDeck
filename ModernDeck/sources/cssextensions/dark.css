@@ -140,7 +140,9 @@ div.drawer[data-drawer="compose"],
 .typeahead .username,
 .l-column.mdl-column.mdl-column-sml .list-link,
 .lst-group .list-account .username,
-html .btd-grayscale_notification_icons i.icon.activity-indicator
+html .btd-grayscale_notification_icons i.icon.activity-indicator,
+.other-replies,
+.tweet-stats>li
 {
 	color:#6D808B
 }
@@ -235,7 +237,8 @@ optgroup,
 }
 
 .tweet-action,
-.tweet-detail-action
+.tweet-detail-action,
+.tweet-stats>li>a
 {
  color:rgba(149,175,191,.52)
 }
@@ -251,7 +254,8 @@ optgroup,
 .stream-item.is-actionable .tweet-action:active,
 .stream-item.is-actionable .tweet-detail-action:active,
 .stream-item.is-actionable .tweet-action.is-selected,
-.stream-item.is-actionable a.is-selected.tweet-detail-action
+.stream-item.is-actionable a.is-selected.tweet-detail-action,
+.tweet-stats>li>a:hover
 {
 	color:#8498A5
 }
