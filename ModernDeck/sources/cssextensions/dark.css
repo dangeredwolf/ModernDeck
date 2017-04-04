@@ -142,9 +142,14 @@ div.drawer[data-drawer="compose"],
 .lst-group .list-account .username,
 html .btd-grayscale_notification_icons i.icon.activity-indicator,
 .other-replies,
-.tweet-stats>li
+.tweet-stats>li,
+.txt-r-deep-gray
 {
 	color:#6D808B
+}
+
+.txt-r-deep-gray {
+	opacity:1
 }
 
 input::-webkit-input-placeholder,textarea::-webkit-input-placeholder {
