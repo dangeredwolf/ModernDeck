@@ -1,7 +1,7 @@
 /*
   light.css
 
-  Copyright 2014-2016 Ryan Dolan (@dangeredwolf)
+  Copyright (c) 2014-2017 Dangered Wolf
   Released under the MIT Licence
 */
 
@@ -489,7 +489,8 @@ html:not(.mtd-dark-media-previews) .med-tweet,
 .list-item:hover .list-icon,
 .list-item:active .list-icon,
 .list-item.is-selected .list-icon,
-.account-bio
+.account-bio,
+.tweet-stats>li>a:hover
 {
 	color:#999
 }
@@ -844,7 +845,8 @@ textarea::placeholder
 }
 
 .stream-item.is-actionable .tweet-action,
-.stream-item.is-actionable .tweet-detail-action
+.stream-item.is-actionable .tweet-detail-action,
+.tweet-stats>li>a
 {
  color:#bbb
 }

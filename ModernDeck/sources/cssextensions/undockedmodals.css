@@ -1,3 +1,10 @@
+/*
+  undockedmodals.css
+
+  Copyright (c) 2014-2017 Dangered Wolf
+  Released under the MIT Licence
+*/
+
 @import "animations.css";
 
 .mdl:not(.med-fullpanel) {
@@ -63,7 +70,6 @@
 
 .mdl.s-fluid {
 	height:auto!important;
-	width:auto!important;
 	min-width:400px;
 }
 

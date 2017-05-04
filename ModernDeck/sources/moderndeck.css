@@ -3,7 +3,7 @@
 
 
 			ModernDeck 6.1.2 [codename Sweet Paradise]
-			Copyright 2014-2016 Ryan Dolan (@dangeredwolf)
+			Copyright (c) 2017 Dangered Wolf
 			Released under the MIT Licence
 
 			For a complete list of open source projects included in this, view the "LICENCES" file in the open source project @ github.com/dangeredwolf/ModernDeck
@@ -16,7 +16,6 @@
 @import "cssextensions/superclasses.css";
 @import "cssextensions/marginclasses.css";
 @import "cssextensions/btdsupport.css";
-@import "cssextensions/waves.css";
 
 /* NORMAL STUFF */
 
@@ -2906,20 +2905,20 @@ a .column-title-back .icon:after {
 }
 
 .compose-text-container {
-	width:240px;
+	width:220px;
 	margin-left:10px;
 	margin-top:10px;
-	height:200px;
-	box-shadow:0 3px 7px rgba(17,17,17,.5)
+	box-shadow:0 3px 7px rgba(17,17,17,.5);
 }
 
 .compose-text {
-	height:160px!important;
+	height:130px!important;
 	resize:none;
+	margin-bottom:30px;
 	border:0;
 	font-size:0.9rem;
 	text-overflow:ellipsis;
-	padding-left:15px!important;
+	padding-left:10px!important;
 	border-radius:2px;
 	padding-bottom:30px
 }
@@ -3285,10 +3284,10 @@ a:hover .icn-button-next {
 }
 
 .text-like-keyboard-key {
-	padding:6px 10px;
+	padding: 6px 8px;
 	border-radius:3px;
 	box-shadow:0 3px 5px rgba(0,0,0,.5);
-	margin-right:3px
+	margin-right:3px;
 }
 
 .keyboard-shortcut-list {
@@ -3298,15 +3297,15 @@ a:hover .icn-button-next {
 	margin-top:0;
 	margin-bottom:0;
 	-webkit-margin-after:0;
-	top:0
+	top:0;
 }
 
 .keyboard-shortcut-definition {
-	margin:0 0 25px
+	margin: 0 0 25px;
 }
 
 .keyboard-shortcut-title {
-	margin:15px 0 10px
+	margin:15px 0 10px;
 }
 
 .mdl-report-spam-options,.mdl-report-spam-abusive {
@@ -5703,49 +5702,32 @@ button.mtd-no-transform-case {
 	font-weight:500
 }
 
-.tweet-stats li a,.tweet-stats li span {
-	text-align:right;
+.tweet-stats>li>a,.tweet-stats>li[data-type="repliers"] {
+	text-align:left;
 	float:right;
 	position:absolute;
 	display:inline;
 	right:12px;
 	margin-top:-36px;
 	margin-left:10px;
-	width:50%
+	bottom:19px;
+	width:40px
 }
 
-.tweet-stats li[data-type="favoriters"] a {
-	position:absolute;
-	bottom:19px;
+.tweet-stats>li[data-type="favoriters"]>a {
 	left:65%;
-	margin-left:-2px;
-	width:40px;
-	text-align:left
+	margin-left:-2px
 }
 
-.tweet-stats li[data-type="retweeters"] a {
-	position:absolute;
-	bottom:19px;
+.tweet-stats>li[data-type="retweeters"]>a {
 	left:45%;
-	margin-left:0;
-	width:40px;
-	text-align:left
+	margin-left:0
 }
 
-.tweet-stats li[data-type="repliers"] span {
-	position:absolute;
-	bottom:19px;
+.tweet-stats li[data-type="repliers"]  {
 	left:25%;
-	margin-left:-6px;
-	pointer-events:none;
-	width:40px;
-	text-align:left
+	margin-left:-6px
 }
-
-.tweet-stats .stat-word {
-	display:none;
-}
-
 
 .tweet-detail .margin-tl.txt-small {
 	margin-top:30px!important;
@@ -5824,9 +5806,15 @@ button.mtd-no-transform-case {
 
 .js-open-analytics {
 	position:absolute;
-	margin-top:40px;
-	padding-bottom:20px!important;
-	text-align:right
+	margin-top: 80px;
+	/* padding-bottom:20px!important; */
+	text-align:right;
+	width:30px!important;
+	display:block;
+}
+
+.js-open-analytics>span {
+	display:none!important
 }
 
 #list_details input:not([type=radio]),#list_details select {
@@ -6225,10 +6213,6 @@ body>.message-banner[style="color: rgb(85, 85, 85); background-color: rgb(178, 2
 
 .med-embeditem>.l-table {
 	width:100%
-}
-
-.compose-reply-tweet .username,.compose-reply-tweet .fullname {
-	line-height:-11px
 }
 
 .status-message {
@@ -6632,7 +6616,7 @@ p[lang="ar"] a[rel="hashtag"],p[lang="ar"] a[rel="user"],p[lang="fa"] a[rel="has
 	background-color:#EA6B6B!important
 }
 
-.tweet-stat>a>*,.tweet-stat>span>* {
+.tweet-stat>a>*,.tweet-stat>* {
 	display:inline-block;
 	text-overflow:clip;
 }
@@ -6667,4 +6651,29 @@ form#list_details.frm {
 
 #lists-modal .mdl-content {
 	overflow-y:auto!important
+}
+
+.other-replies {
+	font-size:12px;
+	padding-left:53px;
+	padding-bottom:3px;
+	max-width:200px
+}
+
+.compose-text-container .other-replies {
+	padding-left:10px
+}
+
+.tweet-detail-wrapper .other-replies {
+	padding-bottom:5px;
+	padding-left:0
+}
+
+.seamful .account-summary-text {
+	padding-left:52px
+}
+
+.js-reply-info-container {
+	max-width:220px;
+	display:none
 }

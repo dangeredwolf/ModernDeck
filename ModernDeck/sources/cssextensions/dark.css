@@ -1,7 +1,7 @@
 /*
   dark.css
 
-  Copyright 2014-2016 Ryan Dolan (@dangeredwolf)
+  Copyright (c) 2014-2017 Dangered Wolf
   Released under the MIT Licence
 */
 
@@ -140,9 +140,16 @@ div.drawer[data-drawer="compose"],
 .typeahead .username,
 .l-column.mdl-column.mdl-column-sml .list-link,
 .lst-group .list-account .username,
-html .btd-grayscale_notification_icons i.icon.activity-indicator
+html .btd-grayscale_notification_icons i.icon.activity-indicator,
+.other-replies,
+.tweet-stats>li,
+.txt-r-deep-gray
 {
 	color:#6D808B
+}
+
+.txt-r-deep-gray {
+	opacity:1
 }
 
 input::-webkit-input-placeholder,textarea::-webkit-input-placeholder {
@@ -235,7 +242,8 @@ optgroup,
 }
 
 .tweet-action,
-.tweet-detail-action
+.tweet-detail-action,
+.tweet-stats>li>a
 {
  color:rgba(149,175,191,.52)
 }
@@ -251,7 +259,8 @@ optgroup,
 .stream-item.is-actionable .tweet-action:active,
 .stream-item.is-actionable .tweet-detail-action:active,
 .stream-item.is-actionable .tweet-action.is-selected,
-.stream-item.is-actionable a.is-selected.tweet-detail-action
+.stream-item.is-actionable a.is-selected.tweet-detail-action,
+.tweet-stats>li>a:hover
 {
 	color:#8498A5
 }
