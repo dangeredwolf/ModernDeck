@@ -2905,20 +2905,20 @@ a .column-title-back .icon:after {
 }
 
 .compose-text-container {
-	width:240px;
+	width:220px;
 	margin-left:10px;
 	margin-top:10px;
-	height:200px;
-	box-shadow:0 3px 7px rgba(17,17,17,.5)
+	box-shadow:0 3px 7px rgba(17,17,17,.5);
 }
 
 .compose-text {
-	height:160px!important;
+	height:130px!important;
 	resize:none;
+	margin-bottom:30px;
 	border:0;
 	font-size:0.9rem;
 	text-overflow:ellipsis;
-	padding-left:15px!important;
+	padding-left:10px!important;
 	border-radius:2px;
 	padding-bottom:30px
 }
@@ -6215,10 +6215,6 @@ body>.message-banner[style="color: rgb(85, 85, 85); background-color: rgb(178, 2
 	width:100%
 }
 
-.compose-reply-tweet .username,.compose-reply-tweet .fullname {
-	line-height:-11px
-}
-
 .status-message {
     box-shadow:0 4px 8px #000;
     position:absolute;
@@ -6661,13 +6657,23 @@ form#list_details.frm {
 	font-size:12px;
 	padding-left:53px;
 	padding-bottom:3px;
+	max-width:200px
+}
+
+.compose-text-container .other-replies {
+	padding-left:10px
 }
 
 .tweet-detail-wrapper .other-replies {
 	padding-bottom:5px;
-	padding-left:0;
+	padding-left:0
 }
 
 .seamful .account-summary-text {
 	padding-left:52px
+}
+
+.js-reply-info-container {
+	max-width:220px;
+	display:none
 }

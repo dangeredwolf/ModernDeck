@@ -5,7 +5,7 @@
 
 "use strict";
 
-var SystemVersion = "Developer Build 2017.04.03";
+var SystemVersion = "6.1.4";
 var MTDBaseURL = "https://raw.githubusercontent.com/dangeredwolf/ModernDeck/stable/ModernDeck/"; // Defaults to streaming if nothing else is available (i.e. legacy firefox)
 
 var msgID,
