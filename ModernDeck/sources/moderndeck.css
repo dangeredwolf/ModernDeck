@@ -404,7 +404,7 @@ i {
 	font-family:"Material"
 }
 
-.icon-twitter-bird:before,.icon-logout:before,.icon-tweetdeck:before,.icon-moderndeck:before,.icon-mtdmini:before,.icon-hashtag:before,.icon-settings:before,.icon-td-settings:before,.icon-retweet:before,.icon-mtd-settings:before,.icon-btd:before,.icon-btd-settings:before,.icon-quote-tweet:before,.icon-compose-grid:before,.icon-user-switch:before,.icon-user-switch:before,.icon-compose-minigrid:before,.icon-compose-list:before {
+.icon-twitter-bird:before,.icon-logout:before,.icon-tweetdeck:before,.icon-moderndeck:before,.icon-mtdmini:before,.icon-hashtag:before,.icon-settings:before,.icon-td-settings:before,.icon-retweet:before,.icon-retweet-filled:before,.icon-mtd-settings:before,.icon-btd:before,.icon-btd-settings:before,.icon-quote-tweet:before,.icon-compose-grid:before,.icon-user-switch:before,.icon-user-switch:before,.icon-compose-minigrid:before,.icon-compose-list:before {
 	font-family:"MD"
 }
 
@@ -440,7 +440,7 @@ i {
 	content:"\f007"
 }
 
-.icon-retweet:before {
+.icon-retweet:before,.icon-retweet-filled:before {
 	content:"\f008"
 }
 
@@ -476,7 +476,7 @@ i {
 	content:"\e312"
 }
 
-.icon-favorite:before {
+.icon-favorite:before,.icon-heart-filled:before {
 	content:"\e838"
 }
 
@@ -492,8 +492,15 @@ i {
 	content:"\e88a"
 }
 
-.icon-reply:before {
+.icon-reply:before,.other-replies:before {
 	content:"\e15e"
+}
+
+.other-replies:before {
+	font-size:12px;
+	font-family:"Material";
+	padding-top:4px;
+	margin-top:4px
 }
 
 .icon-drafts:before {
@@ -1237,8 +1244,13 @@ a .column-title-back .icon:after {
 .column-type-icon {
 	position:relative;
 	font-size:24px;
-	width:24px;
-	height:24px
+	width:100%;
+	height:48px;
+	padding-top:4px
+}
+
+.js-item-launch .column-type-icon {
+	text-align:center
 }
 
 .column-header-link {
@@ -1855,7 +1867,7 @@ a .column-title-back .icon:after {
 
 .tweet-actions>li {
 	float:left;
-	margin:0 0 0 20px
+	margin:0 0 0 20px!important
 }
 
 .tweet-action .icon,.tweet-detail-action i {
@@ -1955,7 +1967,7 @@ a .column-title-back .icon:after {
 	width:100%;
 	padding-left:0;
 	margin-top:100px;
-	margin-bottom:10px;
+	margin-bottom:10px
 }
 
 .tweet-detail-action-item {
@@ -2610,11 +2622,11 @@ a .column-title-back .icon:after {
 }
 
 .s-fluid .mdl-inner,.s-fluid-height .mdl-inner {
-	position:relative;
-	top:20px;
+	/* position:relative; */
+	top: 60px;
 	bottom:0;
 	left:0;
-	right:0
+	right:0;
 }
 
 .mdl-favorite-from-options {
@@ -2645,19 +2657,16 @@ a .column-title-back .icon:after {
 }
 
 .lst-launcher li {
-	width:50%;
-	float:left
+	width:24%;
+	float:left;
+	height:96px;
 }
 
 .lst-launcher a,.lst-launcher a:hover,.lst-launcher a:focus,.lst-launcher a:active {
 	display:block;
-	width:271px;
-	height:46px;
-	text-align:left;
-	margin-left:24px;
-	margin-right:0;
-	margin-bottom:15px;
-	transition:.2s all
+	width:100%;
+	height:58px;
+	text-align:center
 }
 
 .lst-launcher .btn i {
@@ -2667,17 +2676,17 @@ a .column-title-back .icon:after {
 .lst-launcher .attribution {
 	font-size:13px;
 	display:inline;
-	margin-left:-20px
+	margin-top:20px
 }
 
 .lst-launcher span {
 	font-weight:500;
 	font-size:16px;
-	padding-left:30px;
 	text-transform:none;
-	padding-top:5px;
-	display:inline-block;
-	margin-left:-10px
+	display:block;
+	text-align:center;
+	width:90%;
+	position:absolute
 }
 
 .lst-profile {
@@ -2913,19 +2922,21 @@ a .column-title-back .icon:after {
 	width:240px;
 	margin-left:10px;
 	margin-top:10px;
-	height:200px;
-	box-shadow:0 3px 7px rgba(17,17,17,.5)
+	height: 170px;
+	padding:0!important;
+	padding-top:10px!important;
+	box-shadow:0 3px 7px rgba(17,17,17,.5);
 }
 
 .compose-text {
-	height:160px!important;
+	height: 130px!important;
 	resize:none;
 	border:0;
 	font-size:0.9rem;
 	text-overflow:ellipsis;
 	padding-left:15px!important;
 	border-radius:2px;
-	padding-bottom:30px
+	padding-bottom:30px;
 }
 
 .compose-send-button-success {
@@ -3296,10 +3307,16 @@ a:hover .icn-button-next {
 }
 
 .keyboard-shortcut-list {
-	width:50%;
+	width:49%;
 	padding-left:25px;
 	font-size:13px;
-	box-sizing:border-box
+	box-sizing:border-box;
+	position:absolute;
+	top:0;
+}
+
+.keyboard-shortcut-list:nth-child(2) {
+	left:51%;
 }
 
 .keyboard-shortcut-definition {
@@ -4401,7 +4418,7 @@ input[type="radio"]:checked:before {
 .media-img {
 	max-width:100%!important;
 	min-width:100px;
-	min-height:100px;
+	min-height:100px
 }
 
 .compose-content .account-selector-grid-toggle {
@@ -5168,10 +5185,6 @@ fieldset .fixed-width-label:not(.radio),fieldset:not(.js-search-filter) .control
 	top:-50px!important
 }
 
-.column-type-icon {
-	padding-top:4px
-}
-
 .contributor-list {
 	padding-left:10px
 }
@@ -5739,7 +5752,7 @@ button.mtd-no-transform-case {
 }
 
 .tweet-stats .stat-word {
-	display:none;
+	display:none
 }
 
 
@@ -5990,6 +6003,9 @@ button.mtd-no-transform-case {
 	bottom:-50px
 }
 
+.s-inreply.s-fluid-height>.mdl-inner {
+	position:relative
+}
 
 .s-tall-fixed {
 	width:644px;
@@ -6312,7 +6328,8 @@ ul.tweet-stats:nth-child(2) {
 
 .compose .quoted-tweet .js-quoted-tweet-text {
 	padding-top:10px;
-	padding-left:5px
+	padding-left:5px;
+	margin-top:10px
 }
 
 .compose .quoted-tweet .sprite-close {
@@ -6627,11 +6644,11 @@ p[lang="ar"] a[rel="hashtag"],p[lang="ar"] a[rel="user"],p[lang="fa"] a[rel="has
 
 .tweet-stat>a>*,.tweet-stat>span>* {
 	display:inline-block;
-	text-overflow:clip;
+	text-overflow:clip
 }
 
 .column-type-message.js-column-state-social-proof .js-column-social-proof .column-content {
-	top:120px;
+	top:120px
 }
 
 .tweet-message .account-link>.nbfc {
@@ -6644,4 +6661,29 @@ p[lang="ar"] a[rel="hashtag"],p[lang="ar"] a[rel="user"],p[lang="fa"] a[rel="has
 
 legend.frm-legend+div+.control-group>.control-label,legend.frm-legend+div+div+.control-group>.control-label,legend.frm-legend+div+div+div+div+.control-group>.control-label,legend.frm-legend+div+div+div+.control-group>.control-label {
 	margin-top:20px
+}
+
+.tweet-body>.txt-ellipsis {
+	padding-left:54px
+}
+
+.tweet.txt-mute .tweet-body>.txt-ellipsis {
+	padding-left:4px
+}
+
+.other-replies {
+	font-size:0
+}
+
+.other-replies>a {
+	font-size:12px;
+	padding-left:4px
+}
+
+.js-reply-info-container>.other-replies {
+	padding:0 12px
+}
+
+.js-item-launch .column-type-icon {
+	font-size:48px;
 }
