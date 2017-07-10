@@ -6643,3 +6643,9 @@ legend.frm-legend+div+.control-group>.control-label,legend.frm-legend+div+div+.c
 .inline-reply .js-reply-info-container,.inline-reply .compose-text-container {
 	padding-top:0!important;
 }
+
+.hashflag {
+	width:16px;
+	height:16px;
+	margin-left:3px;
+}
