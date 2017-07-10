@@ -6,180 +6,180 @@
 */
 
 .txt-r-deep-yellow,.is-favorite .icon-favorite-toggle,.btn:not(.btn-fav-fav-text)>.icon-favorite-color,.obj-left>.icon-favorite-color,.pull-right.icon-favorite-color {
-    color: #FF9701
+    color:#FF9701
 }
 
 .txt-r-medium-green,.is-retweet .icon-retweet-toggle,.icon-retweet-color {
-    color: #13B33F
+    color:#13B33F
 }
 
-.tweet-stats .stat-word,.is-paused .gif-pause,.is-gif:not(.is-paused) .gif-play,.ovl-plain,.ovl,.gif-badge,.overlay,.link-complex[rel="viewDetails"],.cmp-info,.btn.js-done,.icon.column-nav-updates,.mdl>.txt-seamful-black,.accs i,.account-summary-text.nbfc>a,.txt-center>.js-dismiss,.s-thats-you .btn-loader,.mdl-dismiss,.privacy-info,.mdl-drag-handle,.preloader-wrapper+.preloader-wrapper,.is-loaded>.preloader-wrapper,.nav-user-info>.avatar,.release-notes-image,.release-notes-image-bullet,.accordion .icon-arrow-u,.med-fullpanel .tweet-dogear,.tweet-detail-wrapper .tweet-dogear,.js-hide-drawer .icon-compose,.js-hide-drawer .icon-compose-dm,.mdl-buttonbar>.js-dismiss,.mdl .search-input-control:before,.startflow-panel .txt-center:not(.form-error-message),.add-participant .search-input-control:before,.drawer-content .search-input-control:before,.cf.account-remove-check,.facet-type .search-input-control:before,.accordion .is-active .facet-subtitle,.mdl-dismiss,.mdl-dismiss-media,.mtd-mobile .column-type-icon,.column-type-message .js-column-detail .column-title-back:before,.add-on.with-emphasis,.mtd-minimal .column-navigator,.app-navigator .dropdown-menu,.caret,.js-column-detail .column-title-back.conversation-title:after,.more-tweets-btn-inner-mouse-release,.more-tweets-btn-inner-loading,.more-tweets-btn-container--mouse-release .more-tweets-btn-inner-default,.more-tweets-btn-container--loading .more-tweets-btn-inner-default,.app-masthead,.cmp-spinner,.chev-right,.compose-text-title,.cmp button b,.cmp .mdl-header-title:empty,.app-search-tweet-results .column-header-temp,.spinner-centered,.without-tweet-drag-handles .tweet-drag-handle,.account-remove-check,.js-app-settings .obj-left,.tweet-action-item.feature-customtimelines.tweet-drag-handle,.tweet-detail-action-item.feature-customtimelines.tweet-drag-handle,.column-nav-link:after,.more-tweets-btn-inner-mouse-release,.more-tweets-btn-inner-loading,.more-tweets-btn-container--mouse-release .more-tweets-btn-inner-default,.more-tweets-btn-container--loading .more-tweets-btn-inner-default,.list-item .icon-search.list-icon,.js-typeahead-recent-search-item .obj-left,.s-following .follow-btn .btn-loader,.btd-settings,body:not(.btd-ready) #btdsettings,.edit-conversation-name .nbfc,.js-app-add-column,.js-dismiss,.js-schedule-datepicker-holder .popover .padding-as .btn .icon-trash,.js-dismiss.btn.btn-positive i.icon.icon-check.icon-small.padding-rs,.column-close-link.txt-r-dark-gray,.js-app-loading .js-header-container,.js-add-image-button-label,.js-schedule-button-label,.js-tweet-button-label,.js-dm-button .label.padding-ls,.column-nav-flyout,.release-notes-modal .mdl-drag-handle,#datepicker,.search-input-spinner,.search-input-clear-search,.toggle-item-text-truncated,.sch.s-searching .sch-clear,legend,.frm-legend,.action-btn,.med-origlink,.med-flaglink,.hide-detail-view-inline .detail-view-inline,.compose-account-selected,.js-compose-hint.margin-vl.anim.anim-fade-in,#file-upload-input,.s-sending .char-count,.s-profile .mdl-buttonbar,.s-profile h3,.mdl.s-nonav .mdl-inner .mdl-buttonbar,.ovl.is-dragging:before,.is-dragging.overlay:before,.numbered-badge-onheader,.tooltip-arrow,.app-search-in-popover,.app-search-form,.app-header .app-nav-logo-text,.app-header .hide-condensed,.app-header .sprite-logo,.app-header .tweet-button .label,.app-header .app-nav-link .icon-arrow-l-double,.app-header .app-nav-link .icon-arrow-r-double,.app-nav-link .icon-arrow-r-double,.app-nav-tab .icon-user-switch,.tweet-message-status,.icon.icon-move,.tweet-drag-handle,.is-narrow-columns .media-size-medium .media-sensitive-title,.contributor-row[data-contributor-role="contributor"] [data-show-when-contributor-role="admin"],.contributor-row[data-contributor-role="admin"] [data-show-when-contributor-role="contributor"],.contributor-row[data-state-error="closed-error"] [data-hide-when-state-error="closed-error"],.contributor-row[data-state="settings"] [data-hide-when-state="settings"],.contributor-row[data-state-error="settings-error"] [data-hide-when-state-error="settings-error"],.contributor-row[data-show-when-state],.contributor-row[data-show-when-state-error],.is-options-open .column-settings-link .icon-arrow-d,.column-header-link .icon-arrow-u,.column-title-back .attribution,.js-add-to-customtimeline-button,.column-title-editable .js-show-tip.avatar.size24,.account-remove-check,.with-add-by-url .list-placeholder.pin-all,.btn-fav>.btn-loader,.app-title,.btn-fav-protected-text,.s-protected .btn-loader,.s-not-following .btn-loader,.action-text,.btn-options-tray.is-invisible,.btn-loader,.action-text:not(.unfollow-text),.btn-relation-group:not(.s-following) .unfollow-text,.l-table.column-drag-drop-overlay-inner,.js-account-manager-container .drawer-header,.btn-options-tray>.label,.contributor-row>div:not(.account-summary),.mdl .js-customtimeline-description,.heart-anim,#__lpform_username_numspan #__lpform_password_numspan /* fixes lastpass UI bug */
+.mdl .column-header-temp,.align-below-header+.nbfc,.column .quoted-tweet .tweet-img,.activity-header>.txt-mute,.prf-actions .action-text>i,.tweet-stats .stat-word,.is-paused .gif-pause,.is-gif:not(.is-paused) .gif-play,.ovl-plain,.ovl,.gif-badge,.overlay,.link-complex[rel="viewDetails"],.cmp-info,.btn.js-done,.icon.column-nav-updates,.mdl>.txt-seamful-black,.accs i,.account-summary-text.nbfc>a,.txt-center>.js-dismiss,.s-thats-you .btn-loader,.mdl-dismiss,.privacy-info,.mdl-drag-handle,.preloader-wrapper+.preloader-wrapper,.is-loaded>.preloader-wrapper,.nav-user-info>.avatar,.release-notes-image,.release-notes-image-bullet,.accordion .icon-arrow-u,.med-fullpanel .tweet-dogear,.tweet-detail-wrapper .tweet-dogear,.js-hide-drawer .icon-compose,.js-hide-drawer .icon-compose-dm,.mdl-buttonbar>.js-dismiss,.mdl .search-input-control:before,.startflow-panel .txt-center:not(.form-error-message),.add-participant .search-input-control:before,.drawer-content .search-input-control:before,.cf.account-remove-check,.facet-type .search-input-control:before,.accordion .is-active .facet-subtitle,.mdl-dismiss,.mdl-dismiss-media,.mtd-mobile .column-type-icon,.column-type-message .js-column-detail .column-title-back:before,.add-on.with-emphasis,.mtd-minimal .column-navigator,.app-navigator .dropdown-menu,.caret,.js-column-detail .column-title-back.conversation-title:after,.more-tweets-btn-inner-mouse-release,.more-tweets-btn-inner-loading,.more-tweets-btn-container--mouse-release .more-tweets-btn-inner-default,.more-tweets-btn-container--loading .more-tweets-btn-inner-default,.app-masthead,.cmp-spinner,.chev-right,.compose-text-title,.cmp button b,.cmp .mdl-header-title:empty,.app-search-tweet-results .column-header-temp,.spinner-centered,.without-tweet-drag-handles .tweet-drag-handle,.account-remove-check,.js-app-settings .obj-left,.tweet-action-item.feature-customtimelines.tweet-drag-handle,.tweet-detail-action-item.feature-customtimelines.tweet-drag-handle,.column-nav-link:after,.more-tweets-btn-inner-mouse-release,.more-tweets-btn-inner-loading,.more-tweets-btn-container--mouse-release .more-tweets-btn-inner-default,.more-tweets-btn-container--loading .more-tweets-btn-inner-default,.list-item .icon-search.list-icon,.js-typeahead-recent-search-item .obj-left,.s-following .follow-btn .btn-loader,.btd-settings,body:not(.btd-ready) #btdsettings,.edit-conversation-name .nbfc,.js-app-add-column,.js-dismiss,.js-schedule-datepicker-holder .popover .padding-as .btn .icon-trash,.js-dismiss.btn.btn-positive i.icon.icon-check.icon-small.padding-rs,.column-close-link.txt-r-dark-gray,.js-app-loading .js-header-container,.js-add-image-button-label,.js-schedule-button-label,.js-tweet-button-label,.js-dm-button .label.padding-ls,.column-nav-flyout,.release-notes-modal .mdl-drag-handle,#datepicker,.search-input-spinner,.search-input-clear-search,.toggle-item-text-truncated,.sch.s-searching .sch-clear,legend,.frm-legend,.action-btn,.med-origlink,.med-flaglink,.hide-detail-view-inline .detail-view-inline,.compose-account-selected,.js-compose-hint.margin-vl.anim.anim-fade-in,#file-upload-input,.s-sending .char-count,.s-profile .mdl-buttonbar,.s-profile h3,.mdl.s-nonav .mdl-inner .mdl-buttonbar,.ovl.is-dragging:before,.is-dragging.overlay:before,.numbered-badge-onheader,.tooltip-arrow,.app-search-in-popover,.app-search-form,.app-header .app-nav-logo-text,.app-header .hide-condensed,.app-header .sprite-logo,.app-header .tweet-button .label,.app-header .app-nav-link .icon-arrow-l-double,.app-header .app-nav-link .icon-arrow-r-double,.app-nav-link .icon-arrow-r-double,.app-nav-tab .icon-user-switch,.tweet-message-status,.icon.icon-move,.tweet-drag-handle,.is-narrow-columns .media-size-medium .media-sensitive-title,.contributor-row[data-contributor-role="contributor"] [data-show-when-contributor-role="admin"],.contributor-row[data-contributor-role="admin"] [data-show-when-contributor-role="contributor"],.contributor-row[data-state-error="closed-error"] [data-hide-when-state-error="closed-error"],.contributor-row[data-state="settings"] [data-hide-when-state="settings"],.contributor-row[data-state-error="settings-error"] [data-hide-when-state-error="settings-error"],.contributor-row[data-show-when-state],.contributor-row[data-show-when-state-error],.is-options-open .column-settings-link .icon-arrow-d,.column-header-link .icon-arrow-u,.column-title-back .attribution,.js-add-to-customtimeline-button,.column-title-editable .js-show-tip.avatar.size24,.account-remove-check,.with-add-by-url .list-placeholder.pin-all,.btn-fav>.btn-loader,.app-title,.btn-fav-protected-text,.s-protected .btn-loader,.s-not-following .btn-loader,.action-text,.btn-options-tray.is-invisible,.btn-loader,.action-text:not(.unfollow-text),.btn-relation-group:not(.s-following) .unfollow-text,.l-table.column-drag-drop-overlay-inner,.js-account-manager-container .drawer-header,.btn-options-tray>.label,.contributor-row>div:not(.account-summary),.mdl .js-customtimeline-description,.heart-anim,#__lpform_username_numspan #__lpform_password_numspan /* fixes lastpass UI bug */
 {
-    display: none
+    display:none
 }
 
 .hide,.js-column-detail .column-title-back:after,button[data-user-id="892388300"],.pull-left.is-vishidden.is-visshown-narrow,.app-nav-link[data-title=Expand],.compose .icon.icon-close,.is-vishidden-narrow,.is-vishidden-narrow:hover,.pull-left.margin-txs.txt-mute.txt-small.link-complex,.pull-left.margin-txs.txt-mute.txt-small.link-complex:hover,.account-remove-check-open .account-remove,.account-settings-row .icon-arrow-u,.is-hidden,.compose-account b,.btn-back,.compose-header,.compose-title-text,.search-input-perform-search,.search-input-clear-search,.search-input-spinner,.s-pending .btn-loader,.heart-anim {
-    display: none!important
+    display:none!important
 }
 
 .button-tray:before,.s-thats-you .thats-you-text,.edit-conversation-name.is-visible .nbfc,.prf-img img,.has-value .input-clear-control,.sch.s-searching .sch-spinner,.search-input-control.has-value .search-input-clear-search,.search-input-control.is-waiting-for-response .search-input-spinner,.overlay.mtd-modal-window-fade-out,.dropdown-menu.mtd-dropdown-fade-out .s-working .working,.s-nonmember .nonmember,.s-member .member,.s-message-to .cmp-message,.s-photo-added .cmp-info,.s-link-added .cmp-info,.s-inreply .cmp-replyto,.app-search-in-popover,.rpl.s-replying .rpl-actions,.img-strip-media img,.account-remove-check-open .account-remove-check,.contributor-row[data-state="closed"] [data-show-when-state="closed"],.contributor-row[data-state="settings"] [data-show-when-state="settings"],.contributor-row[data-state="settings"] [data-show-when-state="settings confirmRemove"],.contributor-row[data-state="confirmRemove"] [data-show-when-state="settings confirmRemove"],.contributor-row[data-state="confirmRemove"] .contributor-confirm-remove,.contributor-row[data-state-error="confirmRemove-removing-error"] [data-show-when-state-error="confirmRemove-removing-error"],.contributor-row[data-state="confirmRemove-removing"] [data-show-when-state="confirmRemove-removing"],.contributor-row[data-state-error="confirmRemove-error"] [data-show-when-state-error="confirmRemove-error"],.contributor-row[data-state="confirmRemove"] [data-show-when-state="confirmRemove"],.contributor-row[data-state="confirmRemove-removing"] [data-show-when-state="confirmRemove"],.contributor-row[data-state-error="confirmDeadmin-error"] [data-show-when-state-error="confirmDeadmin-error"],.contributor-row[data-state="confirmDeadmin"] [data-show-when-state="confirmDeadmin"],.contributor-row[data-state-error="confirmAdd-added-error"] [data-show-when-state-error="confirmAdd-added-error"],.contributor-row[data-state="confirmAdd-added"] [data-show-when-state="confirmAdd-added"],.contributor-row[data-state="confirmAdd"] [data-show-when-state="confirmAdd"],.contributor-row[data-state-error="confirmAdd-error"] [data-show-when-state-error="confirmAdd-error"],.s-pending .pending-text,.s-blocking .follow-btn:hover .unblock-text,.s-blocking .block-text,.s-following .follow-btn:hover .unfollow-text,.s-following .following-text,.s-not-favorited .btn-fav-fav-text,.s-favorited .btn-fav-faved-text,.s-protected .btn-fav-protected-text,.btn-fav.s-favorited:hover .btn-fav-unfav-text,.follow-btn:disabled>.btn-loader,.cf,.tweet-action,.tweet-detail-action,.compose-account-img,article,aside,details,figcaption,figure,footer,header,hgroup,nav,section,summary,li,ul,.contributor-row[data-state="confirmAdd"]>.contributor-confirm-add {
-    display: block
+    display:block
 }
 
 .block,.popover.is-hidden,.js-modal[style="display:none;"],.typeahead[style="display:none;"],.js-hide-drawer.is-hidden,.media-sensitive.is-hidden,.icon-favorite.is-invisible {
-    display: block!important
+    display:block!important
 }
 
 .follow-from-accounts-button .btn span,.js-quote-tweet-holder,.prf-follow-status.s-follows,.prf-follow-state .follow-combo,.is-replied .tweet-message-status,.js-column-loading-placeholder.list-placeholder p,.js-column-loading-placeholder.list-placeholder.column-loading-placeholder,.control-s .control-label,.control-s .controls {
-    display: inline
+    display:inline
 }
 
 .inline,.mtd-mute-text,.list-filter em {
-    display: inline!important
+    display:inline!important
 }
 
 .button-tray:after,.tweet-detail-action,.is-options-open .column-settings-link .icon-arrow-u,.s-sending .cmp-spinner,.input-prepend,.button-group,audio,canvas {
-    display: inline-block
+    display:inline-block
 }
 
 video,.inline-block,.js-inline-compose-add-image,.more-tweets-btn.is-hidden {
-    display: inline-block!important
+    display:inline-block!important
 }
 
 .contributor-row[data-state-error="closed-error"] [data-show-when-state-error="closed-error"],.contributor-row[data-state-error="settings-error"] [data-show-when-state-error="settings-error"], {
-    display: inherit
+    display:inherit
 }
 
 .frm-input-right,.pull-right,.right,.obj-right {
-    float: right
+    float:right
 }
 
 .obj-left,.pull-left,.left,.frm-input-left {
-    float: left
+    float:left
 }
 
 .js-detail-header.column-header .tooltip.fade .tooltip-inner,.media-preview,.mdl:not(.s-short) .mdl-content,.app-search-tweet-results,.scroll-none,.antiscroll-wrap {
-    overflow: hidden
+    overflow:hidden
 }
 
 #caltoday,.js-account-action:focus,.js-account-action:hover {
-    background: transparent
+    background:transparent
 }
 
 .not-actionable .facet-subtitle,.btn-positive.text-hidden,.text-hidden.btn-positive-alt,.text-hidden.btn-fav.s-favorited,.s-following .text-hidden.follow-btn,.btn-positive.text-hidden:hover,.text-hidden.btn-positive-alt:hover,.text-hidden.btn-fav.s-favorited:hover,.s-following .text-hidden.follow-btn:hover,.btn-positive.text-hidden:focus,.text-hidden.btn-positive-alt:focus,.text-hidden.btn-fav.s-favorited:focus,.s-following .text-hidden.follow-btn:focus,.btn-positive.text-hidden:active,.text-hidden.btn-positive-alt:active,.text-hidden.btn-fav.s-favorited:active,.s-following .text-hidden.follow-btn:active {
-    color: transparent
+    color:transparent
 }
 
 .btn-options-tray,.accordion:not(.js-account-settings-detail) .is-active,.accordion .is-active .accordion-header,.accordion .is-active .accordion-header:hover,.compose-account p,.account-selector-grid-mode,.account-selector-grid-mode:hover,.account-selector-grid-mode.is-selected,.prf-header .prf-siteurl,.prf-header .prf-bio a,.prf-header .pretty-link,.controls>label.txt-mute,.column-nav-link.is-selected,.column-nav-link:hover,.is-unread .tweet-text,.js-dm-participants-back,.js-dm-participants-back:hover,.js-dm-participants-back:focus,.column-settings-link:focus,.js-tweet-social-proof-back,.js-tweet-social-proof-back:hover,article.is-unread .account-link,.js-customtimeline-description .txt-mute,input.column-title-edit-box,.controls .icon-small-valigned,.conversation-title .title-content b,.js-toggle.padding-al button.is-selected>span,#mtd-theme-control>option,.caloff:hover,#calcurrent,.app-search .app-search-fake,.accordion-header,.compose-remember-state,.icon-user-switch,.is-unread .link-complex-target,.mdl-header-title a,.facet-type,.facet-subtitle,.numbered-badge,.mdl-header,.mdl-header-title,.accs-header,.compose,.compose-account,.inline-reply,.js-save.block i,.js-cancel.block i,.mtd-drawer-button,.mtd-drawer-button:hover,.mtd-drawer-button:focus,.mtd-nd-header-username,.mtd-appbar-notification,.conversation-name,.js-dm-participants-back:after,.js-column-back,.js-column-back:hover,.js-column-back:active,.js-column-back:focus,.js-column-detail .column-title-back:before,.conversation-title .title-content,.drawer-header-title.drawer-column-header-title,.column-header,.column-header-temp,.column-title,.column-title-edit-box,.column-header-link,.is-options-open .column-settings-link,.column-message,.video-overlay,.app-nav-tab,.message-banner .dismiss,.text-like-keyboard-key,.control-s .control-label,.search-input-perform-search,.search-input-clear-search,.search-input-spinner,.toggle-item.is-selected,.prf-header,.prf-header .prf-siteurl:hover,.prf-header .prf-bio a:hover,.prf-header .pretty-link:hover,.prf .fullname,.prf .username,.lst-group .selected,.lst-group .selected .fullname,.lst-group .selected .inner strong,.lst-group .selected .list-link,.lst-group .selected .list-twitter-list,.lst-group .selected .list-subtitle,.lst-group .selected .list-account,.lst-group .selected .list-listmember,.lst-group.js-setting-list .selected .fullname,.lst-group.js-setting-list .selected .inner strong,.lst-group.js-setting-list .selected .list-link,.lst-group.js-setting-list .selected .list-twitter-list,.lst-group.js-setting-list .selected .list-subtitle,.lst-group.js-setting-list .selected .list-account,.lst-group.js-setting-list .selected .list-listmember,.lst-group .selected .username,.lst-group .selected .bytext,.lst-group .selected .subtitle,.lst-group .selected .icon-protected,.column-title-back:after,.js-tweet-social-proof-back:after,.facet-type .control-group select,.facet-type .control-group input,.js-hide-drawer.app-nav-tab:after {
-    color: #fff
+    color:#fff
 }
 
 .is-unread .fullname {
-    color: #eee
+    color:#eee
 }
 
 .account-summary-text .fullname,.compose-reply-tweet .fullname,.compose-reply-tweet,.compose .typeahead-item strong.fullname {
-    color: #000
+    color:#000
 }
 
 .txt-center,.conversation-event {
-    text-align: center
+    text-align:center
 }
 
 .txt-uppercase,.card-holder h3 a,.tweet-detail .card-holder .txt-normal,.facet-subtitle:first-letter {
-    text-transform: uppercase
+    text-transform:uppercase
 }
 
 .txt-left {
-    text-align: left!important
+    text-align:left!important
 }
 
 .txt-right {
-    text-align: right!important
+    text-align:right!important
 }
 
 button,a.btn,.column-header {
-    -webkit-user-select: none;
-    -moz-user-select: none
+    -webkit-user-select:none;
+    -moz-user-select:none
 }
 
 .antiscroll-scrollbar-shown,.is-selected .compose-account-names,.s-not-favorited>.btn-fav-fav-text,.s-favorited:hover>.btn-fav-unfav-text,.app-header:hover .numbered-badge {
-    opacity: 1
+    opacity:1
 }
 
 .stream-item:hover .tweet-actions,.numbered-badge.is-visible,.with-drop-target .column-drag-drop-overlay,.column-header:hover .column-settings-link {
-    visibility: visible
+    visibility:visible
 }
 
 .icon-favorite.is-invisible {
-    visibility: visible!important
+    visibility:visible!important
 }
 
 .app-search .app-search-form,#prev-month,#next-month,.pin-all,.gif-pause,.media-grid-2,.media-grid-3,.media-grid-4,.app-columns-container,.app-content,.antiscroll-inner {
-    position: absolute
+    position:absolute
 }
 
 .app-search .app-search-fake,.ovl-plain,.ovl,.overlay,.ovl-trap {
-    position: fixed
+    position:fixed
 }
 
 .js-submittable-input.js-compose-text::-webkit-input-placeholder,.facet-type .control-group select::-webkit-input-placeholder,.facet-type .control-group input::-webkit-input-placeholder {
-    color: #fff
+    color:#fff
 }
 
 .js-submittable-input.js-compose-text::-moz-placeholder,.facet-type .control-group select::-moz-placeholder,.facet-type .control-group input::-moz-placeholder {
-    color: #fff
+    color:#fff
 }
 
 #general_settings .obj-left:last-child b,.js-display-sensitive-media.checkbox,.js-contributor-manager-back span,.js-send-button,.js-column-loading-placeholder.list-placeholder p,.js-column-loading-placeholder.list-placeholder.column-loading-placeholder,.js-send-tweet-button.spinner-button-is-active:after,.list-filter.cf,.js-add-image-button,.js-tweet-button,.js-dm-button,.js-schedule-button,.recent-search-clear.list-item-last span,.tweet-context .nbfc,.column-title-back .column-head-title,.js-tooltip-target.link-complex-target,.column-detail-level-2>header>a .js-tooltip-target.link-complex-target,.tweet-detail .txt-small,.column-title-back.conversation-title,.js-account-safeguard-text,.js-display-sensitive-media span,.horizontal-flow-container,.column-options .button-tray,.tweet-detail-actions,.accs-header,.compose-remember-state,.js-add-column,.input-prepend {
-    font-size: 0
+    font-size:0
 }
 
 .message-text>.btn,.more-tweets-btn,.edit-conversation-name .btn,.btn-login[type="submit"],.login-container .btn-positive,.btn-options-tray-space,.app-nav-link,.tweet-button,.lst-group .selected .list-link {
-    color: #fff!important
+    color:#fff!important
 }
 
 .toggle-switch,.pin-bottom.margin-a--15 .checkbox,.scroll-styled-v,.scroll-styled-h,.scroll-alt,.scroll-v,.lst-launcher,.mtd-nav-drawer,.mdl.s-profile,.mdl-col-settings,.app-header a,.app-header button,article.is-actionable,.conversation-title {
-    pointer-events: all
+    pointer-events:all
 }
 
 .is-shifted-1 .column-panel:nth-child(n+2) .js-column-back,.is-shifted-2 .column-panel:nth-child(n+2) .js-column-back,.is-shifted-1 .column-panel:nth-child(n+2)>.column-header,.is-shifted-2 .column-panel:nth-child(n+2)>.column-header {
-    pointer-events: all!important
+    pointer-events:all!important
 }
 
-.column-drag-drop-overlay,.edit-conversation-name:not(.is-visible) .btn,.popover.is-hidden,.js-modal[style="display: none;"],.typeahead[style="display: none;"],.is-hidden *,.js-hide-drawer.is-hidden,.media-sensitive.is-hidden,.mtd-nav-drawer.mtd-nav-drawer-hidden,.mtd-nav-drawer-background.mtd-nav-drawer-background-hidden,.pin-bottom.margin-a--15,.compose-message-recipient-container.is-hidden,.l-cell {
-    pointer-events: none
+.column-drag-drop-overlay,.edit-conversation-name:not(.is-visible) .btn,.popover.is-hidden,.js-modal[style="display:none;"],.typeahead[style="display:none;"],.is-hidden *,.js-hide-drawer.is-hidden,.media-sensitive.is-hidden,.mtd-nav-drawer.mtd-nav-drawer-hidden,.mtd-nav-drawer-background.mtd-nav-drawer-background-hidden,.pin-bottom.margin-a--15,.compose-message-recipient-container.is-hidden,.l-cell {
+    pointer-events:none
 }
 
 .mtd-about-title,.mtd-version-title,.account-link>.nbfc,button,a.btn,.column,.mdl-account-shared-warning footer.mdl-buttonbar {
-    margin: 0
+    margin:0
 }
 
 .conversation-name,.l-column.mdl-column.mdl-column-sml .selected,.js-toggle.padding-al button.is-selected,.facet-type .control-group select,.facet-type .control-group input:not([type="checkbox"]) {
-    border-bottom: 2px solid #fff
+    border-bottom:2px solid #fff
 }
 
 .is-options-open .column-settings-link,.rpl textarea,.rpl input,.js-submittable-input.js-compose-text,.mdl-inner .column-content,.cmp textarea,.embed-modal .mdl-content,.embed-iframe,.list-account,.prf .lst-profile a {
-    border: 0
+    border:0
 }
 
 .popover.is-hidden,.s-following .follow-btn:hover .following-text,.s-following .follow-btn:not(:hover) .unfollow-text,.accordion .is-active .facet-subtitle,.js-modal[style="display:none;"],.typeahead[style="display:none;"],.contributor-row[data-state="initial"],.spinner-button-is-active,.text-hidden.btn-positive,.js-hide-drawer.is-hidden,.media-sensitive.is-hidden,.compose-message-recipient-container.is-hidden {
-    opacity: 0
+    opacity:0
 }
 
 .cf:after,.tweet:after,.message-banner {
-    clear: both
+    clear:both
 }
 
 .js-add-column:active,.column-navigator:hover .column-nav-item,.column-nav-item.is-new {
-    transform: none
+    transform:none
 }
 
 .antiscroll-inner,.pin-all,.gif-pause,.column-holder,.column-panel,.column-scroller,.app-columns-container,.app-content,.ovl-plain,.ovl,.overlay,.dropdown-menu a,.ovl-trap,.column-nav-flyout .column-nav-item,.js-mediatable,.report-flow,.application {
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0
+    top:0;
+    bottom:0;
+    left:0;
+    right:0
 }
 
 .media-grid-2,.media-grid-3,.media-grid-4 {
@@ -191,26 +191,26 @@ button,a.btn,.column-header {
 }
 
 .prf-bio,.account-link>.nbfc,.column-temp,.column-scroller,.tweet,.compose-reply-tweet,.nbfc-alt {
-    word-break: break-word;
-    word-wrap: break-word
+    word-break:break-word;
+    word-wrap:break-word
 }
 
 .ovl-block,.ovl-plain:before,.ovl:before,.overlay:before,.mdl,.mdl-placeholder,.lst-launcher a,.char-count,.s-sending .cmp-spinner,.list-option-type h4,.js-add-column:before,.input-prepend,.prf-img,.prf .lst-profile span,.prf .lst-profile i,.prf .lst-profile a,.lst .avatar,.media-img,.l-cell,.icon-middle,button,button .label,button i a.btn,a.js-create-list,.button-group,.avatar.frm-justify-row,.message-text,.character-count,.character-count-compose,.med-fullpanel iframe,.med-tray,.prf-stats>li {
-    vertical-align: middle
+    vertical-align:middle
 }
 
 .align-middle {
-    vertical-align: middle!important
+    vertical-align:middle!important
 }
 
 .icon-tt,.activity-indicator {
-    vertical-align: text-top
+    vertical-align:text-top
 }
 
 .icon-tb {
-    vertical-align: text-bottom
+    vertical-align:text-bottom
 }
 
 .icon-bot,.lst-profile li,.txt-ellipsis {
-    vertical-align: bottom
+    vertical-align:bottom
 }
