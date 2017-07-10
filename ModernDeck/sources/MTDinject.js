@@ -5,7 +5,7 @@
 
 "use strict";
 
-var SystemVersion = "6.1.4";
+var SystemVersion = "6.1.5";
 var MTDBaseURL = "https://raw.githubusercontent.com/dangeredwolf/ModernDeck/stable/ModernDeck/"; // Defaults to streaming if nothing else is available (i.e. legacy firefox)
 
 var msgID,
@@ -245,7 +245,7 @@ function MTDInit(){
 		// fontParseHelper({family:"Font Awesome",weight:"400",name:"fontawesome",range:"U+0000-F000"})
 	));
 
-	document.querySelector(".js-modals-container").removeChild = function(rmnode){
+	document.querySelectorAll(".js-modals-container")[0].removeChild = function(rmnode){
 		$(rmnode).addClass("mtd-modal-window-fade-out");
 		setTimeout(function(){
 			rmnode.remove();
@@ -253,7 +253,7 @@ function MTDInit(){
 	};
 
 	$(document.querySelector(".application").childNodes).each(function(obj){
-		obj.removeChild = function(rmnode){
+		($(document.querySelector(".application").childNodes)[obj] || obj).removeChild = function(rmnode){
 			$(rmnode).addClass("mtd-modal-window-fade-out");
 			setTimeout(function(){
 				rmnode.remove();
@@ -308,6 +308,7 @@ function MTDInit(){
 		TD_mustaches["login/login_form_footer.mustache"] = TD_mustaches["login/login_form_footer.mustache"].replace('<i class="js-spinner-button-active icon-center-16 spinner-button-icon-spinner is-hidden"></i>','<div class="js-spinner-button-active icon-center-16 spinner-button-icon-spinner is-hidden preloader-wrapper active tiny"><div class="spinner-layer small"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div>');
 	if (typeof TD_mustaches["compose/docked_compose.mustache"] !== "undefined")
 		TD_mustaches["compose/docked_compose.mustache"] = TD_mustaches["compose/docked_compose.mustache"].replace('<i class="js-spinner-button-active icon-center-16 spinner-button-icon-spinner is-hidden"></i>','<div class="js-spinner-button-active icon-center-16 spinner-button-icon-spinner is-hidden preloader-wrapper active tiny"><div class="spinner-layer small"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div>');
+
 
 	TD.util.prettyTimeString = function(e) {
 		return TD.i("{{hours12}}:{{minutes}} {{amPm}}, {{day}} {{month}} {{fullYear}}", TD.util.prettyTime(e));
@@ -475,7 +476,7 @@ function MTDSettings() {
 			\
 			<form action="#" id="mtd-appearance-form" accept-charset="utf-8"class="frm"><fieldset id="general_settings"><div class="control-group" style="padding-top:10px;">\
 			<label class="checkbox">Use rounded profile pictures<input type="checkbox" checked="checked" id="mtd-round-avatars-control"></label>\
-			<label class="checkbox">Undocked windowing/nav drawer (experimental)<input type="checkbox" id="mtd-undocked-modals"></label>\
+			<label class="checkbox">Undocked windowing/nav drawer<input type="checkbox" id="mtd-undocked-modals"></label>\
 			<label class="checkbox">Use alternate sensitive media workflow<input type="checkbox" checked="checked" id="mtd-sensitive-alt"></label>\
 			<label class="checkbox">Use Hearts instead of Stars<input type="checkbox" checked="checked" id="mtd-hearts"></label>\
 			<label class="control-label">Theme\
@@ -557,11 +558,13 @@ function LoginStuffs() {
 	$(mtd_nd_header_image).attr("style","background-image:url(" + bannerPhoto + ");"); // Fetch header and place in nav drawer
 	$(mtd_nd_header_photo).attr("src",avatarPhoto)
 	.mouseup(function(){
-		var profileLinkyThing = $(document.querySelector('.avatar.tweet-avatar.pull-right[alt="' + username + '\'s avatar"]')).parents(".account-link");
+		var profileLinkyThing = $("a[href=\"https://twitter.com/"+getProfileInfo().screenName+"\"]");
 
+				MTDPrepareWindows();
 		if (profileLinkyThing.length > -1) {
-			MTDPrepareWindows();
-			profileLinkyThing.click();
+			setTimeout(function(){
+				profileLinkyThing.click();
+			},200);
 		}
 	}); // Fetch profile picture and place in nav drawer
 	$(mtd_nd_header_username).html(name); // Fetch twitter handle and place in nav drawer
