@@ -26,7 +26,7 @@
     display:block
 }
 
-.block,.popover.is-hidden,.js-modal[style="display:none;"],.typeahead[style="display:none;"],.js-hide-drawer.is-hidden,.media-sensitive.is-hidden,.icon-favorite.is-invisible {
+.tweet-stat.is-hidden,.block,.popover.is-hidden,.js-modal[style="display:none;"],.typeahead[style="display:none;"],.js-hide-drawer.is-hidden,.media-sensitive.is-hidden,.icon-favorite.is-invisible {
     display:block!important
 }
 
@@ -111,7 +111,7 @@ button,a.btn,.column-header {
     visibility:visible
 }
 
-.icon-favorite.is-invisible {
+.icon-favorite.is-invisible,.icon-heart-filled.is-invisible {
     visibility:visible!important
 }
 
