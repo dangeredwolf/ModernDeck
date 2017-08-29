@@ -6589,8 +6589,7 @@ legend.frm-legend+div+.control-group>.control-label,legend.frm-legend+div+div+.c
     margin-top:-.4em;
     margin-bottom:-.4em;
     overflow:hidden;
-    text-align:left;
-    transition:width 150ms ease
+    text-align:left
 }
 
 .ticker-inner {
@@ -6599,7 +6598,6 @@ legend.frm-legend+div+.control-group>.control-label,legend.frm-legend+div+div+.c
 }
 
 .ticker-inner.ticker-animate {
-    transition:top 150ms ease;
     top:-2em
 }
 
