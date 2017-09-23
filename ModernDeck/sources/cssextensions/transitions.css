@@ -353,3 +353,7 @@ a .column-title-back .icon:after
 .compose-content {
 	transition:.5s all cubic-bezier(.19,1,.22,1)
 }
+
+.ticker-inner,.ticker-outer {
+    transition:top 150ms ease
+}

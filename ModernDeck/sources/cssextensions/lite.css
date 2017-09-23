@@ -1,0 +1,13 @@
+* {
+	transition:none!important;
+	animation:none!important;
+	box-shadow:none!important;
+}
+
+.tweet-button {
+	transform:scale(1);
+}
+
+.mtd-drawer-button {
+	opacity:1;
+}
