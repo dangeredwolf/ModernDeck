@@ -199,7 +199,8 @@ html .btd-grayscale_notification_icons i.icon.activity-indicator
 .invalid-char-count,
 .unfollow-text,
 #add-filter:not([disabled]),
-.btn-negative
+.btn-negative,
+.txt-twitter-red
 {
 	color:#D80000!important
 }

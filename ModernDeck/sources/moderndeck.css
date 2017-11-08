@@ -1358,7 +1358,8 @@ a .column-title-back .icon:after {
 }
 
 .stream-item {
-	margin-top:3px
+	margin-top:3px;
+	overflow:hidden
 }
 
 .stream-item.is-actionable:hover {
@@ -3523,12 +3524,12 @@ input[type="checkbox"]:active {
 	opacity:0.5
 }
 
-input[type="checkbox"]:before {
+input[type="checkbox"]:before,.icon-toggle-off:before {
 	content:"\e835";
 	font-family:"Material"
 }
 
-input[type="checkbox"]:checked:before {
+input[type="checkbox"]:checked:before,.icon-toggle-on:before {
 	content:"\e834"
 }
 
@@ -3558,18 +3559,28 @@ input[type="radio"]:checked:before {
 	margin-left:58px
 }
 
+.control-group>div:not([class]) {
+	pointer-events:all;
+	padding:15px;
+}
+
+.js-toggle-switch {
+	position:absolute
+}
+
 .checkbox,.radio {
 	min-height:18px;
 	padding-left:18px
 }
 
-.checkbox input[type="checkbox"],.radio input[type="radio"] {
+.checkbox input[type="checkbox"],.radio input[type="radio"],.js-toggle-switch {
 	float:left
 }
 
-.checkbox-reversed input[type="checkbox"] {
+.checkbox-reversed input[type="checkbox"],.js-toggle-switch {
 	float:right;
-	height:25px
+	height:25px;
+	font-size:24px;
 }
 
 .checkbox span {
@@ -5847,7 +5858,7 @@ button.mtd-no-transform-case {
 }
 
 .l-column.mdl-column.mdl-column-sml li {
-	width:120px;
+	width:130px;
 	display:inline-block;
 	position:relative;
 	text-transform:uppercase;
@@ -6645,5 +6656,22 @@ legend.frm-legend+div+.control-group>.control-label,legend.frm-legend+div+div+.c
 .hashflag {
 	width:16px;
 	height:16px;
-	margin-left:3px;
+	margin-left:3px
+}
+
+.js-progress-svg {
+	display:none
+}
+
+.js-character-count {
+	display:block!important;
+	margin-right:46px!important;
+	margin-top:-4px
+}
+
+.control-group .margin-l--4 {
+	margin-left:26px!important;
+	vertical-align: middle;
+	height: 28px;
+	/* display: block; */
 }
