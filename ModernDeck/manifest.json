@@ -3,7 +3,7 @@
   "short_name": "ModernDeck",
 
   "description": "TweetDeck, just more beautiful, colourful, customisable, fast, and fun than ever.",
-  "version": "6.1.2",
+  "version": "6.2",
 
   "permissions": [
     "webRequest",
