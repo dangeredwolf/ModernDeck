@@ -68,7 +68,15 @@ if ((!isApp && typeof localStorage.mtd_stylesheet_dev_mode !== "undefined" && lo
   InjectDevStyles();
 }
 
+console.log("Bootstrapping Raven uwu");
+
+var InjectScript2 = document.createElement("script");
+InjectScript2.src = "https://cdn.ravenjs.com/3.19.1/raven.min.js";
+InjectScript2.type = "text/javascript";
+document.head.appendChild(InjectScript2);
+
 console.log("Bootstrapping MTDinject");
+
 var InjectScript = document.createElement("script");
 
 function MTDURLExchange(url) {

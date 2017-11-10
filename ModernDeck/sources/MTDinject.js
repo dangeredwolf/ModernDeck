@@ -5,7 +5,7 @@
 
 "use strict";
 
-var SystemVersion = "6.1.6";
+var SystemVersion = "6.2";
 var MTDBaseURL = "https://raw.githubusercontent.com/dangeredwolf/ModernDeck/stable/ModernDeck/"; // Defaults to streaming if nothing else is available (i.e. legacy firefox)
 
 var msgID,
@@ -21,6 +21,8 @@ replacedLoadingSpinnerNew,
 loadedPreferences,
 wasTweetSheetOpen,
 profileProblem,
+sendingFeedback,
+hasOutCache,
 TreatGeckoWithCare = false;
 
 var progress = null;
@@ -39,6 +41,7 @@ var head = $(document.head);
 var body = $(document.body);
 var html = $(document.querySelector("html")); // Only 1 result; faster to find
 
+
 var welcomeScreenHtml = '<div class="mdl-content horizontal-flow-container"><div style="width:100%"class="l-column mdl-column mdl-column-lrg"><div class="l-column-scrollv scroll-v	scroll-alt"><h1>New in ModernDeck 6.0</h1><h2>Themes</h2><header class="js-column-header js-action-header column-header mtd-colours-demo"><i class="pull-left margin-hs column-type-icon icon icon-home"></i><h1 class="column-title txt-ellipsis"><span class="column-head-title">Home</span><span class="attribution txt-mute txt-sub-antialiased">@dangeredwolf</span></h1><a class="js-action-header-button column-header-link column-settings-link"><i class="icon icon-sliders"></i></a></header><p>People\'s personalities are far more than just black and white. Make your TweetDeck experience truly personal with a variety of styles to suit whatever your tastes might be. This and many of the other options are adjustable with <i class="icon icon-mtd-settings"></i><b>ModernDeck Settings</b></p><h2>Refreshed Icons</h2><br><i class="icon icon-tweetdeck icon-xxlarge"></i><i class="icon icon-moderndeck icon-xxlarge"></i><i class="icon icon-hashtag icon-xxlarge"></i><i class="icon icon-retweet icon-xxlarge"></i><i class="icon icon-mtd-settings icon-xxlarge"></i><p style="padding-top:0">As of this release, 100% of icons are either created inhouse for ModernDeck, or are borrowed from the material design icon library. This includes the new Retweet icon, which was obvious from the beginning that an inhouse solution was mandatory.</p><h2>Refreshed UI</h2><p style="padding-top:0">ModernDeck 6.0 has a refreshed UI, taking advantage of an all-new edge-to-edge design that snaps to the left side. This helps take better advantage of screen real estate while still being elegant to use, and isn\'t a bad match with ModernDeck\'s navigation drawer.</p><h2>Tweet Shortener Assistant</h2><p style="padding-top:0">Have you ever dealt with a moment where you\'re just barely over the 140 character limit and need to cut down the size a bit? In ModernDeck 6.0, we have you covered. If you go over the 140 character limit, we\'ll prompt you with suggestions of what ways it detects will help shorten your tweet. This uses a number of algorithms such as checking for excess spacing and punctuation, to more advanced ones such as detecting and replacing applicable letters with liguatures, a Unicode feature that allows combining of certain letters to replace 2, 3, or sometimes even 4 characters, into what Twitter registers as just 1 character, and oftentimes looks about the same. All of these are suggestions, so you can click on the one you want, and you\'ll get no more, no less, than you asked for. Then you can finally send that Tweet, and you\'ve saved some precious time.</p><h3>Hearts or Stars</h3><p style="padding-top:0">ModernDeck allows you to pick between hearts and stars. The new default is hearts.</p><h3>Change How the Scroll Bar Looks</h3><p style="padding-top:0">In ModernDeck 6.0, you now have the option to change the scroll bar\'s appearance, such as either making it narrower, or making it never appear outright, to help build a cleaner TweetDeck experience to your specification.</p><h3>A New Option for dealing with Sensitive Media</h3><p style="padding-top:0">ModernDeck 6.0 also introduces another new feature, which changes the workflow of dealing with sensitive media, if you have it enabled to ask beforehand. Before, you had to click a tiny "View" link beforehand. Now, simply click anywhere on the designated background, and it will open up a preview of the image, as expected, but the thumbnail itself never shows content marked as sensitive.</p><h3>Faster and More Reliable CSS Extension Engine</h3><p style="padding-top:0">Building a truly versatile theming system wasn\'t as easy as slapping a feature on top of the old codebase. It\'s possible to do it that way, but it\'d hurt performance by creating extra overhead created by having to load all themes into memory at once, only to render one. Much of ModernDeck\'s CSS/UI codebase, kept in one single CSS file, has been broken up and componentified into separate silos, called CSS extensions, and besides critical system extensions, most of these extensions can be swapped in or out at any time, making it easier for the browser to discard an old theme, and load a new theme into memory, all transparently, in real-time, with virtually no hiccup on average, modern hardware. Any UI tweaks from themes to hearts to even more are now all extensions that run on top of ModernDeck. This architecture carries through much of the system now. For example, all animations are kept in animations.css. By keeping similar items in the same place, it makes it easier for the CSS to reference, as well as making it easier to develop ModernDeck in the future. This took an enormous amount of work, but now we\'re left with a more functional, stable, as well as modular ModernDeck.</p></div></div></div>';
 // Asks MTDLoad for the storage
 window.postMessage({
@@ -47,7 +50,6 @@ window.postMessage({
 
 // Adds each key in the extension storage to localStorage
 window.addEventListener("message", function(e) {
-	console.log(e.data);
 	if (e.source == window) {
 		if (e.data.type == "sendStorage") {
 			var settings = e.data.message;
@@ -334,13 +336,11 @@ function MTDInit(){
 		return yip;
 	}
 
-	// head.append(
-	// 	make("script")
-	// 		.attr("type","text/javascript")
-	// 		.attr("src",MTDBaseURL + "sources/libraries/waves.js")
-	// )
-
 	NavigationSetup();
+
+	setTimeout(function(){
+		//setInterval(outtaSpaceSuggestions,800);
+	},4000);
 
 }
 
@@ -729,7 +729,26 @@ function NavigationSetup() {
 				MTDPrepareWindows();
 				$(".js-header-add-column").click();
 			})
-			.append("Add Column")
+			.append("Add Column"),
+			make("div")
+			.addClass("mtd-nav-divider mtd-nav-divider-feedback"),
+			make("button")
+			.addClass("btn mtd-nav-button mtd-nav-button-feedback")
+			.attr("id","mtdfeedback")
+			.append(
+				make("i")
+				.addClass("icon icon-feedback")
+			)
+			.click(function(){
+				sendingFeedback = true;
+				try {
+					throw "Manually triggered feedback button";
+				} catch(e) {
+					Raven.captureException(e);
+					Raven.showReportDialog();
+				}
+			})
+			.append("Send Feedback")
 		),
 		make("div")
 		.attr("id","mtd_nav_drawer_background")
@@ -1140,11 +1159,16 @@ function checkSpaceSuggestions() {
 
 }
 
+var rtbutton;
+
 function outtaSpaceSuggestions() {
+	if (!hasOutCache) {
+		hasOutCache = true;
+		rtbutton = $("button.js-retweet-button.is-disabled");
+	}
+	rtbutton.removeClass("is-disabled js-show-tip").attr("title","");
 
-	$("button.js-retweet-button.is-disabled.js-show-tip").removeClass("is-disabled js-show-tip").attr("title","");
-
-	if ($(".js-media-added").length > 0 && $(".character-count-compose").length > 0) {
+	if ($(".character-count-compose").length > 0) {
 		if (parseInt($(".character-count-compose").val()) < 0) {
 
 			if ($(".mtd-out-of-space-suggestions").length <= 0) {
@@ -1169,7 +1193,7 @@ function outtaSpaceSuggestions() {
 
 }
 
-// warning: for some shitty ass reason this doesnt work if the console.logs arent there DONT ASK WH I DONT KNOW
+// warning: for some reason this doesnt work if the console.logs arent there DONT ASK WH I DONT KNOW
 
 function checkIfSigninFormIsPresent() {
 	if ($(".app-signin-form").length > 0 || $("body>.js-app-loading.login-container:not([style])").length > 0) {
@@ -1203,13 +1227,6 @@ function onElementAddedToDOM(e) {
 	} else if (tar.hasClass("overlay")) {
 		console.log("overlay!!!");
 		if (!tar.hasClass("is-hidden")) {
-			if (tar.hasClass("is-hidden")) {
-				tar.addClass("mtd-modal-window-fade-out");
-				setTimeout(function(){
-					tar.remove();
-				},300);
-			}
-		} else {
 			var observer = mutationObserver(e.target,function(mutations) {
 				console.log("its gone now!");
 				if (tar.hasClass("is-hidden")) {
@@ -1221,51 +1238,49 @@ function onElementAddedToDOM(e) {
 				}
 			},{ attributes: true, childList: false, characterData: false });
 		}
+	} else if ($(e[0].addedNodes[0]).hasClass("sentry-error-embed-wrapper")) {
+		$(e[0].addedNodes[0]).addClass("overlay");
+		$(".sentry-error-embed").addClass("mdl");
+		$(".sentry-error-embed-wrapper>style").remove();
+		$("#id_email").parent().addClass("is-hidden");
+		$("#id_email")[0].value = "a@a.com";
+		if (sendingFeedback) {
+		$(".form-submit>button.btn[type='submit']").html("Send Feedback");
+			$(".sentry-error-embed>header>h2").html("Send feedback about ModernDeck");
+			$(".sentry-error-embed>header>p").html("Other than your input, no personally identifiable information will be sent.");
+			sendingFeedback = false;
+		} //else
+			$(".sentry-error-embed>header>p").html("This tool lets you send a crash report to help improve ModernDeck.<br>Other than your input, no personally identifiable information will be sent.");
+
 	}
 }
 
-setTimeout(MTDInit,0);
-setTimeout(function(){
-	setInterval(outtaSpaceSuggestions,800);
-},4000);
+function CoreInit() {
+	if (typeof Raven === "undefined") {
+		setTimeout(CoreInit,10);
+		return;
+	}
+
+	Raven.config('https://92f593b102fb4c1ca010480faed582ae@sentry.io/242524', {
+	    release: SystemVersion
+	}).install();
 
 
-html.addClass("mtd-preferences-differentiator mtd-api-ver-6-0 mtd-js-loaded");
+	setTimeout(Raven.context(MTDInit),10);
 
-window.addEventListener("keyup",KeyboardShortcutHandler,false);
+	Raven.context(function(){
+		window.addEventListener("keyup",KeyboardShortcutHandler,false);
+		html.addClass("mtd-api-ver-6-2 mtd-js-loaded");
+		mutationObserver(document.querySelector("meta[http-equiv='default-style']"),checkIfUserSelectedNewTheme,{attributes:true});
+		mutationObserver(body[0],checkIfBTDIsInstalled,{attributes:true});
+		mutationObserver(html[0],onElementAddedToDOM,{attributes:false,subtree:true,childList:true})
 
-mutationObserver(document.querySelector("meta[http-equiv='default-style']"),checkIfUserSelectedNewTheme,{attributes:true});
-mutationObserver(body[0],checkIfBTDIsInstalled,{attributes:true});
-mutationObserver(html[0],onElementAddedToDOM,{attributes:false,subtree:true,childList:true})
+		checkIfUserSelectedNewTheme();
+		checkIfSigninFormIsPresent();
+		checkIfBTDIsInstalled();
+		loginInterval = setInterval(checkIfSigninFormIsPresent,500);
+		console.log("MTDinject loaded");
+	});
+}
 
-// mutationObserver(body[0],
-// 	function(mutations) {
-// 		console.log("new thing!");
-// 	    mutations.forEach(function(mutation) {
-// 				console.log("new thing!!");
-// 	      for (var i = 0; i < mutation.addedNodes.length; i++)
-// 					if ($(mutation.addedNodes[i]).hasClass("btn") || $(mutation.addedNodes[i]).hasClass("list-link"))
-// 	          console.log("new button!");
-// 	    })
-// 	},
-// {childList:true});
-
-// var insertedNodes = [];
-// new MutationObserver(function(mutations) {
-// 	console.log("new thing!");
-// 		mutations.forEach(function(mutation) {
-// 			console.log("new thing!!");
-// 			for (var i = 0; i < mutation.addedNodes.length; i++)
-// 				if ($(mutation.addedNodes[i]).hasClass("btn") || $(mutation.addedNodes[i]).hasClass("list-link"))
-// 					console.log("new button!");
-// 		})
-// }).observe(body[0], {
-//     childList: true
-// });
-
-checkIfUserSelectedNewTheme();
-checkIfSigninFormIsPresent();
-checkIfBTDIsInstalled();
-loginInterval = setInterval(checkIfSigninFormIsPresent,500);
-
-console.log("MTDinject loaded");
+CoreInit();
