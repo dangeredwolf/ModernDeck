@@ -110,7 +110,7 @@ option
 .cmp-replyto,
 .column-background-fill
 {
-	border-right-color:transparent
+	border-right-color:transparent!important
 }
 
 .mtd-nav-drawer-background,

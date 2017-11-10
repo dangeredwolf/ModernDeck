@@ -686,6 +686,19 @@ button[type="submit"]:active,button[type="submit"]:focus {
 	background:#12c3d4
 }
 
-.lst-launcher a,.lst-launcher a:hover,.lst-launcher a:focus,.lst-launcher a:active,.lst-launcher span {
+.lst-launcher a,.lst-launcher a:hover,.character-count,.character-count-compose,.lst-launcher a:focus,.lst-launcher a:active,.lst-launcher span {
 	color:#fff!important
+}
+
+#id_comments {
+	border:2px solid #54707F
+}
+
+.sentry-error-embed .form-submit .powered-by a {
+  -webkit-filter:brightness(1000%);
+  filter:brightness(1000%);
+}
+
+.js-character-count {
+	color:#fff!important;
 }

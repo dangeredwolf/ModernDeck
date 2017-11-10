@@ -894,7 +894,24 @@ textarea
 }
 
 
+button[type="submit"] {
+	background:#12c3d4
+}
+
+button[type="submit"]:hover {
+	background:#12c3d4
+}
+
+button[type="submit"]:active,button[type="submit"]:focus {
+	background:#12c3d4
+}
+
 
 .lst-launcher a,.lst-launcher a:hover,.lst-launcher a:focus,.lst-launcher a:active,.lst-launcher span {
 	color:#000!important
+}
+
+
+#id_comments {
+	border:2px solid #ddd
 }
