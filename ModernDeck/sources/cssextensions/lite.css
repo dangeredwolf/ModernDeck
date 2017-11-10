@@ -11,3 +11,7 @@
 .mtd-drawer-button {
 	opacity:1;
 }
+
+.preloader-wrapper {
+	display:none!important;
+}

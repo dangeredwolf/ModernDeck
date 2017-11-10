@@ -73,9 +73,7 @@ a.js-create-list,
 }
 .column:not(.draggable-dragging)
 {
-	transition:.25s box-shadow cubic-bezier(.19,1,.22,1),
-  .25s transform cubic-bezier(.19,1,.22,1)
-  .35s left cubic-bezier(.19,1,.22,1)
+	transition: box-shadow .25s cubic-bezier(.19,1,.22,1),   transform .25s cubic-bezier(.19,1,.22,1), left .35s cubic-bezier(.19,1,.22,1);
 }
 
 .column-holder

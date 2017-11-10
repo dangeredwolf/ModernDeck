@@ -66,7 +66,9 @@ option,
 .account-remove-check-message,
 .typeahead,
 .contributor-adder .js-username-input,
-.calweek a
+.calweek a,
+.toggle-item-text,
+.accordion-panel .txt-bold
 {
 	color:#000
 }
@@ -576,7 +578,7 @@ html:not(.mtd-dark-media-previews) .med-tweet,
 .ovl,
 .overlay
 {
-	background:rgba(100,100,100,.4)
+	background:rgba(100,100,100,.4)!important
 }
 
 .mdl-header,
@@ -889,4 +891,10 @@ textarea
 .tweet-detail-action
 {
 	color:#787878
+}
+
+
+
+.lst-launcher a,.lst-launcher a:hover,.lst-launcher a:focus,.lst-launcher a:active,.lst-launcher span {
+	color:#000!important
 }
