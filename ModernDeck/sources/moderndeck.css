@@ -6986,3 +6986,7 @@ button[type="submit"]:active {
 .compose-reply-tweet:not(.is-hidden)+.compose-text-container>.compose-text {
 	height:100px!important;
 }
+
+.prf-header>.width-p--85 {
+	width:100%!important;
+}
