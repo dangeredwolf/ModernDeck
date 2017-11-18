@@ -82,6 +82,16 @@ html.scroll-v {
 	pointer-events:all
 }
 
+.mdl.s-profile::-moz-scrollbar,.scroll-styled-v::-moz-scrollbar,.scroll-v::-moz-scrollbar,.lst-launcher::-moz-scrollbar,.mtd-nav-drawer::-moz-scrollbar,.emoji-container>div::-moz-scrollbar,.emoji-container::-moz-scrollbar {
+	width:10px;
+	pointer-events:all
+}
+
+.scroll-styled-h::-moz-scrollbar,.scroll-h::-moz-scrollbar {
+	height:10px;
+	pointer-events:all
+}
+
 .antiscroll-inner {
 	overflow-y:scroll;
 	overflow-x:hidden
@@ -98,6 +108,11 @@ html.scroll-v {
 }
 
 .antiscroll-inner::scrollbar {
+	width:0;
+	height:0
+}
+
+.antiscroll-inner::-moz-scrollbar {
 	width:0;
 	height:0
 }
