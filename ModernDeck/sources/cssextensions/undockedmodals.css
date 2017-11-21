@@ -59,7 +59,7 @@
 	display:none
 }
 
-.mdl {
+.mdl:not(.sentry-error-embed) {
     display: inline-block;
     vertical-align: middle;
     position: relative;
@@ -183,4 +183,13 @@
 
 .mtd-light .mtd-nd-header-username {
 	color:#000
+}
+
+#mtdfeedback {
+	position:relative;
+	margin-top:8px
+}
+
+.mtd-nav-divider-feedback {
+	display:block
 }
