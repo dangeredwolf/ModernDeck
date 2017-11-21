@@ -5960,7 +5960,7 @@ button.mtd-no-transform-case {
 .s-inreply.s-fluid-height .cf>.pull-right {
 	position:absolute;
 	right:0;
-	bottom:-50px
+	bottom:-40px;
 }
 
 .s-inreply.s-fluid-height>.mdl-inner {
@@ -6741,7 +6741,7 @@ legend.frm-legend+div+.control-group>.control-label,legend.frm-legend+div+div+.c
 }
 
 .sentry-error-embed {
-	animation:windowDown .3s cubic-bezier(.19,1,.22,1)!important;
+	animation:windowDown .3s cubic-bezier(.19,1,.22,1)!important!important;
 	width:600px!important;
 	margin:0 auto!important;
 	max-height:900px!important;

@@ -130,6 +130,7 @@ menu,
 dir
 {
 	margin:0;
+	padding-left:0;
 	-webkit-padding-start:0;
 	-webkit-appearance:none;
 	-moz-appearance:none
