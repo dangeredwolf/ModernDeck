@@ -59,7 +59,7 @@
 	display:none
 }
 
-.mdl:not(.sentry-error-embed) {
+.mdl:not(.sentry-error-embed):not(.med-fullpanel) {
     display: inline-block;
     vertical-align: middle;
     position: relative;
