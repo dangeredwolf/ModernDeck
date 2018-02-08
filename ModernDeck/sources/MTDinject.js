@@ -5,7 +5,7 @@
 
 "use strict";
 
-var SystemVersion = "6.2.1";
+var SystemVersion = "6.2.2";
 var MTDBaseURL = "https://rawgit.com/dangeredwolf/ModernDeck/stable/ModernDeck/"; // Defaults to streaming if nothing else is available
 
 var msgID,
@@ -365,10 +365,6 @@ function MTDInit(){
 
 	NavigationSetup();
 
-	setTimeout(function(){
-		//setInterval(outtaSpaceSuggestions,800);
-	},4000);
-
 }
 
 function SendNotificationMessage(txt) {
@@ -385,10 +381,8 @@ function WaitForNotificationDismiss(node,prevmsgID) {
 		if (msgID === prevmsgID) {
 			$(MTDNotification).addClass("mtd-appbar-notification-hidden");
 			messagesAccounted[node] = undefined;
-			return;
-		} else {
-			return;
 		}
+		return;
 	}
 
 	setTimeout(function(){WaitForNotificationDismiss(node,prevmsgID);},500);

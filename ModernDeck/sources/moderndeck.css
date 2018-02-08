@@ -2726,7 +2726,7 @@ a .column-title-back .icon:after {
 
 .mdl-links {
 	position:fixed;
-	bottom: 0;
+	bottom:0;
 	left:0;
 	width:500px;
 	color:transparent;
@@ -4016,7 +4016,9 @@ input[type="radio"]:checked:before {
 	text-align:center;
 	padding-bottom:4px;
 	padding-top:4px;
-	margin-top:5px
+	margin-top:5px;
+	padding-left:20px;
+	padding-right:20px;
 }
 
 .prf-siteurl {
@@ -4778,7 +4780,8 @@ a[rel=user]:active,.card-holder a[rel=mediaPreview]:active {
 }
 
 .js-send-button {
-	margin-right:8px
+	margin-right:16px;
+	height:32px
 }
 
 .drawer-header {
@@ -6688,10 +6691,6 @@ legend.frm-legend+div+.control-group>.control-label,legend.frm-legend+div+div+.c
 	margin-left:3px
 }
 
-.js-progress-svg {
-	display:none
-}
-
 .js-character-count {
 	display:block!important;
 	margin-right:46px!important;
@@ -6741,17 +6740,16 @@ legend.frm-legend+div+.control-group>.control-label,legend.frm-legend+div+div+.c
 }
 
 .sentry-error-embed {
-	animation:windowDown .3s cubic-bezier(.19,1,.22,1)!important!important;
+	animation:windowDown .3s cubic-bezier(.19,1,.22,1)!important;
 	width:600px!important;
 	margin:0 auto!important;
 	max-height:900px!important;
 	bottom:auto!important;
 	height:auto!important;
 	left:50%!important;
-	margin-left:-300px!important
+	margin-left:-300px!important;
+	top:0!important;
 }
-
-
 
 /** Wrapper class name is provided by JS **/
 .sentry-error-embed-wrapper {
@@ -7004,4 +7002,65 @@ button[type="submit"]:active {
 
 .prf-header>.width-p--85 {
 	width:100%!important;
+}
+
+svg:not(:root) {
+    overflow:hidden
+}
+
+.stroke-twitter-light-gray {
+    stroke:#CCD6DD
+}
+
+.stroke-twitter-blue {
+    stroke:#1DA1F2
+}
+
+.stroke-twitter-yellow {
+    stroke:#FFAD1F
+}
+
+.stroke-twitter-red {
+    stroke:#E0245E
+}
+
+.js-progress-svg>svg {
+	height:32px!important;
+	width:32px!important;
+}
+
+.js-progress-svg>svg>circle {
+	r:12!important;
+	stroke-width:3!important;
+	stroke-dasharray:75!important;
+}
+
+.js-progress-svg {
+	display:none;
+}
+
+.js-action-header-user-list {
+	display:none
+}
+
+.mdl-inner .compose-account {
+	display:inline;
+}
+
+.mdl-inner .js-account-selector {
+	width:100%;
+	padding-top:0;
+}
+
+.compose-account-names {
+	padding-left:40px;
+	vertical-align:middle
+}
+
+.cf.padding-b--20.padding-r--20.padding-t--5 {
+	margin-top:-80px;
+}
+
+.mdl-inner.bg-twitter-lightest-gray.padding-l--20.padding-r--20.mdl-header-divider {
+	top:20px;
 }
