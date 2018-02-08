@@ -5572,7 +5572,7 @@ button.mtd-no-transform-case {
 	width:3px
 }
 
-.is-active:not(.is-expanded) .accordion-panel {
+.is-active:not(.is-expanded):not(.account-settings-row) .accordion-panel {
 	height:0!important
 }
 
@@ -5954,16 +5954,12 @@ button.mtd-no-transform-case {
 }
 
 .cmp-replyto {
-	bottom:0;
-	right:0;
-	left:0;
-	position:absolute
-}
-
-.s-inreply.s-fluid-height .cf>.pull-right {
-	position:absolute;
-	right:0;
-	bottom:-40px;
+	position:relative;
+	display:inline-block!important;
+	width:100%;
+	padding-left:0!important;
+	padding-right:0!important;
+	margin-top:60px;
 }
 
 .s-inreply.s-fluid-height>.mdl-inner {
@@ -7058,9 +7054,14 @@ svg:not(:root) {
 }
 
 .cf.padding-b--20.padding-r--20.padding-t--5 {
-	margin-top:-80px;
+	margin-top: 10px;
+	height:30px;
 }
 
 .mdl-inner.bg-twitter-lightest-gray.padding-l--20.padding-r--20.mdl-header-divider {
 	top:20px;
+}
+
+.cmp-replyto .tweet-header,.cmp-replyto .tweet-body {
+	padding-left:10px;
 }

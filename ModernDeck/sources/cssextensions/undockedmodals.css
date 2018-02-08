@@ -53,6 +53,7 @@
 	height:100px;
 	margin-top: 50px;
 	margin-bottom:-40px;
+	padding-bottom:80px!important;
 }
 
 .s-inreply .tweet-context {
@@ -192,4 +193,10 @@
 
 .mtd-nav-divider-feedback {
 	display:block
+}
+
+.s-inreply.s-fluid-height .cf>.pull-right {
+	position:absolute;
+	right:0;
+	bottom:-40px;
 }
