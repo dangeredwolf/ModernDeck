@@ -97,7 +97,10 @@ option,
 .l-column.mdl-column.mdl-column-sml .list-link,
 .typeahead .username,
 .lst-group .list-account .username,
-html .btd-grayscale_notification_icons i.icon.activity-indicator
+html .btd-grayscale_notification_icons i.icon.activity-indicator,
+.txt-r-deep-gray,
+.color-twitter-dark-gray,
+.color-twitter-darker-gray
 {
 	color:#979797
 }
