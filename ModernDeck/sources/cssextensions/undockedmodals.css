@@ -51,8 +51,8 @@
 .cmp-replyto {
 	position:relative;
 	height:100px;
-	margin-top:100px;
-	margin-bottom:-40px
+	margin-top: 50px;
+	margin-bottom:-40px;
 }
 
 .s-inreply .tweet-context {
