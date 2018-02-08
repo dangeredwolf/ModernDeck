@@ -143,7 +143,9 @@ div.drawer[data-drawer="compose"],
 html .btd-grayscale_notification_icons i.icon.activity-indicator,
 .other-replies,
 .tweet-stats>li,
-.txt-r-deep-gray
+.txt-r-deep-gray,
+.color-twitter-dark-gray,
+.color-twitter-darker-gray
 {
 	color:#6D808B
 }

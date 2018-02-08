@@ -1381,8 +1381,7 @@ a .column-title-back .icon:after {
 }
 
 .stream-item {
-	margin-top:3px;
-	/* overflow:hidden */
+	margin-top:3px
 }
 
 .stream-item.is-actionable:hover {
@@ -2622,7 +2621,6 @@ a .column-title-back .icon:after {
 }
 
 .s-fluid .mdl-inner,.s-fluid-height .mdl-inner {
-	/* position:relative; */
 	top:60px;
 	bottom:0;
 	left:0;
@@ -3350,8 +3348,7 @@ a:hover .icn-button-next {
 }
 
 .s-checked .checked {
-	display:block;
-	color:#5F757E /*???*/
+	display:block
 }
 
 .list-link,.list-subtitle,.list-account,.list-listmember,.list-subtitle,.list-filter {
@@ -4842,7 +4839,7 @@ a[rel=user]:active,.card-holder a[rel=mediaPreview]:active {
 
 .js-modal[style="display: none;"] {
 	display:block!important;
-	margin-top:100%
+	margin-top:200%
 }
 
 .mtd-drawer-button {
@@ -5568,7 +5565,7 @@ button.mtd-no-transform-case {
 }
 
 .is-active:not(.is-expanded):not(.account-settings-row) .accordion-panel {
-	height:0!important
+	
 }
 
 .accordion-panel {
@@ -5579,7 +5576,7 @@ button.mtd-no-transform-case {
 }
 
 .is-expanded .accordion-panel {
-	height:inherit /* Hack to fix derpiness of panel in 6.1 tree; */
+	height:inherit
 }
 
 .column-nav-item.is-new .obj-left {
@@ -6375,6 +6372,11 @@ body>.message-banner[style="color:rgb(85, 85, 85); background-color:rgb(178, 213
 	cursor:pointer
 }
 
+label[for="account-safeguard-checkbox"] {
+	padding-top:0;
+	padding-right:10px;
+}
+
 #account-safeguard-checkbox {
 	-webkit-appearance:none;
 	-moz-appearance:none;
@@ -7040,4 +7042,42 @@ svg:not(:root) {
 
 .cmp-replyto .tweet-header,.cmp-replyto .tweet-body,.cmp-replyto .tweet-context {
 	padding-left:10px;
+}
+
+.txt-size--13 {
+	font-size:14px;
+}
+
+.icon-user-team-mgr.pull-right.icon-small {
+	margin-right:5px;
+}
+
+.txt-size--13.padding-txs,.txt-size-variable--16>.padding-t--4 {
+	padding:0!important
+}
+
+.txt-size--13.padding-txs,.txt-size-variable--16 .txt-size--13 {
+	padding-left:20px!important;
+}
+
+.avatar.size64 {
+    width:64px;
+    height:64px;
+    border-radius:32px;
+}
+
+.avatar.size73 {
+    width:73px;
+    height:73px;
+    border-radius:37px;
+}
+
+.account-profile-header {
+    width:100%;
+    height:90px;
+    background-size:cover
+}
+
+.avatar-border--2 {
+	box-shadow:0 5px 10px rgba(17,17,17,.2);
 }
