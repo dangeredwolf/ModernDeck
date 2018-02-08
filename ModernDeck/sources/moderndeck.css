@@ -5569,7 +5569,7 @@ button.mtd-no-transform-case {
 	width:3px
 }
 
-.is-active:not(.is-expanded) .accordion-panel {
+.is-active:not(.is-expanded):not(.account-settings-row) .accordion-panel {
 	height:0!important
 }
 
