@@ -246,7 +246,7 @@ html.scroll-v {
 	width:300px
 }
 
-.cf:before,.cf:after {
+.cf:before,.cf:after,.tweet:before,.tweet:after {
 	display:block;
 	content:" "
 }
@@ -1813,11 +1813,6 @@ a .column-title-back .icon:after {
 	margin-left:-15px
 }
 
-.tweet:before,.tweet:after {
-	display:block;
-	content:" "
-}
-
 .emoji {
 	width:1em;
 	height:1em;
@@ -2631,7 +2626,7 @@ a .column-title-back .icon:after {
 	top:60px;
 	bottom:0;
 	left:0;
-	right:0
+	right:0;
 }
 
 .mdl-favorite-from-options {
@@ -5963,7 +5958,8 @@ button.mtd-no-transform-case {
 }
 
 .s-inreply.s-fluid-height>.mdl-inner {
-	position:relative
+	position:relative;
+	top:20px
 }
 
 .s-tall-fixed {
@@ -6696,10 +6692,6 @@ legend.frm-legend+div+.control-group>.control-label,legend.frm-legend+div+div+.c
 	color:#000
 }
 
-.js-character-count[style="display: none;"] {
-	display:none!important
-}
-
 .control-group .margin-l--4 {
 	margin-left:26px!important;
 	vertical-align:middle;
@@ -6959,10 +6951,6 @@ button[type="submit"]:active {
 	transform:none!important
 }
 
-.form-submit>.close {
-	display:none
-}
-
 .padding-axl.flex.flex-row.flex-align--center>.flex-auto {
 	padding-left:40px!important
 }
@@ -7031,18 +7019,6 @@ svg:not(:root) {
 	stroke-dasharray:75!important;
 }
 
-.js-progress-svg {
-	display:none;
-}
-
-.js-action-header-user-list {
-	display:none
-}
-
-.mdl-inner .compose-account {
-	display:inline;
-}
-
 .mdl-inner .js-account-selector {
 	width:100%;
 	padding-top:0;
@@ -7062,6 +7038,6 @@ svg:not(:root) {
 	top:20px;
 }
 
-.cmp-replyto .tweet-header,.cmp-replyto .tweet-body {
+.cmp-replyto .tweet-header,.cmp-replyto .tweet-body,.cmp-replyto .tweet-context {
 	padding-left:10px;
 }

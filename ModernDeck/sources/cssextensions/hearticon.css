@@ -5,23 +5,29 @@
   Released under the MIT Licence
 */
 
-.icon-favorite:before,.icon-heart-filled:before {
+.icon-favorite:before,.icon-heart-filled:before
+{
     content:"\e87d"
 }
 
-.is-favorite .tweet-dogear {
+.is-favorite .tweet-dogear
+{
 	background:#e91e63
 }
 
+
 .txt-r-deep-yellow,
 .is-favorite .icon-favorite-toggle,
+.icon-heart-filled,
 .btn:not(.btn-fav-fav-text)>.icon-favorite-color,
+.activity-header .icon-favorite-color,
 .obj-left>.icon-favorite-color,
 .pull-right.icon-favorite-color
 {
 	color:#e91e63
 }
 
-.anim-bounce-in.tweet-action[rel="favorite"] i,.anim-bounce-in.tweet-detail-action[rel="favorite"] i {
+.anim-bounce-in.tweet-action[rel="favorite"] i,.anim-bounce-in.tweet-detail-action[rel="favorite"] i
+{
 	transform:rotate(0deg)
 }
