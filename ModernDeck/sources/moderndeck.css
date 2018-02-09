@@ -1344,10 +1344,6 @@ a .column-title-back .icon:after {
 	padding-top:4px!important
 }
 
-.contributor-row .contributor-detail {
-	margin-left:46px
-}
-
 .contributor-sep {
 	border:0;
 	height:1px
@@ -1511,6 +1507,12 @@ a .column-title-back .icon:after {
 	width:32px;
 	height:32px;
 	border-radius:16px
+}
+
+.avatar.size36 {
+	width:36px;
+	height:36px;
+	border-radius:18px
 }
 
 .avatar.size48 {
@@ -2538,7 +2540,7 @@ a .column-title-back .icon:after {
 	font-weight:500
 }
 
-#settings-modal .mdl-header-title {
+#settings-modal .mdl:not(.mtd-settings-panel) .mdl-header-title {
 	font-size:0
 }
 
@@ -5665,7 +5667,7 @@ button.mtd-no-transform-case {
 	pointer-events:all
 }
 
-.contributor-row[data-state="confirmRemove"] .contributor-confirm-remove.padding-bl {
+.contributor-row:not([data-state="confirmRemove"]) .contributor-confirm-remove.padding-bl {
 	margin-top:-130px
 }
 
@@ -6428,10 +6430,6 @@ p[lang="ar"] a[rel="hashtag"],p[lang="ar"] a[rel="user"],p[lang="fa"] a[rel="has
     unicode-bidi:isolate
 }
 
-.contributor-row .account-summary-text {
-	padding-left:45px
-}
-
 .contributor-detail {
 	padding-top:5px;
 	font-size:0;
@@ -6456,11 +6454,6 @@ p[lang="ar"] a[rel="hashtag"],p[lang="ar"] a[rel="user"],p[lang="fa"] a[rel="has
 
 .contributor-settings-role>.radio {
 	padding-left:0
-}
-
-.contributor-settings-role>.radio .nbfc {
-	width:180px;
-	padding-left:35px
 }
 
 .scroll-conversation .js-replies-before .js-media-preview-container.margin-vm,.scroll-conversation .js-replies-to .js-media-preview-container.margin-vm {
@@ -7058,7 +7051,7 @@ svg:not(:root) {
 	padding:0!important
 }
 
-.txt-size--13.padding-txs,.txt-size-variable--16 .txt-size--13 {
+.txt-size--13.padding-txs,.txt-size-variable--16 .txt-size--13:not(.account-remove-check-message) {
 	padding-left:20px!important
 }
 
@@ -7096,4 +7089,12 @@ svg:not(:root) {
 .compose .quoted-tweet .tweet-header+.js-reply-info-container {
 	padding-top:30px;
 	display:inline;
+}
+
+.padding-al.bg-color-twitter-white.br--3 {
+	padding-left:0;
+}
+
+.contributor-option {
+	margin-left:20px;
 }
