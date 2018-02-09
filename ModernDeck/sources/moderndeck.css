@@ -2624,7 +2624,7 @@ a .column-title-back .icon:after {
 	top:60px;
 	bottom:0;
 	left:0;
-	right:0;
+	right:0
 }
 
 .mdl-favorite-from-options {
@@ -2897,6 +2897,7 @@ a .column-title-back .icon:after {
 	padding-top:20px;
 	padding-left:19px;
 	padding-right:8px;
+	margin-bottom:11px;
 	display:inline-block
 }
 
@@ -4010,7 +4011,7 @@ input[type="radio"]:checked:before {
 	padding-top:4px;
 	margin-top:5px;
 	padding-left:20px;
-	padding-right:20px;
+	padding-right:20px
 }
 
 .prf-siteurl {
@@ -4506,9 +4507,9 @@ input[type="radio"]:checked:before {
 .js-add-image-button,.js-tweet-button,.js-dm-button,.js-schedule-button {
 	width:35px!important;
 	height:35px;
-	margin-top:-80px;
+	margin-top: -90px;
 	background:transparent!important;
-	box-shadow:none!important
+	box-shadow:none!important;
 }
 
 .js-add-image-button {
@@ -5188,7 +5189,8 @@ fieldset .fixed-width-label:not(.radio),fieldset:not(.js-search-filter) .control
 
 .compose .js-quote-tweet-holder .quoted-tweet {
 	padding-left:5px!important;
-	padding-right:90px!important
+	padding-right:90px!important;
+	position:relative
 }
 
 .is-options-open .more-tweets-btn-container--hidden {
@@ -5951,7 +5953,7 @@ button.mtd-no-transform-case {
 	width:100%;
 	padding-left:0!important;
 	padding-right:0!important;
-	margin-top:60px;
+	margin-top:60px
 }
 
 .s-inreply.s-fluid-height>.mdl-inner {
@@ -6374,7 +6376,7 @@ body>.message-banner[style="color:rgb(85, 85, 85); background-color:rgb(178, 213
 
 label[for="account-safeguard-checkbox"] {
 	padding-top:0;
-	padding-right:10px;
+	padding-right:10px
 }
 
 #account-safeguard-checkbox {
@@ -6566,7 +6568,7 @@ p[lang="ar"] a[rel="hashtag"],p[lang="ar"] a[rel="user"],p[lang="fa"] a[rel="has
 	box-shadow:0 5px 15px 1px rgba(0,0,0,.25)
 }
 
-.s-following .follow-btn:hover {
+.prf .s-following .follow-btn:hover {
 	background-color:#EA6B6B!important
 }
 
@@ -6738,7 +6740,7 @@ legend.frm-legend+div+.control-group>.control-label,legend.frm-legend+div+div+.c
 	height:auto!important;
 	left:50%!important;
 	margin-left:-300px!important;
-	top:0!important;
+	top:0!important
 }
 
 /** Wrapper class name is provided by JS **/
@@ -6983,11 +6985,11 @@ button[type="submit"]:active {
 }
 
 .compose-reply-tweet:not(.is-hidden)+.compose-text-container>.compose-text {
-	height:100px!important;
+	height:100px!important
 }
 
 .prf-header>.width-p--85 {
-	width:100%!important;
+	width:100%!important
 }
 
 svg:not(:root) {
@@ -7012,18 +7014,18 @@ svg:not(:root) {
 
 .js-progress-svg>svg {
 	height:32px!important;
-	width:32px!important;
+	width:32px!important
 }
 
 .js-progress-svg>svg>circle {
 	r:12!important;
 	stroke-width:3!important;
-	stroke-dasharray:75!important;
+	stroke-dasharray:75!important
 }
 
 .mdl-inner .js-account-selector {
 	width:100%;
-	padding-top:0;
+	padding-top:0
 }
 
 .compose-account-names {
@@ -7033,23 +7035,23 @@ svg:not(:root) {
 
 .cf.padding-b--20.padding-r--20.padding-t--5 {
 	margin-top: 10px;
-	height:30px;
+	height:30px
 }
 
 .mdl-inner.bg-twitter-lightest-gray.padding-l--20.padding-r--20.mdl-header-divider {
-	top:20px;
+	top:20px
 }
 
 .cmp-replyto .tweet-header,.cmp-replyto .tweet-body,.cmp-replyto .tweet-context {
-	padding-left:10px;
+	padding-left:10px
 }
 
 .txt-size--13 {
-	font-size:14px;
+	font-size:14px
 }
 
 .icon-user-team-mgr.pull-right.icon-small {
-	margin-right:5px;
+	margin-right:5px
 }
 
 .txt-size--13.padding-txs,.txt-size-variable--16>.padding-t--4 {
@@ -7057,19 +7059,19 @@ svg:not(:root) {
 }
 
 .txt-size--13.padding-txs,.txt-size-variable--16 .txt-size--13 {
-	padding-left:20px!important;
+	padding-left:20px!important
 }
 
 .avatar.size64 {
     width:64px;
     height:64px;
-    border-radius:32px;
+    border-radius:32px
 }
 
 .avatar.size73 {
     width:73px;
     height:73px;
-    border-radius:37px;
+    border-radius:37px
 }
 
 .account-profile-header {
@@ -7079,5 +7081,19 @@ svg:not(:root) {
 }
 
 .avatar-border--2 {
-	box-shadow:0 5px 10px rgba(17,17,17,.2);
+	box-shadow:0 5px 10px rgba(17,17,17,.2)
+}
+
+.follow-from-accounts-username>.avatar {
+	margin-top:-4px;
+	margin-right:5px
+}
+
+.compose-message-recipient-list {
+	margin-bottom:10px;
+}
+
+.compose .quoted-tweet .tweet-header+.js-reply-info-container {
+	padding-top:30px;
+	display:inline;
 }

@@ -117,3 +117,12 @@
 .margin-t---24 {
     margin-top: -24px
 }
+
+.padding-al {
+    padding:10px
+}
+
+.padding-v--9 {
+	padding-top:9px;
+	padding-bottom:9px;
+}
