@@ -6516,8 +6516,7 @@ legend.frm-legend+div+.control-group>.control-label,legend.frm-legend+div+div+.c
 	display:block!important;
 	position:absolute;
 	bottom:16px;
-	color:#000;
-	right: 90px;
+	right:90px
 }
 
 .control-group .margin-l--4 {
