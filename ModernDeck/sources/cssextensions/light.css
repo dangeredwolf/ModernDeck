@@ -104,7 +104,8 @@ option,
 html .btd-grayscale_notification_icons i.icon.activity-indicator,
 .txt-r-deep-gray,
 .color-twitter-dark-gray,
-.color-twitter-darker-gray
+.color-twitter-darker-gray,
+.js-send-button[disabled]
 {
 	color:#979797
 }
@@ -830,7 +831,8 @@ textarea::placeholder
 }
 
 .js-column-social-proof .username,
-.dropdown-menu a
+.dropdown-menu a,
+.js-character-count
 {
 	color:#000!important
 }
