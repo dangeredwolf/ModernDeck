@@ -14,7 +14,7 @@ a:not([href="#"]):not(.column-header-link):not(.js-column-back):not(.js-tweet-so
 .tweet-actions.is-visible .icon-reply,
 #caltoday,
 input[type="checkbox"]:checked:before,
-button:not(.action-text),
+button,
 input[type="radio"]:checked:before,
 .mtd-logo
 {
