@@ -24,7 +24,7 @@ input[type="radio"]:checked:before,
 
 a:not(.list-account):not(.js-column-back):not(.compose-account):not(.js-toggle-item):not(.column-header-link):active,
 a:not(.list-account):not(.js-column-back):not(.compose-account):not(.js-toggle-item):not(.column-header-link):focus,
-.js-send-button
+.js-send-button:not([disabled]):active
 {
 	color:#00737E;
 	background-color:rgba(0,0,0,.05)
@@ -61,6 +61,7 @@ option,
 .account-summary-text .fullname,
 .prf-stats a strong,
 .js-item-launch a.btn:not([disabled]):not(.is-disabled),
+.js-item-launch a.Button:not([disabled]):not(.is-disabled),
 html,
 .media-sensitive-content p,
 .compose .typeahead-item strong.fullname,
@@ -149,7 +150,8 @@ html .btd-grayscale_notification_icons i.icon.activity-indicator,
 .tweet-stats>li,
 .txt-r-deep-gray,
 .color-twitter-dark-gray,
-.color-twitter-darker-gray
+.color-twitter-darker-gray,
+.js-send-button[disabled]
 {
 	color:#6D808B
 }
@@ -313,7 +315,21 @@ option,
 .btn.is-disabled,
 .btn.is-disabled:hover,
 .btn.is-disabled:focus,
-.btn.is-disabled:active
+.btn.is-disabled:active,
+.Button[disabled],
+.Button[disabled]:hover,
+.Button[disabled]:active,
+.Button.is-disabled,
+.Button.is-disabled:hover,
+.Button.is-disabled:focus,
+.Button.is-disabled:active
+.Button-primary[disabled],
+.Button-primary[disabled]:hover,
+.Button-primary[disabled]:active,
+.Button-primary.is-disabled,
+.Button-primary.is-disabled:hover,
+.Button-primary.is-disabled:focus,
+.Button-primary.is-disabled:active
 {
 	color:#54707F;
 	transition:.2s all

@@ -6028,8 +6028,9 @@ body>.message-banner[style="color:rgb(85, 85, 85); background-color:rgb(178, 213
 
 .s-following .following-text,.s-following .unfollow-text {
 	opacity:1;
-	margin-top:-10px;
-	position:absolute
+	margin-top: 7px;
+	position:absolute;
+	margin-left: -2px;
 }
 
 .activity-header-wrapping.activity-header.has-source-avatar>.nbfc {
@@ -7043,4 +7044,8 @@ label[for="inline-account-safeguard-checkbox"] {
 
 .form-login {
 	padding:10px;
+}
+
+.column-type-message .tweet-text.with-linebreaks {
+	padding-left:5px;
 }
