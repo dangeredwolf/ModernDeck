@@ -28,3 +28,7 @@
 .needs-scroll-bottom-offset.scroll-styled-h {
 	bottom:0
 }
+
+.inline-reply {
+	margin-left:2px!important
+}

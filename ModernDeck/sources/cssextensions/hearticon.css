@@ -5,7 +5,7 @@
   Released under the MIT Licence
 */
 
-.icon-favorite:before,.icon-heart-filled:before
+.icon-favorite:before,.icon-heart-filled:before,.icon-heart:before
 {
     content:"\e87d"
 }

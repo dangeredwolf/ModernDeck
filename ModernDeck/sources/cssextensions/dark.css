@@ -14,6 +14,7 @@ a:not([href="#"]):not(.column-header-link):not(.js-column-back):not(.js-tweet-so
 .tweet-actions.is-visible .icon-reply,
 #caltoday,
 input[type="checkbox"]:checked:before,
+button:not(.action-text),
 input[type="radio"]:checked:before,
 .mtd-logo
 {
@@ -22,7 +23,8 @@ input[type="radio"]:checked:before,
 }
 
 a:not(.list-account):not(.js-column-back):not(.compose-account):not(.js-toggle-item):not(.column-header-link):active,
-a:not(.list-account):not(.js-column-back):not(.compose-account):not(.js-toggle-item):not(.column-header-link):focus
+a:not(.list-account):not(.js-column-back):not(.compose-account):not(.js-toggle-item):not(.column-header-link):focus,
+.js-send-button
 {
 	color:#00737E;
 	background-color:rgba(0,0,0,.05)
@@ -36,7 +38,8 @@ a:not(.list-account):not(.js-column-back):not(.compose-account):not(.js-toggle-i
 select,
 input,
 .txt-normal,
-.account-bio
+.account-bio,
+.link-complex.block[rel="user"]
 {
 	color:#D3DBE1
 }
@@ -124,7 +127,8 @@ div.drawer[data-drawer="compose"],
 .mdl .js-add-column,
 .list-item.is-selected,
 .more-tweets-btn,
-.more-tweets-btn:hover
+.more-tweets-btn:hover,
+.tweet-button:not(.js-hide-drawer)
 {
 	background:#00838F
 }
@@ -211,7 +215,7 @@ optgroup,
 .compose-message-recipient-list,
 .compose-message-recipient-input-container,
 .compose-media-grid-holder,
-.drawer .compose-text-container,
+.compose-text-container,
 .status-message
 {
 	background:#263238
@@ -328,8 +332,6 @@ option,
 }
 
 .js-add-column:active,
-.btn-compose:not(.js-hide-drawer):active,
-.btn-compose:not(.js-hide-drawer):focus,
 .lst-group .selected:active
 {
 	background:#429BA6

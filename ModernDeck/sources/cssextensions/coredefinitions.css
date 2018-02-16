@@ -1,7 +1,7 @@
 /*
   coredefinitions.css
 
-  Copyright (c) 2014-2017 Dangered Wolf
+  Copyright (c) 2014-2018 Dangered Wolf
   Released under the MIT Licence
 */
 
@@ -47,12 +47,12 @@ select,
 	width:85%;
 	height:32px;
 	padding:4px 8px;
-	font-size:13px;
+	font-size:14px;
 	font-weight:400;
 	line-height:18px;
 	border-radius:0;
 	box-sizing:content-box;
-	background:transparent
+	background:transparent;
 }
 
 input:focus,
