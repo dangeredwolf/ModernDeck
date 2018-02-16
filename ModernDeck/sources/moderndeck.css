@@ -7040,3 +7040,7 @@ label[for="inline-account-safeguard-checkbox"] {
 .from-handle {
 	vertical-align:middle
 }
+
+.form-login {
+	padding:10px;
+}
