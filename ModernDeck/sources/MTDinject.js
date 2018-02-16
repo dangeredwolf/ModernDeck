@@ -1,12 +1,12 @@
 // MTDinject.js
-// Copyright (c) 2017 Dangered Wolf
+// Copyright (c) 2018 Dangered Wolf
 
 // made with love <3
 
 "use strict";
 
-var SystemVersion = "6.2.2";
-var MTDBaseURL = "https://rawgit.com/dangeredwolf/ModernDeck/stable/ModernDeck/"; // Defaults to streaming if nothing else is available
+var SystemVersion = "6.3";
+var MTDBaseURL = "https://rawgit.com/dangeredwolf/ModernDeck/stable/ModernDeck/"; // Defaults to streaming if using online client
 
 var msgID,
 FetchProfileInfo,
@@ -94,10 +94,7 @@ function mutationObserver(obj,func,parms) {
 }
 
 function exists(thing) {
-	if (thing === true || (typeof thing === "object" && thing !== null && thing.length > 0)) {
-		return true;
-	}
-	return false;
+	return ((typeof thing === "object" && thing !== null && thing.length > 0) || thing === true || (typeof thing === "string") || (typeof thing === "number"));
 }
 
 function savePreferencesToDisk() {
@@ -337,6 +334,8 @@ function MTDInit(){
 		TD_mustaches["login/login_form_footer.mustache"] = TD_mustaches["login/login_form_footer.mustache"].replace('<i class="js-spinner-button-active icon-center-16 spinner-button-icon-spinner is-hidden"></i>','<div class="js-spinner-button-active icon-center-16 spinner-button-icon-spinner is-hidden preloader-wrapper active tiny"><div class="spinner-layer small"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div>');
 	if (typeof TD_mustaches["compose/docked_compose.mustache"] !== "undefined")
 		TD_mustaches["compose/docked_compose.mustache"] = TD_mustaches["compose/docked_compose.mustache"].replace('<i class="js-spinner-button-active icon-center-16 spinner-button-icon-spinner is-hidden"></i>','<div class="js-spinner-button-active icon-center-16 spinner-button-icon-spinner is-hidden preloader-wrapper active tiny"><div class="spinner-layer small"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div>');
+	if (typeof TD_mustaches["compose/compose_inline_reply.mustache"] !== "undefined")
+		TD_mustaches["compose/compose_inline_reply.mustache"] = TD_mustaches["compose/compose_inline_reply.mustache"].replace('<i class="js-spinner-button-active icon-center-16 spinner-button-icon-spinner is-hidden"></i>','<div class="js-spinner-button-active icon-center-16 spinner-button-icon-spinner is-hidden preloader-wrapper active tiny"><div class="spinner-layer small"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div>');
 
 
 	TD.util.prettyTimeString = function(e) {
@@ -500,7 +499,7 @@ function MTDSettings() {
 			<label class="checkbox">Undocked windowing/nav drawer<input type="checkbox" id="mtd-undocked-modals"></label>\
 			<label class="checkbox">Use alternate sensitive media workflow<input type="checkbox" checked="checked" id="mtd-sensitive-alt"></label>\
 			<label class="checkbox">Use Hearts instead of Stars<input type="checkbox" checked="checked" id="mtd-hearts"></label>\
-			<label class="control-label">Theme\
+			<label class="control-label">Theme</label>\
 			<select id="mtd-theme-control" type="select">\
 			<option value="default" selected="selected">Default</option>\
 			<optgroup label="Complete Themes">\
@@ -523,11 +522,11 @@ function MTDSettings() {
 			\
 			\
 			\
-			<label class="control-label">Scroll Bar Style<select id="mtd-scrollbar-style" type="select">\
+			<label class="control-label">Scroll Bar Style</label><select id="mtd-scrollbar-style" type="select">\
 			<option value="default" selected="selected">Default</option>\
 			<option value="scrollbarsnarrow">Narrow</option>\
 			<option value="scrollbarsnone">Hidden</option>\
-			</select></label></label></div></fieldset></form>\
+			</select></div></fieldset></form>\
 			\
 			<form action="#" id="mtd-accessibility-form" accept-charset="utf-8"class="frm" style="display:none;"><fieldset id="general_settings"><label class="checkbox">Always show outlines on focused items<input type="checkbox" checked="checked" id="mtd-outlines-control"> </label></fieldset></form>\
 			\

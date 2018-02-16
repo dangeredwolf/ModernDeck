@@ -1,7 +1,7 @@
 /*
   loginpage.css
 
-  Copyright (c) 2014-2017 Dangered Wolf
+  Copyright (c) 2014-2018 Dangered Wolf
   Released under the MIT Licence
 */
 
@@ -78,8 +78,7 @@ select,input {
 	background:#fff;
 	color:#444;
 	box-shadow:0 10px 30px rgba(0,0,0,.75);
-	border-radius:2px;
-	animation:menuDownLogin .4s 1 cubic-bezier(.19,1,.22,1)
+	border-radius:2px
 }
 
 .form-login-pwd,.form-login-email,.form-login-username {

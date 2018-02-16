@@ -1,7 +1,7 @@
 /*
   light.css
 
-  Copyright (c) 2014-2017 Dangered Wolf
+  Copyright (c) 2014-2018 Dangered Wolf
   Released under the MIT Licence
 */
 
@@ -9,6 +9,7 @@ a,
 a:not(.column-header-link):not(.js-column-back):not(.list-account):not(.account-selector-grid-mode):not(.account-link):hover,
 .calweek a:hover,
 .btn:not([disabled]):not(.is-disabled):not(.btn-options-tray):not(.mtd-nav-button):not(.btn-bg-negative),
+button,
 .compose-send-button-success,
 .icon-follow-color,
 .tweet-actions.is-visible .icon-reply,
@@ -18,13 +19,15 @@ a:not(.column-header-link):not(.js-column-back):not(.list-account):not(.account-
 .lst-profile a:active,
 input[type="checkbox"]:checked:before,
 input[type="radio"]:checked:before,
+.icon-toggle-on,
 .mtd-logo
 {
 	color:#00BCD4
 }
 
-a:not(.list-account):not(.js-column-back):not(.compose-account):not(.js-toggle-item):not(.column-header-link):active,
-a:not(.list-account):not(.js-column-back):not(.compose-account):not(.js-toggle-item):not(.column-header-link):focus
+a:not(.list-account):not(.js-column-back):not(.compose-account):not(.js-toggle-item):not(.column-header-link):not(.js-account-action):active,
+a:not(.list-account):not(.js-column-back):not(.compose-account):not(.js-toggle-item):not(.column-header-link):not(.js-account-action):focus,
+.js-send-button
 {
 	color:#0DA8BC;
 }
@@ -44,7 +47,8 @@ option,
 .mtd-about-title,
 .character-count-compose,
 .prf-stats li strong,
-.inline-account-safeguard-checkbox
+.inline-account-safeguard-checkbox,
+.link-complex.block[rel="user"]
 {
 	color:#333
 }
@@ -78,12 +82,12 @@ option,
 	color:#4c4c4c
 }
 
-.btn:focus
+.btn:focus,.Button:focus
 {
 	color:#26C6DA
 }
 
-.btn:active
+.btn:active,.Button:active
 {
   color:#aaa;
   background:rgba(0,0,0,.04)
@@ -127,7 +131,14 @@ html .btd-grayscale_notification_icons i.icon.activity-indicator,
 .btn.is-disabled,
 .btn.is-disabled:hover,
 .btn.is-disabled:focus,
-.btn.is-disabled:active
+.btn.is-disabled:active,
+.Button[disabled],
+.Button[disabled]:hover,
+.Button[disabled]:active,
+.Button.is-disabled,
+.Button.is-disabled:hover,
+.Button.is-disabled:focus,
+.Button.is-disabled:active
 {
 	color:#CACACA
 }
@@ -181,11 +192,6 @@ html .btd-grayscale_notification_icons i.icon.activity-indicator,
 .s-following .follow-btn:hover
 {
 	color:#C22727!important
-}
-
-.btn-compose:not(.js-hide-drawer)
-{
-	box-shadow:0 1px 2px 1px rgba(0,0,0,.25)
 }
 
 .btn-compose,
@@ -391,7 +397,6 @@ html:not(.mtd-dark-media-previews) .med-tweet,
 .compose-text-container,
 .tooltip-inner,
 .mdl-column-rhs,
-.compose-text-container,
 .med-fullpanel,
 .embed-modal .mdl-content,
 .prf-meta,
@@ -438,6 +443,7 @@ html:not(.mtd-dark-media-previews) .med-tweet,
 .is-unread,
 .more-tweets-btn,
 .compose,
+.tweet-button:not(.js-hide-drawer),
 .lst-group .selected
 {
 	background:#00BCD4

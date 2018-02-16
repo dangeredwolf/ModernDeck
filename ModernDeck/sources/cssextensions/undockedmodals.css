@@ -1,7 +1,7 @@
 /*
   undockedmodals.css
 
-  Copyright (c) 2014-2017 Dangered Wolf
+  Copyright (c) 2014-2018 Dangered Wolf
   Released under the MIT Licence
 */
 
@@ -197,9 +197,13 @@
 .s-inreply.s-fluid-height .cf>.pull-right {
 	position:absolute;
 	right:0;
-	bottom:-40px;
+	bottom:-40px
 }
 
 .cf.padding-b--20.padding-r--20.padding-t--5 {
-	margin-top:-70px;
+	margin-top:-40px
+}
+
+.cmp-replyto {
+	padding-bottom:40px	
 }

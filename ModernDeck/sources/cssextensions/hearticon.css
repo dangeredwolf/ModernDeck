@@ -1,11 +1,11 @@
 /*
   hearticon.css
 
-  Copyright (c) 2014-2017 Dangered Wolf
+  Copyright (c) 2014-2018 Dangered Wolf
   Released under the MIT Licence
 */
 
-.icon-favorite:before,.icon-heart-filled:before
+.icon-favorite:before,.icon-heart-filled:before,.icon-heart:before
 {
     content:"\e87d"
 }

@@ -2,8 +2,8 @@
 			moderndeck.css
 
 
-			ModernDeck 6.2.1 [codename Sweet Paradise]
-			Copyright 2014-2016 Ryan Dolan (@dangeredwolf)
+			ModernDeck 6.3 [codename Renaissance]
+			Copyright 2014-2018 dangered wolf
 			Released under the MIT Licence
 
 			For a complete list of open source projects included in this, view the "LICENCES" file in the open source project @ github.com/dangeredwolf/ModernDeck
@@ -48,7 +48,7 @@ body.scroll-v {
 	font-size:0.95em
 }
 
-.account-stats .txt-base-smallest {
+.account-inline .username,.is-narrow-columns .media-sensitive,.account-stats .txt-base-smallest {
 	font-size:12px
 }
 
@@ -234,10 +234,10 @@ html.scroll-v {
 .account-link>.nbfc {
 	overflow:hidden;
 	margin-top:0;
-	padding:5px 5px 0 50px
+	padding: 5px 30px 0 50px;
 }
 
-.quoted-tweet .account-link>.nbfc,.tweet.txt-mute .account-link>.nbfc {
+.quoted-tweet .account-link>.nbfc,.tweet.txt-mute .account-link>.nbfc,.padding-al.bg-color-twitter-white.br--3,.tweet-message .account-link>.nbfc,.contributor-settings-role>.radio,.compose-reply-tweet .tweet-text,.js-dropdown-content>ul,.tweet-message .tweet-text,.quoted-tweet .tweet-text,.tweet-detail-wrapper .tweet-text.margin-b--10 {
 	padding-left:0
 }
 
@@ -257,7 +257,7 @@ html.scroll-v {
 	margin-right:auto!important
 }
 
-.position-rel {
+.search-input-control,.form-calendar,.prf .follow-combo>span,.position-rel,.cmp-inner,.app-search {
 	position:relative
 }
 
@@ -344,28 +344,8 @@ html.scroll-v {
 	bottom:0
 }
 
-.full-width {
+.full-width,.prf-header>.width-p--85 {
 	width:100%!important
-}
-
-.half-width {
-	width:50%
-}
-
-.reset-height {
-	min-height:0!important
-}
-
-.no-collapse {
-	min-height:1em
-}
-
-.align-top {
-	vertical-align:top!important
-}
-
-.border-box {
-	box-sizing:border-box
 }
 
 .is-actionable,.is-actionable:active {
@@ -406,7 +386,7 @@ i {
 	width:1em
 }
 
-.icon:before,.search-input-control:before {
+.icon:before,.Icon:before,.search-input-control:before {
 	font-weight:400;
 	font-style:normal;
 	-webkit-font-smoothing:antialiased;
@@ -489,7 +469,7 @@ i {
 	content:"\e312"
 }
 
-.icon-favorite:before,.icon-heart-filled:before {
+.icon-favorite:before,.icon-heart-filled:before,.icon-heart:before {
 	content:"\e838"
 }
 
@@ -741,7 +721,7 @@ i {
 }
 
 .icon-small {
-	font-size:14px
+	font-size:18px
 }
 
 .icon-medium {
@@ -863,7 +843,7 @@ i {
 	top:15px
 }
 
-.compose-media-grid-holder .sprite-close {
+.is-open .compose-content,.compose-media-grid-holder .sprite-close {
 	top:0
 }
 
@@ -881,7 +861,7 @@ i {
 	color:inherit
 }
 
-button,a.btn,a.js-create-list,input[type="button"] {
+button,a.btn,a.js-create-list,input[type="button"],.Button--primary,.Button {
 	position:relative;
 	display:inline-block;
 	pointer-events:all;
@@ -899,12 +879,12 @@ button,a.btn,a.js-create-list,input[type="button"] {
 	text-transform:uppercase
 }
 
-button:hover,button:focus {
+button:hover,button:focus,.Button--primary {
 	background:transparent;
 	outline:0
 }
 
-.btn:not(.js-add-column):active,.btn.is-selected {
+.btn:not(.js-add-column):active,.btn.is-selected,.Button.is-selected  {
 	transform:scale(.95)
 }
 
@@ -954,17 +934,17 @@ button:hover,button:focus {
 	margin-top:2px
 }
 
-.button-group .btn {
+.button-group .btn,.button-group .Button {
 	float:left;
 	margin-left:-1px;
 	border-radius:0
 }
 
-.button-group-toggle {
+.med-img,.embed-iframe,.js-contributor-manager-back,.l-column.mdl-column.mdl-column-sml+.mdl-column.mdl-column-lrg,.med-embeditem>.l-table,.button-group-toggle {
 	width:100%
 }
 
-.button-group-toggle button {
+.half-width,.button-group-toggle button {
 	width:50%
 }
 
@@ -1036,14 +1016,12 @@ button:hover,button:focus {
 
 .drawer-header-title.drawer-column-header-title {
 	font-size:16px;
-	width:100%;
-	text-align:center;
-	margin-left:-16px;
 	font-weight:500
 }
 
 .js-contributor-manager-container .drawer-header-title {
-	padding-top:4px
+	padding-top:4px;
+	padding-left:40px
 }
 
 .with-add-by-url {
@@ -1137,7 +1115,7 @@ button:hover,button:focus {
 }
 
 .column-temp .column-header,.column-header-temp {
-	width:100%!important;
+	width:100%;
 	box-shadow:0 5px 10px 0 rgba(17,17,17,.25)
 }
 
@@ -1150,17 +1128,17 @@ button:hover,button:focus {
 	left:10px;
 	right:20px;
 	padding-top:5px;
-	margin-left:0!important;
-	margin-top:-2px!important;
-	word-wrap:break-word!important;
-	text-overflow:ellipsis!important
+	margin-left:0;
+	margin-top:-2px;
+	word-wrap:break-word;
+	text-overflow:ellipsis
 }
 
 .mdl .column-title {
 	width:90%
 }
 
-.column-title .attribution {
+.column-header .txt-mute {
 	font-weight:400;
 	font-size:13px;
 	display:inline;
@@ -1183,7 +1161,8 @@ button:hover,button:focus {
 	border-color:#fff;
 	text-align:center;
 	font-weight:500;
-	padding-bottom:0
+	padding-bottom:0;
+	z-index: 5;
 }
 
 .column-title-editable.with-image-attribution {
@@ -1341,11 +1320,8 @@ a .column-title-back .icon:after {
 }
 
 .contributor-row .account-summary-text {
-	padding-top:4px!important
-}
-
-.contributor-row .contributor-detail {
-	margin-left:46px
+	padding-top:4px!important;
+	padding-left:4px
 }
 
 .contributor-sep {
@@ -1382,10 +1358,6 @@ a .column-title-back .icon:after {
 
 .stream-item {
 	margin-top:3px
-}
-
-.stream-item.is-actionable:hover {
-	box-shadow:0 2px 5px rgba(0,0,0,.4)
 }
 
 .item-box {
@@ -1513,6 +1485,12 @@ a .column-title-back .icon:after {
 	border-radius:16px
 }
 
+.avatar.size36 {
+	width:36px;
+	height:36px;
+	border-radius:18px
+}
+
 .avatar.size48 {
 	width:48px;
 	height:48px;
@@ -1546,11 +1524,7 @@ a .column-title-back .icon:after {
 }
 
 .account-link .username {
-	font-size:.8571rem
-}
-
-.account-link .fullname {
-	line-height:1
+	font-size:12px!important
 }
 
 .account-inline {
@@ -1564,11 +1538,7 @@ a .column-title-back .icon:after {
 	line-height:1;
 	text-overflow:ellipsis;
 	font-size:14px;
-	margin-left:3px
-}
-
-.account-inline .username {
-	font-size:12px
+	margin-left:3px;
 }
 
 .fullname-badged-container,.fullname-badged {
@@ -1619,10 +1589,6 @@ a .column-title-back .icon:after {
 
 .media-sensitive-detail {
 	min-height:116px
-}
-
-.is-narrow-columns .media-sensitive {
-	font-size:12px
 }
 
 .media-sensitive-content,.is-narrow-columns .media-size-large .media-sensitive-content,.is-narrow-columns .tweet-detail .media-sensitive-content {
@@ -1707,7 +1673,7 @@ a .column-title-back .icon:after {
 	min-height:91px
 }
 
-.media-item:first-child {
+.is-wide-columns .tweet-actions,.l-no-txtarea .mdl-buttonbar,.media-item:first-child {
 	margin-top:0
 }
 
@@ -1827,7 +1793,8 @@ a .column-title-back .icon:after {
 	position:absolute;
 	right:10px;
 	line-height:1em;
-	font-size:12px
+	font-size:12px;
+	top: 12px;
 }
 
 .tweet-context .nbfc>a {
@@ -1854,10 +1821,6 @@ a .column-title-back .icon:after {
 	margin-top:15px;
 	padding-top:0!important;
 	min-height:12px
-}
-
-.is-wide-columns .tweet-actions {
-	margin-top:0
 }
 
 .message-stream-item .tweet-actions {
@@ -2190,10 +2153,6 @@ a .column-title-back .icon:after {
 	opacity:1
 }
 
-.app-search {
-	position:relative
-}
-
 .app-search.has-overlay {
 	z-index:6
 }
@@ -2236,7 +2195,7 @@ a .column-title-back .icon:after {
 	top:50px
 }
 
-.message-text>.btn {
+.message-text>.btn,.message-text>.Button {
 	padding-top:14px
 }
 
@@ -2307,7 +2266,7 @@ a .column-title-back .icon:after {
 .accordion .icon-arrow-d,.accordion .icon-arrow-u {
 	position:absolute;
 	top:10px;
-	right:12px
+	right:12px;
 }
 
 .facet-type {
@@ -2328,7 +2287,6 @@ a .column-title-back .icon:after {
 }
 
 .facet-title {
-	width:70px;
 	padding-left:28px;
 	text-transform:uppercase
 }
@@ -2337,12 +2295,12 @@ a .column-title-back .icon:after {
 	padding-top:2px;
 	text-align:right;
 	font-size:12px;
-	display:block;
+	/* display:block; */
 	position:absolute;
-	opacity:1;
-	right:30px;
+	/* opacity:1; */
+	right: 50px;
 	top:50%;
-	margin-top:-12px
+	margin-top:-12px;
 }
 
 .control-label-checkbox {
@@ -2538,7 +2496,7 @@ a .column-title-back .icon:after {
 	font-weight:500
 }
 
-#settings-modal .mdl-header-title {
+#settings-modal .mdl:not(.mtd-settings-panel) .mdl-header-title {
 	font-size:0
 }
 
@@ -2624,7 +2582,7 @@ a .column-title-back .icon:after {
 	top:60px;
 	bottom:0;
 	left:0;
-	right:0;
+	right:0
 }
 
 .mdl-favorite-from-options {
@@ -2667,7 +2625,7 @@ a .column-title-back .icon:after {
 	text-align:center
 }
 
-.lst-launcher .btn i {
+.lst-launcher .btn i,.lst-launcher .Button i {
 	line-height:inherit
 }
 
@@ -2744,10 +2702,6 @@ a .column-title-back .icon:after {
 	height:1px
 }
 
-.cmp-inner {
-	position:relative
-}
-
 .cmp-message {
 	display:none;
 	position:relative
@@ -2782,24 +2736,12 @@ a .column-title-back .icon:after {
 	padding-bottom:25px
 }
 
-.s-photo-added textarea,.s-link-added textarea {
+.s-photo-added textarea,.s-link-added textarea,.s-link-added.s-photo-added textarea {
 	height:60px
 }
 
 .s-link-added.s-photo-added .cmp-input-container {
 	padding-bottom:50px
-}
-
-.s-link-added.s-photo-added p:last-child {
-	border-top:1px solid #c5c5c5
-}
-
-.s-link-added.s-photo-added textarea {
-	height:60px
-}
-
-.l-no-txtarea .mdl-buttonbar {
-	margin-top:0
 }
 
 .accs-header {
@@ -2897,6 +2839,7 @@ a .column-title-back .icon:after {
 	padding-top:20px;
 	padding-left:19px;
 	padding-right:8px;
+	margin-bottom:11px;
 	display:inline-block
 }
 
@@ -2916,18 +2859,15 @@ a .column-title-back .icon:after {
 	top:50px
 }
 
-.is-open .compose-content {
-	top:0
-}
-
 .compose-text-container {
 	width:240px;
 	margin-left:10px;
-	margin-top:10px;
 	height:170px;
 	padding:0!important;
 	padding-top:10px!important;
-	box-shadow:0 3px 7px rgba(17,17,17,.5)
+	box-shadow:0 3px 7px rgba(17,17,17,.5);
+	border-radius: 4px;
+	margin-top: 10px;
 }
 
 .compose-text {
@@ -2996,24 +2936,29 @@ a .column-title-back .icon:after {
 	box-shadow:0 3px 7px rgba(17,17,17,.5)
 }
 
-.compose-message-account:focus {
+.is-selected.compose-account:focus .compose-account-img,.compose-account:focus,.compose-message-account:focus {
 	outline:0
 }
 
 .compose-media-grid-holder .media-grid-container {
-	height:108px
+	height:140px
 }
 
 .compose-media-grid-remove {
 	position:absolute;
-	top:2px;
+	top:10px;
 	right:3px
 }
 
 .compose-media-bar-holder {
 	position:relative;
 	text-align:center;
-	line-height:0
+	line-height:0;
+	padding:0;
+	padding-bottom:10px;
+	box-shadow: 0 3px 7px rgba(17,17,17,.5);
+	border-radius: 4px;
+	overflow: hidden;
 }
 
 .compose-media-info-bar i {
@@ -3022,12 +2967,13 @@ a .column-title-back .icon:after {
 
 .compose-media-bar-remove {
 	position:absolute;
-	top:14px;
+	top:26px;
 	right:14px
 }
 
 .compose-media-bar-remove .icon-close:before {
-	font-size:20px!important
+	font-size: 32px!important;
+	text-shadow: 0 4px 10px rgba(17,17,17,1);
 }
 
 .compose-media-compressed .compose-media-bar-thumb {
@@ -3037,12 +2983,12 @@ a .column-title-back .icon:after {
 .compose-account {
 	position:relative;
 	float:left;
-	margin-right:10px;
+	margin-right: 10px;
 	border-radius:3px;
 	margin-bottom:5px;
 	-webkit-filter:grayscale(100%);
 	filter:grayscale(100%);
-	opacity:.35
+	opacity:.35;
 }
 
 .is-list .compose-account {
@@ -3060,10 +3006,6 @@ a .column-title-back .icon:after {
 	box-shadow:none
 }
 
-.is-selected.compose-account:focus .compose-account-img {
-	outline:0
-}
-
 .account-selector-grid-mode {
 	opacity:.3;
 	padding:5px;
@@ -3078,11 +3020,11 @@ a .column-title-back .icon:after {
 .inline-reply {
 	cursor:default;
 	height:180px;
-	overflow:hidden;
 	margin-top:8px;
-	width:107%;
+	width: 100%;
 	box-sizing:border-box;
-	box-shadow:0 2px 8px #000
+	box-shadow:0 2px 8px #000;
+	margin-left: 5px;
 }
 
 .inline-reply .compose-text-container {
@@ -3090,7 +3032,8 @@ a .column-title-back .icon:after {
 	width:100%;
 	height:180px;
 	border-radius:0;
-	margin-left:-1px
+	margin-left:-1px;
+	margin-top: 0;
 }
 
 .inline-reply>.padding-axl {
@@ -3098,24 +3041,17 @@ a .column-title-back .icon:after {
 }
 
 .js-inline-reply .pull-right {
-	margin-top:-55px;
-	margin-right:-5px
+	margin-top: -40px;
+	margin-right:-5px;
 }
 
 .js-inline-reply .pull-right[for] {
 	margin-top:-80px
 }
 
-.inline-reply .compose-text-container {
-	display:inline-block;
-	width:100.1%;
-	margin-top:0;
-	box-shadow:none
-}
-
 .js-inline-compose-pop,.js-inline-compose-close,.js-inline-compose-add-image {
 	margin-left:5px;
-	margin-top:-95px;
+	margin-top:-65px;
 	position:relative;
 	padding:5px
 }
@@ -3134,8 +3070,8 @@ a .column-title-back .icon:after {
 
 .inline-reply .compose-text {
 	padding:10px;
-	height:140px!important;
-	width:100%
+	height: 120px!important;
+	width:100%;
 }
 
 .detail-view-inline {
@@ -3217,10 +3153,6 @@ a .column-title-back .icon:after {
 	pointer-events:all
 }
 
-.med-img {
-	width:100%
-}
-
 .s-shorter {
 	bottom:160px
 }
@@ -3275,10 +3207,6 @@ a:hover .icn-button-next {
 	height:auto;
 	width:100%;
 	resize:vertical
-}
-
-.embed-iframe {
-	width:100%
 }
 
 .embed-iframe-container {
@@ -3361,8 +3289,6 @@ a:hover .icn-button-next {
 }
 
 .list-filter input {
-	right:0;
-	position:absolute
 }
 
 .list-twitter-list .inner {
@@ -3451,9 +3377,9 @@ a:hover .icn-button-next {
 
 .divider-bar {
 	height:1px;
-	margin-top:20px;
-	margin-bottom:20px;
-	opacity:0
+	margin-top: 10px;
+	margin-bottom: 10px;
+	opacity:0;
 }
 
 .frm {
@@ -3582,11 +3508,8 @@ input[type="radio"]:checked:before {
 
 .control-group {
 	margin-bottom:13px;
-	height:auto;
 	min-height:40px;
-	width:100%;
-	pointer-events:none;
-	position:relative
+	pointer-events:none
 }
 
 .controls-space-58 {
@@ -3604,7 +3527,7 @@ input[type="radio"]:checked:before {
 
 .checkbox,.radio {
 	min-height:18px;
-	padding-left:18px
+	padding-left:18px;
 }
 
 .checkbox input[type="checkbox"],.radio input[type="radio"],.js-toggle-switch {
@@ -3613,8 +3536,8 @@ input[type="radio"]:checked:before {
 
 .checkbox-reversed input[type="checkbox"],.js-toggle-switch {
 	float:right;
-	height:25px;
-	font-size:24px
+	height: 22px;
+	font-size:24px;
 }
 
 .checkbox span {
@@ -3626,10 +3549,6 @@ input[type="radio"]:checked:before {
 	float:left;
 	width:auto;
 	text-align:left
-}
-
-.fixed-width-label {
-	width:95px
 }
 
 .js-fhf-body.pin-all {
@@ -3666,10 +3585,6 @@ input[type="radio"]:checked:before {
 	line-height:20px
 }
 
-.search-input-control {
-	position:relative
-}
-
 .search-input {
 	font-size:14px;
 	padding-right:25px;
@@ -3683,10 +3598,6 @@ input[type="radio"]:checked:before {
 	top:10px;
 	font-size:16px;
 	color:#ccc
-}
-
-.facet-type .search-input {
-	padding-left:10px
 }
 
 .mdl-column.l-column .search-input {
@@ -3893,12 +3804,6 @@ input[type="radio"]:checked:before {
 	text-align:center
 }
 
-.form-calendar {
-	position:relative;
-	padding-top:0;
-	margin-top:-5px
-}
-
 .cal .nav-group {
 	position:absolute;
 	top:15px;
@@ -3920,7 +3825,7 @@ input[type="radio"]:checked:before {
 	background-size:100%!important;
 	background-repeat:no-repeat!important;
 	text-align:center;
-	text-shadow:0 2px 7px #000;
+	text-shadow:0 1px 5px #000;
 	overflow:hidden
 }
 
@@ -3962,10 +3867,6 @@ input[type="radio"]:checked:before {
 
 .prf .follow-combo {
 	margin-top:5px
-}
-
-.prf .follow-combo>span {
-	position:relative
 }
 
 .prf-img {
@@ -4010,7 +3911,7 @@ input[type="radio"]:checked:before {
 	padding-top:4px;
 	margin-top:5px;
 	padding-left:20px;
-	padding-right:20px;
+	padding-right:20px
 }
 
 .prf-siteurl {
@@ -4374,7 +4275,8 @@ input[type="radio"]:checked:before {
 	overflow:visible;
 	transform:none!important;
 	box-shadow:none;
-	top:0
+	top:0;
+	padding-top:0!important
 }
 
 .column-nav-link:focus,.column-nav-link:active {
@@ -4460,7 +4362,7 @@ input[type="radio"]:checked:before {
 	margin-bottom:15px;
 	margin-left:10px!important;
 	margin-top:-15px!important;
-	width:235px
+	width:235px;
 }
 
 .js-column-detail .column-title-back:after,.js-tweet-results .column-title-back:after,.js-tweet-social-proof-back:after {
@@ -4506,7 +4408,7 @@ input[type="radio"]:checked:before {
 .js-add-image-button,.js-tweet-button,.js-dm-button,.js-schedule-button {
 	width:35px!important;
 	height:35px;
-	margin-top:-80px;
+	margin-top:-90px;
 	background:transparent!important;
 	box-shadow:none!important
 }
@@ -4565,7 +4467,8 @@ input[type="radio"]:checked:before {
 .facet-type .control-group select,.facet-type .control-group input:not([type=checkbox]) {
 	width:55%;
 	float:right;
-	display:block
+	display:block;
+	margin-right:8px
 }
 
 .app-nav-link.js-header-add-column .obj-left {
@@ -4658,8 +4561,8 @@ a[rel=user]:active,.card-holder a[rel=mediaPreview]:active {
 .js-media-added {
 	width:240px;
 	margin-left:10px;
-	box-shadow:0 3px 7px rgba(17,17,17,.5);
-	margin-top:15px
+	box-shadow: 0 3px 7px rgba(17,17,17,.5);
+	margin-top:15px;
 }
 
 .cal header span {
@@ -4773,7 +4676,9 @@ a[rel=user]:active,.card-holder a[rel=mediaPreview]:active {
 
 .js-send-button {
 	margin-right:16px;
-	height:32px
+	height:35px;
+	width:35px;
+	font-size:0
 }
 
 .drawer-header {
@@ -4800,9 +4705,6 @@ a[rel=user]:active,.card-holder a[rel=mediaPreview]:active {
 	top:15px;
 	left:10px;
 	line-height:.8
-}
-.js-contributor-manager-back {
-	width:100%
 }
 
 .tweet-button.is-hidden {
@@ -4904,10 +4806,6 @@ a[rel=user]:active,.card-holder a[rel=mediaPreview]:active {
 	pointer-events:all
 }
 
-.mtd-nav-drawer-background-hidden {
-	background:transparent
-}
-
 .mtd-nd-header-image {
 	width:102%;
 	height:150px;
@@ -4988,10 +4886,6 @@ a[rel=user]:active,.card-holder a[rel=mediaPreview]:active {
 	margin-top:-100px
 }
 
-.js-compose-message-recipient-container .typeahead-user-list {
-	width:240px
-}
-
 .js-compose-message-recipient-container .js-typeahead-dropdown {
 	left:10px;
 	z-index:5
@@ -5013,7 +4907,7 @@ a[rel=user]:active,.card-holder a[rel=mediaPreview]:active {
 	margin:10px auto -100px auto
 }
 
-.mtd-logo:before {
+.account-link .fullname,.mtd-logo:before {
 	line-height:1
 }
 
@@ -5075,41 +4969,26 @@ a[rel=user]:active,.card-holder a[rel=mediaPreview]:active {
 	z-index:0
 }
 
-#general_settings .cf .obj-left {
-	float:none;
-	padding-bottom:30px
-}
-
-fieldset .fixed-width-label.txt-uppercase b {
-	font-size:24px;
-	text-transform:none;
-	font-weight:300;
-	text-align:center;
-	padding-bottom:5px;
-	display:block
-}
-
-fieldset .fixed-width-label:not(.radio),fieldset:not(.js-search-filter) .control-label {
+fieldset .fixed-width-label.txt-uppercase b,fieldset:not(.js-search-filter) .control-label {
 	width:100%;
-	text-align:center;
-	font-weight:300;
-	font-size:24px;
-	margin-top:40px
-}
-
-#global_filter_settings .control-label {
-	margin-bottom:25px;
-	margin-top:5px;
-	display:block
+	text-align:left;
+	font-weight:500;
+	font-size: 16px;
+	margin-top:30px;
+	margin-left: 24px;
+	margin-bottom:0;
+	text-transform:  uppercase;
 }
 
 #general_settings .obj-left:last-child b:after {
-	font-size:24px;
-	content:"Fonts"
+	font-size: 16px;
+	content:"Fonts";
 }
 
 #general_settings .control-group label.checkbox,#general_settings .control-group label.radio {
-	margin-left:88px
+	margin-left: 48px;
+	margin-right: 48px;
+	margin-bottom: 4px;
 }
 
 .js-display-sensitive-media.checkbox:after {
@@ -5117,24 +4996,12 @@ fieldset .fixed-width-label:not(.radio),fieldset:not(.js-search-filter) .control
 	content:"Show potentially sensitive media"
 }
 
-#general_settings .checkbox:not(.js-display-sensitive-media),#general_settings .radio {
-	font-size:15px
-}
-
-#services_settings label.control-label {
-	font-size:24px;
-	font-weight:300
-}
-
-.controls {
-	margin-left:40px
-}
 
 .mdl .checkbox,.mdl .radio {
 	display:block;
 	pointer-events:all;
-	margin-bottom:15px;
-	vertical-align:middle
+	margin-bottom: 10px;
+	vertical-align:middle;
 }
 
 #link-shortening {
@@ -5147,10 +5014,6 @@ fieldset .fixed-width-label:not(.radio),fieldset:not(.js-search-filter) .control
 	margin-left:auto;
 	margin-right:auto;
 	display:block
-}
-
-#global_filter_settings .control-group:nth-child(4) .controls {
-	margin-left:0
 }
 
 .mtd-mute-text:before {
@@ -5171,10 +5034,6 @@ fieldset .fixed-width-label:not(.radio),fieldset:not(.js-search-filter) .control
 	content:"Source "
 }
 
-.margin-t--12.margin-b--30 {
-	margin-top:-47px!important
-}
-
 .js-quote-tweet-holder .quoted-tweet {
 	border:0;
 	padding-left:70px!important;
@@ -5187,8 +5046,11 @@ fieldset .fixed-width-label:not(.radio),fieldset:not(.js-search-filter) .control
 }
 
 .compose .js-quote-tweet-holder .quoted-tweet {
-	padding-left:5px!important;
-	padding-right:90px!important
+	padding-left:10px!important;
+	padding-right:30px!important;
+	position:relative;
+	width:200px;
+	padding-bottom:50%!important
 }
 
 .is-options-open .more-tweets-btn-container--hidden {
@@ -5270,9 +5132,9 @@ fieldset .fixed-width-label:not(.radio),fieldset:not(.js-search-filter) .control
 }
 
 .js-account-safeguard-checkbox {
-	display:inline;
 	position:absolute;
-	margin-left:170px
+	margin-left:170px;
+	margin-top:15px
 }
 
 .js-account-safeguard-text:after {
@@ -5300,7 +5162,10 @@ fieldset .fixed-width-label:not(.radio),fieldset:not(.js-search-filter) .control
 	opacity:1;
 	pointer-events:auto;
 	padding:8px 12px;
-	min-height:0;
+	min-height:0
+}
+
+.more-tweets-btn,.tweet-button:not(.js-hide-drawer),.stream-item.is-actionable:hover {
 	box-shadow:0 2px 5px 0 rgba(0,0,0,.16),0 2px 5px 0 rgba(0,0,0,.23)
 }
 
@@ -5308,7 +5173,7 @@ fieldset .fixed-width-label:not(.radio),fieldset:not(.js-search-filter) .control
 	top:-5.75em
 }
 
-.more-tweets-btn:active,.more-tweets-btn:hover,.more-tweets-btn:focus {
+.stream-item.is-actionable:active,.more-tweets-btn:active,.more-tweets-btn:hover,.more-tweets-btn:focus,.tweet-button:not(.js-hide-drawer):active,.tweet-button:not(.js-hide-drawer):focus,.tweet-button:not(.js-hide-drawer):hover {
 	box-shadow:0 2px 10px 0 rgba(0,0,0,.16),0 8px 10px 0 rgba(0,0,0,.23)
 }
 
@@ -5326,7 +5191,7 @@ fieldset .fixed-width-label:not(.radio),fieldset:not(.js-search-filter) .control
 	top:20px
 }
 
-.compose-message-recipient-input-container {
+.js-compose-message-recipient-container .typeahead-user-list,.compose-message-recipient-input-container {
 	width:240px
 }
 
@@ -5356,10 +5221,16 @@ fieldset .fixed-width-label:not(.radio),fieldset:not(.js-search-filter) .control
 	padding-top:8px
 }
 
-.js-compose-message-recipient-input-container.compose-message-recipient-input-container.position-rel.bg-r-white {
+.js-compose-message-recipient-input-container {
 	width:240px!important;
 	box-shadow:0 3px 7px rgba(17,17,17,.5);
-	padding-bottom:3px
+	transition:box-shadow 0.3s;
+	padding-bottom:3px;
+	border-radius: 4px;
+}
+
+.js-compose-message-recipient-input-container.is-focused {
+	box-shadow:0 6px 10px rgba(17,17,17,.5)
 }
 
 .compose-message-account {
@@ -5379,7 +5250,8 @@ fieldset .fixed-width-label:not(.radio),fieldset:not(.js-search-filter) .control
 .compose-message-recipient-container {
 	display:block!important;
 	max-height:2000px;
-	opacity:1
+	opacity:1;
+	margin-bottom:19px
 }
 
 .compose-message-recipient-container.is-hidden {
@@ -5508,10 +5380,6 @@ fieldset .toggle-switch {
 button.mtd-no-transform-case {
 	text-transform:none;
 	padding:4px 0
-}
-
-.compose-account:focus {
-	outline:0
 }
 
 .btn-options-tray[data-action="right"] {
@@ -5663,7 +5531,7 @@ button.mtd-no-transform-case {
 	pointer-events:all
 }
 
-.contributor-row[data-state="confirmRemove"] .contributor-confirm-remove.padding-bl {
+.contributor-row:not([data-state="confirmRemove"]) .contributor-confirm-remove.padding-bl {
 	margin-top:-130px
 }
 
@@ -5792,11 +5660,12 @@ button.mtd-no-transform-case {
 }
 
 .js-open-analytics {
-	position:absolute;
-	margin-top:-58px;
-	text-align:right
+	text-align:right;
+	margin-top:40px;
+	width:30px!important;
+	height:24px
 }
-
+r
 #list_details input:not([type=radio]),#list_details select {
 	margin-left:-550px;
 	margin-top:70px
@@ -5880,10 +5749,6 @@ button.mtd-no-transform-case {
 	padding-left:168px
 }
 
-.l-column.mdl-column.mdl-column-sml+.mdl-column.mdl-column-lrg {
-	width:100%
-}
-
 .l-column.mdl-column.mdl-column-sml li {
 	width:130px;
 	display:inline-block;
@@ -5893,7 +5758,7 @@ button.mtd-no-transform-case {
 	text-align:center
 }
 
-.l-column.mdl-column.mdl-column-sml .selected {
+.js-toggle.padding-al button.is-selected,.mtd-nav-drawer-background-hidden,.l-column.mdl-column.mdl-column-sml .selected {
 	background:transparent
 }
 
@@ -5951,7 +5816,7 @@ button.mtd-no-transform-case {
 	width:100%;
 	padding-left:0!important;
 	padding-right:0!important;
-	margin-top:60px;
+	margin-top:60px
 }
 
 .s-inreply.s-fluid-height>.mdl-inner {
@@ -6055,10 +5920,6 @@ button.mtd-no-transform-case {
 	font-weight:500
 }
 
-.js-toggle.padding-al button.is-selected {
-	background:transparent
-}
-
 .compose-remember-state {
 	width:50px;
 	cursor:pointer
@@ -6113,7 +5974,7 @@ button.mtd-no-transform-case {
 	background:#2196F3
 }
 
-textarea:not(.compose-text):not(.js-compose-text) {
+textarea:not(.compose-text):not(.js-compose-text):not(.js-list-description) {
 	border-bottom:2px solid transparent;
 	width:100%
 }
@@ -6134,23 +5995,15 @@ textarea:not(.compose-text):not(.js-compose-text) {
 	margin-bottom:5px;
 	margin-top:0;
 	padding-left:53px;
-	overflow:hidden
+	overflow:hidden;
 }
 
 .tweet-text:not(.with-linebreaks) {
 	margin-top:8px
 }
 
-.compose-reply-tweet .tweet-text {
-	padding-left:0
-}
-
 .txt-mute .tweet-text {
 	padding-left:6px
-}
-
-.js-dropdown-content>ul,.tweet-message .tweet-text,.quoted-tweet .tweet-text,.tweet-detail-wrapper .tweet-text {
-	padding-left:0
 }
 
 .js-media.item-box-full-bleed {
@@ -6181,14 +6034,6 @@ body>.message-banner[style="color:rgb(85, 85, 85); background-color:rgb(178, 213
 
 .activity-header-wrapping.activity-header.has-source-avatar>.nbfc {
 	font-size:0
-}
-
-.med-embeditem>.l-table {
-	width:100%
-}
-
-.compose-reply-tweet .username,.compose-reply-tweet .fullname {
-	line-height:-11px
 }
 
 .status-message {
@@ -6252,7 +6097,7 @@ body>.message-banner[style="color:rgb(85, 85, 85); background-color:rgb(178, 213
 }
 
 .js-quote-tweet-holder:not(.is-hidden)+div+div+.margin-t--12 {
-	margin-top:-70px!important
+	margin-top:-80px!important
 }
 
 .quoted-tweet .tweet-avatar,.quoted-tweet .tweet-img {
@@ -6268,7 +6113,9 @@ body>.message-banner[style="color:rgb(85, 85, 85); background-color:rgb(178, 213
 .compose .quoted-tweet .js-quoted-tweet-text {
 	padding-top:10px;
 	padding-left:5px;
-	margin-top:10px
+	margin-top:10px;
+	width:100%;
+	float:left
 }
 
 .compose .quoted-tweet .sprite-close {
@@ -6374,7 +6221,7 @@ body>.message-banner[style="color:rgb(85, 85, 85); background-color:rgb(178, 213
 
 label[for="account-safeguard-checkbox"] {
 	padding-top:0;
-	padding-right:10px;
+	padding-right:10px
 }
 
 #account-safeguard-checkbox {
@@ -6405,8 +6252,8 @@ label[for="account-safeguard-checkbox"] {
 
 #inline-account-safeguard-checkbox {
 	position:absolute;
-	bottom:22px;
-	left:20px
+	bottom: 26px;
+	left:20px;
 }
 
 .js-column-options input[type="checkbox"]:before {
@@ -6424,10 +6271,6 @@ p[lang="ar"],p[lang="fa"],p[lang="ha"],p[lang="he"],p[lang="ks"],p[lang="ku"],p[
 p[lang="ar"] a[rel="hashtag"],p[lang="ar"] a[rel="user"],p[lang="fa"] a[rel="hashtag"],p[lang="fa"] a[rel="user"],p[lang="ha"] a[rel="hashtag"],p[lang="ha"] a[rel="user"],p[lang="he"] a[rel="hashtag"],p[lang="he"] a[rel="user"],p[lang="ks"] a[rel="hashtag"],p[lang="ks"] a[rel="user"],p[lang="ku"] a[rel="hashtag"],p[lang="ku"] a[rel="user"],p[lang="ps"] a[rel="hashtag"],p[lang="ps"] a[rel="user"],p[lang="ur"] a[rel="hashtag"],p[lang="ur"] a[rel="user"],p[lang="yi"] a[rel="hashtag"],p[lang="yi"] a[rel="user"] {
     direction:ltr;
     unicode-bidi:isolate
-}
-
-.contributor-row .account-summary-text {
-	padding-left:45px
 }
 
 .contributor-detail {
@@ -6452,15 +6295,6 @@ p[lang="ar"] a[rel="hashtag"],p[lang="ar"] a[rel="user"],p[lang="fa"] a[rel="has
 	font-size:14px
 }
 
-.contributor-settings-role>.radio {
-	padding-left:0
-}
-
-.contributor-settings-role>.radio .nbfc {
-	width:180px;
-	padding-left:35px
-}
-
 .scroll-conversation .js-replies-before .js-media-preview-container.margin-vm,.scroll-conversation .js-replies-to .js-media-preview-container.margin-vm {
 	padding-left:53px
 }
@@ -6478,22 +6312,18 @@ p[lang="ar"] a[rel="hashtag"],p[lang="ar"] a[rel="user"],p[lang="fa"] a[rel="has
 	margin-top:7px
 }
 
-.account-summary>.account-summary-text>.account-link {
-	margin-top:7px
-}
-
 .prf-actions .js-follow-button {
 	min-width:52px!important;
 	min-height:51px!important;
 	font-size:18px;
-	padding-top:8px;
-	padding-left:12px;
+	padding-top: 12px;
+	padding-left: 10px;
 	text-align:left;
 	margin-top:-52px;
 	margin-left:-65px;
 	border-radius:32px;
 	z-index:5;
-	box-shadow:0 2px 5px 1px rgba(0,0,0,.25)
+	box-shadow:0 2px 5px 1px rgba(0,0,0,.25);
 }
 
 .prf-actions .action-text {
@@ -6513,7 +6343,7 @@ p[lang="ar"] a[rel="hashtag"],p[lang="ar"] a[rel="user"],p[lang="fa"] a[rel="has
 
 .prf-actions .thats-you-text {
 	margin-top:7px;
-	margin-left:-2px
+	margin-left:-2px;
 }
 
 .prf-actions .thats-you-text:after {
@@ -6566,7 +6396,7 @@ p[lang="ar"] a[rel="hashtag"],p[lang="ar"] a[rel="user"],p[lang="fa"] a[rel="has
 	box-shadow:0 5px 15px 1px rgba(0,0,0,.25)
 }
 
-.s-following .follow-btn:hover {
+.prf .s-following .follow-btn:hover {
 	background-color:#EA6B6B!important
 }
 
@@ -6577,10 +6407,6 @@ p[lang="ar"] a[rel="hashtag"],p[lang="ar"] a[rel="user"],p[lang="fa"] a[rel="has
 
 .column-type-message.js-column-state-social-proof .js-column-social-proof .column-content {
 	top:120px
-}
-
-.tweet-message .account-link>.nbfc {
-	padding-left:0
 }
 
 .tweet-message .account-link>.nbfc>.inline-block {
@@ -6659,7 +6485,7 @@ legend.frm-legend+div+.control-group>.control-label,legend.frm-legend+div+div+.c
 }
 
 .tweet-stats {
-	height:5px
+	height:5px;
 }
 
 .tweet-detail-reply .account-link>.nbfc {
@@ -6671,12 +6497,12 @@ legend.frm-legend+div+.control-group>.control-label,legend.frm-legend+div+div+.c
 }
 
 .inline-reply>div {
-	padding:0!important
+	padding:0!important;
 }
 
 
-.inline-reply .js-reply-info-container,.inline-reply .compose-text-container {
-	padding-top:0!important
+.inline-reply .compose-text-container {
+	padding-top:0!important;
 }
 
 .hashflag {
@@ -6687,11 +6513,10 @@ legend.frm-legend+div+.control-group>.control-label,legend.frm-legend+div+div+.c
 
 .js-character-count {
 	display:block!important;
-	margin-right:46px!important;
 	position:absolute;
 	bottom:16px;
-	left:67%;
-	color:#000
+	color:#000;
+	right: 90px;
 }
 
 .control-group .margin-l--4 {
@@ -6738,7 +6563,7 @@ legend.frm-legend+div+.control-group>.control-label,legend.frm-legend+div+div+.c
 	height:auto!important;
 	left:50%!important;
 	margin-left:-300px!important;
-	top:0!important;
+	top:0!important
 }
 
 /** Wrapper class name is provided by JS **/
@@ -6983,15 +6808,7 @@ button[type="submit"]:active {
 }
 
 .compose-reply-tweet:not(.is-hidden)+.compose-text-container>.compose-text {
-	height:100px!important;
-}
-
-.prf-header>.width-p--85 {
-	width:100%!important;
-}
-
-svg:not(:root) {
-    overflow:hidden
+	height:100px!important
 }
 
 .stroke-twitter-light-gray {
@@ -7012,18 +6829,18 @@ svg:not(:root) {
 
 .js-progress-svg>svg {
 	height:32px!important;
-	width:32px!important;
+	width:32px!important
 }
 
 .js-progress-svg>svg>circle {
 	r:12!important;
 	stroke-width:3!important;
-	stroke-dasharray:75!important;
+	stroke-dasharray:75!important
 }
 
 .mdl-inner .js-account-selector {
 	width:100%;
-	padding-top:0;
+	padding-top:0
 }
 
 .compose-account-names {
@@ -7032,44 +6849,44 @@ svg:not(:root) {
 }
 
 .cf.padding-b--20.padding-r--20.padding-t--5 {
-	margin-top: 10px;
-	height:30px;
+	margin-top:10px;
+	height:30px
 }
 
 .mdl-inner.bg-twitter-lightest-gray.padding-l--20.padding-r--20.mdl-header-divider {
-	top:20px;
+	top:20px
 }
 
 .cmp-replyto .tweet-header,.cmp-replyto .tweet-body,.cmp-replyto .tweet-context {
-	padding-left:10px;
+	padding-left:10px
 }
 
 .txt-size--13 {
-	font-size:14px;
+	font-size:14px
 }
 
 .icon-user-team-mgr.pull-right.icon-small {
-	margin-right:5px;
+	margin-right:5px
 }
 
 .txt-size--13.padding-txs,.txt-size-variable--16>.padding-t--4 {
 	padding:0!important
 }
 
-.txt-size--13.padding-txs,.txt-size-variable--16 .txt-size--13 {
-	padding-left:20px!important;
+.txt-size--13.padding-txs,.txt-size-variable--16 .txt-size--13:not(.account-remove-check-message) {
+	padding-left:20px!important
 }
 
 .avatar.size64 {
     width:64px;
     height:64px;
-    border-radius:32px;
+    border-radius:32px
 }
 
 .avatar.size73 {
     width:73px;
     height:73px;
-    border-radius:37px;
+    border-radius:37px
 }
 
 .account-profile-header {
@@ -7079,5 +6896,151 @@ svg:not(:root) {
 }
 
 .avatar-border--2 {
-	box-shadow:0 5px 10px rgba(17,17,17,.2);
+	box-shadow:0 5px 10px rgba(17,17,17,.2)
+}
+
+.follow-from-accounts-username>.avatar {
+	margin-top:-4px;
+	margin-right:5px
+}
+
+.compose-message-recipient-list {
+	margin-bottom:10px
+}
+
+.compose .quoted-tweet .tweet-header+.js-reply-info-container {
+	padding-top:30px;
+	display:inline
+}
+
+.contributor-option {
+	margin-left:20px
+}
+
+.icon-analytics+.txt-size-variable--10 {
+	font-size:0px
+}
+
+.popover-position-t {
+	margin-top:4px
+}
+
+.contributor-settings-role {
+	margin-top:10px!important
+}
+
+.account-settings-bb {
+	padding-top:0!important
+}
+
+label[for="inline-account-safeguard-checkbox"] {
+	font-size:0;
+}
+
+.inline-reply .js-account-safeguard-checkbox {right: 140px;}
+
+.js-reply-info-container {
+	padding-bottom:0
+}
+
+.compose-reply-tweet .tweet-text.with-linebreaks {
+	padding-left:0
+}
+
+.media-preview {
+	margin-top:14px
+}
+
+.s-minimal .mdl-inner {
+	top:0
+}
+
+.js-quality-filter-info {
+    padding-bottom:10px
+}
+
+.column-content .accordion-panel a[rel="url noopener noreferrer"] {
+	color:#fff!important;
+	opacity:0.4!important
+}
+
+.js-stats-list {
+    margin-bottom:-17px;
+    padding-top:20px
+}
+
+.account-summary-text {
+	padding-left:56px;
+	padding-top:5px
+}
+
+.js-list-description {
+	border-top:0!important;
+	border-left:0!important;
+	border-right:0!important;
+	width:90%!important
+}
+
+.control-group .controls.color-twitter-darker-gray {
+	text-transform:uppercase;
+	font-size:12px!important;
+	padding-top:5px
+}
+
+.obj-left.js-theme,.obj-left.js-column-size,.obj-left.js-font-size {
+	width:170px
+}
+
+.controls {
+	margin-left:20px;
+}
+
+.icon-info.icon-large {
+	margin-right:6px;
+}
+
+#global_filter_settings .control-group {
+	width:49%
+}
+
+.js-filter-list {
+	width:300px;
+}
+
+.list-filter,.js-filter-list>ul {
+	width:280px;
+}
+
+.js-filter-list {
+	position:absolute;
+	left:50%;
+	top:0;
+	max-height:400px;
+	overflow-y: auto;
+	overflow-x: hidden;
+}
+
+#global_filter_settings .txt-size--12 {
+	position:absolute;
+	bottom:40px
+}
+
+#mtd-appearance-form .checkbox {
+	font-size:14px;
+}
+
+#mtd-appearance-form select {
+	margin-left:22px;
+}
+
+.drawer .js-character-count {
+	right:50px;
+}
+
+.from-handle {
+	vertical-align:middle
+}
+
+.form-login {
+	padding:10px;
 }
