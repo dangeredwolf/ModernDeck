@@ -258,7 +258,7 @@ html.scroll-v {
 }
 
 .search-input-control,.form-calendar,.prf .follow-combo>span,.position-rel,.cmp-inner,.app-search {
-	position:relative;
+	position:relative
 }
 
 .is-vishidden,.is-narrow-columns .is-vishidden-narrow,.is-medium-columns .is-vishidden-medium,.is-wide-columns .is-vishidden-wide {
@@ -3513,7 +3513,7 @@ input[type="radio"]:checked:before {
 .control-group {
 	margin-bottom:13px;
 	min-height:40px;
-	pointer-events:none;
+	pointer-events:none
 }
 
 .controls-space-58 {
@@ -3565,7 +3565,7 @@ input[type="radio"]:checked:before {
 
 .control-s .controls {
 	margin-left:0;
-	max-width: 350px;
+	max-width:350px
 }
 
 .control-m .control-label {
@@ -4475,7 +4475,7 @@ input[type="radio"]:checked:before {
 	float:right;
 	display:block;
 	margin-right:8px;
-	max-width: 188px;
+	max-width:188px
 }
 
 .app-nav-link.js-header-add-column .obj-left {
@@ -5443,7 +5443,7 @@ button.mtd-no-transform-case {
 	height:0;
 	padding-left:8px;
 	overflow-y:hidden;
-	max-width: 310px;
+	max-width:310px
 }
 
 .is-expanded .accordion-panel {
@@ -6096,7 +6096,7 @@ body>.message-banner[style="color:rgb(85, 85, 85); background-color:rgb(178, 213
 	text-align:left;
 	display:block;
 	text-transform:lowercase;
-	padding-top: 5px;
+	padding-top:5px
 }
 
 .js-quote-tweet-holder:not(.is-hidden)+div+div+.margin-t--12 {
@@ -6359,7 +6359,7 @@ p[lang="ar"] a[rel="hashtag"],p[lang="ar"] a[rel="user"],p[lang="fa"] a[rel="has
 	position:absolute;
 	left:-40px;
 	color:#fff!important;
-	margin:0;
+	margin:0
 }
 
 .prf-follow-state .dropdown-menu {
@@ -7081,10 +7081,14 @@ label[for="inline-account-safeguard-checkbox"] {
 }
 
 .accordion-divider-t>.button-group:nth-child(3),.accordion-divider-t>.button-group:nth-child(4) {
-	float:right;
+	float:right
 }
 
 .accordion-divider-t>.button-group:nth-child(2) {
 	left:25%;
-	margin-left:-26px;
+	margin-left:-26px
+}
+
+.js-message-detail .tweet-body {
+    padding-left:48px
 }
