@@ -139,19 +139,7 @@ div.drawer[data-drawer="compose"],
 	background:#00838F!important
 }
 
-.mtd-back-default .js-setting-list>li:not(.selected)>.list-link strong,
-.txt-mute,
-.txt-r-dark-gray,
-.typeahead .username,
-.l-column.mdl-column.mdl-column-sml .list-link,
-.lst-group .list-account .username,
-html .btd-grayscale_notification_icons i.icon.activity-indicator,
-.other-replies,
-.tweet-stats>li,
-.txt-r-deep-gray,
-.color-twitter-dark-gray,
-.color-twitter-darker-gray,
-.js-send-button[disabled]
+.mtd-back-default .js-setting-list>li:not(.selected)>.list-link strong, .txt-mute, .txt-r-dark-gray, .typeahead .username, .l-column.mdl-column.mdl-column-sml .list-link, .lst-group .list-account .username, html .btd-grayscale_notification_icons i.icon.activity-indicator, .other-replies, .tweet-stats>li, .txt-r-deep-gray, .color-twitter-dark-gray, .lst-launcher :not(.is-disabled) .color-twitter-darker-gray, .js-send-button[disabled]
 {
 	color:#6D808B
 }
@@ -521,7 +509,7 @@ textarea
 .ovl,
 .overlay
 {
-	background:rgba(88,100,107,.4)!important
+	background:rgba(88,100,107,.4)
 }
 
 .lst-modal,
@@ -730,7 +718,7 @@ button[type="submit"]:active,button[type="submit"]:focus {
 	background:#12c3d4
 }
 
-.lst-launcher a,.lst-launcher a:hover,.character-count,.character-count-compose,.lst-launcher a:focus,.lst-launcher a:active,.lst-launcher span {
+.lst-launcher a:not(.is-disabled), .lst-launcher a:not(.is-disabled):hover, .character-count, .character-count-compose, .lst-launcher a:not(.is-disabled):focus, .lst-launcher a:not(.is-disabled):active, .lst-launcher li:not(.is-disabled) span {
 	color:#fff!important
 }
 

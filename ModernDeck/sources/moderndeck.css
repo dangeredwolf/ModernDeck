@@ -234,7 +234,7 @@ html.scroll-v {
 .account-link>.nbfc {
 	overflow:hidden;
 	margin-top:0;
-	padding: 5px 30px 0 50px;
+	padding:5px 30px 0 50px
 }
 
 .quoted-tweet .account-link>.nbfc,.tweet.txt-mute .account-link>.nbfc,.padding-al.bg-color-twitter-white.br--3,.tweet-message .account-link>.nbfc,.contributor-settings-role>.radio,.compose-reply-tweet .tweet-text,.js-dropdown-content>ul,.tweet-message .tweet-text,.quoted-tweet .tweet-text,.tweet-detail-wrapper .tweet-text.margin-b--10 {
@@ -919,8 +919,7 @@ button:hover,button:focus,.Button--primary {
 }
 
 .btn-options-tray-space,.btn-options-tray {
-	padding:15px;
-	margin-right:20px
+	padding:15px
 }
 
 .follow-btn,.btn-fav {
@@ -1162,7 +1161,7 @@ button:hover,button:focus,.Button--primary {
 	text-align:center;
 	font-weight:500;
 	padding-bottom:0;
-	z-index: 5;
+	z-index:5
 }
 
 .column-title-editable.with-image-attribution {
@@ -1538,7 +1537,7 @@ a .column-title-back .icon:after {
 	line-height:1;
 	text-overflow:ellipsis;
 	font-size:14px;
-	margin-left:3px;
+	margin-left:3px
 }
 
 .fullname-badged-container,.fullname-badged {
@@ -1794,7 +1793,7 @@ a .column-title-back .icon:after {
 	right:10px;
 	line-height:1em;
 	font-size:12px;
-	top: 12px;
+	top:12px
 }
 
 .tweet-context .nbfc>a {
@@ -1891,7 +1890,7 @@ a .column-title-back .icon:after {
 .quoted-tweet {
 	border:0;
 	font-size:0.9em;
-	margin-top:0;
+	margin-top:10px;
 	box-shadow:0 3px 7px rgba(17,17,17,.5)
 }
 
@@ -1936,7 +1935,12 @@ a .column-title-back .icon:after {
 }
 
 .social-proof-for-tweet-title {
-	padding-top:15px!important
+	padding-top:30px!important
+}
+
+
+.mdl .social-proof-for-tweet-title {
+	padding-top:75px!important
 }
 
 .is-unread a {
@@ -2266,12 +2270,13 @@ a .column-title-back .icon:after {
 .accordion .icon-arrow-d,.accordion .icon-arrow-u {
 	position:absolute;
 	top:10px;
-	right:12px;
+	right:12px
 }
 
 .facet-type {
 	position:relative;
-	box-shadow:none
+	box-shadow:none;
+	padding-bottom:8px
 }
 
 .facet-type.is-active,.facet-type:active {
@@ -2295,12 +2300,12 @@ a .column-title-back .icon:after {
 	padding-top:2px;
 	text-align:right;
 	font-size:12px;
-	/* display:block; */
 	position:absolute;
-	/* opacity:1; */
-	right: 50px;
+	right:50px;
 	top:50%;
 	margin-top:-12px;
+	text-overflow:ellipsis;
+	max-width:160px
 }
 
 .control-label-checkbox {
@@ -2605,7 +2610,7 @@ a .column-title-back .icon:after {
 }
 
 .lst-launcher {
-	padding-top:20px;
+	padding-top:80px;
 	width:100%;
 	height:100%;
 	display:block;
@@ -2621,7 +2626,7 @@ a .column-title-back .icon:after {
 .lst-launcher a,.lst-launcher a:hover,.lst-launcher a:focus,.lst-launcher a:active {
 	display:block;
 	width:100%;
-	height:58px;
+	height:100px;
 	text-align:center
 }
 
@@ -2643,7 +2648,6 @@ a .column-title-back .icon:after {
 	text-align:center;
 	width:90%;
 	position:absolute;
-	opacity:0.75;
 	padding-top:5px;
 	margin-bottom:10px
 }
@@ -2866,8 +2870,8 @@ a .column-title-back .icon:after {
 	padding:0!important;
 	padding-top:10px!important;
 	box-shadow:0 3px 7px rgba(17,17,17,.5);
-	border-radius: 4px;
-	margin-top: 10px;
+	border-radius:4px;
+	margin-top:10px
 }
 
 .compose-text {
@@ -2956,9 +2960,9 @@ a .column-title-back .icon:after {
 	line-height:0;
 	padding:0;
 	padding-bottom:10px;
-	box-shadow: 0 3px 7px rgba(17,17,17,.5);
-	border-radius: 4px;
-	overflow: hidden;
+	box-shadow:0 3px 7px rgba(17,17,17,.5);
+	border-radius:4px;
+	overflow:hidden
 }
 
 .compose-media-info-bar i {
@@ -2972,8 +2976,8 @@ a .column-title-back .icon:after {
 }
 
 .compose-media-bar-remove .icon-close:before {
-	font-size: 32px!important;
-	text-shadow: 0 4px 10px rgba(17,17,17,1);
+	font-size:32px!important;
+	text-shadow:0 4px 10px rgba(17,17,17,1)
 }
 
 .compose-media-compressed .compose-media-bar-thumb {
@@ -2983,12 +2987,12 @@ a .column-title-back .icon:after {
 .compose-account {
 	position:relative;
 	float:left;
-	margin-right: 10px;
+	margin-right:10px;
 	border-radius:3px;
 	margin-bottom:5px;
 	-webkit-filter:grayscale(100%);
 	filter:grayscale(100%);
-	opacity:.35;
+	opacity:.35
 }
 
 .is-list .compose-account {
@@ -3021,10 +3025,10 @@ a .column-title-back .icon:after {
 	cursor:default;
 	height:180px;
 	margin-top:8px;
-	width: 100%;
+	width:100%;
 	box-sizing:border-box;
 	box-shadow:0 2px 8px #000;
-	margin-left: 5px;
+	margin-left:5px
 }
 
 .inline-reply .compose-text-container {
@@ -3033,7 +3037,7 @@ a .column-title-back .icon:after {
 	height:180px;
 	border-radius:0;
 	margin-left:-1px;
-	margin-top: 0;
+	margin-top:0
 }
 
 .inline-reply>.padding-axl {
@@ -3041,8 +3045,8 @@ a .column-title-back .icon:after {
 }
 
 .js-inline-reply .pull-right {
-	margin-top: -40px;
-	margin-right:-5px;
+	margin-top:-40px;
+	margin-right:-5px
 }
 
 .js-inline-reply .pull-right[for] {
@@ -3070,8 +3074,8 @@ a .column-title-back .icon:after {
 
 .inline-reply .compose-text {
 	padding:10px;
-	height: 120px!important;
-	width:100%;
+	height:120px!important;
+	width:100%
 }
 
 .detail-view-inline {
@@ -3377,9 +3381,9 @@ a:hover .icn-button-next {
 
 .divider-bar {
 	height:1px;
-	margin-top: 10px;
-	margin-bottom: 10px;
-	opacity:0;
+	margin-top:10px;
+	margin-bottom:10px;
+	opacity:0
 }
 
 .frm {
@@ -3527,7 +3531,7 @@ input[type="radio"]:checked:before {
 
 .checkbox,.radio {
 	min-height:18px;
-	padding-left:18px;
+	padding-left:18px
 }
 
 .checkbox input[type="checkbox"],.radio input[type="radio"],.js-toggle-switch {
@@ -3536,8 +3540,8 @@ input[type="radio"]:checked:before {
 
 .checkbox-reversed input[type="checkbox"],.js-toggle-switch {
 	float:right;
-	height: 22px;
-	font-size:24px;
+	height:22px;
+	font-size:24px
 }
 
 .checkbox span {
@@ -3560,7 +3564,8 @@ input[type="radio"]:checked:before {
 }
 
 .control-s .controls {
-	margin-left:0
+	margin-left:0;
+	max-width:350px
 }
 
 .control-m .control-label {
@@ -3625,7 +3630,8 @@ input[type="radio"]:checked:before {
 
 .mdl .js-add-column {
 	margin-bottom:20px;
-	z-index:5
+	z-index:5;
+	font-size:0
 }
 
 .js-add-column:hover,.js-add-column:focus,.js-add-column:active {
@@ -4362,7 +4368,7 @@ input[type="radio"]:checked:before {
 	margin-bottom:15px;
 	margin-left:10px!important;
 	margin-top:-15px!important;
-	width:235px;
+	width:235px
 }
 
 .js-column-detail .column-title-back:after,.js-tweet-results .column-title-back:after,.js-tweet-social-proof-back:after {
@@ -4468,7 +4474,8 @@ input[type="radio"]:checked:before {
 	width:55%;
 	float:right;
 	display:block;
-	margin-right:8px
+	margin-right:8px;
+	max-width:188px
 }
 
 .app-nav-link.js-header-add-column .obj-left {
@@ -4561,8 +4568,8 @@ a[rel=user]:active,.card-holder a[rel=mediaPreview]:active {
 .js-media-added {
 	width:240px;
 	margin-left:10px;
-	box-shadow: 0 3px 7px rgba(17,17,17,.5);
-	margin-top:15px;
+	box-shadow:0 3px 7px rgba(17,17,17,.5);
+	margin-top:15px
 }
 
 .cal header span {
@@ -4973,22 +4980,22 @@ fieldset .fixed-width-label.txt-uppercase b,fieldset:not(.js-search-filter) .con
 	width:100%;
 	text-align:left;
 	font-weight:500;
-	font-size: 16px;
+	font-size:16px;
 	margin-top:30px;
-	margin-left: 24px;
+	margin-left:24px;
 	margin-bottom:0;
-	text-transform:  uppercase;
+	text-transform:uppercase
 }
 
 #general_settings .obj-left:last-child b:after {
-	font-size: 16px;
-	content:"Fonts";
+	font-size:16px;
+	content:"Fonts"
 }
 
 #general_settings .control-group label.checkbox,#general_settings .control-group label.radio {
-	margin-left: 48px;
-	margin-right: 48px;
-	margin-bottom: 4px;
+	margin-left:48px;
+	margin-right:48px;
+	margin-bottom:4px
 }
 
 .js-display-sensitive-media.checkbox:after {
@@ -5000,8 +5007,8 @@ fieldset .fixed-width-label.txt-uppercase b,fieldset:not(.js-search-filter) .con
 .mdl .checkbox,.mdl .radio {
 	display:block;
 	pointer-events:all;
-	margin-bottom: 10px;
-	vertical-align:middle;
+	margin-bottom:10px;
+	vertical-align:middle
 }
 
 #link-shortening {
@@ -5128,7 +5135,7 @@ fieldset .fixed-width-label.txt-uppercase b,fieldset:not(.js-search-filter) .con
 .js-column-options .dropdown-menu {
 	margin-top:0;
 	left:0;
-	top:-15px
+	top:0
 }
 
 .js-account-safeguard-checkbox {
@@ -5226,7 +5233,7 @@ fieldset .fixed-width-label.txt-uppercase b,fieldset:not(.js-search-filter) .con
 	box-shadow:0 3px 7px rgba(17,17,17,.5);
 	transition:box-shadow 0.3s;
 	padding-bottom:3px;
-	border-radius: 4px;
+	border-radius:4px
 }
 
 .js-compose-message-recipient-input-container.is-focused {
@@ -5382,11 +5389,6 @@ button.mtd-no-transform-case {
 	padding:4px 0
 }
 
-.btn-options-tray[data-action="right"] {
-	margin-left:15px;
-	margin-right:0
-}
-
 .btn-options-tray[data-action="left"] {
 	margin-left:5px;
 	margin-right:0
@@ -5440,7 +5442,8 @@ button.mtd-no-transform-case {
 	position:relative;
 	height:0;
 	padding-left:8px;
-	overflow-y:hidden
+	overflow-y:hidden;
+	max-width:310px
 }
 
 .is-expanded .accordion-panel {
@@ -5995,7 +5998,7 @@ textarea:not(.compose-text):not(.js-compose-text):not(.js-list-description) {
 	margin-bottom:5px;
 	margin-top:0;
 	padding-left:53px;
-	overflow:hidden;
+	overflow:hidden
 }
 
 .tweet-text:not(.with-linebreaks) {
@@ -6028,9 +6031,9 @@ body>.message-banner[style="color:rgb(85, 85, 85); background-color:rgb(178, 213
 
 .s-following .following-text,.s-following .unfollow-text {
 	opacity:1;
-	margin-top: 7px;
+	margin-top:7px;
 	position:absolute;
-	margin-left: -2px;
+	margin-left:-2px
 }
 
 .activity-header-wrapping.activity-header.has-source-avatar>.nbfc {
@@ -6093,8 +6096,7 @@ body>.message-banner[style="color:rgb(85, 85, 85); background-color:rgb(178, 213
 	text-align:left;
 	display:block;
 	text-transform:lowercase;
-	width:0;
-	height:0
+	padding-top:5px
 }
 
 .js-quote-tweet-holder:not(.is-hidden)+div+div+.margin-t--12 {
@@ -6253,8 +6255,8 @@ label[for="account-safeguard-checkbox"] {
 
 #inline-account-safeguard-checkbox {
 	position:absolute;
-	bottom: 26px;
-	left:20px;
+	bottom:26px;
+	left:20px
 }
 
 .js-column-options input[type="checkbox"]:before {
@@ -6317,14 +6319,14 @@ p[lang="ar"] a[rel="hashtag"],p[lang="ar"] a[rel="user"],p[lang="fa"] a[rel="has
 	min-width:52px!important;
 	min-height:51px!important;
 	font-size:18px;
-	padding-top: 12px;
-	padding-left: 10px;
+	padding-top:12px;
+	padding-left:10px;
 	text-align:left;
 	margin-top:-52px;
 	margin-left:-65px;
 	border-radius:32px;
 	z-index:5;
-	box-shadow:0 2px 5px 1px rgba(0,0,0,.25);
+	box-shadow:0 2px 5px 1px rgba(0,0,0,.25)
 }
 
 .prf-actions .action-text {
@@ -6344,7 +6346,7 @@ p[lang="ar"] a[rel="hashtag"],p[lang="ar"] a[rel="user"],p[lang="fa"] a[rel="has
 
 .prf-actions .thats-you-text {
 	margin-top:7px;
-	margin-left:-2px;
+	margin-left:-2px
 }
 
 .prf-actions .thats-you-text:after {
@@ -6355,7 +6357,6 @@ p[lang="ar"] a[rel="hashtag"],p[lang="ar"] a[rel="user"],p[lang="fa"] a[rel="has
 
 .mdl .js-user-actions-menu {
 	position:absolute;
-	top:-320px;
 	left:-40px;
 	color:#fff!important;
 	margin:0
@@ -6467,9 +6468,14 @@ legend.frm-legend+div+.control-group>.control-label,legend.frm-legend+div+div+.c
 
 .tweet-stat {
 	box-sizing:border-box;
-	text-align:left;
 	width:40px
 }
+
+.tweet-stat.tweet-stats {
+	margin-top:20px;
+	margin-bottom:20px
+}
+
 .tweet-stat[data-type="repliers"] {
 	margin-left:22%;
 	display:block
@@ -6486,7 +6492,7 @@ legend.frm-legend+div+.control-group>.control-label,legend.frm-legend+div+div+.c
 }
 
 .tweet-stats {
-	height:5px;
+	height:5px
 }
 
 .tweet-detail-reply .account-link>.nbfc {
@@ -6498,12 +6504,12 @@ legend.frm-legend+div+.control-group>.control-label,legend.frm-legend+div+div+.c
 }
 
 .inline-reply>div {
-	padding:0!important;
+	padding:0!important
 }
 
 
 .inline-reply .compose-text-container {
-	padding-top:0!important;
+	padding-top:0!important
 }
 
 .hashflag {
@@ -6934,10 +6940,10 @@ button[type="submit"]:active {
 }
 
 label[for="inline-account-safeguard-checkbox"] {
-	font-size:0;
+	font-size:0
 }
 
-.inline-reply .js-account-safeguard-checkbox {right: 140px;}
+.inline-reply .js-account-safeguard-checkbox {right:140px;}
 
 .js-reply-info-container {
 	padding-bottom:0
@@ -6992,11 +6998,11 @@ label[for="inline-account-safeguard-checkbox"] {
 }
 
 .controls {
-	margin-left:20px;
+	margin-left:20px
 }
 
 .icon-info.icon-large {
-	margin-right:6px;
+	margin-right:6px
 }
 
 #global_filter_settings .control-group {
@@ -7004,11 +7010,11 @@ label[for="inline-account-safeguard-checkbox"] {
 }
 
 .js-filter-list {
-	width:300px;
+	width:300px
 }
 
 .list-filter,.js-filter-list>ul {
-	width:280px;
+	width:280px
 }
 
 .js-filter-list {
@@ -7016,8 +7022,8 @@ label[for="inline-account-safeguard-checkbox"] {
 	left:50%;
 	top:0;
 	max-height:400px;
-	overflow-y: auto;
-	overflow-x: hidden;
+	overflow-y:auto;
+	overflow-x:hidden
 }
 
 #global_filter_settings .txt-size--12 {
@@ -7026,15 +7032,15 @@ label[for="inline-account-safeguard-checkbox"] {
 }
 
 #mtd-appearance-form .checkbox {
-	font-size:14px;
+	font-size:14px
 }
 
 #mtd-appearance-form select {
-	margin-left:22px;
+	margin-left:22px
 }
 
 .drawer .js-character-count {
-	right:50px;
+	right:50px
 }
 
 .from-handle {
@@ -7042,9 +7048,47 @@ label[for="inline-account-safeguard-checkbox"] {
 }
 
 .form-login {
-	padding:10px;
+	padding:10px
 }
 
 .column-type-message .tweet-text.with-linebreaks {
-	padding-left:5px;
+	padding-left:5px
+}
+
+.avatar.size16.margin-t--20 {
+    margin-top:32px!important
+}
+
+.message-stream-item .tweet-body {
+	padding-left:30px
+}
+
+.js-conversation-name {
+	top:0;
+	width:70%
+}
+
+.edit-conversation-name button {
+	height:30px;
+	color:#fff!important
+}
+.edit-conversation-name .obj-right {
+	height:0px
+}
+
+.edit-conversation-name i {
+	margin-top:-60px
+}
+
+.accordion-divider-t>.button-group:nth-child(3),.accordion-divider-t>.button-group:nth-child(4) {
+	float:right
+}
+
+.accordion-divider-t>.button-group:nth-child(2) {
+	left:25%;
+	margin-left:-26px
+}
+
+.js-message-detail .tweet-body {
+    padding-left:48px
 }
