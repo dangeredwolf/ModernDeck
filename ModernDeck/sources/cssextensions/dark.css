@@ -728,9 +728,13 @@ button[type="submit"]:active,button[type="submit"]:focus {
 
 .sentry-error-embed .form-submit .powered-by a {
   -webkit-filter:brightness(1000%);
-  filter:brightness(1000%);
+  filter:brightness(1000%)
 }
 
 .js-character-count {
-	color:#fff!important;
+	color:#fff!important
+}
+
+.sprite-verified-mini:before,.sprite-verified:before {
+    color:inherit!important
 }

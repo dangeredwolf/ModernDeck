@@ -5,7 +5,7 @@
 
 "use strict";
 
-var SystemVersion = "6.4";
+var SystemVersion = "6.4.1";
 var MTDBaseURL = "https://rawgit.com/dangeredwolf/ModernDeck/stable/ModernDeck/"; // Defaults to streaming if using online client
 
 var msgID,
@@ -50,6 +50,8 @@ window.postMessage({
 
 // Adds each key in the extension storage to localStorage
 window.addEventListener("message", function(e) {
+	console.log("Message received");
+	console.log(e);
 	if (e.source == window) {
 		if (e.data.type == "sendStorage") {
 			var settings = e.data.message;
@@ -278,14 +280,16 @@ function MTDInit(){
 		fontParseHelper({weight:"300",name:"Roboto-LightItalic",style:"italic"}) +
 		fontParseHelper({weight:"100",name:"Roboto-Thin"}) +
 		fontParseHelper({weight:"100",name:"Roboto-ThinIalic",style:"italic"}) +
-		fontParseHelper({family:"Noto Sans CJK",weight:"500",name:"NotoSansJP-Medium",range:"U+3000-303F,U+3040-309F,U+30A0-30FF,U+FF00-FFEF,U+4E00-9FAF"}) +
-		fontParseHelper({family:"Noto Sans CJK",name:"NotoSansJP-Regular",range:"U+3000-303F,U+3040-309F,U+30A0-30FF,U+FF00-FFEF,U+4E00-9FAF"}) +
-		fontParseHelper({family:"Noto Sans CJK",weight:"500",name:"NotoSansKR-Medium",format:"opentype",extension:"otf",range:"U+2E80–2EFF,U+2F00–2FDF,U+2FF0–2FFF,U+3000–303F,U+3130–318F,U+3300–33FF,U+F900–FAFF,U+1100–11FF,U+A960–A97F,U+D7B0–D7FF"}) +
-		fontParseHelper({family:"Noto Sans CJK",name:"NotoSansKR-Regular",format:"opentype",extension:"otf",range:"U+2E80–2EFF,U+2F00–2FDF,U+2FF0–2FFF,U+3000–303F,U+3130–318F,U+3300–33FF,U+F900–FAFF,U+1100–11FF,U+A960–A97F,U+D7B0–D7FF"}) +
-		fontParseHelper({family:"Noto Sans CJK",weight:"500",name:"NotoSansSC-Medium",format:"opentype",extension:"otf",range:"U+4E00-9FFF,U+3400–4DBF,U+20000-2A6DF,U+2A700–2B73F,U+2B740–2B81F,U+2B820–2CEAF,U+2CEB0–2EBEF,U+2E80–303F,U+31C0-31EF,U+3200-33FF,U+F900-FAFF,U+FE30-FE4F,U+1F200-2F800"}) +
-		fontParseHelper({family:"Noto Sans CJK",name:"NotoSansSC-Regular",format:"opentype",extension:"otf",range:"U+4E00-9FFF,U+3400–4DBF,U+20000-2A6DF,U+2A700–2B73F,U+2B740–2B81F,U+2B820–2CEAF,U+2CEB0–2EBEF,U+2E80–303F,U+31C0-31EF,U+3200-33FF,U+F900-FAFF,U+FE30-FE4F,U+1F200-2F800"}) +
-		fontParseHelper({family:"Noto Sans CJK",weight:"500",name:"NotoSansTC-Medium",format:"opentype",extension:"otf",range:"U+4E00-9FFF,U+3400–4DBF,U+20000-2A6DF,U+2A700–2B73F,U+2B740–2B81F,U+2B820–2CEAF,U+2CEB0–2EBEF,U+2E80–303F,U+31C0-31EF,U+3200-33FF,U+F900-FAFF,U+FE30-FE4F,U+1F200-2F800"}) +
-		fontParseHelper({family:"Noto Sans CJK",name:"NotoSansTC-Regular",format:"opentype",extension:"otf",range:"U+4E00-9FFF,U+3400–4DBF,U+20000-2A6DF,U+2A700–2B73F,U+2B740–2B81F,U+2B820–2CEAF,U+2CEB0–2EBEF,U+2E80–303F,U+31C0-31EF,U+3200-33FF,U+F900-FAFF,U+FE30-FE4F,U+1F200-2F800"}) +
+		//fontParseHelper({family:"Noto Sans CJK",weight:"500",name:"NotoSansJP-Medium",range:"U+3000-303F,U+3040-309F,U+30A0-30FF,U+FF00-FFEF,U+4E00-9FAF"}) +
+		//fontParseHelper({family:"Noto Sans CJK",name:"NotoSansJP-Regular",range:"U+3000-303F,U+3040-309F,U+30A0-30FF,U+FF00-FFEF,U+4E00-9FAF"}) +
+		//fontParseHelper({family:"Noto Sans CJK",weight:"500",name:"NotoSansKR-Medium",format:"opentype",extension:"otf",range:"U+2E80–2EFF,U+2F00–2FDF,U+2FF0–2FFF,U+3000–303F,U+3130–318F,U+3300–33FF,U+F900–FAFF,U+1100–11FF,U+A960–A97F,U+D7B0–D7FF"}) +
+		//fontParseHelper({family:"Noto Sans CJK",name:"NotoSansKR-Regular",format:"opentype",extension:"otf",range:"U+2E80–2EFF,U+2F00–2FDF,U+2FF0–2FFF,U+3000–303F,U+3130–318F,U+3300–33FF,U+F900–FAFF,U+1100–11FF,U+A960–A97F,U+D7B0–D7FF"}) +
+		fontParseHelper({family:"Noto Sans CJK",weight:"500",name:"NotoSansCJKjp-Medium",format:"opentype",extension:"otf"}) +
+		fontParseHelper({family:"Noto Sans CJK",name:"NotoSansCJKjp-Regular",format:"opentype",extension:"otf"}) +
+		//fontParseHelper({family:"Noto Sans CJK",weight:"500",name:"NotoSansSC-Medium",format:"opentype",extension:"otf",range:"U+4E00-9FFF,U+3400–4DBF,U+20000-2A6DF,U+2A700–2B73F,U+2B740–2B81F,U+2B820–2CEAF,U+2CEB0–2EBEF,U+2E80–303F,U+31C0-31EF,U+3200-33FF,U+F900-FAFF,U+FE30-FE4F,U+1F200-2F800"}) +
+		//fontParseHelper({family:"Noto Sans CJK",name:"NotoSansSC-Regular",format:"opentype",extension:"otf",range:"U+4E00-9FFF,U+3400–4DBF,U+20000-2A6DF,U+2A700–2B73F,U+2B740–2B81F,U+2B820–2CEAF,U+2CEB0–2EBEF,U+2E80–303F,U+31C0-31EF,U+3200-33FF,U+F900-FAFF,U+FE30-FE4F,U+1F200-2F800"}) +
+		//fontParseHelper({family:"Noto Sans CJK",weight:"500",name:"NotoSansTC-Medium",format:"opentype",extension:"otf",range:"U+4E00-9FFF,U+3400–4DBF,U+20000-2A6DF,U+2A700–2B73F,U+2B740–2B81F,U+2B820–2CEAF,U+2CEB0–2EBEF,U+2E80–303F,U+31C0-31EF,U+3200-33FF,U+F900-FAFF,U+FE30-FE4F,U+1F200-2F800"}) +
+		//fontParseHelper({family:"Noto Sans CJK",name:"NotoSansTC-Regular",format:"opentype",extension:"otf",range:"U+4E00-9FFF,U+3400–4DBF,U+20000-2A6DF,U+2A700–2B73F,U+2B740–2B81F,U+2B820–2CEAF,U+2CEB0–2EBEF,U+2E80–303F,U+31C0-31EF,U+3200-33FF,U+F900-FAFF,U+FE30-FE4F,U+1F200-2F800"}) +
 		fontParseHelper({family:"Noto Sans",weight:"500",name:"NotoSansHI-Medium",range:"U+0900-097F"}) +
 		fontParseHelper({family:"Noto Sans",name:"NotoSansHI-Regular",range:"U+0900-097F"}) +
 		fontParseHelper({family:"Noto Sans",weight:"500",name:"NotoSansArabic-Medium",range:"U+0600-06FF,U+0750–077F,U+08A0–08FF,U+FB50–FDFF,U+FE70–FEFF,U+10E60–10E7F,U+1EE00—1EEFF"}) +

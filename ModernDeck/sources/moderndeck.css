@@ -151,8 +151,7 @@ html.scroll-v {
 }
 
 .l-table {
-	display:table;
-	margin-bottom:2px
+	display:table
 }
 
 .l-row {
@@ -345,7 +344,7 @@ html.scroll-v {
 }
 
 .full-width,.prf-header>.width-p--85 {
-	width:100%!important
+	width:100%!important;
 }
 
 .is-actionable,.is-actionable:active {
@@ -929,8 +928,8 @@ button:hover,button:focus,.Button--primary {
 .s-not-following .follow-text {
 	display:block;
 	min-width:auto;
-	margin-left:1px;
-	margin-top:2px
+	margin-left: -2px;
+	margin-top: 7px;
 }
 
 .button-group .btn,.button-group .Button {
@@ -3895,8 +3894,7 @@ input[type="radio"]:checked:before {
 }
 
 .prf-header i {
-	font-size:24px;
-	text-shadow:none
+	font-size:24px
 }
 
 .prf-header .icon-with-bg-round {
@@ -4003,7 +4001,7 @@ input[type="radio"]:checked:before {
 .prf .lst-profile a {
 	height:40px;
 	width:auto;
-	padding-top:20px
+	padding-top:20px;
 }
 
 .prf-follow-status {
@@ -5091,7 +5089,8 @@ fieldset .fixed-width-label.txt-uppercase b,fieldset:not(.js-search-filter) .con
 
 .tweet-action[rel="favorite"] i,.tweet-detail-action[rel="favorite"] i {
 	transform:rotate(0deg);
-	display:block
+	display:block;
+	margin-top:2px
 }
 
 .anim-bounce-in.tweet-action[rel="favorite"] i,.anim-bounce-in.tweet-detail-action[rel="favorite"] i {
@@ -5997,8 +5996,11 @@ textarea:not(.compose-text):not(.js-compose-text):not(.js-list-description) {
 .tweet-text.with-linebreaks {
 	margin-bottom:5px;
 	margin-top:0;
-	padding-left:53px;
 	overflow:hidden
+}
+
+.js-tweet .tweet-text {
+	padding-left:53px
 }
 
 .tweet-text:not(.with-linebreaks) {
@@ -6359,7 +6361,9 @@ p[lang="ar"] a[rel="hashtag"],p[lang="ar"] a[rel="user"],p[lang="fa"] a[rel="has
 	position:absolute;
 	left:-40px;
 	color:#fff!important;
-	margin:0
+	margin:0;
+	top: -320px;
+	text-shadow: 0 1px 5px #000;
 }
 
 .prf-follow-state .dropdown-menu {
@@ -7052,7 +7056,11 @@ label[for="inline-account-safeguard-checkbox"] {
 }
 
 .column-type-message .tweet-text.with-linebreaks {
-	padding-left:5px
+	padding-left:5px;
+}
+
+.media-grid-4>.media-image-container:nth-child(1),.media-grid-4>.media-image-container:nth-child(2) {
+    z-index:5
 }
 
 .avatar.size16.margin-t--20 {
@@ -7060,7 +7068,7 @@ label[for="inline-account-safeguard-checkbox"] {
 }
 
 .message-stream-item .tweet-body {
-	padding-left:30px
+	/* padding-left:30px; */
 }
 
 .js-conversation-name {
@@ -7090,5 +7098,24 @@ label[for="inline-account-safeguard-checkbox"] {
 }
 
 .js-message-detail .tweet-body {
-    padding-left:48px
+    padding-left: 56px;
+}
+
+.tweet-translation-attribution-text {
+	padding-bottom:10px;
+}
+
+.microsoft-logo:after {
+	content:"Microsoft";
+	margin-top:-7px;
+	position:absolute
+}
+
+.js-modal-panel.mdl.is-inverted-dark.s-fluid.s-narrow.cmp.s-minimal .mdl-content {
+	padding-top:80px;
+	padding-left:20px
+}
+
+.prf-header .sprite-verified:before {
+	color:inherit
 }
