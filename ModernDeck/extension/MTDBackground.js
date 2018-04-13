@@ -31,10 +31,18 @@ if (chrome !== "undefined") {
     }, {urls:["https://ton.twimg.com/*"]}, ["blocking"]);
 
   chrome.runtime.onMessage.addListener(function(m){
+  	console.log("Message received");
+  	console.log(m);
     if (m == "getStorage") {
       chrome.storage.local.get(null, function(items){
         chrome.tabs.query({url: "https://tweetdeck.twitter.com/"}, function(tabs){
-          chrome.tabs.sendMessage(tabs[0].id, {"name": "sendStorage", "storage": items});
+        	if (typeof tabs[0] !== "undefined") {
+        		chrome.tabs.sendMessage(tabs[0].id, {"name": "sendStorage", "storage": JSON.stringify(items)});
+        	} else {
+        		chrome.tabs.sendMessage(tabs.id, {"name": "sendStorage", "message": JSON.stringify(items)});
+        	}
+          console.log("Reply sent");
+          console.log(items);
         });
       });
     } else if (m.name == "setStorage") {
@@ -42,3 +50,4 @@ if (chrome !== "undefined") {
     }
   });
 }
+

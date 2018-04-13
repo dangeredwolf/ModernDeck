@@ -7048,3 +7048,7 @@ label[for="inline-account-safeguard-checkbox"] {
 .column-type-message .tweet-text.with-linebreaks {
 	padding-left:5px;
 }
+
+.media-grid-4>.media-image-container:nth-child(1),.media-grid-4>.media-image-container:nth-child(2) {
+    z-index:5
+}

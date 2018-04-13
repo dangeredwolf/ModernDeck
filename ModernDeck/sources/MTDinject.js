@@ -50,6 +50,8 @@ window.postMessage({
 
 // Adds each key in the extension storage to localStorage
 window.addEventListener("message", function(e) {
+	console.log("Message received");
+	console.log(e);
 	if (e.source == window) {
 		if (e.data.type == "sendStorage") {
 			var settings = e.data.message;
