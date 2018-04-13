@@ -3894,8 +3894,7 @@ input[type="radio"]:checked:before {
 }
 
 .prf-header i {
-	font-size:24px;
-	text-shadow:none
+	font-size:24px
 }
 
 .prf-header .icon-with-bg-round {
@@ -7114,5 +7113,9 @@ label[for="inline-account-safeguard-checkbox"] {
 
 .js-modal-panel.mdl.is-inverted-dark.s-fluid.s-narrow.cmp.s-minimal .mdl-content {
 	padding-top:80px;
-	padding-left:20px;
+	padding-left:20px
+}
+
+.prf-header .sprite-verified:before {
+	color:inherit
 }
