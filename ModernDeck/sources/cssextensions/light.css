@@ -25,9 +25,7 @@ input[type="radio"]:checked:before,
 	color:#00BCD4
 }
 
-a:not(.list-account):not(.js-column-back):not(.compose-account):not(.js-toggle-item):not(.column-header-link):not(.js-account-action):active,
-a:not(.list-account):not(.js-column-back):not(.compose-account):not(.js-toggle-item):not(.column-header-link):not(.js-account-action):focus,
-.js-send-button
+a:not(.list-account):not(.js-column-back):not(.compose-account):not(.js-toggle-item):not(.column-header-link):not(.js-account-action):not(.js-tweet-social-proof-back):active, a:not(.list-account):not(.js-column-back):not(.compose-account):not(.js-toggle-item):not(.column-header-link):not(.js-account-action):not(.js-tweet-social-proof-back):focus
 {
 	color:#0DA8BC;
 }
@@ -105,7 +103,7 @@ html .btd-grayscale_notification_icons i.icon.activity-indicator,
 .txt-r-deep-gray,
 .color-twitter-dark-gray,
 .color-twitter-darker-gray,
-.js-send-button[disabled]
+.js-send-button.is-disabled
 {
 	color:#979797
 }
@@ -278,7 +276,9 @@ html .btd-grayscale_notification_icons i.icon.activity-indicator,
 .selected .list-link strong,
 .js-submittable-input.js-compose-text,
 .popover input.txt-mute,
-.popover textarea.txt-mute
+.popover textarea.txt-mute,
+.toggle-item-text,
+.accordion-panel .txt-bold
 {
 	color:#fff
 }
@@ -899,7 +899,8 @@ textarea
 }
 
 .tweet-action,
-.tweet-detail-action
+.tweet-detail-action,
+.social-proof-for-tweet-title
 {
 	color:#787878
 }
