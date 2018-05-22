@@ -1142,7 +1142,8 @@ button:hover,button:focus,.Button--primary {
 	display:inline;
 	color:rgba(255,255,255,.74);
 	text-overflow:ellipsis;
-    overflow:hidden
+	overflow:hidden;
+	margin-left: 5px;
 }
 
 .column-type-message .column-title {
@@ -1222,7 +1223,7 @@ a .column-title-back .icon:after {
 	opacity:0
 }
 
-.column-title-back .column-head-title {
+.column-title-back .column-heading {
 	padding-bottom:25px;
 	margin-top:-55px;
 	font-weight:400;
@@ -4322,7 +4323,7 @@ input[type="radio"]:checked:before {
 	font-size:12px
 }
 
-.column-nav-link .column-head-title {
+.column-nav-link .column-heading {
 	display:block;
 	overflow:hidden;
 	white-space:nowrap;
@@ -4331,7 +4332,7 @@ input[type="radio"]:checked:before {
 	margin-right:20px
 }
 
-.column-head-title {
+.column-heading {
 	height:18px;
 	margin-top:-8px;
 	font-size:16px;
@@ -4339,7 +4340,8 @@ input[type="radio"]:checked:before {
 	display:inline;
 	padding-left:40px;
 	font-weight:500;
-	text-overflow:ellipsis
+	text-overflow:ellipsis;
+	height: 75%;
 }
 
 .media-img {
