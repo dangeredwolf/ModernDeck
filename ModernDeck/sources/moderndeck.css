@@ -236,10 +236,6 @@ html.scroll-v {
 	padding:5px 30px 0 50px
 }
 
-.quoted-tweet .account-link>.nbfc,.tweet.txt-mute .account-link>.nbfc,.padding-al.bg-color-twitter-white.br--3,.tweet-message .account-link>.nbfc,.contributor-settings-role>.radio,.compose-reply-tweet .tweet-text,.js-dropdown-content>ul,.tweet-message .tweet-text,.quoted-tweet .tweet-text,.tweet-detail-wrapper .tweet-text.margin-b--10 {
-	padding-left:0
-}
-
 .nbfc-alt {
 	display:table-cell;
 	width:300px
@@ -1118,18 +1114,18 @@ button:hover,button:focus,.Button--primary {
 }
 
 .column-title {
-	margin-right:35px;
+	/* margin-right:35px; */
 	font-size:20px;
 	font-weight:400;
 	height:100%;
 	position:absolute;
 	left:10px;
-	right:20px;
+	right: 0;
 	padding-top:5px;
 	margin-left:0;
 	margin-top:-2px;
 	word-wrap:break-word;
-	text-overflow:ellipsis
+	text-overflow:ellipsis;
 }
 
 .mdl .column-title {
@@ -1142,7 +1138,8 @@ button:hover,button:focus,.Button--primary {
 	display:inline;
 	color:rgba(255,255,255,.74);
 	text-overflow:ellipsis;
-    overflow:hidden
+	overflow:hidden;
+	margin-left: 5px;
 }
 
 .column-type-message .column-title {
@@ -1222,13 +1219,9 @@ a .column-title-back .icon:after {
 	opacity:0
 }
 
-.column-title-back .column-head-title {
-	padding-bottom:25px;
+.column-title-back .column-heading {
 	margin-top:-55px;
-	font-weight:400;
-	margin-left:0;
-	text-align:left;
-	display:block!important
+	display:none!important
 }
 
 .column-type-icon {
@@ -4322,7 +4315,7 @@ input[type="radio"]:checked:before {
 	font-size:12px
 }
 
-.column-nav-link .column-head-title {
+.column-nav-link .column-heading {
 	display:block;
 	overflow:hidden;
 	white-space:nowrap;
@@ -4331,15 +4324,12 @@ input[type="radio"]:checked:before {
 	margin-right:20px
 }
 
-.column-head-title {
-	height:18px;
-	margin-top:-8px;
+.column-heading {
 	font-size:16px;
-	text-align:left;
-	display:inline;
 	padding-left:40px;
 	font-weight:500;
-	text-overflow:ellipsis
+	text-overflow:ellipsis;
+	height:50px
 }
 
 .media-img {
@@ -6000,7 +5990,7 @@ textarea:not(.compose-text):not(.js-compose-text):not(.js-list-description) {
 }
 
 .js-tweet .tweet-text {
-	padding-left:53px
+	padding-left:53px;
 }
 
 .tweet-text:not(.with-linebreaks) {
@@ -6953,10 +6943,6 @@ label[for="inline-account-safeguard-checkbox"] {
 	padding-bottom:0
 }
 
-.compose-reply-tweet .tweet-text.with-linebreaks {
-	padding-left:0
-}
-
 .media-preview {
 	margin-top:14px
 }
@@ -7118,4 +7104,8 @@ label[for="inline-account-safeguard-checkbox"] {
 
 .prf-header .sprite-verified:before {
 	color:inherit
+}
+
+.compose-reply-tweet .tweet-text.with-linebreaks,.med-tweet .tweet-text,.quoted-tweet .account-link>.nbfc,.tweet.txt-mute .account-link>.nbfc,.padding-al.bg-color-twitter-white.br--3,.tweet-message .account-link>.nbfc,.contributor-settings-role>.radio,.compose-reply-tweet .tweet-text,.js-dropdown-content>ul,.tweet-message .tweet-text,.quoted-tweet .tweet-text,.tweet-detail-wrapper .tweet-text.margin-b--10 {
+	padding-left:0
 }
