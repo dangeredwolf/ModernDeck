@@ -1118,13 +1118,12 @@ button:hover,button:focus,.Button--primary {
 }
 
 .column-title {
-	margin-right:35px;
 	font-size:20px;
 	font-weight:400;
 	height:100%;
 	position:absolute;
 	left:10px;
-	right:20px;
+	right:0;
 	padding-top:5px;
 	margin-left:0;
 	margin-top:-2px;
@@ -1154,14 +1153,15 @@ button:hover,button:focus,.Button--primary {
 	position:absolute;
 	font-size:16px;
 	height:32px;
-	width:60%;
+	width: 65%;
 	left:0;
 	margin-left:40px;
 	border-color:#fff;
 	text-align:center;
 	font-weight:500;
 	padding-bottom:0;
-	z-index:5
+	z-index:5;
+	bottom: 10px;
 }
 
 .column-title-editable.with-image-attribution {
@@ -1224,12 +1224,7 @@ a .column-title-back .icon:after {
 }
 
 .column-title-back .column-heading {
-	padding-bottom:25px;
-	margin-top:-55px;
-	font-weight:400;
-	margin-left:0;
-	text-align:left;
-	display:block!important
+	display:none
 }
 
 .column-type-icon {
@@ -1237,7 +1232,8 @@ a .column-title-back .icon:after {
 	font-size:24px;
 	width:100%;
 	height:48px;
-	padding-top:4px
+	padding-top:4px;
+	margin-left: 0;
 }
 
 .js-item-launch .column-type-icon {
@@ -4335,15 +4331,13 @@ input[type="radio"]:checked:before {
 }
 
 .column-heading {
-	height:18px;
-	margin-top:-8px;
 	font-size:16px;
 	text-align:left;
 	display:inline;
-	padding-left:40px;
+	padding-left: 32px;
 	font-weight:500;
 	text-overflow:ellipsis;
-	height: 75%;
+	height: 50px;
 }
 
 .media-img {
@@ -6111,9 +6105,8 @@ body>.message-banner[style="color:rgb(85, 85, 85); background-color:rgb(178, 213
 }
 
 .quoted-tweet .tweet-avatar,.quoted-tweet .tweet-img {
-	height:24px;
-	width:24px;
-	margin-left:5px
+	height:20px;
+	width:20px
 }
 
 .compose .quoted-tweet .account-link>.nbfc {
@@ -6122,8 +6115,7 @@ body>.message-banner[style="color:rgb(85, 85, 85); background-color:rgb(178, 213
 
 .compose .quoted-tweet .js-quoted-tweet-text {
 	padding-left:5px;
-	margin-top:10px;
-	float:left
+	margin-top:10px
 }
 
 .compose .quoted-tweet .sprite-close {
@@ -7128,4 +7120,9 @@ label[for="inline-account-safeguard-checkbox"] {
 
 .compose .quoted-tweet .media-preview {
     width:100%
+}
+
+
+.compose .quoted-tweet .tweet-header {
+    height:16px;
 }
