@@ -236,6 +236,10 @@ html.scroll-v {
 	padding:5px 30px 0 50px
 }
 
+.quoted-tweet .account-link>.nbfc,.tweet.txt-mute .account-link>.nbfc,.padding-al.bg-color-twitter-white.br--3,.tweet-message .account-link>.nbfc,.contributor-settings-role>.radio,.compose-reply-tweet .tweet-text,.js-dropdown-content>ul,.tweet-message .tweet-text,.quoted-tweet .tweet-text,.tweet-detail-wrapper .tweet-text.margin-b--10 {
+	padding-left:0
+}
+
 .nbfc-alt {
 	display:table-cell;
 	width:300px
@@ -253,7 +257,7 @@ html.scroll-v {
 }
 
 .search-input-control,.form-calendar,.prf .follow-combo>span,.position-rel,.cmp-inner,.app-search {
-	position:relative
+	position:relative;
 }
 
 .is-vishidden,.is-narrow-columns .is-vishidden-narrow,.is-medium-columns .is-vishidden-medium,.is-wide-columns .is-vishidden-wide {
@@ -1114,18 +1118,18 @@ button:hover,button:focus,.Button--primary {
 }
 
 .column-title {
-	/* margin-right:35px; */
+	margin-right:35px;
 	font-size:20px;
 	font-weight:400;
 	height:100%;
 	position:absolute;
 	left:10px;
-	right: 0;
+	right:20px;
 	padding-top:5px;
 	margin-left:0;
 	margin-top:-2px;
 	word-wrap:break-word;
-	text-overflow:ellipsis;
+	text-overflow:ellipsis
 }
 
 .mdl .column-title {
@@ -1220,8 +1224,12 @@ a .column-title-back .icon:after {
 }
 
 .column-title-back .column-heading {
+	padding-bottom:25px;
 	margin-top:-55px;
-	display:none!important
+	font-weight:400;
+	margin-left:0;
+	text-align:left;
+	display:block!important
 }
 
 .column-type-icon {
@@ -1353,7 +1361,7 @@ a .column-title-back .icon:after {
 
 .item-box {
 	position:relative;
-	padding:8px 10px
+	padding:8px 10px;
 }
 
 .item-box-full-bleed {
@@ -1418,8 +1426,10 @@ a .column-title-back .icon:after {
 
 .list-placeholder {
 	text-align:center;
-	font-size:28px;
-	font-weight:300
+	font-size:18px;
+	padding-top:30px;
+	vertical-align:middle;
+	width:100%
 }
 
 .is-minigrid .compose-account {
@@ -4325,11 +4335,15 @@ input[type="radio"]:checked:before {
 }
 
 .column-heading {
+	height:18px;
+	margin-top:-8px;
 	font-size:16px;
+	text-align:left;
+	display:inline;
 	padding-left:40px;
 	font-weight:500;
 	text-overflow:ellipsis;
-	height:50px
+	height: 75%;
 }
 
 .media-img {
@@ -5045,7 +5059,8 @@ fieldset .fixed-width-label.txt-uppercase b,fieldset:not(.js-search-filter) .con
 	padding-right:30px!important;
 	position:relative;
 	width:200px;
-	padding-bottom:50%!important
+	padding-bottom:70px!important;
+	margin-top:0
 }
 
 .is-options-open .more-tweets-btn-container--hidden {
@@ -5990,7 +6005,7 @@ textarea:not(.compose-text):not(.js-compose-text):not(.js-list-description) {
 }
 
 .js-tweet .tweet-text {
-	padding-left:53px;
+	padding-left:53px
 }
 
 .tweet-text:not(.with-linebreaks) {
@@ -6106,10 +6121,8 @@ body>.message-banner[style="color:rgb(85, 85, 85); background-color:rgb(178, 213
 }
 
 .compose .quoted-tweet .js-quoted-tweet-text {
-	padding-top:10px;
 	padding-left:5px;
 	margin-top:10px;
-	width:100%;
 	float:left
 }
 
@@ -6943,8 +6956,15 @@ label[for="inline-account-safeguard-checkbox"] {
 	padding-bottom:0
 }
 
+.compose-reply-tweet .tweet-text.with-linebreaks {
+	padding-left:0
+}
+
 .media-preview {
-	margin-top:14px
+	margin-top:14px;
+	/* left: 0; */
+	/* position: absolute; */
+	/* display: block; */
 }
 
 .s-minimal .mdl-inner {
@@ -7106,6 +7126,6 @@ label[for="inline-account-safeguard-checkbox"] {
 	color:inherit
 }
 
-.compose-reply-tweet .tweet-text.with-linebreaks,.med-tweet .tweet-text,.quoted-tweet .account-link>.nbfc,.tweet.txt-mute .account-link>.nbfc,.padding-al.bg-color-twitter-white.br--3,.tweet-message .account-link>.nbfc,.contributor-settings-role>.radio,.compose-reply-tweet .tweet-text,.js-dropdown-content>ul,.tweet-message .tweet-text,.quoted-tweet .tweet-text,.tweet-detail-wrapper .tweet-text.margin-b--10 {
-	padding-left:0
+.compose .quoted-tweet .media-preview {
+    width:100%
 }
