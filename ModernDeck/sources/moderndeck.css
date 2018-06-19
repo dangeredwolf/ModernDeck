@@ -925,11 +925,18 @@ button:hover,button:focus,.Button--primary {
 	min-width:100px
 }
 
+.btn-fav {
+	position:relative;
+	width:100px;
+	margin-left:-10px;
+	float:right;
+}
+
 .s-not-following .follow-text {
 	display:block;
 	min-width:auto;
-	margin-left: -2px;
-	margin-top: 7px;
+	margin-left:-2px;
+	margin-top:7px;
 }
 
 .button-group .btn,.button-group .Button {
@@ -1142,7 +1149,7 @@ button:hover,button:focus,.Button--primary {
 	color:rgba(255,255,255,.74);
 	text-overflow:ellipsis;
 	overflow:hidden;
-	margin-left: 5px;
+	margin-left:5px;
 }
 
 .column-type-message .column-title {
@@ -1153,7 +1160,7 @@ button:hover,button:focus,.Button--primary {
 	position:absolute;
 	font-size:16px;
 	height:32px;
-	width: 65%;
+	width:65%;
 	left:0;
 	margin-left:40px;
 	border-color:#fff;
@@ -1161,7 +1168,7 @@ button:hover,button:focus,.Button--primary {
 	font-weight:500;
 	padding-bottom:0;
 	z-index:5;
-	bottom: 10px;
+	bottom:10px;
 }
 
 .column-title-editable.with-image-attribution {
@@ -1233,7 +1240,7 @@ a .column-title-back .icon:after {
 	width:100%;
 	height:48px;
 	padding-top:4px;
-	margin-left: 0;
+	margin-left:0;
 }
 
 .js-item-launch .column-type-icon {
@@ -4148,7 +4155,7 @@ input[type="radio"]:checked:before {
 	text-indent:0;
 	width:220px;
 	margin-right:-10px;
-	border-radius:2px
+	border-radius:2px;
 }
 
 .dropdown-menu li:not(.drp-h-divider) {
@@ -4334,10 +4341,10 @@ input[type="radio"]:checked:before {
 	font-size:16px;
 	text-align:left;
 	display:inline;
-	padding-left: 32px;
+	padding-left:32px;
 	font-weight:500;
 	text-overflow:ellipsis;
-	height: 50px;
+	height:50px;
 }
 
 .media-img {
@@ -5773,8 +5780,8 @@ r
 	top:5px;
 	left:28px;
 	opacity:0;
-	width:60px;
-	text-align:center
+	/* width:60px; */
+	text-align:center;
 }
 
 .btn-fav-faved-text {
@@ -6357,8 +6364,8 @@ p[lang="ar"] a[rel="hashtag"],p[lang="ar"] a[rel="user"],p[lang="fa"] a[rel="has
 	left:-40px;
 	color:#fff!important;
 	margin:0;
-	top: -320px;
-	text-shadow: 0 1px 5px #000;
+	top:-320px;
+	text-shadow:0 1px 5px #000;
 }
 
 .prf-follow-state .dropdown-menu {
@@ -6954,9 +6961,9 @@ label[for="inline-account-safeguard-checkbox"] {
 
 .media-preview {
 	margin-top:14px;
-	/* left: 0; */
-	/* position: absolute; */
-	/* display: block; */
+	/* left:0; */
+	/* position:absolute; */
+	/* display:block; */
 }
 
 .s-minimal .mdl-inner {
@@ -7096,7 +7103,7 @@ label[for="inline-account-safeguard-checkbox"] {
 }
 
 .js-message-detail .tweet-body {
-    padding-left: 56px;
+    padding-left:56px;
 }
 
 .tweet-translation-attribution-text {
