@@ -7132,3 +7132,11 @@ label[for="inline-account-safeguard-checkbox"] {
 .compose .quoted-tweet .tweet-header {
     height:16px;
 }
+
+body+div,body+div>div {
+	box-shadow:0 3px 7px rgba(17,17,17,.5)!important;
+	border:0!important;
+	border-radius:5px!important;
+	overflow:hidden!important;
+	pointer-events:none
+}
