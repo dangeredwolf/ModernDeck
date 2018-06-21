@@ -233,7 +233,7 @@ html.scroll-v {
 .account-link>.nbfc {
 	overflow:hidden;
 	margin-top:0;
-	padding:5px 30px 0 50px
+	padding: 5px 30px 0 5px;
 }
 
 .quoted-tweet .account-link>.nbfc,.tweet.txt-mute .account-link>.nbfc,.padding-al.bg-color-twitter-white.br--3,.tweet-message .account-link>.nbfc,.contributor-settings-role>.radio,.compose-reply-tweet .tweet-text,.js-dropdown-content>ul,.tweet-message .tweet-text,.quoted-tweet .tweet-text,.tweet-detail-wrapper .tweet-text.margin-b--10 {
@@ -5160,7 +5160,10 @@ fieldset .fixed-width-label.txt-uppercase b,fieldset:not(.js-search-filter) .con
 	z-index:6;
 	pointer-events:none;
 	display:block;
-	box-shadow:none
+	box-shadow:none;
+	top: 0;
+	position: absolute;
+	left: 27%;
 }
 
 .more-tweets-btn-container--out .more-tweets-btn {
@@ -7139,4 +7142,8 @@ body+div,body+div>div {
 	border-radius:5px!important;
 	overflow:hidden!important;
 	pointer-events:none
+}
+
+.tweet:not(.txt-mute) .tweet-body {
+	margin-top:-30px;
 }
