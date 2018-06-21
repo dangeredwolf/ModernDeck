@@ -4922,8 +4922,8 @@ a[rel=user]:active,.card-holder a[rel=mediaPreview]:active {
 }
 
 .mtd-about-title {
-	padding-top:10px;
-	padding-bottom:5px
+	padding-top: 70px;
+	padding-bottom:5px;
 }
 
 .mtd-version-title {
@@ -5163,7 +5163,8 @@ fieldset .fixed-width-label.txt-uppercase b,fieldset:not(.js-search-filter) .con
 	box-shadow:none;
 	top: 0;
 	position: absolute;
-	left: 27%;
+	left: 0;
+	width: 100%;
 }
 
 .more-tweets-btn-container--out .more-tweets-btn {
