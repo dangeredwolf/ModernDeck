@@ -1300,11 +1300,11 @@ a .column-title-back .icon:after {
 	top:0
 }
 
-.column-options {
+.js-column-options {
 	box-shadow:0 3px 6px rgba(17,17,17,.1);
 	overflow:visible;
 	pointer-events:all;
-	z-index:4
+	z-index:13
 }
 
 .column-options .button-tray {
@@ -6000,7 +6000,7 @@ textarea:not(.compose-text):not(.js-compose-text):not(.js-list-description) {
 }
 
 .chirp-container .tweet-text {
-	cursor:pointer
+	cursor:pointer;
 }
 
 .tweet-text.with-linebreaks {
@@ -7108,6 +7108,7 @@ label[for="inline-account-safeguard-checkbox"] {
 
 .js-message-detail .tweet-body {
     padding-left:56px;
+    padding-top: 30px;
 }
 
 .tweet-translation-attribution-text {
