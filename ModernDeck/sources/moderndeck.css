@@ -1779,7 +1779,8 @@ a .column-title-back .icon:after {
 }
 
 .is-conversation>.tweet-body {
-	margin-left:-15px
+	margin-left:-15px;
+	margin-top: -15px!important;
 }
 
 .emoji {
@@ -6506,7 +6507,8 @@ legend.frm-legend+div+.control-group>.control-label,legend.frm-legend+div+div+.c
 }
 
 .tweet-detail-reply .account-link>.nbfc {
-	padding:5px 5px 0 38px
+	/* padding:5px 5px 0 38px */
+	margin-bottom: 3px;
 }
 
 .js-account-action[data-action="setDefault"] p.txt-base-largest.link-complex-target {
