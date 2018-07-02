@@ -5,7 +5,7 @@
 
 "use strict";
 
-var SystemVersion = "6.4.2E";
+var SystemVersion = "6.4.2F";
 var MTDBaseURL = "https://rawgit.com/dangeredwolf/ModernDeck/stable/ModernDeck/"; // Defaults to streaming if using online client
 
 var msgID,
@@ -1372,9 +1372,9 @@ function CoreInit() {
 		return;
 	}
 
-	if (typeof $ === "undefined" || true) {
+	if (typeof $ === "undefined") {
 		console.log("yep, twitter broke it now.");
-		var jQuery = mR.findFunction('jQuery')[1];
+		var jQuery = mR.findFunction('jQuery')[0];
 
 		window.$ = jQuery;
 		window.jQuery = jQuery;
