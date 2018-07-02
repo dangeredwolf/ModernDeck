@@ -534,3 +534,7 @@
 .mtd-colours-demo {
 	animation:colourDemo 10s infinite;
 }
+
+body+div {
+	animation:windowDown .4s cubic-bezier(.19,1,.22,1)
+}

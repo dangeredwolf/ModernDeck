@@ -42,7 +42,7 @@
     display:inline-block
 }
 
-video,.inline-block,.js-inline-compose-add-image,.more-tweets-btn.is-hidden {
+.inline-block,.js-inline-compose-add-image,.more-tweets-btn.is-hidden {
     display:inline-block!important
 }
 
