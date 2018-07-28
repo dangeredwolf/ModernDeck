@@ -234,6 +234,7 @@ html.scroll-v {
 	overflow:hidden;
 	margin-top:0;
 	padding: 5px 30px 0 5px;
+	margin-right: 35px;
 }
 
 .quoted-tweet .account-link>.nbfc,.tweet.txt-mute .account-link>.nbfc,.padding-al.bg-color-twitter-white.br--3,.tweet-message .account-link>.nbfc,.contributor-settings-role>.radio,.compose-reply-tweet .tweet-text,.js-dropdown-content>ul,.tweet-message .tweet-text,.quoted-tweet .tweet-text,.tweet-detail-wrapper .tweet-text.margin-b--10 {
@@ -1822,10 +1823,10 @@ a .column-title-back .icon:after {
 	margin-left:auto;
 	margin-right:auto;
 	width:auto!important;
-	max-width:213px;
+	max-width: 250px;
 	margin-top:15px;
 	padding-top:0!important;
-	min-height:12px
+	min-height:12px;
 }
 
 .message-stream-item .tweet-actions {
@@ -1843,7 +1844,7 @@ a .column-title-back .icon:after {
 
 .tweet-actions>li {
 	float:left;
-	margin:0 0 0 20px!important
+	margin: 0 0 0 8%!important;
 }
 
 .tweet-action .icon,.tweet-detail-action i {
@@ -1862,7 +1863,7 @@ a .column-title-back .icon:after {
 }
 
 .tweet-footer {
-	margin-top:10px
+	margin-top:10px;
 }
 
 .js-mediatable .tweet-footer {
@@ -4632,7 +4633,7 @@ a[rel=user]:active,.card-holder a[rel=mediaPreview]:active {
 }
 
 .tweet-action .icon-retweet,.tweet-detail-action .icon-retweet {
-	padding-top:2px
+	margin-right: 3px;
 }
 
 .media-sensitive-content {
@@ -5097,7 +5098,7 @@ fieldset .fixed-width-label.txt-uppercase b,fieldset:not(.js-search-filter) .con
 .tweet-action[rel="favorite"] i,.tweet-detail-action[rel="favorite"] i {
 	transform:rotate(0deg);
 	display:block;
-	margin-top:2px
+	margin-top: 2px;
 }
 
 .anim-bounce-in.tweet-action[rel="favorite"] i,.anim-bounce-in.tweet-detail-action[rel="favorite"] i {
@@ -6005,9 +6006,9 @@ textarea:not(.compose-text):not(.js-compose-text):not(.js-list-description) {
 }
 
 .tweet-text.with-linebreaks {
-	margin-bottom:5px;
-	margin-top:0;
-	overflow:hidden
+	/* margin-bottom: 0; */
+	/* margin-top:0; */
+	overflow:hidden;
 }
 
 .js-tweet .tweet-text {
@@ -7150,4 +7151,11 @@ body+div,body+div>div {
 
 .tweet:not(.txt-mute) .tweet-body {
 	margin-top:-30px;
+}
+
+.like-count,.retweet-count,.reply-count {
+    font-weight: 500;
+    vertical-align: middle;
+    padding-top:5px;
+    padding-left: 4px;
 }
