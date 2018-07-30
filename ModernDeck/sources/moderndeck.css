@@ -4616,12 +4616,12 @@ a[rel=user]:active,.card-holder a[rel=mediaPreview]:active {
 	width:0!important
 }
 
-.prf-header[style="background-image:url(https://ton.twimg.com/tweetdeck-web/web/assets/global/backgrounds/td_profile_empty.14bcb2d3ac.jpg)"],.mtd-nd-header-image[style="background-image:url(https://ton.twimg.com/tweetdeck-web/web/assets/global/backgrounds/td_profile_empty.14bcb2d3ac.jpg)"],.prf-header[style="background-image:url(https://ton.twimg.com/tweetdeck-web/web/assets/global/backgrounds/td_profile_empty@2x.28d11b0d43.jpg)"],.mtd-nd-header-image[style="background-image:url(https://ton.twimg.com/tweetdeck-web/web/assets/global/backgrounds/td_profile_empty@2x.28d11b0d43.jpg)"] {
+.prf-header[style="background-image: url(https://ton.twimg.com/tweetdeck-web/web/assets/global/backgrounds/td_profile_empty.d100c6b057.jpg)"] {
 	background-image:none!important
 }
 
 .hide-detail-view-inline .column-navigator {
-	left:270px!important
+	left:280px!important
 }
 
 .hide-detail-view-inline .app-search-fake {
@@ -6395,7 +6395,9 @@ p[lang="ar"] a[rel="hashtag"],p[lang="ar"] a[rel="user"],p[lang="fa"] a[rel="has
 }
 
 .prf-actions .pending-text:after {
-	content:"\e8b5"
+	content:"\e8b5";
+	margin-left:-2px;
+	vertical-align:middle
 }
 
 .prf-actions .cancel-req-text:after {
