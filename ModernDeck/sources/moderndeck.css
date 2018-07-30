@@ -4616,7 +4616,7 @@ a[rel=user]:active,.card-holder a[rel=mediaPreview]:active {
 	width:0!important
 }
 
-.prf-header[style="background-image: url(https://ton.twimg.com/tweetdeck-web/web/assets/global/backgrounds/td_profile_empty.d100c6b057.jpg)"] {
+.prf-header[style="background-image:url(https://ton.twimg.com/tweetdeck-web/web/assets/global/backgrounds/td_profile_empty.14bcb2d3ac.jpg)"],.mtd-nd-header-image[style="background-image:url(https://ton.twimg.com/tweetdeck-web/web/assets/global/backgrounds/td_profile_empty.14bcb2d3ac.jpg)"],.prf-header[style="background-image:url(https://ton.twimg.com/tweetdeck-web/web/assets/global/backgrounds/td_profile_empty@2x.28d11b0d43.jpg)"],.mtd-nd-header-image[style="background-image:url(https://ton.twimg.com/tweetdeck-web/web/assets/global/backgrounds/td_profile_empty@2x.28d11b0d43.jpg)"] {
 	background-image:none!important
 }
 
@@ -6044,10 +6044,7 @@ body>.message-banner[style="color:rgb(85, 85, 85); background-color:rgb(178, 213
 }
 
 .s-following .following-text,.s-following .unfollow-text {
-	opacity:1;
-	margin-top:7px;
-	position:absolute;
-	margin-left:-2px
+	margin-top:7px
 }
 
 .activity-header-wrapping.activity-header.has-source-avatar>.nbfc {
@@ -7160,4 +7157,13 @@ body+div,body+div>div {
     vertical-align: middle;
     padding-top:5px;
     padding-left: 4px;
+}
+
+.s-following:hover .following-text {
+	display:none
+}
+
+.s-following .unfollow-text {
+	position:absolute
+	margin-bottom:30px
 }
