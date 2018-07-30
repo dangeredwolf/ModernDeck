@@ -25,6 +25,8 @@ sendingFeedback,
 hasOutCache,
 TreatGeckoWithCare = false;
 
+const welcomeEnabled = false;
+
 var progress = null;
 
 var FindProfButton,
@@ -671,7 +673,7 @@ function LoginStuffs() {
 	}); // Fetch profile picture and place in nav drawer
 	$(mtd_nd_header_username).html(name); // Fetch twitter handle and place in nav drawer
 
-	if (!getPref("has_opened_mtd6")) {
+	if (!getPref("has_opened_mtd6") && welcomeEnabled) {
 		setTimeout(function(){$(".js-app-settings").click()},10);
 		setTimeout(function() {
 			$("a[data-action='globalSettings']").click();
