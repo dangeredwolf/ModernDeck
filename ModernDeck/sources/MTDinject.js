@@ -39,9 +39,7 @@ var isSafari = typeof safari !== "undefined";
 var isFireFox = !isChrome && !isOpera && !isSafari;
 
 var twitterSucks = document.createElement("script");
-twitterSucks.src = "https://rawgit.com/pixeldesu/moduleRaid/master/moduleraid.min.js";
 twitterSucks.type = "text/javascript";
-document.head.appendChild(twitterSucks);
 
 var make = function(a){return $(document.createElement(a))};
 var head,body,html = undefined;
@@ -73,6 +71,9 @@ if (typeof MTDURLExchange === "object" && typeof MTDURLExchange.getAttribute ===
 	MTDBaseURL = MTDURLExchange.getAttribute("type") || "https://dangeredwolf.com/assets/mtdtest/";
 	console.info("MTDURLExchange completed with URL " + MTDBaseURL);
 }
+
+twitterSucks.src = MTDBaseURL + "sources/libraries/moduleraid.min.js";
+document.head.appendChild(twitterSucks);
 
 if (typeof chrome === "undefined" && typeof safari === "undefined") {
 	TreatGeckoWithCare = true;
