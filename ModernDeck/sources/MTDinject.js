@@ -5,7 +5,7 @@
 
 "use strict";
 
-var SystemVersion = "6.4.2G";
+var SystemVersion = "6.4.2H";
 var MTDBaseURL = "https://rawgit.com/dangeredwolf/ModernDeck/stable/ModernDeck/"; // Defaults to streaming if using online client
 
 var msgID,
@@ -423,9 +423,11 @@ function MTDInit(){
 		TD_mustaches["compose/compose_inline_reply.mustache"] = TD_mustaches["compose/compose_inline_reply.mustache"].replace('<i class="js-spinner-button-active icon-center-16 spinner-button-icon-spinner is-hidden"></i>','<div class="js-spinner-button-active icon-center-16 spinner-button-icon-spinner is-hidden preloader-wrapper active tiny"><div class="spinner-layer small"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div>');
 
 
-	TD.util.prettyTimeString = function(e) {
-		return TD.i("{{hours12}}:{{minutes}} {{amPm}}, {{day}} {{month}} {{fullYear}}", TD.util.prettyTime(e));
-	};
+	if (typeof TD.i !== "undefined") {
+		TD.util.prettyTimeString = function(e) {
+			return TD.i("{{hours12}}:{{minutes}} {{amPm}}, {{day}} {{month}} {{fullYear}}", TD.util.prettyTime(e));
+		};	
+	}
 
 	TD.util.prettyNumber = function(e) {
 		//if (!TD.util.isValidNumber(e) || typeof e !== "string")
