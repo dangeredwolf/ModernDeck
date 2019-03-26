@@ -5,7 +5,7 @@
 
 "use strict";
 
-var SystemVersion = "6.5";
+var SystemVersion = "6.5A";
 var MTDBaseURL = "https://rawgit.com/dangeredwolf/ModernDeck/stable/ModernDeck/"; // Defaults to streaming if using online client
 
 var msgID,
@@ -710,7 +710,11 @@ function NavigationSetup() {
 		mutationObserver(b,function(){
 			if (typeof c.attr("style") !== "undefined") {
 				var num = parseInt(c.attr("style").match(/[\-\d]+/g));
-				var hasFilterOptionsVisible = parseInt(c.parent().children(".column-options").children('.js-column-message[style]')[0].style.height.replace("px","")) > 0;
+				var hasFilterOptionsVisible = false;
+				try {
+					hasFilterOptionsVisible = parseInt(c.parent().children(".column-options").children('.js-column-message[style]')[0].style.height.replace("px","")) > 0;
+				} catch (e){}
+				
 				if ((!hasFilterOptionsVisible && num < 0) || (hasFilterOptionsVisible && num < 21))
 					c.attr("style","top: " + ((!hasFilterOptionsVisible && "0") || "22") + "px;")
 			}
