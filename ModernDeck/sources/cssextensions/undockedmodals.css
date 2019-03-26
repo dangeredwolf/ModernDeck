@@ -1,7 +1,7 @@
 /*
   undockedmodals.css
 
-  Copyright (c) 2014-2018 Dangered Wolf
+  Copyright (c) 2014-2019 Dangered Wolf
   Released under the MIT Licence
 */
 
@@ -50,9 +50,9 @@
 
 .cmp-replyto {
 	position:relative;
-	height:100px;
+	/* height:100px; */
 	margin-top: 80px;
-	margin-bottom:-40px
+	margin-bottom:-40px;
 }
 
 .s-inreply .tweet-context {
@@ -71,6 +71,8 @@
 .mdl.s-fluid {
 	height:auto!important;
 	min-width:400px;
+	min-height: 538px;
+	overflow-x:hidden;
 }
 
 .mdl.s-fluid-height {
@@ -186,7 +188,7 @@
 }
 
 #mtdfeedback {
-	position:relative;
+	position:relative!important;
 	margin-top:8px
 }
 
@@ -206,4 +208,12 @@
 
 .cmp-replyto {
 	padding-bottom:40px	
+}
+
+.mtd-nav-group-expand {
+	display:none;
+}
+
+.mtd-nav-group:not(.mtd-nav-group-expanded) {
+	height:inherit!important;
 }

@@ -1,5 +1,5 @@
 // MTDBackground.js
-// Copyright (c) 2017 Dangered Wolf
+// Copyright (c) 2019 Dangered Wolf
 
 // Released under the MIT license
 
@@ -23,7 +23,7 @@ if (chrome !== "undefined") {
 
   chrome.webRequest.onBeforeRequest.addListener(function(details) {
 
-      if ((details.url.indexOf(".css") > -1 && (details.url.indexOf("app") > -1)) || ((details.url.indexOf(".css") > -1 && (details.url.indexOf("bundle") > -1)) || details.url.indexOf("font") > -1)) {
+      if (details.url.indexOf(".css") > -1 && (details.url.indexOf("bundle") > -1 && details.url.indexOf("dist") > -1)) {
         return {cancel:true};
       }
 

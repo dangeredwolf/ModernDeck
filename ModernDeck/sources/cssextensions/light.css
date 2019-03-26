@@ -1,7 +1,7 @@
 /*
   light.css
 
-  Copyright (c) 2014-2018 Dangered Wolf
+  Copyright (c) 2014-2019 Dangered Wolf
   Released under the MIT Licence
 */
 
@@ -68,7 +68,7 @@ option,
 .account-remove-check-message,
 .typeahead,
 .contributor-adder .js-username-input,
-.calweek a,
+.calweek a:not(.caloff),
 .toggle-item-text,
 .accordion-panel .txt-bold
 {
@@ -91,19 +91,7 @@ option,
   background:rgba(0,0,0,.04)
 }
 
-.txt-mute,
-.txt-r-dark-gray,
-.txt-mute a:not(:hover):not(:focus):not(.tweet-action),
-.txt-normal,
-.caloff,
-.l-column.mdl-column.mdl-column-sml .list-link,
-.typeahead .username,
-.lst-group .list-account .username,
-html .btd-grayscale_notification_icons i.icon.activity-indicator,
-.txt-r-deep-gray,
-.color-twitter-dark-gray,
-.color-twitter-darker-gray,
-.js-send-button.is-disabled
+.js-account-action,.accordion:not(.js-account-settings-detail) .is-active,.txt-mute, li:not(.selected) .list-twitter-list .txt-ellipsis, .list-twitter-list .subtitle, .txt-r-dark-gray, .txt-mute a:not(:hover):not(:focus):not(.tweet-action), .txt-normal, .caloff, .l-column.mdl-column.mdl-column-sml .list-link, .typeahead .username, .lst-group .list-account .username, html .btd-grayscale_notification_icons i.icon.activity-indicator, .txt-r-deep-gray, .color-twitter-dark-gray, .color-twitter-darker-gray, .js-send-button.is-disabled
 {
 	color:#979797
 }
@@ -213,7 +201,8 @@ button.is-disabled:active,
 .invalid-char-count,
 .unfollow-text,
 #add-filter:not([disabled]),
-.btn-negative,
+.btn-negative:not([disabled]):not(.is-disabled),
+.Button--danger:not([disabled]):not(.is-disabled),
 .txt-twitter-red
 {
 	color:#D80000!important
@@ -224,9 +213,12 @@ button.is-disabled:active,
 	color:#FF2727!important
 }
 
-.btn-negative:focus,
-.btn-negative:active,
-.btn-negative.is-selected
+.btn-negative:not([disabled]):not(.is-disabled):focus,
+.btn-negative:not([disabled]):not(.is-disabled):active,
+.btn-negative:not([disabled]):not(.is-disabled).is-selected,
+.Button--danger:not([disabled]):not(.is-disabled):focus,
+.Button--danger:not([disabled]):not(.is-disabled):active,
+.Button--danger:not([disabled]):not(.is-disabled).is-selected
 {
 	color:#B30000!important
 }
@@ -338,7 +330,8 @@ body,
 .scroll-styled-h::-webkit-scrollbar-thumb,
 .scroll-alt::-webkit-scrollbar-thumb,
 .s-tall-fixed::-webkit-scrollbar-thumb,
-#lists-modal .mdl-content::-webkit-scrollbar-thumb
+#lists-modal .mdl-content::-webkit-scrollbar-thumb,
+.keyboard-shortcut-list-modal::-webkit-scrollbar-thumb
 {
 	border-radius:5px;
 	background:#D9D9D9
@@ -351,7 +344,36 @@ body,
 .scroll-v::-webkit-scrollbar-thumb:hover,
 .scroll-styled-h::-webkit-scrollbar-thumb:hover,
 .scroll-alt::-webkit-scrollbar-thumb:hover,
-#lists-modal .mdl-content::-webkit-scrollbar-thumb:hover
+#lists-modal .mdl-content::-webkit-scrollbar-thumb:hover,
+.keyboard-shortcut-list-modal::-webkit-scrollbar-thumb:hover
+{
+	background:#c9c9c9
+}
+
+.mdl.s-profile::-moz-scrollbar-thumb,
+.mtd-nav-drawer::-moz-scrollbar-thumb,
+.lst-launcher::-moz-scrollbar-thumb,
+.scroll-styled-v::-moz-scrollbar-thumb,
+.scroll-v::-moz-scrollbar-thumb,
+.scroll-styled-h::-moz-scrollbar-thumb,
+.scroll-alt::-moz-scrollbar-thumb,
+.s-tall-fixed::-moz-scrollbar-thumb,
+#lists-modal .mdl-content::-moz-scrollbar-thumb,
+.keyboard-shortcut-list-modal::-moz-scrollbar-thumb
+{
+	border-radius:5px;
+	background:#D9D9D9
+}
+
+.mdl.s-profile::-moz-scrollbar-thumb:hover,
+.mtd-nav-drawer::-moz-scrollbar-thumb:hover,
+.lst-launcher::-moz-scrollbar-thumb:hover,
+.scroll-styled-v::-moz-scrollbar-thumb:hover,
+.scroll-v::-moz-scrollbar-thumb:hover,
+.scroll-styled-h::-moz-scrollbar-thumb:hover,
+.scroll-alt::-moz-scrollbar-thumb:hover,
+#lists-modal .mdl-content::-moz-scrollbar-thumb:hover,
+.keyboard-shortcut-list-modal::-moz-scrollbar-thumb:hover
 {
 	background:#c9c9c9
 }
@@ -448,8 +470,10 @@ html:not(.mtd-dark-media-previews) .med-tweet,
 .is-unread,
 .more-tweets-btn,
 .compose,
+.drawer,
 .tweet-button:not(.js-hide-drawer),
-.lst-group .selected
+.lst-group .selected,
+button.try-query
 {
 	background:#00BCD4
 }
@@ -829,7 +853,7 @@ textarea::placeholder
 	background:none
 }
 
-.tweet-detail .txt-small a
+.tweet-detail .txt-small a,.other-replies:before
 {
 	color:#979797
 }
@@ -922,12 +946,18 @@ button[type="submit"]:active,button[type="submit"]:focus {
 	background:#12c3d4
 }
 
-
 .lst-launcher a,.lst-launcher a:hover,.lst-launcher a:focus,.lst-launcher a:active,.lst-launcher span {
 	color:#000!important
 }
 
-
 #id_comments {
 	border:2px solid #ddd
+}
+
+.js-column-message .dark-only--color-twitter-gray {
+	color:#fff!important;
+}
+
+.account-settings-bb a[rel="user"] {
+	color:#000;
 }
