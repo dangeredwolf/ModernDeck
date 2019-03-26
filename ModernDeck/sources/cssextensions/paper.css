@@ -1,7 +1,7 @@
 /*
   paper.css
 
-  Copyright (c) 2014-2018 Dangered Wolf
+  Copyright (c) 2014-2019 Dangered Wolf
   Released under the MIT Licence
 */
 
@@ -21,8 +21,7 @@
 	color:#fff
 }
 
-
-.lst-launcher a,.lst-launcher a:hover,.lst-launcher a:focus,.lst-launcher a:active,.lst-launcher span,.message-text>.btn,.message-banner,.js-compose-stay-open,.js-compose-stay-open:before,.mdl-header-title a,.title-content .txt-mute,.mtd-nd-header-username,.column-title .attribution,.compose-remember-state,.more-tweets-btn,.selected .list-link strong,.account-selector-grid-mode,.account-selector-grid-mode:hover,.account-selector-grid-mode,.account-selector-grid-mode.is-selected,.js-dm-participants-back:after,.conversation-title .title-content b,.js-tweet-social-proof-back:after,.js-column-detail .column-title-back:before,.js-hide-drawer.app-nav-tab:after,.app-nav-tab,.drawer-header-title.drawer-column-header-title,.btn-back:before,.mdl-header-title,.column-header-temp,.mdl-column.l-column .search-input,.numbered-badge,.app-search .app-search-fake,.column-message,.app-nav-link,.column-title,.column-header .icon,.btn-compose.tweet-button>.icon-compose {
+.lst-launcher a, .lst-launcher a:hover, .lst-launcher a:focus, .lst-launcher a:active, .lst-launcher span, .message-text>.btn, .message-banner, .js-compose-stay-open, .js-compose-stay-open:before, .mdl-header-title a, .title-content .txt-mute, .mtd-nd-header-username, .column-title .attribution, .compose-remember-state, .more-tweets-btn, .selected .list-link strong, .account-selector-grid-mode, .account-selector-grid-mode:hover, .account-selector-grid-mode, .account-selector-grid-mode.is-selected, .js-dm-participants-back:after, .conversation-title .title-content b, .js-tweet-social-proof-back:after, .js-column-detail .column-title-back:before, .js-hide-drawer.app-nav-tab:after, .app-nav-tab, .drawer-header-title.drawer-column-header-title, .btn-back:before, .mdl-header-title, .column-header-temp, .mdl-column.l-column .search-input, .numbered-badge, .app-search .app-search-fake, .column-message, .app-nav-link, .column-title, .column-header .icon, .btn-compose.tweet-button>.icon-compose {
 	color:#555!important
 }
 
@@ -42,9 +41,9 @@ a .column-title-back .icon:after,.drawer-header:active .drawer-header-title .ico
 	border-bottom:2px solid #555!important
 }
 
-.tweet-button,.tweet-button:hover,.tweet-button:focus,.tweet-button:active,.compose {
-	background:#f6f6f6!important;
-	color:#666!important
+.tweet-button,.tweet-button:hover,.tweet-button:focus,.tweet-button:active,.compose,.drawer {
+	background: #eeeeee!important;
+	color:#666!important;
 }
 
 .js-send-button,.js-add-image-button,.js-tweet-button,.js-dm-button,.js-schedule-button {

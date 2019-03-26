@@ -1,5 +1,5 @@
 // MTDBackground.js
-// Copyright (c) 2017 Dangered Wolf
+// Copyright (c) 2019 Dangered Wolf
 
 // Released under the MIT license
 

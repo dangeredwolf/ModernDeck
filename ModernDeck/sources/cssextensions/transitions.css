@@ -1,7 +1,7 @@
 /*
   animations_legacy.css
 
-  Copyright (c) 2014-2018 Dangered Wolf
+  Copyright (c) 2014-2019 Dangered Wolf
   Released under the MIT Licence
 */
 
@@ -252,12 +252,7 @@ a .column-title-back .icon:after
   transition:all .25s cubic-bezier(.19,1,.22,1)
 }
 
-.tweet-action[rel="favorite"] i,.tweet-detail-action[rel="favorite"] i
-{
-	transition:.35s transform,.35s color
-}
-
-.more-tweets-btn-container--hidden .more-tweets-btn
+.more-tweets-btn-container--hidden .more-tweets-btn,.tweet-action[rel="favorite"] i,.tweet-detail-action[rel="favorite"] i,.like-count
 {
 	transition:none
 }
@@ -345,7 +340,7 @@ a .column-title-back .icon:after
 }
 
 .compose-title {
-	transition:margin .25s
+	transition:margin .25s cubic-bezier(.19,1,.22,1)
 }
 
 .compose-content {
@@ -354,4 +349,16 @@ a .column-title-back .icon:after
 
 .ticker-inner,.ticker-outer {
     transition:top 150ms ease
+}
+
+.mtd-icon-arrow-down {
+	transition:transform 0.3s cubic-bezier(.19,1,.22,1)
+}
+
+.mtd-nav-group {
+	transition:height 0.3s cubic-bezier(.19,1,.22,1)
+}
+
+button.try-query {
+	transition:opacity 0.15s cubic-bezier(.19,1,.22,1);
 }

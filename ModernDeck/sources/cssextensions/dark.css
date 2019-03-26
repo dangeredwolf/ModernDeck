@@ -1,7 +1,7 @@
 /*
   dark.css
 
-  Copyright (c) 2014-2018 Dangered Wolf
+  Copyright (c) 2014-2019 Dangered Wolf
   Released under the MIT Licence
 */
 
@@ -84,7 +84,8 @@ html,
 .contributor-manager,
 .js-contributor-manager-container,
 .contributor-adder-block,
-.contributor-row
+.contributor-row,
+.Notification-inner
 {
 	background:#344248
 }
@@ -118,6 +119,7 @@ div.drawer[data-drawer="compose"],
 #calcurrent,
 .btn-compose:not(.js-hide-drawer),
 .compose,
+.drawer,
 .column-options .button-tray,
 .column-options,
 .facet-type,
@@ -129,7 +131,8 @@ div.drawer[data-drawer="compose"],
 .list-item.is-selected,
 .more-tweets-btn,
 .more-tweets-btn:hover,
-.tweet-button:not(.js-hide-drawer)
+.tweet-button:not(.js-hide-drawer),
+button.try-query
 {
 	background:#00838F
 }
@@ -139,7 +142,21 @@ div.drawer[data-drawer="compose"],
 	background:#00838F!important
 }
 
-.mtd-back-default .js-setting-list>li:not(.selected)>.list-link strong, .txt-mute, .txt-r-dark-gray, .typeahead .username, .l-column.mdl-column.mdl-column-sml .list-link, .lst-group .list-account .username, html .btd-grayscale_notification_icons i.icon.activity-indicator, .other-replies, .tweet-stats>li, .txt-r-deep-gray, .color-twitter-dark-gray, .lst-launcher :not(.is-disabled) .color-twitter-darker-gray, .js-send-button[disabled]
+li:not(.selected) .list-twitter-list .txt-ellipsis,
+.list-twitter-list .subtitle,
+.mtd-back-default .js-setting-list>li:not(.selected)>.list-link strong,
+ .txt-mute,
+ .txt-r-dark-gray,
+ .typeahead .username,
+ .l-column.mdl-column.mdl-column-sml .list-link,
+ .lst-group .list-account .username,
+ html .btd-grayscale_notification_icons i.icon.activity-indicator,
+ .other-replies,
+ .tweet-stats>li,
+ .txt-r-deep-gray,
+ .color-twitter-dark-gray,
+ .lst-launcher :not(.is-disabled) .color-twitter-darker-gray,
+ .js-send-button[disabled]
 {
 	color:#6D808B
 }
@@ -162,7 +179,6 @@ input::placeholder,textarea::placeholder,textarea::placeholder {
 
 .search-input,
 textarea:not(.compose-text):not(.js-compose-text),
-.lst-group .selected,
 .search-input,
 .mtd-nav-button,
 .js-setting-list .selected strong,
@@ -170,7 +186,8 @@ textarea:not(.compose-text):not(.js-compose-text),
 .character-count-compose,
 .btn-options-tray:not([disabled]):not(.is-disabled),
 .toggle-item-text,
-.accordion-panel .txt-bold
+.accordion-panel .txt-bold,
+.Notification-icon
 {
 	color:#fff
 }
@@ -354,18 +371,21 @@ button.is-disabled:active,
 .unfollow-text,
 #add-filter:not([disabled]),
 .btn-negative:not([disabled]):not(.is-disabled),
+.Button--danger:not([disabled]):not(.is-disabled),
 .txt-twitter-red
 {
 	color:#EA6B6B!important
 }
 
 .btn-negative:not([disabled]):not(.is-disabled):hover
+.Button--danger:not([disabled]):not(.is-disabled):hover
 {
 	color:#FF2727!important
 }
 
 .btn-negative:active,
-.btn-negative.is-selected
+.btn-negative.is-selected,
+.Button--danger:not([disabled]):not(.is-disabled):active
 {
 	color:#B30000!important
 }
@@ -425,7 +445,8 @@ textarea
 .scroll-v::-webkit-scrollbar-thumb,
 .scroll-styled-h::-webkit-scrollbar-thumb,
 .s-tall-fixed::-webkit-scrollbar-thumb,
-#lists-modal .mdl-content::-webkit-scrollbar-thumb
+#lists-modal .mdl-content::-webkit-scrollbar-thumb,
+.keyboard-shortcut-list-modal::-webkit-scrollbar-thumb
 {
   border-radius:5px;
   background:rgba(149,175,191,.5)
@@ -438,7 +459,8 @@ textarea
 .scroll-v::-moz-scrollbar-thumb,
 .scroll-styled-h::-moz-scrollbar-thumb,
 .s-tall-fixed::-moz-scrollbar-thumb,
-#lists-modal .mdl-content::-moz-scrollbar-thumb
+#lists-modal .mdl-content::-moz-scrollbar-thumb,
+.keyboard-shortcut-list-modal::-moz-scrollbar-thumb
 {
   border-radius:5px;
   background:rgba(149,175,191,.5)
@@ -450,7 +472,8 @@ textarea
 .scroll-styled-v::-webkit-scrollbar-thumb:hover,
 .scroll-v::-webkit-scrollbar-thumb:hover,
 .scroll-styled-h::-webkit-scrollbar-thumb:hover,
-#lists-modal .mdl-content::-webkit-scrollbar-thumb:hover
+#lists-modal .mdl-content::-webkit-scrollbar-thumb:hover,
+.keyboard-shortcut-list-modal::-webkit-scrollbar-thumb:hover
 {
 	background:#8498A5
 }
@@ -461,7 +484,8 @@ textarea
 .scroll-styled-v::-moz-scrollbar-thumb:hover,
 .scroll-v::-moz-scrollbar-thumb:hover,
 .scroll-styled-h::-moz-scrollbar-thumb:hover,
-#lists-modal .mdl-content::-moz-scrollbar-thumb:hover
+#lists-modal .mdl-content::-moz-scrollbar-thumb:hover,
+.keyboard-shortcut-list-modal::-moz-scrollbar-thumb:hover
 {
 	background:#8498A5
 }
@@ -722,7 +746,17 @@ button[type="submit"]:active,button[type="submit"]:focus {
 	background:#12c3d4
 }
 
-.lst-launcher a:not(.is-disabled), .lst-launcher a:not(.is-disabled):hover, .character-count, .character-count-compose, .lst-launcher a:not(.is-disabled):focus, .lst-launcher a:not(.is-disabled):active, .lst-launcher li:not(.is-disabled) span {
+.js-character-count,
+.lst-group .selected,
+.lst-launcher a:not(.is-disabled),
+.lst-launcher a:not(.is-disabled):hover,
+.character-count,
+.character-count-compose,
+.lst-launcher a:not(.is-disabled):focus,
+.lst-launcher a:not(.is-disabled):active,
+.lst-launcher li:not(.is-disabled) span,
+.calweek a:not(.caloff)
+{
 	color:#fff!important
 }
 
@@ -735,10 +769,15 @@ button[type="submit"]:active,button[type="submit"]:focus {
   filter:brightness(1000%)
 }
 
-.js-character-count {
-	color:#fff!important
-}
-
 .sprite-verified-mini:before,.sprite-verified:before {
     color:inherit!important
+}
+
+.Notification-inner {
+	background:#222d32;
+}
+
+
+.account-settings-bb a[rel="user"] {
+	color:#fff;
 }
