@@ -1,0 +1,137 @@
+.more-tweets-btn {
+    background:#000;
+    border:#fff 2px solid
+}
+
+.column-title {
+    text-shadow:#000 0 0 10px
+}
+
+.typeahead-dropdown, .typeahead, .text-like-keyboard-key, .compose-text-container, .compose-reply-tweet, .med-tweet, .quoted-tweet, .compose-media-bar-holder, .compose-message-recipient-input-container, .compose-text-container, .js-schedule-datepicker-holder>.popover, .quoted-tweet {
+    box-shadow:none!important;
+    border:3px #54707F solid
+}
+
+.drp-h-divider {
+    border-bottom:2px #54707f solid
+}
+
+.column-nav-link,.account-bio,.prf-stats>li>a,.lst-profile a,.tweet-action, .tweet-detail-action, .tweet-stats>li>a,.tweet-action:active, .tweet-action:hover, .tweet-detail-action:active, .tweet-detail-action:hover, .stream-item.is-actionable .tweet-action:hover, .stream-item.is-actionable .tweet-detail-action:hover, .stream-item.is-actionable .tweet-action:focus, .stream-item.is-actionable .tweet-detail-action:focus, .stream-item.is-actionable .tweet-action:active, .stream-item.is-actionable .tweet-detail-action:active, .stream-item.is-actionable .tweet-action.is-selected, .stream-item.is-actionable a.is-selected.tweet-detail-action, .tweet-stats>li>a:hover,.txt-mute,.mtd-back-default .js-setting-list>li:not(.selected)>.list-link strong, .txt-mute, .txt-r-dark-gray, .typeahead .username, .l-column.mdl-column.mdl-column-sml .list-link, .lst-group .list-account .username, html .btd-grayscale_notification_icons i.icon.activity-indicator, .other-replies,.tweet-stats>li,.txt-r-deep-gray,.color-twitter-dark-gray,.lst-launcher :not(.is-disabled) .color-twitter-darker-gray, .js-send-button[disabled],.js-add-image-button, .js-tweet-button, .js-dm-button, .js-schedule-button,.caldisabled,.caldisabled:hover,.caldisabled:active,.calweek a:hover,.caloff:hover,.caloff,#caldays span,.caloff,.mdl-links span {
+    color:#fff!important
+}
+
+.mdl-links {
+    opacity:1
+}
+
+input, textarea, select, .uneditable-input {
+    border-bottom-color:#fff
+}
+
+
+
+.mdl.s-profile::-webkit-scrollbar-thumb,
+.mtd-nav-drawer::-webkit-scrollbar-thumb,
+.lst-launcher::-webkit-scrollbar-thumb,
+.scroll-styled-v::-webkit-scrollbar-thumb,
+.scroll-v::-webkit-scrollbar-thumb,
+.scroll-styled-h::-webkit-scrollbar-thumb,
+.s-tall-fixed::-webkit-scrollbar-thumb,
+#lists-modal .mdl-content::-webkit-scrollbar-thumb
+{
+  border-radius:5px;
+  background:#fff
+}
+
+.mdl.s-profile::-moz-scrollbar-thumb,
+.mtd-nav-drawer::-moz-scrollbar-thumb,
+.lst-launcher::-moz-scrollbar-thumb,
+.scroll-styled-v::-moz-scrollbar-thumb,
+.scroll-v::-moz-scrollbar-thumb,
+.scroll-styled-h::-moz-scrollbar-thumb,
+.s-tall-fixed::-moz-scrollbar-thumb,
+#lists-modal .mdl-content::-moz-scrollbar-thumb
+{
+  border-radius:5px;
+  background:#fff
+}
+
+.mdl.s-profile::-webkit-scrollbar-thumb:hover,
+.mtd-nav-drawer::-webkit-scrollbar-thumb:hover,
+.lst-launcher::-webkit-scrollbar-thumb:hover,
+.scroll-styled-v::-webkit-scrollbar-thumb:hover,
+.scroll-v::-webkit-scrollbar-thumb:hover,
+.scroll-styled-h::-webkit-scrollbar-thumb:hover,
+#lists-modal .mdl-content::-webkit-scrollbar-thumb:hover
+{
+    background:#fff
+}
+
+.mdl.s-profile::-moz-scrollbar-thumb:hover,
+.mtd-nav-drawer::-moz-scrollbar-thumb:hover,
+.lst-launcher::-moz-scrollbar-thumb:hover,
+.scroll-styled-v::-moz-scrollbar-thumb:hover,
+.scroll-v::-moz-scrollbar-thumb:hover,
+.scroll-styled-h::-moz-scrollbar-thumb:hover,
+#lists-modal .mdl-content::-moz-scrollbar-thumb:hover
+{
+    background:#fff
+}
+
+
+.txt-mute a:not(:focus):not(.tweet-action):not([data-action]) {
+    color:#fff!important;
+    text-decoration:underline
+}
+
+
+.is-new .column-header,
+.is-new .column-header-temp
+{
+    background:linear-gradient(#000,#000,#000,#000,#06828d)!important
+}
+
+.lst-profile .txt-ellipsis {
+    text-decoration:underline
+}
+
+.js-list-container>li.selected,.lst .s-selected {
+    background:transparent;
+    border:3px solid #00838F
+}
+
+
+.js-list-container>li.selected {
+    margin-right:3px;
+    margin-left:1px
+}
+
+
+.mdl-column.l-column .search-input
+{
+    background:#000!important;
+    color:#fff;
+    box-shadow:none!important;
+    border-bottom:3px #54707f solid!important
+}
+
+
+.is-new .column-message, .is-unread,.js-add-column, .lst-group .selected {
+    background:#000!important;
+    border:5px #00838F solid;
+}
+
+
+.compose .typeahead-item span.username {
+    color:#fff;
+    padding-left:5px
+}
+
+.text-like-keyboard-key {
+    background:#000;
+    font-weight:700
+}
+
+.tweet-detail-wrapper {
+    box-shadow:none!important
+}

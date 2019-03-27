@@ -5,6 +5,8 @@
   "description": "TweetDeck, just more beautiful, colourful, customisable, fast, and fun than ever.",
   "version": "6.4.3",
 
+  "default_locale":"en",
+
   "permissions": [
     "webRequest",
     "webRequestBlocking",
