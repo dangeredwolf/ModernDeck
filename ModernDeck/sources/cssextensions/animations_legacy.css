@@ -1,8 +1,24 @@
 /*
   animations_legacy.css
 
-  Copyright (c) 2014-2018 Dangered Wolf
+  Copyright (c) 2014-2019 Dangered Wolf
   Released under the MIT Licence
+*/
+
+/*
+		Note:
+
+		Legacy webkit animations are no longer going to be supported.
+
+		Since Chrome 43, the standard @keyframes and animation properties have been supported
+
+		Given that this release came out, as of now, 4 years ago, and that even Vista's last Chrome
+		release supported it, the time has come to retire it. 
+
+		This file might continue to be here for a while. But it won't be actively updated. 
+
+		Animations and transitions are going to also be moved back in to moderndeck.css.
+
 */
 
 @-webkit-keyframes moreTweetsButtonDown {

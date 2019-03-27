@@ -1,5 +1,5 @@
 // MTDLoad.js
-// Copyright (c) 2016 Ryan Dolan (dangered wolf)
+// Copyright (c) 2019 Ryan Dolan (dangered wolf)
 
 "use strict";
 console.log("MTDLoad 6.0");

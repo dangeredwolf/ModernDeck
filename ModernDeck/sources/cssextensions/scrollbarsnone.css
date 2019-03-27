@@ -1,16 +1,16 @@
 /*
   scrollbarsnone.css
 
-  Copyright (c) 2014-2018 Dangered Wolf
+  Copyright (c) 2014-2019 Dangered Wolf
   Released under the MIT Licence
 */
 
-.mdl.s-profile::-webkit-scrollbar,.scroll-styled-v::-webkit-scrollbar,.scroll-v::-webkit-scrollbar,.lst-launcher::-webkit-scrollbar,.mtd-nav-drawer::-webkit-scrollbar,.emoji-container>div::-webkit-scrollbar,.emoji-container::-webkit-scrollbar {
+.keyboard-shortcut-list-modal::-webkit-scrollbar,.mdl.s-profile::-webkit-scrollbar,.scroll-styled-v::-webkit-scrollbar,.scroll-v::-webkit-scrollbar,.lst-launcher::-webkit-scrollbar,.mtd-nav-drawer::-webkit-scrollbar,.emoji-container>div::-webkit-scrollbar,.emoji-container::-webkit-scrollbar {
 	width:0;
 	pointer-events:none
 }
 
-.mdl.s-profile::scrollbar,.scroll-styled-v::scrollbar,.scroll-v::scrollbar,.lst-launcher::scrollbar,.mtd-nav-drawer::scrollbar,.emoji-container>div::scrollbar,.emoji-container::scrollbar {
+.keyboard-shortcut-list-modal::-moz-scrollbar,.mdl.s-profile::-moz-scrollbar,.scroll-styled-v::-moz-scrollbar,.scroll-v::-moz-scrollbar,.lst-launcher::-moz-scrollbar,.mtd-nav-drawer::-moz-scrollbar,.emoji-container>div::-moz-scrollbar,.emoji-container::-moz-scrollbar {
 	width:0;
 	pointer-events:none
 }
@@ -20,7 +20,7 @@
 	pointer-events:none
 }
 
-.scroll-styled-h::scrollbar,.scroll-h::scrollbar {
+.scroll-styled-h::-moz-scrollbar,.scroll-h::-moz-scrollbar {
 	height:0;
 	pointer-events:none
 }

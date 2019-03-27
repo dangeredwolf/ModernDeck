@@ -1,16 +1,18 @@
 // MTDinject.js
-// Copyright (c) 2018 Dangered Wolf
+// Copyright (c) 2019 Dangered Wolf
 
 // made with love <3
 
 "use strict";
 
-var SystemVersion = "6.4.2H";
+var SystemVersion = "6.5.1A";
 var MTDBaseURL = "https://rawgit.com/dangeredwolf/ModernDeck/stable/ModernDeck/"; // Defaults to streaming if using online client
 
 var msgID,
 FetchProfileInfo,
 loginIntervalTick = 0;
+
+const forceFeatureFlags = false;
 
 var messagesAccounted = [];
 
@@ -243,6 +245,69 @@ function MTDInit(){
 
 	enableStylesheetExtension("dark");
 
+	if (forceFeatureFlags) {
+		TD.config.config_overlay = { 
+			tweetdeck_devel: { value: true },
+			tweetdeck_dogfood: { value: true },
+			tweetdeck_insights: { value: true },
+			tweetdeck_content_user_darkmode: { value: true },
+			tweetdeck_subscriptions_debug: { value: true },
+			tweetdeck_locale: { value: true },
+			tweetdeck_live_engagements: { value: true },
+			tweetdeck_content_search_darkmode: { value: true },
+			tweetdeck_content_user_darkmode: { value: true },
+			tweetdeck_content_render_search_tweets: { value: true },
+			tweetdeck_content_render_user_tweets: { value: true },
+			tweetdeck_uiv: { value: true },
+			tweetdeck_premium_trends: { value: true },
+			tweetdeck_create_moment_pro: { value: true },
+			tweetdeck_gdpr_consent: { value: true },
+			tweetdeck_gdpr_updates: { value: true },
+			tweetdeck_premium_analytics: { value: true },
+			tweetdeck_whats_happening: { value: true },
+			tweetdeck_activity_polling: { value: true },
+			tweetdeck_beta: { value: true },
+			tweetdeck_system_font_stack: { value: true },
+			tweetdeck_show_release_notes_link: { value: true },
+			tweetdeck_searches_with_negation: { value: true },
+			twitter_text_emoji_counting_enabled: { value: true },
+			tweetdeck_trends_column: { value: true },
+			tweetdeck_scheduled_tweet_ephemeral: { value: true },
+			twitter_weak_maps: { value: true },
+			tweetdeck_activity_value_polling: { value: true },
+			tweetdeck_activity_streaming: { value: true },
+			tweetdeck_rweb_composer: { value: true }
+		}
+		TD.config.scribe_debug_level = 4
+		TD.config.debug_level = 4
+		TD.config.debug_menu = true
+		TD.config.debug_trace = true
+		TD.config.debug_checks = true
+		TD.config.flight_debug = true
+		TD.config.sync_period = 600
+		TD.config.force_touchdeck = true
+		TD.config.internal_build = true 
+		TD.config.help_configuration_overlay = true
+		TD.config.disable_metrics_error = true
+		TD.config.disable_metrics_event = true 
+		TD.controller.stats.setExperiments({
+			config: {
+				live_engagement_in_column_8020: {
+					value: 'live_engagement_enabled'
+				},
+				hosebird_to_rest_activity_7989: {
+					value: 'rest_instead_of_hosebird'
+				},
+				tweetdeck_uiv_7739: {
+					value: 'uiv_images'
+				},
+				hosebird_to_content_search_7673: {
+					value: 'search_content_over_hosebird'
+				}
+			}
+		});
+	}
+
 	if (isChrome) {
 		if (parseInt((navigator.userAgent.match(/Chrome\/\d\d/g)+"").substring(7)) <= 42)
 			enableStylesheetExtension("animations_legacy");
@@ -408,20 +473,27 @@ function MTDInit(){
 	if (typeof TD_mustaches["media/media_gallery.mustache"] !== "undefined")
 		TD_mustaches["media/media_gallery.mustache"] = TD_mustaches["media/media_gallery.mustache"].replace('<div class="js-embeditem med-embeditem"> ','<div class="js-embeditem med-embeditem"> <div class="preloader-wrapper active"><div class="spinner-layer "><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div>');
 	if (typeof TD_mustaches["modal.mustache"] !== "undefined")
-		TD_mustaches["modal.mustache"] = TD_mustaches["modal.mustache"].replace('<img src="{{#asset}}/web/assets/global/backgrounds/spinner_large_white.gif{{/asset}}" alt="{{_i}}Loading…{{/i}}" />','<div class="preloader-wrapper active"><div class="spinner-layer small"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div>');
+		TD_mustaches["modal.mustache"] = TD_mustaches["modal.mustache"].replace('<img src="{{#asset}}/global/backgrounds/spinner_large_white.gif{{/asset}}" alt="{{_i}}Loading…{{/i}}" />','<div class="preloader-wrapper active"><div class="spinner-layer small"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div>');
 	if (typeof TD_mustaches["twitter_profile.mustache"] !== "undefined")
 		TD_mustaches["twitter_profile.mustache"] = TD_mustaches["twitter_profile.mustache"].replace('<img src="{{#asset}}/web/assets/global/backgrounds/spinner_large_white.gif{{/asset}}" alt="{{_i}}Loading…{{/i}}"> ','<div class="preloader-wrapper active"><div class="spinner-layer small"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div>');
 	if (typeof TD_mustaches["follow_button.mustache"] !== "undefined")
 		TD_mustaches["follow_button.mustache"] = TD_mustaches["follow_button.mustache"].replace('<img src="{{#asset}}/web/assets/global/backgrounds/spinner_small_trans.gif{{/asset}}" alt="{{_i}}Loading…{{/i}}"> ','<div class="preloader-wrapper active tiny"><div class="spinner-layer small"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div>')
 	if (typeof TD_mustaches["login/2fa_verification_code.mustache"] !== "undefined")
-		TD_mustaches["login/2fa_verification_code.mustache"] = TD_mustaches["login/2fa_verification_code.mustache"].replace('<i class="js-spinner-button-active icon-center-16 spinner-button-icon-spinner is-hidden"></i>','<div class="js-spinner-button-active icon-center-16 spinner-button-icon-spinner is-hidden preloader-wrapper active tiny"><div class="spinner-layer small"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div>');
+		TD_mustaches["login/2fa_verification_code.mustache"] = TD_mustaches["login/2fa_verification_code.mustache"].replace('<i class="js-spinner-button-active icon-center-16 spinner-button-icon-spinner"></i>','<div class="js-spinner-button-active icon-center-16 spinner-button-icon-spinner preloader-wrapper active tiny"><div class="spinner-layer small"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div>');
 	if (typeof TD_mustaches["login/login_form_footer.mustache"] !== "undefined")
-		TD_mustaches["login/login_form_footer.mustache"] = TD_mustaches["login/login_form_footer.mustache"].replace('<i class="js-spinner-button-active icon-center-16 spinner-button-icon-spinner is-hidden"></i>','<div class="js-spinner-button-active icon-center-16 spinner-button-icon-spinner is-hidden preloader-wrapper active tiny"><div class="spinner-layer small"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div>');
+		TD_mustaches["login/login_form_footer.mustache"] = TD_mustaches["login/login_form_footer.mustache"].replace('<i class="js-spinner-button-active icon-center-16 spinner-button-icon-spinner"></i>','<div class="js-spinner-button-active icon-center-16 spinner-button-icon-spinner preloader-wrapper active tiny"><div class="spinner-layer small"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div>');
 	if (typeof TD_mustaches["compose/docked_compose.mustache"] !== "undefined")
-		TD_mustaches["compose/docked_compose.mustache"] = TD_mustaches["compose/docked_compose.mustache"].replace('<i class="js-spinner-button-active icon-center-16 spinner-button-icon-spinner is-hidden"></i>','<div class="js-spinner-button-active icon-center-16 spinner-button-icon-spinner is-hidden preloader-wrapper active tiny"><div class="spinner-layer small"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div>');
+		TD_mustaches["compose/docked_compose.mustache"] = TD_mustaches["compose/docked_compose.mustache"].replace('<i class="js-spinner-button-active icon-center-16 spinner-button-icon-spinner is-hidden"></i>','<div class="js-spinner-button-active icon-center-16 spinner-button-icon-spinner preloader-wrapper active tiny"><div class="spinner-layer small"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div>');
 	if (typeof TD_mustaches["compose/compose_inline_reply.mustache"] !== "undefined")
-		TD_mustaches["compose/compose_inline_reply.mustache"] = TD_mustaches["compose/compose_inline_reply.mustache"].replace('<i class="js-spinner-button-active icon-center-16 spinner-button-icon-spinner is-hidden"></i>','<div class="js-spinner-button-active icon-center-16 spinner-button-icon-spinner is-hidden preloader-wrapper active tiny"><div class="spinner-layer small"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div>');
-
+		TD_mustaches["compose/compose_inline_reply.mustache"] = TD_mustaches["compose/compose_inline_reply.mustache"].replace('<i class="js-spinner-button-active icon-center-16 spinner-button-icon-spinner is-hidden"></i>','<div class="js-spinner-button-active icon-center-16 spinner-button-icon-spinner preloader-wrapper active tiny"><div class="spinner-layer small"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div>');
+	if (typeof TD_mustaches["buttons/favorite.mustache"] !== "undefined")
+		TD_mustaches["buttons/favorite.mustache"] = TD_mustaches["buttons/favorite.mustache"].replace('<span> <img src="{{#asset}}/global/backgrounds/spinner_small_trans.gif{{/asset}}" alt="{{_i}}Loading…{{/i}}"> </span>','<div class="js-spinner-button-active icon-center-16 spinner-button-icon-spinner preloader-wrapper active tiny"><div class="spinner-layer small"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div>');
+	if (typeof TD_mustaches["embed_tweet.mustache"] !== "undefined")
+		TD_mustaches["embed_tweet.mustache"] = TD_mustaches["embed_tweet.mustache"].replace('<img src="{{#asset}}/global/backgrounds/spinner_large_white.gif{{/asset}}" class="embed-loading" alt="{{_i}}Loading…{{/i}}" />','<div class="preloader-wrapper active"><div class="spinner-layer small"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div>');
+	if (typeof TD_mustaches["follow_button.mustache"] !== "undefined")
+		TD_mustaches["follow_button.mustache"] = TD_mustaches["follow_button.mustache"].replace('<span> <img src="{{#asset}}/global/backgrounds/spinner_small_trans.gif{{/asset}}" alt="{{_i}}Loading…{{/i}}"> </span>','<div class="js-spinner-button-active icon-center-16 spinner-button-icon-spinner preloader-wrapper active tiny"><div class="spinner-layer small"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div>');
+	if (typeof TD_mustaches["lists/member.mustache"] !== "undefined")
+		TD_mustaches["lists/member.mustache"] = TD_mustaches["lists/member.mustache"].replace('<span> <img src="{{#asset}}/global/backgrounds/spinner_small_trans.gif{{/asset}}" alt="{{_i}}Loading…{{/i}}"> </span>','<div class="js-spinner-button-active icon-center-16 spinner-button-icon-spinner preloader-wrapper active tiny"><div class="spinner-layer small"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div>');
 
 	if (typeof TD.i !== "undefined") {
 		TD.util.prettyTimeString = function(e) {
@@ -585,7 +657,7 @@ function MTDSettings() {
 			<label class="checkbox">Use rounded profile pictures<input type="checkbox" checked="checked" id="mtd-round-avatars-control"></label>\
 			<label class="checkbox">Undocked windowing/nav drawer<input type="checkbox" id="mtd-undocked-modals"></label>\
 			<label class="checkbox">Use alternate sensitive media workflow<input type="checkbox" checked="checked" id="mtd-sensitive-alt"></label>\
-			<label class="checkbox">Use Hearts instead of Stars<input type="checkbox" checked="checked" id="mtd-hearts"></label>\
+			<label class="checkbox" style="margin-bottom:30px">Use Hearts instead of Stars<input type="checkbox" checked="checked" id="mtd-hearts"></label>\
 			<label class="control-label">Theme</label>\
 			<select id="mtd-theme-control" type="select">\
 			<option value="default" selected="selected">Default</option>\
@@ -609,15 +681,15 @@ function MTDSettings() {
 			\
 			\
 			\
-			<label class="control-label">Scroll Bar Style</label><select id="mtd-scrollbar-style" type="select">\
+			<label class="control-label" style="margin-top:50px;margin-left:-58px">Scroll Bar Style</label><select id="mtd-scrollbar-style" type="select">\
 			<option value="default" selected="selected">Default</option>\
 			<option value="scrollbarsnarrow">Narrow</option>\
 			<option value="scrollbarsnone">Hidden</option>\
 			</select></div></fieldset></form>\
 			\
-			<form action="#" id="mtd-accessibility-form" accept-charset="utf-8"class="frm" style="display:none;"><fieldset id="general_settings"><label class="checkbox">Always show outlines on focused items<input type="checkbox" checked="checked" id="mtd-outlines-control"> </label></fieldset></form>\
+			<form action="#" id="mtd-accessibility-form" accept-charset="utf-8"class="frm" style="display:none;"><fieldset id="general_settings"><label class="checkbox">Always show outlines on focused items (Ctrl+Shift+A to toggle)<input type="checkbox" style="margin-top:-15px" checked="checked" id="mtd-outlines-control"> </label></fieldset></form>\
 			\
-			<form action="#" id="mtd-about-form" accept-charset="utf-8"class="frm" style="display:none;"><fieldset id="general_settings"><i class="icon icon-moderndeck mtd-logo"></i><h1 class="list-placeholder mtd-about-title">ModernDeck</h1><h2 class="mtd-version-title">You\'ve got version ' + SystemVersion + '</h2><div class="mdl-links" style="margin-bottom:-10px"> <a href="https://dangeredwolf.com/TweetDeckEnhancer/privacy.txt" style="display:none" target="_blank">Privacy Policy</a> </div></fieldset></form>\
+			<form action="#" id="mtd-about-form" accept-charset="utf-8"class="frm" style="display:none;"><fieldset id="general_settings"><i class="icon icon-moderndeck mtd-logo"></i><h1 class="list-placeholder mtd-about-title">ModernDeck</h1><h2 class="mtd-version-title">You have ModernDeck version ' + SystemVersion + '</h2></fieldset></form>\
 			\
 			</div> </div> </div>');
 
@@ -703,7 +775,11 @@ function NavigationSetup() {
 		mutationObserver(b,function(){
 			if (typeof c.attr("style") !== "undefined") {
 				var num = parseInt(c.attr("style").match(/[\-\d]+/g));
-				var hasFilterOptionsVisible = parseInt(c.parent().children(".column-options").children('.js-column-message[style]')[0].style.height.replace("px","")) > 0;
+				var hasFilterOptionsVisible = false;
+				try {
+					hasFilterOptionsVisible = parseInt(c.parent().children(".column-options").children('.js-column-message[style]')[0].style.height.replace("px","")) > 0;
+				} catch (e){}
+
 				if ((!hasFilterOptionsVisible && num < 0) || (hasFilterOptionsVisible && num < 21))
 					c.attr("style","top: " + ((!hasFilterOptionsVisible && "0") || "22") + "px;")
 			}
@@ -787,19 +863,6 @@ function NavigationSetup() {
 			.addClass("mtd-nav-divider"),
 			make("button")
 			.addClass("btn mtd-nav-button")
-			.attr("id","mtd_signout")
-			.append(
-				make("i")
-				.addClass("icon icon-logout")
-			)
-			.click(function(){
-				MTDPrepareWindows();
-				setTimeout(function(){$(".js-app-settings").click()},10);
-				setTimeout(function(){$("a[data-action='signOut']").click()},20);
-			})
-			.append("Sign Out"),
-			make("button")
-			.addClass("btn mtd-nav-button")
 			.attr("id","tdaccsbutton")
 			.append(
 				make("i")
@@ -810,21 +873,6 @@ function NavigationSetup() {
 				$(".js-show-drawer.js-header-action").click();
 			})
 			.append("Your Accounts"),
-			make("div")
-			.addClass("mtd-nav-divider"),
-			make("button")
-			.addClass("btn mtd-nav-button")
-			.attr("id","kbshortcuts")
-			.append(
-				make("i")
-				.addClass("icon icon-keyboard")
-			)
-			.click(function(){
-				MTDPrepareWindows();
-				setTimeout(function(){$(".js-app-settings").click()},10);
-				setTimeout(function(){$("a[data-action='keyboardShortcutList']").click()},20);
-			})
-			.append("Keyboard Shortcuts"),
 			make("button")
 			.addClass("btn mtd-nav-button")
 			.attr("id","addcolumn")
@@ -837,6 +885,80 @@ function NavigationSetup() {
 				$(".js-header-add-column").click();
 			})
 			.append("Add Column"),
+			make("div")
+			.addClass("mtd-nav-divider"),
+			make("button")
+			.addClass("btn mtd-nav-button mtd-nav-group-expand")
+			.attr("id","mtd_nav_expand")
+			.append(
+				make("i")
+				.addClass("icon mtd-icon-arrow-down")
+				.attr("id","mtd_nav_group_arrow")
+			)
+			.click(function(){
+				$("#mtd_nav_group").toggleClass("mtd-nav-group-expanded");
+				$("#mtd_nav_group_arrow").toggleClass("mtd-nav-group-arrow-flipped");
+				$("#mtd_nav_drawer").toggleClass("mtd-nav-drawer-group-open");
+			})
+			.append("More..."),
+			make("div")
+			.addClass("mtd-nav-group mtd-nav-group-expanded")
+			.attr("id","mtd_nav_group")
+			.append(
+				make("button")
+				.addClass("btn mtd-nav-button")
+				.append(
+					make("i")
+					.addClass("icon mtd-icon-changelog")
+				)
+				.click(function(){
+					MTDPrepareWindows();
+					setTimeout(function(){$(".js-app-settings").click()},10);
+					setTimeout(function(){$("a[href=\"https://twitter.com/i/tweetdeck_release_notes\"]").click()},20);
+				})
+				.append("TweetDeck Release Notes"),
+				make("button")
+				.addClass("btn mtd-nav-button")
+				.attr("id","kbshortcuts")
+				.append(
+					make("i")
+					.addClass("icon icon-keyboard")
+				)
+				.click(function(){
+					MTDPrepareWindows();
+					setTimeout(function(){$(".js-app-settings").click()},10);
+					setTimeout(function(){$("a[data-action='keyboardShortcutList']").click()},20);
+				})
+				.append("Keyboard Shortcuts"),
+				make("button")
+				.addClass("btn mtd-nav-button")
+				.append(
+					make("i")
+					.addClass("icon icon-search")
+				)
+				.click(function(){
+					MTDPrepareWindows();
+					setTimeout(function(){$(".js-app-settings").click()},10);
+					setTimeout(function(){$("a[data-action=\"searchOperatorList\"]").click()},20);
+				})
+				.append("Search Tips"),
+				make("div")
+				.addClass("mtd-nav-divider"),
+				make("button")
+				.addClass("btn mtd-nav-button")
+				.attr("id","mtd_signout")
+				.append(
+					make("i")
+					.addClass("icon icon-logout")
+				)
+				.click(function(){
+					MTDPrepareWindows();
+					setTimeout(function(){$(".js-app-settings").click()},10);
+					setTimeout(function(){$("a[data-action='signOut']").click()},20);
+				})
+				.append("Sign Out"),
+			),
+			
 			make("div")
 			.addClass("mtd-nav-divider mtd-nav-divider-feedback"),
 			make("button")
@@ -866,6 +988,9 @@ function NavigationSetup() {
 		})
 	);
 
+	$(".mtd-nav-group-expanded").attr("style","height:"+$(".mtd-nav-group-expanded").height()+"px");
+	$(".mtd-nav-group-expanded").removeClass("mtd-nav-group-expanded");
+
 	$(".app-header-inner").append(
 		make("div")
 		.addClass("mtd-appbar-notification mtd-appbar-notification-hidden")
@@ -875,6 +1000,9 @@ function NavigationSetup() {
 	window.MTDPrepareWindows = function() {
 		$("#update-sound,.js-click-trap").click();
 		mtd_nav_drawer_background.click();
+
+		$(".mtd-nav-group-expanded").removeClass("mtd-nav-group-expanded");
+		$("#mtd_nav_group_arrow").removeClass("mtd-nav-group-arrow-flipped");
 	}
 
 	if (TreatGeckoWithCare) {
@@ -885,15 +1013,28 @@ function NavigationSetup() {
 }
 
 function KeyboardShortcutHandler(e) {
-	if (e.keyCode !== 81 || document.querySelector("input:focus,textarea:focus") !== null) {
-		return; // uses querySelector for optimal speed
+	if (e.key.toUpperCase() === "A" && e.ctrlKey && e.shiftKey) { //pressing Ctrl+Shift+A toggles the outline accessibility option
+		console.log("User has pressed the proper key combination to toggle accessibility!");
+		if (!getPref("mtd_outlines")) {
+			setPref("mtd_outlines",true);
+			html.addClass("mtd-acc-focus-ring");
+		} else {
+			setPref("mtd_outlines",false);
+			html.removeClass("mtd-acc-focus-ring");
+		}
+		if (document.querySelector("#mtd-outlines-control") !== null) {
+			$("#mtd-outlines-control").click();
+		}
+	}
+	if (e.keyCode === 81 && document.querySelector("input:focus,textarea:focus") === null) {
+		if ($(mtd_nav_drawer).hasClass("mtd-nav-drawer-hidden")) {
+			$("#mtd-navigation-drawer-button").click();
+		} else {
+			$(mtd_nav_drawer_background).click();
+		}
 	}
 
-	if ($(mtd_nav_drawer).hasClass("mtd-nav-drawer-hidden")) {
-		$("#mtd-navigation-drawer-button").click();
-	} else {
-		$(mtd_nav_drawer_background).click();
-	}
+
 }
 
 function checkIfUserSelectedNewTheme() {

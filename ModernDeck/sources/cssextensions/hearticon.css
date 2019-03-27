@@ -1,7 +1,7 @@
 /*
   hearticon.css
 
-  Copyright (c) 2014-2018 Dangered Wolf
+  Copyright (c) 2014-2019 Dangered Wolf
   Released under the MIT Licence
 */
 
@@ -10,24 +10,14 @@
     content:"\e87d"
 }
 
-.is-favorite .tweet-dogear
-{
-	background:#e91e63
-}
-
-
 .txt-r-deep-yellow,
 .is-favorite .icon-favorite-toggle,
 .icon-heart-filled,
 .btn:not(.btn-fav-fav-text)>.icon-favorite-color,
 .activity-header .icon-favorite-color,
 .obj-left>.icon-favorite-color,
-.pull-right.icon-favorite-color
+.pull-right.icon-favorite-color,
+.tweet-action-item .tweet-action[rel="favorite"]:hover
 {
-	color:#e91e63
-}
-
-.anim-bounce-in.tweet-action[rel="favorite"] i,.anim-bounce-in.tweet-detail-action[rel="favorite"] i
-{
-	transform:rotate(0deg)
+	color:#e91e63!important
 }
