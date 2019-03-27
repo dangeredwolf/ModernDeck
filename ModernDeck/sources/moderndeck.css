@@ -2450,7 +2450,7 @@ div.media-size-small {
 
 .tweet-button.is-hidden>i:after {
 	margin-left:0;
-	/* opacity:1 */
+	opacity:1
 }
 
 .tweet-button.is-hidden>i:before {
@@ -5204,7 +5204,7 @@ a[rel=user]:active,
 .hide-detail-view-inline .mtd-drawer-button {
 	top:5px;
 	z-index:7;
-	/* margin-left:212px; */
+	margin-left:212px
 }
 
 .mtd-nav-drawer {
@@ -6775,13 +6775,13 @@ legend.frm-legend+div+.control-group>.control-label,legend.frm-legend+div+div+.c
 	margin-top:-.4em;
 	margin-bottom:-.4em;
 	overflow:hidden;
-	text-align:left;
+	text-align:left
 }
 
 .ticker-inner {
 	position:relative;
 	top:0;
-	text-align: left;
+	text-align: left
 }
 
 .ticker-inner,.ticker-outer {
@@ -6809,7 +6809,7 @@ legend.frm-legend+div+.control-group>.control-label,legend.frm-legend+div+div+.c
 
 .tweet-stat[data-type="retweeters"] {
 	margin-left:10%;
-	display:block;
+	display:block
 }
 
 .tweet-stat[data-type="favoriters"] {
