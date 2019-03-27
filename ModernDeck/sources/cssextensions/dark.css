@@ -51,6 +51,7 @@ input,
 .list-item,
 .list-item.is-actionable.item-box.is-selected,
 .tooltip-inner,
+.Tooltip-inner,
 .list-account .fullname,
 option,
 .dropdown-menu li a,
@@ -85,7 +86,8 @@ html,
 .js-contributor-manager-container,
 .contributor-adder-block,
 .contributor-row,
-.Notification-inner
+.Notification-inner,
+.DateRange
 {
 	background:#344248
 }
@@ -132,6 +134,8 @@ div.drawer[data-drawer="compose"],
 .more-tweets-btn,
 .more-tweets-btn:hover,
 .tweet-button:not(.js-hide-drawer),
+.PillGroup .Pill.is-selected,
+.DatePicker-calendarDay.is-withinRange,
 button.try-query
 {
 	background:#00838F
@@ -156,7 +160,8 @@ li:not(.selected) .list-twitter-list .txt-ellipsis,
  .txt-r-deep-gray,
  .color-twitter-dark-gray,
  .lst-launcher :not(.is-disabled) .color-twitter-darker-gray,
- .js-send-button[disabled]
+ .js-send-button[disabled],
+ button[disabled]
 {
 	color:#6D808B
 }
@@ -200,6 +205,7 @@ textarea:not(.compose-text):not(.js-compose-text),
 
 .application,
 .tooltip-inner,
+.Tooltip-inner,
 .dropdown-menu,
 .app-navigator .js-hide-drawer,
 .app-columns-container,
@@ -297,6 +303,7 @@ optgroup,
 option,
 .mtd-nav-drawer,
 .mdl,
+.DrawerModal,
 .prf-meta,
 .mdl-column,
 .med-fullpanel
@@ -362,7 +369,8 @@ button.is-disabled:active,
 	background:#429BA6
 }
 
-.tooltip-inner
+.tooltip-inner,
+.Tooltip-inner
 {
 	box-shadow:0 3px 10px rgba(41,41,41,.35)
 }
@@ -535,7 +543,8 @@ textarea
 }
 
 .ovl,
-.overlay
+.overlay,
+.ModalOverlay
 {
 	background:rgba(88,100,107,.4)
 }

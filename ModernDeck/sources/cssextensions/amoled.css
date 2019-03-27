@@ -115,7 +115,8 @@ option
 
 .mtd-nav-drawer-background,
 .ovl,
-.overlay
+.overlay,
+.ModalOverlay
 {
 	background:rgba(0,0,0,.4)!important
 }

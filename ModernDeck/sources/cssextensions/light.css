@@ -129,7 +129,8 @@ button.is-disabled:active,
 .Button.is-disabled,
 .Button.is-disabled:hover,
 .Button.is-disabled:focus,
-.Button.is-disabled:active
+.Button.is-disabled:active,
+button[disabled]
 {
 	color:#CACACA
 }
@@ -252,7 +253,8 @@ button.is-disabled:active,
 
 .js-account-manager-container,
 .status-message,
-.tooltip-inner
+.tooltip-inner,
+.Tooltip-inner
 {
   background:#f8f8f8
 }
@@ -413,6 +415,7 @@ html:not(.mtd-dark-media-previews) .med-tweet,
 .compose-reply-tweet,
 .tweet-detail-wrapper,
 .mdl,
+.DrawerModal,
 .compose-media-bar-holder,
 .compose-media-info-bar-holder,
 .prf-follow-status,
@@ -422,6 +425,7 @@ html:not(.mtd-dark-media-previews) .med-tweet,
 .mdl-column.mdl-column-rhs,
 .typeahead,
 .compose-text-container,
+.Tooltip-inner,
 .tooltip-inner,
 .mdl-column-rhs,
 .med-fullpanel,
@@ -472,6 +476,8 @@ html:not(.mtd-dark-media-previews) .med-tweet,
 .compose,
 .drawer,
 .tweet-button:not(.js-hide-drawer),
+.PillGroup .Pill.is-selected,
+.DatePicker-calendarDay.is-withinRange,
 .lst-group .selected,
 button.try-query
 {
@@ -592,7 +598,8 @@ button.try-query
 
 .is-selected-tweet,
 .app-content,
-.mtd-nav-divider
+.mtd-nav-divider,
+.DateRange
 {
 	background:#eee
 }
@@ -614,7 +621,8 @@ button.try-query
 }
 
 .ovl,
-.overlay
+.overlay,
+.ModalOverlay
 {
 	background:rgba(100,100,100,.4)!important
 }
@@ -905,7 +913,8 @@ textarea::placeholder
 	color:#444
 }
 
-.tooltip-inner
+.tooltip-inner,
+.Tooltip-inner
 {
 	color:#535353;
 	box-shadow:0 3px 10px rgba(17,17,17,.35)

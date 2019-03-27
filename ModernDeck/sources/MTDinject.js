@@ -5,12 +5,14 @@
 
 "use strict";
 
-var SystemVersion = "6.5A";
+var SystemVersion = "6.5.1";
 var MTDBaseURL = "https://rawgit.com/dangeredwolf/ModernDeck/stable/ModernDeck/"; // Defaults to streaming if using online client
 
 var msgID,
 FetchProfileInfo,
 loginIntervalTick = 0;
+
+const forceFeatureFlags = false;
 
 var messagesAccounted = [];
 
@@ -242,6 +244,69 @@ function MTDInit(){
 	}
 
 	enableStylesheetExtension("dark");
+
+	if (forceFeatureFlags) {
+		TD.config.config_overlay = { 
+			tweetdeck_devel: { value: true },
+			tweetdeck_dogfood: { value: true },
+			tweetdeck_insights: { value: true },
+			tweetdeck_content_user_darkmode: { value: true },
+			tweetdeck_subscriptions_debug: { value: true },
+			tweetdeck_locale: { value: true },
+			tweetdeck_live_engagements: { value: true },
+			tweetdeck_content_search_darkmode: { value: true },
+			tweetdeck_content_user_darkmode: { value: true },
+			tweetdeck_content_render_search_tweets: { value: true },
+			tweetdeck_content_render_user_tweets: { value: true },
+			tweetdeck_uiv: { value: true },
+			tweetdeck_premium_trends: { value: true },
+			tweetdeck_create_moment_pro: { value: true },
+			tweetdeck_gdpr_consent: { value: true },
+			tweetdeck_gdpr_updates: { value: true },
+			tweetdeck_premium_analytics: { value: true },
+			tweetdeck_whats_happening: { value: true },
+			tweetdeck_activity_polling: { value: true },
+			tweetdeck_beta: { value: true },
+			tweetdeck_system_font_stack: { value: true },
+			tweetdeck_show_release_notes_link: { value: true },
+			tweetdeck_searches_with_negation: { value: true },
+			twitter_text_emoji_counting_enabled: { value: true },
+			tweetdeck_trends_column: { value: true },
+			tweetdeck_scheduled_tweet_ephemeral: { value: true },
+			twitter_weak_maps: { value: true },
+			tweetdeck_activity_value_polling: { value: true },
+			tweetdeck_activity_streaming: { value: true },
+			tweetdeck_rweb_composer: { value: true }
+		}
+		TD.config.scribe_debug_level = 4
+		TD.config.debug_level = 4
+		TD.config.debug_menu = true
+		TD.config.debug_trace = true
+		TD.config.debug_checks = true
+		TD.config.flight_debug = true
+		TD.config.sync_period = 600
+		TD.config.force_touchdeck = true
+		TD.config.internal_build = true 
+		TD.config.help_configuration_overlay = true
+		TD.config.disable_metrics_error = true
+		TD.config.disable_metrics_event = true 
+		TD.controller.stats.setExperiments({
+			config: {
+				live_engagement_in_column_8020: {
+					value: 'live_engagement_enabled'
+				},
+				hosebird_to_rest_activity_7989: {
+					value: 'rest_instead_of_hosebird'
+				},
+				tweetdeck_uiv_7739: {
+					value: 'uiv_images'
+				},
+				hosebird_to_content_search_7673: {
+					value: 'search_content_over_hosebird'
+				}
+			}
+		});
+	}
 
 	if (isChrome) {
 		if (parseInt((navigator.userAgent.match(/Chrome\/\d\d/g)+"").substring(7)) <= 42)
@@ -714,7 +779,7 @@ function NavigationSetup() {
 				try {
 					hasFilterOptionsVisible = parseInt(c.parent().children(".column-options").children('.js-column-message[style]')[0].style.height.replace("px","")) > 0;
 				} catch (e){}
-				
+
 				if ((!hasFilterOptionsVisible && num < 0) || (hasFilterOptionsVisible && num < 21))
 					c.attr("style","top: " + ((!hasFilterOptionsVisible && "0") || "22") + "px;")
 			}

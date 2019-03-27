@@ -2,8 +2,8 @@
   "name": "ModernDeck",
   "short_name": "ModernDeck",
 
-  "description": "TweetDeck, just more beautiful, colourful, customisable, fast, and fun than ever.",
-  "version": "6.5",
+  "description": "The original TweetDeck skin. Enjoy a more beautiful, more personal TweetDeck experience!",
+  "version": "6.5.1",
 
   "permissions": [
     "webRequest",
