@@ -1,8 +1,8 @@
 {
 	"description":{
-		"message":"TweetDeck, simplemente más hermoso, colorido, personalizable, rápido y divertido que nunca."
+		"message":"TweetDeck, simplemente más hermoso, colorido, personalizable y divertido que nunca."
 	},
 	"launch":{
-		"message":"Lanzar TweetDeck"
+		"message":"Inicia TweetDeck"
 	}
 }

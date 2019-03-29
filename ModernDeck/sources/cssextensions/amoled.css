@@ -61,7 +61,8 @@ div.drawer[data-drawer="compose"],
 .mdl-column.l-column .search-input,
 .is-selected-tweet,
 .prf-follow-status,
-.typeahead
+.typeahead,
+.media-sensitive
 {
 	background:#000!important
 }

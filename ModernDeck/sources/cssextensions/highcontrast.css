@@ -1,6 +1,18 @@
-.more-tweets-btn {
+html {
+    color:#fff;
+}
+
+.more-tweets-btn,.tooltip,.Tooltip,.dropdown-menu,.mdl:not(.med-fullpanel),.mtd-nav-drawer,.popover {
     background:#000;
-    border:#fff 2px solid
+    border:#54707f 2px solid
+}
+
+html .mtd-nav-divider {
+    background:#54707f!important;
+}
+
+html .mdl:not(.med-fullpanel), html .mtd-nav-drawer {
+    box-shadow:none!important;
 }
 
 .column-title {
@@ -9,7 +21,7 @@
 
 .typeahead-dropdown, .typeahead, .text-like-keyboard-key, .compose-text-container, .compose-reply-tweet, .med-tweet, .quoted-tweet, .compose-media-bar-holder, .compose-message-recipient-input-container, .compose-text-container, .js-schedule-datepicker-holder>.popover, .quoted-tweet {
     box-shadow:none!important;
-    border:3px #54707F solid
+    border: 3px #54707f solid;
 }
 
 .drp-h-divider {
@@ -85,8 +97,7 @@ input, textarea, select, .uneditable-input {
 }
 
 
-.is-new .column-header,
-.is-new .column-header-temp
+html .is-new .column-header, html .is-new .column-header-temp
 {
     background:linear-gradient(#000,#000,#000,#000,#06828d)!important
 }
@@ -134,4 +145,57 @@ input, textarea, select, .uneditable-input {
 
 .tweet-detail-wrapper {
     box-shadow:none!important
+}
+
+html.dark div.drawer[data-drawer="compose"], html.dark .lst-group .selected, html.dark #calcurrent, html.dark .btn-compose:not(.js-hide-drawer), html.dark .compose, html.dark .drawer, html.dark .column-options .button-tray, html.dark .column-options, html.dark .facet-type, html.dark .is-options-open .column-settings-link, html.dark .is-favorite.is-retweet .tweet-dogear, html.dark .is-unread, html.dark .js-add-column, html.dark .mdl .js-add-column, html.dark .list-item.is-selected, html.dark .more-tweets-btn, html.dark .more-tweets-btn:hover, html.dark .tweet-button:not(.js-hide-drawer), html.dark .PillGroup .Pill.is-selected, html.dark .DatePicker-calendarDay.is-withinRange, html.dark button.try-query {
+    background:#000;
+}
+
+.prf-header {
+    text-shadow:0 0 5px #000,0 0 5px #000,0 0 5px #000,0 0 5px #000,0 0 5px #000,0 0 5px #000,0 0 5px #000,0 0 5px #000,0 0 5px #000,0 0 5px #000,0 0 5px #000,0 0 5px #000,0 0 5px #000,0 0 5px #000,0 0 5px #000,0 0 5px #000,0 0 5px #000,0 0 5px #000,0 0 5px #000,0 0 5px #000
+}
+
+html .mtd-nav-drawer-background,
+html .ovl,
+html .overlay,
+html .ModalOverlay
+{
+    background:rgba(255,255,255,.2)!important
+}
+
+html .js-modal[style="display: none;"],html .mtd-nav-drawer-background.mtd-nav-drawer-background-hidden {
+    background:rgba(255,255,255,0)!important
+}
+
+.tweet-text a {
+    color:#fff!important;
+    text-decoration:underline!important;
+    opacity:0.7!important
+}
+
+.cal button,.compose-reply-tweet-remove {
+    color:#fff!important
+}
+
+
+.invalid-char-count,
+.unfollow-text,
+#add-filter:not([disabled]),
+.btn-negative:not([disabled]):not(.is-disabled),
+.Button--danger:not([disabled]):not(.is-disabled),
+.txt-twitter-red
+{
+    color:#EA6B6B!important
+}
+
+.calweek>a:not(.caldisabled) {
+    text-decoration:underline!important
+}
+
+.calweek>a.caloff {
+    color:#a6a6a6!important
+}
+
+.compose .spinner-button-container .Button--primary:not(.is-disabled) {
+    color:#fff!important 
 }

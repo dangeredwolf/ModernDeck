@@ -14,8 +14,7 @@
 	max-height:900px;
 	bottom:auto;
 	top:auto;
-	height:auto;
-	/*padding-bottom:30px*/
+	height:auto
 }
 
 .prf-stats>li {
@@ -50,8 +49,7 @@
 
 .cmp-replyto {
 	position:relative;
-	margin-top:80px;
-	margin-bottom:-40px
+	margin-top:30px
 }
 
 .s-inreply .tweet-context {
@@ -198,8 +196,7 @@
 
 .s-inreply.s-fluid-height .cf>.pull-right {
 	position:absolute;
-	right:0;
-	bottom:-20px
+	right:0
 }
 
 .cf.padding-b--20.padding-r--20.padding-t--5 {
@@ -207,7 +204,7 @@
 }
 
 .cmp-replyto {
-	padding-bottom:40px	
+	padding-bottom:40px
 }
 
 .mtd-nav-group-expand {

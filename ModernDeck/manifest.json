@@ -2,7 +2,7 @@
   "name": "ModernDeck",
   "short_name": "ModernDeck",
 
-  "description": "The original TweetDeck skin. Enjoy a more beautiful, more personal TweetDeck experience!",
+  "description": "__MSG_description__",
   "version": "6.5.1",
 
   "default_locale":"en",
@@ -49,7 +49,7 @@
   "browser_action": {
     "default_icon": "sources/oneclick/InstaTweetDeck.png",
     "default_popup": "extension/ITD.html",
-    "default_title": "Launch TweetDeck"
+    "default_title": "__MSG_launch__"
   },
 
   "manifest_version": 2
