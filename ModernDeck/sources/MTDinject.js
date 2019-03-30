@@ -501,6 +501,9 @@ function MTDInit(){
 		};	
 	}
 
+	setTimeout(MTDAFCheckDate,1000);
+	setInterval(MTDAFCheckDate,3000);
+
 	TD.util.prettyNumber = function(e) {
 		//if (!TD.util.isValidNumber(e) || typeof e !== "string")
 			//return "";
@@ -662,10 +665,11 @@ function MTDSettings() {
 			<select id="mtd-theme-control" type="select">\
 			<option value="default" selected="selected">Default</option>\
 			<optgroup label="Complete Themes">\
+			<option value="AF_2019_fabulous" style="background-image:linear-gradient(to right,#E53935,#FF5722,#FFC107,#4CAF50,#2196F3,#673AB7)!important;color:#fff!important" id="AF_2019_fabulous">Fabulous</option>\
 			<option value="paper">Paper</option>\
-			<option value="amoled">AMOLED</option>\
+			<option value="amoled" style="color:#fff!important">AMOLED</option>\
 			</optgroup><optgroup label="Complementary Themes">\
-			<option value="grey">Grey</option>\
+			<option value="grey" style="color:#fff!important">Grey</option>\
 			<option value="red">Red</option>\
 			<option value="pink">Pink</option>\
 			<option value="orange">Orange</option>\
@@ -674,7 +678,7 @@ function MTDSettings() {
 			<option value="green">Green</option>\
 			<option value="yellow">Yellow</option>\
 			<option value="cyan">Cyan</option>\
-			<option value="black">Black</option>\
+			<option value="black" style="color:#fff!important">Black</option>\
 			<option value="blue">Blue</option>\
 			</optgroup></select>\
 			\
@@ -700,6 +704,10 @@ function MTDSettings() {
 			$("#mtd-hearts").attr("checked",getPref("mtd_hearts"));
 			$("#mtd-theme-control").val(getPref("mtd_theme"));
 			$("#mtd-scrollbar-style").val(getPref("mtd_scrollbar_style"));
+
+			if (!html.hasClass("mtd_af_time")) {
+				$("#AF_2019_fabulous").remove();
+			}
 
 			PrefsListener();
 
@@ -1447,6 +1455,43 @@ function outtaSpaceSuggestions() {
 		}
 	}
 
+}
+
+function MTDAFCheckDate() {
+	var checkDate = new Date();
+
+
+	if (checkDate.getMonth() === 3 && checkDate.getDay() === 1) {
+		html.addClass("mtd_af_time");
+
+		if (!exists(document.querySelector("#mtd_af_mdl")) && (getPref("mtd_af_2019_seen") === false || !exists(getPref("mtd_af_2019_seen")))) {
+			$("#settings-modal").attr("style","display: block;").html('\
+				<div class="js-modal-panel mdl s-short" id="mtd_af_mdl" style="max-height:460px;right:0;margin-left:-290px;left:50%;top:50%;margin-top:-230px;"> <header style="background-image:linear-gradient(to right,#E53935,#FF5722,#FFC107,#4CAF50,#2196F3,#673AB7)!important" class="js-drag-handle padding-a--12 no-collapse mdl-header is-movable mdl-header-divider"> <h3 class="mdl-header-title" style="font-size:18px!important">ModernDeck New Feature: Fabulous Mode</h3>  </header> <div class="mdl-inner padding-a--10" style="line-height:28px">\
+				<p><b>At ModernDeck, we always strive to provide the best experience for our users.</b> Several years ago, ModernDeck had a basic Fabulous Mode, but we felt did not meet our quality standards, so it was removed. After many painstaking hours of engineering, we reimagined the entire Fabulous Mode experience for the year 2019, and we think you will like it!<br><br>We recommend trying the all-new Fabulous Mode in Light mode, although it is compatible with either.<br><br>Would you like to try out our fabulous new Fabulous Mode experience?<br><br><button class="btn" id="mtd_af_yes" style="display:inline-block;float:right;min-width:80px">Yes</button><button class="btn btn-negative" id="mtd_af_no" style="display:inline-block;float:right;min-width:80px">No</button></p>\
+				</div> </div>\
+			');
+
+			$("#mtd_af_no").click(function(){
+				$("#settings-modal").attr("style","display: none;");
+				setPref("mtd_af_2019_seen",true);
+				setTimeout(function(){
+					$("#mtd_af_mdl").remove();
+				},2000);
+			});
+
+			$("#mtd_af_yes").click(function(){
+				enableStylesheetExtension("AF_2019_fabulous");
+				setPref("mtd_theme","AF_2019_fabulous");
+
+				setPref("mtd_af_2019_seen",true);
+
+				$("#settings-modal").attr("style","display: none;");
+				setTimeout(function(){
+					$("#mtd_af_mdl").remove();
+				},2000);
+			});
+		}
+	}
 }
 
 // warning: for some reason this doesnt work if the console.logs arent there DONT ASK WH I DONT KNOW

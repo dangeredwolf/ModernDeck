@@ -8946,3 +8946,28 @@ li.padding-axl.flex.flex-row.flex-align--center .fullname {
 .compose .typeahead-item .fullname,.compose .typeahead-item .username {
 	overflow:visible;
 }
+
+.mtd_af_time option[value="AF_2019_fabulous"] {
+	display:block!important;
+}
+
+#mtd_af_mdl {
+	animation:windowDown .3s cubic-bezier(.19,1,.22,1);
+}
+
+
+@keyframes colourDemoAprilFoolsBackground
+{
+	0% {background-color:#E53935}
+	16.6% {background-color:#FF5722}
+	33.3% {background-color:#FFC107}
+	50% {background-color:#4CAF50}
+	66.6% {background-color:#2196F3}
+	83.3% {background-color:#673AB7}
+	100% {background-color:#E53935}
+}
+
+.mtd_af_time #AF_2019_fabulous
+{
+	animation:colourDemoAprilFoolsBackground 2s infinite
+}
