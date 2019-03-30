@@ -2,11 +2,13 @@
 			moderndeck.css
 
 
-			ModernDeck 6.5.1 [codename Enlightenment]
+			ModernDeck 6.5.1AF [codename Enlightenment]
 			Copyright 2014-2019 dangered wolf
 			Released under the MIT Licence
 
 			For a complete list of open source projects included in this, view the "LICENCES" file in the open source project @ github.com/dangeredwolf/ModernDeck
+
+			AF = April Fools
  */
 
 @import "cssextensions/coredefinitions.css";
@@ -15,9 +17,9 @@
 @import "cssextensions/spinner.css";
 @import "cssextensions/superclasses.css";
 @import "cssextensions/marginclasses.css";
-@import "cssextensions/btdsupport.css";
+/*@import "cssextensions/btdsupport.css";*/
 
-/* LOADING SCREEN, DO NOT MERGE OR REMOVE */
+/* LOADING SCREEN, DO NOT MERGE, MOVE, OR REMOVE */
 
 img.spinner-centered {
 	display:none
@@ -1885,7 +1887,7 @@ a .column-title-back .icon:after {
 	line-height:1.2em;
 	opacity:1;
 	border-radius:0!important;
-		padding:10px
+	padding:10px
 }
 
 .media-sensitive,.facet-subtitle {
@@ -3498,7 +3500,7 @@ div.media-size-small {
 	right:5%;
 	left:5%;
 	padding:8px;
-	bottom:-16px;
+	bottom:-20px;
 	box-shadow:0 3px 6px rgba(0,0,0,.7);
 	border-radius:4px 4px 0 0;
 	pointer-events:all;
@@ -4402,10 +4404,17 @@ input[type="radio"]:checked:before {
 	top:328px
 }
 
-.social-proof-names {
+.social-proof-names,.social-proof-names a {
+    overflow:hidden;
+    white-space:nowrap;
+    height:15px;
+	vertical-align:middle;
+}
+
+.social-proof-names a {
+	max-width:120px;
 	display:inline-block;
-	position:relative;
-	float:none
+	margin-top:-4px;
 }
 
 .social-proof-animating {
@@ -5023,7 +5032,10 @@ a[rel=user]:active,
 	width:0!important
 }
 
-.prf-header[style="background-image: url(https://ton.twimg.com/tweetdeck-web/web/assets/global/backgrounds/td_profile_empty.b902792cc4.jpg)"],.mtd-nd-header-image[style="background-image: url(https://ton.twimg.com/tweetdeck-web/web/assets/global/backgrounds/td_profile_empty.b902792cc4.jpg)"],.prf-header[style="background-image:url(https://ton.twimg.com/tweetdeck-web/web/assets/global/backgrounds/td_profile_empty@2x.28d11b0d43.jpg)"],.mtd-nd-header-image[style="background-image:url(https://ton.twimg.com/tweetdeck-web/web/assets/global/backgrounds/td_profile_empty@2x.28d11b0d43.jpg)"] {
+.prf-header[style="background-image: url(https://ton.twimg.com/tweetdeck-web/web/assets/global/backgrounds/td_profile_empty.b902792cc4.jpg)"],
+.mtd-nd-header-image[style="background-image: url(https://ton.twimg.com/tweetdeck-web/web/assets/global/backgrounds/td_profile_empty.b902792cc4.jpg)"],
+.prf-header[style="background-image: url(https://ton.twimg.com/tweetdeck-web/web/assets/global/backgrounds/td_profile_empty@2x.28d11b0d43.jpg)"],
+.mtd-nd-header-image[style="background-image: url(https://ton.twimg.com/tweetdeck-web/web/assets/global/backgrounds/td_profile_empty@2x.28d11b0d43.jpg)"] {
 	background-image:none!important
 }
 
@@ -6220,16 +6232,11 @@ r
 
 @media screen and (max-height:600px) {
 	.prf .lst-profile li {
-		width:20%;
+		width:19%!important;
 		padding-top:0
 	}
-
-	.prf .lst-profile li:nth-child(4) {
-		width:31%
-	}
-
-	.prf .lst-profile li:nth-child(5) {
-		width:26%
+	.prf .lst-profile li a span {
+		font-size:0;
 	}
 }
 
@@ -6781,7 +6788,7 @@ legend.frm-legend+div+.control-group>.control-label,legend.frm-legend+div+div+.c
 .ticker-inner {
 	position:relative;
 	top:0;
-	text-align: left
+	text-align:left
 }
 
 .ticker-inner,.ticker-outer {
@@ -7154,10 +7161,10 @@ button[type="submit"]:active {
 }
 
 .media-badge {
-		display:inline-block;
-		padding:2px 10px 2px 6px;
-		border-radius:4px;
-		margin:7px 0 2px 0
+	display:inline-block;
+	padding:2px 10px 2px 6px;
+	border-radius:4px;
+	margin:7px 0 2px 0
 }
 
 .fullname,.username,.location,.prf-bio,.prf-siteurl,.list-account {
@@ -7173,19 +7180,19 @@ button[type="submit"]:active {
 }
 
 .stroke-twitter-light-gray {
-		stroke:#CCD6DD
+	stroke:#CCD6DD
 }
 
 .stroke-twitter-blue {
-		stroke:#1DA1F2
+	stroke:#1DA1F2
 }
 
 .stroke-twitter-yellow {
-		stroke:#FFAD1F
+	stroke:#FFAD1F
 }
 
 .stroke-twitter-red {
-		stroke:#E0245E
+	stroke:#E0245E
 }
 
 .js-progress-svg>svg {
@@ -7222,7 +7229,7 @@ button[type="submit"]:active {
 }
 
 .txt-size--13 {
-	font-size:14px
+	font-size:13px
 }
 
 .icon-user-team-mgr.pull-right.icon-small {
@@ -7238,21 +7245,21 @@ button[type="submit"]:active {
 }
 
 .avatar.size64 {
-		width:64px;
-		height:64px;
-		border-radius:32px
+	width:64px;
+	height:64px;
+	border-radius:32px
 }
 
 .avatar.size73 {
-		width:73px;
-		height:73px;
-		border-radius:37px
+	width:73px;
+	height:73px;
+	border-radius:37px
 }
 
 .account-profile-header {
-		width:100%;
-		height:90px;
-		background-size:cover
+	width:100%;
+	height:90px;
+	background-size:cover
 }
 
 .avatar-border--2 {
@@ -7312,7 +7319,7 @@ label[for="inline-account-safeguard-checkbox"] {
 }
 
 .js-quality-filter-info {
-		padding-bottom:10px
+	padding-bottom:10px
 }
 
 .column-content .accordion-panel a[rel="url noopener noreferrer"] {
@@ -7322,8 +7329,8 @@ label[for="inline-account-safeguard-checkbox"] {
 }
 
 .js-stats-list {
-		margin-bottom:-17px;
-		padding-top:20px
+	margin-bottom:-17px;
+	padding-top:20px
 }
 
 .account-summary-text {
@@ -7408,11 +7415,11 @@ label[for="inline-account-safeguard-checkbox"] {
 }
 
 .media-grid-4>.media-image-container:nth-child(1),.media-grid-4>.media-image-container:nth-child(2) {
-		z-index:5
+	z-index:5
 }
 
 .avatar.size16.margin-t--20 {
-		margin-top:32px!important
+	margin-top:32px!important
 }
 
 .js-conversation-name {
@@ -7443,8 +7450,8 @@ label[for="inline-account-safeguard-checkbox"] {
 }
 
 .js-message-detail .tweet-body {
-		padding-left:56px;
-		padding-top:30px
+	padding-left:56px;
+	padding-top:30px
 }
 
 .tweet-translation-attribution-text {
@@ -7467,11 +7474,11 @@ label[for="inline-account-safeguard-checkbox"] {
 }
 
 .compose .quoted-tweet .media-preview {
-		width:100%
+	width:100%
 }
 
 .compose .quoted-tweet .tweet-header {
-		height:16px
+	height:16px
 }
 
 body+div,body+div>div {
@@ -7488,10 +7495,10 @@ body+div,body+div>div {
 }
 
 .like-count,.retweet-count,.reply-count {
-		font-weight:500;
-		vertical-align:middle;
-		padding-top:5px;
-		padding-left:4px
+	font-weight:500;
+	vertical-align:middle;
+	padding-top:3px;
+	padding-left:4px
 }
 
 .like-count {
@@ -7669,284 +7676,285 @@ div[data-testid="trend"]>.txt-bold {
 
 
 .ProgressBar {
-		position:relative;
-		-webkit-appearance:none;
-		-moz-appearance:none;
-		appearance:none;
-		border:none;
-		overflow:hidden;
-		border-radius:2px;
-		background-color:#ccd6dd;
-		height:3px;
-		color:#1da1f2
+	position:relative;
+	-webkit-appearance:none;
+	-moz-appearance:none;
+	appearance:none;
+	border:none;
+	overflow:hidden;
+	border-radius:2px;
+	background-color:#ccd6dd;
+	height:3px;
+	color:#1da1f2
 }
 
 .ProgressBar::-ms-fill {
-		border:none
+	border:none
 }
 
 .ProgressBar::-moz-progress-bar {
-		background-color:#ccd6dd
+	background-color:#ccd6dd
 }
 
 .ProgressBar::-webkit-progress-bar {
-		background-color:#ccd6dd
+	background-color:#ccd6dd
 }
 
 .ProgressBar.ProgressBar:indeterminate {
-		border-top:1.5px solid #ccd6dd;
-		border-bottom:1.5px solid #ccd6dd
+	border-top:1.5px solid #ccd6dd;
+	border-bottom:1.5px solid #ccd6dd
 }
 
 .ProgressBar::-moz-progress-bar {
-		background-color:#1da1f2
+	background-color:#1da1f2
 }
 
 .ProgressBar::-webkit-progress-value {
-		background-color:#1da1f2
+	background-color:#1da1f2
 }
 
 .ProgressBar::-webkit-progress-bar {
-		border-radius:2px;
-		overflow:hidden
+	border-radius:2px;
+	overflow:hidden
 }
 
 .ProgressBar::-webkit-progress-value {
-		border-radius:2px 0 0 2px;
-		transition:width .6s ease
+	border-radius:2px 0 0 2px;
+	transition:width .6s ease
 }
 
 .ProgressBar::-moz-progress-bar {
-		border-radius:2px 0 0 2px
+	border-radius:2px 0 0 2px
 }
 
 .ProgressBar--red {
-		color:#e0245e
+	color:#e0245e
 }
 
 .ProgressBar--red::-moz-progress-bar {
-		background-color:#e0245e
+	background-color:#e0245e
 }
 
 .ProgressBar--red::-webkit-progress-value {
-		background-color:#e0245e
+	background-color:#e0245e
 }
 
 .ProgressBar--yellow {
-		color:#ffad1f
+	color:#ffad1f
 }
 
 .ProgressBar--yellow::-moz-progress-bar {
-		background-color:#ffad1f
+	background-color:#ffad1f
 }
 
 .ProgressBar--yellow::-webkit-progress-value {
-		background-color:#ffad1f
+	background-color:#ffad1f
 }
 
 .ProgressBar--green {
-		color:#17bf63
+	color:#17bf63
 }
 
 .ProgressBar--green::-moz-progress-bar {
-		background-color:#17bf63
+	background-color:#17bf63
 }
 
 .ProgressBar--green::-webkit-progress-value {
-		background-color:#17bf63
+	background-color:#17bf63
 }
 
 .ProgressBar--blue {
-		color:#1da1f2
+	color:#1da1f2
 }
 
 .ProgressBar--blue::-moz-progress-bar {
-		background-color:#1da1f2
+	background-color:#1da1f2
 }
 
 .ProgressBar--blue::-webkit-progress-value {
-		background-color:#1da1f2
+	background-color:#1da1f2
 }
 
 .ProgressBar--white {
-		background-color:#657786;
-		color:#fff
+	background-color:#657786;
+	color:#fff
 }
 
 .ProgressBar--white::-moz-progress-bar {
-		background-color:#657786
+	background-color:#657786
 }
 
 .ProgressBar--white::-webkit-progress-bar {
-		background-color:#657786
+	background-color:#657786
 }
 
 .ProgressBar--white::-moz-progress-bar {
-		background-color:#fff
+	background-color:#fff
 }
 
 .ProgressBar--white::-webkit-progress-value {
-		background-color:#fff
+	background-color:#fff
 }
 
 .ProgressBar--large {
-		height:9px
+	height:9px
 }
 
 .ProgressBar--large.ProgressBar:indeterminate {
-		border-top:4.5px solid #ccd6dd;
-		border-bottom:4.5px solid #ccd6dd
+	border-top:4.5px solid #ccd6dd;
+	border-bottom:4.5px solid #ccd6dd
 }
 
 
 .NotificationList {
-		position:absolute;
-		bottom:40px;
-		left:50%;
-		width:372px;
-		padding:0;
-		margin:0;
-		list-style:none;
-		margin-left:-186px
+	position:absolute;
+	bottom:40px;
+	left:50%;
+	width:372px;
+	padding:0;
+	margin:0;
+	list-style:none;
+	margin-left:-186px
 }
 
 .Notification {
-		height:0;
-		animation-name:feather-notification-list-show;
-		animation-duration:.17s;
-		animation-fill-mode:both;
-		animation-timing-function:cubic-bezier(.19,1,.22,1);
-		transition:height .17s cubic-bezier(.19,1,.22,1);
-		pointer-events:all
+	height:0;
+	animation-name:feather-notification-list-show;
+	animation-duration:.17s;
+	animation-fill-mode:both;
+	animation-timing-function:cubic-bezier(.19,1,.22,1);
+	transition:height .17s cubic-bezier(.19,1,.22,1);
+	pointer-events:all
 }
 
 .Notification:not(:last-child):not(.is-expired) {
-		animation-delay:.17s
+	animation-delay:.17s
 }
 
 .Notification.is-expired {
-		animation-name:feather-notification-list-hide;
-		animation-timing-function:cubic-bezier(.19,1,.22,1)
+	animation-name:feather-notification-list-hide;
+	animation-timing-function:cubic-bezier(.19,1,.22,1)
 }
 
 .Notification-inner {
-		position:absolute;
-		display:flex;
-		width:100%;
-		margin-bottom:9px;
-		border-radius:4px;
-		transition:box-shadow 0.2s cubic-bezier(.19,1,.22,1);
-		background:#363c46;
-		color:#fff
+	position:absolute;
+	display:flex;
+	width:100%;
+	margin-bottom:9px;
+	border-radius:4px;
+	transition:box-shadow 0.2s cubic-bezier(.19,1,.22,1);
+	background:#363c46;
+	color:#fff
 }
 
 .Notification-icon {
-		display:flex;
-		align-items:center;
-		justify-content:center;
-		min-width:54px;
-		min-height:54px;
-		border-radius:4px 0 0 4px;
-		color:#fff
+	display:flex;
+	align-items:center;
+	justify-content:center;
+	min-width:54px;
+	min-height:54px;
+	border-radius:4px 0 0 4px;
+	color:#fff
 }
 
 .Notification-icon .Icon {
-		position:relative;
-		top:3px
+	position:relative;
+	top:3px
 }
 
 .Notification-content {
-		display:flex;
-		flex-direction:column;
-		justify-content:center;
-		flex-grow:1;
-		width:0;
-		padding:8px 35px 8px 12px;
-		left:50%;
-		overflow:hidden;
-		margin-right:35px
+	display:flex;
+	flex-direction:column;
+	justify-content:center;
+	flex-grow:1;
+	width:0;
+	padding:8px 35px 8px 12px;
+	left:50%;
+	overflow:hidden;
+	margin-right:35px
 }
 
 .Notification-title {
-		font-weight:400
+	font-weight:400
 }
 
 .Notification-title+.Notification-body {
-		font-size:12px;
-		line-height:18px;
-		position:relative;
-		top:1px;
-		color:#657786
+	font-size:12px;
+	line-height:18px;
+	position:relative;
+	top:1px;
+	color:#657786
 }
 
 .Notification-closeButton {
-		position:absolute;
-		right:0;
-		height:55px;
-		width:55px;
-		line-height:0;
-		font-size:19px;
-		color:rgba(128,128,128,0.5);
-		transition:color .15s cubic-bezier(.19,1,.22,1);
-		cursor:pointer
+	position:absolute;
+	right:0;
+	height:55px;
+	width:55px;
+	line-height:0;
+	font-size:19px;
+	color:rgba(128,128,128,0.5);
+	transition:color .15s cubic-bezier(.19,1,.22,1);
+	cursor:pointer
 }
 
 .Notification--green .Notification-inner {
-		background-color:#4CAF50
+	background-color:#4CAF50
 }
 
 .Notification--red .Notification-inner {
-		background-color:#F44336
+	background-color:#F44336
 }
 
 .Notification--green .Notification-closeButton,.Notification--red .Notification-closeButton {
-		color:rgba(255,255,255,1)
+	color:rgba(255,255,255,1)
 }
 
 .width-p--9 {
-		width:9%!important
+	width:9%!important
 }
 
 .padding-r--20 {
-		padding-right:20px
+	padding-right:20px
 }
 
 .flex-auto {
-		flex:1 1 auto;
-		min-width:1px;
-		min-height:1px
+	flex:1 1 auto;
+	min-width:1px;
+	min-height:1px
 }
 
 span[data-testid="trendDescription"] {
-		font-size:12px!important
+	font-size:12px!important
 }
 
 .flex-shrink--0 {
-		flex-shrink:0
+	flex-shrink:0
 }
 
 .wrap {
-		white-space:normal
+	white-space:normal
 }
 
 .pin-top-full-width {
-		left:0;
-		right:0
+	left:0;
+	right:0
 }
 
 .pin-bottom,.pin-bottom-full-width {
-		position:absolute;
-		bottom:0
+	position:absolute;
+	bottom:0
 }
 
 .pin-bottom-full-width {
-		left:0;
-		right:0
+	left:0;
+	right:0;
+	pointer-events:none
 }
 
 .s-with-pinned-bottom {
-		top:12px;
-		bottom:50px
+	top:12px;
+	bottom:50px
 }
 
 .btn[data-action="editList"] {
@@ -7966,11 +7974,11 @@ span[data-testid="trendDescription"] {
 }
 
 .padding-b--8 {
-		padding-bottom:8px!important
+	padding-bottom:8px!important
 }
 
 .padding-b--16 {
-		padding-bottom:16px!important
+	padding-bottom:16px!important
 }
 
 .height--415 {
@@ -7982,9 +7990,9 @@ span[data-testid="trendDescription"] {
 }
 
 .add-multiple {
-		position:absolute;
-		right:10px;
-		top:9px
+	position:absolute;
+	right:10px;
+	top:9px
 }
 
 .s-working>.working {
@@ -7993,48 +8001,48 @@ span[data-testid="trendDescription"] {
 
 
 .width--20 {
-		width:20px
+	width:20px
 }
 
 .width--26 {
-		width:26px
+	width:26px
 }
 
 .width--30 {
-		width:30px
+	width:30px
 }
 
 .width--88 {
-		width:88px
+	width:88px
 }
 
 .width--100 {
-		width:100px
+	width:100px
 }
 
 .width--250 {
-		width:250px
+	width:250px
 }
 
 .width--300 {
-		width:300px
+	width:300px
 }
 
 .width--430 {
-		width:430px
+	width:430px
 }
 
 .width--490 {
-		max-width:490px;
-		max-height:70%
+	max-width:490px;
+	max-height:70%
 }
 
 .width--523 {
-		width:523px!important
+	width:523px!important
 }
 
 .width--600 {
-		width:600px
+	width:600px
 }
 
 .padding-t--25 {
@@ -8933,4 +8941,8 @@ li.padding-axl.flex.flex-row.flex-align--center .fullname {
 
 .mtd-colours-demo {
 	animation:colourDemo 10s infinite
+}
+
+.compose .typeahead-item .fullname,.compose .typeahead-item .username {
+	overflow:visible;
 }
