@@ -214,3 +214,8 @@
 .mtd-nav-group:not(.mtd-nav-group-expanded) {
 	height:inherit!important
 }
+
+#mtd_af_mdl {
+	left:0!important;
+	top:0!important;
+}
