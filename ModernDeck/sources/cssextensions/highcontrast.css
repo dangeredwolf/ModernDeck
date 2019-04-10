@@ -1,0 +1,201 @@
+html {
+    color:#fff;
+}
+
+.more-tweets-btn,.tooltip,.Tooltip,.dropdown-menu,.mdl:not(.med-fullpanel),.mtd-nav-drawer,.popover {
+    background:#000;
+    border:#54707f 2px solid
+}
+
+html .mtd-nav-divider {
+    background:#54707f!important;
+}
+
+html .mdl:not(.med-fullpanel), html .mtd-nav-drawer {
+    box-shadow:none!important;
+}
+
+.column-title {
+    text-shadow:#000 0 0 10px
+}
+
+.typeahead-dropdown, .typeahead, .text-like-keyboard-key, .compose-text-container, .compose-reply-tweet, .med-tweet, .quoted-tweet, .compose-media-bar-holder, .compose-message-recipient-input-container, .compose-text-container, .js-schedule-datepicker-holder>.popover, .quoted-tweet {
+    box-shadow:none!important;
+    border: 3px #54707f solid;
+}
+
+.drp-h-divider {
+    border-bottom:2px #54707f solid
+}
+
+.column-nav-link,.account-bio,.prf-stats>li>a,.lst-profile a,.tweet-action, .tweet-detail-action, .tweet-stats>li>a,.tweet-action:active, .tweet-action:hover, .tweet-detail-action:active, .tweet-detail-action:hover, .stream-item.is-actionable .tweet-action:hover, .stream-item.is-actionable .tweet-detail-action:hover, .stream-item.is-actionable .tweet-action:focus, .stream-item.is-actionable .tweet-detail-action:focus, .stream-item.is-actionable .tweet-action:active, .stream-item.is-actionable .tweet-detail-action:active, .stream-item.is-actionable .tweet-action.is-selected, .stream-item.is-actionable a.is-selected.tweet-detail-action, .tweet-stats>li>a:hover,.txt-mute,.mtd-back-default .js-setting-list>li:not(.selected)>.list-link strong, .txt-mute, .txt-r-dark-gray, .typeahead .username, .l-column.mdl-column.mdl-column-sml .list-link, .lst-group .list-account .username, html .btd-grayscale_notification_icons i.icon.activity-indicator, .other-replies,.tweet-stats>li,.txt-r-deep-gray,.color-twitter-dark-gray,.lst-launcher :not(.is-disabled) .color-twitter-darker-gray, .js-send-button[disabled],.js-add-image-button, .js-tweet-button, .js-dm-button, .js-schedule-button,.caldisabled,.caldisabled:hover,.caldisabled:active,.calweek a:hover,.caloff:hover,.caloff,#caldays span,.caloff,.mdl-links span {
+    color:#fff!important
+}
+
+.mdl-links {
+    opacity:1
+}
+
+input, textarea, select, .uneditable-input {
+    border-bottom-color:#fff
+}
+
+
+
+.mdl.s-profile::-webkit-scrollbar-thumb,
+.mtd-nav-drawer::-webkit-scrollbar-thumb,
+.lst-launcher::-webkit-scrollbar-thumb,
+.scroll-styled-v::-webkit-scrollbar-thumb,
+.scroll-v::-webkit-scrollbar-thumb,
+.scroll-styled-h::-webkit-scrollbar-thumb,
+.s-tall-fixed::-webkit-scrollbar-thumb,
+#lists-modal .mdl-content::-webkit-scrollbar-thumb
+{
+  border-radius:5px;
+  background:#fff
+}
+
+.mdl.s-profile::-moz-scrollbar-thumb,
+.mtd-nav-drawer::-moz-scrollbar-thumb,
+.lst-launcher::-moz-scrollbar-thumb,
+.scroll-styled-v::-moz-scrollbar-thumb,
+.scroll-v::-moz-scrollbar-thumb,
+.scroll-styled-h::-moz-scrollbar-thumb,
+.s-tall-fixed::-moz-scrollbar-thumb,
+#lists-modal .mdl-content::-moz-scrollbar-thumb
+{
+  border-radius:5px;
+  background:#fff
+}
+
+.mdl.s-profile::-webkit-scrollbar-thumb:hover,
+.mtd-nav-drawer::-webkit-scrollbar-thumb:hover,
+.lst-launcher::-webkit-scrollbar-thumb:hover,
+.scroll-styled-v::-webkit-scrollbar-thumb:hover,
+.scroll-v::-webkit-scrollbar-thumb:hover,
+.scroll-styled-h::-webkit-scrollbar-thumb:hover,
+#lists-modal .mdl-content::-webkit-scrollbar-thumb:hover
+{
+    background:#fff
+}
+
+.mdl.s-profile::-moz-scrollbar-thumb:hover,
+.mtd-nav-drawer::-moz-scrollbar-thumb:hover,
+.lst-launcher::-moz-scrollbar-thumb:hover,
+.scroll-styled-v::-moz-scrollbar-thumb:hover,
+.scroll-v::-moz-scrollbar-thumb:hover,
+.scroll-styled-h::-moz-scrollbar-thumb:hover,
+#lists-modal .mdl-content::-moz-scrollbar-thumb:hover
+{
+    background:#fff
+}
+
+
+.txt-mute a:not(:focus):not(.tweet-action):not([data-action]) {
+    color:#fff!important;
+    text-decoration:underline
+}
+
+
+html .is-new .column-header, html .is-new .column-header-temp
+{
+    background:linear-gradient(#000,#000,#000,#000,#06828d)!important
+}
+
+.lst-profile .txt-ellipsis {
+    text-decoration:underline
+}
+
+.js-list-container>li.selected,.lst .s-selected {
+    background:transparent;
+    border:3px solid #00838F
+}
+
+
+.js-list-container>li.selected {
+    margin-right:3px;
+    margin-left:1px
+}
+
+
+.mdl-column.l-column .search-input
+{
+    background:#000!important;
+    color:#fff;
+    box-shadow:none!important;
+    border-bottom:3px #54707f solid!important
+}
+
+
+.is-new .column-message, .is-unread,.js-add-column, .lst-group .selected {
+    background:#000!important;
+    border:5px #00838F solid;
+}
+
+
+.compose .typeahead-item span.username {
+    color:#fff;
+    padding-left:5px
+}
+
+.text-like-keyboard-key {
+    background:#000;
+    font-weight:700
+}
+
+.tweet-detail-wrapper {
+    box-shadow:none!important
+}
+
+html.dark div.drawer[data-drawer="compose"], html.dark .lst-group .selected, html.dark #calcurrent, html.dark .btn-compose:not(.js-hide-drawer), html.dark .compose, html.dark .drawer, html.dark .column-options .button-tray, html.dark .column-options, html.dark .facet-type, html.dark .is-options-open .column-settings-link, html.dark .is-favorite.is-retweet .tweet-dogear, html.dark .is-unread, html.dark .js-add-column, html.dark .mdl .js-add-column, html.dark .list-item.is-selected, html.dark .more-tweets-btn, html.dark .more-tweets-btn:hover, html.dark .tweet-button:not(.js-hide-drawer), html.dark .PillGroup .Pill.is-selected, html.dark .DatePicker-calendarDay.is-withinRange, html.dark button.try-query {
+    background:#000;
+}
+
+.prf-header {
+    text-shadow:0 0 5px #000,0 0 5px #000,0 0 5px #000,0 0 5px #000,0 0 5px #000,0 0 5px #000,0 0 5px #000,0 0 5px #000,0 0 5px #000,0 0 5px #000,0 0 5px #000,0 0 5px #000,0 0 5px #000,0 0 5px #000,0 0 5px #000,0 0 5px #000,0 0 5px #000,0 0 5px #000,0 0 5px #000,0 0 5px #000
+}
+
+html .mtd-nav-drawer-background,
+html .ovl,
+html .overlay,
+html .ModalOverlay
+{
+    background:rgba(255,255,255,.2)!important
+}
+
+html .js-modal[style="display: none;"],html .mtd-nav-drawer-background.mtd-nav-drawer-background-hidden {
+    background:rgba(255,255,255,0)!important
+}
+
+.tweet-text a {
+    color:#fff!important;
+    text-decoration:underline!important;
+    opacity:0.7!important
+}
+
+.cal button,.compose-reply-tweet-remove {
+    color:#fff!important
+}
+
+
+.invalid-char-count,
+.unfollow-text,
+#add-filter:not([disabled]),
+.btn-negative:not([disabled]):not(.is-disabled),
+.Button--danger:not([disabled]):not(.is-disabled),
+.txt-twitter-red
+{
+    color:#EA6B6B!important
+}
+
+.calweek>a:not(.caldisabled) {
+    text-decoration:underline!important
+}
+
+.calweek>a.caloff {
+    color:#a6a6a6!important
+}
+
+.compose .spinner-button-container .Button--primary:not(.is-disabled) {
+    color:#fff!important 
+}

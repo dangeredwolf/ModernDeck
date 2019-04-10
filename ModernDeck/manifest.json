@@ -2,8 +2,10 @@
   "name": "ModernDeck",
   "short_name": "ModernDeck",
 
-  "description": "TweetDeck, just more beautiful, colourful, customisable, fast, and fun than ever.",
-  "version": "6.5",
+  "description": "__MSG_description__",
+  "version": "6.5.2",
+
+  "default_locale":"en",
 
   "permissions": [
     "webRequest",
@@ -47,7 +49,7 @@
   "browser_action": {
     "default_icon": "sources/oneclick/InstaTweetDeck.png",
     "default_popup": "extension/ITD.html",
-    "default_title": "Launch TweetDeck"
+    "default_title": "__MSG_launch__"
   },
 
   "manifest_version": 2

@@ -93,7 +93,7 @@ option,
 
 .js-account-action,.accordion:not(.js-account-settings-detail) .is-active,.txt-mute, li:not(.selected) .list-twitter-list .txt-ellipsis, .list-twitter-list .subtitle, .txt-r-dark-gray, .txt-mute a:not(:hover):not(:focus):not(.tweet-action), .txt-normal, .caloff, .l-column.mdl-column.mdl-column-sml .list-link, .typeahead .username, .lst-group .list-account .username, html .btd-grayscale_notification_icons i.icon.activity-indicator, .txt-r-deep-gray, .color-twitter-dark-gray, .color-twitter-darker-gray, .js-send-button.is-disabled
 {
-	color:#979797
+	color:#979797;
 }
 
 .scroll-styled-v,
@@ -129,7 +129,8 @@ button.is-disabled:active,
 .Button.is-disabled,
 .Button.is-disabled:hover,
 .Button.is-disabled:focus,
-.Button.is-disabled:active
+.Button.is-disabled:active,
+button[disabled]
 {
 	color:#CACACA
 }
@@ -252,7 +253,8 @@ button.is-disabled:active,
 
 .js-account-manager-container,
 .status-message,
-.tooltip-inner
+.tooltip-inner,
+.Tooltip-inner
 {
   background:#f8f8f8
 }
@@ -284,11 +286,14 @@ button.is-disabled:active,
 .column-message,
 .app-navigator .js-hide-drawer,
 .drawer-header,
-html,
 body,
 .is-options-open .column-settings-link
 {
 	background:#03A9F4
+}
+
+html,body {
+	background:#03A9F4!important;
 }
 
 .prf-actions .js-follow-button
@@ -350,32 +355,16 @@ body,
 	background:#c9c9c9
 }
 
-.mdl.s-profile::-moz-scrollbar-thumb,
-.mtd-nav-drawer::-moz-scrollbar-thumb,
-.lst-launcher::-moz-scrollbar-thumb,
-.scroll-styled-v::-moz-scrollbar-thumb,
-.scroll-v::-moz-scrollbar-thumb,
-.scroll-styled-h::-moz-scrollbar-thumb,
-.scroll-alt::-moz-scrollbar-thumb,
-.s-tall-fixed::-moz-scrollbar-thumb,
-#lists-modal .mdl-content::-moz-scrollbar-thumb,
-.keyboard-shortcut-list-modal::-moz-scrollbar-thumb
-{
-	border-radius:5px;
-	background:#D9D9D9
-}
 
-.mdl.s-profile::-moz-scrollbar-thumb:hover,
-.mtd-nav-drawer::-moz-scrollbar-thumb:hover,
-.lst-launcher::-moz-scrollbar-thumb:hover,
-.scroll-styled-v::-moz-scrollbar-thumb:hover,
-.scroll-v::-moz-scrollbar-thumb:hover,
-.scroll-styled-h::-moz-scrollbar-thumb:hover,
-.scroll-alt::-moz-scrollbar-thumb:hover,
-#lists-modal .mdl-content::-moz-scrollbar-thumb:hover,
-.keyboard-shortcut-list-modal::-moz-scrollbar-thumb:hover
-{
-	background:#c9c9c9
+.mdl.s-profile,
+.mtd-nav-drawer,
+.lst-launcher,
+.scroll-styled-v,
+.scroll-v,
+.scroll-styled-h,
+#lists-modal .mdl-content,
+.keyboard-shortcut-list-modal {
+	scrollbar-color:#bbb #f9f9f9;
 }
 
 .sprite:before
@@ -413,6 +402,7 @@ html:not(.mtd-dark-media-previews) .med-tweet,
 .compose-reply-tweet,
 .tweet-detail-wrapper,
 .mdl,
+.DrawerModal,
 .compose-media-bar-holder,
 .compose-media-info-bar-holder,
 .prf-follow-status,
@@ -422,6 +412,7 @@ html:not(.mtd-dark-media-previews) .med-tweet,
 .mdl-column.mdl-column-rhs,
 .typeahead,
 .compose-text-container,
+.Tooltip-inner,
 .tooltip-inner,
 .mdl-column-rhs,
 .med-fullpanel,
@@ -472,6 +463,8 @@ html:not(.mtd-dark-media-previews) .med-tweet,
 .compose,
 .drawer,
 .tweet-button:not(.js-hide-drawer),
+.PillGroup .Pill.is-selected,
+.DatePicker-calendarDay.is-withinRange,
 .lst-group .selected,
 button.try-query
 {
@@ -592,7 +585,8 @@ button.try-query
 
 .is-selected-tweet,
 .app-content,
-.mtd-nav-divider
+.mtd-nav-divider,
+.DateRange
 {
 	background:#eee
 }
@@ -614,7 +608,8 @@ button.try-query
 }
 
 .ovl,
-.overlay
+.overlay,
+.ModalOverlay
 {
 	background:rgba(100,100,100,.4)!important
 }
@@ -683,7 +678,7 @@ button.try-query
 .column,
 .contributor-row
 {
-	background:#f9f9f9
+	background:#f9f9f9;
 }
 
 .compose-media-info-bar
@@ -890,7 +885,7 @@ textarea::placeholder
 .stream-item.is-actionable .tweet-detail-action,
 .tweet-stats>li>a
 {
- color:#bbb
+ color:#bbb;
 }
 
 ::selection
@@ -905,7 +900,8 @@ textarea::placeholder
 	color:#444
 }
 
-.tooltip-inner
+.tooltip-inner,
+.Tooltip-inner
 {
 	color:#535353;
 	box-shadow:0 3px 10px rgba(17,17,17,.35)
@@ -930,7 +926,7 @@ textarea
 .tweet-detail-action,
 .social-proof-for-tweet-title
 {
-	color:#787878
+	color:#787878;
 }
 
 

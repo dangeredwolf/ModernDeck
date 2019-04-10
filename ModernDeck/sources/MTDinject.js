@@ -5,12 +5,14 @@
 
 "use strict";
 
-var SystemVersion = "6.5";
+var SystemVersion = "6.5.2";
 var MTDBaseURL = "https://rawgit.com/dangeredwolf/ModernDeck/stable/ModernDeck/"; // Defaults to streaming if using online client
 
 var msgID,
 FetchProfileInfo,
 loginIntervalTick = 0;
+
+const forceFeatureFlags = false;
 
 var messagesAccounted = [];
 
@@ -33,10 +35,11 @@ var FindProfButton,
 loginInterval,
 openModal;
 
-var isChrome = typeof chrome !== "undefined";
+var isChrome = typeof chrome !== "undefined"; // may also return true on chromium-based browsers like opera and edge chromium
 var isOpera = typeof opera !== "undefined";
 var isSafari = typeof safari !== "undefined";
-var isFireFox = !isChrome && !isOpera && !isSafari;
+var isEdge = typeof MSGesture !== "undefined";
+var isFirefox = typeof mozInnerScreenX !== "undefined";
 
 var twitterSucks = document.createElement("script");
 twitterSucks.type = "text/javascript";
@@ -44,14 +47,16 @@ twitterSucks.type = "text/javascript";
 var make = function(a){return $(document.createElement(a))};
 var head,body,html = undefined;
 
+var MTDStorage = {};
+
 
 var welcomeScreenHtml = '<div class="mdl-content horizontal-flow-container"><div style="width:100%"class="l-column mdl-column mdl-column-lrg"><div class="l-column-scrollv scroll-v	scroll-alt"><h1>New in ModernDeck 6.0</h1><h2>Themes</h2><header class="js-column-header js-action-header column-header mtd-colours-demo"><i class="pull-left margin-hs column-type-icon icon icon-home"></i><h1 class="column-title txt-ellipsis"><span class="column-head-title">Home</span><span class="attribution txt-mute txt-sub-antialiased">@dangeredwolf</span></h1><a class="js-action-header-button column-header-link column-settings-link"><i class="icon icon-sliders"></i></a></header><p>People\'s personalities are far more than just black and white. Make your TweetDeck experience truly personal with a variety of styles to suit whatever your tastes might be. This and many of the other options are adjustable with <br><i class="icon icon-mtd-settings"></i><b>ModernDeck Settings</b></p><h2>Refreshed Icons</h2><br><i class="icon icon-tweetdeck icon-xxlarge"></i><i class="icon icon-moderndeck icon-xxlarge"></i><i class="icon icon-hashtag icon-xxlarge"></i><i class="icon icon-retweet icon-xxlarge"></i><i class="icon icon-mtd-settings icon-xxlarge"></i><p style="padding-top:0">As of this release, 100% of icons are either created inhouse for ModernDeck, or are borrowed from the material design icon library. This includes the new Retweet icon, which was obvious from the beginning that an inhouse solution was mandatory.</p><h2>Refreshed UI</h2><p style="padding-top:0">ModernDeck 6.0 has a refreshed UI, taking advantage of an all-new edge-to-edge design that snaps to the left side. This helps take better advantage of screen real estate while still being elegant to use, and isn\'t a bad match with ModernDeck\'s navigation drawer.</p><!--h2>Tweet Shortener Assistant</h2--><!--p style="padding-top:0">Have you ever dealt with a moment where you\'re just barely over the 140 character limit and need to cut down the size a bit? In ModernDeck 6.0, we have you covered. If you go over the 140 character limit, we\'ll prompt you with suggestions of what ways it detects will help shorten your tweet. This uses a number of algorithms such as checking for excess spacing and punctuation, to more advanced ones such as detecting and replacing applicable letters with liguatures, a Unicode feature that allows combining of certain letters to replace 2, 3, or sometimes even 4 characters, into what Twitter registers as just 1 character, and oftentimes looks about the same. All of these are suggestions, so you can click on the one you want, and you\'ll get no more, no less, than you asked for. Then you can finally send that Tweet, and you\'ve saved some precious time.</p><h3-->Hearts or Stars</h3><p style="padding-top:0">ModernDeck allows you to pick between hearts and stars. The new default is hearts.</p><h3>Change How the Scroll Bar Looks</h3><p style="padding-top:0">In ModernDeck 6.0, you now have the option to change the scroll bar\'s appearance, such as either making it narrower, or making it never appear outright, to help build a cleaner TweetDeck experience to your specification.</p><h3>A New Option for dealing with Sensitive Media</h3><p style="padding-top:0">ModernDeck 6.0 also introduces another new feature, which changes the workflow of dealing with sensitive media, if you have it enabled to ask beforehand. Before, you had to click a tiny "View" link beforehand. Now, simply click anywhere on the designated background, and it will open up a preview of the image, as expected, but the thumbnail itself never shows content marked as sensitive.</p><h3>Faster and More Reliable CSS Extension Engine</h3><p style="padding-top:0">Building a truly versatile theming system wasn\'t as easy as slapping a feature on top of the old codebase. It\'s possible to do it that way, but it\'d hurt performance by creating extra overhead created by having to load all themes into memory at once, only to render one. Much of ModernDeck\'s CSS/UI codebase, kept in one single CSS file, has been broken up and componentified into separate silos, called CSS extensions, and besides critical system extensions, most of these extensions can be swapped in or out at any time, making it easier for the browser to discard an old theme, and load a new theme into memory, all transparently, in real-time, with virtually no hiccup on average, modern hardware. Any UI tweaks from themes to hearts to even more are now all extensions that run on top of ModernDeck. This architecture carries through much of the system now. For example, all animations are kept in animations.css. By keeping similar items in the same place, it makes it easier for the CSS to reference, as well as making it easier to develop ModernDeck in the future. This took an enormous amount of work, but now we\'re left with a more functional, stable, as well as modular ModernDeck.</p></div></div></div>';
 // Asks MTDLoad for the storage
-window.postMessage({
-	type: "getStorage"
-}, "*");
+// window.postMessage({
+// 	type: "getStorage"
+//}, "*");
 
-// Adds each key in the extension storage to localStorage
+// Adds each key in the extension storage to MTDStorage
 window.addEventListener("message", function(e) {
 	console.log("Message received");
 	console.log(e);
@@ -59,7 +64,7 @@ window.addEventListener("message", function(e) {
 		if (e.data.type == "sendStorage") {
 			var settings = e.data.message;
 			for (var key in settings) {
-				localStorage.setItem(key, settings[key]);
+				MTDStorage.setItem(key, settings[key]);
 			}
 		}
 	}
@@ -106,20 +111,16 @@ function exists(thing) {
 }
 
 function savePreferencesToDisk() {
-	var storage = {}
-	for(var i = 0; i < localStorage.length; i++){
-		var key = localStorage.key(i);
-		if (key == "guestID" || key == "metrics.realtimeData") {
-			continue;
-		} else {
-			storage[key] = localStorage[key];
-		}
-	}
+	// var storage = {}
+	// for(var i = 0; i < MTDStorage.length; i++){
+	// 	var key = MTDStorage.key(i);
+	// 	storage[key] = MTDStorage[key];
+	// }
 
-	window.postMessage({
-		type: "setStorage",
-		message: storage
-	}, "*");
+	// window.postMessage({
+	// 	type: "setStorage",
+	// 	message: MTDStorage
+	// }, "*");
 }
 
 function isEnabledStylesheetExtension(name) {
@@ -199,17 +200,18 @@ function loadPreferences() {
 }
 
 function getPref(id) {
-	if (localStorage[id] === "true")
+	if ((localStorage[id] ? localStorage[id] : MTDStorage[id]) === "true")
 		return true;
-	else if (localStorage[id] === "false")
+	else if ((localStorage[id] ? localStorage[id] : MTDStorage[id]) === "false")
 		return false;
 	else
-		return localStorage[id];
+		return (localStorage[id] ? localStorage[id] : MTDStorage[id]);
 }
 
 function setPref(id,p) {
+	//MTDStorage[id] = p;
 	localStorage[id] = p;
-	savePreferencesToDisk();
+	//savePreferencesToDisk();
 }
 
 function GetURL(url) {
@@ -241,11 +243,76 @@ function MTDInit(){
 		return;
 	}
 
+	if (isEdge) {
+		var beGoneThot = $("link[rel='apple-touch-icon']+link[rel='stylesheet'")[0];
+		if (exists(beGoneThot)) {
+			beGoneThot.remove();
+		}
+	}
+
 	enableStylesheetExtension("dark");
 
-	if (isChrome) {
-		if (parseInt((navigator.userAgent.match(/Chrome\/\d\d/g)+"").substring(7)) <= 42)
-			enableStylesheetExtension("animations_legacy");
+	if (forceFeatureFlags) {
+		TD.config.config_overlay = { 
+			tweetdeck_devel: { value: true },
+			tweetdeck_dogfood: { value: true },
+			tweetdeck_insights: { value: true },
+			tweetdeck_content_user_darkmode: { value: true },
+			tweetdeck_subscriptions_debug: { value: true },
+			tweetdeck_locale: { value: true },
+			tweetdeck_live_engagements: { value: true },
+			tweetdeck_content_search_darkmode: { value: true },
+			tweetdeck_content_user_darkmode: { value: true },
+			tweetdeck_content_render_search_tweets: { value: true },
+			tweetdeck_content_render_user_tweets: { value: true },
+			tweetdeck_uiv: { value: true },
+			tweetdeck_premium_trends: { value: true },
+			tweetdeck_create_moment_pro: { value: true },
+			tweetdeck_gdpr_consent: { value: true },
+			tweetdeck_gdpr_updates: { value: true },
+			tweetdeck_premium_analytics: { value: true },
+			tweetdeck_whats_happening: { value: true },
+			tweetdeck_activity_polling: { value: true },
+			tweetdeck_beta: { value: true },
+			tweetdeck_system_font_stack: { value: true },
+			tweetdeck_show_release_notes_link: { value: true },
+			tweetdeck_searches_with_negation: { value: true },
+			twitter_text_emoji_counting_enabled: { value: true },
+			tweetdeck_trends_column: { value: true },
+			tweetdeck_scheduled_tweet_ephemeral: { value: true },
+			twitter_weak_maps: { value: true },
+			tweetdeck_activity_value_polling: { value: true },
+			tweetdeck_activity_streaming: { value: true },
+			tweetdeck_rweb_composer: { value: true }
+		}
+		TD.config.scribe_debug_level = 4
+		TD.config.debug_level = 4
+		TD.config.debug_menu = true
+		TD.config.debug_trace = true
+		TD.config.debug_checks = true
+		TD.config.flight_debug = true
+		TD.config.sync_period = 600
+		TD.config.force_touchdeck = true
+		TD.config.internal_build = true 
+		TD.config.help_configuration_overlay = true
+		TD.config.disable_metrics_error = true
+		TD.config.disable_metrics_event = true 
+		TD.controller.stats.setExperiments({
+			config: {
+				live_engagement_in_column_8020: {
+					value: 'live_engagement_enabled'
+				},
+				hosebird_to_rest_activity_7989: {
+					value: 'rest_instead_of_hosebird'
+				},
+				tweetdeck_uiv_7739: {
+					value: 'uiv_images'
+				},
+				hosebird_to_content_search_7673: {
+					value: 'search_content_over_hosebird'
+				}
+			}
+		});
 	}
 
 	$(document.head).append(make("style").html(
@@ -436,6 +503,9 @@ function MTDInit(){
 		};	
 	}
 
+	setTimeout(MTDAFCheckDate,1000);
+	setInterval(MTDAFCheckDate,3000);
+
 	TD.util.prettyNumber = function(e) {
 		//if (!TD.util.isValidNumber(e) || typeof e !== "string")
 			//return "";
@@ -597,10 +667,11 @@ function MTDSettings() {
 			<select id="mtd-theme-control" type="select">\
 			<option value="default" selected="selected">Default</option>\
 			<optgroup label="Complete Themes">\
+			<option value="AF_2019_fabulous" style="background-image:linear-gradient(to right,#E53935,#FF5722,#FFC107,#4CAF50,#2196F3,#673AB7)!important;color:#fff!important" id="AF_2019_fabulous">Fabulous</option>\
 			<option value="paper">Paper</option>\
-			<option value="amoled">AMOLED</option>\
+			<option value="amoled" style="color:#fff!important">AMOLED</option>\
 			</optgroup><optgroup label="Complementary Themes">\
-			<option value="grey">Grey</option>\
+			<option value="grey" style="color:#fff!important">Grey</option>\
 			<option value="red">Red</option>\
 			<option value="pink">Pink</option>\
 			<option value="orange">Orange</option>\
@@ -609,7 +680,7 @@ function MTDSettings() {
 			<option value="green">Green</option>\
 			<option value="yellow">Yellow</option>\
 			<option value="cyan">Cyan</option>\
-			<option value="black">Black</option>\
+			<option value="black" style="color:#fff!important">Black</option>\
 			<option value="blue">Blue</option>\
 			</optgroup></select>\
 			\
@@ -635,6 +706,10 @@ function MTDSettings() {
 			$("#mtd-hearts").attr("checked",getPref("mtd_hearts"));
 			$("#mtd-theme-control").val(getPref("mtd_theme"));
 			$("#mtd-scrollbar-style").val(getPref("mtd_scrollbar_style"));
+
+			if (!html.hasClass("mtd_af_time")) {
+				$("#AF_2019_fabulous").remove();
+			}
 
 			PrefsListener();
 
@@ -694,7 +769,7 @@ function LoginStuffs() {
 		setPref("has_opened_mtd6",true)
 	}
 
-	loadPreferences();
+	//loadPreferences();
 }
 
 function NavigationSetup() {
@@ -710,7 +785,11 @@ function NavigationSetup() {
 		mutationObserver(b,function(){
 			if (typeof c.attr("style") !== "undefined") {
 				var num = parseInt(c.attr("style").match(/[\-\d]+/g));
-				var hasFilterOptionsVisible = parseInt(c.parent().children(".column-options").children('.js-column-message[style]')[0].style.height.replace("px","")) > 0;
+				var hasFilterOptionsVisible = false;
+				try {
+					hasFilterOptionsVisible = parseInt(c.parent().children(".column-options").children('.js-column-message[style]')[0].style.height.replace("px","")) > 0;
+				} catch (e){}
+
 				if ((!hasFilterOptionsVisible && num < 0) || (hasFilterOptionsVisible && num < 21))
 					c.attr("style","top: " + ((!hasFilterOptionsVisible && "0") || "22") + "px;")
 			}
@@ -974,19 +1053,19 @@ function checkIfUserSelectedNewTheme() {
 			disableStylesheetExtension("light");
 			html.addClass("mtd-dark").removeClass("mtd-light")
 			MTDDark = true;
-			if (typeof getPref("mtd_theme") !== "undefined" && getPref("mtd_theme") === "paper") {
-				setPref("mtd_theme","default");
-				disableStylesheetExtension("paper");
-			}
+			// if (typeof getPref("mtd_theme") !== "undefined" && getPref("mtd_theme") === "paper") {
+			// 	setPref("mtd_theme","default");
+			// 	disableStylesheetExtension("paper");
+			// }
 		} else {
 			disableStylesheetExtension("dark");
 			enableStylesheetExtension("light");
 			html.addClass("mtd-light").removeClass("mtd-dark")
 			MTDDark = false;
-			if (typeof getPref("mtd_theme") !== "undefined" && getPref("mtd_theme") ==="amoled") {
-				setPref("mtd_theme","default");
-				disableStylesheetExtension("amoled");
-			}
+			// if (typeof getPref("mtd_theme") !== "undefined" && getPref("mtd_theme") ==="amoled") {
+			// 	setPref("mtd_theme","default");
+			// 	disableStylesheetExtension("amoled");
+			// }
 		}
 
 
@@ -1378,6 +1457,43 @@ function outtaSpaceSuggestions() {
 		}
 	}
 
+}
+
+function MTDAFCheckDate() {
+	var checkDate = new Date();
+
+
+	if (checkDate.getMonth() === 3 && checkDate.getDay() === 1) {
+		html.addClass("mtd_af_time");
+
+		if (!exists(document.querySelector("#mtd_af_mdl")) && (getPref("mtd_af_2019_seen") === false || !exists(getPref("mtd_af_2019_seen")))) {
+			$("#settings-modal").attr("style","display: block;").html('\
+				<div class="js-modal-panel mdl s-short" id="mtd_af_mdl" style="max-height:460px;right:0;margin-left:-290px;left:50%;top:50%;margin-top:-230px;"> <header style="background-image:linear-gradient(to right,#E53935,#FF5722,#FFC107,#4CAF50,#2196F3,#673AB7)!important" class="js-drag-handle padding-a--12 no-collapse mdl-header is-movable mdl-header-divider"> <h3 class="mdl-header-title" style="font-size:18px!important">ModernDeck New Feature: Fabulous Mode</h3>  </header> <div class="mdl-inner padding-a--10" style="line-height:28px">\
+				<p><b>At ModernDeck, we always strive to provide the best experience for our users.</b> Several years ago, ModernDeck had a basic Fabulous Mode, but we felt did not meet our quality standards, so it was removed. After many painstaking hours of engineering, we reimagined the entire Fabulous Mode experience for the year 2019, and we think you will like it!<br><br>We recommend trying the all-new Fabulous Mode in Light mode, although it is compatible with either.<br><br>Would you like to try out our fabulous new Fabulous Mode experience?<br><br><button class="btn" id="mtd_af_yes" style="display:inline-block;float:right;min-width:80px">Yes</button><button class="btn btn-negative" id="mtd_af_no" style="display:inline-block;float:right;min-width:80px">No</button></p>\
+				</div> </div>\
+			');
+
+			$("#mtd_af_no").click(function(){
+				$("#settings-modal").attr("style","display: none;");
+				setPref("mtd_af_2019_seen",true);
+				setTimeout(function(){
+					$("#mtd_af_mdl").remove();
+				},2000);
+			});
+
+			$("#mtd_af_yes").click(function(){
+				enableStylesheetExtension("AF_2019_fabulous");
+				setPref("mtd_theme","AF_2019_fabulous");
+
+				setPref("mtd_af_2019_seen",true);
+
+				$("#settings-modal").attr("style","display: none;");
+				setTimeout(function(){
+					$("#mtd_af_mdl").remove();
+				},2000);
+			});
+		}
+	}
 }
 
 // warning: for some reason this doesnt work if the console.logs arent there DONT ASK WH I DONT KNOW

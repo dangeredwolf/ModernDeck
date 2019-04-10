@@ -14,16 +14,15 @@
 	max-height:900px;
 	bottom:auto;
 	top:auto;
-	height:auto;
-	/*padding-bottom:30px*/
+	height:auto
 }
 
 .prf-stats>li {
-	width:49.6%;
+	width:49.6%
 }
 
 .prf-stats>li:nth-child(2) {
-	margin-top:50px;
+	margin-top:50px
 }
 
 .prf .lst-profile li {
@@ -35,7 +34,7 @@
 }
 
 .s-profile .s-profile {
-	animation-name:fadeIn;
+	animation-name:fadeIn
 }
 
 .s-tall-fixed {
@@ -50,9 +49,7 @@
 
 .cmp-replyto {
 	position:relative;
-	/* height:100px; */
-	margin-top: 80px;
-	margin-bottom:-40px;
+	margin-top:30px
 }
 
 .s-inreply .tweet-context {
@@ -60,23 +57,24 @@
 }
 
 .mdl:not(.sentry-error-embed):not(.med-fullpanel) {
-    display: inline-block;
-    vertical-align: middle;
-    position: relative;
+    display:inline-block;
+    vertical-align:middle;
+    position:relative;
     margin:0 auto!important;
-    text-align: left;
-    border-radius: 2px;
+    text-align:left;
+    border-radius:2px;
+    min-height:170px
 }
 
 .mdl.s-fluid {
 	height:auto!important;
 	min-width:400px;
-	min-height: 538px;
-	overflow-x:hidden;
+	min-height:538px;
+	overflow-x:hidden
 }
 
 .mdl.s-fluid-height {
-	height:auto!important;
+	height:auto!important
 }
 
 .med-fullpanel {
@@ -93,7 +91,7 @@
 
 .social-proof-container {
 	position:absolute!important;
-	top:308px
+	top:306px
 }
 
 .s-fluid .mdl-inner, .s-fluid-height .mdl-inner {
@@ -198,8 +196,7 @@
 
 .s-inreply.s-fluid-height .cf>.pull-right {
 	position:absolute;
-	right:0;
-	bottom:-40px
+	right:0
 }
 
 .cf.padding-b--20.padding-r--20.padding-t--5 {
@@ -207,13 +204,18 @@
 }
 
 .cmp-replyto {
-	padding-bottom:40px	
+	padding-bottom:40px
 }
 
 .mtd-nav-group-expand {
-	display:none;
+	display:none
 }
 
 .mtd-nav-group:not(.mtd-nav-group-expanded) {
-	height:inherit!important;
+	height:inherit!important
+}
+
+#mtd_af_mdl {
+	left:0!important;
+	top:0!important;
 }

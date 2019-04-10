@@ -61,7 +61,8 @@ div.drawer[data-drawer="compose"],
 .mdl-column.l-column .search-input,
 .is-selected-tweet,
 .prf-follow-status,
-.typeahead
+.typeahead,
+.media-sensitive
 {
 	background:#000!important
 }
@@ -115,7 +116,8 @@ option
 
 .mtd-nav-drawer-background,
 .ovl,
-.overlay
+.overlay,
+.ModalOverlay
 {
 	background:rgba(0,0,0,.4)!important
 }
@@ -137,4 +139,15 @@ option
 
 .mdl:not(.med-fullpanel),.mtd-nav-drawer {
 	box-shadow:0 3px 16px #344248!important
+}
+
+.mdl.s-profile,
+.mtd-nav-drawer,
+.lst-launcher,
+.scroll-styled-v,
+.scroll-v,
+.scroll-styled-h,
+#lists-modal .mdl-content,
+.keyboard-shortcut-list-modal {
+	scrollbar-color:rgba(149,175,191,.5) #000!important;
 }

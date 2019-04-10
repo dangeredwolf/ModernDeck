@@ -10,17 +10,18 @@
 	pointer-events:all
 }
 
-.keyboard-shortcut-list-modal::-moz-scrollbar,.mdl.s-profile::-moz-scrollbar,.scroll-styled-v::-moz-scrollbar,.scroll-v::-moz-scrollbar,.lst-launcher::-moz-scrollbar,.mtd-nav-drawer::-moz-scrollbar,.emoji-container>div::-moz-scrollbar,.emoji-container::-moz-scrollbar {
-	width:5px;
-	pointer-events:all
-}
-
 .scroll-styled-h::-webkit-scrollbar,.scroll-h::-webkit-scrollbar {
 	height:5px;
 	pointer-events:all
 }
 
-.scroll-styled-h::-moz-scrollbar,.scroll-h::-moz-scrollbar {
-	height:5px;
-	pointer-events:all
+.mdl.s-profile,
+.mtd-nav-drawer,
+.lst-launcher,
+.scroll-styled-v,
+.scroll-v,
+.scroll-styled-h,
+#lists-modal .mdl-content,
+.keyboard-shortcut-list-modal {
+	scrollbar-width:thin;
 }
