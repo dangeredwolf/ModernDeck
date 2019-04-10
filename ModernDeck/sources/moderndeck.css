@@ -2,18 +2,15 @@
 			moderndeck.css
 
 
-			ModernDeck 6.5.1AF [codename Enlightenment]
+			ModernDeck 6.5.2 [codename Enlightenment]
 			Copyright 2014-2019 dangered wolf
 			Released under the MIT Licence
 
 			For a complete list of open source projects included in this, view the "LICENCES" file in the open source project @ github.com/dangeredwolf/ModernDeck
 
-			AF = April Fools
  */
 
 @import "cssextensions/coredefinitions.css";
-/*@import "cssextensions/animations.css";
-@import "cssextensions/transitions.css";*/
 @import "cssextensions/spinner.css";
 @import "cssextensions/superclasses.css";
 @import "cssextensions/marginclasses.css";
@@ -3211,9 +3208,9 @@ div.media-size-small {
 .compose-accounts {
 	padding-top:20px;
 	padding-left:19px;
-	padding-right:8px;
+	/* padding-right:8px; */
 	margin-bottom:11px;
-	display:inline-block
+	display:inline-block;
 }
 
 .compose-title-text {
@@ -6344,7 +6341,8 @@ textarea:not(.compose-text):not(.js-compose-text):not(.js-list-description):not(
 }
 
 .js-tweet .tweet-text {
-	padding-left:53px
+	padding-left:53px;
+	margin-top: 0;
 }
 
 .tweet-text:not(.with-linebreaks) {

@@ -460,20 +460,6 @@ textarea
   background:rgba(149,175,191,.5)
 }
 
-.mdl.s-profile::-moz-scrollbar-thumb,
-.mtd-nav-drawer::-moz-scrollbar-thumb,
-.lst-launcher::-moz-scrollbar-thumb,
-.scroll-styled-v::-moz-scrollbar-thumb,
-.scroll-v::-moz-scrollbar-thumb,
-.scroll-styled-h::-moz-scrollbar-thumb,
-.s-tall-fixed::-moz-scrollbar-thumb,
-#lists-modal .mdl-content::-moz-scrollbar-thumb,
-.keyboard-shortcut-list-modal::-moz-scrollbar-thumb
-{
-  border-radius:5px;
-  background:rgba(149,175,191,.5)
-}
-
 .mdl.s-profile::-webkit-scrollbar-thumb:hover,
 .mtd-nav-drawer::-webkit-scrollbar-thumb:hover,
 .lst-launcher::-webkit-scrollbar-thumb:hover,
@@ -486,16 +472,15 @@ textarea
 	background:#8498A5
 }
 
-.mdl.s-profile::-moz-scrollbar-thumb:hover,
-.mtd-nav-drawer::-moz-scrollbar-thumb:hover,
-.lst-launcher::-moz-scrollbar-thumb:hover,
-.scroll-styled-v::-moz-scrollbar-thumb:hover,
-.scroll-v::-moz-scrollbar-thumb:hover,
-.scroll-styled-h::-moz-scrollbar-thumb:hover,
-#lists-modal .mdl-content::-moz-scrollbar-thumb:hover,
-.keyboard-shortcut-list-modal::-moz-scrollbar-thumb:hover
-{
-	background:#8498A5
+.mdl.s-profile,
+.mtd-nav-drawer,
+.lst-launcher,
+.scroll-styled-v,
+.scroll-v,
+.scroll-styled-h,
+#lists-modal .mdl-content,
+.keyboard-shortcut-list-modal {
+	scrollbar-color:rgba(149,175,191,.5) #344248;
 }
 
 .s-following .follow-btn:hover
