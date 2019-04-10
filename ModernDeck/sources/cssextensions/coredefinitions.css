@@ -231,3 +231,7 @@ input,select
 	word-break:normal!important;
 	word-wrap:normal!important
 }
+
+p {
+	margin-top:0
+}
