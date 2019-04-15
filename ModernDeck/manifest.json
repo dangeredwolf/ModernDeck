@@ -21,7 +21,7 @@
     {
       "matches": ["https://tweetdeck.twitter.com/*"],
       "js": ["extension/MTDLoad.js"],
-      "css": ["sources/moderndeck.min.css"],
+      //"css": ["sources/dev.css"],
       "run_at": "document_end"
     }
   ],

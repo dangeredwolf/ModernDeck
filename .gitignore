@@ -8,3 +8,5 @@
 *.map
 
 ModernDeck\README.md
+
+node_modules
