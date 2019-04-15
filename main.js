@@ -27,14 +27,12 @@ function createWindow () {
     },
     webSecurity: false,
     allowRunningInsecureContent:true,
-    scrollBounce:true
+    scrollBounce:true,
+    autoHideMenuBar:true
   });
+
 
   mainWindow.webContents.on('dom-ready', (event, url) => {
-    //mainWindow.webContents.executeJavaScript('var injurl = document.createElement("div");injurl.setAttribute("type",'+__dirname+');injurl.id = "MTDURLExchange";document.head.appendChild(injurl);');
-  });
-
-  mainWindow.webContents.on('did-start-loading', (event, url) => {
     mainWindow.webContents.executeJavaScript('\
       document.querySelectorAll("link[rel=\'stylesheet\']")[0].remove();\
       var injurl = document.createElement("div");\

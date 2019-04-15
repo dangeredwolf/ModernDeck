@@ -22,8 +22,8 @@ img.spinner-centered {
 	display:none
 }
 
-body.scroll-v {
-	background:#263238
+body {
+	background:#263238!important
 }
 
 /* Animation Keyframes */
