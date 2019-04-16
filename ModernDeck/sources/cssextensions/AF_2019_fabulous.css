@@ -1,0 +1,352 @@
+/*
+  AF_2019_fabulous.css
+
+  April Fools 2019: Fabulous Mode is back
+
+  Copyright (c) 2014-2019 Dangered Wolf
+  Released under the MIT Licence
+*/
+
+
+a, a:not(.column-header-link):not(.js-column-back):not(.list-account):not(.account-selector-grid-mode):not(.account-link):hover, .calweek a:hover, .btn:not([disabled]):not(.is-disabled):not(.btn-options-tray):not(.mtd-nav-button):not(.btn-bg-negative), button, .compose-send-button-success, .icon-follow-color, .tweet-actions.is-visible .icon-reply, #caltoday, .lst-profile a, .lst-profile a:hover, .lst-profile a:active, input[type="checkbox"]:checked:before, input[type="radio"]:checked:before, .icon-toggle-on, .mtd-logo {
+	color:#E53935;
+}
+
+.app-columns>.column:nth-child(6n+1) .column-header,
+.app-columns>.column:nth-child(6n+1) .column-message,
+.app-columns>.column:nth-child(6n+1).is-options-open .column-settings-link,
+.app-columns>.column:nth-child(6n+1) .column-options .button-tray,
+.app-columns>.column:nth-child(6n+1) .js-more-tweets-btn,
+.accordion>.facet-type:nth-child(6n+1),
+select>option:nth-child(6n+1)
+{
+	background:#E53935!important
+}
+
+
+.app-columns>.column:nth-child(6n+1) a:not(.account-link):not(.tweet-action):not(.tweet-detail-action):not([data-action]):not(.js-column-back),
+.app-columns>.column:nth-child(6n+1) .tweet-action:not([rel="retweet"]):not([rel="favorite"]):hover,
+.app-columns>.column:nth-child(6n+1) .sprite:before,
+.app-columns>.column:nth-child(6n+1) .icon-follower-color,
+.app-columns>.column:nth-child(6n+1) .btn,
+.lst-launcher>li:nth-child(6n+1) .btn,
+.social-proof-names>a:nth-child(6n+1),
+.lst-profile>li:nth-child(6n+1) a,
+.js-modal-content.modal-content.position-rel.margin-hxl>.js-component:nth-child(6n+1) button
+{
+	color:#E53935!important;
+}
+
+.app-columns>.column:nth-child(6n+1) .detail-view-inline-text
+{
+	border-bottom-color:#E53935;
+}
+
+.app-columns>.column:nth-child(6n+2) .column-header,
+.app-columns>.column:nth-child(6n+2) .column-message,
+.app-columns>.column:nth-child(6n+2).is-options-open .column-settings-link,
+.app-columns>.column:nth-child(6n+2) .column-options .button-tray,
+.app-columns>.column:nth-child(6n+2) .js-more-tweets-btn,
+.accordion>.facet-type:nth-child(6n+2),
+select>option:nth-child(6n+2)
+{
+	background:#FF5722!important
+}
+
+#btdsettings
+{
+	display:none
+}
+
+.app-columns>.column:nth-child(6n+2) a:not(.account-link):not(.tweet-action):not(.tweet-detail-action):not([data-action]):not(.js-column-back),
+.app-columns>.column:nth-child(6n+2) .tweet-action:not([rel="retweet"]):not([rel="favorite"]):hover,
+.app-columns>.column:nth-child(6n+2) .sprite:before,
+.app-columns>.column:nth-child(6n+2) .icon-follower-color,
+.app-columns>.column:nth-child(6n+2) .btn,
+.lst-launcher>li:nth-child(6n+2) .btn,
+.social-proof-names>a:nth-child(6n+2),
+.lst-profile>li:nth-child(6n+2) a,
+.js-modal-content.modal-content.position-rel.margin-hxl>.js-component:nth-child(6n+2) button
+{
+	color:#FF5722!important;
+}
+
+.app-columns>.column:nth-child(6n+2) .detail-view-inline-text
+{
+	border-bottom-color:#FF5722;
+}
+
+.app-columns>.column:nth-child(6n+3) .column-header,
+.app-columns>.column:nth-child(6n+3) .column-message,
+.app-columns>.column:nth-child(6n+3).is-options-open .column-settings-link,
+.app-columns>.column:nth-child(6n+3) .column-options .button-tray,
+.app-columns>.column:nth-child(6n+3) .js-more-tweets-btn,
+.accordion>.facet-type:nth-child(6n+3),
+select>option:nth-child(6n+3)
+{
+	background:#FFC107!important
+}
+
+
+.app-columns>.column:nth-child(6n+3) a:not(.account-link):not(.tweet-action):not(.tweet-detail-action):not([data-action]):not(.js-column-back),
+.app-columns>.column:nth-child(6n+3) .tweet-action:not([rel="retweet"]):not([rel="favorite"]):hover,
+.app-columns>.column:nth-child(6n+3) .sprite:before,
+.app-columns>.column:nth-child(6n+3) .icon-follower-color,
+.app-columns>.column:nth-child(6n+3) .btn,
+.lst-launcher>li:nth-child(6n+3) .btn,
+.social-proof-names>a:nth-child(6n+3),
+.lst-profile>li:nth-child(6n+3) a,
+.js-modal-content.modal-content.position-rel.margin-hxl>.js-component:nth-child(6n+3) button
+{
+	color:#FFC107!important
+}
+
+.app-columns>.column:nth-child(6n+3) .detail-view-inline-text
+{
+	border-bottom-color:#FFC107;
+}
+
+.app-columns>.column:nth-child(6n+4) .column-header,
+.app-columns>.column:nth-child(6n+4) .column-message,
+.app-columns>.column:nth-child(6n+4).is-options-open .column-settings-link,
+.app-columns>.column:nth-child(6n+4) .column-options .button-tray,
+.app-columns>.column:nth-child(6n+4) .js-more-tweets-btn,
+.accordion>.facet-type:nth-child(6n+4),
+select>option:nth-child(6n+4)
+{
+	background:#4CAF50!important
+}
+
+.app-columns>.column:nth-child(6n+4) a:not(.account-link):not(.tweet-action):not(.tweet-detail-action):not([data-action]):not(.js-column-back),
+.app-columns>.column:nth-child(6n+4) .tweet-action:not([rel="retweet"]):not([rel="favorite"]):hover,
+.app-columns>.column:nth-child(6n+4) .sprite:before,
+.app-columns>.column:nth-child(6n+4) .icon-follower-color,
+.app-columns>.column:nth-child(6n+4) .btn,
+.lst-launcher>li:nth-child(6n+4) .btn,
+.social-proof-names>a:nth-child(6n+4),
+.lst-profile>li:nth-child(6n+4) a,
+.js-modal-content.modal-content.position-rel.margin-hxl>.js-component:nth-child(6n+4) button
+{
+	color:#4CAF50!important;
+}
+
+.app-columns>.column:nth-child(6n+4) .detail-view-inline-text
+{
+	border-bottom-color:#4CAF50;
+}
+
+.app-columns>.column:nth-child(6n+5) .column-header,
+.app-columns>.column:nth-child(6n+5) .column-message,
+.app-columns>.column:nth-child(6n+5).is-options-open .column-settings-link,
+.app-columns>.column:nth-child(6n+5) .column-options .button-tray,
+.app-columns>.column:nth-child(6n+5) .js-more-tweets-btn,
+.accordion>.facet-type:nth-child(6n+5),
+select>option:nth-child(6n+5)
+{
+	background:#2196F3!important
+}
+
+.app-columns>.column:nth-child(6n+5) a:not(.account-link):not(.tweet-action):not(.tweet-detail-action):not([data-action]):not(.js-column-back),
+.app-columns>.column:nth-child(6n+5) .tweet-action:not([rel="retweet"]):not([rel="favorite"]):hover,
+.app-columns>.column:nth-child(6n+5) .sprite:before,
+.app-columns>.column:nth-child(6n+5) .icon-follow-color,
+.app-columns>.column:nth-child(6n+5) .btn,
+.social-proof-names>a:nth-child(6n+5),
+.lst-launcher>li:nth-child(6n+5) .btn,
+.lst-profile>li:nth-child(6n+5) a,
+.js-modal-content.modal-content.position-rel.margin-hxl>.js-component:nth-child(6n+5) button
+{
+	color:#2196F3!important
+}
+
+.app-columns>.column:nth-child(6n+5) .detail-view-inline-text
+{
+	border-bottom-color:#2196F3;
+}
+
+.app-columns>.column:nth-child(6n+6) .column-header,
+.app-columns>.column:nth-child(6n+6) .column-message,
+.app-columns>.column:nth-child(6n+6).is-options-open .column-settings-link,
+.app-columns>.column:nth-child(6n+6) .column-options .button-tray,
+.app-columns>.column:nth-child(6n+6) .js-more-tweets-btn,
+.accordion>.facet-type:nth-child(6n+6),
+select>option:nth-child(6n+6)
+{
+	background:#673AB7!important
+}
+
+.app-columns>.column:nth-child(6n+6) a:not(.account-link):not(.tweet-action):not(.tweet-detail-action):not([data-action]):not(.js-column-back),
+.app-columns>.column:nth-child(6n+6) .tweet-action:not([rel="retweet"]):not([rel="favorite"]):hover,
+.app-columns>.column:nth-child(6n+6) .sprite:before,
+.app-columns>.column:nth-child(6n+6) .icon-follow-color,
+.app-columns>.column:nth-child(6n+6) .btn,
+.social-proof-names>a:nth-child(6n+6),
+.lst-launcher>li:nth-child(6n+6) .btn,
+.lst-profile>li:nth-child(6n+6) a,
+.js-modal-content.modal-content.position-rel.margin-hxl>.js-component:nth-child(6n+6) button
+
+{
+	color:#673AB7!important
+}
+
+.app-columns>.column:nth-child(6n+6) .detail-view-inline-text
+{
+	border-bottom-color:#673AB7;
+}
+
+div.drawer[data-drawer="compose"],
+#calcurrent,
+.compose,
+.drawer,
+.column-options .button-tray,
+.column-options,
+.facet-type,
+.is-options-open .column-settings-link,
+.is-favorite.is-retweet .tweet-dogear,
+.is-unread,
+.js-add-column,
+.mdl .js-add-column,
+.list-item.is-selected,
+.more-tweets-btn,
+.more-tweets-btn:hover,
+.PillGroup .Pill.is-selected,
+.DatePicker-calendarDay.is-withinRange,
+button.try-query,
+.app-columns-container,
+.app-content,
+.application,
+.mtd-back-blue.mtd-light .app-navigator .js-hide-drawer,
+.app-navigator .js-hide-drawer,
+.edit-conversation-name,
+.column:not(.is-new) .column-message,
+.column-header,
+.column-header-temp,
+
+
+.js-schedule-button .Icon,
+.js-add-image-button .Icon,
+.js-dm-button .Icon,
+.js-tweet-button .Icon,
+.js-send-button:not(.is-disabled),
+
+.mtd-nav-button i,
+
+.prf-header[style="background-image: url(https://ton.twimg.com/tweetdeck-web/web/assets/global/backgrounds/td_profile_empty.b902792cc4.jpg)"],
+.mtd-nd-header-image[style="background-image: url(https://ton.twimg.com/tweetdeck-web/web/assets/global/backgrounds/td_profile_empty.b902792cc4.jpg)"],
+.prf-header[style="background-image: url(https://ton.twimg.com/tweetdeck-web/web/assets/global/backgrounds/td_profile_empty@2x.28d11b0d43.jpg)"],
+.mtd-nd-header-image[style="background-image: url(https://ton.twimg.com/tweetdeck-web/web/assets/global/backgrounds/td_profile_empty@2x.28d11b0d43.jpg)"]
+{
+	background-image:linear-gradient(
+		#E53935, /* red */
+	 	#FF5722, /* orange */
+	 	#FFC107, /* yellow */
+	 	#4CAF50, /* green */
+	 	#2196F3, /* blue */
+	 	#673AB7 /* purple */
+	 )!important
+}
+
+
+.js-schedule-button .Icon,
+.js-add-image-button .Icon,
+.js-dm-button .Icon,
+.js-tweet-button .Icon,
+.js-send-button:not(.is-disabled),
+.mtd-nav-button i
+{
+	-webkit-background-clip:text!important;
+	background-clip:text!important;
+	-webkit-text-fill-color:transparent!important;
+	text-fill-color:transparent!important;
+}
+
+.prf-header
+{
+	background-image:linear-gradient(
+		#E53935, /* red */
+	 	#FF5722, /* orange */
+	 	#FFC107, /* yellow */
+	 	#4CAF50, /* green */
+	 	#2196F3, /* blue */
+	 	#673AB7 /* purple */
+	 )
+}
+
+
+.drawer-header,
+.mdl-header,
+.app-header,
+html,
+body,
+.prf-follow-status,
+.lst-group:not(.js-setting-list) .selected
+{
+	background-color:#E53935;
+
+	background-image:linear-gradient( to right,
+		#E53935, /* red */
+	 	#FF5722, /* orange */
+	 	#FFC107, /* yellow */
+	 	#4CAF50, /* green */
+	 	#2196F3, /* blue */
+	 	#673AB7 /* purple */
+	 )!important
+}
+
+
+.lst-group.js-setting-list .selected
+{
+	/*background:transparent*/
+}
+
+
+.tweet-button:not(.js-hide-drawer),
+.btn-compose:not(.js-hide-drawer)
+{
+	background:transparent!important;
+	background-image:none!important;
+	background-color:transparent!important;
+}
+
+.js-column-options .accordion .is-active,select>option,.prf-follow-status
+{
+	color:#fff!important;
+}
+
+.is-options-open .column-settings-link
+{
+	box-shadow:0 3px 5px #000;
+}
+
+.column-title {
+	overflow:hidden;
+}
+
+html .app-header-inner
+{
+	background:rgba(0,0,0,.1)
+}
+
+@keyframes colourDemoAprilFools
+{
+	0% {color:#E53935}
+	16.6% {color:#FF5722}
+	33.3% {color:#FFC107}
+	50% {color:#4CAF50}
+	66.6% {color:#2196F3}
+	83.3% {color:#673AB7}
+	100% {color:#E53935}
+}
+
+.mtd-logo
+{
+	animation:colourDemoAprilFools 2s infinite
+}
+
+.mtd-version-title:after
+{
+	display:block;
+	margin-top:10px;
+	font-weight:700;
+	content:"You're also fabulous"
+}

@@ -2329,8 +2329,8 @@ div.media-size-small {
 	height:40px;
 	width:100%;
 	background:rgba(0,0,0,.1);
-	z-index:5;
-	pointer-events:none
+	/* z-index:5; */
+	pointer-events:none;
 }
 
 .app-header-inner {
@@ -2358,7 +2358,7 @@ div.media-size-small {
 	background:transparent;
 	height:100%;
 	width:100%;
-	visibility:hidden
+	visibility:hidden;
 }
 
 .app-nav-link {
@@ -2741,10 +2741,11 @@ div.media-size-small {
 	width:270px;
 	top:0;
 	left:-270px;
-	height:100%;
+	height: auto;
 	margin-right:0;
 	pointer-events:all;
-	overflow:hidden
+	overflow:hidden;
+	z-index: 6;
 }
 
 .drawer-header-title {
@@ -3358,7 +3359,8 @@ div.media-size-small {
 	margin-bottom:5px;
 	-webkit-filter:grayscale(100%);
 	filter:grayscale(100%);
-	opacity:.35
+	opacity:.35;
+	/* z-index: 10; */
 }
 
 .is-list .compose-account {
@@ -8968,4 +8970,118 @@ li.padding-axl.flex.flex-row.flex-align--center .fullname {
 .mtd_af_time #AF_2019_fabulous
 {
 	animation:colourDemoAprilFoolsBackground 2s infinite
+}
+
+.mtd-app .app-header {
+	height: 80px;
+	-webkit-app-region: drag;
+}
+
+.mtd-app .app-header button,.mtd-app .app-header input,.mtd-app .app-header a {
+	-webkit-app-region: no-drag;
+}
+
+.mtd-app .app-content {
+	top:80px;
+}
+
+.mtd-app .column-navigator {
+	height:40px;
+	margin-top:40px;
+	-webkit-app-region: no-drag;
+	position:absolute;
+	left:0;
+	right:40px;
+}
+
+.mtd-app .drawer {
+	top:-40px;
+	bottom: 0;
+}
+
+.mtd-app .app-search-fake {
+	margin-top:40px;
+}
+
+.mtd-app .js-search-in-popover .popover-position-rt {
+	margin-top:50px;
+}
+
+
+.windowcontrols {
+	margin-left:auto;
+	position:absolute;
+	width:100%;
+	z-index:99;
+	display:block;
+	margin-top:10px;
+	pointer-events:all;
+	-webkit-app-region: no-drag;
+}
+
+.windowcontrol {
+	background:none;
+	border:none;
+	position:absolute;
+	right:7px;
+	width:42px;
+	outline:none;
+	height:38px;
+	font-size:17px;
+	line-height:0;
+	top:-13px;
+	opacity:0.8;
+	font-family:"Material";
+	font-weight:600;
+	-webkit-appearance: none;
+	color:#fff;
+	margin: 3px;
+	-webkit-app-region: no-drag;
+	pointer-events:all;
+	transform: rotate(180deg);
+}
+
+.windowcontrol:hover {
+	background:rgba(0,0,0,0.3);
+	transition:background 300ms,opacity 300ms;
+	cursor:default;
+	opacity:1;
+	border:0
+}
+
+.windowcontrol:focus,.windowcontrol.close:focus {
+	outline:0;
+	border:0
+}
+
+.windowcontrol.close {
+	right:-3px
+}
+
+.windowcontrol.close:hover {
+	background:#e44;
+	color:#fff
+}
+
+.windowcontrol.close:active {
+	background:#e55
+}
+
+.windowcontrol.max {
+	right:38px
+}
+
+.windowcontrol.min {
+	right:79px
+}
+
+.mtd-app .column-nav-item,.mtd-app .column-nav-item.is-new {
+	opacity:1!important;
+	width:40px!important;
+	transform:none;
+	transition:.2s all cubic-bezier(.19,1,.22,1),.4s transform
+}
+
+.mtd-maximized .windowcontrol.max {
+	font-size:14px;
 }

@@ -5,7 +5,7 @@
 
 "use strict";
 
-var SystemVersion = "6.5.2A";
+var SystemVersion = "6.5.2C";
 var MTDBaseURL = "https://rawgit.com/dangeredwolf/ModernDeck/stable/ModernDeck/"; // Defaults to streaming if using online client
 
 var msgID,
@@ -1536,6 +1536,53 @@ function CoreInit() {
 	head = $(document.head);
 	body = $(document.body);
 	html = $(document.querySelector("html")); // Only 1 result; faster to find
+
+	if (html.hasClass("mtd-app")) {
+		
+		const {remote} = require('electron');
+
+		var minimise = make("button")
+		.addClass("windowcontrol min")
+		.html("&#xE15B")
+		.click(function(data,handler){
+			var window = remote.BrowserWindow.getFocusedWindow();
+    		window.minimize();
+		});
+
+		var maximise = make("button")
+		.addClass("windowcontrol max")
+		.html("&#xE3C6")
+		.click(function(data,handler){
+			var window = remote.BrowserWindow.getFocusedWindow();
+			if (window.isMaximized()) {
+				window.unmaximize();
+				html.removeClass("mtd-maximized");
+				maximise.html("&#xE3C6");
+			} else {
+				window.maximize();
+				html.addClass("mtd-maximized");
+				maximise.html("&#xE3E0");
+			}
+		});
+
+		var closefunc = function() {
+			window.close();
+		}
+
+		var close = make("button")
+		.addClass("windowcontrol close")
+		.html("&#xE5CD")
+		.click(closefunc);
+
+
+		var windowcontrols = make("div")
+		.addClass("windowcontrols")
+		.append(minimise)
+		.append(maximise)
+		.append(close);
+
+		body.append(windowcontrols);
+	}
 
 	Raven.config('https://92f593b102fb4c1ca010480faed582ae@sentry.io/242524', {
 	    release: SystemVersion

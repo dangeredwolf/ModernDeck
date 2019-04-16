@@ -25,15 +25,17 @@ function createWindow () {
     webPreferences: {
       nodeIntegration: true
     },
-    webSecurity: false,
-    allowRunningInsecureContent:true,
     scrollBounce:true,
-    autoHideMenuBar:true
+    autoHideMenuBar:true,
+    title:"ModernDeck",
+    icon:__dirname+"ModernDeck/sources/favicon.ico",
+    frame:false
   });
 
 
   mainWindow.webContents.on('dom-ready', (event, url) => {
     mainWindow.webContents.executeJavaScript('\
+      document.querySelector("html").classList.add("mtd-app");\
       document.querySelectorAll("link[rel=\'stylesheet\']")[0].remove();\
       var injurl = document.createElement("div");\
       injurl.setAttribute("type","moderndeck://ModernDeck/");\
@@ -54,7 +56,12 @@ function createWindow () {
       InjectScript.type = "text/javascript";\
       document.head.appendChild(InjectScript);\
       ');
+  });
 
+  mainWindow.webContents.on('did-finish-load', (event, url) => {
+    mainWindow.webContents.executeJavaScript('\
+      setTimeout(function(){document.querySelector("header.app-header").setAttribute("style","");},1000);\
+      ');
   });
 
     mainWindow.webContents.session.webRequest.onHeadersReceived(
