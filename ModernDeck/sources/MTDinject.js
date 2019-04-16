@@ -557,9 +557,7 @@ function ResetSettingsUI() {
 }
 
 function PrefsListener() {
-	console.log("Testing...");
 	if (document.querySelector("#mtd-round-avatars-control") !== null ) {
-		console.log("waiting...");
 
 		if (getPref("mtd_round_avatars") && !$("#mtd-round-avatars-control").is(":checked")) {
 			console.log("someone unticked me!!");
@@ -621,7 +619,7 @@ function PrefsListener() {
 			html.removeClass("mtd-acc-focus-ring");
 		}
 
-		if ($("#mtd-theme-control option:selected").length > 0 && getPref("mtd_theme") !== $("#mtd-theme-control option:selected").val()) {
+		if ($("#mtd-theme-control option:selected").length > 0 && getPref("mtd_theme") !== $("#mtd-theme-control option:selected").val() && (getPref("mtd_theme") !== "AF_2019_fabulous")) {
 			disableStylesheetExtension(getPref("mtd_theme"));
 			setPref("mtd_theme",$("#mtd-theme-control option:selected").val())
 			enableStylesheetExtension($("#mtd-theme-control option:selected").val() || "default");
@@ -703,7 +701,8 @@ function MTDSettings() {
 			$("#mtd-sensitive-alt").attr("checked",getPref("mtd_sensitive_alt"));
 			$("#mtd-outlines-control").attr("checked",getPref("mtd_outlines"));
 			$("#mtd-hearts").attr("checked",getPref("mtd_hearts"));
-			$("#mtd-theme-control").val(getPref("mtd_theme"));
+			if (getPref("mtd_theme") !== "AF_2019_fabulous")
+				$("#mtd-theme-control").val(getPref("mtd_theme"));
 			$("#mtd-scrollbar-style").val(getPref("mtd_scrollbar_style"));
 
 			PrefsListener();
