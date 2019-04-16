@@ -5,7 +5,7 @@
 
 "use strict";
 
-var SystemVersion = "6.5.2C";
+var SystemVersion = "6.5.2D";
 var MTDBaseURL = "https://rawgit.com/dangeredwolf/ModernDeck/stable/ModernDeck/"; // Defaults to streaming if using online client
 
 var msgID,
