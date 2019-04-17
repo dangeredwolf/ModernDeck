@@ -5232,7 +5232,7 @@ a[rel=user]:active,
 .mtd-nav-drawer {
 	width:250px;
 	height:100%;
-	z-index:6;
+	z-index:7;
 	position:absolute;
 	box-shadow:0 15px 40px rgba(17,17,17,.4);
 	transition:.3s all cubic-bezier(.19,1,.22,1);
