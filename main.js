@@ -1,6 +1,6 @@
 // Modules to control application life and create native browser window
 const electron = require("electron");
-const { app, BrowserWindow, ipcMain, session } = require('electron');
+const { app, BrowserWindow, ipcMain, session, systemPreferences, Menu } = require('electron');
 const serve = require('electron-serve');
 
 // Keep a global reference of the window object, if you don't, the window will
@@ -12,6 +12,20 @@ const isDev = true;
 const loadURL = serve({scheme:"moderndeck",directory:'ModernDeck'});
 
 app.setAppUserModelId("com.dangeredwolf.ModernDeck");
+
+
+app.on("ready",function() { 
+  var contextMenu = Menu.buildFromTemplate([
+      {
+        label: "Show ModernDeck Window",
+        click: function() {
+          mainWindow.show();
+        }
+      }
+    ]);
+
+  Menu.setApplicationMenu(contextMenu);
+});
 
 function createWindow () {
   // Create the browser window.
@@ -29,17 +43,24 @@ function createWindow () {
     autoHideMenuBar:true,
     title:"ModernDeck",
     icon:__dirname+"ModernDeck/sources/favicon.ico",
-    frame:false
+    frame:false,
+    minWidth:400,
+    backgroundColor:'#263238'
   });
 
 
-  mainWindow.webContents.on('dom-ready', (event, url) => {
+  mainWindow.on('page-title-updated', function(event,url) {
+    event.preventDefault();
+  })
+
+
+  mainWindow.webContents.on('dom-ready', function(event, url) {
     mainWindow.webContents.executeJavaScript('\
       document.querySelector("html").classList.add("mtd-app");\
-      document.querySelectorAll("link[rel=\'stylesheet\']")[0].remove();\
       var injurl = document.createElement("div");\
       injurl.setAttribute("type","moderndeck://ModernDeck/");\
-      injurl.id = "MTDURLExchange";document.head.appendChild(injurl);\
+      injurl.id = "MTDURLExchange";\
+      document.head.appendChild(injurl);\
       \
       var InjectScript2 = document.createElement("script");\
       InjectScript2.src = "https://cdn.ravenjs.com/3.19.1/raven.min.js";\
@@ -59,31 +80,96 @@ function createWindow () {
   });
 
   mainWindow.webContents.on('did-finish-load', (event, url) => {
-    mainWindow.webContents.executeJavaScript('\
-      setTimeout(function(){document.querySelector("header.app-header").setAttribute("style","");},1000);\
-      ');
+    // mainWindow.webContents.executeJavaScript('\
+    //   try{setTimeout(function(){document.querySelector("header.app-header").setAttribute("style","");},1000);}catch(e){};\
+    //   ');
   });
 
-    mainWindow.webContents.session.webRequest.onHeadersReceived(
-      {urls:["https://tweetdeck.twitter.com/*","https://twitter.com/i/cards/*"]},
-      (details, callback) => {
-        var foo = details.responseHeaders;
-        foo["content-security-policy"] =[
-          "default-src 'self'; connect-src * moderndeck:; font-src https: data: * moderndeck:; frame-src https: moderndeck:; frame-ancestors 'self' https: moderndeck:; img-src https: data: moderndeck:; media-src * moderndeck:; object-src 'self' https:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://sentry.io https://cdn.jsdelivr.net https://ajax.googleapis.com moderndeck: https://cdn.ravenjs.com/ https://*.twitter.com https://*.twimg.com https://rawgit.com https://*.rawgit.com https://ssl.google-analytics.com https://api-ssl.bitly.com; style-src 'self' 'unsafe-inline' 'unsafe-eval' https: moderndeck:;"];
-        callback({ responseHeaders: foo});
-      }
-    );
+  mainWindow.webContents.session.webRequest.onHeadersReceived(
+    {urls:["https://tweetdeck.twitter.com/*","https://twitter.com/i/cards/*"]},
+    (details, callback) => {
+      var foo = details.responseHeaders;
+      foo["content-security-policy"] =[
+        "default-src 'self'; connect-src * moderndeck:; font-src https: data: * moderndeck:; frame-src https: moderndeck:; frame-ancestors 'self' https: moderndeck:; img-src https: data: moderndeck:; media-src * moderndeck:; object-src 'self' https:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://sentry.io https://cdn.jsdelivr.net https://ajax.googleapis.com moderndeck: https://cdn.ravenjs.com/ https://*.twitter.com https://*.twimg.com https://rawgit.com https://*.rawgit.com https://ssl.google-analytics.com https://api-ssl.bitly.com; style-src 'self' 'unsafe-inline' 'unsafe-eval' https: moderndeck:;"];
+      callback({ responseHeaders: foo});
+    }
+  );
+
+  mainWindow.webContents.session.webRequest.onBeforeRequest({urls:["https://ton.twimg.com/*"]},function(details,callback) {
+
+    if (details.url.indexOf(".css") > -1 && (details.url.indexOf("bundle") > -1 && details.url.indexOf("dist") > -1)) {
+      callback({cancel:true});
+      return;
+    }
+
+    callback({cancel:false});
+  });
 
   mainWindow.loadURL("https://tweetdeck.twitter.com");
   // Open the DevTools.
    mainWindow.webContents.openDevTools();
 
+  mainWindow.webContents.on("will-navigate", function(event, url) {
+    const { shell } = electron;
+    if (url.indexOf(/https:\/\/tweetdeck\.twitter\.com/g) >= 0) {
+      shell.openExternal(url);
+    }
+  });
 
+  mainWindow.webContents.on("new-window", function(event, url) {
+    const { shell } = electron;
+    event.preventDefault();
+    shell.openExternal(url);
+  });
+
+  mainWindow.webContents.on("context-menu", function(event, params) {
+    console.log(params);
+    mainWindow.send("context-menu", params);
+  });
+
+  ipcMain.on("copy",function(event){
+    mainWindow.webContents.copy();
+  });
+  ipcMain.on("cut",function(event){
+    mainWindow.webContents.cut();
+  });
+  ipcMain.on("paste",function(event){
+    mainWindow.webContents.paste();
+  });
+  ipcMain.on("delete",function(event){
+    mainWindow.webContents.delete();
+  });
+  ipcMain.on("selectAll",function(event){
+    mainWindow.webContents.selectAll();
+  });
+  ipcMain.on("undo",function(event){
+    mainWindow.webContents.undo();
+  });
+  ipcMain.on("redo",function(event){
+    mainWindow.webContents.redo();
+  });
+  ipcMain.on("copyImage",function(event,arg){
+    mainWindow.webContents.copyImageAt(arg.x,arg.y);
+  });
 
   // Emitted when the window is closed.
   mainWindow.on('closed', function () {
-    mainWindow = null
-  })
+    mainWindow = null;
+  });
+
+  mainWindow.on('maximize', function () {
+    mainWindow.webContents.executeJavaScript('\
+      document.querySelector("html").classList.add("mtd-maximized");\
+      document.querySelector(".windowcontrol.max").innerHTML = "&#xE3E0";\
+      ');
+  });
+
+  mainWindow.on('unmaximize', function () {
+    mainWindow.webContents.executeJavaScript('\
+      document.querySelector("html").classList.remove("mtd-maximized");\
+      document.querySelector(".windowcontrol.max").innerHTML = "&#xE3C6";\
+      ');
+  });
 }
 
 // This method will be called when Electron has finished

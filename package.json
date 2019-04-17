@@ -8,16 +8,20 @@
   },
   "repository": "https://github.com/electron/electron-quick-start",
   "keywords": [
-    "Electron",
-    "quick",
-    "start",
-    "tutorial",
-    "demo"
+    "TweetDeck",
+    "ModernDeck",
+    "Modern",
+    "Tweet",
+    "Deck",
+    "Material",
+    "Design"
   ],
-  "author": "GitHub",
+  "author": "dangeredwolf",
   "license": "CC0-1.0",
   "devDependencies": {
     "electron": "^4.1.4",
+    "electron-updater": "^3.0.3",
+    "electron-squirrel-startup": "^1.0.0",
     "electron-serve": "^0.2.0"
   },
   "files": [

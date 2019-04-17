@@ -5,12 +5,14 @@
 
 "use strict";
 
-var SystemVersion = "6.5.2D";
+var SystemVersion = "6.5.2E";
 var MTDBaseURL = "https://rawgit.com/dangeredwolf/ModernDeck/stable/ModernDeck/"; // Defaults to streaming if using online client
 
 var msgID,
 FetchProfileInfo,
 loginIntervalTick = 0;
+
+var contextMenuNum = 0;
 
 const forceFeatureFlags = false;
 
@@ -31,6 +33,8 @@ const welcomeEnabled = false;
 
 var progress = null;
 
+var isDev = false;
+
 var FindProfButton,
 loginInterval,
 openModal;
@@ -40,6 +44,7 @@ var isOpera = typeof opera !== "undefined";
 var isSafari = typeof safari !== "undefined";
 var isEdge = typeof MSGesture !== "undefined";
 var isFirefox = typeof mozInnerScreenX !== "undefined";
+var isApp = typeof require !== "undefined";
 
 var twitterSucks = document.createElement("script");
 twitterSucks.type = "text/javascript";
@@ -48,6 +53,8 @@ var make = function(a){return $(document.createElement(a))};
 var head,body,html = undefined;
 
 var MTDStorage = {};
+
+var contextMenuFunctions;
 
 
 var welcomeScreenHtml = '<div class="mdl-content horizontal-flow-container"><div style="width:100%"class="l-column mdl-column mdl-column-lrg"><div class="l-column-scrollv scroll-v	scroll-alt"><h1>New in ModernDeck 6.0</h1><h2>Themes</h2><header class="js-column-header js-action-header column-header mtd-colours-demo"><i class="pull-left margin-hs column-type-icon icon icon-home"></i><h1 class="column-title txt-ellipsis"><span class="column-head-title">Home</span><span class="attribution txt-mute txt-sub-antialiased">@dangeredwolf</span></h1><a class="js-action-header-button column-header-link column-settings-link"><i class="icon icon-sliders"></i></a></header><p>People\'s personalities are far more than just black and white. Make your TweetDeck experience truly personal with a variety of styles to suit whatever your tastes might be. This and many of the other options are adjustable with <i class="icon icon-mtd-settings"></i><b>ModernDeck</b></p><h2>Refreshed Icons</h2><br><i class="icon icon-tweetdeck icon-xxlarge"></i><i class="icon icon-moderndeck icon-xxlarge"></i><i class="icon icon-hashtag icon-xxlarge"></i><i class="icon icon-retweet icon-xxlarge"></i><i class="icon icon-mtd-settings icon-xxlarge"></i><p style="padding-top:0">As of this release, 100% of icons are either created inhouse for ModernDeck, or are borrowed from the material design icon library. This includes the new Retweet icon, which was obvious from the beginning that an inhouse solution was mandatory.</p><h2>Refreshed UI</h2><p style="padding-top:0">ModernDeck 6.0 has a refreshed UI, taking advantage of an all-new edge-to-edge design that snaps to the left side. This helps take better advantage of screen real estate while still being elegant to use, and isn\'t a bad match with ModernDeck\'s navigation drawer.</p><h2>Tweet Shortener Assistant</h2><p style="padding-top:0">Have you ever dealt with a moment where you\'re just barely over the 140 character limit and need to cut down the size a bit? In ModernDeck 6.0, we have you covered. If you go over the 140 character limit, we\'ll prompt you with suggestions of what ways it detects will help shorten your tweet. This uses a number of algorithms such as checking for excess spacing and punctuation, to more advanced ones such as detecting and replacing applicable letters with liguatures, a Unicode feature that allows combining of certain letters to replace 2, 3, or sometimes even 4 characters, into what Twitter registers as just 1 character, and oftentimes looks about the same. All of these are suggestions, so you can click on the one you want, and you\'ll get no more, no less, than you asked for. Then you can finally send that Tweet, and you\'ve saved some precious time.</p><h3>Hearts or Stars</h3><p style="padding-top:0">ModernDeck allows you to pick between hearts and stars. The new default is hearts.</p><h3>Change How the Scroll Bar Looks</h3><p style="padding-top:0">In ModernDeck 6.0, you now have the option to change the scroll bar\'s appearance, such as either making it narrower, or making it never appear outright, to help build a cleaner TweetDeck experience to your specification.</p><h3>A New Option for dealing with Sensitive Media</h3><p style="padding-top:0">ModernDeck 6.0 also introduces another new feature, which changes the workflow of dealing with sensitive media, if you have it enabled to ask beforehand. Before, you had to click a tiny "View" link beforehand. Now, simply click anywhere on the designated background, and it will open up a preview of the image, as expected, but the thumbnail itself never shows content marked as sensitive.</p><h3>Faster and More Reliable CSS Extension Engine</h3><p style="padding-top:0">Building a truly versatile theming system wasn\'t as easy as slapping a feature on top of the old codebase. It\'s possible to do it that way, but it\'d hurt performance by creating extra overhead created by having to load all themes into memory at once, only to render one. Much of ModernDeck\'s CSS/UI codebase, kept in one single CSS file, has been broken up and componentified into separate silos, called CSS extensions, and besides critical system extensions, most of these extensions can be swapped in or out at any time, making it easier for the browser to discard an old theme, and load a new theme into memory, all transparently, in real-time, with virtually no hiccup on average, modern hardware. Any UI tweaks from themes to hearts to even more are now all extensions that run on top of ModernDeck. This architecture carries through much of the system now. For example, all animations are kept in animations.css. By keeping similar items in the same place, it makes it easier for the CSS to reference, as well as making it easier to develop ModernDeck in the future. This took an enormous amount of work, but now we\'re left with a more functional, stable, as well as modular ModernDeck.</p></div></div></div>';
@@ -1196,264 +1203,8 @@ function dxdiag() {
 		.css("display","block");
 }
 
-function addSpaceSuggestion(mtdtxt,clickd) {
-	$(".mtd-no-chars-suggestions").append(
-		make("button")
-		.addClass("btn mtd-no-transform-case")
-		.html(mtdtxt)
-		.click(clickd)
-		.click(function(){
-			this.remove();
-			$(".character-count-compose").val(140-$(".compose-text").val().length);
-			if ($(".compose-text").val().length>140) {
-				$(".character-count-compose").addClass("invalid-char-count")
-			} else {
-				$(".character-count-compose").removeClass("invalid-char-count")
-			}
-		})
-	);
-}
-
-function checkSpaceSuggestions() {
-	var tweetTxt = $(".compose-text").val();
-
-	if (tweetTxt.match(/ ( )+/g) !== null) {
-		addSpaceSuggestion("Trim excess space inside",function(){
-			$(".compose-text").val(tweetTxt.replace(/ ( )+/g," "));
-		});
-	}
-
-	if (tweetTxt.match(/([.|\.|\?|\!|\s]$)|,(?!\D)/g) !== null) {
-		addSpaceSuggestion("Trim excess punctuation",function(){
-			$(".compose-text").val(tweetTxt.replace(/([.|\.|\?|\!|\s]$)|,(?!\D)/g,""));
-		});
-	}
-
-	if (tweetTxt.match(/(\s\s+)|([.|\.|\!|\?|\s]+?$)/gm) !== null) {
-		addSpaceSuggestion("Trim excess space around edges",function(){
-			$(".compose-text").val(tweetTxt.replace(/(\s\s+)|([.|\.|\!|\?|\s]+?$)/gm,""));
-		});
-	}
-
-	//if (tweetTxt.match(/(??)|(!?)|(?!)|(!!)|(\(c\))/gm) !== null) {
-		addSpaceSuggestion("Use ligatures to free up some space",function(){
-			$(".compose-text").val(tweetTxt
-			 .replace(/\?\?/gm,"⁇")
-			 .replace(/\!\?/gm,"⁉")
-			 .replace(/\?\!/gm,"⁈")
-			 .replace(/\!\!/gm,"‼")
-			 .replace(/\(c\)/gm,"Ⓒ")
-			 .replace(/\(C\)/gm,"Ⓒ")
-			 .replace(/\(r\)/gm,"Ⓡ")
-			 .replace(/\(R\)/gm,"Ⓡ")
-			 .replace(/\(p\)/gm,"Ⓟ")
-			 .replace(/\(P\)/gm,"Ⓟ")
-			 .replace(/\(tm\)/gm,"™")
-			 .replace(/\(TM\)/gm,"™")
-			 .replace(/\(sm\)/gm,"℠")
-			 .replace(/\(SM\)/gm,"℠")
-			 .replace(/0\/000/gm,"‱")
-			 .replace(/0\/00/gm,"‰")
-			 .replace(/0\/0/gm,"%")
-			 .replace(/ae/gm,"æ")
-			 .replace(/AE/gm,"Æ")
-			 .replace(/AU/gm,"Ꜷ")
-			 .replace(/AV/gm,"Ꜹ")
-			 .replace(/av/gm,"ꜹ")
-			 .replace(/au/gm,"ꜷ")
-			 .replace(/AO/gm,"Ꜵ")
-			 .replace(/ao/gm,"ꜵ")
-			 .replace(/===/gm,"⩶")
-			 .replace(/==/gm,"⩵")
-			 .replace(/iii/gm,"ⅲ")
-			 .replace(/ii/gm,"ⅱ")
-			 .replace(/10\./gm,"⒑")
-			 .replace(/11\./gm,"⒒")
-			 .replace(/12\./gm,"⒓")
-			 .replace(/13\./gm,"⒔")
-			 .replace(/14\./gm,"⒕")
-			 .replace(/15\./gm,"⒖")
-			 .replace(/16\./gm,"⒗")
-			 .replace(/17\./gm,"⒘")
-			 .replace(/18\./gm,"⒙")
-			 .replace(/19\./gm,"⒚")
-			 .replace(/1\./gm,"⒈")
-			 .replace(/1\,/gm,"🄂")
-			 .replace(/1\./gm,"⒈")
-			 .replace(/2\,/gm,"🄃")
-			 .replace(/2\./gm,"⒉")
-			 .replace(/3\,/gm,"🄄")
-			 .replace(/3\./gm,"⒊")
-			 .replace(/4\,/gm,"🄅")
-			 .replace(/4\./gm,"⒋")
-			 .replace(/5\,/gm,"🄆")
-			 .replace(/5\./gm,"⒌")
-			 .replace(/6\,/gm,"🄇")
-			 .replace(/6\./gm,"⒍")
-			 .replace(/7\,/gm,"🄈")
-			 .replace(/7\./gm,"⒎")
-			 .replace(/8\,/gm,"🄉")
-			 .replace(/8\./gm,"⒏")
-			 .replace(/9\,/gm,"🄊")
-			 .replace(/9\./gm,"⒐")
-			 .replace(/0\,/gm,"🄁")
-			 .replace(/0\./gm,"🄀")
-			 .replace(/\.\.\./gm,"…")
-			 .replace(/\\\\/gm,"⳹")
-			 .replace(/\/\/\//gm,"⫻")
-			 .replace(/\<\<\</gm,"⋘")
-			 .replace(/\<\</gm,"≪")
-			 .replace(/\>\>\>/gm,"⋙")
-			 .replace(/\>\>/gm,"≫")
-			 .replace(/\/\//gm,"⫽")
-			 .replace(/\.\./gm,"‥")
-			 .replace(/···/gm,"⋯")
-			 .replace(/·,/gm,"ꓻ")
-			 .replace(/\(1\)/gm,"⑴")
-			 .replace(/\(10\)/gm,"⑽")
-			 .replace(/\(11\)/gm,"⑾")
-			 .replace(/\(12\)/gm,"⑿")
-			 .replace(/\(13\)/gm,"⒀")
-			 .replace(/\(14\)/gm,"⒁")
-			 .replace(/\(15\)/gm,"⒂")
-			 .replace(/\(16\)/gm,"⒃")
-			 .replace(/\(17\)/gm,"⒄")
-			 .replace(/\(18\)/gm,"⒅")
-			 .replace(/\(19\)/gm,"⒆")
-			 .replace(/\(20\)/gm,"⒇")
-			 .replace(/\(2\)/gm,"⑵")
-			 .replace(/\(3\)/gm,"⑶")
-			 .replace(/\(4\)/gm,"⑷")
-			 .replace(/\(5\)/gm,"⑸")
-			 .replace(/\(6\)/gm,"⑹")
-			 .replace(/\(7\)/gm,"⑺")
-			 .replace(/\(8\)/gm,"⑻")
-			 .replace(/\(9\)/gm,"⑼")
-			 .replace(/\(a\)/gm,"⒜")
-			 .replace(/\(A\)/gm,"🄐")
-			 .replace(/\(b\)/gm,"⒝")
-			 .replace(/\(B\)/gm,"🄑")
-			 .replace(/\(c\)/gm,"⒞")
-			 .replace(/\(C\)/gm,"🄒")
-			 .replace(/\(d\)/gm,"⒟")
-			 .replace(/\(D\)/gm,"🄓")
-			 .replace(/\(e\)/gm,"⒠")
-			 .replace(/\(E\)/gm,"🄔")
-			 .replace(/\(f\)/gm,"⒡")
-			 .replace(/\(F\)/gm,"🄕")
-			 .replace(/\(g\)/gm,"⒢")
-			 .replace(/\(G\)/gm,"🄖")
-			 .replace(/\(h\)/gm,"⒣")
-			 .replace(/\(H\)/gm,"🄗")
-			 .replace(/\(i\)/gm,"⒤")
-			 .replace(/\(I\)/gm,"🄘")
-			 .replace(/\(l\)/gm,"🄘")
-			 .replace(/\(j\)/gm,"⒥")
-			 .replace(/\(J\)/gm,"🄙")
-			 .replace(/\(k\)/gm,"⒦")
-			 .replace(/\(K\)/gm,"🄚")
-			 .replace(/\(L\)/gm,"🄛")
-			 .replace(/\(m\)/gm,"⒨")
-			 .replace(/\(M\)/gm,"🄜")
-			 .replace(/\(n\)/gm,"⒩")
-			 .replace(/\(N\)/gm,"🄝")
-			 .replace(/\(o\)/gm,"⒪")
-			 .replace(/\(O\)/gm,"🄞")
-			 .replace(/\(p\)/gm,"⒫")
-			 .replace(/\(P\)/gm,"🄟")
-			 .replace(/\(q\)/gm,"⒬")
-			 .replace(/\(Q\)/gm,"🄠")
-			 .replace(/\(r\)/gm,"⒭")
-			 .replace(/\(R\)/gm,"🄡")
-			 .replace(/\(s\)/gm,"⒮")
-			 .replace(/\(S\)/gm,"🄢")
-			 .replace(/\(t\)/gm,"⒯")
-			 .replace(/\(T\)/gm,"🄣")
-			 .replace(/\(u\)/gm,"⒰")
-			 .replace(/\(U\)/gm,"🄤")
-			 .replace(/\(v\)/gm,"⒱")
-			 .replace(/\(V\)/gm,"🄥")
-			 .replace(/\(w\)/gm,"⒲")
-			 .replace(/\(W\)/gm,"🄦")
-			 .replace(/\(x\)/gm,"⒳")
-			 .replace(/\(X\)/gm,"🄧")
-			 .replace(/\(y\)/gm,"⒴")
-			 .replace(/\(Y\)/gm,"🄨")
-			 .replace(/\(z\)/gm,"⒵")
-			 .replace(/\(Z\)/gm,"🄩")
-			 .replace(/\(-\)/gm,"㈠")
-			 .replace(/\'\'\'\'/gm,"⁗")
-			 .replace(/\'\'\'/gm,"‴")
-			 .replace(/\(\(/,"⸨")
-			 .replace(/\(ー\)/gm,"㈠")
-			 .replace(/11./gm,"⒒")
-			 .replace(/oo/gm,"ꝏ")
-			 .replace(/\'\'/gm,"\"")
-			 .replace(/OO/gm,"Ꝏ")
-			 .replace(/ls/gm,"ʪ")
-			 .replace(/lt/gm,"₶")
-			 .replace(/lz/gm,"ʫ")
-			 .replace(/III/gm,"Ⅲ")
-			 .replace(/lj/gm,"ǉ")
-			 .replace(/Lj/gm,"ǈ")
-			 .replace(/LJ/gm,"Ĳ")
-			 .replace(/IV/gm,"Ⅳ")
-			 .replace(/IX/gm,"Ⅸ")
-			 .replace(/II/gm,"‖")
-			 .replace(/ij/gm,"ĳ")
-			 .replace(/IJ/gm,"Ĳ")
-			 .replace(/iv/gm,"ⅳ")
-			 .replace(/ix/gm,"ⅸ")
-			 .replace(/dz/gm,"ǳ")
-			 .replace(/Dz/gm,"ǲ")
-			 .replace(/DZ/gm,"Ǳ")
-			 .replace(/ffl/gm,"ﬄ")
-			 .replace(/ffi/gm,"ﬃ")
-			 .replace(/ff/gm,"ﬀ")
-			 .replace(/fi/gm,"ﬁ")
-			 .replace(/fl/gm,"ﬂ")
-			 .replace(/aa/gm,"ꜳ")
-			 .replace(/AA/gm,"Ꜳ"));
-		});
-	//}
-
-}
 
 var rtbutton;
-
-function outtaSpaceSuggestions() {
-	if (!hasOutCache) {
-		hasOutCache = true;
-		rtbutton = $("button.js-retweet-button.is-disabled");
-	}
-	rtbutton.removeClass("is-disabled js-show-tip").attr("title","");
-
-	if ($(".character-count-compose").length > 0) {
-		if (parseInt($(".character-count-compose").val()) < 0) {
-
-			if ($(".mtd-out-of-space-suggestions").length <= 0) {
-
-				$(".js-media-added").append(
-					make("div")
-					.addClass("compose-media-bar-holder padding-al mtd-out-of-space-suggestions")
-					.html('<div class="compose-media-bar"><div class="mtd-no-chars-suggestions"><div class="txt weight-light txt-extra-large margin-b--10">Oops, you\'re over the character limit.</div>Here are suggestions to help:<br></div></div>')
-				).removeClass("is-hidden");
-
-				checkSpaceSuggestions();
-			} else {
-				$(".mtd-no-chars-suggestions>button").remove();
-				checkSpaceSuggestions();
-			}
-
-		} else if ($(".mtd-out-of-space-suggestions").length > 0 && parseInt($(".character-count-compose").val()) >= 0) {
-			$(".mtd-out-of-space-suggestions").remove();
-			$(".js-media-added").addClass("is-hidden");
-		}
-	}
-
-}
-
-// warning: for some reason this doesnt work if the console.logs arent there DONT ASK WH I DONT KNOW
 
 function checkIfSigninFormIsPresent() {
 	if ($(".app-signin-form").length > 0 || $("body>.js-app-loading.login-container:not([style])").length > 0) {
@@ -1515,6 +1266,207 @@ function onElementAddedToDOM(e) {
 	}
 }
 
+function mtdAppFunctions() {
+
+	const {remote,ipcRenderer} = require('electron');
+
+	var minimise = make("button")
+	.addClass("windowcontrol min")
+	.html("&#xE15B")
+	.click(function(data,handler){
+		var window = remote.BrowserWindow.getFocusedWindow();
+    	window.minimize();
+	});
+
+	var maximise = make("button")
+	.addClass("windowcontrol max")
+	.html("&#xE3C6")
+	.click(function(data,handler){
+		var window = remote.BrowserWindow.getFocusedWindow();
+		if (window.isMaximized()) {
+			window.unmaximize();
+		} else {
+			window.maximize();
+		}
+	});
+
+	var closefunc = function() {
+		window.close();
+	}
+
+	var close = make("button")
+	.addClass("windowcontrol close")
+	.html("&#xE5CD")
+	.click(closefunc);
+
+
+	var windowcontrols = make("div")
+	.addClass("windowcontrols")
+	.append(minimise)
+	.append(maximise)
+	.append(close);
+
+	body.append(windowcontrols);
+
+	ipcRenderer.on('context-menu', (event, p) => {
+	  console.log(p); // prints "pong"
+	  body.append(buildContextMenu(p));
+	})
+}
+
+function getIpc() {
+	const {ipcRenderer} = require('electron');
+	return ipcRenderer;
+}
+
+contextMenuFunctions = {
+	cut:function(){
+		getIpc().send("cut");
+	},
+	copy:function(){
+		getIpc().send("copy");
+	},
+	paste:function(){
+		getIpc().send("paste");
+	},
+	undo:function(){
+		getIpc().send("undo");
+	},
+	redo:function(){
+		getIpc().send("redo");
+	},
+	selectAll:function(){
+		getIpc().send("selectAll");
+	},
+	delete:function(){
+		getIpc().send("delete");
+	},
+	openLink:function(e){
+		window.open(e);
+	},
+	copyLink:function(e){
+		const { clipboard } = require('electron');
+		clipboard.writeText(e);
+	},
+	openImage:function(e){
+		window.open(e);
+	},
+	copyImageURL:function(e){
+		const { clipboard } = require('electron');
+		clipboard.writeText(e);
+	},
+	copyImage:function(e){
+		getIpc().send("copyImage",e);
+	}
+
+}
+
+function makeCMItem(p) {
+	var a = make("a").attr("href","#").attr("data-action",p.dataaction).html(p.text);
+	var li = make("li").addClass("is-selectable").append(a);
+
+	if (p.enabled === false) {
+		a.attr("disabled","disabled");
+	} else {
+		//a.click(contextMenuFunctions[p.dataaction]);
+
+		a.click(function(){
+			console.log("Performing action "+p.dataaction+"...");
+			if (p.mousex && p.mousey) {
+				document.elementFromPoint(p.mousex, p.mousey).focus();
+				console.log("Got proper info, keeping context (x="+p.mousex+",y="+p.mousey+")");
+				console.log(document.elementFromPoint(p.mousex, p.mousey));
+			}
+			contextMenuFunctions[p.dataaction](p.data);
+			clearContextMenu();
+		});
+	}
+
+	return li;
+}
+
+function clearContextMenu() {
+	var removeMenu = $(".mtd-context-menu")
+	removeMenu.addClass("mtd-dropdown-fade-out").on("animationend",function(){
+		removeMenu.remove();
+	});
+}
+
+function makeCMDivider() {
+	return make("div").addClass("drp-h-divider");
+}
+
+function buildContextMenu(p) {
+	var items = [];
+	var x=p.x;
+	var y=p.y;
+
+	const xOffset = 2;
+	const yOffset = 12;
+
+	if ($(".mtd-context-menu").length > 0) {
+		var removeMenu = $(".mtd-context-menu");
+		removeMenu.addClass("mtd-dropdown-fade-out");
+		removeMenu.on("animationend",function(){
+			removeMenu.remove();
+		})
+	}
+
+	if (p.isEditable) {
+		items.push(makeCMItem({mousex:x,mousey:y,dataaction:"undo",text:"Undo",enabled:p.editFlags.canUndo}));
+		items.push(makeCMItem({mousex:x,mousey:y,dataaction:"redo",text:"Redo",enabled:p.editFlags.canRedo}));
+		items.push(makeCMDivider());
+		items.push(makeCMItem({mousex:x,mousey:y,dataaction:"cut",text:"Cut",enabled:p.editFlags.canCut}));
+		items.push(makeCMItem({mousex:x,mousey:y,dataaction:"copy",text:"Copy",enabled:p.editFlags.canCopy}));
+		items.push(makeCMItem({mousex:x,mousey:y,dataaction:"paste",text:"Paste",enabled:p.editFlags.canPaste}));
+		items.push(makeCMItem({mousex:x,mousey:y,dataaction:"selectAll",text:"Select All",enabled:p.editFlags.canSelectAll}));
+		items.push(makeCMDivider());
+	}
+
+	if (p.linkURL !== '') {
+		items.push(makeCMItem({mousex:x,mousey:y,dataaction:"openLink",text:"Open link in browser",enabled:true,data:p.linkURL}));
+		items.push(makeCMItem({mousex:x,mousey:y,dataaction:"copyLink",text:"Copy link address",enabled:true,data:p.linkURL}));
+		items.push(makeCMDivider());
+	}
+
+	if (p.srcURL !== '') {
+		items.push(makeCMItem({mousex:x,mousey:y,dataaction:"openImage",text:"Open image in browser",enabled:true,data:p.srcURL}));
+		items.push(makeCMItem({mousex:x,mousey:y,dataaction:"copyImage",text:"Copy image",enabled:true,data:{x:x,y:y}}));
+		items.push(makeCMItem({mousex:x,mousey:y,dataaction:"copyImageURL",text:"Copy image address",enabled:true,data:p.srcURL}));
+		items.push(makeCMDivider());
+	}
+
+	var ul = make("ul");
+
+	for(var i = 0; i < items.length; i++){
+		ul.append(items[i]);
+	}
+
+
+	var menu = make("menu").addClass("mtd-context-menu dropdown-menu").append(ul).attr("style","opacity:0;animation:none;transition:none");
+
+
+	console.log("x: "+x+" y: "+y+" ul.width(): "+ ul.width() +" ul.height(): "+ ul.height() +" $(document).width(): " + $(document).width() + " $(document).height(): " + $(document).height())
+
+	setTimeout(function(){
+		if (x+xOffset+ul.width() > $(document).width()){
+			console.log("you're too wide!");
+			x = $(document).width() - ul.width() - xOffset;
+		}
+
+		if (y+yOffset+ul.height() > $(document).height()){
+			console.log("you're too tall!");
+			y = $(document).height() - ul.height() - yOffset;
+		}
+
+		menu.attr("style","left:"+(x+xOffset)+"px!important;top:"+(y+yOffset)+"px!important")
+
+
+	},0)
+
+	return menu;
+}
+
 function CoreInit() {
 	if (typeof Raven === "undefined" || typeof mR === "undefined") {
 		setTimeout(CoreInit,10);
@@ -1523,70 +1475,29 @@ function CoreInit() {
 	}
 
 	if (typeof $ === "undefined") {
-		console.log("yep, twitter broke it now.");
 		var jQuery = mR.findFunction('jQuery')[0];
 
 		window.$ = jQuery;
 		window.jQuery = jQuery;
-	} else {
-		console.log("okay, twitter hasn't broken it yet...");
 	}
 
 	head = $(document.head);
 	body = $(document.body);
 	html = $(document.querySelector("html")); // Only 1 result; faster to find
 
-	if (html.hasClass("mtd-app")) {
-		
-		const {remote} = require('electron');
-
-		var minimise = make("button")
-		.addClass("windowcontrol min")
-		.html("&#xE15B")
-		.click(function(data,handler){
-			var window = remote.BrowserWindow.getFocusedWindow();
-    		window.minimize();
-		});
-
-		var maximise = make("button")
-		.addClass("windowcontrol max")
-		.html("&#xE3C6")
-		.click(function(data,handler){
-			var window = remote.BrowserWindow.getFocusedWindow();
-			if (window.isMaximized()) {
-				window.unmaximize();
-				html.removeClass("mtd-maximized");
-				maximise.html("&#xE3C6");
-			} else {
-				window.maximize();
-				html.addClass("mtd-maximized");
-				maximise.html("&#xE3E0");
-			}
-		});
-
-		var closefunc = function() {
-			window.close();
-		}
-
-		var close = make("button")
-		.addClass("windowcontrol close")
-		.html("&#xE5CD")
-		.click(closefunc);
-
-
-		var windowcontrols = make("div")
-		.addClass("windowcontrols")
-		.append(minimise)
-		.append(maximise)
-		.append(close);
-
-		body.append(windowcontrols);
+	if (html.hasClass("mtd-app") && typeof require !== "undefined") {
+		mtdAppFunctions();
 	}
 
 	Raven.config('https://92f593b102fb4c1ca010480faed582ae@sentry.io/242524', {
 	    release: SystemVersion
 	}).install();
 
+	if (isApp) {
+		window.addEventListener('mousedown', function(e) {
+			clearContextMenu();
+		}, false);
+	}
 
 	setTimeout(Raven.context(MTDInit),10);
 
