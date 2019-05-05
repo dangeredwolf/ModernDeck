@@ -5,7 +5,7 @@
   Released under the MIT Licence
 */
 
-.keyboard-shortcut-list-modal::-webkit-scrollbar,.mdl.s-profile::-webkit-scrollbar,.scroll-styled-v::-webkit-scrollbar,.scroll-v::-webkit-scrollbar,.lst-launcher::-webkit-scrollbar,.mtd-nav-drawer::-webkit-scrollbar,.emoji-container>div::-webkit-scrollbar,.emoji-container::-webkit-scrollbar {
+.mdl::-webkit-scrollbar,.keyboard-shortcut-list-modal::-webkit-scrollbar,.mdl.s-profile::-webkit-scrollbar,.scroll-styled-v::-webkit-scrollbar,.scroll-v::-webkit-scrollbar,.lst-launcher::-webkit-scrollbar,.mtd-nav-drawer::-webkit-scrollbar,.emoji-container>div::-webkit-scrollbar,.emoji-container::-webkit-scrollbar {
 	width:0;
 	pointer-events:none
 }
@@ -40,6 +40,7 @@
 .scroll-v,
 .scroll-styled-h,
 #lists-modal .mdl-content,
-.keyboard-shortcut-list-modal {
+.keyboard-shortcut-list-modal,
+.mdl {
 	scrollbar-width:none;
 }

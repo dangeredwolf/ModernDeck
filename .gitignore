@@ -1,12 +1,9 @@
-
 *.zip
-
 *.crx
-
 *.pem
-
 *.map
-
-ModernDeck\README.md
-
+dist
 node_modules
+.DS_Store
+*.log
+yarn.lock

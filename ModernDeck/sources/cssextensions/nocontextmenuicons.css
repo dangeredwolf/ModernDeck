@@ -1,0 +1,15 @@
+/*
+  nocontextmenuicons.css
+
+  Copyright (c) 2014-2019 Dangered Wolf
+  Released under the MIT Licence
+*/
+
+.dropdown-menu a[data-action]:before {
+	content:""!important;
+	display:none
+}
+
+.dropdown-menu a[data-action] {
+	font-size:14.5px
+}

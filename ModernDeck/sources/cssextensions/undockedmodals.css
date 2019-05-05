@@ -5,11 +5,9 @@
   Released under the MIT Licence
 */
 
-@import "animations.css";
-
 .mdl:not(.med-fullpanel) {
 	animation:windowDown .3s cubic-bezier(.19,1,.22,1);
-	width:600px;
+	width:calc(var(--columnSize) + 252px);
 	margin:0 auto;
 	max-height:900px;
 	bottom:auto;
@@ -56,6 +54,10 @@
 	display:none
 }
 
+.mdl.cmp.s-inreply {
+	min-height:250px!important
+}
+
 .mdl:not(.sentry-error-embed):not(.med-fullpanel) {
     display:inline-block;
     vertical-align:middle;
@@ -63,7 +65,12 @@
     margin:0 auto!important;
     text-align:left;
     border-radius:2px;
-    min-height:170px
+    min-height: 500px;
+    max-height: 707px;
+}
+
+.mdl.s-profile {
+	min-height:525px!important
 }
 
 .mdl.s-fluid {
@@ -86,12 +93,12 @@
 }
 
 .prf-header {
-	min-height:300px
+	min-height: 289px;
 }
 
 .social-proof-container {
 	position:absolute!important;
-	top:306px
+	top: 294px;
 }
 
 .s-fluid .mdl-inner, .s-fluid-height .mdl-inner {
@@ -105,63 +112,16 @@
 	padding-bottom:30px
 }
 
-.mtd-nav-drawer-background {
-	background:transparent
-}
-
-.mtd-nav-drawer {
-	height:auto;
-	padding-bottom:10px
-}
-
-.mtd-nav-drawer-hidden {
-	margin-top:-40px;
-	margin-left:0;
-	opacity:0;
-	pointer-events:none
-}
-
-#mtd_nd_header_image,.mdl-links {
-	display:none
-}
-
-.mtd-nd-header-photo.avatar {
-	height:36px!important;
-	width:36px!important;
-	margin-top:10px;
-	margin-left:10px
-}
-
-.mtd-nd-header-username {
-	margin-top:20px;
-	margin-left:60px;
-	text-align:left;
-	text-shadow:none
-}
-
-.mtd-settings-button {
-	margin-top:60px
-}
-
-.mtd-nav-drawer-hidden .mtd-nav-button {
-	pointer-events:none
-}
-
 .settings-modal .mdl {
-	height:600px;
 	overflow:hidden
 }
 
-.mdl .js-user-actions-menu {
+.mdl .prf-follow-state .js-user-actions-menu {
 	position:absolute;
-	top:-300px;
+	top: -290px;
 	left:-40px;
 	color:#fff!important;
-	margin:0
-}
-
-.js-add-column {
-	right:-66px!important
+	margin:0;
 }
 
 .mdl-drag-handle {
@@ -181,41 +141,15 @@
 	right:50px
 }
 
-.mtd-light .mtd-nd-header-username {
-	color:#000
-}
-
-#mtdfeedback {
-	position:relative!important;
-	margin-top:8px
-}
-
-.mtd-nav-divider-feedback {
-	display:block
-}
-
 .s-inreply.s-fluid-height .cf>.pull-right {
 	position:absolute;
 	right:0
 }
 
 .cf.padding-b--20.padding-r--20.padding-t--5 {
-	margin-top:-40px
+	margin-top:-56px
 }
 
 .cmp-replyto {
-	padding-bottom:40px
-}
-
-.mtd-nav-group-expand {
-	display:none
-}
-
-.mtd-nav-group:not(.mtd-nav-group-expanded) {
-	height:inherit!important
-}
-
-#mtd_af_mdl {
-	left:0!important;
-	top:0!important;
+	padding-bottom:50px
 }
