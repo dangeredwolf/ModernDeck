@@ -22,6 +22,9 @@ var messagesAccounted = [];
 
 var MTDDark = true;
 
+const forceAppx = false;
+// https://github.com/electron/electron/issues/18161
+
 var addedColumnsLoadingTagAndIsWaiting,
 replacedLoadingSpinnerNew,
 loadedPreferences,
@@ -1783,7 +1786,7 @@ function openSettings(openMenu) {
 			)
 			updateCont.append(updateIcon,updateh2,updateh3,tryAgain,restartNow);
 
-			if (isApp) {
+			if (isApp && !forceAppx) {
 				if (!html.hasClass("mtd-winstore") && !html.hasClass("mtd-macappstore")) {
 					subPanel.append(updateCont);
 				}
@@ -1792,7 +1795,7 @@ function openSettings(openMenu) {
 			subPanel.append(infoCont);
 			//subPanel.append(patronInfo);
 
-			if (isApp) {
+			if (isApp && !forceAppx) {
 				if (!html.hasClass("mtd-winstore") && !html.hasClass("mtd-macappstore")) {
 					mtdAppUpdatePage(updateCont,updateh2,updateh3,updateIcon,updateSpinner,tryAgain,restartNow);
 				}
