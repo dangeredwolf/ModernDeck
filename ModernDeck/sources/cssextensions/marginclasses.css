@@ -46,9 +46,12 @@
 }
 
 .margin-t--12 {
-    margin-top: -42px!important;
-    padding-bottom: 15px;
-    margin-right: 2px
+    margin-top:12px
+}
+
+
+.cf.margin-t--12.margin-b--30 {
+    margin-top:-42px!important;
 }
 
 .margin-t--14,.margin-v--14 {

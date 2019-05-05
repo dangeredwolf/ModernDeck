@@ -5,11 +5,6 @@
   Released under the MIT Licence
 */
 
-html
-{
-  font-family:Roboto,"Noto Sans Alphabet","Noto Sans","Noto Sans CJK","Noto Sans CJK JP","Noto Sans CJK KR","Noto Sans CJK SC","Noto Sans CJK TC","Noto Sans JP","Noto Sans KR","Noto Sans SC","Noto Sans TC"
-}
-
 body
 {
   margin:0
@@ -175,7 +170,7 @@ h2
 
 h3
 {
-	font-size:1.1429rem
+	font-size:18px
 }
 
 h4
@@ -192,13 +187,6 @@ h6
 iframe
 {
 	border:0
-}
-
-label
-{
-	display:block;
-	margin-bottom:12px;
-	line-height:inherit
 }
 
 fieldset
@@ -230,4 +218,29 @@ input,select
 {
 	word-break:normal!important;
 	word-wrap:normal!important
+}
+
+p {
+	margin-top:0;
+	margin-block-end:0;
+	margin-bottom:0
+}
+
+.mtd-patron-info {
+	position:absolute;
+	right:0;
+	top:0;
+	bottom: 71px;
+	float: right;
+}
+
+.mtd-patron-list {
+	/* bottom:0; */
+	/* position:absolute; */
+	margin-top: 60px;
+	/* left:0; */
+	right: 100px;
+	width: 240px;
+	float: right;
+	height: 80%;
 }

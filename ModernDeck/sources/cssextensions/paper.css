@@ -5,58 +5,99 @@
   Released under the MIT Licence
 */
 
-.l-column.mdl-column.mdl-column-sml .selected {
-	border-color:#555!important
+:root {
+	--primaryColor:#eee!important;
+	--secondaryColorBright:#eee!important;
+	--paperColor:#555!important;
+	--rootWhiteColor:#555!important;
+	--mdlPrimaryColor:#eee!important;
+	--pureWhite:#fff!important
 }
 
-.more-tweets-btn,.mdl-header,.application,.mtd-back-paper.mtd-light .app-navigator .js-hide-drawer,.app-navigator .js-hide-drawer,.edit-conversation-name,.drawer-header,.column:not(.is-new) .column-message,body,.column-header,.column-header-temp {
-	background:#eee!important
+.prf-header .prf-bio a,.is-options-open .column-settings-link,.prf-header .prf-siteurl,.prf .fullname,.prf-actions .action-text:after,.prf-header,.prf-header .username,.prf-header .link-clean {
+	color:var(--pureWhite)!important
 }
 
-.mtd-nd-header-image {
-	background-color:#eee!important
+.is-new .column-message, .btn-login[type="submit"], .login-container .btn-positive, .more-tweets-btn, .is-unread, .more-tweets-btn, .compose, .drawer, .tweet-button:not(.js-hide-drawer), .PillGroup .Pill.is-selected, .DatePicker-calendarDay.is-withinRange, .lst-group .selected, button.try-query {
+	background:var(--primaryColor)!important
 }
 
-.is-options-open .column-settings-link {
-	color:#fff
+html body .js-column-message .dark-only--color-twitter-gray,
+.selected .list-link strong,
+.js-submittable-input.js-compose-text,
+.popover input.txt-mute,
+.popover textarea.txt-mute,
+.toggle-item-text,
+.accordion-panel .txt-bold,
+.facet-title,
+.facet-type,
+.windowcontrol,
+.mtd-settings-tab,
+.lst-launcher a,
+.lst-launcher a:hover,
+.lst-launcher a:focus,
+.lst-launcher a:active,
+.lst-launcher span,
+.message-text>.btn,
+.message-banner,
+.js-compose-stay-open,
+.js-compose-stay-open:before,
+.mdl-header-title a,
+.title-content .txt-mute,
+.column-title .attribution,
+.compose-remember-state,
+.more-tweets-btn,
+.selected .list-link strong,
+.account-selector-grid-mode,
+.account-selector-grid-mode:hover,
+.account-selector-grid-mode,
+.account-selector-grid-mode.is-selected,
+.js-dm-participants-back:after,
+.conversation-title .title-content b,
+.js-tweet-social-proof-back:after,
+.js-column-detail .column-title-back:before,
+.js-hide-drawer.app-nav-tab:after,
+.app-nav-tab,
+.drawer-header-title.drawer-column-header-title,
+.btn-back:before,
+.mdl-header-title,
+.column-header-temp,
+.mdl-column.l-column .search-input,
+.numbered-badge,
+.app-search .app-search-fake,
+.column-message,
+.app-nav-link,
+.column-title,
+.column-header .icon,
+.btn-compose.tweet-button>.icon-compose,
+.js-add-image-button,
+.js-tweet-button,
+.js-dm-button,
+.js-schedule-button
+{
+	color:var(--rootWhiteColor)!important
 }
 
-.lst-launcher a, .lst-launcher a:hover, .lst-launcher a:focus, .lst-launcher a:active, .lst-launcher span, .message-text>.btn, .message-banner, .js-compose-stay-open, .js-compose-stay-open:before, .mdl-header-title a, .title-content .txt-mute, .mtd-nd-header-username, .column-title .attribution, .compose-remember-state, .more-tweets-btn, .selected .list-link strong, .account-selector-grid-mode, .account-selector-grid-mode:hover, .account-selector-grid-mode, .account-selector-grid-mode.is-selected, .js-dm-participants-back:after, .conversation-title .title-content b, .js-tweet-social-proof-back:after, .js-column-detail .column-title-back:before, .js-hide-drawer.app-nav-tab:after, .app-nav-tab, .drawer-header-title.drawer-column-header-title, .btn-back:before, .mdl-header-title, .column-header-temp, .mdl-column.l-column .search-input, .numbered-badge, .app-search .app-search-fake, .column-message, .app-nav-link, .column-title, .column-header .icon, .btn-compose.tweet-button>.icon-compose {
-	color:#555!important
+.mtd-nd-header-username {
+	color:var(--pureWhite)!important
 }
 
-.title-content .txt-mute,.column-title .attribution {
-	opacity:.5
+.is-new .column-header,
+.is-new .column-header-temp
+{
+	background:linear-gradient(var(--primaryColor),rgba(199, 199, 199, 0.75))!important
+}
+
+.is-new .column-message {
+	background:rgba(199, 199, 199, 0.75)!important
 }
 
 a.column-nav-link,.column-nav-item,.js-setting-list .list-link strong {
-	color:rgba(85,85,85,.75)!important
+	color:rgba(85,85,85,.75) !important
 }
 
 a .column-title-back .icon:after,.drawer-header:active .drawer-header-title .icon:after,.btn-back:after,.app-search-fake .icon:after,.mtd-drawer-button:active:after {
 	background:rgba(85,85,85,.2)!important
-}
-
-.conversation-name,.column-title-edit-box {
-	border-bottom:2px solid #555!important
-}
-
-.tweet-button,.tweet-button:hover,.tweet-button:focus,.tweet-button:active,.compose,.drawer {
-	background: #eeeeee!important;
-	color:#666!important;
-}
-
-.js-send-button,.js-add-image-button,.js-tweet-button,.js-dm-button,.js-schedule-button {
-	color:#777!important
-}
-
-input.column-title-edit-box {
-	border-bottom:3px solid #666;
-	color:#666
-}
-
-.tweet-button.js-hide-drawer {
-	background:transparent!important
 }
 
 .spinner-layer,.spinner-default
@@ -66,4 +107,12 @@ input.column-title-edit-box {
 
 .js-send-button.is-disabled {
 	color:#ccc!important;
+}
+
+.dropdown-menu a {
+	opacity:1!important
+}
+
+.mtd-settings-button {
+	background:#00CBE5!important
 }

@@ -5,10 +5,16 @@
   Released under the MIT Licence
 */
 
-@import "animations.css";
+img.spinner-centered {
+	display:none
+}
+
+html:not(.signin-sheet-now-present) body {
+	background:#263238!important
+}
 
 ::selection {
-	background:rgba(102,227,228,.57);
+	background:rgba(0,0,0,0);
 	color:inherit
 }
 
@@ -31,19 +37,25 @@ select,input {
 }
 
 .startflow {
-	height:100%
+	top: -40px;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	position: absolute;
 }
 
 .app-signin-wrap {
 	position:relative;
 	margin:0 auto;
-	max-width:800px;
-	top:110px
+	max-width: 360px;
+	top: 50%;
+	margin: auto;
+	margin-top: -128px;
 }
 
 @media (max-width:800px) {
 	.app-signin-form {
-		margin-top:150px
+		margin-top: 30px;
 	}
 }
 
@@ -71,32 +83,14 @@ select,input {
 .form-legend {
 	text-align:left;
 	font-weight:500;
-	font-size:20px
+	font-size:20px;
 }
 
 .startflow-panel,.startflow-panel-rounded {
 	background:#fff;
 	color:#444;
 	box-shadow:0 10px 30px rgba(0,0,0,.75);
-	border-radius:2px
-}
-
-.form-login-pwd,.form-login-email,.form-login-username {
-	height:20px;
-	font-size:16px;
-	padding:10px 8px
-}
-
-.form-login-pwd::placeholder,.form-login-email::placeholder,.form-login-username::placeholder {
-	color:#939393
-}
-
-.form-login-username {
-	width:256px
-}
-
-.form-login-pwd::placeholder,.form-login-email::placeholder,.form-login-username::placeholder {
-	color:#939393
+	border-radius: 4px;
 }
 
 .form-message {
@@ -120,14 +114,6 @@ select,input {
 	z-index:5
 }
 
-.startflow-message-wrap .startflow-panel {
-	animation:windowDown .3s 1 cubic-bezier(.19,1,.22,1)
-}
-
-body.scroll-v .mdl .startflow-panel {
-	animation:none
-}
-
 .startflow-panel .bg-r-dark-blue {
 	background:rgb(14,208,210)
 }
@@ -140,18 +126,8 @@ body.scroll-v .mdl .startflow-panel {
 	font-size:16px!important
 }
 
-.startflow-panel .txt-large.padding-tn:before {
-	font-weight:500;
-	font-size:20px!important;
-	content:"Your account uses two factor authentication";
-	display:block;
-	padding-right:50px;
-	padding-bottom:20px
-}
-
-
 .startflow-background {
-	background-image:url(https://ton.twimg.com/tweetdeck-web/web/assets/global/backgrounds/login_bg.36f68cdcb5.jpg);
+	background-image:url(moderndeck://sources/img/bg1.jpg);
 	background-size:cover;
 	background-position:center
 }
@@ -164,17 +140,19 @@ body.scroll-v .mdl .startflow-panel {
 	bottom:0;
 	left:0;
 	opacity:.8;
-	background-image:linear-gradient(#00BCD4 0%, transparent 150%)
+	background-image:linear-gradient(#000000b3 0%, transparent 150%);
 }
 
 .login-container {
-	animation:windowSlider .75s cubic-bezier(.19,1,.22,1);
-	height:100%
+	animation: columnFlyin .6s cubic-bezier(.19,1,.22,1);
+	height:100%;
+	/* margin-top: 15px; */
 }
 
 .form-login h2 {
 	font-weight:400;
-	font-size:22px
+	font-size:22px;
+	margin-bottom: 35px;
 }
 
 .form-login p {
@@ -182,8 +160,13 @@ body.scroll-v .mdl .startflow-panel {
 	padding-bottom:5px
 }
 
+@keyframes menuDownLoginError {
+	0% {margin-top:-30px;opacity:0}
+	100% {margin-top:0;opacity:1}
+}
+
 .js-login-error-message {
-	animation:menuDownLarge .4s 1 cubic-bezier(.19,1,.22,1)
+	animation: menuDownLoginError .5s cubic-bezier(.19,1,.22,1);
 }
 
 .app-signin-form .cf.margin-txs {
@@ -191,18 +174,82 @@ body.scroll-v .mdl .startflow-panel {
 	padding-top:18px
 }
 
-.js-login-forgot-password {
-	padding-left:25px;
-	text-transform:uppercase
-}
-
-.signin-sheet-now-present .align-top[type="submit"]:not(.btn-login) {
-	text-transform:none;
-	margin-top:4px
-}
-
 .login-container .btn-positive {
 	width:277px!important;
-	padding:15px 0 1px 15px;
-	text-align:center
+	padding: 15px 0px 8px 24px;
+	text-align:center;
+	text-transform: none;
+	font-size:18px;
+	margin-top: 20px;
+}
+
+.login-container .btn-positive:before {
+	font-family:"MD";
+	content:"\f000";
+	font-size:26px;
+	vertical-align:middle;
+	line-height:0;
+	margin-left:-50px;
+	padding-right:10px
+}
+
+.form-login .padding-axl:not(.form-legend) {
+	display:none;
+}
+
+.form-login h3 {
+	display:inline;
+	/* padding-top: 20px; */
+	/* line-height: 80px; */
+	/* font-weight: 600; */
+	padding-bottom: 36px;
+	/* margin-top: 22px; */
+}
+
+.app-signin-form {
+	-webkit-app-region:no-drag;
+	display: block;
+	position: relative;
+}
+
+body {
+	-webkit-app-region:drag;
+}
+
+.login-container {
+	top: 0;
+	-webkit-app-region:no-drag;
+	position: absolute;
+	right: 0;
+	left: 0;
+	bottom: 0;
+	height: auto;
+	overflow: hidden;
+}
+
+.mtd-app .login-container:before {
+	content:"";
+	position:absolute;
+	display:block;
+	top:0;
+	left:0;
+	right:0;
+	height:40px;
+	-webkit-app-region: drag;
+}
+
+.mtd-signin-wrap .icon-moderndeck {
+	font-size: 69px;
+	font-size: 78px;
+	/* margin-left: 104px; */
+	display: block;
+	/* color: var(--secondaryColor); */
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	opacity: 0.3;
+}
+
+.app-info {
+	display:none
 }

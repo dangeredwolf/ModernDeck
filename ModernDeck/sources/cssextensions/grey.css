@@ -5,14 +5,14 @@
   Released under the MIT Licence
 */
 
-.mdl-header,.application,.mtd-back-grey.mtd-light .app-navigator .js-hide-drawer,.app-navigator .js-hide-drawer,.edit-conversation-name,.drawer-header,.column:not(.is-new) .column-message,body,.column-header,.column-header-temp {
-	background:#555!important
+.light:root {
+	--primaryColor:#555 !important;
 }
 
-.is-new .column-header,.is-new .column-header-temp {
-	background:linear-gradient(#555,#00BCD4)!important
-}
-
-.mtd-nd-header-image {
-	background-color:#555!important
+.dark:root {
+	--secondaryColor:#77919e !important;
+	--secondaryColorBright:#3A4B54 !important;
+	--secondaryColorAlt:#6c808a;
+	--secondaryColorPress:#7a8e98;
+	--secondaryColorDeep:#283135;
 }

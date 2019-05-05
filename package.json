@@ -1,0 +1,134 @@
+{
+	"name": "ModernDeck",
+	"version": "7.0.0",
+	"description": "TweetDeck, but more beautiful and fun than ever.",
+	"homepage": "https://github.com/dangeredwolf/ModernDeck",
+	"bugs": {
+		"url": "https://github.com/dangeredwolf/ModernDeck/issues"
+	},
+	"author": "dangeredwolf",
+	"license": "MIT",
+	"main": "main.js",
+	"scripts": {
+		"pack": "electron-builder --dir",
+		"dist": "electron-builder . --publish always",
+		"distAll": "electron-builder -mwl --publish always",
+		"build": "electron-builder .",
+		"buildAll": "electron-builder -mwl",
+		"buildWindows": "electron-builder -w",
+		"buildMac": "electron-builder -m",
+		"buildLinux": "electron-builder -l",
+		"start": "electron .",
+		"test": "electron-builder -mwl",
+		"release": "build"
+	},
+	"build": {
+		"appId": "com.dangeredwolf.ModernDeck",
+		"win": {
+			"icon": "build/icon.ico",
+			"legalTrademarks": "Copyright 2014-2019 dangered wolf, released under the MIT licence",
+			"publish": [
+				"github"
+			],
+			"target": [
+				{
+					"target": "nsis",
+					"arch": [
+						"ia32",
+						"x64"
+					]
+				}
+			]
+		},
+		"appx": {
+			"publisher": "CN=FEC2801E-B19C-4051-A5E2-465F7B251519",
+			"publisherDisplayName": "dangeredwolf",
+			"identityName": "53434dangeredwolf.ModernDeck",
+			"artifactName": "ModernDeck7_${arch}.${ext}",
+			"applicationId": "ModernDeck",
+			"backgroundColor": "#0078D7"
+		},
+		"nsis": {
+			"deleteAppDataOnUninstall": true,
+			"artifactName": "ModernDeck7_${arch}.${ext}",
+			"uninstallDisplayName": "ModernDeck 7",
+			"differentialPackage": true
+		},
+		"nsisWeb": {
+			"deleteAppDataOnUninstall": true,
+			"artifactName": "ModernDeck7_${arch}.${ext}",
+			"uninstallDisplayName": "ModernDeck 7",
+			"differentialPackage": true
+		},
+		"mac": {
+			"publish": [
+				"github"
+			],
+			"artifactName": "ModernDeck7.${ext}",
+			"minimumSystemVersion": "10.13.1",
+			"category": "public.app-category.social-networking"
+		},
+		"dmg": {
+			"icon": "build/dmg/dmg.png",
+			"background": "build/dmg/background.png",
+			"title": "ModernDeck 7"
+		},
+		"linux": {
+			"category": "Network",
+			"publish": [
+				"github"
+			],
+			"maintainer": "dangeredwolf",
+			"artifactName": "ModernDeck7_${arch}.${ext}",
+			"target": [
+				{
+					"target": "AppImage",
+					"arch": [
+						"x64",
+						"ia32",
+						"arm64",
+						"armv7l"
+					]
+				}
+			]
+		}
+	},
+	"repository": "https://github.com/dangeredwolf/ModernDeck",
+	"keywords": [
+		"TweetDeck",
+		"ModernDeck",
+		"Modern",
+		"Tweet",
+		"Deck",
+		"Material",
+		"Design"
+	],
+	"dependencies": {
+		"file-type": "^3.8.0",
+		"got": "^6.3.0",
+		"through2": "^2.0.1",
+		"electron-log": "^3.0.5",
+		"electron-packager": "^13.0.0",
+		"electron-store": "^1.3.0",
+		"electron-updater": "^4.0.0"
+	},
+	"devDependencies": {
+		"electron": "^5.0.0",
+		"electron-builder": "^20.39.0",
+		"stylelint": "^10.0.1",
+		"stylelint-config-recommended": "^2.0.0"
+	},
+	"files": [
+		"**/ModernDeck",
+		"*.js",
+		"*.css",
+		"*.png",
+		"*.woff2",
+		"*.woff",
+		"*.json",
+		"*.ico"
+	],
+	"stylelint": {
+		"extends": "stylelint-config-recommended"
+	}
+}

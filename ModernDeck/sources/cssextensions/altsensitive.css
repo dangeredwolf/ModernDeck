@@ -98,3 +98,7 @@
   visibility:hidden!important;
   display:none;
 }
+
+.js-media-sensitive-overlay {
+  background:var(--backdropColor);
+}

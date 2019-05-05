@@ -5,12 +5,16 @@
 
 "use strict";
 
-var SystemVersion = "6.5.2";
-var MTDBaseURL = "https://rawgit.com/dangeredwolf/ModernDeck/stable/ModernDeck/"; // Defaults to streaming if using online client
+var SystemVersion = "7.0";
+var MTDBaseURL = "https://rawgit.com/dangeredwolf/ModernDeck/stable/ModernDeck/"; // Defaults to streaming if MTDURLExchange isn't completed properly
+
+//var MTDBaseURL = "https://ton.twimg.com/tweetdeck-deb/web/dist/"
 
 var msgID,
 FetchProfileInfo,
 loginIntervalTick = 0;
+
+var contextMenuNum = 0;
 
 const forceFeatureFlags = false;
 
@@ -27,113 +31,869 @@ sendingFeedback,
 hasOutCache,
 TreatGeckoWithCare = false;
 
-const welcomeEnabled = false;
+const useRaven = true;
+let ugltStarted = false;
 
 var progress = null;
+
+var useNativeContextMenus = true;
+
+var isDev = false;
+
+var debugStorageSys = true;
+
+var useAppStore;
+let store;
 
 var FindProfButton,
 loginInterval,
 openModal;
 
-var isChrome = typeof chrome !== "undefined"; // may also return true on chromium-based browsers like opera and edge chromium
 var isOpera = typeof opera !== "undefined";
 var isSafari = typeof safari !== "undefined";
 var isEdge = typeof MSGesture !== "undefined";
 var isFirefox = typeof mozInnerScreenX !== "undefined";
+var isApp = typeof require !== "undefined";
+var isChrome = typeof chrome !== "undefined" && !isEdge && !isFirefox; // may also return true on chromium-based browsers like opera, edge chromium, and electron
+var isWin = navigator.userAgent.indexOf("Windows NT") > -1;
+var isMac = navigator.userAgent.indexOf("Mac OS X") > -1;
+var ctrlShiftText = isMac ? "⌃⇧" : "Ctrl+Shift+";
 
-var twitterSucks = document.createElement("script");
-twitterSucks.type = "text/javascript";
+var injectedFonts = false;
 
 var make = function(a){return $(document.createElement(a))};
 var head,body,html = undefined;
 
 var MTDStorage = {};
 
+var contextMenuFunctions;
 
-var welcomeScreenHtml = '<div class="mdl-content horizontal-flow-container"><div style="width:100%"class="l-column mdl-column mdl-column-lrg"><div class="l-column-scrollv scroll-v	scroll-alt"><h1>New in ModernDeck 6.0</h1><h2>Themes</h2><header class="js-column-header js-action-header column-header mtd-colours-demo"><i class="pull-left margin-hs column-type-icon icon icon-home"></i><h1 class="column-title txt-ellipsis"><span class="column-head-title">Home</span><span class="attribution txt-mute txt-sub-antialiased">@dangeredwolf</span></h1><a class="js-action-header-button column-header-link column-settings-link"><i class="icon icon-sliders"></i></a></header><p>People\'s personalities are far more than just black and white. Make your TweetDeck experience truly personal with a variety of styles to suit whatever your tastes might be. This and many of the other options are adjustable with <br><i class="icon icon-mtd-settings"></i><b>ModernDeck Settings</b></p><h2>Refreshed Icons</h2><br><i class="icon icon-tweetdeck icon-xxlarge"></i><i class="icon icon-moderndeck icon-xxlarge"></i><i class="icon icon-hashtag icon-xxlarge"></i><i class="icon icon-retweet icon-xxlarge"></i><i class="icon icon-mtd-settings icon-xxlarge"></i><p style="padding-top:0">As of this release, 100% of icons are either created inhouse for ModernDeck, or are borrowed from the material design icon library. This includes the new Retweet icon, which was obvious from the beginning that an inhouse solution was mandatory.</p><h2>Refreshed UI</h2><p style="padding-top:0">ModernDeck 6.0 has a refreshed UI, taking advantage of an all-new edge-to-edge design that snaps to the left side. This helps take better advantage of screen real estate while still being elegant to use, and isn\'t a bad match with ModernDeck\'s navigation drawer.</p><!--h2>Tweet Shortener Assistant</h2--><!--p style="padding-top:0">Have you ever dealt with a moment where you\'re just barely over the 140 character limit and need to cut down the size a bit? In ModernDeck 6.0, we have you covered. If you go over the 140 character limit, we\'ll prompt you with suggestions of what ways it detects will help shorten your tweet. This uses a number of algorithms such as checking for excess spacing and punctuation, to more advanced ones such as detecting and replacing applicable letters with liguatures, a Unicode feature that allows combining of certain letters to replace 2, 3, or sometimes even 4 characters, into what Twitter registers as just 1 character, and oftentimes looks about the same. All of these are suggestions, so you can click on the one you want, and you\'ll get no more, no less, than you asked for. Then you can finally send that Tweet, and you\'ve saved some precious time.</p><h3-->Hearts or Stars</h3><p style="padding-top:0">ModernDeck allows you to pick between hearts and stars. The new default is hearts.</p><h3>Change How the Scroll Bar Looks</h3><p style="padding-top:0">In ModernDeck 6.0, you now have the option to change the scroll bar\'s appearance, such as either making it narrower, or making it never appear outright, to help build a cleaner TweetDeck experience to your specification.</p><h3>A New Option for dealing with Sensitive Media</h3><p style="padding-top:0">ModernDeck 6.0 also introduces another new feature, which changes the workflow of dealing with sensitive media, if you have it enabled to ask beforehand. Before, you had to click a tiny "View" link beforehand. Now, simply click anywhere on the designated background, and it will open up a preview of the image, as expected, but the thumbnail itself never shows content marked as sensitive.</p><h3>Faster and More Reliable CSS Extension Engine</h3><p style="padding-top:0">Building a truly versatile theming system wasn\'t as easy as slapping a feature on top of the old codebase. It\'s possible to do it that way, but it\'d hurt performance by creating extra overhead created by having to load all themes into memory at once, only to render one. Much of ModernDeck\'s CSS/UI codebase, kept in one single CSS file, has been broken up and componentified into separate silos, called CSS extensions, and besides critical system extensions, most of these extensions can be swapped in or out at any time, making it easier for the browser to discard an old theme, and load a new theme into memory, all transparently, in real-time, with virtually no hiccup on average, modern hardware. Any UI tweaks from themes to hearts to even more are now all extensions that run on top of ModernDeck. This architecture carries through much of the system now. For example, all animations are kept in animations.css. By keeping similar items in the same place, it makes it easier for the CSS to reference, as well as making it easier to develop ModernDeck in the future. This took an enormous amount of work, but now we\'re left with a more functional, stable, as well as modular ModernDeck.</p></div></div></div>';
-// Asks MTDLoad for the storage
-// window.postMessage({
-// 	type: "getStorage"
-//}, "*");
+var newLoginPage = '<div class="app-signin-wrap mtd-signin-wrap"><div class="js-signin-ui app-signin-form pin-top pin-right txt-weight-normal"><section class="js-login-form form-login startflow-panel-rounded"data-auth-type="twitter"><h2 class="form-legend padding-axl">Good evening!</h2><h3 class="form-legend padding-axl">Welcome to ModernDeck</h3><i class="icon icon-moderndeck"></i><div class="margin-a--16"><div class="js-login-error form-message form-error-message error txt-center padding-al margin-bxl is-hidden"><p class="js-login-error-message">An unexpected error occurred. Please try again later.</p></div><a href="https://twitter.com/login?hide_message=true&amp;redirect_after_login=https%3A%2F%2Ftweetdeck.twitter.com%2F%3Fvia_twitter_login%3Dtrue" class="Button Button--primary block txt-size--18 txt-center btn-positive">Sign in with Twitter</a><div class="divider-bar"></div></section></div></div></div>';
 
-// Adds each key in the extension storage to MTDStorage
-window.addEventListener("message", function(e) {
-	console.log("Message received");
-	console.log(e);
-	if (e.source == window) {
-		if (e.data.type == "sendStorage") {
-			var settings = e.data.message;
-			for (var key in settings) {
-				MTDStorage.setItem(key, settings[key]);
+let mtdStarted = new Date();
+
+if (mtdStarted.getHours() < 12) {
+	newLoginPage = newLoginPage.replace("Good evening","Good morning");
+} else if (mtdStarted.getHours() < 18) {
+	newLoginPage = newLoginPage.replace("Good evening","Good afternoon");
+}
+
+var settingsData = {
+	themes: {
+		tabName:"Themes",
+		tabId:"themes",
+		options:{
+			coretheme:{
+				headerBefore:"Themes",
+				title:"Core Theme",
+				type:"dropdown",
+				activate:{
+					func:function(opt){
+						console.log("ACTIVATE FUNC");
+						console.log(opt);
+						disableStylesheetExtension("dark");
+						disableStylesheetExtension("light");
+
+						var opt = opt;
+
+						if (hasPref("mtd_highcontrast") && getPref("mtd_highcontrast") === true) {
+							opt = "dark";
+						}
+
+						html.removeClass("dark").removeClass("light").addClass(opt);
+						TD.settings.setTheme(opt);
+						enableStylesheetExtension(opt);
+
+						if (opt === "light" && (isStylesheetExtensionEnabled("amoled"))) {
+							disableStylesheetExtension("amoled");
+							setPref("mtd_theme","default");
+						}
+						if (opt === "dark" && isStylesheetExtensionEnabled("paper")) {
+							disableStylesheetExtension("paper");
+							setPref("mtd_theme","default");
+						}
+
+						if (hasPref("mtd_customcss")) {
+							disableStylesheetExtension("customcss");
+							enableCustomStylesheetExtension("customcss",getPref("mtd_customcss"));
+						}
+					}
+				},
+				options:{
+					dark:{value:"dark",text:"Dark"},
+					light:{value:"light",text:"Light"}
+				},
+				queryFunction:function(){
+					console.log(TD.settings.getTheme());
+					html.addClass(TD.settings.getTheme());
+					return TD.settings.getTheme()
+				},
+				settingsKey:"mtd_core_theme",
+				default:"dark"
+			},
+			theme:{
+				title:"Custom Theme",
+				type:"dropdown",
+				activate:{
+					func:function(opt){
+
+						if (getPref("mtd_highcontrast") === true) {
+							return;
+						}
+
+						if (!hasPref("mtd_theme")) {
+							setPref("mtd_theme","default")
+						}
+
+						disableStylesheetExtension(getPref("mtd_theme"));
+						setPref("mtd_theme",opt);
+						enableStylesheetExtension(opt || "default");
+						var opt = opt;
+
+						if (opt === "amoled" && TD.settings.getTheme() === "light") {
+							console.log("theme is light, opt is amoled");
+							TD.settings.setTheme("dark");
+							disableStylesheetExtension("light");
+							enableStylesheetExtension("dark");
+							html.removeClass("light").addClass("dark");
+						}
+
+						if (opt === "paper" && TD.settings.getTheme() === "dark") {
+							console.log("theme is dark, opt is paper");
+							TD.settings.setTheme("light");
+							disableStylesheetExtension("dark");
+							enableStylesheetExtension("light");
+							html.removeClass("dark").addClass("light");
+						}
+
+						if (opt === "black" && TD.settings.getTheme() === "dark") {
+							console.log("theme is dark, opt is black");
+							disableStylesheetExtension("black");
+							enableStylesheetExtension("amoled");
+							setPref("mtd_theme","amoled");
+						}
+
+						if (hasPref("mtd_customcss")) {
+							disableStylesheetExtension("customcss");
+							enableCustomStylesheetExtension("customcss",getPref("mtd_customcss"));
+						}
+					}
+				},
+				options:{
+					default:{value:"default","text":"Default"},
+					complete:{
+						name:"Complete Themes",
+						children:{
+							paper:{value:"paper",text:"Paperwhite"},
+							amoled:{value:"amoled",text:"AMOLED"}
+						}
+					},
+					complementary:{
+						name:"Complementary Themes",
+						children:{
+							grey:{value:"grey","text":"Grey"},
+							red:{value:"red","text":"Red"},
+							pink:{value:"pink","text":"Pink"},
+							orange:{value:"orange","text":"Orange"},
+							violet:{value:"violet","text":"Violet"},
+							teal:{value:"teal","text":"Teal"},
+							green:{value:"green","text":"Green"},
+							yellow:{value:"yellow","text":"Yellow"},
+							cyan:{value:"cyan","text":"Cyan"},
+							black:{value:"black","text":"Black"},
+							blue:{value:"blue","text":"Blue"},
+						}
+					}
+				},
+				settingsKey:"mtd_theme",
+				default:"default"
+			}, customCss:{
+				title:"Custom CSS ("+ctrlShiftText+"C disables it in case something went wrong)",
+				type:"textarea",
+				placeholder:":root {\n"+
+				"	--retweetColor:red;\n"+
+				"	--primaryColor:#00ff00!important;\n"+
+				"}\n\n"+
+				"a:hover {\n"+
+				"	text-decoration:underline\n"+
+				"}",
+				activate:{
+					func:function(opt){
+
+						setPref("mtd_customcss",opt);
+						enableCustomStylesheetExtension("customcss",opt);
+
+					}
+				},
+				settingsKey:"mtd_customcss",
+				default:""
 			}
 		}
-	}
-});
+	},
+	appearance: {
+		tabName:"Appearance",
+		tabId:"appearance",
+		options:{
+			dockedmodals:{
+				headerBefore:"Behavior",
+				title:"Use docked modals",
+				type:"checkbox",
+				activate:{
+					disableStylesheet:"undockedmodals"
+				},
+				deactivate:{
+					enableStylesheet:"undockedmodals"
+				},
+				settingsKey:"mtd_dockedmodals",
+				default:false
+			},
+			undockednavdrawer:{
+				title:"Replace navigation drawer with menu",
+				type:"checkbox",
+				activate:{
+					enableStylesheet:"undockednavdrawer"
+				},
+				deactivate:{
+					disableStylesheet:"undockednavdrawer"
+				},
+				settingsKey:"mtd_undockednavdrawer",
+				default:false
+			},
+			nonewtweetsbutton:{
+				title:"Enable \"New Tweets\" indicator",
+				type:"checkbox",
+				activate:{
+					disableStylesheet:"nonewtweetsbutton"
+				},
+				deactivate:{
+					enableStylesheet:"nonewtweetsbutton"
+				},
+				settingsKey:"mtd_nonewtweetsbutton",
+				default:true
+			},
+			scrollbarstyle:{
+				title:"Scrollbar Style",
+				type:"dropdown",
+				activate:{
+					func:function(opt){
+						disableStylesheetExtension(getPref("mtd_scrollbar_style"));
+						setPref("mtd_scrollbar_style",opt);
+						enableStylesheetExtension(opt || "default");
+					}
+				},
+				options:{
+					scrollbarsdefault:{value:"scrollbarsdefault",text:"Default"},
+					scrollbarsnarrow:{value:"scrollbarsnarrow",text:"Narrow"},
+					scrollbarsnone:{value:"scrollbarsnone",text:"Hidden"}
+				},
+				settingsKey:"mtd_scrollbar_style",
+				default:"scrollbarsdefault"
+			},
+			columnwidth:{
+				title:"Column width",
+				type:"slider",
+				activate:{
+					func:function(opt){
+						console.log(opt);
+						setPref("mtd_columnwidth",opt);
+						enableCustomStylesheetExtension("columnwidth",":root{--columnSize:"+opt+"px!important}");
+					}
+				},
+				minimum:275,
+				maximum:500,
+				settingsKey:"mtd_columnwidth",
+				displayUnit:"px",
+				default:325
+			},
+			fontSize:{
+				title:"Font Size",
+				type:"slider",
+				activate:{
+					func:function(opt){
+						console.log(opt);
+						setPref("mtd_fontsize",opt);
+						enableCustomStylesheetExtension("fontsize","html{font-size:"+((opt/100)*16)+"px!important}");
+					}
+				},
+				minimum:75,
+				maximum:130,
+				settingsKey:"mtd_fontsize",
+				displayUnit:"%",
+				default:100
+			},
+			roundprofilepics:{
+				headerBefore:"Display",
+				title:"Use round profile pictures",
+				type:"checkbox",
+				activate:{
+					disableStylesheet:"squareavatars"
+				},
+				deactivate:{
+					enableStylesheet:"squareavatars"
+				},
+				settingsKey:"mtd_round_avatars",
+				default:true
+			},
+			avatarSize:{
+				title:"Profile picture size",
+				type:"slider",
+				activate:{
+					func:function(opt){
+						console.log(opt);
+						//setPref("mtd_avatarsize",opt);
+						enableCustomStylesheetExtension("avatarsize",":root{--avatarSize:"+opt+"px!important}");
+					}
+				},
+				minimum:24,
+				maximum:64,
+				enabled:false,
+				settingsKey:"mtd_avatarsize",
+				displayUnit:"px",
+				default:48
+			},
+			newcharindicator:{
+				title:"Use new character limit indicator",
+				type:"checkbox",
+				activate:{
+					enableStylesheet:"newcharacterindicator"
+				},
+				deactivate:{
+					disableStylesheet:"newcharacterindicator"
+				},
+				settingsKey:"mtd_newcharindicator",
+				default:true
+			},
+			nocontextmenuicons:{
+				title:"Display contextual icons in menus",
+				type:"checkbox",
+				activate:{
+					disableStylesheet:"nocontextmenuicons"
+				},
+				deactivate:{
+					enableStylesheet:"nocontextmenuicons"
+				},
+				settingsKey:"mtd_nocontextmenuicons",
+				default:true
+			},
+			sensitive:{
+				title:"Display media that may contain sensitive content",
+				type:"checkbox",
+				activate:{
+					func:function(){
+						TD.settings.setDisplaySensitiveMedia(true);
+					}
+				},
+				deactivate:{
+					func:function(){
+						TD.settings.setDisplaySensitiveMedia(false);
+					}
+				},
+				queryFunction:function(){
+					return TD.settings.getDisplaySensitiveMedia();
+				}
+			},
+			altsensitive:{
+				title:"Use alternative sensitive media workflow",
+				type:"checkbox",
+				activate:{
+					enableStylesheet:"altsensitive"
+				},
+				deactivate:{
+					disableStylesheet:"altsensitive"
+				},
+				settingsKey:"mtd_sensitive_alt",
+				default:false
+			},
+			colNavAlwaysVis:{
+				title:"Always display column icons in navigator",
+				type:"checkbox",
+				activate:{
+					htmlAddClass:"mtd-mtd-column-nav-always-visible"
+				},
+				deactivate:{
+					htmlRemoveClass:"mtd-mtd-column-nav-always-visible"
+				},
+				settingsKey:"mtd_column_nav_always_visible",
+				default:false
+			},
+			accoutline:{
+				headerBefore:"Accessibility",
+				title:"Always show outlines around focused items ("+ctrlShiftText+"A to toggle)",
+				type:"checkbox",
+				activate:{
+					htmlAddClass:"mtd-acc-focus-ring"
+				},
+				deactivate:{
+					htmlRemoveClass:"mtd-acc-focus-ring"
+				},
+				settingsKey:"mtd_outlines",
+				default:false
+			},
+			highcont:{
+				title:"Enable High Contrast theme ("+ctrlShiftText+"H to toggle)",
+				type:"checkbox",
+				activate:{
+					func:function(opt){
+						if (TD.settings.getTheme() === "light") {
+							TD.settings.setTheme("dark");
+							disableStylesheetExtension("light");
+							enableStylesheetExtension("dark");
+						}
+						disableStylesheetExtension(getPref("mtd_theme") || "default");
+						setPref("mtd_theme","amoled");
+						setPref("mtd_highcontrast",true);
+						enableStylesheetExtension("amoled");
+						enableStylesheetExtension("highcontrast");
+					}
+				},
+				deactivate:{
+					func:function(opt){
+						setPref("mtd_highcontrast",false);
+						disableStylesheetExtension("highcontrast");
+					}
+				},
+				settingsKey:"mtd_highcontrast",
+				default:false
+			}
+		}
+	}, tweets: {
+		tabName:"Tweets",
+		tabId:"tweets",
+		options:{
+			stream:{
+				headerBefore:"Function",
+				title:"Stream Tweets in realtime",
+				type:"checkbox",
+				activate:{
+					func:function(){
+						TD.settings.setUseStream(true);
+					}
+				},
+				deactivate:{
+					func:function(){
+						TD.settings.setUseStream(false);
+					}
+				},
+				queryFunction:function(){
+					return TD.settings.getUseStream();
+				}
+			},
+			autoplayGifs:{
+				title:"Automatically play GIFs",
+				type:"checkbox",
+				activate:{
+					func:function(){
+						TD.settings.setAutoPlayGifs(true);
+					}
+				},
+				deactivate:{
+					func:function(){
+						TD.settings.setAutoPlayGifs(false);
+					}
+				},
+				queryFunction:function(){
+					return TD.settings.getAutoPlayGifs();
+				}
+			},
+			startupNotifications:{
+				title:"Show notifications on startup",
+				type:"checkbox",
+				activate:{
+					func:function(){
+						TD.settings.setShowStartupNotifications(true);
+					}
+				},
+				deactivate:{
+					func:function(){
+						TD.settings.setShowStartupNotifications(false);
+					}
+				},
+				queryFunction:function(){
+					return TD.settings.getShowStartupNotifications();
+				}
+			},
+			linkshort:{
+				headerBefore:"Link Shortening",
+				title:"Link Shortener Service",
+				type:"dropdown",
+				activate:{
+					func:function(set){
+						if (shortener === "twitter") {
+							$("bitlyUsername").addClass("hidden");
+							$("bitlyApiKey").addClass("hidden");
+						} else if (shortener === "bitly") {
+							$("bitlyUsername").removeClass("hidden");
+							$("bitlyApiKey").removeClass("hidden");
+						}
+						TD.settings.setLinkShortener(set);
+					}
+				},
+				queryFunction:function(){
+					var shortener = TD.settings.getLinkShortener();
+					if (shortener === "twitter") {
+						$("bitlyUsername").addClass("hidden");
+						$("bitlyApiKey").addClass("hidden");
+					} else if (shortener === "bitly") {
+						$("bitlyUsername").removeClass("hidden");
+						$("bitlyApiKey").removeClass("hidden");
+					}
+					return shortener;
+				},
+				options:{
+					twitter:{value:"twitter",text:"Twitter"},
+					bitly:{value:"bitly",text:"Bit.ly"}
+				}
+			},
+			bitlyUsername:{
+				title:"Bit.ly Username",
+				type:"textbox",
+				activate:{
+					func:function(set){
+						TD.settings.setBitlyAccount({
+							apiKey:((TD.settings.getBitlyAccount() && TD.settings.getBitlyAccount().apiKey) ? TD.settings.getBitlyAccount() : {apiKey:""}).login,
+							login:set
+						})
+					}
+				},
+				queryFunction:function(){
+					return ((TD.settings.getBitlyAccount() && TD.settings.getBitlyAccount().login) ? TD.settings.getBitlyAccount() : {login:""}).login;
+				}
+			},
+			bitlyApiKey:{
+				title:"Bit.ly API Key",
+				type:"textbox",
+				addClass:"mtd-big-text-box",
+				activate:{
+					func:function(set){
+						TD.settings.setBitlyAccount({
+							login:((TD.settings.getBitlyAccount() && TD.settings.getBitlyAccount().login) ? TD.settings.getBitlyAccount() : {login:""}).login,
+							apiKey:set
+						});
+					}
+				},
+				queryFunction:function(){
+					return ((TD.settings.getBitlyAccount() && TD.settings.getBitlyAccount().apiKey) ? TD.settings.getBitlyAccount() : {apiKey:""}).apiKey;
+				}
+			}
+		}
+	}, mutes: {
+		tabName:"Mutes",
+		tabId:"mutes",
+		options:{},
+		enum:"mutepage"
+	}, app: {
+		tabName:"App",
+		tabId:"app",
+		enabled:isApp,
+		options:{
+			nativeTitlebar:{
+				headerBefore:"App settings",
+				title:"Use native OS titlebar (restarts ModernDeck)",
+				type:"checkbox",
+				activate:{
+					func:function(){
+						if (!exists($(".mtd-settings-panel")[0])) {
+							return;
+						}
 
-window.addEventListener("beforeunload",savePreferencesToDisk);
+						setPref("mtd_nativetitlebar",true);
+
+						const {ipcRenderer} = require('electron');
+						if (!!ipcRenderer)
+							ipcRenderer.send("setNativeTitlebar", true);
+					}
+				},
+				deactivate:{
+					func:function(){
+						if (!exists($(".mtd-settings-panel")[0])) {
+							return;
+						}
+
+						setPref("mtd_nativetitlebar",false);
+
+						const {ipcRenderer} = require('electron');
+						if (!!ipcRenderer)
+							ipcRenderer.send("setNativeTitlebar", false);
+					}
+				},
+				settingsKey:"mtd_nativetitlebar",
+				default:false
+			},
+			inspectElement:{
+				title:"Show Inspect Element in context menus",
+				type:"checkbox",
+				activate:{
+					func:function(){
+						setPref("mtd_inspectElement",true);
+					}
+				},
+				deactivate:{
+					func:function(){
+						setPref("mtd_inspectElement",false);
+					}
+				},
+				settingsKey:"mtd_inspectElement",
+				default:false
+			},
+			nativeContextMenus:{
+				title:"Use OS native context menus",
+				type:"checkbox",
+				activate:{
+					func:function(){
+						setPref("mtd_nativecontextmenus",true);
+						useNativeContextMenus = true;
+					}
+				},
+				deactivate:{
+					func:function(){
+						setPref("mtd_nativecontextmenus",false);
+						useNativeContextMenus = false;
+					}
+				},
+				settingsKey:"mtd_nativecontextmenus",
+				default:isApp ? process.platform === "darwin" : false
+			},theme:{
+				title:"App update channel",
+				type:"dropdown",
+				activate:{
+					func:function(opt){
+						if (!isApp) {
+							return;
+						}
+						setPref("mtd_updatechannel",opt);
+
+						setTimeout(function(){
+							const {ipcRenderer} = require('electron');
+							if (!!ipcRenderer)
+								ipcRenderer.send("changeChannel", opt);
+
+						},300)
+					}
+				},
+				options:{
+					latest:{value:"latest","text":"Latest"},
+					beta:{value:"beta","text":"Beta"}
+				},
+				settingsKey:"mtd_updatechannel",
+				default:"latest"
+			}
+		}}, system: {
+		tabName:"System",
+		tabId:"system",
+		options:{
+			mtdResetSettings:{
+				title:"Reset Settings",
+				label:"<i class=\"icon material-icon mtd-icon-very-large\">restore</i><b>Reset settings</b><br>If you want to reset ModernDeck to default settings, you can do so here. This will restart ModernDeck.",
+				type:"button",
+				activate:{
+					func:function(){
+						purgePrefs();
+
+						if (isApp) {
+							const {ipcRenderer} = require('electron');
+							ipcRenderer.send('restartApp');
+						} else {
+							window.location.reload();
+						}
+					}
+				},
+				settingsKey:"mtd_resetSettings"
+			},
+			mtdClearData:{
+				title:"Clear Data",
+				label:"<i class=\"icon material-icon mtd-icon-very-large\">delete_forever</i><b>Clear data</b><br>This option clears all caches and preferences. This option will log you out.",
+				type:"button",
+				activate:{
+					func:function(){
+						if (isApp) {
+							const {ipcRenderer} = require('electron');
+
+							ipcRenderer.send('destroyEverything');
+						}
+					}
+				},
+				settingsKey:"mtd_resetSettings",
+				enabled:isApp
+			},
+			mtdSaveBackup:{
+				title:"Save Backup",
+				label:"<i class=\"icon material-icon mtd-icon-very-large\">save_alt</i><b>Save backup</b><br>Saves your preferences to a file to be loaded later.",
+				type:"button",
+				activate:{
+					func:function(){
+						const app = require("electron").remote;
+   						const dialog = app.dialog;
+						const fs = require("fs");
+						const {ipcRenderer} = require('electron');
+
+						var file = "ModernDeck Preferences";
+
+						var preferences = JSON.stringify(store.store);
+
+						dialog.showSaveDialog(
+						{
+							title: "ModernDeck Preferences",
+							filters: [{ name: "Preferences JSON File", extensions: ["json"] }]
+						},
+						function(file) {
+							if (file === undefined) {
+								return;
+							}
+							fs.writeFile(file, preferences, function(e){});
+						}
+					);
+					}
+				},
+				settingsKey:"mtd_backupSettings",
+				enabled:isApp
+			},
+			mtdLoadBackup:{
+				title:"Load Backup",
+				label:"<i class=\"icon material-icon mtd-icon-very-large\">refresh</i><b>Load backup</b><br>Loads your preferences that you have saved previously. This will restart ModernDeck.",
+				type:"button",
+				activate:{
+					func:function(){
+						const app = require("electron").remote;
+   						const dialog = app.dialog;
+						const fs = require("fs");
+						const {ipcRenderer} = require('electron');
+
+						dialog.showOpenDialog(
+							{ filters: [{ name: "Preferences JSON File", extensions: ["json"] }] },
+							function(file) {
+								if (file === undefined) {
+									return;
+								}
+
+								fs.readFile(file[0],"utf-8",function(e, load) {
+									store.store = JSON.parse(load);
+									ipcRenderer.send("restartApp");
+								});
+							}
+						);
+					}
+				},
+				settingsKey:"mtd_resetSettings",
+				enabled:isApp
+			},
+			tdLegacySettings: {
+				title:"Legacy settings",
+				label:"Is there a new TweetDeck setting we're missing? Visit legacy settings",
+				type:"link",
+				activate:{
+					func:function(){
+						openLegacySettings();
+					}
+				}
+			}
+		}
+	}, about: {
+		tabName:"About",
+		tabId:"about",
+		options:{},
+		enum:"aboutpage"
+	}
+}
+
+function retrieveImageFromClipboardAsBlob(pasteEvent, callback){
+
+	var items = pasteEvent.clipboardData.items;
+
+	if(items == undefined || pasteEvent.clipboardData == false){
+		console.log("RIP the paste data");
+		return;
+	};
+
+	for (var i = 0; i < items.length; i++) {
+		// Skip content if not image
+		if (items[i].type.indexOf("image") == -1) continue;
+		// Retrieve image on clipboard as blob
+		var blob = items[i].getAsFile();
+
+		if(typeof(callback) == "function"){
+			callback(blob);
+		}
+	}
+}
+
+// Paste event to allow for pasting images in TweetDeck
+
+window.addEventListener("paste", function(e){
+	console.log("got paste");
+	console.log(e);
+	retrieveImageFromClipboardAsBlob(e, function(imageBlob){
+		if(imageBlob){
+			console.log("got imageBlob");
+
+			let buildEvent = jQuery.Event("dragenter",{originalEvent:{dataTransfer:{files:[imageBlob]}}});
+			let buildEvent2 = jQuery.Event("drop",{originalEvent:{dataTransfer:{files:[imageBlob]}}});
+
+			console.info("alright so these are the events we're gonna be triggering:");
+			console.info(buildEvent);
+			console.info(buildEvent2);
+
+			$(document).trigger(buildEvent);
+			$(document).trigger(buildEvent2);
+		}
+	});
+}, false);
+
+// Alerts the app itself if it becomes offline
+
+const forceAppUpdateOnlineStatus = function(e){
+	if (!require) {return;}
+	const {ipcRenderer} = require('electron');
+	ipcRenderer.send('online-status-changed', e)
+}
 
 if (typeof MTDURLExchange === "object" && typeof MTDURLExchange.getAttribute === "function") {
-	MTDBaseURL = MTDURLExchange.getAttribute("type") || "https://dangeredwolf.com/assets/mtdtest/";
+	MTDBaseURL = MTDURLExchange.getAttribute("type");
 	console.info("MTDURLExchange completed with URL " + MTDBaseURL);
 }
 
+// Moduleraid became a requirement for ModernDeck after they removed jQuery from the global context
+// Hence why twitter sucks
+
+var twitterSucks = document.createElement("script");
+twitterSucks.type = "text/javascript";
 twitterSucks.src = MTDBaseURL + "sources/libraries/moduleraid.min.js";
 document.head.appendChild(twitterSucks);
 
-if (typeof chrome === "undefined" && typeof safari === "undefined") {
-	TreatGeckoWithCare = true;
-}
+// shorthand for creating a mutation observer and observing
 
 function mutationObserver(obj,func,parms) {
-	if (typeof MutationObserver !== "undefined") {
-		(new MutationObserver(func)).observe(obj,parms);
-	} else {
-		if (parms.attributes) {
-			html.on("DOMAttrModified",func);
-			html.on("DOMAttributeNameChanged",func);
-			html.on("DOMElementNameChanged",func);
-		}
-		if (parms.characterData) {
-			html.on("DOMCharacterDataModified",func);
-		}
-		if (parms.subtree) {
-			html.on("DOMSubtreeModified",func);
-		}
-		if (parms.childList) {
-			html.on("DOMNodeInserted",func);
-			html.on("DOMNodeRemoved",func);
-		}
-	}
+	return (new MutationObserver(func)).observe(obj,parms);
 }
+
+// shorthand function to return true if something exists and false otherwise
 
 function exists(thing) {
 	return ((typeof thing === "object" && thing !== null && thing.length > 0) || !!thing === true || (typeof thing === "string") || (typeof thing === "number"));
 }
 
-function savePreferencesToDisk() {
-	// var storage = {}
-	// for(var i = 0; i < MTDStorage.length; i++){
-	// 	var key = MTDStorage.key(i);
-	// 	storage[key] = MTDStorage[key];
-	// }
+// Returns true if stylesheet extension is enabled, false otherwise. Works with custom stylesheets. (see enableCustomStylesheetExtension for more info)
 
-	// window.postMessage({
-	// 	type: "setStorage",
-	// 	message: MTDStorage
-	// }, "*");
-}
-
-function isEnabledStylesheetExtension(name) {
+function isStylesheetExtensionEnabled(name) {
+	if ($("#mtd_custom_css_"+name).length > 0) {
+		return true;
+	}
 	return !!document.querySelector("link.mtd-stylesheet-extension[href=\"" + MTDBaseURL + "sources/cssextensions/" + name + ".css\"\]");
 }
 
+// Enables a certain stylesheet extension.
+// Stylesheet extensions are loaded from sources/cssextensions/[name].css
+
+// These are the predefined ModernDeck ones including colour themes, default light and dark themes, and various preferences
+
+// For custom ones, see enableCustomStylesheetExtension
+
 function enableStylesheetExtension(name) {
-	if (name === "default" || !exists($))
+	if (name === "default" || $("#mtd_custom_css_"+name).length > 0)
 		return;
 
 	var url = MTDBaseURL + "sources/cssextensions/" + name + ".css";
 
-	if (!isEnabledStylesheetExtension(name)) {
+	if (!isStylesheetExtensionEnabled(name)) {
 		head.append(
 			make("link")
 			.attr("rel","stylesheet")
@@ -145,78 +905,179 @@ function enableStylesheetExtension(name) {
 	} else return;
 }
 
+// disables stylesheet extensions. Function also works with custom stylesheet extensions
+
 function disableStylesheetExtension(name) {
-	if (!isEnabledStylesheetExtension(name))
+	if (!isStylesheetExtensionEnabled(name))
 		return;
 	console.log("disableStylesheetExtension(\""+name+"\")");
 	$('head>link[href="' + MTDBaseURL + "sources/cssextensions/" + name + '.css"]').remove();
+
+	if ($("#mtd_custom_css_"+name).length > 0) {
+		$("#mtd_custom_css_"+name).remove();
+	}
 }
+
+// Custom stylesheet extensions are used for custom user CSS and for certain sliders, such as column width
+
+function enableCustomStylesheetExtension(name,styles) {
+	console.log("enableCustomStylesheetExtension(\""+name+"\")");
+	if (isStylesheetExtensionEnabled(name)) {
+		$("#mtd_custom_css_"+name).html(styles);
+		return;
+	}
+	head.append(make("style").html(styles).attr("id","mtd_custom_css_"+name))
+}
+
+// Default account profile info, used to show your profile pic and background in nav drawer
 
 function getProfileInfo() {
 	return TD.cache.twitterUsers.getByScreenName(TD.storage.accountController.getPreferredAccount("twitter").state.username).results[0];
 }
 
-function getAccountStatus() {
-	return TD.storage.accountController.getPreferredAccount("twitter");
-}
-
-function getAllAccountStatus() {
-	return TD.storage.accountController.getAccountsForService("twitter");
-}
+// Loads preferences when moderndeck is started
 
 function loadPreferences() {
-	disableStylesheetExtension("loginpage");
 
-	if (getPref("mtd_round_avatars") === false)
-		enableStylesheetExtension("squareavatars");
-	else
-		setPref("mtd_round_avatars",true);
+	for (var key in settingsData) {
 
-	if (getPref("mtd_undocked_modals") === true)
-		enableStylesheetExtension("undockedmodals");
-	else
-		setPref("mtd_undocked_modals",false);
+		if (!settingsData[key].enum) {
+			for (var i in settingsData[key].options) {
+				let prefKey = settingsData[key].options[i].settingsKey;
+				let pref = settingsData[key].options[i];
 
-	if (getPref("mtd_hearts") === true)
-		enableStylesheetExtension("hearticon");
-	else if (getPref("mtd_hearts") !== false)
-		setPref("mtd_hearts",true);
+				if (exists(prefKey)) {
+					var setting;
+					if (!hasPref(prefKey)) {
+						if (debugStorageSys)
+							console.log("loadPreferences is setting default of "+prefKey+" to "+pref.default);
+						setPref(prefKey, pref.default);
+						setting = pref.default;
+					} else {
+						setting = getPref(prefKey);
+					}
 
-	if (getPref("mtd_sensitive_alt") === true)
-		enableStylesheetExtension("altsensitive");
-	else if (getPref("mtd_sensitive_alt") !== false)
-		setPref("mtd_sensitive_alt",false);
-
-	if (getPref("mtd_outlines") === true)
-		html.addClass("mtd-acc-focus-ring");
-	else
-		setPref("mtd_outlines",false);
-
-	if (getPref("mtd_theme") !== "" && getPref("mtd_theme") !== null && typeof getPref("mtd_theme") !== "undefined")
-		enableStylesheetExtension(getPref("mtd_theme"));
-
-	if (getPref("mtd_scrollbar_style") !== "" && getPref("mtd_scrollbar_style") !== null && typeof getPref("mtd_scrollbar_style") !== "undefined")
-		enableStylesheetExtension(getPref("mtd_scrollbar_style"));
+					switch(pref.type) {
+						case "checkbox":
+							if (setting === true) {
+								parseActions(pref.activate);
+							} else {
+								parseActions(pref.deactivate);
+							}
+							break;
+						case "dropdown":
+						case "textbox":
+						case "textarea":
+						case "slider":
+							parseActions(pref.activate, setting);
+							break;
+						case "button":
+						case "link":
+							break;
+					}
+				}
+			}
+		}
+	}
 }
+
+// getPref(String preferenceKey)
+// Returns value of preference, string or boolean
 
 function getPref(id) {
-	if ((localStorage[id] ? localStorage[id] : MTDStorage[id]) === "true")
+	if (id === "mtd_core_theme") {
+		return TD.settings.getTheme();
+	}
+
+	var val;
+
+	if (exists(store)) {
+		if (store.has(id))
+			val = store.get(id);
+		else
+			val = undefined;
+	} else {
+		val = localStorage.getItem(id);
+	}
+
+	if (debugStorageSys)
+		console.log("getPref "+id+"? "+val);
+
+
+	if (val === "true")
 		return true;
-	else if ((localStorage[id] ? localStorage[id] : MTDStorage[id]) === "false")
+	else if (val === "false")
 		return false;
 	else
-		return (localStorage[id] ? localStorage[id] : MTDStorage[id]);
+		return val;
 }
+
+
+// purgePrefs()
+// Purges all settings. This is used when you reset ModernDeck in settings
+
+function purgePrefs() {
+	for (var key in localStorage) {
+		if (key.indexOf("mtd_") >= 0) {
+			localStorage.removeItem(key);
+			console.log("Removing key "+key+"...");
+		}
+	}
+	if (isApp) {
+		const Store = require('electron-store');
+		const store = new Store({name:"mtdsettings"});
+		store.clear();
+		console.log("Clearing electron-store...");
+	}
+}
+
+
+// setPref(String preferenceKey)
+// Sets preference
 
 function setPref(id,p) {
-	//MTDStorage[id] = p;
-	localStorage[id] = p;
-	//savePreferencesToDisk();
+
+	if (id === "mtd_core_theme") {
+		return;
+	}
+
+	if (exists(store)) {
+		store.set(id,p);
+	} else {
+		localStorage.setItem(id,p);
+	}
+
+	if (debugStorageSys)
+		console.log("setPref "+id+" to "+p);
 }
 
-function GetURL(url) {
-	return MTDBaseURL + url;
+
+// hasPref(String preferenceKey)
+// return boolean: whether or not the preference manager (electron-store on app, otherwise localStorage) contains a key
+
+function hasPref(id) {
+	var hasIt;
+
+	if (typeof id === "undefined") {
+		throw "id not specified for hasPref";
+	}
+
+	if (id === "mtd_core_theme") {
+		return true;
+	}
+
+	if (exists(store)) {
+		hasIt = store.has(id);
+	} else {
+		hasIt = localStorage.getItem(id) !== null && typeof localStorage.getItem(id) !== "undefined" && localStorage.getItem(id) !== undefined;
+	}
+
+	if (debugStorageSys)
+		console.log("hasPref "+id+"? "+hasIt);
+
+	return hasIt;
 }
+
 
 function fontParseHelper(a) {
 	if (typeof a !== "object" || a === null)
@@ -227,33 +1088,158 @@ function fontParseHelper(a) {
 
 function MTDInit(){
 	console.log("MTDInit");
+
+
 	if (typeof document.getElementsByClassName("js-signin-ui block")[0] !== "undefined" && !replacedLoadingSpinnerNew) {
 		document.getElementsByClassName("js-signin-ui block")[0].innerHTML = '<div class="preloader-wrapper big active"><div class="spinner-layer"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div>';
 		replacedLoadingSpinnerNew = true;
 	}
+
+	// The default is dark for the loading screen, once the TD settings load it can use
+
+	enableStylesheetExtension("dark");
+	html.addClass("dark");
+
+	// Here, we inject our fonts
+
+	// ModernDeck uses Roboto as its general font for Latin (and Cyrillic?) scripts
+	// Noto Sans is used for whatever scripts Roboto doesn't cover
+
+	// font family Material is short for Material icons
+	// font family MD is short for ModernDeck. It contains ModernDeck supplemental icons
+
+	if (!injectedFonts) {
+
+		$(document.head).append(make("style").html(
+			fontParseHelper({family:"MD",name:"mdvectors"}) +
+			fontParseHelper({family:"Material",name:"MaterialIcons"}) +
+			fontParseHelper({name:"Roboto-Regular"}) +
+			fontParseHelper({weight:"500",name:"Roboto-Medium"}) +
+			fontParseHelper({name:"Roboto-Italic",style:"italic"}) +
+			fontParseHelper({weight:"300",name:"Roboto-Light"}) +
+			fontParseHelper({weight:"500",name:"Roboto-MediumItalic",style:"italic"}) +
+			fontParseHelper({weight:"300",name:"Roboto-LightItalic",style:"italic"}) +
+			fontParseHelper({weight:"100",name:"Roboto-Thin"}) +
+			fontParseHelper({weight:"100",name:"Roboto-ThinIalic",style:"italic"}) +
+			fontParseHelper({family:"Noto Sans CJK",weight:"500",name:"NotoSansCJKjp-Medium",format:"opentype",extension:"otf"}) +
+			fontParseHelper({family:"Noto Sans CJK",name:"NotoSansCJKjp-Regular",format:"opentype",extension:"otf"}) +
+			fontParseHelper({family:"Noto Sans",weight:"500",name:"NotoSansHI-Medium",range:"U+0900-097F"}) +
+			fontParseHelper({family:"Noto Sans",name:"NotoSansHI-Regular",range:"U+0900-097F"}) +
+			fontParseHelper({family:"Noto Sans",weight:"500",name:"NotoSansArabic-Medium",range:"U+0600-06FF,U+0750–077F,U+08A0–08FF,U+FB50–FDFF,U+FE70–FEFF,U+10E60–10E7F,U+1EE00—1EEFF"}) +
+			fontParseHelper({family:"Noto Sans",name:"NotoSansArabic-Regular",range:"U+0600-06FF,U+0750–077F,U+08A0–08FF,U+FB50–FDFF,U+FE70–FEFF,U+10E60–10E7F,U+1EE00—1EEFF"}) +
+			fontParseHelper({family:"Noto Sans",weight:"500",name:"NotoSansArmenian-Medium",range:"U+0530-0580"}) +
+			fontParseHelper({family:"Noto Sans",name:"NotoSansArmenian-Regular",range:"U+0530-0580"}) +
+			fontParseHelper({family:"Noto Sans",weight:"500",name:"NotoSansBengali-Medium",range:"U+0980-09FF"}) +
+			fontParseHelper({family:"Noto Sans",name:"NotoSansBengali-Regular",range:"U+0980-09FF"}) +
+			fontParseHelper({family:"Noto Sans",weight:"500",name:"NotoSansBengali-Medium",range:"U+0980-09FF"}) +
+			fontParseHelper({family:"Noto Sans",name:"NotoSansBengali-Regular",range:"U+0980-09FF"}) +
+			fontParseHelper({family:"Noto Sans",name:"NotoSansBrahmi",range:"U+11000-1107F"}) +
+			fontParseHelper({family:"Noto Sans",name:"NotoSansBuginese",range:"U+1A00-1A1B,U+1A1E-1A1F"}) +
+			fontParseHelper({family:"Noto Sans",name:"NotoSansBuhid-Regular",range:"U+1740-1753"}) +
+			fontParseHelper({family:"Noto Sans",name:"NotoSansCanadianAboriginal",range:"U+1400-167F"}) +
+			fontParseHelper({family:"Noto Sans",name:"NotoSansCarian-Regular",range:"U+102A0-102DF"}) +
+			fontParseHelper({family:"Noto Sans",name:"NotoSansChakma-Regular",range:"U+11100-1114F"}) +
+			fontParseHelper({family:"Noto Sans",name:"NotoSansCherokee-Regular",range:"U+11100-1114F"}) +
+			fontParseHelper({family:"Noto Sans",weight:"500",name:"NotoSansCherokee-Medium",range:"U+13A0-13F4,U+13F5,U+13F8-13FD"}) +
+			fontParseHelper({family:"Noto Sans",name:"NotoSansCherokee-Regular",range:"U+13A0-13F4,U+13F5,U+13F8-13FD"}) +
+			fontParseHelper({family:"Noto Sans",weight:"500",name:"NotoSansEthiopic-Medium",range:"U+1200-137F"}) +
+			fontParseHelper({family:"Noto Sans",name:"NotoSansEthiopic-Regular",range:"U+1200-137F"}) +
+			fontParseHelper({family:"Noto Sans",weight:"500",name:"NotoSansGeorgian-Medium",range:"U+10A0-10FF,U+2D00-2D2F"}) +
+			fontParseHelper({family:"Noto Sans",name:"NotoSansGeorgian-Regular",range:"U+10A0-10FF,U+2D00-2D2F"}) +
+			fontParseHelper({family:"Noto Sans",weight:"500",name:"NotoSansGujaratiUI-Bold",range:"U+0A80-0AFF"}) +
+			fontParseHelper({family:"Noto Sans",name:"NotoSansGujaratiUI",range:"U+0A80-0AFF"}) +
+			fontParseHelper({family:"Noto Sans",weight:"500",name:"NotoSansHebrew-Bold",range:"U+0590-05FF"}) +
+			fontParseHelper({family:"Noto Sans",name:"NotoSansHebrew-Regular",range:"U+0590-05FF"}) +
+			fontParseHelper({family:"Noto Sans",name:"NotoSansJavanese",range:"U+A980-A9DF"}) +
+			fontParseHelper({family:"Noto Sans",weight:"500",name:"NotoSansKannadaUI-Bold",range:"U+0C80-0CFF"}) +
+			fontParseHelper({family:"Noto Sans",name:"NotoSansKannadaUI",range:"U+0C80-0CFF"}) +
+			fontParseHelper({family:"Noto Sans",name:"NotoSansKayahLi-Regular",range:"U+A900-A92F"}) +
+			fontParseHelper({family:"Noto Sans",weight:"500",name:"NotoSansKhmerUI-Medium",range:"U+1780-17FF"}) +
+			fontParseHelper({family:"Noto Sans",name:"NotoSansKhmerUI-Regular",range:"U+1780-17FF"}) +
+			fontParseHelper({family:"Noto Sans",weight:"500",name:"NotoSansLaoUI-Medium",range:"U+0E80-0EFF"}) +
+			fontParseHelper({family:"Noto Sans",name:"NotoSansLaoUI-Regular",range:"U+0E80-0EFF"}) +
+			fontParseHelper({family:"Noto Sans",name:"NotoSansLisu-Regular",range:"U+A4D0-A4FF"}) +
+			fontParseHelper({family:"Noto Sans",weight:"500",name:"NotoSansMalayalamUI-Bold",range:"U+0D00-0D7F"}) +
+			fontParseHelper({family:"Noto Sans",name:"NotoSansMalayalamUI",range:"U+0D00-0D7F"}) +
+			fontParseHelper({family:"Noto Sans",weight:"500",name:"NotoSansMyanmarUI-Bold",range:"U+1000-109F"}) +
+			fontParseHelper({family:"Noto Sans",name:"NotoSansMyanmarUI-Regular",range:"U+1000-109F"}) +
+			fontParseHelper({family:"Noto Sans",weight:"500",name:"NotoSansOriyaUI-Medium",range:"U+0B00-0B7F"}) +
+			fontParseHelper({family:"Noto Sans",name:"NotoSansOriyaUI",range:"U+0B00-0B7F"}) +
+			fontParseHelper({family:"Noto Sans",weight:"500",name:"NotoSansOriyaUI-Bold",range:"U+0B00-0B7F"}) +
+			fontParseHelper({family:"Noto Sans",name:"NotoSansOsage-Regular",range:"U+104B0-104FF"}) +
+			fontParseHelper({family:"Noto Sans",name:"NotoSansOsmanya-Regular",range:"U+10480-104AF"}) +
+			fontParseHelper({family:"Noto Sans",name:"NotoSansPhagsPa",range:"U+A840-A87F"}) +
+			fontParseHelper({family:"Noto Sans",name:"NotoSansNewTaiLue-Regular",range:"U+1980-19DF"}) +
+			fontParseHelper({family:"Noto Sans",name:"NotoSansNKo-Regular",range:"U+07C0-07FF"}) +
+			fontParseHelper({family:"Noto Sans",name:"NotoSansOlChiki-Regular",range:"U+1C50–1C7F"}) +
+			fontParseHelper({family:"Noto Sans",name:"NotoSansRunic-Regular",range:"U+16A0-16FF"}) +
+			fontParseHelper({family:"Noto Sans",name:"NotoSansShavian-Regular",range:"U+16A0-16FF"}) +
+			fontParseHelper({family:"Noto Sans",name:"NotoSansSinhalaUI-Regular",range:"U+0D80-0DFF"}) +
+			fontParseHelper({family:"Noto Sans",weight:"500",name:"NotoSansSinhalaUI-Medium",range:"U+0D80-0DFF"}) +
+			fontParseHelper({family:"Noto Sans",name:"NotoSansSundanese",range:"U+1B80-1BBF"}) +
+			fontParseHelper({family:"Noto Sans",name:"NotoSansSyriacEastern",range:"U+0700-074F"}) +
+			fontParseHelper({family:"Noto Sans",name:"NotoSansSyriacWestern",range:"U+0700-074F"}) +
+			fontParseHelper({family:"Noto Sans",name:"NotoSansSyriacEstrangela",range:"U+0700-074F"}) +
+			fontParseHelper({family:"Noto Sans",name:"NotoSansTagalog",range:"U+1700-171F"}) +
+			fontParseHelper({family:"Noto Sans",name:"NotoSansTagbanwa",range:"U+1760-177F"}) +
+			fontParseHelper({family:"Noto Sans",name:"NotoSansTaiLe",range:"U+1950-197F"}) +
+			fontParseHelper({family:"Noto Sans",name:"NotoSansTaiTham",range:"U+1A20-1AAF"}) +
+			fontParseHelper({family:"Noto Sans",name:"NotoSansTaiViet",range:"U+AA80-AADF"}) +
+			fontParseHelper({family:"Noto Sans",name:"NotoSansTamilUI-Regular",range:"U+0B80-0BFF"}) +
+			fontParseHelper({family:"Noto Sans",weight:"500",name:"NotoSansTamilUI-Medium",range:"U+0B80-0BFF"}) +
+			fontParseHelper({family:"Noto Sans",name:"NotoSansTeluguUI",range:"U+0C00-0C7F"}) +
+			fontParseHelper({family:"Noto Sans",weight:"500",name:"NotoSansTeluguUI-Bold",range:"U+0C00-0C7F"}) +
+			fontParseHelper({family:"Noto Sans",name:"NotoSansThaana",range:"U+0780-07BF"}) +
+			fontParseHelper({family:"Noto Sans",weight:"500",name:"NotoSansThaana-Bold",range:"U+0780-07BF"}) +
+			fontParseHelper({family:"Noto Sans",name:"NotoSansThaiUI-Regular",range:"U+0E00-0E7F"}) +
+			fontParseHelper({family:"Noto Sans",weight:"500",name:"NotoSansThaiUI-Medium",range:"U+0E00-0E7F"}) +
+			fontParseHelper({family:"Noto Sans",name:"NotoSansTibetan",range:"U+0F00-0FFF"}) +
+			fontParseHelper({family:"Noto Sans",weight:"500",name:"NotoSansTibetan-Bold",range:"U+0F00-0FFF"}) +
+			fontParseHelper({family:"Noto Sans",weight:"500",name:"NotoSansTifinagh-Regular",range:"U+2D30-2D7F"}) +
+			fontParseHelper({family:"Noto Sans",weight:"500",name:"NotoSansVai-Regular",range:"U+A500-A63F"}) +
+			fontParseHelper({family:"Noto Sans",weight:"500",name:"NotoSansYi-Regular",range:"U+A000-A48F"}) +
+			fontParseHelper({family:"RobotoMono",name:"RobotoMono-Regular"}) +
+			fontParseHelper({family:"RobotoMono",weight:"500",name:"RobotoMono-Medium"}) +
+			fontParseHelper({family:"RobotoMono",name:"RobotoMono-Italic",style:"italic"}) +
+			fontParseHelper({family:"RobotoMono",weight:"300",name:"RobotoMono-Light"}) +
+			fontParseHelper({family:"RobotoMono",weight:"500",name:"RobotoMono-MediumItalic",style:"italic"}) +
+			fontParseHelper({family:"RobotoMono",weight:"300",name:"RobotoMono-LightItalic",style:"italic"}) +
+			fontParseHelper({family:"RobotoMono",weight:"100",name:"RobotoMono-Thin"}) +
+			fontParseHelper({family:"RobotoMono",weight:"100",name:"RobotoMono-ThinIalic",style:"italic"})
+		));
+		injectedFonts = true;
+	}
+
+
+	// These check to see if critical TD variables are in place before proceeding
+
 	if (
 		typeof TD_mustaches === "undefined" ||
 		typeof TD === "undefined" ||
 		typeof TD.util === "undefined" ||
-		typeof TD.util.prettyTimeString === "undefined" ||
 		typeof TD_mustaches["settings/global_setting_filter_row.mustache"] === "undefined"
 	) {
-		setTimeout(MTDInit,500);
+		setTimeout(MTDInit,100);
 			console.log("waiting on something in order to start MTDInit...");
 		return;
 	}
 
-	if (isEdge) {
-		var beGoneThot = $("link[rel='apple-touch-icon']+link[rel='stylesheet'")[0];
-		if (exists(beGoneThot)) {
-			beGoneThot.remove();
-		}
+
+	if (typeof TD_mustaches["login/login_form.mustache"] !== "undefined")
+	 	TD_mustaches["login/login_form.mustache"] = newLoginPage;
+
+	// Especially on Edge, but also on Chrome shortly after launch, sometimes the stylesheet isn't blocked by the network, which breaks the page heavily.
+	// This ensures that the stylesheet is manually removed so that it doesn't cause problems
+
+	var beGone = document.querySelector("link[rel='apple-touch-icon']+link[rel='stylesheet']");
+	if (exists(beGone)) {
+		beGone.remove();
 	}
 
-	enableStylesheetExtension("dark");
+	// These are features that can be used to force enable tweetdeck developer features. Code updated by @pixeldesu, deckhackers, et al
 
 	if (forceFeatureFlags) {
-		TD.config.config_overlay = { 
+		TD.config.config_overlay = {
 			tweetdeck_devel: { value: true },
 			tweetdeck_dogfood: { value: true },
 			tweetdeck_insights: { value: true },
@@ -293,10 +1279,10 @@ function MTDInit(){
 		TD.config.flight_debug = true
 		TD.config.sync_period = 600
 		TD.config.force_touchdeck = true
-		TD.config.internal_build = true 
+		TD.config.internal_build = true
 		TD.config.help_configuration_overlay = true
 		TD.config.disable_metrics_error = true
-		TD.config.disable_metrics_event = true 
+		TD.config.disable_metrics_event = true
 		TD.controller.stats.setExperiments({
 			config: {
 				live_engagement_in_column_8020: {
@@ -315,113 +1301,29 @@ function MTDInit(){
 		});
 	}
 
-	$(document.head).append(make("style").html(
-		// fontParseHelper({name:"Roboto300latin",range:"U+0000-00FF,U+0131,U+0152-0153,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2212,U+2215,U+E0FF,U+EFFD,U+F000"}) +
-		// fontParseHelper({name:"Roboto300latinext"}) +
-		// fontParseHelper({weight:"400",name:"Roboto400latin",range:"U+0000-00FF,U+0131,U+0152-0153,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2212,U+2215,U+E0FF,U+EFFD,U+F000"}) +
-		// fontParseHelper({weight:"400",name:"Roboto400latinext"}) +
-		// fontParseHelper({weight:"500",name:"Roboto500latin",range:"U+0000-00FF,U+0131,U+0152-0153,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2212,U+2215,U+E0FF,U+EFFD,U+F000"}) +
-		// fontParseHelper({weight:"500",name:"Roboto500latinext"}) +
-		// fontParseHelper({family:"Material",weight:"400",name:"MaterialIcons",range:"U+0000-F000"}) +
-		// fontParseHelper({family:"MD",weight:"400",name:"mdvectors",range:"U+E000-FFFF"})
-		// fontParseHelper({family:"Font Awesome",weight:"400",name:"fontawesome",range:"U+0000-F000"})
-		fontParseHelper({name:"Roboto-Regular"}) +
-		fontParseHelper({family:"MD",name:"mdvectors"}) +
-		fontParseHelper({family:"Material",name:"MaterialIcons"}) +
-		fontParseHelper({weight:"500",name:"Roboto-Medium"}) +
-		fontParseHelper({name:"Roboto-Italic",style:"italic"}) +
-		fontParseHelper({weight:"300",name:"Roboto-Light"}) +
-		fontParseHelper({weight:"500",name:"Roboto-MediumItalic",style:"italic"}) +
-		fontParseHelper({weight:"300",name:"Roboto-LightItalic",style:"italic"}) +
-		fontParseHelper({weight:"100",name:"Roboto-Thin"}) +
-		fontParseHelper({weight:"100",name:"Roboto-ThinIalic",style:"italic"}) +
-		//fontParseHelper({family:"Noto Sans CJK",weight:"500",name:"NotoSansJP-Medium",range:"U+3000-303F,U+3040-309F,U+30A0-30FF,U+FF00-FFEF,U+4E00-9FAF"}) +
-		//fontParseHelper({family:"Noto Sans CJK",name:"NotoSansJP-Regular",range:"U+3000-303F,U+3040-309F,U+30A0-30FF,U+FF00-FFEF,U+4E00-9FAF"}) +
-		//fontParseHelper({family:"Noto Sans CJK",weight:"500",name:"NotoSansKR-Medium",format:"opentype",extension:"otf",range:"U+2E80–2EFF,U+2F00–2FDF,U+2FF0–2FFF,U+3000–303F,U+3130–318F,U+3300–33FF,U+F900–FAFF,U+1100–11FF,U+A960–A97F,U+D7B0–D7FF"}) +
-		//fontParseHelper({family:"Noto Sans CJK",name:"NotoSansKR-Regular",format:"opentype",extension:"otf",range:"U+2E80–2EFF,U+2F00–2FDF,U+2FF0–2FFF,U+3000–303F,U+3130–318F,U+3300–33FF,U+F900–FAFF,U+1100–11FF,U+A960–A97F,U+D7B0–D7FF"}) +
-		fontParseHelper({family:"Noto Sans CJK",weight:"500",name:"NotoSansCJKjp-Medium",format:"opentype",extension:"otf"}) +
-		fontParseHelper({family:"Noto Sans CJK",name:"NotoSansCJKjp-Regular",format:"opentype",extension:"otf"}) +
-		//fontParseHelper({family:"Noto Sans CJK",weight:"500",name:"NotoSansSC-Medium",format:"opentype",extension:"otf",range:"U+4E00-9FFF,U+3400–4DBF,U+20000-2A6DF,U+2A700–2B73F,U+2B740–2B81F,U+2B820–2CEAF,U+2CEB0–2EBEF,U+2E80–303F,U+31C0-31EF,U+3200-33FF,U+F900-FAFF,U+FE30-FE4F,U+1F200-2F800"}) +
-		//fontParseHelper({family:"Noto Sans CJK",name:"NotoSansSC-Regular",format:"opentype",extension:"otf",range:"U+4E00-9FFF,U+3400–4DBF,U+20000-2A6DF,U+2A700–2B73F,U+2B740–2B81F,U+2B820–2CEAF,U+2CEB0–2EBEF,U+2E80–303F,U+31C0-31EF,U+3200-33FF,U+F900-FAFF,U+FE30-FE4F,U+1F200-2F800"}) +
-		//fontParseHelper({family:"Noto Sans CJK",weight:"500",name:"NotoSansTC-Medium",format:"opentype",extension:"otf",range:"U+4E00-9FFF,U+3400–4DBF,U+20000-2A6DF,U+2A700–2B73F,U+2B740–2B81F,U+2B820–2CEAF,U+2CEB0–2EBEF,U+2E80–303F,U+31C0-31EF,U+3200-33FF,U+F900-FAFF,U+FE30-FE4F,U+1F200-2F800"}) +
-		//fontParseHelper({family:"Noto Sans CJK",name:"NotoSansTC-Regular",format:"opentype",extension:"otf",range:"U+4E00-9FFF,U+3400–4DBF,U+20000-2A6DF,U+2A700–2B73F,U+2B740–2B81F,U+2B820–2CEAF,U+2CEB0–2EBEF,U+2E80–303F,U+31C0-31EF,U+3200-33FF,U+F900-FAFF,U+FE30-FE4F,U+1F200-2F800"}) +
-		fontParseHelper({family:"Noto Sans",weight:"500",name:"NotoSansHI-Medium",range:"U+0900-097F"}) +
-		fontParseHelper({family:"Noto Sans",name:"NotoSansHI-Regular",range:"U+0900-097F"}) +
-		fontParseHelper({family:"Noto Sans",weight:"500",name:"NotoSansArabic-Medium",range:"U+0600-06FF,U+0750–077F,U+08A0–08FF,U+FB50–FDFF,U+FE70–FEFF,U+10E60–10E7F,U+1EE00—1EEFF"}) +
-		fontParseHelper({family:"Noto Sans",name:"NotoSansArabic-Regular",range:"U+0600-06FF,U+0750–077F,U+08A0–08FF,U+FB50–FDFF,U+FE70–FEFF,U+10E60–10E7F,U+1EE00—1EEFF"}) +
-		fontParseHelper({family:"Noto Sans",weight:"500",name:"NotoSansArmenian-Medium",range:"U+0530-0580"}) +
-		fontParseHelper({family:"Noto Sans",name:"NotoSansArmenian-Regular",range:"U+0530-0580"}) +
-		fontParseHelper({family:"Noto Sans",weight:"500",name:"NotoSansBengali-Medium",range:"U+0980-09FF"}) +
-		fontParseHelper({family:"Noto Sans",name:"NotoSansBengali-Regular",range:"U+0980-09FF"}) +
-		fontParseHelper({family:"Noto Sans",weight:"500",name:"NotoSansBengali-Medium",range:"U+0980-09FF"}) +
-		fontParseHelper({family:"Noto Sans",name:"NotoSansBengali-Regular",range:"U+0980-09FF"}) +
-		fontParseHelper({family:"Noto Sans",name:"NotoSansBrahmi",range:"U+11000-1107F"}) +
-		fontParseHelper({family:"Noto Sans",name:"NotoSansBuginese",range:"U+1A00-1A1B,U+1A1E-1A1F"}) +
-		fontParseHelper({family:"Noto Sans",name:"NotoSansBuhid-Regular",range:"U+1740-1753"}) +
-		fontParseHelper({family:"Noto Sans",name:"NotoSansCanadianAboriginal",range:"U+1400-167F"}) +
-		fontParseHelper({family:"Noto Sans",name:"NotoSansCarian-Regular",range:"U+102A0-102DF"}) +
-		fontParseHelper({family:"Noto Sans",name:"NotoSansChakma-Regular",range:"U+11100-1114F"}) +
-		fontParseHelper({family:"Noto Sans",name:"NotoSansCherokee-Regular",range:"U+11100-1114F"}) +
-		fontParseHelper({family:"Noto Sans",weight:"500",name:"NotoSansCherokee-Medium",range:"U+13A0-13F4,U+13F5,U+13F8-13FD"}) +
-		fontParseHelper({family:"Noto Sans",name:"NotoSansCherokee-Regular",range:"U+13A0-13F4,U+13F5,U+13F8-13FD"}) +
-		fontParseHelper({family:"Noto Sans",weight:"500",name:"NotoSansEthiopic-Medium",range:"U+1200-137F"}) +
-		fontParseHelper({family:"Noto Sans",name:"NotoSansEthiopic-Regular",range:"U+1200-137F"}) +
-		fontParseHelper({family:"Noto Sans",weight:"500",name:"NotoSansGeorgian-Medium",range:"U+10A0-10FF,U+2D00-2D2F"}) +
-		fontParseHelper({family:"Noto Sans",name:"NotoSansGeorgian-Regular",range:"U+10A0-10FF,U+2D00-2D2F"}) +
-		fontParseHelper({family:"Noto Sans",weight:"500",name:"NotoSansGujaratiUI-Bold",range:"U+0A80-0AFF"}) +
-		fontParseHelper({family:"Noto Sans",name:"NotoSansGujaratiUI",range:"U+0A80-0AFF"}) +
-		fontParseHelper({family:"Noto Sans",weight:"500",name:"NotoSansHebrew-Bold",range:"U+0590-05FF"}) +
-		fontParseHelper({family:"Noto Sans",name:"NotoSansHebrew-Regular",range:"U+0590-05FF"}) +
-		fontParseHelper({family:"Noto Sans",name:"NotoSansJavanese",range:"U+A980-A9DF"}) +
-		fontParseHelper({family:"Noto Sans",weight:"500",name:"NotoSansKannadaUI-Bold",range:"U+0C80-0CFF"}) +
-		fontParseHelper({family:"Noto Sans",name:"NotoSansKannadaUI",range:"U+0C80-0CFF"}) +
-		fontParseHelper({family:"Noto Sans",name:"NotoSansKayahLi-Regular",range:"U+A900-A92F"}) +
-		fontParseHelper({family:"Noto Sans",weight:"500",name:"NotoSansKhmerUI-Medium",range:"U+1780-17FF"}) +
-		fontParseHelper({family:"Noto Sans",name:"NotoSansKhmerUI-Regular",range:"U+1780-17FF"}) +
-		fontParseHelper({family:"Noto Sans",weight:"500",name:"NotoSansLaoUI-Medium",range:"U+0E80-0EFF"}) +
-		fontParseHelper({family:"Noto Sans",name:"NotoSansLaoUI-Regular",range:"U+0E80-0EFF"}) +
-		fontParseHelper({family:"Noto Sans",name:"NotoSansLisu-Regular",range:"U+A4D0-A4FF"}) +
-		fontParseHelper({family:"Noto Sans",weight:"500",name:"NotoSansMalayalamUI-Bold",range:"U+0D00-0D7F"}) +
-		fontParseHelper({family:"Noto Sans",name:"NotoSansMalayalamUI",range:"U+0D00-0D7F"}) +
-		fontParseHelper({family:"Noto Sans",weight:"500",name:"NotoSansMyanmarUI-Bold",range:"U+1000-109F"}) +
-		fontParseHelper({family:"Noto Sans",name:"NotoSansMyanmarUI-Regular",range:"U+1000-109F"}) +
-		fontParseHelper({family:"Noto Sans",weight:"500",name:"NotoSansOriyaUI-Medium",range:"U+0B00-0B7F"}) +
-		fontParseHelper({family:"Noto Sans",name:"NotoSansOriyaUI",range:"U+0B00-0B7F"}) +
-		fontParseHelper({family:"Noto Sans",weight:"500",name:"NotoSansOriyaUI-Bold",range:"U+0B00-0B7F"}) +
-		fontParseHelper({family:"Noto Sans",name:"NotoSansOsage-Regular",range:"U+104B0-104FF"}) +
-		fontParseHelper({family:"Noto Sans",name:"NotoSansOsmanya-Regular",range:"U+10480-104AF"}) +
-		fontParseHelper({family:"Noto Sans",name:"NotoSansPhagsPa",range:"U+A840-A87F"}) +
-		fontParseHelper({family:"Noto Sans",name:"NotoSansNewTaiLue-Regular",range:"U+1980-19DF"}) +
-		fontParseHelper({family:"Noto Sans",name:"NotoSansNKo-Regular",range:"U+07C0-07FF"}) +
-		fontParseHelper({family:"Noto Sans",name:"NotoSansOlChiki-Regular",range:"U+1C50–1C7F"}) +
-		fontParseHelper({family:"Noto Sans",name:"NotoSansRunic-Regular",range:"U+16A0-16FF"}) +
-		fontParseHelper({family:"Noto Sans",name:"NotoSansShavian-Regular",range:"U+16A0-16FF"}) +
-		fontParseHelper({family:"Noto Sans",name:"NotoSansSinhalaUI-Regular",range:"U+0D80-0DFF"}) +
-		fontParseHelper({family:"Noto Sans",weight:"500",name:"NotoSansSinhalaUI-Medium",range:"U+0D80-0DFF"}) +
-		fontParseHelper({family:"Noto Sans",name:"NotoSansSundanese",range:"U+1B80-1BBF"}) +
-		fontParseHelper({family:"Noto Sans",name:"NotoSansSyriacEastern",range:"U+0700-074F"}) +
-		fontParseHelper({family:"Noto Sans",name:"NotoSansSyriacWestern",range:"U+0700-074F"}) +
-		fontParseHelper({family:"Noto Sans",name:"NotoSansSyriacEstrangela",range:"U+0700-074F"}) +
-		fontParseHelper({family:"Noto Sans",name:"NotoSansTagalog",range:"U+1700-171F"}) +
-		fontParseHelper({family:"Noto Sans",name:"NotoSansTagbanwa",range:"U+1760-177F"}) +
-		fontParseHelper({family:"Noto Sans",name:"NotoSansTaiLe",range:"U+1950-197F"}) +
-		fontParseHelper({family:"Noto Sans",name:"NotoSansTaiTham",range:"U+1A20-1AAF"}) +
-		fontParseHelper({family:"Noto Sans",name:"NotoSansTaiViet",range:"U+AA80-AADF"}) +
-		fontParseHelper({family:"Noto Sans",name:"NotoSansTamilUI-Regular",range:"U+0B80-0BFF"}) +
-		fontParseHelper({family:"Noto Sans",weight:"500",name:"NotoSansTamilUI-Medium",range:"U+0B80-0BFF"}) +
-		fontParseHelper({family:"Noto Sans",name:"NotoSansTeluguUI",range:"U+0C00-0C7F"}) +
-		fontParseHelper({family:"Noto Sans",weight:"500",name:"NotoSansTeluguUI-Bold",range:"U+0C00-0C7F"}) +
-		fontParseHelper({family:"Noto Sans",name:"NotoSansThaana",range:"U+0780-07BF"}) +
-		fontParseHelper({family:"Noto Sans",weight:"500",name:"NotoSansThaana-Bold",range:"U+0780-07BF"}) +
-		fontParseHelper({family:"Noto Sans",name:"NotoSansThaiUI-Regular",range:"U+0E00-0E7F"}) +
-		fontParseHelper({family:"Noto Sans",weight:"500",name:"NotoSansThaiUI-Medium",range:"U+0E00-0E7F"}) +
-		fontParseHelper({family:"Noto Sans",name:"NotoSansTibetan",range:"U+0F00-0FFF"}) +
-		fontParseHelper({family:"Noto Sans",weight:"500",name:"NotoSansTibetan-Bold",range:"U+0F00-0FFF"}) +
-		fontParseHelper({family:"Noto Sans",weight:"500",name:"NotoSansTifinagh-Regular",range:"U+2D30-2D7F"}) +
-		fontParseHelper({family:"Noto Sans",weight:"500",name:"NotoSansVai-Regular",range:"U+A500-A63F"}) +
-		fontParseHelper({family:"Noto Sans",weight:"500",name:"NotoSansYi-Regular",range:"U+A000-A48F"})
+	// This makes numbers appear nicer by overriding tweetdeck's original function which did basically nothing
 
-	));
+	TD.util.prettyNumber = function(e) {
+		var howPretty = parseInt(e, 10)
+		if (howPretty >= 100000000) {
+			return parseInt(howPretty/1000000) + "M";
+		} else if (howPretty >= 10000000) {
+			return parseInt(howPretty/100000)/10 + "M";
+		} else if (howPretty >= 1000000) {
+			return parseInt(howPretty/10000)/100 + "M";
+		} else if (howPretty >= 100000) {
+			return parseInt(howPretty/1000) + "K";
+		} else if (howPretty >= 10000) {
+			return parseInt(howPretty/100)/10 + "K";
+		} else if (howPretty >= 1000) {
+			howPretty = howPretty.toString().substring(0,1) + "," + howPretty.toString().substring(1);
+		}
+		return howPretty;
+	}
+
+
+
+	// here we add event listeners to add a fading out animation when a modal dialog is closed
 
 	document.querySelectorAll(".js-modals-container")[0].removeChild = function(rmnode){
 		$(rmnode).addClass("mtd-modal-window-fade-out");
@@ -439,14 +1341,14 @@ function MTDInit(){
 		};
 	})
 
-	if ($(".js-modal").length > 0) {
-		$(".js-modal").on("removeChild",function(rmnode){
-			$(rmnode).addClass("mtd-modal-window-fade-out");
-			setTimeout(function(){
-				rmnode.remove();
-			},200);
-		});
-	}
+	$(".js-modal").on("removeChild",function(rmnode){
+		$(rmnode).addClass("mtd-modal-window-fade-out");
+		setTimeout(function(){
+			rmnode.remove();
+		},200);
+	});
+
+	// body's removeChild function is overriden to give tooltips their fade out animation
 
 	body.removeChild = function(i) {
 		if ($(i).hasClass("tooltip")) {
@@ -458,8 +1360,10 @@ function MTDInit(){
 		}
  	};
 
+ 	// change favicon and notification sound
 	$("link[rel=\"shortcut icon\"]").attr("href",MTDBaseURL + "sources/favicon.ico");
-	$(document.querySelector("audio")).attr("src",GetURL("sources/alert_2.mp3"));
+	$(document.querySelector("audio")).attr("src",MTDBaseURL + "sources/alert_2.mp3");
+
 	if (typeof TD_mustaches["settings/global_setting_filter_row.mustache"] !== "undefined")
 		TD_mustaches["settings/global_setting_filter_row.mustache"]='<li class="list-filter cf"> {{_i}}<div class="mtd-mute-text mtd-mute-text-{{getDisplayType}}"></div> {{>text/global_filter_value}}{{/i}} <input type="button" name="remove-filter" value="{{_i}}Remove{{/i}}" data-id="{{id}}"class="js-remove-filter small btn btn-negative"> </li>';
 	if (typeof TD_mustaches["column_loading_placeholder.mustache"] !== "undefined")
@@ -477,7 +1381,7 @@ function MTDInit(){
 	if (typeof TD_mustaches["modal.mustache"] !== "undefined")
 		TD_mustaches["modal.mustache"] = TD_mustaches["modal.mustache"].replace('<img src="{{#asset}}/global/backgrounds/spinner_large_white.gif{{/asset}}" alt="{{_i}}Loading…{{/i}}" />','<div class="preloader-wrapper active"><div class="spinner-layer small"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div>');
 	if (typeof TD_mustaches["twitter_profile.mustache"] !== "undefined")
-		TD_mustaches["twitter_profile.mustache"] = TD_mustaches["twitter_profile.mustache"].replace('<img src="{{#asset}}/web/assets/global/backgrounds/spinner_large_white.gif{{/asset}}" alt="{{_i}}Loading…{{/i}}"> ','<div class="preloader-wrapper active"><div class="spinner-layer small"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div>');
+		TD_mustaches["twitter_profile.mustache"] = TD_mustaches["twitter_profile.mustache"].replace('<img src="{{#asset}}/global/backgrounds/spinner_large_white.gif{{/asset}}" alt="{{_i}}Loading…{{/i}}">','<div class="preloader-wrapper active"><div class="spinner-layer small"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div>');
 	if (typeof TD_mustaches["follow_button.mustache"] !== "undefined")
 		TD_mustaches["follow_button.mustache"] = TD_mustaches["follow_button.mustache"].replace('<img src="{{#asset}}/web/assets/global/backgrounds/spinner_small_trans.gif{{/asset}}" alt="{{_i}}Loading…{{/i}}"> ','<div class="preloader-wrapper active tiny"><div class="spinner-layer small"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div>')
 	if (typeof TD_mustaches["login/2fa_verification_code.mustache"] !== "undefined")
@@ -496,41 +1400,60 @@ function MTDInit(){
 		TD_mustaches["follow_button.mustache"] = TD_mustaches["follow_button.mustache"].replace('<span> <img src="{{#asset}}/global/backgrounds/spinner_small_trans.gif{{/asset}}" alt="{{_i}}Loading…{{/i}}"> </span>','<div class="js-spinner-button-active icon-center-16 spinner-button-icon-spinner preloader-wrapper active tiny"><div class="spinner-layer small"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div>');
 	if (typeof TD_mustaches["lists/member.mustache"] !== "undefined")
 		TD_mustaches["lists/member.mustache"] = TD_mustaches["lists/member.mustache"].replace('<span> <img src="{{#asset}}/global/backgrounds/spinner_small_trans.gif{{/asset}}" alt="{{_i}}Loading…{{/i}}"> </span>','<div class="js-spinner-button-active icon-center-16 spinner-button-icon-spinner preloader-wrapper active tiny"><div class="spinner-layer small"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div>');
+	if (typeof TD_mustaches["keyboard_shortcut_list.mustache"] !== "undefined")
+		TD_mustaches["keyboard_shortcut_list.mustache"] = TD_mustaches["keyboard_shortcut_list.mustache"].replace("<kbd class=\"text-like-keyboard-key\">X</kbd>  Expand/Collapse navigation</dd>","<kbd class=\"text-like-keyboard-key\">Q</kbd>  Open Navigation Drawer/Menu</dd>")
 
-	if (typeof TD.i !== "undefined") {
-		TD.util.prettyTimeString = function(e) {
-			return TD.i("{{hours12}}:{{minutes}} {{amPm}}, {{day}} {{month}} {{fullYear}}", TD.util.prettyTime(e));
-		};	
+	if (typeof TD_mustaches["menus/actions.mustache"] !== "undefined") {
+		TD_mustaches["menus/actions.mustache"] = TD_mustaches["menus/actions.mustache"]
+		.replace("Embed this Tweet","Embed Tweet")
+		.replace("Copy link to this Tweet","Copy link address")
+		.replace("Share via Direct Message","Share via message")
+		//.replace("Like from accounts…","Like from...")
+		.replace("Send a Direct Message","Send message")
+		.replace("Add or remove from Lists…","Add/remove from list...")
+		.replace("See who quoted this Tweet","View quotes")
+		.replace("Flagged (learn more)","Flagged")
+		.replace("Mute this conversation","Mute conversation")
+		.replace("Unmute this conversation","Unmute conversation")
+		.replace("Translate this Tweet","Translate Tweet")
+		.replace("{{_i}}Delete{{/i}}","{{_i}}Delete Tweet{{/i}}")
+		.replace(/\…/g,"...");
 	}
 
-	setTimeout(MTDAFCheckDate,1000);
-	setInterval(MTDAFCheckDate,3000);
-
-	TD.util.prettyNumber = function(e) {
-		//if (!TD.util.isValidNumber(e) || typeof e !== "string")
-			//return "";
-			var yip = parseInt(e, 10)
-		if (yip >= 100000000) {
-			return parseInt(yip/1000000) + "M";
-		} else if (yip >= 10000000) {
-			return parseInt(yip/100000)/10 + "M";
-		} else if (yip >= 1000000) {
-			return parseInt(yip/10000)/100 + "M";
-		} else if (yip >= 100000) {
-			return parseInt(yip/1000) + "K";
-		} else if (yip >= 10000) {
-			return parseInt(yip/100)/10 + "K";
-		} else if (yip >= 1000) {
-			yip = yip.toString().substring(0,1) + "," + yip.toString().substring(1);
-		}
-		return yip;
+	if ($(".app-signin-wrap:not(.mtd-signin-wrap)").length > 0) {
+		console.info("oh no, we're too late!");
+		$(".app-signin-wrap:not(.mtd-signin-wrap)").remove();
+		$(".login-container .startflow").html(newLoginPage);
+		startUpdateGoodLoginText();
 	}
 
-	NavigationSetup();
+	navigationSetup();
 
 }
 
-function SendNotificationMessage(txt) {
+function startUpdateGoodLoginText() {
+	if (ugltStarted) {return;}
+	ugltStarted = true;
+
+	$(".startflow-background").attr("style","background-image:url("+MTDBaseURL+"sources/img/bg1.jpg)")
+
+	setInterval(function(){
+		var text;
+		let newDate = new Date();
+
+		if (newDate.getHours() < 12) {
+			text = "Good morning!";
+		} else if (newDate.getHours() < 18) {
+			text = "Good afternoon!";
+		} else {
+			text = "Good evening!";
+		}
+
+		$(".form-login h2").html(text);
+	},10000);
+}
+
+function sendNotificationMessage(txt) {
 	var knotty = $(MTDNotification);
 	if (knotty.hasClass("mtd-appbar-notification-hidden")) {
 		knotty.removeClass("mtd-appbar-notification-hidden").html(txt);
@@ -539,7 +1462,7 @@ function SendNotificationMessage(txt) {
 	}
 }
 
-function WaitForNotificationDismiss(node,prevmsgID) {
+function waitForNotificationDismiss(node,prevmsgID) {
 	if (typeof node === "undefined" || node === null || typeof node.parentNode === "undefined" || node.parentNode === null) {
 		if (msgID === prevmsgID) {
 			$(MTDNotification).addClass("mtd-appbar-notification-hidden");
@@ -548,195 +1471,443 @@ function WaitForNotificationDismiss(node,prevmsgID) {
 		return;
 	}
 
-	setTimeout(function(){WaitForNotificationDismiss(node,prevmsgID);},500);
+	setTimeout(function(){waitForNotificationDismiss(node,prevmsgID);},500);
 }
 
-function ResetSettingsUI() {
-	$("#mtd-appearance-form,#mtd-accessibility-form,#mtd-about-form").css("display","none");
-	$("#mtd-appearance-li,#mtd-accessibility-li,#mtd-about-li").removeClass("selected");
+function openLegacySettings() {
+	$(".mtd-settings-panel").remove();
+	new TD.components.GlobalSettings;
 }
 
-function PrefsListener() {
-	console.log("Testing...");
-	if (document.querySelector("#mtd-round-avatars-control") !== null ) {
-		console.log("waiting...");
+function openSettings(openMenu) {
 
-		if (getPref("mtd_round_avatars") && !$("#mtd-round-avatars-control").is(":checked")) {
-			console.log("someone unticked me!!");
-			setPref("mtd_round_avatars",false);
-			enableStylesheetExtension("squareavatars");
+	mtdPrepareWindows();
+
+	var tabs = make("div").addClass("mtd-settings-tab-container mtd-tabs");
+	var container = make("div").addClass("mtd-settings-inner");
+	var panel = make("div").addClass("mdl mtd-settings-panel").append(tabs).append(container);
+
+
+	for (var key in settingsData) {
+
+		if (settingsData[key].enabled === false) {
+			continue;
 		}
 
-		if (!getPref("mtd_round_avatars") && $("#mtd-round-avatars-control").is(":checked")) {
-			console.log("someone ticked me!!");
-			setPref("mtd_round_avatars",true);
-			disableStylesheetExtension("squareavatars");
-		}
+		var tab = make("button").addClass("mtd-settings-tab").attr("data-action",key).html(settingsData[key].tabName).click(function(){
+			console.log(settingsData[key].number);
+			$(".mtd-settings-tab-selected").removeClass("mtd-settings-tab-selected");
+			$(this).addClass("mtd-settings-tab-selected");
+			container.css("margin-left","-"+($(this).index()*700)+"px");
+		});
 
-		if (!getPref("mtd_hearts") && $("#mtd-hearts").is(":checked")) {
-			console.log("someone ticked me!!");
-			setPref("mtd_hearts",true);
-			enableStylesheetExtension("hearticon");
-		}
+		var subPanel = make("div").addClass("mtd-settings-subpanel mtd-col scroll-v").attr("id",key);
 
-		if (getPref("mtd_hearts") && !$("#mtd-hearts").is(":checked")) {
-			console.log("someone unticked me!!");
-			setPref("mtd_hearts",false);
-			disableStylesheetExtension("hearticon");
-		}
+		if (!settingsData[key].enum && settingsData[key].enabled !== false) {
+			for (var prefKey in settingsData[key].options) {
+				let pref = settingsData[key].options[prefKey];
 
-		if (!getPref("mtd_sensitive_alt") && $("#mtd-sensitive-alt").is(":checked")) {
-			console.log("someone ticked me!!");
-			setPref("mtd_sensitive_alt",true);
-			enableStylesheetExtension("altsensitive");
-		}
+				var option = make("div").addClass("mtd-settings-option").addClass("mtd-settings-option-"+pref.type);
 
-		if (getPref("mtd_sensitive_alt") && !$("#mtd-sensitive-alt").is(":checked")) {
-			console.log("someone unticked me!!");
-			setPref("mtd_sensitive_alt",false);
-			disableStylesheetExtension("altsensitive");
-		}
+				if (exists(pref.addClass)) {
+					option.addClass(pref.addClass);
+				}
 
-		if (!getPref("mtd_undocked_modals") && $("#mtd-undocked-modals").is(":checked")) {
-			console.log("someone ticked me!!");
-			setPref("mtd_undocked_modals",true);
-			enableStylesheetExtension("undockedmodals");
-		}
+				if (pref.enabled === false) {
+					continue;
+				}
 
-		if (getPref("mtd_undocked_modals") && !$("#mtd-undocked-modals").is(":checked")) {
-			console.log("someone unticked me!!");
-			setPref("mtd_undocked_modals",false);
-			disableStylesheetExtension("undockedmodals");
-		}
+				if (exists(pref.headerBefore)) {
+					subPanel.append(
+						make("h3").addClass("mtd-settings-panel-subheader").html(pref.headerBefore)
+					);
+				}
 
-		if (!getPref("mtd_outlines") && $("#mtd-outlines-control").is(":checked")) {
-			console.log("someone ticked me!!");
-			setPref("mtd_outlines",true);
-			html.addClass("mtd-acc-focus-ring");
-		}
+				if (exists(pref.settingsKey) && exists(pref.default) && !hasPref(pref.settingsKey)) {
+					setPref(pref.settingsKey, pref.default);
+				}
 
-		if (getPref("mtd_outlines") && !$("#mtd-outlines-control").is(":checked")) {
-			console.log("someone unticked me!!");
-			setPref("mtd_outlines",false);
-			html.removeClass("mtd-acc-focus-ring");
-		}
+				let input,select,label,minimum,maximum,button,link;
 
-		if ($("#mtd-theme-control option:selected").length > 0 && getPref("mtd_theme") !== $("#mtd-theme-control option:selected").val()) {
-			disableStylesheetExtension(getPref("mtd_theme"));
-			setPref("mtd_theme",$("#mtd-theme-control option:selected").val())
-			enableStylesheetExtension($("#mtd-theme-control option:selected").val() || "default");
-		}
 
-		if ($("#mtd-scrollbar-style option:selected").length > 0 && getPref("mtd_scrollbar_style") !== $("#mtd-scrollbar-style option:selected").val()) {
-			disableStylesheetExtension(getPref("mtd_scrollbar_style"));
-			setPref("mtd_scrollbar_style",$("#mtd-scrollbar-style option:selected").val());
-			enableStylesheetExtension($("#mtd-scrollbar-style option:selected").val() || "default");
-		}
+				switch(pref.type) {
+					case "checkbox":
+						input = make("input").attr("type","checkbox").attr("id",prefKey).change(function(){
+							setPref(pref.settingsKey,$(this).is(":checked"));
+							parseActions($(this).is(":checked") ? pref.activate : pref.deactivate, $(this).val());
 
-		setTimeout(PrefsListener,500);
-	}
-}
+						});
 
-function MTDSettings() {
-	MTDPrepareWindows();
-		setTimeout(function(){$(".js-app-settings").click();},10);
-		setTimeout(function(){
-			$("a[data-action='globalSettings']").click();
-			var mtdsettingsmodalview = $("#settings-modal .mdl");
-			mtdsettingsmodalview.addClass("mtd-settings-panel");
-			var mtdsettingsmodalinner = $("#settings-modal .mdl .mdl-inner");
-			$("#settings-modal .mdl .js-header-title").removeClass("js-header-title");
-			$("#settings-modal .mdl .mdl-header-title").html("ModernDeck");
-			mtdsettingsmodalinner.html('<div class="mdl-content js-mdl-content horizontal-flow-container"> <div class="l-column mdl-column mdl-column-sml"> <div class="l-column-scrollv scroll-v	scroll-alt "> <ul class="lst-group js-setting-list">\
-			<li id="mtd-appearance-li"class="selected"><a href="#"class="list-link" id="mtd_settings_appearance_button" data-action="general"><strong>Appearance</strong></a></li>\
-			\
-			<li id="mtd-accessibility-li"><a href="#"class="list-link" id="mtd_settings_accessibility_button" data-action="general"><strong>Accessibility</strong></a></li>\
-			\
-			<li id="mtd-about-li"><a href="#"class="list-link" id="mtd_settings_about_button" data-action="general"><strong>About</strong></a></li>\
-			\
-			\
-			</ul> </div> </div> <div class="l-column mdl-column mdl-column-lrg"> <div class="l-column-scrollv scroll-v	scroll-alt mdl-col-settings">\
-			\
-			\
-			<form action="#" id="mtd-appearance-form" accept-charset="utf-8"class="frm"><fieldset id="general_settings"><div class="control-group" style="padding-top:10px;">\
-			<label class="checkbox">Use rounded profile pictures<input type="checkbox" checked="checked" id="mtd-round-avatars-control"></label>\
-			<label class="checkbox">Undocked windowing/nav drawer<input type="checkbox" id="mtd-undocked-modals"></label>\
-			<label class="checkbox">Use alternate sensitive media workflow<input type="checkbox" checked="checked" id="mtd-sensitive-alt"></label>\
-			<label class="checkbox" style="margin-bottom:30px">Use Hearts instead of Stars<input type="checkbox" checked="checked" id="mtd-hearts"></label>\
-			<label class="control-label">Theme</label>\
-			<select id="mtd-theme-control" type="select">\
-			<option value="default" selected="selected">Default</option>\
-			<optgroup label="Complete Themes">\
-			<option value="AF_2019_fabulous" style="background-image:linear-gradient(to right,#E53935,#FF5722,#FFC107,#4CAF50,#2196F3,#673AB7)!important;color:#fff!important" id="AF_2019_fabulous">Fabulous</option>\
-			<option value="paper">Paper</option>\
-			<option value="amoled" style="color:#fff!important">AMOLED</option>\
-			</optgroup><optgroup label="Complementary Themes">\
-			<option value="grey" style="color:#fff!important">Grey</option>\
-			<option value="red">Red</option>\
-			<option value="pink">Pink</option>\
-			<option value="orange">Orange</option>\
-			<option value="violet">Violet</option>\
-			<option value="teal">Teal</option>\
-			<option value="green">Green</option>\
-			<option value="yellow">Yellow</option>\
-			<option value="cyan">Cyan</option>\
-			<option value="black" style="color:#fff!important">Black</option>\
-			<option value="blue">Blue</option>\
-			</optgroup></select>\
-			\
-			\
-			\
-			\
-			<label class="control-label" style="margin-top:50px;margin-left:-58px">Scroll Bar Style</label><select id="mtd-scrollbar-style" type="select">\
-			<option value="default" selected="selected">Default</option>\
-			<option value="scrollbarsnarrow">Narrow</option>\
-			<option value="scrollbarsnone">Hidden</option>\
-			</select></div></fieldset></form>\
-			\
-			<form action="#" id="mtd-accessibility-form" accept-charset="utf-8"class="frm" style="display:none;"><fieldset id="general_settings"><label class="checkbox">Always show outlines on focused items (Ctrl+Shift+A to toggle)<input type="checkbox" style="margin-top:-15px" checked="checked" id="mtd-outlines-control"> </label></fieldset></form>\
-			\
-			<form action="#" id="mtd-about-form" accept-charset="utf-8"class="frm" style="display:none;"><fieldset id="general_settings"><i class="icon icon-moderndeck mtd-logo"></i><h1 class="list-placeholder mtd-about-title">ModernDeck</h1><h2 class="mtd-version-title">You have ModernDeck version ' + SystemVersion + '</h2></fieldset></form>\
-			\
-			</div> </div> </div>');
+						if (exists(pref.settingsKey) && getPref(pref.settingsKey) === true) {
+							input.attr("checked","checked");
+						}
 
-			$("#mtd-round-avatars-control").attr("checked",getPref("mtd_round_avatars"));
-			$("#mtd-undocked-modals").attr("checked",getPref("mtd_undocked_modals"));
-			$("#mtd-sensitive-alt").attr("checked",getPref("mtd_sensitive_alt"));
-			$("#mtd-outlines-control").attr("checked",getPref("mtd_outlines"));
-			$("#mtd-hearts").attr("checked",getPref("mtd_hearts"));
-			$("#mtd-theme-control").val(getPref("mtd_theme"));
-			$("#mtd-scrollbar-style").val(getPref("mtd_scrollbar_style"));
+						if (!exists(pref.settingsKey) && exists(pref.queryFunction)) {
+							if (pref.queryFunction()) {
+								input.attr("checked","checked");
+							}
+						}
 
-			if (!html.hasClass("mtd_af_time")) {
-				$("#AF_2019_fabulous").remove();
+						label = make("label").addClass("checkbox").html(pref.title).append(input);
+
+						option.append(label);
+
+						if (exists(pref.initFunc)) {
+							pref.initFunc(select);
+						}
+						break;
+					case "dropdown":
+						select = make("select").attr("type","select").attr("id",prefKey).change(function(){
+							//setPref(pref.settingsKey,$(this).val());
+							parseActions(pref.activate, $(this).val());
+						});
+
+						for (var prefKey in pref.options) {
+							if (!!(pref.options[prefKey].value)) {
+								let newPrefSel = pref.options[prefKey];
+								let newoption = make("option").attr("value",newPrefSel.value).html(newPrefSel.text);
+								console.log(newoption);
+
+								select.append(newoption);
+							} else {
+
+								var group = make("optgroup").attr("label",pref.options[prefKey].name)
+
+								for (var subkey in pref.options[prefKey].children) {
+									let newSubPrefSel = pref.options[prefKey].children[subkey];
+									let newsuboption = make("option").attr("value",newSubPrefSel.value).html(newSubPrefSel.text);
+
+									group.append(newsuboption);
+								}
+
+								select.append(group);
+							}
+						}
+
+						if (exists(pref.settingsKey)) {
+							select.val(getPref(pref.settingsKey));
+						} else if (!exists(pref.settingsKey) && exists(pref.queryFunction)) {
+							select.val(pref.queryFunction())
+						}
+
+						label = make("label").addClass("control-label").html(pref.title);
+
+						option.append(label,select);
+
+						if (exists(pref.initFunc)) {
+							pref.initFunc(select);
+						}
+						break;
+					case "textbox":
+						input = make("input").attr("type","text").attr("id",prefKey);
+
+						if (pref.instantApply === true) {
+							input.on("input",function(){
+								parseActions(pref.activate, $(this).val());
+							});
+						} else {
+							input.change(function(){
+								parseActions(pref.activate, $(this).val());
+							});
+						}
+
+						if (exists(pref.settingsKey)) {
+							input.val(getPref(pref.settingsKey));
+						} else if (!exists(pref.settingsKey) && exists(pref.queryFunction)) {
+							input.val(pref.queryFunction())
+						}
+
+						label = make("label").addClass("control-label").html(pref.title);
+
+						if (exists(pref.initFunc)) {
+							pref.initFunc(input);
+						}
+
+						option.append(label,input);
+						break;
+					case "textarea":
+						input = make("textarea").addClass("mtd-textarea").attr("id",prefKey).attr("rows","10").attr("cols","80").attr("placeholder",pref.placeholder || "").attr("spellcheck",false);
+
+						if (pref.instantApply === true) {
+							input.on("input",function(){
+								parseActions(pref.activate, $(this).val());
+							});
+						} else {
+							input.change(function(){
+								parseActions(pref.activate, $(this).val());
+							});
+						}
+
+
+						// thank you https://sumtips.com/snippets/javascript/tab-in-textarea/ for this amazing hack for tabs to work
+						input.keydown(function(e)
+						{
+
+							var kC = e.keyCode ? e.keyCode : e.charCode ? e.charCode : e.which;
+							if (kC == 9 && !e.shiftKey && !e.ctrlKey && !e.metaKey && !e.altKey)
+							{
+								var oS = input[0].scrollTop;
+								if (input[0].setSelectionRange)
+								{
+									var sS = input[0].selectionStart;
+									var sE = input[0].selectionEnd;
+									input[0].value = input[0].value.substring(0, sS) + "\t" + input[0].value.substr(sE);
+									input[0].setSelectionRange(sS + 1, sS + 1);
+									input[0].focus();
+								}
+								else if (input[0].createTextRange)
+								{
+									document.selection.createRange().text = "\t";
+									e.returnValue = false;
+								}
+								input[0].scrollTop = oS;
+								if (e.preventDefault)
+								{
+									e.preventDefault();
+								}
+								return false;
+							}
+							return true;
+						});
+
+						if (exists(pref.settingsKey)) {
+							input.val(getPref(pref.settingsKey));
+						} else if (!exists(pref.settingsKey) && exists(pref.queryFunction)) {
+							input.val(pref.queryFunction())
+						}
+
+						label = make("label").addClass("control-label").html(pref.title);
+
+						if (exists(pref.initFunc)) {
+							pref.initFunc(input);
+						}
+
+						option.append(label,input);
+						break;
+					case "slider":
+						label = make("label").addClass("control-label");
+
+						input = make("input").attr("type","range")
+						.attr("min",pref.minimum)
+						.attr("max",pref.maximum)
+						.change(function(){
+							parseActions(pref.activate, $(this).val());
+						}).on("input",function(){
+							label.html(pref.title + " <b>" + $(this).val() + (pref.displayUnit || "") +"</b>");
+							console.log("changed: "+$(this).val());
+						});
+
+						if (exists(pref.settingsKey)) {
+							input.val(parseInt(getPref(pref.settingsKey)));
+						} else if (!exists(pref.settingsKey) && exists(pref.queryFunction)) {
+							input.val(pref.queryFunction());
+						} else if (exists(pref.default)) {
+							input.val(pref.default);
+						}
+
+						label.html(pref.title + " <b>" + input.val() + (pref.displayUnit || "") +"</b>");
+
+						maximum = make("label").addClass("control-label mtd-slider-maximum").html(pref.maximum + (pref.displayUnit || ""));
+						minimum = make("label").addClass("control-label mtd-slider-minimum").html(pref.minimum + (pref.displayUnit || ""));
+
+						if (exists(pref.initFunc)) {
+							pref.initFunc(input);
+						}
+
+						option.append(label,maximum,input,minimum);
+						break;
+					case "button":
+						label = make("label").addClass("control-label").html(pref.label || "");
+
+						button = make("button").html(pref.title).addClass("btn btn-positive mtd-settings-button")
+						.click(function(){
+							parseActions(pref.activate,true);
+						});
+
+						if (exists(pref.initFunc)) {
+							pref.initFunc(button);
+						}
+
+						option.append(label,button);
+						break;
+					case "link":
+						link = make("a").html(pref.label).addClass("mtd-settings-link")
+						.click(function(){
+							parseActions(pref.activate,true);
+						});
+
+						if (exists(pref.initFunc)) {
+							pref.initFunc(link);
+						}
+
+						option.append(link);
+						break;
+				}
+
+				subPanel.append(option);
+			}
+		} else if (settingsData[key].enum === "aboutpage") {
+			var logo = make("i").addClass("mtd-logo icon-moderndeck icon");
+			var h1 = make("h1").addClass("mtd-about-title").html("ModernDeck 7");
+			var h2 = make("h2").addClass("mtd-version-title").html("Version " +SystemVersion);
+			var logoCont = make("div").addClass("mtd-logo-container");
+
+			if (!isApp) {
+				logoCont.append(
+					make("p").addClass("mtd-check-out-app").html("Did you know ModernDeck has a native app now? <a href='https://github.com/dangeredwolf/ModernDeck/releases'>Check it out!</a>")
+				)
 			}
 
-			PrefsListener();
+			logoCont.append(logo,h1,h2);
 
-			$("#mtd_settings_about_button").on("mouseup",function() {
-				ResetSettingsUI();
-				$("#mtd-about-li").addClass("selected");
-				$("#mtd-about-form").css("display","block");
+			subPanel.append(logoCont);
+
+			var updateCont = make("div").addClass("mtd-update-container").html('<div class="mtd-update-spinner preloader-wrapper small active"><div class="spinner-layer"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div>');
+			var updateSpinner = $(".mtd-update-spinner");
+			var updateIcon = make("i").addClass("material-icon hidden");
+			var updateh2 = make("h2").addClass("mtd-update-h2").html("Checking for updates...");
+			var updateh3 = make("h3").addClass("mtd-update-h3 hidden").html("");
+			var tryAgain = make("button").addClass("btn hidden").html("Try Again");
+			var restartNow = make("button").addClass("btn hidden").html("Restart Now")
+
+			var info = make("p").html("Made with <i class=\"icon icon-heart mtd-about-heart\"></i> by <a href=\"https://twitter.com/dangeredwolf\" rel=\"user\" target=\"_blank\">dangeredwolf</a> in Columbus, OH since 2014<br><br>ModernDeck is an open source project released under the MIT license.");
+			var infoCont = make("div").addClass("mtd-about-info").append(info);
+
+			var patronInfo = make("div").addClass("mtd-patron-info").append(
+				make("div").addClass("mtd-patreon-button").append(
+					make("iframe").attr("src","https://www.patreon.com/platform/iframe?widget=become-patron-button&creatorID=3469384")
+				),
+				make("div").addClass("mtd-patron-list").append(
+					make("iframe")
+				)
+			)
+			updateCont.append(updateIcon,updateh2,updateh3,tryAgain,restartNow);
+
+			if (isApp) {
+				if (!html.hasClass("mtd-winstore") && !html.hasClass("mtd-macappstore")) {
+					subPanel.append(updateCont);
+				}
+			}
+
+			subPanel.append(infoCont);
+			//subPanel.append(patronInfo);
+
+			if (isApp) {
+				if (!html.hasClass("mtd-winstore") && !html.hasClass("mtd-macappstore")) {
+					mtdAppUpdatePage(updateCont,updateh2,updateh3,updateIcon,updateSpinner,tryAgain,restartNow);
+				}
+			}
+		} else if (settingsData[key].enum === "mutepage") {
+
+			let filterInput = make("input").addClass("js-filter-input").attr("name","filter-input").attr("size",30).attr("type","text").attr("placeholder","Enter a word or phrase")
+
+			let selectFilterType = make("select").attr("name","filter").addClass("js-filter-types").append(
+				make("option").attr("value","phrase").html("Words or phrases"),
+				make("option").attr("value","source").html("Tweet source")
+			).change(function(){
+				filterInput.attr("placeholder",$(this).val() === "phrase" ? "Enter a word or phrase" : "eg Tweeten")
 			});
 
-			$("#mtd_settings_appearance_button").on("mouseup",function() {
-				ResetSettingsUI();
-				$("#mtd-appearance-li").addClass("selected");
-				$("#mtd-appearance-form").css("display","block");
+			let muteButton = make("button").attr("name","add-filter").addClass("js-add-filter btn-on-dark disabled").html("Mute").click(function(){
+				if (filterInput.val().length > 0) {
+					TD.controller.filterManager.addFilter(selectFilterType.val(),filterInput.val(),false);
+
+					updateFilterPanel(filterList);
+				}
 			});
 
-			$("#mtd_settings_accessibility_button").on("mouseup",function() {
-				ResetSettingsUI();
-				$("#mtd-accessibility-li").addClass("selected");
-				$("#mtd-accessibility-form").css("display","block");
+			let muteTypes = make("div").addClass("control-group").append(
+				make("label").attr("for","filter-types").addClass("control-label").html("Mute"),
+				make("div").addClass("controls").append(selectFilterType)
+			)
+			let muteInput = make("div").addClass("control-group").append(
+				make("label").attr("for","filter-input").addClass("control-label").html("Matching"),
+				make("div").addClass("controls").append(filterInput)
+			).on("input",function(){
+				if ($(this).val().length > 0) {
+					muteButton.removeClass("disabled");
+				} else {
+					muteButton.addClass("disabled");
+				}
 			});
-		},100);
+
+			let muteAdd = make("div").addClass("control-group").append(
+				make("div").addClass("controls js-add-filter-container").append(muteButton)
+			)
+
+			let filterList = make("ul");
+
+			let filterListGroup = make("div").addClass("js-filter-list").append(filterList)
+
+
+
+
+			let form = make("form").addClass("js-global-settings frm").attr("id","global-settings").attr("action","#").append(
+				make("fieldset").attr("id","global_filter_settings").append(
+					muteTypes,
+					muteInput,
+					muteAdd,
+					filterListGroup
+				)
+			)
+
+			updateFilterPanel(filterList);
+
+			subPanel.append(form);
+		}
+
+		tabs.append(tab);
+		container.append(subPanel);
+
+		console.log("openMenu ?"+exists(openMenu));
+		console.log(openMenu);
+
+
+		if (!exists(openMenu) && tab.index() === 0) {
+			tab.addClass("mtd-settings-tab-selected");
+			tab.click();
+		}
+
+		if (exists(openMenu) && openMenu === key) {
+			tab.click();
+		}
+	}
+
+	new TD.components.GlobalSettings;
+
+	$("#settings-modal>.mdl").remove();
+	$("#settings-modal").append(panel);
+
+	return panel;
 }
 
-function LoginStuffs() {
+function updateFilterPanel(filterList) {
+	let filters = TD.controller.filterManager.getAll();
+	filterList.html("");
+
+	for (var n in filters) {
+		let myFilter = filters[n];
+
+		filterList.append(
+			make("li").addClass("list-filter").append(
+				make("div").addClass("mtd-mute-text mtd-mute-text-" + (myFilter.type === "source" ? "source" : "")),
+				make("em").html(myFilter.value),
+				make("input").attr("type","button").attr("name","remove-filter").attr("value","Remove").addClass("js-remove-filter small btn btn-negative").click(function(){
+					TD.controller.filterManager.removeFilter(myFilter);
+					updateFilterPanel(filterList);
+				})
+			)
+		);
+
+	}
+
+	return filterList;
+}
+
+function loginStuff() {
 	var profileInfo = getProfileInfo();
 	if (profileInfo === null || typeof profileInfo === "undefined" || typeof profileInfo._profileBannerURL === "undefined" || profileInfo.profileImageURL === "undefined") {
-		setTimeout(LoginStuffs,150);
+		setTimeout(loginStuff,150);
 		return;
 	}
 	var bannerPhoto = profileInfo._profileBannerURL.search("empty") > 0 ? "" : profileInfo._profileBannerURL;
@@ -747,9 +1918,9 @@ function LoginStuffs() {
 	$(mtd_nd_header_image).attr("style","background-image:url(" + bannerPhoto + ");"); // Fetch header and place in nav drawer
 	$(mtd_nd_header_photo).attr("src",avatarPhoto)
 	.mouseup(function(){
-		var profileLinkyThing = $("a[href=\"https://twitter.com/"+getProfileInfo().screenName+"\"]");
+		var profileLinkyThing = $(document.querySelector(".account-settings-bb a[href=\"https://twitter.com/"+getProfileInfo().screenName+"\"]"));
 
-				MTDPrepareWindows();
+		mtdPrepareWindows();
 		if (profileLinkyThing.length > -1) {
 			setTimeout(function(){
 				profileLinkyThing.click();
@@ -758,29 +1929,25 @@ function LoginStuffs() {
 	}); // Fetch profile picture and place in nav drawer
 	$(mtd_nd_header_username).html(name); // Fetch twitter handle and place in nav drawer
 
-	if (!getPref("has_opened_mtd6") && welcomeEnabled) {
-		setTimeout(function(){$(".js-app-settings").click()},10);
-		setTimeout(function() {
-			$("a[data-action='globalSettings']").click();
-			$("#settings-modal .mdl-header-title").html("Welcome to ModernDeck 6.0").removeClass("js-header-title");
-			$("#settings-modal .mdl").addClass("mtd-whats-new");
-			$("#settings-modal .mdl-inner").html(welcomeScreenHtml);
-		},20);
-		setPref("has_opened_mtd6",true)
-	}
-
-	//loadPreferences();
 }
 
-function NavigationSetup() {
+function navigationSetup() {
+	if ($(".app-signin-wrap:not(.mtd-signin-wrap)").length > 0) {
+		console.info("oh no, we're too late!");
+		$(".app-signin-wrap:not(.mtd-signin-wrap)").remove();
+		$(".login-container .startflow").html(newLoginPage);
+		startUpdateGoodLoginText();
+	}
+
 	if ($(".app-header-inner").length < 1) {
-		setTimeout(NavigationSetup,100);
+		setTimeout(navigationSetup,100);
 		return;
 	}
 
 	loadPreferences();
 
-	$(".column-scroller,.more-tweets-btn-container").each(function(a,b){ // Fixes a bug in TweetDeck's JS caused by ModernDeck having different animations in column preferences
+	$(".column-scroller,.more-tweets-btn-container").each(function(a,b){
+		// Fixes a bug in TweetDeck's JS caused by ModernDeck having different animations in column settings
 		var c = $(b);
 		mutationObserver(b,function(){
 			if (typeof c.attr("style") !== "undefined") {
@@ -797,14 +1964,8 @@ function NavigationSetup() {
 	})
 
 	$(".app-header-inner").append(
-		make("a")
-		.attr("id","mtd-navigation-drawer-button")
-		.addClass("js-header-action mtd-drawer-button link-clean cf app-nav-link")
-		.html('<div class="obj-left"><div class="mtd-nav-activator"></div><div class="nbfc padding-ts"></div>')
+		make("a").attr("id","mtd-navigation-drawer-button").addClass("js-header-action mtd-drawer-button link-clean cf app-nav-link").html('<div class="obj-left"><div class="mtd-nav-activator"></div><div class="nbfc padding-ts"></div>')
 		.click(function(){
-			// TODO: Wire button to open navigation drawer
-			// TODO: Remove the above TODO from back when i was developing mtd 5.0
-
 			if (typeof mtd_nav_drawer_background !== "undefined") {
 				$("#mtd_nav_drawer_background").attr("class","mtd-nav-drawer-background");
 			}
@@ -819,166 +1980,42 @@ function NavigationSetup() {
 		.attr("id","mtd_nav_drawer")
 		.addClass("mtd-nav-drawer mtd-nav-drawer-hidden")
 		.append(
-			make("img")
-			.attr("id","mtd_nd_header_image")
-			.addClass("mtd-nd-header-image")
-			.attr("style",""),
-			make("img")
-			.addClass("avatar size73 mtd-nd-header-photo")
-			.attr("id","mtd_nd_header_photo")
-			.attr("src",""),
-			make("div")
-			.addClass("mtd-nd-header-username")
-			.attr("id","mtd_nd_header_username")
-			.html("PROFILE ERROR<br>Tell @dangeredwolf i said hi"),
-			make("button")
-			.addClass("btn mtd-nav-button mtd-settings-button")
-			.attr("id","tdset")
-			.append(
-				make("i")
-				.addClass("icon icon-td-settings")
-			)
-			.click(function(){
-				MTDPrepareWindows();
-
+			make("img").attr("id","mtd_nd_header_image").addClass("mtd-nd-header-image").attr("style",""),
+			make("img").addClass("avatar size73 mtd-nd-header-photo").attr("id","mtd_nd_header_photo").attr("src",""),
+			make("div").addClass("mtd-nd-header-username").attr("id","mtd_nd_header_username").html("PROFILE ERROR<br>Tell @dangeredwolf i said hi"),
+			make("button").addClass("btn mtd-nav-button mtd-nav-first-button").attr("id","tdaccsbutton").append(make("i").addClass("icon icon-twitter-bird")).click(function(){mtdPrepareWindows();$(".js-show-drawer.js-header-action").click();}).append("Your Accounts"),
+			make("button").addClass("btn mtd-nav-button").attr("id","addcolumn").append(make("i").addClass("icon icon-plus")).click(function(){mtdPrepareWindows();TD.ui.openColumn.showOpenColumn()}).append("Add Column"),
+			make("div").addClass("mtd-nav-divider"),
+			make("button").addClass("btn mtd-nav-button").attr("id","kbshortcuts").append(make("i").addClass("icon icon-keyboard")).click(function(){
+				mtdPrepareWindows();
+				console.log("td-keyboard");
 				setTimeout(function(){$(".js-app-settings").click()},10);
-				setTimeout(function(){$("a[data-action='globalSettings']").click()},20);
-			})
-			.append("TweetDeck Settings"),
-			make("button")
-			.addClass("btn mtd-nav-button")
-			.attr("id","mtdsettings")
-			.append(
-				make("i")
-				.addClass("icon icon-mtd-settings")
-			)
-			.click(MTDSettings)
-			.append("ModernDeck Settings"),
-			make("button")
-			.addClass("btn mtd-nav-button")
-			.attr("id","btdsettings")
-			.append(
-				make("i")
-				.addClass("icon icon-btd-settings")
-			)
-			.click(function(){
-				MTDPrepareWindows();
-				setTimeout(function(){
-					var opn = window.open("chrome-extension://micblkellenpbfapmcpcfhcoeohhnpob/options/options.html", '_blank');
-					opn.focus();
-				},200);
-			})
-			.append("Better TweetDeck Settings"),
-			make("div")
-			.addClass("mtd-nav-divider"),
-			make("button")
-			.addClass("btn mtd-nav-button")
-			.attr("id","tdaccsbutton")
-			.append(
-				make("i")
-				.addClass("icon icon-twitter-bird")
-			)
-			.click(function(){
-				MTDPrepareWindows();
-				$(".js-show-drawer.js-header-action").click();
-			})
-			.append("Your Accounts"),
-			make("button")
-			.addClass("btn mtd-nav-button")
-			.attr("id","addcolumn")
-			.append(
-				make("i")
-				.addClass("icon icon-plus")
-			)
-			.click(function(){
-				MTDPrepareWindows();
-				$(".js-header-add-column").click();
-			})
-			.append("Add Column"),
-			make("div")
-			.addClass("mtd-nav-divider"),
-			make("button")
-			.addClass("btn mtd-nav-button mtd-nav-group-expand")
-			.attr("id","mtd_nav_expand")
-			.append(
-				make("i")
-				.addClass("icon mtd-icon-arrow-down")
-				.attr("id","mtd_nav_group_arrow")
-			)
-			.click(function(){
+				setTimeout(function(){$("a[data-action='keyboardShortcutList']").click()},20);
+			}).append("Keyboard Shortcuts"),
+			make("button").addClass("btn mtd-nav-button").attr("id","mtdsettings").append(make("i").addClass("icon icon-settings")).click(function(){openSettings()}).append("Settings"),
+			make("div").addClass("mtd-nav-divider"),
+			make("button").addClass("btn mtd-nav-button mtd-nav-group-expand").attr("id","mtd_nav_expand").append(make("i").addClass("icon mtd-icon-arrow-down").attr("id","mtd_nav_group_arrow")).click(function(){
 				$("#mtd_nav_group").toggleClass("mtd-nav-group-expanded");
 				$("#mtd_nav_group_arrow").toggleClass("mtd-nav-group-arrow-flipped");
 				$("#mtd_nav_drawer").toggleClass("mtd-nav-drawer-group-open");
-			})
-			.append("More..."),
-			make("div")
-			.addClass("mtd-nav-group mtd-nav-group-expanded")
-			.attr("id","mtd_nav_group")
-			.append(
-				make("button")
-				.addClass("btn mtd-nav-button")
-				.append(
-					make("i")
-					.addClass("icon mtd-icon-changelog")
-				)
-				.click(function(){
-					MTDPrepareWindows();
-					setTimeout(function(){$(".js-app-settings").click()},10);
-					setTimeout(function(){$("a[href=\"https://twitter.com/i/tweetdeck_release_notes\"]").click()},20);
-				})
-				.append("TweetDeck Release Notes"),
-				make("button")
-				.addClass("btn mtd-nav-button")
-				.attr("id","kbshortcuts")
-				.append(
-					make("i")
-					.addClass("icon icon-keyboard")
-				)
-				.click(function(){
-					MTDPrepareWindows();
-					setTimeout(function(){$(".js-app-settings").click()},10);
-					setTimeout(function(){$("a[data-action='keyboardShortcutList']").click()},20);
-				})
-				.append("Keyboard Shortcuts"),
-				make("button")
-				.addClass("btn mtd-nav-button")
-				.append(
-					make("i")
-					.addClass("icon icon-search")
-				)
-				.click(function(){
-					MTDPrepareWindows();
+			}).append("More..."),
+			make("div").addClass("mtd-nav-group mtd-nav-group-expanded").attr("id","mtd_nav_group").append(
+				make("button").addClass("btn mtd-nav-button").append(make("i").addClass("icon mtd-icon-changelog")).click(function(){
+					mtdPrepareWindows();
+					console.log("td-changelog");
+					window.open("https://twitter.com/i/tweetdeck_release_notes");
+				}).append("TweetDeck Release Notes"),
+				make("button").addClass("btn mtd-nav-button").append(make("i").addClass("icon icon-search")).click(function(){
+					mtdPrepareWindows();
+					console.log("td-searchtips");
 					setTimeout(function(){$(".js-app-settings").click()},10);
 					setTimeout(function(){$("a[data-action=\"searchOperatorList\"]").click()},20);
-				})
-				.append("Search Tips"),
-				make("div")
-				.addClass("mtd-nav-divider"),
-				make("button")
-				.addClass("btn mtd-nav-button")
-				.attr("id","mtd_signout")
-				.append(
-					make("i")
-					.addClass("icon icon-logout")
-				)
-				.click(function(){
-					MTDPrepareWindows();
-					setTimeout(function(){$(".js-app-settings").click()},10);
-					setTimeout(function(){$("a[data-action='signOut']").click()},20);
-				})
-				.append("Sign Out"),
+				}).append("Search Tips"),
+				make("div").addClass("mtd-nav-divider"),
+				make("button").addClass("btn mtd-nav-button").attr("id","mtd_signout").append(make("i").addClass("icon icon-logout")).click(function(){TD.controller.init.signOut();}).append("Sign Out"),
 			),
-			
-			make("div")
-			.addClass("mtd-nav-divider mtd-nav-divider-feedback"),
-			make("button")
-			.addClass("btn mtd-nav-button mtd-nav-button-feedback")
-			.attr("id","mtdfeedback")
-			.append(
-				make("i")
-				.addClass("icon icon-feedback")
-			)
-			.click(function(){
+			make("div").addClass("mtd-nav-divider mtd-nav-divider-feedback"),
+			make("button").addClass("btn mtd-nav-button mtd-nav-button-feedback").attr("id","mtdfeedback").append(make("i").addClass("icon icon-feedback")).click(function(){
 				sendingFeedback = true;
 				try {
 					throw "Manually triggered feedback button";
@@ -986,28 +2023,22 @@ function NavigationSetup() {
 					Raven.captureException(e);
 					Raven.showReportDialog();
 				}
-			})
-			.append("Send Feedback")
+			}).append("Send Feedback")
 		),
-		make("div")
-		.attr("id","mtd_nav_drawer_background")
-		.addClass("mtd-nav-drawer-background mtd-nav-drawer-background-hidden")
-		.click(function(){
+		make("div").attr("id","mtd_nav_drawer_background").addClass("mtd-nav-drawer-background mtd-nav-drawer-background-hidden").click(function(){
 			$(this).addClass("mtd-nav-drawer-background-hidden");
 			$(mtd_nav_drawer).addClass("mtd-nav-drawer-hidden");
 		})
 	);
-
 	$(".mtd-nav-group-expanded").attr("style","height:"+$(".mtd-nav-group-expanded").height()+"px");
 	$(".mtd-nav-group-expanded").removeClass("mtd-nav-group-expanded");
 
 	$(".app-header-inner").append(
-		make("div")
-		.addClass("mtd-appbar-notification mtd-appbar-notification-hidden")
-		.attr("id","MTDNotification")
+		make("div").addClass("mtd-appbar-notification mtd-appbar-notification-hidden").attr("id","MTDNotification")
 	)
 
-	window.MTDPrepareWindows = function() {
+	window.mtdPrepareWindows = function() {
+		console.info("mtdPrepareWindows called");
 		$("#update-sound,.js-click-trap").click();
 		mtd_nav_drawer_background.click();
 
@@ -1015,26 +2046,41 @@ function NavigationSetup() {
 		$("#mtd_nav_group_arrow").removeClass("mtd-nav-group-arrow-flipped");
 	}
 
-	if (TreatGeckoWithCare) {
-		btdsettings.remove();
-	}
-
-	LoginStuffs();
+	loginStuff();
 }
 
-function KeyboardShortcutHandler(e) {
-	if (e.key.toUpperCase() === "A" && e.ctrlKey && e.shiftKey) { //pressing Ctrl+Shift+A toggles the outline accessibility option
-		console.log("User has pressed the proper key combination to toggle accessibility!");
-		if (!getPref("mtd_outlines")) {
-			setPref("mtd_outlines",true);
-			html.addClass("mtd-acc-focus-ring");
+function keyboardShortcutHandler(e) {
+	console.log(e);
+
+	if (e.key.toUpperCase() === "A" && (e.ctrlKey) && e.shiftKey) { //pressing Ctrl+Shift+A toggles the outline accessibility option
+		console.log("User has pressed the proper key combination to toggle outlines!");
+
+		if ($("#accoutline").length > 0) {
+			$("#accoutline").click();
 		} else {
-			setPref("mtd_outlines",false);
-			html.removeClass("mtd-acc-focus-ring");
+			settingsData.accessibility.options.accoutline.activate.func();
 		}
-		if (document.querySelector("#mtd-outlines-control") !== null) {
-			$("#mtd-outlines-control").click();
+
+	}
+	if (e.key.toUpperCase() === "C" && (e.ctrlKey) && e.shiftKey) { //pressing Ctrl+Shift+C disabled user CSS
+		console.log("User disabled custom CSS!");
+
+		disableStylesheetExtension("customcss")
+
+	}
+	if (e.key.toUpperCase() === "H" && (e.ctrlKey) && e.shiftKey) { //pressing Ctrl+Shift+H toggles high contrast
+		console.log("User has pressed the proper key combination to toggle high contrast!");
+
+		if ($("#highcont").length > 0) {
+			$("#highcont").click();
+		} else {
+			if (getPref("mtd_highcontrast") === true) {
+				settingsData.accessibility.options.highcont.deactivate.func();
+			} else {
+				settingsData.accessibility.options.highcont.activate.func();
+			}
 		}
+
 	}
 	if (e.keyCode === 81 && document.querySelector("input:focus,textarea:focus") === null) {
 		if ($(mtd_nav_drawer).hasClass("mtd-nav-drawer-hidden")) {
@@ -1047,456 +2093,7 @@ function KeyboardShortcutHandler(e) {
 
 }
 
-function checkIfUserSelectedNewTheme() {
-		if (html.hasClass("dark")) {
-			enableStylesheetExtension("dark");
-			disableStylesheetExtension("light");
-			html.addClass("mtd-dark").removeClass("mtd-light")
-			MTDDark = true;
-			// if (typeof getPref("mtd_theme") !== "undefined" && getPref("mtd_theme") === "paper") {
-			// 	setPref("mtd_theme","default");
-			// 	disableStylesheetExtension("paper");
-			// }
-		} else {
-			disableStylesheetExtension("dark");
-			enableStylesheetExtension("light");
-			html.addClass("mtd-light").removeClass("mtd-dark")
-			MTDDark = false;
-			// if (typeof getPref("mtd_theme") !== "undefined" && getPref("mtd_theme") ==="amoled") {
-			// 	setPref("mtd_theme","default");
-			// 	disableStylesheetExtension("amoled");
-			// }
-		}
-
-
-		enableStylesheetExtension(getPref("mtd_theme") || "default");
-}
-
-function diag() {
-	try {
-		attemptdiag();
-	}
-	catch(err) {
-		$("#open-modal,.js-app-loading").append(
-			make("div")
-			.addClass("mdl s-tall-fixed")
-			.append(
-				make("header")
-				.addClass("mdl-header")
-				.append(
-					make("h3")
-					.addClass("mdl-header-title")
-					.html("Diagnostics")
-				),
-				make("div")
-				.addClass("mdl-inner")
-				.append(
-					make("div")
-					.addClass("mdl-content")
-					.css("padding-left","20px")
-					.html("Well, that's unfortuate. I can't seem to be able to fetch diagnostics right now. Maybe refresh and try again?<br><br>(P.S. the error is " + (err ? err.toString() : "[miraculously, undefined.]") + ")")
-				)
-			)
-		)
-		.css("display","block");
-	}
-}
-
-function closediag() {
-	$("#open-modal,.js-app-loading").css("display","none");
-}
-
-function attemptdiag() {
-	openModal = $("#open-modal,.js-app-loading");
-
-	openModal.append(
-			make("div")
-			.addClass("mdl s-tall-fixed")
-			.append(
-					make("header")
-					.addClass("mdl-header")
-					.append(
-							make("h3")
-							.addClass("mdl-header-title")
-							.html("Diagnostics")
-					),
-					make("div")
-					.addClass("mdl-inner")
-					.append(
-							make("div")
-							.addClass("mdl-content")
-							.css("padding-left","20px")
-							.html('\
-							\
-							\
-							\
-							<button class="btn" onclick="closediag();">Close Diagnostics</button>\
-							<br>SystemVersion: ' + SystemVersion + '\
-							<br>userAgent: ' + navigator.userAgent + '\
-							<br>vendor: ' + navigator.vendor + '\
-							<br>vendorSub: ' + navigator.vendorSub + '\
-							<br>appCodeName: ' + navigator.appCodeName + '\
-							<br>appName: ' + navigator.appName + '\
-							<br>cookieEnabled: ' + navigator.cookieEnabled + '\
-							<br>language: ' + navigator.language + '\
-							<br>platform: ' + navigator.platform + '\
-							<br>TreatGeckoWithCare: ' + TreatGeckoWithCare + '\
-							<br>audiosrc: ' + document.getElementsByTagName("audio")[0].src + '\
-							<br>MTDBaseURL: ' + MTDBaseURL + '\
-							<br>MTDDark: ' + MTDDark + '\
-							<br>FetchProfileInfo: ' + FetchProfileInfo + '\
-							<br>mtd_round_avatars: ' + getPref("mtd_round_avatars") + '\
-							<br>mtd_flag_block_secure_ss: ' + getPref("mtd_flag_block_secure_ss") + '\
-							<br>mtd_flag_block_communications: ' + getPref("mtd_flag_block_communications") + '\
-							<br>mtd_nd_header_image: ' + (typeof $("#mtd_nd_header_image")[0] !== "undefined" && $("#mtd_nd_header_image")[0].style.cssText) + '\
-							<br>mtd_nd_header_username: ' + (typeof $("#mtd_nd_header_username")[0] !== "undefined" && $("#mtd_nd_header_username")[0].innerHTML) + '\
-							<br>mtd_nd_header_photo: ' + (typeof $("#mtd_nd_header_photo")[0] !== "undefined" && $("#mtd_nd_header_photo")[0].src) + '\
-							<br>guestID: ' + (TD.storage.store._backend.guestID) + '\
-							<br>msgID: ' + (msgID) + '\
-							<br>InjectFonts?: ' + (typeof InjectFonts !== "undefined") + '\
-							\
-							\
-							\
-							')
-					)
-			)
-	)
-	.css("display","block");
-}
-
-function dxdiag() {
-
-		openModal = $("#open-modal,.js-app-loading");
-
-		openModal.append(
-				make("div")
-				.addClass("mdl s-tall-fixed")
-				.append(
-						make("header")
-						.addClass("mdl-header")
-						.append(
-								make("h3")
-								.addClass("mdl-header-title")
-								.html("DxDiag Help")
-						),
-						make("div")
-						.addClass("mdl-inner")
-						.append(
-								make("div")
-								.addClass("mdl-content")
-								.css("padding-left","20px")
-								.html('\
-								This is a guide to help you acquire your DxDiag if asked by a developer.\
-								<br><br>\
-								Warning: This only applies for Windows. If you\'re running OS X / Linux / etc., this won\'t work.\
-								<br><br>\
-								Step 1: Press the Windows key + R key to open the Run dialog.<br>\
-								Step 2: In the box of the new window, type in "dxdiag", and press the Enter key.<br>\
-								Step 3: In the DirectX Diagnostic window, click the "Save All Information..." button at the bottom.<br>\
-								Step 4: Save this file somewhere you\'ll remember, like the Desktop.<br>\
-								Step 5: Upload the file to a file hosting site, for example, <a target="_blank" href="https://mega.nz">Mega</a> (no signup needed), or whereever you can easily share the link for the file with developers.\
-								')
-						)
-				)
-		)
-		.css("display","block");
-}
-
-function addSpaceSuggestion(mtdtxt,clickd) {
-	$(".mtd-no-chars-suggestions").append(
-		make("button")
-		.addClass("btn mtd-no-transform-case")
-		.html(mtdtxt)
-		.click(clickd)
-		.click(function(){
-			this.remove();
-			$(".character-count-compose").val(140-$(".compose-text").val().length);
-			if ($(".compose-text").val().length>140) {
-				$(".character-count-compose").addClass("invalid-char-count")
-			} else {
-				$(".character-count-compose").removeClass("invalid-char-count")
-			}
-		})
-	);
-}
-
-function checkSpaceSuggestions() {
-	var tweetTxt = $(".compose-text").val();
-
-	if (tweetTxt.match(/ ( )+/g) !== null) {
-		addSpaceSuggestion("Trim excess space inside",function(){
-			$(".compose-text").val(tweetTxt.replace(/ ( )+/g," "));
-		});
-	}
-
-	if (tweetTxt.match(/([.|\.|\?|\!|\s]$)|,(?!\D)/g) !== null) {
-		addSpaceSuggestion("Trim excess punctuation",function(){
-			$(".compose-text").val(tweetTxt.replace(/([.|\.|\?|\!|\s]$)|,(?!\D)/g,""));
-		});
-	}
-
-	if (tweetTxt.match(/(\s\s+)|([.|\.|\!|\?|\s]+?$)/gm) !== null) {
-		addSpaceSuggestion("Trim excess space around edges",function(){
-			$(".compose-text").val(tweetTxt.replace(/(\s\s+)|([.|\.|\!|\?|\s]+?$)/gm,""));
-		});
-	}
-
-	//if (tweetTxt.match(/(??)|(!?)|(?!)|(!!)|(\(c\))/gm) !== null) {
-		addSpaceSuggestion("Use ligatures to free up some space",function(){
-			$(".compose-text").val(tweetTxt
-			 .replace(/\?\?/gm,"⁇")
-			 .replace(/\!\?/gm,"⁉")
-			 .replace(/\?\!/gm,"⁈")
-			 .replace(/\!\!/gm,"‼")
-			 .replace(/\(c\)/gm,"Ⓒ")
-			 .replace(/\(C\)/gm,"Ⓒ")
-			 .replace(/\(r\)/gm,"Ⓡ")
-			 .replace(/\(R\)/gm,"Ⓡ")
-			 .replace(/\(p\)/gm,"Ⓟ")
-			 .replace(/\(P\)/gm,"Ⓟ")
-			 .replace(/\(tm\)/gm,"™")
-			 .replace(/\(TM\)/gm,"™")
-			 .replace(/\(sm\)/gm,"℠")
-			 .replace(/\(SM\)/gm,"℠")
-			 .replace(/0\/000/gm,"‱")
-			 .replace(/0\/00/gm,"‰")
-			 .replace(/0\/0/gm,"%")
-			 .replace(/ae/gm,"æ")
-			 .replace(/AE/gm,"Æ")
-			 .replace(/AU/gm,"Ꜷ")
-			 .replace(/AV/gm,"Ꜹ")
-			 .replace(/av/gm,"ꜹ")
-			 .replace(/au/gm,"ꜷ")
-			 .replace(/AO/gm,"Ꜵ")
-			 .replace(/ao/gm,"ꜵ")
-			 .replace(/===/gm,"⩶")
-			 .replace(/==/gm,"⩵")
-			 .replace(/iii/gm,"ⅲ")
-			 .replace(/ii/gm,"ⅱ")
-			 .replace(/10\./gm,"⒑")
-			 .replace(/11\./gm,"⒒")
-			 .replace(/12\./gm,"⒓")
-			 .replace(/13\./gm,"⒔")
-			 .replace(/14\./gm,"⒕")
-			 .replace(/15\./gm,"⒖")
-			 .replace(/16\./gm,"⒗")
-			 .replace(/17\./gm,"⒘")
-			 .replace(/18\./gm,"⒙")
-			 .replace(/19\./gm,"⒚")
-			 .replace(/1\./gm,"⒈")
-			 .replace(/1\,/gm,"🄂")
-			 .replace(/1\./gm,"⒈")
-			 .replace(/2\,/gm,"🄃")
-			 .replace(/2\./gm,"⒉")
-			 .replace(/3\,/gm,"🄄")
-			 .replace(/3\./gm,"⒊")
-			 .replace(/4\,/gm,"🄅")
-			 .replace(/4\./gm,"⒋")
-			 .replace(/5\,/gm,"🄆")
-			 .replace(/5\./gm,"⒌")
-			 .replace(/6\,/gm,"🄇")
-			 .replace(/6\./gm,"⒍")
-			 .replace(/7\,/gm,"🄈")
-			 .replace(/7\./gm,"⒎")
-			 .replace(/8\,/gm,"🄉")
-			 .replace(/8\./gm,"⒏")
-			 .replace(/9\,/gm,"🄊")
-			 .replace(/9\./gm,"⒐")
-			 .replace(/0\,/gm,"🄁")
-			 .replace(/0\./gm,"🄀")
-			 .replace(/\.\.\./gm,"…")
-			 .replace(/\\\\/gm,"⳹")
-			 .replace(/\/\/\//gm,"⫻")
-			 .replace(/\<\<\</gm,"⋘")
-			 .replace(/\<\</gm,"≪")
-			 .replace(/\>\>\>/gm,"⋙")
-			 .replace(/\>\>/gm,"≫")
-			 .replace(/\/\//gm,"⫽")
-			 .replace(/\.\./gm,"‥")
-			 .replace(/···/gm,"⋯")
-			 .replace(/·,/gm,"ꓻ")
-			 .replace(/\(1\)/gm,"⑴")
-			 .replace(/\(10\)/gm,"⑽")
-			 .replace(/\(11\)/gm,"⑾")
-			 .replace(/\(12\)/gm,"⑿")
-			 .replace(/\(13\)/gm,"⒀")
-			 .replace(/\(14\)/gm,"⒁")
-			 .replace(/\(15\)/gm,"⒂")
-			 .replace(/\(16\)/gm,"⒃")
-			 .replace(/\(17\)/gm,"⒄")
-			 .replace(/\(18\)/gm,"⒅")
-			 .replace(/\(19\)/gm,"⒆")
-			 .replace(/\(20\)/gm,"⒇")
-			 .replace(/\(2\)/gm,"⑵")
-			 .replace(/\(3\)/gm,"⑶")
-			 .replace(/\(4\)/gm,"⑷")
-			 .replace(/\(5\)/gm,"⑸")
-			 .replace(/\(6\)/gm,"⑹")
-			 .replace(/\(7\)/gm,"⑺")
-			 .replace(/\(8\)/gm,"⑻")
-			 .replace(/\(9\)/gm,"⑼")
-			 .replace(/\(a\)/gm,"⒜")
-			 .replace(/\(A\)/gm,"🄐")
-			 .replace(/\(b\)/gm,"⒝")
-			 .replace(/\(B\)/gm,"🄑")
-			 .replace(/\(c\)/gm,"⒞")
-			 .replace(/\(C\)/gm,"🄒")
-			 .replace(/\(d\)/gm,"⒟")
-			 .replace(/\(D\)/gm,"🄓")
-			 .replace(/\(e\)/gm,"⒠")
-			 .replace(/\(E\)/gm,"🄔")
-			 .replace(/\(f\)/gm,"⒡")
-			 .replace(/\(F\)/gm,"🄕")
-			 .replace(/\(g\)/gm,"⒢")
-			 .replace(/\(G\)/gm,"🄖")
-			 .replace(/\(h\)/gm,"⒣")
-			 .replace(/\(H\)/gm,"🄗")
-			 .replace(/\(i\)/gm,"⒤")
-			 .replace(/\(I\)/gm,"🄘")
-			 .replace(/\(l\)/gm,"🄘")
-			 .replace(/\(j\)/gm,"⒥")
-			 .replace(/\(J\)/gm,"🄙")
-			 .replace(/\(k\)/gm,"⒦")
-			 .replace(/\(K\)/gm,"🄚")
-			 .replace(/\(L\)/gm,"🄛")
-			 .replace(/\(m\)/gm,"⒨")
-			 .replace(/\(M\)/gm,"🄜")
-			 .replace(/\(n\)/gm,"⒩")
-			 .replace(/\(N\)/gm,"🄝")
-			 .replace(/\(o\)/gm,"⒪")
-			 .replace(/\(O\)/gm,"🄞")
-			 .replace(/\(p\)/gm,"⒫")
-			 .replace(/\(P\)/gm,"🄟")
-			 .replace(/\(q\)/gm,"⒬")
-			 .replace(/\(Q\)/gm,"🄠")
-			 .replace(/\(r\)/gm,"⒭")
-			 .replace(/\(R\)/gm,"🄡")
-			 .replace(/\(s\)/gm,"⒮")
-			 .replace(/\(S\)/gm,"🄢")
-			 .replace(/\(t\)/gm,"⒯")
-			 .replace(/\(T\)/gm,"🄣")
-			 .replace(/\(u\)/gm,"⒰")
-			 .replace(/\(U\)/gm,"🄤")
-			 .replace(/\(v\)/gm,"⒱")
-			 .replace(/\(V\)/gm,"🄥")
-			 .replace(/\(w\)/gm,"⒲")
-			 .replace(/\(W\)/gm,"🄦")
-			 .replace(/\(x\)/gm,"⒳")
-			 .replace(/\(X\)/gm,"🄧")
-			 .replace(/\(y\)/gm,"⒴")
-			 .replace(/\(Y\)/gm,"🄨")
-			 .replace(/\(z\)/gm,"⒵")
-			 .replace(/\(Z\)/gm,"🄩")
-			 .replace(/\(-\)/gm,"㈠")
-			 .replace(/\'\'\'\'/gm,"⁗")
-			 .replace(/\'\'\'/gm,"‴")
-			 .replace(/\(\(/,"⸨")
-			 .replace(/\(ー\)/gm,"㈠")
-			 .replace(/11./gm,"⒒")
-			 .replace(/oo/gm,"ꝏ")
-			 .replace(/\'\'/gm,"\"")
-			 .replace(/OO/gm,"Ꝏ")
-			 .replace(/ls/gm,"ʪ")
-			 .replace(/lt/gm,"₶")
-			 .replace(/lz/gm,"ʫ")
-			 .replace(/III/gm,"Ⅲ")
-			 .replace(/lj/gm,"ǉ")
-			 .replace(/Lj/gm,"ǈ")
-			 .replace(/LJ/gm,"Ĳ")
-			 .replace(/IV/gm,"Ⅳ")
-			 .replace(/IX/gm,"Ⅸ")
-			 .replace(/II/gm,"‖")
-			 .replace(/ij/gm,"ĳ")
-			 .replace(/IJ/gm,"Ĳ")
-			 .replace(/iv/gm,"ⅳ")
-			 .replace(/ix/gm,"ⅸ")
-			 .replace(/dz/gm,"ǳ")
-			 .replace(/Dz/gm,"ǲ")
-			 .replace(/DZ/gm,"Ǳ")
-			 .replace(/ffl/gm,"ﬄ")
-			 .replace(/ffi/gm,"ﬃ")
-			 .replace(/ff/gm,"ﬀ")
-			 .replace(/fi/gm,"ﬁ")
-			 .replace(/fl/gm,"ﬂ")
-			 .replace(/aa/gm,"ꜳ")
-			 .replace(/AA/gm,"Ꜳ"));
-		});
-	//}
-
-}
-
 var rtbutton;
-
-function outtaSpaceSuggestions() {
-	if (!hasOutCache) {
-		hasOutCache = true;
-		rtbutton = $("button.js-retweet-button.is-disabled");
-	}
-	rtbutton.removeClass("is-disabled js-show-tip").attr("title","");
-
-	if ($(".character-count-compose").length > 0) {
-		if (parseInt($(".character-count-compose").val()) < 0) {
-
-			if ($(".mtd-out-of-space-suggestions").length <= 0) {
-
-				$(".js-media-added").append(
-					make("div")
-					.addClass("compose-media-bar-holder padding-al mtd-out-of-space-suggestions")
-					.html('<div class="compose-media-bar"><div class="mtd-no-chars-suggestions"><div class="txt weight-light txt-extra-large margin-b--10">Oops, you\'re over the character limit.</div>Here are suggestions to help:<br></div></div>')
-				).removeClass("is-hidden");
-
-				checkSpaceSuggestions();
-			} else {
-				$(".mtd-no-chars-suggestions>button").remove();
-				checkSpaceSuggestions();
-			}
-
-		} else if ($(".mtd-out-of-space-suggestions").length > 0 && parseInt($(".character-count-compose").val()) >= 0) {
-			$(".mtd-out-of-space-suggestions").remove();
-			$(".js-media-added").addClass("is-hidden");
-		}
-	}
-
-}
-
-function MTDAFCheckDate() {
-	var checkDate = new Date();
-
-
-	if (checkDate.getMonth() === 3 && checkDate.getDay() === 1) {
-		html.addClass("mtd_af_time");
-
-		if (!exists(document.querySelector("#mtd_af_mdl")) && (getPref("mtd_af_2019_seen") === false || !exists(getPref("mtd_af_2019_seen")))) {
-			$("#settings-modal").attr("style","display: block;").html('\
-				<div class="js-modal-panel mdl s-short" id="mtd_af_mdl" style="max-height:460px;right:0;margin-left:-290px;left:50%;top:50%;margin-top:-230px;"> <header style="background-image:linear-gradient(to right,#E53935,#FF5722,#FFC107,#4CAF50,#2196F3,#673AB7)!important" class="js-drag-handle padding-a--12 no-collapse mdl-header is-movable mdl-header-divider"> <h3 class="mdl-header-title" style="font-size:18px!important">ModernDeck New Feature: Fabulous Mode</h3>  </header> <div class="mdl-inner padding-a--10" style="line-height:28px">\
-				<p><b>At ModernDeck, we always strive to provide the best experience for our users.</b> Several years ago, ModernDeck had a basic Fabulous Mode, but we felt did not meet our quality standards, so it was removed. After many painstaking hours of engineering, we reimagined the entire Fabulous Mode experience for the year 2019, and we think you will like it!<br><br>We recommend trying the all-new Fabulous Mode in Light mode, although it is compatible with either.<br><br>Would you like to try out our fabulous new Fabulous Mode experience?<br><br><button class="btn" id="mtd_af_yes" style="display:inline-block;float:right;min-width:80px">Yes</button><button class="btn btn-negative" id="mtd_af_no" style="display:inline-block;float:right;min-width:80px">No</button></p>\
-				</div> </div>\
-			');
-
-			$("#mtd_af_no").click(function(){
-				$("#settings-modal").attr("style","display: none;");
-				setPref("mtd_af_2019_seen",true);
-				setTimeout(function(){
-					$("#mtd_af_mdl").remove();
-				},2000);
-			});
-
-			$("#mtd_af_yes").click(function(){
-				enableStylesheetExtension("AF_2019_fabulous");
-				setPref("mtd_theme","AF_2019_fabulous");
-
-				setPref("mtd_af_2019_seen",true);
-
-				$("#settings-modal").attr("style","display: none;");
-				setTimeout(function(){
-					$("#mtd_af_mdl").remove();
-				},2000);
-			});
-		}
-	}
-}
-
-// warning: for some reason this doesnt work if the console.logs arent there DONT ASK WH I DONT KNOW
 
 function checkIfSigninFormIsPresent() {
 	if ($(".app-signin-form").length > 0 || $("body>.js-app-loading.login-container:not([style])").length > 0) {
@@ -1508,12 +2105,9 @@ function checkIfSigninFormIsPresent() {
 		if (loginIntervalTick > 5) {
 			clearInterval(loginInterval);
 		}
-	}
-}
-
-function checkIfBTDIsInstalled() {
-	if (body.hasClass("btd-ready")) {
-		enableStylesheetExtension("btdsupport");
+	} else {
+		disableStylesheetExtension("loginpage");
+		html.removeClass("signin-sheet-now-present");
 	}
 }
 
@@ -1558,47 +2152,569 @@ function onElementAddedToDOM(e) {
 	}
 }
 
-function CoreInit() {
-	if (typeof Raven === "undefined" || typeof mR === "undefined") {
-		setTimeout(CoreInit,10);
-		console.log("waiting on raven or moduleRaid...");
+function roundMe(val) {
+	return Math.floor(val * 100)/100;
+}
+
+function formatBytes(val) {
+	if (val < 1000) {
+		return val + " bytes"
+	} else if (val < 1000000) {
+		return roundMe(val/1000) + " KB"
+	} else if (val < 1000000000) {
+		return roundMe(val/1000000) + " MB"
+	} else {
+		return roundMe(val/1000000000) + " GB"
+	}
+}
+
+function mtdAppUpdatePage(updateCont,updateh2,updateh3,updateIcon,updateSpinner,tryAgain,restartNow) {
+
+	const {ipcRenderer} = require('electron');
+
+	ipcRenderer.on("error",function(e,args,f,g){
+		console.log("E:");
+		console.log(e);
+		console.log("args:");
+		console.log(args);
+		console.log("f:");
+		console.log(f);
+		console.log("g:");
+		console.log(g);
+		updateh2.html("There was a problem checking for updates. ");
+		$(".mtd-update-spinner").addClass("hidden");
+		if (exists(args.code)) {
+			updateh3.html(args.code + " " + args.errno + " " + args.syscall + " " + args.path).removeClass("hidden");
+		} else if (exists(f)) {
+			updateh3.html(f.match(/^(Cannot check for updates: )(.)+\n/g)).removeClass("hidden")
+		} else {
+			updateh3.html("We couldn't interpret the error info we received. Please try again later or DM @ModernDeck on Twitter for further help.").removeClass("hidden");
+		}
+		updateIcon.html("error_outline").removeClass("hidden");
+		tryAgain.removeClass("hidden").html("Try Again");
+
+	});
+
+	ipcRenderer.on("checking-for-update",function(e,args){
+		console.log(args);
+		updateIcon.addClass("hidden");
+		$(".mtd-update-spinner").removeClass("hidden");
+		updateh2.html("Checking for updates...");
+		updateh3.addClass("hidden");
+		tryAgain.addClass("hidden");
+		restartNow.addClass("hidden");
+	});
+
+	ipcRenderer.on("download-progress",function(e,args){
+		console.log(args);
+		updateIcon.addClass("hidden");
+		$(".mtd-update-spinner").removeClass("hidden");
+		updateh2.html("Downloading update...");
+		updateh3.html(Math.floor(args.percent)+"% complete ("+formatBytes(args.transferred)+"/"+formatBytes(args.total)+", "+formatBytes(args.bytesPerSecond)+"/s)").removeClass("hidden");
+		tryAgain.addClass("hidden");
+		restartNow.addClass("hidden");
+	});
+
+
+	ipcRenderer.on("update-downloaded",function(e,args){
+		console.log(args);
+		$(".mtd-update-spinner").addClass("hidden");
+		updateIcon.html("update").removeClass("hidden");
+		updateh2.html("Update downloaded");
+		updateh3.html("Restart ModernDeck to complete the update").removeClass("hidden");
+		tryAgain.addClass("hidden");
+		restartNow.removeClass("hidden");
+	});
+
+
+	ipcRenderer.on("update-not-available",function(e,args){
+		console.log(args);
+		$(".mtd-update-spinner").addClass("hidden");
+		updateh2.html("You're up to date");
+		updateIcon.html("check_circle").removeClass("hidden");
+		updateh3.html(SystemVersion + " is the latest version.").removeClass("hidden");
+		tryAgain.removeClass("hidden").html("Check Again");
+		restartNow.addClass("hidden");
+	});
+
+	tryAgain.click(function(){
+		ipcRenderer.send('checkForUpdates');
+	})
+
+	restartNow.click(function(){
+		ipcRenderer.send('restartAndInstallUpdates');
+	});
+
+	ipcRenderer.send('checkForUpdates');
+}
+
+function notifyUpdate() {
+	let notifRoot = mR.findFunction("showErrorNotification")[0].showNotification({title:"ModernDeck Updates",timeoutDelayMs:999999999999999999});
+	let notifId = notifRoot._id;
+	let notif = $("li.Notification[data-id=\""+notifId+"\"]");
+	let notifContent = $("li.Notification[data-id=\""+notifId+"\"] .Notification-content");
+	let notifIcon = $("li.Notification[data-id=\""+notifId+"\"] .Notification-icon .Icon");
+
+	if (notif.length > 0) {
+		notifIcon.removeClass("Icon--notifications").addClass("mtd-icon-update");
+
+		notifContent.append(
+			make("p").html("We found and downloaded updates for ModernDeck."),
+			make("button").html("Relaunch Now").click(function(){
+				ipcRenderer.send('restartApp');
+			}),
+			make("button").html("Later").click(function(){
+				mR.findFunction("showErrorNotification")[0].removeNotification({notification:notif});
+			})
+		)
+	}
+}
+
+var offlineNotification;
+
+function notifyOffline() {
+	if (exists(offlineNotification)) {
+		return;
+	}
+	let notifRoot = mR.findFunction("showErrorNotification")[0].showNotification({title:"Internet Disconnected",timeoutDelayMs:999999999999999999});
+	let notifId = notifRoot._id;
+	offlineNotification = $("li.Notification[data-id=\""+notifId+"\"]");
+	let notifContent = $("li.Notification[data-id=\""+notifId+"\"] .Notification-content");
+	let notifIcon = $("li.Notification[data-id=\""+notifId+"\"] .Notification-icon .Icon");
+
+	if (offlineNotification.length > 0) {
+		notifIcon.removeClass("Icon--notifications").addClass("mtd-icon-disconnected");
+
+		notifContent.append(
+			make("p").html("We detected that you are disconnected from the internet. Many features are unavailable without an internet connection.")
+		)
+	}
+}
+
+function dismissOfflineNotification() {
+	if (!exists(offlineNotification)) {return;}
+	mR.findFunction("showErrorNotification")[0].removeNotification({notification:offlineNotification});
+}
+
+function mtdAppFunctions() {
+
+	if (typeof require === "undefined") {return;}
+
+	const { remote, ipcRenderer } = require('electron');
+
+	const Store = require('electron-store');
+	store = new Store({name:"mtdsettings"});
+
+
+	// Enable high contrast if system is set to high contrast
+
+	ipcRenderer.on("inverted-color-scheme-changed",function(e,enabled){
+		console.log("inverted colour scheme? "+enabled);
+		if (enabled && getPref("mtd_highcontrast") !== true) {
+			try {
+				settingsData.accessibility.options.highcont.activate.func();
+			} catch(e){}
+		}
+	});
+
+	ipcRenderer.on("disable-high-contrast",function(e){
+		console.error("DISABLING HIGH CONTRAST ");
+		try {
+			settingsData.accessibility.options.highcont.deactivate.func();
+		} catch(e){}
+	});
+
+
+		ipcRenderer.on("aboutMenu",function(e,args){
+			if ($(".mtd-settings-tab[data-action=\"about\"]").length > 0){
+				$(".mtd-settings-tab[data-action=\"about\"]").click();
+			} else {
+				openSettings("about");
+			}
+		});
+		ipcRenderer.on("openSettings",function(e,args){
+			openSettings();
+		});
+		ipcRenderer.on("accountsMan",function(e,args){
+			$(".js-show-drawer.js-header-action").click();
+		});
+		ipcRenderer.on("sendFeedback",function(e,args){
+			try {
+				throw "Manually triggered feedback button";
+			} catch(e) {
+				Raven.captureException(e);
+				Raven.showReportDialog();
+			}
+		});
+		ipcRenderer.on("msgModernDeck",function(e,args){
+			$(document).trigger("uiComposeTweet", {
+				type: "message",
+				messageRecipients: [{
+				screenName: "ModernDeck"
+			}]
+		})
+		});
+		ipcRenderer.on("newTweet",function(e,args){
+			$(document).trigger("uiComposeTweet");
+		});
+		ipcRenderer.on("newDM",function(e,args){
+			$(document).trigger("uiComposeTweet");
+			$(".js-dm-button").click();
+		});
+
+	if (html.hasClass("mtd-app")) {
+		var minimise = make("button")
+		.addClass("windowcontrol min")
+		.html("&#xE15B")
+		.click(function(data,handler){
+			var window = remote.BrowserWindow.getFocusedWindow();
+			window.minimize();
+		});
+
+		var maximise = make("button")
+		.addClass("windowcontrol max")
+		.html("&#xE3C6")
+		.click(function(data,handler){
+			var window = remote.BrowserWindow.getFocusedWindow();
+			if (window.isMaximized()) {
+				window.unmaximize();
+			} else {
+				window.maximize();
+			}
+		});
+
+		var close = make("button")
+		.addClass("windowcontrol close")
+		.html("&#xE5CD")
+		.click(function() {
+			window.close();
+		});
+
+
+		var windowcontrols = make("div")
+		.addClass("windowcontrols")
+		.append(minimise)
+		.append(maximise)
+		.append(close);
+
+		body.append(windowcontrols);
+	}
+
+	ipcRenderer.on('context-menu', (event, p) => {
+		const electron = require("electron")
+		var theMenu = buildContextMenu(p);
+		let menu = electron.remote.menu;
+		let Menu = electron.remote.Menu;
+
+		if (useNativeContextMenus) {
+			Menu.buildFromTemplate(theMenu).popup();
+			return;
+			//ipcRenderer.send('nativeContextMenu',theMenu);
+		}
+
+		if (exists(theMenu))
+			body.append(theMenu);
+	})
+
+	const updateOnlineStatus = function(){
+
+		if (!navigator.onLine) {
+			notifyOffline();
+		} else {
+			dismissOfflineNotification();
+		}
+
+	}
+
+	window.addEventListener('online',	updateOnlineStatus);
+	window.addEventListener('offline',	updateOnlineStatus);
+
+	updateOnlineStatus();
+}
+
+function getIpc() {
+	const {ipcRenderer} = require('electron');
+	return ipcRenderer;
+}
+
+contextMenuFunctions = {
+	cut:function(){
+		getIpc().send("cut");
+	},
+	copy:function(){
+		getIpc().send("copy");
+	},
+	paste:function(){
+		getIpc().send("paste");
+	},
+	undo:function(){
+		getIpc().send("undo");
+	},
+	redo:function(){
+		getIpc().send("redo");
+	},
+	selectAll:function(){
+		getIpc().send("selectAll");
+	},
+	delete:function(){
+		getIpc().send("delete");
+	},
+	openLink:function(e){
+		window.open(e);
+	},
+	copyLink:function(e){
+		const { clipboard } = require('electron');
+		clipboard.writeText(e);
+	},
+	openImage:function(e){
+		window.open(e);
+	},
+	copyImageURL:function(e){
+		const { clipboard } = require('electron');
+		clipboard.writeText(e);
+	},
+	copyImage:function(e){
+		getIpc().send("copyImage",e);
+	},
+	saveImage:function(e){
+		getIpc().send("saveImage",e);
+	},
+	inspectElement:function(e){
+		getIpc().send("inspectElement",e);
+	},
+	restartApp:function(e){
+		getIpc().send("restartApp",e);
+	},
+	newSettings:function(e){
+		openSettings();
+	}
+
+}
+
+function makeCMItem(p) {
+	if (useNativeContextMenus) {
+		let dataact = p.dataaction;
+		let data = p.data;
+		let nativemenu = { label:p.text, click(){console.log("yes, a click has occurred");contextMenuFunctions[dataact](data)}, enabled:p.enabled };
+		//nativemenu.click = ;
+		return nativemenu;
+	}
+	var a = make("a").attr("href","#").attr("data-action",p.dataaction).html(p.text).addClass("mtd-context-menu-item");
+	var li = make("li").addClass("is-selectable").append(a);
+
+	if (p.enabled === false) {
+		a.attr("disabled","disabled");
+	} else {
+		//a.click(contextMenuFunctions[p.dataaction]);
+
+		a.click(function(){
+			console.log("Performing action "+p.dataaction+"...");
+			if (p.mousex && p.mousey) {
+				document.elementFromPoint(p.mousex, p.mousey).focus();
+				console.log("Got proper info, keeping context (x="+p.mousex+",y="+p.mousey+")");
+				console.log();
+			}
+			contextMenuFunctions[p.dataaction](p.data);
+			clearContextMenu();
+		});
+	}
+
+	return li;
+}
+
+function clearContextMenu() {
+	var removeMenu = $(".mtd-context-menu")
+	removeMenu.addClass("mtd-dropdown-fade-out").on("animationend",function(){
+		removeMenu.remove();
+	});
+}
+
+function makeCMDivider() {
+	if (useNativeContextMenus) {
+		return {type:'separator'}
+	}
+	return make("div").addClass("drp-h-divider");
+}
+
+function buildContextMenu(p) {
+	var items = [];
+	var x=p.x;
+	var y=p.y;
+
+	const xOffset = 2;
+	const yOffset = 12;
+
+	if ($(".mtd-context-menu").length > 0) {
+		var removeMenu = $(".mtd-context-menu");
+		removeMenu.addClass("mtd-dropdown-fade-out");
+		removeMenu.on("animationend",function(){
+			removeMenu.remove();
+		})
+	}
+
+	if ($(document.elementFromPoint(x,y)).hasClass("mtd-context-menu-item")) {
+		return;
+	}
+		console.log(p);
+
+	if (p.isEditable || (exists(p.selectionText) && p.selectionText.length > 0)) {
+		if (p.isEditable) {
+			items.push(makeCMItem({mousex:x,mousey:y,dataaction:"undo",text:"Undo",enabled:p.editFlags.canUndo}));
+			items.push(makeCMItem({mousex:x,mousey:y,dataaction:"redo",text:"Redo",enabled:p.editFlags.canRedo}));
+			items.push(makeCMDivider());
+			items.push(makeCMItem({mousex:x,mousey:y,dataaction:"cut",text:"Cut",enabled:p.editFlags.canCut}));
+		}
+		items.push(makeCMItem({mousex:x,mousey:y,dataaction:"copy",text:"Copy",enabled:p.editFlags.canCopy}));
+		if (p.isEditable) {
+			items.push(makeCMItem({mousex:x,mousey:y,dataaction:"paste",text:"Paste",enabled:p.editFlags.canPaste}));
+			items.push(makeCMItem({mousex:x,mousey:y,dataaction:"selectAll",text:"Select All",enabled:p.editFlags.canSelectAll}));
+		}
+		items.push(makeCMDivider());
+	}
+
+	if (p.linkURL !== '' && p.linkURL !== "https://tweetdeck.twitter.com/#") {
+		items.push(makeCMItem({mousex:x,mousey:y,dataaction:"openLink",text:"Open link in browser",enabled:true,data:p.linkURL}));
+		items.push(makeCMItem({mousex:x,mousey:y,dataaction:"copyLink",text:"Copy link address",enabled:true,data:p.linkURL}));
+		items.push(makeCMDivider());
+	}
+
+	if (p.srcURL !== '') {
+		items.push(makeCMItem({mousex:x,mousey:y,dataaction:"openImage",text:"Open image in browser",enabled:true,data:p.srcURL}));
+		items.push(makeCMItem({mousex:x,mousey:y,dataaction:"copyImage",text:"Copy image",enabled:true,data:{x:x,y:y}}));
+		items.push(makeCMItem({mousex:x,mousey:y,dataaction:"saveImage",text:"Save image...",enabled:true,data:p.srcURL}));
+		items.push(makeCMItem({mousex:x,mousey:y,dataaction:"copyImageURL",text:"Copy image address",enabled:true,data:p.srcURL}));
+		items.push(makeCMDivider());
+	}
+	if (getPref("mtd_inspectElement")) {
+		items.push(makeCMItem({mousex:x,mousey:y,dataaction:"inspectElement",text:"Inspect element",enabled:true,data:{x:x,y:y}}));
+	}
+	//items.push(makeCMItem({mousex:x,mousey:y,dataaction:"newSettings",text:"Open Settings",enabled:true}));
+
+	if (useNativeContextMenus) {
+		return items;
+	}
+
+	var ul = make("ul");
+
+	for(var i = 0; i < items.length; i++){
+		ul.append(items[i]);
+	}
+
+
+	var menu = make("menu").addClass("mtd-context-menu dropdown-menu").append(ul).attr("style","opacity:0;animation:none;transition:none");
+
+
+	if (items.length > 0) {
+		setTimeout(function(){
+			console.log("x: "+x+" y: "+y+" menu.width(): "+ menu.width() +" menu.height(): "+ menu.height() +" $(document).width(): " + $(document).width() + " $(document).height(): " + $(document).height())
+
+			if (x+xOffset+menu.width() > $(document).width()){
+				console.log("you're too wide!");
+				x = $(document).width() - menu.width() - xOffset - xOffset;
+			}
+
+			if (y+yOffset+menu.height() > $(document).height()){
+				console.log("you're too tall!");
+				y = $(document).height() - menu.height();
+			}
+
+			menu.attr("style","left:"+(x+xOffset)+"px!important;top:"+(y+yOffset)+"px!important")
+
+
+		},20);
+	} else {
+		menu.addClass("hidden");
+	}
+
+	return menu;
+}
+
+function parseActions(a,opt) {
+	for (var key in a) {
+		console.log(key);
+		if (key === "enableStylesheet") {
+			enableStylesheetExtension(a[key]);
+		} else if (key === "disableStylesheet") {
+			disableStylesheetExtension(a[key]);
+		} else if (key === "htmlAddClass") {
+			if (!html.hasClass(a[key]))
+				html.addClass(a[key]);
+		} else if (key === "htmlRemoveClass") {
+			html.removeClass(a[key]);
+		} else if (key === "func" && typeof a[key] === "function") {
+			a[key](opt);
+		}
+	}
+}
+
+function coreInit() {
+	if (useRaven && typeof Raven === "undefined") {
+		setTimeout(coreInit,10);
+		console.info("waiting on raven...");
+		return;
+	}
+
+	if (typeof mR === "undefined") {
+		setTimeout(coreInit,10);
+		console.info("waiting on moduleRaid...");
 		return;
 	}
 
 	if (typeof $ === "undefined") {
-		console.log("yep, twitter broke it now.");
-		var jQuery = mR.findFunction('jQuery')[0];
+		try {
+			var jQuery = mR.findFunction('jQuery')[0];
 
-		window.$ = jQuery;
-		window.jQuery = jQuery;
-	} else {
-		console.log("okay, twitter hasn't broken it yet...");
+			window.$ = jQuery;
+			window.jQuery = jQuery;
+		} catch (e) {
+			console.error(e.message);
+			if (e.message === "No module constructors to search through!") {
+				forceAppUpdateOnlineStatus('offline');
+				return;
+			}
+		}
 	}
 
 	head = $(document.head);
 	body = $(document.body);
 	html = $(document.querySelector("html")); // Only 1 result; faster to find
 
-	Raven.config('https://92f593b102fb4c1ca010480faed582ae@sentry.io/242524', {
-	    release: SystemVersion
-	}).install();
+	if (isApp) {
+		mtdAppFunctions();
+		window.addEventListener('mousedown', function(e) {
+			clearContextMenu();
+		}, false);
+	}
 
+	if (useRaven) {
+		Raven.config('https://92f593b102fb4c1ca010480faed582ae@sentry.io/242524', {
+			release: SystemVersion
+		}).install();
 
-	setTimeout(Raven.context(MTDInit),10);
+		setTimeout(Raven.context(MTDInit),10);
 
-	Raven.context(function(){
-		window.addEventListener("keyup",KeyboardShortcutHandler,false);
-		html.addClass("mtd-api-ver-6-2 mtd-js-loaded");
-		mutationObserver(html[0],checkIfUserSelectedNewTheme,{attributes:true});
-		mutationObserver(body[0],checkIfBTDIsInstalled,{attributes:true});
+		Raven.context(function(){
+			window.addEventListener("keyup",keyboardShortcutHandler,false);
+			html.addClass("mtd-js-loaded");
+			mutationObserver(html[0],onElementAddedToDOM,{attributes:false,subtree:true,childList:true})
+
+			checkIfSigninFormIsPresent();
+			loginInterval = setInterval(checkIfSigninFormIsPresent,500);
+			console.info("MTDinject loaded");
+		});
+	} else {
+
+		MTDInit();
+
+		window.addEventListener("keyup",keyboardShortcutHandler,false);
+		html.addClass("mtd-js-loaded");
 		mutationObserver(html[0],onElementAddedToDOM,{attributes:false,subtree:true,childList:true})
 
-		checkIfUserSelectedNewTheme();
 		checkIfSigninFormIsPresent();
-		checkIfBTDIsInstalled();
 		loginInterval = setInterval(checkIfSigninFormIsPresent,500);
-		console.log("MTDinject loaded");
-	});
+		console.info("MTDinject loaded");
+	}
+
 }
 
-CoreInit();
+coreInit();

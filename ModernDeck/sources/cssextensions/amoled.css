@@ -1,153 +1,32 @@
-/*
-  amoled.css
-
-  Copyright (c) 2014-2019 Dangered Wolf
-  Released under the MIT Licence
-*/
-
-.mdl-column,
-.column-options .button-tray,
-.column-options,
-.facet-type,
-.application,
-.tooltip-inner,
-.dropdown-menu,
-.app-columns-container,
-.column-message,
-body[class=""],
-html.js,
-body,
-.mdl-header,
-.js-quote-tweet-holder .quoted-tweet,
-.app-content,
-.compose-media-bar-holder,
-optgroup,
-.edit-conversation-name,
-.popover,
-.drawer-header,
-.compose-reply-tweet,
-.compose-message-recipient-list,
-.compose-message-recipient-input-container,
-.compose-media-grid-holder,
-.drawer .compose-text-container,
-.status-message,
-.tweet-detail-wrapper .media-sensitive,
-.stream-item.is-actionable:not(.is-unread):hover,
-.tweet-detail-wrapper,
-.compose,
-.app-content.is-open .compose,
-.tweet-button.is-hidden,
-div.drawer[data-drawer="compose"],
-.dropdown-menu a[data-action]:active,
-.column,
-.column-scroller,
-.column-detail-level-2,
-.js-account-manager-container,
-.contributor-manager,
-.js-contributor-manager-container,
-.contributor-adder-block,
-.contributor-row,
-.mdl-header.js-mdl-header,
-.app-navigator .js-hide-drawer,
-.column:not(.is-new) .column-message,
-.column-header,
-.column-header-temp,
-.mtd-nav-drawer,
-.mdl:not(.med-fullpanel),
-.prf-meta,
-.med-fullpanel,
-.modal-content,
-.med-tweet,
-.mdl-column.l-column .search-input,
-.is-selected-tweet,
-.prf-follow-status,
-.typeahead,
-.media-sensitive
-{
-	background:#000!important
+:root{
+	--primaryColor:#000 !important;
+	--typeaheadBackgroundColor:#000 !important;
+	--tweetDetailWrapperColor:#000 !important;
+	--contextMenuDividerColor:#1c2225 !important;
+	--backdropColor:#000 !important;
+	--modalWindowColor:#000 !important;
+	--overlayBackgroundColor:rgba(0, 0, 0, 0.65) !important;
+	--defaultShadowColor:#344248 !important;
+	--navDrawerBackground:rgba(0,0,0,.4) !important;
+	--contextMenuShadow:#344248 !important;
+	--thickerShadow:#344248 !important;
+	--composeShadow:#344248 !important;
+	--columnShadow:rgba(17,17,17,0) !important;
+	--avatarHoverShadow:#5e6e75 !important;
+	--avatarActiveShadow:#506269 !important;
+	--genericDropShadow:#47575f !important;
+	--modalDropShadow:#344248 !important;
+	--genericBlackShadow:rgba(52, 66, 72, 0.25) !important;
+	--genericBlack15Shadow:rgba(52, 66, 72,.15) !important;
+	--genericDarkBlackShadow:rgba(52, 66, 72,.5) !important;
+	--genericLightBlackShadow:rgba(52, 66, 72,.1) !important;
 }
 
-option
-{
-  background:#000
+
+div.drawer[data-drawer="compose"],.hide-detail-view-inline .tweet-button:not(.js-hide-drawer) {
+	background:var(--primaryColor)!important
 }
 
-.is-new .column-header,
-.is-new .column-header-temp
-{
-	background:linear-gradient(#000,#0E4B50)!important
-}
-
-.mtd-nd-header-image,
-.prf-header
-{
-	background-color:#000!important
-}
-
-.stream-item.is-actionable:hover,
-.compose-text-container,
-.compose-reply-tweet,
-.med-tweet,
-.status-message,
-.column-message,
-.column-options,
-.quoted-tweet,
-.tweet-detail-wrapper,
-.dropdown-menu,
-.mdl-column.l-column .search-input,
-.is-selected-tweet,
-.prf-follow-status,
-.compose-media-bar-holder,
-.compose-message-recipient-input-container,
-.typeahead,
-.lst .s-selected
-{
-	box-shadow:0 2px 8px #344248!important
-}
-
-.column-content,
-.mtd-nav-divider,
-.tweet-detail .margin-tl.txt-small:before,
-.cmp-replyto,
-.column-background-fill
-{
-	border-right-color:transparent!important
-}
-
-.mtd-nav-drawer-background,
-.ovl,
-.overlay,
-.ModalOverlay
-{
-	background:rgba(0,0,0,.4)!important
-}
-
-.mtd-nav-drawer-background-hidden,
-.mdl-column.mdl-column-sml.l-column,
-.mdl.med-fullpanel,
-.mtd-nav-divider,
-.tweet-detail .margin-tl.txt-small:before,
-.cmp-replyto,
-.column-background-fill
-{
-	background:transparent!important
-}
-
-.compose .typeahead-item span.username {
-	color:#344248
-}
-
-.mdl:not(.med-fullpanel),.mtd-nav-drawer {
-	box-shadow:0 3px 16px #344248!important
-}
-
-.mdl.s-profile,
-.mtd-nav-drawer,
-.lst-launcher,
-.scroll-styled-v,
-.scroll-v,
-.scroll-styled-h,
-#lists-modal .mdl-content,
-.keyboard-shortcut-list-modal {
-	scrollbar-color:rgba(149,175,191,.5) #000!important;
+.media-size-large-height::after,.media-item.media-size-large::after {
+	background-image:linear-gradient(var(--primaryColor),rgba(0,0,0,0));
 }

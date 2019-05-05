@@ -1,46 +1,20 @@
 // MTDLoad.js
-// Copyright (c) 2019 Ryan Dolan (dangered wolf)
+// Copyright (c) 2019 dangered wolf
 
 "use strict";
-console.log("MTDLoad 6.0");
+console.log("MTDLoad 7.0");
 
 var isDev = true;
-var isApp = typeof require !== "undefined";
-var isChromium = typeof chrome !== "undefined"; // NOTE TO SELF: This probably triggers on Microsoft Edge but idk
-var isSafari = typeof safari !== "undefined";
-var isFirefox = !isChromium && !isSafari && !isApp;
+var isEdge = typeof MSGesture !== "undefined";
 var storage = {};
 var electron,app,BrowserWindow,mainWindow;
 
-if (isApp) {
-
-  electron = require('electron');
-  app = electron.app;
-  BrowserWindow = electron.BrowserWindow;
-
-  app.on('ready',function(){
-    mainWindow = new BrowserWindow({width: 1280, height: 720, autoHideMenuBar: true, frame:true});
-
-    mainWindow.loadURL('file://' + __dirname + '../../../index.html');
-
-    if (isDev) {
-      mainWindow.webContents.openDevTools();
-    }
-
-    //mainWindow.webContents.executeJavaScript("var links=document.querySelectorAll(\"link[title='dark'],link[title='light']\");for(i=0;i<links.length;i++){links[i].href=\"\"}");
-
-    mainWindow.on('closed', function() {
-      app.quit();
-    });
-  });
-}
+var browser = browser || chrome;
 
 function InjectDevStyles() {
-  console.log("*boops your nose* hey there developer :3");
-  console.log("boopstrapping moderndeck.css for extensibility");
-  console.log("don't forget to check that moderndeck.css is in manifest.json before shipping, you goof");
+  console.log("bootstrapping moderndeck.css for extensibility");
 
-  if (isFirefox) {
+  if (isEdge) {
     var links = document.querySelectorAll("link[title='dark'],link[title='light']");
 
     for (var i = 0; i < links.length; i++) {
@@ -50,21 +24,13 @@ function InjectDevStyles() {
 
   var injStyles = document.createElement("link");
   injStyles.rel = "stylesheet";
+  injStyles.href = browser.extension.getURL("sources/moderndeck.css");
 
-  if (isChromium && !isApp) {
-    injStyles.href = chrome.extension.getURL("sources/moderndeck.css");
-  } else if (isSafari) {
-    injStyles.href = safari.extension.baseURI + "sources/moderndeck.css";
-  } else if (isFirefox) {
-    injStyles.href = self.options.ffMTDURLExchange + "sources/moderndeck.css";
-  } else {
-    console.log('you done goofed')
-  }
 
   document.head.appendChild(injStyles);
 }
 
-if ((!isApp && typeof localStorage.mtd_stylesheet_dev_mode !== "undefined" && localStorage.mtd_stylesheet_dev_mode === "true") || isDev || isFirefox) {
+if ((typeof localStorage.mtd_stylesheet_dev_mode !== "undefined" && localStorage.mtd_stylesheet_dev_mode === "true") || isDev) {
   InjectDevStyles();
 }
 
@@ -87,23 +53,15 @@ function MTDURLExchange(url) {
   console.log("injected url exchange with id " + injurl.id);
 }
 
-if (isChromium) {
-  MTDURLExchange(chrome.extension.getURL(""));
-  InjectScript.src = chrome.extension.getURL("sources/MTDinject.js");
-} else if (isSafari) {
-  MTDURLExchange(safari.extension.baseURI + "/");
-  InjectScript.src = safari.extension.baseURI + "sources/MTDinject.js";
-} else {
-  MTDURLExchange(self.options.ffMTDURLExchange);
-  InjectScript.src = self.options.ffMTDURLExchange + "sources/MTDinject.js";
-}
+MTDURLExchange(browser.extension.getURL(""));
+InjectScript.src = browser.extension.getURL("sources/MTDinject.js");
 
 InjectScript.type = "text/javascript";
 document.head.appendChild(InjectScript);
 
-chrome.runtime.sendMessage("getStorage");
+browser.runtime.sendMessage("getStorage");
 
-chrome.runtime.onMessage.addListener(function(m) {
+browser.runtime.onMessage.addListener(function(m) {
   if (m.name == "sendStorage") {
     storage = m.storage;
   }
@@ -113,7 +71,7 @@ window.addEventListener("message", function(event) {
   if (event.source == window &&
       event.data.type) {
     if (event.data.type == "setStorage") {
-      chrome.runtime.sendMessage({"name": "setStorage", "content": event.data.message});
+      browser.runtime.sendMessage({"name": "setStorage", "content": event.data.message});
     }
     else if (event.data.type == "getStorage") {
       window.postMessage({

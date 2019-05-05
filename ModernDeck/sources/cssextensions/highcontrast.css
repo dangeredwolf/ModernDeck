@@ -1,10 +1,21 @@
+/*
+  highcontrast.css
+
+  Copyright (c) 2014-2019 Dangered Wolf
+  Released under the MIT Licence
+*/
+
 html {
     color:#fff;
 }
 
-.more-tweets-btn,.tooltip,.Tooltip,.dropdown-menu,.mdl:not(.med-fullpanel),.mtd-nav-drawer,.popover {
+.is-options-open .column-settings-link,.column-message,.column-options,.more-tweets-btn,.tooltip,.Tooltip,.dropdown-menu,.mdl:not(.med-fullpanel),.mtd-nav-drawer,.popover {
     background:#000;
     border:#54707f 2px solid
+}
+
+.is-options-open .column-settings-link {
+    border-bottom:0
 }
 
 html .mtd-nav-divider {
@@ -37,7 +48,7 @@ html .mdl:not(.med-fullpanel), html .mtd-nav-drawer {
 }
 
 input, textarea, select, .uneditable-input {
-    border-bottom-color:#fff
+    border-color: #fff;
 }
 
 
@@ -123,7 +134,8 @@ html .is-new .column-header, html .is-new .column-header-temp
     background:#000!important;
     color:#fff;
     box-shadow:none!important;
-    border-bottom:3px #54707f solid!important
+    border-bottom:3px #54707f solid!important;
+    border-radius: 0;
 }
 
 
@@ -160,14 +172,14 @@ html .ovl,
 html .overlay,
 html .ModalOverlay
 {
-    background:rgba(255,255,255,.2)!important
+    background:rgba(255,255,255,.5)!important
 }
 
 html .js-modal[style="display: none;"],html .mtd-nav-drawer-background.mtd-nav-drawer-background-hidden {
     background:rgba(255,255,255,0)!important
 }
 
-.tweet-text a {
+.column-content .accordion-panel a[rel="url noopener noreferrer"],.tweet-text a {
     color:#fff!important;
     text-decoration:underline!important;
     opacity:0.7!important
@@ -197,5 +209,19 @@ html .js-modal[style="display: none;"],html .mtd-nav-drawer-background.mtd-nav-d
 }
 
 .compose .spinner-button-container .Button--primary:not(.is-disabled) {
-    color:#fff!important 
+    color:#fff!important
+}
+
+.js-add-column:before {
+    font-weight:500;
+    font-size:32px;
+    margin-top:-8px
+}
+
+.mtd-context-menu a[disabled] {
+	opacity:0.5
+}
+
+.account-link, .account-link:hover, .account-link:focus, .mtd-about-title.list-placeholder, .cal, select, input, .txt-normal, .account-bio, .link-complex.block[rel="user"] {
+	color:#fff!important
 }
