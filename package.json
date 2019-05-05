@@ -22,7 +22,6 @@
 		"test": "electron-builder -mwl",
 		"release": "build"
 	},
-	
 	"build": {
 		"appId": "com.dangeredwolf.ModernDeck",
 		"win": {
