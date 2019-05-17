@@ -116,3 +116,7 @@ a .column-title-back .icon:after,.drawer-header:active .drawer-header-title .ico
 .mtd-settings-button {
 	background:#00CBE5!important
 }
+
+.mdl-btn-media {
+	color:var(--pureWhite)!important
+}

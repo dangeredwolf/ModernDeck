@@ -6265,12 +6265,20 @@ button.mtd-no-transform-case {
 }
 
 .mdl-btn-media {
-	padding-left:20px;
-	padding-right:20px
+	padding:10px 40px;
+	color:var(--rootWhiteColor)!important
 }
 
 .mdl-btn-media>i {
-	font-size:24px
+	font-size:40px
+}
+
+.mdl-media-prev>i:before {
+	content:"\e408"
+}
+
+.mdl-media-next>i:before {
+	content:"\e409"
 }
 
 .js-translate-call-to-action {
@@ -6735,6 +6743,10 @@ body>.message-banner[style="color:rgb(85, 85, 85); background-color:rgb(178, 213
 .quoted-tweet .tweet-avatar,.quoted-tweet .tweet-img {
 	height:20px;
 	width:20px
+}
+
+.quoted-tweet .tweet-img.item-img.obj-left {
+	display:none
 }
 
 .compose .quoted-tweet {

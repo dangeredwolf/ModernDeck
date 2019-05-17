@@ -162,11 +162,11 @@ function makeLoginWindow(url,teams) {
 		icon:__dirname+"ModernDeck/sources/favicon.ico",
 	});
 
-	loginWindow.on('closed', function() {
+	loginWindow.on('closed', () => {
 		loginWindow = null;
 	});
 
-	loginWindow.webContents.on("will-navigate", function(event, url) {
+	loginWindow.webContents.on("will-navigate", (event, url) => {
 		console.log(url);
 		const { shell } = electron;
 		if (url.indexOf("https://tweetdeck.twitter.com") >= 0 && !teams) {
@@ -195,7 +195,7 @@ function makeLoginWindow(url,teams) {
 		event.preventDefault();
 	});
 
-	loginWindow.webContents.on("did-navigate-in-page", function(event, url) {
+	loginWindow.webContents.on("did-navigate-in-page", (event, url) => {
 		console.log(url);
 		if (url.indexOf("https://tweetdeck.twitter.com") >= 0) {
 			mainWindow.loadURL(url);
@@ -207,6 +207,11 @@ function makeLoginWindow(url,teams) {
 			return;
 		}
 		loginWindow.loadURL(originalUrl);
+	});
+
+	loginWindow.webContents.on("new-window", (event, url) => {
+		const {shell} = electron;
+		shell.openExternal(url);
 	});
 
 	loginWindow.loadURL(url);
@@ -535,10 +540,12 @@ function makeWindow() {
 
 	mainWindow.webContents.on("will-navigate", function(event, url) {
 		const { shell } = electron;
+		console.log(url);
 		if (url.indexOf("https://tweetdeck.twitter.com") < 0) {
 			event.preventDefault();
 			console.log(url);
 			if (url.indexOf("https://twitter.com/login") >= 0 || url.indexOf("https://twitter.com/logout") >= 0) {
+				console.log("this is a login window! will-navigate");
 				event.newGuest = makeLoginWindow(url,false);
 			} else {
 				shell.openExternal(url);
@@ -549,9 +556,14 @@ function makeWindow() {
 	mainWindow.webContents.on("new-window", function(event, url) {
 		const { shell } = electron;
 		event.preventDefault();
+		console.log(url);
 
 		if (url.indexOf("https://twitter.com/teams/authorize") >= 0) {
-			event.newGuest =makeLoginWindow(url,true);
+			console.log("this is a login teams window! new-window");
+			event.newGuest = makeLoginWindow(url,true);
+		} else if (url.indexOf("https://twitter.com/login") >= 0 || url.indexOf("https://twitter.com/logout") >= 0) {
+			console.log("this is a login non-teams window! new-window");
+			event.newGuest = makeLoginWindow(url,false);
 		} else {
 			shell.openExternal(url);
 		}
