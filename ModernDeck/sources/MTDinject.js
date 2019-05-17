@@ -1060,7 +1060,7 @@ function enableStylesheetExtension(name) {
 function disableStylesheetExtension(name) {
 	if (!isStylesheetExtensionEnabled(name))
 		return;
-	
+
 	console.log(`disableStylesheetExtension("${name}")`);
 
 	$('head>link[href="' + MTDBaseURL + "sources/cssextensions/" + name + '.css"]').remove();
@@ -1432,10 +1432,10 @@ async function MTDInit() {
 		TD.config.debug_highlight_visible_chirps = true
 		TD.config.sync_period = 600
 		TD.config.force_touchdeck = true
-		TD.config.internal_build = true 
+		TD.config.internal_build = true
 		TD.config.help_configuration_overlay = true
 		TD.config.disable_metrics_error = true
-		TD.config.disable_metrics_event = true 
+		TD.config.disable_metrics_event = true
 
 		TD.controller.stats.setExperiments({
 			config: {
@@ -1559,77 +1559,77 @@ async function MTDInit() {
 				'<img src="{{#asset}}/global/backgrounds/spinner_large_white.gif{{/asset}}" alt="{{_i}}Loading…{{/i}}" />',
 				spinnerSmall
 			);
-	
+
 	if (typeof TD_mustaches["twitter_profile.mustache"] !== "undefined")
 		TD_mustaches["twitter_profile.mustache"] =
 			TD_mustaches["twitter_profile.mustache"].replace(
 				'<img src="{{#asset}}/global/backgrounds/spinner_large_white.gif{{/asset}}" alt="{{_i}}Loading…{{/i}}">',
 				spinnerSmall
 			);
-	
+
 	if (typeof TD_mustaches["follow_button.mustache"] !== "undefined")
 		TD_mustaches["follow_button.mustache"] =
 			TD_mustaches["follow_button.mustache"].replace(
 				'<img src="{{#asset}}/web/assets/global/backgrounds/spinner_small_trans.gif{{/asset}}" alt="{{_i}}Loading…{{/i}}"> ',
 				spinnerTiny
 			);
-	
+
 	if (typeof TD_mustaches["login/2fa_verification_code.mustache"] !== "undefined")
 		TD_mustaches["login/2fa_verification_code.mustache"] =
 			TD_mustaches["login/2fa_verification_code.mustache"].replace(
 				'<i class="js-spinner-button-active icon-center-16 spinner-button-icon-spinner"></i>',
-				buttonSpinner	
+				buttonSpinner
 			);
-	
+
 	if (typeof TD_mustaches["login/login_form_footer.mustache"] !== "undefined")
 		TD_mustaches["login/login_form_footer.mustache"] =
 			TD_mustaches["login/login_form_footer.mustache"].replace(
 				'<i class="js-spinner-button-active icon-center-16 spinner-button-icon-spinner"></i>',
 				buttonSpinner
 			);
-	
+
 	if (typeof TD_mustaches["compose/docked_compose.mustache"] !== "undefined")
 		TD_mustaches["compose/docked_compose.mustache"] =
 			TD_mustaches["compose/docked_compose.mustache"].replace(
 				'<i class="js-spinner-button-active icon-center-16 spinner-button-icon-spinner is-hidden"></i>',
 				buttonSpinner
 			);
-	
+
 	if (typeof TD_mustaches["compose/compose_inline_reply.mustache"] !== "undefined")
 		TD_mustaches["compose/compose_inline_reply.mustache"] =
 			TD_mustaches["compose/compose_inline_reply.mustache"].replace(
 				'<i class="js-spinner-button-active icon-center-16 spinner-button-icon-spinner is-hidden"></i>',
 				buttonSpinner
 			);
-	
+
 	if (typeof TD_mustaches["buttons/favorite.mustache"] !== "undefined")
 		TD_mustaches["buttons/favorite.mustache"] =
 			TD_mustaches["buttons/favorite.mustache"].replace(
 				'<span> <img src="{{#asset}}/global/backgrounds/spinner_small_trans.gif{{/asset}}" alt="{{_i}}Loading…{{/i}}"> </span>',
-				buttonSpinner	
+				buttonSpinner
 			);
-	
+
 	if (typeof TD_mustaches["embed_tweet.mustache"] !== "undefined")
 		TD_mustaches["embed_tweet.mustache"] =
 			TD_mustaches["embed_tweet.mustache"].replace(
 				'<img src="{{#asset}}/global/backgrounds/spinner_large_white.gif{{/asset}}" class="embed-loading" alt="{{_i}}Loading…{{/i}}" />',
 				spinnerSmall
 			);
-	
+
 	if (typeof TD_mustaches["follow_button.mustache"] !== "undefined")
 		TD_mustaches["follow_button.mustache"] =
 			TD_mustaches["follow_button.mustache"].replace(
 				'<span> <img src="{{#asset}}/global/backgrounds/spinner_small_trans.gif{{/asset}}" alt="{{_i}}Loading…{{/i}}"> </span>',
 				buttonSpinner
 			);
-	
+
 	if (typeof TD_mustaches["lists/member.mustache"] !== "undefined")
 		TD_mustaches["lists/member.mustache"] =
 			TD_mustaches["lists/member.mustache"].replace(
 				'<span> <img src="{{#asset}}/global/backgrounds/spinner_small_trans.gif{{/asset}}" alt="{{_i}}Loading…{{/i}}"> </span>',
 				buttonSpinner
 			);
-	
+
 	if (typeof TD_mustaches["keyboard_shortcut_list.mustache"] !== "undefined")
 		TD_mustaches["keyboard_shortcut_list.mustache"] =
 			TD_mustaches["keyboard_shortcut_list.mustache"].replace(
@@ -1677,7 +1677,7 @@ function startUpdateGoodLoginText() {
 	if (ugltStarted) {
 		return;
 	}
-	
+
 	ugltStarted = true;
 
 
@@ -1772,7 +1772,7 @@ function openSettings(openMenu) {
 		if (!settingsData[key].enum && settingsData[key].enabled !== false) {
 
 			for (let prefKey in settingsData[key].options) {
-			
+
 				let pref = settingsData[key].options[prefKey];
 				let option = make("div").addClass("mtd-settings-option").addClass("mtd-settings-option-"+pref.type);
 
@@ -2795,7 +2795,7 @@ function buildContextMenu(p) {
 	if ($(document.elementFromPoint(x,y)).hasClass("mtd-context-menu-item")) {
 		return;
 	}
-	
+
 	console.log(p);
 
 	if (p.isEditable || (exists(p.selectionText) && p.selectionText.length > 0)) {
@@ -2930,7 +2930,7 @@ function coreInit() {
 	}
 
 	mR.findFunction("Theme not found")[0].default._themes[undefined] = mR.findFunction("Theme not found")[0].default._themes["dark"];
-							
+
 
 	head = $(document.head);
 	body = $(document.body);
