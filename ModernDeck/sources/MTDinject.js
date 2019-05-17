@@ -5,83 +5,221 @@
 
 "use strict";
 
-var SystemVersion = "7.0";
-var MTDBaseURL = "https://rawgit.com/dangeredwolf/ModernDeck/stable/ModernDeck/"; // Defaults to streaming if MTDURLExchange isn't completed properly
+const SystemVersion = "7.1";
 
-//var MTDBaseURL = "https://ton.twimg.com/tweetdeck-deb/web/dist/"
+let MTDBaseURL = "https://rawgit.com/dangeredwolf/ModernDeck/stable/ModernDeck/"; // Defaults to streaming if MTDURLExchange isn't completed properly
 
-var msgID,
-FetchProfileInfo,
-loginIntervalTick = 0;
-
-var contextMenuNum = 0;
+let msgID = 0;
+let FetchProfileInfo = 0;
+let loginIntervalTick = 0;
+let contextMenuNum = 0;
 
 const forceFeatureFlags = false;
 
-var messagesAccounted = [];
+let messagesAccounted = [];
 
-var MTDDark = true;
+let MTDDark = true;
 
-const forceAppx = false;
-// https://github.com/electron/electron/issues/18161
+const forceAppx = false; // https://github.com/electron/electron/issues/18161
 
-var addedColumnsLoadingTagAndIsWaiting,
-replacedLoadingSpinnerNew,
-loadedPreferences,
-wasTweetSheetOpen,
-profileProblem,
-sendingFeedback,
-hasOutCache,
-TreatGeckoWithCare = false;
+const useRaven = false;
 
-const useRaven = true;
+let newLoginPage =
+'<div class="app-signin-wrap mtd-signin-wrap">\
+	<div class="js-signin-ui app-signin-form pin-top pin-right txt-weight-normal">\
+		<section class="js-login-form form-login startflow-panel-rounded" data-auth-type="twitter">\
+			<h2 class="form-legend padding-axl">\
+				Good evening!\
+			</h2>\
+			<h3 class="form-legend padding-axl">\
+				Welcome to ModernDeck\
+			</h3>\
+			<i class="icon icon-moderndeck"></i>\
+			<div class="margin-a--16">\
+				<div class="js-login-error form-message form-error-message error txt-center padding-al margin-bxl is-hidden">\
+					<p class="js-login-error-message">\
+						An unexpected error occurred. Please try again later.\
+					</p>\
+				</div>\
+				<a href="https://twitter.com/login?hide_message=true&amp;redirect_after_login=https%3A%2F%2Ftweetdeck.twitter.com%2F%3Fvia_twitter_login%3Dtrue" class="Button Button--primary block txt-size--18 txt-center btn-positive">\
+					Sign in with Twitter\
+				</a>\
+				<div class="divider-bar"></div>\
+			</section>\
+		</div>\
+	</div>\
+</div>';
+
+
+let spinnerSmall =
+'<div class="preloader-wrapper active">\
+	<div class="spinner-layer small">\
+		<div class="circle-clipper left">\
+			<div class="circle"></div>\
+		</div>\
+		<div class="gap-patch">\
+			<div class="circle"></div>\
+		</div>\
+		<div class="circle-clipper right">\
+			<div class="circle"></div>\
+		</div>\
+	</div>\
+</div>';
+
+let spinnerLarge =
+'<div class="preloader-wrapper active">\
+	<div class="spinner-layer">\
+		<div class="circle-clipper left">\
+			<div class="circle"></div>\
+		</div>\
+		<div class="gap-patch">\
+			<div class="circle"></div>\
+		</div>\
+		<div class="circle-clipper right">\
+			<div class="circle"></div>\
+		</div>\
+	</div>\
+</div>';
+
+let spinnerTiny =
+'<div class="preloader-wrapper active">\
+	<div class="spinner-layer tiny">\
+		<div class="circle-clipper left">\
+			<div class="circle"></div>\
+		</div>\
+		<div class="gap-patch">\
+			<div class="circle"></div>\
+		</div>\
+		<div class="circle-clipper right">\
+			<div class="circle"></div>\
+		</div>\
+	</div>\
+</div>';
+
+let buttonSpinner =
+'<div class="js-spinner-button-active icon-center-16 spinner-button-icon-spinner preloader-wrapper active tiny">\
+	<div class="spinner-layer small">\
+		<div class="circle-clipper left">\
+			<div class="circle"></div>\
+		</div>\
+		<div class="gap-patch">\
+			<div class="circle"></div>\
+		</div>\
+		<div class="circle-clipper right">\
+			<div class="circle"></div>\
+		</div>\
+	</div>\
+</div>';
+
+
+let replacedLoadingSpinnerNew = false;
+let sendingFeedback = false;
+
 let ugltStarted = false;
+let useNativeContextMenus = true;
+let isDev = true;
+let debugStorageSys = true;
 
-var progress = null;
-
-var useNativeContextMenus = true;
-
-var isDev = false;
-
-var debugStorageSys = true;
-
-var useAppStore;
 let store;
+let loginInterval;
+let offlineNotification;
 
-var FindProfButton,
-loginInterval,
-openModal;
+const make = function(a) {
+	return $(document.createElement(a));
+}
 
-var isOpera = typeof opera !== "undefined";
-var isSafari = typeof safari !== "undefined";
-var isEdge = typeof MSGesture !== "undefined";
-var isFirefox = typeof mozInnerScreenX !== "undefined";
-var isApp = typeof require !== "undefined";
-var isChrome = typeof chrome !== "undefined" && !isEdge && !isFirefox; // may also return true on chromium-based browsers like opera, edge chromium, and electron
-var isWin = navigator.userAgent.indexOf("Windows NT") > -1;
-var isMac = navigator.userAgent.indexOf("Mac OS X") > -1;
-var ctrlShiftText = isMac ? "⌃⇧" : "Ctrl+Shift+";
+// shorthand function to return true if something exists and false otherwise
 
-var injectedFonts = false;
+const exists = function(thing) {
+	return ((typeof thing === "object" && thing !== null && thing.length > 0) || !!thing === true || (typeof thing === "string") || (typeof thing === "number"));
+}
 
-var make = function(a){return $(document.createElement(a))};
-var head,body,html = undefined;
+const isOpera = typeof opera !== "undefined";
+const isSafari = typeof safari !== "undefined";
+const isEdge = typeof MSGesture !== "undefined";
+const isFirefox = typeof mozInnerScreenX !== "undefined";
+const isApp = typeof require !== "undefined";
 
-var MTDStorage = {};
+// may also return true on chromium-based browsers like opera, edge chromium, and electron
+const isChrome = typeof chrome !== "undefined" && !isEdge && !isFirefox;
 
-var contextMenuFunctions;
+// user agent hacks make me sad but im lazy
+const isWin = navigator.userAgent.indexOf("Windows NT") > -1;
+const isMac = navigator.userAgent.indexOf("Mac OS X") > -1;
 
-var newLoginPage = '<div class="app-signin-wrap mtd-signin-wrap"><div class="js-signin-ui app-signin-form pin-top pin-right txt-weight-normal"><section class="js-login-form form-login startflow-panel-rounded"data-auth-type="twitter"><h2 class="form-legend padding-axl">Good evening!</h2><h3 class="form-legend padding-axl">Welcome to ModernDeck</h3><i class="icon icon-moderndeck"></i><div class="margin-a--16"><div class="js-login-error form-message form-error-message error txt-center padding-al margin-bxl is-hidden"><p class="js-login-error-message">An unexpected error occurred. Please try again later.</p></div><a href="https://twitter.com/login?hide_message=true&amp;redirect_after_login=https%3A%2F%2Ftweetdeck.twitter.com%2F%3Fvia_twitter_login%3Dtrue" class="Button Button--primary block txt-size--18 txt-center btn-positive">Sign in with Twitter</a><div class="divider-bar"></div></section></div></div></div>';
+const ctrlShiftText = isMac ? "⌃⇧" : "Ctrl+Shift+";
+
+let injectedFonts = false;
+
+let head = undefined;
+let body = undefined;
+let html = undefined;
+
+let MTDStorage = {};
+
+let contextMenuFunctions = {
+	cut: () => {
+		getIpc().send("cut");
+	},
+	copy: () => {
+		getIpc().send("copy");
+	},
+	paste: () => {
+		getIpc().send("paste");
+	},
+	undo: () => {
+		getIpc().send("undo");
+	},
+	redo: () => {
+		getIpc().send("redo");
+	},
+	selectAll: () => {
+		getIpc().send("selectAll");
+	},
+	delete: () => {
+		getIpc().send("delete");
+	},
+	openLink: (e) => {
+		window.open(e);
+	},
+	copyLink: (e) => {
+		const { clipboard } = require('electron');
+		clipboard.writeText(e);
+	},
+	openImage: (e) => {
+		window.open(e);
+	},
+	copyImageURL: (e) => {
+		const { clipboard } = require('electron');
+		clipboard.writeText(e);
+	},
+	copyImage: (e) => {
+		getIpc().send("copyImage",e);
+	},
+	saveImage: (e) => {
+		getIpc().send("saveImage",e);
+	},
+	inspectElement: (e) => {
+		getIpc().send("inspectElement",e);
+	},
+	restartApp: (e) => {
+		getIpc().send("restartApp",e);
+	},
+	newSettings: (e) => {
+		openSettings();
+	}
+
+};
 
 let mtdStarted = new Date();
 
-if (mtdStarted.getHours() < 12) {
+if (mtdStarted.getHours() < 12) { // 12:00 / 12:00pm
 	newLoginPage = newLoginPage.replace("Good evening","Good morning");
-} else if (mtdStarted.getHours() < 18) {
+} else if (mtdStarted.getHours() < 18) { // 18:00 / 6:00pm
 	newLoginPage = newLoginPage.replace("Good evening","Good afternoon");
 }
 
-var settingsData = {
+let settingsData = {
 	themes: {
 		tabName:"Themes",
 		tabId:"themes",
@@ -91,13 +229,16 @@ var settingsData = {
 				title:"Core Theme",
 				type:"dropdown",
 				activate:{
-					func:function(opt){
-						console.log("ACTIVATE FUNC");
-						console.log(opt);
+					func: (opt) => {
+
+						if (typeof opt === "undefined" || opt === "undefined") {
+							console.error("Attempt to pass undefined for mtd_core_theme. This will break TweetDeck across platforms. Something has to be wrong");
+							TD.settings.setTheme("dark");
+							return;
+						}
+
 						disableStylesheetExtension("dark");
 						disableStylesheetExtension("light");
-
-						var opt = opt;
 
 						if (hasPref("mtd_highcontrast") && getPref("mtd_highcontrast") === true) {
 							opt = "dark";
@@ -126,7 +267,7 @@ var settingsData = {
 					dark:{value:"dark",text:"Dark"},
 					light:{value:"light",text:"Light"}
 				},
-				queryFunction:function(){
+				queryFunction: () => {
 					console.log(TD.settings.getTheme());
 					html.addClass(TD.settings.getTheme());
 					return TD.settings.getTheme()
@@ -138,7 +279,7 @@ var settingsData = {
 				title:"Custom Theme",
 				type:"dropdown",
 				activate:{
-					func:function(opt){
+					func: (opt) => {
 
 						if (getPref("mtd_highcontrast") === true) {
 							return;
@@ -151,7 +292,6 @@ var settingsData = {
 						disableStylesheetExtension(getPref("mtd_theme"));
 						setPref("mtd_theme",opt);
 						enableStylesheetExtension(opt || "default");
-						var opt = opt;
 
 						if (opt === "amoled" && TD.settings.getTheme() === "light") {
 							console.log("theme is light, opt is amoled");
@@ -211,7 +351,7 @@ var settingsData = {
 				settingsKey:"mtd_theme",
 				default:"default"
 			}, customCss:{
-				title:"Custom CSS ("+ctrlShiftText+"C disables it in case something went wrong)",
+				title:`Custom CSS (${ctrlShiftText}C disables it in case something went wrong)`,
 				type:"textarea",
 				placeholder:":root {\n"+
 				"	--retweetColor:red;\n"+
@@ -221,11 +361,9 @@ var settingsData = {
 				"	text-decoration:underline\n"+
 				"}",
 				activate:{
-					func:function(opt){
-
+					func: (opt) => {
 						setPref("mtd_customcss",opt);
 						enableCustomStylesheetExtension("customcss",opt);
-
 					}
 				},
 				settingsKey:"mtd_customcss",
@@ -262,6 +400,18 @@ var settingsData = {
 				settingsKey:"mtd_undockednavdrawer",
 				default:false
 			},
+			fixedarrows:{
+				title:"Use fixed-location media arrows for tweets with multiple photos",
+				type:"checkbox",
+				activate:{
+					enableStylesheet:"fixedarrows"
+				},
+				deactivate:{
+					disableStylesheet:"fixedarrows"
+				},
+				settingsKey:"mtd_fixedarrows",
+				default:false
+			},
 			nonewtweetsbutton:{
 				title:"Enable \"New Tweets\" indicator",
 				type:"checkbox",
@@ -278,7 +428,7 @@ var settingsData = {
 				title:"Scrollbar Style",
 				type:"dropdown",
 				activate:{
-					func:function(opt){
+					func: (opt) => {
 						disableStylesheetExtension(getPref("mtd_scrollbar_style"));
 						setPref("mtd_scrollbar_style",opt);
 						enableStylesheetExtension(opt || "default");
@@ -296,10 +446,10 @@ var settingsData = {
 				title:"Column width",
 				type:"slider",
 				activate:{
-					func:function(opt){
+					func: (opt) => {
 						console.log(opt);
 						setPref("mtd_columnwidth",opt);
-						enableCustomStylesheetExtension("columnwidth",":root{--columnSize:"+opt+"px!important}");
+						enableCustomStylesheetExtension("columnwidth",`:root{--columnSize:${opt}px!important}`);
 					}
 				},
 				minimum:275,
@@ -312,10 +462,10 @@ var settingsData = {
 				title:"Font Size",
 				type:"slider",
 				activate:{
-					func:function(opt){
+					func: (opt) => {
 						console.log(opt);
 						setPref("mtd_fontsize",opt);
-						enableCustomStylesheetExtension("fontsize","html{font-size:"+((opt/100)*16)+"px!important}");
+						enableCustomStylesheetExtension("fontsize",`html{font-size:${(opt/100)*16}px!important}`);
 					}
 				},
 				minimum:75,
@@ -341,14 +491,15 @@ var settingsData = {
 				title:"Profile picture size",
 				type:"slider",
 				activate:{
-					func:function(opt){
+					func: (opt) => {
 						console.log(opt);
 						//setPref("mtd_avatarsize",opt);
-						enableCustomStylesheetExtension("avatarsize",":root{--avatarSize:"+opt+"px!important}");
+						enableCustomStylesheetExtension("avatarsize",`:root{--avatarSize:${opt}px!important}`);
 					}
 				},
 				minimum:24,
 				maximum:64,
+				// Maybe we'll enable this at some point, but currently difficult graphical bugs break it
 				enabled:false,
 				settingsKey:"mtd_avatarsize",
 				displayUnit:"px",
@@ -382,16 +533,16 @@ var settingsData = {
 				title:"Display media that may contain sensitive content",
 				type:"checkbox",
 				activate:{
-					func:function(){
+					func: () => {
 						TD.settings.setDisplaySensitiveMedia(true);
 					}
 				},
 				deactivate:{
-					func:function(){
+					func: () => {
 						TD.settings.setDisplaySensitiveMedia(false);
 					}
 				},
-				queryFunction:function(){
+				queryFunction: () => {
 					return TD.settings.getDisplaySensitiveMedia();
 				}
 			},
@@ -421,7 +572,7 @@ var settingsData = {
 			},
 			accoutline:{
 				headerBefore:"Accessibility",
-				title:"Always show outlines around focused items ("+ctrlShiftText+"A to toggle)",
+				title:`Always show outlines around focused items (${ctrlShiftText}A to toggle)`,
 				type:"checkbox",
 				activate:{
 					htmlAddClass:"mtd-acc-focus-ring"
@@ -433,10 +584,10 @@ var settingsData = {
 				default:false
 			},
 			highcont:{
-				title:"Enable High Contrast theme ("+ctrlShiftText+"H to toggle)",
+				title:`Enable High Contrast theme (${ctrlShiftText}H to toggle)`,
 				type:"checkbox",
 				activate:{
-					func:function(opt){
+					func: (opt) => {
 						if (TD.settings.getTheme() === "light") {
 							TD.settings.setTheme("dark");
 							disableStylesheetExtension("light");
@@ -450,7 +601,7 @@ var settingsData = {
 					}
 				},
 				deactivate:{
-					func:function(opt){
+					func: (opt) => {
 						setPref("mtd_highcontrast",false);
 						disableStylesheetExtension("highcontrast");
 					}
@@ -468,16 +619,16 @@ var settingsData = {
 				title:"Stream Tweets in realtime",
 				type:"checkbox",
 				activate:{
-					func:function(){
+					func: () => {
 						TD.settings.setUseStream(true);
 					}
 				},
 				deactivate:{
-					func:function(){
+					func: () => {
 						TD.settings.setUseStream(false);
 					}
 				},
-				queryFunction:function(){
+				queryFunction: () => {
 					return TD.settings.getUseStream();
 				}
 			},
@@ -485,16 +636,16 @@ var settingsData = {
 				title:"Automatically play GIFs",
 				type:"checkbox",
 				activate:{
-					func:function(){
+					func: () => {
 						TD.settings.setAutoPlayGifs(true);
 					}
 				},
 				deactivate:{
-					func:function(){
+					func: () => {
 						TD.settings.setAutoPlayGifs(false);
 					}
 				},
-				queryFunction:function(){
+				queryFunction: () => {
 					return TD.settings.getAutoPlayGifs();
 				}
 			},
@@ -502,16 +653,16 @@ var settingsData = {
 				title:"Show notifications on startup",
 				type:"checkbox",
 				activate:{
-					func:function(){
+					func: () => {
 						TD.settings.setShowStartupNotifications(true);
 					}
 				},
 				deactivate:{
-					func:function(){
+					func: () => {
 						TD.settings.setShowStartupNotifications(false);
 					}
 				},
-				queryFunction:function(){
+				queryFunction: () => {
 					return TD.settings.getShowStartupNotifications();
 				}
 			},
@@ -520,7 +671,7 @@ var settingsData = {
 				title:"Link Shortener Service",
 				type:"dropdown",
 				activate:{
-					func:function(set){
+					func: set => {
 						if (shortener === "twitter") {
 							$("bitlyUsername").addClass("hidden");
 							$("bitlyApiKey").addClass("hidden");
@@ -531,8 +682,8 @@ var settingsData = {
 						TD.settings.setLinkShortener(set);
 					}
 				},
-				queryFunction:function(){
-					var shortener = TD.settings.getLinkShortener();
+				queryFunction: () => {
+					let shortener = TD.settings.getLinkShortener();
 					if (shortener === "twitter") {
 						$("bitlyUsername").addClass("hidden");
 						$("bitlyApiKey").addClass("hidden");
@@ -551,14 +702,14 @@ var settingsData = {
 				title:"Bit.ly Username",
 				type:"textbox",
 				activate:{
-					func:function(set){
+					func: set => {
 						TD.settings.setBitlyAccount({
 							apiKey:((TD.settings.getBitlyAccount() && TD.settings.getBitlyAccount().apiKey) ? TD.settings.getBitlyAccount() : {apiKey:""}).login,
 							login:set
 						})
 					}
 				},
-				queryFunction:function(){
+				queryFunction: () => {
 					return ((TD.settings.getBitlyAccount() && TD.settings.getBitlyAccount().login) ? TD.settings.getBitlyAccount() : {login:""}).login;
 				}
 			},
@@ -567,14 +718,14 @@ var settingsData = {
 				type:"textbox",
 				addClass:"mtd-big-text-box",
 				activate:{
-					func:function(set){
+					func: set => {
 						TD.settings.setBitlyAccount({
 							login:((TD.settings.getBitlyAccount() && TD.settings.getBitlyAccount().login) ? TD.settings.getBitlyAccount() : {login:""}).login,
 							apiKey:set
 						});
 					}
 				},
-				queryFunction:function(){
+				queryFunction: () => {
 					return ((TD.settings.getBitlyAccount() && TD.settings.getBitlyAccount().apiKey) ? TD.settings.getBitlyAccount() : {apiKey:""}).apiKey;
 				}
 			}
@@ -594,7 +745,7 @@ var settingsData = {
 				title:"Use native OS titlebar (restarts ModernDeck)",
 				type:"checkbox",
 				activate:{
-					func:function(){
+					func: () => {
 						if (!exists($(".mtd-settings-panel")[0])) {
 							return;
 						}
@@ -607,7 +758,7 @@ var settingsData = {
 					}
 				},
 				deactivate:{
-					func:function(){
+					func: () => {
 						if (!exists($(".mtd-settings-panel")[0])) {
 							return;
 						}
@@ -626,12 +777,12 @@ var settingsData = {
 				title:"Show Inspect Element in context menus",
 				type:"checkbox",
 				activate:{
-					func:function(){
+					func: () => {
 						setPref("mtd_inspectElement",true);
 					}
 				},
 				deactivate:{
-					func:function(){
+					func: () => {
 						setPref("mtd_inspectElement",false);
 					}
 				},
@@ -642,13 +793,13 @@ var settingsData = {
 				title:"Use OS native context menus",
 				type:"checkbox",
 				activate:{
-					func:function(){
+					func: () => {
 						setPref("mtd_nativecontextmenus",true);
 						useNativeContextMenus = true;
 					}
 				},
 				deactivate:{
-					func:function(){
+					func: () => {
 						setPref("mtd_nativecontextmenus",false);
 						useNativeContextMenus = false;
 					}
@@ -659,13 +810,13 @@ var settingsData = {
 				title:"App update channel",
 				type:"dropdown",
 				activate:{
-					func:function(opt){
+					func: (opt) => {
 						if (!isApp) {
 							return;
 						}
 						setPref("mtd_updatechannel",opt);
 
-						setTimeout(function(){
+						setTimeout(() => {
 							const {ipcRenderer} = require('electron');
 							if (!!ipcRenderer)
 								ipcRenderer.send("changeChannel", opt);
@@ -689,7 +840,7 @@ var settingsData = {
 				label:"<i class=\"icon material-icon mtd-icon-very-large\">restore</i><b>Reset settings</b><br>If you want to reset ModernDeck to default settings, you can do so here. This will restart ModernDeck.",
 				type:"button",
 				activate:{
-					func:function(){
+					func: () => {
 						purgePrefs();
 
 						if (isApp) {
@@ -707,7 +858,7 @@ var settingsData = {
 				label:"<i class=\"icon material-icon mtd-icon-very-large\">delete_forever</i><b>Clear data</b><br>This option clears all caches and preferences. This option will log you out.",
 				type:"button",
 				activate:{
-					func:function(){
+					func: () => {
 						if (isApp) {
 							const {ipcRenderer} = require('electron');
 
@@ -723,26 +874,24 @@ var settingsData = {
 				label:"<i class=\"icon material-icon mtd-icon-very-large\">save_alt</i><b>Save backup</b><br>Saves your preferences to a file to be loaded later.",
 				type:"button",
 				activate:{
-					func:function(){
+					func: () => {
 						const app = require("electron").remote;
-   						const dialog = app.dialog;
+						const dialog = app.dialog;
 						const fs = require("fs");
 						const {ipcRenderer} = require('electron');
 
-						var file = "ModernDeck Preferences";
-
-						var preferences = JSON.stringify(store.store);
+						let preferences = JSON.stringify(store.store);
 
 						dialog.showSaveDialog(
 						{
 							title: "ModernDeck Preferences",
 							filters: [{ name: "Preferences JSON File", extensions: ["json"] }]
 						},
-						function(file) {
+						(file) => {
 							if (file === undefined) {
 								return;
 							}
-							fs.writeFile(file, preferences, function(e){});
+							fs.writeFile(file, preferences, (e) => {});
 						}
 					);
 					}
@@ -755,20 +904,20 @@ var settingsData = {
 				label:"<i class=\"icon material-icon mtd-icon-very-large\">refresh</i><b>Load backup</b><br>Loads your preferences that you have saved previously. This will restart ModernDeck.",
 				type:"button",
 				activate:{
-					func:function(){
+					func: () => {
 						const app = require("electron").remote;
-   						const dialog = app.dialog;
+						const dialog = app.dialog;
 						const fs = require("fs");
 						const {ipcRenderer} = require('electron');
 
 						dialog.showOpenDialog(
 							{ filters: [{ name: "Preferences JSON File", extensions: ["json"] }] },
-							function(file) {
+							(file) => {
 								if (file === undefined) {
 									return;
 								}
 
-								fs.readFile(file[0],"utf-8",function(e, load) {
+								fs.readFile(file[0],"utf-8",(e, load) => {
 									store.store = JSON.parse(load);
 									ipcRenderer.send("restartApp");
 								});
@@ -784,7 +933,7 @@ var settingsData = {
 				label:"Is there a new TweetDeck setting we're missing? Visit legacy settings",
 				type:"link",
 				activate:{
-					func:function(){
+					func: () => {
 						openLegacySettings();
 					}
 				}
@@ -800,18 +949,18 @@ var settingsData = {
 
 function retrieveImageFromClipboardAsBlob(pasteEvent, callback){
 
-	var items = pasteEvent.clipboardData.items;
+	let items = pasteEvent.clipboardData.items;
 
 	if(items == undefined || pasteEvent.clipboardData == false){
 		console.log("RIP the paste data");
 		return;
 	};
 
-	for (var i = 0; i < items.length; i++) {
+	for (let i = 0; i < items.length; i++) {
 		// Skip content if not image
 		if (items[i].type.indexOf("image") == -1) continue;
 		// Retrieve image on clipboard as blob
-		var blob = items[i].getAsFile();
+		let blob = items[i].getAsFile();
 
 		if(typeof(callback) == "function"){
 			callback(blob);
@@ -821,11 +970,13 @@ function retrieveImageFromClipboardAsBlob(pasteEvent, callback){
 
 // Paste event to allow for pasting images in TweetDeck
 
-window.addEventListener("paste", function(e){
+window.addEventListener("paste", (e) => {
 	console.log("got paste");
 	console.log(e);
-	retrieveImageFromClipboardAsBlob(e, function(imageBlob){
-		if(imageBlob){
+
+	retrieveImageFromClipboardAsBlob(e, imageBlob => {
+
+		if (imageBlob) {
 			console.log("got imageBlob");
 
 			let buildEvent = jQuery.Event("dragenter",{originalEvent:{dataTransfer:{files:[imageBlob]}}});
@@ -838,12 +989,14 @@ window.addEventListener("paste", function(e){
 			$(document).trigger(buildEvent);
 			$(document).trigger(buildEvent2);
 		}
+
 	});
+
 }, false);
 
 // Alerts the app itself if it becomes offline
 
-const forceAppUpdateOnlineStatus = function(e){
+const forceAppUpdateOnlineStatus = (e) => {
 	if (!require) {return;}
 	const {ipcRenderer} = require('electron');
 	ipcRenderer.send('online-status-changed', e)
@@ -857,7 +1010,7 @@ if (typeof MTDURLExchange === "object" && typeof MTDURLExchange.getAttribute ===
 // Moduleraid became a requirement for ModernDeck after they removed jQuery from the global context
 // Hence why twitter sucks
 
-var twitterSucks = document.createElement("script");
+let twitterSucks = document.createElement("script");
 twitterSucks.type = "text/javascript";
 twitterSucks.src = MTDBaseURL + "sources/libraries/moduleraid.min.js";
 document.head.appendChild(twitterSucks);
@@ -866,12 +1019,6 @@ document.head.appendChild(twitterSucks);
 
 function mutationObserver(obj,func,parms) {
 	return (new MutationObserver(func)).observe(obj,parms);
-}
-
-// shorthand function to return true if something exists and false otherwise
-
-function exists(thing) {
-	return ((typeof thing === "object" && thing !== null && thing.length > 0) || !!thing === true || (typeof thing === "string") || (typeof thing === "number"));
 }
 
 // Returns true if stylesheet extension is enabled, false otherwise. Works with custom stylesheets. (see enableCustomStylesheetExtension for more info)
@@ -894,7 +1041,7 @@ function enableStylesheetExtension(name) {
 	if (name === "default" || $("#mtd_custom_css_"+name).length > 0)
 		return;
 
-	var url = MTDBaseURL + "sources/cssextensions/" + name + ".css";
+	let url = MTDBaseURL + "sources/cssextensions/" + name + ".css";
 
 	if (!isStylesheetExtensionEnabled(name)) {
 		head.append(
@@ -904,7 +1051,7 @@ function enableStylesheetExtension(name) {
 			.addClass("mtd-stylesheet-extension")
 		)
 
-		console.log("enableStylesheetExtension(\""+name+"\")");
+		console.log(`enableStylesheetExtension("${name}")`);
 	} else return;
 }
 
@@ -913,7 +1060,9 @@ function enableStylesheetExtension(name) {
 function disableStylesheetExtension(name) {
 	if (!isStylesheetExtensionEnabled(name))
 		return;
-	console.log("disableStylesheetExtension(\""+name+"\")");
+	
+	console.log(`disableStylesheetExtension("${name}")`);
+
 	$('head>link[href="' + MTDBaseURL + "sources/cssextensions/" + name + '.css"]').remove();
 
 	if ($("#mtd_custom_css_"+name).length > 0) {
@@ -924,7 +1073,8 @@ function disableStylesheetExtension(name) {
 // Custom stylesheet extensions are used for custom user CSS and for certain sliders, such as column width
 
 function enableCustomStylesheetExtension(name,styles) {
-	console.log("enableCustomStylesheetExtension(\""+name+"\")");
+	console.log(`enableCustomStylesheetExtension("${name}")`);
+
 	if (isStylesheetExtensionEnabled(name)) {
 		$("#mtd_custom_css_"+name).html(styles);
 		return;
@@ -945,15 +1095,15 @@ function loadPreferences() {
 	for (var key in settingsData) {
 
 		if (!settingsData[key].enum) {
-			for (var i in settingsData[key].options) {
+			for (let i in settingsData[key].options) {
 				let prefKey = settingsData[key].options[i].settingsKey;
 				let pref = settingsData[key].options[i];
 
 				if (exists(prefKey)) {
-					var setting;
+					let setting;
 					if (!hasPref(prefKey)) {
 						if (debugStorageSys)
-							console.log("loadPreferences is setting default of "+prefKey+" to "+pref.default);
+							console.log(`loadPreferences is setting default of ${prefKey} to ${pref.default}`);
 						setPref(prefKey, pref.default);
 						setting = pref.default;
 					} else {
@@ -992,7 +1142,7 @@ function getPref(id) {
 		return TD.settings.getTheme();
 	}
 
-	var val;
+	let val;
 
 	if (exists(store)) {
 		if (store.has(id))
@@ -1023,7 +1173,7 @@ function purgePrefs() {
 	for (var key in localStorage) {
 		if (key.indexOf("mtd_") >= 0) {
 			localStorage.removeItem(key);
-			console.log("Removing key "+key+"...");
+			console.log(`Removing key ${key}...`);
 		}
 	}
 	if (isApp) {
@@ -1051,7 +1201,7 @@ function setPref(id,p) {
 	}
 
 	if (debugStorageSys)
-		console.log("setPref "+id+" to "+p);
+		console.log(`setPref ${id} to ${p}`);
 }
 
 
@@ -1059,7 +1209,7 @@ function setPref(id,p) {
 // return boolean: whether or not the preference manager (electron-store on app, otherwise localStorage) contains a key
 
 function hasPref(id) {
-	var hasIt;
+	let hasIt;
 
 	if (typeof id === "undefined") {
 		throw "id not specified for hasPref";
@@ -1076,7 +1226,7 @@ function hasPref(id) {
 	}
 
 	if (debugStorageSys)
-		console.log("hasPref "+id+"? "+hasIt);
+		console.log(`hasPref ${id}? ${hasIt}`);
 
 	return hasIt;
 }
@@ -1089,7 +1239,9 @@ function fontParseHelper(a) {
 	return "@font-face{font-family:'"+(a.family||"Roboto")+"';font-style:"+(a.style||"normal")+";font-weight:"+(a.weight || "400")+";src:url("+MTDBaseURL+"sources/fonts/"+a.name+"."+(a.extension || "woff2")+") format('"+(a.format || "woff2")+"');"+"unicode-range:"+(a.range||"U+0000-FFFF")+"}\n";
 }
 
-function MTDInit(){
+async function MTDInit() {
+
+
 	console.log("MTDInit");
 
 
@@ -1128,8 +1280,10 @@ function MTDInit(){
 			fontParseHelper({family:"Noto Sans CJK",name:"NotoSansCJKjp-Regular",format:"opentype",extension:"otf"}) +
 			fontParseHelper({family:"Noto Sans",weight:"500",name:"NotoSansHI-Medium",range:"U+0900-097F"}) +
 			fontParseHelper({family:"Noto Sans",name:"NotoSansHI-Regular",range:"U+0900-097F"}) +
-			fontParseHelper({family:"Noto Sans",weight:"500",name:"NotoSansArabic-Medium",range:"U+0600-06FF,U+0750–077F,U+08A0–08FF,U+FB50–FDFF,U+FE70–FEFF,U+10E60–10E7F,U+1EE00—1EEFF"}) +
-			fontParseHelper({family:"Noto Sans",name:"NotoSansArabic-Regular",range:"U+0600-06FF,U+0750–077F,U+08A0–08FF,U+FB50–FDFF,U+FE70–FEFF,U+10E60–10E7F,U+1EE00—1EEFF"}) +
+			fontParseHelper({family:"Noto Sans",weight:"500",name:"NotoSansArabic-Medium",
+				range:"U+0600-06FF,U+0750–077F,U+08A0–08FF,U+FB50–FDFF,U+FE70–FEFF,U+10E60–10E7F,U+1EE00—1EEFF"}) +
+			fontParseHelper({family:"Noto Sans",name:"NotoSansArabic-Regular",
+				range:"U+0600-06FF,U+0750–077F,U+08A0–08FF,U+FB50–FDFF,U+FE70–FEFF,U+10E60–10E7F,U+1EE00—1EEFF"}) +
 			fontParseHelper({family:"Noto Sans",weight:"500",name:"NotoSansArmenian-Medium",range:"U+0530-0580"}) +
 			fontParseHelper({family:"Noto Sans",name:"NotoSansArmenian-Regular",range:"U+0530-0580"}) +
 			fontParseHelper({family:"Noto Sans",weight:"500",name:"NotoSansBengali-Medium",range:"U+0980-09FF"}) +
@@ -1143,12 +1297,16 @@ function MTDInit(){
 			fontParseHelper({family:"Noto Sans",name:"NotoSansCarian-Regular",range:"U+102A0-102DF"}) +
 			fontParseHelper({family:"Noto Sans",name:"NotoSansChakma-Regular",range:"U+11100-1114F"}) +
 			fontParseHelper({family:"Noto Sans",name:"NotoSansCherokee-Regular",range:"U+11100-1114F"}) +
-			fontParseHelper({family:"Noto Sans",weight:"500",name:"NotoSansCherokee-Medium",range:"U+13A0-13F4,U+13F5,U+13F8-13FD"}) +
-			fontParseHelper({family:"Noto Sans",name:"NotoSansCherokee-Regular",range:"U+13A0-13F4,U+13F5,U+13F8-13FD"}) +
+			fontParseHelper({family:"Noto Sans",weight:"500",name:"NotoSansCherokee-Medium",
+				range:"U+13A0-13F4,U+13F5,U+13F8-13FD"}) +
+			fontParseHelper({family:"Noto Sans",name:"NotoSansCherokee-Regular",
+				range:"U+13A0-13F4,U+13F5,U+13F8-13FD"}) +
 			fontParseHelper({family:"Noto Sans",weight:"500",name:"NotoSansEthiopic-Medium",range:"U+1200-137F"}) +
 			fontParseHelper({family:"Noto Sans",name:"NotoSansEthiopic-Regular",range:"U+1200-137F"}) +
-			fontParseHelper({family:"Noto Sans",weight:"500",name:"NotoSansGeorgian-Medium",range:"U+10A0-10FF,U+2D00-2D2F"}) +
-			fontParseHelper({family:"Noto Sans",name:"NotoSansGeorgian-Regular",range:"U+10A0-10FF,U+2D00-2D2F"}) +
+			fontParseHelper({family:"Noto Sans",weight:"500",name:"NotoSansGeorgian-Medium",
+				range:"U+10A0-10FF,U+2D00-2D2F"}) +
+			fontParseHelper({family:"Noto Sans",name:"NotoSansGeorgian-Regular",
+				range:"U+10A0-10FF,U+2D00-2D2F"}) +
 			fontParseHelper({family:"Noto Sans",weight:"500",name:"NotoSansGujaratiUI-Bold",range:"U+0A80-0AFF"}) +
 			fontParseHelper({family:"Noto Sans",name:"NotoSansGujaratiUI",range:"U+0A80-0AFF"}) +
 			fontParseHelper({family:"Noto Sans",weight:"500",name:"NotoSansHebrew-Bold",range:"U+0590-05FF"}) +
@@ -1216,30 +1374,28 @@ function MTDInit(){
 
 	// These check to see if critical TD variables are in place before proceeding
 
-	if (
-		typeof TD_mustaches === "undefined" ||
-		typeof TD === "undefined" ||
-		typeof TD.util === "undefined" ||
-		typeof TD_mustaches["settings/global_setting_filter_row.mustache"] === "undefined"
-	) {
-		setTimeout(MTDInit,100);
-			console.log("waiting on something in order to start MTDInit...");
-		return;
-	}
+
+	await TD_mustaches;
+	await TD;
+	await TD.util;
+	await TD_mustaches["settings/global_setting_filter_row.mustache"];
 
 
 	if (typeof TD_mustaches["login/login_form.mustache"] !== "undefined")
 	 	TD_mustaches["login/login_form.mustache"] = newLoginPage;
 
-	// Especially on Edge, but also on Chrome shortly after launch, sometimes the stylesheet isn't blocked by the network, which breaks the page heavily.
+	// Especially on Edge, but also on Chrome shortly after launch,
+	// sometimes the stylesheet isn't blocked by the network, which breaks the page heavily.
 	// This ensures that the stylesheet is manually removed so that it doesn't cause problems
 
-	var beGone = document.querySelector("link[rel='apple-touch-icon']+link[rel='stylesheet']");
+	let beGone = document.querySelector("link[rel='apple-touch-icon']+link[rel='stylesheet']");
+
 	if (exists(beGone)) {
 		beGone.remove();
 	}
 
-	// These are features that can be used to force enable tweetdeck developer features. Code updated by @pixeldesu, deckhackers, et al
+	// These are features that can be used to force enable tweetdeck developer features.
+	// Code updated by @pixeldesu, Deckhackers, et al
 
 	if (forceFeatureFlags) {
 		TD.config.config_overlay = {
@@ -1263,29 +1419,24 @@ function MTDInit(){
 			tweetdeck_whats_happening: { value: true },
 			tweetdeck_activity_polling: { value: true },
 			tweetdeck_beta: { value: true },
-			tweetdeck_system_font_stack: { value: true },
-			tweetdeck_show_release_notes_link: { value: true },
-			tweetdeck_searches_with_negation: { value: true },
-			twitter_text_emoji_counting_enabled: { value: true },
-			tweetdeck_trends_column: { value: true },
-			tweetdeck_scheduled_tweet_ephemeral: { value: true },
-			twitter_weak_maps: { value: true },
-			tweetdeck_activity_value_polling: { value: true },
-			tweetdeck_activity_streaming: { value: true },
-			tweetdeck_rweb_composer: { value: true }
+			tweetdeck_system_font_stack: { value: true }
 		}
+
 		TD.config.scribe_debug_level = 4
 		TD.config.debug_level = 4
 		TD.config.debug_menu = true
 		TD.config.debug_trace = true
 		TD.config.debug_checks = true
 		TD.config.flight_debug = true
+		TD.config.debug_highlight_streamed_chirps = true
+		TD.config.debug_highlight_visible_chirps = true
 		TD.config.sync_period = 600
 		TD.config.force_touchdeck = true
-		TD.config.internal_build = true
+		TD.config.internal_build = true 
 		TD.config.help_configuration_overlay = true
 		TD.config.disable_metrics_error = true
-		TD.config.disable_metrics_event = true
+		TD.config.disable_metrics_event = true 
+
 		TD.controller.stats.setExperiments({
 			config: {
 				live_engagement_in_column_8020: {
@@ -1306,8 +1457,9 @@ function MTDInit(){
 
 	// This makes numbers appear nicer by overriding tweetdeck's original function which did basically nothing
 
-	TD.util.prettyNumber = function(e) {
-		var howPretty = parseInt(e, 10)
+	TD.util.prettyNumber = (e) => {
+		let howPretty = parseInt(e, 10);
+
 		if (howPretty >= 100000000) {
 			return parseInt(howPretty/1000000) + "M";
 		} else if (howPretty >= 10000000) {
@@ -1328,36 +1480,38 @@ function MTDInit(){
 
 	// here we add event listeners to add a fading out animation when a modal dialog is closed
 
-	document.querySelectorAll(".js-modals-container")[0].removeChild = function(rmnode){
+	document.querySelectorAll(".js-modals-container")[0].removeChild = (rmnode) => {
 		$(rmnode).addClass("mtd-modal-window-fade-out");
-		setTimeout(function(){
+		setTimeout(() => {
 			rmnode.remove();
 		},200);
 	};
 
-	$(document.querySelector(".application").childNodes).each(function(obj){
-		($(document.querySelector(".application").childNodes)[obj] || obj).removeChild = function(rmnode){
+	// let's make sure we get any that might have initialised before MTDLoad began
+
+	$(document.querySelector(".application").childNodes).each((obj) => {
+		($(document.querySelector(".application").childNodes)[obj] || obj).removeChild = (rmnode) => {
 			$(rmnode).addClass("mtd-modal-window-fade-out");
-			setTimeout(function(){
+			setTimeout(() => {
 				rmnode.remove();
 			},200);
 		};
 	})
 
-	$(".js-modal").on("removeChild",function(rmnode){
+	$(".js-modal").on("removeChild", (rmnode) => {
 		$(rmnode).addClass("mtd-modal-window-fade-out");
-		setTimeout(function(){
+		setTimeout(() => {
 			rmnode.remove();
 		},200);
 	});
 
 	// body's removeChild function is overriden to give tooltips their fade out animation
 
-	body.removeChild = function(i) {
+	body.removeChild = (i) => {
 		if ($(i).hasClass("tooltip")) {
-			setTimeout(function(){
+			setTimeout(() => {
 				i.remove(); // Tooltips automagically animate themselves out. But here we clean them up as well ourselves.
-			},500);
+			},300);
 		} else {
 	 		i.remove();
 		}
@@ -1368,59 +1522,138 @@ function MTDInit(){
 	$(document.querySelector("audio")).attr("src",MTDBaseURL + "sources/alert_2.mp3");
 
 	if (typeof TD_mustaches["settings/global_setting_filter_row.mustache"] !== "undefined")
-		TD_mustaches["settings/global_setting_filter_row.mustache"]='<li class="list-filter cf"> {{_i}}<div class="mtd-mute-text mtd-mute-text-{{getDisplayType}}"></div> {{>text/global_filter_value}}{{/i}} <input type="button" name="remove-filter" value="{{_i}}Remove{{/i}}" data-id="{{id}}"class="js-remove-filter small btn btn-negative"> </li>';
+		TD_mustaches["settings/global_setting_filter_row.mustache"] =
+			'<li class="list-filter cf"> {{_i}}\
+				<div class="mtd-mute-text mtd-mute-text-{{getDisplayType}}"></div>\
+				{{>text/global_filter_value}}{{/i}}\
+				<input type="button" name="remove-filter" value="{{_i}}Remove{{/i}}" data-id="{{id}}" class="js-remove-filter small btn btn-negative">\
+			</li>';
+
 	if (typeof TD_mustaches["column_loading_placeholder.mustache"] !== "undefined")
-		TD_mustaches["column_loading_placeholder.mustache"] = TD_mustaches["column_loading_placeholder.mustache"].replace("<span class=\"spinner-small\"></span>",'<div class="preloader-wrapper active"><div class="spinner-layer small"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div>');
+		TD_mustaches["column_loading_placeholder.mustache"] =
+			TD_mustaches["column_loading_placeholder.mustache"].replace("<span class=\"spinner-small\"></span>",spinnerSmall);
+
 	if (typeof TD_mustaches["spinner_large.mustache"] !== "undefined")
-		TD_mustaches["spinner_large.mustache"] = '<div class="preloader-wrapper active"><div class="spinner-layer "><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div>';
+		TD_mustaches["spinner_large.mustache"] = spinnerLarge;
+
 	if (typeof TD_mustaches["spinner_large_white.mustache"] !== "undefined")
-		TD_mustaches["spinner_large_white.mustache"] = '<div class="preloader-wrapper active"><div class="spinner-layer "><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div>';
+		TD_mustaches["spinner_large_white.mustache"] = spinnerLarge;
+
 	if (typeof TD_mustaches["spinner.mustache"] !== "undefined")
-		TD_mustaches["spinner.mustache"] = '<div class="preloader-wrapper active"><div class="spinner-layer small"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div>';
+		TD_mustaches["spinner.mustache"] = spinnerSmall;
+
 	if (typeof TD_mustaches["column.mustache"] !== "undefined")
-		TD_mustaches["column.mustache"] = TD_mustaches["column.mustache"].replace("Loading...","");
+		TD_mustaches["column.mustache"] =
+			TD_mustaches["column.mustache"].replace("Loading...","");
+
 	if (typeof TD_mustaches["media/media_gallery.mustache"] !== "undefined")
-		TD_mustaches["media/media_gallery.mustache"] = TD_mustaches["media/media_gallery.mustache"].replace('<div class="js-embeditem med-embeditem"> ','<div class="js-embeditem med-embeditem"> <div class="preloader-wrapper active"><div class="spinner-layer "><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div>');
+		TD_mustaches["media/media_gallery.mustache"] =
+			TD_mustaches["media/media_gallery.mustache"].replace(
+				'<div class="js-embeditem med-embeditem"> ',
+				'<div class="js-embeditem med-embeditem"> ' + spinnerLarge
+			);
+
 	if (typeof TD_mustaches["modal.mustache"] !== "undefined")
-		TD_mustaches["modal.mustache"] = TD_mustaches["modal.mustache"].replace('<img src="{{#asset}}/global/backgrounds/spinner_large_white.gif{{/asset}}" alt="{{_i}}Loading…{{/i}}" />','<div class="preloader-wrapper active"><div class="spinner-layer small"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div>');
+		TD_mustaches["modal.mustache"] =
+			TD_mustaches["modal.mustache"].replace(
+				'<img src="{{#asset}}/global/backgrounds/spinner_large_white.gif{{/asset}}" alt="{{_i}}Loading…{{/i}}" />',
+				spinnerSmall
+			);
+	
 	if (typeof TD_mustaches["twitter_profile.mustache"] !== "undefined")
-		TD_mustaches["twitter_profile.mustache"] = TD_mustaches["twitter_profile.mustache"].replace('<img src="{{#asset}}/global/backgrounds/spinner_large_white.gif{{/asset}}" alt="{{_i}}Loading…{{/i}}">','<div class="preloader-wrapper active"><div class="spinner-layer small"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div>');
+		TD_mustaches["twitter_profile.mustache"] =
+			TD_mustaches["twitter_profile.mustache"].replace(
+				'<img src="{{#asset}}/global/backgrounds/spinner_large_white.gif{{/asset}}" alt="{{_i}}Loading…{{/i}}">',
+				spinnerSmall
+			);
+	
 	if (typeof TD_mustaches["follow_button.mustache"] !== "undefined")
-		TD_mustaches["follow_button.mustache"] = TD_mustaches["follow_button.mustache"].replace('<img src="{{#asset}}/web/assets/global/backgrounds/spinner_small_trans.gif{{/asset}}" alt="{{_i}}Loading…{{/i}}"> ','<div class="preloader-wrapper active tiny"><div class="spinner-layer small"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div>')
+		TD_mustaches["follow_button.mustache"] =
+			TD_mustaches["follow_button.mustache"].replace(
+				'<img src="{{#asset}}/web/assets/global/backgrounds/spinner_small_trans.gif{{/asset}}" alt="{{_i}}Loading…{{/i}}"> ',
+				spinnerTiny
+			);
+	
 	if (typeof TD_mustaches["login/2fa_verification_code.mustache"] !== "undefined")
-		TD_mustaches["login/2fa_verification_code.mustache"] = TD_mustaches["login/2fa_verification_code.mustache"].replace('<i class="js-spinner-button-active icon-center-16 spinner-button-icon-spinner"></i>','<div class="js-spinner-button-active icon-center-16 spinner-button-icon-spinner preloader-wrapper active tiny"><div class="spinner-layer small"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div>');
+		TD_mustaches["login/2fa_verification_code.mustache"] =
+			TD_mustaches["login/2fa_verification_code.mustache"].replace(
+				'<i class="js-spinner-button-active icon-center-16 spinner-button-icon-spinner"></i>',
+				buttonSpinner	
+			);
+	
 	if (typeof TD_mustaches["login/login_form_footer.mustache"] !== "undefined")
-		TD_mustaches["login/login_form_footer.mustache"] = TD_mustaches["login/login_form_footer.mustache"].replace('<i class="js-spinner-button-active icon-center-16 spinner-button-icon-spinner"></i>','<div class="js-spinner-button-active icon-center-16 spinner-button-icon-spinner preloader-wrapper active tiny"><div class="spinner-layer small"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div>');
+		TD_mustaches["login/login_form_footer.mustache"] =
+			TD_mustaches["login/login_form_footer.mustache"].replace(
+				'<i class="js-spinner-button-active icon-center-16 spinner-button-icon-spinner"></i>',
+				buttonSpinner
+			);
+	
 	if (typeof TD_mustaches["compose/docked_compose.mustache"] !== "undefined")
-		TD_mustaches["compose/docked_compose.mustache"] = TD_mustaches["compose/docked_compose.mustache"].replace('<i class="js-spinner-button-active icon-center-16 spinner-button-icon-spinner is-hidden"></i>','<div class="js-spinner-button-active icon-center-16 spinner-button-icon-spinner preloader-wrapper active tiny"><div class="spinner-layer small"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div>');
+		TD_mustaches["compose/docked_compose.mustache"] =
+			TD_mustaches["compose/docked_compose.mustache"].replace(
+				'<i class="js-spinner-button-active icon-center-16 spinner-button-icon-spinner is-hidden"></i>',
+				buttonSpinner
+			);
+	
 	if (typeof TD_mustaches["compose/compose_inline_reply.mustache"] !== "undefined")
-		TD_mustaches["compose/compose_inline_reply.mustache"] = TD_mustaches["compose/compose_inline_reply.mustache"].replace('<i class="js-spinner-button-active icon-center-16 spinner-button-icon-spinner is-hidden"></i>','<div class="js-spinner-button-active icon-center-16 spinner-button-icon-spinner preloader-wrapper active tiny"><div class="spinner-layer small"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div>');
+		TD_mustaches["compose/compose_inline_reply.mustache"] =
+			TD_mustaches["compose/compose_inline_reply.mustache"].replace(
+				'<i class="js-spinner-button-active icon-center-16 spinner-button-icon-spinner is-hidden"></i>',
+				buttonSpinner
+			);
+	
 	if (typeof TD_mustaches["buttons/favorite.mustache"] !== "undefined")
-		TD_mustaches["buttons/favorite.mustache"] = TD_mustaches["buttons/favorite.mustache"].replace('<span> <img src="{{#asset}}/global/backgrounds/spinner_small_trans.gif{{/asset}}" alt="{{_i}}Loading…{{/i}}"> </span>','<div class="js-spinner-button-active icon-center-16 spinner-button-icon-spinner preloader-wrapper active tiny"><div class="spinner-layer small"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div>');
+		TD_mustaches["buttons/favorite.mustache"] =
+			TD_mustaches["buttons/favorite.mustache"].replace(
+				'<span> <img src="{{#asset}}/global/backgrounds/spinner_small_trans.gif{{/asset}}" alt="{{_i}}Loading…{{/i}}"> </span>',
+				buttonSpinner	
+			);
+	
 	if (typeof TD_mustaches["embed_tweet.mustache"] !== "undefined")
-		TD_mustaches["embed_tweet.mustache"] = TD_mustaches["embed_tweet.mustache"].replace('<img src="{{#asset}}/global/backgrounds/spinner_large_white.gif{{/asset}}" class="embed-loading" alt="{{_i}}Loading…{{/i}}" />','<div class="preloader-wrapper active"><div class="spinner-layer small"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div>');
+		TD_mustaches["embed_tweet.mustache"] =
+			TD_mustaches["embed_tweet.mustache"].replace(
+				'<img src="{{#asset}}/global/backgrounds/spinner_large_white.gif{{/asset}}" class="embed-loading" alt="{{_i}}Loading…{{/i}}" />',
+				spinnerSmall
+			);
+	
 	if (typeof TD_mustaches["follow_button.mustache"] !== "undefined")
-		TD_mustaches["follow_button.mustache"] = TD_mustaches["follow_button.mustache"].replace('<span> <img src="{{#asset}}/global/backgrounds/spinner_small_trans.gif{{/asset}}" alt="{{_i}}Loading…{{/i}}"> </span>','<div class="js-spinner-button-active icon-center-16 spinner-button-icon-spinner preloader-wrapper active tiny"><div class="spinner-layer small"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div>');
+		TD_mustaches["follow_button.mustache"] =
+			TD_mustaches["follow_button.mustache"].replace(
+				'<span> <img src="{{#asset}}/global/backgrounds/spinner_small_trans.gif{{/asset}}" alt="{{_i}}Loading…{{/i}}"> </span>',
+				buttonSpinner
+			);
+	
 	if (typeof TD_mustaches["lists/member.mustache"] !== "undefined")
-		TD_mustaches["lists/member.mustache"] = TD_mustaches["lists/member.mustache"].replace('<span> <img src="{{#asset}}/global/backgrounds/spinner_small_trans.gif{{/asset}}" alt="{{_i}}Loading…{{/i}}"> </span>','<div class="js-spinner-button-active icon-center-16 spinner-button-icon-spinner preloader-wrapper active tiny"><div class="spinner-layer small"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div>');
+		TD_mustaches["lists/member.mustache"] =
+			TD_mustaches["lists/member.mustache"].replace(
+				'<span> <img src="{{#asset}}/global/backgrounds/spinner_small_trans.gif{{/asset}}" alt="{{_i}}Loading…{{/i}}"> </span>',
+				buttonSpinner
+			);
+	
 	if (typeof TD_mustaches["keyboard_shortcut_list.mustache"] !== "undefined")
-		TD_mustaches["keyboard_shortcut_list.mustache"] = TD_mustaches["keyboard_shortcut_list.mustache"].replace("<kbd class=\"text-like-keyboard-key\">X</kbd>  Expand/Collapse navigation</dd>","<kbd class=\"text-like-keyboard-key\">Q</kbd>  Open Navigation Drawer/Menu</dd>")
+		TD_mustaches["keyboard_shortcut_list.mustache"] =
+			TD_mustaches["keyboard_shortcut_list.mustache"].replace(
+				"<kbd class=\"text-like-keyboard-key\">X</kbd>  Expand/Collapse navigation</dd>",
+				"<kbd class=\"text-like-keyboard-key\">Q</kbd> Open Navigation Drawer/Menu</dd>"
+			)
 
 	if (typeof TD_mustaches["menus/actions.mustache"] !== "undefined") {
-		TD_mustaches["menus/actions.mustache"] = TD_mustaches["menus/actions.mustache"]
-		.replace("Embed this Tweet","Embed Tweet")
-		.replace("Copy link to this Tweet","Copy link address")
-		.replace("Share via Direct Message","Share via message")
-		//.replace("Like from accounts…","Like from...")
-		.replace("Send a Direct Message","Send message")
-		.replace("Add or remove from Lists…","Add/remove from list...")
-		.replace("See who quoted this Tweet","View quotes")
-		.replace("Flagged (learn more)","Flagged")
-		.replace("Mute this conversation","Mute conversation")
-		.replace("Unmute this conversation","Unmute conversation")
-		.replace("Translate this Tweet","Translate Tweet")
-		.replace("{{_i}}Delete{{/i}}","{{_i}}Delete Tweet{{/i}}")
-		.replace(/\…/g,"...");
+		TD_mustaches["menus/actions.mustache"] =
+			TD_mustaches["menus/actions.mustache"]
+			.replace("Embed this Tweet","Embed Tweet")
+			.replace("Copy link to this Tweet","Copy link address")
+			.replace("Share via Direct Message","Share via message")
+			//.replace("Like from accounts…","Like from...")
+			.replace("Send a Direct Message","Send message")
+			.replace("Add or remove from Lists…","Add/remove from list...")
+			.replace("See who quoted this Tweet","View quotes")
+			.replace("Flagged (learn more)","Flagged")
+			.replace("Mute this conversation","Mute conversation")
+			.replace("Unmute this conversation","Unmute conversation")
+			.replace("Translate this Tweet","Translate Tweet")
+			.replace("{{_i}}Delete{{/i}}","{{_i}}Delete Tweet{{/i}}")
+			.replace(/\…/g,"...")
+		;
 	}
 
 	if ($(".app-signin-wrap:not(.mtd-signin-wrap)").length > 0) {
@@ -1434,14 +1667,28 @@ function MTDInit(){
 
 }
 
+// Updates the "Good morning!" / "Good afternoon!" / "Good evening!"
+// text on the login screen every once in a while (10s, ish)
+
+
 function startUpdateGoodLoginText() {
-	if (ugltStarted) {return;}
+
+	// Don't run if we already started
+	if (ugltStarted) {
+		return;
+	}
+	
 	ugltStarted = true;
+
+
+	// we've gotta update the image URL
+	// we can't do this in the new login mustache because when it's initialised,
+	// MTDURLExchange hasn't completed yet
 
 	$(".startflow-background").attr("style","background-image:url("+MTDBaseURL+"sources/img/bg1.jpg)")
 
-	setInterval(function(){
-		var text;
+	setInterval(() => {
+		let text;
 		let newDate = new Date();
 
 		if (newDate.getHours() < 12) {
@@ -1457,60 +1704,77 @@ function startUpdateGoodLoginText() {
 }
 
 function sendNotificationMessage(txt) {
-	var knotty = $(MTDNotification);
+	let knotty = $(MTDNotification);
 	if (knotty.hasClass("mtd-appbar-notification-hidden")) {
 		knotty.removeClass("mtd-appbar-notification-hidden").html(txt);
 	} else {
-		knotty.addClass("mtd-appbar-notification-hidden").delay(300).queue(function(){knotty.html(txt).removeClass("mtd-appbar-notification-hidden")});
+		knotty.addClass("mtd-appbar-notification-hidden").delay(300).queue(() => {
+			knotty.html(txt).removeClass("mtd-appbar-notification-hidden")
+		});
 	}
 }
 
-function waitForNotificationDismiss(node,prevmsgID) {
-	if (typeof node === "undefined" || node === null || typeof node.parentNode === "undefined" || node.parentNode === null) {
-		if (msgID === prevmsgID) {
-			$(MTDNotification).addClass("mtd-appbar-notification-hidden");
-			messagesAccounted[node] = undefined;
-		}
-		return;
-	}
+async function waitForNotificationDismiss(node, prevmsgID) {
+	await node;
+	await node.parentNode;
 
-	setTimeout(function(){waitForNotificationDismiss(node,prevmsgID);},500);
+	if (msgID === prevmsgID) {
+		$(MTDNotification).addClass("mtd-appbar-notification-hidden");
+		messagesAccounted[node] = undefined;
+	}
 }
 
-function openLegacySettings() {
+// opens legacy tweetdeck settings
+
+async function openLegacySettings() {
+	await TD;
+	await TD.components;
+	await TD.components.GlobalSettings;
+
 	$(".mtd-settings-panel").remove();
 	new TD.components.GlobalSettings;
 }
+
+// function openSettings()
+// opens and settings panel, open to first page
+
+// function openSettings(openMenu)
+// opens and returns settings panel with string openMenu, the tabId of the corresponding settings page
 
 function openSettings(openMenu) {
 
 	mtdPrepareWindows();
 
-	var tabs = make("div").addClass("mtd-settings-tab-container mtd-tabs");
-	var container = make("div").addClass("mtd-settings-inner");
-	var panel = make("div").addClass("mdl mtd-settings-panel").append(tabs).append(container);
+	let tabs = make("div").addClass("mtd-settings-tab-container mtd-tabs");
+	let container = make("div").addClass("mtd-settings-inner");
+	let panel = make("div").addClass("mdl mtd-settings-panel").append(tabs).append(container);
 
 
 	for (var key in settingsData) {
 
+		// if disabled (NOT UNDEFINED), skip it
 		if (settingsData[key].enabled === false) {
 			continue;
 		}
 
-		var tab = make("button").addClass("mtd-settings-tab").attr("data-action",key).html(settingsData[key].tabName).click(function(){
-			console.log(settingsData[key].number);
+		var tab = make("button").addClass("mtd-settings-tab").attr("data-action",key).html(settingsData[key].tabName).click(function() {
+			console.log(settingsData[key]);
 			$(".mtd-settings-tab-selected").removeClass("mtd-settings-tab-selected");
 			$(this).addClass("mtd-settings-tab-selected");
+
+			// calculates how far to move over the settings menu
+			// good thing arrays start at 0, as 0 would be 0px, it's the first one
 			container.css("margin-left","-"+($(this).index()*700)+"px");
 		});
 
-		var subPanel = make("div").addClass("mtd-settings-subpanel mtd-col scroll-v").attr("id",key);
+		let subPanel = make("div").addClass("mtd-settings-subpanel mtd-col scroll-v").attr("id",key);
 
 		if (!settingsData[key].enum && settingsData[key].enabled !== false) {
-			for (var prefKey in settingsData[key].options) {
-				let pref = settingsData[key].options[prefKey];
 
-				var option = make("div").addClass("mtd-settings-option").addClass("mtd-settings-option-"+pref.type);
+			for (let prefKey in settingsData[key].options) {
+			
+				let pref = settingsData[key].options[prefKey];
+				let option = make("div").addClass("mtd-settings-option").addClass("mtd-settings-option-"+pref.type);
 
 				if (exists(pref.addClass)) {
 					option.addClass(pref.addClass);
@@ -1534,8 +1798,10 @@ function openSettings(openMenu) {
 
 
 				switch(pref.type) {
+
 					case "checkbox":
-						input = make("input").attr("type","checkbox").attr("id",prefKey).change(function(){
+						input = make("input").attr("type","checkbox").attr("id",prefKey).change(function() {
+							console.log(this);
 							setPref(pref.settingsKey,$(this).is(":checked"));
 							parseActions($(this).is(":checked") ? pref.activate : pref.deactivate, $(this).val());
 
@@ -1558,14 +1824,16 @@ function openSettings(openMenu) {
 						if (exists(pref.initFunc)) {
 							pref.initFunc(select);
 						}
+
 						break;
+
 					case "dropdown":
-						select = make("select").attr("type","select").attr("id",prefKey).change(function(){
+						select = make("select").attr("type","select").attr("id",prefKey).change(function() {
 							//setPref(pref.settingsKey,$(this).val());
 							parseActions(pref.activate, $(this).val());
 						});
 
-						for (var prefKey in pref.options) {
+						for (let prefKey in pref.options) {
 							if (!!(pref.options[prefKey].value)) {
 								let newPrefSel = pref.options[prefKey];
 								let newoption = make("option").attr("value",newPrefSel.value).html(newPrefSel.text);
@@ -1574,9 +1842,9 @@ function openSettings(openMenu) {
 								select.append(newoption);
 							} else {
 
-								var group = make("optgroup").attr("label",pref.options[prefKey].name)
+								let group = make("optgroup").attr("label",pref.options[prefKey].name)
 
-								for (var subkey in pref.options[prefKey].children) {
+								for (let subkey in pref.options[prefKey].children) {
 									let newSubPrefSel = pref.options[prefKey].children[subkey];
 									let newsuboption = make("option").attr("value",newSubPrefSel.value).html(newSubPrefSel.text);
 
@@ -1600,16 +1868,18 @@ function openSettings(openMenu) {
 						if (exists(pref.initFunc)) {
 							pref.initFunc(select);
 						}
+
 						break;
+
 					case "textbox":
 						input = make("input").attr("type","text").attr("id",prefKey);
 
 						if (pref.instantApply === true) {
-							input.on("input",function(){
+							input.on("input",function() {
 								parseActions(pref.activate, $(this).val());
 							});
 						} else {
-							input.change(function(){
+							input.change(function() {
 								parseActions(pref.activate, $(this).val());
 							});
 						}
@@ -1627,33 +1897,35 @@ function openSettings(openMenu) {
 						}
 
 						option.append(label,input);
+
 						break;
+
 					case "textarea":
 						input = make("textarea").addClass("mtd-textarea").attr("id",prefKey).attr("rows","10").attr("cols","80").attr("placeholder",pref.placeholder || "").attr("spellcheck",false);
 
 						if (pref.instantApply === true) {
-							input.on("input",function(){
+							input.on("input",function() {
 								parseActions(pref.activate, $(this).val());
 							});
 						} else {
-							input.change(function(){
+							input.change(function() {
 								parseActions(pref.activate, $(this).val());
 							});
 						}
 
 
 						// thank you https://sumtips.com/snippets/javascript/tab-in-textarea/ for this amazing hack for tabs to work
-						input.keydown(function(e)
+						input.keydown((e) =>
 						{
 
-							var kC = e.keyCode ? e.keyCode : e.charCode ? e.charCode : e.which;
+							let kC = e.keyCode ? e.keyCode : e.charCode ? e.charCode : e.which;
 							if (kC == 9 && !e.shiftKey && !e.ctrlKey && !e.metaKey && !e.altKey)
 							{
-								var oS = input[0].scrollTop;
+								let oS = input[0].scrollTop;
 								if (input[0].setSelectionRange)
 								{
-									var sS = input[0].selectionStart;
-									var sE = input[0].selectionEnd;
+									let sS = input[0].selectionStart;
+									let sE = input[0].selectionEnd;
 									input[0].value = input[0].value.substring(0, sS) + "\t" + input[0].value.substr(sE);
 									input[0].setSelectionRange(sS + 1, sS + 1);
 									input[0].focus();
@@ -1664,10 +1936,9 @@ function openSettings(openMenu) {
 									e.returnValue = false;
 								}
 								input[0].scrollTop = oS;
-								if (e.preventDefault)
-								{
-									e.preventDefault();
-								}
+
+								e.preventDefault();
+
 								return false;
 							}
 							return true;
@@ -1686,17 +1957,19 @@ function openSettings(openMenu) {
 						}
 
 						option.append(label,input);
+
 						break;
+
 					case "slider":
 						label = make("label").addClass("control-label");
 
 						input = make("input").attr("type","range")
 						.attr("min",pref.minimum)
 						.attr("max",pref.maximum)
-						.change(function(){
+						.change(function() {
 							parseActions(pref.activate, $(this).val());
-						}).on("input",function(){
-							label.html(pref.title + " <b>" + $(this).val() + (pref.displayUnit || "") +"</b>");
+						}).on("input",function() {
+							label.html(`${pref.title} <b> ${$(this).val()} ${(pref.displayUnit || "")} </b>`);
 							console.log("changed: "+$(this).val());
 						});
 
@@ -1708,7 +1981,7 @@ function openSettings(openMenu) {
 							input.val(pref.default);
 						}
 
-						label.html(pref.title + " <b>" + input.val() + (pref.displayUnit || "") +"</b>");
+						label.html(pref.title + " <b> "+ input.val() + " " + (pref.displayUnit || "") + "</b>");
 
 						maximum = make("label").addClass("control-label mtd-slider-maximum").html(pref.maximum + (pref.displayUnit || ""));
 						minimum = make("label").addClass("control-label mtd-slider-minimum").html(pref.minimum + (pref.displayUnit || ""));
@@ -1718,12 +1991,14 @@ function openSettings(openMenu) {
 						}
 
 						option.append(label,maximum,input,minimum);
+
 						break;
+
 					case "button":
 						label = make("label").addClass("control-label").html(pref.label || "");
 
 						button = make("button").html(pref.title).addClass("btn btn-positive mtd-settings-button")
-						.click(function(){
+						.click(() => {
 							parseActions(pref.activate,true);
 						});
 
@@ -1732,10 +2007,12 @@ function openSettings(openMenu) {
 						}
 
 						option.append(label,button);
+
 						break;
+
 					case "link":
 						link = make("a").html(pref.label).addClass("mtd-settings-link")
-						.click(function(){
+						.click(() => {
 							parseActions(pref.activate,true);
 						});
 
@@ -1744,16 +2021,17 @@ function openSettings(openMenu) {
 						}
 
 						option.append(link);
+
 						break;
 				}
 
 				subPanel.append(option);
 			}
 		} else if (settingsData[key].enum === "aboutpage") {
-			var logo = make("i").addClass("mtd-logo icon-moderndeck icon");
-			var h1 = make("h1").addClass("mtd-about-title").html("ModernDeck 7");
-			var h2 = make("h2").addClass("mtd-version-title").html("Version " +SystemVersion);
-			var logoCont = make("div").addClass("mtd-logo-container");
+			let logo = make("i").addClass("mtd-logo icon-moderndeck icon");
+			let h1 = make("h1").addClass("mtd-about-title").html("ModernDeck 7");
+			let h2 = make("h2").addClass("mtd-version-title").html("Version " +SystemVersion);
+			let logoCont = make("div").addClass("mtd-logo-container");
 
 			if (!isApp) {
 				logoCont.append(
@@ -1765,18 +2043,18 @@ function openSettings(openMenu) {
 
 			subPanel.append(logoCont);
 
-			var updateCont = make("div").addClass("mtd-update-container").html('<div class="mtd-update-spinner preloader-wrapper small active"><div class="spinner-layer"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div>');
-			var updateSpinner = $(".mtd-update-spinner");
-			var updateIcon = make("i").addClass("material-icon hidden");
-			var updateh2 = make("h2").addClass("mtd-update-h2").html("Checking for updates...");
-			var updateh3 = make("h3").addClass("mtd-update-h3 hidden").html("");
-			var tryAgain = make("button").addClass("btn hidden").html("Try Again");
-			var restartNow = make("button").addClass("btn hidden").html("Restart Now")
+			let updateCont = make("div").addClass("mtd-update-container").html('<div class="mtd-update-spinner preloader-wrapper small active"><div class="spinner-layer"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div>');
+			let updateSpinner = $(".mtd-update-spinner");
+			let updateIcon = make("i").addClass("material-icon hidden");
+			let updateh2 = make("h2").addClass("mtd-update-h2").html("Checking for updates...");
+			let updateh3 = make("h3").addClass("mtd-update-h3 hidden").html("");
+			let tryAgain = make("button").addClass("btn hidden").html("Try Again");
+			let restartNow = make("button").addClass("btn hidden").html("Restart Now")
 
-			var info = make("p").html("Made with <i class=\"icon icon-heart mtd-about-heart\"></i> by <a href=\"https://twitter.com/dangeredwolf\" rel=\"user\" target=\"_blank\">dangeredwolf</a> in Columbus, OH since 2014<br><br>ModernDeck is an open source project released under the MIT license.");
-			var infoCont = make("div").addClass("mtd-about-info").append(info);
+			let info = make("p").html("Made with <i class=\"icon icon-heart mtd-about-heart\"></i> by <a href=\"https://twitter.com/dangeredwolf\" rel=\"user\" target=\"_blank\">dangeredwolf</a> in Columbus, OH since 2014<br><br>ModernDeck is an open source project released under the MIT license.");
+			let infoCont = make("div").addClass("mtd-about-info").append(info);
 
-			var patronInfo = make("div").addClass("mtd-patron-info").append(
+			let patronInfo = make("div").addClass("mtd-patron-info").append(
 				make("div").addClass("mtd-patreon-button").append(
 					make("iframe").attr("src","https://www.patreon.com/platform/iframe?widget=become-patron-button&creatorID=3469384")
 				),
@@ -1807,11 +2085,11 @@ function openSettings(openMenu) {
 			let selectFilterType = make("select").attr("name","filter").addClass("js-filter-types").append(
 				make("option").attr("value","phrase").html("Words or phrases"),
 				make("option").attr("value","source").html("Tweet source")
-			).change(function(){
+			).change(function() {
 				filterInput.attr("placeholder",$(this).val() === "phrase" ? "Enter a word or phrase" : "eg Tweeten")
 			});
 
-			let muteButton = make("button").attr("name","add-filter").addClass("js-add-filter btn-on-dark disabled").html("Mute").click(function(){
+			let muteButton = make("button").attr("name","add-filter").addClass("js-add-filter btn-on-dark disabled").html("Mute").click(() => {
 				if (filterInput.val().length > 0) {
 					TD.controller.filterManager.addFilter(selectFilterType.val(),filterInput.val(),false);
 
@@ -1826,7 +2104,7 @@ function openSettings(openMenu) {
 			let muteInput = make("div").addClass("control-group").append(
 				make("label").attr("for","filter-input").addClass("control-label").html("Matching"),
 				make("div").addClass("controls").append(filterInput)
-			).on("input",function(){
+			).on("input",function() {
 				if ($(this).val().length > 0) {
 					muteButton.removeClass("disabled");
 				} else {
@@ -1888,14 +2166,14 @@ function updateFilterPanel(filterList) {
 	let filters = TD.controller.filterManager.getAll();
 	filterList.html("");
 
-	for (var n in filters) {
+	for (let n in filters) {
 		let myFilter = filters[n];
 
 		filterList.append(
 			make("li").addClass("list-filter").append(
 				make("div").addClass("mtd-mute-text mtd-mute-text-" + (myFilter.type === "source" ? "source" : "")),
 				make("em").html(myFilter.value),
-				make("input").attr("type","button").attr("name","remove-filter").attr("value","Remove").addClass("js-remove-filter small btn btn-negative").click(function(){
+				make("input").attr("type","button").attr("name","remove-filter").attr("value","Remove").addClass("js-remove-filter small btn btn-negative").click(() => {
 					TD.controller.filterManager.removeFilter(myFilter);
 					updateFilterPanel(filterList);
 				})
@@ -1908,24 +2186,24 @@ function updateFilterPanel(filterList) {
 }
 
 function loginStuff() {
-	var profileInfo = getProfileInfo();
+	let profileInfo = getProfileInfo();
 	if (profileInfo === null || typeof profileInfo === "undefined" || typeof profileInfo._profileBannerURL === "undefined" || profileInfo.profileImageURL === "undefined") {
 		setTimeout(loginStuff,150);
 		return;
 	}
-	var bannerPhoto = profileInfo._profileBannerURL.search("empty") > 0 ? "" : profileInfo._profileBannerURL;
-	var avatarPhoto = profileInfo.profileImageURL.replace("_normal","");
-	var name = profileInfo.name;
-	var username = profileInfo.screenName;
+	let bannerPhoto = profileInfo._profileBannerURL.search("empty") > 0 ? "" : profileInfo._profileBannerURL;
+	let avatarPhoto = profileInfo.profileImageURL.replace("_normal","");
+	let name = profileInfo.name;
+	let username = profileInfo.screenName;
 
 	$(mtd_nd_header_image).attr("style","background-image:url(" + bannerPhoto + ");"); // Fetch header and place in nav drawer
 	$(mtd_nd_header_photo).attr("src",avatarPhoto)
-	.mouseup(function(){
-		var profileLinkyThing = $(document.querySelector(".account-settings-bb a[href=\"https://twitter.com/"+getProfileInfo().screenName+"\"]"));
+	.mouseup(() => {
+		let profileLinkyThing = $(document.querySelector(".account-settings-bb a[href=\"https://twitter.com/"+getProfileInfo().screenName+"\"]"));
 
 		mtdPrepareWindows();
 		if (profileLinkyThing.length > -1) {
-			setTimeout(function(){
+			setTimeout(() => {
 				profileLinkyThing.click();
 			},200);
 		}
@@ -1949,13 +2227,13 @@ function navigationSetup() {
 
 	loadPreferences();
 
-	$(".column-scroller,.more-tweets-btn-container").each(function(a,b){
+	$(".column-scroller,.more-tweets-btn-container").each((a,b) => {
 		// Fixes a bug in TweetDeck's JS caused by ModernDeck having different animations in column settings
-		var c = $(b);
-		mutationObserver(b,function(){
+		let c = $(b);
+		mutationObserver(b,() => {
 			if (typeof c.attr("style") !== "undefined") {
-				var num = parseInt(c.attr("style").match(/[\-\d]+/g));
-				var hasFilterOptionsVisible = false;
+				let num = parseInt(c.attr("style").match(/[\-\d]+/g));
+				let hasFilterOptionsVisible = false;
 				try {
 					hasFilterOptionsVisible = parseInt(c.parent().children(".column-options").children('.js-column-message[style]')[0].style.height.replace("px","")) > 0;
 				} catch (e){}
@@ -1968,9 +2246,9 @@ function navigationSetup() {
 
 	$(".app-header-inner").append(
 		make("a").attr("id","mtd-navigation-drawer-button").addClass("js-header-action mtd-drawer-button link-clean cf app-nav-link").html('<div class="obj-left"><div class="mtd-nav-activator"></div><div class="nbfc padding-ts"></div>')
-		.click(function(){
+		.click(() => {
 			if (typeof mtd_nav_drawer_background !== "undefined") {
-				$("#mtd_nav_drawer_background").attr("class","mtd-nav-drawer-background");
+				$("#mtd_nav_drawer_background").removeClass("mtd-nav-drawer-background-hidden");
 			}
 			if (typeof mtd_nav_drawer !== "undefined") {
 				$("#mtd_nav_drawer").attr("class","mtd-nav-drawer");
@@ -1986,39 +2264,39 @@ function navigationSetup() {
 			make("img").attr("id","mtd_nd_header_image").addClass("mtd-nd-header-image").attr("style",""),
 			make("img").addClass("avatar size73 mtd-nd-header-photo").attr("id","mtd_nd_header_photo").attr("src",""),
 			make("div").addClass("mtd-nd-header-username").attr("id","mtd_nd_header_username").html("PROFILE ERROR<br>Tell @dangeredwolf i said hi"),
-			make("button").addClass("btn mtd-nav-button mtd-nav-first-button").attr("id","tdaccsbutton").append(make("i").addClass("icon icon-twitter-bird")).click(function(){mtdPrepareWindows();$(".js-show-drawer.js-header-action").click();}).append("Your Accounts"),
-			make("button").addClass("btn mtd-nav-button").attr("id","addcolumn").append(make("i").addClass("icon icon-plus")).click(function(){mtdPrepareWindows();TD.ui.openColumn.showOpenColumn()}).append("Add Column"),
+			make("button").addClass("btn mtd-nav-button mtd-nav-first-button").attr("id","tdaccsbutton").append(make("i").addClass("icon icon-twitter-bird")).click(() => {mtdPrepareWindows();$(".js-show-drawer.js-header-action").click();}).append("Your Accounts"),
+			make("button").addClass("btn mtd-nav-button").attr("id","addcolumn").append(make("i").addClass("icon icon-plus")).click(() => {mtdPrepareWindows();TD.ui.openColumn.showOpenColumn()}).append("Add Column"),
 			make("div").addClass("mtd-nav-divider"),
-			make("button").addClass("btn mtd-nav-button").attr("id","kbshortcuts").append(make("i").addClass("icon icon-keyboard")).click(function(){
+			make("button").addClass("btn mtd-nav-button").attr("id","kbshortcuts").append(make("i").addClass("icon icon-keyboard")).click(() => {
 				mtdPrepareWindows();
 				console.log("td-keyboard");
-				setTimeout(function(){$(".js-app-settings").click()},10);
-				setTimeout(function(){$("a[data-action='keyboardShortcutList']").click()},20);
+				setTimeout(() => {$(".js-app-settings").click()},10);
+				setTimeout(() => {$("a[data-action='keyboardShortcutList']").click()},20);
 			}).append("Keyboard Shortcuts"),
-			make("button").addClass("btn mtd-nav-button").attr("id","mtdsettings").append(make("i").addClass("icon icon-settings")).click(function(){openSettings()}).append("Settings"),
+			make("button").addClass("btn mtd-nav-button").attr("id","mtdsettings").append(make("i").addClass("icon icon-settings")).click(() => {openSettings()}).append("Settings"),
 			make("div").addClass("mtd-nav-divider"),
-			make("button").addClass("btn mtd-nav-button mtd-nav-group-expand").attr("id","mtd_nav_expand").append(make("i").addClass("icon mtd-icon-arrow-down").attr("id","mtd_nav_group_arrow")).click(function(){
+			make("button").addClass("btn mtd-nav-button mtd-nav-group-expand").attr("id","mtd_nav_expand").append(make("i").addClass("icon mtd-icon-arrow-down").attr("id","mtd_nav_group_arrow")).click(() => {
 				$("#mtd_nav_group").toggleClass("mtd-nav-group-expanded");
 				$("#mtd_nav_group_arrow").toggleClass("mtd-nav-group-arrow-flipped");
 				$("#mtd_nav_drawer").toggleClass("mtd-nav-drawer-group-open");
 			}).append("More..."),
 			make("div").addClass("mtd-nav-group mtd-nav-group-expanded").attr("id","mtd_nav_group").append(
-				make("button").addClass("btn mtd-nav-button").append(make("i").addClass("icon mtd-icon-changelog")).click(function(){
+				make("button").addClass("btn mtd-nav-button").append(make("i").addClass("icon mtd-icon-changelog")).click(() => {
 					mtdPrepareWindows();
 					console.log("td-changelog");
 					window.open("https://twitter.com/i/tweetdeck_release_notes");
 				}).append("TweetDeck Release Notes"),
-				make("button").addClass("btn mtd-nav-button").append(make("i").addClass("icon icon-search")).click(function(){
+				make("button").addClass("btn mtd-nav-button").append(make("i").addClass("icon icon-search")).click(() => {
 					mtdPrepareWindows();
 					console.log("td-searchtips");
-					setTimeout(function(){$(".js-app-settings").click()},10);
-					setTimeout(function(){$("a[data-action=\"searchOperatorList\"]").click()},20);
+					setTimeout(() => {$(".js-app-settings").click()},10);
+					setTimeout(() => {$("a[data-action=\"searchOperatorList\"]").click()},20);
 				}).append("Search Tips"),
 				make("div").addClass("mtd-nav-divider"),
-				make("button").addClass("btn mtd-nav-button").attr("id","mtd_signout").append(make("i").addClass("icon icon-logout")).click(function(){TD.controller.init.signOut();}).append("Sign Out"),
+				make("button").addClass("btn mtd-nav-button").attr("id","mtd_signout").append(make("i").addClass("icon icon-logout")).click(() => {TD.controller.init.signOut();}).append("Sign Out"),
 			),
 			make("div").addClass("mtd-nav-divider mtd-nav-divider-feedback"),
-			make("button").addClass("btn mtd-nav-button mtd-nav-button-feedback").attr("id","mtdfeedback").append(make("i").addClass("icon icon-feedback")).click(function(){
+			make("button").addClass("btn mtd-nav-button mtd-nav-button-feedback").attr("id","mtdfeedback").append(make("i").addClass("icon icon-feedback")).click(() => {
 				sendingFeedback = true;
 				try {
 					throw "Manually triggered feedback button";
@@ -2028,9 +2306,12 @@ function navigationSetup() {
 				}
 			}).append("Send Feedback")
 		),
-		make("div").attr("id","mtd_nav_drawer_background").addClass("mtd-nav-drawer-background mtd-nav-drawer-background-hidden").click(function(){
+		make("div").attr("id","mtd_nav_drawer_background").addClass("mtd-nav-drawer-background mtd-nav-drawer-background-hidden").click(function() {
 			$(this).addClass("mtd-nav-drawer-background-hidden");
 			$(mtd_nav_drawer).addClass("mtd-nav-drawer-hidden");
+
+			$(".mtd-nav-group-expanded").removeClass("mtd-nav-group-expanded");
+			$("#mtd_nav_group_arrow").removeClass("mtd-nav-group-arrow-flipped");
 		})
 	);
 	$(".mtd-nav-group-expanded").attr("style","height:"+$(".mtd-nav-group-expanded").height()+"px");
@@ -2040,7 +2321,7 @@ function navigationSetup() {
 		make("div").addClass("mtd-appbar-notification mtd-appbar-notification-hidden").attr("id","MTDNotification")
 	)
 
-	window.mtdPrepareWindows = function() {
+	window.mtdPrepareWindows = () => {
 		console.info("mtdPrepareWindows called");
 		$("#update-sound,.js-click-trap").click();
 		mtd_nav_drawer_background.click();
@@ -2093,18 +2374,18 @@ function keyboardShortcutHandler(e) {
 		}
 	}
 
-
 }
 
-var rtbutton;
-
 function checkIfSigninFormIsPresent() {
+
 	if ($(".app-signin-form").length > 0 || $("body>.js-app-loading.login-container:not([style])").length > 0) {
 		if (!html.hasClass("signin-sheet-now-present")) {
 			html.addClass("signin-sheet-now-present");
 		}
+
 		loginIntervalTick++;
 		enableStylesheetExtension("loginpage");
+
 		if (loginIntervalTick > 5) {
 			clearInterval(loginInterval);
 		}
@@ -2112,26 +2393,27 @@ function checkIfSigninFormIsPresent() {
 		disableStylesheetExtension("loginpage");
 		html.removeClass("signin-sheet-now-present");
 	}
+
 }
 
 function onElementAddedToDOM(e) {
-	var tar = $(e.target);
+	let tar = $(e.target);
 	if (tar.hasClass("dropdown")) {
 		console.log("dropdown!!!");
-		e.target.parentNode.removeChild = function(dropdown){
+		e.target.parentNode.removeChild = (dropdown) => {
 			$(dropdown).addClass("mtd-dropdown-fade-out");
-			setTimeout(function(){
+			setTimeout(() => {
 				dropdown.remove();
 			},200);
 		}
 	} else if (tar.hasClass("overlay")) {
 		console.log("overlay!!!");
 		if (!tar.hasClass("is-hidden")) {
-			var observer = mutationObserver(e.target,function(mutations) {
+			let observer = mutationObserver(e.target, (mutations) => {
 				console.log("its gone now!");
 				if (tar.hasClass("is-hidden")) {
 					tar.addClass("mtd-modal-window-fade-out");
-					setTimeout(function(){
+					setTimeout(() => {
 						tar.remove();
 						observer.disconnect();
 					},300);
@@ -2171,11 +2453,12 @@ function formatBytes(val) {
 	}
 }
 
-function mtdAppUpdatePage(updateCont,updateh2,updateh3,updateIcon,updateSpinner,tryAgain,restartNow) {
+function mtdAppUpdatePage(updateCont, updateh2, updateh3, updateIcon, updateSpinner, tryAgain, restartNow) {
 
 	const {ipcRenderer} = require('electron');
 
-	ipcRenderer.on("error",function(e,args,f,g){
+	ipcRenderer.on("error",(e,args,f,g) => {
+
 		console.log("E:");
 		console.log(e);
 		console.log("args:");
@@ -2186,19 +2469,21 @@ function mtdAppUpdatePage(updateCont,updateh2,updateh3,updateIcon,updateSpinner,
 		console.log(g);
 		updateh2.html("There was a problem checking for updates. ");
 		$(".mtd-update-spinner").addClass("hidden");
+
 		if (exists(args.code)) {
-			updateh3.html(args.code + " " + args.errno + " " + args.syscall + " " + args.path).removeClass("hidden");
+			updateh3.html(`${args.code} ${args.errno} ${args.syscall} ${args.path}`).removeClass("hidden");
 		} else if (exists(f)) {
 			updateh3.html(f.match(/^(Cannot check for updates: )(.)+\n/g)).removeClass("hidden")
 		} else {
 			updateh3.html("We couldn't interpret the error info we received. Please try again later or DM @ModernDeck on Twitter for further help.").removeClass("hidden");
 		}
+
 		updateIcon.html("error_outline").removeClass("hidden");
 		tryAgain.removeClass("hidden").html("Try Again");
 
 	});
 
-	ipcRenderer.on("checking-for-update",function(e,args){
+	ipcRenderer.on("checking-for-update", (e,args) => {
 		console.log(args);
 		updateIcon.addClass("hidden");
 		$(".mtd-update-spinner").removeClass("hidden");
@@ -2208,7 +2493,7 @@ function mtdAppUpdatePage(updateCont,updateh2,updateh3,updateIcon,updateSpinner,
 		restartNow.addClass("hidden");
 	});
 
-	ipcRenderer.on("download-progress",function(e,args){
+	ipcRenderer.on("download-progress", (e,args) => {
 		console.log(args);
 		updateIcon.addClass("hidden");
 		$(".mtd-update-spinner").removeClass("hidden");
@@ -2219,7 +2504,7 @@ function mtdAppUpdatePage(updateCont,updateh2,updateh3,updateIcon,updateSpinner,
 	});
 
 
-	ipcRenderer.on("update-downloaded",function(e,args){
+	ipcRenderer.on("update-downloaded", (e,args) => {
 		console.log(args);
 		$(".mtd-update-spinner").addClass("hidden");
 		updateIcon.html("update").removeClass("hidden");
@@ -2230,7 +2515,7 @@ function mtdAppUpdatePage(updateCont,updateh2,updateh3,updateIcon,updateSpinner,
 	});
 
 
-	ipcRenderer.on("update-not-available",function(e,args){
+	ipcRenderer.on("update-not-available", (e,args) => {
 		console.log(args);
 		$(".mtd-update-spinner").addClass("hidden");
 		updateh2.html("You're up to date");
@@ -2240,11 +2525,11 @@ function mtdAppUpdatePage(updateCont,updateh2,updateh3,updateIcon,updateSpinner,
 		restartNow.addClass("hidden");
 	});
 
-	tryAgain.click(function(){
+	tryAgain.click(() => {
 		ipcRenderer.send('checkForUpdates');
 	})
 
-	restartNow.click(function(){
+	restartNow.click(() => {
 		ipcRenderer.send('restartAndInstallUpdates');
 	});
 
@@ -2252,7 +2537,7 @@ function mtdAppUpdatePage(updateCont,updateh2,updateh3,updateIcon,updateSpinner,
 }
 
 function notifyUpdate() {
-	let notifRoot = mR.findFunction("showErrorNotification")[0].showNotification({title:"ModernDeck Updates",timeoutDelayMs:999999999999999999});
+	let notifRoot = mR.findFunction("showErrorNotification")[0].showNotification({title:"ModernDeck Updates", timeoutDelayMs:9999999999});
 	let notifId = notifRoot._id;
 	let notif = $("li.Notification[data-id=\""+notifId+"\"]");
 	let notifContent = $("li.Notification[data-id=\""+notifId+"\"] .Notification-content");
@@ -2263,23 +2548,23 @@ function notifyUpdate() {
 
 		notifContent.append(
 			make("p").html("We found and downloaded updates for ModernDeck."),
-			make("button").html("Relaunch Now").click(function(){
+			make("button").html("Relaunch Now").click(() => {
 				ipcRenderer.send('restartApp');
 			}),
-			make("button").html("Later").click(function(){
-				mR.findFunction("showErrorNotification")[0].removeNotification({notification:notif});
+			make("button").html("Later").click(() => {
+				mR.findFunction("showErrorNotification")[0].removeNotification({notification: notif});
 			})
 		)
 	}
 }
 
-var offlineNotification;
-
 function notifyOffline() {
+
 	if (exists(offlineNotification)) {
 		return;
 	}
-	let notifRoot = mR.findFunction("showErrorNotification")[0].showNotification({title:"Internet Disconnected",timeoutDelayMs:999999999999999999});
+
+	let notifRoot = mR.findFunction("showErrorNotification")[0].showNotification({title:"Internet Disconnected",timeoutDelayMs:9999999999});
 	let notifId = notifRoot._id;
 	offlineNotification = $("li.Notification[data-id=\""+notifId+"\"]");
 	let notifContent = $("li.Notification[data-id=\""+notifId+"\"] .Notification-content");
@@ -2311,8 +2596,8 @@ function mtdAppFunctions() {
 
 	// Enable high contrast if system is set to high contrast
 
-	ipcRenderer.on("inverted-color-scheme-changed",function(e,enabled){
-		console.log("inverted colour scheme? "+enabled);
+	ipcRenderer.on("inverted-color-scheme-changed", (e, enabled) => {
+		console.log(`inverted colour scheme? $(enabled)`);
 		if (enabled && getPref("mtd_highcontrast") !== true) {
 			try {
 				settingsData.accessibility.options.highcont.activate.func();
@@ -2320,65 +2605,70 @@ function mtdAppFunctions() {
 		}
 	});
 
-	ipcRenderer.on("disable-high-contrast",function(e){
+	ipcRenderer.on("disable-high-contrast", (e) => {
 		console.error("DISABLING HIGH CONTRAST ");
 		try {
 			settingsData.accessibility.options.highcont.deactivate.func();
 		} catch(e){}
 	});
 
+	ipcRenderer.on("aboutMenu", (e,args) => {
+		if ($(".mtd-settings-tab[data-action=\"about\"]").length > 0){
+			$(".mtd-settings-tab[data-action=\"about\"]").click();
+		} else {
+			openSettings("about");
+		}
+	});
 
-		ipcRenderer.on("aboutMenu",function(e,args){
-			if ($(".mtd-settings-tab[data-action=\"about\"]").length > 0){
-				$(".mtd-settings-tab[data-action=\"about\"]").click();
-			} else {
-				openSettings("about");
-			}
-		});
-		ipcRenderer.on("openSettings",function(e,args){
-			openSettings();
-		});
-		ipcRenderer.on("accountsMan",function(e,args){
-			$(".js-show-drawer.js-header-action").click();
-		});
-		ipcRenderer.on("sendFeedback",function(e,args){
-			try {
-				throw "Manually triggered feedback button";
-			} catch(e) {
-				Raven.captureException(e);
-				Raven.showReportDialog();
-			}
-		});
-		ipcRenderer.on("msgModernDeck",function(e,args){
-			$(document).trigger("uiComposeTweet", {
-				type: "message",
-				messageRecipients: [{
+	ipcRenderer.on("openSettings", (e,args) => {
+		openSettings();
+	});
+
+	ipcRenderer.on("accountsMan", (e,args) => {
+		$(".js-show-drawer.js-header-action").click();
+	});
+
+	ipcRenderer.on("sendFeedback", (e,args) => {
+		try {
+			throw "Manually triggered feedback button";
+		} catch(e) {
+			Raven.captureException(e);
+			Raven.showReportDialog();
+		}
+	});
+
+	ipcRenderer.on("msgModernDeck", (e,args) => {
+		$(document).trigger("uiComposeTweet", {
+			type: "message",
+			messageRecipients: [{
 				screenName: "ModernDeck"
 			}]
 		})
-		});
-		ipcRenderer.on("newTweet",function(e,args){
-			$(document).trigger("uiComposeTweet");
-		});
-		ipcRenderer.on("newDM",function(e,args){
-			$(document).trigger("uiComposeTweet");
-			$(".js-dm-button").click();
-		});
+	});
+
+	ipcRenderer.on("newTweet", (e,args) => {
+		$(document).trigger("uiComposeTweet");
+	});
+
+	ipcRenderer.on("newDM", (e,args) => {
+		$(document).trigger("uiComposeTweet");
+		$(".js-dm-button").click();
+	});
 
 	if (html.hasClass("mtd-app")) {
-		var minimise = make("button")
+		let minimise = make("button")
 		.addClass("windowcontrol min")
 		.html("&#xE15B")
-		.click(function(data,handler){
-			var window = remote.BrowserWindow.getFocusedWindow();
+		.click((data,handler) => {
+			let window = remote.BrowserWindow.getFocusedWindow();
 			window.minimize();
 		});
 
-		var maximise = make("button")
+		let maximise = make("button")
 		.addClass("windowcontrol max")
 		.html("&#xE3C6")
-		.click(function(data,handler){
-			var window = remote.BrowserWindow.getFocusedWindow();
+		.click((data,handler) => {
+			let window = remote.BrowserWindow.getFocusedWindow();
 			if (window.isMaximized()) {
 				window.unmaximize();
 			} else {
@@ -2386,15 +2676,15 @@ function mtdAppFunctions() {
 			}
 		});
 
-		var close = make("button")
+		let close = make("button")
 		.addClass("windowcontrol close")
 		.html("&#xE5CD")
-		.click(function() {
+		.click(() => {
 			window.close();
 		});
 
 
-		var windowcontrols = make("div")
+		let windowcontrols = make("div")
 		.addClass("windowcontrols")
 		.append(minimise)
 		.append(maximise)
@@ -2405,7 +2695,7 @@ function mtdAppFunctions() {
 
 	ipcRenderer.on('context-menu', (event, p) => {
 		const electron = require("electron")
-		var theMenu = buildContextMenu(p);
+		let theMenu = buildContextMenu(p);
 		let menu = electron.remote.menu;
 		let Menu = electron.remote.Menu;
 
@@ -2419,7 +2709,7 @@ function mtdAppFunctions() {
 			body.append(theMenu);
 	})
 
-	const updateOnlineStatus = function(){
+	const updateOnlineStatus = () => {
 
 		if (!navigator.onLine) {
 			notifyOffline();
@@ -2436,81 +2726,28 @@ function mtdAppFunctions() {
 }
 
 function getIpc() {
-	const {ipcRenderer} = require('electron');
+	if (!require) {return null;}
+	let {ipcRenderer} = require('electron');
 	return ipcRenderer;
-}
-
-contextMenuFunctions = {
-	cut:function(){
-		getIpc().send("cut");
-	},
-	copy:function(){
-		getIpc().send("copy");
-	},
-	paste:function(){
-		getIpc().send("paste");
-	},
-	undo:function(){
-		getIpc().send("undo");
-	},
-	redo:function(){
-		getIpc().send("redo");
-	},
-	selectAll:function(){
-		getIpc().send("selectAll");
-	},
-	delete:function(){
-		getIpc().send("delete");
-	},
-	openLink:function(e){
-		window.open(e);
-	},
-	copyLink:function(e){
-		const { clipboard } = require('electron');
-		clipboard.writeText(e);
-	},
-	openImage:function(e){
-		window.open(e);
-	},
-	copyImageURL:function(e){
-		const { clipboard } = require('electron');
-		clipboard.writeText(e);
-	},
-	copyImage:function(e){
-		getIpc().send("copyImage",e);
-	},
-	saveImage:function(e){
-		getIpc().send("saveImage",e);
-	},
-	inspectElement:function(e){
-		getIpc().send("inspectElement",e);
-	},
-	restartApp:function(e){
-		getIpc().send("restartApp",e);
-	},
-	newSettings:function(e){
-		openSettings();
-	}
-
 }
 
 function makeCMItem(p) {
 	if (useNativeContextMenus) {
 		let dataact = p.dataaction;
 		let data = p.data;
-		let nativemenu = { label:p.text, click(){console.log("yes, a click has occurred");contextMenuFunctions[dataact](data)}, enabled:p.enabled };
+		let nativemenu = { label:p.text, click() {console.log("yes, a click has occurred");contextMenuFunctions[dataact](data)}, enabled:p.enabled };
 		//nativemenu.click = ;
 		return nativemenu;
 	}
-	var a = make("a").attr("href","#").attr("data-action",p.dataaction).html(p.text).addClass("mtd-context-menu-item");
-	var li = make("li").addClass("is-selectable").append(a);
+	let a = make("a").attr("href","#").attr("data-action",p.dataaction).html(p.text).addClass("mtd-context-menu-item");
+	let li = make("li").addClass("is-selectable").append(a);
 
-	if (p.enabled === false) {
+	if (p.enabled === false) { // Crucially, also not undefined!
 		a.attr("disabled","disabled");
 	} else {
 		//a.click(contextMenuFunctions[p.dataaction]);
 
-		a.click(function(){
+		a.click(() => {
 			console.log("Performing action "+p.dataaction+"...");
 			if (p.mousex && p.mousey) {
 				document.elementFromPoint(p.mousex, p.mousey).focus();
@@ -2526,8 +2763,8 @@ function makeCMItem(p) {
 }
 
 function clearContextMenu() {
-	var removeMenu = $(".mtd-context-menu")
-	removeMenu.addClass("mtd-dropdown-fade-out").on("animationend",function(){
+	let removeMenu = $(".mtd-context-menu")
+	removeMenu.addClass("mtd-dropdown-fade-out").on("animationend",() => {
 		removeMenu.remove();
 	});
 }
@@ -2540,17 +2777,17 @@ function makeCMDivider() {
 }
 
 function buildContextMenu(p) {
-	var items = [];
-	var x=p.x;
-	var y=p.y;
+	let items = [];
+	let x = p.x;
+	let y = p.y;
 
 	const xOffset = 2;
 	const yOffset = 12;
 
 	if ($(".mtd-context-menu").length > 0) {
-		var removeMenu = $(".mtd-context-menu");
+		let removeMenu = $(".mtd-context-menu");
 		removeMenu.addClass("mtd-dropdown-fade-out");
-		removeMenu.on("animationend",function(){
+		removeMenu.on("animationend", () => {
 			removeMenu.remove();
 		})
 	}
@@ -2558,7 +2795,8 @@ function buildContextMenu(p) {
 	if ($(document.elementFromPoint(x,y)).hasClass("mtd-context-menu-item")) {
 		return;
 	}
-		console.log(p);
+	
+	console.log(p);
 
 	if (p.isEditable || (exists(p.selectionText) && p.selectionText.length > 0)) {
 		if (p.isEditable) {
@@ -2588,7 +2826,7 @@ function buildContextMenu(p) {
 		items.push(makeCMItem({mousex:x,mousey:y,dataaction:"copyImageURL",text:"Copy image address",enabled:true,data:p.srcURL}));
 		items.push(makeCMDivider());
 	}
-	if (getPref("mtd_inspectElement")) {
+	if (getPref("mtd_inspectElement") || isDev) {
 		items.push(makeCMItem({mousex:x,mousey:y,dataaction:"inspectElement",text:"Inspect element",enabled:true,data:{x:x,y:y}}));
 	}
 	//items.push(makeCMItem({mousex:x,mousey:y,dataaction:"newSettings",text:"Open Settings",enabled:true}));
@@ -2597,31 +2835,34 @@ function buildContextMenu(p) {
 		return items;
 	}
 
-	var ul = make("ul");
+	let ul = make("ul");
 
-	for(var i = 0; i < items.length; i++){
+	for(let i = 0; i < items.length; i++){
 		ul.append(items[i]);
 	}
 
 
-	var menu = make("menu").addClass("mtd-context-menu dropdown-menu").append(ul).attr("style","opacity:0;animation:none;transition:none");
+	let menu = make("menu")
+	.addClass("mtd-context-menu dropdown-menu")
+	.attr("style","opacity:0;animation:none;transition:none")
+	.append(ul);
 
 
 	if (items.length > 0) {
-		setTimeout(function(){
-			console.log("x: "+x+" y: "+y+" menu.width(): "+ menu.width() +" menu.height(): "+ menu.height() +" $(document).width(): " + $(document).width() + " $(document).height(): " + $(document).height())
+		setTimeout(() => {
+			console.log(`x: ${x} y: ${y} menu.width(): ${menu.width()} menu.height(): ${menu.height()} $(document).width(): ${$(document).width()} $(document).height(): ${$(document).height()}`)
 
-			if (x+xOffset+menu.width() > $(document).width()){
+			if (x + xOffset + menu.width() > $(document).width()) {
 				console.log("you're too wide!");
 				x = $(document).width() - menu.width() - xOffset - xOffset;
 			}
 
-			if (y+yOffset+menu.height() > $(document).height()){
+			if (y + yOffset + menu.height() > $(document).height()) {
 				console.log("you're too tall!");
 				y = $(document).height() - menu.height();
 			}
 
-			menu.attr("style","left:"+(x+xOffset)+"px!important;top:"+(y+yOffset)+"px!important")
+			menu.attr("style",`left:${x + xOffset}px!important;top:${y + yOffset}px!important`)
 
 
 		},20);
@@ -2635,17 +2876,27 @@ function buildContextMenu(p) {
 function parseActions(a,opt) {
 	for (var key in a) {
 		console.log(key);
-		if (key === "enableStylesheet") {
-			enableStylesheetExtension(a[key]);
-		} else if (key === "disableStylesheet") {
-			disableStylesheetExtension(a[key]);
-		} else if (key === "htmlAddClass") {
-			if (!html.hasClass(a[key]))
-				html.addClass(a[key]);
-		} else if (key === "htmlRemoveClass") {
-			html.removeClass(a[key]);
-		} else if (key === "func" && typeof a[key] === "function") {
-			a[key](opt);
+		switch(key) {
+			case "enableStylesheet":
+				enableStylesheetExtension(a[key]);
+				break;
+			case "disableStylesheet":
+				disableStylesheetExtension(a[key]);
+				break;
+			case "htmlAddClass":
+				if (!html.hasClass(a[key]))
+					html.addClass(a[key]);
+				break;
+			case "htmlRemoveClass":
+				html.removeClass(a[key]);
+				break;
+			case "func":
+				if (typeof a[key] === "function") {
+					a[key](opt);
+				} else {
+					throw "Action is func, but it isn't a function?";
+				}
+				break;
 		}
 	}
 }
@@ -2678,13 +2929,16 @@ function coreInit() {
 		}
 	}
 
+	mR.findFunction("Theme not found")[0].default._themes[undefined] = mR.findFunction("Theme not found")[0].default._themes["dark"];
+							
+
 	head = $(document.head);
 	body = $(document.body);
 	html = $(document.querySelector("html")); // Only 1 result; faster to find
 
 	if (isApp) {
 		mtdAppFunctions();
-		window.addEventListener('mousedown', function(e) {
+		window.addEventListener('mousedown', (e) => {
 			clearContextMenu();
 		}, false);
 	}
@@ -2696,7 +2950,7 @@ function coreInit() {
 
 		setTimeout(Raven.context(MTDInit),10);
 
-		Raven.context(function(){
+		Raven.context(() => {
 			window.addEventListener("keyup",keyboardShortcutHandler,false);
 			html.addClass("mtd-js-loaded");
 			mutationObserver(html[0],onElementAddedToDOM,{attributes:false,subtree:true,childList:true})
