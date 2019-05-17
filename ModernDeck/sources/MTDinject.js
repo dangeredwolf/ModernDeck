@@ -5,7 +5,7 @@
 
 "use strict";
 
-var SystemVersion = "7.0";
+var SystemVersion = "7.0.1";
 var MTDBaseURL = "https://rawgit.com/dangeredwolf/ModernDeck/stable/ModernDeck/"; // Defaults to streaming if MTDURLExchange isn't completed properly
 
 //var MTDBaseURL = "https://ton.twimg.com/tweetdeck-deb/web/dist/"
