@@ -69,6 +69,10 @@
     max-height: 707px;
 }
 
+.js-modal-inner.mdl.margin-v--20.s-fluid {
+	min-height:600px
+}
+
 .mdl.s-profile {
 	min-height:525px!important
 }
