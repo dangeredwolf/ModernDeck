@@ -318,6 +318,9 @@ function makeWindow() {
 	}
 
 	if (store.has("mtd_updatechannel")) {
+		if (store.get("mtd_updatechannel") === "beta") {
+			autoUpdater.allowPrerelease = true;
+		}
 		autoUpdater.channel = store.get("mtd_updatechannel");
 	}
 
@@ -737,6 +740,7 @@ ipcMain.on('checkForUpdates',function(e){
 });
 
 ipcMain.on('changeChannel',function(e){
+	autoUpdater.allowPrerelease = store.get("mtd_updatechannel") === "beta";
 	autoUpdater.channel = store.get("mtd_updatechannel");
 });
 
