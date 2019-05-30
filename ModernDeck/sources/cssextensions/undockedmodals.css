@@ -69,8 +69,12 @@
     max-height: 707px;
 }
 
-.js-modal-inner.mdl.margin-v--20.s-fluid {
-	min-height:600px
+.js-modal-panel.mdl.s-fluid.s-wide.cmp.s-minimal {
+	min-height:250px
+}
+
+.js-modal-inner.mdl.margin-v--20.s-fluid:not(.s-fluid-height) {
+	/*min-height: 180px;*/
 }
 
 .mdl.s-profile {

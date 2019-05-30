@@ -45,8 +45,8 @@
   display:none
 }
 
-.padding-am {
-  font-size:0
+.padding-am:not(.typeahead-item) {
+  font-size:0;
 }
 
 .media-sensitive-title {

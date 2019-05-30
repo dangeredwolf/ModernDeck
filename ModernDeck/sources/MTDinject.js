@@ -5,9 +5,13 @@
 
 "use strict";
 
-const SystemVersion = "7.1";
+const SystemVersion = "7.2 Beta (Build 2019-05-30)";
+const appendTextVersion = false;
 
 let MTDBaseURL = "https://rawgit.com/dangeredwolf/ModernDeck/stable/ModernDeck/"; // Defaults to streaming if MTDURLExchange isn't completed properly
+let GiphyKey = "Vb45700bexRDqCkbMdUmBwDvtkWT9Vj2";
+let lastGiphyURL = "";
+let isLoadingMoreGifs = false;
 
 let msgID = 0;
 let FetchProfileInfo = 0;
@@ -222,7 +226,6 @@ if (mtdStarted.getHours() < 12) { // 12:00 / 12:00pm
 let settingsData = {
 	themes: {
 		tabName:"Themes",
-		tabId:"themes",
 		options:{
 			coretheme:{
 				headerBefore:"Themes",
@@ -323,7 +326,7 @@ let settingsData = {
 					}
 				},
 				options:{
-					default:{value:"default","text":"Default"},
+					default:{value:"default",text:"Default"},
 					complete:{
 						name:"Complete Themes",
 						children:{
@@ -373,7 +376,6 @@ let settingsData = {
 	},
 	appearance: {
 		tabName:"Appearance",
-		tabId:"appearance",
 		options:{
 			dockedmodals:{
 				headerBefore:"Behavior",
@@ -612,7 +614,6 @@ let settingsData = {
 		}
 	}, tweets: {
 		tabName:"Tweets",
-		tabId:"tweets",
 		options:{
 			stream:{
 				headerBefore:"Function",
@@ -732,12 +733,10 @@ let settingsData = {
 		}
 	}, mutes: {
 		tabName:"Mutes",
-		tabId:"mutes",
 		options:{},
 		enum:"mutepage"
 	}, app: {
 		tabName:"App",
-		tabId:"app",
 		enabled:isApp,
 		options:{
 			nativeTitlebar:{
@@ -831,9 +830,9 @@ let settingsData = {
 				settingsKey:"mtd_updatechannel",
 				default:"latest"
 			}
-		}}, system: {
+		}
+	}, system: {
 		tabName:"System",
-		tabId:"system",
 		options:{
 			mtdResetSettings:{
 				title:"Reset Settings",
@@ -1195,7 +1194,11 @@ function setPref(id,p) {
 	}
 
 	if (exists(store)) {
-		store.set(id,p);
+		if (typeof p !== "undefined") {
+			store.set(id,p);
+		} else {
+			store.delete(id); // Newer versions of electron-store is more strict about using delete vs. set undefined
+		}
 	} else {
 		localStorage.setItem(id,p);
 	}
@@ -1574,6 +1577,13 @@ async function MTDInit() {
 				spinnerTiny
 			);
 
+	if (typeof TD_mustaches["video_preview.mustache"] !== "undefined")
+		TD_mustaches["video_preview.mustache"] =
+			TD_mustaches["video_preview.mustache"].replace(
+				'<div class="processing-video-spinner"></div>',
+				spinnerSmall
+			);
+
 	if (typeof TD_mustaches["login/2fa_verification_code.mustache"] !== "undefined")
 		TD_mustaches["login/2fa_verification_code.mustache"] =
 			TD_mustaches["login/2fa_verification_code.mustache"].replace(
@@ -1920,6 +1930,7 @@ function openSettings(openMenu) {
 
 							let kC = e.keyCode ? e.keyCode : e.charCode ? e.charCode : e.which;
 							if (kC == 9 && !e.shiftKey && !e.ctrlKey && !e.metaKey && !e.altKey)
+								// If it's a tab, but not Ctrl+Tab, Super+Tab, Shift+Tab, or Alt+Tab
 							{
 								let oS = input[0].scrollTop;
 								if (input[0].setSelectionRange)
@@ -1929,11 +1940,6 @@ function openSettings(openMenu) {
 									input[0].value = input[0].value.substring(0, sS) + "\t" + input[0].value.substr(sE);
 									input[0].setSelectionRange(sS + 1, sS + 1);
 									input[0].focus();
-								}
-								else if (input[0].createTextRange)
-								{
-									document.selection.createRange().text = "\t";
-									e.returnValue = false;
 								}
 								input[0].scrollTop = oS;
 
@@ -2030,7 +2036,7 @@ function openSettings(openMenu) {
 		} else if (settingsData[key].enum === "aboutpage") {
 			let logo = make("i").addClass("mtd-logo icon-moderndeck icon");
 			let h1 = make("h1").addClass("mtd-about-title").html("ModernDeck 7");
-			let h2 = make("h2").addClass("mtd-version-title").html("Version " +SystemVersion);
+			let h2 = make("h2").addClass("mtd-version-title").html((appendTextVersion ? "Version " : "") +SystemVersion);
 			let logoCont = make("div").addClass("mtd-logo-container");
 
 			if (!isApp) {
@@ -2212,6 +2218,237 @@ function loginStuff() {
 
 }
 
+// https://staxmanade.com/2017/02/how-to-download-and-convert-an-image-to-base64-data-url/
+
+async function getBlobFromUrl(imageUrl) {
+	var res = await fetch(imageUrl);
+	var blob = await res.blob();
+
+	return new Promise((resolve, reject) => {
+		resolve(blob);
+		return blob;
+	})
+}
+
+function createGifPanel() {
+	if ($(".mtd-gif-container").length > 0) {
+		return;
+	}
+	$(".drawer .compose-text-container").after(
+		make("div").addClass("scroll-v popover mtd-gif-container").append(
+			make("div").addClass("mtd-gif-header").append(
+				//make("h1").addClass("mtd-gif-header-text").html("Trending")
+				make("input").addClass("mtd-gif-search").attr("placeholder","Search GIFs...").change(() => {
+					console.log("entered");
+					searchGifPanel($(".mtd-gif-search").val())
+				}),
+				make("img").attr("src",MTDBaseURL + "sources/img/giphy.png").addClass("mtd-giphy-logo"),
+				make("div").addClass("mtd-gif-no-results list-placeholder hidden").html("We couldn't find anything matching what you searched. Give it another shot.")
+			),
+			make("div").addClass("mtd-gif-column mtd-gif-column-1"),
+			make("div").addClass("mtd-gif-column mtd-gif-column-2")
+		)
+	)
+	$(".drawer .compose>.compose-content>.antiscroll-inner.scroll-v.scroll-styled-v").scroll(function(){
+		if ($(this).scrollTop() > $(document).height() - 200) {
+			$(".mtd-gif-header").addClass("mtd-gif-header-fixed popover")
+		} else {
+			$(".mtd-gif-header").removeClass("mtd-gif-header-fixed popover")
+		}
+		if (isLoadingMoreGifs) {
+			return;
+		}
+
+		console.log($(this));
+    	console.log($(this).scrollTop() + $(this).height() );
+    	console.log($(this).prop("scrollHeight"))
+		if ($(this).scrollTop() + $(this).height() > $(this).prop("scrollHeight") - 200) {
+			console.log("now'd be a good time to load more gifs");
+			isLoadingMoreGifs = true;
+			loadMoreGifs();
+   		}
+	})
+}
+
+function renderGif(preview,mainOg) {
+	let main = mainOg;
+
+	return make("img").attr("src",preview).click(function() {
+		let img;
+
+		console.log("Main: ",main);
+
+		getBlobFromUrl(main).then((img) => {
+
+			console.log(img);
+
+			let eventThing = {
+				originalEvent:{
+					dataTransfer:{
+						files:[
+							img
+						]
+					}
+				}
+			};
+
+			let buildEvent = jQuery.Event("dragenter",eventThing);
+			let buildEvent2 = jQuery.Event("drop",eventThing);
+
+			console.info("alright so these are the events we're gonna be triggering:");
+			console.info(buildEvent);
+			console.info(buildEvent2);
+
+			$(".mtd-gif-container").removeClass("mtd-gif-container-open").delay(300).remove();;
+			$(document).trigger(buildEvent);
+			$(document).trigger(buildEvent2);
+
+		})
+	});
+}
+
+function renderGifResults(data) {
+	$(".mtd-gif-container .preloader-wrapper").remove();
+
+	let col1 = $(".mtd-gif-column-1");
+	let col2 = $(".mtd-gif-column-2");
+
+	$(".mtd-gif-no-results").addClass("hidden");
+
+	if (data.length === 0) {
+		col1.children().remove();
+		col2.children().remove();
+
+		$(".mtd-gif-no-results").removeClass("hidden");
+	}
+
+	for (let i = 0; i < data.length; i++) {
+		if (i % 2 === 0) {
+			col1.append(
+				renderGif(data[i].images.preview_gif.url,data[i].images.original.url)
+			)
+		} else {
+			col2.append(
+				renderGif(data[i].images.preview_gif.url,data[i].images.original.url)
+			)
+		}
+	}
+}
+
+function gifPanelSpinner() {
+	$(".mtd-gif-container").append(
+		spinnerLarge
+	)
+}
+
+function searchGifPanel(query) {
+	$(".mtd-gif-column-1").children().remove();
+	$(".mtd-gif-column-2").children().remove();
+
+	$(".mtd-gif-no-results").addClass("hidden");
+
+	isLoadingMoreGifs = true;
+
+	let sanitiseQuery = query.replace(/\s/g,"+").replace(/\&/g,"&amp;").replace(/\?/g,"").replace(/\//g," OR ")
+	lastGiphyURL = "https://api.giphy.com/v1/gifs/search?q="+sanitiseQuery+"&api_key="+GiphyKey+"&limit=20";
+	console.log(lastGiphyURL);
+
+	$.ajax(
+		{
+			url:lastGiphyURL
+		}
+	).done((e) => {
+		console.log(e);
+		renderGifResults(e.data);
+	}).always(() => {
+		isLoadingMoreGifs = false;
+	});
+}
+
+function trendingGifPanel() {
+	$(".mtd-gif-column-1").children().remove();
+	$(".mtd-gif-column-2").children().remove();
+
+	$(".mtd-gif-no-results").addClass("hidden");
+
+	isLoadingMoreGifs = true;
+
+	lastGiphyURL = "https://api.giphy.com/v1/gifs/trending?api_key="+GiphyKey+"&limit=20";
+	console.log(lastGiphyURL);
+
+	$.ajax(
+		{
+			url:lastGiphyURL
+		}
+	).done((e) => {
+		renderGifResults(e.data);
+
+	}).always(() => {
+		isLoadingMoreGifs = false;
+	});
+}
+
+function loadMoreGifs() {
+	isLoadingMoreGifs = true;
+	$.ajax(
+		{
+			url:lastGiphyURL + "&offset=" + $(".mtd-gif-container img").length
+		}
+	).done((e) => {
+		renderGifResults(e.data);
+	}).always(() => {
+		isLoadingMoreGifs = false;
+	});
+}
+
+function hookComposer() {
+
+	createGifPanel();
+
+	if ($(".compose-text-container .js-add-image-button,.compose-text-container .js-schedule-button,.compose-text-container .mtd-gif-button").length <= 0) {
+		$(".compose-text-container").append($(".js-add-image-button,.mtd-gif-button,.js-schedule-button,.js-dm-button,.js-tweet-button,.js-send-button-container.spinner-button-container"));
+	}
+
+	if ($(".drawer .js-send-button-container").length >= 2) {
+		$(".compose-text-container .js-send-button-container.spinner-button-container")[0].remove();
+		$(".compose-text-container").append(
+			$(".drawer .js-send-button-container.spinner-button-container")
+		)
+		$(".drawer .js-send-button-container.spinner-button-container").click(() => {
+			$(".compose").trigger("uiComposeSendTweet");
+		})
+	}
+
+
+	if ($(".mtd-emoji").length <= 0)
+		$(".compose-text").emojioneArea();
+	if ($(".mtd-gif-button").length <= 0) {
+		$(".drawer .js-add-image-button").after(
+			make("button")
+			.addClass("js-show-tip btn btn-on-blue full-width txt-left padding-v--6 padding-h--12 margin-b--12 mtd-gif-button")
+			.append(
+				make("i").addClass("Icon icon-gif txt-size--18"),
+				make("span").addClass("label padding-ls").html("Add GIF")
+			)
+			.click(() => {
+				console.log("gif btn");
+
+				if ($(".mtd-gif-container").length <= 0) {
+					createGifPanel();
+				}
+
+				$(".mtd-gif-container").toggleClass("mtd-gif-container-open");
+				if ($(".mtd-gif-container").hasClass("mtd-gif-container-open")) {
+					$(".mtd-gif-search").val("");
+					trendingGifPanel();
+				} else {
+					$(".mtd-gif-container").remove();
+				}
+			})
+		);
+	}
+}
+
 function navigationSetup() {
 	if ($(".app-signin-wrap:not(.mtd-signin-wrap)").length > 0) {
 		console.info("oh no, we're too late!");
@@ -2226,6 +2463,18 @@ function navigationSetup() {
 	}
 
 	loadPreferences();
+
+	hookComposer();
+
+	setInterval(() => {
+		if ($(".mtd-emoji").length <= 0) {
+			hookComposer(); // we'll hook the composer again if we can't find the emoji container
+		}
+	},10000);
+
+	$(document).on("uiComposeTweet",hookComposer);
+	$(document).on("uiToggleTheme",hookComposer);
+	$(document).on("uiDockedComposeTweet",hookComposer);
 
 	$(".column-scroller,.more-tweets-btn-container").each((a,b) => {
 		// Fixes a bug in TweetDeck's JS caused by ModernDeck having different animations in column settings
@@ -2247,10 +2496,10 @@ function navigationSetup() {
 	$(".app-header-inner").append(
 		make("a").attr("id","mtd-navigation-drawer-button").addClass("js-header-action mtd-drawer-button link-clean cf app-nav-link").html('<div class="obj-left"><div class="mtd-nav-activator"></div><div class="nbfc padding-ts"></div>')
 		.click(() => {
-			if (typeof mtd_nav_drawer_background !== "undefined") {
+			if (exists(mtd_nav_drawer_background)) {
 				$("#mtd_nav_drawer_background").removeClass("mtd-nav-drawer-background-hidden");
 			}
-			if (typeof mtd_nav_drawer !== "undefined") {
+			if (exists(mtd_nav_drawer)) {
 				$("#mtd_nav_drawer").attr("class","mtd-nav-drawer");
 			}
 		})
@@ -2929,7 +3178,8 @@ function coreInit() {
 		}
 	}
 
-	mR.findFunction("Theme not found")[0].default._themes[undefined] = mR.findFunction("Theme not found")[0].default._themes["dark"];
+	//mR.findFunction("Theme not found")[0].default._themes[undefined] = mR.findFunction("Theme not found")[0].default._themes["dark"];
+
 
 
 	head = $(document.head);
@@ -2942,6 +3192,11 @@ function coreInit() {
 			clearContextMenu();
 		}, false);
 	}
+	// append the emoji picker script 
+
+	head.append(
+		make("script").attr("type","text/javascript").attr("src",MTDBaseURL + "sources/libraries/emojionearea.js")
+	);
 
 	if (useRaven) {
 		Raven.config('https://92f593b102fb4c1ca010480faed582ae@sentry.io/242524', {

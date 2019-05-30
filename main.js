@@ -21,6 +21,12 @@ const devBuildExpiration = {year:2019,month:5,day:4}
 // months start at 0 for whatever reason, so number is essentially added by 1
 const devBuildExpirationActive = false;
 
+const isAppX = !!process.windowsStore;
+// Note: Due to a bug in electron, process.windowsStore is undefined even for AppX distributions
+// https://github.com/electron/electron/issues/18161
+
+const isMAS = !!process.mas;
+
 let mainWindow;
 
 let updating = false;
@@ -390,11 +396,11 @@ function makeWindow() {
 
 	mtdAppTag += 'document.querySelector("html").classList.add("mtd-js-app");\n';
 
-	if (!!process.windowsStore) {
+	if (isAppX) {
 		mtdAppTag += 'document.querySelector("html").classList.add("mtd-winstore");\n';
 	}
 
-	if (!!process.mas) {
+	if (isMAS) {
 		mtdAppTag += 'document.querySelector("html").classList.add("mtd-macappstore");\n';
 	}
 
@@ -516,7 +522,7 @@ function makeWindow() {
 		function(details, callback) {
 			var foo = details.responseHeaders;
 			foo["content-security-policy"] =[
-				"default-src 'self'; connect-src * moderndeck:; font-src https: data: * moderndeck:; frame-src https: moderndeck:; frame-ancestors 'self' https: moderndeck:; img-src https: data: moderndeck:; media-src * moderndeck:; object-src 'self' https:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://c6.patreon.com https://sentry.io https://cdn.jsdelivr.net https://ajax.googleapis.com moderndeck: https://cdn.ravenjs.com/ https://*.twitter.com https://*.twimg.com https://api-ssl.bitly.com; style-src 'self' 'unsafe-inline' 'unsafe-eval' https: moderndeck:;"];
+				"default-src 'self'; connect-src * moderndeck:; font-src https: blob: data: * moderndeck:; frame-src https: moderndeck:; frame-ancestors 'self' https: moderndeck:; img-src https: data: moderndeck:; media-src * moderndeck: blob: https:; object-src 'self' https:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://c6.patreon.com https://sentry.io https://cdn.jsdelivr.net https://ajax.googleapis.com moderndeck: https://cdn.ravenjs.com/ https://*.twitter.com https://*.twimg.com https://api-ssl.bitly.com blob:; style-src 'self' 'unsafe-inline' 'unsafe-eval' https: moderndeck: blob:;"];
 			callback({ responseHeaders: foo});
 		}
 	);

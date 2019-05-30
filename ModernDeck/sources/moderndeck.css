@@ -14,6 +14,9 @@
 @import "cssextensions/coredefinitions.css";
 @import "cssextensions/superclasses.css";
 @import "cssextensions/marginclasses.css";
+@import "cssextensions/emojipicker.css";
+@import "cssextensions/gifpicker.css";
+@import "cssextensions/emoji.css";
 /* stylelint-enable */
 
 :root {
@@ -36,7 +39,9 @@
 	--rootLightGreyColor:#eee;
 	--rootBlackColor:#000;
 	--animationTiming:cubic-bezier(.19,1,.22,1);
-	--defaultFontOrder:Roboto,"Noto Sans Alphabet","Noto Sans","Noto Sans CJK","Noto Sans CJK JP","Noto Sans CJK KR","Noto Sans CJK SC","Noto Sans CJK TC","Noto Sans JP","Noto Sans KR","Noto Sans SC","Noto Sans TC"
+	--defaultFontOrder:Roboto,"Noto Sans Alphabet","Noto Sans","Noto Sans CJK","Noto Sans CJK JP","Noto Sans CJK KR","Noto Sans CJK SC","Noto Sans CJK TC","Noto Sans JP","Noto Sans KR","Noto Sans SC","Noto Sans TC";
+	--composeWidth:300px;
+	--scrollbarWidth:10px;
 }
 
 /* LOADING SCREEN, DO NOT MERGE, MOVE, OR REMOVE */
@@ -465,7 +470,7 @@ body.scroll-v .spinner-layer {
 	max-width:100%;
 	white-space:nowrap;
 	word-wrap:normal;
-	text-overflow:ellipsis
+	text-overflow: clip;
 }
 
 .txt-base-medium,.txt-base-small,.txt-base-smallest {
@@ -498,12 +503,12 @@ html.scroll-v {
 }
 
 .mdl:not(.s-tall-fixed)::-webkit-scrollbar,.keyboard-shortcut-list-modal::-webkit-scrollbar,.mdl.s-profile::-webkit-scrollbar,.scroll-styled-v::-webkit-scrollbar,.scroll-v::-webkit-scrollbar,.lst-launcher::-webkit-scrollbar,.mtd-nav-drawer::-webkit-scrollbar,.emoji-container>div::-webkit-scrollbar,.emoji-container::-webkit-scrollbar {
-	width:10px;
+	width:var(--scrollbarWidth);
 	pointer-events:all
 }
 
 .scroll-styled-h::-webkit-scrollbar,.scroll-h::-webkit-scrollbar {
-	height:10px;
+	height:var(--scrollbarWidth);
 	pointer-events:all
 }
 
@@ -836,7 +841,7 @@ i {
 	font-family:Material;
 	font-size:24px;
 	display:inline-block;
-	line-height:1;
+	line-height:1
 }
 
 .mtd-icon-very-large {
@@ -856,8 +861,6 @@ i {
 .icon-retweet:before,
 .icon-retweet-filled:before,
 .icon-mtd-settings:before,
-.icon-btd:before,
-.icon-btd-settings:before,
 .icon-quote-tweet:before,
 .icon-compose-grid:before,
 .icon-user-switch:before,
@@ -870,6 +873,10 @@ i {
 .Icon--compose-list:before
 {
 	font-family:MD
+}
+
+.icon-gif:before {
+	content:"\e908"
 }
 
 .sprite-gif:before {
@@ -1131,7 +1138,7 @@ span[data-testid="trendMovement"] .icon-pointer-d:before,span[data-testid="trend
 .js-send-button:after {
 	content:"\e163";
 	font-family:Material;
-	font-size:24px
+	font-size: 23px
 }
 
 .icon-share:before,.Icon--share:before {
@@ -1700,7 +1707,7 @@ button:hover,button:focus,.Button--primary {
 	pointer-events:all;
 	left:0;
 	opacity:1;
-	top:0;
+	top:0
 }
 
 .is-shifted-1 .column-detail-level-2 {
@@ -2258,7 +2265,7 @@ a .column-title-back .icon:after {
 	height:100%;
 	background:transparent;
 	font-size:13px;
-	line-height:1.2em;
+	line-height:1.5em;
 	opacity:1;
 	border-radius:0!important;
 	padding:10px
@@ -2655,6 +2662,15 @@ div.media-size-small {
 	display:inline
 }
 
+.drawer .compose-text-container .spinner-button-container {
+	float:right;
+}
+
+.drawer .compose-text-container .js-send-button.js-spinner-button {
+	margin-right:15px;
+	margin-top: -4px;
+}
+
 .spinner-button-icon-spinner {
 	z-index:5;
 	height:26px;
@@ -2806,7 +2822,7 @@ div.media-size-small {
 }
 
 .tweet-button.is-hidden>i:before {
-	margin-left:108px;
+	margin-left:calc((var(--composeWidth) / 2) - 30px);
 	transition:all 0.25s var(--animationTiming);
 	transform:scale(1)!important
 }
@@ -2819,7 +2835,7 @@ div.media-size-small {
 	border-radius:0;
 	margin-top:-65px;
 	margin-left:-5px;
-	width:271px
+	width:calc(var(--composeWidth) + 1px)
 }
 
 .attach-compose-buttons .icon-compose-dm {
@@ -3065,7 +3081,7 @@ div.media-size-small {
 }
 
 .compose-media-bar .compose-media-bar-thumb {
-	padding-bottom:40px
+	/* padding-bottom:40px; */
 }
 
 .invalid-char-count:disabled {
@@ -3091,15 +3107,15 @@ div.media-size-small {
 
 .drawer {
 	position:absolute;
-	width:270px;
+	width:var(--composeWidth);
 	top:0;
-	left:-270px;
+	left:calc(0px - var(--composeWidth));
 	height:auto;
 	margin-right:0;
 	pointer-events:all;
 	overflow:hidden;
 	bottom:0;
-	z-index:6
+	z-index:6;
 }
 
 .drawer-header-title {
@@ -3502,7 +3518,7 @@ div.media-size-small {
 .compose {
 	height:100%;
 	margin-left:100px;
-	width:270px;
+	width:var(--composeWidth);
 	float:right;
 	border-radius:135px;
 	opacity:0
@@ -3559,18 +3575,24 @@ div.media-size-small {
 	right:0;
 	top:50px;
 	transition:0.5s all var(--animationTiming);
-	-webkit-app-region:no-drag
+	-webkit-app-region:no-drag;
+	overflow: visible
 }
 
 .compose-text-container {
-	width:240px;
+	width:calc(var(--composeWidth) - 30px);
 	margin-left:10px;
-	height:170px;
+	height: 170px;
 	padding:0!important;
 	padding-top:10px!important;
 	box-shadow:0 3px 7px var(--composeShadow);
 	border-radius:4px;
-	margin-top:10px
+	margin-top:10px;
+	overflow:visible;
+}
+
+.compose .popover {
+	box-shadow:0 3px 7px var(--composeShadow)
 }
 
 .compose-text {
@@ -3582,15 +3604,21 @@ div.media-size-small {
 	padding-left:15px!important;
 	padding-right:15px!important;
 	border-radius:2px;
-	padding-bottom:30px
+	padding-bottom:30px;
+	overflow: visible
 }
 
 .compose-send-button-success {
-	margin-left:6px;
+	margin-left: 0;
 	margin-top:0;
 	z-index:5;
 	font-size:30px;
-	opacity:1
+	opacity:1;
+}
+
+.drawer .compose-text-container .compose-send-button-success {
+	margin-left: -24px;
+	margin-top: -18px;
 }
 
 .compose-send-button-success.is-hidden {
@@ -3603,12 +3631,13 @@ div.media-size-small {
 	position:relative;
 	font-size:12px;
 	font-weight:400;
-	width:220px;
+	width:calc(var(--composeWidth) - 50px);
 	margin-left:10px;
 	z-index:5;
 	box-shadow:0 3px 7px var(--composeShadow);
 	opacity:1;
-	margin-top:0
+	margin-top:0;
+	border-radius:3px
 }
 
 .compose-reply-tweet-remove {
@@ -3636,7 +3665,6 @@ div.media-size-small {
 	border:0;
 	font-size:1rem;
 	box-shadow:none;
-	width:215px;
 	padding:8px 0 3px 10px;
 	margin-bottom:3px;
 	margin-top:-3px;
@@ -3662,10 +3690,10 @@ div.media-size-small {
 	text-align:center;
 	line-height:0;
 	padding:0;
-	padding-bottom:10px;
+	/* padding-bottom:10px; */
 	box-shadow:0 3px 7px var(--composeShadow);
 	border-radius:4px;
-	overflow:hidden
+	overflow:hidden;
 }
 
 .compose-media-info-bar i {
@@ -3675,7 +3703,8 @@ div.media-size-small {
 .compose-media-bar-remove {
 	position:absolute;
 	top:26px;
-	right:14px
+	right:14px;
+	z-index:2
 }
 
 .compose-media-bar-remove .icon-close:before {
@@ -3750,7 +3779,7 @@ div.media-size-small {
 
 .js-inline-reply .pull-right {
 	margin-top:-40px;
-	margin-right:-5px
+	margin-right: 57px;
 }
 
 .js-inline-reply .pull-right[for] {
@@ -3833,7 +3862,7 @@ div.media-size-small {
 	box-shadow:0 3px 6px rgba(0,0,0,.7);
 	border-radius:4px 4px 0 0;
 	pointer-events:all;
-	animation:mediaSlideUp 0.4s var(--animationTiming)
+	animation:mediaSlideUp 0.4s var(--animationTiming);
 }
 
 .med-embeditem {
@@ -4456,7 +4485,7 @@ input[type="checkbox"]:active {
 
 #caldays span {
 	float:left;
-	width:33px;
+	width:calc(var(--composeWidth)/8.25);
 	font-size:11px;
 	text-align:center
 }
@@ -4467,8 +4496,8 @@ input[type="checkbox"]:active {
 
 .calweek a {
 	float:left;
-	width:32px;
-	height:22px;
+	width:calc(var(--composeWidth)/8.5);
+	height:calc(var(--composeWidth)/12);
 	font-size:12px;
 	margin-left:1px;
 	text-align:center;
@@ -4595,7 +4624,8 @@ input[type="checkbox"]:active {
 
 .prf-header .icon-protected {
 	font-size:16px;
-	margin-left:3px
+	margin-left:3px;
+	margin-top: -13px;
 }
 
 .prf-bio {
@@ -4888,7 +4918,7 @@ input[type="checkbox"]:active {
 .popover-position-rt {
 	z-index:6;
 	left:65px;
-	top:-45px;
+	top:-60px;
 	right:0;
 	animation:rightPopoverDown 0.25s var(--animationTiming)
 }
@@ -5075,8 +5105,8 @@ input[type="checkbox"]:active {
 	position:fixed;
 	width:100px;
 	bottom:15px;
-	left:-258px;
-	float:none
+	float:none;
+	left:calc(10px - var(--composeWidth))
 }
 
 .compose-title-text:after {
@@ -5088,7 +5118,7 @@ input[type="checkbox"]:active {
 	padding-left:5px;
 	margin-bottom:15px;
 	margin-left:10px!important;
-	width:235px;
+	width:calc(var(--composeWidth) - 35px);
 	animation:calendarMenuDown 0.3s var(--animationTiming)
 }
 
@@ -5132,20 +5162,65 @@ input[type="checkbox"]:active {
 	opacity:0
 }
 
-.js-add-image-button,.js-tweet-button,.js-dm-button,.js-schedule-button {
-	width:35px!important;
-	height:35px;
-	margin-top:-59px;
+.js-add-image-button,.js-tweet-button,.js-dm-button,.js-schedule-button,.mtd-gif-button {
+	width:30px!important;
+	height:30px!important;
+	margin-top: -53px;
 	background:transparent!important;
-	box-shadow:none!important
+	box-shadow:none!important;
+	margin-left:3px
+}
+
+
+.compose-text-container .js-add-image-button,
+.compose-text-container .js-tweet-button,
+.compose-text-container .js-dm-button,
+.compose-text-container .js-schedule-button,
+.compose-text-container .mtd-gif-button
+{
+	margin-left:4px
+}
+
+.compose-text-container .js-add-image-button,
+.compose-text-container .js-tweet-button,
+.compose-text-container .js-dm-button,
+.compose-text-container .js-schedule-button,
+.compose-text-container .mtd-gif-button
+{
+	margin-top:-5px;
+}
+
+.compose-text-container .mtd-gif-button {
+	margin-left: 10px;
+	margin-right: -10px;
+}
+
+.inline-reply .mtd-emoji-button {
+	left:94px
+}
+
+.js-tweet-button {
+	margin-top:-57px
 }
 
 .js-add-image-button {
-	margin-left:15px
+	margin-left: 13px
+}
+
+.mtd-gif-button {
+	margin-left:0;
+	position:relative;
+	display:inline;
 }
 
 .js-tweet-button>i,.js-dm-button>i,.js-add-image-button>i,.js-schedule-button>i {
 	font-size:24px
+}
+
+.mtd-gif-button>i {
+	font-size:32px;
+	margin-top: -3px;
+	margin-left: -12px;
 }
 
 .inline-reply.is-inline-inactive {
@@ -5178,7 +5253,8 @@ input[type="checkbox"]:active {
 
 .antiscroll-inner.padding-h--15 {
 	padding-left:5px!important;
-	padding-right:5px!important
+	padding-right:5px!important;
+	overflow:auto
 }
 
 .compose i.icon-close {
@@ -5300,11 +5376,11 @@ a[rel="user"]:active,
 }
 
 .js-media-added {
-	width:240px;
+	width:calc(var(--composeWidth) - 30px);
 	margin-left:10px;
 	box-shadow:0 3px 7px var(--composeShadow);
 	margin-top:15px;
-	animation:mediaDown .825s var(--animationTiming)
+	animation:mediaDown .825s var(--animationTiming);
 }
 
 .cal header span {
@@ -5373,7 +5449,7 @@ a[rel="user"]:active,
 }
 
 .hide-detail-view-inline .column-navigator {
-	left:280px!important
+	left:calc(var(--composeWidth))!important
 }
 
 .hide-detail-view-inline .app-search-fake {
@@ -5435,13 +5511,15 @@ a[rel="user"]:active,
 }
 
 .js-send-button {
-	margin-right:25px;
-	height:35px;
-	width:35px;
+	margin-right: 24px;
+	height: 30px;
+	width: 30px;
 	font-size:0;
 	padding-top:0;
 	float:right;
-	-moz-transform:translateX(-10px)
+	-moz-transform:translateX(-10px);
+	padding-left: 4px;
+	margin-top: 3px;
 }
 
 .drawer-header,.Panel-header {
@@ -5473,7 +5551,7 @@ a[rel="user"]:active,
 .tweet-button.is-hidden {
 	display:inline-block!important;
 	border-radius:0;
-	width:271px;
+	width:calc(var(--composeWidth) + 1px);
 	margin-left:-5px;
 	margin-top:-4px;
 	box-shadow:none!important
@@ -5540,8 +5618,7 @@ a[rel="user"]:active,
 
 .hide-detail-view-inline .mtd-drawer-button {
 	top:5px;
-	z-index:7;
-	margin-left:212px
+	margin-left:calc(var(--composeWidth) - 55px)
 }
 
 .mtd-nav-drawer {
@@ -5787,12 +5864,12 @@ a[rel="user"]:active,
 }
 
 .compose .js-quote-tweet-holder .quoted-tweet {
-	padding-left:10px!important;
-	padding-right:30px!important;
+	padding-left: 10px!important;
+	padding-right: 30px!important;
 	position:relative;
-	width:200px;
-	padding-bottom:60px!important;
-	margin-top:0
+	width: calc(var(--composeWidth) - 70px);
+	padding-bottom: 10px!important;
+	margin-top:0;
 }
 
 .is-options-open .more-tweets-btn-container--hidden {
@@ -5874,7 +5951,7 @@ a[rel="user"]:active,
 
 .js-account-safeguard-checkbox {
 	position:absolute;
-	margin-left:170px;
+	margin-left:calc(var(--composeWidth) - 96px);
 	margin-top:15px
 }
 
@@ -5914,7 +5991,12 @@ a[rel="user"]:active,
 	min-height:0
 }
 
-.more-tweets-btn,.tweet-button:not(.js-hide-drawer),.stream-item.is-actionable:hover,button.try-query,.Notification-inner
+.more-tweets-btn,
+.tweet-button:not(.js-hide-drawer),
+.stream-item.is-actionable:hover,
+.stream-item.is-actionable.is-selected-tweet,
+button.try-query,
+.Notification-inner
  {
 	box-shadow:0 2px 5px 0 rgba(0,0,0,.16),0 2px 5px 0 var(--contextMenuShadow)
 }
@@ -5963,7 +6045,7 @@ a[rel="user"]:active,
 }
 
 .js-compose-message-recipient-input-container {
-	width:240px!important;
+	width:calc(var(--composeWidth) - 30px)!important;
 	box-shadow:0 3px 7px var(--composeShadow);
 	transition:box-shadow 0.3s;
 	padding-bottom:3px;
@@ -5975,11 +6057,13 @@ a[rel="user"]:active,
 }
 
 .typeahead-dropdown {
-	top:55px;
-	width:240px;
-	overflow-x:hidden;
+	top:45px;
+	width:calc(var(--composeWidth) - 30px);
+	overflow-x:hidden
 	animation:menuUpRelative .325s var(--animationTiming),fadeIn .325s var(--animationTiming);
-	margin-top:0
+	margin-top:0;
+	box-shadow:0 10px 20px 0 var(--contextMenuShadow);
+	overflow-x:hidden
 }
 
 .dropdown-menu ul {
@@ -6008,10 +6092,6 @@ a[rel="user"]:active,
 
 .add-participant .js-username-input.js-submittable-input {
 	width:95%
-}
-
-.compose-media-grid-holder {
-	padding-bottom:45px!important
 }
 
 .js-hide-drawer:after {
@@ -6309,7 +6389,7 @@ button.mtd-no-transform-case {
 }
 
 .js-tweet-type-button,.js-scheduler {
-	width:50px;
+	/* width:50px; */
 	display:inline
 }
 
@@ -6574,7 +6654,8 @@ button.mtd-no-transform-case {
 
 .compose-remember-state {
 	width:50px;
-	cursor:pointer
+	cursor:pointer;
+	float: right
 }
 
 .mtd-settings-option option[value="paper"] {
@@ -6758,8 +6839,8 @@ body>.message-banner[style="color:rgb(85, 85, 85); background-color:rgb(178, 213
 }
 
 .compose .quoted-tweet .js-quoted-tweet-text {
-	padding-left:5px;
-	margin-top:10px
+	/* padding-left:5px; */
+	margin-top: 7px;
 }
 
 .compose .quoted-tweet .sprite-close {
@@ -7024,6 +7105,12 @@ p[lang="yi"] a[rel="hashtag"],p[lang="yi"] a[rel="user"]
 	right:6px
 }
 
+.mtd-emoji-button-open:after {
+	font-family:"Material";
+	content:"\e24e";
+	font-size: 17px;
+}
+
 .prf-actions .unfollow-text:after {
 	content:"\e7f6"
 }
@@ -7196,7 +7283,7 @@ legend.frm-legend+div+.control-group>.control-label,legend.frm-legend+div+div+.c
 
 .js-character-count {
 	display:block!important;
-	bottom:16px;
+	bottom:15px;
 	right:90px
 }
 
@@ -7522,7 +7609,7 @@ button[type="submit"]:active {
 }
 
 .compose-reply-tweet:not(.is-hidden)+.compose-text-container>.compose-text {
-	height:100px!important
+	height: 111px!important;
 }
 
 .stroke-twitter-yellow {
@@ -7610,7 +7697,7 @@ button[type="submit"]:active {
 }
 
 .popover-position-t {
-	margin-top:4px
+	margin-top: 22px;
 }
 
 label[for="inline-account-safeguard-checkbox"] {
@@ -7664,7 +7751,7 @@ li.padding-axl.flex.flex-row.flex-align--center .account-summary-text>a.account-
 
 .account-summary-text {
 	padding-left:calc(var(--avatarSize) * 1.05);
-	padding-top:15px
+	padding-top: 15px;
 }
 
 .js-list-description {
@@ -7793,7 +7880,8 @@ li.padding-axl.flex.flex-row.flex-align--center .account-summary-text>a.account-
 .compose .quoted-tweet .tweet-header {
 	overflow:hidden;
 	text-overflow:clip;
-	display:block
+	display:block;
+	position: relative;
 }
 
 .tweet-header {
@@ -7809,7 +7897,7 @@ li.padding-axl.flex.flex-row.flex-align--center .account-summary-text>a.account-
 }
 
 .quoted-tweet .tweet-header {
-	height:28px
+	height:28px;
 }
 
 body+div,body+div>div {
@@ -8242,9 +8330,9 @@ div[data-testid="trend"]>.txt-bold {
 	width:55px;
 	line-height:0;
 	font-size:19px;
-	color:rgba(255,255,255,0.5);
+	color:var(--rootWhiteColor);
 	transition:color .15s var(--animationTiming);
-	cursor:pointer
+	cursor:pointer;
 }
 
 .Notification--green .Notification-inner {
@@ -8457,7 +8545,7 @@ span[data-testid="trendDescription"] {
 	position:absolute
 }
 
-.compose .compose-media-bar i.icon-close,.compose-media-bar>.js-add-image-description {
+.compose .compose-media-bar i.icon-close,.media-image-container .icon-close,.compose-media-bar>.js-add-image-description {
 	color:var(--rootWhiteColor)!important
 }
 
@@ -8717,7 +8805,8 @@ li.padding-axl.flex.flex-row.flex-align--center .fullname {
 }
 
 .inline-reply .js-character-count {
-	padding-right:90px
+	padding-right:90px;
+	margin-top:13px
 }
 
 .account-settings-bb.hyphenate {
@@ -9344,7 +9433,7 @@ li.padding-axl.flex.flex-row.flex-align--center .fullname {
 }
 
 .mtd-app:not(.mtd-maximized) .js-search-in-popover .popover-position-rt {
-	margin-top:50px
+	margin-top:50px;
 }
 
 .mtd-app-mac .js-search-in-popover .popover-position-rt {
@@ -9759,7 +9848,12 @@ label.checkbox::selection,label.control-label::selection {
 
 .compose .spinner-button-container .spinner-button-icon-spinner {
 	margin-top:7px;
-	margin-left:9px
+	margin-left:4px
+}
+
+.compose .compose-text-container .spinner-button-container .spinner-button-icon-spinner {
+	margin-top: -14px;
+	margin-left: -19px;
 }
 
 .is-shifted-2 .js-accounts-column-holder .column-panel:nth-child(3) {
@@ -10058,48 +10152,161 @@ footer>.js-tweet-stats>.tweet-stats:not(.js-stats-list) {
 	top:100px;
 	font-size:14px!important
 }
-.width--380.padding-v--30.txt-center {
-    width: 100%;
-}
 
 .margin-h--45 {
-    margin-left:45px;
-    margin-right:45px  
+	margin-left:45px;
+	margin-right:45px
 }
 
 .padding-a--20 {
-    padding:20px
+	padding:20px
 }
 
 .width--380.padding-v--30.txt-center {
-    width: 100%;
+	width:100%
 }
 
 .margin-h--45 {
-    margin-left:45px;
-    margin-right:45px  
+	margin-left:45px;
+	margin-right:45px
 }
 
 .padding-a--20 {
-    padding:20px
+	padding:20px
 }
 
 .app-content[style="transition-duration: 0ms; transform: translateX(400px); margin-right: 400px;"],
 .app-content[style="transition-duration: 200ms; transform: translateX(400px); margin-right: 400px;"],
-.app-content[style="transition-duration: 200ms; transform: translateX(400px); margin-right: 0px;"] {
-    transform:translateX(270px)!important;
-    margin-right:270px!important;
+.app-content[style="transition-duration: 200ms; transform: translateX(400px); margin-right: 0px;"],
+.app-content[style="transition-duration: 200ms; transform: translateX(270px); margin-right: 270px;"],
+.app-content[style="transition-duration: 200ms; transform: translateX(270px); margin-right: 0px;"],
+.app-content[style="transition-duration: 0ms; transform: translateX(270px); margin-right: 270px;"]
+ {
+	transform:translateX(var(--composeWidth))!important;
+	margin-right:var(--composeWidth)!important
 }
 
 .js-hide-drawer:not(.tweet-button) {
-    position:fixed;
-    left:0;
-    top:0;
-    pointer-events:all;
-    width:270px!important;
-    opacity:0
+	position:fixed;
+	left:0;
+	top:0;
+	pointer-events:all;
+	width:var(--composeWidth)!important;
+	opacity:0
 }
 
 .old-composer-footer .new-composer-opt-in {
-    display:none
+	display:none
+}
+
+.js-processing-video>.color-twitter-white.padding-t--8 {
+	padding-top:66px;
+	opacity:0;
+	pointer-events:none
+}
+.js-processing-video>.preloader-wrapper {
+	width:36px;
+	height:36px;
+	margin-top:50px
+}
+
+.video-container>.js-custom-video-controls,.video-container>video {
+	margin-bottom:50px
+}
+
+.js-mute-unmute {
+	position:absolute;
+	right:10px
+}
+
+.js-play-pause {
+	position:absolute;
+	left:10px
+}
+
+.js-video-time-duration {
+	font-size:12px!important;
+	top:24px;
+	padding-left:40px;
+	padding-top:1px
+}
+
+.js-video-progress {
+	top:-8px;
+	left:-1px;
+	right:0;
+	width:calc(var(--composeWidth) - 110px)
+}
+
+.typeahead-item .username {
+	color:var(--txtMuteLink)
+}
+
+.compose-text-container>img {
+	width:16px;
+	height:16px
+}
+
+.js-add-image-button:after,
+.js-tweet-button:after,
+.js-dm-button:after,
+.mtd-gif-button:after,
+.js-schedule-button:after
+{
+	content:" ";
+	background:rgba(255,255,255,.2);
+	width:30px;
+	height:30px;
+	position:absolute;
+	border-radius:33px;
+	margin-top:-40px;
+	z-index:5;
+	transform:scale(.5);
+	transition:0.5s all,.15s opacity;
+	opacity:0;
+	margin-left:20px;
+	pointer-events:none
+}
+
+.js-add-image-button:active,
+.js-tweet-button:active,
+.js-dm-button:active,
+.mtd-gif-button:active,
+.js-schedule-button:active
+{
+	transform:scale(1,1)!important
+}
+
+.js-add-image-button:active:after,
+.js-tweet-button:active:after,
+.js-dm-button:active:after,
+.mtd-gif-button:active:after,
+.js-schedule-button:not(.is-disabled):active:after
+{
+	width:50px;
+	height:50px;
+	margin-left:-14px;
+	margin-top:-37px;
+	transform:scale(1);
+	opacity:0.7;
+	transition:0.07s all,.08s margin;
+}
+
+
+.mtd-gif-button:active:after {
+	margin-left:-20px;
+	margin-top:-42px
+}
+
+.js-quoted-tweet-text+.txt-ellipsis.txt-size-variable--12 {
+	display:none
+}
+
+.compose-reply-tweet .tweet-header .account-link.link-complex {
+	overflow:hidden;
+	max-width:90%
+}
+
+.release-notes-modal .mdl-inner {
+	padding:30px
 }

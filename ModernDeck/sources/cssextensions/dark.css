@@ -138,7 +138,9 @@ html,
 }
 
 .media-sensitive,
+.stream-item.is-actionable .quoted-tweet,
 .stream-item.is-actionable:not(.is-unread):hover,
+.stream-item.is-actionable:not(.is-unread).is-selected-tweet,
 .tweet-detail-wrapper
 {
 	background:var(--tweetDetailWrapperColor);
@@ -477,8 +479,8 @@ textarea
 #lists-modal .mdl-content::-webkit-scrollbar-thumb,
 .keyboard-shortcut-list-modal::-webkit-scrollbar-thumb
 {
-  border-radius:5px;
-  background:var(--scrollbarDefaultColor)
+	border-radius:var(--scrollbarWidth);
+	background:var(--scrollbarDefaultColor)
 }
 
 .mdl::-webkit-scrollbar-thumb:hover,
