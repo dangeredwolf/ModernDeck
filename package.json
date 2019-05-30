@@ -32,7 +32,7 @@
 			],
 			"target": [
 				{
-					"target": "nsisWeb",
+					"target": "nsis-web",
 					"arch": [
 						"ia32",
 						"x64"
