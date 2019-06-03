@@ -305,6 +305,12 @@ function makeWindow() {
 		store.set("mtd_nativetitlebar",false);
 	}
 
+	let devTron = require('devtron');
+
+	if (devTron) {
+		devTron.install(); 
+	}
+	
 
 	protocol.registerFileProtocol("moderndeck", mtdSchemeHandler);
 
@@ -693,7 +699,6 @@ function makeWindow() {
 }
 
 electron.protocol.registerSchemesAsPrivileged([{scheme:"moderndeck",privileges:{bypassCSP:true,secure:true,standard:true,allowServiceWorkers:true,supportFetchAPI:true,corsEnabled:true}}]);
-
 
 app.on('ready', makeWindow)
 

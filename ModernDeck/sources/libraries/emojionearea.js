@@ -1268,61 +1268,61 @@ EmojioneArea.prototype.trigger = function() {
 }
 
 EmojioneArea.prototype.showPicker = function () {
-	var this = this;
-	if (this._sh_timer) {
-		window.clearTimeout(this._sh_timer);
+	var self = this;
+	if (self._sh_timer) {
+		window.clearTimeout(self._sh_timer);
 	}
-	this.picker.removeClass("hidden");
-	this._sh_timer =  window.setTimeout(function() {
-		this.button.addClass("active");
+	self.picker.removeClass("hidden");
+	self._sh_timer =  window.setTimeout(function() {
+		self.button.addClass("active");
 	}, 50);
-	trigger(this, "picker.show", [this.picker]);
-	return this;
+	trigger(self, "picker.show", [self.picker]);
+	return self;
 }
 
 EmojioneArea.prototype.hidePicker = function () {
-	var this = this;
-	if (this._sh_timer) {
-		window.clearTimeout(this._sh_timer);
+	var self = this;
+	if (self._sh_timer) {
+		window.clearTimeout(self._sh_timer);
 	}
-	this.button.removeClass("active");
-	this._sh_timer =  window.setTimeout(function() {
-		this.picker.addClass("hidden");
+	self.button.removeClass("active");
+	self._sh_timer =  window.setTimeout(function() {
+		self.picker.addClass("hidden");
 	}, 500);
-	trigger(this, "picker.hide", [this.picker]);
-	return this;
+	trigger(self, "picker.hide", [self.picker]);
+	return self;
 }
 
 EmojioneArea.prototype.enable = function () {
-	var this = this;
+	var self = this;
 	
 	var next = function () {
-		this.disabled = false;
-		this.editor.prop('contenteditable', true);
-		this.button.show();
-		var editor = this[(this.standalone) ? "button" : "editor"];
+		self.disabled = false;
+		self.editor.prop('contenteditable', true);
+		self.button.show();
+		var editor = self[(self.standalone) ? "button" : "editor"];
 		editor.parent().removeClass('mtd-emoji-disable');
-		trigger(this, 'enabled', [editor]);
+		trigger(self, 'enabled', [editor]);
 	};
 	
-	this.isReady ? next() : this.on("ready", next);
+	self.isReady ? next() : self.on("ready", next);
 
-	return this;
+	return self;
 }
 
 EmojioneArea.prototype.disable = function () {
-	var this = this;
-	this.disabled = true;
+	var self = this;
+	self.disabled = true;
 	var next = function () {
-		this.editor.prop('contenteditable', false);
-		this.hidePicker();
-		this.button.hide();
-		var editor = this[(this.standalone) ? "button" : "editor"];
+		self.editor.prop('contenteditable', false);
+		self.hidePicker();
+		self.button.hide();
+		var editor = self[(self.standalone) ? "button" : "editor"];
 		editor.parent().addClass('mtd-emoji-disable');
-		trigger(this, 'disabled', [editor]);
+		trigger(self, 'disabled', [editor]);
 	};
-	this.isReady ? next() : this.on("ready", next);
-	return this;
+	self.isReady ? next() : self.on("ready", next);
+	return self;
 }
 
 $.fn.emojioneArea = function(options) {
@@ -1331,25 +1331,25 @@ $.fn.emojioneArea = function(options) {
 		$.data(this, 'mtd-emoji', this.emojioneArea = new EmojioneArea($(this), options));
 		return this.emojioneArea;
 	});
-}
+};
 
 $.fn.emojioneArea.defaults = getDefaultOptions();
 
 $.fn.emojioneAreaText = function(options) {
 	options = getOptions(options);
 
-	var this = this, pseudothis = {
+	var self = this, pseudoSelf = {
 		shortnames: (options && typeof options.shortnames !== 'undefined' ? options.shortnames : true),
 		emojiTemplate: '<img alt="{alt}" class="emojioneemoji" src="{img}"/>'
 	};
 
-	this.each(function() {
+	self.each(function() {
 		var $this = $(this);
 		if (!$this.hasClass('mtd-emoji-text')) {
-			$this.addClass('mtd-emoji-text').html(htmlFromText(($this.is('TEXTAREA') || $this.is('INPUT') ? $this.val() : $this.text()), pseudothis));
+			$this.addClass('mtd-emoji-text').html(htmlFromText(($this.is('TEXTAREA') || $this.is('INPUT') ? $this.val() : $this.text()), pseudoSelf));
 		}
 		return $this;
 	});
 
-	return this;
-}
+	return self;
+};

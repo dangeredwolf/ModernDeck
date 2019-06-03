@@ -21,9 +21,11 @@ Preparation for building ModernDeck from source varies depending on whether you 
 
 ### Dependencies
 
-To build the ModernDeck app, you need to first install Node.js (which comes with npm), as well as Yarn
+To build the ModernDeck app, you need to first install Node.js (which comes with npm)
 
 ℹ *ModernDeck is tested against the latest LTS version of Node.js, but it will likely work fine with the Current version as well.*
+
+ℹ *Once Node.js includes ES6 Modules without prefixing, this will change to require the latest version until LTS gets it too.*
 
 
 
@@ -38,6 +40,8 @@ For Windows, [you can download Node.js here](https://nodejs.org/en/)
 For macOS, you can install the necessary packages using [Homebrew](https://brew.sh/).
 
 `brew install git node`
+
+ℹ *Xcode Command Line Tools also include git. If you already have it, you can remove "git" from the command.*
 
 ❓ *[Alternatively, you can also install nodejs using the .pkg installer](https://nodejs.org/en/)*
 
