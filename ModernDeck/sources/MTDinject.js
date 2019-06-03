@@ -1,31 +1,26 @@
-// MTDinject.js
-// Copyright (c) 2019 Dangered Wolf
+/*
+	MTDinject.js
+	Copyright (c) 2019 dangeredwolf
+	Released under the MIT licence
 
-// made with love <3
+	made with love <3
 
-"use strict";
+*/
+
+'use strict';
 
 const SystemVersion = "7.2 Beta (Build 2019-05-30)";
 const appendTextVersion = false;
 
-let MTDBaseURL = "https://rawgit.com/dangeredwolf/ModernDeck/stable/ModernDeck/"; // Defaults to streaming if MTDURLExchange isn't completed properly
-let GiphyKey = "Vb45700bexRDqCkbMdUmBwDvtkWT9Vj2";
+let mtdBaseURL = "https://rawgit.com/dangeredwolf/ModernDeck/stable/ModernDeck/"; // Defaults to streaming if MTDURLExchange isn't completed properly
+const giphyKey = "Vb45700bexRDqCkbMdUmBwDvtkWT9Vj2"; // swiper no swipey
 let lastGiphyURL = "";
 let isLoadingMoreGifs = false;
 
-let msgID = 0;
-let FetchProfileInfo = 0;
 let loginIntervalTick = 0;
-let contextMenuNum = 0;
 
 const forceFeatureFlags = false;
-
-let messagesAccounted = [];
-
-let MTDDark = true;
-
 const forceAppx = false; // https://github.com/electron/electron/issues/18161
-
 const useRaven = false;
 
 let newLoginPage =
@@ -55,7 +50,7 @@ let newLoginPage =
 </div>';
 
 
-let spinnerSmall =
+const spinnerSmall =
 '<div class="preloader-wrapper active">\
 	<div class="spinner-layer small">\
 		<div class="circle-clipper left">\
@@ -70,7 +65,7 @@ let spinnerSmall =
 	</div>\
 </div>';
 
-let spinnerLarge =
+const spinnerLarge =
 '<div class="preloader-wrapper active">\
 	<div class="spinner-layer">\
 		<div class="circle-clipper left">\
@@ -85,7 +80,7 @@ let spinnerLarge =
 	</div>\
 </div>';
 
-let spinnerTiny =
+const spinnerTiny =
 '<div class="preloader-wrapper active">\
 	<div class="spinner-layer tiny">\
 		<div class="circle-clipper left">\
@@ -100,7 +95,7 @@ let spinnerTiny =
 	</div>\
 </div>';
 
-let buttonSpinner =
+const buttonSpinner =
 '<div class="js-spinner-button-active icon-center-16 spinner-button-icon-spinner preloader-wrapper active tiny">\
 	<div class="spinner-layer small">\
 		<div class="circle-clipper left">\
@@ -215,6 +210,8 @@ let contextMenuFunctions = {
 
 };
 
+// This code changes the text to respond to the time of day, naturally
+
 let mtdStarted = new Date();
 
 if (mtdStarted.getHours() < 12) { // 12:00 / 12:00pm
@@ -235,7 +232,7 @@ let settingsData = {
 					func: (opt) => {
 
 						if (typeof opt === "undefined" || opt === "undefined") {
-							console.error("Attempt to pass undefined for mtd_core_theme. This will break TweetDeck across platforms. Something has to be wrong");
+							throw "Attempt to pass undefined for mtd_core_theme. This will break TweetDeck across platforms. Something has to be wrong";
 							TD.settings.setTheme("dark");
 							return;
 						}
@@ -951,17 +948,18 @@ function retrieveImageFromClipboardAsBlob(pasteEvent, callback){
 	let items = pasteEvent.clipboardData.items;
 
 	if(items == undefined || pasteEvent.clipboardData == false){
-		console.log("RIP the paste data");
+		// console.log("RIP the paste data");
 		return;
 	};
 
 	for (let i = 0; i < items.length; i++) {
+
 		// Skip content if not image
 		if (items[i].type.indexOf("image") == -1) continue;
-		// Retrieve image on clipboard as blob
+
 		let blob = items[i].getAsFile();
 
-		if(typeof(callback) == "function"){
+		if (typeof(callback) == "function"){
 			callback(blob);
 		}
 	}
@@ -970,20 +968,20 @@ function retrieveImageFromClipboardAsBlob(pasteEvent, callback){
 // Paste event to allow for pasting images in TweetDeck
 
 window.addEventListener("paste", (e) => {
-	console.log("got paste");
-	console.log(e);
+	// console.log("got paste");
+	// console.log(e);
 
 	retrieveImageFromClipboardAsBlob(e, imageBlob => {
 
 		if (imageBlob) {
-			console.log("got imageBlob");
+			// console.log("got imageBlob");
 
 			let buildEvent = jQuery.Event("dragenter",{originalEvent:{dataTransfer:{files:[imageBlob]}}});
 			let buildEvent2 = jQuery.Event("drop",{originalEvent:{dataTransfer:{files:[imageBlob]}}});
 
-			console.info("alright so these are the events we're gonna be triggering:");
-			console.info(buildEvent);
-			console.info(buildEvent2);
+			// console.info("alright so these are the events we're gonna be triggering:");
+			// console.info(buildEvent);
+			// console.info(buildEvent2);
 
 			$(document).trigger(buildEvent);
 			$(document).trigger(buildEvent2);
@@ -1002,16 +1000,18 @@ const forceAppUpdateOnlineStatus = (e) => {
 }
 
 if (typeof MTDURLExchange === "object" && typeof MTDURLExchange.getAttribute === "function") {
-	MTDBaseURL = MTDURLExchange.getAttribute("type");
-	console.info("MTDURLExchange completed with URL " + MTDBaseURL);
+	mtdBaseURL = MTDURLExchange.getAttribute("type");
+	console.info("MTDURLExchange completed with URL " + mtdBaseURL);
 }
 
-// Moduleraid became a requirement for ModernDeck after they removed jQuery from the global context
-// Hence why twitter sucks
+/*
+	Moduleraid became a requirement for ModernDeck after they removed jQuery from the global context
+	Hence why twitter sucks
+*/
 
 let twitterSucks = document.createElement("script");
 twitterSucks.type = "text/javascript";
-twitterSucks.src = MTDBaseURL + "sources/libraries/moduleraid.min.js";
+twitterSucks.src = mtdBaseURL + "sources/libraries/moduleraid.min.js";
 document.head.appendChild(twitterSucks);
 
 // shorthand for creating a mutation observer and observing
@@ -1020,27 +1020,32 @@ function mutationObserver(obj,func,parms) {
 	return (new MutationObserver(func)).observe(obj,parms);
 }
 
-// Returns true if stylesheet extension is enabled, false otherwise. Works with custom stylesheets. (see enableCustomStylesheetExtension for more info)
+/*
+	Returns true if stylesheet extension is enabled, false otherwise.
+	Works with custom stylesheets. (see enableCustomStylesheetExtension for more info)
+*/
 
 function isStylesheetExtensionEnabled(name) {
 	if ($("#mtd_custom_css_"+name).length > 0) {
 		return true;
 	}
-	return !!document.querySelector("link.mtd-stylesheet-extension[href=\"" + MTDBaseURL + "sources/cssextensions/" + name + ".css\"\]");
+	return !!document.querySelector("link.mtd-stylesheet-extension[href=\"" + mtdBaseURL + "sources/cssextensions/" + name + ".css\"\]");
 }
 
-// Enables a certain stylesheet extension.
-// Stylesheet extensions are loaded from sources/cssextensions/[name].css
+/*
+	Enables a certain stylesheet extension.
+	Stylesheet extensions are loaded from sources/cssextensions/[name].css
 
-// These are the predefined ModernDeck ones including colour themes, default light and dark themes, and various preferences
+	These are the predefined ModernDeck ones including colour themes, default light and dark themes, and various preferences
 
-// For custom ones, see enableCustomStylesheetExtension
+	For custom or dynamically defined ones, see enableCustomStylesheetExtension
+*/
 
 function enableStylesheetExtension(name) {
 	if (name === "default" || $("#mtd_custom_css_"+name).length > 0)
 		return;
 
-	let url = MTDBaseURL + "sources/cssextensions/" + name + ".css";
+	let url = mtdBaseURL + "sources/cssextensions/" + name + ".css";
 
 	if (!isStylesheetExtensionEnabled(name)) {
 		head.append(
@@ -1062,7 +1067,7 @@ function disableStylesheetExtension(name) {
 
 	console.log(`disableStylesheetExtension("${name}")`);
 
-	$('head>link[href="' + MTDBaseURL + "sources/cssextensions/" + name + '.css"]').remove();
+	$('head>link[href="' + mtdBaseURL + "sources/cssextensions/" + name + '.css"]').remove();
 
 	if ($("#mtd_custom_css_"+name).length > 0) {
 		$("#mtd_custom_css_"+name).remove();
@@ -1091,7 +1096,7 @@ function getProfileInfo() {
 
 function loadPreferences() {
 
-	for (var key in settingsData) {
+	for (let key in settingsData) {
 
 		if (!settingsData[key].enum) {
 			for (let i in settingsData[key].options) {
@@ -1165,11 +1170,14 @@ function getPref(id) {
 }
 
 
-// purgePrefs()
-// Purges all settings. This is used when you reset ModernDeck in settings
+/*
+	purgePrefs()
+	Purges all settings. This is used when you reset ModernDeck in settings
+*/
 
 function purgePrefs() {
-	for (var key in localStorage) {
+
+	for (let key in localStorage) {
 		if (key.indexOf("mtd_") >= 0) {
 			localStorage.removeItem(key);
 			console.log(`Removing key ${key}...`);
@@ -1181,11 +1189,13 @@ function purgePrefs() {
 		store.clear();
 		console.log("Clearing electron-store...");
 	}
+
 }
 
-
-// setPref(String preferenceKey)
-// Sets preference
+/*
+	setPref(String preferenceKey)
+	Sets preference
+*/
 
 function setPref(id,p) {
 
@@ -1194,10 +1204,13 @@ function setPref(id,p) {
 	}
 
 	if (exists(store)) {
+
+		// Newer versions of electron-store are more strict about using delete vs. set undefined
+
 		if (typeof p !== "undefined") {
 			store.set(id,p);
 		} else {
-			store.delete(id); // Newer versions of electron-store is more strict about using delete vs. set undefined
+			store.delete(id);
 		}
 	} else {
 		localStorage.setItem(id,p);
@@ -1207,9 +1220,10 @@ function setPref(id,p) {
 		console.log(`setPref ${id} to ${p}`);
 }
 
-
-// hasPref(String preferenceKey)
-// return boolean: whether or not the preference manager (electron-store on app, otherwise localStorage) contains a key
+/*
+	hasPref(String preferenceKey)
+	return boolean: whether or not the preference manager (electron-store on app, otherwise localStorage) contains a key
+*/
 
 function hasPref(id) {
 	let hasIt;
@@ -1239,7 +1253,7 @@ function fontParseHelper(a) {
 	if (typeof a !== "object" || a === null)
 		throw "you forgot to pass the object";
 
-	return "@font-face{font-family:'"+(a.family||"Roboto")+"';font-style:"+(a.style||"normal")+";font-weight:"+(a.weight || "400")+";src:url("+MTDBaseURL+"sources/fonts/"+a.name+"."+(a.extension || "woff2")+") format('"+(a.format || "woff2")+"');"+"unicode-range:"+(a.range||"U+0000-FFFF")+"}\n";
+	return "@font-face{font-family:'"+(a.family||"Roboto")+"';font-style:"+(a.style||"normal")+";font-weight:"+(a.weight || "400")+";src:url("+mtdBaseURL+"sources/fonts/"+a.name+"."+(a.extension || "woff2")+") format('"+(a.format || "woff2")+"');"+"unicode-range:"+(a.range||"U+0000-FFFF")+"}\n";
 }
 
 async function MTDInit() {
@@ -1258,13 +1272,15 @@ async function MTDInit() {
 	enableStylesheetExtension("dark");
 	html.addClass("dark");
 
-	// Here, we inject our fonts
+	/*
+		Here, we inject our fonts
 
-	// ModernDeck uses Roboto as its general font for Latin (and Cyrillic?) scripts
-	// Noto Sans is used for whatever scripts Roboto doesn't cover
+		ModernDeck uses Roboto as its general font for Latin (and Cyrillic?) scripts
+		Noto Sans is used for whatever scripts Roboto doesn't cover
 
-	// font family Material is short for Material icons
-	// font family MD is short for ModernDeck. It contains ModernDeck supplemental icons
+		font family Material is short for Material icons
+		font family MD is short for ModernDeck. It contains ModernDeck supplemental icons
+	*/
 
 	if (!injectedFonts) {
 
@@ -1387,9 +1403,11 @@ async function MTDInit() {
 	if (typeof TD_mustaches["login/login_form.mustache"] !== "undefined")
 	 	TD_mustaches["login/login_form.mustache"] = newLoginPage;
 
-	// Especially on Edge, but also on Chrome shortly after launch,
-	// sometimes the stylesheet isn't blocked by the network, which breaks the page heavily.
-	// This ensures that the stylesheet is manually removed so that it doesn't cause problems
+	/*
+		Especially on Edge, but also on Chrome shortly after launch,
+		sometimes the stylesheet isn't blocked by the network, which breaks the page heavily.
+		This ensures that the stylesheet is manually removed so that it doesn't cause problems
+	*/
 
 	let beGone = document.querySelector("link[rel='apple-touch-icon']+link[rel='stylesheet']");
 
@@ -1397,8 +1415,10 @@ async function MTDInit() {
 		beGone.remove();
 	}
 
-	// These are features that can be used to force enable tweetdeck developer features.
-	// Code updated by @pixeldesu, Deckhackers, et al
+	/*
+		These are features that can be used to force enable tweetdeck developer features.
+		Code updated by @pixeldesu, DeckHackers, et al
+	*/
 
 	if (forceFeatureFlags) {
 		TD.config.config_overlay = {
@@ -1521,8 +1541,8 @@ async function MTDInit() {
  	};
 
  	// change favicon and notification sound
-	$("link[rel=\"shortcut icon\"]").attr("href",MTDBaseURL + "sources/favicon.ico");
-	$(document.querySelector("audio")).attr("src",MTDBaseURL + "sources/alert_2.mp3");
+	$("link[rel=\"shortcut icon\"]").attr("href",mtdBaseURL + "sources/favicon.ico");
+	$(document.querySelector("audio")).attr("src",mtdBaseURL + "sources/alert_2.mp3");
 
 	if (typeof TD_mustaches["settings/global_setting_filter_row.mustache"] !== "undefined")
 		TD_mustaches["settings/global_setting_filter_row.mustache"] =
@@ -1653,7 +1673,7 @@ async function MTDInit() {
 			.replace("Embed this Tweet","Embed Tweet")
 			.replace("Copy link to this Tweet","Copy link address")
 			.replace("Share via Direct Message","Share via message")
-			//.replace("Like from accounts…","Like from...")
+			//.replace("Like from accounts…","Like from...") // yeah idk why but this isn't in the context menu by default???
 			.replace("Send a Direct Message","Send message")
 			.replace("Add or remove from Lists…","Add/remove from list...")
 			.replace("See who quoted this Tweet","View quotes")
@@ -1695,7 +1715,7 @@ function startUpdateGoodLoginText() {
 	// we can't do this in the new login mustache because when it's initialised,
 	// MTDURLExchange hasn't completed yet
 
-	$(".startflow-background").attr("style","background-image:url("+MTDBaseURL+"sources/img/bg1.jpg)")
+	$(".startflow-background").attr("style",`background-image:url(${mtdBaseURL}sources/img/bg1.jpg)`)
 
 	setInterval(() => {
 		let text;
@@ -1724,16 +1744,6 @@ function sendNotificationMessage(txt) {
 	}
 }
 
-async function waitForNotificationDismiss(node, prevmsgID) {
-	await node;
-	await node.parentNode;
-
-	if (msgID === prevmsgID) {
-		$(MTDNotification).addClass("mtd-appbar-notification-hidden");
-		messagesAccounted[node] = undefined;
-	}
-}
-
 // opens legacy tweetdeck settings
 
 async function openLegacySettings() {
@@ -1745,11 +1755,13 @@ async function openLegacySettings() {
 	new TD.components.GlobalSettings;
 }
 
-// function openSettings()
-// opens and settings panel, open to first page
+/*
+	function openSettings()
+	opens and settings panel, open to first page
 
-// function openSettings(openMenu)
-// opens and returns settings panel with string openMenu, the tabId of the corresponding settings page
+	function openSettings(openMenu)
+	opens and returns settings panel with string openMenu, the tabId of the corresponding settings page
+*/
 
 function openSettings(openMenu) {
 
@@ -1771,9 +1783,12 @@ function openSettings(openMenu) {
 			console.log(settingsData[key]);
 			$(".mtd-settings-tab-selected").removeClass("mtd-settings-tab-selected");
 			$(this).addClass("mtd-settings-tab-selected");
+			
+			/*
+				calculates how far to move over the settings menu
+				good thing arrays start at 0, as 0 would be 0px, it's the first one
+			*/
 
-			// calculates how far to move over the settings menu
-			// good thing arrays start at 0, as 0 would be 0px, it's the first one
 			container.css("margin-left","-"+($(this).index()*700)+"px");
 		});
 
@@ -1924,7 +1939,7 @@ function openSettings(openMenu) {
 						}
 
 
-						// thank you https://sumtips.com/snippets/javascript/tab-in-textarea/ for this amazing hack for tabs to work
+						// https://sumtips.com/snippets/javascript/tab-in-textarea/
 						input.keydown((e) =>
 						{
 
@@ -2092,7 +2107,7 @@ function openSettings(openMenu) {
 				make("option").attr("value","phrase").html("Words or phrases"),
 				make("option").attr("value","source").html("Tweet source")
 			).change(function() {
-				filterInput.attr("placeholder",$(this).val() === "phrase" ? "Enter a word or phrase" : "eg Tweeten")
+				filterInput.attr("placeholder", $(this).val() === "phrase" ? "Enter a word or phrase" : "eg Tweeten")
 			});
 
 			let muteButton = make("button").attr("name","add-filter").addClass("js-add-filter btn-on-dark disabled").html("Mute").click(() => {
@@ -2107,6 +2122,7 @@ function openSettings(openMenu) {
 				make("label").attr("for","filter-types").addClass("control-label").html("Mute"),
 				make("div").addClass("controls").append(selectFilterType)
 			)
+
 			let muteInput = make("div").addClass("control-group").append(
 				make("label").attr("for","filter-input").addClass("control-label").html("Matching"),
 				make("div").addClass("controls").append(filterInput)
@@ -2123,11 +2139,7 @@ function openSettings(openMenu) {
 			)
 
 			let filterList = make("ul");
-
 			let filterListGroup = make("div").addClass("js-filter-list").append(filterList)
-
-
-
 
 			let form = make("form").addClass("js-global-settings frm").attr("id","global-settings").attr("action","#").append(
 				make("fieldset").attr("id","global_filter_settings").append(
@@ -2203,7 +2215,7 @@ function loginStuff() {
 	let username = profileInfo.screenName;
 
 	$(mtd_nd_header_image).attr("style","background-image:url(" + bannerPhoto + ");"); // Fetch header and place in nav drawer
-	$(mtd_nd_header_photo).attr("src",avatarPhoto)
+	$(mtd_nd_header_photo).attr("src",avatarPhoto) // Fetch profile picture and place in nav drawer
 	.mouseup(() => {
 		let profileLinkyThing = $(document.querySelector(".account-settings-bb a[href=\"https://twitter.com/"+getProfileInfo().screenName+"\"]"));
 
@@ -2213,7 +2225,7 @@ function loginStuff() {
 				profileLinkyThing.click();
 			},200);
 		}
-	}); // Fetch profile picture and place in nav drawer
+	}); 
 	$(mtd_nd_header_username).html(name); // Fetch twitter handle and place in nav drawer
 
 }
@@ -2221,8 +2233,8 @@ function loginStuff() {
 // https://staxmanade.com/2017/02/how-to-download-and-convert-an-image-to-base64-data-url/
 
 async function getBlobFromUrl(imageUrl) {
-	var res = await fetch(imageUrl);
-	var blob = await res.blob();
+	let res = await fetch(imageUrl);
+	let blob = await res.blob();
 
 	return new Promise((resolve, reject) => {
 		resolve(blob);
@@ -2237,18 +2249,19 @@ function createGifPanel() {
 	$(".drawer .compose-text-container").after(
 		make("div").addClass("scroll-v popover mtd-gif-container").append(
 			make("div").addClass("mtd-gif-header").append(
-				//make("h1").addClass("mtd-gif-header-text").html("Trending")
+				//make("h1").addClass("mtd-gif-header-text").html("Trending"),
 				make("input").addClass("mtd-gif-search").attr("placeholder","Search GIFs...").change(() => {
 					console.log("entered");
 					searchGifPanel($(".mtd-gif-search").val())
 				}),
-				make("img").attr("src",MTDBaseURL + "sources/img/giphy.png").addClass("mtd-giphy-logo"),
+				make("img").attr("src",mtdBaseURL + "sources/img/giphy.png").addClass("mtd-giphy-logo"),
 				make("div").addClass("mtd-gif-no-results list-placeholder hidden").html("We couldn't find anything matching what you searched. Give it another shot.")
 			),
 			make("div").addClass("mtd-gif-column mtd-gif-column-1"),
 			make("div").addClass("mtd-gif-column mtd-gif-column-2")
 		)
 	)
+
 	$(".drawer .compose>.compose-content>.antiscroll-inner.scroll-v.scroll-styled-v").scroll(function(){
 		if ($(this).scrollTop() > $(document).height() - 200) {
 			$(".mtd-gif-header").addClass("mtd-gif-header-fixed popover")
@@ -2260,8 +2273,8 @@ function createGifPanel() {
 		}
 
 		console.log($(this));
-    	console.log($(this).scrollTop() + $(this).height() );
-    	console.log($(this).prop("scrollHeight"))
+		console.log($(this).scrollTop() + $(this).height() );
+		console.log($(this).prop("scrollHeight"))
 		if ($(this).scrollTop() + $(this).height() > $(this).prop("scrollHeight") - 200) {
 			console.log("now'd be a good time to load more gifs");
 			isLoadingMoreGifs = true;
@@ -2350,7 +2363,7 @@ function searchGifPanel(query) {
 	isLoadingMoreGifs = true;
 
 	let sanitiseQuery = query.replace(/\s/g,"+").replace(/\&/g,"&amp;").replace(/\?/g,"").replace(/\//g," OR ")
-	lastGiphyURL = "https://api.giphy.com/v1/gifs/search?q="+sanitiseQuery+"&api_key="+GiphyKey+"&limit=20";
+	lastGiphyURL = "https://api.giphy.com/v1/gifs/search?q="+sanitiseQuery+"&api_key="+giphyKey+"&limit=20";
 	console.log(lastGiphyURL);
 
 	$.ajax(
@@ -2373,7 +2386,7 @@ function trendingGifPanel() {
 
 	isLoadingMoreGifs = true;
 
-	lastGiphyURL = "https://api.giphy.com/v1/gifs/trending?api_key="+GiphyKey+"&limit=20";
+	lastGiphyURL = "https://api.giphy.com/v1/gifs/trending?api_key="+giphyKey+"&limit=20";
 	console.log(lastGiphyURL);
 
 	$.ajax(
@@ -2647,8 +2660,8 @@ function checkIfSigninFormIsPresent() {
 
 function onElementAddedToDOM(e) {
 	let tar = $(e.target);
+
 	if (tar.hasClass("dropdown")) {
-		console.log("dropdown!!!");
 		e.target.parentNode.removeChild = (dropdown) => {
 			$(dropdown).addClass("mtd-dropdown-fade-out");
 			setTimeout(() => {
@@ -2656,10 +2669,8 @@ function onElementAddedToDOM(e) {
 			},200);
 		}
 	} else if (tar.hasClass("overlay")) {
-		console.log("overlay!!!");
 		if (!tar.hasClass("is-hidden")) {
 			let observer = mutationObserver(e.target, (mutations) => {
-				console.log("its gone now!");
 				if (tar.hasClass("is-hidden")) {
 					tar.addClass("mtd-modal-window-fade-out");
 					setTimeout(() => {
@@ -2691,14 +2702,16 @@ function roundMe(val) {
 }
 
 function formatBytes(val) {
-	if (val < 1000) {
+	if (val < 10**3) {
 		return val + " bytes"
-	} else if (val < 1000000) {
-		return roundMe(val/1000) + " KB"
-	} else if (val < 1000000000) {
-		return roundMe(val/1000000) + " MB"
+	} else if (val < 10**6) {
+		return roundMe(val/10**3) + " KB"
+	} else if (val < 10**9) {
+		return roundMe(val/10**6) + " MB"
+	} else if (val < 10**12) {
+		return roundMe(val/10**9) + " GB"
 	} else {
-		return roundMe(val/1000000000) + " GB"
+		return roundMe(val/10**12) + " TB"
 	}
 }
 
@@ -2708,14 +2721,7 @@ function mtdAppUpdatePage(updateCont, updateh2, updateh3, updateIcon, updateSpin
 
 	ipcRenderer.on("error",(e,args,f,g) => {
 
-		console.log("E:");
-		console.log(e);
-		console.log("args:");
-		console.log(args);
-		console.log("f:");
-		console.log(f);
-		console.log("g:");
-		console.log(g);
+		console.log(e,args,f,g);
 		updateh2.html("There was a problem checking for updates. ");
 		$(".mtd-update-spinner").addClass("hidden");
 
@@ -3123,7 +3129,7 @@ function buildContextMenu(p) {
 }
 
 function parseActions(a,opt) {
-	for (var key in a) {
+	for (let key in a) {
 		console.log(key);
 		switch(key) {
 			case "enableStylesheet":
@@ -3165,7 +3171,7 @@ function coreInit() {
 
 	if (typeof $ === "undefined") {
 		try {
-			var jQuery = mR.findFunction('jQuery')[0];
+			let jQuery = mR.findFunction('jQuery')[0];
 
 			window.$ = jQuery;
 			window.jQuery = jQuery;
@@ -3195,7 +3201,7 @@ function coreInit() {
 	// append the emoji picker script 
 
 	head.append(
-		make("script").attr("type","text/javascript").attr("src",MTDBaseURL + "sources/libraries/emojionearea.js")
+		make("script").attr("type","text/javascript").attr("src",mtdBaseURL + "sources/libraries/emojionearea.js")
 	);
 
 	if (useRaven) {
