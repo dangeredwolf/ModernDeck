@@ -11,12 +11,12 @@
  */
 
 /* stylelint-disable */
-@import "cssextensions/coredefinitions.css";
-@import "cssextensions/superclasses.css";
-@import "cssextensions/marginclasses.css";
-@import "cssextensions/emojipicker.css";
-@import "cssextensions/gifpicker.css";
-@import "cssextensions/emoji.css";
+@import "csscomponents/coredefinitions.css";
+@import "csscomponents/superclasses.css";
+@import "csscomponents/marginclasses.css";
+@import "csscomponents/emojipicker.css";
+@import "csscomponents/gifpicker.css";
+@import "csscomponents/emoji.css";
 /* stylelint-enable */
 
 :root {
