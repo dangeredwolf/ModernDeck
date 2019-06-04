@@ -104,17 +104,18 @@
 		"Design"
 	],
 	"dependencies": {
-		"file-type": "^11.0.0",
-		"got": "^9.6.0",
-		"through2": "^3.0.1",
-		"electron-log": "^3.0.5",
+		"electron-log": "^3.0.6",
 		"electron-packager": "^13.0.0",
 		"electron-store": "^3.2.0",
-		"electron-updater": "^4.0.6"
+		"electron-updater": "^4.0.6",
+		"file-type": "^11.1.0",
+		"got": "^9.6.0",
+		"through2": "^3.0.1"
 	},
 	"devDependencies": {
-		"electron": "^5.0.0",
-		"electron-builder": "^20.40.2",
+		"devtron": "^1.4.0",
+		"electron": "^5.0.2",
+		"electron-builder": "^20.41.0",
 		"stylelint": "^10.0.1",
 		"stylelint-config-recommended": "^2.2.0"
 	},
