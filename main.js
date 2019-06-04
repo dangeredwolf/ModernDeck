@@ -47,6 +47,8 @@ const isAppX = !!process.windowsStore;
 
 const isMAS = !!process.mas;
 
+const isDev = true;
+
 let mainWindow;
 
 let isRestarting = false;
