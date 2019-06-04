@@ -334,10 +334,10 @@ function makeWindow() {
 	try {
 		devTron = require('devtron');
 	} catch (e) {
-		// ¯\_(ツ)_/¯ 
+		// ¯\_(ツ)_/¯
 	} finally {
 		if (devTron) {
-			devTron.install(); 
+			devTron.install();
 		}
 	}
 
@@ -392,7 +392,7 @@ function makeWindow() {
 			checkDevDate.getFullYear() > devBuildExpiration.year ||
 			(checkDevDate.getMonth() > devBuildExpiration.month && checkDevDate.getFullYear() === devBuildExpiration.year) ||
 			(checkDevDate.getDate() >= devBuildExpiration.day && checkDevDate.getMonth() === devBuildExpiration.month && checkDevDate.getFullYear() === devBuildExpiration.year)) {
-			
+
 			dialog.showMessageBox(mainWindow, {
 				title:"ModernDeck",
 				message:"This development version of ModernDeck has expired. It expired on " + devBuildExpiration.year + "/" + (devBuildExpiration.month<9?"0"+(devBuildExpiration.month+1) : devBuildExpiration.month+1) + "/" + devBuildExpiration.day + ".\n\nPlease uninstall this version of ModernDeck.",
@@ -413,7 +413,7 @@ function makeWindow() {
 
 	// macOS specific: Don't run from DMG, move to Applications folder.
 
-	if (process.platform === "darwin" && !app.isInApplicationsFolder()) {
+	if (process.platform === "darwin" && !app.isInApplicationsFolder() && !isDev) {
 		const { dialog } = electron;
 
 		dialog.showMessageBox({
@@ -614,19 +614,19 @@ function makeWindow() {
 		callback({cancel:false});
 	});
 
-	// this is pretty self-explanatory 
+	// this is pretty self-explanatory
 	mainWindow.loadURL("https://tweetdeck.twitter.com");
 
 
 	/*
-		
+
 		Web content requests to navigate away from page.
 
 		If this is not a TweetDeck URL, we will instead pass
 		it on to the browser, unless...
 
 		...if it is a Twitter URL, we pop it up in a login Window.
-	
+
 	*/
 
 	mainWindow.webContents.on("will-navigate", (event, url) => {
@@ -645,13 +645,13 @@ function makeWindow() {
 	});
 
 	/*
-		
+
 		Web content requests to open a new window.
 
 		This is redirected in browser if it is not a TweetDeck URL.
 
 		If it is a Twitter URL, we pop it up in a login Window.
-	
+
 	*/
 
 	mainWindow.webContents.on("new-window", (event, url) => {
@@ -848,7 +848,7 @@ electron.protocol.registerSchemesAsPrivileged([{
 	}
 }]);
 
-// Make window when app is ready 
+// Make window when app is ready
 
 app.on('ready', makeWindow);
 
@@ -887,7 +887,7 @@ autoUpdater.on("checking-for-update", (e) => {
 	mainWindow.webContents.send("checking-for-update",e);
 });
 
-// ...currently downloading updates 
+// ...currently downloading updates
 autoUpdater.on("download-progress", (e) => {
 	if (!mainWindow || !mainWindow.webContents){
 		return;
