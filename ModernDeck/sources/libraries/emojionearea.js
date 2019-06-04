@@ -1028,6 +1028,7 @@ function init(self, source, options) {
 		if (button.is(".active")) {
 			self.hidePicker();
 		} else {
+			$(".mtd-gif-container-open").removeClass(".mtd-gif-container-open");
 			self.showPicker();
 			self.searchSel = null;
 		}
