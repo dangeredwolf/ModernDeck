@@ -1,0 +1,400 @@
+/*
+  settings.css
+
+  Copyright (c) 2014-2019 Dangered Wolf
+  Released under the MIT Licence
+*/
+
+.mtd-patron-info {
+	position:absolute;
+	right:0;
+	top:0;
+	bottom:71px;
+	float:right
+}
+
+.mtd-patron-list {
+	margin-top:60px;
+	right:100px;
+	width:240px;
+	float:right;
+	height:80%
+}
+
+.mtd-settings-button {
+	display:block;
+	float:none;
+	margin-top:40px;
+	box-shadow:0 3px 7px var(--composeShadow);
+	padding:11px;
+	border-radius:4px
+}
+
+.mtd-settings-option-button .control-label {
+	display:block;
+	float:none
+}
+
+.mtd-settings-option-button .control-label b {
+	font-size:18px;
+	font-weight:400;
+	margin-right:373px;
+	width:300px;
+	display:inline;
+	white-space:nowrap;
+	margin-left:10px
+}
+
+.mtd-settings-option-button {
+	height:auto
+}
+
+.mtd-slider-minimum,.mtd-slider-maximum {
+	float:right;
+	padding-left:8px!important;
+	padding-top:17px!important
+}
+
+.mtd-settings-option-slider input[type="range"] {
+	-webkit-appearance:none;
+	width:55%;
+	float:right;
+	border-radius:2px;
+	padding:0;
+	padding-top:10px;
+	height:14px
+}
+
+.mtd-settings-option-slider input[type="range"]::-webkit-slider-thumb {
+	-webkit-appearance:none;
+	appearance:none;
+	width:16px;
+	height:16px;
+	border-radius:50%;
+	margin-top:18px;
+	cursor:pointer
+}
+
+.mtd-settings-option-slider input[type="range"]::-moz-range-thumb {
+	width:16px;
+	height:16px;
+	border-radius:50%;
+	margin-top:18px;
+	cursor:pointer
+}
+
+.mtd-settings-option-slider b {
+	font-size:18px;
+	padding-left:20px
+}
+
+.mtd-check-out-app {
+	position:absolute;
+	top:100px;
+	font-size:14px!important
+}
+.mtd-settings-subpanel-hidden {
+	display:none
+}
+
+.mtd-settings-panel {
+	display:block;
+	position:absolute;
+	left:0;
+	right:0;
+	top:0;
+	bottom:0;
+	width:700px!important
+}
+
+.mtd-settings-subpanel {
+	height:100%;
+	width:660px;
+	display:block;
+	position:absolute;
+	overflow-y:auto;
+	overflow-x:hidden;
+	padding:20px;
+	padding-top:0
+}
+
+.mtd-settings-subpanel:nth-child(1) {
+	margin-left:0
+}
+
+.mtd-settings-subpanel:nth-child(2) {
+	margin-left:700px
+}
+
+.mtd-settings-subpanel:nth-child(3) {
+	margin-left:1400px
+}
+
+.mtd-settings-subpanel:nth-child(4) {
+	margin-left:2100px
+}
+
+.mtd-settings-subpanel:nth-child(5) {
+	margin-left:2800px
+}
+
+.mtd-settings-subpanel:nth-child(6) {
+	margin-left:3500px
+}
+
+.mtd-settings-subpanel:nth-child(7) {
+	margin-left:4200px
+}
+
+.mtd-settings-subpanel:nth-child(8) {
+	margin-left:4900px
+}
+
+.mtd-settings-inner {
+	min-height:300px;
+	transition:margin-left 0.3s var(--animationTiming);
+	bottom:0;
+	top:66px;
+	left:0;
+	right:0;
+	position:absolute;
+	overflow:hidden
+}
+
+.mtd-settings-panel-subheader {
+	margin-top:0;
+	padding-top:20px
+}
+
+.mtd-settings-option .checkbox,.mtd-settings-option .radio {
+	display:block;
+	pointer-events:all;
+	margin-bottom:0;
+	min-height:2px;
+	padding-left:0;
+	vertical-align:bottom;
+	padding-top:4px;
+	height:20px
+}
+
+.mtd-settings-tab {
+	padding:20px 23.4px;
+	color:var(--rootWhiteColor);
+	-webkit-app-region:no-drag;
+	transition:color 0.3s var(--animationTiming), border-bottom 0.3s var(--animationTiming)
+}
+
+html:not(.mtd-js-app) .mtd-settings-tab {
+	padding:20px 29.6px
+}
+
+.mtd-settings-tab:not(.mtd-settings-tab-selected) {
+	border-bottom:0 solid rgba(0,0,0,0)!important
+}
+
+.mtd-settings-tab-container {
+	box-shadow:0 5px 10px rgba(15,15,15,0.3)
+}
+
+.mtd-logo-container {
+	padding:12px
+}
+
+.mtd-settings-subpanel select, .mtd-settings-subpanel input[type="text"] {
+	width:160px;
+	display:inline-block;
+	float:right
+}
+
+.mtd-settings-subpanel label {
+	display:inline-block;
+	margin-bottom:0;
+	padding-top:14px;
+	padding-left:0
+}
+
+.mtd-settings-option {
+	width:100%;
+	height:50px;
+	margin-top:3px
+}
+
+.mtd-settings-option-checkbox {
+	height:28px;
+	margin-bottom:8px
+}
+
+.mtd-settings-option-link {
+	padding-top:16px;
+	cursor:pointer
+}
+
+.mtd-settings-subpanel p {
+	font-size:16px;
+	padding:30px
+}
+
+.mtd-settings-option input[type="checkbox"], .mtd-settings-option input[type="radio"] {
+	position:relative;
+	margin-left:0
+}
+
+.mtd-update-container,.mtd-update-container>* {
+	float:left
+}
+
+.mtd-update-container {
+	margin-top:30px;
+	display:inline-block;
+	position:absolute;
+	left:60px
+}
+
+.mtd-update-container h2 {
+	font-size:16px;
+	padding-left:20px;
+	font-weight:500;
+	margin-bottom:0;
+	margin-block-start:0;
+	margin-block-end:0
+}
+
+.mtd-update-container h3 {
+	font-size:14px;
+	padding-left:55px;
+	font-weight:400;
+	margin-block-start:0;
+	margin-block-end:0;
+	margin-top:24px;
+	position:absolute;
+	width:475px
+}
+
+.mtd-update-container button {
+	margin-top:-6px
+}
+
+.mtd-update-container i {
+	font-size:36px
+}
+
+.mtd-about-info {
+	bottom:20px;
+	position:absolute
+}
+
+.mtd-about-info p {
+	font-size:14px;
+	line-height:0.9
+}
+
+.mtd-logo {
+	width:96px;
+	font-size:96px;
+	line-height:1;
+	display:inline;
+	float:left
+}
+
+.mtd-about-title {
+	display:inline-block;
+	position:relative;
+	padding:0;
+	vertical-align:middle;
+	float:left;
+	font-size:18px;
+	margin-top:16px;
+	text-align:left;
+	width:auto
+}
+
+.mtd-version-title {
+	font-weight:400;
+	font-size:14px;
+	text-align:left;
+	display:block;
+	position:relative;
+	padding-top:43px;
+	width:247px;
+	padding-left:96px
+}
+
+#add-filter {
+	margin-left:auto;
+	margin-right:auto;
+	display:block
+}
+
+.mtd-mute-text:before {
+	font-size:16px;
+	font-weight:600;
+	padding-right:10px
+}
+
+.mtd-mute-text-:before {
+	content:"Text "
+}
+
+.mtd-mute-text-source:before {
+	content:"Source "
+}
+
+.mtd-settings-option option[value="paper"] {
+	background:#eee;
+	color:#333!important
+}
+
+.mtd-settings-option option[value="grey"] {
+	background:#555;
+	color:#fff!important
+}
+
+.mtd-settings-option option[value="red"] {
+	background:#F44336
+}
+
+.mtd-settings-option option[value="pink"] {
+	background:#E91E63
+}
+
+.mtd-settings-option option[value="orange"] {
+	background:#FF5722
+}
+
+.mtd-settings-option option[value="violet"] {
+	background:#673AB7;
+	color:#fff!important
+}
+
+.mtd-settings-option option[value="teal"] {
+	background:#009688
+}
+
+.mtd-settings-option option[value="green"] {
+	background:#4CAF50
+}
+
+.mtd-settings-option option[value="yellow"] {
+	background:#FFC107
+}
+
+.mtd-settings-option option[value="cyan"] {
+	background:#00BCD4
+}
+
+.mtd-settings-option option[value="black"],.mtd-settings-option option[value="amoled"] {
+	background:#000;
+	color:#fff!important
+}
+
+.mtd-settings-option option[value="blue"] {
+	background:#2196F3
+}
+
+.icon-info.icon-large {
+	margin-right:6px
+}
+
+#global_filter_settings .control-group {
+	width:49%
+}

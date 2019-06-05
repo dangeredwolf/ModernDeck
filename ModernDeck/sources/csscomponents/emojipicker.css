@@ -1,3 +1,10 @@
+/*
+  emojipicker.css
+
+  Copyright (c) 2014-2019 Dangered Wolf
+  Released under the MIT Licence
+*/
+
 .mtd-emoji,
 .mtd-emoji * {
 	box-sizing:border-box
@@ -10,8 +17,8 @@
 	position: absolute!important;
 	bottom: 0!important;
 	top: initial!important;
-	pointer-events:none;
-	width:100%
+	pointer-events: none!important;
+	width:100%;
 }
 
 .mtd-emoji-button {
@@ -250,4 +257,9 @@
 
 .mtd-emoji-search-panel input {
 	width:97%
+}
+
+.emoji-container>div,.emoji-container {
+	overflow-y:scroll!important;
+	overflow-x:hidden!important
 }
