@@ -9,7 +9,7 @@
 
 'use strict';
 
-const SystemVersion = "7.2 Beta (Build 2019-05-30)";
+const SystemVersion = "7.2 Beta (Build 2019-06-06)";
 const appendTextVersion = false;
 
 let mtdBaseURL = "https://raw.githubusercontent.com/dangeredwolf/ModernDeck/master/ModernDeck/";
@@ -1100,12 +1100,10 @@ function isStylesheetComponentEnabled(name) {
 }
 
 /*
-	Enables a certain stylesheet extension.
-	Stylesheet extensions are loaded from sources/csscomponents/[name].css
+	Enables a certain stylesheet component.
+	Stylesheet components are loaded from sources/csscomponents/[name].css
 
 	These are the predefined ModernDeck ones including colour themes, default light and dark themes, and various preferences
-
-	For custom or dynamically defined ones, see enableCustomStylesheetComponent
 */
 
 function enableStylesheetComponent(name) {
@@ -1119,14 +1117,14 @@ function enableStylesheetComponent(name) {
 			make("link")
 			.attr("rel","stylesheet")
 			.attr("href",url)
-			.addClass("mtd-stylesheet-extension")
+			.addClass("mtd-stylesheet-component")
 		)
 
 		console.log(`enableStylesheetComponent("${name}")`);
 	} else return;
 }
 
-// disables stylesheet extensions. Function also works with custom stylesheet extensions
+// disables stylesheet components.
 
 function disableStylesheetComponent(name) {
 	if (!isStylesheetComponentEnabled(name))
@@ -1503,8 +1501,8 @@ async function MTDInit() {
 		TD.config.debug_trace = true
 		TD.config.debug_checks = true
 		TD.config.flight_debug = true
-		TD.config.debug_highlight_streamed_chirps = true
-		TD.config.debug_highlight_visible_chirps = true
+		//TD.config.debug_highlight_streamed_chirps = true
+		//TD.config.debug_highlight_visible_chirps = true
 		TD.config.sync_period = 600
 		TD.config.force_touchdeck = true
 		TD.config.internal_build = true
@@ -1525,6 +1523,9 @@ async function MTDInit() {
 				},
 				hosebird_to_content_search_7673: {
 					value: 'search_content_over_hosebird'
+				},
+				cards_in_td_columns_8351: {
+					value: 'cards_in_td_columns_enabled'
 				}
 			}
 		});
@@ -2628,12 +2629,37 @@ function navigationSetup() {
 			$("#mtd_nav_group_arrow").removeClass("mtd-nav-group-arrow-flipped");
 		})
 	);
-	$(".mtd-nav-group-expanded").attr("style","height:"+$(".mtd-nav-group-expanded").height()+"px");
 	$(".mtd-nav-group-expanded").removeClass("mtd-nav-group-expanded");
 
 	$(".app-header-inner").append(
 		make("div").addClass("mtd-appbar-notification mtd-appbar-notification-hidden").attr("id","MTDNotification")
 	)
+
+	if ((!!TD.config && !!TD.config.config_overlay && !!TD.config.config_overlay && !!TD.config.config_overlay.tweetdeck_dogfood)) {
+		if (!!TD.config.config_overlay.tweetdeck_dogfood.value) {
+			$(".mtd-nav-group").append(
+				make("button").addClass("btn mtd-nav-button").append(make("i").addClass("icon mtd-icon-command-pallete")).click(() => {
+					mtdPrepareWindows();
+					console.log("Command pallete triggered");
+					$(document).trigger("uiShowCommandPalette");
+				}).append("Command Pallete"),
+				make("button").addClass("btn mtd-nav-button").append(make("i").addClass("icon mtd-icon-developer")).click(() => {
+					mtdPrepareWindows();
+					console.log("Disable dev/dogfood triggered");
+
+					$(document).trigger("uiReload", {
+						params: {
+							no_dogfood: 1
+						}
+					});
+
+				}).append("Disable Dev/Dogfood")
+			)
+		}
+	}
+	$(".mtd-nav-group-expanded").attr("style","height:"+$(".mtd-nav-group-expanded").height()+"px");
+
+
 
 	window.mtdPrepareWindows = () => {
 		console.info("mtdPrepareWindows called");

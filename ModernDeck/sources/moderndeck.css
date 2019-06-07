@@ -848,8 +848,12 @@ i {
 	font-size:40px
 }
 
-.pull-right>button[data-action="quote"]:before,
-.pull-right>button[data-action="retweet"]:before,
+button[data-action="quote"]:before,
+button[data-action="retweet"]:before,
+button[data-action="undo-retweet"]:before,
+a[data-action="quote"]:before,
+a[data-action="retweet"]:before,
+a[data-action="undo-retweet"]:before,
 .icon-twitter-bird:before,
 .icon-logout:before,
 .icon-tweetdeck:before,
@@ -872,7 +876,7 @@ i {
 .Icon--compose-minigrid:before,
 .Icon--compose-list:before
 {
-	font-family:MD
+	font-family:MD!important
 }
 
 .icon-gif:before {
@@ -914,6 +918,14 @@ i {
 
 .mtd-icon-arrow-down:before {
 	content:"\e313"
+}
+
+.mtd-icon-developer:before {
+	content:"\e30d"
+}
+
+.mtd-icon-command-pallete:before {
+	content:"\e85d"
 }
 
 .icon-poll:before,.Icon--poll:before {
@@ -4880,7 +4892,7 @@ input[type="checkbox"]:active {
 	position:relative;
 	display:block;
 	padding:8px 0 0 18px;
-	height:30px
+	height: 27px;
 }
 
 .dropdown-menu a {
@@ -10009,6 +10021,17 @@ label.checkbox::selection,label.control-label::selection {
 	content:"\e171"
 }
 
+.dropdown-menu a[data-action="translate"]:before {
+	content:"\e8e2"
+}
+
+.dropdown-menu a[data-action="undo-retweet"]:before {
+	content:"\f056";
+	font-size:1.3em;
+	margin-left:7px;
+	margin-right:-7px
+}
+
 .tweet-message>.l-table {
 	width:77%;
 	float:left;
@@ -10098,10 +10121,6 @@ footer>.js-tweet-stats>.tweet-stats:not(.js-stats-list) {
 .mtd-app-mac .windowcontrols,.mtd-app-mac .tweet-button>i:after,
 .mtd-app-mac .js-hide-drawer>i:after {
 	display:none
-}
-
-.mtd-app-mac .tweet-button.is-hidden>i:before {
-	margin-left:105px
 }
 
 .js-typeahead-dropdown {

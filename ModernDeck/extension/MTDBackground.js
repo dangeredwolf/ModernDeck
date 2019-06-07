@@ -30,7 +30,7 @@ if (browser !== "undefined") {
       }
 
       if (details.url.indexOf(".css") > -1 && (details.url.indexOf("tfw/css") > -1 && details.url.indexOf("tweetdeck_bundle") > -1)) {
-        return ({redirectURL:browser.runtime.getURL("sources/cssextensions/twittercard.css")});
+        return ({redirectURL:browser.runtime.getURL("sources/csscomponents/twittercard.css")});
       }
 
       return;

@@ -609,7 +609,7 @@ function makeWindow() {
 		}
 
 		if (details.url.indexOf(".css") > -1 && details.url.indexOf("tfw") > -1 && details.url.indexOf("css") > -1 && details.url.indexOf("tweetdeck_bundle") > -1) {
-			callback({redirectURL:"moderndeck://sources/cssextensions/twittercard.css"});
+			callback({redirectURL:"moderndeck://sources/csscomponents/twittercard.css"});
 			return;
 		}
 
