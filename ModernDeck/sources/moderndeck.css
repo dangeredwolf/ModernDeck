@@ -661,11 +661,19 @@ html.scroll-v {
 	height:auto!important
 }
 
-.js-card-container[style="height: 150px;"],.js-card-container[style="height: 150px;"]>div,.js-card-container[style="height: 150px;"]>div>div,.js-card-container[style="height: 150px;"]>div>div>iframe {
+.mtd-js-app .js-card-container[style="height: 150px;"],
+.mtd-js-app .js-card-container[style="height: 150px;"]>div,
+.mtd-js-app .js-card-container[style="height: 150px;"]>div>div,
+.mtd-js-app .js-card-container[style="height: 150px;"]>div>div>iframe
+{
 	height:270px!important
 }
 
-.js-card-container[style="height: 270px;"],.js-card-container[style="height: 270px;"]>div,.js-card-container[style="height: 270px;"]>div>div,.js-card-container[style="height: 270px;"]>div>div>iframe {
+.mtd-js-app .js-card-container[style="height: 270px;"],
+.mtd-js-app .js-card-container[style="height: 270px;"]>div,
+.mtd-js-app .js-card-container[style="height: 270px;"]>div>div,
+.mtd-js-app .js-card-container[style="height: 270px;"]>div>div>iframe
+{
 	height:270px!important
 }
 

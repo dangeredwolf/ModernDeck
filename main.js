@@ -1,5 +1,5 @@
 /*
-	mtdMain.js
+	main.js
 	Copyright (c) 2019 dangeredwolf
 	Released under the MIT licence
 
