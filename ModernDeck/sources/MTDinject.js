@@ -2432,6 +2432,12 @@ function createGifPanel() {
 					searchGifPanel($(".mtd-gif-search").val())
 				}),
 				make("img").attr("src",mtdBaseURL + "sources/img/giphy.png").addClass("mtd-giphy-logo"),
+				make("button").addClass("mtd-gif-top-button").append(
+					make("i").addClass("icon icon-arrow-u"),
+					"Go back up"
+				).click(() => {
+					$(".drawer .compose>.compose-content>.antiscroll-inner.scroll-v.scroll-styled-v").animate({ scrollTop: "0px" });
+				}),
 				make("div").addClass("mtd-gif-no-results list-placeholder hidden").html("We couldn't find anything matching what you searched. Give it another shot.")
 			),
 			make("div").addClass("mtd-gif-column mtd-gif-column-1"),

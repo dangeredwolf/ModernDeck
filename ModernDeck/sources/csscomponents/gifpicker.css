@@ -46,13 +46,19 @@
 
 .mtd-gif-container h1 {
 	padding-left:5px
-} 
+}
 
 .mtd-giphy-logo {
 	width:120px;
 	position:absolute;
 	right:0;
 	top:10px;
+}
+
+.mtd-gif-header-fixed .mtd-giphy-logo,
+.mtd-gif-header:not(.mtd-gif-header-fixed) .mtd-gif-top-button
+{
+	display:none
 }
 
 .mtd-gif-search {
@@ -75,4 +81,13 @@
 	right:initial;
 	width:calc(var(--composeWidth) - 5px);
 	animation:mtdGifHeaderFixed 0.2s var(--animationTiming);
+}
+
+.mtd-gif-top-button {
+	padding-top:14px
+}
+
+.mtd-gif-top-button>i {
+	margin-top:-2px;
+	margin-right:4px
 }
