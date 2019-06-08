@@ -3093,7 +3093,7 @@ div.media-size-small {
 }
 
 .compose-media-bar .compose-media-bar-thumb {
-	/* padding-bottom:40px; */
+	min-height:64px
 }
 
 .invalid-char-count:disabled {

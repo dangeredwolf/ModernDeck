@@ -9,8 +9,8 @@
 
 'use strict';
 
-const SystemVersion = "7.2 Beta (Build 2019-06-06)";
-const appendTextVersion = false;
+const SystemVersion = "7.2";
+const appendTextVersion = true;
 
 let mtdBaseURL = "https://raw.githubusercontent.com/dangeredwolf/ModernDeck/master/ModernDeck/";
 // Defaults to obtaining assets from GitHub if MTDURLExchange isn't completed properly
@@ -944,7 +944,7 @@ let settingsData = {
 	}
 }
 
-function retrieveImageFromClipboardAsBlob(pasteEvent, callback){
+function retrieveImageFromClipboardAsBlob(pasteEvent, callback) {
 
 	let items = pasteEvent.clipboardData.items;
 
@@ -1093,10 +1093,7 @@ function enableCustomStylesheetExtension(name,styles) {
 */
 
 function isStylesheetComponentEnabled(name) {
-	if ($("#mtd_custom_css_"+name).length > 0) {
-		return true;
-	}
-	return !!document.querySelector("link.mtd-stylesheet-extension[href=\"" + mtdBaseURL + "sources/csscomponents/" + name + ".css\"\]");
+	return !!document.querySelector("link.mtd-stylesheet-component[href=\"" + mtdBaseURL + "sources/csscomponents/" + name + ".css\"\]");
 }
 
 /*
@@ -1139,7 +1136,26 @@ function disableStylesheetComponent(name) {
 // Default account profile info, used to show your profile pic and background in nav drawer
 
 function getProfileInfo() {
-	return TD.cache.twitterUsers.getByScreenName(TD.storage.accountController.getPreferredAccount("twitter").state.username).results[0];
+	if (
+		exists(TD) &&
+		exists(TD.cache) &&
+		exists(TD.cache.twitterUsers) &&
+		exists(TD.cache.twitterUsers.getByScreenName) &&
+		exists(TD.storage) &&
+		exists(TD.storage.accountController) &&
+		exists(TD.storage.accountController.getPreferredAccount) &&
+		exists(TD.storage.accountController.getPreferredAccount("twitter")) &&
+		exists(TD.storage.accountController.getPreferredAccount("twitter").state) &&
+		exists(TD.storage.accountController.getPreferredAccount("twitter").state.username) &&
+		TD.cache.twitterUsers.getByScreenName(TD.storage.accountController.getPreferredAccount("twitter").state.username).results.length > 0
+	)
+	{
+		return TD.cache.twitterUsers.getByScreenName(TD.storage.accountController.getPreferredAccount("twitter").state.username).results[0];
+	}
+	else
+	{
+		return null;
+	}
 }
 
 // Loads preferences when moderndeck is started
@@ -1306,232 +1322,191 @@ function fontParseHelper(a) {
 	return "@font-face{font-family:'"+(a.family||"Roboto")+"';font-style:"+(a.style||"normal")+";font-weight:"+(a.weight || "400")+";src:url("+mtdBaseURL+"sources/fonts/"+a.name+"."+(a.extension || "woff2")+") format('"+(a.format || "woff2")+"');"+"unicode-range:"+(a.range||"U+0000-FFFF")+"}\n";
 }
 
-async function MTDInit() {
+/*
+	Here, we inject our fonts
 
+	ModernDeck uses Roboto as its general font for Latin (and Cyrillic?) scripts
+	Noto Sans is used for whatever scripts Roboto doesn't cover
 
-	console.log("MTDInit");
+	font family Material is short for Material icons
+	font family MD is short for ModernDeck. It contains ModernDeck supplemental icons
+*/
 
+function injectFonts() {
+	$(document.head).append(make("style").html(
+		fontParseHelper({family:"MD",name:"mdvectors"}) +
+		fontParseHelper({family:"Material",name:"MaterialIcons"}) +
+		fontParseHelper({name:"Roboto-Regular"}) +
+		fontParseHelper({weight:"500",name:"Roboto-Medium"}) +
+		fontParseHelper({name:"Roboto-Italic",style:"italic"}) +
+		fontParseHelper({weight:"300",name:"Roboto-Light"}) +
+		fontParseHelper({weight:"500",name:"Roboto-MediumItalic",style:"italic"}) +
+		fontParseHelper({weight:"300",name:"Roboto-LightItalic",style:"italic"}) +
+		fontParseHelper({weight:"100",name:"Roboto-Thin"}) +
+		fontParseHelper({weight:"100",name:"Roboto-ThinIalic",style:"italic"}) +
+		fontParseHelper({family:"Noto Sans CJK",weight:"500",name:"NotoSansCJKjp-Medium",format:"opentype",extension:"otf"}) +
+		fontParseHelper({family:"Noto Sans CJK",name:"NotoSansCJKjp-Regular",format:"opentype",extension:"otf"}) +
+		fontParseHelper({family:"Noto Sans",weight:"500",name:"NotoSansHI-Medium",range:"U+0900-097F"}) +
+		fontParseHelper({family:"Noto Sans",name:"NotoSansHI-Regular",range:"U+0900-097F"}) +
+		fontParseHelper({family:"Noto Sans",weight:"500",name:"NotoSansArabic-Medium",
+			range:"U+0600-06FF,U+0750–077F,U+08A0–08FF,U+FB50–FDFF,U+FE70–FEFF,U+10E60–10E7F,U+1EE00—1EEFF"}) +
+		fontParseHelper({family:"Noto Sans",name:"NotoSansArabic-Regular",
+			range:"U+0600-06FF,U+0750–077F,U+08A0–08FF,U+FB50–FDFF,U+FE70–FEFF,U+10E60–10E7F,U+1EE00—1EEFF"}) +
+		fontParseHelper({family:"Noto Sans",weight:"500",name:"NotoSansArmenian-Medium",range:"U+0530-0580"}) +
+		fontParseHelper({family:"Noto Sans",name:"NotoSansArmenian-Regular",range:"U+0530-0580"}) +
+		fontParseHelper({family:"Noto Sans",weight:"500",name:"NotoSansBengali-Medium",range:"U+0980-09FF"}) +
+		fontParseHelper({family:"Noto Sans",name:"NotoSansBengali-Regular",range:"U+0980-09FF"}) +
+		fontParseHelper({family:"Noto Sans",weight:"500",name:"NotoSansBengali-Medium",range:"U+0980-09FF"}) +
+		fontParseHelper({family:"Noto Sans",name:"NotoSansBengali-Regular",range:"U+0980-09FF"}) +
+		fontParseHelper({family:"Noto Sans",name:"NotoSansBrahmi",range:"U+11000-1107F"}) +
+		fontParseHelper({family:"Noto Sans",name:"NotoSansBuginese",range:"U+1A00-1A1B,U+1A1E-1A1F"}) +
+		fontParseHelper({family:"Noto Sans",name:"NotoSansBuhid-Regular",range:"U+1740-1753"}) +
+		fontParseHelper({family:"Noto Sans",name:"NotoSansCanadianAboriginal",range:"U+1400-167F"}) +
+		fontParseHelper({family:"Noto Sans",name:"NotoSansCarian-Regular",range:"U+102A0-102DF"}) +
+		fontParseHelper({family:"Noto Sans",name:"NotoSansChakma-Regular",range:"U+11100-1114F"}) +
+		fontParseHelper({family:"Noto Sans",name:"NotoSansCherokee-Regular",range:"U+11100-1114F"}) +
+		fontParseHelper({family:"Noto Sans",weight:"500",name:"NotoSansCherokee-Medium",
+			range:"U+13A0-13F4,U+13F5,U+13F8-13FD"}) +
+		fontParseHelper({family:"Noto Sans",name:"NotoSansCherokee-Regular",
+			range:"U+13A0-13F4,U+13F5,U+13F8-13FD"}) +
+		fontParseHelper({family:"Noto Sans",weight:"500",name:"NotoSansEthiopic-Medium",range:"U+1200-137F"}) +
+		fontParseHelper({family:"Noto Sans",name:"NotoSansEthiopic-Regular",range:"U+1200-137F"}) +
+		fontParseHelper({family:"Noto Sans",weight:"500",name:"NotoSansGeorgian-Medium",
+			range:"U+10A0-10FF,U+2D00-2D2F"}) +
+		fontParseHelper({family:"Noto Sans",name:"NotoSansGeorgian-Regular",
+			range:"U+10A0-10FF,U+2D00-2D2F"}) +
+		fontParseHelper({family:"Noto Sans",weight:"500",name:"NotoSansGujaratiUI-Bold",range:"U+0A80-0AFF"}) +
+		fontParseHelper({family:"Noto Sans",name:"NotoSansGujaratiUI",range:"U+0A80-0AFF"}) +
+		fontParseHelper({family:"Noto Sans",weight:"500",name:"NotoSansHebrew-Bold",range:"U+0590-05FF"}) +
+		fontParseHelper({family:"Noto Sans",name:"NotoSansHebrew-Regular",range:"U+0590-05FF"}) +
+		fontParseHelper({family:"Noto Sans",name:"NotoSansJavanese",range:"U+A980-A9DF"}) +
+		fontParseHelper({family:"Noto Sans",weight:"500",name:"NotoSansKannadaUI-Bold",range:"U+0C80-0CFF"}) +
+		fontParseHelper({family:"Noto Sans",name:"NotoSansKannadaUI",range:"U+0C80-0CFF"}) +
+		fontParseHelper({family:"Noto Sans",name:"NotoSansKayahLi-Regular",range:"U+A900-A92F"}) +
+		fontParseHelper({family:"Noto Sans",weight:"500",name:"NotoSansKhmerUI-Medium",range:"U+1780-17FF"}) +
+		fontParseHelper({family:"Noto Sans",name:"NotoSansKhmerUI-Regular",range:"U+1780-17FF"}) +
+		fontParseHelper({family:"Noto Sans",weight:"500",name:"NotoSansLaoUI-Medium",range:"U+0E80-0EFF"}) +
+		fontParseHelper({family:"Noto Sans",name:"NotoSansLaoUI-Regular",range:"U+0E80-0EFF"}) +
+		fontParseHelper({family:"Noto Sans",name:"NotoSansLisu-Regular",range:"U+A4D0-A4FF"}) +
+		fontParseHelper({family:"Noto Sans",weight:"500",name:"NotoSansMalayalamUI-Bold",range:"U+0D00-0D7F"}) +
+		fontParseHelper({family:"Noto Sans",name:"NotoSansMalayalamUI",range:"U+0D00-0D7F"}) +
+		fontParseHelper({family:"Noto Sans",weight:"500",name:"NotoSansMyanmarUI-Bold",range:"U+1000-109F"}) +
+		fontParseHelper({family:"Noto Sans",name:"NotoSansMyanmarUI-Regular",range:"U+1000-109F"}) +
+		fontParseHelper({family:"Noto Sans",weight:"500",name:"NotoSansOriyaUI-Medium",range:"U+0B00-0B7F"}) +
+		fontParseHelper({family:"Noto Sans",name:"NotoSansOriyaUI",range:"U+0B00-0B7F"}) +
+		fontParseHelper({family:"Noto Sans",weight:"500",name:"NotoSansOriyaUI-Bold",range:"U+0B00-0B7F"}) +
+		fontParseHelper({family:"Noto Sans",name:"NotoSansOsage-Regular",range:"U+104B0-104FF"}) +
+		fontParseHelper({family:"Noto Sans",name:"NotoSansOsmanya-Regular",range:"U+10480-104AF"}) +
+		fontParseHelper({family:"Noto Sans",name:"NotoSansPhagsPa",range:"U+A840-A87F"}) +
+		fontParseHelper({family:"Noto Sans",name:"NotoSansNewTaiLue-Regular",range:"U+1980-19DF"}) +
+		fontParseHelper({family:"Noto Sans",name:"NotoSansNKo-Regular",range:"U+07C0-07FF"}) +
+		fontParseHelper({family:"Noto Sans",name:"NotoSansOlChiki-Regular",range:"U+1C50–1C7F"}) +
+		fontParseHelper({family:"Noto Sans",name:"NotoSansRunic-Regular",range:"U+16A0-16FF"}) +
+		fontParseHelper({family:"Noto Sans",name:"NotoSansShavian-Regular",range:"U+16A0-16FF"}) +
+		fontParseHelper({family:"Noto Sans",name:"NotoSansSinhalaUI-Regular",range:"U+0D80-0DFF"}) +
+		fontParseHelper({family:"Noto Sans",weight:"500",name:"NotoSansSinhalaUI-Medium",range:"U+0D80-0DFF"}) +
+		fontParseHelper({family:"Noto Sans",name:"NotoSansSundanese",range:"U+1B80-1BBF"}) +
+		fontParseHelper({family:"Noto Sans",name:"NotoSansSyriacEastern",range:"U+0700-074F"}) +
+		fontParseHelper({family:"Noto Sans",name:"NotoSansSyriacWestern",range:"U+0700-074F"}) +
+		fontParseHelper({family:"Noto Sans",name:"NotoSansSyriacEstrangela",range:"U+0700-074F"}) +
+		fontParseHelper({family:"Noto Sans",name:"NotoSansTagalog",range:"U+1700-171F"}) +
+		fontParseHelper({family:"Noto Sans",name:"NotoSansTagbanwa",range:"U+1760-177F"}) +
+		fontParseHelper({family:"Noto Sans",name:"NotoSansTaiLe",range:"U+1950-197F"}) +
+		fontParseHelper({family:"Noto Sans",name:"NotoSansTaiTham",range:"U+1A20-1AAF"}) +
+		fontParseHelper({family:"Noto Sans",name:"NotoSansTaiViet",range:"U+AA80-AADF"}) +
+		fontParseHelper({family:"Noto Sans",name:"NotoSansTamilUI-Regular",range:"U+0B80-0BFF"}) +
+		fontParseHelper({family:"Noto Sans",weight:"500",name:"NotoSansTamilUI-Medium",range:"U+0B80-0BFF"}) +
+		fontParseHelper({family:"Noto Sans",name:"NotoSansTeluguUI",range:"U+0C00-0C7F"}) +
+		fontParseHelper({family:"Noto Sans",weight:"500",name:"NotoSansTeluguUI-Bold",range:"U+0C00-0C7F"}) +
+		fontParseHelper({family:"Noto Sans",name:"NotoSansThaana",range:"U+0780-07BF"}) +
+		fontParseHelper({family:"Noto Sans",weight:"500",name:"NotoSansThaana-Bold",range:"U+0780-07BF"}) +
+		fontParseHelper({family:"Noto Sans",name:"NotoSansThaiUI-Regular",range:"U+0E00-0E7F"}) +
+		fontParseHelper({family:"Noto Sans",weight:"500",name:"NotoSansThaiUI-Medium",range:"U+0E00-0E7F"}) +
+		fontParseHelper({family:"Noto Sans",name:"NotoSansTibetan",range:"U+0F00-0FFF"}) +
+		fontParseHelper({family:"Noto Sans",weight:"500",name:"NotoSansTibetan-Bold",range:"U+0F00-0FFF"}) +
+		fontParseHelper({family:"Noto Sans",weight:"500",name:"NotoSansTifinagh-Regular",range:"U+2D30-2D7F"}) +
+		fontParseHelper({family:"Noto Sans",weight:"500",name:"NotoSansVai-Regular",range:"U+A500-A63F"}) +
+		fontParseHelper({family:"Noto Sans",weight:"500",name:"NotoSansYi-Regular",range:"U+A000-A48F"}) +
+		fontParseHelper({family:"RobotoMono",name:"RobotoMono-Regular"}) +
+		fontParseHelper({family:"RobotoMono",weight:"500",name:"RobotoMono-Medium"}) +
+		fontParseHelper({family:"RobotoMono",name:"RobotoMono-Italic",style:"italic"}) +
+		fontParseHelper({family:"RobotoMono",weight:"300",name:"RobotoMono-Light"}) +
+		fontParseHelper({family:"RobotoMono",weight:"500",name:"RobotoMono-MediumItalic",style:"italic"}) +
+		fontParseHelper({family:"RobotoMono",weight:"300",name:"RobotoMono-LightItalic",style:"italic"}) +
+		fontParseHelper({family:"RobotoMono",weight:"100",name:"RobotoMono-Thin"}) +
+		fontParseHelper({family:"RobotoMono",weight:"100",name:"RobotoMono-ThinIalic",style:"italic"})
+	));
+}
 
-	if (typeof document.getElementsByClassName("js-signin-ui block")[0] !== "undefined" && !replacedLoadingSpinnerNew) {
-		document.getElementsByClassName("js-signin-ui block")[0].innerHTML = '<div class="preloader-wrapper big active"><div class="spinner-layer"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div>';
-		replacedLoadingSpinnerNew = true;
+/*
+	These are features that can be used to force enable tweetdeck developer features.
+	Code updated by @pixeldesu, DeckHackers, et al
+*/
+
+function processForceFeatureFlags() {
+	TD.config.config_overlay = {
+		tweetdeck_devel: { value: true },
+		tweetdeck_dogfood: { value: true },
+		tweetdeck_insights: { value: true },
+		tweetdeck_content_user_darkmode: { value: true },
+		tweetdeck_subscriptions_debug: { value: true },
+		tweetdeck_locale: { value: true },
+		tweetdeck_live_engagements: { value: true },
+		tweetdeck_content_search_darkmode: { value: true },
+		tweetdeck_content_user_darkmode: { value: true },
+		tweetdeck_content_render_search_tweets: { value: true },
+		tweetdeck_content_render_user_tweets: { value: true },
+		tweetdeck_uiv: { value: true },
+		tweetdeck_premium_trends: { value: true },
+		tweetdeck_create_moment_pro: { value: true },
+		tweetdeck_gdpr_consent: { value: true },
+		tweetdeck_gdpr_updates: { value: true },
+		tweetdeck_premium_analytics: { value: true },
+		tweetdeck_whats_happening: { value: true },
+		tweetdeck_activity_polling: { value: true },
+		tweetdeck_beta: { value: true },
+		tweetdeck_system_font_stack: { value: true }
 	}
 
-	// The default is dark for the loading screen, once the TD settings load it can use
+	TD.config.scribe_debug_level = 4
+	TD.config.debug_level = 4
+	TD.config.debug_menu = true
+	TD.config.debug_trace = true
+	TD.config.debug_checks = true
+	TD.config.flight_debug = true
+	//TD.config.debug_highlight_streamed_chirps = true
+	//TD.config.debug_highlight_visible_chirps = true
+	TD.config.sync_period = 600
+	TD.config.force_touchdeck = true
+	TD.config.internal_build = true
+	TD.config.help_configuration_overlay = true
+	TD.config.disable_metrics_error = true
+	TD.config.disable_metrics_event = true
 
-	enableStylesheetComponent("dark");
-	html.addClass("dark");
-
-	/*
-		Here, we inject our fonts
-
-		ModernDeck uses Roboto as its general font for Latin (and Cyrillic?) scripts
-		Noto Sans is used for whatever scripts Roboto doesn't cover
-
-		font family Material is short for Material icons
-		font family MD is short for ModernDeck. It contains ModernDeck supplemental icons
-	*/
-
-	if (!injectedFonts) {
-
-		$(document.head).append(make("style").html(
-			fontParseHelper({family:"MD",name:"mdvectors"}) +
-			fontParseHelper({family:"Material",name:"MaterialIcons"}) +
-			fontParseHelper({name:"Roboto-Regular"}) +
-			fontParseHelper({weight:"500",name:"Roboto-Medium"}) +
-			fontParseHelper({name:"Roboto-Italic",style:"italic"}) +
-			fontParseHelper({weight:"300",name:"Roboto-Light"}) +
-			fontParseHelper({weight:"500",name:"Roboto-MediumItalic",style:"italic"}) +
-			fontParseHelper({weight:"300",name:"Roboto-LightItalic",style:"italic"}) +
-			fontParseHelper({weight:"100",name:"Roboto-Thin"}) +
-			fontParseHelper({weight:"100",name:"Roboto-ThinIalic",style:"italic"}) +
-			fontParseHelper({family:"Noto Sans CJK",weight:"500",name:"NotoSansCJKjp-Medium",format:"opentype",extension:"otf"}) +
-			fontParseHelper({family:"Noto Sans CJK",name:"NotoSansCJKjp-Regular",format:"opentype",extension:"otf"}) +
-			fontParseHelper({family:"Noto Sans",weight:"500",name:"NotoSansHI-Medium",range:"U+0900-097F"}) +
-			fontParseHelper({family:"Noto Sans",name:"NotoSansHI-Regular",range:"U+0900-097F"}) +
-			fontParseHelper({family:"Noto Sans",weight:"500",name:"NotoSansArabic-Medium",
-				range:"U+0600-06FF,U+0750–077F,U+08A0–08FF,U+FB50–FDFF,U+FE70–FEFF,U+10E60–10E7F,U+1EE00—1EEFF"}) +
-			fontParseHelper({family:"Noto Sans",name:"NotoSansArabic-Regular",
-				range:"U+0600-06FF,U+0750–077F,U+08A0–08FF,U+FB50–FDFF,U+FE70–FEFF,U+10E60–10E7F,U+1EE00—1EEFF"}) +
-			fontParseHelper({family:"Noto Sans",weight:"500",name:"NotoSansArmenian-Medium",range:"U+0530-0580"}) +
-			fontParseHelper({family:"Noto Sans",name:"NotoSansArmenian-Regular",range:"U+0530-0580"}) +
-			fontParseHelper({family:"Noto Sans",weight:"500",name:"NotoSansBengali-Medium",range:"U+0980-09FF"}) +
-			fontParseHelper({family:"Noto Sans",name:"NotoSansBengali-Regular",range:"U+0980-09FF"}) +
-			fontParseHelper({family:"Noto Sans",weight:"500",name:"NotoSansBengali-Medium",range:"U+0980-09FF"}) +
-			fontParseHelper({family:"Noto Sans",name:"NotoSansBengali-Regular",range:"U+0980-09FF"}) +
-			fontParseHelper({family:"Noto Sans",name:"NotoSansBrahmi",range:"U+11000-1107F"}) +
-			fontParseHelper({family:"Noto Sans",name:"NotoSansBuginese",range:"U+1A00-1A1B,U+1A1E-1A1F"}) +
-			fontParseHelper({family:"Noto Sans",name:"NotoSansBuhid-Regular",range:"U+1740-1753"}) +
-			fontParseHelper({family:"Noto Sans",name:"NotoSansCanadianAboriginal",range:"U+1400-167F"}) +
-			fontParseHelper({family:"Noto Sans",name:"NotoSansCarian-Regular",range:"U+102A0-102DF"}) +
-			fontParseHelper({family:"Noto Sans",name:"NotoSansChakma-Regular",range:"U+11100-1114F"}) +
-			fontParseHelper({family:"Noto Sans",name:"NotoSansCherokee-Regular",range:"U+11100-1114F"}) +
-			fontParseHelper({family:"Noto Sans",weight:"500",name:"NotoSansCherokee-Medium",
-				range:"U+13A0-13F4,U+13F5,U+13F8-13FD"}) +
-			fontParseHelper({family:"Noto Sans",name:"NotoSansCherokee-Regular",
-				range:"U+13A0-13F4,U+13F5,U+13F8-13FD"}) +
-			fontParseHelper({family:"Noto Sans",weight:"500",name:"NotoSansEthiopic-Medium",range:"U+1200-137F"}) +
-			fontParseHelper({family:"Noto Sans",name:"NotoSansEthiopic-Regular",range:"U+1200-137F"}) +
-			fontParseHelper({family:"Noto Sans",weight:"500",name:"NotoSansGeorgian-Medium",
-				range:"U+10A0-10FF,U+2D00-2D2F"}) +
-			fontParseHelper({family:"Noto Sans",name:"NotoSansGeorgian-Regular",
-				range:"U+10A0-10FF,U+2D00-2D2F"}) +
-			fontParseHelper({family:"Noto Sans",weight:"500",name:"NotoSansGujaratiUI-Bold",range:"U+0A80-0AFF"}) +
-			fontParseHelper({family:"Noto Sans",name:"NotoSansGujaratiUI",range:"U+0A80-0AFF"}) +
-			fontParseHelper({family:"Noto Sans",weight:"500",name:"NotoSansHebrew-Bold",range:"U+0590-05FF"}) +
-			fontParseHelper({family:"Noto Sans",name:"NotoSansHebrew-Regular",range:"U+0590-05FF"}) +
-			fontParseHelper({family:"Noto Sans",name:"NotoSansJavanese",range:"U+A980-A9DF"}) +
-			fontParseHelper({family:"Noto Sans",weight:"500",name:"NotoSansKannadaUI-Bold",range:"U+0C80-0CFF"}) +
-			fontParseHelper({family:"Noto Sans",name:"NotoSansKannadaUI",range:"U+0C80-0CFF"}) +
-			fontParseHelper({family:"Noto Sans",name:"NotoSansKayahLi-Regular",range:"U+A900-A92F"}) +
-			fontParseHelper({family:"Noto Sans",weight:"500",name:"NotoSansKhmerUI-Medium",range:"U+1780-17FF"}) +
-			fontParseHelper({family:"Noto Sans",name:"NotoSansKhmerUI-Regular",range:"U+1780-17FF"}) +
-			fontParseHelper({family:"Noto Sans",weight:"500",name:"NotoSansLaoUI-Medium",range:"U+0E80-0EFF"}) +
-			fontParseHelper({family:"Noto Sans",name:"NotoSansLaoUI-Regular",range:"U+0E80-0EFF"}) +
-			fontParseHelper({family:"Noto Sans",name:"NotoSansLisu-Regular",range:"U+A4D0-A4FF"}) +
-			fontParseHelper({family:"Noto Sans",weight:"500",name:"NotoSansMalayalamUI-Bold",range:"U+0D00-0D7F"}) +
-			fontParseHelper({family:"Noto Sans",name:"NotoSansMalayalamUI",range:"U+0D00-0D7F"}) +
-			fontParseHelper({family:"Noto Sans",weight:"500",name:"NotoSansMyanmarUI-Bold",range:"U+1000-109F"}) +
-			fontParseHelper({family:"Noto Sans",name:"NotoSansMyanmarUI-Regular",range:"U+1000-109F"}) +
-			fontParseHelper({family:"Noto Sans",weight:"500",name:"NotoSansOriyaUI-Medium",range:"U+0B00-0B7F"}) +
-			fontParseHelper({family:"Noto Sans",name:"NotoSansOriyaUI",range:"U+0B00-0B7F"}) +
-			fontParseHelper({family:"Noto Sans",weight:"500",name:"NotoSansOriyaUI-Bold",range:"U+0B00-0B7F"}) +
-			fontParseHelper({family:"Noto Sans",name:"NotoSansOsage-Regular",range:"U+104B0-104FF"}) +
-			fontParseHelper({family:"Noto Sans",name:"NotoSansOsmanya-Regular",range:"U+10480-104AF"}) +
-			fontParseHelper({family:"Noto Sans",name:"NotoSansPhagsPa",range:"U+A840-A87F"}) +
-			fontParseHelper({family:"Noto Sans",name:"NotoSansNewTaiLue-Regular",range:"U+1980-19DF"}) +
-			fontParseHelper({family:"Noto Sans",name:"NotoSansNKo-Regular",range:"U+07C0-07FF"}) +
-			fontParseHelper({family:"Noto Sans",name:"NotoSansOlChiki-Regular",range:"U+1C50–1C7F"}) +
-			fontParseHelper({family:"Noto Sans",name:"NotoSansRunic-Regular",range:"U+16A0-16FF"}) +
-			fontParseHelper({family:"Noto Sans",name:"NotoSansShavian-Regular",range:"U+16A0-16FF"}) +
-			fontParseHelper({family:"Noto Sans",name:"NotoSansSinhalaUI-Regular",range:"U+0D80-0DFF"}) +
-			fontParseHelper({family:"Noto Sans",weight:"500",name:"NotoSansSinhalaUI-Medium",range:"U+0D80-0DFF"}) +
-			fontParseHelper({family:"Noto Sans",name:"NotoSansSundanese",range:"U+1B80-1BBF"}) +
-			fontParseHelper({family:"Noto Sans",name:"NotoSansSyriacEastern",range:"U+0700-074F"}) +
-			fontParseHelper({family:"Noto Sans",name:"NotoSansSyriacWestern",range:"U+0700-074F"}) +
-			fontParseHelper({family:"Noto Sans",name:"NotoSansSyriacEstrangela",range:"U+0700-074F"}) +
-			fontParseHelper({family:"Noto Sans",name:"NotoSansTagalog",range:"U+1700-171F"}) +
-			fontParseHelper({family:"Noto Sans",name:"NotoSansTagbanwa",range:"U+1760-177F"}) +
-			fontParseHelper({family:"Noto Sans",name:"NotoSansTaiLe",range:"U+1950-197F"}) +
-			fontParseHelper({family:"Noto Sans",name:"NotoSansTaiTham",range:"U+1A20-1AAF"}) +
-			fontParseHelper({family:"Noto Sans",name:"NotoSansTaiViet",range:"U+AA80-AADF"}) +
-			fontParseHelper({family:"Noto Sans",name:"NotoSansTamilUI-Regular",range:"U+0B80-0BFF"}) +
-			fontParseHelper({family:"Noto Sans",weight:"500",name:"NotoSansTamilUI-Medium",range:"U+0B80-0BFF"}) +
-			fontParseHelper({family:"Noto Sans",name:"NotoSansTeluguUI",range:"U+0C00-0C7F"}) +
-			fontParseHelper({family:"Noto Sans",weight:"500",name:"NotoSansTeluguUI-Bold",range:"U+0C00-0C7F"}) +
-			fontParseHelper({family:"Noto Sans",name:"NotoSansThaana",range:"U+0780-07BF"}) +
-			fontParseHelper({family:"Noto Sans",weight:"500",name:"NotoSansThaana-Bold",range:"U+0780-07BF"}) +
-			fontParseHelper({family:"Noto Sans",name:"NotoSansThaiUI-Regular",range:"U+0E00-0E7F"}) +
-			fontParseHelper({family:"Noto Sans",weight:"500",name:"NotoSansThaiUI-Medium",range:"U+0E00-0E7F"}) +
-			fontParseHelper({family:"Noto Sans",name:"NotoSansTibetan",range:"U+0F00-0FFF"}) +
-			fontParseHelper({family:"Noto Sans",weight:"500",name:"NotoSansTibetan-Bold",range:"U+0F00-0FFF"}) +
-			fontParseHelper({family:"Noto Sans",weight:"500",name:"NotoSansTifinagh-Regular",range:"U+2D30-2D7F"}) +
-			fontParseHelper({family:"Noto Sans",weight:"500",name:"NotoSansVai-Regular",range:"U+A500-A63F"}) +
-			fontParseHelper({family:"Noto Sans",weight:"500",name:"NotoSansYi-Regular",range:"U+A000-A48F"}) +
-			fontParseHelper({family:"RobotoMono",name:"RobotoMono-Regular"}) +
-			fontParseHelper({family:"RobotoMono",weight:"500",name:"RobotoMono-Medium"}) +
-			fontParseHelper({family:"RobotoMono",name:"RobotoMono-Italic",style:"italic"}) +
-			fontParseHelper({family:"RobotoMono",weight:"300",name:"RobotoMono-Light"}) +
-			fontParseHelper({family:"RobotoMono",weight:"500",name:"RobotoMono-MediumItalic",style:"italic"}) +
-			fontParseHelper({family:"RobotoMono",weight:"300",name:"RobotoMono-LightItalic",style:"italic"}) +
-			fontParseHelper({family:"RobotoMono",weight:"100",name:"RobotoMono-Thin"}) +
-			fontParseHelper({family:"RobotoMono",weight:"100",name:"RobotoMono-ThinIalic",style:"italic"})
-		));
-		injectedFonts = true;
-	}
-
-
-	// These check to see if critical TD variables are in place before proceeding
-
-
-	await TD_mustaches;
-	await TD;
-	await TD.util;
-	await TD_mustaches["settings/global_setting_filter_row.mustache"];
-
-
-	if (typeof TD_mustaches["login/login_form.mustache"] !== "undefined")
-	 	TD_mustaches["login/login_form.mustache"] = newLoginPage;
-
-	/*
-		Especially on Edge, but also on Chrome shortly after launch,
-		sometimes the stylesheet isn't blocked by the network, which breaks the page heavily.
-		This ensures that the stylesheet is manually removed so that it doesn't cause problems
-	*/
-
-	let beGone = document.querySelector("link[rel='apple-touch-icon']+link[rel='stylesheet']");
-
-	if (exists(beGone)) {
-		beGone.remove();
-	}
-
-	/*
-		These are features that can be used to force enable tweetdeck developer features.
-		Code updated by @pixeldesu, DeckHackers, et al
-	*/
-
-	if (forceFeatureFlags) {
-		TD.config.config_overlay = {
-			tweetdeck_devel: { value: true },
-			tweetdeck_dogfood: { value: true },
-			tweetdeck_insights: { value: true },
-			tweetdeck_content_user_darkmode: { value: true },
-			tweetdeck_subscriptions_debug: { value: true },
-			tweetdeck_locale: { value: true },
-			tweetdeck_live_engagements: { value: true },
-			tweetdeck_content_search_darkmode: { value: true },
-			tweetdeck_content_user_darkmode: { value: true },
-			tweetdeck_content_render_search_tweets: { value: true },
-			tweetdeck_content_render_user_tweets: { value: true },
-			tweetdeck_uiv: { value: true },
-			tweetdeck_premium_trends: { value: true },
-			tweetdeck_create_moment_pro: { value: true },
-			tweetdeck_gdpr_consent: { value: true },
-			tweetdeck_gdpr_updates: { value: true },
-			tweetdeck_premium_analytics: { value: true },
-			tweetdeck_whats_happening: { value: true },
-			tweetdeck_activity_polling: { value: true },
-			tweetdeck_beta: { value: true },
-			tweetdeck_system_font_stack: { value: true }
-		}
-
-		TD.config.scribe_debug_level = 4
-		TD.config.debug_level = 4
-		TD.config.debug_menu = true
-		TD.config.debug_trace = true
-		TD.config.debug_checks = true
-		TD.config.flight_debug = true
-		//TD.config.debug_highlight_streamed_chirps = true
-		//TD.config.debug_highlight_visible_chirps = true
-		TD.config.sync_period = 600
-		TD.config.force_touchdeck = true
-		TD.config.internal_build = true
-		TD.config.help_configuration_overlay = true
-		TD.config.disable_metrics_error = true
-		TD.config.disable_metrics_event = true
-
-		TD.controller.stats.setExperiments({
-			config: {
-				live_engagement_in_column_8020: {
-					value: 'live_engagement_enabled'
-				},
-				hosebird_to_rest_activity_7989: {
-					value: 'rest_instead_of_hosebird'
-				},
-				tweetdeck_uiv_7739: {
-					value: 'uiv_images'
-				},
-				hosebird_to_content_search_7673: {
-					value: 'search_content_over_hosebird'
-				},
-				cards_in_td_columns_8351: {
-					value: 'cards_in_td_columns_enabled'
-				}
+	TD.controller.stats.setExperiments({
+		config: {
+			live_engagement_in_column_8020: {
+				value: 'live_engagement_enabled'
+			},
+			hosebird_to_rest_activity_7989: {
+				value: 'rest_instead_of_hosebird'
+			},
+			tweetdeck_uiv_7739: {
+				value: 'uiv_images'
+			},
+			hosebird_to_content_search_7673: {
+				value: 'search_content_over_hosebird'
+			},
+			cards_in_td_columns_8351: {
+				value: 'cards_in_td_columns_enabled'
 			}
-		});
-	}
+		}
+	});
+}
 
-	// This makes numbers appear nicer by overriding tweetdeck's original function which did basically nothing
+// This makes numbers appear nicer by overriding tweetdeck's original function which did basically nothing
+
+function replacePrettyNumber() {
 
 	TD.util.prettyNumber = (e) => {
 		let howPretty = parseInt(e, 10);
@@ -1551,8 +1526,9 @@ async function MTDInit() {
 		}
 		return howPretty;
 	}
+}
 
-
+function overrideFadeOut() {
 
 	// here we add event listeners to add a fading out animation when a modal dialog is closed
 
@@ -1563,7 +1539,7 @@ async function MTDInit() {
 		},200);
 	};
 
-	// let's make sure we get any that might have initialised before MTDLoad began
+	// let's make sure we get any that might have initialised before mtdInit began
 
 	$(document.querySelector(".application").childNodes).each((obj) => {
 		($(document.querySelector(".application").childNodes)[obj] || obj).removeChild = (rmnode) => {
@@ -1589,14 +1565,21 @@ async function MTDInit() {
 				i.remove(); // Tooltips automagically animate themselves out. But here we clean them up as well ourselves.
 			},300);
 		} else {
-	 		i.remove();
+			i.remove();
 		}
- 	};
+	 };
+}
 
- 	// change favicon and notification sound
+// change favicon and notification sound
+
+function replaceAudioAndFavicon() {
 	$("link[rel=\"shortcut icon\"]").attr("href",mtdBaseURL + "sources/favicon.ico");
 	$(document.querySelector("audio")).attr("src",mtdBaseURL + "sources/alert_2.mp3");
+}
 
+// modifies tweetdeck mustaches, replacing spinners, etc
+
+function processMustaches() {
 	if (typeof TD_mustaches["settings/global_setting_filter_row.mustache"] !== "undefined")
 		TD_mustaches["settings/global_setting_filter_row.mustache"] =
 			'<li class="list-filter cf"> {{_i}}\
@@ -1738,13 +1721,154 @@ async function MTDInit() {
 			.replace(/\…/g,"...")
 		;
 	}
+}
 
+// Fixes a bug in TweetDeck's JS caused by ModernDeck having different animations in column settings
+
+function fixColumnAnimations() {
+	$(".column-scroller,.more-tweets-btn-container").each((a,b) => {
+		let c = $(b);
+		mutationObserver(b,() => {
+			if (typeof c.attr("style") !== "undefined") {
+				let num = parseInt(c.attr("style").match(/[\-\d]+/g));
+				let hasFilterOptionsVisible = false;
+				try {
+					hasFilterOptionsVisible = parseInt(c.parent().children(".column-options").children('.js-column-message[style]')[0].style.height.replace("px","")) > 0;
+				} catch (e){}
+
+				if ((!hasFilterOptionsVisible && num < 0) || (hasFilterOptionsVisible && num < 21))
+					c.attr("style","top: " + ((!hasFilterOptionsVisible && "0") || "22") + "px;")
+			}
+		},{attributes:true});
+	})
+}
+
+// replaces login page with moderndeck one
+
+function loginTextReplacer() {
 	if ($(".app-signin-wrap:not(.mtd-signin-wrap)").length > 0) {
 		console.info("oh no, we're too late!");
 		$(".app-signin-wrap:not(.mtd-signin-wrap)").remove();
 		$(".login-container .startflow").html(newLoginPage);
 		startUpdateGoodLoginText();
 	}
+}
+
+// begin moderndeck initialisation
+
+async function mtdInit() {
+
+
+	console.log("mtdInit");
+
+
+	if (typeof document.getElementsByClassName("js-signin-ui block")[0] !== "undefined" && !replacedLoadingSpinnerNew) {
+		document.getElementsByClassName("js-signin-ui block")[0].innerHTML = '<div class="preloader-wrapper big active"><div class="spinner-layer"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div>';
+		replacedLoadingSpinnerNew = true;
+	}
+
+	// The default is dark for the loading screen, once the TD settings load it can use
+
+	enableStylesheetComponent("dark");
+	html.addClass("dark");
+
+	if (!injectedFonts) {
+		try {
+			injectFonts()
+			injectedFonts = true;
+		} catch (e) {
+			console.error("Caught error in injectFonts");
+			console.error(e);
+		}
+	}
+
+
+	// These check to see if critical TD variables are in place before proceeding
+
+
+	await TD_mustaches;
+	await TD;
+	await TD.util;
+	await TD_mustaches["login/login_form.mustache"];
+
+	TD_mustaches["login/login_form.mustache"] = newLoginPage;
+
+	/*
+		Especially on Edge, but also on Chrome shortly after launch,
+		sometimes the stylesheet isn't blocked by the network, which breaks the page heavily.
+		This ensures that the stylesheet is manually removed so that it doesn't cause problems
+	*/
+
+	let beGone = document.querySelector("link[rel='apple-touch-icon']+link[rel='stylesheet']");
+
+	if (exists(beGone)) {
+		beGone.remove();
+	}
+
+	if (forceFeatureFlags) try {
+		processForceFeatureFlags()
+	} catch (e) {
+		console.error("Caught error in processForceFeatureFlags");
+		console.error(e);
+	}
+
+
+	try {
+		replacePrettyNumber()
+	} catch(e) {
+		console.error("Caught error in replacePrettyNumber");
+		console.error(e);
+	}
+
+	try {
+		overrideFadeOut()
+	} catch(e) {
+		console.error("Caught error in overrideFadeOut");
+		console.error(e);
+	}
+
+	try {
+		replaceAudioAndFavicon()
+	} catch(e) {
+		console.error("Caught error in replaceAudioAndFavicon");
+		console.error(e);
+	}
+
+	try {
+		processMustaches()
+	} catch(e) {
+		console.error("Caught error in processMustaches");
+		console.error(e);
+	}
+
+	try {
+		loginTextReplacer()
+	} catch(e) {
+		console.error("Caught error in loginTextReplacer");
+		console.error(e);
+	}
+
+	setInterval(() => {
+		if ($(".mtd-emoji").length <= 0) {
+			try {
+				hookComposer()
+			} catch(e) {
+				console.error("Caught error in hookComposer");
+				console.error(e);
+			}
+		}
+	},1000);
+
+	try {
+		fixColumnAnimations()
+	} catch(e) {
+		console.error("Caught error in fixColumnAnimations");
+		console.error(e);
+	}
+
+	$(document).on("uiComposeTweet",hookComposer);
+	$(document).on("uiToggleTheme",hookComposer);
+	$(document).on("uiDockedComposeTweet",hookComposer);
 
 	navigationSetup();
 
@@ -2256,10 +2380,10 @@ function updateFilterPanel(filterList) {
 	return filterList;
 }
 
-function loginStuff() {
+function profileSetup() {
 	let profileInfo = getProfileInfo();
 	if (profileInfo === null || typeof profileInfo === "undefined" || typeof profileInfo._profileBannerURL === "undefined" || profileInfo.profileImageURL === "undefined") {
-		setTimeout(loginStuff,150);
+		setTimeout(profileSetup,150);
 		return;
 	}
 	let bannerPhoto = profileInfo._profileBannerURL.search("empty") > 0 ? "" : profileInfo._profileBannerURL;
@@ -2469,8 +2593,6 @@ function loadMoreGifs() {
 
 function hookComposer() {
 
-	createGifPanel();
-
 	if ($(".compose-text-container .js-add-image-button,.compose-text-container .js-schedule-button,.compose-text-container .mtd-gif-button").length <= 0) {
 		$(".compose-text-container").append($(".js-add-image-button,.mtd-gif-button,.js-schedule-button,.js-dm-button,.js-tweet-button,.js-send-button-container.spinner-button-container"));
 	}
@@ -2497,7 +2619,6 @@ function hookComposer() {
 				make("span").addClass("label padding-ls").html("Add GIF")
 			)
 			.click(() => {
-				console.log("gif btn");
 
 				if ($(".mtd-gif-container").length <= 0) {
 					createGifPanel();
@@ -2515,49 +2636,35 @@ function hookComposer() {
 	}
 }
 
+function mtdPrepareWindows() {
+	console.info("mtdPrepareWindows called");
+	$("#update-sound,.js-click-trap").click();
+	mtd_nav_drawer_background.click();
+
+	$(".mtd-nav-group-expanded").removeClass("mtd-nav-group-expanded");
+	$("#mtd_nav_group_arrow").removeClass("mtd-nav-group-arrow-flipped");
+}
+
 function navigationSetup() {
-	if ($(".app-signin-wrap:not(.mtd-signin-wrap)").length > 0) {
-		console.info("oh no, we're too late!");
-		$(".app-signin-wrap:not(.mtd-signin-wrap)").remove();
-		$(".login-container .startflow").html(newLoginPage);
-		startUpdateGoodLoginText();
-	}
 
 	if ($(".app-header-inner").length < 1) {
 		setTimeout(navigationSetup,100);
 		return;
 	}
 
-	loadPreferences();
+	try {
+		loadPreferences()
+	} catch(e) {
+		console.error("Caught error in loadPreferences");
+		console.error(e);
+	}
 
-	hookComposer();
-
-	setInterval(() => {
-		if ($(".mtd-emoji").length <= 0) {
-			hookComposer(); // we'll hook the composer again if we can't find the emoji container
-		}
-	},10000);
-
-	$(document).on("uiComposeTweet",hookComposer);
-	$(document).on("uiToggleTheme",hookComposer);
-	$(document).on("uiDockedComposeTweet",hookComposer);
-
-	$(".column-scroller,.more-tweets-btn-container").each((a,b) => {
-		// Fixes a bug in TweetDeck's JS caused by ModernDeck having different animations in column settings
-		let c = $(b);
-		mutationObserver(b,() => {
-			if (typeof c.attr("style") !== "undefined") {
-				let num = parseInt(c.attr("style").match(/[\-\d]+/g));
-				let hasFilterOptionsVisible = false;
-				try {
-					hasFilterOptionsVisible = parseInt(c.parent().children(".column-options").children('.js-column-message[style]')[0].style.height.replace("px","")) > 0;
-				} catch (e){}
-
-				if ((!hasFilterOptionsVisible && num < 0) || (hasFilterOptionsVisible && num < 21))
-					c.attr("style","top: " + ((!hasFilterOptionsVisible && "0") || "22") + "px;")
-			}
-		},{attributes:true});
-	})
+	try {
+		hookComposer()
+	} catch(e) {
+		console.error("Caught error in hookComposer");
+		console.error(e);
+	}
 
 	$(".app-header-inner").append(
 		make("a").attr("id","mtd-navigation-drawer-button").addClass("js-header-action mtd-drawer-button link-clean cf app-nav-link").html('<div class="obj-left"><div class="mtd-nav-activator"></div><div class="nbfc padding-ts"></div>')
@@ -2635,42 +2742,36 @@ function navigationSetup() {
 		make("div").addClass("mtd-appbar-notification mtd-appbar-notification-hidden").attr("id","MTDNotification")
 	)
 
-	if ((!!TD.config && !!TD.config.config_overlay && !!TD.config.config_overlay && !!TD.config.config_overlay.tweetdeck_dogfood)) {
-		if (!!TD.config.config_overlay.tweetdeck_dogfood.value) {
-			$(".mtd-nav-group").append(
-				make("button").addClass("btn mtd-nav-button").append(make("i").addClass("icon mtd-icon-command-pallete")).click(() => {
-					mtdPrepareWindows();
-					console.log("Command pallete triggered");
-					$(document).trigger("uiShowCommandPalette");
-				}).append("Command Pallete"),
-				make("button").addClass("btn mtd-nav-button").append(make("i").addClass("icon mtd-icon-developer")).click(() => {
-					mtdPrepareWindows();
-					console.log("Disable dev/dogfood triggered");
+	try {
+		if ((!!TD.config && !!TD.config.config_overlay && !!TD.config.config_overlay && !!TD.config.config_overlay.tweetdeck_dogfood)) {
+			if (!!TD.config.config_overlay.tweetdeck_dogfood.value) {
+				$(".mtd-nav-group").append(
+					make("button").addClass("btn mtd-nav-button").append(make("i").addClass("icon mtd-icon-command-pallete")).click(() => {
+						mtdPrepareWindows();
+						console.log("Command pallete triggered");
+						$(document).trigger("uiShowCommandPalette");
+					}).append("Command Pallete"),
+					make("button").addClass("btn mtd-nav-button").append(make("i").addClass("icon mtd-icon-developer")).click(() => {
+						mtdPrepareWindows();
+						console.log("Disable dev/dogfood triggered");
 
-					$(document).trigger("uiReload", {
-						params: {
-							no_dogfood: 1
-						}
-					});
+						$(document).trigger("uiReload", {
+							params: {
+								no_dogfood: 1
+							}
+						});
 
-				}).append("Disable Dev/Dogfood")
-			)
+					}).append("Disable Dev/Dogfood")
+				)
+			}
 		}
+	} catch(e) {
+		console.error("An error occurred in navigationSetup while trying to verify if dev/dogfood features are enabled or not");
+		console.error(e);
 	}
 	$(".mtd-nav-group-expanded").attr("style","height:"+$(".mtd-nav-group-expanded").height()+"px");
 
-
-
-	window.mtdPrepareWindows = () => {
-		console.info("mtdPrepareWindows called");
-		$("#update-sound,.js-click-trap").click();
-		mtd_nav_drawer_background.click();
-
-		$(".mtd-nav-group-expanded").removeClass("mtd-nav-group-expanded");
-		$("#mtd_nav_group_arrow").removeClass("mtd-nav-group-arrow-flipped");
-	}
-
-	loginStuff();
+	profileSetup();
 }
 
 function keyboardShortcutHandler(e) {
@@ -2930,7 +3031,7 @@ function mtdAppFunctions() {
 	// Enable high contrast if system is set to high contrast
 
 	ipcRenderer.on("inverted-color-scheme-changed", (e, enabled) => {
-		console.log(`inverted colour scheme? $(enabled)`);
+		console.log(`inverted colour scheme? ${enabled}`);
 		if (enabled && getPref("mtd_highcontrast") !== true) {
 			try {
 				settingsData.accessibility.options.highcont.activate.func();
@@ -2993,20 +3094,14 @@ function mtdAppFunctions() {
 		.addClass("windowcontrol min")
 		.html("&#xE15B")
 		.click((data,handler) => {
-			let window = remote.BrowserWindow.getFocusedWindow();
-			window.minimize();
+			ipcRenderer.send('minimize');
 		});
 
 		let maximise = make("button")
 		.addClass("windowcontrol max")
 		.html("&#xE3C6")
 		.click((data,handler) => {
-			let window = remote.BrowserWindow.getFocusedWindow();
-			if (window.isMaximized()) {
-				window.unmaximize();
-			} else {
-				window.maximize();
-			}
+			ipcRenderer.send('maximizeButton');
 		});
 
 		let close = make("button")
@@ -3023,7 +3118,9 @@ function mtdAppFunctions() {
 		.append(maximise)
 		.append(close);
 
-		body.append(windowcontrols);
+		body.append(windowcontrols,
+			make("div").addClass("mtd-app-drag-handle")
+		);
 	}
 
 	ipcRenderer.on('context-menu', (event, p) => {
@@ -3033,13 +3130,14 @@ function mtdAppFunctions() {
 		let Menu = electron.remote.Menu;
 
 		if (useNativeContextMenus) {
+			//ipcRenderer.send('nativeContextMenu',theMenu);
 			Menu.buildFromTemplate(theMenu).popup();
 			return;
-			//ipcRenderer.send('nativeContextMenu',theMenu);
+		} else {
+			if (exists(theMenu))
+				body.append(theMenu);
 		}
 
-		if (exists(theMenu))
-			body.append(theMenu);
 	})
 
 	const updateOnlineStatus = () => {
@@ -3052,8 +3150,8 @@ function mtdAppFunctions() {
 
 	}
 
-	window.addEventListener('online',	updateOnlineStatus);
-	window.addEventListener('offline',	updateOnlineStatus);
+	window.addEventListener("online", updateOnlineStatus);
+	window.addEventListener("offline", updateOnlineStatus);
 
 	updateOnlineStatus();
 }
@@ -3159,10 +3257,10 @@ function buildContextMenu(p) {
 		items.push(makeCMItem({mousex:x,mousey:y,dataaction:"copyImageURL",text:"Copy image address",enabled:true,data:p.srcURL}));
 		items.push(makeCMDivider());
 	}
+
 	if (getPref("mtd_inspectElement") || isDev) {
 		items.push(makeCMItem({mousex:x,mousey:y,dataaction:"inspectElement",text:"Inspect element",enabled:true,data:{x:x,y:y}}));
 	}
-	//items.push(makeCMItem({mousex:x,mousey:y,dataaction:"newSettings",text:"Open Settings",enabled:true}));
 
 	if (useNativeContextMenus) {
 		return items;
@@ -3225,9 +3323,16 @@ function parseActions(a,opt) {
 				break;
 			case "func":
 				if (typeof a[key] === "function") {
-					a[key](opt);
+					try {
+						a[key](opt);
+					} catch (e) {
+						console.error("Error occurred processing action function.");
+						console.error(e);
+						console.error("Dump of naughty function attached below");
+						console.log(a[key])
+					}
 				} else {
-					throw "Action is func, but it isn't a function?";
+					throw "There's a func action, but it isn't a function? :thinking:";
 				}
 				break;
 		}
@@ -3254,32 +3359,29 @@ function coreInit() {
 			window.$ = jQuery;
 			window.jQuery = jQuery;
 		} catch (e) {
-			console.error(e.message);
-			if (e.message === "No module constructors to search through!") {
-				forceAppUpdateOnlineStatus('offline');
-				return;
-			}
+			console.error("jQuery failed. This will break approximately... everything.")
 		}
 	}
-
-	//mR.findFunction("Theme not found")[0].default._themes[undefined] = mR.findFunction("Theme not found")[0].default._themes["dark"];
-
-
 
 	head = $(document.head);
 	body = $(document.body);
 	html = $(document.querySelector("html")); // Only 1 result; faster to find
 
 	if (isApp) {
-		mtdAppFunctions();
-		window.addEventListener('mousedown', (e) => {
-			clearContextMenu();
-		}, false);
+		try {
+			mtdAppFunctions();
+			window.addEventListener('mousedown', (e) => {
+				clearContextMenu();
+			}, false);
+		} catch(e) {
+			console.error("An error occurred while running mtdAppFunctions");
+			console.error(e);
+		}
 	}
 	// append the emoji picker script
 
 	head.append(
-		make("script").attr("type","text/javascript").attr("src",mtdBaseURL + "sources/libraries/emojionearea.js")
+		make("script").attr("type","text/javascript").attr("src",mtdBaseURL + "sources/libraries/emojipicker.js")
 	);
 
 	if (useRaven) {
@@ -3287,28 +3389,26 @@ function coreInit() {
 			release: SystemVersion
 		}).install();
 
-		setTimeout(Raven.context(MTDInit),10);
+		setTimeout(Raven.context(mtdInit),10);
 
 		Raven.context(() => {
 			window.addEventListener("keyup",keyboardShortcutHandler,false);
-			html.addClass("mtd-js-loaded");
 			mutationObserver(html[0],onElementAddedToDOM,{attributes:false,subtree:true,childList:true})
 
 			checkIfSigninFormIsPresent();
 			loginInterval = setInterval(checkIfSigninFormIsPresent,500);
-			console.info("MTDinject loaded");
+			console.info(`MTDinject ${SystemVersion} loaded`);
 		});
 	} else {
 
-		MTDInit();
+		mtdInit();
 
 		window.addEventListener("keyup",keyboardShortcutHandler,false);
-		html.addClass("mtd-js-loaded");
 		mutationObserver(html[0],onElementAddedToDOM,{attributes:false,subtree:true,childList:true})
 
 		checkIfSigninFormIsPresent();
 		loginInterval = setInterval(checkIfSigninFormIsPresent,500);
-		console.info("MTDinject loaded");
+		console.info(`MTDinject ${SystemVersion} loaded`);
 	}
 
 }

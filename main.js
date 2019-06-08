@@ -694,6 +694,20 @@ function makeWindow() {
 		newMenu.popup();
 	});
 
+	ipcMain.on("maximizeButton", (event) => {
+		let window = BrowserWindow.getFocusedWindow();
+
+		if (window.isMaximized()) {
+			window.unmaximize();
+		} else {
+			window.maximize();
+		}
+	});
+
+	ipcMain.on("minimize", (event) => {
+		BrowserWindow.getFocusedWindow().minimize();
+	});
+
 	/*
 		The options below are for right click menu actions
 	*/
