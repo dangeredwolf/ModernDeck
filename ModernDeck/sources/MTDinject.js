@@ -2631,6 +2631,7 @@ function checkGifEligibility() {
 			console.log("clicked close");
 			setTimeout(checkGifEligibility,0);
 		});
+		$(".mtd-gif-container").remove();
 	} else {
 		$(".mtd-gif-button").removeClass("is-disabled").attr("data-original-title","");
 	}
@@ -2676,6 +2677,15 @@ function hookComposer() {
 
 				if ($(".mtd-gif-button").hasClass("is-disabled")) {
 					return;
+				}
+
+				if (exists(window.mtdEmojiPicker)) {
+					try {
+						window.mtdEmojiPicker.hidePicker();
+					} catch(e) {
+						console.error("failed to hide emoji picker");
+						console.error(e);
+					}
 				}
 
 				if ($(".mtd-gif-container").length <= 0) {
@@ -2833,7 +2843,6 @@ function navigationSetup() {
 }
 
 function keyboardShortcutHandler(e) {
-	console.log(e);
 
 	if (e.key.toUpperCase() === "A" && (e.ctrlKey) && e.shiftKey) { //pressing Ctrl+Shift+A toggles the outline accessibility option
 		console.log("User has pressed the proper key combination to toggle outlines!");

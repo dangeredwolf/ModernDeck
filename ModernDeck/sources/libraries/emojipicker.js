@@ -994,7 +994,7 @@ function init(self, source, options) {
 			offsetTop = scrollArea.offset().top;
 
 		$(".mtd-emoji-scroll-area").stop().animate({
-			scrollTop: headerOffset + scroll - offsetTop - 2
+			scrollTop: headerOffset + scroll - offsetTop
 		}, 200, 'swing', function () {
 			noListenScroll = false;
 		});
@@ -1025,7 +1025,7 @@ function init(self, source, options) {
 		if (button.is(".active")) {
 			self.hidePicker();
 		} else {
-			$(".mtd-gif-container-open").removeClass(".mtd-gif-container-open");
+			$(".mtd-gif-container").remove();
 			self.showPicker();
 			self.searchSel = null;
 		}
@@ -1190,6 +1190,8 @@ function init(self, source, options) {
 	self.isReady = true;
 	self.trigger("onLoad", editor);
 	self.trigger("ready", editor);
+
+    window.mtdEmojiPicker = self;
 };
 
 var cdn = {
