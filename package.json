@@ -114,9 +114,9 @@
 	},
 	"devDependencies": {
 		"devtron": "^1.4.0",
-		"electron": "^5.0.2",
+		"electron": "^5.0.3",
 		"electron-builder": "20.41.0",
-		"stylelint": "^10.0.1",
+		"stylelint": "^10.1.0",
 		"stylelint-config-recommended": "^2.2.0"
 	},
 	"files": [
