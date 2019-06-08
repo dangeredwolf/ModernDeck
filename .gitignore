@@ -11,3 +11,4 @@ node_modules
 *.log
 yarn.lock
 dist_7.0.1
+*.appx
