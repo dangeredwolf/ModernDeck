@@ -1857,7 +1857,31 @@ async function mtdInit() {
 				console.error(e);
 			}
 		}
-	},1000);
+	},500);
+
+	$(document).on("uiInlineComposeTweet",(e) => {
+		setTimeout(() => {
+			hookComposer();
+		},0)
+	});
+
+	$(document).on("uiDockedComposeTweet",(e) => {
+		setTimeout(() => {
+			hookComposer();
+		},50)
+	});
+
+	$(document).on("uiComposeClose",(e) => {
+		setTimeout(() => {
+			hookComposer();
+		},50)
+	});
+
+	$(document).on("uiComposeTweet",(e) => {
+		setTimeout(() => {
+			hookComposer();
+		},0)
+	});
 
 	try {
 		fixColumnAnimations()
@@ -2597,6 +2621,21 @@ function loadMoreGifs() {
 	});
 }
 
+function checkGifEligibility() {
+	let imagesAdded = $(".compose-media-grid-remove,.compose-media-bar-remove").length;
+	console.log(imagesAdded)
+
+	if (imagesAdded > 0) {
+		$(".mtd-gif-button").addClass("is-disabled").attr("data-original-title","You cannot add GIFs with other images");
+		$(".compose-media-grid-remove,.compose-media-bar-remove").click(() => {
+			console.log("clicked close");
+			setTimeout(checkGifEligibility,0);
+		});
+	} else {
+		$(".mtd-gif-button").removeClass("is-disabled").attr("data-original-title","");
+	}
+}
+
 function hookComposer() {
 
 	if ($(".compose-text-container .js-add-image-button,.compose-text-container .js-schedule-button,.compose-text-container .mtd-gif-button").length <= 0) {
@@ -2614,6 +2653,14 @@ function hookComposer() {
 	}
 
 
+
+	$(".drawer[data-drawer=\"compose\"]>div>div").on("uiComposeImageAdded",(e) => {
+		console.log("added!!!");
+		setTimeout(checkGifEligibility,0) // initialise one cycle after tweetdeck does its own thing
+
+	})
+
+
 	if ($(".mtd-emoji").length <= 0)
 		$(".compose-text").emojioneArea();
 	if ($(".mtd-gif-button").length <= 0) {
@@ -2624,7 +2671,12 @@ function hookComposer() {
 				make("i").addClass("Icon icon-gif txt-size--18"),
 				make("span").addClass("label padding-ls").html("Add GIF")
 			)
+			.attr("data-original-title","")
 			.click(() => {
+
+				if ($(".mtd-gif-button").hasClass("is-disabled")) {
+					return;
+				}
 
 				if ($(".mtd-gif-container").length <= 0) {
 					createGifPanel();

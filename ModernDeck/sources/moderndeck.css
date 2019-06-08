@@ -5534,6 +5534,11 @@ a[rel="user"]:active,
 	margin-top: 3px;
 }
 
+.inline-reply .js-send-button {
+	margin-top:6px;
+	margin-right:16px
+}
+
 .drawer-header,.Panel-header {
 	box-shadow:0 1px 10px var(--avatarHoverShadow);
 	position:relative;
@@ -8561,7 +8566,7 @@ span[data-testid="trendDescription"] {
 	color:var(--rootWhiteColor)!important
 }
 
-.compose-media-bar-remove .icon-close:before,.js-add-image-description:before {
+.compose-media-grid-remove .icon-close:before,.compose-media-bar-remove .icon-close:before,.js-add-image-description:before {
 	text-shadow:0 2px 5px var(--rootBlackColor),0 -2px 5px var(--rootBlackColor)
 }
 
