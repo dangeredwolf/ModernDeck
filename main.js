@@ -47,7 +47,7 @@ const isAppX = !!process.windowsStore;
 
 const isMAS = !!process.mas;
 
-const isDev = true;
+const isDev = false;
 
 let mainWindow;
 
@@ -793,8 +793,6 @@ function makeWindow() {
 
 	ipcMain.on("setNativeTitlebar", (event,arg) => {
 
-		console.warn("SETNATIVETITLEBAR CALLED");
-
 		isRestarting = true;
 
 		mainWindow.close();
@@ -949,6 +947,8 @@ setInterval(() => {
 },1000*60*15); //check for updates once every 15 minutes
 
 setTimeout(() => {
+	autoUpdater.checkForUpdates();
+
 	mainWindow.webContents.send(
 		"inverted-color-scheme-changed",
 		systemPreferences.isInvertedColorScheme()

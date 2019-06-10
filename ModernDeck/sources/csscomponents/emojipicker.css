@@ -3,6 +3,10 @@
 	box-sizing:border-box
 }
 
+.mtd-no-emoji-picker .mtd-emoji,.mtd-no-emoji-picker .mtd-emoji-button {
+	display:none
+}
+
 .mtd-emoji {
 	display:block;
 	box-shadow:none;
