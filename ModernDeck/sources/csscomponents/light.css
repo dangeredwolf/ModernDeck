@@ -1,8 +1,8 @@
 /*
-  light.css
+	light.css
 
-  Copyright (c) 2014-2019 Dangered Wolf
-  Released under the MIT Licence
+	Copyright (c) 2014-2019 Dangered Wolf
+	Released under the MIT Licence
 */
 
 
@@ -36,7 +36,7 @@
 	--backdropColor:#F9F9F9;
 	--modalWindowColor:#fff;
 	--overlayBackgroundColor:rgba(100,100,100,.4);
-	--defaultShadowColor:rgba(17, 17, 17, .15);
+	--defaultShadowColor:rgba(17,17,17,.15);
 	--tweetActionColor:#787878;
 	--tweetActionHoverColor:#999;
 	--altTweetActionColor:rgba(149,175,191,.52);
@@ -74,6 +74,7 @@ a:not(.list-account):not(.js-column-back):not(.compose-account):not(.js-toggle-i
 .mtd-settings-option-slider input[type="range"]::-webkit-slider-thumb {
 	background:var(--secondaryColor)
 }
+
 .mtd-settings-option-slider input[type="range"]::-moz-range-thumb {
 	background:var(--secondaryColor)
 }
@@ -135,8 +136,8 @@ option,
 
 button:active
 {
-  color:var(--placeholderTextColor);
-  background:var(--buttonPressColor)
+	color:var(--placeholderTextColor);
+	background:var(--buttonPressColor)
 }
 
 .js-account-action, .accordion:not(.js-account-settings-detail) .is-active, .txt-mute, li:not(.selected) .list-twitter-list .txt-ellipsis, .list-twitter-list .subtitle, .txt-r-dark-gray, .txt-mute a:not(:hover):not(:focus):not(.tweet-action), .txt-normal, .caloff, .l-column.mdl-column.mdl-column-sml .list-link, .typeahead .username, .lst-group li:not(.selected) .list-account .username, html .btd-grayscale_notification_icons i.icon.activity-indicator, .txt-r-deep-gray, .color-twitter-dark-gray, .color-twitter-darker-gray, .js-send-button.is-disabled
@@ -303,7 +304,7 @@ input[type="checkbox"][disabled]:before {
 .tooltip-inner,
 .Tooltip-inner
 {
-  background:var(--backdropColor)
+	background:var(--backdropColor)
 }
 
 .media-sensitive-content p,
@@ -313,7 +314,7 @@ input[type="checkbox"][disabled]:before {
 }
 
 .js-setting-list .list-link strong,
- .mtd-settings-tab:not(.mtd-settings-tab-selected)
+.mtd-settings-tab:not(.mtd-settings-tab-selected)
 {
 	font-weight:400;
 	color:var(--modalWindowColor);
@@ -331,10 +332,10 @@ input[type="checkbox"][disabled]:before {
 }
 
 .dropdown-menu ul li a,.dropdown-menu ul li a:hover {
-	color: var(--typeaheadColor)!important;
+	color:var(--typeaheadColor)!important;
 }
 
-.edit-conversation-name, .app-navigator .js-hide-drawer, .column-message, .app-navigator .js-hide-drawer, .drawer-header, body, .mtd-settings-tab-container
+.edit-conversation-name, .app-navigator .js-hide-drawer, .column-message, .drawer-header, body, .mtd-settings-tab-container
 {
 	background:var(--primaryColor)
 }
@@ -411,7 +412,7 @@ html,body:not(.signin-sheet-now-present) {
 .btn-compose:not(.js-hide-drawer):hover,
 .btn-compose:not(.js-hide-drawer):focus
 {
-	background: var(--secondaryColor);
+	background:var(--secondaryColor);
 }
 
 .btn-compose:not(.js-hide-drawer):active
@@ -423,7 +424,7 @@ html,body:not(.signin-sheet-now-present) {
 {
 	background:var(--materialSplashColor)
 }
-
+/* stylelint-disable */
 .mdl-column-med,
 .recent-search-clear.list-item-last,
 .popover,
@@ -450,7 +451,6 @@ html,body:not(.signin-sheet-now-present) {
 .compose-text-container,
 .Tooltip-inner,
 .tooltip-inner,
-.mdl-column-rhs,
 .med-fullpanel,
 .embed-modal .mdl-content,
 .prf-meta,
@@ -462,6 +462,7 @@ html,body:not(.signin-sheet-now-present) {
 {
 	background:var(--modalWindowColor)
 }
+/* stylelint-enable */
 
 .column-scroller,
 .column-detail-level-2,
@@ -492,6 +493,7 @@ html,body:not(.signin-sheet-now-present) {
 	background:linear-gradient(var(--mdlPrimaryColor),var(--mdlPrimaryColor))
 }
 
+/* stylelint-disable */
 .is-new .column-message,
 .btn-login[type="submit"],
 .login-container .btn-positive,
@@ -508,6 +510,7 @@ button.try-query
 {
 	background:var(--secondaryColor)
 }
+/* stylelint-enable */
 
 .js-add-column,
 .js-add-column:hover,
@@ -672,12 +675,7 @@ button.try-query
 
 .app-navigator .js-hide-drawer
 {
-	 box-shadow:0 -3px 5px var(--defaultShadowColor)
-}
-
-.detail-view-inline-text
-{
-	border-bottom:3px solid var(--secondaryColor)
+	box-shadow:0 -3px 5px var(--defaultShadowColor)
 }
 
 .mtd-acc-focus-ring a:focus,
@@ -846,11 +844,6 @@ textarea::placeholder
 	color:var(--primaryTextColor)
 }
 
-.detail-view-inline-text
-{
-	border-bottom:3px solid var(--secondaryColor)
-}
-
 .mtd-minimal .app-header
 {
 	background:none
@@ -862,7 +855,6 @@ textarea::placeholder
 }
 
 .js-character-count {
-
 	color:var(--typeaheadColor)
 }
 
@@ -920,7 +912,7 @@ textarea::placeholder
 
 textarea
 {
-	border: 2px solid var(--disabledColor)
+	border:2px solid var(--disabledColor)
 }
 
 .column-content
@@ -971,6 +963,7 @@ button[type="submit"]:active,button[type="submit"]:focus,.mtd-settings-button:fo
 .stroke-twitter-blue {
 	stroke:var(--secondaryColor)
 }
+
 .stroke-twitter-red {
 	stroke:var(--redDefault)
 }

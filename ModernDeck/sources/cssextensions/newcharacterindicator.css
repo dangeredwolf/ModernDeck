@@ -21,7 +21,6 @@
 	text-align:right
 }
 
-
 .txt-right.height--16.margin-t--4.margin-r---3.margin-b--1 {
 	width:0;
 	position:absolute;
@@ -32,12 +31,12 @@
 .txt-right.height--16.margin-t--4.margin-r--7.margin-b--11 {
 	width:0;
 	position:absolute;
-	right: 126px;
+	right:126px;
 	bottom:-4px
 }
 
 .inline-reply .js-character-count {
-	width:49px;	
+	width:49px;
 	right:51px!important;
 	padding-bottom:21px;
 	margin-left:-57px

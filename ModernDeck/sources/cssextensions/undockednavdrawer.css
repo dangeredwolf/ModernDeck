@@ -1,4 +1,9 @@
+/*
+  undockednavdrawer.css
 
+  Copyright (c) 2014-2019 Dangered Wolf
+  Released under the MIT Licence
+*/
 
 .mtd-light .mtd-nd-header-username {
 	color:#000
@@ -16,7 +21,7 @@
 .mtd-nav-drawer {
 	height:auto;
 	padding-bottom:10px;
-	border-radius: 0 5px 5px 5px;
+	border-radius:0 5px 5px 5px
 }
 
 .mtd-nav-drawer-hidden {
@@ -55,6 +60,7 @@
 .mtd-nav-divider-feedback {
 	display:block
 }
+
 .mtd-nav-group-expand {
 	display:none
 }

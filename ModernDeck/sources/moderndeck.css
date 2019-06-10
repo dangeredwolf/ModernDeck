@@ -1,4 +1,3 @@
-
 /*
 	moderndeck.css
 
@@ -41,7 +40,7 @@
 	--animationTiming:cubic-bezier(.19,1,.22,1);
 	--defaultFontOrder:Roboto,"Noto Sans Alphabet","Noto Sans","Noto Sans CJK","Noto Sans CJK JP","Noto Sans CJK KR","Noto Sans CJK SC","Noto Sans CJK TC","Noto Sans JP","Noto Sans KR","Noto Sans SC","Noto Sans TC";
 	--composeWidth:300px;
-	--scrollbarWidth:10px;
+	--scrollbarWidth:10px
 }
 
 /* LOADING SCREEN, DO NOT MERGE, MOVE, OR REMOVE */
@@ -470,7 +469,7 @@ body.scroll-v .spinner-layer {
 	max-width:100%;
 	white-space:nowrap;
 	word-wrap:normal;
-	text-overflow: clip;
+	text-overflow:clip
 }
 
 .txt-base-medium,.txt-base-small,.txt-base-smallest {
@@ -1158,7 +1157,7 @@ span[data-testid="trendMovement"] .icon-pointer-d:before,span[data-testid="trend
 .js-send-button:after {
 	content:"\e163";
 	font-family:Material;
-	font-size: 23px
+	font-size:23px
 }
 
 .icon-share:before,.Icon--share:before {
@@ -2683,12 +2682,12 @@ div.media-size-small {
 }
 
 .drawer .compose-text-container .spinner-button-container {
-	float:right;
+	float:right
 }
 
 .drawer .compose-text-container .js-send-button.js-spinner-button {
 	margin-right:15px;
-	margin-top: -4px;
+	margin-top:-4px
 }
 
 .spinner-button-icon-spinner {
@@ -3129,13 +3128,15 @@ div.media-size-small {
 	position:absolute;
 	width:var(--composeWidth);
 	top:0;
+	/* stylelint-disable */
 	left:calc(0px - var(--composeWidth));
+	/* stylelint-enable */
 	height:auto;
 	margin-right:0;
 	pointer-events:all;
 	overflow:hidden;
 	bottom:0;
-	z-index:6;
+	z-index:6
 }
 
 .drawer-header-title {
@@ -3596,19 +3597,19 @@ div.media-size-small {
 	top:50px;
 	transition:0.5s all var(--animationTiming);
 	-webkit-app-region:no-drag;
-	overflow: visible
+	overflow:visible
 }
 
 .compose-text-container {
 	width:calc(var(--composeWidth) - 30px);
 	margin-left:10px;
-	height: 170px;
+	height:170px;
 	padding:0!important;
 	padding-top:10px!important;
 	box-shadow:0 3px 7px var(--composeShadow);
 	border-radius:4px;
 	margin-top:10px;
-	overflow:visible;
+	overflow:visible
 }
 
 .compose .popover {
@@ -3625,20 +3626,20 @@ div.media-size-small {
 	padding-right:15px!important;
 	border-radius:2px;
 	padding-bottom:30px;
-	overflow: visible
+	overflow:visible
 }
 
 .compose-send-button-success {
-	margin-left: 0;
+	margin-left:0;
 	margin-top:0;
 	z-index:5;
 	font-size:30px;
-	opacity:1;
+	opacity:1
 }
 
 .drawer .compose-text-container .compose-send-button-success {
-	margin-left: -24px;
-	margin-top: -18px;
+	margin-left:-24px;
+	margin-top:-18px
 }
 
 .compose-send-button-success.is-hidden {
@@ -3713,7 +3714,7 @@ div.media-size-small {
 	/* padding-bottom:10px; */
 	box-shadow:0 3px 7px var(--composeShadow);
 	border-radius:4px;
-	overflow:hidden;
+	overflow:hidden
 }
 
 .compose-media-info-bar i {
@@ -3799,7 +3800,7 @@ div.media-size-small {
 
 .js-inline-reply .pull-right {
 	margin-top:-40px;
-	margin-right: 57px;
+	margin-right:57px
 }
 
 .js-inline-reply .pull-right[for] {
@@ -3882,7 +3883,7 @@ div.media-size-small {
 	box-shadow:0 3px 6px rgba(0,0,0,.7);
 	border-radius:4px 4px 0 0;
 	pointer-events:all;
-	animation:mediaSlideUp 0.4s var(--animationTiming);
+	animation:mediaSlideUp 0.4s var(--animationTiming)
 }
 
 .med-embeditem {
@@ -4505,7 +4506,7 @@ input[type="checkbox"]:active {
 
 #caldays span {
 	float:left;
-	width:calc(var(--composeWidth)/8.25);
+	width:calc(var(--composeWidth) / 8.25);
 	font-size:11px;
 	text-align:center
 }
@@ -4516,8 +4517,8 @@ input[type="checkbox"]:active {
 
 .calweek a {
 	float:left;
-	width:calc(var(--composeWidth)/8.5);
-	height:calc(var(--composeWidth)/12);
+	width:calc(var(--composeWidth) / 8.5);
+	height:calc(var(--composeWidth) / 12);
 	font-size:12px;
 	margin-left:1px;
 	text-align:center;
@@ -4645,7 +4646,7 @@ input[type="checkbox"]:active {
 .prf-header .icon-protected {
 	font-size:16px;
 	margin-left:3px;
-	margin-top: -13px;
+	margin-top:-13px
 }
 
 .prf-bio {
@@ -4900,7 +4901,7 @@ input[type="checkbox"]:active {
 	position:relative;
 	display:block;
 	padding:8px 0 0 18px;
-	height: 27px;
+	height:27px
 }
 
 .dropdown-menu a {
@@ -5185,7 +5186,7 @@ input[type="checkbox"]:active {
 .js-add-image-button,.js-tweet-button,.js-dm-button,.js-schedule-button,.mtd-gif-button {
 	width:30px!important;
 	height:30px!important;
-	margin-top: -53px;
+	margin-top:-53px;
 	background:transparent!important;
 	box-shadow:none!important;
 	margin-left:3px
@@ -5198,21 +5199,13 @@ input[type="checkbox"]:active {
 .compose-text-container .js-schedule-button,
 .compose-text-container .mtd-gif-button
 {
-	margin-left:4px
-}
-
-.compose-text-container .js-add-image-button,
-.compose-text-container .js-tweet-button,
-.compose-text-container .js-dm-button,
-.compose-text-container .js-schedule-button,
-.compose-text-container .mtd-gif-button
-{
-	margin-top:-5px;
+	margin-left:4px;
+	margin-top:-5px
 }
 
 .compose-text-container .mtd-gif-button {
-	margin-left: 10px;
-	margin-right: -10px;
+	margin-left:10px;
+	margin-right:-10px
 }
 
 .inline-reply .mtd-emoji-button {
@@ -5224,13 +5217,13 @@ input[type="checkbox"]:active {
 }
 
 .js-add-image-button {
-	margin-left: 13px
+	margin-left:13px
 }
 
 .mtd-gif-button {
 	margin-left:0;
 	position:relative;
-	display:inline;
+	display:inline
 }
 
 .js-tweet-button>i,.js-dm-button>i,.js-add-image-button>i,.js-schedule-button>i {
@@ -5239,8 +5232,8 @@ input[type="checkbox"]:active {
 
 .mtd-gif-button>i {
 	font-size:32px;
-	margin-top: -3px;
-	margin-left: -12px;
+	margin-top:-3px;
+	margin-left:-12px
 }
 
 .inline-reply.is-inline-inactive {
@@ -5400,7 +5393,7 @@ a[rel="user"]:active,
 	margin-left:10px;
 	box-shadow:0 3px 7px var(--composeShadow);
 	margin-top:15px;
-	animation:mediaDown .825s var(--animationTiming);
+	animation:mediaDown .825s var(--animationTiming)
 }
 
 .cal header span {
@@ -5531,15 +5524,15 @@ a[rel="user"]:active,
 }
 
 .js-send-button {
-	margin-right: 24px;
-	height: 30px;
-	width: 30px;
+	margin-right:24px;
+	height:30px;
+	width:30px;
 	font-size:0;
 	padding-top:0;
 	float:right;
 	-moz-transform:translateX(-10px);
-	padding-left: 4px;
-	margin-top: 3px;
+	padding-left:4px;
+	margin-top:3px
 }
 
 .inline-reply .js-send-button {
@@ -5889,12 +5882,12 @@ a[rel="user"]:active,
 }
 
 .compose .js-quote-tweet-holder .quoted-tweet {
-	padding-left: 10px!important;
-	padding-right: 30px!important;
+	padding-left:10px!important;
+	padding-right:30px!important;
 	position:relative;
-	width: calc(var(--composeWidth) - 70px);
-	padding-bottom: 10px!important;
-	margin-top:0;
+	width:calc(var(--composeWidth) - 70px);
+	padding-bottom:10px!important;
+	margin-top:0
 }
 
 .is-options-open .more-tweets-btn-container--hidden {
@@ -6084,11 +6077,10 @@ button.try-query,
 .typeahead-dropdown {
 	top:45px;
 	width:calc(var(--composeWidth) - 30px);
-	overflow-x:hidden
+	overflow-x:hidden;
 	animation:menuUpRelative .325s var(--animationTiming),fadeIn .325s var(--animationTiming);
 	margin-top:0;
-	box-shadow:0 10px 20px 0 var(--contextMenuShadow);
-	overflow-x:hidden
+	box-shadow:0 10px 20px 0 var(--contextMenuShadow)
 }
 
 .dropdown-menu ul {
@@ -6680,7 +6672,7 @@ button.mtd-no-transform-case {
 .compose-remember-state {
 	width:50px;
 	cursor:pointer;
-	float: right
+	float:right
 }
 
 .mtd-settings-option option[value="paper"] {
@@ -6865,7 +6857,7 @@ body>.message-banner[style="color:rgb(85, 85, 85); background-color:rgb(178, 213
 
 .compose .quoted-tweet .js-quoted-tweet-text {
 	/* padding-left:5px; */
-	margin-top: 7px;
+	margin-top:7px
 }
 
 .compose .quoted-tweet .sprite-close {
@@ -7131,9 +7123,9 @@ p[lang="yi"] a[rel="hashtag"],p[lang="yi"] a[rel="user"]
 }
 
 .mtd-emoji-button-open:after {
-	font-family:"Material";
+	font-family:Material;
 	content:"\e24e";
-	font-size: 17px;
+	font-size:17px
 }
 
 .prf-actions .unfollow-text:after {
@@ -7634,7 +7626,7 @@ button[type="submit"]:active {
 }
 
 .compose-reply-tweet:not(.is-hidden)+.compose-text-container>.compose-text {
-	height: 111px!important;
+	height:111px!important
 }
 
 .stroke-twitter-yellow {
@@ -7722,7 +7714,7 @@ button[type="submit"]:active {
 }
 
 .popover-position-t {
-	margin-top: 22px;
+	margin-top:22px
 }
 
 label[for="inline-account-safeguard-checkbox"] {
@@ -7776,7 +7768,7 @@ li.padding-axl.flex.flex-row.flex-align--center .account-summary-text>a.account-
 
 .account-summary-text {
 	padding-left:calc(var(--avatarSize) * 1.05);
-	padding-top: 15px;
+	padding-top:15px
 }
 
 .js-list-description {
@@ -7906,7 +7898,7 @@ li.padding-axl.flex.flex-row.flex-align--center .account-summary-text>a.account-
 	overflow:hidden;
 	text-overflow:clip;
 	display:block;
-	position: relative;
+	position:relative
 }
 
 .tweet-header {
@@ -7922,7 +7914,7 @@ li.padding-axl.flex.flex-row.flex-align--center .account-summary-text>a.account-
 }
 
 .quoted-tweet .tweet-header {
-	height:28px;
+	height:28px
 }
 
 body+div,body+div>div {
@@ -8357,7 +8349,7 @@ div[data-testid="trend"]>.txt-bold {
 	font-size:19px;
 	color:var(--rootWhiteColor);
 	transition:color .15s var(--animationTiming);
-	cursor:pointer;
+	cursor:pointer
 }
 
 .Notification--green .Notification-inner {
@@ -9458,7 +9450,7 @@ li.padding-axl.flex.flex-row.flex-align--center .fullname {
 }
 
 .mtd-app:not(.mtd-maximized) .js-search-in-popover .popover-position-rt {
-	margin-top:50px;
+	margin-top:50px
 }
 
 .mtd-app-mac .js-search-in-popover .popover-position-rt {
@@ -9877,8 +9869,8 @@ label.checkbox::selection,label.control-label::selection {
 }
 
 .compose .compose-text-container .spinner-button-container .spinner-button-icon-spinner {
-	margin-top: -14px;
-	margin-left: -19px;
+	margin-top:-14px;
+	margin-left:-19px
 }
 
 .is-shifted-2 .js-accounts-column-holder .column-panel:nth-child(3) {
@@ -10198,15 +10190,6 @@ footer>.js-tweet-stats>.tweet-stats:not(.js-stats-list) {
 	width:100%
 }
 
-.margin-h--45 {
-	margin-left:45px;
-	margin-right:45px
-}
-
-.padding-a--20 {
-	padding:20px
-}
-
 .app-content[style="transition-duration: 0ms; transform: translateX(400px); margin-right: 400px;"],
 .app-content[style="transition-duration: 200ms; transform: translateX(400px); margin-right: 400px;"],
 .app-content[style="transition-duration: 200ms; transform: translateX(400px); margin-right: 0px;"],
@@ -10236,6 +10219,7 @@ footer>.js-tweet-stats>.tweet-stats:not(.js-stats-list) {
 	opacity:0;
 	pointer-events:none
 }
+
 .js-processing-video>.preloader-wrapper {
 	width:36px;
 	height:36px;
@@ -10321,7 +10305,7 @@ footer>.js-tweet-stats>.tweet-stats:not(.js-stats-list) {
 	margin-top:-37px;
 	transform:scale(1);
 	opacity:0.7;
-	transition:0.07s all,.08s margin;
+	transition:0.07s all,.08s margin
 }
 
 
@@ -10341,4 +10325,20 @@ footer>.js-tweet-stats>.tweet-stats:not(.js-stats-list) {
 
 .release-notes-modal .mdl-inner {
 	padding:30px
+}
+
+.mtd-patron-info {
+	position:absolute;
+	right:0;
+	top:0;
+	bottom:71px;
+	float:right
+}
+
+.mtd-patron-list {
+	margin-top:60px;
+	right:100px;
+	width:240px;
+	float:right;
+	height:80%
 }

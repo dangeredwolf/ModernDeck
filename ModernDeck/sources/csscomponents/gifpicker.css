@@ -8,10 +8,10 @@
 	min-height:300px;
 	width:calc(var(--composeWidth) - 5px);
 	left:0;
-	transition: all 0.25s var(--animationTiming)!important;
+	transition:all 0.25s var(--animationTiming)!important;
 	opacity:0;
 	animation:none!important;
-	margin-top: 4px;
+	margin-top:4px;
 	margin-bottom:10px;
 	pointer-events:none!important
 }

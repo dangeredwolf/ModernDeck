@@ -237,13 +237,13 @@ button.try-query,
 .mtd-nd-header-image[style="background-image: url(https://ton.twimg.com/tweetdeck-web/web/assets/global/backgrounds/td_profile_empty@2x.28d11b0d43.jpg)"]
 {
 	background-image:linear-gradient(
-		#E53935, /* red */
-	 	#FF5722, /* orange */
-	 	#FFC107, /* yellow */
-	 	#4CAF50, /* green */
-	 	#2196F3, /* blue */
-	 	#673AB7 /* purple */
-	 )!important
+		#E53935,/* red */
+		#FF5722,/* orange */
+		#FFC107,/* yellow */
+		#4CAF50,/* green */
+		#2196F3,/* blue */
+		#673AB7/* purple */
+	)!important
 }
 
 
@@ -257,19 +257,18 @@ button.try-query,
 	-webkit-background-clip:text!important;
 	background-clip:text!important;
 	-webkit-text-fill-color:transparent!important;
-	text-fill-color:transparent!important;
 }
 
 .prf-header
 {
 	background-image:linear-gradient(
-		#E53935, /* red */
-	 	#FF5722, /* orange */
-	 	#FFC107, /* yellow */
-	 	#4CAF50, /* green */
-	 	#2196F3, /* blue */
-	 	#673AB7 /* purple */
-	 )
+		#E53935,/* red */
+		#FF5722,/* orange */
+		#FFC107,/* yellow */
+		#4CAF50,/* green */
+		#2196F3,/* blue */
+		#673AB7 /* purple */
+	)
 }
 
 
@@ -282,21 +281,21 @@ body,
 .lst-group:not(.js-setting-list) .selected
 {
 	background-color:#E53935;
-
-	background-image:linear-gradient( to right,
-		#E53935, /* red */
-	 	#FF5722, /* orange */
-	 	#FFC107, /* yellow */
-	 	#4CAF50, /* green */
-	 	#2196F3, /* blue */
-	 	#673AB7 /* purple */
-	 )!important
+	background-image:linear-gradient(
+		to right,
+		#E53935,/* red */
+		#FF5722,/* orange */
+		#FFC107,/* yellow */
+		#4CAF50,/* green */
+		#2196F3,/* blue */
+		#673AB7/* purple */
+	)!important
 }
 
 
 .lst-group.js-setting-list .selected
 {
-	/*background:transparent*/
+	/* background:transparent */
 }
 
 
