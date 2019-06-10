@@ -9,7 +9,7 @@
 
 'use strict';
 
-const SystemVersion = "7.2";
+const SystemVersion = "7.2.2";
 const appendTextVersion = true;
 
 let mtdBaseURL = "https://raw.githubusercontent.com/dangeredwolf/ModernDeck/master/ModernDeck/";
@@ -1981,7 +1981,6 @@ function openSettings(openMenu) {
 		}
 
 		var tab = make("button").addClass("mtd-settings-tab").attr("data-action",key).html(settingsData[key].tabName).click(function() {
-			console.log(settingsData[key]);
 			$(".mtd-settings-tab-selected").removeClass("mtd-settings-tab-selected");
 			$(this).addClass("mtd-settings-tab-selected");
 
@@ -2972,7 +2971,7 @@ function mtdAppUpdatePage(updateCont, updateh2, updateh3, updateIcon, updateSpin
 		$(".mtd-update-spinner").addClass("hidden");
 
 		if (exists(args.code)) {
-			updateh3.html(`${args.code} ${args.errno} ${args.syscall} ${args.path}`).removeClass("hidden");
+			updateh3.html(`${args.domain || ""} ${args.code || ""} ${args.errno || ""} ${args.syscall || ""} ${args.path || ""}`).removeClass("hidden");
 		} else if (exists(f)) {
 			updateh3.html(f.match(/^(Cannot check for updates: )(.)+\n/g)).removeClass("hidden")
 		} else {

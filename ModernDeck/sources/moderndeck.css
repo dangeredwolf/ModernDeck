@@ -2,7 +2,7 @@
 /*
 	moderndeck.css
 
-	ModernDeck 7.2 [codename Essence]
+	ModernDeck 7.2.2 [codename Essence]
 	Copyright 2014-2019 dangered wolf
 	Released under the MIT Licence
 
@@ -10210,6 +10210,9 @@ footer>.js-tweet-stats>.tweet-stats:not(.js-stats-list) {
 .app-content[style="transition-duration: 0ms; transform: translateX(400px); margin-right: 400px;"],
 .app-content[style="transition-duration: 200ms; transform: translateX(400px); margin-right: 400px;"],
 .app-content[style="transition-duration: 200ms; transform: translateX(400px); margin-right: 0px;"],
+.app-content[style="transition-duration: 0ms; transform: translateX(350px); margin-right: 350px;"],
+.app-content[style="transition-duration: 200ms; transform: translateX(350px); margin-right: 350px;"],
+.app-content[style="transition-duration: 200ms; transform: translateX(350px); margin-right: 0px;"],
 .app-content[style="transition-duration: 200ms; transform: translateX(270px); margin-right: 270px;"],
 .app-content[style="transition-duration: 200ms; transform: translateX(270px); margin-right: 0px;"],
 .app-content[style="transition-duration: 0ms; transform: translateX(270px); margin-right: 270px;"]
