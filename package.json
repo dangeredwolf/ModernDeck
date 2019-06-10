@@ -1,6 +1,6 @@
 {
 	"name": "ModernDeck",
-	"version": "7.2.1",
+	"version": "7.2.2",
 	"description": "TweetDeck, but more beautiful and fun than ever.",
 	"homepage": "https://github.com/dangeredwolf/ModernDeck",
 	"bugs": {
@@ -106,7 +106,7 @@
 	"dependencies": {
 		"electron-log": "^3.0.6",
 		"electron-packager": "^13.0.0",
-		"electron-store": "^3.2.0",
+		"electron-store": "^3.3.0",
 		"electron-updater": "^4.0.6",
 		"file-type": "^11.1.0",
 		"got": "^9.6.0",
