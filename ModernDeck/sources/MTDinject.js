@@ -2794,7 +2794,9 @@ function navigationSetup() {
 					setTimeout(() => {$("a[data-action=\"searchOperatorList\"]").click()},20);
 				}).append("Search Tips"),
 				make("div").addClass("mtd-nav-divider"),
-				make("button").addClass("btn mtd-nav-button").attr("id","mtd_signout").append(make("i").addClass("icon icon-logout")).click(() => {TD.controller.init.signOut();}).append("Sign Out"),
+				make("button").addClass("btn mtd-nav-button").attr("id","mtd_signout").append(make("i").addClass("icon icon-logout")).click(() => {
+					TD.controller.init.signOut();
+				}).append("Sign Out"),
 			),
 			make("div").addClass("mtd-nav-divider mtd-nav-divider-feedback"),
 			make("button").addClass("btn mtd-nav-button mtd-nav-button-feedback").attr("id","mtdfeedback").append(make("i").addClass("icon icon-feedback")).click(() => {
