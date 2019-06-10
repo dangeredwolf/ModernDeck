@@ -40,7 +40,8 @@
 	--animationTiming:cubic-bezier(.19,1,.22,1);
 	--defaultFontOrder:Roboto,"Noto Sans Alphabet","Noto Sans","Noto Sans CJK","Noto Sans CJK JP","Noto Sans CJK KR","Noto Sans CJK SC","Noto Sans CJK TC","Noto Sans JP","Noto Sans KR","Noto Sans SC","Noto Sans TC";
 	--composeWidth:300px;
-	--scrollbarWidth:10px
+	--scrollbarWidth:10px;
+	--verticalHeadWidth:50px
 }
 
 /* LOADING SCREEN, DO NOT MERGE, MOVE, OR REMOVE */
@@ -2719,6 +2720,11 @@ div.media-size-small {
 	pointer-events:none
 }
 
+.mtd-head-left .app-header {
+	width:var(--verticalHeadWidth);
+	height:100%!important;
+}
+
 .app-header-inner {
 	box-sizing:border-box;
 	width:200px;
@@ -2732,6 +2738,15 @@ div.media-size-small {
 	overflow:visible;
 	transition:transform 0.2s var(--animationTiming);
 	-webkit-app-region:no-drag
+}
+
+.mtd-head-left .app-content {
+	top:0;
+	left:var(--verticalHeadWidth);
+}
+
+.mtd-app.mtd-head-left .app-content {
+	top:30px
 }
 
 .is-chrome .app-columns-container {
@@ -2788,6 +2803,15 @@ div.media-size-small {
 
 .app-nav-tab i {
 	padding-left:1px
+}
+
+.mtd-head-left .tweet-button, .mtd-head-left .js-hide-drawer:not(.tweet-button) {
+	margin-left:0;
+	margin-top:32px
+}
+
+.mtd-head-left .tweet-button.is-hidden {
+	margin-left:calc(var(--verticalHeadWidth) - 4px);
 }
 
 .tweet-button,.js-hide-drawer:not(.tweet-button) {
@@ -2855,6 +2879,10 @@ div.media-size-small {
 	margin-top:-65px;
 	margin-left:-5px;
 	width:calc(var(--composeWidth) + 1px)
+}
+
+.mtd-head-left .attach-compose-buttons .tweet-button {
+	width:calc(var(--composeWidth) + var(--verticalHeadWidth))
 }
 
 .attach-compose-buttons .icon-compose-dm {
@@ -4209,7 +4237,7 @@ textarea,.l-fullwidth {
 	right:0;
 	position:absolute;
 	display:block;
-	margin-top:-26px
+	margin-top:7px
 }
 
 .s-error input {
@@ -5083,6 +5111,10 @@ input[type="checkbox"]:active {
 	transition:0.2s all var(--animationTiming),.4s transform
 }
 
+.mtd-head-left .column-nav-link i {
+	padding-left:12px
+}
+
 .column-nav-link i {
 	padding-left:16px;
 	vertical-align:4px;
@@ -5465,10 +5497,6 @@ a[rel="user"]:active,
 	left:calc(var(--composeWidth))!important
 }
 
-.hide-detail-view-inline .app-search-fake {
-	margin-left:275px!important
-}
-
 .tweet-action .icon-retweet,.tweet-detail-action .icon-retweet {
 	margin-right:3px
 }
@@ -5569,10 +5597,10 @@ a[rel="user"]:active,
 .tweet-button.is-hidden {
 	display:inline-block!important;
 	border-radius:0;
-	width:calc(var(--composeWidth) + 1px);
+	width:var(--composeWidth);
 	margin-left:-5px;
 	margin-top:-4px;
-	box-shadow:none!important
+	box-shadow:none!important;
 }
 
 .is-hidden .icon-compose {
@@ -5634,7 +5662,7 @@ a[rel="user"]:active,
 	transition:0.5s all,.15s opacity
 }
 
-.hide-detail-view-inline .mtd-drawer-button {
+html:not(.mtd-head-left) .hide-detail-view-inline .mtd-drawer-button {
 	top:5px;
 	margin-left:calc(var(--composeWidth) - 55px)
 }
@@ -9418,7 +9446,7 @@ li.padding-axl.flex.flex-row.flex-align--center .fullname {
 	-webkit-app-region:no-drag
 }
 
-.mtd-app:not(.mtd-maximized) .app-content {
+.mtd-app:not(.mtd-maximized):not(.mtd-head-left) .app-content {
 	top:80px
 }
 
@@ -9426,18 +9454,59 @@ li.padding-axl.flex.flex-row.flex-align--center .fullname {
 	height:40px;
 	margin-top:40px;
 	-webkit-app-region:no-drag;
-	position:absolute;
-	left:0;
-	right:40px
+	position:fixed;
+	left:0!important;
+	width:40px
 }
 
-.mtd-app:not(.mtd-maximized) .drawer {
+.mtd-app.mtd-head-left.mtd-maximized .column-navigator {
+	-webkit-app-region:no-drag;
+	position:fixed;
+	left:0!important;
+	width:60px
+}
+
+.mtd-app.mtd-head-left .column-navigator {
+	margin-top:120px;
+}
+
+.mtd-app.mtd-head-left .hide-detail-view-inline .column-navigator {
+	margin-top:80px;
+}
+
+.mtd-head-left .column-navigator {
+	left:0;
+	width:var(--verticalHeadWidth);
+	bottom:0;
+	top:0;
+	height:100%!important;
+}
+
+.mtd-head-left .app-content:not(.is-open)>.drawer {
+	/* stylelint-disable */
+	left:calc(0px - var(--verticalHeadWidth) - var(--composeWidth));
+	/* stylelint-enable */
+}
+
+.mtd-app:not(.mtd-maximized):not(.mtd-head-left) .drawer {
 	top:-40px;
 	bottom:0
 }
 
 .mtd-app:not(.mtd-maximized):not(.mtd-app-mac) .app-search-fake {
 	margin-top:40px
+}
+
+.mtd-head-left .app-search-fake {
+	margin-top:0!important;
+	position:fixed;
+	left:0;
+	margin-left:6px;
+	top:80px
+}
+
+.mtd-head-left .hide-detail-view-inline .app-search-fake {
+	top:40px
 }
 
 .mtd-app.mtd-maximized:not(.mtd-app-mac) .app-search-fake {
