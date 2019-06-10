@@ -47,6 +47,7 @@
 
 .cmp-replyto {
 	position:relative;
+	padding-bottom:50px;
 	margin-top:30px
 }
 
@@ -59,14 +60,14 @@
 }
 
 .mdl:not(.sentry-error-embed):not(.med-fullpanel) {
-    display:inline-block;
-    vertical-align:middle;
-    position:relative;
-    margin:0 auto!important;
-    text-align:left;
-    border-radius:2px;
-    min-height: 500px;
-    max-height: 707px;
+	display:inline-block;
+	vertical-align:middle;
+	position:relative;
+	margin:0 auto!important;
+	text-align:left;
+	border-radius:2px;
+	min-height:500px;
+	max-height:707px
 }
 
 .js-modal-panel.mdl.s-fluid.s-wide.cmp.s-minimal {
@@ -74,7 +75,7 @@
 }
 
 .js-modal-inner.mdl.margin-v--20.s-fluid:not(.s-fluid-height) {
-	/*min-height: 180px;*/
+	/* min-height:180px */
 }
 
 .mdl.s-profile {
@@ -101,12 +102,12 @@
 }
 
 .prf-header {
-	min-height: 289px;
+	min-height:289px
 }
 
 .social-proof-container {
 	position:absolute!important;
-	top: 294px;
+	top:294px
 }
 
 .s-fluid .mdl-inner, .s-fluid-height .mdl-inner {
@@ -126,10 +127,10 @@
 
 .mdl .prf-follow-state .js-user-actions-menu {
 	position:absolute;
-	top: -290px;
+	top:-290px;
 	left:-40px;
 	color:#fff!important;
-	margin:0;
+	margin:0
 }
 
 .mdl-drag-handle {
@@ -156,8 +157,4 @@
 
 .cf.padding-b--20.padding-r--20.padding-t--5 {
 	margin-top:-56px
-}
-
-.cmp-replyto {
-	padding-bottom:50px
 }

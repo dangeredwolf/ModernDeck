@@ -3,25 +3,29 @@
 	box-sizing:border-box
 }
 
+.mtd-no-emoji-picker .mtd-emoji,.mtd-no-emoji-picker .mtd-emoji-button {
+	display:none
+}
+
 .mtd-emoji {
 	display:block;
 	box-shadow:none;
-	height: 0!important;
-	position: absolute!important;
-	bottom: 0!important;
-	top: initial!important;
+	height:0!important;
+	position:absolute!important;
+	bottom:0!important;
+	top:initial!important;
 	pointer-events:none;
 	width:100%
 }
 
 .mtd-emoji-button {
 	position:absolute;
-	right: 10px;
-	bottom: 69px;
+	right:10px;
+	bottom:69px;
 	cursor:pointer;
 	pointer-events:all;
-	color: var(--placeholderTextColor)!important;
-	transform: scale(1,1)!important;
+	color:var(--placeholderTextColor)!important;
+	transform:scale(1,1)!important
 }
 
 .mtd-emoji-button:hover:not(:active) {
@@ -30,25 +34,27 @@
 
 .mtd-emoji-button>div {
 	display:block;
-	width: 17px;
-	height: 17px;
+	width:17px;
+	height:17px;
 	position:absolute;
-	transition:all 400ms var(--animationTiming);
+	right:6px;
+	top:5px;
+	transition:all 400ms var(--animationTiming)
 }
 
 .mtd-emoji-picker {
 	height:350px;
 	width:calc(var(--composeWidth) - 30px);
-	top: 137px;
+	top:137px;
 	right:0;
-	transition: all 0.25s var(--animationTiming)!important;
+	transition:all 0.25s var(--animationTiming)!important;
 	opacity:0;
-	animation: calendarMenuDown 0.3s var(--animationTiming)!important;
-	margin-top: 4px;
-	margin-bottom: 10px;
+	animation:calendarMenuDown 0.3s var(--animationTiming)!important;
+	margin-top:4px;
+	margin-bottom:10px
 }
 
-.inline-reply  .mtd-emoji-picker {
+.inline-reply,.mtd-emoji-picker {
 	right:30px;
 	top:50px
 }
@@ -63,15 +69,15 @@
 	position:absolute;
 	padding:0 0 0 7px;
 	height:40px;
-	z-index:11
+	z-index:11;
+	bottom:0
 }
 
 .mtd-emoji-filter {
 	display:block;
 	float:left;
 	height:40px;
-	width: 29px;
-	filter:inherit;
+	width:29px;
 	padding:7px 1px 0;
 	cursor:pointer;
 	filter:grayscale(1);
@@ -96,12 +102,13 @@
 .mtd-emoji-search-panel {
 	left:0;
 	right:0;
+	top:0;
 	padding:5px 0 5px 8px
 }
 
 .mtd-emoji-tones {
 	position:absolute;
-	top: 46px;
+	top:46px;
 	left:13px
 }
 
@@ -151,7 +158,7 @@
 	width:20px;
 	height:20px;
 	margin:0;
-	margin-right: 5px
+	margin-right:5px
 }
 
 .mtd-emoji-tones-bullet>.btn-tone:after,
@@ -175,7 +182,7 @@
 .btn-tone {
 	width:16px;
 	height:16px;
-	margin:0px 2px
+	margin:0 2px
 }
 
 .btn-tone,.btn-tone:after {
@@ -183,7 +190,7 @@
 }
 
 .mtd-emoji-scroll-area {
-	height: 235px;
+	height:235px;
 	overflow:auto;
 	overflow-x:hidden;
 	width:100%;
@@ -199,11 +206,11 @@
 .mtd-emoji-category-title {
 	display:block;
 	font-size:13px;
-	font-weight:normal;
+	font-weight:400;
 	line-height:20px;
-	padding: 4px 0 5px 6px;
-	text-transform: uppercase;
-	pointer-events: none;
+	padding:4px 0 5px 6px;
+	text-transform:uppercase;
+	pointer-events:none
 }
 
 .mtd-emoji-category-title:after,
@@ -227,21 +234,8 @@
 	cursor:pointer
 }
 
-.mtd-emoji-filters {
-	bottom:0
-}
-
-.mtd-emoji-search-panel {
-	top:0
-}
-
 .mtd-emoji-button.active+.mtd-emoji-picker {
 	opacity:1
-}
-
-.mtd-emoji-button>div {
-	right:6px;
-	top:5px
 }
 
 .mtd-emoji-editor,.mtd-emoji-category-block[name="tones"] .mtd-emoji-category-title {

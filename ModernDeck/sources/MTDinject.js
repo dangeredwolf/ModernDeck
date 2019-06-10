@@ -22,7 +22,7 @@ let loginIntervalTick = 0;
 
 const forceFeatureFlags = false;
 const forceAppx = false; // https://github.com/electron/electron/issues/18161
-const useRaven = false;
+const useRaven = true;
 
 let newLoginPage =
 '<div class="app-signin-wrap mtd-signin-wrap">\
@@ -116,9 +116,9 @@ let replacedLoadingSpinnerNew = false;
 let sendingFeedback = false;
 
 let ugltStarted = false;
-let useNativeContextMenus = true;
-let isDev = true;
-let debugStorageSys = true;
+let useNativeContextMenus = false;
+let isDev = false;
+let debugStorageSys = false;
 
 let store;
 let loginInterval;
@@ -422,6 +422,18 @@ let settingsData = {
 					enableStylesheet:"nonewtweetsbutton"
 				},
 				settingsKey:"mtd_nonewtweetsbutton",
+				default:true
+			},
+			noemojipicker:{
+				title:"Enable Emoji picker",
+				type:"checkbox",
+				activate:{
+					htmlRemoveClass:"mtd-no-emoji-picker"
+				},
+				deactivate:{
+					htmlAddClass:"mtd-no-emoji-picker"
+				},
+				settingsKey:"mtd_noemojipicker",
 				default:true
 			},
 			scrollbarstyle:{
@@ -2643,7 +2655,7 @@ function hookComposer() {
 	}
 
 	if ($(".drawer .js-send-button-container").length >= 2) {
-		$(".compose-text-container .js-send-button-container.spinner-button-container")[0].remove();
+		$(".compose-text-container .js-send-button-container.spinner-button-container")[1].remove();
 		$(".compose-text-container").append(
 			$(".drawer .js-send-button-container.spinner-button-container")
 		)
