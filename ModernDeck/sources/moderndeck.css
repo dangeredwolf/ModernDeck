@@ -9456,7 +9456,7 @@ li.padding-axl.flex.flex-row.flex-align--center .fullname {
 	-webkit-app-region:no-drag;
 	position:fixed;
 	left:0!important;
-	width:40px
+	/* width:40px */
 }
 
 .mtd-app.mtd-head-left.mtd-maximized .column-navigator {
