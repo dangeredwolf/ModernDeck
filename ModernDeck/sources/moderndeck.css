@@ -2722,7 +2722,7 @@ div.media-size-small {
 
 .mtd-head-left .app-header {
 	width:var(--verticalHeadWidth);
-	height:100%!important;
+	height:100%!important
 }
 
 .app-header-inner {
@@ -2742,7 +2742,7 @@ div.media-size-small {
 
 .mtd-head-left .app-content {
 	top:0;
-	left:var(--verticalHeadWidth);
+	left:var(--verticalHeadWidth)
 }
 
 .mtd-app.mtd-head-left .app-content {
@@ -2811,7 +2811,7 @@ div.media-size-small {
 }
 
 .mtd-head-left .tweet-button.is-hidden {
-	margin-left:calc(var(--verticalHeadWidth) - 4px);
+	margin-left:calc(var(--verticalHeadWidth) - 4px)
 }
 
 .tweet-button,.js-hide-drawer:not(.tweet-button) {
@@ -5598,9 +5598,9 @@ a[rel="user"]:active,
 	display:inline-block!important;
 	border-radius:0;
 	width:var(--composeWidth);
-	margin-left:-5px;
+	margin-left:-4px;
 	margin-top:-4px;
-	box-shadow:none!important;
+	box-shadow:none!important
 }
 
 .is-hidden .icon-compose {
@@ -9467,11 +9467,11 @@ li.padding-axl.flex.flex-row.flex-align--center .fullname {
 }
 
 .mtd-app.mtd-head-left .column-navigator {
-	margin-top:120px;
+	margin-top:120px
 }
 
 .mtd-app.mtd-head-left .hide-detail-view-inline .column-navigator {
-	margin-top:80px;
+	margin-top:80px
 }
 
 .mtd-head-left .column-navigator {
@@ -9479,7 +9479,7 @@ li.padding-axl.flex.flex-row.flex-align--center .fullname {
 	width:var(--verticalHeadWidth);
 	bottom:0;
 	top:0;
-	height:100%!important;
+	height:100%!important
 }
 
 .mtd-head-left .app-content:not(.is-open)>.drawer {

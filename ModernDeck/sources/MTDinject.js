@@ -1872,24 +1872,28 @@ async function mtdInit() {
 	},500);
 
 	$(document).on("uiInlineComposeTweet",(e) => {
+		console.log("uiInlineComposeTweet");
 		setTimeout(() => {
 			hookComposer();
 		},0)
 	});
 
 	$(document).on("uiDockedComposeTweet",(e) => {
+		console.log("uiDockedComposeTweet");
 		setTimeout(() => {
 			hookComposer();
 		},50)
 	});
 
 	$(document).on("uiComposeClose",(e) => {
+		console.log("uiComposeClose");
 		setTimeout(() => {
 			hookComposer();
 		},50)
 	});
 
 	$(document).on("uiComposeTweet",(e) => {
+		console.log("uiComposeTweet");
 		setTimeout(() => {
 			hookComposer();
 		},0)
@@ -2667,11 +2671,19 @@ function hookComposer() {
 
 
 	$(".drawer[data-drawer=\"compose\"]>div>div").on("uiComposeImageAdded",(e) => {
-		console.log("added!!!");
+		console.log("uiComposeImageAdded");
 		setTimeout(checkGifEligibility,0) // initialise one cycle after tweetdeck does its own thing
 
-	})
+	}).on("uiComposeTweetSent",(e) => {
+		console.log("uiComposeTweetSent");
+		setTimeout(checkGifEligibility,0);
+		setTimeout(checkGifEligibility,510);
+	});
 
+	$(document).on("uiSendDm",(e) => {
+		console.log("uiSendDm");
+		setTimeout(checkGifEligibility,0)
+	});
 
 	if ($(".mtd-emoji").length <= 0)
 		$(".compose-text").emojioneArea();
