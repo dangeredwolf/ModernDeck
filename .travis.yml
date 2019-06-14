@@ -1,12 +1,13 @@
 language: node_js
 os: osx
 node_js:
-- lts/*
+- node
 deploy:
   provider: releases
   cache:
     directories:
       - node_modules
+      - $HOME/.cache
       - $HOME/.cache/electron
       - $HOME/.cache/electron-builder
 

@@ -927,22 +927,23 @@ textarea
 	color:var(--tweetActionColor);
 }
 
+button[type="submit"],.mtd-settings-button,.btn-primary,.Button--primary:not(.tweet-button):not(.action-text):not(.more-tweets-btn):not(.js-add-column):not(.js-spinner-button) {
+	background:var(--secondaryColor)
+}
 
-button[type="submit"],.mtd-settings-button {
+button[type="submit"]:hover,.mtd-settings-button:hover,.btn-primary:hover,.Button--primary:not(.tweet-button):not(.action-text):not(.more-tweets-btn):not(.js-add-column):not(.js-spinner-button):hover {
 	background:var(--secondaryColorBright)
 }
 
-button[type="submit"]:hover,.mtd-settings-button:hover {
-	background:var(--secondaryColorBright)
+button[type="submit"]:active,button[type="submit"]:focus,.mtd-settings-button:focus,.btn-primary:focus,.Button--primary:not(.tweet-button):not(.action-text):not(.more-tweets-btn):not(.js-add-column):not(.js-spinner-button):focus,.btn-primary:active,.Button--primary:not(.tweet-button):not(.action-text):not(.more-tweets-btn):not(.js-add-column):not(.js-spinner-button):active {
+	background:var(--secondaryColorBright)!important
 }
 
-button[type="submit"]:active,button[type="submit"]:focus,.mtd-settings-button:focus {
-	background:var(--secondaryColorBright)
+.btn-primary,.Button--primary:not(.tweet-button):not(.action-text):not(.more-tweets-btn):not(.js-add-column):not(.js-spinner-button)
+{
+	color:var(--rootWhiteColor)!important
 }
 
-.lst-launcher a,.lst-launcher a:hover,.lst-launcher a:focus,.lst-launcher a:active,.lst-launcher span {
-	color:var(--typeaheadColor)!important
-}
 
 #id_comments {
 	border:2px solid var(--disabledColor)

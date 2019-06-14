@@ -39,18 +39,7 @@
 	--defaultShadowColor:rgba(41,41,41,.35)
 }
 
-a,
-a:not([href="#"]):not(.column-header-link):not(.js-column-back):not(.js-tweet-social-proof-back):not(.account-selector-grid-mode):not(.account-link):hover,
-.calweek a:hover,
-.btn:not([disabled]):not(.is-disabled):not(.btn-options-tray):not(.mtd-nav-button):not(.btn-bg-negative):not(.btn-negative),
-.compose-send-button-success,
-.icon-follow-color,
-.tweet-actions.is-visible .icon-reply,
-#caltoday,
-input[type="checkbox"]:checked:before,
-button,
-input[type="radio"]:checked:before,
-.mtd-logo
+a, a:not([href="#"]):not(.column-header-link):not(.js-column-back):not(.js-tweet-social-proof-back):not(.account-selector-grid-mode):not(.account-link):not(.dropdown-menu-url-item):hover, .calweek a:hover, .btn:not([disabled]):not(.is-disabled):not(.btn-options-tray):not(.mtd-nav-button):not(.btn-bg-negative):not(.btn-negative), .compose-send-button-success, .icon-follow-color, .tweet-actions.is-visible .icon-reply, #caltoday, input[type="checkbox"]:checked:before, button, input[type="radio"]:checked:before, .mtd-logo
 {
 	color:var(--secondaryColor);
 	transition:color .3s
@@ -88,28 +77,7 @@ input,
 	color:var(--bodyTextColor)!important
 }
 
-.account-summary-text .fullname,
-.compose-reply-tweet .fullname,
-.compose-reply-tweet,
-.list-item,
-.list-item.is-actionable.item-box.is-selected,
-.tooltip-inner,
-.Tooltip-inner,
-.list-account .fullname,
-option,
-.dropdown-menu li a,
-.dropdown-menu li a[data-action]:hover,
-.frm,
-.med-fullpanel,
-.media-sensitive,
-.prf-stats a strong,
-.js-item-launch a.btn:not([disabled]):not(.is-disabled),
-.js-item-launch a.Button:not([disabled]):not(.is-disabled),
-html,
-.media-sensitive-content p,
-.compose .typeahead-item strong.fullname,
-.account-remove-check-message,
-.media-sensitive-title
+.account-summary-text .fullname, .compose-reply-tweet .fullname, .compose-reply-tweet, .list-item, .list-item.is-actionable.item-box.is-selected, .tooltip-inner, .Tooltip-inner, .list-account .fullname, option, .dropdown-menu li a, .dropdown-menu li a[data-action]:hover,.dropdown-menu li a:hover, .frm, .med-fullpanel, .media-sensitive, .prf-stats a strong, .js-item-launch a.btn:not([disabled]):not(.is-disabled), .js-item-launch a.Button:not([disabled]):not(.is-disabled), html, .media-sensitive-content p, .compose .typeahead-item strong.fullname, .account-remove-check-message, .media-sensitive-title
 {
 	color:var(--bodyTextColor)
 }
@@ -709,19 +677,19 @@ select,
 	color:var(--primaryTextColor)
 }
 
-button[type="submit"],.mtd-settings-button {
+button[type="submit"],.mtd-settings-button,.btn-primary,.Button--primary:not(.tweet-button):not(.action-text):not(.more-tweets-btn):not(.js-add-column):not(.js-spinner-button) {
 	background:var(--secondaryColor)
 }
 
-button[type="submit"]:hover,.mtd-settings-button:hover {
+button[type="submit"]:hover,.mtd-settings-button:hover,.btn-primary:hover,.Button--primary:not(.tweet-button):not(.action-text):not(.more-tweets-btn):not(.js-add-column):not(.js-spinner-button):hover {
 	background:var(--secondaryColorBright)
 }
 
-button[type="submit"]:active,button[type="submit"]:focus,.mtd-settings-button:focus {
-	background:var(--secondaryColorBright)
+button[type="submit"]:active,button[type="submit"]:focus,.mtd-settings-button:focus,.btn-primary:focus,.Button--primary:not(.tweet-button):not(.action-text):not(.more-tweets-btn):not(.js-add-column):not(.js-spinner-button):focus,.btn-primary:active,.Button--primary:not(.tweet-button):not(.action-text):not(.more-tweets-btn):not(.js-add-column):not(.js-spinner-button):active {
+	background:var(--secondaryColorBright)!important
 }
 
-.mtd-settings-button,.js-character-count:not(.color-twitter-red), .lst-group .selected, .lst-launcher a:not(.is-disabled), .lst-launcher a:not(.is-disabled):hover, .character-count, .character-count-compose, .lst-launcher a:not(.is-disabled):focus, .lst-launcher a:not(.is-disabled):active, .lst-launcher li:not(.is-disabled) span, .calweek a:not(.caloff), .mtd-settings-tab
+.btn-primary,.Button--primary:not(.tweet-button):not(.action-text):not(.more-tweets-btn):not(.js-add-column):not(.js-spinner-button),.mtd-settings-button,.js-character-count:not(.color-twitter-red), .lst-group .selected, .lst-launcher a:not(.is-disabled), .lst-launcher a:not(.is-disabled):hover, .character-count, .character-count-compose, .lst-launcher a:not(.is-disabled):focus, .lst-launcher a:not(.is-disabled):active, .lst-launcher li:not(.is-disabled) span, .calweek a:not(.caloff), .mtd-settings-tab
 {
 	color:var(--primaryTextColor)!important
 }

@@ -10,10 +10,13 @@
 	color:var(--likeColor)!important
 }
 
-.txt-r-medium-green,.is-retweet .icon-retweet-toggle,.icon-retweet-color,.pull-right>button[data-action="retweet"],.color-twitter-green,.stream-item .tweet-action-item .tweet-action[rel="retweet"]:hover,.tweet-detail-action[rel="retweet"]:hover {
+.txt-r-medium-green, .is-retweet .icon-retweet-toggle, .icon-retweet-color, .color-twitter-green, .stream-item .tweet-action-item .tweet-action[rel="retweet"]:hover, .tweet-detail-action[rel="retweet"]:hover {
 	color:var(--retweetColor)!important
 }
 
+.pull-right>button[data-action="retweet"] {
+	background:var(--retweetColor)!important
+}
 .color-twitter-red,
 .bg-color-twitter-red
 {
@@ -756,6 +759,7 @@ a.btn,
 
 .js-add-column:active,
 .column-navigator:hover .column-nav-item,
+.mtd-head-left .column-nav-item,
 .column-nav-item.is-new
 {
 	transform:none

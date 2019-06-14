@@ -54,7 +54,7 @@
 	margin-bottom:10px
 }
 
-.inline-reply,.mtd-emoji-picker {
+.inline-reply .mtd-emoji-picker {
 	right:30px;
 	top:50px
 }

@@ -9,8 +9,8 @@
 
 'use strict';
 
-const SystemVersion = "7.2.3";
-const appendTextVersion = true;
+const SystemVersion = "Beta 7.3";
+const appendTextVersion = false;
 
 let mtdBaseURL = "https://raw.githubusercontent.com/dangeredwolf/ModernDeck/master/ModernDeck/";
 // Defaults to obtaining assets from GitHub if MTDURLExchange isn't completed properly
@@ -21,8 +21,9 @@ let isLoadingMoreGifs = false;
 let loginIntervalTick = 0;
 
 const forceFeatureFlags = false;
-const forceAppx = false; // https://github.com/electron/electron/issues/18161
+const forceAppX = false; // https://github.com/electron/electron/issues/18161
 const useRaven = true;
+const debugWelcome = false;
 
 let newLoginPage =
 '<div class="app-signin-wrap mtd-signin-wrap">\
@@ -117,8 +118,8 @@ let sendingFeedback = false;
 
 let ugltStarted = false;
 let useNativeContextMenus = false;
-let isDev = false;
-let debugStorageSys = false;
+let isDev = true;
+let debugStorageSys = true;
 
 let store;
 let loginInterval;
@@ -375,6 +376,32 @@ let settingsData = {
 	appearance: {
 		tabName:"Appearance",
 		options:{
+			headposition:{
+				title:"Navigation Style",
+				type:"dropdown",
+				activate:{
+					func: (opt) => {
+						if (opt === "top") {
+							html.removeClass("mtd-head-left");
+							html.removeClass("mtd-classic-nav");
+						} else if (opt === "left") {
+							html.addClass("mtd-head-left");
+							html.removeClass("mtd-classic-nav");
+						} else if (opt === "classic") {
+							html.addClass("mtd-head-left");
+							html.addClass("mtd-classic-nav");
+						}
+						setPref("mtd_headposition",opt)
+					}
+				},
+				options:{
+					top:{value:"top",text:"Top"},
+					left:{value:"left",text:"Left"},
+					classic:{value:"classic",text:"Classic"},
+				},
+				settingsKey:"mtd_headposition",
+				default:"left"
+			},
 			dockedmodals:{
 				headerBefore:"Behavior",
 				title:"Use docked modals",
@@ -580,7 +607,7 @@ let settingsData = {
 					htmlRemoveClass:"mtd-mtd-column-nav-always-visible"
 				},
 				settingsKey:"mtd_column_nav_always_visible",
-				default:false
+				default:true
 			},
 			accoutline:{
 				headerBefore:"Accessibility",
@@ -684,11 +711,11 @@ let settingsData = {
 				activate:{
 					func: set => {
 						if (shortener === "twitter") {
-							$("bitlyUsername").addClass("hidden");
-							$("bitlyApiKey").addClass("hidden");
+							$(".bitlyUsername").addClass("hidden");
+							$(".bitlyApiKey").addClass("hidden");
 						} else if (shortener === "bitly") {
-							$("bitlyUsername").removeClass("hidden");
-							$("bitlyApiKey").removeClass("hidden");
+							$(".bitlyUsername").removeClass("hidden");
+							$(".bitlyApiKey").removeClass("hidden");
 						}
 						TD.settings.setLinkShortener(set);
 					}
@@ -696,11 +723,11 @@ let settingsData = {
 				queryFunction: () => {
 					let shortener = TD.settings.getLinkShortener();
 					if (shortener === "twitter") {
-						$("bitlyUsername").addClass("hidden");
-						$("bitlyApiKey").addClass("hidden");
+						$(".bitlyUsername").addClass("hidden");
+						$(".bitlyApiKey").addClass("hidden");
 					} else if (shortener === "bitly") {
-						$("bitlyUsername").removeClass("hidden");
-						$("bitlyApiKey").removeClass("hidden");
+						$(".bitlyUsername").removeClass("hidden");
+						$(".bitlyApiKey").removeClass("hidden");
 					}
 					return shortener;
 				},
@@ -715,7 +742,7 @@ let settingsData = {
 				activate:{
 					func: set => {
 						TD.settings.setBitlyAccount({
-							apiKey:((TD.settings.getBitlyAccount() && TD.settings.getBitlyAccount().apiKey) ? TD.settings.getBitlyAccount() : {apiKey:""}).login,
+							apiKey:((TD.settings.getBitlyAccount() && TD.settings.getBitlyAccount().apiKey) ? TD.settings.getBitlyAccount() : {apiKey:""}).apiKey,
 							login:set
 						})
 					}
@@ -934,7 +961,38 @@ let settingsData = {
 						);
 					}
 				},
-				settingsKey:"mtd_resetSettings",
+				settingsKey:"mtd_loadSettings",
+				enabled:isApp
+			},
+			mtdTweetenImport:{
+				title:"Import Tweeten Settings",
+				label:"<i class=\"icon material-icon mtd-icon-very-large\">refresh</i><b>Import Tweeten Settings</b><br>Imports your Tweeten settings to ModernDeck. This will restart ModernDeck.",
+				type:"button",
+				activate:{
+					func: () => {
+						const app = require("electron").remote;
+						const dialog = app.dialog;
+						const fs = require("fs");
+						const {ipcRenderer} = require('electron');
+
+						dialog.showOpenDialog(
+							{ filters: [{ name: "Tweeten Settings JSON", extensions: ["json"] }] },
+							(file) => {
+								if (file === undefined) {
+									return;
+								}
+
+								fs.readFile(file[0],"utf-8",(e, load) => {
+									importTweetenSettings(JSON.parse(load));
+									setTimeout(() => {
+										ipcRenderer.send("restartApp");
+									},500); // We wait to make sure that native TweetDeck settings have been propogated
+								});
+							}
+						);
+					}
+				},
+				settingsKey:"mtd_tweetenImportSettings",
 				enabled:isApp
 			},
 			tdLegacySettings: {
@@ -1910,6 +1968,11 @@ async function mtdInit() {
 	$(document).on("uiToggleTheme",hookComposer);
 	$(document).on("uiDockedComposeTweet",hookComposer);
 
+	$(document).off("uiShowGlobalSettings");
+	$(document).on("uiShowGlobalSettings",() => {
+		openSettings();
+	});
+
 	navigationSetup();
 
 }
@@ -1970,6 +2033,89 @@ async function openLegacySettings() {
 
 	$(".mtd-settings-panel").remove();
 	new TD.components.GlobalSettings;
+}
+
+function importTweetenSettings(obj) {
+	console.log(obj);
+	console.log("todo: everything");
+
+	setPref("mtd_customcss",(!!obj.dev ? obj.dev.customCSS || "" : ""))
+
+	if (exists(obj.dev)) {
+		console.log("dev");
+		setPref("mtd_inspectElement",obj.dev.mode);
+	}
+
+	if (exists(obj.TDSettings)) {
+		console.log("TDSettings");
+		TD.settings.setAutoPlayGifs(obj.TDSettings.gifAutoplay);
+		if (exists(obj.TDSettings.gifAutoplay)) {
+			TD.settings.setAutoPlayGifs(obj.TDSettings.gifAutoplay);
+		}
+		if (exists(obj.TDSettings.sensitiveData)) {
+			TD.settings.setDisplaySensitiveMedia(obj.TDSettings.sensitiveData);
+		}
+		if (exists(obj.TDSettings.tweetStream)) {
+			TD.settings.setUseStream(obj.TDSettings.tweetStream);
+		}
+		if (exists(obj.TDSettings.linkShortener)) {
+			TD.settings.setLinkShortener(obj.TDSettings.linkShortener ? "bitly" : "twitter");
+			if (obj.TDSettings.linkShortener.toggle === true && !!obj.TDSettings.linkShortener.bitlyApiKey && !!obj.TDSettings.linkShortener.bitlyUsername) {
+				TD.settings.setBitlyAccount({
+					login:obj.TDSettings.linkShortener.bitlyUsername || TD.settings.getBitlyAccount().login,
+					apiKey:obj.TDSettings.linkShortener.bitlyApiKey || TD.settings.getBitlyAccount().apiKey
+				});
+			}
+		}
+	}
+
+	if (exists(obj.customTitlebar)) {
+		console.log("customTitlebar");
+		setPref("mtd_nativetitlebar",!obj.customTitlebar);
+	}
+
+	if (exists(obj.customization)) {
+		console.log("customization");
+		setPref("mtd_columnwidth",obj.customization.columnWidth || getPref("mtd_columnwidth"));
+
+		if (obj.customization.completeBlack === true) {
+			setPref("mtd_theme","amoled");
+		}
+
+		setPref("mtd_noemojipicker",exists(obj.customization.emojis) ? obj.customization.emojis : false);
+		setPref("mtd_newcharindicator",exists(obj.customization.charCount) ? !obj.customization.charCount : true);
+		TD.settings.setTheme(obj.customization.theme || TD.settings.getTheme());
+
+		if (exists(obj.customization.thinSB)) {
+			setPref("mtd_scrollbar_style", (obj.customization.thinSB ? "scrollbarsnarrow" : "scrollbarsdefault"));
+		}
+
+		setPref("mtd_round_avatars",exists(obj.customization.roundAvi) ? obj.customization.roundAvi : true);
+
+		if (exists(obj.customization.font)) {
+			let percentage = 100;
+
+			switch(obj.customization.font) {
+				case "smallest":
+					percentage = 90;
+					break;
+				case "smaller":
+					percentage = 95;
+					break;
+				case "small":
+					percentage = 100;
+					break;
+				case "large":
+					percentage = 105;
+					break;
+				case "largest":
+					percentage = 110;
+					break;
+			}
+
+			setPref("mtd_fontsize",percentage);
+		}
+	}
 }
 
 /*
@@ -2276,20 +2422,14 @@ function openSettings(openMenu) {
 				)
 			}
 
+			let info = make("p").html("Made with <i class=\"icon icon-heart mtd-about-heart\"></i> by <a href=\"https://twitter.com/dangeredwolf\" rel=\"user\" target=\"_blank\">dangeredwolf</a> in Columbus, OH since 2014<br><br>ModernDeck is an open source project released under the MIT license.");
+			let infoCont = make("div").addClass("mtd-about-info").append(info);
+
 			logoCont.append(logo,h1,h2);
 
 			subPanel.append(logoCont);
 
-			let updateCont = make("div").addClass("mtd-update-container").html('<div class="mtd-update-spinner preloader-wrapper small active"><div class="spinner-layer"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div>');
-			let updateSpinner = $(".mtd-update-spinner");
-			let updateIcon = make("i").addClass("material-icon hidden");
-			let updateh2 = make("h2").addClass("mtd-update-h2").html("Checking for updates...");
-			let updateh3 = make("h3").addClass("mtd-update-h3 hidden").html("");
-			let tryAgain = make("button").addClass("btn hidden").html("Try Again");
-			let restartNow = make("button").addClass("btn hidden").html("Restart Now")
-
-			let info = make("p").html("Made with <i class=\"icon icon-heart mtd-about-heart\"></i> by <a href=\"https://twitter.com/dangeredwolf\" rel=\"user\" target=\"_blank\">dangeredwolf</a> in Columbus, OH since 2014<br><br>ModernDeck is an open source project released under the MIT license.");
-			let infoCont = make("div").addClass("mtd-about-info").append(info);
+			let updateCont = makeUpdateCont();
 
 			let patronInfo = make("div").addClass("mtd-patron-info").append(
 				make("div").addClass("mtd-patreon-button").append(
@@ -2299,9 +2439,8 @@ function openSettings(openMenu) {
 					make("iframe")
 				)
 			)
-			updateCont.append(updateIcon,updateh2,updateh3,tryAgain,restartNow);
 
-			if (isApp && !forceAppx) {
+			if (isApp && !forceAppX) {
 				if (!html.hasClass("mtd-winstore") && !html.hasClass("mtd-macappstore")) {
 					subPanel.append(updateCont);
 				}
@@ -2309,12 +2448,6 @@ function openSettings(openMenu) {
 
 			subPanel.append(infoCont);
 			//subPanel.append(patronInfo);
-
-			if (isApp && !forceAppx) {
-				if (!html.hasClass("mtd-winstore") && !html.hasClass("mtd-macappstore")) {
-					mtdAppUpdatePage(updateCont,updateh2,updateh3,updateIcon,updateSpinner,tryAgain,restartNow);
-				}
-			}
 		} else if (settingsData[key].enum === "mutepage") {
 
 			let filterInput = make("input").addClass("js-filter-input").attr("name","filter-input").attr("size",30).attr("type","text").attr("placeholder","Enter a word or phrase")
@@ -2417,6 +2550,184 @@ function updateFilterPanel(filterList) {
 	}
 
 	return filterList;
+}
+
+function makeUpdateCont() {
+	let updateCont = make("div").addClass("mtd-update-container").html('<div class="mtd-update-spinner preloader-wrapper small active"><div class="spinner-layer"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div>');
+	let updateSpinner = $(".mtd-update-spinner");
+	let updateIcon = make("i").addClass("material-icon hidden");
+	let updateh2 = make("h2").addClass("mtd-update-h2").html("Checking for updates...");
+	let updateh3 = make("h3").addClass("mtd-update-h3 hidden").html("");
+	let tryAgain = make("button").addClass("btn hidden").html("Try Again");
+	let restartNow = make("button").addClass("btn hidden").html("Restart Now")
+
+
+	updateCont.append(updateIcon,updateh2,updateh3,tryAgain,restartNow);
+
+	if (isApp && !forceAppX) {
+		if (!html.hasClass("mtd-winstore") && !html.hasClass("mtd-macappstore")) {
+			mtdAppUpdatePage(updateCont,updateh2,updateh3,updateIcon,updateSpinner,tryAgain,restartNow);
+		}
+	}
+
+	return updateCont;
+}
+
+let demoColumn = `<section class="column js-column will-animate"><div class="column-holder js-column-holder"><div class="flex flex-column height-p--100 column-panel"><header class="flex-shrink--0 column-header"><i class="pull-left icon column-type-icon icon-home"></i><div class="flex column-title flex-justify-content--space-between"><div class="flex column-header-title flex-align--center flex-grow--2 flex-wrap--wrap"><span class=column-heading>Home</span> <span class="txt-ellipsis attribution txt-mute txt-sub-antialiased vertical-align--baseline">@dangeredwolf</span></div></div></header><div class="flex flex-column height-p--100 column-content flex-auto position-rel"><div class="position-rel column-scroller scroll-v"><div class="chirp-container js-chirp-container"><article class="is-actionable stream-item"><div class="item-box js-show-detail js-stream-item-content"><div class="js-tweet tweet"><header class="flex flex-align--baseline flex-row js-tweet-header tweet-header"><a class="account-link block flex-auto link-complex"><div class="position-rel item-img obj-left tweet-img"><img class="avatar pin-top-full-width tweet-avatar"src=https://pbs.twimg.com/profile_images/1134136444577091586/LBv0Nhjq_normal.png style=border-radius:10px!important></div><div class=nbfc><span class="txt-ellipsis account-inline"><b class="fullname link-complex-target">ModernDeck</b> <span class="txt-mute username">@ModernDeck</span></span></div></a><time class="txt-mute flex-shrink--0 tweet-timestamp"><a class="no-wrap txt-size-variable--12">now</a></time></header><div class="js-tweet-body tweet-body"><div class="txt-ellipsis nbfc txt-size-variable--12"></div><p class="js-tweet-text tweet-text with-linebreaks"style=padding-bottom:0>This tweet is quite light!</div></div><footer class="cf tweet-footer"><ul class="full-width js-tweet-actions tweet-actions"><li class="pull-left margin-r--10 tweet-action-item"><a class="position-rel tweet-action js-reply-action"href=# rel=reply><i class="pull-left icon txt-center icon-reply"></i> <span class="margin-t--1 pull-right txt-size--12 margin-l--2 icon-reply-toggle js-reply-count reply-count">1</span> <span class=is-vishidden>Reply</span> <span class=reply-triangle></span></a><li class="pull-left margin-r--10 tweet-action-item"><a class=tweet-action href=# rel=retweet><i class="pull-left icon txt-center icon-retweet icon-retweet-toggle js-icon-retweet"></i> <span class="margin-t--1 pull-right txt-size--12 icon-retweet-toggle js-retweet-count margin-l--3 retweet-count">4</span></a><li class="pull-left margin-r--10 tweet-action-item"><a class="position-rel tweet-action js-show-tip"href=# rel=favorite data-original-title=""><i class="pull-left icon txt-center icon-favorite icon-favorite-toggle js-icon-favorite"></i> <span class="margin-t--1 pull-right txt-size--12 margin-l--2 icon-favorite-toggle js-like-count like-count">20</span></a><li class="pull-left margin-r--10 tweet-action-item position-rel"><a class=tweet-action href=# rel=actionsMenu><i class="icon icon-more txt-right"></i></a></ul></footer><div class=js-show-this-thread></div></div></article></div></div></div></div><div class="flex flex-column height-p--100 column-panel column-detail js-column-detail"></div><div class="flex flex-column height-p--100 column-panel column-detail-level-2 js-column-social-proof"></div></div></section>`
+
+let welcomeData = {
+	welcome: {
+		title: "<i class='icon icon-moderndeck icon-xxlarge mtd-welcome-head-icon' style='color:var(--secondaryColor)'></i>Welcome to ModernDeck!",
+		body: "We're glad to have you here. Click Next to continue.",
+		nextFunc: () => {
+			if (!isApp) {
+				return;
+			}
+			const {ipcRenderer} = require('electron');
+			ipcRenderer.send('checkForUpdates');
+		}
+	},
+	update: {
+		title: "Checking for updates...",
+		body: "This should only take a few seconds.",
+		html: "",
+		enabled: false
+	},
+	theme: {
+		title: "Pick a core theme",
+		body: "There are additional options for themes in <i class='icon icon-settings'></i> <b>Settings</b>",
+		html: `<div class="obj-left mtd-welcome-theme-picker">
+			<label class="fixed-width-label radio">
+			<input type="radio" name="theme" onclick="parseActions(settingsData.themes.options.coretheme.activate,'dark');$('.mtd-welcome-inner .tweet-text').html('This tweet is quite dark!')" value="dark">
+				Dark
+			</label>
+			<label class="fixed-width-label radio">
+			<input type="radio" name="theme" onclick="parseActions(settingsData.themes.options.coretheme.activate,'light');$('.mtd-welcome-inner .tweet-text').html('This tweet is quite light!')" value="light">
+				Light
+			</label>
+		</div>` + demoColumn,
+		prevFunc: () => {
+			if (!isApp || forceAppX) {
+				return;
+			}
+			const {ipcRenderer} = require('electron');
+			ipcRenderer.send('checkForUpdates');
+		}
+	},
+	layout: {
+		title: "Select a layout",
+		body: "<b>Top:</b> Your column icons are laid out along the top. Uses navigation drawer.<br><b>Left:</b> Your column icons are laid out along the left side. Uses navigation drawer.<br><b>Classic:</b> Your column icons are laid out along the left side. Uses classic TweetDeck navigation methods instead of drawer.",
+		html: `<div class="obj-left mtd-welcome-theme-picker">
+			<label class="fixed-width-label radio">
+			<input type="radio" name="layout" onclick="parseActions(settingsData.appearance.options.headposition.activate,'top')" value="top">
+				Top
+			</label>
+			<label class="fixed-width-label radio">
+			<input type="radio" name="layout" onclick="parseActions(settingsData.appearance.options.headposition.activate,'left')" value="left">
+				Left
+			</label>
+			<label class="fixed-width-label radio">
+			<input type="radio" name="layout" onclick="parseActions(settingsData.appearance.options.headposition.activate,'classic')" value="classic">
+				Classic
+			</label>
+		</div>`,
+		nextFunc: () => {
+			if (getPref("mtd_headposition") === "classic") {
+				$(".mtd-settings-subpanel:last-child .mtd-welcome-body").html(welcomeData.done.body.replace("YOU_SHOULDNT_SEE_THIS","the settings menu <i class='icon icon-settings'></i>"));
+			}
+			else {
+				$(".mtd-settings-subpanel:last-child .mtd-welcome-body").html(welcomeData.done.body.replace("YOU_SHOULDNT_SEE_THIS","the navigation drawer <i class='icon mtd-nav-activator'></i>"));
+			}
+		}
+	},
+	done: {
+		title: "You're set for now!",
+		body: "Don't worry, there are plenty of other options to make ModernDeck your own.<br><br>These options are located in <i class='icon icon-settings'></i> <b>Settings</b>, accessible via YOU_SHOULDNT_SEE_THIS",
+		html: ""
+	}
+
+}
+
+function welcomeScreen() {
+
+	welcomeData.update.enabled = isApp;
+	welcomeData.update.html = makeUpdateCont();
+
+	mtdPrepareWindows();
+
+	disableStylesheetComponent("dark");
+	enableStylesheetComponent("light");
+
+	setTimeout(() => {
+		$("#settings-modal").off("click");
+	},0);
+	$(".app-content,.app-header").remove();
+
+	$(".application").attr("style",`background-image:url(${mtdBaseURL}sources/img/bg1.jpg)`)
+
+	let container = make("div").addClass("mtd-settings-inner mtd-welcome-inner");
+	let panel = make("div").addClass("mdl mtd-settings-panel").append(container);
+
+	for (var key in welcomeData) {
+		console.log("ADASDFASFGDSE");
+
+		let welc = welcomeData[key];
+
+		if (welc.enabled === false) {
+			continue;
+		}
+
+		let subPanel = make("div").addClass("mtd-settings-subpanel mtd-col scroll-v").attr("id",key);
+
+
+		subPanel.append(
+			make("h1").addClass("mtd-welcome-head").html(welc.title),
+			make("p").addClass("mtd-welcome-body").html(welc.body)
+		);
+		console.log(subPanel);
+
+		if (welc.html) {
+			subPanel.append(
+				make("div").addClass("mtd-welcome-html").html(welc.html)
+			)
+		}
+
+		let button = make("button").html("<i class='icon icon-arrow-l'></i>Previous").addClass("btn btn-positive mtd-settings-button mtd-welcome-prev-button")
+		.click(function() {
+			$(".mtd-settings-inner").css("margin-left",((subPanel.index()-1) * -700)+"px")
+			if (typeof welc.prevFunc === "function") {
+				welc.prevFunc();
+			}
+		});
+
+		let button2 = make("button").html("Next<i class='icon icon-arrow-r'></i>").addClass("btn btn-positive mtd-settings-button mtd-welcome-next-button")
+		.click(function() {
+			$(".mtd-settings-inner").css("margin-left",((subPanel.index()+1) * -700)+"px");
+			if (typeof welc.nextFunc === "function") {
+				welc.nextFunc();
+			}
+		});
+
+		if (key === "done") {
+			button2.html("Done").off("click").click(() => {
+				setPref("mtd_welcomed",true);
+				window.location.reload();
+			});
+		}
+
+		subPanel.append(button,button2);
+
+		container.append(subPanel);
+	}
+
+	//panel.append(container);
+
+	new TD.components.GlobalSettings;
+
+	$("#settings-modal>.mdl").remove();
+	$("#settings-modal").append(panel);
+
+	return panel;
 }
 
 function profileSetup() {
@@ -2777,7 +3088,7 @@ function navigationSetup() {
 			make("img").attr("id","mtd_nd_header_image").addClass("mtd-nd-header-image").attr("style",""),
 			make("img").addClass("avatar size73 mtd-nd-header-photo").attr("id","mtd_nd_header_photo").attr("src",""),
 			make("div").addClass("mtd-nd-header-username").attr("id","mtd_nd_header_username").html("PROFILE ERROR<br>Tell @dangeredwolf i said hi"),
-			make("button").addClass("btn mtd-nav-button mtd-nav-first-button").attr("id","tdaccsbutton").append(make("i").addClass("icon icon-twitter-bird")).click(() => {mtdPrepareWindows();$(".js-show-drawer.js-header-action").click();}).append("Your Accounts"),
+			make("button").addClass("btn mtd-nav-button mtd-nav-first-button").attr("id","tdaccsbutton").append(make("i").addClass("icon icon-user-switch")).click(() => {mtdPrepareWindows();$(".js-show-drawer.js-header-action").click();}).append("Your Accounts"),
 			make("button").addClass("btn mtd-nav-button").attr("id","addcolumn").append(make("i").addClass("icon icon-plus")).click(() => {mtdPrepareWindows();TD.ui.openColumn.showOpenColumn()}).append("Add Column"),
 			make("div").addClass("mtd-nav-divider"),
 			make("button").addClass("btn mtd-nav-button").attr("id","kbshortcuts").append(make("i").addClass("icon icon-keyboard")).click(() => {
@@ -2863,6 +3174,15 @@ function navigationSetup() {
 		console.error(e);
 	}
 	$(".mtd-nav-group-expanded").attr("style","height:"+$(".mtd-nav-group-expanded").height()+"px");
+
+	if (!getPref("mtd_welcomed") || debugWelcome) {
+		try {
+			welcomeScreen();
+		} catch(e) {
+			console.error("Error in Welcome screen");
+			console.error(e);
+		}
+	}
 
 	profileSetup();
 }
@@ -2991,6 +3311,7 @@ function mtdAppUpdatePage(updateCont, updateh2, updateh3, updateIcon, updateSpin
 	const {ipcRenderer} = require('electron');
 
 	ipcRenderer.on("error",(e,args,f,g) => {
+		$(".mtd-welcome-inner").addClass("mtd-enable-update-next");
 
 		console.log(e,args,f,g);
 		updateh2.html("There was a problem checking for updates. ");
@@ -3010,6 +3331,7 @@ function mtdAppUpdatePage(updateCont, updateh2, updateh3, updateIcon, updateSpin
 	});
 
 	ipcRenderer.on("checking-for-update", (e,args) => {
+		$(".mtd-welcome-inner").removeClass("mtd-enable-update-next");
 		console.log(args);
 		updateIcon.addClass("hidden");
 		$(".mtd-update-spinner").removeClass("hidden");
@@ -3020,6 +3342,7 @@ function mtdAppUpdatePage(updateCont, updateh2, updateh3, updateIcon, updateSpin
 	});
 
 	ipcRenderer.on("download-progress", (e,args) => {
+		$(".mtd-welcome-inner").removeClass("mtd-enable-update-next");
 		console.log(args);
 		updateIcon.addClass("hidden");
 		$(".mtd-update-spinner").removeClass("hidden");
@@ -3031,6 +3354,7 @@ function mtdAppUpdatePage(updateCont, updateh2, updateh3, updateIcon, updateSpin
 
 
 	ipcRenderer.on("update-downloaded", (e,args) => {
+		$(".mtd-welcome-inner").removeClass("mtd-enable-update-next");
 		console.log(args);
 		$(".mtd-update-spinner").addClass("hidden");
 		updateIcon.html("update").removeClass("hidden");
@@ -3049,6 +3373,7 @@ function mtdAppUpdatePage(updateCont, updateh2, updateh3, updateIcon, updateSpin
 		updateh3.html(SystemVersion + " is the latest version.").removeClass("hidden");
 		tryAgain.removeClass("hidden").html("Check Again");
 		restartNow.addClass("hidden");
+		$(".mtd-welcome-inner").addClass("mtd-enable-update-next");
 	});
 
 	tryAgain.click(() => {
