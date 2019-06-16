@@ -108,8 +108,8 @@ body,body.signin-sheet-present {
 }
 
 @keyframes calendarMenuDown {
-	0% {opacity:0;margin-top:-21px}
-	100% {opacity:1;margin-top:4px}
+	0% {opacity:0;margin-top:-3px}
+	100% {opacity:1;margin-top:22px}
 }
 
 @keyframes mediaDown {
@@ -277,7 +277,7 @@ body,body.signin-sheet-present {
 .overlay.mtd-modal-window-fade-out,
 .dropdown-menu.mtd-dropdown-fade-out,
 .accs-header {
-	animation:fadeOut 0.2s var(--animationTiming)
+	animation:fadeOut 0.2s var(--animationTiming)!important
 }
 
 .mtd-dropdown-fade-out {
@@ -1649,7 +1649,7 @@ button:hover,button:focus,.Button--primary {
 }
 
 .column:not(.draggable-dragging) {
-	animation:windowSlider 1s var(--animationTiming)!important
+/* 	animation:windowSlider 1s var(--animationTiming)!important */
 }
 
 .column-temp {
@@ -5221,9 +5221,9 @@ input[type="checkbox"]:active {
 }
 
 .column-nav-item {
-	position:relative!important;
+	position: relative;
 	width:0;
-	top:4px!important;
+	top: 4px;
 	box-sizing:border-box;
 	color:rgba(255,255,255,.75);
 	display:inline-flex;
@@ -5233,11 +5233,17 @@ input[type="checkbox"]:active {
 	transform:translate3d(15px,0,0);
 	opacity:0;
 	height:30px;
-	transition:0.4s all var(--animationTiming) 1s
+	transition:0.4s all var(--animationTiming) 1s;
+}
+
+html:not(.mtd-head-left) .column-nav-item {
+	position:relative!important;
+	top:4px!important;
+	height:30px!important;
 }
 
 .mtd-app .column-nav-item,.mtd-head-left .column-nav-item {
-	top:-2px!important
+	/* top:-2px!important */
 }
 
 .column-navigator:hover .column-nav-item,.column-nav-item.is-new,.mtd-head-left .column-nav-item {
@@ -9651,7 +9657,7 @@ html.mtd-classic-nav .column-navigator {
 }
 
 .mtd-app-mac.mtd-head-left .column-navigator {
-	top:105px
+	top: 95px;
 }
 
 .mtd-app-mac.mtd-head-left.mtd-maximized .is-condensed .column-navigator {
@@ -9888,8 +9894,7 @@ html.mtd-classic-nav.mtd-head-left body .app-header .column-nav-item {
 	padding-top:0
 }
 
-.mtd-settings-subpanel:first-child .mtd-welcome-prev-button,
-/*.mtd-settings-subpanel:last-child .mtd-welcome-next-button*/
+.mtd-settings-subpanel:first-child .mtd-welcome-prev-button
 {
 	display:none
 }
@@ -10914,7 +10919,8 @@ footer>.js-tweet-stats>.tweet-stats:not(.js-stats-list) {
 }
 
 .mtd-welcome-theme-picker {
-	margin-left:50px
+	margin-left:50px;
+	width: 100px;
 }
 
 .mtd-enable-update-next .mtd-settings-subpanel[id="update"] .mtd-welcome-head,
@@ -10939,4 +10945,26 @@ footer>.js-tweet-stats>.tweet-stats:not(.js-stats-list) {
 .s-inreply .pull-right button {
 	padding-top:0!important;
 	margin-top:0!important
+}
+
+
+.mdl.mtd-alert {
+	min-height:200px!important;
+	width:400px!important;
+	padding:0 24px
+}
+
+.mtd-alert-button {
+	font-size:16px;
+	float:right
+}
+
+.mtd-alert-button-container {
+	position:absolute;
+	bottom:0;
+	right:0
+}
+
+.mtd-alert-title {
+	font-size:20px
 }

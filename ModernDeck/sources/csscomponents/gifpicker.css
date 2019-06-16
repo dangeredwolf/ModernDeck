@@ -3,6 +3,11 @@
 	100% {opacity:1;top:-40px}
 }
 
+@keyframes mtdGifHeaderFixedHeadLeft {
+	0% {opacity:0;top:-25px}
+	100% {opacity:1;top:15px}
+}
+
 .mtd-gif-container {
 	height:auto;
 	min-height:300px;
@@ -81,6 +86,11 @@
 	right:initial;
 	width:calc(var(--composeWidth) - 5px);
 	animation:mtdGifHeaderFixed 0.2s var(--animationTiming);
+}
+
+.mtd-head-left .mtd-gif-header.mtd-gif-header-fixed {
+	top:15px;
+	animation-name:mtdGifHeaderFixedHeadLeft
 }
 
 .mtd-gif-top-button {

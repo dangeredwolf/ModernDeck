@@ -18,25 +18,21 @@ const {
 	Menu,
 	dialog,
 	protocol
-}		= require('electron');
+}		= require("electron");
 
-const imageType = require('file-type');
-const fs = require('fs');
-const path = require('path');
-const url = require('url');
-const util = require('util');
-const through2 = require('through2');
+const imageType = require("file-type");
+const fs = require("fs");
+const path = require("path");
+const url = require("url");
+const util = require("util");
+const through2 = require("through2");
 
-const log = require('electron-log');
+const log = require("electron-log");
 
-const { autoUpdater } = require('electron-updater');
+const { autoUpdater } = require("electron-updater");
 
-const Store = require('electron-store');
+const Store = require("electron-store");
 const store = new Store({name:"mtdsettings"});
-
-const devBuildExpiration = {year:2019,month:6,day:2}
-// months start at 0 for whatever reason, so number is essentially added by 1
-const devBuildExpirationActive = false;
 
 /*
 	Note: Due to a bug in electron, process.windowsStore is undefined even for AppX distributions
@@ -64,10 +60,6 @@ autoUpdater.setFeedURL({
 autoUpdater.logger = log;
 autoUpdater.logger.transports.file.level = "info";
 
-// We'll need this for later...
-
-const checkDevDate = new Date();
-
 app.setAppUserModelId("com.dangeredwolf.ModernDeck");
 
 const mtdSchemeHandler = async (request, callback) => {
@@ -82,86 +74,86 @@ const mtdSchemeHandler = async (request, callback) => {
 const template = [
 	{
 		label: "ModernDeck",
-		role: 'appMenu',
+		role: "appMenu",
 		submenu: [
-			{ label: 'About ModernDeck...', click(){ if (!mainWindow){return;}mainWindow.send("aboutMenu"); } },
-			{ type: 'separator' },
-			{ label: 'Preferences...', click(){ if (!mainWindow){return;}mainWindow.send("openSettings"); } },
-			{ label: 'Accounts...', click(){ if (!mainWindow){return;}mainWindow.send("accountsMan"); } },
-			{ type: 'separator' },
-			{ role: 'services' },
-			{ type: 'separator' },
-			{ role: 'hide' },
-			{ role: 'hideothers' },
-			{ role: 'unhide' },
-			{ type: 'separator' },
-			{ role: 'quit' }
+			{ label: "About ModernDeck...", click(){ if (!mainWindow){return;}mainWindow.send("aboutMenu"); } },
+			{ type: "separator" },
+			{ label: "Preferences...", click(){ if (!mainWindow){return;}mainWindow.send("openSettings"); } },
+			{ label: "Accounts...", click(){ if (!mainWindow){return;}mainWindow.send("accountsMan"); } },
+			{ type: "separator" },
+			{ role: "services" },
+			{ type: "separator" },
+			{ role: "hide" },
+			{ role: "hideothers" },
+			{ role: "unhide" },
+			{ type: "separator" },
+			{ role: "quit" }
 		]
 	},
 	{
-		label: 'File',
-		role: 'fileMenu',
+		label: "File",
+		role: "fileMenu",
 		submenu: [
-			{ label: 'New Tweet...', click(){ if (!mainWindow){return;}mainWindow.send("newTweet"); } },
-			{ label: 'New Direct Message...', click(){ if (!mainWindow){return;}mainWindow.send("newDM"); } },
-			{ type: 'separator' },
-			{ role: 'close' }
+			{ label: "New Tweet...", click(){ if (!mainWindow){return;}mainWindow.send("newTweet"); } },
+			{ label: "New Direct Message...", click(){ if (!mainWindow){return;}mainWindow.send("newDM"); } },
+			{ type: "separator" },
+			{ role: "close" }
 		]
 	},
 	{
-		label: 'Edit',
-		role: 'editMenu',
+		label: "Edit",
+		role: "editMenu",
 		submenu: [
-			{ role: 'undo' },
-			{ role: 'redo' },
-			{ type: 'separator' },
-			{ role: 'cut' },
-			{ role: 'copy' },
-			{ role: 'paste' },
-			{ role: 'delete' },
-			{ role: 'selectAll' },
-			{ type: 'separator' },
+			{ role: "undo" },
+			{ role: "redo" },
+			{ type: "separator" },
+			{ role: "cut" },
+			{ role: "copy" },
+			{ role: "paste" },
+			{ role: "delete" },
+			{ role: "selectAll" },
+			{ type: "separator" },
 			{
-				label: 'Speech',
+				label: "Speech",
 				submenu: [
-					{ role: 'startspeaking' },
-					{ role: 'stopspeaking' }
+					{ role: "startspeaking" },
+					{ role: "stopspeaking" }
 				]
 			}
 		]
 	},
 	{
-		label: 'View',
-		role: 'viewMenu',
+		label: "View",
+		role: "viewMenu",
 		submenu: [
-			{ role: 'reload' },
-			{ role: 'forcereload' },
-			{ type: 'separator' },
-			{ role: 'resetzoom' },
-			{ role: 'zoomin' },
-			{ role: 'zoomout' },
-			{ role: 'toggledevtools' },
-			{ type: 'separator' },
-			{ role: 'togglefullscreen' }
+			{ role: "reload" },
+			{ role: "forcereload" },
+			{ type: "separator" },
+			{ role: "resetzoom" },
+			{ role: "zoomin" },
+			{ role: "zoomout" },
+			{ role: "toggledevtools" },
+			{ type: "separator" },
+			{ role: "togglefullscreen" }
 		]
 	},
 	{
-		label: 'Window',
-		role: 'windowMenu',
+		label: "Window",
+		role: "windowMenu",
 		submenu: [
-			{ role: 'minimize' },
-			{ role: 'zoom' },
-			{ type: 'separator' },
-			{ role: 'front' },
-			{ type: 'separator' },
-			{ role: 'window' }
+			{ role: "minimize" },
+			{ role: "zoom" },
+			{ type: "separator" },
+			{ role: "front" },
+			{ type: "separator" },
+			{ role: "window" }
 		]
 	},
 	{
-		role: 'help',
+		role: "help",
 		submenu: [
-			{ label: 'Send Feedback', click(){ if (!mainWindow){return;}mainWindow.send("sendFeedback");}},
-			{ label: 'Message @ModernDeck', click(){ if (!mainWindow){electron.shell.openExternal("https://twitter.com/messages/compose?recipient_id=2927859037");return;}mainWindow.send("msgModernDeck"); } },
+			{ label: "Send Feedback", click(){ if (!mainWindow){return;}mainWindow.send("sendFeedback");}},
+			{ label: "Message @ModernDeck", click(){ if (!mainWindow){electron.shell.openExternal("https://twitter.com/messages/compose?recipient_id=2927859037");return;}mainWindow.send("msgModernDeck"); } },
 		]
 	}
 ]
@@ -268,25 +260,25 @@ function saveImageAs(url) {
 		const stream = source.pipe(fs.createWriteStream(outputPath));
 
 		return new Promise((resolve, reject) => {
-			stream.on('finish', resolve);
-			stream.on('error', reject);
+			stream.on("finish", resolve);
+			stream.on("error", reject);
 		});
 	};
 
-	let path = url.match(/(([A-z_\-])+\w+\.[A-z]+)/g);
+	let path = url.match(/(([A-z0-9_\-])+\w+\.[A-z0-9]+)/g);
 	path = path[1];
 
 	const getOutputPath = (ext) => {
 		return dialog.showSaveDialog({ defaultPath: path });
 	};
 
-	const got = require('got');
+	const got = require("got");
 
 	const promise = new Promise(resolve => {
 		let resolved;
 
 		const stream = got.stream(url).pipe(
-			through2((chunk, enc, callback) => {
+			through2(function(chunk, enc, callback) {
 				if (!resolved) {
 					resolve({ ext: imageType(chunk).ext, stream });
 					resolved = true;
@@ -317,7 +309,7 @@ function saveWindowBounds() {
 		y: bounds.y,
 		width: bounds.width,
 		height: bounds.height
-		});
+	});
 
 	store.set("usedDisplay", matchedDisplay.id);
 }
@@ -334,7 +326,7 @@ function makeWindow() {
 	let devTron;
 
 	try {
-		devTron = require('devtron');
+		devTron = require("devtron");
 	} catch (e) {
 		// ¯\_(ツ)_/¯
 	} finally {
@@ -376,42 +368,8 @@ function makeWindow() {
 		minWidth:400,
 		show:false,
 		enableRemoteModule:true,
-		backgroundColor:'#263238'
+		backgroundColor:"#263238"
 	});
-
-	/*
-		This was particularly used for pre-autoupdate builds of ModernDeck electron app.
-		We may still implement it for certain alpha or beta builds in the future.
-	*/
-
-	if (devBuildExpirationActive) {
-
-		console.log("\n");
-		console.log("Expiration date: "+devBuildExpiration.year + "/" + (devBuildExpiration.month<9?"0"+(devBuildExpiration.month+1) : devBuildExpiration.month+1) + "/" + devBuildExpiration.day);
-		console.log("Today's date: "+checkDevDate.getFullYear() + "/" + (checkDevDate.getMonth()<9?"0"+(checkDevDate.getMonth()+1) : checkDevDate.getMonth()+1) + "/" + checkDevDate.getDate())
-
-		if ((!!devBuildExpiration.year && (!!devBuildExpiration.month || devBuildExpiration.month === 0) && !!devBuildExpiration.day) &&
-			checkDevDate.getFullYear() > devBuildExpiration.year ||
-			(checkDevDate.getMonth() > devBuildExpiration.month && checkDevDate.getFullYear() === devBuildExpiration.year) ||
-			(checkDevDate.getDate() >= devBuildExpiration.day && checkDevDate.getMonth() === devBuildExpiration.month && checkDevDate.getFullYear() === devBuildExpiration.year)) {
-
-			dialog.showMessageBox(mainWindow, {
-				title:"ModernDeck",
-				message:"This development version of ModernDeck has expired. It expired on " + devBuildExpiration.year + "/" + (devBuildExpiration.month<9?"0"+(devBuildExpiration.month+1) : devBuildExpiration.month+1) + "/" + devBuildExpiration.day + ".\n\nPlease uninstall this version of ModernDeck.",
-				type:"error",
-				buttons:["Upgrade to latest version","Close"]
-			}, (response) => {
-				const { shell } = electron;
-				if (response === 0) {
-					shell.openExternal("https://github.com/dangeredwolf/ModernDeck/releases");
-				}
-				app.quit();
-			});
-
-			return;
-		}
-
-	}
 
 	// macOS specific: Don't run from DMG, move to Applications folder.
 
@@ -441,7 +399,7 @@ function makeWindow() {
 
 	// Prevent changing the Page Title
 
-	mainWindow.on('page-title-updated', (event,url) => {
+	mainWindow.on("page-title-updated", (event,url) => {
 		event.preventDefault();
 	})
 
@@ -524,14 +482,23 @@ function makeWindow() {
 			msg += "We can't connect to Twitter due to a DNS error.\nPlease check your internet connection.";
 			addChromiumErrorCode = true;
 		} else if (code === -106) {
-			msg += "You are disconnected from the Internet. ModernDeck requires an internet connection to start.";
+			msg += "You are disconnected from the Internet. ModernDeck requires an internet connection.";
 		} else if (code === -201) {
 			msg += "Please check that your PC's date and time are set correctly. Twitter presented us with a security certificate that either expired or not yet valid.\nIf your date and time are correct, check https://api.twitterstat.us to see if there are any problems at Twitter."
 		} else if (code === -130 || code === -131 || code === -111 || code === -127 || code === -115 || code === -336) {
-			msg += "We can't connect to your internet connection's proxy server.\n\nIf you don't need to connect to a proxy server, you can take the following steps on Windows:\n1. Press Windows Key + R to open the Run dialog.\n2. Enter inetcpl.cpl\n3. Go to the Connections tab\n4. Click the LAN settings button near the bottom\n5. Uncheck \"Use a proxy server for your LAN\""
+			msg += "We can't connect to your internet connection's proxy server."
+
+			if (process.platform === "win32") {
+				msg += "\n\nIf you don't need to connect to a proxy server, you can take the following steps on Windows:\n1. Press Windows Key + R to open the Run dialog.\n2. Enter inetcpl.cpl\n3. Go to the Connections tab\n4. Click the LAN settings button near the bottom\n5. Uncheck \"Use a proxy server for your LAN\""
+			}
+
 			addChromiumErrorCode = true;
 		} else if (code === -22) {
-			msg += "Your domain administrator has blocked access to tweetdeck.twitter.com.\nIf your device is owned by an organization, you might need to ask a network administrator to unblock it.\nIf you are not logged in as part of a domain, you may need to configure your Local Group Policy settings."
+			msg += "Your domain administrator has blocked access to tweetdeck.twitter.com.\nIf your device is owned by an organization, you might need to ask an administrator to unblock it."
+
+			if (process.platform === "win32") {
+				msg += "\nIf you are not logged in as part of a domain, you may need to configure your Local Group Policy settings."
+			}
 		} else if (code === -7 || code === -118) {
 			msg += "We can't connect to Twitter because the request timed out.\nPlease check your internet connection.\nIf it still doesn't work, check https://api.twitterstat.us to see if there are any problems at Twitter."
 		} else if (code === -29 || code === -107 || (code <= -110 && code >= -117) || code === -123 || (code <= -125 && code >= -129) || code === -134 || code === -135 || code === -141 || (code <= -148 && code >= -153) || code === -156 || code === -159 || code === -164 || code === -167 || code === -172 || code === -175 || (code <= -177 && code >= -181) || (code <= -501 && code >= -504)) {
@@ -805,15 +772,21 @@ function makeWindow() {
 
 	});
 
+	// Before closing, save window bounds
+
+	mainWindow.on("close", () => {
+		saveWindowBounds();
+	});
+
 	// Upon closing, set mainWindow to null
 
-	mainWindow.on('closed', () => {
+	mainWindow.on("closed", () => {
 		mainWindow = null;
 	});
 
 	// Change maximise to restore size window
 
-	mainWindow.on('maximize', () => {
+	mainWindow.on("maximize", () => {
 		mainWindow.webContents.executeJavaScript('\
 			document.querySelector("html").classList.add("mtd-maximized");\
 			document.querySelector(".windowcontrol.max").innerHTML = "&#xE3E0";\
@@ -822,7 +795,7 @@ function makeWindow() {
 
 	// Change restore size window to maximise
 
-	mainWindow.on('unmaximize', () => {
+	mainWindow.on("unmaximize", () => {
 		mainWindow.webContents.executeJavaScript('\
 			document.querySelector("html").classList.remove("mtd-maximized");\
 			document.querySelector(".windowcontrol.max").innerHTML = "&#xE3C6";\
@@ -832,10 +805,10 @@ function makeWindow() {
 	/*
 		Upon entering full screen, remove app-specific CSS Classes,
 		as there is less reason for a huge drag bar in full screen,
-		at least in comparison to in windowed. Chrome does this too.
+		at least in comparison to in windowed. Chrome itself does this too.
 	*/
 
-	mainWindow.on('enter-full-screen', () => {
+	mainWindow.on("enter-full-screen", () => {
 		mainWindow.webContents.executeJavaScript('document.querySelector("html").classList.remove("mtd-app");\
 			document.querySelector("html").classList.remove("mtd-app-win");\
 			document.querySelector("html").classList.remove("mtd-app-mac");\
@@ -843,7 +816,7 @@ function makeWindow() {
 		');
 	});
 
-	mainWindow.on('leave-full-screen', () => {
+	mainWindow.on("leave-full-screen", () => {
 		mainWindow.webContents.executeJavaScript(mtdAppTag);
 	});
 }
@@ -864,11 +837,11 @@ electron.protocol.registerSchemesAsPrivileged([{
 
 // Make window when app is ready
 
-app.on('ready', makeWindow);
+app.on("ready", makeWindow);
 
 // After all windows are closed, we can quit, unless restarting for update
 
-app.on('window-all-closed', () => {
+app.on("window-all-closed", () => {
 	if (isRestarting) {
 		return;
 	}
@@ -877,7 +850,7 @@ app.on('window-all-closed', () => {
 
 // Make window if it doesn't exist, if user clicks app icon
 
-app.on('activate', () => {
+app.on("activate", () => {
 	if (mainWindow === null)
 		makeWindow();
 });
@@ -891,7 +864,8 @@ autoUpdater.on("error", (e,f,g) => {
 	mainWindow.webContents.send("error",e,f,g);
 });
 
-// Let mtdInject know that we are...
+// Let MTDinject know that we are...
+
 // ... actively checking for updates
 
 autoUpdater.on("checking-for-update", (e) => {
@@ -926,12 +900,12 @@ autoUpdater.on("update-not-available", (e) => {
 });
 
 // mtdInject can send manual update check requests
-ipcMain.on('checkForUpdates', (e) => {
+ipcMain.on("checkForUpdates", (e) => {
 	autoUpdater.checkForUpdates();
 });
 
 // Main -> Beta and vice versa
-ipcMain.on('changeChannel', (e) => {
+ipcMain.on("changeChannel", (e) => {
 	autoUpdater.allowPrerelease = store.get("mtd_updatechannel") === "beta";
 	autoUpdater.channel = store.get("mtd_updatechannel");
 });

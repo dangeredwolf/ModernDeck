@@ -1,6 +1,6 @@
 {
 	"name": "ModernDeck",
-	"version": "7.3.0-beta",
+	"version": "7.3.0",
 	"description": "TweetDeck, but more beautiful and fun than ever.",
 	"homepage": "https://github.com/dangeredwolf/ModernDeck",
 	"bugs": {
@@ -104,6 +104,7 @@
 		"Design"
 	],
 	"dependencies": {
+		"asar": "^2.0.1",
 		"electron-log": "^3.0.6",
 		"electron-packager": "^13.0.0",
 		"electron-store": "^3.3.0",
@@ -114,7 +115,7 @@
 	},
 	"devDependencies": {
 		"devtron": "^1.4.0",
-		"electron": "^5.0.3",
+		"electron": "^5.0.4",
 		"electron-builder": "20.41.0",
 		"stylelint": "^10.1.0",
 		"stylelint-config-recommended": "^2.2.0"

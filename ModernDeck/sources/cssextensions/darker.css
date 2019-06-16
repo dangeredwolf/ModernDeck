@@ -1,0 +1,41 @@
+/*
+	darker.css
+
+	Copyright (c) 2014-2019 Dangered Wolf
+	Released under the MIT Licence
+*/
+
+:root {
+	--primaryColor:#1a2227;
+	--secondaryColor:#627c8a;
+	--secondaryColorAlt:#3d4f58;
+	--secondaryColorPress:#54707F;
+	--secondaryColorDeep:#3f4d56;
+	--secondaryColorDeepTrans:rgba(74, 95, 97, 0.5);
+	--secondaryColorBright:#8498A5;
+	--redDefault:#c35252;
+	--redHover:#d43737;
+	--redActive:#7b0d0d;
+	--redDisabled:rgba(197, 84, 84, 0.45);
+	--txtMuteLink:#4f606b;
+	--disabledColor:#324650;
+	--linkPressColor:rgba(0,0,0,.05);
+	--buttonPressColor:rgba(255,255,255,.1);
+	--scrollbarDefaultColor:rgba(149,175,191,.5);
+	--scrollbarHoverColor:#8498A5;
+	--bodyTextColor:#eee;
+	--bodyTextHoverColor:#eee;
+	--typeaheadColor:#DFDFDF;
+	--typeaheadBackgroundColor:#151b1f;
+	--primaryTextColor:#fff;
+	--placeholderTextColor:#46555f;
+	--selectionBackgroundColor:rgba(102,227,228,.57);
+	--selectionTextColor:#666;
+	--tweetDetailWrapperColor:#25333c;
+	--contextMenuDividerColor:#323E43;
+	--backdropColor:#222e31;
+	--modalWindowColor:#1e282d;
+	--overlayBackgroundColor:rgba(56, 66, 72, 0.4);
+	--navDrawerBackground:rgba(56, 66, 72, 0.4);
+	--defaultShadowColor:rgba(56, 66, 72, 0.4)
+}

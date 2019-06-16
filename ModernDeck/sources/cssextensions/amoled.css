@@ -1,4 +1,11 @@
-:root{
+/*
+	amoled.css
+
+	Copyright (c) 2014-2019 Dangered Wolf
+	Released under the MIT Licence
+*/
+
+:root {
 	--primaryColor:#000 !important;
 	--typeaheadBackgroundColor:#000 !important;
 	--tweetDetailWrapperColor:#000 !important;
@@ -21,7 +28,6 @@
 	--genericDarkBlackShadow:rgba(52,66,72,.5) !important;
 	--genericLightBlackShadow:rgba(52,66,72,.1) !important;
 }
-
 
 div.drawer[data-drawer="compose"],.hide-detail-view-inline .tweet-button:not(.js-hide-drawer) {
 	background:var(--primaryColor)!important

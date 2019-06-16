@@ -9,8 +9,8 @@
 
 'use strict';
 
-const SystemVersion = "Beta 7.3";
-const appendTextVersion = false;
+const SystemVersion = "7.3";
+const appendTextVersion = true;
 
 let mtdBaseURL = "https://raw.githubusercontent.com/dangeredwolf/ModernDeck/master/ModernDeck/";
 // Defaults to obtaining assets from GitHub if MTDURLExchange isn't completed properly
@@ -24,6 +24,18 @@ const forceFeatureFlags = false;
 const forceAppX = false; // https://github.com/electron/electron/issues/18161
 const useRaven = true;
 const debugWelcome = false;
+
+let replacedLoadingSpinnerNew = false;
+let sendingFeedback = false;
+
+let ugltStarted = false;
+let useNativeContextMenus = false;
+let isDev = false;
+let debugStorageSys = true;
+
+let store;
+let loginInterval;
+let offlineNotification;
 
 let newLoginPage =
 '<div class="app-signin-wrap mtd-signin-wrap">\
@@ -111,19 +123,6 @@ const buttonSpinner =
 		</div>\
 	</div>\
 </div>';
-
-
-let replacedLoadingSpinnerNew = false;
-let sendingFeedback = false;
-
-let ugltStarted = false;
-let useNativeContextMenus = false;
-let isDev = true;
-let debugStorageSys = true;
-
-let store;
-let loginInterval;
-let offlineNotification;
 
 const make = function(a) {
 	return $(document.createElement(a));
@@ -250,7 +249,8 @@ let settingsData = {
 						TD.settings.setTheme(opt);
 						enableStylesheetComponent(opt);
 
-						if (opt === "light" && (isStylesheetExtensionEnabled("amoled"))) {
+						if (opt === "light" && (isStylesheetExtensionEnabled("amoled") || isStylesheetExtensionEnabled("darker"))) {
+							disableStylesheetExtension("darker");
 							disableStylesheetExtension("amoled");
 							setPref("mtd_theme","default");
 						}
@@ -295,7 +295,7 @@ let settingsData = {
 						setPref("mtd_theme",opt);
 						enableStylesheetExtension(opt || "default");
 
-						if (opt === "amoled" && TD.settings.getTheme() === "light") {
+						if ((opt === "amoled" || opt === "darker") && TD.settings.getTheme() === "light") {
 							console.log("theme is light, opt is amoled");
 							TD.settings.setTheme("dark");
 							disableStylesheetComponent("light");
@@ -326,10 +326,16 @@ let settingsData = {
 				},
 				options:{
 					default:{value:"default",text:"Default"},
-					complete:{
-						name:"Complete Themes",
+					completeLight:{
+						name:"Complete Light Themes",
 						children:{
-							paper:{value:"paper",text:"Paperwhite"},
+							paper:{value:"paper",text:"Paperwhite"}
+						}
+					},
+					completeDark:{
+						name:"Complete Dark Themes",
+						children:{
+							darker:{value:"darker",text:"Darker"},
 							amoled:{value:"amoled",text:"AMOLED"}
 						}
 					},
@@ -377,6 +383,7 @@ let settingsData = {
 		tabName:"Appearance",
 		options:{
 			headposition:{
+				headerBefore:"Navigation",
 				title:"Navigation Style",
 				type:"dropdown",
 				activate:{
@@ -397,23 +404,10 @@ let settingsData = {
 				options:{
 					top:{value:"top",text:"Top"},
 					left:{value:"left",text:"Left"},
-					classic:{value:"classic",text:"Classic"},
+					classic:{value:"classic",text:"Left (Classic)"},
 				},
 				settingsKey:"mtd_headposition",
 				default:"left"
-			},
-			dockedmodals:{
-				headerBefore:"Behavior",
-				title:"Use docked modals",
-				type:"checkbox",
-				activate:{
-					disableStylesheet:"undockedmodals"
-				},
-				deactivate:{
-					enableStylesheet:"undockedmodals"
-				},
-				settingsKey:"mtd_dockedmodals",
-				default:false
 			},
 			undockednavdrawer:{
 				title:"Replace navigation drawer with menu",
@@ -437,6 +431,31 @@ let settingsData = {
 					disableStylesheet:"fixedarrows"
 				},
 				settingsKey:"mtd_fixedarrows",
+				default:false
+			},
+			colNavAlwaysVis:{
+				title:"Always display column icons in navigator",
+				type:"checkbox",
+				activate:{
+					htmlAddClass:"mtd-mtd-column-nav-always-visible"
+				},
+				deactivate:{
+					htmlRemoveClass:"mtd-mtd-column-nav-always-visible"
+				},
+				settingsKey:"mtd_column_nav_always_visible",
+				default:true
+			},
+			dockedmodals:{
+				headerBefore:"Behavior",
+				title:"Use docked modals",
+				type:"checkbox",
+				activate:{
+					disableStylesheet:"undockedmodals"
+				},
+				deactivate:{
+					enableStylesheet:"undockedmodals"
+				},
+				settingsKey:"mtd_dockedmodals",
 				default:false
 			},
 			nonewtweetsbutton:{
@@ -464,6 +483,7 @@ let settingsData = {
 				default:true
 			},
 			scrollbarstyle:{
+				headerBefore:"Display",
 				title:"Scrollbar Style",
 				type:"dropdown",
 				activate:{
@@ -514,7 +534,6 @@ let settingsData = {
 				default:100
 			},
 			roundprofilepics:{
-				headerBefore:"Display",
 				title:"Use round profile pictures",
 				type:"checkbox",
 				activate:{
@@ -531,7 +550,6 @@ let settingsData = {
 				type:"slider",
 				activate:{
 					func: (opt) => {
-						console.log(opt);
 						//setPref("mtd_avatarsize",opt);
 						enableCustomStylesheetExtension("avatarsize",`:root{--avatarSize:${opt}px!important}`);
 					}
@@ -596,18 +614,6 @@ let settingsData = {
 				},
 				settingsKey:"mtd_sensitive_alt",
 				default:false
-			},
-			colNavAlwaysVis:{
-				title:"Always display column icons in navigator",
-				type:"checkbox",
-				activate:{
-					htmlAddClass:"mtd-mtd-column-nav-always-visible"
-				},
-				deactivate:{
-					htmlRemoveClass:"mtd-mtd-column-nav-always-visible"
-				},
-				settingsKey:"mtd_column_nav_always_visible",
-				default:true
 			},
 			accoutline:{
 				headerBefore:"Accessibility",
@@ -854,14 +860,16 @@ let settingsData = {
 
 						setTimeout(() => {
 							const {ipcRenderer} = require('electron');
-							if (!!ipcRenderer)
+							if (!!ipcRenderer) {
 								ipcRenderer.send("changeChannel", opt);
 
+								ipcRenderer.send('checkForUpdates');
+							}
 						},300)
 					}
 				},
 				options:{
-					latest:{value:"latest","text":"Latest"},
+					latest:{value:"latest","text":"Stable"},
 					beta:{value:"beta","text":"Beta"}
 				},
 				settingsKey:"mtd_updatechannel",
@@ -1019,7 +1027,6 @@ function retrieveImageFromClipboardAsBlob(pasteEvent, callback) {
 	let items = pasteEvent.clipboardData.items;
 
 	if(items == undefined || pasteEvent.clipboardData == false){
-		// console.log("RIP the paste data");
 		return;
 	};
 
@@ -1039,13 +1046,10 @@ function retrieveImageFromClipboardAsBlob(pasteEvent, callback) {
 // Paste event to allow for pasting images in TweetDeck
 
 window.addEventListener("paste", (e) => {
-	// console.log("got paste");
-	// console.log(e);
 
 	retrieveImageFromClipboardAsBlob(e, imageBlob => {
 
 		if (imageBlob) {
-			// console.log("got imageBlob");
 
 			let buildEvent = jQuery.Event("dragenter",{originalEvent:{dataTransfer:{files:[imageBlob]}}});
 			let buildEvent2 = jQuery.Event("drop",{originalEvent:{dataTransfer:{files:[imageBlob]}}});
@@ -1637,7 +1641,22 @@ function overrideFadeOut() {
 		} else {
 			i.remove();
 		}
-	 };
+	};
+	setTimeout(() => {
+		if (exists($(".app-navigator")[0])) {
+			$(".app-navigator")[0].removeChild = (i) => {
+				if ($(i).hasClass("dropdown-menu")) {
+					$(i).addClass("mtd-dropdown-fade-out");
+					setTimeout(() => {
+						i.remove(); // Tooltips automagically animate themselves out. But here we clean them up as well ourselves.
+					},200);
+				} else {
+					i.remove();
+				}
+			};
+		}
+	},1000)
+
 }
 
 // change favicon and notification sound
@@ -1729,7 +1748,7 @@ function processMustaches() {
 			TD_mustaches["compose/docked_compose.mustache"].replace(
 				'<i class="js-spinner-button-active icon-center-16 spinner-button-icon-spinner is-hidden"></i>',
 				buttonSpinner
-			);
+			).replace("\"js-add-image-button js-show-tip needsclick btn btn-on-blue full-width txt-left margin-b--12 padding-v--6 padding-h--12 is-disabled\"","\"js-add-image-button js-show-tip needsclick btn btn-on-blue full-width txt-left margin-b--12 padding-v--6 padding-h--12 is-disabled\" data-original-title=\"Add images or video\"");
 
 	if (typeof TD_mustaches["compose/compose_inline_reply.mustache"] !== "undefined")
 		TD_mustaches["compose/compose_inline_reply.mustache"] =
@@ -1772,6 +1791,12 @@ function processMustaches() {
 				"<kbd class=\"text-like-keyboard-key\">X</kbd>  Expand/Collapse navigation</dd>",
 				"<kbd class=\"text-like-keyboard-key\">Q</kbd> Open Navigation Drawer/Menu</dd>"
 			)
+	if (typeof TD_mustaches["media/native_video.mustache"] !== "undefined")
+		TD_mustaches["media/native_video.mustache"] =
+			"<div class=\"position-rel\">\
+			<iframe src=\"{{videoUrl}}\" class=\"js-media-native-video {{#isPossiblySensitive}}is-invisible{{/isPossiblySensitive}}\"\
+			height=\"{{height}}\" width=\"{{width}}\" frameborder=\"0\" scrolling=\"no\" allowfullscreen style=\"margin: 0px; padding: 0px; border: 0px;\">\
+			</iframe> {{> status/media_sensitive}} </div>";
 
 	if (typeof TD_mustaches["menus/actions.mustache"] !== "undefined") {
 		TD_mustaches["menus/actions.mustache"] =
@@ -1882,7 +1907,6 @@ async function mtdInit() {
 		console.error(e);
 	}
 
-
 	try {
 		replacePrettyNumber()
 	} catch(e) {
@@ -1912,7 +1936,10 @@ async function mtdInit() {
 	}
 
 	try {
-		loginTextReplacer()
+		loginTextReplacer();
+		setTimeout(() => {
+			loginTextReplacer();
+		},200);
 	} catch(e) {
 		console.error("Caught error in loginTextReplacer");
 		console.error(e);
@@ -1930,28 +1957,24 @@ async function mtdInit() {
 	},500);
 
 	$(document).on("uiInlineComposeTweet",(e) => {
-		console.log("uiInlineComposeTweet");
 		setTimeout(() => {
 			hookComposer();
 		},0)
 	});
 
 	$(document).on("uiDockedComposeTweet",(e) => {
-		console.log("uiDockedComposeTweet");
 		setTimeout(() => {
 			hookComposer();
 		},50)
 	});
 
 	$(document).on("uiComposeClose",(e) => {
-		console.log("uiComposeClose");
 		setTimeout(() => {
 			hookComposer();
 		},50)
 	});
 
 	$(document).on("uiComposeTweet",(e) => {
-		console.log("uiComposeTweet");
 		setTimeout(() => {
 			hookComposer();
 		},0)
@@ -2034,7 +2057,10 @@ async function openLegacySettings() {
 	$(".mtd-settings-panel").remove();
 	new TD.components.GlobalSettings;
 }
-
+/*
+	Processes Tweeten Settings import
+	obj = object converted from the raw JSON
+*/
 function importTweetenSettings(obj) {
 	console.log(obj);
 	console.log("todo: everything");
@@ -2529,6 +2555,37 @@ function openSettings(openMenu) {
 	return panel;
 }
 
+function mtdAlert(obj) {
+
+	var obj = obj || {};
+	console.log(obj)
+
+	let alert = make("div").addClass("mdl mtd-alert");
+	let alertTitle = make("h2").addClass("mtd-alert-title").html(obj.title || "ModernDeck");
+	let alertBody = make("p").addClass("mtd-alert-body").html(obj.message || "Alert");
+	let alertButtonContainer = make("div").addClass("mtd-alert-button-container");
+
+	let alertButton = make("button").addClass("btn-primary btn mtd-alert-button").html(obj.buttonText || "OK");
+	var alertButton2;
+
+	alertButtonContainer.append(alertButton);
+
+	if (exists(obj.button2Text) || obj.type === "confirm") {
+		alertButton2 = make("button").addClass("btn-primary btn mtd-alert-button").html(obj.button2Text || "Cancel");
+		alertButtonContainer.append(alertButton2);
+		alertButton2.click(obj.button2Click || mtdPrepareWindows);
+	}
+
+	alertButton.click(obj.button1Click || mtdPrepareWindows);
+
+	alert.append(alertTitle,alertBody,alertButtonContainer);
+
+	new TD.components.GlobalSettings;
+
+	$("#settings-modal>.mdl").remove();
+	$("#settings-modal").append(alert);
+}
+
 function updateFilterPanel(filterList) {
 	let filters = TD.controller.filterManager.getAll();
 	filterList.html("");
@@ -2612,11 +2669,21 @@ let welcomeData = {
 			}
 			const {ipcRenderer} = require('electron');
 			ipcRenderer.send('checkForUpdates');
+		},
+		nextFunc: () => {
+			let pos = getPref("mtd_headposition");
+			if (pos === "top") {
+				$("input[value='top']").click();
+			} else if (pos === "classic") {
+				$("input[value='classic']").click();
+			} else {
+				$("input[value='left']").click();
+			}
 		}
 	},
 	layout: {
 		title: "Select a layout",
-		body: "<b>Top:</b> Your column icons are laid out along the top. Uses navigation drawer.<br><b>Left:</b> Your column icons are laid out along the left side. Uses navigation drawer.<br><b>Classic:</b> Your column icons are laid out along the left side. Uses classic TweetDeck navigation methods instead of drawer.",
+		body: "<b>Top:</b> Your column icons are laid out along the top. Uses navigation drawer.<br><b>Left:</b> Your column icons are laid out along the left side. Uses navigation drawer.<br><b>Left (Classic):</b> Left, but uses classic TweetDeck navigation methods instead of drawer.",
 		html: `<div class="obj-left mtd-welcome-theme-picker">
 			<label class="fixed-width-label radio">
 			<input type="radio" name="layout" onclick="parseActions(settingsData.appearance.options.headposition.activate,'top')" value="top">
@@ -2628,7 +2695,7 @@ let welcomeData = {
 			</label>
 			<label class="fixed-width-label radio">
 			<input type="radio" name="layout" onclick="parseActions(settingsData.appearance.options.headposition.activate,'classic')" value="classic">
-				Classic
+				Left (Classic)
 			</label>
 		</div>`,
 		nextFunc: () => {
@@ -2655,8 +2722,8 @@ function welcomeScreen() {
 
 	mtdPrepareWindows();
 
-	disableStylesheetComponent("dark");
-	enableStylesheetComponent("light");
+	disableStylesheetComponent("light");
+	enableStylesheetComponent("dark");
 
 	setTimeout(() => {
 		$("#settings-modal").off("click");
@@ -2726,6 +2793,13 @@ function welcomeScreen() {
 
 	$("#settings-modal>.mdl").remove();
 	$("#settings-modal").append(panel);
+
+	let theme = TD.settings.getTheme();
+	if (theme === "dark") {
+		$("input[value='dark']").click();
+	} else if (theme === "light") {
+		$("input[value='light']").click();
+	}
 
 	return panel;
 }
@@ -2804,10 +2878,8 @@ function createGifPanel() {
 		if (isLoadingMoreGifs) {
 			return;
 		}
-
-		console.log($(this));
-		console.log($(this).scrollTop() + $(this).height() );
-		console.log($(this).prop("scrollHeight"))
+		console.log("height-200",$(document).height() - 200);
+		console.log("this.scrollTop",$(this).scrollTop());
 		if ($(this).scrollTop() + $(this).height() > $(this).prop("scrollHeight") - 200) {
 			console.log("now'd be a good time to load more gifs");
 			isLoadingMoreGifs = true;
@@ -2952,7 +3024,7 @@ function checkGifEligibility() {
 	console.log(imagesAdded)
 
 	if (imagesAdded > 0) {
-		$(".mtd-gif-button").addClass("is-disabled").attr("data-original-title","You cannot add GIFs with other images");
+		$(".mtd-gif-button").addClass("is-disabled").attr("data-original-title","You cannot upload a GIF with other images");
 		$(".compose-media-grid-remove,.compose-media-bar-remove").click(() => {
 			console.log("clicked close");
 			setTimeout(checkGifEligibility,0);
@@ -2994,6 +3066,25 @@ function hookComposer() {
 	$(document).on("uiSendDm",(e) => {
 		console.log("uiSendDm");
 		setTimeout(checkGifEligibility,0)
+	});
+
+	$(document).off("uiShowConfirmationDialog");
+
+	$(document).on("uiShowConfirmationDialog",(a,b,c) => {
+		mtdAlert({
+			title:b.title,
+			message:b.message,
+			buttonText:b.okLabel,
+			button2Text:b.cancelLabel,
+			button1Click:() => {
+				$(document).trigger("uiConfirmationAction", {id:b.id, result:true});
+				mtdPrepareWindows();
+			},
+			button2Click:() => {
+				$(document).trigger("uiConfirmationAction", {id:b.id, result:false});
+				mtdPrepareWindows();
+			}
+		})
 	});
 
 	if ($(".mtd-emoji").length <= 0)
@@ -3043,6 +3134,8 @@ function mtdPrepareWindows() {
 	$("#update-sound,.js-click-trap").click();
 	mtd_nav_drawer_background.click();
 
+	$(".js-modal[style=\"display: block;\"]").click();
+
 	$(".mtd-nav-group-expanded").removeClass("mtd-nav-group-expanded");
 	$("#mtd_nav_group_arrow").removeClass("mtd-nav-group-arrow-flipped");
 }
@@ -3069,7 +3162,7 @@ function navigationSetup() {
 	}
 
 	$(".app-header-inner").append(
-		make("a").attr("id","mtd-navigation-drawer-button").addClass("js-header-action mtd-drawer-button link-clean cf app-nav-link").html('<div class="obj-left"><div class="mtd-nav-activator"></div><div class="nbfc padding-ts"></div>')
+		make("a").attr("id","mtd-navigation-drawer-button").attr("data-original-title","Navigation Drawer").addClass("js-header-action mtd-drawer-button link-clean cf app-nav-link").html('<div class="obj-left"><div class="mtd-nav-activator"></div><div class="nbfc padding-ts"></div>')
 		.click(() => {
 			if (exists(mtd_nav_drawer_background)) {
 				$("#mtd_nav_drawer_background").removeClass("mtd-nav-drawer-background-hidden");
@@ -3668,10 +3761,17 @@ function buildContextMenu(p) {
 	}
 
 	if (p.srcURL !== '') {
-		items.push(makeCMItem({mousex:x,mousey:y,dataaction:"openImage",text:"Open image in browser",enabled:true,data:p.srcURL}));
-		items.push(makeCMItem({mousex:x,mousey:y,dataaction:"copyImage",text:"Copy image",enabled:true,data:{x:x,y:y}}));
-		items.push(makeCMItem({mousex:x,mousey:y,dataaction:"saveImage",text:"Save image...",enabled:true,data:p.srcURL}));
-		items.push(makeCMItem({mousex:x,mousey:y,dataaction:"copyImageURL",text:"Copy image address",enabled:true,data:p.srcURL}));
+		if (exists(p.mediaType) && p.mediaType === "video") {
+			items.push(makeCMItem({mousex:x,mousey:y,dataaction:"openImage",text:"Open video in browser",enabled:true,data:p.srcURL}));
+			items.push(makeCMItem({mousex:x,mousey:y,dataaction:"saveImage",text:"Save video...",enabled:true,data:p.srcURL}));
+			items.push(makeCMItem({mousex:x,mousey:y,dataaction:"copyImageURL",text:"Copy video address",enabled:true,data:p.srcURL}));
+		} else {
+			items.push(makeCMItem({mousex:x,mousey:y,dataaction:"openImage",text:"Open image in browser",enabled:true,data:p.srcURL}));
+			items.push(makeCMItem({mousex:x,mousey:y,dataaction:"copyImage",text:"Copy image",enabled:true,data:{x:x,y:y}}));
+			items.push(makeCMItem({mousex:x,mousey:y,dataaction:"saveImage",text:"Save image...",enabled:true,data:p.srcURL}));
+			items.push(makeCMItem({mousex:x,mousey:y,dataaction:"copyImageURL",text:"Copy image address",enabled:true,data:p.srcURL}));
+		}
+
 		items.push(makeCMDivider());
 	}
 

@@ -74,7 +74,8 @@ html body .js-column-message .dark-only--color-twitter-gray,
 .js-add-image-button,
 .js-tweet-button,
 .js-dm-button,
-.js-schedule-button
+.js-schedule-button,
+.mtd-gif-button
 {
 	color:var(--rootWhiteColor)!important
 }
@@ -119,6 +120,6 @@ a .column-title-back .icon:after,.drawer-header:active .drawer-header-title .ico
 	background:#00CBE5!important
 }
 
-.mdl-btn-media {
+.mdl-btn-media,.Notification-inner,.Notification-icon  {
 	color:var(--pureWhite)!important
 }

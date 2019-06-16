@@ -973,3 +973,7 @@ button[type="submit"]:active,button[type="submit"]:focus,.mtd-settings-button:fo
 	color:var(--txtMuteLink);
 	border-bottom:3px solid var(--secondaryColorAlt)
 }
+
+.mtd-giphy-logo {
+	filter:brightness(0%)
+}
