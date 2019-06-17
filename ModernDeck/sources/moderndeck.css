@@ -37,7 +37,7 @@
 	--rootWhiteColor:#fff;
 	--rootLightGreyColor:#eee;
 	--rootBlackColor:#000;
-	--animationTiming:cubic-bezier(.19,1,.22,1);
+	--animationTiming:cubic-bezier(.1,1,.1,1);
 	--defaultFontOrder:Roboto,"Noto Sans Alphabet","Noto Sans","Noto Sans CJK","Noto Sans CJK JP","Noto Sans CJK KR","Noto Sans CJK SC","Noto Sans CJK TC","Noto Sans JP","Noto Sans KR","Noto Sans SC","Noto Sans TC";
 	--composeWidth:300px;
 	--scrollbarWidth:10px;
@@ -465,6 +465,8 @@ body.scroll-v .spinner-layer {
 	min-width:320px;
 	position:absolute;
 	overflow:hidden;
+	background-size:cover!important;
+	background-position:center!important;
 	pointer-events:none
 }
 
@@ -1399,7 +1401,7 @@ span[data-testid="trendMovement"] .icon-pointer-d:before,span[data-testid="trend
 	font-size:64px;
 	height:64px;
 	width:64px;
-	line-height:64px;
+	line-height:64px
 }
 
 .icon-xxlarge.icon-retweet,.Icon--xxlarge.Icon--retweet {
@@ -1498,7 +1500,7 @@ span[data-testid="trendMovement"] .icon-pointer-d:before,span[data-testid="trend
 }
 
 .is-open .compose-content,.compose-media-grid-holder .sprite-close {
-	top:0;
+	top:0
 }
 
 .mtd-head-left:not(.mtd-classic-nav):not(.mtd-app) .is-open .compose-content {
@@ -1648,9 +1650,8 @@ button:hover,button:focus,.Button--primary {
 	top:0
 }
 
-.column:not(.draggable-dragging) {
-/* 	animation:windowSlider 1s var(--animationTiming)!important */
-}
+/* .column:not(.draggable-dragging) {
+} */
 
 .column-temp {
 	position:relative;
@@ -2163,7 +2164,7 @@ a .column-title-back .icon:after {
 
 .is-minigrid .compose-account {
 	margin-right:0;
-	padding-right: 13px;
+	padding-right:13px
 }
 
 .avatar {
@@ -2766,6 +2767,7 @@ div.media-size-small {
 	height:40px;
 	width:100%;
 	background:rgba(0,0,0,.1);
+	transition:width 0.15s var(--animationTiming);
 	pointer-events:none
 }
 
@@ -2787,7 +2789,7 @@ div.media-size-small {
 	top:40px;
 	margin-left:0;
 	overflow:visible;
-	transition:transform 0.2s var(--animationTiming);
+	transition:left 0.15s var(--animationTiming),width 0.15s var(--animationTiming),transform 0.15s var(--animationTiming);
 	-webkit-app-region:no-drag
 }
 
@@ -2797,7 +2799,7 @@ div.media-size-small {
 }
 
 .mtd-app.mtd-head-left .app-content {
-	top: 36px;
+	top:36px
 }
 
 .mtd-app.mtd-app-mac.mtd-head-left .app-content {
@@ -2847,8 +2849,8 @@ div.media-size-small {
 }
 
 .app-nav-link i {
-	padding-left: 18px;
-	margin-right: 13px;
+	padding-left:18px;
+	margin-right:13px
 }
 
 .app-nav-tab {
@@ -2882,12 +2884,12 @@ div.media-size-small {
 
 .mtd-app-mac.mtd-head-left.mtd-classic-nav .js-hide-drawer.tweet-button
 {
-	margin-top: 3px!important
+	margin-top:3px!important
 }
 
 .mtd-app-mac.mtd-head-left .tweet-button:not(.is-hidden):not(.js-hide-drawer)
 {
-	margin-top: 50px!important;
+	margin-top:50px!important
 }
 
 .mtd-classic-nav.mtd-head-left .js-hide-drawer.tweet-button  {
@@ -2897,7 +2899,7 @@ div.media-size-small {
 }
 
 .mtd-classic-nav.mtd-head-left:not(.mtd-app-mac) .js-hide-drawer.tweet-button  {
-	margin-top:-14px;
+	margin-top:-14px
 }
 
 .mtd-head-left .js-hide-drawer[data-title="Accounts"] {
@@ -2914,15 +2916,12 @@ div.media-size-small {
 }
 
 .mtd-head-left.mtd-classic-nav .tweet-button.is-hidden {
-	-webkit-app-region:drag
+	-webkit-app-region:drag;
+	pointer-events:none
 }
 
 .mtd-classic-nav .app-header:not(.is-condensed) .tweet-button.is-hidden {
 	margin-left:196px
-}
-
-.mtd-head-left.mtd-classic-nav .tweet-button.is-hidden {
-	pointer-events:none
 }
 
 .tweet-button, .js-hide-drawer:not(.tweet-button):not([data-title="Accounts"]) {
@@ -2965,7 +2964,7 @@ div.media-size-small {
 }
 
 .mtd-classic-nav .js-show-drawer.tweet-button:not(.is-hidden) {
-	margin-top: 32px;
+	margin-top:32px
 }
 
 .tweet-button>i:after {
@@ -3002,7 +3001,7 @@ html:not(.mtd-classic-nav) .attach-compose-buttons .tweet-button {
 	margin-top:-65px;
 	margin-left:-5px;
 	width:calc(var(--composeWidth) + 1px);
-	cursor: pointer;
+	cursor:pointer
 }
 
 .mtd-head-left:not(.mtd-classic-nav) .attach-compose-buttons .tweet-button {
@@ -5221,9 +5220,9 @@ input[type="checkbox"]:active {
 }
 
 .column-nav-item {
-	position: relative;
+	position:relative;
 	width:0;
-	top: 4px;
+	top:4px;
 	box-sizing:border-box;
 	color:rgba(255,255,255,.75);
 	display:inline-flex;
@@ -5233,17 +5232,13 @@ input[type="checkbox"]:active {
 	transform:translate3d(15px,0,0);
 	opacity:0;
 	height:30px;
-	transition:0.4s all var(--animationTiming) 1s;
+	transition:0.4s all var(--animationTiming) 1s
 }
 
 html:not(.mtd-head-left) .column-nav-item {
 	position:relative!important;
 	top:4px!important;
-	height:30px!important;
-}
-
-.mtd-app .column-nav-item,.mtd-head-left .column-nav-item {
-	/* top:-2px!important */
+	height:30px!important
 }
 
 .column-navigator:hover .column-nav-item,.column-nav-item.is-new,.mtd-head-left .column-nav-item {
@@ -5901,7 +5896,6 @@ html:not(.mtd-head-left) .hide-detail-view-inline .mtd-drawer-button {
 
 .js-show-drawer.app-nav-tab {
 	opacity:0;
-	/* margin-top:-50px; */
 	width:0!important;
 	height:0!important
 }
@@ -5910,12 +5904,8 @@ html:not(.mtd-head-left) .hide-detail-view-inline .mtd-drawer-button {
 	height:35px!important;
 	width:100%!important;
 	opacity:1;
-	margin-left:23px;
 	margin-top:19px;
-	position:relative
-}
-
-.mtd-classic-nav .js-hide-drawer.app-nav-tab,.mtd-classic-nav .js-show-drawer.app-nav-tab {
+	position:relative;
 	margin-left:0;
 	box-shadow:none
 }
@@ -6585,7 +6575,6 @@ button.mtd-no-transform-case {
 }
 
 .js-tweet-type-button,.js-scheduler {
-	/* width:50px; */
 	display:inline
 }
 
@@ -7035,7 +7024,6 @@ body>.message-banner[style="color:rgb(85, 85, 85); background-color:rgb(178, 213
 }
 
 .compose .quoted-tweet .js-quoted-tweet-text {
-	/* padding-left:5px; */
 	margin-top:7px
 }
 
@@ -7826,8 +7814,8 @@ button[type="submit"]:active {
 }
 
 .compose-account-names {
-	padding-left: 4px;
-	vertical-align:middle;
+	padding-left:4px;
+	vertical-align:middle
 }
 
 .cf.padding-b--20.padding-r--20.padding-t--5 {
@@ -9652,16 +9640,16 @@ html.mtd-classic-nav .column-navigator {
 	left:0;
 	width:var(--verticalHeadWidth);
 	bottom:0;
-	top: 80px;
-	height:auto!important;
+	top:80px;
+	height:auto!important
 }
 
 .mtd-app-mac.mtd-head-left .column-navigator {
-	top: 95px;
+	top:95px
 }
 
 .mtd-app-mac.mtd-head-left.mtd-maximized .is-condensed .column-navigator {
-	top:135px;
+	top:135px
 }
 
 .mtd-head-left .app-content:not(.is-open)>.drawer {
@@ -9939,7 +9927,7 @@ html.mtd-classic-nav.mtd-head-left body .app-header .column-nav-item {
 	left:0;
 	right:0;
 	position:absolute;
-	overflow:hidden;
+	overflow:hidden
 }
 
 .mtd-settings-panel-subheader {
@@ -10666,7 +10654,6 @@ footer>.js-tweet-stats>.tweet-stats:not(.js-stats-list) {
 	left:var(--verticalHeadWidth);
 	bottom:0;
 	margin-bottom:20px;
-	/* height:300px; */
 	top:initial
 }
 
@@ -10683,7 +10670,7 @@ footer>.js-tweet-stats>.tweet-stats:not(.js-stats-list) {
 	display:block!important;
 	position:fixed!important;
 	width:200px;
-	top: -10px;
+	top:-10px
 }
 
 .mtd-classic-nav .is-condensed .js-header-action[data-action="change-sidebar-width"] {
@@ -10694,16 +10681,8 @@ footer>.js-tweet-stats>.tweet-stats:not(.js-stats-list) {
 	display:none
 }
 
-.app-header {
-	transition:width 0.15s var(--animationTiming)
-}
-
 .mtd-classic-nav .app-header:not(.is-condensed) {
 	width:200px
-}
-
-.app-content {
-	transition:left 0.15s var(--animationTiming),width 0.15s var(--animationTiming),transform 0.15s var(--animationTiming)
 }
 
 .mtd-classic-nav .application:not(.is-condensed) .app-content {
@@ -10758,22 +10737,22 @@ footer>.js-tweet-stats>.tweet-stats:not(.js-stats-list) {
 }
 
 .app-navigator .icon-user-switch {
-	margin-left: 17px;
-	margin-right:34px;
+	margin-left:17px;
+	margin-right:34px
 }
 
 .mtd-classic-nav .application:not(.is-condensed) .icon-user-switch {
-	margin-right: 12px;
+	margin-right:12px
 }
 
 .mtd-classic-nav .app-header .tweet-button .label {
 	display:block;
 	margin-top:-20px;
-	padding-left: 13px;
+	padding-left:13px;
 	text-transform:none;
 	font-size:15px;
 	opacity:0;
-	transition:opacity 0.2s var(--animationTiming);
+	transition:opacity 0.2s var(--animationTiming)
 }
 
 .mtd-classic-nav .application:not(.is-condensed) .app-header .tweet-button:not(.is-hidden) .label {
@@ -10892,7 +10871,7 @@ footer>.js-tweet-stats>.tweet-stats:not(.js-stats-list) {
 
 .mtd-settings-inner.mtd-welcome-inner {
 	top:30px;
-	-webkit-app-region: no-drag;
+	-webkit-app-region:no-drag
 }
 
 .mtd-welcome-head-icon {
@@ -10900,27 +10879,22 @@ footer>.js-tweet-stats>.tweet-stats:not(.js-stats-list) {
 	line-height:70px
 }
 
-.application {
-	background-size: cover!important;
-	background-position: center!important;
-}
-
 .mtd-welcome-head .icon-moderndeck {
 	font-size:96px;
 	height:96px;
 	width:96px;
-	line-height:110px;
+	line-height:110px
 }
 
 .mtd-welcome-html .column {
-	height: 170px;
-	width: 300px;
-	float: right;
+	height:170px;
+	width:300px;
+	float:right
 }
 
 .mtd-welcome-theme-picker {
 	margin-left:50px;
-	width: 100px;
+	width:100px
 }
 
 .mtd-enable-update-next .mtd-settings-subpanel[id="update"] .mtd-welcome-head,
