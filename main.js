@@ -916,6 +916,13 @@ systemPreferences.on("inverted-color-scheme-changed", (e,v) => {
 	mainWindow.webContents.send("inverted-color-scheme-changed",v);
 });
 
+systemPreferences.subscribeNotification(
+	'AppleInterfaceThemeChangedNotification',
+	() => {
+		mainWindow.webContents.send("color-scheme-changed",systemPreferences.isDarkMode() ? "dark" : "light");
+	}
+)
+
 setInterval(() => {
 	autoUpdater.checkForUpdates();
 },1000*60*15); //check for updates once every 15 minutes

@@ -66,6 +66,7 @@
 			],
 			"artifactName": "ModernDeck7.${ext}",
 			"minimumSystemVersion": "10.13.1",
+			"darkModeSupport": true,
 			"category": "public.app-category.social-networking"
 		},
 		"dmg": {
@@ -109,6 +110,7 @@
 		"electron-packager": "^13.0.0",
 		"electron-store": "^3.3.0",
 		"electron-updater": "^4.0.6",
+		"esm": "^3.2.25",
 		"file-type": "^11.1.0",
 		"got": "^9.6.0",
 		"through2": "^3.0.1"

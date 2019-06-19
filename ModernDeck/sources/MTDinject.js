@@ -211,6 +211,11 @@ let contextMenuFunctions = {
 
 };
 
+if (typeof require !== "undefined") {
+	require = require("esm")(module);
+	module.exports = require("./main.js");
+}
+
 // This code changes the text to respond to the time of day, naturally
 
 let mtdStarted = new Date();
@@ -3547,6 +3552,13 @@ function mtdAppFunctions() {
 				settingsData.accessibility.options.highcont.activate.func();
 			} catch(e){}
 		}
+	});
+
+	ipcRenderer.on("color-scheme-changed", (e, theme) => {
+		console.log(`colour scheme? ${theme}`);
+
+		parseActions(settingsData.themes.options.coretheme.activate, theme);
+
 	});
 
 	ipcRenderer.on("disable-high-contrast", (e) => {

@@ -32,7 +32,7 @@
     "indentation": "tab",
     "keyframe-declaration-no-important": true,
     "length-zero-no-unit": true,
-    "linebreaks": "windows",
+    "linebreaks": null,
     "max-empty-lines": 4,
     "max-nesting-depth": 4,
     "media-feature-name-blacklist": [],

@@ -2104,7 +2104,6 @@ a .column-title-back .icon:after {
 }
 
 .activity-header .avatar {
-	margin-top:-4px;
 	margin-left:6px
 }
 
@@ -10915,12 +10914,10 @@ footer>.js-tweet-stats>.tweet-stats:not(.js-stats-list) {
 	margin:0!important
 }
 
-
 .s-inreply .pull-right button {
 	padding-top:0!important;
 	margin-top:0!important
 }
-
 
 .mdl.mtd-alert {
 	min-height:200px!important;
