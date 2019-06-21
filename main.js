@@ -916,12 +916,13 @@ systemPreferences.on("inverted-color-scheme-changed", (e,v) => {
 	mainWindow.webContents.send("inverted-color-scheme-changed",v);
 });
 
-systemPreferences.subscribeNotification(
-	'AppleInterfaceThemeChangedNotification',
-	() => {
-		mainWindow.webContents.send("color-scheme-changed",systemPreferences.isDarkMode() ? "dark" : "light");
-	}
-)
+if (process.platform === 'darwin') {
+	systemPreferences.subscribeNotification(
+		'AppleInterfaceThemeChangedNotification',
+			mainWindow.webContents.send("color-scheme-changed",systemPreferences.isDarkMode() ? "dark" : "light");
+		}
+	)
+}
 
 setInterval(() => {
 	autoUpdater.checkForUpdates();
