@@ -919,6 +919,7 @@ systemPreferences.on("inverted-color-scheme-changed", (e,v) => {
 if (process.platform === 'darwin') {
 	systemPreferences.subscribeNotification(
 		'AppleInterfaceThemeChangedNotification',
+		() => {
 			mainWindow.webContents.send("color-scheme-changed",systemPreferences.isDarkMode() ? "dark" : "light");
 		}
 	)
