@@ -1,7 +1,7 @@
 /*
 	moderndeck.css
 
-	ModernDeck 7.3 [codename Essence]
+	ModernDeck 7.3.1 [codename Essence]
 	Copyright 2014-2019 dangered wolf
 	Released under the MIT Licence
 
@@ -2198,8 +2198,8 @@ a .column-title-back .icon:after {
 }
 
 .avatar.size24,.compose-message-recipient>img {
-	width:24px;
-	height:24px;
+	width:20px;
+	height:20px;
 	border-radius:50%
 }
 
@@ -2289,7 +2289,7 @@ a .column-title-back .icon:after {
 }
 
 .account-inline .fullname,.account-inline .username,.account-link.txt-bold {
-	line-height:1;
+	line-height:0;
 	text-overflow:ellipsis;
 	font-size:0.9rem;
 	margin-left:3px
@@ -2731,6 +2731,13 @@ div.media-size-small {
 	display:inline
 }
 
+.inline-reply .spinner-button-container {
+	display:block;
+	position:absolute;
+	right:0;
+	bottom:10px
+}
+
 .drawer .compose-text-container .spinner-button-container {
 	float:right
 }
@@ -2756,10 +2763,6 @@ div.media-size-small {
 .js-add-column:active,
 .spinner-button-icon-spinner {
 	transition:0.1s all
-}
-
-.inline-reply .spinner-button-icon-spinner {
-	margin:6px 0 0 13px
 }
 
 .app-header {
@@ -3783,6 +3786,11 @@ html:not(.mtd-app).mtd-classic-nav .compose-content {
 	overflow:visible
 }
 
+.inline-reply .compose-send-button-success {
+	margin-left:-28px;
+	margin-top:-13px
+}
+
 .compose-send-button-success {
 	margin-left:0;
 	margin-top:0;
@@ -4030,8 +4038,8 @@ html:not(.mtd-app).mtd-classic-nav .compose-content {
 
 .med-tweet {
 	position:absolute;
-	right:5%;
-	left:5%;
+	right:3%;
+	left:3%;
 	padding:8px;
 	bottom:-20px;
 	box-shadow:0 3px 6px rgba(0,0,0,.7);
@@ -5682,7 +5690,7 @@ html:not(.mtd-head-left) body .application.hide-detail-view-inline .column-navig
 
 .inline-reply .js-send-button {
 	margin-top:6px;
-	margin-right:16px
+	margin-right:11px
 }
 
 .drawer-header,.Panel-header {
@@ -8988,7 +8996,7 @@ li.padding-axl.flex.flex-row.flex-align--center .fullname {
 }
 
 .inline-reply .js-character-count {
-	padding-right:90px;
+	padding-right:102px;
 	margin-top:13px
 }
 
@@ -10109,10 +10117,6 @@ label.checkbox::selection,label.control-label::selection {
 	cursor:pointer
 }
 
-.item-box .activity-header .account-link {
-	padding-left:5px
-}
-
 .mtd-settings-option-slider b {
 	font-size:18px;
 	padding-left:20px
@@ -10926,8 +10930,11 @@ footer>.js-tweet-stats>.tweet-stats:not(.js-stats-list) {
 }
 
 .mtd-alert-button {
-	font-size:16px;
-	float:right
+	font-size:15px;
+	float:right;
+	margin:16px;
+	padding:10px 13px;
+	margin-left:0
 }
 
 .mtd-alert-button-container {
@@ -10938,4 +10945,15 @@ footer>.js-tweet-stats>.tweet-stats:not(.js-stats-list) {
 
 .mtd-alert-title {
 	font-size:20px
+}
+
+.activity-header .nbfc {
+	line-height:1.5
+}
+
+.mtd-diag-inner {
+	overflow-y:auto!important;
+	top:0;
+	padding:10px;
+	font-size:14px
 }

@@ -1,6 +1,6 @@
 {
   "rules": {
-    "at-rule-empty-line-before": "never",
+    "at-rule-empty-line-before": "always",
     "at-rule-no-unknown": true,
     "at-rule-no-vendor-prefix": true,
     "at-rule-semicolon-space-before": "never",
@@ -32,7 +32,6 @@
     "indentation": "tab",
     "keyframe-declaration-no-important": true,
     "length-zero-no-unit": true,
-    "linebreaks": "windows",
     "max-empty-lines": 4,
     "max-nesting-depth": 4,
     "media-feature-name-blacklist": [],

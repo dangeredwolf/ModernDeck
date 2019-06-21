@@ -1,3 +1,10 @@
+/*
+	emojipicker.css
+
+	Copyright (c) 2014-2019 Dangered Wolf
+	Released under the MIT Licence
+*/
+
 .mtd-emoji,
 .mtd-emoji * {
 	box-sizing:border-box
@@ -45,12 +52,12 @@
 .mtd-emoji-picker {
 	height:350px;
 	width:calc(var(--composeWidth) - 30px);
-	top:137px;
+	top:120px;
 	right:0;
 	transition:all 0.25s var(--animationTiming)!important;
 	opacity:0;
 	animation:calendarMenuDown 0.3s var(--animationTiming)!important;
-	margin-top:4px;
+	margin-top:22px;
 	margin-bottom:10px
 }
 

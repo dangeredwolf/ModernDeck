@@ -9,7 +9,7 @@
 
 'use strict';
 
-const SystemVersion = "7.3";
+const SystemVersion = "7.3.1";
 const appendTextVersion = true;
 
 let mtdBaseURL = "https://raw.githubusercontent.com/dangeredwolf/ModernDeck/master/ModernDeck/";
@@ -31,7 +31,7 @@ let sendingFeedback = false;
 let ugltStarted = false;
 let useNativeContextMenus = false;
 let isDev = false;
-let debugStorageSys = true;
+let debugStorageSys = false;
 
 let store;
 let loginInterval;
@@ -146,6 +146,7 @@ const isChrome = typeof chrome !== "undefined" && !isEdge && !isFirefox;
 // user agent hacks make me sad but im lazy
 const isWin = navigator.userAgent.indexOf("Windows NT") > -1;
 const isMac = navigator.userAgent.indexOf("Mac OS X") > -1;
+const isiOS = navigator.userAgent.indexOf("iPhone OS") > -1;
 
 const ctrlShiftText = isMac ? "⌃⇧" : "Ctrl+Shift+";
 
@@ -154,8 +155,6 @@ let injectedFonts = false;
 let head = undefined;
 let body = undefined;
 let html = undefined;
-
-let MTDStorage = {};
 
 let contextMenuFunctions = {
 	cut: () => {
@@ -210,11 +209,6 @@ let contextMenuFunctions = {
 	}
 
 };
-
-if (typeof require !== "undefined") {
-	require = require("esm")(module);
-	module.exports = require("./main.js");
-}
 
 // This code changes the text to respond to the time of day, naturally
 
@@ -1283,6 +1277,108 @@ function loadPreferences() {
 	}
 }
 
+// Dumps user preferences, for diag
+
+function dumpPreferences() {
+
+	let prefs = "";
+
+	for (let key in settingsData) {
+
+		if (!settingsData[key].enum) {
+			for (let i in settingsData[key].options) {
+				let prefKey = settingsData[key].options[i].settingsKey;
+				let pref = settingsData[key].options[i];
+
+				if (exists(prefKey) && pref.type !== "button" && pref.type !== "link") {
+					let setting;
+
+					prefs += prefKey + ": " + (getPref(prefKey) || "[not set]") + "\n"
+				}
+			}
+		}
+	}
+
+	return prefs;
+}
+
+/*
+	diag makes it easier for developers to narrow down user-reported bugs.
+	You can call this via command line, or by pressing
+*/
+
+function diag() {
+	let log = "";
+
+	log += "The following diagnostic report contains information about your version of ModernDeck.\
+	It contains your preferences, but does not contain information related to your Twitter account(s).\
+	A ModernDeck developer may request a copy of this diagnostic report to help diagnose problems.\n\n";
+
+	log += "======= Begin ModernDeck Diagnostic Report =======\n\n";
+
+	log += "\nModernDeck Version " + SystemVersion;
+	log += "\nisDev: " + isDev;
+	log += "\nisApp: " + isApp;
+	log += "\nforceAppX: " + forceAppX;
+	log += "\nUser agent: " + navigator.userAgent;
+
+
+	log += "\n\nLoaded extensions:\n";
+
+	let loadedExtensions = [];
+
+	$(".mtd-stylesheet-extension").each((e) => {
+		loadedExtensions[loadedExtensions.length] =
+		$(".mtd-stylesheet-extension")[e].href.match(/(([A-z0-9_\-])+\w+\.[A-z0-9]+)/g);
+	});
+
+	log += loadedExtensions.join(", ");
+
+	log += "\n\nLoaded external components:\n"
+
+
+	let loadedComponents = [];
+
+	$(".mtd-stylesheet-component").each((e) => {
+		loadedComponents[loadedComponents.length] =
+		$(".mtd-stylesheet-component")[e].href.match(/(([A-z0-9_\-])+\w+\.[A-z0-9]+)/g);
+	});
+
+	log += loadedComponents.join(", ");
+
+	log += "\n\nUser preferences: \n" + dumpPreferences();
+
+	log += "\n\n======= End ModernDeck Diagnostic Report =======\n";
+
+	console.log(log);
+
+	try {
+		showDiag(log);
+	} catch (e) {
+		console.error("An error occurred trying to show the diagnostic menu");
+		console.error(e);
+	}
+}
+
+/*
+	Helper for diag() which renders the diagnostic results on screen if possible
+*/
+
+function showDiag(str) {
+
+	mtdPrepareWindows();
+
+	let diagText = make("p").addClass('mtd-diag-text').html(str.replace(/\n/g,"<br>"));
+	let container = make("div").addClass("mtd-settings-inner mtd-diag-inner scroll-v").append(diagText);
+	let panel = make("div").addClass("mdl mtd-settings-panel").append(container);
+
+	new TD.components.GlobalSettings;
+
+	$("#settings-modal>.mdl").remove();
+	$("#settings-modal").append(panel);
+
+	return panel;
+}
 // getPref(String preferenceKey)
 // Returns value of preference, string or boolean
 
@@ -2560,6 +2656,24 @@ function openSettings(openMenu) {
 	return panel;
 }
 
+/*
+	mtdAlert(Object alertProps)
+
+	alertProps is an object with the following options:
+
+	String title: Title of the alert
+	String message: Body message of the alert
+	String buttonText: Button 1 text
+	String button2Text: Button 2 text
+
+	function button1Click: Button 1 click function
+	function button2Click: Button 2 click function
+
+	Note: make sure you call mtdPrepareWindows afterward to close the alert box
+
+	String type: supported types are "confirm", "alert"
+*/
+
 function mtdAlert(obj) {
 
 	var obj = obj || {};
@@ -2642,7 +2756,7 @@ let welcomeData = {
 		title: "<i class='icon icon-moderndeck icon-xxlarge mtd-welcome-head-icon' style='color:var(--secondaryColor)'></i>Welcome to ModernDeck!",
 		body: "We're glad to have you here. Click Next to continue.",
 		nextFunc: () => {
-			if (!isApp) {
+			if (!isApp || forceAppX) {
 				return;
 			}
 			const {ipcRenderer} = require('electron');
@@ -2722,7 +2836,7 @@ let welcomeData = {
 
 function welcomeScreen() {
 
-	welcomeData.update.enabled = isApp;
+	welcomeData.update.enabled = isApp && !forceAppX;
 	welcomeData.update.html = makeUpdateCont();
 
 	mtdPrepareWindows();
@@ -3286,6 +3400,7 @@ function navigationSetup() {
 }
 
 function keyboardShortcutHandler(e) {
+	console.log(e);
 
 	if (e.key.toUpperCase() === "A" && (e.ctrlKey) && e.shiftKey) { //pressing Ctrl+Shift+A toggles the outline accessibility option
 		console.log("User has pressed the proper key combination to toggle outlines!");
@@ -3301,6 +3416,17 @@ function keyboardShortcutHandler(e) {
 		console.log("User disabled custom CSS!");
 
 		disableStylesheetExtension("customcss")
+
+	}
+	if (e.code === "KeyD" && (e.ctrlKey) && e.altKey) { //pressing Ctrl+Shift+C disabled user CSS
+		console.log("Triggering diag!");
+
+		try {
+			diag()
+		} catch (e) {
+			console.error("An error occurred while creating the diagnostic report");
+			console.error(e);
+		}
 
 	}
 	if (e.key.toUpperCase() === "H" && (e.ctrlKey) && e.shiftKey) { //pressing Ctrl+Shift+H toggles high contrast
@@ -3486,25 +3612,16 @@ function mtdAppUpdatePage(updateCont, updateh2, updateh3, updateIcon, updateSpin
 }
 
 function notifyUpdate() {
-	let notifRoot = mR.findFunction("showErrorNotification")[0].showNotification({title:"ModernDeck Updates", timeoutDelayMs:9999999999});
-	let notifId = notifRoot._id;
-	let notif = $("li.Notification[data-id=\""+notifId+"\"]");
-	let notifContent = $("li.Notification[data-id=\""+notifId+"\"] .Notification-content");
-	let notifIcon = $("li.Notification[data-id=\""+notifId+"\"] .Notification-icon .Icon");
-
-	if (notif.length > 0) {
-		notifIcon.removeClass("Icon--notifications").addClass("mtd-icon-update");
-
-		notifContent.append(
-			make("p").html("We found and downloaded updates for ModernDeck."),
-			make("button").html("Relaunch Now").click(() => {
-				ipcRenderer.send('restartApp');
-			}),
-			make("button").html("Later").click(() => {
-				mR.findFunction("showErrorNotification")[0].removeNotification({notification: notif});
-			})
-		)
-	}
+	mtdAlert({
+		title:"Update ModernDeck",
+		message:"An update is available for ModernDeck! Would you like to restart the app to install the update?",
+		buttonText:"Restart Now",
+		button2Text:"Later",
+		button1Click:() => {
+			mtdPrepareWindows();
+			require("electron").ipcRenderer.send("restartAndInstallUpdates")
+		}
+	});
 }
 
 function notifyOffline() {

@@ -1,7 +1,13 @@
+/*
+	twittercard.css
+
+	Copyright (c) 2014-2019 Dangered Wolf
+	Released under the MIT Licence
+*/
+
 @import "coredefinitions.css";
 @import "dark.css";
 
-/* fallback */
 @font-face {
 	font-family:Material;
 	font-style:normal;

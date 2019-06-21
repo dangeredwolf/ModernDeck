@@ -1,6 +1,6 @@
 {
 	"name": "ModernDeck",
-	"version": "7.3.0",
+	"version": "7.3.1",
 	"description": "TweetDeck, but more beautiful and fun than ever.",
 	"homepage": "https://github.com/dangeredwolf/ModernDeck",
 	"bugs": {
@@ -44,27 +44,27 @@
 			"publisher": "CN=FEC2801E-B19C-4051-A5E2-465F7B251519",
 			"publisherDisplayName": "dangeredwolf",
 			"identityName": "53434dangeredwolf.ModernDeck",
-			"artifactName": "ModernDeck7_${arch}.${ext}",
+			"artifactName": "ModernDeck_${arch}.${ext}",
 			"applicationId": "ModernDeck",
 			"backgroundColor": "#0078D7"
 		},
 		"nsis": {
 			"deleteAppDataOnUninstall": true,
-			"artifactName": "ModernDeck7_${arch}.${ext}",
-			"uninstallDisplayName": "ModernDeck 7",
+			"artifactName": "ModernDeck_${arch}.${ext}",
+			"uninstallDisplayName": "ModernDeck",
 			"differentialPackage": true
 		},
 		"nsisWeb": {
 			"deleteAppDataOnUninstall": true,
-			"artifactName": "ModernDeck7_${arch}.${ext}",
-			"uninstallDisplayName": "ModernDeck 7",
+			"artifactName": "ModernDeck_${arch}.${ext}",
+			"uninstallDisplayName": "ModernDeck",
 			"differentialPackage": true
 		},
 		"mac": {
 			"publish": [
 				"github"
 			],
-			"artifactName": "ModernDeck7.${ext}",
+			"artifactName": "ModernDeck.${ext}",
 			"minimumSystemVersion": "10.13.1",
 			"darkModeSupport": true,
 			"category": "public.app-category.social-networking"
@@ -72,7 +72,7 @@
 		"dmg": {
 			"icon": "build/dmg/dmg.png",
 			"background": "build/dmg/background.png",
-			"title": "ModernDeck 7"
+			"title": "ModernDeck"
 		},
 		"linux": {
 			"category": "Network",
@@ -80,7 +80,7 @@
 				"github"
 			],
 			"maintainer": "dangeredwolf",
-			"artifactName": "ModernDeck7_${arch}.${ext}",
+			"artifactName": "ModernDeck_${arch}.${ext}",
 			"target": [
 				{
 					"target": "AppImage",
@@ -110,7 +110,6 @@
 		"electron-packager": "^13.0.0",
 		"electron-store": "^3.3.0",
 		"electron-updater": "^4.0.6",
-		"esm": "^3.2.25",
 		"file-type": "^11.1.0",
 		"got": "^9.6.0",
 		"through2": "^3.0.1"

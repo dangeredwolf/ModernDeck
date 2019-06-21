@@ -1,3 +1,10 @@
+/*
+	gifpicker.css
+
+	Copyright (c) 2014-2019 Dangered Wolf
+	Released under the MIT Licence
+*/
+
 @keyframes mtdGifHeaderFixed {
 	0% {opacity:0;top:-80px}
 	100% {opacity:1;top:-40px}
