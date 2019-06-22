@@ -198,18 +198,18 @@ function makeLoginWindow(url,teams) {
 			return;
 		}
 
-		if (url.indexOf("https://twitter.com/?logout") >= 0) {
+		if (url.indexOf("twitter.com/logout") >= 0) {
 			mainWindow.reload();
 			loginWindow.close();
 			event.preventDefault();
 			return;
 		}
 
-		if (url.indexOf("https://twitter.com/logout") >= 0 || url.indexOf("https://twitter.com/login") >= 0 || teams) {
+		if (url.indexOf("twitter.com/logout") >= 0 || url.indexOf("twitter.com/login") >= 0 || teams) {
 			return;
 		}
 
-		if (url.indexOf("https://twitter.com/account") >= 0 || url.indexOf("https://twitter.com/signup") >= 0) {
+		if (url.indexOf("twitter.com/account") >= 0 || url.indexOf("twitter.com/signup") >= 0) {
 			shell.openExternal(url);
 			event.preventDefault();
 			return;
@@ -228,7 +228,7 @@ function makeLoginWindow(url,teams) {
 			return;
 		}
 
-		if (url.indexOf("https://twitter.com/logout") >= 0 || url.indexOf("https://twitter.com/login") >= 0) {
+		if (url.indexOf("twitter.com/logout") >= 0 || url.indexOf("twitter.com/login") >= 0) {
 			return;
 		}
 		loginWindow.loadURL(originalUrl);
@@ -604,7 +604,7 @@ function makeWindow() {
 		if (url.indexOf("https://tweetdeck.twitter.com") < 0) {
 			event.preventDefault();
 			console.log(url);
-			if (url.indexOf("https://twitter.com/login") >= 0 || url.indexOf("https://twitter.com/logout") >= 0) {
+			if (url.indexOf("twitter.com/login") >= 0 || url.indexOf("twitter.com/logout") >= 0) {
 				console.log("this is a login window! will-navigate");
 				event.newGuest = makeLoginWindow(url,false);
 			} else {

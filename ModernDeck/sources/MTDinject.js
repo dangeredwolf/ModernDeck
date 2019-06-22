@@ -9,7 +9,7 @@
 
 'use strict';
 
-const SystemVersion = "7.3.2";
+const SystemVersion = "7.3.3";
 const appendTextVersion = true;
 
 let mtdBaseURL = "https://raw.githubusercontent.com/dangeredwolf/ModernDeck/master/ModernDeck/";
