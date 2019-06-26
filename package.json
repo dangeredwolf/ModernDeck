@@ -116,7 +116,7 @@
 	},
 	"devDependencies": {
 		"devtron": "^1.4.0",
-		"electron": "^5.0.5",
+		"electron": "^5.0.6",
 		"electron-builder": "20.41.0",
 		"stylelint": "^10.1.0",
 		"stylelint-config-recommended": "^2.2.0"
