@@ -39,7 +39,7 @@ const store = new Store({name:"mtdsettings"});
 	https://github.com/electron/electron/issues/18161
 */
 
-const isAppX = !!process.windowsStore;
+const isAppX = true;
 
 const isMAS = !!process.mas;
 

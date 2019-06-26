@@ -21,7 +21,7 @@ let isLoadingMoreGifs = false;
 let loginIntervalTick = 0;
 
 const forceFeatureFlags = false;
-const forceAppX = false; // https://github.com/electron/electron/issues/18161
+const forceAppX = true; // https://github.com/electron/electron/issues/18161
 const useRaven = true;
 const debugWelcome = false;
 
