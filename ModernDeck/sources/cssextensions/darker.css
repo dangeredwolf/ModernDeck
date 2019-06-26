@@ -17,8 +17,8 @@
 	--redHover:#d43737;
 	--redActive:#7b0d0d;
 	--redDisabled:rgba(197,84,84,0.45);
-	--txtMuteLink:#4f606b;
-	--disabledColor:#324650;
+	--txtMuteLink:#627684;
+	--disabledColor:#3a515d;
 	--linkPressColor:rgba(0,0,0,.05);
 	--buttonPressColor:rgba(255,255,255,.1);
 	--scrollbarDefaultColor:rgba(149,175,191,.5);
@@ -28,7 +28,7 @@
 	--typeaheadColor:#DFDFDF;
 	--typeaheadBackgroundColor:#151b1f;
 	--primaryTextColor:#fff;
-	--placeholderTextColor:#46555f;
+	--placeholderTextColor:#566a77;
 	--selectionBackgroundColor:rgba(106,152,152,0.57);
 	--selectionTextColor:#666;
 	--tweetDetailWrapperColor:#25333c;
@@ -43,4 +43,12 @@
 ::selection
 {
 	background:var(--selectionBackgroundColor)
+}
+
+.js-reply-checkbox:not([disabled]):before {
+	color:var(--secondaryColorBright)!important
+}
+
+.js-reply-checkbox[disabled] {
+	opacity:0.8
 }

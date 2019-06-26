@@ -34,5 +34,5 @@ div.drawer[data-drawer="compose"],.hide-detail-view-inline .tweet-button:not(.js
 }
 
 .media-size-large-height::after,.media-item.media-size-large::after {
-	background-image:linear-gradient(var(--primaryColor),rgba(0,0,0,0));
+	background-image:linear-gradient(var(--navDrawerBackground),rgba(0,0,0,0))
 }

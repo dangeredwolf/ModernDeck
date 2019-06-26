@@ -1,7 +1,7 @@
 /*
 	moderndeck.css
 
-	ModernDeck 7.3.3 [codename Essence]
+	ModernDeck 7.3.4 [codename Essence]
 	Copyright 2014-2019 dangered wolf
 	Released under the MIT Licence
 
@@ -1234,7 +1234,7 @@ span[data-testid="trendMovement"] .icon-pointer-d:before,span[data-testid="trend
 }
 
 .icon-play-video:before,.Icon--play-video:before {
-	content:"\e039"
+	content:"\e037"
 }
 
 .icon-clear-input:before,.Icon--clear-input:before {
@@ -2251,7 +2251,7 @@ a .column-title-back .icon:after {
 
 .account-summary-text>a.account-link {
 	margin-left:6px;
-	margin-top:17px
+	margin-top:10px
 }
 
 .user-results .account-summary-text>a.account-link {
@@ -2270,7 +2270,7 @@ a .column-title-back .icon:after {
 
 .padding-axl.flex.flex-row.flex-align--center .account-summary-text>div>a.account-link {
 	margin-top:-1px;
-	margin-left:-3px
+	margin-left:0
 }
 
 .account-link,.account-link:hover,.account-link:active {
@@ -2376,15 +2376,19 @@ a .column-title-back .icon:after {
 	min-height:50px
 }
 
-.media-size-medium {
-	min-height:80px;
-	max-height:116px;
+.quoted-tweet .media-size-small {
+	margin-left:8px
+}
+
+.media-size-small {
+	width:50%;
+	height:90px;
+	margin-left:calc(var(--avatarSize) + 8px);
 	border-radius:2px
 }
 
-div.media-size-small {
-	width:50%;
-	max-height:77px;
+.media-size-medium {
+	height:130px;
 	border-radius:2px
 }
 
@@ -2395,7 +2399,7 @@ div.media-size-small {
 
 .media-size-large,.media-size-large-height {
 	max-height:360px;
-	min-height:150px
+	min-height:230px
 }
 
 .video-overlay {
@@ -2406,7 +2410,17 @@ div.media-size-small {
 	top:50%;
 	width:60px;
 	height:60px;
-	line-height:1
+	line-height:1;
+	color:var(--rootWhiteColor);
+	text-shadow:0 2px 9px rgba(0,0,0,0.6)
+}
+
+.video-overlay i {
+	font-size:64px
+}
+
+.video-overlay>.icon-bg-dot {
+	display:none
 }
 
 .media-thumb-container {
@@ -6716,8 +6730,7 @@ button.mtd-no-transform-case {
 }
 
 .activity-header+.account-summary .fullname {
-	padding-left:0;
-	margin-left:0
+	margin-bottom:8px
 }
 
 .list-account>:nth-child(2).nbfc {
@@ -7936,7 +7949,7 @@ li.padding-axl.flex.flex-row.flex-align--center .account-summary-text {
 }
 
 li.padding-axl.flex.flex-row.flex-align--center .account-summary-text>a.account-link {
-	margin-left:calc(var(--avatarSize) + 4px);
+	margin-left:calc(var(--avatarSize) + 10px);
 	margin-top:-13px
 }
 
@@ -8811,10 +8824,6 @@ span[data-testid="trendDescription"] {
 
 li.padding-axl.flex.flex-row.flex-align--center .fullname {
 	overflow:visible
-}
-
-.account-bio.txt-sub-antialiased.color-twitter-darker-gray.txt-size-variable--13.padding-t--5 {
-	margin-top:17px!important
 }
 
 .user-results .account-bio.txt-sub-antialiased.color-twitter-darker-gray.txt-size-variable--13.padding-t--5 {

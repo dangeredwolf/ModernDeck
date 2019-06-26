@@ -23,7 +23,7 @@
 	transition:all 0.25s var(--animationTiming)!important;
 	opacity:0;
 	animation:none!important;
-	margin-top:4px;
+	margin-top:22px;
 	margin-bottom:10px;
 	pointer-events:none!important
 }
