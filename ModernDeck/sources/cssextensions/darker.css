@@ -52,3 +52,7 @@
 .js-reply-checkbox[disabled] {
 	opacity:0.8
 }
+
+.column-header .txt-mute, .column-header-title>.attribution {
+	color:var(--scrollbarHoverColor)
+}
