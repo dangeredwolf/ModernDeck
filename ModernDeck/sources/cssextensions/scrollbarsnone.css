@@ -5,24 +5,8 @@
   Released under the MIT Licence
 */
 
-.mdl::-webkit-scrollbar,.keyboard-shortcut-list-modal::-webkit-scrollbar,.mdl.s-profile::-webkit-scrollbar,.scroll-styled-v::-webkit-scrollbar,.scroll-v::-webkit-scrollbar,.lst-launcher::-webkit-scrollbar,.mtd-nav-drawer::-webkit-scrollbar,.emoji-container>div::-webkit-scrollbar,.emoji-container::-webkit-scrollbar {
-	width:0;
-	pointer-events:none
-}
-
-.keyboard-shortcut-list-modal::-moz-scrollbar,.mdl.s-profile::-moz-scrollbar,.scroll-styled-v::-moz-scrollbar,.scroll-v::-moz-scrollbar,.lst-launcher::-moz-scrollbar,.mtd-nav-drawer::-moz-scrollbar,.emoji-container>div::-moz-scrollbar,.emoji-container::-moz-scrollbar {
-	width:0;
-	pointer-events:none
-}
-
-.scroll-styled-h::-webkit-scrollbar,.scroll-h::-webkit-scrollbar {
-	height:0;
-	pointer-events:none
-}
-
-.scroll-styled-h::-moz-scrollbar,.scroll-h::-moz-scrollbar {
-	height:0;
-	pointer-events:none
+:root {
+	--scrollbarWidth:0!important;
 }
 
 .needs-scroll-bottom-offset.scroll-styled-h {

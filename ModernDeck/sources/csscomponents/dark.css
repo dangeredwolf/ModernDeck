@@ -1,8 +1,8 @@
 /*
-  dark.css
+	dark.css
 
-  Copyright (c) 2014-2019 Dangered Wolf
-  Released under the MIT Licence
+	Copyright (c) 2014-2019 Dangered Wolf
+	Released under the MIT Licence
 */
 
 :root{
@@ -36,24 +36,13 @@
 	--backdropColor:#344248;
 	--modalWindowColor:#2E3B41;
 	--overlayBackgroundColor:rgba(88,100,107,.4);
-	--defaultShadowColor:rgba(41,41,41,.35);
+	--defaultShadowColor:rgba(41,41,41,.35)
 }
 
-a,
-a:not([href="#"]):not(.column-header-link):not(.js-column-back):not(.js-tweet-social-proof-back):not(.account-selector-grid-mode):not(.account-link):hover,
-.calweek a:hover,
-.btn:not([disabled]):not(.is-disabled):not(.btn-options-tray):not(.mtd-nav-button):not(.btn-bg-negative):not(.btn-negative),
-.compose-send-button-success,
-.icon-follow-color,
-.tweet-actions.is-visible .icon-reply,
-#caltoday,
-input[type="checkbox"]:checked:before,
-button,
-input[type="radio"]:checked:before,
-.mtd-logo
+a, a:not([href="#"]):not(.column-header-link):not(.js-column-back):not(.js-tweet-social-proof-back):not(.account-selector-grid-mode):not(.account-link):not(.dropdown-menu-url-item):hover, .calweek a:hover, .btn:not([disabled]):not(.is-disabled):not(.btn-options-tray):not(.mtd-nav-button):not(.btn-bg-negative):not(.btn-negative), .compose-send-button-success, .icon-follow-color, .tweet-actions.is-visible .icon-reply, #caltoday, input[type="checkbox"]:checked:before, button, input[type="radio"]:checked:before, .mtd-logo
 {
 	color:var(--secondaryColor);
-	transition:color .3s;
+	transition:color .3s
 }
 
 
@@ -69,6 +58,7 @@ a:not(.list-account):not(.js-column-back):not(.compose-account):not(.js-toggle-i
 .mtd-settings-option-slider input[type="range"]::-webkit-slider-thumb {
 	background:var(--secondaryColor)
 }
+
 .mtd-settings-option-slider input[type="range"]::-moz-range-thumb {
 	background:var(--secondaryColor)
 }
@@ -84,35 +74,12 @@ input,
 .account-bio,
 .link-complex.block[rel="user"]
 {
-	color: var(--bodyTextColor)!important;
+	color:var(--bodyTextColor)!important
 }
 
-.account-summary-text .fullname,
-.compose-reply-tweet .fullname,
-.compose-reply-tweet,
-.compose .typeahead-item strong.fullname,
-.list-item,
-.list-item.is-actionable.item-box.is-selected,
-.tooltip-inner,
-.Tooltip-inner,
-.list-account .fullname,
-option,
-.dropdown-menu li a,
-.dropdown-menu li a[data-action]:hover,
-.frm,
-.med-fullpanel,
-.media-sensitive,
-.account-summary-text .fullname,
-.prf-stats a strong,
-.js-item-launch a.btn:not([disabled]):not(.is-disabled),
-.js-item-launch a.Button:not([disabled]):not(.is-disabled),
-html,
-.media-sensitive-content p,
-.compose .typeahead-item strong.fullname,
-.account-remove-check-message,
-.media-sensitive-title
+.account-summary-text .fullname, .compose-reply-tweet .fullname, .compose-reply-tweet, .list-item, .list-item.is-actionable.item-box.is-selected, .tooltip-inner, .Tooltip-inner, .list-account .fullname, option, .dropdown-menu li a, .dropdown-menu li a[data-action]:hover,.dropdown-menu li a:hover, .frm, .med-fullpanel, .media-sensitive, .prf-stats a strong, .js-item-launch a.btn:not([disabled]):not(.is-disabled), .js-item-launch a.Button:not([disabled]):not(.is-disabled), html, .media-sensitive-content p, .compose .typeahead-item strong.fullname, .account-remove-check-message, .media-sensitive-title
 {
-  color:var(--bodyTextColor)
+	color:var(--bodyTextColor)
 }
 
 .dropdown-menu a[data-action]:active, .column, .column-scroller, .column-detail-level-2, .js-account-manager-container, .contributor-manager, .js-contributor-manager-container, .column-panel, .contributor-adder-block, .contributor-row, .DateRange
@@ -138,10 +105,12 @@ html,
 }
 
 .media-sensitive,
+.stream-item.is-actionable .quoted-tweet,
 .stream-item.is-actionable:not(.is-unread):hover,
+.stream-item.is-actionable:not(.is-unread).is-selected-tweet,
 .tweet-detail-wrapper
 {
-	background:var(--tweetDetailWrapperColor);
+	background:var(--tweetDetailWrapperColor)
 }
 
 div.drawer[data-drawer="compose"],
@@ -178,7 +147,7 @@ li:not(.selected) .list-twitter-list .txt-ellipsis, .list-twitter-list .subtitle
 	color:var(--placeholderTextColor)
 }
 
- .mtd-settings-tab:not(.mtd-settings-tab-selected),
+.mtd-settings-tab:not(.mtd-settings-tab-selected),
 input[type="checkbox"][disabled]:before
 {
 	color:var(--placeholderTextColor) !important
@@ -196,13 +165,12 @@ input::-moz-placeholder,textarea::-moz-placeholder {
 	color:var(--placeholderTextColor)
 }
 
-input::placeholder,textarea::placeholder,textarea::placeholder {
+input::placeholder,textarea::placeholder {
 	color:var(--placeholderTextColor)
 }
 
 .search-input,
 textarea:not(.compose-text):not(.js-compose-text),
-.search-input,
 .mtd-nav-button,
 .js-setting-list .selected strong,
 .lst-group.js-setting-list .selected,
@@ -213,7 +181,7 @@ textarea:not(.compose-text):not(.js-compose-text),
 .Notification-icon,
 .mtd-settings-tab
 {
-	color: var(--primaryTextColor)!important;
+	color:var(--primaryTextColor)!important
 }
 
 .is-new .column-message,
@@ -287,7 +255,7 @@ optgroup,
 .tweet-detail-action,
 .tweet-stats>li>a
 {
- color: var(--scrollbarDefaultColor)!important;
+	color:var(--scrollbarDefaultColor)!important
 }
 
 .tweet-action:active,
@@ -304,7 +272,7 @@ optgroup,
 .stream-item.is-actionable a.is-selected.tweet-detail-action,
 .tweet-stats>li>a:hover
 {
-	color: var(--scrollbarHoverColor)!important;
+	color:var(--scrollbarHoverColor)!important
 }
 
 .btn:active,
@@ -359,7 +327,7 @@ button.is-disabled:active,
 .Button.is-disabled,
 .Button.is-disabled:hover,
 .Button.is-disabled:focus,
-.Button.is-disabled:active
+.Button.is-disabled:active,
 .Button-primary[disabled],
 .Button-primary[disabled]:hover,
 .Button-primary[disabled]:active,
@@ -369,8 +337,8 @@ button.is-disabled:active,
 .Button-primary.is-disabled:active,
 .stroke-twitter-light-gray
 {
-	color: var(--disabledColor)!important;
-	transition:.2s all;
+	color:var(--disabledColor)!important;
+	transition:.2s all
 }
 
 ::-moz-selection
@@ -410,7 +378,7 @@ button.is-disabled:active,
 	color:var(--redDefault)!important
 }
 
-.btn-negative:not([disabled]):not(.is-disabled):hover
+.btn-negative:not([disabled]):not(.is-disabled):hover,
 .Button--danger:not([disabled]):not(.is-disabled):hover
 {
 	color:var(--redHover)!important
@@ -447,7 +415,7 @@ button.is-disabled:active,
 
 textarea
 {
-	border-color:var(--placeholderTextColor)
+	border:2px solid var(--placeholderTextColor)
 }
 
 .drp-h-divider
@@ -477,8 +445,8 @@ textarea
 #lists-modal .mdl-content::-webkit-scrollbar-thumb,
 .keyboard-shortcut-list-modal::-webkit-scrollbar-thumb
 {
-  border-radius:5px;
-  background:var(--scrollbarDefaultColor)
+	border-radius:var(--scrollbarWidth);
+	background:var(--scrollbarDefaultColor)
 }
 
 .mdl::-webkit-scrollbar-thumb:hover,
@@ -503,7 +471,7 @@ textarea
 .scroll-styled-h,
 #lists-modal .mdl-content,
 .keyboard-shortcut-list-modal {
-	scrollbar-color:var(--scrollbarDefaultColor) var(--backdropColor);
+	scrollbar-color:var(--scrollbarDefaultColor) var(--backdropColor)
 }
 
 .s-following .follow-btn:hover
@@ -576,13 +544,13 @@ textarea
 
 .add-participant input::-moz-placeholder
 {
-	 color:var(--placeholderTextColor);
-	 opacity:1
+	color:var(--placeholderTextColor);
+	opacity:1
 }
 
 .app-navigator .js-hide-drawer
 {
-	 box-shadow:0 -5px 10px var(--defaultShadowColor)
+	box-shadow:0 -5px 10px var(--defaultShadowColor)
 }
 
 html.mtd-acc-focus-ring a:focus,
@@ -610,20 +578,15 @@ select,
 	border-bottom:2px solid var(--disabledColor)
 }
 
-
-textarea {
-	border:2px solid var(--disabledColor)
-}
-
 .search-input
 {
-	border-bottom: 2px solid var(--disabledColor);
+	border-bottom:2px solid var(--disabledColor)
 }
 
 .mdl-column.l-column .search-input
 {
 	background:var(--tweetDetailWrapperColor);
-  	color:var(--primaryTextColor);
+	color:var(--primaryTextColor)
 }
 
 .recent-search-clear.is-actionable.list-item-last
@@ -647,7 +610,7 @@ textarea {
 
 .prf-header
 {
-	background-color:var(--primaryColor) /* IMPORTANT: This needs to be background colour because background image is SOMETIMES laid over it */
+	background-color:var(--primaryColor) /* IMPORTANT; This needs to be background colour because background image is SOMETIMES laid over it */
 }
 
 .prf-follow-status
@@ -667,7 +630,7 @@ textarea {
 .login-container .btn-positive,
 .PollXChoice-vote--button
 {
-	background: var(--secondaryColor)!important;
+	background:var(--secondaryColor)!important
 }
 
 .btn-login[type="submit"]:active,
@@ -714,19 +677,19 @@ textarea {
 	color:var(--primaryTextColor)
 }
 
-button[type="submit"],.mtd-settings-button {
+button[type="submit"],.mtd-settings-button,.btn-primary,.Button--primary:not(.tweet-button):not(.action-text):not(.more-tweets-btn):not(.js-add-column):not(.js-spinner-button) {
 	background:var(--secondaryColor)
 }
 
-button[type="submit"]:hover,.mtd-settings-button:hover {
+button[type="submit"]:hover,.mtd-settings-button:hover,.btn-primary:hover,.Button--primary:not(.tweet-button):not(.action-text):not(.more-tweets-btn):not(.js-add-column):not(.js-spinner-button):hover {
 	background:var(--secondaryColorBright)
 }
 
-button[type="submit"]:active,button[type="submit"]:focus,.mtd-settings-button:focus {
-	background:var(--secondaryColorBright)
+button[type="submit"]:active,button[type="submit"]:focus,.mtd-settings-button:focus,.btn-primary:focus,.Button--primary:not(.tweet-button):not(.action-text):not(.more-tweets-btn):not(.js-add-column):not(.js-spinner-button):focus,.btn-primary:active,.Button--primary:not(.tweet-button):not(.action-text):not(.more-tweets-btn):not(.js-add-column):not(.js-spinner-button):active {
+	background:var(--secondaryColorBright)!important
 }
 
-.mtd-settings-button,.js-character-count:not(.color-twitter-red), .lst-group .selected, .lst-launcher a:not(.is-disabled), .lst-launcher a:not(.is-disabled):hover, .character-count, .character-count-compose, .lst-launcher a:not(.is-disabled):focus, .lst-launcher a:not(.is-disabled):active, .lst-launcher li:not(.is-disabled) span, .calweek a:not(.caloff), .mtd-settings-tab
+.btn-primary,.Button--primary:not(.tweet-button):not(.action-text):not(.more-tweets-btn):not(.js-add-column):not(.js-spinner-button),.mtd-settings-button,.js-character-count:not(.color-twitter-red), .lst-group .selected, .lst-launcher a:not(.is-disabled), .lst-launcher a:not(.is-disabled):hover, .character-count, .character-count-compose, .lst-launcher a:not(.is-disabled):focus, .lst-launcher a:not(.is-disabled):active, .lst-launcher li:not(.is-disabled) span, .calweek a:not(.caloff), .mtd-settings-tab
 {
 	color:var(--primaryTextColor)!important
 }
@@ -736,19 +699,19 @@ button[type="submit"]:active,button[type="submit"]:focus,.mtd-settings-button:fo
 }
 
 .sentry-error-embed .form-submit .powered-by a {
-  filter:brightness(1000%)
+	filter:brightness(1000%)
 }
 
 .sprite-verified-mini:before,.sprite-verified:before {
-    color:inherit!important
+	color:inherit!important
 }
 
 .Notification-inner {
-	background:var(--secondaryColor);
+	background:var(--secondaryColor)
 }
 
 .account-settings-bb a[rel="user"] {
-	color:var(--primaryTextColor);
+	color:var(--primaryTextColor)
 }
 
 
@@ -759,6 +722,7 @@ button[type="submit"]:active,button[type="submit"]:focus,.mtd-settings-button:fo
 .stroke-twitter-blue {
 	stroke:var(--secondaryColor)
 }
+
 .stroke-twitter-red {
 	stroke:var(--redDefault)
 }

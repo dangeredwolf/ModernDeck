@@ -1,31 +1,51 @@
+/*
+	main.js
+	Copyright (c) 2019 dangeredwolf
+	Released under the MIT licence
+
+	made with love <3
+
+*/
+
 const electron = require("electron");
-const { app, BrowserWindow, ipcMain, session, systemPreferences, Menu, dialog, protocol } = require('electron');
 
-const isDev = true;
+const {
+	app,
+	BrowserWindow,
+	ipcMain,
+	session,
+	systemPreferences,
+	Menu,
+	dialog,
+	protocol
+}		= require("electron");
 
-const imageType = require('file-type');
-const fs = require('fs');
-const path = require('path');
-const url = require('url');
-const util = require('util');
-const through2 = require('through2');
+const imageType = require("file-type");
+const fs = require("fs");
+const path = require("path");
+const url = require("url");
+const util = require("util");
+const through2 = require("through2");
 
-const log = require('electron-log');
+const log = require("electron-log");
 
-const { autoUpdater } = require('electron-updater');
+const { autoUpdater } = require("electron-updater");
 
-const Store = require('electron-store');
+const Store = require("electron-store");
 const store = new Store({name:"mtdsettings"});
 
-const devBuildExpiration = {year:2019,month:5,day:4}
-// months start at 0 for whatever reason, so number is essentially added by 1
-const devBuildExpirationActive = false;
+/*
+	Note: Due to a bug in electron, process.windowsStore is undefined even for AppX distributions
+	https://github.com/electron/electron/issues/18161
+*/
+
+const isAppX = !!process.windowsStore;
+
+const isMAS = !!process.mas;
+
+const isDev = false;
 
 let mainWindow;
-
-let updating = false;
-let installLater = false;
-let showWarning = false;
 
 let isRestarting = false;
 
@@ -37,10 +57,8 @@ autoUpdater.setFeedURL({
 	"provider": "github"
 });
 
-autoUpdater.logger = require("electron-log");
+autoUpdater.logger = log;
 autoUpdater.logger.transports.file.level = "info";
-
-let checkDevDate = new Date();
 
 app.setAppUserModelId("com.dangeredwolf.ModernDeck");
 
@@ -56,86 +74,86 @@ const mtdSchemeHandler = async (request, callback) => {
 const template = [
 	{
 		label: "ModernDeck",
-		role: 'appMenu',
+		role: "appMenu",
 		submenu: [
-			{ label: 'About ModernDeck...', click(){ if (!mainWindow){return;}mainWindow.send("aboutMenu"); } },
-			{ type: 'separator' },
-			{ label: 'Preferences...', click(){ if (!mainWindow){return;}mainWindow.send("openSettings"); } },
-			{ label: 'Accounts...', click(){ if (!mainWindow){return;}mainWindow.send("accountsMan"); } },
-			{ type: 'separator' },
-			{ role: 'services' },
-			{ type: 'separator' },
-			{ role: 'hide' },
-			{ role: 'hideothers' },
-			{ role: 'unhide' },
-			{ type: 'separator' },
-			{ role: 'quit' }
+			{ label: "About ModernDeck...", click(){ if (!mainWindow){return;}mainWindow.send("aboutMenu"); } },
+			{ type: "separator" },
+			{ label: "Preferences...", click(){ if (!mainWindow){return;}mainWindow.send("openSettings"); } },
+			{ label: "Accounts...", click(){ if (!mainWindow){return;}mainWindow.send("accountsMan"); } },
+			{ type: "separator" },
+			{ role: "services" },
+			{ type: "separator" },
+			{ role: "hide" },
+			{ role: "hideothers" },
+			{ role: "unhide" },
+			{ type: "separator" },
+			{ role: "quit" }
 		]
 	},
 	{
-		label: 'File',
-		role: 'fileMenu',
+		label: "File",
+		role: "fileMenu",
 		submenu: [
-			{ label: 'New Tweet...', click(){ if (!mainWindow){return;}mainWindow.send("newTweet"); } },
-			{ label: 'New Direct Message...', click(){ if (!mainWindow){return;}mainWindow.send("newDM"); } },
-			{ type: 'separator' },
-			{ role: 'close' }
+			{ label: "New Tweet...", click(){ if (!mainWindow){return;}mainWindow.send("newTweet"); } },
+			{ label: "New Direct Message...", click(){ if (!mainWindow){return;}mainWindow.send("newDM"); } },
+			{ type: "separator" },
+			{ role: "close" }
 		]
 	},
 	{
-		label: 'Edit',
-		role: 'editMenu',
+		label: "Edit",
+		role: "editMenu",
 		submenu: [
-			{ role: 'undo' },
-			{ role: 'redo' },
-			{ type: 'separator' },
-			{ role: 'cut' },
-			{ role: 'copy' },
-			{ role: 'paste' },
-			{ role: 'delete' },
-			{ role: 'selectAll' },
-			{ type: 'separator' },
+			{ role: "undo" },
+			{ role: "redo" },
+			{ type: "separator" },
+			{ role: "cut" },
+			{ role: "copy" },
+			{ role: "paste" },
+			{ role: "delete" },
+			{ role: "selectAll" },
+			{ type: "separator" },
 			{
-				label: 'Speech',
+				label: "Speech",
 				submenu: [
-					{ role: 'startspeaking' },
-					{ role: 'stopspeaking' }
+					{ role: "startspeaking" },
+					{ role: "stopspeaking" }
 				]
 			}
 		]
 	},
 	{
-		label: 'View',
-		role: 'viewMenu',
+		label: "View",
+		role: "viewMenu",
 		submenu: [
-			{ role: 'reload' },
-			{ role: 'forcereload' },
-			{ type: 'separator' },
-			{ role: 'resetzoom' },
-			{ role: 'zoomin' },
-			{ role: 'zoomout' },
-			{ role: 'toggledevtools' },
-			{ type: 'separator' },
-			{ role: 'togglefullscreen' }
+			{ role: "reload" },
+			{ role: "forcereload" },
+			{ type: "separator" },
+			{ role: "resetzoom" },
+			{ role: "zoomin" },
+			{ role: "zoomout" },
+			{ role: "toggledevtools" },
+			{ type: "separator" },
+			{ role: "togglefullscreen" }
 		]
 	},
 	{
-		label: 'Window',
-		role: 'windowMenu',
+		label: "Window",
+		role: "windowMenu",
 		submenu: [
-			{ role: 'minimize' },
-			{ role: 'zoom' },
-			{ type: 'separator' },
-			{ role: 'front' },
-			{ type: 'separator' },
-			{ role: 'window' }
+			{ role: "minimize" },
+			{ role: "zoom" },
+			{ type: "separator" },
+			{ role: "front" },
+			{ type: "separator" },
+			{ role: "window" }
 		]
 	},
 	{
-		role: 'help',
+		role: "help",
 		submenu: [
-			{ label: 'Send Feedback', click(){ if (!mainWindow){return;}mainWindow.send("sendFeedback");}},
-			{ label: 'Message @ModernDeck', click(){ if (!mainWindow){electron.shell.openExternal("https://twitter.com/messages/compose?recipient_id=2927859037");return;}mainWindow.send("msgModernDeck"); } },
+			{ label: "Send Feedback", click(){ if (!mainWindow){return;}mainWindow.send("sendFeedback");}},
+			{ label: "Message @ModernDeck", click(){ if (!mainWindow){electron.shell.openExternal("https://twitter.com/messages/compose?recipient_id=2927859037");return;}mainWindow.send("msgModernDeck"); } },
 		]
 	}
 ]
@@ -162,13 +180,15 @@ function makeLoginWindow(url,teams) {
 		icon:__dirname+"ModernDeck/sources/favicon.ico",
 	});
 
-	loginWindow.on('closed', function() {
+	loginWindow.on('closed', () => {
 		loginWindow = null;
 	});
 
-	loginWindow.webContents.on("will-navigate", function(event, url) {
+	loginWindow.webContents.on("will-navigate", (event, url) => {
+
 		console.log(url);
 		const { shell } = electron;
+
 		if (url.indexOf("https://tweetdeck.twitter.com") >= 0 && !teams) {
 			if (url.indexOf("https://tweetdeck.twitter.com/web/success.html") < 0) {
 				mainWindow.loadURL(url);
@@ -177,16 +197,19 @@ function makeLoginWindow(url,teams) {
 			event.preventDefault();
 			return;
 		}
-		if (url.indexOf("https://twitter.com/?logout") >= 0) {
+
+		if (url.indexOf("twitter.com/logout") >= 0) {
 			mainWindow.reload();
 			loginWindow.close();
 			event.preventDefault();
 			return;
 		}
-		if (url.indexOf("https://twitter.com/logout") >= 0 || url.indexOf("https://twitter.com/login") >= 0 || teams) {
+
+		if (url.indexOf("twitter.com/logout") >= 0 || url.indexOf("twitter.com/login") >= 0 || teams) {
 			return;
 		}
-		if (url.indexOf("https://twitter.com/account") >= 0 || url.indexOf("https://twitter.com/signup") >= 0) {
+
+		if (url.indexOf("twitter.com/account") >= 0 || url.indexOf("twitter.com/signup") >= 0) {
 			shell.openExternal(url);
 			event.preventDefault();
 			return;
@@ -195,18 +218,25 @@ function makeLoginWindow(url,teams) {
 		event.preventDefault();
 	});
 
-	loginWindow.webContents.on("did-navigate-in-page", function(event, url) {
+	loginWindow.webContents.on("did-navigate-in-page", (event, url) => {
 		console.log(url);
+
 		if (url.indexOf("https://tweetdeck.twitter.com") >= 0) {
 			mainWindow.loadURL(url);
 			loginWindow.close();
 			event.preventDefault();
 			return;
 		}
-		if (url.indexOf("https://twitter.com/logout") >= 0 || url.indexOf("https://twitter.com/login") >= 0) {
+
+		if (url.indexOf("twitter.com/logout") >= 0 || url.indexOf("twitter.com/login") >= 0) {
 			return;
 		}
 		loginWindow.loadURL(originalUrl);
+	});
+
+	loginWindow.webContents.on("new-window", (event, url) => {
+		const {shell} = electron;
+		shell.openExternal(url);
 	});
 
 	loginWindow.loadURL(url);
@@ -218,11 +248,11 @@ function makeLoginWindow(url,teams) {
 
 function saveImageAs(url) {
 	if (!url) {
-		throw "hey man where the URL at";
+		throw "saveImageAs requires \"URL\" as an argument";
 		return;
 	}
 
-	function pipePromise(source, outputPath) {
+	const pipePromise = (source, outputPath) => {
 		if (!outputPath) {
 			return Promise.resolve();
 		}
@@ -230,19 +260,19 @@ function saveImageAs(url) {
 		const stream = source.pipe(fs.createWriteStream(outputPath));
 
 		return new Promise((resolve, reject) => {
-			stream.on('finish', resolve);
-			stream.on('error', reject);
+			stream.on("finish", resolve);
+			stream.on("error", reject);
 		});
 	};
 
-	let path = url.match(/(([A-z_\-])+\w+\.[A-z]+)/g);
+	let path = url.match(/(([A-z0-9_\-])+\w+\.[A-z0-9]+)/g);
 	path = path[1];
 
-	function getOutputPath(ext) {
+	const getOutputPath = (ext) => {
 		return dialog.showSaveDialog({ defaultPath: path });
 	};
 
-	const got = require('got');
+	const got = require("got");
 
 	const promise = new Promise(resolve => {
 		let resolved;
@@ -265,9 +295,10 @@ function saveImageAs(url) {
 
 };
 
+// we should make use of this soon
 
 function saveWindowBounds() {
-	var bounds = mainWindow.getBounds();
+	let bounds = mainWindow.getBounds();
 
 	store.set("fullscreen", mainWindow.isFullScreen());
 	store.set("maximised", mainWindow.isMaximized());
@@ -278,7 +309,7 @@ function saveWindowBounds() {
 		y: bounds.y,
 		width: bounds.width,
 		height: bounds.height
-		});
+	});
 
 	store.set("usedDisplay", matchedDisplay.id);
 }
@@ -286,14 +317,23 @@ function saveWindowBounds() {
 
 function makeWindow() {
 
-
-	var display = {};
-
+	let display = {};
 
 	if (!store.has("mtd_nativetitlebar")) {
 		store.set("mtd_nativetitlebar",false);
 	}
 
+	let devTron;
+
+	try {
+		devTron = require("devtron");
+	} catch (e) {
+		// ¯\_(ツ)_/¯
+	} finally {
+		if (devTron) {
+			devTron.install();
+		}
+	}
 
 	protocol.registerFileProtocol("moderndeck", mtdSchemeHandler);
 
@@ -307,6 +347,9 @@ function makeWindow() {
 	}
 
 	if (store.has("mtd_updatechannel")) {
+		if (store.get("mtd_updatechannel") === "beta") {
+			autoUpdater.allowPrerelease = true;
+		}
 		autoUpdater.channel = store.get("mtd_updatechannel");
 	}
 
@@ -325,35 +368,12 @@ function makeWindow() {
 		minWidth:400,
 		show:false,
 		enableRemoteModule:true,
-		backgroundColor:'#263238'
+		backgroundColor:"#263238"
 	});
 
-	if (devBuildExpirationActive) {
-		console.log("\n");
-		console.log("Expiration date: "+devBuildExpiration.year + "/" + (devBuildExpiration.month<9?"0"+(devBuildExpiration.month+1) : devBuildExpiration.month+1) + "/" + devBuildExpiration.day);
-		console.log("Today's date: "+checkDevDate.getFullYear() + "/" + (checkDevDate.getMonth()<9?"0"+(checkDevDate.getMonth()+1) : checkDevDate.getMonth()+1) + "/" + checkDevDate.getDate())
+	// macOS specific: Don't run from DMG, move to Applications folder.
 
-		if ((!!devBuildExpiration.year && (!!devBuildExpiration.month || devBuildExpiration.month === 0) && !!devBuildExpiration.day) &&
-			checkDevDate.getFullYear() > devBuildExpiration.year ||
-			(checkDevDate.getMonth() > devBuildExpiration.month && checkDevDate.getFullYear() === devBuildExpiration.year) ||
-			(checkDevDate.getDate() >= devBuildExpiration.day && checkDevDate.getMonth() === devBuildExpiration.month && checkDevDate.getFullYear() === devBuildExpiration.year)) {
-			dialog.showMessageBox(mainWindow,{
-				title:"ModernDeck",
-				message:"This development build of ModernDeck has expired. It expired on " + devBuildExpiration.year + "/" + (devBuildExpiration.month<9?"0"+(devBuildExpiration.month+1) : devBuildExpiration.month+1) + "/" + devBuildExpiration.day + ".\n\nPlease uninstall this version of ModernDeck from Programs and Features.",
-				type:"error",
-				buttons:["Upgrade to latest test build","Close"]
-			},function(response){
-				const { shell } = electron;
-				if (response === 0) {
-					shell.openExternal("https://github.com/dangeredwolf/ModernDeck/releases");
-				}
-				app.quit();
-			});
-			return;
-		}
-	}
-
-	if (process.platform === "darwin" && !app.isInApplicationsFolder()) {
+	if (process.platform === "darwin" && !app.isInApplicationsFolder() && !isDev) {
 		const { dialog } = electron;
 
 		dialog.showMessageBox({
@@ -361,9 +381,9 @@ function makeWindow() {
 			title: "ModernDeck",
 			message: "Updates might not work correctly if you don't run ModernDeck from the Applications folder. Would you like to move it there?",
 			buttons: ["Not now", "Yes, move it"]
-		}, function(response) {
+		}, (response) => {
 			if (response == 1) {
-				var moveMe = app.moveToApplicationsFolder();
+				let moveMe = app.moveToApplicationsFolder();
 				if (!moveMe){
 					dialog.showMessageBox({
 						type: "error",
@@ -377,19 +397,23 @@ function makeWindow() {
 
 	}
 
-	mainWindow.on('page-title-updated', function(event,url) {
+	// Prevent changing the Page Title
+
+	mainWindow.on("page-title-updated", (event,url) => {
 		event.preventDefault();
 	})
 
 	mainWindow.show();
 
+	// Here, we add platform-specific tags to html, to help moderndeck CSS know what to do
+
 	mtdAppTag += 'document.querySelector("html").classList.add("mtd-js-app");\n';
 
-	if (!!process.windowsStore) {
+	if (isAppX) {
 		mtdAppTag += 'document.querySelector("html").classList.add("mtd-winstore");\n';
 	}
 
-	if (!!process.mas) {
+	if (isMAS) {
 		mtdAppTag += 'document.querySelector("html").classList.add("mtd-macappstore");\n';
 	}
 
@@ -407,7 +431,7 @@ function makeWindow() {
 		}
 	}
 
-	mainWindow.webContents.on('dom-ready', function(event, url) {
+	mainWindow.webContents.on('dom-ready', (event, url) => {
 		mainWindow.webContents.executeJavaScript(
 			mtdAppTag + '\
 			var injurl = document.createElement("div");\
@@ -433,15 +457,24 @@ function makeWindow() {
 	});
 
 	mainWindow.webContents.on('did-fail-load', (event, code, desc) => {
-		var msg = "ModernDeck failed to start.\n\n";
+		let msg = "ModernDeck failed to start.\n\n";
 
 		console.log(desc);
+
+		// These codes aren't necessarily fatal errors, so we ignore them instead of forcing the user to shut down ModernDeck.
 
 		if (code === -3 || code === -11 || code === -2 || code === -1) {
 			return;
 		}
 
-		var addChromiumErrorCode = false;
+		/*
+			This variable is used to display the chromium error code.
+
+			This isn't necessary for obvious errors, such as ERR_INTERNET_DISCONNECTED,
+			so we don't bother showing it in such cases.
+		*/
+
+		let addChromiumErrorCode = false;
 
 		if (code === -13 || code === -12) {
 			msg += "Your PC ran out of memory trying to start ModernDeck. Try closing some programs or restarting your PC and trying again."
@@ -449,14 +482,23 @@ function makeWindow() {
 			msg += "We can't connect to Twitter due to a DNS error.\nPlease check your internet connection.";
 			addChromiumErrorCode = true;
 		} else if (code === -106) {
-			msg += "You are disconnected from the Internet. ModernDeck requires an internet connection to start.";
+			msg += "You are disconnected from the Internet. ModernDeck requires an internet connection.";
 		} else if (code === -201) {
 			msg += "Please check that your PC's date and time are set correctly. Twitter presented us with a security certificate that either expired or not yet valid.\nIf your date and time are correct, check https://api.twitterstat.us to see if there are any problems at Twitter."
 		} else if (code === -130 || code === -131 || code === -111 || code === -127 || code === -115 || code === -336) {
-			msg += "We can't connect to your internet connection's proxy server.\n\nIf you don't need to connect to a proxy server, you can take the following steps on Windows:\n1. Press Windows Key + R to open the Run dialog.\n2. Enter inetcpl.cpl\n3. Go to the Connections tab\n4. Click the LAN settings button near the bottom\n5. Uncheck \"Use a proxy server for your LAN\""
+			msg += "We can't connect to your internet connection's proxy server."
+
+			if (process.platform === "win32") {
+				msg += "\n\nIf you don't need to connect to a proxy server, you can take the following steps on Windows:\n1. Press Windows Key + R to open the Run dialog.\n2. Enter inetcpl.cpl\n3. Go to the Connections tab\n4. Click the LAN settings button near the bottom\n5. Uncheck \"Use a proxy server for your LAN\""
+			}
+
 			addChromiumErrorCode = true;
 		} else if (code === -22) {
-			msg += "Your domain administrator has blocked access to tweetdeck.twitter.com.\nIf your device is owned by an organization, you might need to ask a network administrator to unblock it.\nIf you are not logged in as part of a domain, you may need to configure your Local Group Policy settings."
+			msg += "Your domain administrator has blocked access to tweetdeck.twitter.com.\nIf your device is owned by an organization, you might need to ask an administrator to unblock it."
+
+			if (process.platform === "win32") {
+				msg += "\nIf you are not logged in as part of a domain, you may need to configure your Local Group Policy settings."
+			}
 		} else if (code === -7 || code === -118) {
 			msg += "We can't connect to Twitter because the request timed out.\nPlease check your internet connection.\nIf it still doesn't work, check https://api.twitterstat.us to see if there are any problems at Twitter."
 		} else if (code === -29 || code === -107 || (code <= -110 && code >= -117) || code === -123 || (code <= -125 && code >= -129) || code === -134 || code === -135 || code === -141 || (code <= -148 && code >= -153) || code === -156 || code === -159 || code === -164 || code === -167 || code === -172 || code === -175 || (code <= -177 && code >= -181) || (code <= -501 && code >= -504)) {
@@ -491,33 +533,42 @@ function makeWindow() {
 
 
 		console.log(code);
+
 		dialog.showMessageBox(mainWindow,{
 			title:"ModernDeck",
 			message:msg,
 			type:"error",
 			buttons:["Retry","Close"]
-		},function(response){
-			if (response === 0) {
+		}, (response) => {
+			if (response === 0) { // Retry
 				mainWindow.reload();
-			} else if (response === 1) {
+			} else if (response === 1) { // Close
 				mainWindow.close();
 			}
 		});
 		return;
 	});
 
+	/*
+		We need to replace the content security policy in order to load any third-party content, including JS, CSS, fonts
+	*/
+
 	mainWindow.webContents.session.webRequest.onHeadersReceived(
 		{urls:["https://tweetdeck.twitter.com/*","https://twitter.com/i/cards/*"]},
-		function(details, callback) {
-			var foo = details.responseHeaders;
+		(details, callback) => {
+			let foo = details.responseHeaders;
 			foo["content-security-policy"] =[
-				"default-src 'self'; connect-src * moderndeck:; font-src https: data: * moderndeck:; frame-src https: moderndeck:; frame-ancestors 'self' https: moderndeck:; img-src https: data: moderndeck:; media-src * moderndeck:; object-src 'self' https:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://c6.patreon.com https://sentry.io https://cdn.jsdelivr.net https://ajax.googleapis.com moderndeck: https://cdn.ravenjs.com/ https://*.twitter.com https://*.twimg.com https://api-ssl.bitly.com; style-src 'self' 'unsafe-inline' 'unsafe-eval' https: moderndeck:;"];
+				"default-src 'self'; connect-src * moderndeck:; font-src https: blob: data: * moderndeck:; frame-src https: moderndeck:; frame-ancestors 'self' https: moderndeck:; img-src https: data: moderndeck:; media-src * moderndeck: blob: https:; object-src 'self' https:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://c6.patreon.com https://sentry.io https://cdn.jsdelivr.net https://ajax.googleapis.com moderndeck: https://cdn.ravenjs.com/ https://*.twitter.com https://*.twimg.com https://api-ssl.bitly.com blob:; style-src 'self' 'unsafe-inline' 'unsafe-eval' https: moderndeck: blob:;"];
 			callback({ responseHeaders: foo});
 		}
 	);
 
+	/*
+		Block original tweetdeck css bundle, just in case. Plus, it saves bandwidth.
+		We also replace twitter card CSS to make those look pretty
+	*/
 
-	mainWindow.webContents.session.webRequest.onBeforeRequest({urls:["https://ton.twimg.com/*"]},function(details,callback) {
+	mainWindow.webContents.session.webRequest.onBeforeRequest({urls:["https://ton.twimg.com/*"]}, (details,callback) => {
 
 		if (details.url.indexOf(".css") > -1 && (details.url.indexOf("bundle") > -1 && details.url.indexOf("dist") > -1)) {
 			callback({cancel:true});
@@ -525,20 +576,36 @@ function makeWindow() {
 		}
 
 		if (details.url.indexOf(".css") > -1 && details.url.indexOf("tfw") > -1 && details.url.indexOf("css") > -1 && details.url.indexOf("tweetdeck_bundle") > -1) {
-			callback({redirectURL:"moderndeck://sources/cssextensions/twittercard.css"});
+			callback({redirectURL:"moderndeck://sources/csscomponents/twittercard.css"});
 			return;
 		}
 
 		callback({cancel:false});
 	});
+
+	// this is pretty self-explanatory
 	mainWindow.loadURL("https://tweetdeck.twitter.com");
 
-	mainWindow.webContents.on("will-navigate", function(event, url) {
+
+	/*
+
+		Web content requests to navigate away from page.
+
+		If this is not a TweetDeck URL, we will instead pass
+		it on to the browser, unless...
+
+		...if it is a Twitter URL, we pop it up in a login Window.
+
+	*/
+
+	mainWindow.webContents.on("will-navigate", (event, url) => {
 		const { shell } = electron;
+		console.log(url);
 		if (url.indexOf("https://tweetdeck.twitter.com") < 0) {
 			event.preventDefault();
 			console.log(url);
-			if (url.indexOf("https://twitter.com/login") >= 0 || url.indexOf("https://twitter.com/logout") >= 0) {
+			if (url.indexOf("twitter.com/login") >= 0 || url.indexOf("twitter.com/logout") >= 0) {
+				console.log("this is a login window! will-navigate");
 				event.newGuest = makeLoginWindow(url,false);
 			} else {
 				shell.openExternal(url);
@@ -546,12 +613,27 @@ function makeWindow() {
 		}
 	});
 
-	mainWindow.webContents.on("new-window", function(event, url) {
+	/*
+
+		Web content requests to open a new window.
+
+		This is redirected in browser if it is not a TweetDeck URL.
+
+		If it is a Twitter URL, we pop it up in a login Window.
+
+	*/
+
+	mainWindow.webContents.on("new-window", (event, url) => {
 		const { shell } = electron;
 		event.preventDefault();
+		console.log(url);
 
 		if (url.indexOf("https://twitter.com/teams/authorize") >= 0) {
-			event.newGuest =makeLoginWindow(url,true);
+			console.log("this is a login teams window! new-window");
+			event.newGuest = makeLoginWindow(url,true);
+		} else if (url.indexOf("https://twitter.com/login") >= 0 || url.indexOf("https://twitter.com/logout") >= 0) {
+			console.log("this is a login non-teams window! new-window");
+			event.newGuest = makeLoginWindow(url,false);
 		} else {
 			shell.openExternal(url);
 		}
@@ -560,66 +642,112 @@ function makeWindow() {
 
 	});
 
-	mainWindow.webContents.on("context-menu", function(event, params) {
+	// i actually forget why this is here
+
+	mainWindow.webContents.on("context-menu", (event, params) => {
 		mainWindow.send("context-menu", params);
 	});
-	ipcMain.on("nativeContextMenu",function(event,params){
+
+	/*
+		If a user uses native context menus, this is mtdInject telling us
+		to put up a native context menu with the given commands, instead
+		of it doing it itself.
+	*/
+
+	ipcMain.on("nativeContextMenu", (event, params) => {
 		console.log(params);
-		let newMenu = 	Menu.buildFromTemplate(params);
+		let newMenu = Menu.buildFromTemplate(params);
 		console.log(newMenu);
-	newMenu.popup();
+		newMenu.popup();
 	});
-	ipcMain.on("copy",function(event){
+
+	ipcMain.on("maximizeButton", (event) => {
+		let window = BrowserWindow.getFocusedWindow();
+
+		if (window.isMaximized()) {
+			window.unmaximize();
+		} else {
+			window.maximize();
+		}
+	});
+
+	ipcMain.on("minimize", (event) => {
+		BrowserWindow.getFocusedWindow().minimize();
+	});
+
+	/*
+		The options below are for right click menu actions
+	*/
+
+	ipcMain.on("copy", (event) => {
 		mainWindow.webContents.copy();
 	});
-	ipcMain.on("cut",function(event){
+
+	ipcMain.on("cut", (event) => {
 		mainWindow.webContents.cut();
 	});
-	ipcMain.on("paste",function(event){
+
+	ipcMain.on("paste", (event) => {
 		mainWindow.webContents.paste();
 	});
-	ipcMain.on("delete",function(event){
+
+	ipcMain.on("delete", (event) => {
 		mainWindow.webContents.delete();
 	});
-	ipcMain.on("selectAll",function(event){
+
+	ipcMain.on("selectAll", (event) => {
 		mainWindow.webContents.selectAll();
 	});
-	ipcMain.on("undo",function(event){
+
+	ipcMain.on("undo", (event) => {
 		mainWindow.webContents.undo();
 	});
-	ipcMain.on("redo",function(event){
+
+	ipcMain.on("redo", (event) => {
 		mainWindow.webContents.redo();
 	});
-	ipcMain.on("copyImage",function(event,arg){
+
+	ipcMain.on("copyImage", (event,arg) => {
 		mainWindow.webContents.copyImageAt(arg.x,arg.y);
 	});
-	ipcMain.on("saveImage",function(event,arg){
+
+	ipcMain.on("saveImage", (event,arg) => {
 		saveImageAs(arg);
 	});
-	ipcMain.on("inspectElement",function(event,arg){
+
+	ipcMain.on("inspectElement", (event,arg) => {
 		mainWindow.webContents.inspectElement(arg.x,arg.y);
 	});
-	ipcMain.on("restartApp",function(event,arg){
-		setTimeout(function(){
+
+	// mtdInject initiated app restart
+
+	ipcMain.on("restartApp", (event,arg) => {
+		setTimeout(() => {
 			app.relaunch();
 			app.exit();
 		},100);
 	});
-	ipcMain.on("restartAndInstallUpdates",function(event,arg){
+
+	// mtdInject initiated app restart, after user clicks to restart to install updates
+
+	ipcMain.on("restartAndInstallUpdates", (event,arg) => {
 		autoUpdater.quitAndInstall(false,true);
 	});
-	ipcMain.on("destroyEverything",function(event,arg){
-		var ses = session.defaultSession;
+
+	// When user elects to erase all of their settings, we wipe everything clean, including caches
+
+	ipcMain.on("destroyEverything", (event,arg) => {
+		let ses = session.defaultSession;
 		store.clear();
 		ses.flushStorageData();
-		ses.clearCache(function(){});
+		ses.clearCache(() => {});
 		ses.clearHostResolverCache();
-		ses.cookies.flushStore(function(){});
+		ses.cookies.flushStore(() => {});
 		ses.clearStorageData({
 			storages:['appcache','cookies','filesystem','indexdb','localstorage','shadercache','websql','serviceworkers'],
 			quotas: ['temporary','persistent','syncable']
-		},function(){
-			setTimeout(function(){
+		},() => {
+			setTimeout(() => {
 				app.relaunch();
 				app.exit();
 			},500);
@@ -627,38 +755,60 @@ function makeWindow() {
 
 
 	});
-	ipcMain.on("setNativeTitlebar",function(event,arg){
-		mainWindow.close();
-		console.warn("SETNATIVETITLEBAR CALLED");
+
+	// Changing from immersive titlebar to native
+
+	ipcMain.on("setNativeTitlebar", (event,arg) => {
+
 		isRestarting = true;
+
+		mainWindow.close();
 		store.set("mtd_nativetitlebar",arg);
 
-		setTimeout(function(){
+		setTimeout(() => {
 			app.relaunch();
 			app.exit();
 		},100);
 
 	});
 
-	mainWindow.on('closed', function() {
+	// Before closing, save window bounds
+
+	mainWindow.on("close", () => {
+		saveWindowBounds();
+	});
+
+	// Upon closing, set mainWindow to null
+
+	mainWindow.on("closed", () => {
 		mainWindow = null;
 	});
 
-	mainWindow.on('maximize', function() {
+	// Change maximise to restore size window
+
+	mainWindow.on("maximize", () => {
 		mainWindow.webContents.executeJavaScript('\
 			document.querySelector("html").classList.add("mtd-maximized");\
 			document.querySelector(".windowcontrol.max").innerHTML = "&#xE3E0";\
 		');
 	});
 
-	mainWindow.on('unmaximize', function() {
+	// Change restore size window to maximise
+
+	mainWindow.on("unmaximize", () => {
 		mainWindow.webContents.executeJavaScript('\
 			document.querySelector("html").classList.remove("mtd-maximized");\
 			document.querySelector(".windowcontrol.max").innerHTML = "&#xE3C6";\
 		');
 	});
 
-	mainWindow.on('enter-full-screen', function() {
+	/*
+		Upon entering full screen, remove app-specific CSS Classes,
+		as there is less reason for a huge drag bar in full screen,
+		at least in comparison to in windowed. Chrome itself does this too.
+	*/
+
+	mainWindow.on("enter-full-screen", () => {
 		mainWindow.webContents.executeJavaScript('document.querySelector("html").classList.remove("mtd-app");\
 			document.querySelector("html").classList.remove("mtd-app-win");\
 			document.querySelector("html").classList.remove("mtd-app-mac");\
@@ -666,72 +816,126 @@ function makeWindow() {
 		');
 	});
 
-	mainWindow.on('leave-full-screen', function() {
+	mainWindow.on("leave-full-screen", () => {
 		mainWindow.webContents.executeJavaScript(mtdAppTag);
 	});
 }
 
-electron.protocol.registerSchemesAsPrivileged([{scheme:"moderndeck",privileges:{bypassCSP:true,secure:true,standard:true,allowServiceWorkers:true,supportFetchAPI:true,corsEnabled:true}}]);
+// Register moderndeck:// protocol for accessing moderndeck resources, like CSS
 
+electron.protocol.registerSchemesAsPrivileged([{
+	scheme:"moderndeck",
+	privileges:{
+		bypassCSP:true,
+		secure:true,
+		standard:true,
+		allowServiceWorkers:true,
+		supportFetchAPI:true,
+		corsEnabled:true
+	}
+}]);
 
-app.on('ready', makeWindow)
+// Make window when app is ready
 
-app.on('window-all-closed', function() {
+app.on("ready", makeWindow);
+
+// After all windows are closed, we can quit, unless restarting for update
+
+app.on("window-all-closed", () => {
 	if (isRestarting) {
 		return;
 	}
 	app.quit();
-})
+});
 
-app.on('activate', function() {
+// Make window if it doesn't exist, if user clicks app icon
+
+app.on("activate", () => {
 	if (mainWindow === null)
 		makeWindow();
-})
+});
 
+// Tell mtdInject that there was an update error
 
-autoUpdater.on("error",function(e,f,g){
-	if (!mainWindow || !mainWindow.webContents){return;}
+autoUpdater.on("error", (e,f,g) => {
+	if (!mainWindow || !mainWindow.webContents){
+		return;
+	}
 	mainWindow.webContents.send("error",e,f,g);
 });
 
-autoUpdater.on("checking-for-update",function(e){
-	if (!mainWindow || !mainWindow.webContents){return;}
+// Let MTDinject know that we are...
+
+// ... actively checking for updates
+
+autoUpdater.on("checking-for-update", (e) => {
+	if (!mainWindow || !mainWindow.webContents){
+		return;
+	}
 	mainWindow.webContents.send("checking-for-update",e);
 });
 
-autoUpdater.on("download-progress",function(e){
-	if (!mainWindow || !mainWindow.webContents){return;}
+// ...currently downloading updates
+autoUpdater.on("download-progress", (e) => {
+	if (!mainWindow || !mainWindow.webContents){
+		return;
+	}
 	mainWindow.webContents.send("download-progress",e);
 });
 
-autoUpdater.on("update-downloaded",function(e){
-	if (!mainWindow || !mainWindow.webContents){return;}
+// ...have already downloaded updates
+autoUpdater.on("update-downloaded", (e) => {
+	if (!mainWindow || !mainWindow.webContents){
+		return;
+	}
 	mainWindow.webContents.send("update-downloaded",e);
 });
 
-autoUpdater.on("update-not-available",function(e){
-	if (!mainWindow || !mainWindow.webContents){return;}
+// ...haven't found any updates
+autoUpdater.on("update-not-available", (e) => {
+	if (!mainWindow || !mainWindow.webContents){
+		return;
+	}
 	mainWindow.webContents.send("update-not-available",e);
 });
 
-ipcMain.on('checkForUpdates',function(e){
+// mtdInject can send manual update check requests
+ipcMain.on("checkForUpdates", (e) => {
 	autoUpdater.checkForUpdates();
 });
 
-ipcMain.on('changeChannel',function(e){
+// Main -> Beta and vice versa
+ipcMain.on("changeChannel", (e) => {
+	autoUpdater.allowPrerelease = store.get("mtd_updatechannel") === "beta";
 	autoUpdater.channel = store.get("mtd_updatechannel");
 });
 
-systemPreferences.on("inverted-color-scheme-changed",function(e,v){
+// OS inverted colour scheme (high contrast) mode changed. We automatically respond to changes for accessibility
+
+systemPreferences.on("inverted-color-scheme-changed", (e,v) => {
 	mainWindow.webContents.send("inverted-color-scheme-changed",v);
 });
 
-setInterval(function(){
+if (process.platform === 'darwin') {
+	systemPreferences.subscribeNotification(
+		'AppleInterfaceThemeChangedNotification',
+		() => {
+			mainWindow.webContents.send("color-scheme-changed",systemPreferences.isDarkMode() ? "dark" : "light");
+		}
+	)
+}
+
+setInterval(() => {
 	autoUpdater.checkForUpdates();
 },1000*60*15); //check for updates once every 15 minutes
 
-setTimeout(function(){
-	mainWindow.webContents.send("inverted-color-scheme-changed",systemPreferences.isInvertedColorScheme())
+setTimeout(() => {
+	autoUpdater.checkForUpdates();
+
+	mainWindow.webContents.send(
+		"inverted-color-scheme-changed",
+		systemPreferences.isInvertedColorScheme()
+	);
 },10000);
 
 // In this file you can include the rest of your app's specific main process

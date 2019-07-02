@@ -1,104 +1,101 @@
 /*
-  altsensitive.css
+	altsensitive.css
 
-  Copyright (c) 2014-2019 Dangered Wolf
-  Released under the MIT Licence
+	Copyright (c) 2014-2019 Dangered Wolf
+	Released under the MIT Licence
 */
 
 .media-sensitive p {
-    font-size:0
+	font-size:0
 }
 
 .media-sensitive p:before {
-    font-size:12px;
-    content:"Click here to open this media anyways"
+	font-size:12px;
+	content:"Click here to open this media anyways"
 }
 
 .mdl .chirp-container .media-sensitive p:before,.is-actionable .is-gif .media-sensitive p:before {
-    font-size:12px;
-    content:"Open details of this tweet to view this media."
+	font-size:12px;
+	content:"Open details of this tweet to view this media."
 }
 
 .media-sensitive-content a {
-    display:none
+	display:none
 }
 
 .media-item.is-invisible,.media-item,.mdl .chirp-container .media-sensitive {
-    visibility:visible!important
+	visibility:visible!important
 }
 
 .mdl .media-sensitive {
-    visibility:hidden!important
+	visibility:hidden!important
 }
 
 .media-sensitive {
-    pointer-events:none
+	pointer-events:none
 }
 
 .media-sensitive-title {
-    position:relative;
-    display:block;
-    margin-bottom:10px;
+	font-size:14px;
+	position:relative;
+	display:block;
+	margin-bottom:10px;
 }
 
 .media-sensitive a {
-  display:none
+	display:none
 }
 
-.padding-am {
-  font-size:0
-}
-
-.media-sensitive-title {
-  font-size:14px
+.padding-am:not(.typeahead-item) {
+	font-size:0;
 }
 
 .media-item.is-invisible {
-  position:absolute;
-  top:0;
-  left:0;
-  right:0;
-  bottom:0
+	position:absolute;
+	top:0;
+	left:0;
+	right:0;
+	bottom:0
 }
 
 .media-preview.detail-preview iframe.is-invisible {
-  visibility:visible!important;
+	visibility:visible!important;
 }
 
 .js-detail-content iframe.js-media-native-video+.media-sensitive,.tweet-detail-wrapper .media-sensitive {
-  display:none;
+	display:none;
 }
 
 .detail-preview .media-image.is-invisible {
-  visibility:visible!important;
+	visibility:visible!important;
 }
 
 .is-gif .media-sensitive {
-    display:block;
-    visibility:visible!important;
-    pointer-events:all;
+	display:block;
+	visibility:visible!important;
+	pointer-events:all;
 }
 
 .tweet-detail-wrapper .media-sensitive a {
-  display:inline;
-    visibility:visible!important;
-    pointer-events:all;
+	display:inline;
+	visibility:visible!important;
+	pointer-events:all;
 }
 
 .is-gif .media-sensitive p:before {
-    font-size:0px;
-    content:""
+	font-size:0;
+	content:""
 }
 
 .tweet-detail-wrapper .padding-am,.tweet-detail-wrapper .padding-am p {
-  font-size:12px!important
+	font-size:12px!important
 }
 
 .tweet-detail-wrapper .media-sensitive.is-hidden a,.detail-preview .media-sensitive.is-hidden {
-  visibility:hidden!important;
-  display:none;
+	visibility:hidden!important;
+	display:none;
 }
 
 .js-media-sensitive-overlay {
-  background:var(--backdropColor);
+	background:var(--backdropColor);
 }

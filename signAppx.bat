@@ -1,0 +1,1 @@
+signtool sign /fd sha256 dist/*.appx

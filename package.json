@@ -1,6 +1,6 @@
 {
 	"name": "ModernDeck",
-	"version": "7.0.0",
+	"version": "7.3.4",
 	"description": "TweetDeck, but more beautiful and fun than ever.",
 	"homepage": "https://github.com/dangeredwolf/ModernDeck",
 	"bugs": {
@@ -32,7 +32,7 @@
 			],
 			"target": [
 				{
-					"target": "nsis",
+					"target": "nsis-web",
 					"arch": [
 						"ia32",
 						"x64"
@@ -44,34 +44,36 @@
 			"publisher": "CN=FEC2801E-B19C-4051-A5E2-465F7B251519",
 			"publisherDisplayName": "dangeredwolf",
 			"identityName": "53434dangeredwolf.ModernDeck",
-			"artifactName": "ModernDeck7_${arch}.${ext}",
+			"artifactName": "ModernDeck_${arch}.${ext}",
 			"applicationId": "ModernDeck",
 			"backgroundColor": "#0078D7"
 		},
 		"nsis": {
 			"deleteAppDataOnUninstall": true,
-			"artifactName": "ModernDeck7_${arch}.${ext}",
-			"uninstallDisplayName": "ModernDeck 7",
+			"artifactName": "ModernDeck_${arch}.${ext}",
+			"uninstallDisplayName": "ModernDeck",
 			"differentialPackage": true
 		},
 		"nsisWeb": {
 			"deleteAppDataOnUninstall": true,
-			"artifactName": "ModernDeck7_${arch}.${ext}",
-			"uninstallDisplayName": "ModernDeck 7",
+			"artifactName": "ModernDeck_${arch}.${ext}",
+			"uninstallDisplayName": "ModernDeck",
 			"differentialPackage": true
 		},
 		"mac": {
 			"publish": [
 				"github"
 			],
-			"artifactName": "ModernDeck7.${ext}",
+			"icon": "build/ModernDeck.icns",
+			"artifactName": "ModernDeck.${ext}",
 			"minimumSystemVersion": "10.13.1",
+			"darkModeSupport": true,
 			"category": "public.app-category.social-networking"
 		},
 		"dmg": {
 			"icon": "build/dmg/dmg.png",
 			"background": "build/dmg/background.png",
-			"title": "ModernDeck 7"
+			"title": "ModernDeck"
 		},
 		"linux": {
 			"category": "Network",
@@ -79,7 +81,7 @@
 				"github"
 			],
 			"maintainer": "dangeredwolf",
-			"artifactName": "ModernDeck7_${arch}.${ext}",
+			"artifactName": "ModernDeck_${arch}.${ext}",
 			"target": [
 				{
 					"target": "AppImage",
@@ -104,19 +106,21 @@
 		"Design"
 	],
 	"dependencies": {
-		"file-type": "^3.8.0",
-		"got": "^6.3.0",
-		"through2": "^2.0.1",
-		"electron-log": "^3.0.5",
-		"electron-packager": "^13.0.0",
-		"electron-store": "^1.3.0",
-		"electron-updater": "^4.0.0"
+		"asar": "^2.0.1",
+		"electron-log": "^3.0.6",
+		"electron-packager": "^14.0.0",
+		"electron-store": "^4.0.0",
+		"electron-updater": "^4.0.14",
+		"file-type": "^12.0.0",
+		"got": "^9.6.0",
+		"through2": "^3.0.1"
 	},
 	"devDependencies": {
-		"electron": "^5.0.0",
-		"electron-builder": "^20.39.0",
-		"stylelint": "^10.0.1",
-		"stylelint-config-recommended": "^2.0.0"
+		"devtron": "^1.4.0",
+		"electron": "^5.0.6",
+		"electron-builder": "^20.44.4",
+		"stylelint": "^10.1.0",
+		"stylelint-config-recommended": "^2.2.0"
 	},
 	"files": [
 		"**/ModernDeck",

@@ -1,11 +1,18 @@
-:root{
+/*
+	amoled.css
+
+	Copyright (c) 2014-2019 Dangered Wolf
+	Released under the MIT Licence
+*/
+
+:root {
 	--primaryColor:#000 !important;
 	--typeaheadBackgroundColor:#000 !important;
 	--tweetDetailWrapperColor:#000 !important;
 	--contextMenuDividerColor:#1c2225 !important;
 	--backdropColor:#000 !important;
 	--modalWindowColor:#000 !important;
-	--overlayBackgroundColor:rgba(0, 0, 0, 0.65) !important;
+	--overlayBackgroundColor:rgba(0,0,0,0.65) !important;
 	--defaultShadowColor:#344248 !important;
 	--navDrawerBackground:rgba(0,0,0,.4) !important;
 	--contextMenuShadow:#344248 !important;
@@ -16,17 +23,16 @@
 	--avatarActiveShadow:#506269 !important;
 	--genericDropShadow:#47575f !important;
 	--modalDropShadow:#344248 !important;
-	--genericBlackShadow:rgba(52, 66, 72, 0.25) !important;
-	--genericBlack15Shadow:rgba(52, 66, 72,.15) !important;
-	--genericDarkBlackShadow:rgba(52, 66, 72,.5) !important;
-	--genericLightBlackShadow:rgba(52, 66, 72,.1) !important;
+	--genericBlackShadow:rgba(52,66,72,0.25) !important;
+	--genericBlack15Shadow:rgba(52,66,72,.15) !important;
+	--genericDarkBlackShadow:rgba(52,66,72,.5) !important;
+	--genericLightBlackShadow:rgba(52,66,72,.1) !important;
 }
-
 
 div.drawer[data-drawer="compose"],.hide-detail-view-inline .tweet-button:not(.js-hide-drawer) {
 	background:var(--primaryColor)!important
 }
 
 .media-size-large-height::after,.media-item.media-size-large::after {
-	background-image:linear-gradient(var(--primaryColor),rgba(0,0,0,0));
+	background-image:linear-gradient(var(--navDrawerBackground),rgba(0,0,0,0))
 }

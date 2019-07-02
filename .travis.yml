@@ -1,12 +1,13 @@
 language: node_js
 os: osx
 node_js:
-- lts/*
+- node
 deploy:
   provider: releases
   cache:
     directories:
       - node_modules
+      - $HOME/.cache
       - $HOME/.cache/electron
       - $HOME/.cache/electron-builder
 
@@ -16,4 +17,4 @@ deploy:
     secure: dk/aARK5ENlFTyiHLMGymGPLOQuQNp4qxSlbr7/jkc6mEB1AnDyMjEJtDLXfiJi+tZD+AIpBnoHel71Sz9MLK3IUrZaLXqelusS6t8MmWYlIgPVcyx8G5gSAbBCqWkJ/0Eja3X1PUIPP6aYxVrcKNARM4kOMjljvMTsOnE+rR6dL/PWbeZE7cek0EhChvcI8XpxgdDiA/yi26Cf1CK4PtqNPBXfyrSlfSZ0xGiQU7xweHLbcqe86o+T/KwFQ7IMqztnmx35KFw+IUV2oCX0TwG06hNt2O2eB5LAMRpq4k/fDpJb3aiyN36B19DsNZmf1OGbVZNONurowTslDYuSgLyvYSxU6GJtGRgahn7KceXlJ8LIwODl/PuBbftKGgbieMIxc0knL2InV9EGhNMnkq/tfPAePUSc5uO+sFjl9j0uZltFuP5Q4aBRTTUSIqDMC/N4TbQSPZEPiibnlqFWTKnqK4tZ8Gb2efc5Eb+cCjsj4C9oYiJEI4fcDXJrVYYzWn3BKcPn7oTjFmNToqPAn5Ao2AtsdOkrd5mXn4ZlfGDwF7Mec3B2m+Vf6oWg4WsOaPTB5WxQDxKR17/mSP1LbRVS7GS3O6hoEn6tOnwnfEtQ2N+mTKHLJ7F081Xdznvu5lVfecLnzz+MkZXy7dSMKT+bvZLRLSMyg3qI9GUSTHqk=
   file: dist/*.*
   on:
-    repo: dangeredwolf/ModernDeckAPPTEST
+    repo: dangeredwolf/ModernDeck
