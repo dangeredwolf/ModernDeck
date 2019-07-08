@@ -1,0 +1,20 @@
+a[href="https://twitter.com/dangeredwolf"] .fullname:after,
+a[href="https://twitter.com/dangeredwolf"].link-complex .link-complex-target:after,
+a[data-user-name="dangeredwolf"] .fullname:after
+{
+	content:"\f003";
+	font-size:20px;
+	font-style:normal;
+	-webkit-font-smoothing:antialiased;
+	text-rendering:optimizeLegibility;
+	-moz-osx-font-smoothing:grayscale;
+	vertical-align:middle;
+	padding-left:3px;
+	/* stylelint-disable */
+	font-family:MD!important
+	/* stylelint-enable */
+}
+
+.js-action-url[href="https://twitter.com/dangeredwolf"] .fullname:after {
+    font-size:32px
+}
