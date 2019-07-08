@@ -1,7 +1,7 @@
 /*
 	moderndeck.css
 
-	ModernDeck 7.3.4 [codename Essence]
+	ModernDeck 7.3.5 [codename Essence]
 	Copyright 2014-2019 dangered wolf
 	Released under the MIT Licence
 
@@ -2301,7 +2301,7 @@ a .column-title-back .icon:after {
 	min-height:70px;
 	position:relative;
 	display:block;
-	margin-top:10px;
+	margin-top:0;
 	background-repeat:no-repeat;
 	background-position:50% 50%;
 	background-size:cover;
@@ -2376,15 +2376,23 @@ a .column-title-back .icon:after {
 	min-height:50px
 }
 
-.quoted-tweet .media-size-small {
-	margin-left:8px
-}
-
 .media-size-small {
 	width:50%;
 	height:90px;
 	margin-left:calc(var(--avatarSize) + 8px);
 	border-radius:2px
+}
+
+.quoted-tweet .media-size-small {
+	margin-left:8px
+}
+
+.tweet.txt-mute .media-size-small {
+	margin-left:8px
+}
+
+.tweet-detail-reply .media-size-small {
+	margin-left:3px
 }
 
 .media-size-medium {
@@ -4321,6 +4329,10 @@ a:hover .icn-button-next {
 	padding:15px
 }
 
+section>.frm {
+	margin-left:30px
+}
+
 .frm.l-tight {
 	padding-bottom:0
 }
@@ -5084,6 +5096,16 @@ input[type="checkbox"]:active {
 	position:absolute;
 	line-height:2;
 	padding:5px 0 0 15px
+}
+
+.conversation-menu-position.dropdown-menu a {
+	padding-left:0;
+	margin-left:16px
+}
+
+.conversation-menu-position.dropdown-menu a[data-action]:before {
+	content:""!important;
+	display:none
 }
 
 .pos-t {
@@ -6729,15 +6751,6 @@ button.mtd-no-transform-case {
 	left:28px
 }
 
-.activity-header+.account-summary .fullname {
-	margin-bottom:8px
-}
-
-.list-account>:nth-child(2).nbfc {
-	padding-left:10px;
-	padding-right:10px
-}
-
 .js-right-column.l-fullheight {
 	overflow-x:hidden
 }
@@ -6932,10 +6945,6 @@ textarea:not(.compose-text):not(.js-compose-text):not(.js-list-description):not(
 
 .tweet-detail-wrapper .tweet-text {
 	cursor:default
-}
-
-.chirp-container .tweet-text {
-	cursor:pointer
 }
 
 .tweet-text.with-linebreaks {
@@ -8205,10 +8214,6 @@ button.try-query {
 
 .med-tweet .tweet-text,.med-tweet .tweet-body>.txt-ellipsis {
 	padding-left:0!important
-}
-
-.js-media-gif-container,.media-preview-container {
-	overflow:hidden
 }
 
 .media-grid-2,.media-grid-3,.media-grid-4 {
@@ -10626,7 +10631,7 @@ footer>.js-tweet-stats>.tweet-stats:not(.js-stats-list) {
 	right:100px;
 	width:240px;
 	float:right;
-	height:80%
+	height:70%
 }
 
 .mtd-classic-nav .app-header .app-nav-logo-text,
@@ -10965,4 +10970,17 @@ footer>.js-tweet-stats>.tweet-stats:not(.js-stats-list) {
 	top:0;
 	padding:10px;
 	font-size:14px
+}
+
+.contributor-row .icon-protected {
+	vertical-align:sub
+}
+
+.mtd-patreon-button {
+	height:36px
+}
+
+.mtd-patron-info iframe {
+	height:100%;
+	width:100%
 }

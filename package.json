@@ -1,6 +1,6 @@
 {
 	"name": "ModernDeck",
-	"version": "7.3.4",
+	"version": "7.3.5",
 	"description": "TweetDeck, but more beautiful and fun than ever.",
 	"homepage": "https://github.com/dangeredwolf/ModernDeck",
 	"bugs": {
@@ -71,7 +71,6 @@
 			"category": "public.app-category.social-networking"
 		},
 		"dmg": {
-			"icon": "build/dmg/dmg.png",
 			"background": "build/dmg/background.png",
 			"title": "ModernDeck"
 		},
@@ -108,10 +107,10 @@
 	"dependencies": {
 		"asar": "^2.0.1",
 		"electron-log": "^3.0.6",
-		"electron-packager": "^14.0.0",
+		"electron-packager": "^14.0.1",
 		"electron-store": "^4.0.0",
 		"electron-updater": "^4.0.14",
-		"file-type": "^12.0.0",
+		"file-type": "^12.0.1",
 		"got": "^9.6.0",
 		"through2": "^3.0.1"
 	},

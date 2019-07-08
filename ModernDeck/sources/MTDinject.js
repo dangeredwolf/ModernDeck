@@ -9,7 +9,7 @@
 
 'use strict';
 
-const SystemVersion = "7.3.4";
+const SystemVersion = "7.3.5";
 const appendTextVersion = true;
 
 let mtdBaseURL = "https://raw.githubusercontent.com/dangeredwolf/ModernDeck/master/ModernDeck/";
@@ -1120,6 +1120,10 @@ function enableStylesheetExtension(name) {
 		return;
 
 	let url = mtdBaseURL + "sources/cssextensions/" + name + ".css";
+
+	if (name === "donorbadges") {
+		url = "https://moderndeck.org/donorbadges.css?v=" + SystemVersion;
+	}
 
 	if (!isStylesheetExtensionEnabled(name)) {
 		head.append(
@@ -2563,7 +2567,7 @@ function openSettings(openMenu) {
 					make("iframe").attr("src","https://www.patreon.com/platform/iframe?widget=become-patron-button&creatorID=3469384")
 				),
 				make("div").addClass("mtd-patron-list").append(
-					make("iframe")
+					make("iframe").attr("src","https://moderndeck.org/donors?v=" + SystemVersion)
 				)
 			)
 
@@ -3044,7 +3048,7 @@ function renderGif(preview,mainOg) {
 	});
 }
 
-function renderGifResults(data) {
+function renderGifResults(data, error) {
 	$(".mtd-gif-container .preloader-wrapper").remove();
 
 	let col1 = $(".mtd-gif-column-1");
@@ -3052,11 +3056,17 @@ function renderGifResults(data) {
 
 	$(".mtd-gif-no-results").addClass("hidden");
 
-	if (data.length === 0) {
+	if (data.length === 0 || data === "error") {
 		col1.children().remove();
 		col2.children().remove();
 
 		$(".mtd-gif-no-results").removeClass("hidden");
+
+		if (data === "error") {
+			$(".mtd-gif-no-results").html("An error occurred while trying to fetch results. " + (error || ""))
+		} else {
+			$(".mtd-gif-no-results").html("We couldn't find anything matching what you searched. Give it another shot.")
+		}
 	}
 
 	for (let i = 0; i < data.length; i++) {
@@ -3097,7 +3107,13 @@ function searchGifPanel(query) {
 	).done((e) => {
 		console.log(e);
 		renderGifResults(e.data);
-	}).always(() => {
+	})
+	.error((e) => {
+		console.log(e);
+		console.error("Error trying to fetch gifs");
+		renderGifResults("error",e);
+	})
+	.always(() => {
 		isLoadingMoreGifs = false;
 	});
 }
@@ -3120,7 +3136,13 @@ function trendingGifPanel() {
 	).done((e) => {
 		renderGifResults(e.data);
 
-	}).always(() => {
+	})
+	.error((e) => {
+		console.log(e);
+		console.error("Error trying to fetch gifs");
+		renderGifResults("error",e);
+	})
+	.always(() => {
 		isLoadingMoreGifs = false;
 	});
 }
@@ -3133,7 +3155,13 @@ function loadMoreGifs() {
 		}
 	).done((e) => {
 		renderGifResults(e.data);
-	}).always(() => {
+	})
+	.error((e) => {
+		console.log(e);
+		console.error("Error trying to fetch gifs");
+		renderGifResults("error",e);
+	})
+	.always(() => {
 		isLoadingMoreGifs = false;
 	});
 }
@@ -3279,6 +3307,8 @@ function navigationSetup() {
 		console.error("Caught error in hookComposer");
 		console.error(e);
 	}
+
+	enableStylesheetExtension("donorbadges");
 
 	$(".app-header-inner").append(
 		make("a").attr("id","mtd-navigation-drawer-button").attr("data-original-title","Navigation Drawer").addClass("js-header-action mtd-drawer-button link-clean cf app-nav-link").html('<div class="obj-left"><div class="mtd-nav-activator"></div><div class="nbfc padding-ts"></div>')

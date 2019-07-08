@@ -52,7 +52,7 @@
 .mtd-emoji-picker {
 	height:350px;
 	width:calc(var(--composeWidth) - 30px);
-	top:100px;
+	top:120px;
 	right:0;
 	transition:all 0.25s var(--animationTiming)!important;
 	opacity:0;
