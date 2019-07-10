@@ -9,11 +9,11 @@
 
 'use strict';
 
-const SystemVersion = "7.3.6";
+const SystemVersion = "7.3.7";
 const appendTextVersion = true;
 const enablePatronFeatures = true;
 
-let debugSettings = true;
+let debugSettings = false;
 
 let mtdBaseURL = "https://raw.githubusercontent.com/dangeredwolf/ModernDeck/master/ModernDeck/";
 // Defaults to obtaining assets from GitHub if MTDURLExchange isn't completed properly
