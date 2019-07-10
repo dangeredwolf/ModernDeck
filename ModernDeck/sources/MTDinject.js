@@ -9,14 +9,18 @@
 
 'use strict';
 
-const SystemVersion = "7.3.5";
+const SystemVersion = "7.3.6";
 const appendTextVersion = true;
+const enablePatronFeatures = true;
+
+let debugSettings = true;
 
 let mtdBaseURL = "https://raw.githubusercontent.com/dangeredwolf/ModernDeck/master/ModernDeck/";
 // Defaults to obtaining assets from GitHub if MTDURLExchange isn't completed properly
 const giphyKey = "Vb45700bexRDqCkbMdUmBwDvtkWT9Vj2"; // swiper no swipey
 let lastGiphyURL = "";
 let isLoadingMoreGifs = false;
+let lastError = undefined;
 
 let loginIntervalTick = 0;
 
@@ -124,6 +128,12 @@ const buttonSpinner =
 	</div>\
 </div>';
 
+/*
+	Shorthand function to create a new element, which is helpful for concise UI building.
+
+	We could just make jQuery directly do it, but it's slower than calling native JS api and wrapped jQuery around it
+*/
+
 const make = function(a) {
 	return $(document.createElement(a));
 }
@@ -131,7 +141,12 @@ const make = function(a) {
 // shorthand function to return true if something exists and false otherwise
 
 const exists = function(thing) {
-	return ((typeof thing === "object" && thing !== null && thing.length > 0) || !!thing === true || (typeof thing === "string") || (typeof thing === "number"));
+	return (
+		(typeof thing === "object" && thing !== null && thing.length > 0) || // Object can't be empty or null
+		(!!thing === true) ||
+		(typeof thing === "string") ||
+		(typeof thing === "number")
+	);
 }
 
 const isOpera = typeof opera !== "undefined";
@@ -140,7 +155,7 @@ const isEdge = typeof MSGesture !== "undefined";
 const isFirefox = typeof mozInnerScreenX !== "undefined";
 const isApp = typeof require !== "undefined";
 
-// may also return true on chromium-based browsers like opera, edge chromium, and electron
+// may also return true on chromium-based clients like opera, edge chromium, and electron
 const isChrome = typeof chrome !== "undefined" && !isEdge && !isFirefox;
 
 // user agent hacks make me sad but im lazy
@@ -148,13 +163,19 @@ const isWin = navigator.userAgent.indexOf("Windows NT") > -1;
 const isMac = navigator.userAgent.indexOf("Mac OS X") > -1;
 const isiOS = navigator.userAgent.indexOf("iPhone OS") > -1;
 
+// Use standard macOS symbols instead of writing it out like on Windows
+
 const ctrlShiftText = isMac ? "⌃⇧" : "Ctrl+Shift+";
 
 let injectedFonts = false;
 
+// We define these later. FYI these are jQuery objects.
+
 let head = undefined;
 let body = undefined;
 let html = undefined;
+
+// These functions allow the app's context menus to perform contextual options
 
 let contextMenuFunctions = {
 	cut: () => {
@@ -219,6 +240,19 @@ if (mtdStarted.getHours() < 12) { // 12:00 / 12:00pm
 } else if (mtdStarted.getHours() < 18) { // 18:00 / 6:00pm
 	newLoginPage = newLoginPage.replace("Good evening","Good afternoon");
 }
+
+/*
+	Settings manager data.
+
+	Serves two purposes.
+
+	1. Managing preferences of users, able to activate and deactivate on the fly, and
+	2. Serve as a guide to construct the settings UI
+
+	It can look a bit messy, but it's actually quite simple once you break it down.
+
+	https://github.com/dangeredwolf/ModernDeck/wiki/settingsData
+*/
 
 let settingsData = {
 	themes: {
@@ -1021,6 +1055,10 @@ let settingsData = {
 	}
 }
 
+/*
+	Allows copying image to the clipboard from app context menu
+*/
+
 function retrieveImageFromClipboardAsBlob(pasteEvent, callback) {
 
 	let items = pasteEvent.clipboardData.items;
@@ -1042,7 +1080,9 @@ function retrieveImageFromClipboardAsBlob(pasteEvent, callback) {
 	}
 }
 
-// Paste event to allow for pasting images in TweetDeck
+/*
+	Paste event to allow for pasting images in TweetDeck
+*/
 
 window.addEventListener("paste", (e) => {
 
@@ -1052,10 +1092,6 @@ window.addEventListener("paste", (e) => {
 
 			let buildEvent = jQuery.Event("dragenter",{originalEvent:{dataTransfer:{files:[imageBlob]}}});
 			let buildEvent2 = jQuery.Event("drop",{originalEvent:{dataTransfer:{files:[imageBlob]}}});
-
-			// console.info("alright so these are the events we're gonna be triggering:");
-			// console.info(buildEvent);
-			// console.info(buildEvent2);
 
 			$(document).trigger(buildEvent);
 			$(document).trigger(buildEvent2);
@@ -1088,14 +1124,16 @@ twitterSucks.type = "text/javascript";
 twitterSucks.src = mtdBaseURL + "sources/libraries/moduleraid.min.js";
 document.head.appendChild(twitterSucks);
 
-// shorthand for creating a mutation observer and observing
+/*
+	Shorthand for creating a mutation observer and observing
+*/
 
 function mutationObserver(obj,func,parms) {
 	return (new MutationObserver(func)).observe(obj,parms);
 }
 
 /*
-	Returns true if stylesheet extension is enabled, false otherwise.
+	Returns true if specified stylesheet extension is enabled, false otherwise.
 	Works with custom stylesheets. (see enableCustomStylesheetExtension for more info)
 */
 
@@ -1119,10 +1157,11 @@ function enableStylesheetExtension(name) {
 	if (name === "default" || $("#mtd_custom_css_"+name).length > 0)
 		return;
 
+	// This is where components are located
 	let url = mtdBaseURL + "sources/cssextensions/" + name + ".css";
 
-	if (name === "donorbadges") {
-		url = "https://moderndeck.org/donorbadges.css?v=" + SystemVersion;
+	if (name === "donors") {
+		url = "https://api.moderndeck.org/v1/patrons/donors.css?v=" + SystemVersion;
 	}
 
 	if (!isStylesheetExtensionEnabled(name)) {
@@ -1137,7 +1176,11 @@ function enableStylesheetExtension(name) {
 	} else return;
 }
 
-// disables stylesheet extensions. Function also works with custom stylesheet extensions
+/*
+	disableStylesheetExtension(string name)
+
+	Disables stylesheet extension by name. Function also works with custom stylesheet extensions
+*/
 
 function disableStylesheetExtension(name) {
 	if (!isStylesheetExtensionEnabled(name))
@@ -1184,6 +1227,7 @@ function enableStylesheetComponent(name) {
 	if (name === "default")
 		return;
 
+	// This is where components are located
 	let url = mtdBaseURL + "sources/csscomponents/" + name + ".css";
 
 	if (!isStylesheetComponentEnabled(name)) {
@@ -1198,7 +1242,9 @@ function enableStylesheetComponent(name) {
 	} else return;
 }
 
-// disables stylesheet components.
+/*
+	Disables a certain stylesheet component.
+*/
 
 function disableStylesheetComponent(name) {
 	if (!isStylesheetComponentEnabled(name))
@@ -1210,7 +1256,11 @@ function disableStylesheetComponent(name) {
 
 }
 
-// Default account profile info, used to show your profile pic and background in nav drawer
+/*
+	function getProfileInfo()
+
+	Returns object of default account profile info, used to show your profile pic and background in nav drawer
+*/
 
 function getProfileInfo() {
 	if (
@@ -1235,7 +1285,11 @@ function getProfileInfo() {
 	}
 }
 
-// Loads preferences when moderndeck is started
+/*
+	function loadPreferences()
+
+	Loads preferences from storage and activates them
+*/
 
 function loadPreferences() {
 
@@ -1271,6 +1325,7 @@ function loadPreferences() {
 						case "slider":
 							parseActions(pref.activate, setting);
 							break;
+						/* button/link controls we can skip, they don't do anything other than in the settings menu */
 						case "button":
 						case "link":
 							break;
@@ -1281,7 +1336,11 @@ function loadPreferences() {
 	}
 }
 
-// Dumps user preferences, for diag
+/*
+	dumpPreferences()
+
+	returns string: dump of user preferences, for diag function
+*/
 
 function dumpPreferences() {
 
@@ -1307,20 +1366,46 @@ function dumpPreferences() {
 }
 
 /*
+	https://ourcodeworld.com/articles/read/189/how-to-create-a-file-and-generate-a-download-with-javascript-in-the-browser-without-a-server
+
+	function download(filename, text)
+
+	Initiates virtual browser download of filename __filename__ with contents __text__
+*/
+
+function download(filename, text) {
+	var element = document.createElement('a');
+	element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+	element.setAttribute('download', filename);
+
+	element.style.display = 'none';
+	document.body.appendChild(element);
+
+	element.click();
+
+	document.body.removeChild(element);
+}
+
+
+/*
 	diag makes it easier for developers to narrow down user-reported bugs.
-	You can call this via command line, or by pressing
+	You can call this via command line, or by pressing Ctrl+Alt+D
 */
 
 function diag() {
 	let log = "";
 
 	log += "The following diagnostic report contains information about your version of ModernDeck.\
-	It contains your preferences, but does not contain information related to your Twitter account(s).\
+	It contains a list of your preferences, but does not contain information related to your Twitter account(s).\
 	A ModernDeck developer may request a copy of this diagnostic report to help diagnose problems.\n\n";
 
 	log += "======= Begin ModernDeck Diagnostic Report =======\n\n";
 
 	log += "\nModernDeck Version " + SystemVersion;
+
+	log += ("\nTD.buildID: " + ((TD && TD.buildID) ? TD.buildID : "[not set]"));
+	log += ("\nTD.version: " + ((TD && TD.version) ? TD.version : "[not set]"));
+
 	log += "\nisDev: " + isDev;
 	log += "\nisApp: " + isApp;
 	log += "\nforceAppX: " + forceAppX;
@@ -1361,8 +1446,10 @@ function diag() {
 	} catch (e) {
 		console.error("An error occurred trying to show the diagnostic menu");
 		console.error(e);
+		lastError = e;
 	}
 }
+
 
 /*
 	Helper for diag() which renders the diagnostic results on screen if possible
@@ -1383,8 +1470,14 @@ function showDiag(str) {
 
 	return panel;
 }
-// getPref(String preferenceKey)
-// Returns value of preference, string or boolean
+
+
+/*
+	getPref(String preferenceKey)
+	Returns value of preference, either string or boolean
+
+	https://github.com/dangeredwolf/ModernDeck/wiki/Preference-Management-Functions
+*/
 
 function getPref(id) {
 	if (id === "mtd_core_theme") {
@@ -1418,6 +1511,8 @@ function getPref(id) {
 /*
 	purgePrefs()
 	Purges all settings. This is used when you reset ModernDeck in settings
+
+	https://github.com/dangeredwolf/ModernDeck/wiki/Preference-Management-Functions
 */
 
 function purgePrefs() {
@@ -1438,8 +1533,10 @@ function purgePrefs() {
 }
 
 /*
-	setPref(String preferenceKey)
-	Sets preference
+	setPref(String preferenceKey, [mixed types] value)
+	Sets preference to value
+
+	https://github.com/dangeredwolf/ModernDeck/wiki/Preference-Management-Functions
 */
 
 function setPref(id,p) {
@@ -1468,6 +1565,8 @@ function setPref(id,p) {
 /*
 	hasPref(String preferenceKey)
 	return boolean: whether or not the preference manager (electron-store on app, otherwise localStorage) contains a key
+
+	https://github.com/dangeredwolf/ModernDeck/wiki/Preference-Management-Functions
 */
 
 function hasPref(id) {
@@ -1707,6 +1806,10 @@ function replacePrettyNumber() {
 	}
 }
 
+/*
+	Overrides removeChild functions of modals, tooltips, and dropdown menus to have a fade out effect
+*/
+
 function overrideFadeOut() {
 
 	// here we add event listeners to add a fading out animation when a modal dialog is closed
@@ -1764,14 +1867,14 @@ function overrideFadeOut() {
 
 }
 
-// change favicon and notification sound
+/* Change favicon and notification sound */
 
 function replaceAudioAndFavicon() {
 	$("link[rel=\"shortcut icon\"]").attr("href",mtdBaseURL + "sources/favicon.ico");
 	$(document.querySelector("audio")).attr("src",mtdBaseURL + "sources/alert_2.mp3");
 }
 
-// modifies tweetdeck mustaches, replacing spinners, etc
+/* modifies tweetdeck mustaches, replacing spinners, etc */
 
 function processMustaches() {
 	if (typeof TD_mustaches["settings/global_setting_filter_row.mustache"] !== "undefined")
@@ -1958,9 +2061,7 @@ function loginTextReplacer() {
 
 async function mtdInit() {
 
-
 	console.log("mtdInit");
-
 
 	if (typeof document.getElementsByClassName("js-signin-ui block")[0] !== "undefined" && !replacedLoadingSpinnerNew) {
 		document.getElementsByClassName("js-signin-ui block")[0].innerHTML = '<div class="preloader-wrapper big active"><div class="spinner-layer"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div>';
@@ -1979,6 +2080,7 @@ async function mtdInit() {
 		} catch (e) {
 			console.error("Caught error in injectFonts");
 			console.error(e);
+			lastError = e;
 		}
 	}
 
@@ -2010,6 +2112,7 @@ async function mtdInit() {
 	} catch (e) {
 		console.error("Caught error in processForceFeatureFlags");
 		console.error(e);
+		lastError = e;
 	}
 
 	try {
@@ -2017,6 +2120,7 @@ async function mtdInit() {
 	} catch(e) {
 		console.error("Caught error in replacePrettyNumber");
 		console.error(e);
+		lastError = e;
 	}
 
 	try {
@@ -2024,6 +2128,7 @@ async function mtdInit() {
 	} catch(e) {
 		console.error("Caught error in overrideFadeOut");
 		console.error(e);
+		lastError = e;
 	}
 
 	try {
@@ -2031,6 +2136,7 @@ async function mtdInit() {
 	} catch(e) {
 		console.error("Caught error in replaceAudioAndFavicon");
 		console.error(e);
+		lastError = e;
 	}
 
 	try {
@@ -2038,6 +2144,7 @@ async function mtdInit() {
 	} catch(e) {
 		console.error("Caught error in processMustaches");
 		console.error(e);
+		lastError = e;
 	}
 
 	try {
@@ -2048,6 +2155,7 @@ async function mtdInit() {
 	} catch(e) {
 		console.error("Caught error in loginTextReplacer");
 		console.error(e);
+		lastError = e;
 	}
 
 	setInterval(() => {
@@ -2057,6 +2165,7 @@ async function mtdInit() {
 			} catch(e) {
 				console.error("Caught error in hookComposer");
 				console.error(e);
+				lastError = e;
 			}
 		}
 	},500);
@@ -2090,6 +2199,7 @@ async function mtdInit() {
 	} catch(e) {
 		console.error("Caught error in fixColumnAnimations");
 		console.error(e);
+		lastError = e;
 	}
 
 	$(document).on("uiComposeTweet",hookComposer);
@@ -2141,17 +2251,6 @@ function startUpdateGoodLoginText() {
 	},10000);
 }
 
-function sendNotificationMessage(txt) {
-	let knotty = $(MTDNotification);
-	if (knotty.hasClass("mtd-appbar-notification-hidden")) {
-		knotty.removeClass("mtd-appbar-notification-hidden").html(txt);
-	} else {
-		knotty.addClass("mtd-appbar-notification-hidden").delay(300).queue(() => {
-			knotty.html(txt).removeClass("mtd-appbar-notification-hidden")
-		});
-	}
-}
-
 // opens legacy tweetdeck settings
 
 async function openLegacySettings() {
@@ -2162,13 +2261,13 @@ async function openLegacySettings() {
 	$(".mtd-settings-panel").remove();
 	new TD.components.GlobalSettings;
 }
+
 /*
 	Processes Tweeten Settings import
 	obj = object converted from the raw JSON
 */
 function importTweetenSettings(obj) {
 	console.log(obj);
-	console.log("todo: everything");
 
 	setPref("mtd_customcss",(!!obj.dev ? obj.dev.customCSS || "" : ""))
 
@@ -2250,6 +2349,128 @@ function importTweetenSettings(obj) {
 }
 
 /*
+	Sanitises a string so we don't get silly XSS exploits (i sure as hell hope)
+*/
+
+function sanitiseString(str) {
+	return str.replace(/\</g,"&lt;").replace(/\&/g,"&amp;").replace(/\>/g,"&gt;").replace(/\"/g,"&quot;")
+}
+
+/*
+	Renders the patron display in the about page
+*/
+
+function renderPatronInfo(info, patronBox) {
+
+	let scroller = make("div").addClass("mtd-auto-scroll scroll-v");
+
+	let isInline = false;
+
+	let metadataAvailable = typeof info.meta === "object";
+
+	if (metadataAvailable) {
+		if (exists(info.meta.inline)) {
+			if (info.meta.inline === "true" || info.meta.inline === true) {
+				isInline = true;
+			}
+		}
+	}
+
+	if ((exists(info.l1)) || (exists(info.l2))) {
+		patronBox.append(make("h3").html(
+			(metadataAvailable && typeof info.meta.title === "string") ? sanitiseString(info.meta.title) : "ModernDeck is made possible by people like you"
+		))
+	}
+
+	if (exists(info.l1)) {
+
+		let patronList = make("div").addClass("mtd-patron-list mtd-patron-list-level1");
+
+		if (isInline) {
+			patronList.addClass("mtd-patron-list-inline");
+		}
+
+		$(info.l1).each((a, b) => {
+			console.log(b);
+			patronList.append(
+				make("p").addClass("mtd-patron-level mtd-patron-level-1").html(sanitiseString(b))
+			)
+		});
+
+		scroller.append(patronList);
+	}
+
+	if (exists(info.l2)) {
+
+		let patronList = make("div").addClass("mtd-patron-list mtd-patron-list-level2");
+
+		if (isInline) {
+			patronList.addClass("mtd-patron-list-inline");
+		}
+
+		$(info.l2).each((a, b) => {
+			console.log(b);
+			patronList.append(
+				make("p").addClass("mtd-patron-level mtd-patron-level-2").html(sanitiseString(b))
+			)
+		});
+
+		scroller.append(patronList);
+	}
+
+	patronBox.append(scroller);
+
+	if ((exists(info.l1)) || (exists(info.l2))) {
+		patronBox.append(
+			make("button")
+			.click(function() {
+				console.log("asfsfgf");
+				window.open(this.getAttribute("data-url"))
+			})
+			.addClass("btn btn-primary mtd-patreon-button")
+			.html((metadataAvailable && typeof info.meta.buttonText === "string") ? sanitiseString(info.meta.buttonText) : "Support on Patreon")
+			.attr("data-url",(metadataAvailable && typeof info.meta.buttonLink === "string") ? sanitiseString(info.meta.buttonLink) : "https://www.patreon.com/ModernDeck")
+
+		)
+	}
+}
+
+/*
+	Begins construction of the patron view for those who contribute on Patreon
+*/
+
+function makePatronView() {
+	let patronBox = make("div").addClass("mtd-patron-render");
+
+	$.ajax(
+		{
+			url:"https://api.moderndeck.org/v1/patrons/"
+		}
+	).done((e) => {
+		console.log(e);
+
+		let parsedJson;
+
+		try {
+			parsedJson = JSON.parse(e);
+		} catch (e) {
+			console.error("Error occurred while parsing JSON of patron data");
+			console.error(e);
+			lastError = e;
+		} finally {
+			renderPatronInfo(parsedJson, patronBox)
+		}
+	})
+	.error((e) => {
+		console.error("Error trying to fetch patron data");
+		console.error(e);
+		lastError = e;
+	});
+
+	return patronBox;
+}
+
+/*
 	function openSettings()
 	opens and settings panel, open to first page
 
@@ -2268,7 +2489,7 @@ function openSettings(openMenu) {
 
 	for (var key in settingsData) {
 
-		// if disabled (NOT UNDEFINED), skip it
+		// if set to false (NOT UNDEFINED, this is an optional parameter), skip it
 		if (settingsData[key].enabled === false) {
 			continue;
 		}
@@ -2563,12 +2784,7 @@ function openSettings(openMenu) {
 			let updateCont = makeUpdateCont();
 
 			let patronInfo = make("div").addClass("mtd-patron-info").append(
-				make("div").addClass("mtd-patreon-button").append(
-					make("iframe").attr("src","https://www.patreon.com/platform/iframe?widget=become-patron-button&creatorID=3469384")
-				),
-				make("div").addClass("mtd-patron-list").append(
-					make("iframe").attr("src","https://moderndeck.org/donors?v=" + SystemVersion)
-				)
+				makePatronView()
 			)
 
 			if (isApp && !forceAppX) {
@@ -2578,7 +2794,10 @@ function openSettings(openMenu) {
 			}
 
 			subPanel.append(infoCont);
-			//subPanel.append(patronInfo);
+
+			if (enablePatronFeatures)
+				subPanel.append(patronInfo);
+
 		} else if (settingsData[key].enum === "mutepage") {
 
 			let filterInput = make("input").addClass("js-filter-input").attr("name","filter-input").attr("size",30).attr("type","text").attr("placeholder","Enter a word or phrase")
@@ -2732,6 +2951,10 @@ function updateFilterPanel(filterList) {
 	return filterList;
 }
 
+/*
+	Creates the update container
+*/
+
 function makeUpdateCont() {
 	let updateCont = make("div").addClass("mtd-update-container").html('<div class="mtd-update-spinner preloader-wrapper small active"><div class="spinner-layer"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div>');
 	let updateSpinner = $(".mtd-update-spinner");
@@ -2838,6 +3061,8 @@ let welcomeData = {
 
 }
 
+/* Main thread for welcome screen */
+
 function welcomeScreen() {
 
 	welcomeData.update.enabled = isApp && !forceAppX;
@@ -2859,7 +3084,6 @@ function welcomeScreen() {
 	let panel = make("div").addClass("mdl mtd-settings-panel").append(container);
 
 	for (var key in welcomeData) {
-		console.log("ADASDFASFGDSE");
 
 		let welc = welcomeData[key];
 
@@ -2927,6 +3151,8 @@ function welcomeScreen() {
 	return panel;
 }
 
+/* Puts your profile picture and header in the navigation drawer :)  */
+
 function profileSetup() {
 	let profileInfo = getProfileInfo();
 	if (profileInfo === null || typeof profileInfo === "undefined" || typeof profileInfo._profileBannerURL === "undefined" || profileInfo.profileImageURL === "undefined") {
@@ -2966,6 +3192,10 @@ async function getBlobFromUrl(imageUrl) {
 	})
 }
 
+/*
+	Creates the GIF panel, also handles scroll events to load more GIFs
+*/
+
 function createGifPanel() {
 	if ($(".mtd-gif-container").length > 0) {
 		return;
@@ -2992,7 +3222,7 @@ function createGifPanel() {
 		)
 	)
 
-	$(".drawer .compose>.compose-content>.antiscroll-inner.scroll-v.scroll-styled-v").scroll(function(){
+	$(".drawer .compose>.compose-content>.antiscroll-inner.scroll-v.scroll-styled-v").scroll(function(){ // no fancy arrow functions, we're using $(this)
 		if ($(this).scrollTop() > $(document).height() - 200) {
 			$(".mtd-gif-header").addClass("mtd-gif-header-fixed popover")
 		} else {
@@ -3011,13 +3241,17 @@ function createGifPanel() {
 	})
 }
 
-function renderGif(preview,mainOg) {
+/*
+	Renders a specific GIF, handles click function
+*/
+
+function renderGif(preview, mainOg) {
 	let main = mainOg;
 
-	return make("img").attr("src",preview).click(function() {
+	return make("img").attr("src", preview).click(function() {
 		let img;
 
-		console.log("Main: ",main);
+		console.log("Main: ", main);
 
 		getBlobFromUrl(main).then((img) => {
 
@@ -3047,6 +3281,10 @@ function renderGif(preview,mainOg) {
 		})
 	});
 }
+
+/*
+	Renders GIF results page
+*/
 
 function renderGifResults(data, error) {
 	$(".mtd-gif-container .preloader-wrapper").remove();
@@ -3082,11 +3320,19 @@ function renderGifResults(data, error) {
 	}
 }
 
+/*
+	Simple function that appends a loading spinner to the gif container
+*/
+
 function gifPanelSpinner() {
 	$(".mtd-gif-container").append(
 		spinnerLarge
 	)
 }
+
+/*
+	Main thread for a gif panel search
+*/
 
 function searchGifPanel(query) {
 	$(".mtd-gif-column-1").children().remove();
@@ -3109,14 +3355,19 @@ function searchGifPanel(query) {
 		renderGifResults(e.data);
 	})
 	.error((e) => {
-		console.log(e);
 		console.error("Error trying to fetch gifs");
+		console.error(e);
+		lastError = e;
 		renderGifResults("error",e);
 	})
 	.always(() => {
 		isLoadingMoreGifs = false;
 	});
 }
+
+/*
+	GIF panel when you first open it up, showing trending GIFs
+*/
 
 function trendingGifPanel() {
 	$(".mtd-gif-column-1").children().remove();
@@ -3140,12 +3391,17 @@ function trendingGifPanel() {
 	.error((e) => {
 		console.log(e);
 		console.error("Error trying to fetch gifs");
+		lastError = e;
 		renderGifResults("error",e);
 	})
 	.always(() => {
 		isLoadingMoreGifs = false;
 	});
 }
+
+/*
+	Let's load some more gifs from Giphy, triggered by scrolling
+*/
 
 function loadMoreGifs() {
 	isLoadingMoreGifs = true;
@@ -3159,12 +3415,19 @@ function loadMoreGifs() {
 	.error((e) => {
 		console.log(e);
 		console.error("Error trying to fetch gifs");
+		lastError = e;
 		renderGifResults("error",e);
 	})
 	.always(() => {
 		isLoadingMoreGifs = false;
 	});
 }
+
+/*
+	Disables adding GIFs if there's already an image (or GIF) attached to a Tweet.
+
+	You can only send 1 GIF per tweet after all.
+*/
 
 function checkGifEligibility() {
 	let imagesAdded = $(".compose-media-grid-remove,.compose-media-bar-remove").length;
@@ -3181,6 +3444,10 @@ function checkGifEligibility() {
 		$(".mtd-gif-button").removeClass("is-disabled").attr("data-original-title","");
 	}
 }
+
+/*
+	Hooks the composer every time it resets to add the GIF and Emoji buttons, as well as fix the layout
+*/
 
 function hookComposer() {
 
@@ -3257,6 +3524,7 @@ function hookComposer() {
 					} catch(e) {
 						console.error("failed to hide emoji picker");
 						console.error(e);
+						lastError = e;
 					}
 				}
 
@@ -3276,6 +3544,10 @@ function hookComposer() {
 	}
 }
 
+/*
+	Prepares modal dialogs, context menus, etc for a new modal popup, so we clear those things out.
+*/
+
 function mtdPrepareWindows() {
 	console.info("mtdPrepareWindows called");
 	$("#update-sound,.js-click-trap").click();
@@ -3286,6 +3558,10 @@ function mtdPrepareWindows() {
 	$(".mtd-nav-group-expanded").removeClass("mtd-nav-group-expanded");
 	$("#mtd_nav_group_arrow").removeClass("mtd-nav-group-arrow-flipped");
 }
+
+/*
+	Sets up the navigation drawer, loads preferences, etc.
+*/
 
 function navigationSetup() {
 
@@ -3299,6 +3575,7 @@ function navigationSetup() {
 	} catch(e) {
 		console.error("Caught error in loadPreferences");
 		console.error(e);
+		lastError = e;
 	}
 
 	try {
@@ -3306,9 +3583,10 @@ function navigationSetup() {
 	} catch(e) {
 		console.error("Caught error in hookComposer");
 		console.error(e);
+		lastError = e;
 	}
 
-	enableStylesheetExtension("donorbadges");
+	enableStylesheetExtension("donors");
 
 	$(".app-header-inner").append(
 		make("a").attr("id","mtd-navigation-drawer-button").attr("data-original-title","Navigation Drawer").addClass("js-header-action mtd-drawer-button link-clean cf app-nav-link").html('<div class="obj-left"><div class="mtd-nav-activator"></div><div class="nbfc padding-ts"></div>')
@@ -3414,6 +3692,7 @@ function navigationSetup() {
 	} catch(e) {
 		console.error("An error occurred in navigationSetup while trying to verify if dev/dogfood features are enabled or not");
 		console.error(e);
+		lastError = e;
 	}
 	$(".mtd-nav-group-expanded").attr("style","height:"+$(".mtd-nav-group-expanded").height()+"px");
 
@@ -3423,11 +3702,21 @@ function navigationSetup() {
 		} catch(e) {
 			console.error("Error in Welcome screen");
 			console.error(e);
+			lastError = e;
 		}
 	}
 
 	profileSetup();
 }
+
+/*
+	Handles Keyboard shortcuts
+
+	Ctrl+Shift+A -> Toggle outline accessibility option
+	Ctrl+Shift+C -> Disable custom CSS (in case something went wrong and the user is unable to return to settings to clear it)
+	Ctrl+Alt+D -> Enter diagnostic menu (for helping developers)
+	Q -> Toggle navigation drawer (except Left Classic view)
+*/
 
 function keyboardShortcutHandler(e) {
 	console.log(e);
@@ -3456,6 +3745,7 @@ function keyboardShortcutHandler(e) {
 		} catch (e) {
 			console.error("An error occurred while creating the diagnostic report");
 			console.error(e);
+			lastError = e;
 		}
 
 	}
@@ -3474,14 +3764,22 @@ function keyboardShortcutHandler(e) {
 
 	}
 	if (e.keyCode === 81 && document.querySelector("input:focus,textarea:focus") === null) {
-		if ($(mtd_nav_drawer).hasClass("mtd-nav-drawer-hidden")) {
-			$("#mtd-navigation-drawer-button").click();
-		} else {
-			$(mtd_nav_drawer_background).click();
+		if (getPref("mtd_headposition") !== "classic") {
+			if ($(mtd_nav_drawer).hasClass("mtd-nav-drawer-hidden")) {
+				$("#mtd-navigation-drawer-button").click();
+			} else {
+				$(mtd_nav_drawer_background).click();
+			}
 		}
 	}
 
 }
+
+/*
+	Checks if the signin form is available.
+
+	If so, it activates the login page stylesheet component
+*/
 
 function checkIfSigninFormIsPresent() {
 
@@ -3502,6 +3800,11 @@ function checkIfSigninFormIsPresent() {
 	}
 
 }
+
+/*
+	Controls certain things after they're added to the DOM
+	Example: Dismissing dropdown menus, sentry error notification
+*/
 
 function onElementAddedToDOM(e) {
 	let tar = $(e.target);
@@ -3526,13 +3829,15 @@ function onElementAddedToDOM(e) {
 			},{ attributes: true, childList: false, characterData: false });
 		}
 	} else if ($(e[0].addedNodes[0]).hasClass("sentry-error-embed-wrapper")) {
+
 		$(e[0].addedNodes[0]).addClass("overlay");
 		$(".sentry-error-embed").addClass("mdl");
 		$(".sentry-error-embed-wrapper>style").remove();
 		$("#id_email").parent().addClass("is-hidden");
 		$("#id_email")[0].value = "a@a.com";
+
 		if (sendingFeedback) {
-		$(".form-submit>button.btn[type='submit']").html("Send Feedback");
+			$(".form-submit>button.btn[type='submit']").html("Send Feedback");
 			$(".sentry-error-embed>header>h2").html("Send feedback about ModernDeck");
 			$(".sentry-error-embed>header>p").html("Other than your input, no personally identifiable information will be sent.");
 			sendingFeedback = false;
@@ -3542,9 +3847,21 @@ function onElementAddedToDOM(e) {
 	}
 }
 
+/*
+	Helper function that rounds a number to the nearest hundredth (2nd decimal)
+*/
+
 function roundMe(val) {
 	return Math.floor(val * 100)/100;
 }
+
+/*
+	function formatBytes(int val)
+
+	Returns string: Number of bytes formatted into larger units (KB, MB, GB, TB)
+
+	i.e. formatBytes(1000) -> "1 KB"
+*/
 
 function formatBytes(val) {
 	if (val < 10**3) {
@@ -3559,6 +3876,8 @@ function formatBytes(val) {
 		return roundMe(val/10**12) + " TB"
 	}
 }
+
+/* Controller function for app update page */
 
 function mtdAppUpdatePage(updateCont, updateh2, updateh3, updateIcon, updateSpinner, tryAgain, restartNow) {
 
@@ -3641,6 +3960,10 @@ function mtdAppUpdatePage(updateCont, updateh2, updateh3, updateIcon, updateSpin
 	ipcRenderer.send('checkForUpdates');
 }
 
+/*
+	Notifies users of an app update
+*/
+
 function notifyUpdate() {
 	mtdAlert({
 		title:"Update ModernDeck",
@@ -3653,6 +3976,10 @@ function notifyUpdate() {
 		}
 	});
 }
+
+/*
+	Create offline notification (probably because we're offline)
+*/
 
 function notifyOffline() {
 
@@ -3675,10 +4002,19 @@ function notifyOffline() {
 	}
 }
 
+/*
+	Dismiss offline notification (probably because we're online again)
+*/
+
 function dismissOfflineNotification() {
 	if (!exists(offlineNotification)) {return;}
 	mR.findFunction("showErrorNotification")[0].removeNotification({notification:offlineNotification});
 }
+
+/*
+	mtdAppFunctions() consists of functions to help interface
+	from here (the renderer process) to the main process
+*/
 
 function mtdAppFunctions() {
 
@@ -3709,7 +4045,7 @@ function mtdAppFunctions() {
 	});
 
 	ipcRenderer.on("disable-high-contrast", (e) => {
-		console.error("DISABLING HIGH CONTRAST ");
+		console.info("DISABLING HIGH CONTRAST ");
 		try {
 			settingsData.accessibility.options.highcont.deactivate.func();
 		} catch(e){}
@@ -3825,11 +4161,19 @@ function mtdAppFunctions() {
 	updateOnlineStatus();
 }
 
+/*
+	Returns ipcRenderer for electron app
+*/
+
 function getIpc() {
 	if (!require) {return null;}
 	let {ipcRenderer} = require('electron');
 	return ipcRenderer;
 }
+
+/*
+	Helper function to create a context menu item
+*/
 
 function makeCMItem(p) {
 	if (useNativeContextMenus) {
@@ -3862,6 +4206,10 @@ function makeCMItem(p) {
 	return li;
 }
 
+/*
+	Function that clears a context menu after it's been dismissed
+*/
+
 function clearContextMenu() {
 	let removeMenu = $(".mtd-context-menu")
 	removeMenu.addClass("mtd-dropdown-fade-out").on("animationend",() => {
@@ -3869,12 +4217,20 @@ function clearContextMenu() {
 	});
 }
 
+/*
+	Helper function to create a context menu divider
+*/
+
 function makeCMDivider() {
 	if (useNativeContextMenus) {
 		return {type:'separator'}
 	}
 	return make("div").addClass("drp-h-divider");
 }
+
+/*
+	Helper function for the app to construct context menus that will be displayed
+*/
 
 function buildContextMenu(p) {
 	let items = [];
@@ -3938,6 +4294,10 @@ function buildContextMenu(p) {
 		items.push(makeCMItem({mousex:x,mousey:y,dataaction:"inspectElement",text:"Inspect element",enabled:true,data:{x:x,y:y}}));
 	}
 
+	if (debugSettings) {
+		items.push(makeCMItem({mousex:x,mousey:y,dataaction:"newSettings",text:"Settings",enabled:true,data:{x:x,y:y}}));
+	}
+
 	if (useNativeContextMenus) {
 		return items;
 	}
@@ -3980,6 +4340,12 @@ function buildContextMenu(p) {
 	return menu;
 }
 
+/*
+	This is used by the preference management system to activate preferences
+
+	This allows for many simple preferences to be done completely in object notation with no extra JS
+*/
+
 function parseActions(a,opt) {
 	for (let key in a) {
 		console.log(key);
@@ -4004,6 +4370,7 @@ function parseActions(a,opt) {
 					} catch (e) {
 						console.error("Error occurred processing action function.");
 						console.error(e);
+						lastError = e;
 						console.error("Dump of naughty function attached below");
 						console.log(a[key])
 					}
@@ -4014,6 +4381,11 @@ function parseActions(a,opt) {
 		}
 	}
 }
+
+/*
+	The first init function performed, even before mtdInit
+	Also controls error reporting
+*/
 
 function coreInit() {
 	if (useRaven && typeof Raven === "undefined") {
@@ -4035,7 +4407,8 @@ function coreInit() {
 			window.$ = jQuery;
 			window.jQuery = jQuery;
 		} catch (e) {
-			console.error("jQuery failed. This will break approximately... everything.")
+			console.error("jQuery failed. This will break approximately... everything.");
+			alert("ModernDeck was unable to find the page's jQuery runtime. This will result in application instability. Please notify @ModernDeck or @dangeredwolf of this issue immediately.");
 		}
 	}
 
@@ -4052,6 +4425,7 @@ function coreInit() {
 		} catch(e) {
 			console.error("An error occurred while running mtdAppFunctions");
 			console.error(e);
+			lastError = e;
 		}
 	}
 	// append the emoji picker script

@@ -1,7 +1,7 @@
 /*
 	moderndeck.css
 
-	ModernDeck 7.3.5 [codename Essence]
+	ModernDeck 7.3.6 [codename Essence]
 	Copyright 2014-2019 dangered wolf
 	Released under the MIT Licence
 
@@ -2289,7 +2289,6 @@ a .column-title-back .icon:after {
 }
 
 .account-inline .fullname,.account-inline .username,.account-link.txt-bold {
-	line-height:0;
 	text-overflow:ellipsis;
 	font-size:0.9rem;
 	margin-left:3px
@@ -10369,7 +10368,7 @@ footer>.js-tweet-stats>.tweet-stats:not(.js-stats-list) {
 	box-shadow:0 3px 7px var(--composeShadow);
 	padding:11px;
 	border-radius:4px;
-	transition:background 0.2s var(--animationTiming)!important
+	transition:background 0.2s var(--animationTiming),transform 0.25s var(--animationTiming)!important
 }
 
 .btn-primary,.Button--primary:not(.tweet-button):not(.action-text):not(.more-tweets-btn):not(.js-add-column):not(.js-spinner-button) {
@@ -10623,15 +10622,13 @@ footer>.js-tweet-stats>.tweet-stats:not(.js-stats-list) {
 	right:0;
 	top:0;
 	bottom:71px;
-	float:right
+	float:right;
+	width:240px
 }
 
 .mtd-patron-list {
-	margin-top:60px;
-	right:100px;
-	width:240px;
-	float:right;
-	height:70%
+	width:100%;
+	float:right
 }
 
 .mtd-classic-nav .app-header .app-nav-logo-text,
@@ -10976,11 +10973,40 @@ footer>.js-tweet-stats>.tweet-stats:not(.js-stats-list) {
 	vertical-align:sub
 }
 
-.mtd-patreon-button {
-	height:36px
+.mtd-patron-render {
+	width:100%
 }
 
-.mtd-patron-info iframe {
-	height:100%;
+.mtd-patron-render h3 {
 	width:100%
+}
+
+p.mtd-patron-level {
+	line-height:1.3;
+	padding:0;
+	font-size:12px
+}
+
+.mtd-patron-list-inline .mtd-patron-level {
+	display:inline;
+	padding-right:3px
+}
+
+.mtd-patron-level.mtd-patron-level-1 {
+	font-weight:500;
+	font-size:14px
+}
+
+.mtd-patreon-button {
+	height:36px;
+	position:absolute;
+	bottom:0
+}
+
+.mtd-auto-scroll {
+	position:absolute;
+	top:80px;
+	bottom:60px;
+	left:0;
+	right:0
 }
