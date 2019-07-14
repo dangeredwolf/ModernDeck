@@ -5214,6 +5214,10 @@ input[type="checkbox"]:active {
 	animation:fadeIn 0.4s forwards 4s var(--animationTiming)
 }
 
+.mtd-app:not(.mtd-maximized):not(.mtd-app-mac) .column-navigator {
+	right:30px
+}
+
 .mtd-js-app .column-navigator {
 	top:0
 }
@@ -5303,6 +5307,10 @@ html:not(.mtd-head-left) .column-nav-item {
 	padding-right:5px;
 	padding-top:5px;
 	display:block
+}
+
+html:not(.mtd-head-left) .column-nav-link i {
+	padding-top:0
 }
 
 .column-nav-link .attribution {
