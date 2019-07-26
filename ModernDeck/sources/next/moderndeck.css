@@ -1,23 +1,26 @@
 @import "application.css";
-@import "column.css";
-@import "columnNavigator.css";
-@import "variables.css";
-@import "parameters.css";
+@import "avatar.css";
 @import "basicClasses.css";
 @import "button.css";
+@import "column.css";
+@import "columnNavigator.css";
+@import "composer.css";
+@import "contextmenu.css";
+@import "parameters.css";
+@import "variables.css";
 @import "../csscomponents/spinner.css";
 @import "../csscomponents/icon.css";
 @import "../csscomponents/settings.css";
 @import "../csscomponents/alert.css";
 @import "../csscomponents/navigationdrawer.css";
-@import "../csscomponents/contextmenu.css";
 @import "../csscomponents/windowcontrol.css";
+@import "../csscomponents/coredefinitions.css";
 
 .is-hidden,.hidden {
 	display:none
 }
 
-html {
+html, button, input, label, h1, h2, h3, h4, b, p {
 	font-family:var(--defaultFontOrder)
 }
 

@@ -35,7 +35,7 @@ const Store = require("electron-store");
 const store = new Store({name:"mtdsettings"});
 
 const disableCss = false;
-const useNext = false;
+const useNext = true;
 
 /*
 	Note: Due to a bug in electron, process.windowsStore is undefined even for AppX distributions
@@ -450,7 +450,7 @@ function makeWindow() {
 			(disableCss ? 'document.getElementsByTagName("html")[0].classList.add("mtd-disable-css");' :
 			'var injStyles = document.createElement("link");\
 			injStyles.rel = "stylesheet";\
-			injStyles.href = "moderndeck://sources/' + (useNext ? 'moderndecknext/' : '') + 'moderndeck.css";\
+			injStyles.href = "moderndeck://sources/' + (useNext ? 'next/' : '') + 'moderndeck.css";\
 			document.head.appendChild(injStyles);')
 			+
 			'var InjectScript = document.createElement("script");\

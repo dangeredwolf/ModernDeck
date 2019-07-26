@@ -1,0 +1,15 @@
+/* Animation keyframes */
+
+@keyframes fadeOut {
+	0% {opacity:1}
+	100% {opacity:0}
+}
+
+
+/* Basic class definitions */
+
+.mtd-fade-out {
+	animation:fadeOut 0.2s var(--animationTiming)!important;
+	animation-fill-mode:both;
+	pointer-events:none
+}

@@ -1,5 +1,7 @@
 @import "parametersText.css";
 @import "parametersMarginPadding.css";
+@import "parametersWidthHeight.css";
+@import "parametersFlex.css";
 
 abbr[title] {
     border-bottom-width: 0

@@ -1,7 +1,20 @@
 .column {
+	display:inline-block;
 	width:var(--columnSize);
 	height:100%;
+	position:relative;
+	overflow:hidden;
+}
 
+.column-header-title {
+    height:50px;
+    overflow:hidden;
+    line-height:3.2em
+}
+
+.column-title {
+    font-size:16px;
+    font-weight:500
 }
 
 .column-holder,.column-panel {
@@ -10,9 +23,20 @@
 
 .app-columns {
 	width:100%;
-	height:100%
+	height:100%;
+	overflow-y: hidden;
+	overflow-x: auto;
+	counter-reset:column-number
+}
+
+.horizontal-flow-container {
+	white-space:nowrap
 }
 
 .app-columns-container {
 	position:absolute
+}
+
+.drag-drop-indicator {
+	pointer-events:none
 }
