@@ -1,0 +1,18 @@
+.column {
+	width:var(--columnSize);
+	height:100%;
+
+}
+
+.column-holder,.column-panel {
+	width:100%
+}
+
+.app-columns {
+	width:100%;
+	height:100%
+}
+
+.app-columns-container {
+	position:absolute
+}

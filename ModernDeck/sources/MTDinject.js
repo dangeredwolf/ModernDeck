@@ -3604,7 +3604,7 @@ function navigationSetup() {
 		make("a").attr("id","mtd-navigation-drawer-button").attr("data-original-title","Navigation Drawer").addClass("js-header-action mtd-drawer-button link-clean cf app-nav-link").html('<div class="obj-left"><div class="mtd-nav-activator"></div><div class="nbfc padding-ts"></div>')
 		.click(() => {
 			if (exists(mtd_nav_drawer_background)) {
-				$("#mtd_nav_drawer_background").removeClass("mtd-nav-drawer-background-hidden");
+				$("#mtd_nav_drawer_background").removeClass("hidden");
 			}
 			if (exists(mtd_nav_drawer)) {
 				$("#mtd_nav_drawer").attr("class","mtd-nav-drawer");
@@ -3615,7 +3615,7 @@ function navigationSetup() {
 	$("body").append(
 		make("div")
 		.attr("id","mtd_nav_drawer")
-		.addClass("mtd-nav-drawer mtd-nav-drawer-hidden")
+		.addClass("mtd-nav-drawer hidden")
 		.append(
 			make("img").attr("id","mtd_nd_header_image").addClass("mtd-nd-header-image").attr("style",""),
 			make("img").addClass("avatar size73 mtd-nd-header-photo").attr("id","mtd_nd_header_photo").attr("src",""),
@@ -3664,9 +3664,9 @@ function navigationSetup() {
 				}
 			}).append("Send Feedback")
 		),
-		make("div").attr("id","mtd_nav_drawer_background").addClass("mtd-nav-drawer-background mtd-nav-drawer-background-hidden").click(function() {
-			$(this).addClass("mtd-nav-drawer-background-hidden");
-			$(mtd_nav_drawer).addClass("mtd-nav-drawer-hidden");
+		make("div").attr("id","mtd_nav_drawer_background").addClass("mtd-nav-drawer-background hidden").click(function() {
+			$(this).addClass("hidden");
+			$(mtd_nav_drawer).addClass("hidden");
 
 			$(".mtd-nav-group-expanded").removeClass("mtd-nav-group-expanded");
 			$("#mtd_nav_group_arrow").removeClass("mtd-nav-group-arrow-flipped");
@@ -3777,7 +3777,7 @@ function keyboardShortcutHandler(e) {
 	}
 	if (e.keyCode === 81 && document.querySelector("input:focus,textarea:focus") === null) {
 		if (getPref("mtd_headposition") !== "classic") {
-			if ($(mtd_nav_drawer).hasClass("mtd-nav-drawer-hidden")) {
+			if ($(mtd_nav_drawer).hasClass("hidden")) {
 				$("#mtd-navigation-drawer-button").click();
 			} else {
 				$(mtd_nav_drawer_background).click();

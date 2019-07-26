@@ -1,0 +1,5 @@
+@import "variables.css";
+
+#column-navigator, .app-header {
+	width:var(--verticalHeadWidth)
+}

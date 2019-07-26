@@ -1,0 +1,83 @@
+
+button,a.btn,a.js-create-list,input[type="button"],.Button--primary,.Button {
+	position:relative;
+	display:inline-block;
+	pointer-events:all;
+	padding:4px 10px;
+	min-height:30px;
+	text-align:center;
+	text-decoration:none;
+	cursor:pointer;
+	font-size:14px;
+	font-weight:500;
+	border:0;
+	border-color:transparent;
+	background:transparent;
+	text-shadow:none;
+	text-transform:uppercase
+}
+
+button:hover,button:focus,.Button--primary {
+	background:transparent;
+	outline:0
+}
+
+.btn:not(.js-add-column):active,.btn.is-selected,.Button.is-selected {
+	transform:scale(.95)
+}
+
+.btn-positive,.btn-positive-alt,.btn-fav.s-favorited,.s-following .follow-btn {
+	z-index:5;
+	transition:0.25s all var(--animationTiming),.4s background var(--animationTiming),.4s width var(--animationTiming)!important
+}
+
+.btn-options-tray i {
+	font-size:22px!important
+}
+
+.btn-options-tray:hover,.btn-options-tray:focus {
+	color:rgba(255,255,255,.8)
+}
+
+.btn-options-unique {
+	padding-top:8px;
+	padding-bottom:8px;
+	font-size:13px
+}
+
+.btn-square-narrow {
+	width:20px
+}
+
+.btn-extra-height {
+	height:40px
+}
+
+.txt-large,.btn-txt-large,.txt-base-large,.txt-base-largest {
+	font-size:1.1em
+}
+
+.btn-options-tray-space,.btn-options-tray {
+	padding:15px
+}
+
+.follow-btn,.btn-fav {
+	min-width:100px
+}
+
+.follow-btn {
+	transition:background-color 0.15s
+}
+
+.btn-fav {
+	position:relative;
+	width:100px;
+	margin-left:-10px;
+	float:right
+}
+
+.button-group .btn,.button-group .Button {
+	float:left;
+	margin-left:-1px;
+	border-radius:0
+}
