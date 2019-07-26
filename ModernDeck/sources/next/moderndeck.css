@@ -6,7 +6,10 @@
 @import "columnNavigator.css";
 @import "composer.css";
 @import "contextmenu.css";
+@import "emojiNext.css";
+@import "overlay.css";
 @import "parameters.css";
+@import "tweet.css";
 @import "variables.css";
 @import "../csscomponents/spinner.css";
 @import "../csscomponents/icon.css";
@@ -22,8 +25,4 @@
 
 html, button, input, label, h1, h2, h3, h4, b, p {
 	font-family:var(--defaultFontOrder)
-}
-
-.column {
-	/* display:none */
 }

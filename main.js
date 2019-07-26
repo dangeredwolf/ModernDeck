@@ -453,6 +453,8 @@ function makeWindow() {
 			injStyles.href = "moderndeck://sources/' + (useNext ? 'next/' : '') + 'moderndeck.css";\
 			document.head.appendChild(injStyles);')
 			+
+			(useNext ? 'document.getElementsByTagName("html")[0].classList.add("mtd-next");' : '')
+			+
 			'var InjectScript = document.createElement("script");\
 			InjectScript.src = "moderndeck://sources/MTDinject.js";\
 			InjectScript.type = "text/javascript";\

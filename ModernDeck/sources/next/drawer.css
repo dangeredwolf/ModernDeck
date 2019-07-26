@@ -1,8 +1,8 @@
 .drawer {
-    position: absolute;
-    width: 270px;
-    top: 0;
-    left: -270px;
-    height: 100%;
-    margin-right: 0
+    position:absolute;
+    width:270px;
+    top:0;
+    left:-270px;
+    height:100%;
+    margin-right:0
 }

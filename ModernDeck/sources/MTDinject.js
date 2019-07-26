@@ -8,7 +8,7 @@
 
 'use strict';
 
-const SystemVersion = "7.4";
+let SystemVersion = "7.4";
 const appendTextVersion = true;
 const enablePatronFeatures = true;
 
@@ -2078,6 +2078,10 @@ async function mtdInit() {
 	}
 	html.addClass("dark");
 
+	if (html.hasClass("mtd-next")) {
+		SystemVersion = "8.0"
+	}
+
 	if (!injectedFonts) {
 		try {
 			injectFonts()
@@ -2769,7 +2773,7 @@ function openSettings(openMenu) {
 			}
 		} else if (settingsData[key].enum === "aboutpage") {
 			let logo = make("i").addClass("mtd-logo icon-moderndeck icon");
-			let h1 = make("h1").addClass("mtd-about-title").html("ModernDeck 7");
+			let h1 = make("h1").addClass("mtd-about-title").html(html.hasClass("mtd-next") ? "ModernDeck Next" : "ModernDeck 7");
 			let h2 = make("h2").addClass("mtd-version-title").html((appendTextVersion ? "Version " : "") +SystemVersion);
 			let logoCont = make("div").addClass("mtd-logo-container");
 

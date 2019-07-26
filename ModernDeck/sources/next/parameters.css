@@ -1,6 +1,6 @@
 @import "parametersText.css";
 @import "parametersMarginPadding.css";
-@import "parametersWidthHeight.css";
+@import "parametersHeightWidth.css";
 @import "parametersFlex.css";
 
 abbr[title] {
