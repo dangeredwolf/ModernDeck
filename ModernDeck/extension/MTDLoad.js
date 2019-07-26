@@ -1,6 +1,7 @@
 /*
 	MTDLoad.js
-	Copyright (c) 2019 dangeredwolf
+	Copyright (c) 2019 dangered wolf, et al
+	
 	Released under the MIT licence
 */
 

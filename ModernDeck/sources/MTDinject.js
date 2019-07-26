@@ -1,15 +1,14 @@
 /*
 	MTDinject.js
-	Copyright (c) 2019 dangeredwolf
+	Copyright (c) 2019 dangered wolf, et al
 	Released under the MIT licence
 
-	made with love <3
-
+	Made with <3
 */
 
 'use strict';
 
-const SystemVersion = "7.3.7";
+const SystemVersion = "7.4";
 const appendTextVersion = true;
 const enablePatronFeatures = true;
 
@@ -26,7 +25,7 @@ let loginIntervalTick = 0;
 
 const forceFeatureFlags = false;
 const forceAppX = false; // https://github.com/electron/electron/issues/18161
-const useRaven = true;
+const useRaven = false;
 const debugWelcome = false;
 
 let replacedLoadingSpinnerNew = false;
@@ -34,7 +33,7 @@ let sendingFeedback = false;
 
 let ugltStarted = false;
 let useNativeContextMenus = false;
-let isDev = false;
+let isDev = true;
 let debugStorageSys = false;
 
 let store;
@@ -1815,7 +1814,7 @@ function overrideFadeOut() {
 	// here we add event listeners to add a fading out animation when a modal dialog is closed
 
 	document.querySelectorAll(".js-modals-container")[0].removeChild = (rmnode) => {
-		$(rmnode).addClass("mtd-modal-window-fade-out");
+		$(rmnode).addClass("mtd-fade-out");
 		setTimeout(() => {
 			rmnode.remove();
 		},200);
@@ -1825,7 +1824,7 @@ function overrideFadeOut() {
 
 	$(document.querySelector(".application").childNodes).each((obj) => {
 		($(document.querySelector(".application").childNodes)[obj] || obj).removeChild = (rmnode) => {
-			$(rmnode).addClass("mtd-modal-window-fade-out");
+			$(rmnode).addClass("mtd-fade-out");
 			setTimeout(() => {
 				rmnode.remove();
 			},200);
@@ -1833,7 +1832,7 @@ function overrideFadeOut() {
 	})
 
 	$(".js-modal").on("removeChild", (rmnode) => {
-		$(rmnode).addClass("mtd-modal-window-fade-out");
+		$(rmnode).addClass("mtd-fade-out");
 		setTimeout(() => {
 			rmnode.remove();
 		},200);
@@ -1854,7 +1853,7 @@ function overrideFadeOut() {
 		if (exists($(".app-navigator")[0])) {
 			$(".app-navigator")[0].removeChild = (i) => {
 				if ($(i).hasClass("dropdown-menu")) {
-					$(i).addClass("mtd-dropdown-fade-out");
+					$(i).addClass("mtd-fade-out");
 					setTimeout(() => {
 						i.remove(); // Tooltips automagically animate themselves out. But here we clean them up as well ourselves.
 					},200);
@@ -1870,7 +1869,6 @@ function overrideFadeOut() {
 /* Change favicon and notification sound */
 
 function replaceAudioAndFavicon() {
-	$("link[rel=\"shortcut icon\"]").attr("href",mtdBaseURL + "sources/favicon.ico");
 	$(document.querySelector("audio")).attr("src",mtdBaseURL + "sources/alert_2.mp3");
 }
 
@@ -1885,72 +1883,116 @@ function processMustaches() {
 				<input type="button" name="remove-filter" value="{{_i}}Remove{{/i}}" data-id="{{id}}" class="js-remove-filter small btn btn-negative">\
 			</li>';
 
-	if (typeof TD_mustaches["column_loading_placeholder.mustache"] !== "undefined")
-		TD_mustaches["column_loading_placeholder.mustache"] =
-			TD_mustaches["column_loading_placeholder.mustache"].replace("<span class=\"spinner-small\"></span>",spinnerSmall);
+	if (!html.hasClass("mtd-disable-css")) {
 
-	if (typeof TD_mustaches["spinner_large.mustache"] !== "undefined")
-		TD_mustaches["spinner_large.mustache"] = spinnerLarge;
+		if (typeof TD_mustaches["column_loading_placeholder.mustache"] !== "undefined")
+			TD_mustaches["column_loading_placeholder.mustache"] =
+				TD_mustaches["column_loading_placeholder.mustache"].replace("<span class=\"spinner-small\"></span>",spinnerSmall);
 
-	if (typeof TD_mustaches["spinner_large_white.mustache"] !== "undefined")
-		TD_mustaches["spinner_large_white.mustache"] = spinnerLarge;
+		if (typeof TD_mustaches["spinner_large.mustache"] !== "undefined")
+			TD_mustaches["spinner_large.mustache"] = spinnerLarge;
 
-	if (typeof TD_mustaches["spinner.mustache"] !== "undefined")
-		TD_mustaches["spinner.mustache"] = spinnerSmall;
+		if (typeof TD_mustaches["spinner_large_white.mustache"] !== "undefined")
+			TD_mustaches["spinner_large_white.mustache"] = spinnerLarge;
 
-	if (typeof TD_mustaches["column.mustache"] !== "undefined")
-		TD_mustaches["column.mustache"] =
-			TD_mustaches["column.mustache"].replace("Loading...","");
+		if (typeof TD_mustaches["spinner.mustache"] !== "undefined")
+			TD_mustaches["spinner.mustache"] = spinnerSmall;
 
-	if (typeof TD_mustaches["media/media_gallery.mustache"] !== "undefined")
-		TD_mustaches["media/media_gallery.mustache"] =
-			TD_mustaches["media/media_gallery.mustache"].replace(
-				'<div class="js-embeditem med-embeditem"> ',
-				'<div class="js-embeditem med-embeditem"> ' + spinnerLarge
-			);
+		if (typeof TD_mustaches["column.mustache"] !== "undefined")
+			TD_mustaches["column.mustache"] =
+				TD_mustaches["column.mustache"].replace("Loading...","");
 
-	if (typeof TD_mustaches["modal.mustache"] !== "undefined")
-		TD_mustaches["modal.mustache"] =
-			TD_mustaches["modal.mustache"].replace(
-				'<img src="{{#asset}}/global/backgrounds/spinner_large_white.gif{{/asset}}" alt="{{_i}}Loading…{{/i}}" />',
-				spinnerSmall
-			);
+		if (typeof TD_mustaches["media/media_gallery.mustache"] !== "undefined")
+			TD_mustaches["media/media_gallery.mustache"] =
+				TD_mustaches["media/media_gallery.mustache"].replace(
+					'<div class="js-embeditem med-embeditem"> ',
+					'<div class="js-embeditem med-embeditem"> ' + spinnerLarge
+				);
 
-	if (typeof TD_mustaches["twitter_profile.mustache"] !== "undefined")
-		TD_mustaches["twitter_profile.mustache"] =
-			TD_mustaches["twitter_profile.mustache"].replace(
-				'<img src="{{#asset}}/global/backgrounds/spinner_large_white.gif{{/asset}}" alt="{{_i}}Loading…{{/i}}">',
-				spinnerSmall
-			);
+		if (typeof TD_mustaches["modal.mustache"] !== "undefined")
+			TD_mustaches["modal.mustache"] =
+				TD_mustaches["modal.mustache"].replace(
+					'<img src="{{#asset}}/global/backgrounds/spinner_large_white.gif{{/asset}}" alt="{{_i}}Loading…{{/i}}" />',
+					spinnerSmall
+				);
 
-	if (typeof TD_mustaches["follow_button.mustache"] !== "undefined")
-		TD_mustaches["follow_button.mustache"] =
-			TD_mustaches["follow_button.mustache"].replace(
-				'<img src="{{#asset}}/web/assets/global/backgrounds/spinner_small_trans.gif{{/asset}}" alt="{{_i}}Loading…{{/i}}"> ',
-				spinnerTiny
-			);
+		if (typeof TD_mustaches["twitter_profile.mustache"] !== "undefined")
+			TD_mustaches["twitter_profile.mustache"] =
+				TD_mustaches["twitter_profile.mustache"].replace(
+					'<img src="{{#asset}}/global/backgrounds/spinner_large_white.gif{{/asset}}" alt="{{_i}}Loading…{{/i}}">',
+					spinnerSmall
+				);
 
-	if (typeof TD_mustaches["video_preview.mustache"] !== "undefined")
-		TD_mustaches["video_preview.mustache"] =
-			TD_mustaches["video_preview.mustache"].replace(
-				'<div class="processing-video-spinner"></div>',
-				spinnerSmall
-			);
+		if (typeof TD_mustaches["follow_button.mustache"] !== "undefined")
+			TD_mustaches["follow_button.mustache"] =
+				TD_mustaches["follow_button.mustache"].replace(
+					'<img src="{{#asset}}/web/assets/global/backgrounds/spinner_small_trans.gif{{/asset}}" alt="{{_i}}Loading…{{/i}}"> ',
+					spinnerTiny
+				);
 
-	if (typeof TD_mustaches["login/2fa_verification_code.mustache"] !== "undefined")
-		TD_mustaches["login/2fa_verification_code.mustache"] =
-			TD_mustaches["login/2fa_verification_code.mustache"].replace(
-				'<i class="js-spinner-button-active icon-center-16 spinner-button-icon-spinner"></i>',
-				buttonSpinner
-			);
+		if (typeof TD_mustaches["video_preview.mustache"] !== "undefined")
+			TD_mustaches["video_preview.mustache"] =
+				TD_mustaches["video_preview.mustache"].replace(
+					'<div class="processing-video-spinner"></div>',
+					spinnerSmall
+				);
 
-	if (typeof TD_mustaches["login/login_form_footer.mustache"] !== "undefined")
-		TD_mustaches["login/login_form_footer.mustache"] =
-			TD_mustaches["login/login_form_footer.mustache"].replace(
-				'<i class="js-spinner-button-active icon-center-16 spinner-button-icon-spinner"></i>',
-				buttonSpinner
-			);
+		if (typeof TD_mustaches["login/2fa_verification_code.mustache"] !== "undefined")
+			TD_mustaches["login/2fa_verification_code.mustache"] =
+				TD_mustaches["login/2fa_verification_code.mustache"].replace(
+					'<i class="js-spinner-button-active icon-center-16 spinner-button-icon-spinner"></i>',
+					buttonSpinner
+				);
 
+		if (typeof TD_mustaches["login/login_form_footer.mustache"] !== "undefined")
+			TD_mustaches["login/login_form_footer.mustache"] =
+				TD_mustaches["login/login_form_footer.mustache"].replace(
+					'<i class="js-spinner-button-active icon-center-16 spinner-button-icon-spinner"></i>',
+					buttonSpinner
+				);
+
+		if (typeof TD_mustaches["compose/compose_inline_reply.mustache"] !== "undefined")
+			TD_mustaches["compose/compose_inline_reply.mustache"] =
+				TD_mustaches["compose/compose_inline_reply.mustache"].replace(
+					'<i class="js-spinner-button-active icon-center-16 spinner-button-icon-spinner is-hidden"></i>',
+					buttonSpinner
+				);
+
+		if (typeof TD_mustaches["buttons/favorite.mustache"] !== "undefined")
+			TD_mustaches["buttons/favorite.mustache"] =
+				TD_mustaches["buttons/favorite.mustache"].replace(
+					'<span> <img src="{{#asset}}/global/backgrounds/spinner_small_trans.gif{{/asset}}" alt="{{_i}}Loading…{{/i}}"> </span>',
+					buttonSpinner
+				);
+
+		if (typeof TD_mustaches["embed_tweet.mustache"] !== "undefined")
+			TD_mustaches["embed_tweet.mustache"] =
+				TD_mustaches["embed_tweet.mustache"].replace(
+					'<img src="{{#asset}}/global/backgrounds/spinner_large_white.gif{{/asset}}" class="embed-loading" alt="{{_i}}Loading…{{/i}}" />',
+					spinnerSmall
+				);
+
+		if (typeof TD_mustaches["follow_button.mustache"] !== "undefined")
+			TD_mustaches["follow_button.mustache"] =
+				TD_mustaches["follow_button.mustache"].replace(
+					'<span> <img src="{{#asset}}/global/backgrounds/spinner_small_trans.gif{{/asset}}" alt="{{_i}}Loading…{{/i}}"> </span>',
+					buttonSpinner
+				);
+
+		if (typeof TD_mustaches["lists/member.mustache"] !== "undefined")
+			TD_mustaches["lists/member.mustache"] =
+				TD_mustaches["lists/member.mustache"].replace(
+					'<span> <img src="{{#asset}}/global/backgrounds/spinner_small_trans.gif{{/asset}}" alt="{{_i}}Loading…{{/i}}"> </span>',
+					buttonSpinner
+				);
+
+		if (typeof TD_mustaches["keyboard_shortcut_list.mustache"] !== "undefined")
+			TD_mustaches["keyboard_shortcut_list.mustache"] =
+				TD_mustaches["keyboard_shortcut_list.mustache"].replace(
+					"<kbd class=\"text-like-keyboard-key\">X</kbd>  Expand/Collapse navigation</dd>",
+					"<kbd class=\"text-like-keyboard-key\">Q</kbd> Open Navigation Drawer/Menu</dd>"
+				)
+	}
 	if (typeof TD_mustaches["compose/docked_compose.mustache"] !== "undefined")
 		TD_mustaches["compose/docked_compose.mustache"] =
 			TD_mustaches["compose/docked_compose.mustache"].replace(
@@ -1958,47 +2000,7 @@ function processMustaches() {
 				buttonSpinner
 			).replace("\"js-add-image-button js-show-tip needsclick btn btn-on-blue full-width txt-left margin-b--12 padding-v--6 padding-h--12 is-disabled\"","\"js-add-image-button js-show-tip needsclick btn btn-on-blue full-width txt-left margin-b--12 padding-v--6 padding-h--12 is-disabled\" data-original-title=\"Add images or video\"");
 
-	if (typeof TD_mustaches["compose/compose_inline_reply.mustache"] !== "undefined")
-		TD_mustaches["compose/compose_inline_reply.mustache"] =
-			TD_mustaches["compose/compose_inline_reply.mustache"].replace(
-				'<i class="js-spinner-button-active icon-center-16 spinner-button-icon-spinner is-hidden"></i>',
-				buttonSpinner
-			);
 
-	if (typeof TD_mustaches["buttons/favorite.mustache"] !== "undefined")
-		TD_mustaches["buttons/favorite.mustache"] =
-			TD_mustaches["buttons/favorite.mustache"].replace(
-				'<span> <img src="{{#asset}}/global/backgrounds/spinner_small_trans.gif{{/asset}}" alt="{{_i}}Loading…{{/i}}"> </span>',
-				buttonSpinner
-			);
-
-	if (typeof TD_mustaches["embed_tweet.mustache"] !== "undefined")
-		TD_mustaches["embed_tweet.mustache"] =
-			TD_mustaches["embed_tweet.mustache"].replace(
-				'<img src="{{#asset}}/global/backgrounds/spinner_large_white.gif{{/asset}}" class="embed-loading" alt="{{_i}}Loading…{{/i}}" />',
-				spinnerSmall
-			);
-
-	if (typeof TD_mustaches["follow_button.mustache"] !== "undefined")
-		TD_mustaches["follow_button.mustache"] =
-			TD_mustaches["follow_button.mustache"].replace(
-				'<span> <img src="{{#asset}}/global/backgrounds/spinner_small_trans.gif{{/asset}}" alt="{{_i}}Loading…{{/i}}"> </span>',
-				buttonSpinner
-			);
-
-	if (typeof TD_mustaches["lists/member.mustache"] !== "undefined")
-		TD_mustaches["lists/member.mustache"] =
-			TD_mustaches["lists/member.mustache"].replace(
-				'<span> <img src="{{#asset}}/global/backgrounds/spinner_small_trans.gif{{/asset}}" alt="{{_i}}Loading…{{/i}}"> </span>',
-				buttonSpinner
-			);
-
-	if (typeof TD_mustaches["keyboard_shortcut_list.mustache"] !== "undefined")
-		TD_mustaches["keyboard_shortcut_list.mustache"] =
-			TD_mustaches["keyboard_shortcut_list.mustache"].replace(
-				"<kbd class=\"text-like-keyboard-key\">X</kbd>  Expand/Collapse navigation</dd>",
-				"<kbd class=\"text-like-keyboard-key\">Q</kbd> Open Navigation Drawer/Menu</dd>"
-			)
 	if (typeof TD_mustaches["media/native_video.mustache"] !== "undefined")
 		TD_mustaches["media/native_video.mustache"] =
 			"<div class=\"position-rel\">\
@@ -2063,7 +2065,7 @@ async function mtdInit() {
 
 	console.log("mtdInit");
 
-	if (typeof document.getElementsByClassName("js-signin-ui block")[0] !== "undefined" && !replacedLoadingSpinnerNew) {
+	if (typeof document.getElementsByClassName("js-signin-ui block")[0] !== "undefined" && !replacedLoadingSpinnerNew && !html.hasClass("mtd-disable-css")) {
 		document.getElementsByClassName("js-signin-ui block")[0].innerHTML = '<div class="preloader-wrapper big active"><div class="spinner-layer"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div>';
 		replacedLoadingSpinnerNew = true;
 	}
@@ -2071,6 +2073,9 @@ async function mtdInit() {
 	// The default is dark for the loading screen, once the TD settings load it can use
 
 	enableStylesheetComponent("dark");
+	if (html.hasClass("mtd-disable-css")) {
+		enableStylesheetComponent("micro");
+	}
 	html.addClass("dark");
 
 	if (!injectedFonts) {
@@ -2103,7 +2108,7 @@ async function mtdInit() {
 
 	let beGone = document.querySelector("link[rel='apple-touch-icon']+link[rel='stylesheet']");
 
-	if (exists(beGone)) {
+	if (exists(beGone) && !html.hasClass("mtd-disable-css")) {
 		beGone.remove();
 	}
 
@@ -3451,6 +3456,10 @@ function checkGifEligibility() {
 
 function hookComposer() {
 
+	if (html.hasClass("mtd-disable-css")) {
+		return;
+	}
+
 	if ($(".compose-text-container .js-add-image-button,.compose-text-container .js-schedule-button,.compose-text-container .mtd-gif-button").length <= 0) {
 		$(".compose-text-container").append($(".js-add-image-button,.mtd-gif-button,.js-schedule-button,.js-dm-button,.js-tweet-button,.js-send-button-container.spinner-button-container"));
 	}
@@ -3502,7 +3511,10 @@ function hookComposer() {
 	});
 
 	if ($(".mtd-emoji").length <= 0)
-		$(".compose-text").emojioneArea();
+		try {
+			$(".compose-text").emojioneArea();
+		} catch (e) {
+		}
 	if ($(".mtd-gif-button").length <= 0) {
 		$(".drawer .js-add-image-button").after(
 			make("button")
@@ -3811,7 +3823,7 @@ function onElementAddedToDOM(e) {
 
 	if (tar.hasClass("dropdown")) {
 		e.target.parentNode.removeChild = (dropdown) => {
-			$(dropdown).addClass("mtd-dropdown-fade-out");
+			$(dropdown).addClass("mtd-fade-out");
 			setTimeout(() => {
 				dropdown.remove();
 			},200);
@@ -3820,7 +3832,7 @@ function onElementAddedToDOM(e) {
 		if (!tar.hasClass("is-hidden")) {
 			let observer = mutationObserver(e.target, (mutations) => {
 				if (tar.hasClass("is-hidden")) {
-					tar.addClass("mtd-modal-window-fade-out");
+					tar.addClass("mtd-fade-out");
 					setTimeout(() => {
 						tar.remove();
 						observer.disconnect();
@@ -4212,7 +4224,7 @@ function makeCMItem(p) {
 
 function clearContextMenu() {
 	let removeMenu = $(".mtd-context-menu")
-	removeMenu.addClass("mtd-dropdown-fade-out").on("animationend",() => {
+	removeMenu.addClass("mtd-fade-out").on("animationend",() => {
 		removeMenu.remove();
 	});
 }
@@ -4242,7 +4254,7 @@ function buildContextMenu(p) {
 
 	if ($(".mtd-context-menu").length > 0) {
 		let removeMenu = $(".mtd-context-menu");
-		removeMenu.addClass("mtd-dropdown-fade-out");
+		removeMenu.addClass("mtd-fade-out");
 		removeMenu.on("animationend", () => {
 			removeMenu.remove();
 		})
@@ -4408,7 +4420,7 @@ function coreInit() {
 			window.jQuery = jQuery;
 		} catch (e) {
 			console.error("jQuery failed. This will break approximately... everything.");
-			alert("ModernDeck was unable to find the page's jQuery runtime. This will result in application instability. Please notify @ModernDeck or @dangeredwolf of this issue immediately.");
+			//alert("ModernDeck was unable to find the page's jQuery runtime. This will result in application instability. Please notify @ModernDeck or @dangeredwolf of this issue immediately.");
 		}
 	}
 
@@ -4431,8 +4443,10 @@ function coreInit() {
 	// append the emoji picker script
 
 	head.append(
-		make("script").attr("type","text/javascript").attr("src",mtdBaseURL + "sources/libraries/emojipicker.js")
+		make("script").attr("type","text/javascript").attr("src",mtdBaseURL + "sources/emojipanel/emojipanel.js")//,
+		//make("script").attr("type","text/javascript").attr("src",mtdBaseURL + "sources/libraries/twemoji.min.js")
 	);
+
 
 	if (useRaven) {
 		Raven.config('https://92f593b102fb4c1ca010480faed582ae@sentry.io/242524', {

@@ -1,7 +1,9 @@
-// MTDBackground.js
-// Copyright (c) 2019 Dangered Wolf
+/*
+	MTDBackground.js
+	Copyright (c) 2019 dangered wolf, et al
 
-// Released under the MIT license
+	Released under the MIT licence
+*/
 
 var browser = browser || chrome;
 

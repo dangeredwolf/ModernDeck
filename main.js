@@ -34,6 +34,8 @@ const { autoUpdater } = require("electron-updater");
 const Store = require("electron-store");
 const store = new Store({name:"mtdsettings"});
 
+const disableCss = false;
+
 /*
 	Note: Due to a bug in electron, process.windowsStore is undefined even for AppX distributions
 	https://github.com/electron/electron/issues/18161
@@ -442,14 +444,15 @@ function makeWindow() {
 			var InjectScript2 = document.createElement("script");\
 			InjectScript2.src = "https://cdn.ravenjs.com/3.19.1/raven.min.js";\
 			InjectScript2.type = "text/javascript";\
-			document.head.appendChild(InjectScript2);\
-			\
-			var injStyles = document.createElement("link");\
+			document.head.appendChild(InjectScript2);'
+			+
+			(disableCss ? 'document.getElementsByTagName("html")[0].classList.add("mtd-disable-css");' :
+			'var injStyles = document.createElement("link");\
 			injStyles.rel = "stylesheet";\
 			injStyles.href = "moderndeck://sources/moderndeck.css";\
-			document.head.appendChild(injStyles);\
-			\
-			var InjectScript = document.createElement("script");\
+			document.head.appendChild(injStyles);')
+			+
+			'var InjectScript = document.createElement("script");\
 			InjectScript.src = "moderndeck://sources/MTDinject.js";\
 			InjectScript.type = "text/javascript";\
 			document.head.appendChild(InjectScript);\
@@ -570,7 +573,7 @@ function makeWindow() {
 
 	mainWindow.webContents.session.webRequest.onBeforeRequest({urls:["https://ton.twimg.com/*"]}, (details,callback) => {
 
-		if (details.url.indexOf(".css") > -1 && (details.url.indexOf("bundle") > -1 && details.url.indexOf("dist") > -1)) {
+		if (details.url.indexOf(".css") > -1 && (details.url.indexOf("bundle") > -1 && details.url.indexOf("dist") > -1) && !disableCss) {
 			callback({cancel:true});
 			return;
 		}

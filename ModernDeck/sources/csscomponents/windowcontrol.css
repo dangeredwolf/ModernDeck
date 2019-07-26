@@ -1,0 +1,78 @@
+/*
+	windowcontrol.css
+
+	Copyright (c) 2014-2019 dangered wolf, et al
+	Released under the MIT Licence
+*/
+
+.windowcontrols {
+	margin-left:auto;
+	position:absolute;
+	width:100%;
+	z-index:99;
+	display:block;
+	margin-top:10px;
+	pointer-events:all;
+	top:0;
+	-webkit-app-region:no-drag
+}
+
+html:not(.mtd-app) .windowcontrols, .mtd-app-mac .windowcontrols {
+	display:none
+}
+
+.windowcontrol {
+	background:none;
+	border:none;
+	position:absolute;
+	right:7px;
+	width:42px;
+	outline:none;
+	height:38px;
+	font-size:17px;
+	line-height:0;
+	top:-13px;
+	opacity:0.8;
+	font-family:Material;
+	font-weight:600;
+	-webkit-appearance:none;
+	color:var(--rootWhiteColor)!important;
+	margin:3px;
+	-webkit-app-region:no-drag;
+	pointer-events:all;
+	transform:rotate(180deg);
+	transition:background 300ms,opacity 300ms
+}
+
+.windowcontrol:hover {
+	background:rgba(0,0,0,0.3);
+	cursor:default;
+	opacity:1;
+	border:0
+}
+
+.windowcontrol:focus,.windowcontrol.close:focus {
+	outline:0;
+	border:0
+}
+
+.windowcontrol.close {
+	right:-3px
+}
+
+.windowcontrol.close:hover {
+	background:#e44;
+	color:var(--rootWhiteColor)
+}
+
+.windowcontrol.close:active {
+	background:#e55
+}
+
+.windowcontrol.max {
+	right:38px
+}
+
+.windowcontrol.min {
+	right:79px
+}

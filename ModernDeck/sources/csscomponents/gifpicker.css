@@ -97,7 +97,12 @@
 
 .mtd-head-left .mtd-gif-header.mtd-gif-header-fixed {
 	top:15px;
-	animation-name:mtdGifHeaderFixedHeadLeft
+	animation-name:mtdGifHeaderFixedHeadLeft;
+}
+
+html.mtd-js-app:not(.mtd-app) .mtd-gif-header.mtd-gif-header-fixed {
+	top:40px;
+	animation-name:mtdGifHeaderFixed
 }
 
 .mtd-gif-top-button {

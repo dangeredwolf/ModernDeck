@@ -1,0 +1,70 @@
+/*
+	welcome.css
+
+	Copyright (c) 2014-2019 dangered wolf, et al
+	Released under the MIT Licence
+*/
+
+
+.mtd-welcome-next-button,.mtd-welcome-prev-button {
+	position:absolute;
+	bottom:50px
+}
+
+.mtd-welcome-next-button {
+	right:30px
+}
+
+.mtd-welcome-prev-button {
+	left:30px
+}
+
+.mtd-welcome-body,.mtd-welcome-head,.mtd-welcome-html {
+	padding-left:5px!important
+}
+
+.mtd-settings-inner.mtd-welcome-inner {
+	top:30px;
+	-webkit-app-region:no-drag
+}
+
+.mtd-welcome-head-icon {
+	padding-right:10px;
+	line-height:70px
+}
+
+.mtd-welcome-head .icon-moderndeck {
+	font-size:96px;
+	height:96px;
+	width:96px;
+	line-height:110px
+}
+
+.mtd-welcome-html .column {
+	height:170px;
+	width:300px;
+	float:right
+}
+
+.mtd-welcome-theme-picker {
+	margin-left:50px;
+	width:100px
+}
+
+.mtd-enable-update-next .mtd-settings-subpanel[id="update"] .mtd-welcome-head,
+.mtd-enable-update-next .mtd-settings-subpanel[id="update"] .mtd-welcome-body,
+.mtd-welcome-inner:not(.mtd-enable-update-next) .mtd-settings-subpanel[id="update"] .mtd-welcome-next-button {
+	display:none
+}
+
+.mtd-welcome-body {
+	line-height:1.5
+}
+
+.mtd-welcome-body i {
+	line-height:.8
+}
+
+.mtd-welcome-body .mtd-nav-activator {
+	margin:0!important
+}

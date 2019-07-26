@@ -1,0 +1,60 @@
+/*
+	mobile.css
+
+	Copyright (c) 2014-2019 dangered wolf, et al
+	Released under the MIT Licence
+*/
+
+:root {
+	--composeWidth:400px!important
+}
+
+.column {
+	--columnSize:100%!important
+}
+
+.mdl {
+	position:absolute!important;
+	top:100px!important;
+	bottom:0!important;
+	height:auto!important;
+	max-height:100% !important;
+	left:0!important;
+	right:0!important;
+	width: 100% !important;
+}
+
+html:not(a) .mtd-settings-tab {
+	padding:15px 8px!important
+}
+
+.mtd-settings-subpanel {
+	width:400px!important
+}
+
+.mtd-settings-option .checkbox,.mtd-settings-option .radio {
+	display:block;
+	pointer-events:all;
+	margin-bottom:0;
+	min-height:2px;
+	padding-left:0;
+	vertical-align:bottom;
+	padding-top:4px;
+	height:20px
+}
+
+.mtd-settings-option-slider {
+	margin-bottom:60px
+}
+
+.mtd-settings-option-checkbox:last-child {
+  margin-bottom:64px !important;
+}
+
+div.mtd-settings-panel {
+	width:100%!important
+}
+
+.mtd-patron-info {
+	display:none
+}

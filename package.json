@@ -1,6 +1,6 @@
 {
 	"name": "ModernDeck",
-	"version": "7.3.7",
+	"version": "7.4.0",
 	"description": "TweetDeck, but more beautiful and fun than ever.",
 	"homepage": "https://github.com/dangeredwolf/ModernDeck",
 	"bugs": {
@@ -32,7 +32,7 @@
 			],
 			"target": [
 				{
-					"target": "nsis-web",
+					"target": "nsis",
 					"arch": [
 						"ia32",
 						"x64"
@@ -116,7 +116,7 @@
 	},
 	"devDependencies": {
 		"devtron": "^1.4.0",
-		"electron": "^5.0.6",
+		"electron": "^5.0.8",
 		"electron-builder": "^20.44.4",
 		"stylelint": "^10.1.0",
 		"stylelint-config-recommended": "^2.2.0"

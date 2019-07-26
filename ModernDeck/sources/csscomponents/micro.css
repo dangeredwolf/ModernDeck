@@ -1,0 +1,281 @@
+/*
+	micro.css
+
+	Copyright (c) 2014-2019 dangered wolf, et al
+	Released under the MIT Licence
+*/
+
+@import "settings.css";
+@import "contextmenu.css";
+@import "windowcontrol.css";
+
+/* Variables, same as moderndeck.css */
+
+:root {
+	--columnSize:328px;
+	--avatarSize:48px;
+	--navDrawerBackground:rgba(100,100,100,.4);
+	--loginBackgroundColor:#263238;
+	--lightShadow:rgba(17,17,17,.1);
+	--contextMenuShadow:rgba(0,0,0,.23);
+	--thickerShadow:rgba(0,0,0,.4);
+	--composeShadow:rgba(17,17,17,.5);
+	--columnShadow:rgba(17,17,17,.25);
+	--avatarHoverShadow:rgba(17,17,17,.475);
+	--avatarActiveShadow:rgba(17,17,17,.95);
+	--genericDropShadow:rgba(17,17,17,.25);
+	--modalDropShadow:rgba(17,17,17,.6);
+	--retweetColor:#13B33F;
+	--likeColor:#e91e63;
+	--rootWhiteColor:#fff;
+	--rootLightGreyColor:#eee;
+	--rootBlackColor:#000;
+	--animationTiming:cubic-bezier(.1,1,.1,1);
+	--defaultFontOrder:Roboto,"Noto Sans","Noto Sans CJK";
+	--composeWidth:300px;
+	--scrollbarWidth:10px;
+	--verticalHeadWidth:50px
+}
+
+/* Variables, from dark.css */
+
+:root {
+	--primaryColor:#263238;
+	--secondaryColor:#009EAD;
+	--secondaryColorAlt:#00838F;
+	--secondaryColorPress:#00737E;
+	--secondaryColorDeep:#0E4B50;
+	--secondaryColorDeepTrans:rgba(25,112,120,.5);
+	--secondaryColorBright:#12c3d4;
+	--redDefault:#EA6B6B;
+	--redHover:#FF2727;
+	--redActive:#B30000;
+	--redDisabled:rgba(244,101,101,.45);
+	--txtMuteLink:#708795;
+	--disabledColor:#54707F;
+	--linkPressColor:rgba(0,0,0,.05);
+	--buttonPressColor:rgba(255,255,255,.1);
+	--scrollbarDefaultColor:rgba(149,175,191,.5);
+	--scrollbarHoverColor:#8498A5;
+	--bodyTextColor:#eee;
+	--bodyTextHoverColor:#eee;
+	--typeaheadColor:#DFDFDF;
+	--typeaheadBackgroundColor:#1E272C;
+	--primaryTextColor:#fff;
+	--placeholderTextColor:#667A86;
+	--selectionBackgroundColor:rgba(102,227,228,.57);
+	--selectionTextColor:#666;
+	--tweetDetailWrapperColor:#3A4B54;
+	--contextMenuDividerColor:#323E43;
+	--backdropColor:#344248;
+	--modalWindowColor:#2E3B41;
+	--overlayBackgroundColor:rgba(88,100,107,.4);
+	--defaultShadowColor:rgba(41,41,41,.35)
+}
+
+/* Icons */
+
+.material-icon
+{
+	content:" ";
+	font-style:normal;
+	-webkit-font-smoothing:antialiased;
+	text-rendering:optimizeLegibility;
+	-moz-osx-font-smoothing:grayscale;
+	letter-spacing:normal;
+	word-wrap:normal;
+	direction:ltr;
+	white-space:nowrap;
+	font-feature-settings:"liga";
+	font-family:Material;
+	font-size:24px;
+	display:inline-block;
+	line-height:1
+}
+
+.icon-moderndeck:before,
+.icon-mtd-settings:before
+{
+	font-family:MD!important
+}
+
+.icon-moderndeck:before {
+	content:"\f003"
+}
+
+/* Animation keyframes */
+
+@keyframes fadeOut {
+	0% {opacity:1}
+	100% {opacity:0}
+}
+
+
+@keyframes leftSpin {
+	0% {transform:rotate(130deg)}
+	50% {transform:rotate(-5deg)}
+	100% {transform:rotate(130deg)}
+}
+
+@keyframes rightSpin {
+	0% {transform:rotate(-130deg)}
+	50% {transform:rotate(5deg)}
+	100% {transform:rotate(-130deg)}
+}
+
+@keyframes fillUnfillRotate {
+	12.5% {transform:rotate(135deg)}
+	25% {transform:rotate(270deg)}
+	37.5% {transform:rotate(405deg)}
+	50% {transform:rotate(540deg)}
+	62.5% {transform:rotate(675deg)}
+	75% {transform:rotate(810deg)}
+	87.5% {transform:rotate(945deg)}
+	100% {transform:rotate(1080deg)}
+}
+
+@keyframes containerRotate {
+	to {transform:rotate(360deg)}
+}
+
+/* Basic class definitions */
+
+.mtd-fade-out {
+	animation:fadeOut 0.2s var(--animationTiming)!important;
+	animation-fill-mode:both;
+	pointer-events:none
+}
+
+.mtd-nav-drawer,.windowcontrols,.mtd-emoji,.hidden {
+	display:none
+}
+
+html,.application {
+	-webkit-app-region:no-drag
+}
+
+/* Loading indicator */
+
+
+.preloader-wrapper {
+	display:inline-block;
+	position:relative;
+	width:48px;
+	height:48px;
+	box-sizing:border-box;
+	animation:containerRotate 1.568s linear infinite
+}
+
+.med-embeditem>.preloader-wrapper {
+	top:50%;
+	position:absolute;
+	margin-top:-20px
+}
+
+.column-loading-placeholder>.preloader-wrapper {
+	left:50%;
+	margin-left:-20px;
+	margin-top:20px
+}
+
+.chirp-container>.preloader-wrapper {
+	margin-bottom:50px;
+	margin-top:50px;
+	left:50%;
+	margin-left:-20px
+}
+
+.preloader-wrapper.small {
+	width:36px;
+	height:36px
+}
+
+.preloader-wrapper.tiny {
+	width:20px;
+	height:20px
+}
+
+.preloader-wrapper.big {
+	width:64px;
+	height:64px
+}
+
+.spinner-layer,.circle-clipper,.gap-patch {
+	border-color:var(--secondaryColor)!important
+}
+
+.spinner-layer {
+	position:absolute;
+	box-sizing:border-box;
+	width:100%;
+	height:100%;
+	opacity:1;
+	animation:fillUnfillRotate 5.332s cubic-bezier(.4,0,.2,1) infinite both
+}
+
+.gap-patch {
+	position:absolute;
+	top:0;
+	left:45%;
+	width:10%;
+	height:100%;
+	overflow:hidden;
+	border-color:inherit;
+	display:none;
+	box-sizing:border-box
+}
+
+.gap-patch .circle {
+	box-sizing:border-box;
+	width:1000%;
+	left:-450%
+}
+
+.circle-clipper {
+	display:inline-block;
+	position:relative;
+	width:50%;
+	height:100%;
+	overflow:hidden;
+	text-align:center;
+	box-sizing:border-box;
+	border-color:inherit
+}
+
+.circle-clipper .circle {
+	width:200%;
+	height:100%;
+	border-width:5px;
+	border-color:inherit;
+	border-style:solid;
+	border-bottom-color:transparent;
+	border-radius:50%;
+	box-sizing:inherit;
+	animation:none;
+	position:absolute;
+	top:0;
+	right:0;
+	bottom:0
+}
+
+.tiny .circle-clipper .circle {
+	border-width:3px
+}
+
+.circle-clipper.left .circle {
+	left:0;
+	border-right-color:transparent;
+	transform:rotate(129deg);
+	animation:leftSpin 1.333s cubic-bezier(.4,0,.2,1) infinite both
+}
+
+.circle-clipper.right .circle {
+	left:-100%;
+	border-left-color:transparent;
+	transform:rotate(-129deg);
+	animation:rightSpin 1.333s cubic-bezier(.4,0,.2,1) infinite both
+}
+
+#spinnerContainer {
+	animation:containerRotate 1.568s linear infinite,fadeOut 0.4s cubic-bezier(.4,0,.2,1)
+}

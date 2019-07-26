@@ -1,0 +1,460 @@
+/*
+	settings.css
+
+	Copyright (c) 2014-2019 dangered wolf, et al
+	Released under the MIT Licence
+*/
+
+.mtd-settings-option option[value="paper"] {
+	background:#eee;
+	color:#333!important
+}
+
+.mtd-settings-option option[value="grey"] {
+	background:#555;
+	color:#fff!important
+}
+
+.mtd-settings-option option[value="red"] {
+	background:#F44336
+}
+
+.mtd-settings-option option[value="pink"] {
+	background:#E91E63
+}
+
+.mtd-settings-option option[value="orange"] {
+	background:#FF5722
+}
+
+.mtd-settings-option option[value="violet"] {
+	background:#673AB7;
+	color:#fff!important
+}
+
+.mtd-settings-option option[value="teal"] {
+	background:#009688
+}
+
+.mtd-settings-option option[value="green"] {
+	background:#4CAF50
+}
+
+.mtd-settings-option option[value="yellow"] {
+	background:#FFC107
+}
+
+.mtd-settings-option option[value="cyan"] {
+	background:#00BCD4
+}
+
+.mtd-settings-option option[value="black"],.mtd-settings-option option[value="amoled"] {
+	background:#000;
+	color:#fff!important
+}
+
+.mtd-settings-option option[value="blue"] {
+	background:#2196F3
+}
+
+.mtd-settings-subpanel-hidden {
+	display:none
+}
+
+.mtd-settings-panel {
+	display:block;
+	position:absolute;
+	left:0;
+	right:0;
+	top:0;
+	bottom:0;
+	width:700px!important;
+	height: 500px!important;
+}
+
+.mtd-settings-subpanel {
+	height:100%;
+	width:660px;
+	display:block;
+	position:absolute;
+	overflow-y:auto;
+	overflow-x:hidden;
+	padding:20px;
+	padding-top:0
+}
+
+.mtd-settings-subpanel:first-child .mtd-welcome-prev-button
+{
+	display:none
+}
+
+.mtd-settings-subpanel:nth-child(1) {
+	margin-left:0
+}
+
+.mtd-settings-subpanel:nth-child(2) {
+	margin-left:700px
+}
+
+.mtd-settings-subpanel:nth-child(3) {
+	margin-left:1400px
+}
+
+.mtd-settings-subpanel:nth-child(4) {
+	margin-left:2100px
+}
+
+.mtd-settings-subpanel:nth-child(5) {
+	margin-left:2800px
+}
+
+.mtd-settings-subpanel:nth-child(6) {
+	margin-left:3500px
+}
+
+.mtd-settings-subpanel:nth-child(7) {
+	margin-left:4200px
+}
+
+.mtd-settings-subpanel:nth-child(8) {
+	margin-left:4900px
+}
+
+.mtd-settings-inner {
+	min-height:300px;
+	transition:margin-left 0.3s var(--animationTiming);
+	bottom:0;
+	top:66px;
+	left:0;
+	right:0;
+	position:absolute;
+	overflow:hidden
+}
+
+.mtd-settings-panel-subheader {
+	margin-top:0;
+	padding-top:20px
+}
+
+.mtd-settings-option .checkbox,.mtd-settings-option .radio {
+	display:block;
+	pointer-events:all;
+	margin-bottom:0;
+	min-height:2px;
+	padding-left:0;
+	vertical-align:bottom;
+	padding-top:4px;
+	height:20px
+}
+
+.mtd-settings-tab {
+	padding:20px 23.4px!important;
+	color:var(--rootWhiteColor);
+	-webkit-app-region:no-drag!important;
+	transition:color 0.3s var(--animationTiming), border-bottom 0.3s var(--animationTiming)!important;
+	background:transparent!important;
+	box-shadow:none!important;
+	border-top:none!important;
+	border-left:none!important;
+	border-right:none!important;
+	border-radius:0!important
+}
+
+html:not(.mtd-js-app) .mtd-settings-tab {
+	padding:20px 29.6px
+}
+
+.mtd-settings-tab:not(.mtd-settings-tab-selected) {
+	border-bottom:0 solid rgba(0,0,0,0)!important
+}
+
+.mtd-settings-tab-container {
+	box-shadow:0 5px 10px rgba(15,15,15,0.3)
+}
+
+.mtd-logo-container {
+	padding:12px
+}
+
+.mtd-settings-subpanel select, .mtd-settings-subpanel input[type="text"] {
+	width:160px;
+	display:inline-block;
+	float:right;
+}
+
+.mtd-settings-subpanel label {
+	display:inline-block;
+	margin-bottom:0;
+	padding-top:14px;
+	padding-left:0
+}
+
+.mtd-settings-option {
+	width:100%;
+	height:50px;
+	margin-top:3px
+}
+
+.mtd-settings-option-checkbox {
+	height:28px;
+	margin-bottom:8px
+}
+
+.mtd-settings-option-link {
+	padding-top:16px;
+	cursor:pointer
+}
+
+.mtd-settings-subpanel p {
+	font-size:16px;
+	padding:30px
+}
+
+.mtd-settings-option input[type="checkbox"], .mtd-settings-option input[type="radio"] {
+	position:relative;
+	margin-left:0
+}
+
+.mtd-update-container,.mtd-update-container>* {
+	float:left
+}
+
+.mtd-update-container {
+	margin-top:30px;
+	display:inline-block;
+	position:absolute;
+	left:60px
+}
+
+.mtd-update-container h2 {
+	font-size: 16px!important;
+	padding-left:20px;
+	font-weight:500;
+	margin-bottom: 0!important;
+	margin-block-start:0;
+	margin-block-end:0;
+}
+
+.mtd-update-container h3 {
+	font-size: 14px!important;
+	padding-left:55px;
+	font-weight:400;
+	margin-block-start:0;
+	margin-block-end:0;
+	margin-top: 24px!important;
+	position:absolute;
+	width:475px;
+}
+
+.mtd-update-container button {
+	margin-top:-6px
+}
+
+.mtd-update-container i {
+	font-size:36px
+}
+
+.hidden {
+	display:none!important
+}
+
+.mtd-about-info {
+	bottom:20px;
+	position:absolute
+}
+
+.mtd-about-info p {
+	font-size:14px;
+	line-height:0.9
+}
+
+.mtd-big-text-box>input[type="text"] {
+	width:300px
+}
+
+.mtd-settings-option-slider .mtd-slider-minimum,.mtd-settings-option-slider .mtd-slider-maximum {
+	float:right;
+	padding-left:8px!important;
+	padding-top:17px!important
+}
+
+.mtd-settings-option-slider input[type="range"] {
+	-webkit-appearance:none;
+	width:55%;
+	float:right;
+	border-radius:2px;
+	padding:0;
+	padding-top:10px;
+	height:14px
+}
+
+.mtd-settings-option-slider input[type="range"]::-webkit-slider-thumb {
+	-webkit-appearance:none;
+	appearance:none;
+	width:16px;
+	height:16px;
+	border-radius:50%;
+	margin-top:18px;
+	cursor:pointer
+}
+
+.mtd-settings-option-slider input[type="range"]::-moz-range-thumb {
+	width:16px;
+	height:16px;
+	border-radius:50%;
+	margin-top:18px;
+	cursor:pointer
+}
+
+.mtd-settings-option-slider b {
+	font-size:18px;
+	padding-left:20px
+}
+
+.mtd-settings-option-button .control-label {
+	display:block;
+	width:100%!important;
+	float:none
+}
+
+.mtd-settings-option-button .control-label b {
+	font-size:18px;
+	font-weight:400;
+	margin-right:373px;
+	width:300px;
+	display:inline;
+	white-space:nowrap;
+	margin-left:10px
+}
+
+.mtd-settings-option-button {
+	height:auto;
+}
+
+.mtd-textarea {
+	height:200px!important;
+	font-family:RobotoMono!important;
+	tab-size:43px;
+	-moz-tab-size:43px /* https://bugzilla.mozilla.org/show_bug.cgi?id=737785 */
+}
+
+.settings-modal .mtd-settings:after {
+	content:""!important
+}
+
+.mtd-logo {
+	width:96px;
+	font-size:96px!important;
+	line-height:1;
+	display:inline;
+	float:left
+}
+
+.mtd-about-title {
+	display:inline-block;
+	position:relative;
+	padding:0;
+	vertical-align:middle;
+	float:left;
+	font-size:18px;
+	margin-top:16px;
+	text-align:left;
+	width:auto
+}
+
+.mtd-version-title {
+	font-weight:400;
+	font-size:14px;
+	text-align:left;
+	display:block;
+	position:relative;
+	padding-top:43px;
+	width:247px;
+	padding-left:96px
+}
+
+.mtd-patron-info {
+	position:absolute;
+	right:0;
+	top:0;
+	bottom:71px;
+	float:right;
+	width:240px
+}
+
+.mtd-patron-list {
+	width:100%;
+	float:right
+}
+
+
+.mtd-patron-render {
+	width:100%
+}
+
+.mtd-patron-render h3 {
+	width:100%
+}
+
+p.mtd-patron-level {
+	line-height:1.3;
+	padding:0;
+	font-size:12px
+}
+
+.mtd-patron-list-inline .mtd-patron-level {
+	display:inline;
+	padding-right:3px
+}
+
+.mtd-patron-level.mtd-patron-level-1 {
+	font-weight:500;
+	font-size:14px
+}
+
+.mtd-patreon-button {
+	height:36px;
+	position:absolute;
+	bottom:0
+}
+
+html body .mtd-settings-subpanel button {
+	background-color:transparent!important
+}
+
+.mtd-mute-text:before {
+	font-size:16px;
+	font-weight:600;
+	padding-right:10px
+}
+
+.mtd-mute-text-:before {
+	content:"Text "
+}
+
+.mtd-mute-text-source:before {
+	content:"Source "
+}
+
+.mtd-settings-button {
+	float:none;
+	margin-top:40px;
+	box-shadow:0 3px 7px var(--composeShadow);
+	padding:11px;
+	border-radius:4px;
+	transition:background 0.2s var(--animationTiming),transform 0.25s var(--animationTiming)!important
+}
+
+.mtd-auto-scroll {
+	position:absolute;
+	top:80px;
+	bottom:60px;
+	left:0;
+	right:0
+}
+
+.mtd-check-out-app {
+	position:absolute;
+	top:100px;
+	font-size:14px!important
+}
