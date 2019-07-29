@@ -35,7 +35,7 @@ const Store = require("electron-store");
 const store = new Store({name:"mtdsettings"});
 
 const disableCss = false;
-const useNext = true;
+const useNext = false;
 
 /*
 	Note: Due to a bug in electron, process.windowsStore is undefined even for AppX distributions
