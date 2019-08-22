@@ -15,6 +15,11 @@
 	color:#fff!important
 }
 
+.mtd-settings-option option[value="darker"] {
+	background:#333;
+	color:#fff!important
+}
+
 .mtd-settings-option option[value="red"] {
 	background:#F44336
 }
@@ -161,7 +166,7 @@
 }
 
 html:not(.mtd-js-app) .mtd-settings-tab {
-	padding:20px 29.6px
+	padding:20px 29.6px!important
 }
 
 .mtd-settings-tab:not(.mtd-settings-tab-selected) {
@@ -419,7 +424,7 @@ p.mtd-patron-level {
 }
 
 html body .mtd-settings-subpanel button {
-	background-color:transparent!important
+	background-color: transparent;
 }
 
 .mtd-mute-text:before {

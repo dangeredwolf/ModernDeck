@@ -27,7 +27,7 @@
 .mtd-drawer-button:active:after {
 	width:65px;
 	height:65px;
-	margin-top:-20px;
+	margin-top:-44px;
 	margin-left:-14px;
 	transform:scale(1);
 	opacity:1;
@@ -60,13 +60,15 @@ html:not(.mtd-head-left) .hide-detail-view-inline .mtd-drawer-button {
 	height:100%;
 	z-index:7;
 	position:absolute;
+	margin-left:0;
 	box-shadow:0 15px 40px var(--avatarHoverShadow);
 	transition:0.3s all var(--animationTiming);
 	overflow-x:hidden;
 	overflow-y:auto
 }
 
-.mtd-nav-drawer-hidden {
+.mtd-nav-drawer.hidden {
+	display:block!important;
 	margin-left:-320px;
 	transition:0.4s all var(--animationTiming)
 }
@@ -78,7 +80,14 @@ html:not(.mtd-head-left) .hide-detail-view-inline .mtd-drawer-button {
 	height:100%;
 	width:100%;
 	transition:0.3s all var(--animationTiming);
-	pointer-events:all
+	pointer-events:all;
+	opacity:1
+}
+
+.mtd-nav-drawer-background.hidden {
+	display:block!important;
+	opacity:0!important;
+	pointer-events:none!important;
 }
 
 .mtd-nd-header-image {

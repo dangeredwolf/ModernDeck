@@ -2779,11 +2779,11 @@ function openSettings(openMenu) {
 
 			if (!isApp) {
 				logoCont.append(
-					make("p").addClass("mtd-check-out-app").html("Did you know ModernDeck has a native app now? <a href='https://github.com/dangeredwolf/ModernDeck/releases'>Check it out!</a>")
+					make("p").addClass("mtd-check-out-app").html("Did you know ModernDeck has a native app now? <a href='https://moderndeck.org/download'>Check it out!</a>")
 				)
 			}
 
-			let info = make("p").html("Made with <i class=\"icon icon-heart mtd-about-heart\"></i> by <a href=\"https://twitter.com/dangeredwolf\" rel=\"user\" target=\"_blank\">dangeredwolf</a> in Columbus, OH since 2014<br><br>ModernDeck is an open source project released under the MIT license.");
+			let info = make("p").html("Made with <i class=\"icon icon-heart mtd-about-heart\"></i> by <a href=\"https://twitter.com/dangeredwolf\" rel=\"user\" target=\"_blank\">dangeredwolf</a> in Columbus, OH since 2014<br><br>ModernDeck is <a href=\"https://github.com/dangeredwolf/ModernDeck/\" target=\"_blank\">an open source project</a> released under the MIT license.");
 			let infoCont = make("div").addClass("mtd-about-info").append(info);
 
 			logoCont.append(logo,h1,h2);
@@ -3201,6 +3201,10 @@ async function getBlobFromUrl(imageUrl) {
 	})
 }
 
+function useNativeEmojiPicker() {
+	return require("electron") && require("electron").remote && require("electron").remote.app && require("electron").remote.app.isEmojiPanelSupported();
+}
+
 /*
 	Creates the GIF panel, also handles scroll events to load more GIFs
 */
@@ -3514,11 +3518,31 @@ function hookComposer() {
 		})
 	});
 
-	if ($(".mtd-emoji").length <= 0)
-		try {
-			$(".compose-text").emojioneArea();
-		} catch (e) {
+	if ($(".mtd-emoji").length <= 0) {
+		if (isApp && useNativeEmojiPicker()) {
+			$(".compose-text").after(
+				make("div").addClass("mtd-emoji").append(
+					make("div").addClass("mtd-emoji-button btn").append(
+						make("div").addClass("mtd-emoji-button-open").click(() => {
+							try {
+								require("electron").remote.app.showEmojiPanel();
+							} catch(e) {
+
+							}
+						})
+					)
+				)
+			);
+		} else {
+			try {
+				$(".compose-text").emojioneArea();
+			} catch (e) {
+
+			}
 		}
+	}
+
+
 	if ($(".mtd-gif-button").length <= 0) {
 		$(".drawer .js-add-image-button").after(
 			make("button")
@@ -4447,7 +4471,7 @@ function coreInit() {
 	// append the emoji picker script
 
 	head.append(
-		make("script").attr("type","text/javascript").attr("src",mtdBaseURL + "sources/emojipanel/emojipanel.js")//,
+		make("script").attr("type","text/javascript").attr("src",mtdBaseURL + "sources/libraries/emojipicker.js")//,
 		//make("script").attr("type","text/javascript").attr("src",mtdBaseURL + "sources/libraries/twemoji.min.js")
 	);
 

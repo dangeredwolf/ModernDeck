@@ -11,8 +11,8 @@
 }
 
 @keyframes mtdGifHeaderFixedHeadLeft {
-	0% {opacity:0;top:-25px}
-	100% {opacity:1;top:15px}
+	0% {opacity:0;top:-16px}
+	100% {opacity:1;top:4px}
 }
 
 .mtd-gif-container {
@@ -96,7 +96,7 @@
 }
 
 .mtd-head-left .mtd-gif-header.mtd-gif-header-fixed {
-	top:15px;
+	top: 4px;
 	animation-name:mtdGifHeaderFixedHeadLeft;
 }
 

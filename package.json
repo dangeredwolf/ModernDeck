@@ -19,7 +19,6 @@
 		"buildMac": "electron-builder -m",
 		"buildLinux": "electron-builder -l",
 		"start": "electron .",
-		"test": "electron-builder -mwl",
 		"release": "build"
 	},
 	"build": {
@@ -32,7 +31,7 @@
 			],
 			"target": [
 				{
-					"target": "nsis",
+					"target": "appx",
 					"arch": [
 						"ia32",
 						"x64"
@@ -106,30 +105,23 @@
 	],
 	"dependencies": {
 		"asar": "^2.0.1",
-		"electron-log": "^3.0.6",
-		"electron-packager": "^14.0.1",
+		"electron-log": "^3.0.7",
+		"electron-packager": "^14.0.4",
 		"electron-store": "^4.0.0",
-		"electron-updater": "^4.0.14",
-		"file-type": "^12.0.1",
+		"electron-updater": "^4.1.2",
+		"file-type": "^12.2.0",
 		"got": "^9.6.0",
 		"through2": "^3.0.1"
 	},
 	"devDependencies": {
 		"devtron": "^1.4.0",
-		"electron": "^5.0.8",
+		"electron": "^6.0.3",
 		"electron-builder": "^20.44.4",
 		"stylelint": "^10.1.0",
 		"stylelint-config-recommended": "^2.2.0"
 	},
 	"files": [
-		"**/ModernDeck",
-		"*.js",
-		"*.css",
-		"*.png",
-		"*.woff2",
-		"*.woff",
-		"*.json",
-		"*.ico"
+		"**/ModernDeck_app_tmp"
 	],
 	"stylelint": {
 		"extends": "stylelint-config-recommended"
