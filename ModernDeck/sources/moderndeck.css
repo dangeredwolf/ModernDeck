@@ -10,6 +10,8 @@
  */
 
 /* stylelint-disable */
+@import "csscomponents/alert.css";
+@import "csscomponents/contextmenu.css";
 @import "csscomponents/coredefinitions.css";
 @import "csscomponents/windowcontrol.css";
 @import "csscomponents/icon.css";
@@ -21,8 +23,6 @@
 @import "csscomponents/settings.css";
 @import "csscomponents/navigationdrawer.css";
 @import "csscomponents/welcome.css";
-@import "csscomponents/alert.css";
-@import "csscomponents/contextmenu.css";
 /* stylelint-enable */
 
 :root {

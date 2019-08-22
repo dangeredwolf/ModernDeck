@@ -6,9 +6,10 @@
 *.dmg
 *.AppImage
 dist
+ModernDeck_app_tmp
+ModernDeck_ext_tmp
 node_modules
 .DS_Store
 *.log
 yarn.lock
-dist_7.0.1
 *.appx

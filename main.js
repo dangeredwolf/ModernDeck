@@ -65,9 +65,11 @@ autoUpdater.logger.transports.file.level = "info";
 
 app.setAppUserModelId("com.dangeredwolf.ModernDeck");
 
+let useDir = app.isPackaged ? "ModernDeck" : "ModernDeck";
+
 const mtdSchemeHandler = async (request, callback) => {
 	let myUrl = new url.URL(request.url);
-	const filePath = path.join(electron.app.getAppPath(), "ModernDeck", myUrl.hostname, myUrl.pathname);
+	const filePath = path.join(electron.app.getAppPath(), useDir, myUrl.hostname, myUrl.pathname);
 
 	callback({
 		path: filePath
@@ -180,7 +182,7 @@ function makeLoginWindow(url,teams) {
 		},
 		scrollBounce:true,
 		autoHideMenuBar:true,
-		icon:__dirname+"ModernDeck/sources/favicon.ico",
+		icon:__dirname+useDir+"/sources/favicon.ico",
 	});
 
 	loginWindow.on('closed', () => {
@@ -365,7 +367,7 @@ function makeWindow() {
 		scrollBounce:true,
 		autoHideMenuBar:true,
 		title:"ModernDeck",
-		icon:__dirname+"ModernDeck/sources/favicon.ico",
+		icon:__dirname+useDir+"/sources/favicon.ico",
 		frame:useFrame,
 		titleBarStyle:titleBarStyle,
 		minWidth:400,
@@ -582,7 +584,7 @@ function makeWindow() {
 		}
 
 		if (details.url.indexOf(".css") > -1 && details.url.indexOf("tfw") > -1 && details.url.indexOf("css") > -1 && details.url.indexOf("tweetdeck_bundle") > -1) {
-			callback({redirectURL:"moderndeck://sources/csscomponents/twittercard.css"});
+			callback({redirectURL:"moderndeck://sources/cssextensions/twittercard.css"});
 			return;
 		}
 

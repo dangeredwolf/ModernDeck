@@ -270,8 +270,8 @@ let settingsData = {
 							return;
 						}
 
-						disableStylesheetComponent("dark");
-						disableStylesheetComponent("light");
+						disableStylesheetExtension("dark");
+						disableStylesheetExtension("light");
 
 						if (hasPref("mtd_highcontrast") && getPref("mtd_highcontrast") === true) {
 							opt = "dark";
@@ -279,7 +279,7 @@ let settingsData = {
 
 						html.removeClass("dark").removeClass("light").addClass(opt);
 						TD.settings.setTheme(opt);
-						enableStylesheetComponent(opt);
+						enableStylesheetExtension(opt);
 
 						if (opt === "light" && (isStylesheetExtensionEnabled("amoled") || isStylesheetExtensionEnabled("darker"))) {
 							disableStylesheetExtension("darker");
@@ -330,16 +330,16 @@ let settingsData = {
 						if ((opt === "amoled" || opt === "darker") && TD.settings.getTheme() === "light") {
 							console.log("theme is light, opt is amoled");
 							TD.settings.setTheme("dark");
-							disableStylesheetComponent("light");
-							enableStylesheetComponent("dark");
+							disableStylesheetExtension("light");
+							enableStylesheetExtension("dark");
 							html.removeClass("light").addClass("dark");
 						}
 
 						if (opt === "paper" && TD.settings.getTheme() === "dark") {
 							console.log("theme is dark, opt is paper");
 							TD.settings.setTheme("light");
-							disableStylesheetComponent("dark");
-							enableStylesheetComponent("light");
+							disableStylesheetExtension("dark");
+							enableStylesheetExtension("light");
 							html.removeClass("dark").addClass("light");
 						}
 
@@ -667,8 +667,8 @@ let settingsData = {
 					func: (opt) => {
 						if (TD.settings.getTheme() === "light") {
 							TD.settings.setTheme("dark");
-							disableStylesheetComponent("light");
-							enableStylesheetComponent("dark");
+							disableStylesheetExtension("light");
+							enableStylesheetExtension("dark");
 						}
 						disableStylesheetExtension(getPref("mtd_theme") || "default");
 						setPref("mtd_theme","amoled");
@@ -1204,55 +1204,6 @@ function enableCustomStylesheetExtension(name,styles) {
 		return;
 	}
 	head.append(make("style").html(styles).attr("id","mtd_custom_css_"+name))
-}
-
-/*
-	Returns true if stylesheet extension is enabled, false otherwise.
-	Works with custom stylesheets. (see enableCustomStylesheetExtension for more info)
-*/
-
-function isStylesheetComponentEnabled(name) {
-	return !!document.querySelector("link.mtd-stylesheet-component[href=\"" + mtdBaseURL + "sources/csscomponents/" + name + ".css\"\]");
-}
-
-/*
-	Enables a certain stylesheet component.
-	Stylesheet components are loaded from sources/csscomponents/[name].css
-
-	These are the predefined ModernDeck ones including colour themes, default light and dark themes, and various preferences
-*/
-
-function enableStylesheetComponent(name) {
-	if (name === "default")
-		return;
-
-	// This is where components are located
-	let url = mtdBaseURL + "sources/csscomponents/" + name + ".css";
-
-	if (!isStylesheetComponentEnabled(name)) {
-		head.append(
-			make("link")
-			.attr("rel","stylesheet")
-			.attr("href",url)
-			.addClass("mtd-stylesheet-component")
-		)
-
-		console.log(`enableStylesheetComponent("${name}")`);
-	} else return;
-}
-
-/*
-	Disables a certain stylesheet component.
-*/
-
-function disableStylesheetComponent(name) {
-	if (!isStylesheetComponentEnabled(name))
-		return;
-
-	console.log(`disableStylesheetExtension("${name}")`);
-
-	$('head>link[href="' + mtdBaseURL + "sources/csscomponents/" + name + '.css"]').remove();
-
 }
 
 /*
@@ -2072,9 +2023,9 @@ async function mtdInit() {
 
 	// The default is dark for the loading screen, once the TD settings load it can use
 
-	enableStylesheetComponent("dark");
+	enableStylesheetExtension("dark");
 	if (html.hasClass("mtd-disable-css")) {
-		enableStylesheetComponent("micro");
+		enableStylesheetExtension("micro");
 	}
 	html.addClass("dark");
 
@@ -3079,8 +3030,8 @@ function welcomeScreen() {
 
 	mtdPrepareWindows();
 
-	disableStylesheetComponent("light");
-	enableStylesheetComponent("dark");
+	disableStylesheetExtension("light");
+	enableStylesheetExtension("dark");
 
 	setTimeout(() => {
 		$("#settings-modal").off("click");
@@ -3142,8 +3093,6 @@ function welcomeScreen() {
 
 		container.append(subPanel);
 	}
-
-	//panel.append(container);
 
 	new TD.components.GlobalSettings;
 
@@ -3235,7 +3184,7 @@ function createGifPanel() {
 		)
 	)
 
-	$(".drawer .compose>.compose-content>.antiscroll-inner.scroll-v.scroll-styled-v").scroll(function(){ // no fancy arrow functions, we're using $(this)
+	$(".drawer .compose>.compose-content>.antiscroll-inner.scroll-v.scroll-styled-v").scroll(function() { // no fancy arrow functions, we're using $(this)
 		if ($(this).scrollTop() > $(document).height() - 200) {
 			$(".mtd-gif-header").addClass("mtd-gif-header-fixed popover")
 		} else {
@@ -3818,7 +3767,7 @@ function keyboardShortcutHandler(e) {
 /*
 	Checks if the signin form is available.
 
-	If so, it activates the login page stylesheet component
+	If so, it activates the login page stylesheet extension
 */
 
 function checkIfSigninFormIsPresent() {
@@ -3829,13 +3778,13 @@ function checkIfSigninFormIsPresent() {
 		}
 
 		loginIntervalTick++;
-		enableStylesheetComponent("loginpage");
+		enableStylesheetExtension("loginpage");
 
 		if (loginIntervalTick > 5) {
 			clearInterval(loginInterval);
 		}
 	} else {
-		disableStylesheetComponent("loginpage");
+		disableStylesheetExtension("loginpage");
 		html.removeClass("signin-sheet-now-present");
 	}
 
@@ -4096,6 +4045,12 @@ function mtdAppFunctions() {
 			$(".mtd-settings-tab[data-action=\"about\"]").click();
 		} else {
 			openSettings("about");
+		}
+	});
+
+	ipcRenderer.on("update-downloaded", (e,args) => {
+		if ($("#settings-modal[style='display: block;']>.mtd-settings-panel").length <= 0) {
+			notifyUpdate()
 		}
 	});
 
