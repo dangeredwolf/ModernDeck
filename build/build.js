@@ -20,7 +20,7 @@ let appDelFiles = [
 let deletedFiles = 0;
 
 console.log("\n");
-console.log("ModernDeck build.js version 7.4.0");
+console.log("ModernDeck build.js");
 console.log("Copyright 2019 dangeredwolf, et al");
 console.log("Released under the MIT license");
 console.log("\n");
@@ -30,7 +30,8 @@ function copyTemp() {
 
 	fs.copy("ModernDeck",tmpDir)
 		.then(() => {
-			console.info("done")
+			console.info("done");
+			deleteUnnecessaryFilesApp();
 		})
 		.catch(err => {
 			console.error(err)
@@ -38,10 +39,25 @@ function copyTemp() {
 }
 
 function deleteUnnecessaryFilesApp() {
-	console.info("Copying ModernDeck to ModernDeck_app_tmp...");
-
 	for (a in appDelFiles) {
-		fs.delete("")
+		console.info("Deleting Chrome Extension files (that goes unused in app)...");
+
+		fs.remove(a)
+			.then(() => {
+				deletedFiles++;
+
+				console.info("done " + a);
+				
+				if (deletedFiles == appDelFiles.length) {
+					console.log("SUCC");
+				}
+			})
+			.catch(err => {
+				console.error("An error occurred while deleting " + a);
+				console.error(err);
+			});
 	}
 
 }
+
+copyTemp()

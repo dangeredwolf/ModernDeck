@@ -118,7 +118,8 @@
 		"electron": "^6.0.3",
 		"electron-builder": "^20.44.4",
 		"stylelint": "^10.1.0",
-		"stylelint-config-recommended": "^2.2.0"
+		"stylelint-config-recommended": "^2.2.0",
+		"fs-extra": "^8.0.1"
 	},
 	"files": [
 		"**/ModernDeck_app_tmp"
