@@ -127,7 +127,8 @@
 		"stylelint-config-recommended": "^2.2.0"
 	},
 	"files": [
-		"**/ModernDeck_app_tmp"
+		"**/ModernDeck_app_tmp",
+		"**/main.js"
 	],
 	"stylelint": {
 		"extends": "stylelint-config-recommended"

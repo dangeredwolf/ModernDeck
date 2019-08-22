@@ -65,7 +65,7 @@ autoUpdater.logger.transports.file.level = "info";
 
 app.setAppUserModelId("com.dangeredwolf.ModernDeck");
 
-let useDir = app.isPackaged ? "ModernDeck" : "ModernDeck";
+let useDir = app.isPackaged ? "ModernDeck_app_tmp" : "ModernDeck";
 
 const mtdSchemeHandler = async (request, callback) => {
 	let myUrl = new url.URL(request.url);
