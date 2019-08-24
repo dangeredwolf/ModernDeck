@@ -114,13 +114,13 @@
 		"through2": "^3.0.1"
 	},
 	"devDependencies": {
-		"@node-minify/csso": "^4.1.2",
 		"@node-minify/core": "^4.1.2",
+		"@node-minify/csso": "^4.1.2",
 		"@node-minify/uglify-es": "^4.1.2",
 		"adm-zip": "^0.4.13",
 		"devtron": "^1.4.0",
-		"electron": "^6.0.3",
-		"electron-builder": "^20.44.4",
+		"electron": "^6.0.4",
+		"electron-builder": "^21.2.0",
 		"fs-extra": "^8.0.1",
 		"klaw": "^3.0.0",
 		"stylelint": "^10.1.0",
