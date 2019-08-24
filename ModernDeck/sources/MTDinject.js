@@ -8,9 +8,10 @@
 
 'use strict';
 
-let SystemVersion = "7.4";
+let SystemVersion = "7.4 Beta";
 const appendTextVersion = true;
 const enablePatronFeatures = true;
+const enableNativeEmojiPicker = false;
 
 let debugSettings = false;
 
@@ -24,7 +25,7 @@ let lastError = undefined;
 let loginIntervalTick = 0;
 
 const forceFeatureFlags = false;
-const forceAppX = false; // https://github.com/electron/electron/issues/18161
+let forceAppX = false; // https://github.com/electron/electron/issues/18161
 const useRaven = false;
 const debugWelcome = false;
 
@@ -35,6 +36,9 @@ let ugltStarted = false;
 let useNativeContextMenus = false;
 let isDev = true;
 let debugStorageSys = false;
+
+let lastScrollAt = Date.now();
+let timeout = Date.now();
 
 let store;
 let loginInterval;
@@ -1052,6 +1056,80 @@ let settingsData = {
 		options:{},
 		enum:"aboutpage"
 	}
+}
+
+function updateColumnVisibility() {
+
+	$(".column-content").attr("style","display:block");
+
+	setTimeout(() => { // wait for redraw
+		$(".column").each((a, element) => {
+			if ($(element).visible(true)) {
+				$(element).find(".column-content").attr("style","display:block")
+			} else {
+				$(element).find(".column-content").attr("style","display:none")
+			}
+		});
+	},20)
+
+}
+
+function allColumnsVisible() {
+	$(".column-content").attr("style","display:block");
+}
+
+// https://gist.github.com/timhudson/5484248#file-jquery-scrollstartstop-js
+
+function scrollStartStop() {
+	var $this = $(this)
+
+	if (Date.now() - lastScrollAt > 50)
+		$this.trigger('scrollstart')
+	
+	lastScrollAt = Date.now()
+
+	clearTimeout(timeout)
+
+	timeout = setTimeout(function() {
+	
+	if (Date.now() - lastScrollAt > 49)
+		$this.trigger('scrollend')
+	}, 50)
+}
+
+function attachColumnVisibilityEvents() {
+	// return;
+
+	$(window).on("resize",updateColumnVisibility);
+	$(".app-columns-container").on("scroll",scrollStartStop);
+	$(".app-columns-container").on("scrollend",updateColumnVisibility);
+	$(document).on("uiInlineComposeTweet",() => {
+		setTimeout(() => {
+			updateColumnVisibility();
+		},500)
+	});
+	$(document).on("uiDockedComposeTweet",() => {
+		setTimeout(() => {
+			updateColumnVisibility();
+		},500)
+	});
+	$(document).on("uiComposeClose",() => {
+		setTimeout(() => {
+			updateColumnVisibility();
+		},500)
+	});
+	$(document).on("uiComposeTweet",() => {
+		setTimeout(() => {
+			updateColumnVisibility();
+		},500)
+	});
+
+	updateColumnVisibility();
+
+	//$(".app-columns-container").on("scrollstart",allColumnsVisible);
+	// setInterval(() => {
+	// 	updateColumnVisibility();
+	// },1000);
 }
 
 /*
@@ -2753,6 +2831,17 @@ function openSettings(openMenu) {
 				}
 			}
 
+			if (html.hasClass("mtd-winstore")) {
+				subPanel.append(
+					make("div").append(
+						make("h2").addClass("mtd-update-h3 mtd-update-msstore").html("Updates for this version of ModernDeck are managed by the Microsoft Store."),
+						make("button").addClass("btn mtd-settings-button").html("Check for Updates").click(() => {
+							open("ms-windows-store://updates");
+						})
+					)
+				);
+			}
+
 			subPanel.append(infoCont);
 
 			if (enablePatronFeatures)
@@ -3151,7 +3240,7 @@ async function getBlobFromUrl(imageUrl) {
 }
 
 function useNativeEmojiPicker() {
-	return require("electron") && require("electron").remote && require("electron").remote.app && require("electron").remote.app.isEmojiPanelSupported();
+	return enableNativeEmojiPicker && require("electron") && require("electron").remote && require("electron").remote.app && require("electron").remote.app.isEmojiPanelSupported();
 }
 
 /*
@@ -3476,7 +3565,12 @@ function hookComposer() {
 							try {
 								require("electron").remote.app.showEmojiPanel();
 							} catch(e) {
-
+								console.error("Falling back to custom emoji area")
+								try {
+									$(".compose-text").emojioneArea();
+								} catch (e) {
+									console.error("emoji area failed to initialise");
+								}
 							}
 						})
 					)
@@ -3486,7 +3580,7 @@ function hookComposer() {
 			try {
 				$(".compose-text").emojioneArea();
 			} catch (e) {
-
+				console.error("emoji area failed to initialise");
 			}
 		}
 	}
@@ -3695,7 +3789,10 @@ function navigationSetup() {
 		}
 	}
 
+	$(".app-navigator>a").off("mouseenter").off("mouseover"); // disable tooltips for common items as they're superfluous (and also break styling)
+
 	profileSetup();
+	attachColumnVisibilityEvents();
 }
 
 /*
@@ -4411,6 +4508,8 @@ function coreInit() {
 	body = $(document.body);
 	html = $(document.querySelector("html")); // Only 1 result; faster to find
 
+
+
 	if (isApp) {
 		try {
 			mtdAppFunctions();
@@ -4426,7 +4525,8 @@ function coreInit() {
 	// append the emoji picker script
 
 	head.append(
-		make("script").attr("type","text/javascript").attr("src",mtdBaseURL + "sources/libraries/emojipicker.js")//,
+		make("script").attr("type","text/javascript").attr("src",mtdBaseURL + "sources/libraries/emojipicker.js"),
+		make("script").attr("type","text/javascript").attr("src",mtdBaseURL + "sources/libraries/jquery.visible.js")//,
 		//make("script").attr("type","text/javascript").attr("src",mtdBaseURL + "sources/libraries/twemoji.min.js")
 	);
 

@@ -74,7 +74,7 @@
 	top:0;
 	bottom:0;
 	width:700px!important;
-	height: 500px!important;
+	height:500px!important
 }
 
 .mtd-settings-subpanel {
@@ -133,7 +133,8 @@
 	left:0;
 	right:0;
 	position:absolute;
-	overflow:hidden
+	overflow:hidden;
+	-webkit-app-region:no-drag
 }
 
 .mtd-settings-panel-subheader {
@@ -184,7 +185,7 @@ html:not(.mtd-js-app) .mtd-settings-tab {
 .mtd-settings-subpanel select, .mtd-settings-subpanel input[type="text"] {
 	width:160px;
 	display:inline-block;
-	float:right;
+	float:right
 }
 
 .mtd-settings-subpanel label {
@@ -232,23 +233,23 @@ html:not(.mtd-js-app) .mtd-settings-tab {
 }
 
 .mtd-update-container h2 {
-	font-size: 16px!important;
+	font-size:16px!important;
 	padding-left:20px;
 	font-weight:500;
-	margin-bottom: 0!important;
+	margin-bottom:0!important;
 	margin-block-start:0;
-	margin-block-end:0;
+	margin-block-end:0
 }
 
 .mtd-update-container h3 {
-	font-size: 14px!important;
+	font-size:14px!important;
 	padding-left:55px;
 	font-weight:400;
 	margin-block-start:0;
 	margin-block-end:0;
-	margin-top: 24px!important;
+	margin-top:24px!important;
 	position:absolute;
-	width:475px;
+	width:475px
 }
 
 .mtd-update-container button {
@@ -333,7 +334,7 @@ html:not(.mtd-js-app) .mtd-settings-tab {
 }
 
 .mtd-settings-option-button {
-	height:auto;
+	height:auto
 }
 
 .mtd-textarea {
@@ -424,7 +425,7 @@ p.mtd-patron-level {
 }
 
 html body .mtd-settings-subpanel button {
-	background-color: transparent;
+	background-color:transparent
 }
 
 .mtd-mute-text:before {
@@ -462,4 +463,18 @@ html body .mtd-settings-subpanel button {
 	position:absolute;
 	top:100px;
 	font-size:14px!important
+}
+
+
+.mtd-update-msstore {
+	margin-left:40px;
+	margin-top:50px;
+	line-height:2;
+	font-weight:400;
+	width:58%
+}
+
+.mtd-update-msstore+.mtd-settings-button {
+	margin-left:38px;
+	margin-top:10px
 }

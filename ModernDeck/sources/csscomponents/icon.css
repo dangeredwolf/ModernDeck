@@ -792,7 +792,7 @@ span[data-testid="trendMovement"] .icon-pointer-d:before,span[data-testid="trend
 
 .dropdown-menu a[data-action="mention"]:before {
 	content:"\f000";
-	font-family:MD
+	font-family:MD!important
 }
 
 .dropdown-menu a[data-action="followOrUnfollow"]:before {

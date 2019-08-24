@@ -37,11 +37,6 @@ const store = new Store({name:"mtdsettings"});
 const disableCss = false;
 const useNext = false;
 
-/*
-	Note: Due to a bug in electron, process.windowsStore is undefined even for AppX distributions
-	https://github.com/electron/electron/issues/18161
-*/
-
 const isAppX = !!process.windowsStore;
 
 const isMAS = !!process.mas;

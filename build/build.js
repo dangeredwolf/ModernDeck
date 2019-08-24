@@ -2,7 +2,7 @@ const builder = require("electron-builder");
 const fs = require("fs-extra");
 const minify = require('@node-minify/core');
 const uglifyES = require('@node-minify/uglify-es');
-const cleanCSS = require('@node-minify/clean-css');
+const csso = require('@node-minify/csso');
 const klaw = require('klaw');
 const Zip = require('adm-zip');
 
@@ -12,6 +12,11 @@ const tmpDirExt = "ModernDeck_ext_tmp";
 let debug = true;
 
 let buildExt = true;
+
+const minifySettings = {
+	"js":true,
+	"css":false
+}
 
 let appDelFiles = [
 	tmpDir + "/AppIcon16.png",
@@ -82,7 +87,7 @@ function deleteUnnecessaryFilesApp() {
 }
 
 function minifyItem(item) {
-	if (item.match(/\.js(?!on)$/g) !== null) {
+	if (item.match(/\.js(?!on)$/g) !== null && minifySettings.js) {
 		minify({
 			compressor: uglifyES,
 			input: item,
@@ -93,11 +98,14 @@ function minifyItem(item) {
 			console.error("An error occurred while minifying js file: " + item);
 			console.error(err);
 		});
-	} else if (item.match(/\.css/g) !== null) {
+	}
+	else if (item.match(/\.css/g) !== null && minifySettings.css) {
 		minify({
-			compressor: cleanCSS,
+			compressor: csso,
 			input: item,
 			output: item,
+			options: {
+			},
 		}).then(() => {
 			console.log("Minified " + item);
 		}).catch(err => {
@@ -114,9 +122,9 @@ function minifyApp() {
 	.on('data', item => minifyItem(item.path))
 	.on('end', () => {
 		console.info("Searched for files to minify");
-		console.info("Removing csscomponents...");
+		//console.info("Removing csscomponents...");
 
-		fs.removeSync(tmpDir + "/sources/csscomponents");
+		//fs.removeSync(tmpDir + "/sources/csscomponents");
 
 		appBuilder();
 	})
@@ -140,15 +148,15 @@ function appBuilder() {
 			config:fs.readJSONSync("electron-builder.json")
 		}).then(() => {
 			console.info("done");
-			if (debug) {
-				return;
-			}
 			console.info("Running electron-builder (appx)");
 			builder.build({
 				targets: winTarget,
 				config:fs.readJSONSync("electron-builder-appx.json")
 			}).then(() => {
 				console.info("done");
+				if (debug) {
+					return;
+				}
 				console.info("Running electron-builder (linux)");
 				builder.build({
 					targets: linTarget,
@@ -284,9 +292,9 @@ function minifyExt() {
 	.on('data', item => minifyItem(item.path))
 	.on('end', () => {
 		console.info("Searched for files to minify");
-		console.info("Removing csscomponents...");
+		//console.info("Removing csscomponents...");
 
-		fs.removeSync(tmpDirExt + "/sources/csscomponents");
+		//fs.removeSync(tmpDirExt + "/sources/csscomponents");
 
 		makeChromeExt();
 	})

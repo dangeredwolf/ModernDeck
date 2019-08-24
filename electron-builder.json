@@ -1,28 +1,6 @@
 {
 	"appId": "com.dangeredwolf.ModernDeck",
-	"files": [
-		"**/*",
-		"*.*",
-		"!**/node_modules/*/{CHANGELOG.md,README.md,README,readme.md,readme}",
-		"!**/node_modules/*/{test,__tests__,tests,powered-test,example,examples}",
-		"!**/node_modules/*.d.ts",
-		"!**/node_modules/.bin",
-		"!**/*.{iml,o,hprof,orig,pyc,pyo,rbc,swp,csproj,sln,xproj}",
-		"!**/._*",
-		"!**/{.DS_Store,.git,.hg,.svn,CVS,RCS,SCCS,.gitignore,.gitattributes}",
-		"!**/{__pycache__,thumbs.db,.flowconfig,.idea,.vs,.nyc_output}",
-		"!**/{appveyor.yml,.travis.yml,circle.yml}",
-		"!**/{npm-debug.log,yarn.lock,.yarn-integrity,.yarn-metadata.json}",
-		"!**/dist",
-		"!**/build",
-		"!**/ModernDeck",
-		"!**/ModernDeck_ext_tmp",
-		"!**/*.bat",
-		"!**/package-lock.json",
-		"!**/electron-builder.json",
-		"!**/electron-builder-appx.json",
-		"!**/donors.css"
-	],
+
 	"win": {
 		"icon": "build/icon.ico",
 		"legalTrademarks": "Copyright 2014-2019 dangered wolf, released under the MIT licence",

@@ -1,12 +1,5 @@
 {
 	"appId": "com.dangeredwolf.ModernDeck",
-	"files": [
-		"**/ModernDeck_app_tmp",
-		"**/main.js",
-		"**/package.json",
-		"**/LICENCE",
-		"**/LICENCES.md"
-	],
 	"win": {
 		"icon": "build/icon.ico",
 		"legalTrademarks": "Copyright 2014-2019 dangered wolf, released under the MIT licence",

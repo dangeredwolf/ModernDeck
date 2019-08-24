@@ -1,6 +1,6 @@
 {
 	"name": "ModernDeck",
-	"version": "7.4.0",
+	"version": "7.4.0-beta",
 	"description": "TweetDeck, but more beautiful and fun than ever.",
 	"homepage": "https://github.com/dangeredwolf/ModernDeck",
 	"bugs": {
@@ -114,7 +114,7 @@
 		"through2": "^3.0.1"
 	},
 	"devDependencies": {
-		"@node-minify/clean-css": "^4.1.2",
+		"@node-minify/csso": "^4.1.2",
 		"@node-minify/core": "^4.1.2",
 		"@node-minify/uglify-es": "^4.1.2",
 		"adm-zip": "^0.4.13",

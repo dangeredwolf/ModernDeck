@@ -542,7 +542,7 @@ html.scroll-v {
 }
 
 .mtd-classic-nav #column-navigator {
-	overflow-x:visible
+	overflow: visible;
 }
 
 .emoji-container>div,.emoji-container {
@@ -967,9 +967,6 @@ button:hover,button:focus,.Button--primary {
 	border-right:0!important;
 	top:0
 }
-
-/* .column:not(.draggable-dragging) {
-} */
 
 .column-temp {
 	position:relative;
@@ -1622,7 +1619,8 @@ a .column-title-back .icon:after {
 	background-repeat:no-repeat;
 	background-position:50% 50%;
 	background-size:cover;
-	box-shadow:0 2px 5px 0 rgba(0,0,0,.16),0 2px 5px 0 var(--contextMenuShadow)
+	box-shadow:0 2px 5px 0 rgba(0,0,0,.16),0 2px 5px 0 var(--contextMenuShadow);
+	box-sizing:border-box
 }
 
 .media-item:active {
@@ -1647,14 +1645,14 @@ a .column-title-back .icon:after {
 .media-sensitive {
 	position:absolute;
 	top:0;
-	width:100%;
 	height:100%;
 	background:transparent;
 	font-size:13px;
 	line-height:1.5em;
 	opacity:1;
 	border-radius:0!important;
-	padding:10px
+	padding:7px 10px;
+	box-sizing:border-box
 }
 
 .media-sensitive,.facet-subtitle {
@@ -1662,7 +1660,8 @@ a .column-title-back .icon:after {
 }
 
 .media-sensitive-detail {
-	min-height:116px
+	min-height:116px;
+	height:100%
 }
 
 .media-sensitive-content,.is-narrow-columns .media-size-large .media-sensitive-content,.is-narrow-columns .tweet-detail .media-sensitive-content {
@@ -1713,8 +1712,8 @@ a .column-title-back .icon:after {
 }
 
 .media-size-medium {
-	height:130px;
-	border-radius:2px;
+	height:116px;
+	border-radius:2px
 }
 
 .media-size-large {
@@ -1895,9 +1894,9 @@ a .column-title-back .icon:after {
 	margin-left:auto;
 	margin-right:auto;
 	width:auto!important;
-	margin-top: 11px;
+	margin-top:13px;
 	padding-top:0!important;
-	min-height:12px;
+	min-height:12px
 }
 
 .message-stream-item .tweet-actions {
@@ -1917,7 +1916,7 @@ a .column-title-back .icon:after {
 
 .tweet-actions>li {
 	float:left;
-	margin:0 0 0 calc(var(--columnSize) / 8)!important; /* / 10 */
+	margin:0 0 0 calc(var(--columnSize) / 8)!important;
 	display:flex
 }
 
@@ -2235,7 +2234,6 @@ a .column-title-back .icon:after {
 
 .mtd-classic-nav.mtd-head-left .js-hide-drawer.tweet-button  {
 	margin-top:5px;
-	/* position:absolute; */
 	background:none!important
 }
 
@@ -2442,7 +2440,7 @@ html:not(.mtd-classic-nav) .attach-compose-buttons .tweet-button {
 	display:table-cell;
 	padding-right:10px;
 	word-break:break-all;
-	word-wrap:break-all; /* NOT break-word, csslint is full of crap */
+	word-wrap:break-all /* NOT break-word, csslint is full of crap */
 }
 
 .typeahead {
@@ -3384,7 +3382,7 @@ html:not(.mtd-app).mtd-classic-nav .compose-content {
 	border-radius:4px 4px 0 0;
 	pointer-events:all;
 	animation:mediaSlideUp 0.4s var(--animationTiming);
-	-webkit-app-region: no-drag;
+	-webkit-app-region:no-drag
 }
 
 .med-embeditem {
@@ -6000,7 +5998,7 @@ textarea:not(.compose-text):not(.js-compose-text):not(.js-list-description):not(
 	padding-top:calc(50px - var(--avatarSize));
 	margin-top:0;
 	min-height:17px;
-	padding-bottom: 7px;
+	padding-bottom:7px
 }
 
 .tweet-text:not(.with-linebreaks) {
@@ -7115,7 +7113,7 @@ body+div,body+div>div {
 }
 
 .tweet:not(.txt-mute) .tweet-body {
-	margin-bottom:-5px;
+	margin-bottom:-5px
 }
 
 .replies-after .tweet:not(.txt-mute) .tweet-body {
@@ -8600,7 +8598,7 @@ li.padding-axl.flex.flex-row.flex-align--center .fullname {
 	height:40px;
 	margin-top:40px;
 	-webkit-app-region:no-drag;
-	left:0!important
+	left:0!important;
 }
 
 .mtd-head-left:not(.mtd-app-mac) .column-navigator {
@@ -8720,7 +8718,7 @@ html.mtd-classic-nav .column-navigator {
 	opacity:1!important;
 	width:40px!important;
 	transform:none;
-	transition:0.2s all var(--animationTiming),.4s transform
+	transition:0.2s all var(--animationTiming),.4s transform;
 }
 
 html.mtd-classic-nav.mtd-head-left body .app-header .column-nav-item {
@@ -8966,15 +8964,14 @@ footer>.js-tweet-stats>.tweet-stats:not(.js-stats-list) {
 .mtd-classic-nav .js-hide-drawer:not(.tweet-button):not([data-title="Accounts"]) {
 	-webkit-app-region:no-drag;
 	pointer-events:all;
-	left: 0;
-	margin-left: 5px;
-	float: left;
-	position: absolute;
+	left:0;
+	margin-left:5px;
+	float:left;
+	position:absolute
 }
 
 .mtd-classic-nav .js-hide-drawer:not(.tweet-button):not([data-title="Accounts"])>div {
-	/* margin-left:-12px!important; */
-	margin-top:-7px!important;
+	margin-top:-7px!important
 }
 
 html:not(.mtd-classic-nav) .js-hide-drawer:not(.tweet-button):not([data-title="Accounts"]) {
@@ -8984,7 +8981,7 @@ html:not(.mtd-classic-nav) .js-hide-drawer:not(.tweet-button):not([data-title="A
 	pointer-events:all;
 	width:var(--composeWidth)!important;
 	opacity:0;
-	cursor: pointer;
+	cursor:pointer
 }
 
 .new-composer-opt-in {
@@ -9215,7 +9212,7 @@ html:not(.mtd-classic-nav) .js-hide-drawer:not(.tweet-button):not([data-title="A
 
 .mtd-classic-nav .js-column-nav {
 	overflow-x:hidden!important;
-	overflow-y:scroll
+	overflow-y:scroll!important
 }
 
 .app-navigator .icon-user-switch {
@@ -9355,5 +9352,30 @@ html:not(.mtd-classic-nav) .js-hide-drawer:not(.tweet-button):not([data-title="A
 }
 
 .drawer,.drawer>[data-testid="newComposer"] {
-	-webkit-app-region: no-drag;
+	-webkit-app-region:no-drag
+}
+
+.column-nav-flyout {
+	z-index:20;
+	position:absolute;
+	left:50px;
+	max-width:280px;
+	line-height:41px;
+	display:block;
+	pointer-events:none;
+	width: 1;
+}
+
+.column-nav-flyout .column-nav-item {
+	width:auto!important;
+	padding:6px
+}
+
+.column-nav-flyout .column-heading {
+	padding-left:0
+}
+
+.column-nav-flyout .attribution {
+	font-size:13px;
+	padding-left:5px
 }
