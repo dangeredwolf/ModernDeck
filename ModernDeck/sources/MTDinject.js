@@ -8,8 +8,8 @@
 
 'use strict';
 
-let SystemVersion = "7.4 Beta";
-const appendTextVersion = true;
+let SystemVersion = "Beta 7.4";
+const appendTextVersion = false;
 const enablePatronFeatures = true;
 const enableNativeEmojiPicker = false;
 
@@ -34,7 +34,7 @@ let sendingFeedback = false;
 
 let ugltStarted = false;
 let useNativeContextMenus = false;
-let isDev = true;
+let isDev = false;
 let debugStorageSys = false;
 
 let lastScrollAt = Date.now();
@@ -1085,13 +1085,13 @@ function scrollStartStop() {
 
 	if (Date.now() - lastScrollAt > 50)
 		$this.trigger('scrollstart')
-	
+
 	lastScrollAt = Date.now()
 
 	clearTimeout(timeout)
 
 	timeout = setTimeout(function() {
-	
+
 	if (Date.now() - lastScrollAt > 49)
 		$this.trigger('scrollend')
 	}, 50)

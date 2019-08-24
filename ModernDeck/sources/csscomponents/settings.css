@@ -253,7 +253,8 @@ html:not(.mtd-js-app) .mtd-settings-tab {
 }
 
 .mtd-update-container button {
-	margin-top:-6px
+	margin-top:-6px;
+	z-index:10
 }
 
 .mtd-update-container i {
