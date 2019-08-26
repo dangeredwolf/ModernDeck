@@ -323,17 +323,17 @@ function makeWindow() {
 		store.set("mtd_nativetitlebar",false);
 	}
 
-	let devTron;
-
-	try {
-		devTron = require("devtron");
-	} catch (e) {
-		// ¯\_(ツ)_/¯
-	} finally {
-		if (devTron) {
-			devTron.install();
-		}
-	}
+	// let devTron;
+	//
+	// try {
+	// 	devTron = require("devtron");
+	// } catch (e) {
+	// 	// ¯\_(ツ)_/¯
+	// } finally {
+	// 	if (devTron) {
+	// 		devTron.install();
+	// 	}
+	// }
 
 	protocol.registerFileProtocol("moderndeck", mtdSchemeHandler);
 

@@ -1083,7 +1083,7 @@ function allColumnsVisible() {
 function scrollStartStop() {
 	var $this = $(this)
 
-	if (Date.now() - lastScrollAt > 50)
+	if (Date.now() - lastScrollAt > 150)
 		$this.trigger('scrollstart')
 
 	lastScrollAt = Date.now()
@@ -1092,16 +1092,38 @@ function scrollStartStop() {
 
 	timeout = setTimeout(function() {
 
-	if (Date.now() - lastScrollAt > 49)
+	if (Date.now() - lastScrollAt > 149)
 		$this.trigger('scrollend')
-	}, 50)
+	}, 150)
 }
 
 function attachColumnVisibilityEvents() {
 	// return;
 
 	$(window).on("resize",updateColumnVisibility);
+
+
+	// $(".column-scroller").on("scroll",() => {
+		// console.log("scroll!!!");
+		// $(".stream-item").each((a, element) => {
+		// 	if (!exists($(element).attr("style")) && ($(element).find(".js-stream-item-content").attr("style") === "visibility:visible" || !exists($(element).find(".js-stream-item-content").attr("style")))) {
+		// 		let height = $(element).height();
+		// 		console.log(height);
+		// 		$(element).attr("style","height:"+height+"px")
+		// 	}
+		// 	if ($(element).visible(true)) {
+		// 		$(element).find(".js-stream-item-content").attr("style","visibility:visible")
+		// 	} else {
+		// 		$(element).find(".js-stream-item-content").attr("style","visibility:hidden")
+		// 	}
+		// });
+	// });
+
+
 	$(".app-columns-container").on("scroll",scrollStartStop);
+	// $(".app-columns-container").on("scrollstart",() => {
+	// 	$(".column-content").attr("style","display:none");
+	// });
 	$(".app-columns-container").on("scrollend",updateColumnVisibility);
 	$(document).on("uiInlineComposeTweet",() => {
 		setTimeout(() => {

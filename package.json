@@ -1,5 +1,6 @@
 {
 	"name": "ModernDeck",
+	"productName": "ModernDeck",
 	"version": "7.4.0-beta",
 	"description": "TweetDeck, but more beautiful and fun than ever.",
 	"homepage": "https://github.com/dangeredwolf/ModernDeck",
@@ -118,7 +119,6 @@
 		"@node-minify/csso": "^4.1.2",
 		"@node-minify/uglify-es": "^4.1.2",
 		"adm-zip": "^0.4.13",
-		"devtron": "^1.4.0",
 		"electron": "^6.0.4",
 		"electron-builder": "^21.2.0",
 		"fs-extra": "^8.0.1",
