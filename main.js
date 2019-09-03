@@ -27,6 +27,8 @@ const url = require("url");
 const util = require("util");
 const through2 = require("through2");
 
+const packagedUsesDifferentDir = false;
+
 const log = require("electron-log");
 
 const { autoUpdater } = require("electron-updater");
@@ -60,7 +62,7 @@ autoUpdater.logger.transports.file.level = "info";
 
 app.setAppUserModelId("com.dangeredwolf.ModernDeck");
 
-let useDir = app.isPackaged ? "ModernDeck_app_tmp" : "ModernDeck";
+let useDir = (app.isPackaged && packagedUsesDifferentDir) ? "ModernDeck_app_tmp" : "ModernDeck";
 
 const mtdSchemeHandler = async (request, callback) => {
 	let myUrl = new url.URL(request.url);
@@ -163,6 +165,12 @@ const menu = Menu.buildFromTemplate(template);
 
 if (process.platform === 'darwin')
 	Menu.setApplicationMenu(menu);
+
+try {
+	if (require('electron-squirrel-startup')) return app.quit();
+} catch(e) {
+	
+}
 
 
 function makeLoginWindow(url,teams) {

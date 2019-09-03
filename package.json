@@ -19,8 +19,92 @@
 		"buildWindows": "electron-builder -w",
 		"buildMac": "electron-builder -m",
 		"buildLinux": "electron-builder -l",
+		"efMake": "electron-forge make",
 		"start": "electron .",
 		"release": "build"
+	},
+	"config": {
+		"forge": {
+			"packagerConfig": {},
+			"makers": [
+				{
+					"name": "@electron-forge/maker-appx",
+					"config": {
+						"name": "ModernDeck",
+						"publisher": "CN=FEC2801E-B19C-4051-A5E2-465F7B251519",
+						"makeVersionWinStoreCompatible": true
+					}
+				},
+				{
+					"name": "@electron-forge/maker-deb",
+					"config": {
+						"options": {
+							"name": "moderndeck",
+							"executableName": "moderndeck",
+							"productName": "ModernDeck",
+							"maintainer": "dangeredwolf",
+							"genericName": "Twitter Client based on TweetDeck",
+							"icon": "./build/icon.png",
+							"homepage": "https://moderndeck.org"
+						}
+					}
+				},
+				{
+					"name": "@electron-forge/maker-dmg",
+					"config": {
+						"name": "ModernDeck",
+						"icon": "./build/ModernDeck.icns",
+						"background": "./build/dmg/background.png",
+						"format": "ULFO"
+					}
+				},
+				{
+					"name": "@electron-forge/maker-rpm",
+					"config": {
+						"options": {
+							"name": "moderndeck",
+							"productName": "ModernDeck",
+							"maintainer": "dangeredwolf",
+							"genericName": "Twitter Client based on TweetDeck",
+							"icon": "./build/icon.png",
+							"executableName": "moderndeck",
+							"license": "MIT License",
+							"homepage": "https://moderndeck.org"
+						}
+					}
+				},
+				{
+					"name": "@electron-forge/maker-snap",
+					"config": {
+						"name": "moderndeck",
+						"productName": "ModernDeck",
+						"maintainer": "dangeredwolf",
+						"genericName": "Twitter Client based on TweetDeck",
+						"icon": "./build/icon.png",
+						"license": "MIT License",
+						"features": {
+							"audio": true
+						},
+						"executableName": "moderndeck",
+						"homepage": "https://moderndeck.org"
+					}
+				},
+				{
+					"name": "@electron-forge/maker-squirrel",
+					"config": {
+						"name": "ModernDeck",
+						"exe": "moderndeck",
+						"iconUrl": "./build/icon.ico"
+					}
+				},
+				{
+					"name": "@electron-forge/maker-zip",
+					"platforms": [
+						"darwin"
+					]
+				}
+			]
+		}
 	},
 	"build": {
 		"appId": "com.dangeredwolf.ModernDeck",
@@ -120,16 +204,19 @@
 		"@node-minify/uglify-es": "^4.1.2",
 		"adm-zip": "^0.4.13",
 		"electron": "^6.0.7",
-		"electron-builder": "^21.2.0",
+		"@electron-forge/cli": "6.0.0-beta.44",
+		"@electron-forge/maker-appx": "6.0.0-beta.44",
+		"@electron-forge/maker-deb": "6.0.0-beta.44",
+		"@electron-forge/maker-dmg": "6.0.0-beta.44",
+		"@electron-forge/maker-rpm": "6.0.0-beta.44",
+		"@electron-forge/maker-snap": "6.0.0-beta.44",
+		"@electron-forge/maker-squirrel": "6.0.0-beta.44",
+		"@electron-forge/maker-zip": "6.0.0-beta.44",
 		"fs-extra": "^8.0.1",
 		"klaw": "^3.0.0",
 		"stylelint": "^10.1.0",
 		"stylelint-config-recommended": "^2.2.0"
 	},
-	"files": [
-		"**/ModernDeck_app_tmp",
-		"**/main.js"
-	],
 	"stylelint": {
 		"extends": "stylelint-config-recommended"
 	}
