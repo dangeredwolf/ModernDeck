@@ -31,7 +31,7 @@ const packagedUsesDifferentDir = false;
 
 const log = require("electron-log");
 
-const { autoUpdater } = require("electron-updater");
+const { autoUpdater } = require("electron"); //electron-updater
 
 const Store = require("electron-store");
 const store = new Store({name:"mtdsettings"});
@@ -51,14 +51,14 @@ let isRestarting = false;
 
 let mtdAppTag = '';
 
-autoUpdater.setFeedURL({
-	"owner": "dangeredwolf",
-	"repo": "ModernDeck",
-	"provider": "github"
-});
-
-autoUpdater.logger = log;
-autoUpdater.logger.transports.file.level = "info";
+// autoUpdater.setFeedURL({
+// 	"owner": "dangeredwolf",
+// 	"repo": "ModernDeck",
+// 	"provider": "github"
+// });
+//
+// autoUpdater.logger = log;
+// autoUpdater.logger.transports.file.level = "info";
 
 app.setAppUserModelId("com.dangeredwolf.ModernDeck");
 
@@ -78,7 +78,7 @@ const template = [
 		label: "ModernDeck",
 		role: "appMenu",
 		submenu: [
-			{ label: "About ModernDeck...", click(){ if (!mainWindow){return;}mainWindow.send("aboutMenu"); } },
+			{ label: "About ModernDeck...", click() { if (!mainWindow){return;}mainWindow.send("aboutMenu"); } },
 			{ type: "separator" },
 			{ label: "Preferences...", click(){ if (!mainWindow){return;}mainWindow.send("openSettings"); } },
 			{ label: "Accounts...", click(){ if (!mainWindow){return;}mainWindow.send("accountsMan"); } },
@@ -169,7 +169,7 @@ if (process.platform === 'darwin')
 try {
 	if (require('electron-squirrel-startup')) return app.quit();
 } catch(e) {
-	
+
 }
 
 
@@ -869,7 +869,7 @@ app.on("activate", () => {
 // Tell mtdInject that there was an update error
 
 autoUpdater.on("error", (e,f,g) => {
-	if (!mainWindow || !mainWindow.webContents){
+	if (!mainWindow || !mainWindow.webContents) {
 		return;
 	}
 	mainWindow.webContents.send("error",e,f,g);
@@ -880,7 +880,7 @@ autoUpdater.on("error", (e,f,g) => {
 // ... actively checking for updates
 
 autoUpdater.on("checking-for-update", (e) => {
-	if (!mainWindow || !mainWindow.webContents){
+	if (!mainWindow || !mainWindow.webContents) {
 		return;
 	}
 	mainWindow.webContents.send("checking-for-update",e);
@@ -888,7 +888,7 @@ autoUpdater.on("checking-for-update", (e) => {
 
 // ...currently downloading updates
 autoUpdater.on("download-progress", (e) => {
-	if (!mainWindow || !mainWindow.webContents){
+	if (!mainWindow || !mainWindow.webContents) {
 		return;
 	}
 	mainWindow.webContents.send("download-progress",e);
@@ -896,7 +896,7 @@ autoUpdater.on("download-progress", (e) => {
 
 // ...have already downloaded updates
 autoUpdater.on("update-downloaded", (e) => {
-	if (!mainWindow || !mainWindow.webContents){
+	if (!mainWindow || !mainWindow.webContents) {
 		return;
 	}
 	mainWindow.webContents.send("update-downloaded",e);
@@ -904,7 +904,7 @@ autoUpdater.on("update-downloaded", (e) => {
 
 // ...haven't found any updates
 autoUpdater.on("update-not-available", (e) => {
-	if (!mainWindow || !mainWindow.webContents){
+	if (!mainWindow || !mainWindow.webContents) {
 		return;
 	}
 	mainWindow.webContents.send("update-not-available",e);

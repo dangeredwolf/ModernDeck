@@ -67,7 +67,7 @@
 					"name": "@electron-forge/maker-dmg",
 					"config": {
 						"name": "ModernDeck",
-						"icon": "build/ModernDeck.icns",
+						"icon": "./build/ModernDeck.icns",
 						"background": "build/dmg/background.png",
 						"format": "ULFO"
 					}
@@ -108,7 +108,7 @@
 					"config": {
 						"name": "ModernDeck",
 						"exe": "moderndeck",
-						"iconUrl": "./build/icon.ico"
+						"iconUrl": "https://raw.githubusercontent.com/dangeredwolf/ModernDeck/master/build/icon.ico"
 					}
 				},
 				{
@@ -205,13 +205,12 @@
 	"dependencies": {
 		"asar": "^2.0.1",
 		"electron-log": "^3.0.7",
-		"electron-packager": "^14.0.5",
 		"electron-store": "^4.0.0",
-		"electron-updater": "^4.1.2",
 		"file-type": "^12.3.0",
 		"got": "^9.6.0",
 		"through2": "^3.0.1",
-		"electron-squirrel-startup": "^1.0.0"
+		"electron-squirrel-startup": "^1.0.0",
+		"update-electron-app": "^1.5.0"
 	},
 	"devDependencies": {
 		"@node-minify/core": "^4.1.2",
@@ -219,14 +218,15 @@
 		"@node-minify/uglify-es": "^4.1.2",
 		"adm-zip": "^0.4.13",
 		"electron": "^6.0.7",
-		"@electron-forge/cli": "6.0.0-beta.44",
-		"@electron-forge/maker-appx": "6.0.0-beta.44",
-		"@electron-forge/maker-deb": "6.0.0-beta.44",
-		"@electron-forge/maker-dmg": "6.0.0-beta.44",
-		"@electron-forge/maker-rpm": "6.0.0-beta.44",
-		"@electron-forge/maker-snap": "6.0.0-beta.44",
-		"@electron-forge/maker-squirrel": "6.0.0-beta.44",
-		"@electron-forge/maker-zip": "6.0.0-beta.44",
+		"@electron-forge/cli": "^6.0.0-beta.44",
+		"@electron-forge/maker-appx": "^6.0.0-beta.44",
+		"@electron-forge/maker-deb": "^6.0.0-beta.44",
+		"@electron-forge/maker-dmg": "^6.0.0-beta.44",
+		"@electron-forge/maker-rpm": "^6.0.0-beta.44",
+		"@electron-forge/maker-snap": "^6.0.0-beta.44",
+		"@electron-forge/maker-squirrel": "^6.0.0-beta.44",
+		"@electron-forge/maker-zip": "^6.0.0-beta.44",
+		"electron-windows-store": "^2.1.0",
 		"fs-extra": "^8.0.1",
 		"klaw": "^3.0.0",
 		"stylelint": "^10.1.0",
