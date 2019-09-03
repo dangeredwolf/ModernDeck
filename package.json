@@ -19,20 +19,34 @@
 		"buildWindows": "electron-builder -w",
 		"buildMac": "electron-builder -m",
 		"buildLinux": "electron-builder -l",
-		"efMake": "electron-forge make",
+		"efMake": "electron-forge make --arch x64 --platform win32",
 		"start": "electron .",
 		"release": "build"
 	},
 	"config": {
 		"forge": {
-			"packagerConfig": {},
+			"packagerConfig": {
+				"ignore": [
+					"dist",
+					"build",
+					"build..+",
+					"donors.css",
+					"electron-builder.json",
+					"electron-builder-appx.json",
+					"package-lock.json",
+					"README.md",
+					"LICENCES.md"
+				]
+			},
 			"makers": [
 				{
 					"name": "@electron-forge/maker-appx",
 					"config": {
 						"name": "ModernDeck",
 						"publisher": "CN=FEC2801E-B19C-4051-A5E2-465F7B251519",
-						"makeVersionWinStoreCompatible": true
+						"makeVersionWinStoreCompatible": true,
+						"flatten": true,
+						"containerVirtualization": true
 					}
 				},
 				{
@@ -53,8 +67,8 @@
 					"name": "@electron-forge/maker-dmg",
 					"config": {
 						"name": "ModernDeck",
-						"icon": "./build/ModernDeck.icns",
-						"background": "./build/dmg/background.png",
+						"icon": "build/ModernDeck.icns",
+						"background": "build/dmg/background.png",
 						"format": "ULFO"
 					}
 				},
@@ -109,7 +123,7 @@
 	"build": {
 		"appId": "com.dangeredwolf.ModernDeck",
 		"win": {
-			"icon": "build/icon.ico",
+			"icon": "./build/icon.ico",
 			"legalTrademarks": "Copyright 2014-2019 dangered wolf, released under the MIT licence",
 			"publish": [
 				"github"
@@ -148,14 +162,14 @@
 			"publish": [
 				"github"
 			],
-			"icon": "build/ModernDeck.icns",
+			"icon": "./build/ModernDeck.icns",
 			"artifactName": "ModernDeck.${ext}",
 			"minimumSystemVersion": "10.11.0",
 			"darkModeSupport": true,
 			"category": "public.app-category.social-networking"
 		},
 		"dmg": {
-			"background": "build/dmg/background.png",
+			"background": "./build/dmg/background.png",
 			"title": "ModernDeck"
 		},
 		"linux": {
@@ -163,7 +177,7 @@
 			"publish": [
 				"github"
 			],
-			"icon": "build/icons/512x512.png",
+			"icon": "./build/icons/512x512.png",
 			"maintainer": "dangeredwolf",
 			"artifactName": "ModernDeck_${arch}.${ext}",
 			"target": [
@@ -196,7 +210,8 @@
 		"electron-updater": "^4.1.2",
 		"file-type": "^12.3.0",
 		"got": "^9.6.0",
-		"through2": "^3.0.1"
+		"through2": "^3.0.1",
+		"electron-squirrel-startup": "^1.0.0"
 	},
 	"devDependencies": {
 		"@node-minify/core": "^4.1.2",
