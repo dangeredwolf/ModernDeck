@@ -182,12 +182,14 @@ select,input {
 }
 
 .login-container .btn-positive {
-	width:277px!important;
+	width: 259px!important;
 	padding:15px 0 8px 24px;
 	text-align:center;
 	text-transform:none;
 	font-size:18px;
-	margin-top:20px
+	margin-top:20px!important;
+	padding-top:14px!important;
+	margin-bottom:-15px!important
 }
 
 .login-container .btn-positive:before {
@@ -196,8 +198,8 @@ select,input {
 	font-size:26px;
 	vertical-align:middle;
 	line-height:0;
-	margin-left:-50px;
-	padding-right:10px
+	margin-left:-40px;
+	padding-right:25px
 }
 
 .form-login .padding-axl:not(.form-legend) {

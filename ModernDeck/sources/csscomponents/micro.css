@@ -8,7 +8,6 @@
 @import "settings.css";
 @import "contextmenu.css";
 @import "windowcontrol.css";
-@import "contextmenu.css";
 @import "spinner.css";
 
 /* Variables, same as moderndeck.css */
@@ -41,7 +40,9 @@
 
 /* Variables, from dark.css */
 
+/* stylelint-disable */
 :root {
+/* stylelint-enable */
 	--primaryColor:#263238;
 	--secondaryColor:#009EAD;
 	--secondaryColorAlt:#00838F;

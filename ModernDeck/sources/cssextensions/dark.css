@@ -678,7 +678,7 @@ select,
 }
 
 button[type="submit"],.mtd-settings-button,.btn-primary,.Button--primary:not(.tweet-button):not(.action-text):not(.more-tweets-btn):not(.js-add-column):not(.js-spinner-button) {
-	background: var(--secondaryColor)!important;
+	background:var(--secondaryColor)!important
 }
 
 button[type="submit"]:hover,.mtd-settings-button:hover,.btn-primary:hover,.Button--primary:not(.tweet-button):not(.action-text):not(.more-tweets-btn):not(.js-add-column):not(.js-spinner-button):hover {

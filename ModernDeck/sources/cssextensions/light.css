@@ -68,7 +68,7 @@ input[type="radio"]:checked:before,
 
 a:not(.list-account):not(.js-column-back):not(.compose-account):not(.js-toggle-item):not(.column-header-link):not(.js-account-action):not(.js-tweet-social-proof-back):active, a:not(.list-account):not(.js-column-back):not(.compose-account):not(.js-toggle-item):not(.column-header-link):not(.js-account-action):not(.js-tweet-social-proof-back):focus
 {
-	color:var(--secondaryColor);
+	color:var(--secondaryColor)
 }
 
 .mtd-settings-option-slider input[type="range"]::-webkit-slider-thumb {
@@ -143,7 +143,7 @@ button:active
 
 .js-account-action, .accordion:not(.js-account-settings-detail) .is-active, .txt-mute, li:not(.selected) .list-twitter-list .txt-ellipsis, .list-twitter-list .subtitle, .txt-r-dark-gray, .txt-mute a:not(:hover):not(:focus):not(.tweet-action), .txt-normal, .caloff, .l-column.mdl-column.mdl-column-sml .list-link, .typeahead .username, .lst-group li:not(.selected) .list-account .username, html .btd-grayscale_notification_icons i.icon.activity-indicator, .txt-r-deep-gray, .color-twitter-dark-gray, .color-twitter-darker-gray, .js-send-button.is-disabled
 {
-	color:var(--tweetActionColor);
+	color:var(--tweetActionColor)
 }
 
 .scroll-styled-v,
@@ -188,7 +188,7 @@ button[disabled]
 
 
 input[type="checkbox"][disabled]:before {
-	color:var(--disabledColor)!important;
+	color:var(--disabledColor)!important
 }
 
 .btn-positive,
@@ -333,7 +333,7 @@ input[type="checkbox"][disabled]:before {
 }
 
 .dropdown-menu ul li a,.dropdown-menu ul li a:hover {
-	color:var(--typeaheadColor)!important;
+	color:var(--typeaheadColor)!important
 }
 
 .edit-conversation-name, .app-navigator .js-hide-drawer, .column-message, .drawer-header, body, .mtd-settings-tab-container
@@ -342,7 +342,7 @@ input[type="checkbox"][disabled]:before {
 }
 
 html,body:not(.signin-sheet-now-present) {
-	background:var(--primaryColor);
+	background:var(--primaryColor)
 }
 
 .prf-actions .js-follow-button
@@ -401,7 +401,7 @@ html,body:not(.signin-sheet-now-present) {
 .scroll-styled-h,
 #lists-modal .mdl-content,
 .keyboard-shortcut-list-modal {
-	scrollbar-color:var(--txtMuteLink) var(--backdropColor);
+	scrollbar-color:var(--txtMuteLink) var(--backdropColor)
 }
 
 .sprite:before
@@ -413,7 +413,7 @@ html,body:not(.signin-sheet-now-present) {
 .btn-compose:not(.js-hide-drawer):hover,
 .btn-compose:not(.js-hide-drawer):focus
 {
-	background:var(--secondaryColor);
+	background:var(--secondaryColor)
 }
 
 .btn-compose:not(.js-hide-drawer):active
@@ -689,7 +689,7 @@ button.try-query
 .column,
 .contributor-row
 {
-	background:var(--backdropColor);
+	background:var(--backdropColor)
 }
 
 .compose-media-info-bar
@@ -884,7 +884,7 @@ textarea::placeholder
 .stream-item.is-actionable .tweet-detail-action,
 .tweet-stats>li>a
 {
-	color:var(--txtMuteLink);
+	color:var(--txtMuteLink)
 }
 
 ::selection
@@ -918,18 +918,18 @@ textarea
 
 .column-content
 {
-	border-right:3px solid var(--columnBorderColor);
+	border-right:3px solid var(--columnBorderColor)
 }
 
 .tweet-action,
 .tweet-detail-action,
 .social-proof-for-tweet-title
 {
-	color:var(--tweetActionColor);
+	color:var(--tweetActionColor)
 }
 
 button[type="submit"],.mtd-settings-button,.btn-primary,.Button--primary:not(.tweet-button):not(.action-text):not(.more-tweets-btn):not(.js-add-column):not(.js-spinner-button) {
-	background: var(--secondaryColor)!important;
+	background:var(--secondaryColor)!important
 }
 
 button[type="submit"]:hover,.mtd-settings-button:hover,.btn-primary:hover,.Button--primary:not(.tweet-button):not(.action-text):not(.more-tweets-btn):not(.js-add-column):not(.js-spinner-button):hover {
@@ -951,11 +951,11 @@ button[type="submit"]:active,button[type="submit"]:focus,.mtd-settings-button:fo
 }
 
 .js-column-message .dark-only--color-twitter-gray,.mtd-settings-button {
-	color:var(--modalWindowColor)!important;
+	color:var(--modalWindowColor)!important
 }
 
 .account-settings-bb a[rel="user"] {
-	color:var(--typeaheadColor);
+	color:var(--typeaheadColor)
 }
 
 .stroke-twitter-light-gray {

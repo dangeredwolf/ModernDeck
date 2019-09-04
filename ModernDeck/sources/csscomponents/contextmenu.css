@@ -18,20 +18,20 @@
 
 .mtd-context-menu {
 	animation-name:contextMenuDown;
-	transition: opacity 0.2s var(--animationTiming)!important;
-	position: absolute!important;
-	width: fit-content!important;
-	z-index: 31!important;
+	transition:opacity 0.2s var(--animationTiming)!important;
+	position:absolute!important;
+	width:fit-content!important;
+	z-index:31!important
 }
 
 .mtd-context-menu li:not(.drp-h-divider) {
 	width:auto;
 	float:left;
 	clear:left;
-	display: inline-block!important;
-	position: relative!important;
-	padding: 0!important;
-	height: 42px!important;
+	display:inline-block!important;
+	position:relative!important;
+	padding:0!important;
+	height:42px!important
 }
 
 .mtd-context-menu div.drp-h-divider {
@@ -44,11 +44,11 @@
 }
 
 .mtd-context-menu a {
-	line-height: 2.75!important;
-	padding: 15px!important;
+	line-height:2.75!important;
+	padding:15px!important;
 	height:auto;
 	-webkit-app-region:no-drag;
-	position: relative!important;
+	position:relative!important
 }
 
 .mtd-context-menu a[disabled] {

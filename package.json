@@ -1,8 +1,9 @@
 {
 	"name": "ModernDeck",
 	"productName": "ModernDeck",
-	"version": "7.4.0-beta.2",
-	"description": "TweetDeck, but more beautiful and fun than ever.",
+	"version": "7.4.0",
+	"description": "ModernDeck",
+	"copyright": "Copyright 2014-2019 dangeredwolf, et al. Released under the MIT license.",
 	"homepage": "https://github.com/dangeredwolf/ModernDeck",
 	"bugs": {
 		"url": "https://github.com/dangeredwolf/ModernDeck/issues"
@@ -19,7 +20,7 @@
 		"buildWindows": "electron-builder -w --config electron-builder.json",
 		"buildMac": "electron-builder -m --config electron-builder.json",
 		"buildLinux": "electron-builder -l --config electron-builder.json",
-		"efMake": "electron-forge make --arch x64",
+		"test": "electron-builder . --config electron-builder.json",
 		"start": "electron .",
 		"release": "build"
 	},
@@ -51,7 +52,7 @@
 		"@node-minify/uglify-es": "^4.1.2",
 		"adm-zip": "^0.4.13",
 		"electron": "^6.0.7",
-		"electron-builder": "^21.0.0",
+		"electron-builder": "^21.2.0",
 		"fs-extra": "^8.0.1",
 		"klaw": "^3.0.0",
 		"stylelint": "^10.1.0",

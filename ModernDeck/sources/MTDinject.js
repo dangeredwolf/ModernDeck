@@ -8,10 +8,9 @@
 
 'use strict';
 
-let SystemVersion = "Beta 7.4";
+let SystemVersion = "7.4";
 const appendTextVersion = false;
 const enablePatronFeatures = true;
-const enableNativeEmojiPicker = false;
 
 let debugSettings = false;
 
@@ -25,7 +24,6 @@ let lastError = undefined;
 let loginIntervalTick = 0;
 
 const forceFeatureFlags = false;
-let forceAppX = false; // https://github.com/electron/electron/issues/18161
 const useRaven = false;
 const debugWelcome = false;
 
@@ -61,7 +59,7 @@ let newLoginPage =
 						An unexpected error occurred. Please try again later.\
 					</p>\
 				</div>\
-				<a href="https://twitter.com/login?hide_message=true&amp;redirect_after_login=https%3A%2F%2Ftweetdeck.twitter.com%2F%3Fvia_twitter_login%3Dtrue" class="Button Button--primary block txt-size--18 txt-center btn-positive">\
+				<a href="https://mobile.twitter.com/login?hide_message=true&amp;redirect_after_login=https%3A%2F%2Ftweetdeck.twitter.com%2F%3Fvia_twitter_login%3Dtrue" class="Button Button--primary block txt-size--18 txt-center btn-positive">\
 					Sign in with Twitter\
 				</a>\
 				<div class="divider-bar"></div>\
@@ -465,18 +463,6 @@ let settingsData = {
 				settingsKey:"mtd_column_visibility",
 				default:true
 			},
-			undockednavdrawer:{
-				title:"Replace navigation drawer with menu",
-				type:"checkbox",
-				activate:{
-					enableStylesheet:"undockednavdrawer"
-				},
-				deactivate:{
-					disableStylesheet:"undockednavdrawer"
-				},
-				settingsKey:"mtd_undockednavdrawer",
-				default:false
-			},
 			fixedarrows:{
 				title:"Use fixed-location media arrows for tweets with multiple photos",
 				type:"checkbox",
@@ -500,19 +486,6 @@ let settingsData = {
 				},
 				settingsKey:"mtd_column_nav_always_visible",
 				default:true
-			},
-			dockedmodals:{
-				headerBefore:"Behavior",
-				title:"Use docked modals",
-				type:"checkbox",
-				activate:{
-					disableStylesheet:"undockedmodals"
-				},
-				deactivate:{
-					enableStylesheet:"undockedmodals"
-				},
-				settingsKey:"mtd_dockedmodals",
-				default:false
 			},
 			nonewtweetsbutton:{
 				title:"Enable \"New Tweets\" indicator",
@@ -555,7 +528,7 @@ let settingsData = {
 					scrollbarsnone:{value:"scrollbarsnone",text:"Hidden"}
 				},
 				settingsKey:"mtd_scrollbar_style",
-				default:"scrollbarsdefault"
+				default:"scrollbarsnarrow"
 			},
 			columnwidth:{
 				title:"Column width",
@@ -885,6 +858,28 @@ let settingsData = {
 					}
 				},
 				settingsKey:"mtd_inspectElement",
+				default:false
+			},
+			nativeEmoji:{
+				title:"Use native Emoji Picker",
+				type:"checkbox",
+				activate:{
+					func: (opt, load) => {
+						if (!load) {
+							$(document).trigger("uiDrawerHideDrawer");
+						}
+						setPref("mtd_nativeEmoji",true);
+					}
+				},
+				deactivate:{
+					func: (opt, load) => {
+						if (!load) {
+							$(document).trigger("uiDrawerHideDrawer");
+						}
+						setPref("mtd_nativeEmoji",false);
+					}
+				},
+				settingsKey:"mtd_nativeEmoji",
 				default:false
 			},
 			nativeContextMenus:{
@@ -1386,16 +1381,16 @@ function loadPreferences() {
 					switch(pref.type) {
 						case "checkbox":
 							if (setting === true) {
-								parseActions(pref.activate);
+								parseActions(pref.activate, undefined, true);
 							} else {
-								parseActions(pref.deactivate);
+								parseActions(pref.deactivate, undefined, true);
 							}
 							break;
 						case "dropdown":
 						case "textbox":
 						case "textarea":
 						case "slider":
-							parseActions(pref.activate, setting);
+							parseActions(pref.activate, setting, true);
 							break;
 						/* button/link controls we can skip, they don't do anything other than in the settings menu */
 						case "button":
@@ -1480,7 +1475,7 @@ function diag() {
 
 	log += "\nisDev: " + isDev;
 	log += "\nisApp: " + isApp;
-	log += "\nforceAppX: " + forceAppX;
+	log += "\nmtd-winstore: " + html.hasClass("mtd-winstore");
 	log += "\nUser agent: " + navigator.userAgent;
 
 
@@ -2856,7 +2851,7 @@ function openSettings(openMenu) {
 				)
 			}
 
-			let info = make("p").html("Made with <i class=\"icon icon-heart mtd-about-heart\"></i> by <a href=\"https://twitter.com/dangeredwolf\" rel=\"user\" target=\"_blank\">dangeredwolf</a> in Columbus, OH since 2014<br><br>ModernDeck is <a href=\"https://github.com/dangeredwolf/ModernDeck/\" target=\"_blank\">an open source project</a> released under the MIT license.");
+			let info = make("p").html("Designed with <i class=\"icon icon-heart mtd-about-heart\"></i> by <a href=\"https://twitter.com/dangeredwolf\" rel=\"user\" target=\"_blank\">dangeredwolf</a> in Columbus, OH since 2014<br><br>ModernDeck is <a href=\"https://github.com/dangeredwolf/ModernDeck/\" target=\"_blank\">an open source project</a> released under the MIT license.");
 			let infoCont = make("div").addClass("mtd-about-info").append(info);
 
 			logoCont.append(logo,h1,h2);
@@ -2869,7 +2864,7 @@ function openSettings(openMenu) {
 				makePatronView()
 			)
 
-			if (isApp && !forceAppX) {
+			if (isApp && !html.hasClass("mtd-winstore")) {
 				if (!html.hasClass("mtd-winstore") && !html.hasClass("mtd-macappstore")) {
 					subPanel.append(updateCont);
 				}
@@ -3006,7 +3001,7 @@ function mtdAlert(obj) {
 	alertButtonContainer.append(alertButton);
 
 	if (exists(obj.button2Text) || obj.type === "confirm") {
-		alertButton2 = make("button").addClass("btn-primary btn mtd-alert-button").html(obj.button2Text || "Cancel");
+		alertButton2 = make("button").addClass("btn-primary btn mtd-alert-button mtd-alert-button-secondary").html(obj.button2Text || "Cancel");
 		alertButtonContainer.append(alertButton2);
 		alertButton2.click(obj.button2Click || mtdPrepareWindows);
 	}
@@ -3060,7 +3055,7 @@ function makeUpdateCont() {
 
 	updateCont.append(updateIcon,updateh2,updateh3,tryAgain,restartNow);
 
-	if (isApp && !forceAppX) {
+	if (isApp && !html.hasClass("mtd-winstore")) {
 		if (!html.hasClass("mtd-winstore") && !html.hasClass("mtd-macappstore")) {
 			mtdAppUpdatePage(updateCont,updateh2,updateh3,updateIcon,updateSpinner,tryAgain,restartNow);
 		}
@@ -3076,7 +3071,7 @@ let welcomeData = {
 		title: "<i class='icon icon-moderndeck icon-xxlarge mtd-welcome-head-icon' style='color:var(--secondaryColor)'></i>Welcome to ModernDeck!",
 		body: "We're glad to have you here. Click Next to continue.",
 		nextFunc: () => {
-			if (!isApp || forceAppX) {
+			if (!isApp || html.hasClass("mtd-winstore")) {
 				return;
 			}
 			const {ipcRenderer} = require('electron');
@@ -3087,7 +3082,8 @@ let welcomeData = {
 		title: "Checking for updates...",
 		body: "This should only take a few seconds.",
 		html: "",
-		enabled: false
+		enabled: false,
+		nextText: "Skip"
 	},
 	theme: {
 		title: "Pick a core theme",
@@ -3103,7 +3099,7 @@ let welcomeData = {
 			</label>
 		</div>` + demoColumn,
 		prevFunc: () => {
-			if (!isApp || forceAppX) {
+			if (!isApp || html.hasClass("mtd-winstore")) {
 				return;
 			}
 			const {ipcRenderer} = require('electron');
@@ -3158,7 +3154,7 @@ let welcomeData = {
 
 function welcomeScreen() {
 
-	welcomeData.update.enabled = isApp && !forceAppX;
+	welcomeData.update.enabled = isApp && !html.hasClass("mtd-winstore");
 	welcomeData.update.html = makeUpdateCont();
 
 	mtdPrepareWindows();
@@ -3207,7 +3203,7 @@ function welcomeScreen() {
 			}
 		});
 
-		let button2 = make("button").html("Next<i class='icon icon-arrow-r'></i>").addClass("btn btn-positive mtd-settings-button mtd-welcome-next-button")
+		let button2 = make("button").html((key === "update" ? "Skip" : "Next") + "<i class='icon icon-arrow-r'></i>").addClass("btn btn-positive mtd-settings-button mtd-welcome-next-button")
 		.click(function() {
 			$(".mtd-settings-inner").css("margin-left",((subPanel.index()+1) * -700)+"px");
 			if (typeof welc.nextFunc === "function") {
@@ -3284,7 +3280,7 @@ async function getBlobFromUrl(imageUrl) {
 }
 
 function useNativeEmojiPicker() {
-	return enableNativeEmojiPicker && require("electron") && require("electron").remote && require("electron").remote.app && require("electron").remote.app.isEmojiPanelSupported();
+	return getPref("mtd_nativeEmoji") && require("electron") && require("electron").remote && require("electron").remote.app && require("electron").remote.app.isEmojiPanelSupported();
 }
 
 /*
@@ -3733,7 +3729,9 @@ function navigationSetup() {
 		.addClass("mtd-nav-drawer hidden")
 		.append(
 			make("img").attr("id","mtd_nd_header_image").addClass("mtd-nd-header-image").attr("style",""),
-			make("img").addClass("avatar size73 mtd-nd-header-photo").attr("id","mtd_nd_header_photo").attr("src",""),
+			make("img").addClass("avatar size73 mtd-nd-header-photo").attr("id","mtd_nd_header_photo").attr("src","").click(() => {
+				$('a[data-user-name="dangeredwolf"][rel="user"][href="#"]').click();
+			}),
 			make("div").addClass("mtd-nd-header-username").attr("id","mtd_nd_header_username").html("PROFILE ERROR<br>Tell @dangeredwolf i said hi"),
 			make("button").addClass("btn mtd-nav-button mtd-nav-first-button").attr("id","tdaccsbutton").append(make("i").addClass("icon icon-user-switch")).click(() => {mtdPrepareWindows();$(".js-show-drawer.js-header-action").click();}).append("Your Accounts"),
 			make("button").addClass("btn mtd-nav-button").attr("id","addcolumn").append(make("i").addClass("icon icon-plus")).click(() => {mtdPrepareWindows();TD.ui.openColumn.showOpenColumn()}).append("Add Column"),
@@ -4014,6 +4012,7 @@ function mtdAppUpdatePage(updateCont, updateh2, updateh3, updateIcon, updateSpin
 	const {ipcRenderer} = require('electron');
 
 	ipcRenderer.on("error",(e,args,f,g) => {
+
 		$(".mtd-welcome-inner").addClass("mtd-enable-update-next");
 
 		console.log(e,args,f,g);
@@ -4030,6 +4029,7 @@ function mtdAppUpdatePage(updateCont, updateh2, updateh3, updateIcon, updateSpin
 
 		updateIcon.html("error_outline").removeClass("hidden");
 		tryAgain.removeClass("hidden").html("Try Again");
+		restartNow.addClass("hidden");
 
 	});
 
@@ -4042,6 +4042,7 @@ function mtdAppUpdatePage(updateCont, updateh2, updateh3, updateIcon, updateSpin
 		updateh3.addClass("hidden");
 		tryAgain.addClass("hidden");
 		restartNow.addClass("hidden");
+		$("[id='update'] .mtd-welcome-next-button").html("Skip<i class='icon icon-arrow-r'></i>");
 	});
 
 	ipcRenderer.on("update-available", (e,args) => {
@@ -4079,6 +4080,7 @@ function mtdAppUpdatePage(updateCont, updateh2, updateh3, updateIcon, updateSpin
 
 
 	ipcRenderer.on("update-not-available", (e,args) => {
+
 		console.log(args);
 		$(".mtd-update-spinner").addClass("hidden");
 		updateh2.html("You're up to date");
@@ -4087,6 +4089,7 @@ function mtdAppUpdatePage(updateCont, updateh2, updateh3, updateIcon, updateSpin
 		tryAgain.removeClass("hidden").html("Check Again");
 		restartNow.addClass("hidden");
 		$(".mtd-welcome-inner").addClass("mtd-enable-update-next");
+		$("[id='update'] .mtd-welcome-next-button").html("Next<i class='icon icon-arrow-r'></i>");
 	});
 
 	tryAgain.click(() => {
@@ -4240,7 +4243,7 @@ function mtdAppFunctions() {
 		$(".js-dm-button").click();
 	});
 
-	if (html.hasClass("mtd-app")) {
+	if (html.hasClass("mtd-js-app")) {
 		let minimise = make("button")
 		.addClass("windowcontrol min")
 		.html("&#xE15B")
@@ -4254,6 +4257,10 @@ function mtdAppFunctions() {
 		.click((data,handler) => {
 			ipcRenderer.send('maximizeButton');
 		});
+
+		if (html.hasClass("mtd-maximized")) {
+			maximise.html("&#xE3E0")
+		}
 
 		let close = make("button")
 		.addClass("windowcontrol close")
@@ -4492,7 +4499,7 @@ function buildContextMenu(p) {
 	This allows for many simple preferences to be done completely in object notation with no extra JS
 */
 
-function parseActions(a,opt) {
+function parseActions(a,opt,load) {
 	for (let key in a) {
 		console.log(key);
 		switch(key) {
@@ -4512,7 +4519,7 @@ function parseActions(a,opt) {
 			case "func":
 				if (typeof a[key] === "function") {
 					try {
-						a[key](opt);
+						a[key](opt, load);
 					} catch (e) {
 						console.error("Error occurred processing action function.");
 						console.error(e);

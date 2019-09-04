@@ -6,7 +6,7 @@
 */
 
 :root {
-	--scrollbarWidth:5px!important;
+	--scrollbarWidth:5px!important
 }
 
 .mdl.s-profile,
@@ -18,5 +18,5 @@
 .scroll-styled-h,
 #lists-modal .mdl-content,
 .keyboard-shortcut-list-modal {
-	scrollbar-width:thin;
+	scrollbar-width:thin
 }

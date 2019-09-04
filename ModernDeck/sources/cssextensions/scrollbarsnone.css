@@ -6,7 +6,7 @@
 */
 
 :root {
-	--scrollbarWidth:0!important;
+	--scrollbarWidth:0!important
 }
 
 .needs-scroll-bottom-offset.scroll-styled-h {
@@ -26,5 +26,5 @@
 #lists-modal .mdl-content,
 .keyboard-shortcut-list-modal,
 .mdl {
-	scrollbar-width:none;
+	scrollbar-width:none
 }
