@@ -445,6 +445,26 @@ let settingsData = {
 				settingsKey:"mtd_headposition",
 				default:"left"
 			},
+			columnvisibility:{
+				title:"<i class='icon material-icon'>fiber_new</i> Improve Timeline performance by not rendering invisible columns",
+				type:"checkbox",
+				activate:{
+					func: (opt) => {
+						allColumnsVisible();
+						updateColumnVisibility();
+
+						// setPref("mtd_column_visibility",opt);
+					}
+				},
+				deactivate:{
+					func: (opt) => {
+						allColumnsVisible();
+						// setPref("mtd_column_visibility",opt);
+					}
+				},
+				settingsKey:"mtd_column_visibility",
+				default:true
+			},
 			undockednavdrawer:{
 				title:"Replace navigation drawer with menu",
 				type:"checkbox",
@@ -1060,6 +1080,10 @@ let settingsData = {
 
 function updateColumnVisibility() {
 
+	if (getPref("mtd_column_visibility") === false) {
+		return allColumnsVisible()
+	}
+
 	$(".column-content").attr("style","display:block");
 
 	setTimeout(() => { // wait for redraw
@@ -1125,27 +1149,25 @@ function attachColumnVisibilityEvents() {
 	// 	$(".column-content").attr("style","display:none");
 	// });
 	$(".app-columns-container").on("scrollend",updateColumnVisibility);
-	$(document).on("uiInlineComposeTweet",() => {
+	$(document).on(
+		"uiInlineComposeTweet " +
+		"uiDockedComposeTweet " +
+		"uiComposeClose " +
+		"uiDrawerHideDrawer " +
+		"uiDrawerShowDrawer " +
+		"uiColumnFocus " +
+		"uiKeyLeft " +
+		"uiKeyRight " +
+		"uiMoveColumnAction " +
+		"uiReload " +
+		"uiNavigate " +
+		"uiComposeTweet " +
+		"uiColumnsScrollToColumn "
+		,() => {
 		setTimeout(() => {
 			updateColumnVisibility();
-		},500)
+		},400)
 	});
-	$(document).on("uiDockedComposeTweet",() => {
-		setTimeout(() => {
-			updateColumnVisibility();
-		},500)
-	});
-	$(document).on("uiComposeClose",() => {
-		setTimeout(() => {
-			updateColumnVisibility();
-		},500)
-	});
-	$(document).on("uiComposeTweet",() => {
-		setTimeout(() => {
-			updateColumnVisibility();
-		},500)
-	});
-
 	updateColumnVisibility();
 
 	//$(".app-columns-container").on("scrollstart",allColumnsVisible);
@@ -4018,6 +4040,16 @@ function mtdAppUpdatePage(updateCont, updateh2, updateh3, updateIcon, updateSpin
 		$(".mtd-update-spinner").removeClass("hidden");
 		updateh2.html("Checking for updates...");
 		updateh3.addClass("hidden");
+		tryAgain.addClass("hidden");
+		restartNow.addClass("hidden");
+	});
+
+	ipcRenderer.on("update-available", (e,args) => {
+		$(".mtd-welcome-inner").removeClass("mtd-enable-update-next");
+		console.log(args);
+		updateIcon.addClass("hidden");
+		$(".mtd-update-spinner").removeClass("hidden");
+		updateh2.html("Updating...");
 		tryAgain.addClass("hidden");
 		restartNow.addClass("hidden");
 	});

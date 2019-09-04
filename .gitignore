@@ -14,3 +14,4 @@ node_modules
 yarn.lock
 *.appx
 out
+default.*

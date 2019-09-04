@@ -31,7 +31,7 @@ const packagedUsesDifferentDir = false;
 
 const log = require("electron-log");
 
-const { autoUpdater } = require("electron"); //electron-updater
+const { autoUpdater } = require("electron-updater");
 
 const Store = require("electron-store");
 const store = new Store({name:"mtdsettings"});
@@ -51,14 +51,14 @@ let isRestarting = false;
 
 let mtdAppTag = '';
 
-// autoUpdater.setFeedURL({
-// 	"owner": "dangeredwolf",
-// 	"repo": "ModernDeck",
-// 	"provider": "github"
-// });
-//
-// autoUpdater.logger = log;
-// autoUpdater.logger.transports.file.level = "info";
+autoUpdater.setFeedURL({
+	"owner": "dangeredwolf",
+	"repo": "ModernDeck",
+	"provider": "github"
+});
+
+autoUpdater.logger = log;
+autoUpdater.logger.transports.file.level = "info";
 
 app.setAppUserModelId("com.dangeredwolf.ModernDeck");
 
@@ -330,18 +330,6 @@ function makeWindow() {
 	if (!store.has("mtd_nativetitlebar")) {
 		store.set("mtd_nativetitlebar",false);
 	}
-
-	// let devTron;
-	//
-	// try {
-	// 	devTron = require("devtron");
-	// } catch (e) {
-	// 	// ¯\_(ツ)_/¯
-	// } finally {
-	// 	if (devTron) {
-	// 		devTron.install();
-	// 	}
-	// }
 
 	protocol.registerFileProtocol("moderndeck", mtdSchemeHandler);
 
@@ -892,6 +880,14 @@ autoUpdater.on("download-progress", (e) => {
 		return;
 	}
 	mainWindow.webContents.send("download-progress",e);
+});
+
+// ...have found an update
+autoUpdater.on("update-available", (e) => {
+	if (!mainWindow || !mainWindow.webContents) {
+		return;
+	}
+	mainWindow.webContents.send("update-available",e);
 });
 
 // ...have already downloaded updates

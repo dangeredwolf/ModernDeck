@@ -580,6 +580,11 @@ html.scroll-v {
 	top:0
 }
 
+.mtd-head-left .antiscroll-scrollbar-position-left {
+	left:initial;
+	right:0
+}
+
 .antiscroll-scrollbar-position-left {
 	left:1px
 }
@@ -4577,7 +4582,7 @@ input[type="checkbox"]:active {
 .column-nav-item {
 	position:relative;
 	width:0;
-	top:4px;
+	/* top:4px; */
 	box-sizing:border-box;
 	color:rgba(255,255,255,.75);
 	display:inline-flex;
@@ -4587,7 +4592,20 @@ input[type="checkbox"]:active {
 	transform:translate3d(15px,0,0);
 	opacity:0;
 	height:30px;
-	transition:0.4s all var(--animationTiming) 1s
+	transition:0.4s all var(--animationTiming) 1s;
+}
+
+.column-nav-item .attribution {
+	color:rgba(255,255,255,.3)!important
+}
+
+.column-nav-flyout .column-nav-item {
+	color:var(--primaryTextColor)
+}
+
+.column-nav-flyout .column-nav-item .attribution {
+	color:var(--primaryTextColor)!important;
+	opacity:0.7
 }
 
 html:not(.mtd-head-left) .column-nav-item {
@@ -8723,7 +8741,7 @@ html.mtd-classic-nav .column-navigator {
 
 html.mtd-classic-nav.mtd-head-left body .app-header .column-nav-item {
 	width:100%!important;
-	height:30px
+	height:30px;
 }
 
 .mtd-maximized .windowcontrol.max {
@@ -9246,10 +9264,6 @@ html:not(.mtd-classic-nav) .js-hide-drawer:not(.tweet-button):not([data-title="A
 	color:var(--txtMuteLink)
 }
 
-.column-nav-item .attribution {
-	color:rgba(255,255,255,.3)!important
-}
-
 .mtd-classic-nav .application:not(.is-condensed) .app-search-form {
 	display:block;
 	width:200px
@@ -9355,15 +9369,29 @@ html:not(.mtd-classic-nav) .js-hide-drawer:not(.tweet-button):not([data-title="A
 	-webkit-app-region:no-drag
 }
 
+@keyframes flyoutflyin {
+	0% {
+		transform:translateY(30px);
+		border-radius:100px;
+		opacity:0
+	},
+	100% {
+		transform:scale(1);
+		opacity:1
+	}
+}
+
 .column-nav-flyout {
 	z-index:20;
 	position:absolute;
-	left:50px;
-	max-width:280px;
+	left:45px;
 	line-height:41px;
+	padding:0 8px;
 	display:block;
 	pointer-events:none;
-	width: 1;
+	background:var(--modalWindowColor);
+	box-shadow:0 7px 15px var(--modalDropShadow);
+	animation:flyoutflyin 0.15s
 }
 
 .column-nav-flyout .column-nav-item {
@@ -9378,4 +9406,8 @@ html:not(.mtd-classic-nav) .js-hide-drawer:not(.tweet-button):not([data-title="A
 .column-nav-flyout .attribution {
 	font-size:13px;
 	padding-left:5px
+}
+
+a {
+	transition:color 0.2s var(--animationTiming)
 }
