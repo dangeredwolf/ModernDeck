@@ -2087,7 +2087,8 @@ a .column-title-back .icon:after {
 
 .drawer .compose-text-container .js-send-button.js-spinner-button {
 	margin-right:15px;
-	margin-top:-4px
+	margin-top:-4px;
+	-moz-transform:translateX(-2px)
 }
 
 .spinner-button-icon-spinner {
@@ -3105,12 +3106,13 @@ html:not(.mtd-app).mtd-classic-nav .compose-content {
 .compose-text-container {
 	width:calc(var(--composeWidth) - 30px);
 	margin-left:10px;
+	margin-top:10px;
+	margin-bottom:14px;
 	height:170px;
 	padding:0!important;
 	padding-top:10px!important;
 	box-shadow:0 3px 7px var(--composeShadow);
 	border-radius:4px;
-	margin-top:10px;
 	overflow:visible
 }
 
@@ -4518,7 +4520,6 @@ input[type="checkbox"]:active {
 	left:100px;
 	bottom:0;
 	right:0;
-	overflow:visible;
 	opacity:0;
 	animation:fadeIn 0.4s forwards 4s var(--animationTiming)
 }
@@ -5926,19 +5927,6 @@ button.mtd-no-transform-case {
 
 }
 
-@media screen and (max-height:600px) {
-
-	.prf .lst-profile li {
-		width:19%!important;
-		padding-top:0
-	}
-
-	.prf .lst-profile li a span {
-		font-size:0
-	}
-
-}
-
 .column-type-interactions .stream-item:not(.is-actionable) .activity-header:not(.has-source-avatar):not(.activity-header-wrapping) {
 	margin-bottom:-20px
 }
@@ -6839,8 +6827,7 @@ button[type="submit"]:active {
 }
 
 .cf.padding-b--20.padding-r--20.padding-t--5 {
-	margin-top:-56px;
-	height:30px
+	height:23px
 }
 
 .mdl-inner.bg-twitter-lightest-gray.padding-l--20.padding-r--20.mdl-header-divider {
@@ -7139,7 +7126,11 @@ body+div,body+div>div {
 	transition:none
 }
 
-.s-following:hover .following-text {
+.js-follow-from .s-following:hover .following-text {
+	display:none
+}
+
+.s-following .js-follow-button:hover .following-text {
 	display:none
 }
 
@@ -7714,10 +7705,12 @@ span[data-testid="trendDescription"] {
 }
 
 .pull-right>button[data-action="retweet"]:before,.pull-right>button[data-action="quote"]:before {
-	font-size:20px;
+	font-size:18px;
 	padding-right:5px;
-	margin-top:3px;
-	display:inline-block
+	margin-top:-7px;
+	display:inline-block;
+	padding-top:2px;
+	float:left
 }
 
 .pull-right>button[data-action="quote"] {
@@ -8787,7 +8780,7 @@ label.checkbox::selection,label.control-label::selection {
 }
 
 .js-account-safeguard-checkbox+.margin-t--4 {
-	margin-top:-3px
+	margin-top:-14px
 }
 
 .account-summary-text>.account-link {
@@ -9082,10 +9075,14 @@ html:not(.mtd-classic-nav) .js-hide-drawer:not(.tweet-button):not([data-title="A
 	transition:0.07s all,.08s margin
 }
 
+.mtd-gif-button:active {
+	-moz-transform:scale(0.5) translateX(-20px) translateY(30px)!important
+}
 
 .mtd-gif-button:active:after {
 	margin-left:-20px;
-	margin-top:-42px
+	margin-top:-42px;
+	-moz-transform:scale(1) translateX(-20px) translateY(30px)
 }
 
 .js-quoted-tweet-text+.txt-ellipsis.txt-size-variable--12 {
@@ -9328,7 +9325,7 @@ html:not(.mtd-classic-nav) .js-hide-drawer:not(.tweet-button):not([data-title="A
 }
 
 .s-inreply .pull-right button {
-	padding-top:0!important;
+	/* padding-top:0!important; */
 	margin-top:0!important
 }
 
@@ -9505,4 +9502,9 @@ a {
 .s-inreply.s-fluid-height .cf>.pull-right {
 	position:absolute;
 	right:0
+}
+
+.drawer .scroll-v>.cf .js-send-button {
+	margin-top:-13px;
+	margin-left:17px
 }

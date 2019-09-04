@@ -291,8 +291,8 @@ html:not(.mtd-js-app) .mtd-settings-tab {
 	float:right;
 	border-radius:2px;
 	padding:0;
-	padding-top:10px;
-	height:14px
+	padding-top:24px;
+	height:1px;
 }
 
 .mtd-settings-option-slider input[type="range"]::-webkit-slider-thumb {
@@ -301,7 +301,6 @@ html:not(.mtd-js-app) .mtd-settings-tab {
 	width:16px;
 	height:16px;
 	border-radius:50%;
-	margin-top:18px;
 	cursor:pointer
 }
 
@@ -309,7 +308,7 @@ html:not(.mtd-js-app) .mtd-settings-tab {
 	width:16px;
 	height:16px;
 	border-radius:50%;
-	margin-top:18px;
+	margin-top:10px;
 	cursor:pointer
 }
 

@@ -304,7 +304,6 @@ let settingsData = {
 					light:{value:"light",text:"Light"}
 				},
 				queryFunction: () => {
-					console.log(TD.settings.getTheme());
 					html.addClass(TD.settings.getTheme());
 					return TD.settings.getTheme()
 				},
@@ -330,7 +329,6 @@ let settingsData = {
 						enableStylesheetExtension(opt || "default");
 
 						if ((opt === "amoled" || opt === "darker") && TD.settings.getTheme() === "light") {
-							console.log("theme is light, opt is amoled");
 							TD.settings.setTheme("dark");
 							disableStylesheetExtension("light");
 							enableStylesheetExtension("dark");
@@ -338,7 +336,6 @@ let settingsData = {
 						}
 
 						if (opt === "paper" && TD.settings.getTheme() === "dark") {
-							console.log("theme is dark, opt is paper");
 							TD.settings.setTheme("light");
 							disableStylesheetExtension("dark");
 							enableStylesheetExtension("light");
@@ -346,7 +343,6 @@ let settingsData = {
 						}
 
 						if (opt === "black" && TD.settings.getTheme() === "dark") {
-							console.log("theme is dark, opt is black");
 							disableStylesheetExtension("black");
 							enableStylesheetExtension("amoled");
 							setPref("mtd_theme","amoled");
@@ -425,9 +421,11 @@ let settingsData = {
 						if (opt === "top") {
 							html.removeClass("mtd-head-left");
 							html.removeClass("mtd-classic-nav");
+							$(document).trigger("uiNavbarWidthChangeAction",{navbarWidth:"condensed"})
 						} else if (opt === "left") {
 							html.addClass("mtd-head-left");
 							html.removeClass("mtd-classic-nav");
+							$(document).trigger("uiNavbarWidthChangeAction",{navbarWidth:"condensed"})
 						} else if (opt === "classic") {
 							html.addClass("mtd-head-left");
 							html.addClass("mtd-classic-nav");
@@ -535,7 +533,6 @@ let settingsData = {
 				type:"slider",
 				activate:{
 					func: (opt) => {
-						console.log(opt);
 						setPref("mtd_columnwidth",opt);
 						enableCustomStylesheetExtension("columnwidth",`:root{--columnSize:${opt}px!important}`);
 					}
@@ -551,7 +548,6 @@ let settingsData = {
 				type:"slider",
 				activate:{
 					func: (opt) => {
-						console.log(opt);
 						setPref("mtd_fontsize",opt);
 						enableCustomStylesheetExtension("fontsize",`html{font-size:${(opt/100)*16}px!important}`);
 					}
@@ -1117,32 +1113,12 @@ function scrollStartStop() {
 }
 
 function attachColumnVisibilityEvents() {
-	// return;
 
 	$(window).on("resize",updateColumnVisibility);
 
 
-	// $(".column-scroller").on("scroll",() => {
-		// console.log("scroll!!!");
-		// $(".stream-item").each((a, element) => {
-		// 	if (!exists($(element).attr("style")) && ($(element).find(".js-stream-item-content").attr("style") === "visibility:visible" || !exists($(element).find(".js-stream-item-content").attr("style")))) {
-		// 		let height = $(element).height();
-		// 		console.log(height);
-		// 		$(element).attr("style","height:"+height+"px")
-		// 	}
-		// 	if ($(element).visible(true)) {
-		// 		$(element).find(".js-stream-item-content").attr("style","visibility:visible")
-		// 	} else {
-		// 		$(element).find(".js-stream-item-content").attr("style","visibility:hidden")
-		// 	}
-		// });
-	// });
-
-
 	$(".app-columns-container").on("scroll",scrollStartStop);
-	// $(".app-columns-container").on("scrollstart",() => {
-	// 	$(".column-content").attr("style","display:none");
-	// });
+
 	$(".app-columns-container").on("scrollend",updateColumnVisibility);
 	$(document).on(
 		"uiInlineComposeTweet " +
@@ -1164,11 +1140,6 @@ function attachColumnVisibilityEvents() {
 		},400)
 	});
 	updateColumnVisibility();
-
-	//$(".app-columns-container").on("scrollstart",allColumnsVisible);
-	// setInterval(() => {
-	// 	updateColumnVisibility();
-	// },1000);
 }
 
 /*
@@ -1287,8 +1258,6 @@ function enableStylesheetExtension(name) {
 			.attr("href",url)
 			.addClass("mtd-stylesheet-extension")
 		)
-
-		console.log(`enableStylesheetExtension("${name}")`);
 	} else return;
 }
 
@@ -1302,8 +1271,6 @@ function disableStylesheetExtension(name) {
 	if (!isStylesheetExtensionEnabled(name))
 		return;
 
-	console.log(`disableStylesheetExtension("${name}")`);
-
 	$('head>link[href="' + mtdBaseURL + "sources/cssextensions/" + name + '.css"]').remove();
 
 	if ($("#mtd_custom_css_"+name).length > 0) {
@@ -1314,7 +1281,6 @@ function disableStylesheetExtension(name) {
 // Custom stylesheet extensions are used for custom user CSS and for certain sliders, such as column width
 
 function enableCustomStylesheetExtension(name,styles) {
-	console.log(`enableCustomStylesheetExtension("${name}")`);
 
 	if (isStylesheetExtensionEnabled(name)) {
 		$("#mtd_custom_css_"+name).html(styles);
@@ -1587,14 +1553,12 @@ function purgePrefs() {
 	for (let key in localStorage) {
 		if (key.indexOf("mtd_") >= 0) {
 			localStorage.removeItem(key);
-			console.log(`Removing key ${key}...`);
 		}
 	}
 	if (isApp) {
 		const Store = require('electron-store');
 		const store = new Store({name:"mtdsettings"});
 		store.clear();
-		console.log("Clearing electron-store...");
 	}
 
 }
@@ -2344,17 +2308,14 @@ async function openLegacySettings() {
 	obj = object converted from the raw JSON
 */
 function importTweetenSettings(obj) {
-	console.log(obj);
 
 	setPref("mtd_customcss",(!!obj.dev ? obj.dev.customCSS || "" : ""))
 
 	if (exists(obj.dev)) {
-		console.log("dev");
 		setPref("mtd_inspectElement",obj.dev.mode);
 	}
 
 	if (exists(obj.TDSettings)) {
-		console.log("TDSettings");
 		TD.settings.setAutoPlayGifs(obj.TDSettings.gifAutoplay);
 		if (exists(obj.TDSettings.gifAutoplay)) {
 			TD.settings.setAutoPlayGifs(obj.TDSettings.gifAutoplay);
@@ -2377,12 +2338,10 @@ function importTweetenSettings(obj) {
 	}
 
 	if (exists(obj.customTitlebar)) {
-		console.log("customTitlebar");
 		setPref("mtd_nativetitlebar",!obj.customTitlebar);
 	}
 
 	if (exists(obj.customization)) {
-		console.log("customization");
 		setPref("mtd_columnwidth",obj.customization.columnWidth || getPref("mtd_columnwidth"));
 
 		if (obj.customization.completeBlack === true) {
@@ -2468,7 +2427,6 @@ function renderPatronInfo(info, patronBox) {
 		}
 
 		$(info.l1).each((a, b) => {
-			console.log(b);
 			patronList.append(
 				make("p").addClass("mtd-patron-level mtd-patron-level-1").html(sanitiseString(b))
 			)
@@ -2486,7 +2444,6 @@ function renderPatronInfo(info, patronBox) {
 		}
 
 		$(info.l2).each((a, b) => {
-			console.log(b);
 			patronList.append(
 				make("p").addClass("mtd-patron-level mtd-patron-level-2").html(sanitiseString(b))
 			)
@@ -2501,7 +2458,6 @@ function renderPatronInfo(info, patronBox) {
 		patronBox.append(
 			make("button")
 			.click(function() {
-				console.log("asfsfgf");
 				window.open(this.getAttribute("data-url"))
 			})
 			.addClass("btn btn-primary mtd-patreon-button")
@@ -2524,8 +2480,6 @@ function makePatronView() {
 			url:"https://api.moderndeck.org/v1/patrons/"
 		}
 	).done((e) => {
-		console.log(e);
-
 		let parsedJson;
 
 		try {
@@ -2617,7 +2571,6 @@ function openSettings(openMenu) {
 
 					case "checkbox":
 						input = make("input").attr("type","checkbox").attr("id",prefKey).change(function() {
-							console.log(this);
 							setPref(pref.settingsKey,$(this).is(":checked"));
 							parseActions($(this).is(":checked") ? pref.activate : pref.deactivate, $(this).val());
 
@@ -2653,7 +2606,6 @@ function openSettings(openMenu) {
 							if (!!(pref.options[prefKey].value)) {
 								let newPrefSel = pref.options[prefKey];
 								let newoption = make("option").attr("value",newPrefSel.value).html(newPrefSel.text);
-								console.log(newoption);
 
 								select.append(newoption);
 							} else {
@@ -2782,7 +2734,6 @@ function openSettings(openMenu) {
 							parseActions(pref.activate, $(this).val());
 						}).on("input",function() {
 							label.html(`${pref.title} <b> ${$(this).val()} ${(pref.displayUnit || "")} </b>`);
-							console.log("changed: "+$(this).val());
 						});
 
 						if (exists(pref.settingsKey)) {
@@ -2945,10 +2896,6 @@ function openSettings(openMenu) {
 		tabs.append(tab);
 		container.append(subPanel);
 
-		console.log("openMenu ?"+exists(openMenu));
-		console.log(openMenu);
-
-
 		if (!exists(openMenu) && tab.index() === 0) {
 			tab.addClass("mtd-settings-tab-selected");
 			tab.click();
@@ -2988,7 +2935,6 @@ function openSettings(openMenu) {
 function mtdAlert(obj) {
 
 	var obj = obj || {};
-	console.log(obj)
 
 	let alert = make("div").addClass("mdl mtd-alert");
 	let alertTitle = make("h2").addClass("mtd-alert-title").html(obj.title || "ModernDeck");
@@ -3187,7 +3133,6 @@ function welcomeScreen() {
 			make("h1").addClass("mtd-welcome-head").html(welc.title),
 			make("p").addClass("mtd-welcome-body").html(welc.body)
 		);
-		console.log(subPanel);
 
 		if (welc.html) {
 			subPanel.append(
@@ -3296,7 +3241,6 @@ function createGifPanel() {
 			make("div").addClass("mtd-gif-header").append(
 				//make("h1").addClass("mtd-gif-header-text").html("Trending"),
 				make("input").addClass("mtd-gif-search").attr("placeholder","Search GIFs...").change(() => {
-					console.log("entered");
 					searchGifPanel($(".mtd-gif-search").val())
 				}),
 				make("img").attr("src",mtdBaseURL + "sources/img/giphy.png").addClass("mtd-giphy-logo"),
@@ -3322,10 +3266,7 @@ function createGifPanel() {
 		if (isLoadingMoreGifs) {
 			return;
 		}
-		console.log("height-200",$(document).height() - 200);
-		console.log("this.scrollTop",$(this).scrollTop());
 		if ($(this).scrollTop() + $(this).height() > $(this).prop("scrollHeight") - 200) {
-			console.log("now'd be a good time to load more gifs");
 			isLoadingMoreGifs = true;
 			loadMoreGifs();
    		}
@@ -3342,11 +3283,7 @@ function renderGif(preview, mainOg) {
 	return make("img").attr("src", preview).click(function() {
 		let img;
 
-		console.log("Main: ", main);
-
 		getBlobFromUrl(main).then((img) => {
-
-			console.log(img);
 
 			let eventThing = {
 				originalEvent:{
@@ -3435,14 +3372,12 @@ function searchGifPanel(query) {
 
 	let sanitiseQuery = query.replace(/\s/g,"+").replace(/\&/g,"&amp;").replace(/\?/g,"").replace(/\//g," OR ")
 	lastGiphyURL = "https://api.giphy.com/v1/gifs/search?q="+sanitiseQuery+"&api_key="+giphyKey+"&limit=20";
-	console.log(lastGiphyURL);
 
 	$.ajax(
 		{
 			url:lastGiphyURL
 		}
 	).done((e) => {
-		console.log(e);
 		renderGifResults(e.data);
 	})
 	.error((e) => {
@@ -3469,7 +3404,6 @@ function trendingGifPanel() {
 	isLoadingMoreGifs = true;
 
 	lastGiphyURL = "https://api.giphy.com/v1/gifs/trending?api_key="+giphyKey+"&limit=20";
-	console.log(lastGiphyURL);
 
 	$.ajax(
 		{
@@ -3477,7 +3411,6 @@ function trendingGifPanel() {
 		}
 	).done((e) => {
 		renderGifResults(e.data);
-
 	})
 	.error((e) => {
 		console.log(e);
@@ -3521,15 +3454,19 @@ function loadMoreGifs() {
 */
 
 function checkGifEligibility() {
-	let imagesAdded = $(".compose-media-grid-remove,.compose-media-bar-remove").length;
-	console.log(imagesAdded)
+	let disabledText = "";
 
-	if (imagesAdded > 0) {
-		$(".mtd-gif-button").addClass("is-disabled").attr("data-original-title","You cannot upload a GIF with other images");
-		$(".compose-media-grid-remove,.compose-media-bar-remove").click(() => {
-			console.log("clicked close");
-			setTimeout(checkGifEligibility,0);
-		});
+	// has added images
+	if ($(".compose-media-grid-remove,.compose-media-bar-remove").length > 0) {
+		disabledText = "You cannot upload a GIF with other images";
+	}
+	// has quoted tweet
+	if ($(".compose-content .quoted-tweet").length > 0) {
+		disabledText = "Quoted Tweets cannot contain GIFs";
+	}
+
+	if (disabledText !== "") {
+		$(".mtd-gif-button").addClass("is-disabled").attr("data-original-title",disabledText);
 		$(".mtd-gif-container").remove();
 	} else {
 		$(".mtd-gif-button").removeClass("is-disabled").attr("data-original-title","");
@@ -3547,33 +3484,32 @@ function hookComposer() {
 	}
 
 	if ($(".compose-text-container .js-add-image-button,.compose-text-container .js-schedule-button,.compose-text-container .mtd-gif-button").length <= 0) {
-		$(".compose-text-container").append($(".js-add-image-button,.mtd-gif-button,.js-schedule-button,.js-dm-button,.js-tweet-button,.js-send-button-container.spinner-button-container"));
+		$(".compose-text-container").append($(".js-add-image-button,.mtd-gif-button,.js-schedule-button,.js-dm-button,.js-tweet-button"));
+
+		if ($(".inline-reply").length > 0) {
+			setTimeout(()=> {
+				$(".compose-text-container").append($(".drawer .js-send-button-container.spinner-button-container"));
+			},800)
+		} else {
+			$(".compose-text-container").append($(".drawer .js-send-button-container.spinner-button-container"));
+		}
 	}
 
-	if ($(".drawer .js-send-button-container").length >= 2) {
-		$(".compose-text-container .js-send-button-container.spinner-button-container")[1].remove();
-		$(".compose-text-container").append(
-			$(".drawer .js-send-button-container.spinner-button-container")
-		)
-		$(".drawer .js-send-button-container.spinner-button-container").click(() => {
-			$(".compose").trigger("uiComposeSendTweet");
-		})
-	}
-
-
+	$(document).on("uiDrawerShowDrawer",(e) => {
+		setTimeout(hookComposer,0) // initialise one cycle after tweetdeck does its own thing
+	});
 
 	$(".drawer[data-drawer=\"compose\"]>div>div").on("uiComposeImageAdded",(e) => {
-		console.log("uiComposeImageAdded");
 		setTimeout(checkGifEligibility,0) // initialise one cycle after tweetdeck does its own thing
 
 	}).on("uiComposeTweetSent",(e) => {
-		console.log("uiComposeTweetSent");
+		$(".mtd-emoji-picker").addClass("hidden");
 		setTimeout(checkGifEligibility,0);
 		setTimeout(checkGifEligibility,510);
+	}).on("uiComposeSendTweet",() => {
 	});
 
-	$(document).on("uiSendDm",(e) => {
-		console.log("uiSendDm");
+	$(document).on("uiSendDm uiResetImageUpload uiComposeTweet",(e) => {
 		setTimeout(checkGifEligibility,0)
 	});
 
@@ -3738,7 +3674,6 @@ function navigationSetup() {
 			make("div").addClass("mtd-nav-divider"),
 			make("button").addClass("btn mtd-nav-button").attr("id","kbshortcuts").append(make("i").addClass("icon icon-keyboard")).click(() => {
 				mtdPrepareWindows();
-				console.log("td-keyboard");
 				setTimeout(() => {$(".js-app-settings").click()},10);
 				setTimeout(() => {$("a[data-action='keyboardShortcutList']").click()},20);
 			}).append("Keyboard Shortcuts"),
@@ -3752,12 +3687,10 @@ function navigationSetup() {
 			make("div").addClass("mtd-nav-group mtd-nav-group-expanded").attr("id","mtd_nav_group").append(
 				make("button").addClass("btn mtd-nav-button").append(make("i").addClass("icon mtd-icon-changelog")).click(() => {
 					mtdPrepareWindows();
-					console.log("td-changelog");
 					window.open("https://twitter.com/i/tweetdeck_release_notes");
 				}).append("TweetDeck Release Notes"),
 				make("button").addClass("btn mtd-nav-button").append(make("i").addClass("icon icon-search")).click(() => {
 					mtdPrepareWindows();
-					console.log("td-searchtips");
 					setTimeout(() => {$(".js-app-settings").click()},10);
 					setTimeout(() => {$("a[data-action=\"searchOperatorList\"]").click()},20);
 				}).append("Search Tips"),
@@ -3768,13 +3701,7 @@ function navigationSetup() {
 			),
 			make("div").addClass("mtd-nav-divider mtd-nav-divider-feedback"),
 			make("button").addClass("btn mtd-nav-button mtd-nav-button-feedback").attr("id","mtdfeedback").append(make("i").addClass("icon icon-feedback")).click(() => {
-				sendingFeedback = true;
-				try {
-					throw "Manually triggered feedback button";
-				} catch(e) {
-					Raven.captureException(e);
-					Raven.showReportDialog();
-				}
+				window.open("https://github.com/dangeredwolf/ModernDeck/issues");
 			}).append("Send Feedback")
 		),
 		make("div").attr("id","mtd_nav_drawer_background").addClass("mtd-nav-drawer-background hidden").click(function() {
@@ -3797,12 +3724,10 @@ function navigationSetup() {
 				$(".mtd-nav-group").append(
 					make("button").addClass("btn mtd-nav-button").append(make("i").addClass("icon mtd-icon-command-pallete")).click(() => {
 						mtdPrepareWindows();
-						console.log("Command pallete triggered");
 						$(document).trigger("uiShowCommandPalette");
 					}).append("Command Pallete"),
 					make("button").addClass("btn mtd-nav-button").append(make("i").addClass("icon mtd-icon-developer")).click(() => {
 						mtdPrepareWindows();
-						console.log("Disable dev/dogfood triggered");
 
 						$(document).trigger("uiReload", {
 							params: {
@@ -3847,10 +3772,8 @@ function navigationSetup() {
 */
 
 function keyboardShortcutHandler(e) {
-	console.log(e);
 
 	if (e.key.toUpperCase() === "A" && (e.ctrlKey) && e.shiftKey) { //pressing Ctrl+Shift+A toggles the outline accessibility option
-		console.log("User has pressed the proper key combination to toggle outlines!");
 
 		if ($("#accoutline").length > 0) {
 			$("#accoutline").click();
@@ -3860,13 +3783,13 @@ function keyboardShortcutHandler(e) {
 
 	}
 	if (e.key.toUpperCase() === "C" && (e.ctrlKey) && e.shiftKey) { //pressing Ctrl+Shift+C disabled user CSS
-		console.log("User disabled custom CSS!");
+		console.info("User disabled custom CSS!");
 
 		disableStylesheetExtension("customcss")
 
 	}
 	if (e.code === "KeyD" && (e.ctrlKey) && e.altKey) { //pressing Ctrl+Shift+C disabled user CSS
-		console.log("Triggering diag!");
+		console.info("Triggering diag!");
 
 		try {
 			diag()
@@ -3878,7 +3801,7 @@ function keyboardShortcutHandler(e) {
 
 	}
 	if (e.key.toUpperCase() === "H" && (e.ctrlKey) && e.shiftKey) { //pressing Ctrl+Shift+H toggles high contrast
-		console.log("User has pressed the proper key combination to toggle high contrast!");
+		console.info("User has pressed the proper key combination to toggle high contrast!");
 
 		if ($("#highcont").length > 0) {
 			$("#highcont").click();
@@ -4015,7 +3938,6 @@ function mtdAppUpdatePage(updateCont, updateh2, updateh3, updateIcon, updateSpin
 
 		$(".mtd-welcome-inner").addClass("mtd-enable-update-next");
 
-		console.log(e,args,f,g);
 		updateh2.html("There was a problem checking for updates. ");
 		$(".mtd-update-spinner").addClass("hidden");
 
@@ -4080,7 +4002,6 @@ function mtdAppUpdatePage(updateCont, updateh2, updateh3, updateIcon, updateSpin
 
 
 	ipcRenderer.on("update-not-available", (e,args) => {
-
 		console.log(args);
 		$(".mtd-update-spinner").addClass("hidden");
 		updateh2.html("You're up to date");
@@ -4172,7 +4093,6 @@ function mtdAppFunctions() {
 	// Enable high contrast if system is set to high contrast
 
 	ipcRenderer.on("inverted-color-scheme-changed", (e, enabled) => {
-		console.log(`inverted colour scheme? ${enabled}`);
 		if (enabled && getPref("mtd_highcontrast") !== true) {
 			try {
 				settingsData.accessibility.options.highcont.activate.func();
@@ -4181,8 +4101,6 @@ function mtdAppFunctions() {
 	});
 
 	ipcRenderer.on("color-scheme-changed", (e, theme) => {
-		console.log(`colour scheme? ${theme}`);
-
 		parseActions(settingsData.themes.options.coretheme.activate, theme);
 
 	});
@@ -4332,7 +4250,7 @@ function makeCMItem(p) {
 	if (useNativeContextMenus) {
 		let dataact = p.dataaction;
 		let data = p.data;
-		let nativemenu = { label:p.text, click() {console.log("yes, a click has occurred");contextMenuFunctions[dataact](data)}, enabled:p.enabled };
+		let nativemenu = { label:p.text, click() {contextMenuFunctions[dataact](data)}, enabled:p.enabled };
 		//nativemenu.click = ;
 		return nativemenu;
 	}
@@ -4345,11 +4263,8 @@ function makeCMItem(p) {
 		//a.click(contextMenuFunctions[p.dataaction]);
 
 		a.click(() => {
-			console.log("Performing action "+p.dataaction+"...");
 			if (p.mousex && p.mousey) {
 				document.elementFromPoint(p.mousex, p.mousey).focus();
-				console.log("Got proper info, keeping context (x="+p.mousex+",y="+p.mousey+")");
-				console.log();
 			}
 			contextMenuFunctions[p.dataaction](p.data);
 			clearContextMenu();
@@ -4404,8 +4319,6 @@ function buildContextMenu(p) {
 	if ($(document.elementFromPoint(x,y)).hasClass("mtd-context-menu-item")) {
 		return;
 	}
-
-	console.log(p);
 
 	if (p.isEditable || (exists(p.selectionText) && p.selectionText.length > 0)) {
 		if (p.isEditable) {
@@ -4470,15 +4383,12 @@ function buildContextMenu(p) {
 
 	if (items.length > 0) {
 		setTimeout(() => {
-			console.log(`x: ${x} y: ${y} menu.width(): ${menu.width()} menu.height(): ${menu.height()} $(document).width(): ${$(document).width()} $(document).height(): ${$(document).height()}`)
 
 			if (x + xOffset + menu.width() > $(document).width()) {
-				console.log("you're too wide!");
 				x = $(document).width() - menu.width() - xOffset - xOffset;
 			}
 
 			if (y + yOffset + menu.height() > $(document).height()) {
-				console.log("you're too tall!");
 				y = $(document).height() - menu.height();
 			}
 
@@ -4501,7 +4411,6 @@ function buildContextMenu(p) {
 
 function parseActions(a,opt,load) {
 	for (let key in a) {
-		console.log(key);
 		switch(key) {
 			case "enableStylesheet":
 				enableStylesheetExtension(a[key]);
