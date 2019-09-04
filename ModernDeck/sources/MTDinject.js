@@ -9,7 +9,7 @@
 'use strict';
 
 let SystemVersion = "7.4";
-const appendTextVersion = false;
+const appendTextVersion = true;
 const enablePatronFeatures = true;
 
 let debugSettings = false;
@@ -2851,7 +2851,7 @@ function openSettings(openMenu) {
 				)
 			}
 
-			let info = make("p").html("Designed with <i class=\"icon icon-heart mtd-about-heart\"></i> by <a href=\"https://twitter.com/dangeredwolf\" rel=\"user\" target=\"_blank\">dangeredwolf</a> in Columbus, OH since 2014<br><br>ModernDeck is <a href=\"https://github.com/dangeredwolf/ModernDeck/\" target=\"_blank\">an open source project</a> released under the MIT license.");
+			let info = make("p").html("Made with <i class=\"icon icon-heart mtd-about-heart\"></i> by <a href=\"https://twitter.com/dangeredwolf\" rel=\"user\" target=\"_blank\">dangeredwolf</a> in Columbus, OH since 2014<br><br>ModernDeck is <a href=\"https://github.com/dangeredwolf/ModernDeck/\" target=\"_blank\">an open source project</a> released under the MIT license.");
 			let infoCont = make("div").addClass("mtd-about-info").append(info);
 
 			logoCont.append(logo,h1,h2);
