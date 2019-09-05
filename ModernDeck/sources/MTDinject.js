@@ -4129,7 +4129,7 @@ function mtdAppFunctions() {
 	});
 
 	ipcRenderer.on("update-downloaded", (e,args) => {
-		if ($("#settings-modal[style='display: block;']>.mtd-settings-panel").length <= 0) {
+		if ($("#settings-modal[style='display: block;']>.mtd-settings-panel").length <= 0 && !html.hasClass("mtd-winstore")) {
 			notifyUpdate()
 		}
 	});
