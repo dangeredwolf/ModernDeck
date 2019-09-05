@@ -266,13 +266,13 @@ body,body.signin-sheet-present {
 }
 
 @keyframes feather-notification-list-show {
-	0% {display:none;opacity:0;transform:translateY(50%)}
+	0% {display:none;opacity:0;transform:translateX(50%)}
 	1% {display:block}
-	100% {opacity:1;transform:translateY(0)}
+	100% {opacity:1;transform:translateX(0)}
 }
 
 @keyframes feather-notification-list-hide {
-	to {transform:translateY(50%);opacity:0}
+	to {transform:translateX(50%);opacity:0}
 }
 
 .account-remove-check-open .account-remove-check,
