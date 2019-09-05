@@ -116,7 +116,7 @@ html:not(.mtd-head-left) .hide-detail-view-inline .mtd-drawer-button {
 	width:100%;
 	margin-top:110px;
 	text-align:center;
-	text-shadow:0 5px 40px var(--rootBlackColor);
+	text-shadow:0 3px 6px var(--rootBlackColor);
 	font-size:16px
 }
 

@@ -8,10 +8,9 @@
 
 'use strict';
 
-let SystemVersion = "Beta 7.4";
-const appendTextVersion = false;
+let SystemVersion = "7.4";
+const appendTextVersion = true;
 const enablePatronFeatures = true;
-const enableNativeEmojiPicker = false;
 
 let debugSettings = false;
 
@@ -25,7 +24,6 @@ let lastError = undefined;
 let loginIntervalTick = 0;
 
 const forceFeatureFlags = false;
-let forceAppX = false; // https://github.com/electron/electron/issues/18161
 const useRaven = false;
 const debugWelcome = false;
 
@@ -36,6 +34,8 @@ let ugltStarted = false;
 let useNativeContextMenus = false;
 let isDev = false;
 let debugStorageSys = false;
+
+let isInWelcome = false;
 
 let lastScrollAt = Date.now();
 let timeout = Date.now();
@@ -61,7 +61,7 @@ let newLoginPage =
 						An unexpected error occurred. Please try again later.\
 					</p>\
 				</div>\
-				<a href="https://twitter.com/login?hide_message=true&amp;redirect_after_login=https%3A%2F%2Ftweetdeck.twitter.com%2F%3Fvia_twitter_login%3Dtrue" class="Button Button--primary block txt-size--18 txt-center btn-positive">\
+				<a href="https://mobile.twitter.com/login?hide_message=true&amp;redirect_after_login=https%3A%2F%2Ftweetdeck.twitter.com%2F%3Fvia_twitter_login%3Dtrue" class="Button Button--primary block txt-size--18 txt-center btn-positive">\
 					Sign in with Twitter\
 				</a>\
 				<div class="divider-bar"></div>\
@@ -306,7 +306,6 @@ let settingsData = {
 					light:{value:"light",text:"Light"}
 				},
 				queryFunction: () => {
-					console.log(TD.settings.getTheme());
 					html.addClass(TD.settings.getTheme());
 					return TD.settings.getTheme()
 				},
@@ -332,7 +331,6 @@ let settingsData = {
 						enableStylesheetExtension(opt || "default");
 
 						if ((opt === "amoled" || opt === "darker") && TD.settings.getTheme() === "light") {
-							console.log("theme is light, opt is amoled");
 							TD.settings.setTheme("dark");
 							disableStylesheetExtension("light");
 							enableStylesheetExtension("dark");
@@ -340,7 +338,6 @@ let settingsData = {
 						}
 
 						if (opt === "paper" && TD.settings.getTheme() === "dark") {
-							console.log("theme is dark, opt is paper");
 							TD.settings.setTheme("light");
 							disableStylesheetExtension("dark");
 							enableStylesheetExtension("light");
@@ -348,7 +345,6 @@ let settingsData = {
 						}
 
 						if (opt === "black" && TD.settings.getTheme() === "dark") {
-							console.log("theme is dark, opt is black");
 							disableStylesheetExtension("black");
 							enableStylesheetExtension("amoled");
 							setPref("mtd_theme","amoled");
@@ -427,9 +423,11 @@ let settingsData = {
 						if (opt === "top") {
 							html.removeClass("mtd-head-left");
 							html.removeClass("mtd-classic-nav");
+							$(document).trigger("uiNavbarWidthChangeAction",{navbarWidth:"condensed"})
 						} else if (opt === "left") {
 							html.addClass("mtd-head-left");
 							html.removeClass("mtd-classic-nav");
+							$(document).trigger("uiNavbarWidthChangeAction",{navbarWidth:"condensed"})
 						} else if (opt === "classic") {
 							html.addClass("mtd-head-left");
 							html.addClass("mtd-classic-nav");
@@ -445,17 +443,25 @@ let settingsData = {
 				settingsKey:"mtd_headposition",
 				default:"left"
 			},
-			undockednavdrawer:{
-				title:"Replace navigation drawer with menu",
+			columnvisibility:{
+				title:"<i class='icon material-icon'>fiber_new</i> Improve Timeline performance by not rendering invisible columns",
 				type:"checkbox",
 				activate:{
-					enableStylesheet:"undockednavdrawer"
+					func: (opt) => {
+						allColumnsVisible();
+						updateColumnVisibility();
+
+						// setPref("mtd_column_visibility",opt);
+					}
 				},
 				deactivate:{
-					disableStylesheet:"undockednavdrawer"
+					func: (opt) => {
+						allColumnsVisible();
+						// setPref("mtd_column_visibility",opt);
+					}
 				},
-				settingsKey:"mtd_undockednavdrawer",
-				default:false
+				settingsKey:"mtd_column_visibility",
+				default:true
 			},
 			fixedarrows:{
 				title:"Use fixed-location media arrows for tweets with multiple photos",
@@ -480,19 +486,6 @@ let settingsData = {
 				},
 				settingsKey:"mtd_column_nav_always_visible",
 				default:true
-			},
-			dockedmodals:{
-				headerBefore:"Behavior",
-				title:"Use docked modals",
-				type:"checkbox",
-				activate:{
-					disableStylesheet:"undockedmodals"
-				},
-				deactivate:{
-					enableStylesheet:"undockedmodals"
-				},
-				settingsKey:"mtd_dockedmodals",
-				default:false
 			},
 			nonewtweetsbutton:{
 				title:"Enable \"New Tweets\" indicator",
@@ -535,14 +528,13 @@ let settingsData = {
 					scrollbarsnone:{value:"scrollbarsnone",text:"Hidden"}
 				},
 				settingsKey:"mtd_scrollbar_style",
-				default:"scrollbarsdefault"
+				default:"scrollbarsnarrow"
 			},
 			columnwidth:{
 				title:"Column width",
 				type:"slider",
 				activate:{
 					func: (opt) => {
-						console.log(opt);
 						setPref("mtd_columnwidth",opt);
 						enableCustomStylesheetExtension("columnwidth",`:root{--columnSize:${opt}px!important}`);
 					}
@@ -558,7 +550,6 @@ let settingsData = {
 				type:"slider",
 				activate:{
 					func: (opt) => {
-						console.log(opt);
 						setPref("mtd_fontsize",opt);
 						enableCustomStylesheetExtension("fontsize",`html{font-size:${(opt/100)*16}px!important}`);
 					}
@@ -867,6 +858,28 @@ let settingsData = {
 				settingsKey:"mtd_inspectElement",
 				default:false
 			},
+			nativeEmoji:{
+				title:"Use native Emoji Picker",
+				type:"checkbox",
+				activate:{
+					func: (opt, load) => {
+						if (!load) {
+							$(document).trigger("uiDrawerHideDrawer");
+						}
+						setPref("mtd_nativeEmoji",true);
+					}
+				},
+				deactivate:{
+					func: (opt, load) => {
+						if (!load) {
+							$(document).trigger("uiDrawerHideDrawer");
+						}
+						setPref("mtd_nativeEmoji",false);
+					}
+				},
+				settingsKey:"mtd_nativeEmoji",
+				default:false
+			},
 			nativeContextMenus:{
 				title:"Use OS native context menus",
 				type:"checkbox",
@@ -1060,14 +1073,18 @@ let settingsData = {
 
 function updateColumnVisibility() {
 
-	$(".column-content").attr("style","display:block");
+	if (getPref("mtd_column_visibility") === false || isInWelcome) {
+		return allColumnsVisible()
+	}
+
+	$(".column-content:not(.mtd-example-column)").attr("style","display:block");
 
 	setTimeout(() => { // wait for redraw
 		$(".column").each((a, element) => {
 			if ($(element).visible(true)) {
-				$(element).find(".column-content").attr("style","display:block")
+				$(element).find(".column-content:not(.mtd-example-column)").attr("style","display:block")
 			} else {
-				$(element).find(".column-content").attr("style","display:none")
+				$(element).find(".column-content:not(.mtd-example-column)").attr("style","display:none")
 			}
 		});
 	},20)
@@ -1075,7 +1092,7 @@ function updateColumnVisibility() {
 }
 
 function allColumnsVisible() {
-	$(".column-content").attr("style","display:block");
+	$(".column-content:not(.mtd-example-column)").attr("style","display:block");
 }
 
 // https://gist.github.com/timhudson/5484248#file-jquery-scrollstartstop-js
@@ -1083,7 +1100,7 @@ function allColumnsVisible() {
 function scrollStartStop() {
 	var $this = $(this)
 
-	if (Date.now() - lastScrollAt > 50)
+	if (Date.now() - lastScrollAt > 150)
 		$this.trigger('scrollstart')
 
 	lastScrollAt = Date.now()
@@ -1092,44 +1109,39 @@ function scrollStartStop() {
 
 	timeout = setTimeout(function() {
 
-	if (Date.now() - lastScrollAt > 49)
+	if (Date.now() - lastScrollAt > 149)
 		$this.trigger('scrollend')
-	}, 50)
+	}, 150)
 }
 
 function attachColumnVisibilityEvents() {
-	// return;
 
 	$(window).on("resize",updateColumnVisibility);
+
+
 	$(".app-columns-container").on("scroll",scrollStartStop);
+
 	$(".app-columns-container").on("scrollend",updateColumnVisibility);
-	$(document).on("uiInlineComposeTweet",() => {
+	$(document).on(
+		"uiInlineComposeTweet " +
+		"uiDockedComposeTweet " +
+		"uiComposeClose " +
+		"uiDrawerHideDrawer " +
+		"uiDrawerShowDrawer " +
+		"uiColumnFocus " +
+		"uiKeyLeft " +
+		"uiKeyRight " +
+		"uiMoveColumnAction " +
+		"uiReload " +
+		"uiNavigate " +
+		"uiComposeTweet " +
+		"uiColumnsScrollToColumn "
+		,() => {
 		setTimeout(() => {
 			updateColumnVisibility();
-		},500)
+		},400)
 	});
-	$(document).on("uiDockedComposeTweet",() => {
-		setTimeout(() => {
-			updateColumnVisibility();
-		},500)
-	});
-	$(document).on("uiComposeClose",() => {
-		setTimeout(() => {
-			updateColumnVisibility();
-		},500)
-	});
-	$(document).on("uiComposeTweet",() => {
-		setTimeout(() => {
-			updateColumnVisibility();
-		},500)
-	});
-
 	updateColumnVisibility();
-
-	//$(".app-columns-container").on("scrollstart",allColumnsVisible);
-	// setInterval(() => {
-	// 	updateColumnVisibility();
-	// },1000);
 }
 
 /*
@@ -1248,8 +1260,6 @@ function enableStylesheetExtension(name) {
 			.attr("href",url)
 			.addClass("mtd-stylesheet-extension")
 		)
-
-		console.log(`enableStylesheetExtension("${name}")`);
 	} else return;
 }
 
@@ -1263,8 +1273,6 @@ function disableStylesheetExtension(name) {
 	if (!isStylesheetExtensionEnabled(name))
 		return;
 
-	console.log(`disableStylesheetExtension("${name}")`);
-
 	$('head>link[href="' + mtdBaseURL + "sources/cssextensions/" + name + '.css"]').remove();
 
 	if ($("#mtd_custom_css_"+name).length > 0) {
@@ -1275,7 +1283,6 @@ function disableStylesheetExtension(name) {
 // Custom stylesheet extensions are used for custom user CSS and for certain sliders, such as column width
 
 function enableCustomStylesheetExtension(name,styles) {
-	console.log(`enableCustomStylesheetExtension("${name}")`);
 
 	if (isStylesheetExtensionEnabled(name)) {
 		$("#mtd_custom_css_"+name).html(styles);
@@ -1342,16 +1349,16 @@ function loadPreferences() {
 					switch(pref.type) {
 						case "checkbox":
 							if (setting === true) {
-								parseActions(pref.activate);
+								parseActions(pref.activate, undefined, true);
 							} else {
-								parseActions(pref.deactivate);
+								parseActions(pref.deactivate, undefined, true);
 							}
 							break;
 						case "dropdown":
 						case "textbox":
 						case "textarea":
 						case "slider":
-							parseActions(pref.activate, setting);
+							parseActions(pref.activate, setting, true);
 							break;
 						/* button/link controls we can skip, they don't do anything other than in the settings menu */
 						case "button":
@@ -1436,7 +1443,7 @@ function diag() {
 
 	log += "\nisDev: " + isDev;
 	log += "\nisApp: " + isApp;
-	log += "\nforceAppX: " + forceAppX;
+	log += "\nmtd-winstore: " + html.hasClass("mtd-winstore");
 	log += "\nUser agent: " + navigator.userAgent;
 
 
@@ -1548,14 +1555,12 @@ function purgePrefs() {
 	for (let key in localStorage) {
 		if (key.indexOf("mtd_") >= 0) {
 			localStorage.removeItem(key);
-			console.log(`Removing key ${key}...`);
 		}
 	}
 	if (isApp) {
 		const Store = require('electron-store');
 		const store = new Store({name:"mtdsettings"});
 		store.clear();
-		console.log("Clearing electron-store...");
 	}
 
 }
@@ -2305,17 +2310,14 @@ async function openLegacySettings() {
 	obj = object converted from the raw JSON
 */
 function importTweetenSettings(obj) {
-	console.log(obj);
 
 	setPref("mtd_customcss",(!!obj.dev ? obj.dev.customCSS || "" : ""))
 
 	if (exists(obj.dev)) {
-		console.log("dev");
 		setPref("mtd_inspectElement",obj.dev.mode);
 	}
 
 	if (exists(obj.TDSettings)) {
-		console.log("TDSettings");
 		TD.settings.setAutoPlayGifs(obj.TDSettings.gifAutoplay);
 		if (exists(obj.TDSettings.gifAutoplay)) {
 			TD.settings.setAutoPlayGifs(obj.TDSettings.gifAutoplay);
@@ -2338,12 +2340,10 @@ function importTweetenSettings(obj) {
 	}
 
 	if (exists(obj.customTitlebar)) {
-		console.log("customTitlebar");
 		setPref("mtd_nativetitlebar",!obj.customTitlebar);
 	}
 
 	if (exists(obj.customization)) {
-		console.log("customization");
 		setPref("mtd_columnwidth",obj.customization.columnWidth || getPref("mtd_columnwidth"));
 
 		if (obj.customization.completeBlack === true) {
@@ -2429,7 +2429,6 @@ function renderPatronInfo(info, patronBox) {
 		}
 
 		$(info.l1).each((a, b) => {
-			console.log(b);
 			patronList.append(
 				make("p").addClass("mtd-patron-level mtd-patron-level-1").html(sanitiseString(b))
 			)
@@ -2447,7 +2446,6 @@ function renderPatronInfo(info, patronBox) {
 		}
 
 		$(info.l2).each((a, b) => {
-			console.log(b);
 			patronList.append(
 				make("p").addClass("mtd-patron-level mtd-patron-level-2").html(sanitiseString(b))
 			)
@@ -2462,7 +2460,6 @@ function renderPatronInfo(info, patronBox) {
 		patronBox.append(
 			make("button")
 			.click(function() {
-				console.log("asfsfgf");
 				window.open(this.getAttribute("data-url"))
 			})
 			.addClass("btn btn-primary mtd-patreon-button")
@@ -2485,8 +2482,6 @@ function makePatronView() {
 			url:"https://api.moderndeck.org/v1/patrons/"
 		}
 	).done((e) => {
-		console.log(e);
-
 		let parsedJson;
 
 		try {
@@ -2578,7 +2573,6 @@ function openSettings(openMenu) {
 
 					case "checkbox":
 						input = make("input").attr("type","checkbox").attr("id",prefKey).change(function() {
-							console.log(this);
 							setPref(pref.settingsKey,$(this).is(":checked"));
 							parseActions($(this).is(":checked") ? pref.activate : pref.deactivate, $(this).val());
 
@@ -2614,7 +2608,6 @@ function openSettings(openMenu) {
 							if (!!(pref.options[prefKey].value)) {
 								let newPrefSel = pref.options[prefKey];
 								let newoption = make("option").attr("value",newPrefSel.value).html(newPrefSel.text);
-								console.log(newoption);
 
 								select.append(newoption);
 							} else {
@@ -2743,7 +2736,6 @@ function openSettings(openMenu) {
 							parseActions(pref.activate, $(this).val());
 						}).on("input",function() {
 							label.html(`${pref.title} <b> ${$(this).val()} ${(pref.displayUnit || "")} </b>`);
-							console.log("changed: "+$(this).val());
 						});
 
 						if (exists(pref.settingsKey)) {
@@ -2825,7 +2817,7 @@ function openSettings(openMenu) {
 				makePatronView()
 			)
 
-			if (isApp && !forceAppX) {
+			if (isApp && !html.hasClass("mtd-winstore")) {
 				if (!html.hasClass("mtd-winstore") && !html.hasClass("mtd-macappstore")) {
 					subPanel.append(updateCont);
 				}
@@ -2906,10 +2898,6 @@ function openSettings(openMenu) {
 		tabs.append(tab);
 		container.append(subPanel);
 
-		console.log("openMenu ?"+exists(openMenu));
-		console.log(openMenu);
-
-
 		if (!exists(openMenu) && tab.index() === 0) {
 			tab.addClass("mtd-settings-tab-selected");
 			tab.click();
@@ -2949,7 +2937,6 @@ function openSettings(openMenu) {
 function mtdAlert(obj) {
 
 	var obj = obj || {};
-	console.log(obj)
 
 	let alert = make("div").addClass("mdl mtd-alert");
 	let alertTitle = make("h2").addClass("mtd-alert-title").html(obj.title || "ModernDeck");
@@ -2962,7 +2949,7 @@ function mtdAlert(obj) {
 	alertButtonContainer.append(alertButton);
 
 	if (exists(obj.button2Text) || obj.type === "confirm") {
-		alertButton2 = make("button").addClass("btn-primary btn mtd-alert-button").html(obj.button2Text || "Cancel");
+		alertButton2 = make("button").addClass("btn-primary btn mtd-alert-button mtd-alert-button-secondary").html(obj.button2Text || "Cancel");
 		alertButtonContainer.append(alertButton2);
 		alertButton2.click(obj.button2Click || mtdPrepareWindows);
 	}
@@ -3016,7 +3003,7 @@ function makeUpdateCont() {
 
 	updateCont.append(updateIcon,updateh2,updateh3,tryAgain,restartNow);
 
-	if (isApp && !forceAppX) {
+	if (isApp && !html.hasClass("mtd-winstore")) {
 		if (!html.hasClass("mtd-winstore") && !html.hasClass("mtd-macappstore")) {
 			mtdAppUpdatePage(updateCont,updateh2,updateh3,updateIcon,updateSpinner,tryAgain,restartNow);
 		}
@@ -3025,14 +3012,14 @@ function makeUpdateCont() {
 	return updateCont;
 }
 
-let demoColumn = `<section class="column js-column will-animate"><div class="column-holder js-column-holder"><div class="flex flex-column height-p--100 column-panel"><header class="flex-shrink--0 column-header"><i class="pull-left icon column-type-icon icon-home"></i><div class="flex column-title flex-justify-content--space-between"><div class="flex column-header-title flex-align--center flex-grow--2 flex-wrap--wrap"><span class=column-heading>Home</span> <span class="txt-ellipsis attribution txt-mute txt-sub-antialiased vertical-align--baseline">@dangeredwolf</span></div></div></header><div class="flex flex-column height-p--100 column-content flex-auto position-rel"><div class="position-rel column-scroller scroll-v"><div class="chirp-container js-chirp-container"><article class="is-actionable stream-item"><div class="item-box js-show-detail js-stream-item-content"><div class="js-tweet tweet"><header class="flex flex-align--baseline flex-row js-tweet-header tweet-header"><a class="account-link block flex-auto link-complex"><div class="position-rel item-img obj-left tweet-img"><img class="avatar pin-top-full-width tweet-avatar"src=https://pbs.twimg.com/profile_images/1134136444577091586/LBv0Nhjq_normal.png style=border-radius:10px!important></div><div class=nbfc><span class="txt-ellipsis account-inline"><b class="fullname link-complex-target">ModernDeck</b> <span class="txt-mute username">@ModernDeck</span></span></div></a><time class="txt-mute flex-shrink--0 tweet-timestamp"><a class="no-wrap txt-size-variable--12">now</a></time></header><div class="js-tweet-body tweet-body"><div class="txt-ellipsis nbfc txt-size-variable--12"></div><p class="js-tweet-text tweet-text with-linebreaks"style=padding-bottom:0>This tweet is quite light!</div></div><footer class="cf tweet-footer"><ul class="full-width js-tweet-actions tweet-actions"><li class="pull-left margin-r--10 tweet-action-item"><a class="position-rel tweet-action js-reply-action"href=# rel=reply><i class="pull-left icon txt-center icon-reply"></i> <span class="margin-t--1 pull-right txt-size--12 margin-l--2 icon-reply-toggle js-reply-count reply-count">1</span> <span class=is-vishidden>Reply</span> <span class=reply-triangle></span></a><li class="pull-left margin-r--10 tweet-action-item"><a class=tweet-action href=# rel=retweet><i class="pull-left icon txt-center icon-retweet icon-retweet-toggle js-icon-retweet"></i> <span class="margin-t--1 pull-right txt-size--12 icon-retweet-toggle js-retweet-count margin-l--3 retweet-count">4</span></a><li class="pull-left margin-r--10 tweet-action-item"><a class="position-rel tweet-action js-show-tip"href=# rel=favorite data-original-title=""><i class="pull-left icon txt-center icon-favorite icon-favorite-toggle js-icon-favorite"></i> <span class="margin-t--1 pull-right txt-size--12 margin-l--2 icon-favorite-toggle js-like-count like-count">20</span></a><li class="pull-left margin-r--10 tweet-action-item position-rel"><a class=tweet-action href=# rel=actionsMenu><i class="icon icon-more txt-right"></i></a></ul></footer><div class=js-show-this-thread></div></div></article></div></div></div></div><div class="flex flex-column height-p--100 column-panel column-detail js-column-detail"></div><div class="flex flex-column height-p--100 column-panel column-detail-level-2 js-column-social-proof"></div></div></section>`
+let demoColumn = `<section class="column js-column will-animate"><div class="column-holder js-column-holder"><div class="flex flex-column height-p--100 column-panel"><header class="flex-shrink--0 column-header"><i class="pull-left icon column-type-icon icon-home"></i><div class="flex column-title flex-justify-content--space-between"><div class="flex column-header-title flex-align--center flex-grow--2 flex-wrap--wrap"><span class=column-heading>Home</span> <span class="txt-ellipsis attribution txt-mute txt-sub-antialiased vertical-align--baseline">@dangeredwolf</span></div></div></header><div class="flex flex-column height-p--100 mtd-example-column column-content flex-auto position-rel"><div class="position-rel column-scroller scroll-v"><div class="chirp-container js-chirp-container"><article class="is-actionable stream-item"><div class="item-box js-show-detail js-stream-item-content"><div class="js-tweet tweet"><header class="flex flex-align--baseline flex-row js-tweet-header tweet-header"><a class="account-link block flex-auto link-complex"><div class="position-rel item-img obj-left tweet-img"><img class="avatar pin-top-full-width tweet-avatar"src=https://pbs.twimg.com/profile_images/1134136444577091586/LBv0Nhjq_normal.png style=border-radius:10px!important></div><div class=nbfc><span class="txt-ellipsis account-inline"><b class="fullname link-complex-target">ModernDeck</b> <span class="txt-mute username">@ModernDeck</span></span></div></a><time class="txt-mute flex-shrink--0 tweet-timestamp"><a class="no-wrap txt-size-variable--12">now</a></time></header><div class="js-tweet-body tweet-body"><div class="txt-ellipsis nbfc txt-size-variable--12"></div><p class="js-tweet-text tweet-text with-linebreaks"style=padding-bottom:0>This tweet is quite light!</div></div><footer class="cf tweet-footer"><ul class="full-width js-tweet-actions tweet-actions"><li class="pull-left margin-r--10 tweet-action-item"><a class="position-rel tweet-action js-reply-action"href=# rel=reply><i class="pull-left icon txt-center icon-reply"></i> <span class="margin-t--1 pull-right txt-size--12 margin-l--2 icon-reply-toggle js-reply-count reply-count">1</span> <span class=is-vishidden>Reply</span> <span class=reply-triangle></span></a><li class="pull-left margin-r--10 tweet-action-item"><a class=tweet-action href=# rel=retweet><i class="pull-left icon txt-center icon-retweet icon-retweet-toggle js-icon-retweet"></i> <span class="margin-t--1 pull-right txt-size--12 icon-retweet-toggle js-retweet-count margin-l--3 retweet-count">4</span></a><li class="pull-left margin-r--10 tweet-action-item"><a class="position-rel tweet-action js-show-tip"href=# rel=favorite data-original-title=""><i class="pull-left icon txt-center icon-favorite icon-favorite-toggle js-icon-favorite"></i> <span class="margin-t--1 pull-right txt-size--12 margin-l--2 icon-favorite-toggle js-like-count like-count">20</span></a><li class="pull-left margin-r--10 tweet-action-item position-rel"><a class=tweet-action href=# rel=actionsMenu><i class="icon icon-more txt-right"></i></a></ul></footer><div class=js-show-this-thread></div></div></article></div></div></div></div><div class="flex flex-column height-p--100 column-panel column-detail js-column-detail"></div><div class="flex flex-column height-p--100 column-panel column-detail-level-2 js-column-social-proof"></div></div></section>`
 
 let welcomeData = {
 	welcome: {
 		title: "<i class='icon icon-moderndeck icon-xxlarge mtd-welcome-head-icon' style='color:var(--secondaryColor)'></i>Welcome to ModernDeck!",
 		body: "We're glad to have you here. Click Next to continue.",
 		nextFunc: () => {
-			if (!isApp || forceAppX) {
+			if (!isApp || html.hasClass("mtd-winstore")) {
 				return;
 			}
 			const {ipcRenderer} = require('electron');
@@ -3043,7 +3030,8 @@ let welcomeData = {
 		title: "Checking for updates...",
 		body: "This should only take a few seconds.",
 		html: "",
-		enabled: false
+		enabled: false,
+		nextText: "Skip"
 	},
 	theme: {
 		title: "Pick a core theme",
@@ -3059,7 +3047,7 @@ let welcomeData = {
 			</label>
 		</div>` + demoColumn,
 		prevFunc: () => {
-			if (!isApp || forceAppX) {
+			if (!isApp || html.hasClass("mtd-winstore")) {
 				return;
 			}
 			const {ipcRenderer} = require('electron');
@@ -3114,7 +3102,13 @@ let welcomeData = {
 
 function welcomeScreen() {
 
-	welcomeData.update.enabled = isApp && !forceAppX;
+	isInWelcome = true;
+
+	try {
+		allColumnsVisible();
+	} catch(e) {}
+
+	welcomeData.update.enabled = isApp && !html.hasClass("mtd-winstore");
 	welcomeData.update.html = makeUpdateCont();
 
 	mtdPrepareWindows();
@@ -3147,7 +3141,6 @@ function welcomeScreen() {
 			make("h1").addClass("mtd-welcome-head").html(welc.title),
 			make("p").addClass("mtd-welcome-body").html(welc.body)
 		);
-		console.log(subPanel);
 
 		if (welc.html) {
 			subPanel.append(
@@ -3163,7 +3156,7 @@ function welcomeScreen() {
 			}
 		});
 
-		let button2 = make("button").html("Next<i class='icon icon-arrow-r'></i>").addClass("btn btn-positive mtd-settings-button mtd-welcome-next-button")
+		let button2 = make("button").html((key === "update" ? "Skip" : "Next") + "<i class='icon icon-arrow-r'></i>").addClass("btn btn-positive mtd-settings-button mtd-welcome-next-button")
 		.click(function() {
 			$(".mtd-settings-inner").css("margin-left",((subPanel.index()+1) * -700)+"px");
 			if (typeof welc.nextFunc === "function") {
@@ -3240,7 +3233,7 @@ async function getBlobFromUrl(imageUrl) {
 }
 
 function useNativeEmojiPicker() {
-	return enableNativeEmojiPicker && require("electron") && require("electron").remote && require("electron").remote.app && require("electron").remote.app.isEmojiPanelSupported();
+	return getPref("mtd_nativeEmoji") && require("electron") && require("electron").remote && require("electron").remote.app && require("electron").remote.app.isEmojiPanelSupported();
 }
 
 /*
@@ -3256,7 +3249,6 @@ function createGifPanel() {
 			make("div").addClass("mtd-gif-header").append(
 				//make("h1").addClass("mtd-gif-header-text").html("Trending"),
 				make("input").addClass("mtd-gif-search").attr("placeholder","Search GIFs...").change(() => {
-					console.log("entered");
 					searchGifPanel($(".mtd-gif-search").val())
 				}),
 				make("img").attr("src",mtdBaseURL + "sources/img/giphy.png").addClass("mtd-giphy-logo"),
@@ -3282,10 +3274,7 @@ function createGifPanel() {
 		if (isLoadingMoreGifs) {
 			return;
 		}
-		console.log("height-200",$(document).height() - 200);
-		console.log("this.scrollTop",$(this).scrollTop());
 		if ($(this).scrollTop() + $(this).height() > $(this).prop("scrollHeight") - 200) {
-			console.log("now'd be a good time to load more gifs");
 			isLoadingMoreGifs = true;
 			loadMoreGifs();
    		}
@@ -3302,11 +3291,7 @@ function renderGif(preview, mainOg) {
 	return make("img").attr("src", preview).click(function() {
 		let img;
 
-		console.log("Main: ", main);
-
 		getBlobFromUrl(main).then((img) => {
-
-			console.log(img);
 
 			let eventThing = {
 				originalEvent:{
@@ -3395,14 +3380,12 @@ function searchGifPanel(query) {
 
 	let sanitiseQuery = query.replace(/\s/g,"+").replace(/\&/g,"&amp;").replace(/\?/g,"").replace(/\//g," OR ")
 	lastGiphyURL = "https://api.giphy.com/v1/gifs/search?q="+sanitiseQuery+"&api_key="+giphyKey+"&limit=20";
-	console.log(lastGiphyURL);
 
 	$.ajax(
 		{
 			url:lastGiphyURL
 		}
 	).done((e) => {
-		console.log(e);
 		renderGifResults(e.data);
 	})
 	.error((e) => {
@@ -3429,7 +3412,6 @@ function trendingGifPanel() {
 	isLoadingMoreGifs = true;
 
 	lastGiphyURL = "https://api.giphy.com/v1/gifs/trending?api_key="+giphyKey+"&limit=20";
-	console.log(lastGiphyURL);
 
 	$.ajax(
 		{
@@ -3437,7 +3419,6 @@ function trendingGifPanel() {
 		}
 	).done((e) => {
 		renderGifResults(e.data);
-
 	})
 	.error((e) => {
 		console.log(e);
@@ -3481,15 +3462,19 @@ function loadMoreGifs() {
 */
 
 function checkGifEligibility() {
-	let imagesAdded = $(".compose-media-grid-remove,.compose-media-bar-remove").length;
-	console.log(imagesAdded)
+	let disabledText = "";
 
-	if (imagesAdded > 0) {
-		$(".mtd-gif-button").addClass("is-disabled").attr("data-original-title","You cannot upload a GIF with other images");
-		$(".compose-media-grid-remove,.compose-media-bar-remove").click(() => {
-			console.log("clicked close");
-			setTimeout(checkGifEligibility,0);
-		});
+	// has added images
+	if ($(".compose-media-grid-remove,.compose-media-bar-remove").length > 0) {
+		disabledText = "You cannot upload a GIF with other images";
+	}
+	// has quoted tweet
+	if ($(".compose-content .quoted-tweet").length > 0) {
+		disabledText = "Quoted Tweets cannot contain GIFs";
+	}
+
+	if (disabledText !== "") {
+		$(".mtd-gif-button").addClass("is-disabled").attr("data-original-title",disabledText);
 		$(".mtd-gif-container").remove();
 	} else {
 		$(".mtd-gif-button").removeClass("is-disabled").attr("data-original-title","");
@@ -3507,33 +3492,32 @@ function hookComposer() {
 	}
 
 	if ($(".compose-text-container .js-add-image-button,.compose-text-container .js-schedule-button,.compose-text-container .mtd-gif-button").length <= 0) {
-		$(".compose-text-container").append($(".js-add-image-button,.mtd-gif-button,.js-schedule-button,.js-dm-button,.js-tweet-button,.js-send-button-container.spinner-button-container"));
+		$(".compose-text-container").append($(".js-add-image-button,.mtd-gif-button,.js-schedule-button,.js-dm-button,.js-tweet-button"));
+
+		if ($(".inline-reply").length > 0) {
+			setTimeout(()=> {
+				$(".compose-text-container").append($(".drawer .js-send-button-container.spinner-button-container"));
+			},800)
+		} else {
+			$(".compose-text-container").append($(".drawer .js-send-button-container.spinner-button-container"));
+		}
 	}
 
-	if ($(".drawer .js-send-button-container").length >= 2) {
-		$(".compose-text-container .js-send-button-container.spinner-button-container")[1].remove();
-		$(".compose-text-container").append(
-			$(".drawer .js-send-button-container.spinner-button-container")
-		)
-		$(".drawer .js-send-button-container.spinner-button-container").click(() => {
-			$(".compose").trigger("uiComposeSendTweet");
-		})
-	}
-
-
+	$(document).on("uiDrawerShowDrawer",(e) => {
+		setTimeout(hookComposer,0) // initialise one cycle after tweetdeck does its own thing
+	});
 
 	$(".drawer[data-drawer=\"compose\"]>div>div").on("uiComposeImageAdded",(e) => {
-		console.log("uiComposeImageAdded");
 		setTimeout(checkGifEligibility,0) // initialise one cycle after tweetdeck does its own thing
 
 	}).on("uiComposeTweetSent",(e) => {
-		console.log("uiComposeTweetSent");
+		$(".mtd-emoji-picker").addClass("hidden");
 		setTimeout(checkGifEligibility,0);
 		setTimeout(checkGifEligibility,510);
+	}).on("uiComposeSendTweet",() => {
 	});
 
-	$(document).on("uiSendDm",(e) => {
-		console.log("uiSendDm");
+	$(document).on("uiSendDm uiResetImageUpload uiComposeTweet",(e) => {
 		setTimeout(checkGifEligibility,0)
 	});
 
@@ -3689,14 +3673,15 @@ function navigationSetup() {
 		.addClass("mtd-nav-drawer hidden")
 		.append(
 			make("img").attr("id","mtd_nd_header_image").addClass("mtd-nd-header-image").attr("style",""),
-			make("img").addClass("avatar size73 mtd-nd-header-photo").attr("id","mtd_nd_header_photo").attr("src",""),
+			make("img").addClass("avatar size73 mtd-nd-header-photo").attr("id","mtd_nd_header_photo").attr("src","").click(() => {
+				$('a[data-user-name="dangeredwolf"][rel="user"][href="#"]').click();
+			}),
 			make("div").addClass("mtd-nd-header-username").attr("id","mtd_nd_header_username").html("PROFILE ERROR<br>Tell @dangeredwolf i said hi"),
 			make("button").addClass("btn mtd-nav-button mtd-nav-first-button").attr("id","tdaccsbutton").append(make("i").addClass("icon icon-user-switch")).click(() => {mtdPrepareWindows();$(".js-show-drawer.js-header-action").click();}).append("Your Accounts"),
 			make("button").addClass("btn mtd-nav-button").attr("id","addcolumn").append(make("i").addClass("icon icon-plus")).click(() => {mtdPrepareWindows();TD.ui.openColumn.showOpenColumn()}).append("Add Column"),
 			make("div").addClass("mtd-nav-divider"),
 			make("button").addClass("btn mtd-nav-button").attr("id","kbshortcuts").append(make("i").addClass("icon icon-keyboard")).click(() => {
 				mtdPrepareWindows();
-				console.log("td-keyboard");
 				setTimeout(() => {$(".js-app-settings").click()},10);
 				setTimeout(() => {$("a[data-action='keyboardShortcutList']").click()},20);
 			}).append("Keyboard Shortcuts"),
@@ -3710,12 +3695,10 @@ function navigationSetup() {
 			make("div").addClass("mtd-nav-group mtd-nav-group-expanded").attr("id","mtd_nav_group").append(
 				make("button").addClass("btn mtd-nav-button").append(make("i").addClass("icon mtd-icon-changelog")).click(() => {
 					mtdPrepareWindows();
-					console.log("td-changelog");
 					window.open("https://twitter.com/i/tweetdeck_release_notes");
 				}).append("TweetDeck Release Notes"),
 				make("button").addClass("btn mtd-nav-button").append(make("i").addClass("icon icon-search")).click(() => {
 					mtdPrepareWindows();
-					console.log("td-searchtips");
 					setTimeout(() => {$(".js-app-settings").click()},10);
 					setTimeout(() => {$("a[data-action=\"searchOperatorList\"]").click()},20);
 				}).append("Search Tips"),
@@ -3726,13 +3709,7 @@ function navigationSetup() {
 			),
 			make("div").addClass("mtd-nav-divider mtd-nav-divider-feedback"),
 			make("button").addClass("btn mtd-nav-button mtd-nav-button-feedback").attr("id","mtdfeedback").append(make("i").addClass("icon icon-feedback")).click(() => {
-				sendingFeedback = true;
-				try {
-					throw "Manually triggered feedback button";
-				} catch(e) {
-					Raven.captureException(e);
-					Raven.showReportDialog();
-				}
+				window.open("https://github.com/dangeredwolf/ModernDeck/issues");
 			}).append("Send Feedback")
 		),
 		make("div").attr("id","mtd_nav_drawer_background").addClass("mtd-nav-drawer-background hidden").click(function() {
@@ -3755,12 +3732,10 @@ function navigationSetup() {
 				$(".mtd-nav-group").append(
 					make("button").addClass("btn mtd-nav-button").append(make("i").addClass("icon mtd-icon-command-pallete")).click(() => {
 						mtdPrepareWindows();
-						console.log("Command pallete triggered");
 						$(document).trigger("uiShowCommandPalette");
 					}).append("Command Pallete"),
 					make("button").addClass("btn mtd-nav-button").append(make("i").addClass("icon mtd-icon-developer")).click(() => {
 						mtdPrepareWindows();
-						console.log("Disable dev/dogfood triggered");
 
 						$(document).trigger("uiReload", {
 							params: {
@@ -3805,10 +3780,8 @@ function navigationSetup() {
 */
 
 function keyboardShortcutHandler(e) {
-	console.log(e);
 
 	if (e.key.toUpperCase() === "A" && (e.ctrlKey) && e.shiftKey) { //pressing Ctrl+Shift+A toggles the outline accessibility option
-		console.log("User has pressed the proper key combination to toggle outlines!");
 
 		if ($("#accoutline").length > 0) {
 			$("#accoutline").click();
@@ -3818,13 +3791,13 @@ function keyboardShortcutHandler(e) {
 
 	}
 	if (e.key.toUpperCase() === "C" && (e.ctrlKey) && e.shiftKey) { //pressing Ctrl+Shift+C disabled user CSS
-		console.log("User disabled custom CSS!");
+		console.info("User disabled custom CSS!");
 
 		disableStylesheetExtension("customcss")
 
 	}
 	if (e.code === "KeyD" && (e.ctrlKey) && e.altKey) { //pressing Ctrl+Shift+C disabled user CSS
-		console.log("Triggering diag!");
+		console.info("Triggering diag!");
 
 		try {
 			diag()
@@ -3836,7 +3809,7 @@ function keyboardShortcutHandler(e) {
 
 	}
 	if (e.key.toUpperCase() === "H" && (e.ctrlKey) && e.shiftKey) { //pressing Ctrl+Shift+H toggles high contrast
-		console.log("User has pressed the proper key combination to toggle high contrast!");
+		console.info("User has pressed the proper key combination to toggle high contrast!");
 
 		if ($("#highcont").length > 0) {
 			$("#highcont").click();
@@ -3970,9 +3943,9 @@ function mtdAppUpdatePage(updateCont, updateh2, updateh3, updateIcon, updateSpin
 	const {ipcRenderer} = require('electron');
 
 	ipcRenderer.on("error",(e,args,f,g) => {
+
 		$(".mtd-welcome-inner").addClass("mtd-enable-update-next");
 
-		console.log(e,args,f,g);
 		updateh2.html("There was a problem checking for updates. ");
 		$(".mtd-update-spinner").addClass("hidden");
 
@@ -3986,6 +3959,7 @@ function mtdAppUpdatePage(updateCont, updateh2, updateh3, updateIcon, updateSpin
 
 		updateIcon.html("error_outline").removeClass("hidden");
 		tryAgain.removeClass("hidden").html("Try Again");
+		restartNow.addClass("hidden");
 
 	});
 
@@ -3996,6 +3970,17 @@ function mtdAppUpdatePage(updateCont, updateh2, updateh3, updateIcon, updateSpin
 		$(".mtd-update-spinner").removeClass("hidden");
 		updateh2.html("Checking for updates...");
 		updateh3.addClass("hidden");
+		tryAgain.addClass("hidden");
+		restartNow.addClass("hidden");
+		$("[id='update'] .mtd-welcome-next-button").html("Skip<i class='icon icon-arrow-r'></i>");
+	});
+
+	ipcRenderer.on("update-available", (e,args) => {
+		$(".mtd-welcome-inner").removeClass("mtd-enable-update-next");
+		console.log(args);
+		updateIcon.addClass("hidden");
+		$(".mtd-update-spinner").removeClass("hidden");
+		updateh2.html("Updating...");
 		tryAgain.addClass("hidden");
 		restartNow.addClass("hidden");
 	});
@@ -4033,6 +4018,7 @@ function mtdAppUpdatePage(updateCont, updateh2, updateh3, updateIcon, updateSpin
 		tryAgain.removeClass("hidden").html("Check Again");
 		restartNow.addClass("hidden");
 		$(".mtd-welcome-inner").addClass("mtd-enable-update-next");
+		$("[id='update'] .mtd-welcome-next-button").html("Next<i class='icon icon-arrow-r'></i>");
 	});
 
 	tryAgain.click(() => {
@@ -4115,7 +4101,6 @@ function mtdAppFunctions() {
 	// Enable high contrast if system is set to high contrast
 
 	ipcRenderer.on("inverted-color-scheme-changed", (e, enabled) => {
-		console.log(`inverted colour scheme? ${enabled}`);
 		if (enabled && getPref("mtd_highcontrast") !== true) {
 			try {
 				settingsData.accessibility.options.highcont.activate.func();
@@ -4124,8 +4109,6 @@ function mtdAppFunctions() {
 	});
 
 	ipcRenderer.on("color-scheme-changed", (e, theme) => {
-		console.log(`colour scheme? ${theme}`);
-
 		parseActions(settingsData.themes.options.coretheme.activate, theme);
 
 	});
@@ -4146,7 +4129,7 @@ function mtdAppFunctions() {
 	});
 
 	ipcRenderer.on("update-downloaded", (e,args) => {
-		if ($("#settings-modal[style='display: block;']>.mtd-settings-panel").length <= 0) {
+		if ($("#settings-modal[style='display: block;']>.mtd-settings-panel").length <= 0 && !html.hasClass("mtd-winstore")) {
 			notifyUpdate()
 		}
 	});
@@ -4186,7 +4169,7 @@ function mtdAppFunctions() {
 		$(".js-dm-button").click();
 	});
 
-	if (html.hasClass("mtd-app")) {
+	if (html.hasClass("mtd-js-app")) {
 		let minimise = make("button")
 		.addClass("windowcontrol min")
 		.html("&#xE15B")
@@ -4200,6 +4183,10 @@ function mtdAppFunctions() {
 		.click((data,handler) => {
 			ipcRenderer.send('maximizeButton');
 		});
+
+		if (html.hasClass("mtd-maximized")) {
+			maximise.html("&#xE3E0")
+		}
 
 		let close = make("button")
 		.addClass("windowcontrol close")
@@ -4271,7 +4258,7 @@ function makeCMItem(p) {
 	if (useNativeContextMenus) {
 		let dataact = p.dataaction;
 		let data = p.data;
-		let nativemenu = { label:p.text, click() {console.log("yes, a click has occurred");contextMenuFunctions[dataact](data)}, enabled:p.enabled };
+		let nativemenu = { label:p.text, click() {contextMenuFunctions[dataact](data)}, enabled:p.enabled };
 		//nativemenu.click = ;
 		return nativemenu;
 	}
@@ -4284,11 +4271,8 @@ function makeCMItem(p) {
 		//a.click(contextMenuFunctions[p.dataaction]);
 
 		a.click(() => {
-			console.log("Performing action "+p.dataaction+"...");
 			if (p.mousex && p.mousey) {
 				document.elementFromPoint(p.mousex, p.mousey).focus();
-				console.log("Got proper info, keeping context (x="+p.mousex+",y="+p.mousey+")");
-				console.log();
 			}
 			contextMenuFunctions[p.dataaction](p.data);
 			clearContextMenu();
@@ -4343,8 +4327,6 @@ function buildContextMenu(p) {
 	if ($(document.elementFromPoint(x,y)).hasClass("mtd-context-menu-item")) {
 		return;
 	}
-
-	console.log(p);
 
 	if (p.isEditable || (exists(p.selectionText) && p.selectionText.length > 0)) {
 		if (p.isEditable) {
@@ -4409,15 +4391,12 @@ function buildContextMenu(p) {
 
 	if (items.length > 0) {
 		setTimeout(() => {
-			console.log(`x: ${x} y: ${y} menu.width(): ${menu.width()} menu.height(): ${menu.height()} $(document).width(): ${$(document).width()} $(document).height(): ${$(document).height()}`)
 
 			if (x + xOffset + menu.width() > $(document).width()) {
-				console.log("you're too wide!");
 				x = $(document).width() - menu.width() - xOffset - xOffset;
 			}
 
 			if (y + yOffset + menu.height() > $(document).height()) {
-				console.log("you're too tall!");
 				y = $(document).height() - menu.height();
 			}
 
@@ -4438,9 +4417,8 @@ function buildContextMenu(p) {
 	This allows for many simple preferences to be done completely in object notation with no extra JS
 */
 
-function parseActions(a,opt) {
+function parseActions(a,opt,load) {
 	for (let key in a) {
-		console.log(key);
 		switch(key) {
 			case "enableStylesheet":
 				enableStylesheetExtension(a[key]);
@@ -4458,7 +4436,7 @@ function parseActions(a,opt) {
 			case "func":
 				if (typeof a[key] === "function") {
 					try {
-						a[key](opt);
+						a[key](opt, load);
 					} catch (e) {
 						console.error("Error occurred processing action function.");
 						console.error(e);

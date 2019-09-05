@@ -53,7 +53,7 @@
 
 .mtd-enable-update-next .mtd-settings-subpanel[id="update"] .mtd-welcome-head,
 .mtd-enable-update-next .mtd-settings-subpanel[id="update"] .mtd-welcome-body,
-.mtd-welcome-inner:not(.mtd-enable-update-next) .mtd-settings-subpanel[id="update"] .mtd-welcome-next-button {
+/*.mtd-welcome-inner:not(.mtd-enable-update-next) .mtd-settings-subpanel[id="update"] .mtd-welcome-next-button */{
 	display:none
 }
 

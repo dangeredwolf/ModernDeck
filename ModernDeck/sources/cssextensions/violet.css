@@ -6,7 +6,7 @@
 */
 
 .light:root {
-	--primaryColor:#673AB7 !important;
+	--primaryColor:#673AB7 !important
 }
 
 .dark:root {
@@ -14,5 +14,5 @@
 	--secondaryColorBright:#673AB7 !important;
 	--secondaryColorAlt:#593f88;
 	--secondaryColorPress:#8a5eda;
-	--secondaryColorDeep:#512d92;
+	--secondaryColorDeep:#512d92
 }

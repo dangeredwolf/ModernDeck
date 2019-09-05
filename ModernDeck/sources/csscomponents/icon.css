@@ -730,7 +730,7 @@ span[data-testid="trendMovement"] .icon-pointer-d:before,span[data-testid="trend
 }
 
 .prf-actions .thats-you-text:after {
-	content:"\e150";
+	content:"\e8b8";
 	font-size:28px;
 	margin-left:2px
 }

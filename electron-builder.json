@@ -7,9 +7,20 @@
 		"publish": [
 			"github"
 		],
+		"forceCodeSigning":true,
+		"verifyUpdateCodeSignature":false,
+		"compression":"maximum",
+		"certificateSubjectName":"FEC2801E-B19C-4051-A5E2-465F7B251519",
 		"target": [
 			{
 				"target": "nsis",
+				"arch": [
+					"ia32",
+					"x64"
+				]
+			},
+			{
+				"target": "appx",
 				"arch": [
 					"ia32",
 					"x64"
@@ -24,6 +35,9 @@
 		"artifactName": "ModernDeck_${arch}.${ext}",
 		"applicationId": "ModernDeck",
 		"backgroundColor": "#0078D7"
+	},
+	"squirrelWindows": {
+		"artifactName": "ModernDeck_${arch}.${ext}"
 	},
 	"nsis": {
 		"deleteAppDataOnUninstall": true,

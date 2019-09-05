@@ -10,6 +10,9 @@ ModernDeck_app_tmp
 ModernDeck_ext_tmp
 node_modules
 .DS_Store
+*/.DS_Store
+*/*/.DS_Store
 *.log
-yarn.lock
 *.appx
+default.*
+package-lock.json

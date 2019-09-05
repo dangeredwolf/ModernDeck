@@ -27,6 +27,8 @@ const url = require("url");
 const util = require("util");
 const through2 = require("through2");
 
+const packagedUsesDifferentDir = false;
+
 const log = require("electron-log");
 
 const { autoUpdater } = require("electron-updater");
@@ -60,7 +62,7 @@ autoUpdater.logger.transports.file.level = "info";
 
 app.setAppUserModelId("com.dangeredwolf.ModernDeck");
 
-let useDir = app.isPackaged ? "ModernDeck_app_tmp" : "ModernDeck";
+let useDir = (app.isPackaged && packagedUsesDifferentDir) ? "ModernDeck_app_tmp" : "ModernDeck";
 
 const mtdSchemeHandler = async (request, callback) => {
 	let myUrl = new url.URL(request.url);
@@ -76,7 +78,7 @@ const template = [
 		label: "ModernDeck",
 		role: "appMenu",
 		submenu: [
-			{ label: "About ModernDeck...", click(){ if (!mainWindow){return;}mainWindow.send("aboutMenu"); } },
+			{ label: "About ModernDeck...", click() { if (!mainWindow){return;}mainWindow.send("aboutMenu"); } },
 			{ type: "separator" },
 			{ label: "Preferences...", click(){ if (!mainWindow){return;}mainWindow.send("openSettings"); } },
 			{ label: "Accounts...", click(){ if (!mainWindow){return;}mainWindow.send("accountsMan"); } },
@@ -164,6 +166,12 @@ const menu = Menu.buildFromTemplate(template);
 if (process.platform === 'darwin')
 	Menu.setApplicationMenu(menu);
 
+try {
+	if (require('electron-squirrel-startup')) return app.quit();
+} catch(e) {
+
+}
+
 
 function makeLoginWindow(url,teams) {
 
@@ -175,6 +183,7 @@ function makeLoginWindow(url,teams) {
 		webPreferences: {
 			nodeIntegration: true
 		},
+		parent:mainWindow || null,
 		scrollBounce:true,
 		autoHideMenuBar:true,
 		icon:__dirname+useDir+"/sources/favicon.ico",
@@ -300,9 +309,10 @@ function saveImageAs(url) {
 function saveWindowBounds() {
 	let bounds = mainWindow.getBounds();
 
-	store.set("fullscreen", mainWindow.isFullScreen());
-	store.set("maximised", mainWindow.isMaximized());
-	store.set("windowBounds", mainWindow.getBounds());
+	store.set("mtd_fullscreen", mainWindow.isFullScreen());
+	store.set("mtd_maximised", mainWindow.isMaximized());
+	if (!mainWindow.isMaximized() && !mainWindow.isFullScreen())
+		store.set("mtd_windowBounds", mainWindow.getBounds());
 
 	const matchedDisplay = electron.screen.getDisplayMatching({
 		x: bounds.x,
@@ -311,7 +321,7 @@ function saveWindowBounds() {
 		height: bounds.height
 	});
 
-	store.set("usedDisplay", matchedDisplay.id);
+	store.set("mtd_usedDisplay", matchedDisplay.id);
 }
 
 
@@ -321,18 +331,6 @@ function makeWindow() {
 
 	if (!store.has("mtd_nativetitlebar")) {
 		store.set("mtd_nativetitlebar",false);
-	}
-
-	let devTron;
-
-	try {
-		devTron = require("devtron");
-	} catch (e) {
-		// ¯\_(ツ)_/¯
-	} finally {
-		if (devTron) {
-			devTron.install();
-		}
 	}
 
 	protocol.registerFileProtocol("moderndeck", mtdSchemeHandler);
@@ -353,9 +351,14 @@ function makeWindow() {
 		autoUpdater.channel = store.get("mtd_updatechannel");
 	}
 
+	let bounds = store.get("mtd_windowBounds") || {};
+	let useXY = !!bounds.x && !!bounds.y
+
 	mainWindow = new BrowserWindow({
-		width: 975,
-		height: 650,
+		width: bounds.width || 975,
+		height: bounds.height || 650,
+		x: useXY ? bounds.x : undefined,
+		y: useXY ? bounds.y : undefined,
 		webPreferences: {
 			nodeIntegration: true
 		},
@@ -401,7 +404,16 @@ function makeWindow() {
 
 	mainWindow.on("page-title-updated", (event,url) => {
 		event.preventDefault();
-	})
+	});
+
+	// Save window bounds if it's closed, or otherwise occasionally
+
+	mainWindow.on("close",(e) => {
+		// console.log("Saving window bounds");
+		setTimeout(saveWindowBounds,0);
+	});
+
+	setInterval(saveWindowBounds,60 * 1000);
 
 	mainWindow.show();
 
@@ -433,7 +445,7 @@ function makeWindow() {
 
 	mainWindow.webContents.on('dom-ready', (event, url) => {
 		mainWindow.webContents.executeJavaScript(
-			mtdAppTag + '\
+			(store.get("mtd_fullscreen") ? 'document.querySelector("html").classList.add("mtd-js-app");' : mtdAppTag) + '\
 			var injurl = document.createElement("div");\
 			injurl.setAttribute("type","moderndeck://");\
 			injurl.id = "MTDURLExchange";\
@@ -775,12 +787,6 @@ function makeWindow() {
 
 	});
 
-	// Before closing, save window bounds
-
-	mainWindow.on("close", () => {
-		saveWindowBounds();
-	});
-
 	// Upon closing, set mainWindow to null
 
 	mainWindow.on("closed", () => {
@@ -805,6 +811,10 @@ function makeWindow() {
 		');
 	});
 
+	if (store.get("mtd_maximised")) {
+		mainWindow.maximize();
+	}
+
 	/*
 		Upon entering full screen, remove app-specific CSS Classes,
 		as there is less reason for a huge drag bar in full screen,
@@ -818,6 +828,11 @@ function makeWindow() {
 			document.querySelector("html").classList.remove("mtd-app-linux");\
 		');
 	});
+
+
+	if (store.get("mtd_fullscreen")) {
+		mainWindow.setFullScreen(true)
+	}
 
 	mainWindow.on("leave-full-screen", () => {
 		mainWindow.webContents.executeJavaScript(mtdAppTag);
@@ -840,7 +855,10 @@ electron.protocol.registerSchemesAsPrivileged([{
 
 // Make window when app is ready
 
-app.on("ready", makeWindow);
+app.on("ready", () => {
+	try {makeWindow()}
+	catch (e) {}
+});
 
 // After all windows are closed, we can quit, unless restarting for update
 
@@ -861,7 +879,7 @@ app.on("activate", () => {
 // Tell mtdInject that there was an update error
 
 autoUpdater.on("error", (e,f,g) => {
-	if (!mainWindow || !mainWindow.webContents){
+	if (!mainWindow || !mainWindow.webContents) {
 		return;
 	}
 	mainWindow.webContents.send("error",e,f,g);
@@ -872,7 +890,7 @@ autoUpdater.on("error", (e,f,g) => {
 // ... actively checking for updates
 
 autoUpdater.on("checking-for-update", (e) => {
-	if (!mainWindow || !mainWindow.webContents){
+	if (!mainWindow || !mainWindow.webContents) {
 		return;
 	}
 	mainWindow.webContents.send("checking-for-update",e);
@@ -880,15 +898,23 @@ autoUpdater.on("checking-for-update", (e) => {
 
 // ...currently downloading updates
 autoUpdater.on("download-progress", (e) => {
-	if (!mainWindow || !mainWindow.webContents){
+	if (!mainWindow || !mainWindow.webContents) {
 		return;
 	}
 	mainWindow.webContents.send("download-progress",e);
 });
 
+// ...have found an update
+autoUpdater.on("update-available", (e) => {
+	if (!mainWindow || !mainWindow.webContents) {
+		return;
+	}
+	mainWindow.webContents.send("update-available",e);
+});
+
 // ...have already downloaded updates
 autoUpdater.on("update-downloaded", (e) => {
-	if (!mainWindow || !mainWindow.webContents){
+	if (!mainWindow || !mainWindow.webContents) {
 		return;
 	}
 	mainWindow.webContents.send("update-downloaded",e);
@@ -896,7 +922,7 @@ autoUpdater.on("update-downloaded", (e) => {
 
 // ...haven't found any updates
 autoUpdater.on("update-not-available", (e) => {
-	if (!mainWindow || !mainWindow.webContents){
+	if (!mainWindow || !mainWindow.webContents) {
 		return;
 	}
 	mainWindow.webContents.send("update-not-available",e);
@@ -940,6 +966,3 @@ setTimeout(() => {
 		systemPreferences.isInvertedColorScheme()
 	);
 },10000);
-
-// In this file you can include the rest of your app's specific main process
-// code. You can also put them in separate files and require them here.

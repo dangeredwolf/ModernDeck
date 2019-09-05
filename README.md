@@ -26,8 +26,6 @@ To build the ModernDeck app, you need to first install Node.js (which comes with
 
 ℹ *ModernDeck is tested against the latest LTS version of Node.js, but it will likely work fine with the Current version as well.*
 
-ℹ *Once Node.js includes ES6 Modules without prefixing, this will change to require the latest version until LTS gets it too.*
-
 
 
 #### Windows
@@ -100,6 +98,13 @@ If you want to create the proper installers, you can run:
 `npm run buildLinux`
 ...to build for Linux
 
+ModernDeck 7.4 by default must be signed, even self-signed, in order to build. If this isn't necessary, change `forceCodeSigning` to `false` in electron-builder.json.
+
+[Click here for more information about electron-builder code signing.](https://www.electron.build/code-signing)
+
+ModernDeck 7.4 and later also include `build.bat` for Windows.
+It requires Windows 10 or Windows Server 2019, with WSL installed (including wsl.exe), with the proper tools (node, npm).
+This makes it very quick to build for every platform, including extension, except macOS, particularly because it doesn't require the electron build server.
 
 
 ❓ *For more advanced users, you may prefer to [run electron-builder directly.](https://www.electron.build/)*
@@ -127,9 +132,7 @@ Next, clone the git.
 
 ❓ *You can also use [GitHub Desktop](https://desktop.github.com/) to clone ModernDeck*
 
-ℹ *Currently, there is no additional preparation necessary to begin testing ModernDeck in your browser from source.*
-
-
+ℹ *You can simply load ModernDeck into the browser with no compilation required*
 
 ### Loading the unpacked extension into your browser
 
@@ -198,6 +201,10 @@ Click **Load Unpacked**
 
 Select *ModernDeck\ModernDeck*
 
+
+## Compile Extension for Release
+
+Run `npm install && node build/build.js` from the root ModernDeck directory. The corresponding ZIPs will appear in the dist folder
 
 ## ❓ Questions?
 

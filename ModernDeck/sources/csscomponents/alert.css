@@ -21,10 +21,16 @@
 
 .mtd-alert-button-container {
 	position:absolute;
-	bottom:0;
-	right:0
+	bottom:14px;
+	right:10px
 }
 
 .mtd-alert-title {
 	font-size:20px
+}
+
+.mtd-alert-button.mtd-alert-button-secondary {
+	background:transparent!important;
+	box-shadow:none;
+	color:var(--secondaryColor)!important
 }

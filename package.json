@@ -1,7 +1,9 @@
 {
 	"name": "ModernDeck",
-	"version": "7.4.0-beta",
-	"description": "TweetDeck, but more beautiful and fun than ever.",
+	"productName": "ModernDeck",
+	"version": "7.4.0",
+	"description": "ModernDeck",
+	"copyright": "Copyright 2014-2019 dangeredwolf, et al. Released under the MIT license.",
 	"homepage": "https://github.com/dangeredwolf/ModernDeck",
 	"bugs": {
 		"url": "https://github.com/dangeredwolf/ModernDeck/issues"
@@ -13,85 +15,17 @@
 		"pack": "electron-builder --dir",
 		"dist": "electron-builder . --publish always",
 		"distAll": "electron-builder -mwl --publish always",
-		"build": "electron-builder .",
-		"buildAll": "electron-builder -mwl",
-		"buildWindows": "electron-builder -w",
-		"buildMac": "electron-builder -m",
-		"buildLinux": "electron-builder -l",
+		"build": "electron-builder . --config electron-builder.json",
+		"buildAll": "electron-builder -mwl --config electron-builder.json",
+		"buildWindows": "electron-builder -w --config electron-builder.json",
+		"buildMac": "electron-builder -m --config electron-builder.json",
+		"buildLinux": "electron-builder -l --config electron-builder.json",
+		"efMake": "electron-forge make --arch x64",
 		"start": "electron .",
 		"release": "build"
 	},
-	"build": {
-		"appId": "com.dangeredwolf.ModernDeck",
-		"win": {
-			"icon": "build/icon.ico",
-			"legalTrademarks": "Copyright 2014-2019 dangered wolf, released under the MIT licence",
-			"publish": [
-				"github"
-			],
-			"target": [
-				{
-					"target": "nsis",
-					"arch": [
-						"ia32",
-						"x64"
-					]
-				}
-			]
-		},
-		"appx": {
-			"publisher": "CN=FEC2801E-B19C-4051-A5E2-465F7B251519",
-			"publisherDisplayName": "dangeredwolf",
-			"identityName": "53434dangeredwolf.ModernDeck",
-			"artifactName": "ModernDeck_${arch}.${ext}",
-			"applicationId": "ModernDeck",
-			"backgroundColor": "#0078D7"
-		},
-		"nsis": {
-			"deleteAppDataOnUninstall": true,
-			"artifactName": "ModernDeck_${arch}.${ext}",
-			"uninstallDisplayName": "ModernDeck",
-			"differentialPackage": true
-		},
-		"nsisWeb": {
-			"deleteAppDataOnUninstall": true,
-			"artifactName": "ModernDeck_${arch}.${ext}",
-			"uninstallDisplayName": "ModernDeck",
-			"differentialPackage": true
-		},
-		"mac": {
-			"publish": [
-				"github"
-			],
-			"icon": "build/ModernDeck.icns",
-			"artifactName": "ModernDeck.${ext}",
-			"minimumSystemVersion": "10.11.0",
-			"darkModeSupport": true,
-			"category": "public.app-category.social-networking"
-		},
-		"dmg": {
-			"background": "build/dmg/background.png",
-			"title": "ModernDeck"
-		},
-		"linux": {
-			"category": "Network",
-			"publish": [
-				"github"
-			],
-			"icon": "build/icons/512x512.png",
-			"maintainer": "dangeredwolf",
-			"artifactName": "ModernDeck_${arch}.${ext}",
-			"target": [
-				{
-					"target": "AppImage",
-					"arch": [
-						"x64",
-						"ia32",
-						"arm64"
-					]
-				}
-			]
-		}
+	"config": {
+		"forge": "./build/config.forge.js"
 	},
 	"repository": "https://github.com/dangeredwolf/ModernDeck",
 	"keywords": [
@@ -106,10 +40,9 @@
 	"dependencies": {
 		"asar": "^2.0.1",
 		"electron-log": "^3.0.7",
-		"electron-packager": "^14.0.4",
 		"electron-store": "^4.0.0",
 		"electron-updater": "^4.1.2",
-		"file-type": "^12.2.0",
+		"file-type": "^12.3.0",
 		"got": "^9.6.0",
 		"through2": "^3.0.1"
 	},
@@ -118,18 +51,13 @@
 		"@node-minify/csso": "^4.1.2",
 		"@node-minify/uglify-es": "^4.1.2",
 		"adm-zip": "^0.4.13",
-		"devtron": "^1.4.0",
-		"electron": "^6.0.4",
-		"electron-builder": "^21.2.0",
+		"electron": "^6.0.7",
+		"electron-builder": "^21.0.0",
 		"fs-extra": "^8.0.1",
 		"klaw": "^3.0.0",
 		"stylelint": "^10.1.0",
 		"stylelint-config-recommended": "^2.2.0"
 	},
-	"files": [
-		"**/ModernDeck_app_tmp",
-		"**/main.js"
-	],
 	"stylelint": {
 		"extends": "stylelint-config-recommended"
 	}
