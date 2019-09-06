@@ -16,3 +16,4 @@ node_modules
 *.appx
 default.*
 package-lock.json
+build/notarize.js

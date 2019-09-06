@@ -1,5 +1,6 @@
 {
 	"appId": "com.dangeredwolf.ModernDeck",
+	"afterSign": "build/notarize.js",
 
 	"win": {
 		"icon": "build/icon.ico",
@@ -59,6 +60,10 @@
 		"artifactName": "ModernDeck.${ext}",
 		"minimumSystemVersion": "10.11.0",
 		"darkModeSupport": true,
+		"hardenedRuntime": true,
+		"gatekeeperAssess": false,
+		"entitlements": "build/entitlements.plist",
+		"entitlementsInherit": "build/entitlements.plist",
 		"category": "public.app-category.social-networking"
 	},
 	"dmg": {
