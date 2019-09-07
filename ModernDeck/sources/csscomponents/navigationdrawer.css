@@ -35,6 +35,18 @@
 	transition:0.07s all,.08s margin
 }
 
+.mtd-app-mac .mtd-drawer-button:active:after {
+	margin-top:-22px
+}
+
+.mtd-app-mac.mtd-head-left .mtd-drawer-button:active:after {
+	margin-top:0
+}
+
+.mtd-app.mtd-head-left .mtd-drawer-button:active:after {
+	margin-top:-20px
+}
+
 .mtd-drawer-button:after {
 	content:" ";
 	background:rgba(255,255,255,.2);

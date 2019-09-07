@@ -4597,7 +4597,7 @@ input[type="checkbox"]:active {
 
 html:not(.mtd-head-left) .column-nav-item {
 	position:relative!important;
-	top:4px!important;
+	top:9px!important;
 	height:30px!important
 }
 
@@ -6284,6 +6284,10 @@ p[lang="yi"] a[rel="hashtag"],p[lang="yi"] a[rel="user"]
 	padding-left:3px;
 	margin-top:7px;
 	line-height:1.5
+}
+
+.seamful .account-bio {
+	margin-top:0
 }
 
 .prf-actions .js-follow-button {
@@ -9364,6 +9368,10 @@ html:not(.mtd-classic-nav) .js-hide-drawer:not(.tweet-button):not([data-title="A
 }
 
 /* stylelint-enable */
+
+html:not(.mtd-head-left) .column-nav-flyout {
+	display:none
+}
 
 .column-nav-flyout {
 	z-index:20;

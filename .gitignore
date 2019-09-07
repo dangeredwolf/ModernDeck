@@ -17,3 +17,4 @@ node_modules
 default.*
 package-lock.json
 build/notarize.js
+build/ModernDeck_App_Store.provisionprofile

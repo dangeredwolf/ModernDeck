@@ -64,11 +64,35 @@
 		"gatekeeperAssess": false,
 		"entitlements": "build/entitlements.plist",
 		"entitlementsInherit": "build/entitlements.plist",
-		"category": "public.app-category.social-networking"
+		"category": "public.app-category.social-networking",
+		"target": [
+			{
+				"target": "dmg",
+				"arch": [
+					"x64"
+				]
+			},
+			{
+				"target": "mas",
+				"arch": [
+					"x64"
+				]
+			},
+			{
+				"target": "zip",
+				"arch": [
+					"x64"
+				]
+			}
+		]
 	},
 	"dmg": {
 		"background": "build/dmg/background.png",
 		"title": "ModernDeck"
+	},
+	"mas": {
+		"appId": "com.dangeredwolf.ModernDeck.mas",
+		"provisioningProfile": "build/ModernDeck_App_Store.provisionprofile"
 	},
 	"linux": {
 		"category": "Network",
