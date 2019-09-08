@@ -167,7 +167,7 @@ if (process.platform === 'darwin')
 	Menu.setApplicationMenu(menu);
 
 try {
-	// if (require('electron-squirrel-startup')) return app.quit();
+	if (require('electron-squirrel-startup')) return app.quit();
 } catch(e) {
 	console.error(e);
 }
