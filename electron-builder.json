@@ -14,19 +14,17 @@
 		"certificateSubjectName":"FEC2801E-B19C-4051-A5E2-465F7B251519",
 		"target": [
 			{
-				"target": "nsis-web",
+				"target": "nsis",
 				"arch": [
 					"ia32",
-					"x64",
-					"arm64"
+					"x64"
 				]
 			},
 			{
 				"target": "appx",
 				"arch": [
 					"ia32",
-					"x64",
-					"arm64"
+					"x64"
 				]
 			}
 		]
