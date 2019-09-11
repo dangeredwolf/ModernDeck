@@ -8761,7 +8761,7 @@ label.checkbox::selection,label.control-label::selection {
 }
 
 .compose .compose-text-container .spinner-button-container .spinner-button-icon-spinner {
-	margin-top:-14px;
+	margin-top:0;
 	margin-left:-19px
 }
 
