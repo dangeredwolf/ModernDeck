@@ -8,7 +8,7 @@
 
 'use strict';
 
-let SystemVersion = "7.4";
+let SystemVersion = "7.4.1";
 const appendTextVersion = true;
 const enablePatronFeatures = true;
 
@@ -444,7 +444,7 @@ let settingsData = {
 				default:"left"
 			},
 			columnvisibility:{
-				title:"<i class='icon material-icon'>fiber_new</i> Improve Timeline performance by not rendering invisible columns",
+				title:"<i class='icon material-icon'>fiber_new</i> Improve Timeline performance by not rendering off-screen columns",
 				type:"checkbox",
 				activate:{
 					func: (opt) => {
@@ -1444,6 +1444,7 @@ function diag() {
 	log += "\nisDev: " + isDev;
 	log += "\nisApp: " + isApp;
 	log += "\nmtd-winstore: " + html.hasClass("mtd-winstore");
+	log += "\nmtd-macappstore: " + html.hasClass("mtd-macappstore");
 	log += "\nUser agent: " + navigator.userAgent;
 
 
@@ -2817,18 +2818,25 @@ function openSettings(openMenu) {
 				makePatronView()
 			)
 
-			if (isApp && !html.hasClass("mtd-winstore")) {
-				if (!html.hasClass("mtd-winstore") && !html.hasClass("mtd-macappstore")) {
-					subPanel.append(updateCont);
-				}
+			if (isApp && !html.hasClass("mtd-winstore") && !html.hasClass("mtd-macappstore")) {
+				subPanel.append(updateCont);
 			}
 
 			if (html.hasClass("mtd-winstore")) {
 				subPanel.append(
 					make("div").append(
-						make("h2").addClass("mtd-update-h3 mtd-update-msstore").html("Updates for this version of ModernDeck are managed by the Microsoft Store."),
+						make("h2").addClass("mtd-update-h3 mtd-update-managed").html("Updates for this version of ModernDeck are managed by the Microsoft Store."),
 						make("button").addClass("btn mtd-settings-button").html("Check for Updates").click(() => {
 							open("ms-windows-store://updates");
+						})
+					)
+				);
+			} else if (html.hasClass("mtd-macappstore")) {
+				subPanel.append(
+					make("div").append(
+						make("h2").addClass("mtd-update-h3 mtd-update-managed").html("Updates for this version of ModernDeck are managed by the App Store."),
+						make("button").addClass("btn mtd-settings-button").html("Check for Updates").click(() => {
+							open("macappstore://showUpdatesPage");
 						})
 					)
 				);
@@ -3003,7 +3011,7 @@ function makeUpdateCont() {
 
 	updateCont.append(updateIcon,updateh2,updateh3,tryAgain,restartNow);
 
-	if (isApp && !html.hasClass("mtd-winstore")) {
+	if (isApp && !html.hasClass("mtd-winstore") && !html.hasClass("mtd-macappstore")) {
 		if (!html.hasClass("mtd-winstore") && !html.hasClass("mtd-macappstore")) {
 			mtdAppUpdatePage(updateCont,updateh2,updateh3,updateIcon,updateSpinner,tryAgain,restartNow);
 		}
@@ -3019,7 +3027,7 @@ let welcomeData = {
 		title: "<i class='icon icon-moderndeck icon-xxlarge mtd-welcome-head-icon' style='color:var(--secondaryColor)'></i>Welcome to ModernDeck!",
 		body: "We're glad to have you here. Click Next to continue.",
 		nextFunc: () => {
-			if (!isApp || html.hasClass("mtd-winstore")) {
+			if (!isApp || html.hasClass("mtd-winstore") || html.hasClass("mtd-macappstore")) {
 				return;
 			}
 			const {ipcRenderer} = require('electron');
@@ -3047,7 +3055,7 @@ let welcomeData = {
 			</label>
 		</div>` + demoColumn,
 		prevFunc: () => {
-			if (!isApp || html.hasClass("mtd-winstore")) {
+			if (!isApp || html.hasClass("mtd-winstore") || html.hasClass("mtd-macappstore")) {
 				return;
 			}
 			const {ipcRenderer} = require('electron');
@@ -3108,7 +3116,7 @@ function welcomeScreen() {
 		allColumnsVisible();
 	} catch(e) {}
 
-	welcomeData.update.enabled = isApp && !html.hasClass("mtd-winstore");
+	welcomeData.update.enabled = isApp && !html.hasClass("mtd-winstore") && !html.hasClass("mtd-macappstore");
 	welcomeData.update.html = makeUpdateCont();
 
 	mtdPrepareWindows();
@@ -4129,7 +4137,7 @@ function mtdAppFunctions() {
 	});
 
 	ipcRenderer.on("update-downloaded", (e,args) => {
-		if ($("#settings-modal[style='display: block;']>.mtd-settings-panel").length <= 0 && !html.hasClass("mtd-winstore")) {
+		if ($("#settings-modal[style='display: block;']>.mtd-settings-panel").length <= 0 && !html.hasClass("mtd-winstore") && !html.hasClass("mtd-macappstore")) {
 			notifyUpdate()
 		}
 	});

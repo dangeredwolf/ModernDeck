@@ -1,5 +1,6 @@
 {
 	"appId": "com.dangeredwolf.ModernDeck",
+	"afterSign": "build/notarize.js",
 
 	"win": {
 		"icon": "build/icon.ico",
@@ -13,17 +14,19 @@
 		"certificateSubjectName":"FEC2801E-B19C-4051-A5E2-465F7B251519",
 		"target": [
 			{
-				"target": "nsis",
+				"target": "nsis-web",
 				"arch": [
 					"ia32",
-					"x64"
+					"x64",
+					"arm64"
 				]
 			},
 			{
 				"target": "appx",
 				"arch": [
 					"ia32",
-					"x64"
+					"x64",
+					"arm64"
 				]
 			}
 		]
@@ -59,11 +62,39 @@
 		"artifactName": "ModernDeck.${ext}",
 		"minimumSystemVersion": "10.11.0",
 		"darkModeSupport": true,
-		"category": "public.app-category.social-networking"
+		"hardenedRuntime": true,
+		"gatekeeperAssess": false,
+		"entitlements": "build/entitlements.plist",
+		"entitlementsInherit": "build/entitlements.plist",
+		"category": "public.app-category.social-networking",
+		"target": [
+			{
+				"target": "dmg",
+				"arch": [
+					"x64"
+				]
+			},
+			{
+				"target": "mas",
+				"arch": [
+					"x64"
+				]
+			},
+			{
+				"target": "zip",
+				"arch": [
+					"x64"
+				]
+			}
+		]
 	},
 	"dmg": {
 		"background": "build/dmg/background.png",
 		"title": "ModernDeck"
+	},
+	"mas": {
+		"appId": "com.dangeredwolf.ModernDeck.mas",
+		"provisioningProfile": "build/ModernDeck_App_Store.provisionprofile"
 	},
 	"linux": {
 		"category": "Network",

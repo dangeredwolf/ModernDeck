@@ -1,7 +1,7 @@
 {
 	"name": "ModernDeck",
 	"productName": "ModernDeck",
-	"version": "7.4.0",
+	"version": "7.4.1",
 	"description": "ModernDeck",
 	"copyright": "Copyright 2014-2019 dangeredwolf, et al. Released under the MIT license.",
 	"homepage": "https://github.com/dangeredwolf/ModernDeck",
@@ -51,9 +51,10 @@
 		"@node-minify/csso": "^4.1.2",
 		"@node-minify/uglify-es": "^4.1.2",
 		"adm-zip": "^0.4.13",
-		"electron": "^6.0.7",
-		"electron-builder": "^21.0.0",
-		"fs-extra": "^8.0.1",
+		"electron": "^6.0.8",
+		"electron-builder": "^21.2.0",
+		"electron-notarize": "^0.1.1",
+		"fs-extra": "^8.1.0",
 		"klaw": "^3.0.0",
 		"stylelint": "^10.1.0",
 		"stylelint-config-recommended": "^2.2.0"

@@ -466,7 +466,7 @@ html body .mtd-settings-subpanel button {
 }
 
 
-.mtd-update-msstore {
+.mtd-update-managed {
 	margin-left:40px;
 	margin-top:50px;
 	line-height:2;
@@ -474,7 +474,7 @@ html body .mtd-settings-subpanel button {
 	width:58%
 }
 
-.mtd-update-msstore+.mtd-settings-button {
+.mtd-update-managed+.mtd-settings-button {
 	margin-left:38px;
 	margin-top:10px
 }

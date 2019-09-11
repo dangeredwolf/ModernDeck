@@ -169,7 +169,7 @@ if (process.platform === 'darwin')
 try {
 	if (require('electron-squirrel-startup')) return app.quit();
 } catch(e) {
-
+	console.error(e);
 }
 
 
@@ -307,21 +307,25 @@ function saveImageAs(url) {
 // we should make use of this soon
 
 function saveWindowBounds() {
-	let bounds = mainWindow.getBounds();
+	try {
+		let bounds = mainWindow.getBounds();
 
-	store.set("mtd_fullscreen", mainWindow.isFullScreen());
-	store.set("mtd_maximised", mainWindow.isMaximized());
-	if (!mainWindow.isMaximized() && !mainWindow.isFullScreen())
-		store.set("mtd_windowBounds", mainWindow.getBounds());
+		store.set("mtd_fullscreen", mainWindow.isFullScreen());
+		store.set("mtd_maximised", mainWindow.isMaximized());
+		if (!mainWindow.isMaximized() && !mainWindow.isFullScreen())
+			store.set("mtd_windowBounds", mainWindow.getBounds());
 
-	const matchedDisplay = electron.screen.getDisplayMatching({
-		x: bounds.x,
-		y: bounds.y,
-		width: bounds.width,
-		height: bounds.height
-	});
+		const matchedDisplay = electron.screen.getDisplayMatching({
+			x: bounds.x,
+			y: bounds.y,
+			width: bounds.width,
+			height: bounds.height
+		});
 
-	store.set("mtd_usedDisplay", matchedDisplay.id);
+		store.set("mtd_usedDisplay", matchedDisplay.id);
+	} catch(e) {
+		console.error(e);
+	}
 }
 
 
@@ -386,7 +390,13 @@ function makeWindow() {
 			buttons: ["Not now", "Yes, move it"]
 		}, (response) => {
 			if (response == 1) {
-				let moveMe = app.moveToApplicationsFolder();
+				let moveMe;
+				try {
+					moveMe = app.moveToApplicationsFolder();
+				} catch (e) {
+					console.error(e);
+				}
+
 				if (!moveMe){
 					dialog.showMessageBox({
 						type: "error",
@@ -415,7 +425,11 @@ function makeWindow() {
 
 	setInterval(saveWindowBounds,60 * 1000);
 
-	mainWindow.show();
+	try {
+		mainWindow.show();
+	} catch(e) {
+		console.error(e);
+	}
 
 	// Here, we add platform-specific tags to html, to help moderndeck CSS know what to do
 
@@ -430,20 +444,25 @@ function makeWindow() {
 	}
 
 	if (!store.get("mtd_nativetitlebar")) {
+
 		mtdAppTag += 'document.querySelector("html").classList.add("mtd-app");\n';
 
 		if (process.platform === "darwin") {
 			mtdAppTag += 'document.querySelector("html").classList.add("mtd-app-mac");\n'
 		}
+
 		if (process.platform === "linux") {
 			mtdAppTag += 'document.querySelector("html").classList.add("mtd-app-linux");\n'
 		}
+
 		if (process.platform === "win32") {
 			mtdAppTag += 'document.querySelector("html").classList.add("mtd-app-win");\n'
 		}
+
 	}
 
 	mainWindow.webContents.on('dom-ready', (event, url) => {
+
 		mainWindow.webContents.executeJavaScript(
 			(store.get("mtd_fullscreen") ? 'document.querySelector("html").classList.add("mtd-js-app");' : mtdAppTag) + '\
 			var injurl = document.createElement("div");\
@@ -468,7 +487,7 @@ function makeWindow() {
 			InjectScript.src = "moderndeck://sources/MTDinject.js";\
 			InjectScript.type = "text/javascript";\
 			document.head.appendChild(InjectScript);\
-			');
+		');
 	});
 
 	mainWindow.webContents.on('did-fail-load', (event, code, desc) => {
@@ -599,8 +618,11 @@ function makeWindow() {
 	});
 
 	// this is pretty self-explanatory
-	mainWindow.loadURL("https://tweetdeck.twitter.com");
-
+	try {
+		mainWindow.loadURL("https://tweetdeck.twitter.com");
+	} catch(e) {
+		console.error(e);
+	}
 
 	/*
 
@@ -857,7 +879,9 @@ electron.protocol.registerSchemesAsPrivileged([{
 
 app.on("ready", () => {
 	try {makeWindow()}
-	catch (e) {}
+	catch (e) {
+		console.error(e);
+	}
 });
 
 // After all windows are closed, we can quit, unless restarting for update
@@ -946,23 +970,35 @@ systemPreferences.on("inverted-color-scheme-changed", (e,v) => {
 });
 
 if (process.platform === 'darwin') {
-	systemPreferences.subscribeNotification(
-		'AppleInterfaceThemeChangedNotification',
-		() => {
-			mainWindow.webContents.send("color-scheme-changed",systemPreferences.isDarkMode() ? "dark" : "light");
-		}
-	)
+	try {
+		systemPreferences.subscribeNotification(
+			'AppleInterfaceThemeChangedNotification',
+			() => {
+				mainWindow.webContents.send("color-scheme-changed",systemPreferences.isDarkMode() ? "dark" : "light");
+			}
+		)
+	} catch(e) {
+		console.error(e);
+	}
 }
 
 setInterval(() => {
-	autoUpdater.checkForUpdates();
+	try {
+		autoUpdater.checkForUpdates();
+	} catch(e) {
+		console.error(e);
+	}
 },1000*60*15); //check for updates once every 15 minutes
 
 setTimeout(() => {
-	autoUpdater.checkForUpdates();
+	try {
+		autoUpdater.checkForUpdates();
 
-	mainWindow.webContents.send(
-		"inverted-color-scheme-changed",
-		systemPreferences.isInvertedColorScheme()
-	);
+		mainWindow.webContents.send(
+			"inverted-color-scheme-changed",
+			systemPreferences.isInvertedColorScheme()
+		);
+	} catch(e) {
+		console.error(e);
+	}
 },10000);

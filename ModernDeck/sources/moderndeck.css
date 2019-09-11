@@ -266,13 +266,13 @@ body,body.signin-sheet-present {
 }
 
 @keyframes feather-notification-list-show {
-	0% {display:none;opacity:0;transform:translateY(50%)}
+	0% {display:none;opacity:0;transform:translateX(50%)}
 	1% {display:block}
-	100% {opacity:1;transform:translateY(0)}
+	100% {opacity:1;transform:translateX(0)}
 }
 
 @keyframes feather-notification-list-hide {
-	to {transform:translateY(50%);opacity:0}
+	to {transform:translateX(50%);opacity:0}
 }
 
 .account-remove-check-open .account-remove-check,
@@ -4592,7 +4592,7 @@ input[type="checkbox"]:active {
 
 html:not(.mtd-head-left) .column-nav-item {
 	position:relative!important;
-	top:4px!important;
+	top:9px!important;
 	height:30px!important
 }
 
@@ -6295,6 +6295,10 @@ p[lang="yi"] a[rel="hashtag"],p[lang="yi"] a[rel="user"]
 	padding-left:3px;
 	margin-top:7px;
 	line-height:1.5
+}
+
+.seamful .account-bio {
+	margin-top:0
 }
 
 .prf-actions .js-follow-button {
@@ -8764,7 +8768,7 @@ label.checkbox::selection,label.control-label::selection {
 }
 
 .compose .compose-text-container .spinner-button-container .spinner-button-icon-spinner {
-	margin-top:-14px;
+	margin-top:0;
 	margin-left:-19px
 }
 
@@ -9353,6 +9357,27 @@ html:not(.mtd-classic-nav) .js-hide-drawer:not(.tweet-button):not([data-title="A
 
 .drawer,.drawer>[data-testid="newComposer"] {
 	-webkit-app-region:no-drag
+}
+
+/* stylelint-disable */
+
+@keyframes flyoutflyin {
+	0% {
+		transform:translateY(30px);
+		border-radius:100px;
+		opacity:0
+	},
+
+	100% {
+		transform:scale(1);
+		opacity:1
+	}
+}
+
+/* stylelint-enable */
+
+html:not(.mtd-head-left) .column-nav-flyout {
+	display:none
 }
 
 .column-nav-flyout {
