@@ -8,7 +8,7 @@
 
 'use strict';
 
-let SystemVersion = "7.4.1";
+let SystemVersion = "7.4.2";
 const appendTextVersion = true;
 const enablePatronFeatures = true;
 
