@@ -166,11 +166,11 @@ const menu = Menu.buildFromTemplate(template);
 if (process.platform === 'darwin')
 	Menu.setApplicationMenu(menu);
 
-try {
+/*try {
 	if (require('electron-squirrel-startup')) return app.quit();
 } catch(e) {
 	console.error(e);
-}
+}*/
 
 
 function makeLoginWindow(url,teams) {
