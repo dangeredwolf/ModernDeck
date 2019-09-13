@@ -26,6 +26,8 @@ const path = require("path");
 const url = require("url");
 const util = require("util");
 const through2 = require("through2");
+const { NitroLoad } = require("./nitroload");
+console.log(NitroLoad)
 
 const packagedUsesDifferentDir = false;
 
@@ -44,6 +46,7 @@ const isAppX = !!process.windowsStore;
 const isMAS = !!process.mas;
 
 const isDev = false;
+let useNitroLoad = true;
 
 let mainWindow;
 
@@ -199,9 +202,7 @@ function makeLoginWindow(url,teams) {
 		const { shell } = electron;
 
 		if (url.indexOf("https://tweetdeck.twitter.com") >= 0 && !teams) {
-			if (url.indexOf("https://tweetdeck.twitter.com/web/success.html") < 0) {
-				mainWindow.loadURL(url);
-			}
+
 			loginWindow.close();
 			event.preventDefault();
 			return;
@@ -425,12 +426,7 @@ function makeWindow() {
 
 	setInterval(saveWindowBounds,60 * 1000);
 
-	try {
-		mainWindow.show();
-	} catch(e) {
-		console.error(e);
-	}
-
+	mainWindow.show();
 	// Here, we add platform-specific tags to html, to help moderndeck CSS know what to do
 
 	mtdAppTag += 'document.querySelector("html").classList.add("mtd-js-app");\n';
@@ -463,8 +459,34 @@ function makeWindow() {
 
 	mainWindow.webContents.on('dom-ready', (event, url) => {
 
+		// if (useNitroLoad && NitroLoad.ready()) {
+		// 	mainWindow.webContents.executeJavaScript(`
+		// 		var InjectScript = document.createElement("script");
+		// 		InjectScript.src = "${NitroLoad.vendor}";
+		// 		InjectScript.type = "text/javascript";
+		// 		document.body.appendChild(InjectScript);
+		//
+		// 		var InjectScript2 = document.createElement("script");
+		// 		InjectScript2.src = "${NitroLoad.bundle}";
+		// 		InjectScript2.type = "text/javascript";
+		// 		document.body.appendChild(InjectScript2);
+		// 	`)
+		// }
+
+
 		mainWindow.webContents.executeJavaScript(
-			(store.get("mtd_fullscreen") ? 'document.querySelector("html").classList.add("mtd-js-app");' : mtdAppTag) + '\
+			(store.get("mtd_fullscreen") ? 'document.querySelector("html").classList.add("mtd-js-app");' : mtdAppTag)
+		)
+
+		if (useNitroLoad) {
+			mainWindow.webContents.executeJavaScript(
+				'document.querySelector("html").classList.add("mtd-nitroload");'
+			)
+			return;
+		}
+
+		mainWindow.webContents.executeJavaScript(
+			'\
 			var injurl = document.createElement("div");\
 			injurl.setAttribute("type","moderndeck://");\
 			injurl.id = "MTDURLExchange";\
@@ -597,6 +619,19 @@ function makeWindow() {
 		}
 	);
 
+	// mainWindow.webContents.session.webRequest.onHeadersReceived(
+	// 	{urls:["https://*.twitter.com/*","https://*.twimg.com/*"]},
+	// 	(details, callback) => {
+	// 		let foo = details.responseHeaders;
+	// 		foo["Access-Control-Allow-Origin"] =[
+	// 			"moderndeck://."];
+	// 		foo["Access-Control-Allow-Credentials"] = [
+	// 			"true"
+	// 		]
+	// 		callback({ responseHeaders: foo});
+	// 	}
+	// );
+
 	/*
 		Block original tweetdeck css bundle, just in case. Plus, it saves bandwidth.
 		We also replace twitter card CSS to make those look pretty
@@ -617,9 +652,55 @@ function makeWindow() {
 		callback({cancel:false});
 	});
 
+	// mainWindow.webContents.session.webRequest.onBeforeSendHeaders(
+	// 	{urls:["https://*.twitter.com/*","https://*.twimg.com/*"]},
+	// 	(details, callback) => {
+	// 		let foo = details.requestHeaders;
+	// 		foo["Origin"] = [
+	// 			"https://tweetdeck.twitter.com"
+	// 		];
+	// 		foo["Referer"] = [
+	// 			"https://tweetdeck.twitter.com/"
+	// 		];
+	// 		foo["X-Twitter-Auth-Type"] = [
+	// 			"OAuth2Session"
+	// 		];
+	// 		foo["X-Twitter-Client-Version"] = [
+	// 			"Twitter-TweetDeck-blackbird-chrome/4.0.190822112648 web/"
+	// 		];
+	// 		foo["Sec-Fetch-Dest"] = [
+	// 			"empty"
+	// 		];
+	// 		callback({ requestHeaders: foo});
+	// 	}
+	// );
+	//
+	// mainWindow.webContents.session.webRequest.onBeforeSendHeaders(
+	// 	{urls:["https://api.twitter.com/1.1/help/*"]},
+	// 	(details, callback) => {
+	// 		console.error("fuck you")
+	// 		let foo = details.requestHeaders;
+	// 		foo["X-Twitter-Auth-Type"] = [
+	// 			"OAuth2Session"
+	// 		];
+	// 		foo["X-Twitter-Client-Version"] = [
+	// 			"Twitter-TweetDeck-blackbird-chrome/4.0.190822112648 web/"
+	// 		];
+	// 		foo["Sec-Fetch-Dest"] = [
+	// 			"empty"
+	// 		];
+	// 		callback({ requestHeaders: foo});
+	// 	}
+	// );
+
 	// this is pretty self-explanatory
 	try {
-		mainWindow.loadURL("https://tweetdeck.twitter.com");
+		if (useNitroLoad)
+			NitroLoad.goReplace();
+		// if (useNitroLoad)
+		// 	mainWindow.loadURL("moderndeck://./nitroload.html");
+		// else
+			mainWindow.loadURL("https://tweetdeck.twitter.com");
 	} catch(e) {
 		console.error(e);
 	}
@@ -636,9 +717,11 @@ function makeWindow() {
 	*/
 
 	mainWindow.webContents.on("will-navigate", (event, url) => {
+		if (useNitroLoad)
+			NitroLoad.goReplace();
 		const { shell } = electron;
 		console.log(url);
-		if (url.indexOf("https://tweetdeck.twitter.com") < 0) {
+		if (url.indexOf("https://tweetdeck.twitter.com") < 0 && url.indexOf("moderndeck://.") < 0) {
 			event.preventDefault();
 			console.log(url);
 			if (url.indexOf("twitter.com/login") >= 0 || url.indexOf("twitter.com/logout") >= 0) {
@@ -878,7 +961,10 @@ electron.protocol.registerSchemesAsPrivileged([{
 // Make window when app is ready
 
 app.on("ready", () => {
-	try {makeWindow()}
+	try {
+
+		makeWindow()
+	}
 	catch (e) {
 		console.error(e);
 	}

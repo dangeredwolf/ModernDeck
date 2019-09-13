@@ -2442,6 +2442,10 @@ html:not(.mtd-classic-nav) .attach-compose-buttons .tweet-button {
 	box-sizing:border-box
 }
 
+.message-content a {
+	-webkit-app-region:no-drag
+}
+
 .message-text {
 	display:table-cell;
 	padding-right:10px;

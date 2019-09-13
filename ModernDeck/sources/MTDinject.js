@@ -27,8 +27,10 @@ const forceFeatureFlags = false;
 const useRaven = false;
 const debugWelcome = false;
 
-let replacedLoadingSpinnerNew = false;
+let replacedLoadingSpinnerNew = document.querySelector("html").classList.contains("mtd-nitroload");
 let sendingFeedback = false;
+
+let injectedFonts = document.querySelector("html").classList.contains("mtd-nitroload");
 
 let ugltStarted = false;
 let useNativeContextMenus = false;
@@ -169,8 +171,6 @@ const isiOS = navigator.userAgent.indexOf("iPhone OS") > -1;
 // Use standard macOS symbols instead of writing it out like on Windows
 
 const ctrlShiftText = isMac ? "⌃⇧" : "Ctrl+Shift+";
-
-let injectedFonts = false;
 
 // We define these later. FYI these are jQuery objects.
 
@@ -1208,10 +1208,12 @@ if (typeof MTDURLExchange === "object" && typeof MTDURLExchange.getAttribute ===
 	Hence why twitter sucks
 */
 
-let twitterSucks = document.createElement("script");
-twitterSucks.type = "text/javascript";
-twitterSucks.src = mtdBaseURL + "sources/libraries/moduleraid.min.js";
-document.head.appendChild(twitterSucks);
+if (!document.querySelector("html").classList.contains("mtd-nitroload")) {
+	let twitterSucks = document.createElement("script");
+	twitterSucks.type = "text/javascript";
+	twitterSucks.src = mtdBaseURL + "sources/libraries/moduleraid.min.js";
+	document.head.appendChild(twitterSucks);
+}
 
 /*
 	Shorthand for creating a mutation observer and observing
@@ -4177,42 +4179,60 @@ function mtdAppFunctions() {
 		$(".js-dm-button").click();
 	});
 
+	let minimise, maximise, closeButton;
+
 	if (html.hasClass("mtd-js-app")) {
-		let minimise = make("button")
-		.addClass("windowcontrol min")
-		.html("&#xE15B")
-		.click((data,handler) => {
+		if ($(".windowcontrols").length <= 0) {
+			minimise = make("button")
+			.addClass("windowcontrol min")
+			.html("&#xE15B")
+
+
+			maximise = make("button")
+			.addClass("windowcontrol max")
+			.html("&#xE3C6")
+
+
+			if (html.hasClass("mtd-maximized")) {
+				maximise.html("&#xE3E0")
+			}
+
+			closeButton = make("button")
+			.addClass("windowcontrol close")
+			.html("&#xE5CD")
+
+
+
+			let windowcontrols = make("div")
+			.addClass("windowcontrols")
+			.append(minimise)
+			.append(maximise)
+			.append(closeButton);
+			body.append(windowcontrols,
+				make("div").addClass("mtd-app-drag-handle")
+			);
+		} else {
+			minimise = $(".windowcontrol.min");
+			maximise = $(".windowcontrol.max");
+			closeButton = $(".windowcontrol.close");
+
+			if (html.hasClass("mtd-maximized")) {
+				maximise.html("&#xE3E0")
+			}
+		}
+
+		minimise.click((data,handler) => {
 			ipcRenderer.send('minimize');
 		});
 
-		let maximise = make("button")
-		.addClass("windowcontrol max")
-		.html("&#xE3C6")
-		.click((data,handler) => {
+		maximise.click((data,handler) => {
 			ipcRenderer.send('maximizeButton');
 		});
 
-		if (html.hasClass("mtd-maximized")) {
-			maximise.html("&#xE3E0")
-		}
-
-		let close = make("button")
-		.addClass("windowcontrol close")
-		.html("&#xE5CD")
-		.click(() => {
+		closeButton.click(() => {
 			window.close();
 		});
 
-
-		let windowcontrols = make("div")
-		.addClass("windowcontrols")
-		.append(minimise)
-		.append(maximise)
-		.append(close);
-
-		body.append(windowcontrols,
-			make("div").addClass("mtd-app-drag-handle")
-		);
 	}
 
 	ipcRenderer.on('context-menu', (event, p) => {
@@ -4509,12 +4529,12 @@ function coreInit() {
 		}
 	}
 	// append the emoji picker script
-
-	head.append(
-		make("script").attr("type","text/javascript").attr("src",mtdBaseURL + "sources/libraries/emojipicker.js"),
-		make("script").attr("type","text/javascript").attr("src",mtdBaseURL + "sources/libraries/jquery.visible.js")//,
-		//make("script").attr("type","text/javascript").attr("src",mtdBaseURL + "sources/libraries/twemoji.min.js")
-	);
+	if (!html.hasClass("mtd-nitroload"))
+		head.append(
+			make("script").attr("type","text/javascript").attr("src",mtdBaseURL + "sources/libraries/emojipicker.js"),
+			make("script").attr("type","text/javascript").attr("src",mtdBaseURL + "sources/libraries/jquery.visible.js")//,
+			//make("script").attr("type","text/javascript").attr("src",mtdBaseURL + "sources/libraries/twemoji.min.js")
+		);
 
 
 	if (useRaven) {

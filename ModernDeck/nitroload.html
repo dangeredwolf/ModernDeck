@@ -1,0 +1,39 @@
+<html class=scroll-v lang=en-US>
+    <meta charset=utf-8>
+    <meta content="width=device-width,initial-scale=1,minimum-scale=1,user-scalable=yes" name=viewport>
+    <body class=scroll-v>
+        <audio id=update-sound preload=auto
+        src=moderndeck://sources/alert_2.mp3 style=display:none></audio>
+        <div class="js-app-loading login-container">
+            <div class="block txt-center ovl-plain">
+                <div class="ovl-block sign-in">
+                    <div class="block txt-center js-signin-ui">
+                        <div class="preloader-wrapper big active">
+                            <div class="spinner-layer">
+                                <div class="circle-clipper left">
+                                    <div class="circle"></div>
+                                </div>
+                                <div class="gap-patch">
+                                    <div class="circle"></div>
+                                </div>
+                                <div class="circle-clipper right">
+                                    <div class="circle"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="is-hidden js-message-banner message-banner"></div>
+        <div class="is-hidden application js-app"></div>
+        <div class=js-modals-container></div>
+        <script src=moderndeck://./vendor.js></script>
+        <script src=moderndeck://./bundle.js></script>
+        <div class=windowcontrols>
+            <div class="windowcontrol min">&#xE15B;</div>
+            <div class="windowcontrol max">&#xE3C6;</div>
+            <div class="windowcontrol close" onclick="window.close();">&#xE5CD;</div>
+        </div>
+    </body>
+</html>
