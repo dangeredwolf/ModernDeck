@@ -5,6 +5,30 @@
 	Released under the MIT Licence
 */
 
+@keyframes startflowIn {
+	0% {
+		opacity:0;
+		transform:scale(1.1,1.1);
+	}
+	100% {
+		opacity:1;
+		transform:scale(1,1);
+	}
+}
+
+@keyframes materialLoginIn {
+	0% {
+		opacity:0;
+		border-radius:200px;
+		transform:translateY(30px)
+	}
+	100% {
+		opacity:1;
+		border-radius:4px;
+		transform:translateY(0)
+	}
+}
+
 img.spinner-centered {
 	display:none
 }
@@ -88,6 +112,9 @@ select,input {
 }
 
 .startflow-panel,.startflow-panel-rounded {
+	opacity:0.01;
+	animation:materialLoginIn .4s .5s cubic-bezier(.19,1,.22,1);
+	animation-fill-mode:both;
 	background:#fff;
 	color:#444;
 	box-shadow:0 10px 30px rgba(0,0,0,.75);
@@ -130,7 +157,10 @@ select,input {
 .startflow-background {
 	background-image:url("moderndeck://sources/img/bg1.jpg");
 	background-size:cover;
-	background-position:center
+	background-position:center;
+	opacity:0.01;
+	animation:startflowIn .6s .3s cubic-bezier(.19,1,.22,1);
+	animation-fill-mode:both;
 }
 
 .startflow-background:before {
@@ -152,8 +182,7 @@ select,input {
 	left:0;
 	bottom:0;
 	height:auto;
-	animation:columnFlyin .6s cubic-bezier(.19,1,.22,1);
-	overflow:hidden
+	overflow:hidden;
 }
 
 .form-login h2 {

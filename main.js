@@ -12,6 +12,7 @@ const electron = require("electron");
 const {
 	app,
 	BrowserWindow,
+	BrowserView,
 	ipcMain,
 	session,
 	systemPreferences,
@@ -28,6 +29,7 @@ const util = require("util");
 const through2 = require("through2");
 const { NitroLoad } = require("./nitroload");
 console.log(NitroLoad)
+const separator = process.platform === "win32" ? "\\" : "/"
 
 const packagedUsesDifferentDir = false;
 
@@ -49,6 +51,8 @@ const isDev = false;
 let useNitroLoad = true;
 
 let mainWindow;
+let mainView;
+let mR;
 
 let isRestarting = false;
 
@@ -184,7 +188,7 @@ function makeLoginWindow(url,teams) {
 		width: 710,
 		height: 490,
 		webPreferences: {
-			nodeIntegration: true
+			nodeIntegration: false
 		},
 		parent:mainWindow || null,
 		scrollBounce:true,
@@ -365,9 +369,16 @@ function makeWindow() {
 		x: useXY ? bounds.x : undefined,
 		y: useXY ? bounds.y : undefined,
 		webPreferences: {
-			nodeIntegration: true
+			defaultFontFamily:"Roboto",
+			nodeIntegration: true,
+			contextIsolation: false,
+			webgl: false,
+			plugins: false,
+			scrollBounce:true,
+			webviewTag:true,
+			nodeIntegrationInSubFrames:true
+			// preload: __dirname+separator+useDir+separator+"sources"+separator+"MTDinject.js"
 		},
-		scrollBounce:true,
 		autoHideMenuBar:true,
 		title:"ModernDeck",
 		icon:__dirname+useDir+"/sources/favicon.ico",
@@ -410,6 +421,20 @@ function makeWindow() {
 		});
 
 	}
+
+	mainView = new BrowserView({		webPreferences: {
+				defaultFontFamily:"Roboto",
+				nodeIntegration: true,
+				contextIsolation: false,
+				webgl: false,
+				plugins: false,
+				scrollBounce:true,
+				webviewTag:true,
+				nodeIntegrationInSubFrames:true
+				// preload: __dirname+separator+useDir+separator+"sources"+separator+"MTDinject.js"
+			}});
+	mainWindow.setBrowserView(mainView);
+	mainView.setBounds({ x: 0, y: 0, width: mainWindow.getSize()[0], height: mainWindow.getSize()[1] })
 
 	// Prevent changing the Page Title
 
@@ -457,10 +482,10 @@ function makeWindow() {
 
 	}
 
-	mainWindow.webContents.on('dom-ready', (event, url) => {
+	mainView.webContents.on('dom-ready', (event, url) => {
 
 		// if (useNitroLoad && NitroLoad.ready()) {
-		// 	mainWindow.webContents.executeJavaScript(`
+		// 	mainView.webContents.executeJavaScript(`
 		// 		var InjectScript = document.createElement("script");
 		// 		InjectScript.src = "${NitroLoad.vendor}";
 		// 		InjectScript.type = "text/javascript";
@@ -474,18 +499,18 @@ function makeWindow() {
 		// }
 
 
-		mainWindow.webContents.executeJavaScript(
+		mainView.webContents.executeJavaScript(
 			(store.get("mtd_fullscreen") ? 'document.querySelector("html").classList.add("mtd-js-app");' : mtdAppTag)
 		)
 
 		if (useNitroLoad) {
-			mainWindow.webContents.executeJavaScript(
+			mainView.webContents.executeJavaScript(
 				'document.querySelector("html").classList.add("mtd-nitroload");'
 			)
-			return;
 		}
+mainView.webContents.openDevTools()
 
-		mainWindow.webContents.executeJavaScript(
+		mainView.webContents.executeJavaScript(
 			'\
 			var injurl = document.createElement("div");\
 			injurl.setAttribute("type","moderndeck://");\
@@ -509,10 +534,11 @@ function makeWindow() {
 			InjectScript.src = "moderndeck://sources/MTDinject.js";\
 			InjectScript.type = "text/javascript";\
 			document.head.appendChild(InjectScript);\
-		');
+		'
+	);
 	});
 
-	mainWindow.webContents.on('did-fail-load', (event, code, desc) => {
+	mainView.webContents.on('did-fail-load', (event, code, desc) => {
 		let msg = "ModernDeck failed to start.\n\n";
 
 		console.log(desc);
@@ -609,7 +635,7 @@ function makeWindow() {
 		We need to replace the content security policy in order to load any third-party content, including JS, CSS, fonts
 	*/
 
-	mainWindow.webContents.session.webRequest.onHeadersReceived(
+	mainView.webContents.session.webRequest.onHeadersReceived(
 		{urls:["https://tweetdeck.twitter.com/*","https://twitter.com/i/cards/*"]},
 		(details, callback) => {
 			let foo = details.responseHeaders;
@@ -619,7 +645,7 @@ function makeWindow() {
 		}
 	);
 
-	// mainWindow.webContents.session.webRequest.onHeadersReceived(
+	// mainView.webContents.session.webRequest.onHeadersReceived(
 	// 	{urls:["https://*.twitter.com/*","https://*.twimg.com/*"]},
 	// 	(details, callback) => {
 	// 		let foo = details.responseHeaders;
@@ -637,7 +663,7 @@ function makeWindow() {
 		We also replace twitter card CSS to make those look pretty
 	*/
 
-	mainWindow.webContents.session.webRequest.onBeforeRequest({urls:["https://ton.twimg.com/*"]}, (details,callback) => {
+	mainView.webContents.session.webRequest.onBeforeRequest({urls:["https://ton.twimg.com/*"]}, (details,callback) => {
 
 		if (details.url.indexOf(".css") > -1 && (details.url.indexOf("bundle") > -1 && details.url.indexOf("dist") > -1) && !disableCss) {
 			callback({cancel:true});
@@ -652,7 +678,7 @@ function makeWindow() {
 		callback({cancel:false});
 	});
 
-	// mainWindow.webContents.session.webRequest.onBeforeSendHeaders(
+	// mainView.webContents.session.webRequest.onBeforeSendHeaders(
 	// 	{urls:["https://*.twitter.com/*","https://*.twimg.com/*"]},
 	// 	(details, callback) => {
 	// 		let foo = details.requestHeaders;
@@ -675,7 +701,7 @@ function makeWindow() {
 	// 	}
 	// );
 	//
-	// mainWindow.webContents.session.webRequest.onBeforeSendHeaders(
+	// mainView.webContents.session.webRequest.onBeforeSendHeaders(
 	// 	{urls:["https://api.twitter.com/1.1/help/*"]},
 	// 	(details, callback) => {
 	// 		console.error("fuck you")
@@ -697,13 +723,16 @@ function makeWindow() {
 	try {
 		if (useNitroLoad)
 			NitroLoad.goReplace();
-		// if (useNitroLoad)
-		// 	mainWindow.loadURL("moderndeck://./nitroload.html");
-		// else
+		if (useNitroLoad)
+			mainWindow.loadURL("moderndeck://./nitroload.html");
+		else
 			mainWindow.loadURL("https://tweetdeck.twitter.com");
 	} catch(e) {
 		console.error(e);
 	}
+
+
+	mainView.webContents.loadURL("https://tweetdeck.twitter.com");
 
 	/*
 
@@ -716,7 +745,7 @@ function makeWindow() {
 
 	*/
 
-	mainWindow.webContents.on("will-navigate", (event, url) => {
+	mainView.webContents.on("will-navigate", (event, url) => {
 		if (useNitroLoad)
 			NitroLoad.goReplace();
 		const { shell } = electron;
@@ -743,7 +772,7 @@ function makeWindow() {
 
 	*/
 
-	mainWindow.webContents.on("new-window", (event, url) => {
+	mainView.webContents.on("new-window", (event, url) => {
 		const { shell } = electron;
 		event.preventDefault();
 		console.log(url);
@@ -764,7 +793,7 @@ function makeWindow() {
 
 	// i actually forget why this is here
 
-	mainWindow.webContents.on("context-menu", (event, params) => {
+	mainView.webContents.on("context-menu", (event, params) => {
 		mainWindow.send("context-menu", params);
 	});
 
@@ -800,35 +829,39 @@ function makeWindow() {
 	*/
 
 	ipcMain.on("copy", (event) => {
-		mainWindow.webContents.copy();
+		mainView.webContents.copy();
+	});
+
+	ipcMain.on("nitroload-begin", (event) => {
+		NitroLoad.goReplace();
 	});
 
 	ipcMain.on("cut", (event) => {
-		mainWindow.webContents.cut();
+		mainView.webContents.cut();
 	});
 
 	ipcMain.on("paste", (event) => {
-		mainWindow.webContents.paste();
+		mainView.webContents.paste();
 	});
 
 	ipcMain.on("delete", (event) => {
-		mainWindow.webContents.delete();
+		mainView.webContents.delete();
 	});
 
 	ipcMain.on("selectAll", (event) => {
-		mainWindow.webContents.selectAll();
+		mainView.webContents.selectAll();
 	});
 
 	ipcMain.on("undo", (event) => {
-		mainWindow.webContents.undo();
+		mainView.webContents.undo();
 	});
 
 	ipcMain.on("redo", (event) => {
-		mainWindow.webContents.redo();
+		mainView.webContents.redo();
 	});
 
 	ipcMain.on("copyImage", (event,arg) => {
-		mainWindow.webContents.copyImageAt(arg.x,arg.y);
+		mainView.webContents.copyImageAt(arg.x,arg.y);
 	});
 
 	ipcMain.on("saveImage", (event,arg) => {
@@ -836,7 +869,7 @@ function makeWindow() {
 	});
 
 	ipcMain.on("inspectElement", (event,arg) => {
-		mainWindow.webContents.inspectElement(arg.x,arg.y);
+		mainView.webContents.inspectElement(arg.x,arg.y);
 	});
 
 	// mtdInject initiated app restart
@@ -901,7 +934,7 @@ function makeWindow() {
 	// Change maximise to restore size window
 
 	mainWindow.on("maximize", () => {
-		mainWindow.webContents.executeJavaScript('\
+		mainView.webContents.executeJavaScript('\
 			document.querySelector("html").classList.add("mtd-maximized");\
 			document.querySelector(".windowcontrol.max").innerHTML = "&#xE3E0";\
 		');
@@ -910,7 +943,7 @@ function makeWindow() {
 	// Change restore size window to maximise
 
 	mainWindow.on("unmaximize", () => {
-		mainWindow.webContents.executeJavaScript('\
+		mainView.webContents.executeJavaScript('\
 			document.querySelector("html").classList.remove("mtd-maximized");\
 			document.querySelector(".windowcontrol.max").innerHTML = "&#xE3C6";\
 		');
@@ -927,7 +960,7 @@ function makeWindow() {
 	*/
 
 	mainWindow.on("enter-full-screen", () => {
-		mainWindow.webContents.executeJavaScript('document.querySelector("html").classList.remove("mtd-app");\
+		mainView.webContents.executeJavaScript('document.querySelector("html").classList.remove("mtd-app");\
 			document.querySelector("html").classList.remove("mtd-app-win");\
 			document.querySelector("html").classList.remove("mtd-app-mac");\
 			document.querySelector("html").classList.remove("mtd-app-linux");\
@@ -940,7 +973,7 @@ function makeWindow() {
 	}
 
 	mainWindow.on("leave-full-screen", () => {
-		mainWindow.webContents.executeJavaScript(mtdAppTag);
+		mainView.webContents.executeJavaScript(mtdAppTag);
 	});
 }
 
@@ -989,10 +1022,10 @@ app.on("activate", () => {
 // Tell mtdInject that there was an update error
 
 autoUpdater.on("error", (e,f,g) => {
-	if (!mainWindow || !mainWindow.webContents) {
+	if (!mainWindow || !mainView.webContents) {
 		return;
 	}
-	mainWindow.webContents.send("error",e,f,g);
+	mainView.webContents.send("error",e,f,g);
 });
 
 // Let MTDinject know that we are...
@@ -1000,42 +1033,42 @@ autoUpdater.on("error", (e,f,g) => {
 // ... actively checking for updates
 
 autoUpdater.on("checking-for-update", (e) => {
-	if (!mainWindow || !mainWindow.webContents) {
+	if (!mainWindow || !mainView.webContents) {
 		return;
 	}
-	mainWindow.webContents.send("checking-for-update",e);
+	mainView.webContents.send("checking-for-update",e);
 });
 
 // ...currently downloading updates
 autoUpdater.on("download-progress", (e) => {
-	if (!mainWindow || !mainWindow.webContents) {
+	if (!mainWindow || !mainView.webContents) {
 		return;
 	}
-	mainWindow.webContents.send("download-progress",e);
+	mainView.webContents.send("download-progress",e);
 });
 
 // ...have found an update
 autoUpdater.on("update-available", (e) => {
-	if (!mainWindow || !mainWindow.webContents) {
+	if (!mainWindow || !mainView.webContents) {
 		return;
 	}
-	mainWindow.webContents.send("update-available",e);
+	mainView.webContents.send("update-available",e);
 });
 
 // ...have already downloaded updates
 autoUpdater.on("update-downloaded", (e) => {
-	if (!mainWindow || !mainWindow.webContents) {
+	if (!mainWindow || !mainView.webContents) {
 		return;
 	}
-	mainWindow.webContents.send("update-downloaded",e);
+	mainView.webContents.send("update-downloaded",e);
 });
 
 // ...haven't found any updates
 autoUpdater.on("update-not-available", (e) => {
-	if (!mainWindow || !mainWindow.webContents) {
+	if (!mainWindow || !mainView.webContents) {
 		return;
 	}
-	mainWindow.webContents.send("update-not-available",e);
+	mainView.webContents.send("update-not-available",e);
 });
 
 // mtdInject can send manual update check requests
@@ -1052,7 +1085,7 @@ ipcMain.on("changeChannel", (e) => {
 // OS inverted colour scheme (high contrast) mode changed. We automatically respond to changes for accessibility
 
 systemPreferences.on("inverted-color-scheme-changed", (e,v) => {
-	mainWindow.webContents.send("inverted-color-scheme-changed",v);
+	mainView.webContents.send("inverted-color-scheme-changed",v);
 });
 
 if (process.platform === 'darwin') {
@@ -1060,7 +1093,7 @@ if (process.platform === 'darwin') {
 		systemPreferences.subscribeNotification(
 			'AppleInterfaceThemeChangedNotification',
 			() => {
-				mainWindow.webContents.send("color-scheme-changed",systemPreferences.isDarkMode() ? "dark" : "light");
+				mainView.webContents.send("color-scheme-changed",systemPreferences.isDarkMode() ? "dark" : "light");
 			}
 		)
 	} catch(e) {
@@ -1080,7 +1113,7 @@ setTimeout(() => {
 	try {
 		autoUpdater.checkForUpdates();
 
-		mainWindow.webContents.send(
+		mainView.webContents.send(
 			"inverted-color-scheme-changed",
 			systemPreferences.isInvertedColorScheme()
 		);
