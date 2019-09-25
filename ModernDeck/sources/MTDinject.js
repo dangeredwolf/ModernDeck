@@ -20,6 +20,7 @@ const giphyKey = "Vb45700bexRDqCkbMdUmBwDvtkWT9Vj2"; // swiper no swipey
 let lastGiphyURL = "";
 let isLoadingMoreGifs = false;
 let lastError = undefined;
+let useNewEmojiPicker = true;
 
 let loginIntervalTick = 0;
 
@@ -27,10 +28,10 @@ const forceFeatureFlags = false;
 const useRaven = false;
 const debugWelcome = false;
 
-let replacedLoadingSpinnerNew = document.querySelector("html").classList.contains("mtd-nitroload");
+let replacedLoadingSpinnerNew = false;
 let sendingFeedback = false;
 
-let injectedFonts = document.querySelector("html").classList.contains("mtd-nitroload");
+let injectedFonts = false;
 
 let ugltStarted = false;
 let useNativeContextMenus = false;
@@ -1208,12 +1209,12 @@ if (typeof MTDURLExchange === "object" && typeof MTDURLExchange.getAttribute ===
 	Hence why twitter sucks
 */
 
-if (!document.querySelector("html").classList.contains("mtd-nitroload")) {
+//if (!document.querySelector("html").classList.contains("mtd-nitroload")) {
 	let twitterSucks = document.createElement("script");
 	twitterSucks.type = "text/javascript";
 	twitterSucks.src = mtdBaseURL + "sources/libraries/moduleraid.min.js";
 	document.head.appendChild(twitterSucks);
-}
+//}
 
 /*
 	Shorthand for creating a mutation observer and observing
@@ -1517,7 +1518,7 @@ function showDiag(str) {
 	https://github.com/dangeredwolf/ModernDeck/wiki/Preference-Management-Functions
 */
 
-function getPref(id) {
+function getPref(id, defaul) {
 	if (id === "mtd_core_theme") {
 		return TD.settings.getTheme();
 	}
@@ -1536,6 +1537,8 @@ function getPref(id) {
 	if (debugStorageSys)
 		console.log("getPref "+id+"? "+val);
 
+	if (typeof val === "undefined")
+		return defaul;
 
 	if (val === "true")
 		return true;
@@ -3551,7 +3554,10 @@ function hookComposer() {
 	});
 
 	if ($(".mtd-emoji").length <= 0) {
-		if (isApp && useNativeEmojiPicker()) {
+		if (useNewEmojiPicker) {
+			makeEmojiPicker();
+		}
+		else if (isApp && useNativeEmojiPicker()) {
 			$(".compose-text").after(
 				make("div").addClass("mtd-emoji").append(
 					make("div").addClass("mtd-emoji-button btn").append(
@@ -4110,6 +4116,17 @@ function mtdAppFunctions() {
 
 	// Enable high contrast if system is set to high contrast
 
+
+	$(document).on("uiDrawerHideDrawer",(e) => {
+		getIpc().send("drawerClose");
+	});
+
+	$(document).on("uiDrawerActive",(e) => {
+		if (!$(".application").hasClass("hide-detail-view-inline"))
+			getIpc().send("drawerOpen");
+	});
+
+
 	ipcRenderer.on("inverted-color-scheme-changed", (e, enabled) => {
 		if (enabled && getPref("mtd_highcontrast") !== true) {
 			try {
@@ -4529,12 +4546,12 @@ function coreInit() {
 		}
 	}
 	// append the emoji picker script
-	if (!html.hasClass("mtd-nitroload"))
-		head.append(
-			make("script").attr("type","text/javascript").attr("src",mtdBaseURL + "sources/libraries/emojipicker.js"),
-			make("script").attr("type","text/javascript").attr("src",mtdBaseURL + "sources/libraries/jquery.visible.js")//,
-			//make("script").attr("type","text/javascript").attr("src",mtdBaseURL + "sources/libraries/twemoji.min.js")
-		);
+	head.append(
+		make("script").attr("type","text/javascript").attr("src",mtdBaseURL + "sources/libraries/emojidata.js"),
+		make("script").attr("type","text/javascript").attr("src",mtdBaseURL + "sources/libraries/twemoji.min.js"),
+		make("script").attr("type","text/javascript").attr("src",mtdBaseURL + "sources/libraries/newemojipicker.js"),
+		make("script").attr("type","text/javascript").attr("src",mtdBaseURL + "sources/libraries/jquery.visible.js")
+	);
 
 
 	if (useRaven) {

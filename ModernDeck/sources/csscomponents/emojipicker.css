@@ -5,6 +5,57 @@
 	Released under the MIT Licence
 */
 
+
+:root {
+	--emojiFadeAnimationTime:.3s
+}
+
+.emojibtn {
+	box-sizing:content-box;
+	width:23px;
+	margin:4px;
+	transition:width var(--emojiFadeAnimationTime) var(--animationTiming) 0.05s,opacity var(--emojiFadeAnimationTime) var(--animationTiming)
+}
+
+.emojibtn>i {
+	cursor:pointer
+}
+
+.mtd-emoji-category {
+	transition:height var(--emojiFadeAnimationTime) var(--animationTiming) 0.05s,opacity var(--emojiFadeAnimationTime) var(--animationTiming)
+}
+
+.mtd-emoji-category.emojihidecat {
+	height:0;
+	opacity:0
+}
+
+.mtd-emoji-code {
+	text-indent:-9999em;
+	height:24px;
+	width:24px;
+	top:-3px;
+	position:relative;
+	display:inline-block;
+	margin:0.15em;
+	line-height:normal;
+	vertical-align:middle;
+	background-size:24px 24px;
+	cursor:pointer
+}
+
+.emojifadeout {
+	opacity:0;
+	width:0;
+	margin:0;
+	pointer-events:none
+}
+
+.emojifadein {
+	opacity:1;
+	width:23px
+}
+
 .mtd-emoji,
 .mtd-emoji * {
 	box-sizing:border-box
@@ -20,7 +71,7 @@
 	height:0!important;
 	position:absolute!important;
 	bottom:0!important;
-	top:initial!important;
+	top:50px!important;
 	pointer-events:none;
 	width:100%
 }
@@ -28,7 +79,7 @@
 .mtd-emoji-button {
 	position:absolute;
 	right:10px;
-	bottom:69px;
+	bottom:-56px;
 	cursor:pointer;
 	pointer-events:all;
 	color:var(--placeholderTextColor)!important;
@@ -45,8 +96,8 @@
 	height:17px;
 	position:absolute;
 	right:6px;
-	top:5px;
-	transition:all 400ms var(--animationTiming)
+	top: 5px;
+	transition:all 400ms var(--animationTiming);
 }
 
 .mtd-emoji-picker {
@@ -55,10 +106,14 @@
 	top:120px;
 	right:0;
 	transition:all 0.25s var(--animationTiming)!important;
-	opacity:0;
+	opacity:1;
 	animation:calendarMenuDown 0.3s var(--animationTiming)!important;
 	margin-top:22px;
-	margin-bottom:10px
+	margin-bottom:10px;
+}
+
+.mtd-emoji-picker.hidden {
+	opacity:0
 }
 
 .inline-reply .mtd-emoji-picker {
@@ -160,16 +215,14 @@
 	background:#5e4d43
 }
 
-.mtd-emoji-tones-bullet>.btn-tone,
-.mtd-emoji-tones-square>.btn-tone {
+.mtd-emoji-tones-bullet>.btn-tone {
 	width:20px;
 	height:20px;
 	margin:0;
 	margin-right:5px
 }
 
-.mtd-emoji-tones-bullet>.btn-tone:after,
-.mtd-emoji-tones-square>.btn-tone:after {
+.mtd-emoji-tones>.btn-tone:after {
 	content:"";
 	position:absolute;
 	display:block;
@@ -229,16 +282,6 @@
 
 .mtd-emoji-category-block {
 	padding:0 0 0 7px
-}
-
-.emojibtn {
-	box-sizing:content-box;
-	width:23px;
-	padding:4px
-}
-
-.emojibtn>i {
-	cursor:pointer
 }
 
 .mtd-emoji-button.active+.mtd-emoji-picker {

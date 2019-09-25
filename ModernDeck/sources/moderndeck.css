@@ -5224,11 +5224,11 @@ html:not(.mtd-head-left) body .application.hide-detail-view-inline .column-navig
 
 .compose .js-quote-tweet-holder .quoted-tweet {
 	padding-left:10px!important;
-	padding-right:30px!important;
+	padding-right: 10px!important;
 	position:relative;
-	width:calc(var(--composeWidth) - 70px);
+	width: calc(var(--composeWidth) - 51px);
 	padding-bottom:10px!important;
-	margin-top:0
+	margin-top:0;
 }
 
 .is-options-open .more-tweets-btn-container--hidden {
@@ -9011,8 +9011,12 @@ html:not(.mtd-classic-nav) .js-hide-drawer:not(.tweet-button):not([data-title="A
 	margin-top:50px
 }
 
-.video-container>.js-custom-video-controls,.video-container>video {
-	margin-bottom:50px
+.video-container>video {
+	margin-bottom:50px;
+}
+
+.video-container>.js-custom-video-controls {
+	margin-bottom:20px
 }
 
 .js-mute-unmute {

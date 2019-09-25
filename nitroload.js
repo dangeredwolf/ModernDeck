@@ -186,7 +186,7 @@ class NitroLoad {
                             <div class=js-modals-container></div>
                             <script src=moderndeck://./vendor.js></script>
                             <script src=moderndeck://./bundle.js></script>
-                            <script type="text/javascript" src="moderndeck://sources/libraries/moduleraid.min.js"></script>
+                            <script src="moderndeck://sources/libraries/moduleraid.min.js"></script>
                             <script src="moderndeck://sources/MTDinject.js" type="text/javascript"></script>
                             <script src="moderndeck://sources/libraries/jquery.visible.js" type="text/javascript"></script>
                         </body>`);

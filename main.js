@@ -85,10 +85,10 @@ const template = [
 		label: "ModernDeck",
 		role: "appMenu",
 		submenu: [
-			{ label: "About ModernDeck...", click() { if (!mainWindow){return;}mainWindow.send("aboutMenu"); } },
+			{ label: "About ModernDeck...", click() { if (!mainView){return;}mainView.webContents.send("aboutMenu"); } },
 			{ type: "separator" },
-			{ label: "Preferences...", click(){ if (!mainWindow){return;}mainWindow.send("openSettings"); } },
-			{ label: "Accounts...", click(){ if (!mainWindow){return;}mainWindow.send("accountsMan"); } },
+			{ label: "Preferences...", click(){ if (!mainView){return;}mainView.webContents.send("openSettings"); } },
+			{ label: "Accounts...", click(){ if (!mainView){return;}mainView.webContents.send("accountsMan"); } },
 			{ type: "separator" },
 			{ role: "services" },
 			{ type: "separator" },
@@ -103,8 +103,8 @@ const template = [
 		label: "File",
 		role: "fileMenu",
 		submenu: [
-			{ label: "New Tweet...", click(){ if (!mainWindow){return;}mainWindow.send("newTweet"); } },
-			{ label: "New Direct Message...", click(){ if (!mainWindow){return;}mainWindow.send("newDM"); } },
+			{ label: "New Tweet...", click(){ if (!mainView){return;}mainView.webContents.send("newTweet"); } },
+			{ label: "New Direct Message...", click(){ if (!mainView){return;}mainView.webContents.send("newDM"); } },
 			{ type: "separator" },
 			{ role: "close" }
 		]
@@ -161,8 +161,8 @@ const template = [
 	{
 		role: "help",
 		submenu: [
-			{ label: "Send Feedback", click(){ if (!mainWindow){return;}mainWindow.send("sendFeedback");}},
-			{ label: "Message @ModernDeck", click(){ if (!mainWindow){electron.shell.openExternal("https://twitter.com/messages/compose?recipient_id=2927859037");return;}mainWindow.send("msgModernDeck"); } },
+			{ label: "Send Feedback", click(){ if (!mainView){return;}mainView.webContents.send("sendFeedback");}},
+			{ label: "Message @ModernDeck", click(){ if (!mainView){electron.shell.openExternal("https://twitter.com/messages/compose?recipient_id=2927859037");return;}mainView.webContents.send("msgModernDeck"); } },
 		]
 	}
 ]
@@ -312,6 +312,9 @@ function saveImageAs(url) {
 // we should make use of this soon
 
 function saveWindowBounds() {
+	if (mainWindow === null) {
+		return;
+	}
 	try {
 		let bounds = mainWindow.getBounds();
 
@@ -435,7 +438,8 @@ function makeWindow() {
 			}});
 	mainWindow.setBrowserView(mainView);
 	mainView.setBounds({ x: 0, y: 0, width: mainWindow.getSize()[0], height: mainWindow.getSize()[1] })
-
+	mainView.setAutoResize({width:true,height:true});
+	mainView.setBackgroundColor("#263238")
 	// Prevent changing the Page Title
 
 	mainWindow.on("page-title-updated", (event,url) => {
@@ -502,13 +506,7 @@ function makeWindow() {
 		mainView.webContents.executeJavaScript(
 			(store.get("mtd_fullscreen") ? 'document.querySelector("html").classList.add("mtd-js-app");' : mtdAppTag)
 		)
-
-		if (useNitroLoad) {
-			mainView.webContents.executeJavaScript(
-				'document.querySelector("html").classList.add("mtd-nitroload");'
-			)
-		}
-mainView.webContents.openDevTools()
+		mainView.webContents.openDevTools();
 
 		mainView.webContents.executeJavaScript(
 			'\
@@ -730,6 +728,7 @@ mainView.webContents.openDevTools()
 	} catch(e) {
 		console.error(e);
 	}
+	mainWindow.loadURL("moderndeck://./view.html");
 
 
 	mainView.webContents.loadURL("https://tweetdeck.twitter.com");
@@ -794,7 +793,7 @@ mainView.webContents.openDevTools()
 	// i actually forget why this is here
 
 	mainView.webContents.on("context-menu", (event, params) => {
-		mainWindow.send("context-menu", params);
+		mainView.webContents.send("context-menu", params);
 	});
 
 	/*
@@ -809,6 +808,17 @@ mainView.webContents.openDevTools()
 		console.log(newMenu);
 		newMenu.popup();
 	});
+
+	ipcMain.on("drawerOpen", (event, params) => {
+		console.log("open");
+		mainWindow.webContents.executeJavaScript("document.querySelector(\"html\").classList.add(\"mtd-drawer-open\");");
+	});
+	
+	ipcMain.on("drawerClose", (event, params) => {
+		console.log("close");
+		mainWindow.webContents.executeJavaScript("document.querySelector(\"html\").classList.remove(\"mtd-drawer-open\");");
+	});
+
 
 	ipcMain.on("maximizeButton", (event) => {
 		let window = BrowserWindow.getFocusedWindow();
@@ -975,6 +985,7 @@ mainView.webContents.openDevTools()
 	mainWindow.on("leave-full-screen", () => {
 		mainView.webContents.executeJavaScript(mtdAppTag);
 	});
+	mainWindow.webContents.executeJavaScript(mtdAppTag);
 }
 
 // Register moderndeck:// protocol for accessing moderndeck resources, like CSS
