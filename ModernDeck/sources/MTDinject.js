@@ -20,6 +20,7 @@ const giphyKey = "Vb45700bexRDqCkbMdUmBwDvtkWT9Vj2"; // swiper no swipey
 let lastGiphyURL = "";
 let isLoadingMoreGifs = false;
 let lastError = undefined;
+let useNewEmojiPicker = true;
 
 let loginIntervalTick = 0;
 
@@ -29,6 +30,8 @@ const debugWelcome = false;
 
 let replacedLoadingSpinnerNew = false;
 let sendingFeedback = false;
+
+let injectedFonts = false;
 
 let ugltStarted = false;
 let useNativeContextMenus = false;
@@ -169,8 +172,6 @@ const isiOS = navigator.userAgent.indexOf("iPhone OS") > -1;
 // Use standard macOS symbols instead of writing it out like on Windows
 
 const ctrlShiftText = isMac ? "⌃⇧" : "Ctrl+Shift+";
-
-let injectedFonts = false;
 
 // We define these later. FYI these are jQuery objects.
 
@@ -1208,10 +1209,12 @@ if (typeof MTDURLExchange === "object" && typeof MTDURLExchange.getAttribute ===
 	Hence why twitter sucks
 */
 
-let twitterSucks = document.createElement("script");
-twitterSucks.type = "text/javascript";
-twitterSucks.src = mtdBaseURL + "sources/libraries/moduleraid.min.js";
-document.head.appendChild(twitterSucks);
+//if (!document.querySelector("html").classList.contains("mtd-nitroload")) {
+	let twitterSucks = document.createElement("script");
+	twitterSucks.type = "text/javascript";
+	twitterSucks.src = mtdBaseURL + "sources/libraries/moduleraid.min.js";
+	document.head.appendChild(twitterSucks);
+//}
 
 /*
 	Shorthand for creating a mutation observer and observing
@@ -1515,7 +1518,7 @@ function showDiag(str) {
 	https://github.com/dangeredwolf/ModernDeck/wiki/Preference-Management-Functions
 */
 
-function getPref(id) {
+function getPref(id, defaul) {
 	if (id === "mtd_core_theme") {
 		return TD.settings.getTheme();
 	}
@@ -1534,6 +1537,8 @@ function getPref(id) {
 	if (debugStorageSys)
 		console.log("getPref "+id+"? "+val);
 
+	if (typeof val === "undefined")
+		return defaul;
 
 	if (val === "true")
 		return true;
@@ -3549,7 +3554,10 @@ function hookComposer() {
 	});
 
 	if ($(".mtd-emoji").length <= 0) {
-		if (isApp && useNativeEmojiPicker()) {
+		if (useNewEmojiPicker) {
+			makeEmojiPicker();
+		}
+		else if (isApp && useNativeEmojiPicker()) {
 			$(".compose-text").after(
 				make("div").addClass("mtd-emoji").append(
 					make("div").addClass("mtd-emoji-button btn").append(
@@ -4108,6 +4116,17 @@ function mtdAppFunctions() {
 
 	// Enable high contrast if system is set to high contrast
 
+
+	$(document).on("uiDrawerHideDrawer",(e) => {
+		getIpc().send("drawerClose");
+	});
+
+	$(document).on("uiDrawerActive",(e) => {
+		if (!$(".application").hasClass("hide-detail-view-inline"))
+			getIpc().send("drawerOpen");
+	});
+
+
 	ipcRenderer.on("inverted-color-scheme-changed", (e, enabled) => {
 		if (enabled && getPref("mtd_highcontrast") !== true) {
 			try {
@@ -4177,42 +4196,60 @@ function mtdAppFunctions() {
 		$(".js-dm-button").click();
 	});
 
+	let minimise, maximise, closeButton;
+
 	if (html.hasClass("mtd-js-app")) {
-		let minimise = make("button")
-		.addClass("windowcontrol min")
-		.html("&#xE15B")
-		.click((data,handler) => {
+		if ($(".windowcontrols").length <= 0) {
+			minimise = make("button")
+			.addClass("windowcontrol min")
+			.html("&#xE15B")
+
+
+			maximise = make("button")
+			.addClass("windowcontrol max")
+			.html("&#xE3C6")
+
+
+			if (html.hasClass("mtd-maximized")) {
+				maximise.html("&#xE3E0")
+			}
+
+			closeButton = make("button")
+			.addClass("windowcontrol close")
+			.html("&#xE5CD")
+
+
+
+			let windowcontrols = make("div")
+			.addClass("windowcontrols")
+			.append(minimise)
+			.append(maximise)
+			.append(closeButton);
+			body.append(windowcontrols,
+				make("div").addClass("mtd-app-drag-handle")
+			);
+		} else {
+			minimise = $(".windowcontrol.min");
+			maximise = $(".windowcontrol.max");
+			closeButton = $(".windowcontrol.close");
+
+			if (html.hasClass("mtd-maximized")) {
+				maximise.html("&#xE3E0")
+			}
+		}
+
+		minimise.click((data,handler) => {
 			ipcRenderer.send('minimize');
 		});
 
-		let maximise = make("button")
-		.addClass("windowcontrol max")
-		.html("&#xE3C6")
-		.click((data,handler) => {
+		maximise.click((data,handler) => {
 			ipcRenderer.send('maximizeButton');
 		});
 
-		if (html.hasClass("mtd-maximized")) {
-			maximise.html("&#xE3E0")
-		}
-
-		let close = make("button")
-		.addClass("windowcontrol close")
-		.html("&#xE5CD")
-		.click(() => {
+		closeButton.click(() => {
 			window.close();
 		});
 
-
-		let windowcontrols = make("div")
-		.addClass("windowcontrols")
-		.append(minimise)
-		.append(maximise)
-		.append(close);
-
-		body.append(windowcontrols,
-			make("div").addClass("mtd-app-drag-handle")
-		);
 	}
 
 	ipcRenderer.on('context-menu', (event, p) => {
@@ -4509,11 +4546,11 @@ function coreInit() {
 		}
 	}
 	// append the emoji picker script
-
 	head.append(
-		make("script").attr("type","text/javascript").attr("src",mtdBaseURL + "sources/libraries/emojipicker.js"),
-		make("script").attr("type","text/javascript").attr("src",mtdBaseURL + "sources/libraries/jquery.visible.js")//,
-		//make("script").attr("type","text/javascript").attr("src",mtdBaseURL + "sources/libraries/twemoji.min.js")
+		make("script").attr("type","text/javascript").attr("src",mtdBaseURL + "sources/libraries/emojidata.js"),
+		make("script").attr("type","text/javascript").attr("src",mtdBaseURL + "sources/libraries/twemoji.min.js"),
+		make("script").attr("type","text/javascript").attr("src",mtdBaseURL + "sources/libraries/newemojipicker.js"),
+		make("script").attr("type","text/javascript").attr("src",mtdBaseURL + "sources/libraries/jquery.visible.js")
 	);
 
 

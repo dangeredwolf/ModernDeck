@@ -1045,10 +1045,7 @@ function init(self, source, options) {
 		if (theInput.setSelectionRange) {
 			let sS = theInput.selectionStart;
 			let sE = theInput.selectionEnd;
-			console.log("sS "+sS);
-			console.log("sE "+sE);
 			theInput.value = theInput.value.substr(0, sS) + theEmoji + theInput.value.substr(sE);
-
 			theInput.setSelectionRange(sS + theEmoji.length, sS + theEmoji.length);
 		} else if (theInput.createTextRange) {
 			document.selection.createRange().text = theEmoji;

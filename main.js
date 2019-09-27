@@ -12,6 +12,7 @@ const electron = require("electron");
 const {
 	app,
 	BrowserWindow,
+	BrowserView,
 	ipcMain,
 	session,
 	systemPreferences,
@@ -26,6 +27,9 @@ const path = require("path");
 const url = require("url");
 const util = require("util");
 const through2 = require("through2");
+const { NitroLoad } = require("./nitroload");
+console.log(NitroLoad)
+const separator = process.platform === "win32" ? "\\" : "/"
 
 const packagedUsesDifferentDir = false;
 
@@ -44,8 +48,11 @@ const isAppX = !!process.windowsStore;
 const isMAS = !!process.mas;
 
 const isDev = false;
+let useNitroLoad = true;
 
 let mainWindow;
+let mainView;
+let mR;
 
 let isRestarting = false;
 
@@ -78,10 +85,10 @@ const template = [
 		label: "ModernDeck",
 		role: "appMenu",
 		submenu: [
-			{ label: "About ModernDeck...", click() { if (!mainWindow){return;}mainWindow.send("aboutMenu"); } },
+			{ label: "About ModernDeck...", click() { if (!mainView){return;}mainView.webContents.send("aboutMenu"); } },
 			{ type: "separator" },
-			{ label: "Preferences...", click(){ if (!mainWindow){return;}mainWindow.send("openSettings"); } },
-			{ label: "Accounts...", click(){ if (!mainWindow){return;}mainWindow.send("accountsMan"); } },
+			{ label: "Preferences...", click(){ if (!mainView){return;}mainView.webContents.send("openSettings"); } },
+			{ label: "Accounts...", click(){ if (!mainView){return;}mainView.webContents.send("accountsMan"); } },
 			{ type: "separator" },
 			{ role: "services" },
 			{ type: "separator" },
@@ -96,8 +103,8 @@ const template = [
 		label: "File",
 		role: "fileMenu",
 		submenu: [
-			{ label: "New Tweet...", click(){ if (!mainWindow){return;}mainWindow.send("newTweet"); } },
-			{ label: "New Direct Message...", click(){ if (!mainWindow){return;}mainWindow.send("newDM"); } },
+			{ label: "New Tweet...", click(){ if (!mainView){return;}mainView.webContents.send("newTweet"); } },
+			{ label: "New Direct Message...", click(){ if (!mainView){return;}mainView.webContents.send("newDM"); } },
 			{ type: "separator" },
 			{ role: "close" }
 		]
@@ -154,8 +161,8 @@ const template = [
 	{
 		role: "help",
 		submenu: [
-			{ label: "Send Feedback", click(){ if (!mainWindow){return;}mainWindow.send("sendFeedback");}},
-			{ label: "Message @ModernDeck", click(){ if (!mainWindow){electron.shell.openExternal("https://twitter.com/messages/compose?recipient_id=2927859037");return;}mainWindow.send("msgModernDeck"); } },
+			{ label: "Send Feedback", click(){ if (!mainView){return;}mainView.webContents.send("sendFeedback");}},
+			{ label: "Message @ModernDeck", click(){ if (!mainView){electron.shell.openExternal("https://twitter.com/messages/compose?recipient_id=2927859037");return;}mainView.webContents.send("msgModernDeck"); } },
 		]
 	}
 ]
@@ -181,7 +188,7 @@ function makeLoginWindow(url,teams) {
 		width: 710,
 		height: 490,
 		webPreferences: {
-			nodeIntegration: true
+			nodeIntegration: false
 		},
 		parent:mainWindow || null,
 		scrollBounce:true,
@@ -199,9 +206,7 @@ function makeLoginWindow(url,teams) {
 		const { shell } = electron;
 
 		if (url.indexOf("https://tweetdeck.twitter.com") >= 0 && !teams) {
-			if (url.indexOf("https://tweetdeck.twitter.com/web/success.html") < 0) {
-				mainWindow.loadURL(url);
-			}
+
 			loginWindow.close();
 			event.preventDefault();
 			return;
@@ -307,6 +312,9 @@ function saveImageAs(url) {
 // we should make use of this soon
 
 function saveWindowBounds() {
+	if (mainWindow === null) {
+		return;
+	}
 	try {
 		let bounds = mainWindow.getBounds();
 
@@ -364,9 +372,16 @@ function makeWindow() {
 		x: useXY ? bounds.x : undefined,
 		y: useXY ? bounds.y : undefined,
 		webPreferences: {
-			nodeIntegration: true
+			defaultFontFamily:"Roboto",
+			nodeIntegration: true,
+			contextIsolation: false,
+			webgl: false,
+			plugins: false,
+			scrollBounce:true,
+			webviewTag:true,
+			nodeIntegrationInSubFrames:true
+			// preload: __dirname+separator+useDir+separator+"sources"+separator+"MTDinject.js"
 		},
-		scrollBounce:true,
 		autoHideMenuBar:true,
 		title:"ModernDeck",
 		icon:__dirname+useDir+"/sources/favicon.ico",
@@ -410,6 +425,21 @@ function makeWindow() {
 
 	}
 
+	mainView = new BrowserView({		webPreferences: {
+				defaultFontFamily:"Roboto",
+				nodeIntegration: true,
+				contextIsolation: false,
+				webgl: false,
+				plugins: false,
+				scrollBounce:true,
+				webviewTag:true,
+				nodeIntegrationInSubFrames:true
+				// preload: __dirname+separator+useDir+separator+"sources"+separator+"MTDinject.js"
+			}});
+	mainWindow.setBrowserView(mainView);
+	mainView.setBounds({ x: 0, y: 0, width: mainWindow.getSize()[0], height: mainWindow.getSize()[1] })
+	mainView.setAutoResize({width:true,height:true});
+	mainView.setBackgroundColor("#263238")
 	// Prevent changing the Page Title
 
 	mainWindow.on("page-title-updated", (event,url) => {
@@ -425,12 +455,7 @@ function makeWindow() {
 
 	setInterval(saveWindowBounds,60 * 1000);
 
-	try {
-		mainWindow.show();
-	} catch(e) {
-		console.error(e);
-	}
-
+	mainWindow.show();
 	// Here, we add platform-specific tags to html, to help moderndeck CSS know what to do
 
 	mtdAppTag += 'document.querySelector("html").classList.add("mtd-js-app");\n';
@@ -461,10 +486,30 @@ function makeWindow() {
 
 	}
 
-	mainWindow.webContents.on('dom-ready', (event, url) => {
+	mainView.webContents.on('dom-ready', (event, url) => {
 
-		mainWindow.webContents.executeJavaScript(
-			(store.get("mtd_fullscreen") ? 'document.querySelector("html").classList.add("mtd-js-app");' : mtdAppTag) + '\
+		// if (useNitroLoad && NitroLoad.ready()) {
+		// 	mainView.webContents.executeJavaScript(`
+		// 		var InjectScript = document.createElement("script");
+		// 		InjectScript.src = "${NitroLoad.vendor}";
+		// 		InjectScript.type = "text/javascript";
+		// 		document.body.appendChild(InjectScript);
+		//
+		// 		var InjectScript2 = document.createElement("script");
+		// 		InjectScript2.src = "${NitroLoad.bundle}";
+		// 		InjectScript2.type = "text/javascript";
+		// 		document.body.appendChild(InjectScript2);
+		// 	`)
+		// }
+
+
+		mainView.webContents.executeJavaScript(
+			(store.get("mtd_fullscreen") ? 'document.querySelector("html").classList.add("mtd-js-app");' : mtdAppTag)
+		)
+		mainView.webContents.openDevTools();
+
+		mainView.webContents.executeJavaScript(
+			'\
 			var injurl = document.createElement("div");\
 			injurl.setAttribute("type","moderndeck://");\
 			injurl.id = "MTDURLExchange";\
@@ -487,10 +532,11 @@ function makeWindow() {
 			InjectScript.src = "moderndeck://sources/MTDinject.js";\
 			InjectScript.type = "text/javascript";\
 			document.head.appendChild(InjectScript);\
-		');
+		'
+	);
 	});
 
-	mainWindow.webContents.on('did-fail-load', (event, code, desc) => {
+	mainView.webContents.on('did-fail-load', (event, code, desc) => {
 		let msg = "ModernDeck failed to start.\n\n";
 
 		console.log(desc);
@@ -587,7 +633,7 @@ function makeWindow() {
 		We need to replace the content security policy in order to load any third-party content, including JS, CSS, fonts
 	*/
 
-	mainWindow.webContents.session.webRequest.onHeadersReceived(
+	mainView.webContents.session.webRequest.onHeadersReceived(
 		{urls:["https://tweetdeck.twitter.com/*","https://twitter.com/i/cards/*"]},
 		(details, callback) => {
 			let foo = details.responseHeaders;
@@ -597,12 +643,25 @@ function makeWindow() {
 		}
 	);
 
+	// mainView.webContents.session.webRequest.onHeadersReceived(
+	// 	{urls:["https://*.twitter.com/*","https://*.twimg.com/*"]},
+	// 	(details, callback) => {
+	// 		let foo = details.responseHeaders;
+	// 		foo["Access-Control-Allow-Origin"] =[
+	// 			"moderndeck://."];
+	// 		foo["Access-Control-Allow-Credentials"] = [
+	// 			"true"
+	// 		]
+	// 		callback({ responseHeaders: foo});
+	// 	}
+	// );
+
 	/*
 		Block original tweetdeck css bundle, just in case. Plus, it saves bandwidth.
 		We also replace twitter card CSS to make those look pretty
 	*/
 
-	mainWindow.webContents.session.webRequest.onBeforeRequest({urls:["https://ton.twimg.com/*"]}, (details,callback) => {
+	mainView.webContents.session.webRequest.onBeforeRequest({urls:["https://ton.twimg.com/*"]}, (details,callback) => {
 
 		if (details.url.indexOf(".css") > -1 && (details.url.indexOf("bundle") > -1 && details.url.indexOf("dist") > -1) && !disableCss) {
 			callback({cancel:true});
@@ -617,12 +676,62 @@ function makeWindow() {
 		callback({cancel:false});
 	});
 
+	// mainView.webContents.session.webRequest.onBeforeSendHeaders(
+	// 	{urls:["https://*.twitter.com/*","https://*.twimg.com/*"]},
+	// 	(details, callback) => {
+	// 		let foo = details.requestHeaders;
+	// 		foo["Origin"] = [
+	// 			"https://tweetdeck.twitter.com"
+	// 		];
+	// 		foo["Referer"] = [
+	// 			"https://tweetdeck.twitter.com/"
+	// 		];
+	// 		foo["X-Twitter-Auth-Type"] = [
+	// 			"OAuth2Session"
+	// 		];
+	// 		foo["X-Twitter-Client-Version"] = [
+	// 			"Twitter-TweetDeck-blackbird-chrome/4.0.190822112648 web/"
+	// 		];
+	// 		foo["Sec-Fetch-Dest"] = [
+	// 			"empty"
+	// 		];
+	// 		callback({ requestHeaders: foo});
+	// 	}
+	// );
+	//
+	// mainView.webContents.session.webRequest.onBeforeSendHeaders(
+	// 	{urls:["https://api.twitter.com/1.1/help/*"]},
+	// 	(details, callback) => {
+	// 		console.error("fuck you")
+	// 		let foo = details.requestHeaders;
+	// 		foo["X-Twitter-Auth-Type"] = [
+	// 			"OAuth2Session"
+	// 		];
+	// 		foo["X-Twitter-Client-Version"] = [
+	// 			"Twitter-TweetDeck-blackbird-chrome/4.0.190822112648 web/"
+	// 		];
+	// 		foo["Sec-Fetch-Dest"] = [
+	// 			"empty"
+	// 		];
+	// 		callback({ requestHeaders: foo});
+	// 	}
+	// );
+
 	// this is pretty self-explanatory
 	try {
-		mainWindow.loadURL("https://tweetdeck.twitter.com");
+		if (useNitroLoad)
+			NitroLoad.goReplace();
+		if (useNitroLoad)
+			mainWindow.loadURL("moderndeck://./nitroload.html");
+		else
+			mainWindow.loadURL("https://tweetdeck.twitter.com");
 	} catch(e) {
 		console.error(e);
 	}
+	mainWindow.loadURL("moderndeck://./view.html");
+
+
+	mainView.webContents.loadURL("https://tweetdeck.twitter.com");
 
 	/*
 
@@ -635,10 +744,12 @@ function makeWindow() {
 
 	*/
 
-	mainWindow.webContents.on("will-navigate", (event, url) => {
+	mainView.webContents.on("will-navigate", (event, url) => {
+		if (useNitroLoad)
+			NitroLoad.goReplace();
 		const { shell } = electron;
 		console.log(url);
-		if (url.indexOf("https://tweetdeck.twitter.com") < 0) {
+		if (url.indexOf("https://tweetdeck.twitter.com") < 0 && url.indexOf("moderndeck://.") < 0) {
 			event.preventDefault();
 			console.log(url);
 			if (url.indexOf("twitter.com/login") >= 0 || url.indexOf("twitter.com/logout") >= 0) {
@@ -660,7 +771,7 @@ function makeWindow() {
 
 	*/
 
-	mainWindow.webContents.on("new-window", (event, url) => {
+	mainView.webContents.on("new-window", (event, url) => {
 		const { shell } = electron;
 		event.preventDefault();
 		console.log(url);
@@ -681,8 +792,8 @@ function makeWindow() {
 
 	// i actually forget why this is here
 
-	mainWindow.webContents.on("context-menu", (event, params) => {
-		mainWindow.send("context-menu", params);
+	mainView.webContents.on("context-menu", (event, params) => {
+		mainView.webContents.send("context-menu", params);
 	});
 
 	/*
@@ -697,6 +808,17 @@ function makeWindow() {
 		console.log(newMenu);
 		newMenu.popup();
 	});
+
+	ipcMain.on("drawerOpen", (event, params) => {
+		console.log("open");
+		mainWindow.webContents.executeJavaScript("document.querySelector(\"html\").classList.add(\"mtd-drawer-open\");");
+	});
+	
+	ipcMain.on("drawerClose", (event, params) => {
+		console.log("close");
+		mainWindow.webContents.executeJavaScript("document.querySelector(\"html\").classList.remove(\"mtd-drawer-open\");");
+	});
+
 
 	ipcMain.on("maximizeButton", (event) => {
 		let window = BrowserWindow.getFocusedWindow();
@@ -717,35 +839,39 @@ function makeWindow() {
 	*/
 
 	ipcMain.on("copy", (event) => {
-		mainWindow.webContents.copy();
+		mainView.webContents.copy();
+	});
+
+	ipcMain.on("nitroload-begin", (event) => {
+		NitroLoad.goReplace();
 	});
 
 	ipcMain.on("cut", (event) => {
-		mainWindow.webContents.cut();
+		mainView.webContents.cut();
 	});
 
 	ipcMain.on("paste", (event) => {
-		mainWindow.webContents.paste();
+		mainView.webContents.paste();
 	});
 
 	ipcMain.on("delete", (event) => {
-		mainWindow.webContents.delete();
+		mainView.webContents.delete();
 	});
 
 	ipcMain.on("selectAll", (event) => {
-		mainWindow.webContents.selectAll();
+		mainView.webContents.selectAll();
 	});
 
 	ipcMain.on("undo", (event) => {
-		mainWindow.webContents.undo();
+		mainView.webContents.undo();
 	});
 
 	ipcMain.on("redo", (event) => {
-		mainWindow.webContents.redo();
+		mainView.webContents.redo();
 	});
 
 	ipcMain.on("copyImage", (event,arg) => {
-		mainWindow.webContents.copyImageAt(arg.x,arg.y);
+		mainView.webContents.copyImageAt(arg.x,arg.y);
 	});
 
 	ipcMain.on("saveImage", (event,arg) => {
@@ -753,7 +879,7 @@ function makeWindow() {
 	});
 
 	ipcMain.on("inspectElement", (event,arg) => {
-		mainWindow.webContents.inspectElement(arg.x,arg.y);
+		mainView.webContents.inspectElement(arg.x,arg.y);
 	});
 
 	// mtdInject initiated app restart
@@ -818,7 +944,7 @@ function makeWindow() {
 	// Change maximise to restore size window
 
 	mainWindow.on("maximize", () => {
-		mainWindow.webContents.executeJavaScript('\
+		mainView.webContents.executeJavaScript('\
 			document.querySelector("html").classList.add("mtd-maximized");\
 			document.querySelector(".windowcontrol.max").innerHTML = "&#xE3E0";\
 		');
@@ -827,7 +953,7 @@ function makeWindow() {
 	// Change restore size window to maximise
 
 	mainWindow.on("unmaximize", () => {
-		mainWindow.webContents.executeJavaScript('\
+		mainView.webContents.executeJavaScript('\
 			document.querySelector("html").classList.remove("mtd-maximized");\
 			document.querySelector(".windowcontrol.max").innerHTML = "&#xE3C6";\
 		');
@@ -844,7 +970,7 @@ function makeWindow() {
 	*/
 
 	mainWindow.on("enter-full-screen", () => {
-		mainWindow.webContents.executeJavaScript('document.querySelector("html").classList.remove("mtd-app");\
+		mainView.webContents.executeJavaScript('document.querySelector("html").classList.remove("mtd-app");\
 			document.querySelector("html").classList.remove("mtd-app-win");\
 			document.querySelector("html").classList.remove("mtd-app-mac");\
 			document.querySelector("html").classList.remove("mtd-app-linux");\
@@ -857,8 +983,9 @@ function makeWindow() {
 	}
 
 	mainWindow.on("leave-full-screen", () => {
-		mainWindow.webContents.executeJavaScript(mtdAppTag);
+		mainView.webContents.executeJavaScript(mtdAppTag);
 	});
+	mainWindow.webContents.executeJavaScript(mtdAppTag);
 }
 
 // Register moderndeck:// protocol for accessing moderndeck resources, like CSS
@@ -878,7 +1005,10 @@ electron.protocol.registerSchemesAsPrivileged([{
 // Make window when app is ready
 
 app.on("ready", () => {
-	try {makeWindow()}
+	try {
+
+		makeWindow()
+	}
 	catch (e) {
 		console.error(e);
 	}
@@ -903,10 +1033,10 @@ app.on("activate", () => {
 // Tell mtdInject that there was an update error
 
 autoUpdater.on("error", (e,f,g) => {
-	if (!mainWindow || !mainWindow.webContents) {
+	if (!mainWindow || !mainView.webContents) {
 		return;
 	}
-	mainWindow.webContents.send("error",e,f,g);
+	mainView.webContents.send("error",e,f,g);
 });
 
 // Let MTDinject know that we are...
@@ -914,42 +1044,42 @@ autoUpdater.on("error", (e,f,g) => {
 // ... actively checking for updates
 
 autoUpdater.on("checking-for-update", (e) => {
-	if (!mainWindow || !mainWindow.webContents) {
+	if (!mainWindow || !mainView.webContents) {
 		return;
 	}
-	mainWindow.webContents.send("checking-for-update",e);
+	mainView.webContents.send("checking-for-update",e);
 });
 
 // ...currently downloading updates
 autoUpdater.on("download-progress", (e) => {
-	if (!mainWindow || !mainWindow.webContents) {
+	if (!mainWindow || !mainView.webContents) {
 		return;
 	}
-	mainWindow.webContents.send("download-progress",e);
+	mainView.webContents.send("download-progress",e);
 });
 
 // ...have found an update
 autoUpdater.on("update-available", (e) => {
-	if (!mainWindow || !mainWindow.webContents) {
+	if (!mainWindow || !mainView.webContents) {
 		return;
 	}
-	mainWindow.webContents.send("update-available",e);
+	mainView.webContents.send("update-available",e);
 });
 
 // ...have already downloaded updates
 autoUpdater.on("update-downloaded", (e) => {
-	if (!mainWindow || !mainWindow.webContents) {
+	if (!mainWindow || !mainView.webContents) {
 		return;
 	}
-	mainWindow.webContents.send("update-downloaded",e);
+	mainView.webContents.send("update-downloaded",e);
 });
 
 // ...haven't found any updates
 autoUpdater.on("update-not-available", (e) => {
-	if (!mainWindow || !mainWindow.webContents) {
+	if (!mainWindow || !mainView.webContents) {
 		return;
 	}
-	mainWindow.webContents.send("update-not-available",e);
+	mainView.webContents.send("update-not-available",e);
 });
 
 // mtdInject can send manual update check requests
@@ -966,7 +1096,7 @@ ipcMain.on("changeChannel", (e) => {
 // OS inverted colour scheme (high contrast) mode changed. We automatically respond to changes for accessibility
 
 systemPreferences.on("inverted-color-scheme-changed", (e,v) => {
-	mainWindow.webContents.send("inverted-color-scheme-changed",v);
+	mainView.webContents.send("inverted-color-scheme-changed",v);
 });
 
 if (process.platform === 'darwin') {
@@ -974,7 +1104,7 @@ if (process.platform === 'darwin') {
 		systemPreferences.subscribeNotification(
 			'AppleInterfaceThemeChangedNotification',
 			() => {
-				mainWindow.webContents.send("color-scheme-changed",systemPreferences.isDarkMode() ? "dark" : "light");
+				mainView.webContents.send("color-scheme-changed",systemPreferences.isDarkMode() ? "dark" : "light");
 			}
 		)
 	} catch(e) {
@@ -994,7 +1124,7 @@ setTimeout(() => {
 	try {
 		autoUpdater.checkForUpdates();
 
-		mainWindow.webContents.send(
+		mainView.webContents.send(
 			"inverted-color-scheme-changed",
 			systemPreferences.isInvertedColorScheme()
 		);

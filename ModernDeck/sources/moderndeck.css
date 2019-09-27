@@ -474,7 +474,8 @@ body.scroll-v .spinner-layer {
 	overflow:hidden;
 	background-size:cover!important;
 	background-position:center!important;
-	pointer-events:none
+	pointer-events:none;
+	top: 0!important;
 }
 
 .txt-ellipsis,
@@ -2121,7 +2122,8 @@ a .column-title-back .icon:after {
 	width:var(--verticalHeadWidth);
 	height:100%!important;
 	background:var(--primaryColor);
-	z-index:6
+	z-index:6;
+	position: fixed;
 }
 
 .app-header-inner {
@@ -2416,14 +2418,20 @@ html:not(.mtd-classic-nav) .attach-compose-buttons .tweet-button {
 }
 
 .message-text>.btn,.message-text>.Button {
-	padding-top:14px
+	padding-top:12px!important;
+	padding-bottom:0!important
 }
 
 .message-banner {
-	position:relative;
+	position: absolute;
 	text-align:center;
 	color:var(--rootWhiteColor)!important;
-	background:transparent!important
+	background:transparent!important;
+	left:var(--verticalHeadWidth);
+	right:0;
+	top:0;
+	z-index:100;
+	text-shadow:var(--rootBlackColor) 0 4px 7px
 }
 
 .message-banner .dismiss {
@@ -2440,6 +2448,12 @@ html:not(.mtd-classic-nav) .attach-compose-buttons .tweet-button {
 	width:100%;
 	text-align:center;
 	box-sizing:border-box
+}
+
+.message-content a {
+	-webkit-app-region:no-drag;
+	/* padding-top: 20px!important; */
+	vertical-align: middle;
 }
 
 .message-text {
@@ -5210,11 +5224,11 @@ html:not(.mtd-head-left) body .application.hide-detail-view-inline .column-navig
 
 .compose .js-quote-tweet-holder .quoted-tweet {
 	padding-left:10px!important;
-	padding-right:30px!important;
+	padding-right: 10px!important;
 	position:relative;
-	width:calc(var(--composeWidth) - 70px);
+	width: calc(var(--composeWidth) - 51px);
 	padding-bottom:10px!important;
-	margin-top:0
+	margin-top:0;
 }
 
 .is-options-open .more-tweets-btn-container--hidden {
@@ -8997,8 +9011,12 @@ html:not(.mtd-classic-nav) .js-hide-drawer:not(.tweet-button):not([data-title="A
 	margin-top:50px
 }
 
-.video-container>.js-custom-video-controls,.video-container>video {
-	margin-bottom:50px
+.video-container>video {
+	margin-bottom:50px;
+}
+
+.video-container>.js-custom-video-controls {
+	margin-bottom:20px
 }
 
 .js-mute-unmute {
