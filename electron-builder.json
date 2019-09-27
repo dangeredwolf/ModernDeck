@@ -63,7 +63,7 @@
 		"hardenedRuntime": true,
 		"gatekeeperAssess": false,
 		"entitlements": "build/entitlements.plist",
-		"entitlementsInherit": "build/entitlements.plist",
+		"entitlementsInherit": "build/entitlements.inherit.plist",
 		"category": "public.app-category.social-networking",
 		"target": [
 			{
@@ -75,7 +75,6 @@
 			{
 				"target": "mas",
 				"arch": [
-					"x64"
 				]
 			},
 			{
@@ -91,7 +90,7 @@
 		"title": "ModernDeck"
 	},
 	"mas": {
-		"appId": "com.dangeredwolf.ModernDeck.mas",
+		"appId": "com.dangeredwolf.ModernDeck",
 		"provisioningProfile": "build/ModernDeck_App_Store.provisionprofile"
 	},
 	"linux": {
