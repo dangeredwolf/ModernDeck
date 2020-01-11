@@ -8,7 +8,7 @@
 
 'use strict';
 
-let SystemVersion = "7.4.2";
+let SystemVersion = "7.5";
 const appendTextVersion = true;
 const enablePatronFeatures = true;
 
@@ -1782,7 +1782,16 @@ function processForceFeatureFlags() {
 		tweetdeck_whats_happening: { value: true },
 		tweetdeck_activity_polling: { value: true },
 		tweetdeck_beta: { value: true },
-		tweetdeck_system_font_stack: { value: true }
+		tweetdeck_system_font_stack: { value: true },
+		tweetdeck_show_release_notes_link: { value: true },
+		tweetdeck_searches_with_negation: { value: true },
+		twitter_text_emoji_counting_enabled: { value: true },
+		tweetdeck_trends_column: { value: true },
+		tweetdeck_scheduled_tweet_ephemeral: { value: true },
+		twitter_weak_maps: { value: true },
+		tweetdeck_activity_value_polling: { value: true },
+		tweetdeck_activity_streaming: { value: true },
+		tweetdeck_rweb_composer: { value: true }
 	}
 
 	TD.config.scribe_debug_level = 4
