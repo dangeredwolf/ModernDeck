@@ -208,13 +208,18 @@ function updateRecentEmojis() {
 	}
 }
 
-function makeEmojiButton(emoji) {
+function makeEmojiButton(emoji, title) {
+	if (!window.emojiKeywordsAndDescriptions[emoji]) {
+		console.log(emoji)
+	}
+	title = title || (window.emojiKeywordsAndDescriptions[emoji] ? window.emojiKeywordsAndDescriptions[emoji].description : "Emoji");
+	// console.log(title)
 	var emojibtn = make("i").addClass("emojibtn").attr("role","button").attr("data-code",emoji.replace(/\*/g,"")).append(
 		twemoji.parse(
 			convertPoint(emoji).point,
 			parseOptions
 		)
-	);
+	).attr("title", title);
 
 	emojibtn.click(() => {
 		let theEmoji = fromCodePoint(emojibtn.attr("data-code"));//twemoji.convert.fromCodePoint(emoji);
@@ -255,7 +260,7 @@ function pushRecentEmoji(emoji) {
 
 function getRecentEmojis() {
 	let asdf = getPref("mtd_recent_emoji", "").split("|");
-	if (asdf[asdf.length-1] === "")
+	if (asdf[asdf.length - 1] === "")
 		asdf.pop();
 	return asdf;
 }
