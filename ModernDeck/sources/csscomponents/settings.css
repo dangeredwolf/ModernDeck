@@ -74,7 +74,8 @@
 	top:0;
 	bottom:0;
 	width:700px!important;
-	height:500px!important
+	height:500px!important;
+	overflow: hidden;
 }
 
 .mtd-settings-subpanel {
@@ -183,7 +184,7 @@ html:not(.mtd-js-app) .mtd-settings-tab {
 }
 
 .mtd-settings-subpanel select, .mtd-settings-subpanel input[type="text"] {
-	width:160px;
+	width:160px!important;
 	display:inline-block;
 	float:right
 }
@@ -193,6 +194,10 @@ html:not(.mtd-js-app) .mtd-settings-tab {
 	margin-bottom:0;
 	padding-top:14px;
 	padding-left:0
+}
+
+.mtd-settings-subpanel label.control-label {
+	width:auto
 }
 
 .mtd-settings-option {
@@ -464,7 +469,6 @@ html body .mtd-settings-subpanel button {
 	top:100px;
 	font-size:14px!important
 }
-
 
 .mtd-update-managed {
 	margin-left:40px;
