@@ -18,6 +18,7 @@ const {
 	systemPreferences,
 	Menu,
 	dialog,
+	nativeTheme,
 	protocol
 }		= require("electron");
 
@@ -40,15 +41,15 @@ const { autoUpdater } = require("electron-updater");
 const Store = require("electron-store");
 const store = new Store({name:"mtdsettings"});
 
-const disableCss = false;
+// const disableCss = false; // use storage.mtd_safemode
 const useNext = false;
 
 const isAppX = !!process.windowsStore;
 
 const isMAS = !!process.mas;
 
-const isDev = false;
-let useNitroLoad = true;
+const isDev = true;
+let useNitroLoad = false;
 
 let mainWindow;
 let mainView;
@@ -206,15 +207,20 @@ function makeLoginWindow(url,teams) {
 		const { shell } = electron;
 
 		if (url.indexOf("https://tweetdeck.twitter.com") >= 0 && !teams) {
-
-			loginWindow.close();
+			if (loginWindow) {
+				loginWindow.close();
+			}
 			event.preventDefault();
 			return;
 		}
 
 		if (url.indexOf("twitter.com/logout") >= 0) {
-			mainWindow.reload();
-			loginWindow.close();
+			if (mainWindow) {
+				mainWindow.reload();
+			}
+			if (loginWindow) {
+				loginWindow.close();
+			}
 			event.preventDefault();
 			return;
 		}
@@ -235,9 +241,15 @@ function makeLoginWindow(url,teams) {
 	loginWindow.webContents.on("did-navigate-in-page", (event, url) => {
 		console.log(url);
 
+
+
 		if (url.indexOf("https://tweetdeck.twitter.com") >= 0) {
-			mainWindow.loadURL(url);
-			loginWindow.close();
+			if (mainWindow) {
+				mainWindow.loadURL(url);
+			}
+			if (loginWindow) {
+				loginWindow.close();
+			}
 			event.preventDefault();
 			return;
 		}
@@ -245,7 +257,10 @@ function makeLoginWindow(url,teams) {
 		if (url.indexOf("twitter.com/logout") >= 0 || url.indexOf("twitter.com/login") >= 0) {
 			return;
 		}
-		loginWindow.loadURL(originalUrl);
+
+		if (loginWindow) {
+			loginWindow.loadURL(originalUrl);
+		}
 	});
 
 	loginWindow.webContents.on("new-window", (event, url) => {
@@ -349,7 +364,7 @@ function makeWindow() {
 
 	isRestarting = false;
 
-	let useFrame = store.get("mtd_nativetitlebar") || disableCss || process.platform === "darwin";
+	let useFrame = store.get("mtd_nativetitlebar") || store.get("mtd_safemode") || process.platform === "darwin";
 	let titleBarStyle = "hidden";
 
 	if (store.get("mtd_nativetitlebar") && process.platform === "darwin") {
@@ -516,11 +531,11 @@ function makeWindow() {
 			document.head.appendChild(injurl);\
 			\
 			var InjectScript2 = document.createElement("script");\
-			InjectScript2.src = "https://cdn.ravenjs.com/3.19.1/raven.min.js";\
+			InjectScript2.src = "moderndeck://sources/libraries/sentry.min.js";\
 			InjectScript2.type = "text/javascript";\
 			document.head.appendChild(InjectScript2);'
 			+
-			(disableCss ? 'document.getElementsByTagName("html")[0].classList.add("mtd-disable-css");' :
+			(store.get("mtd_safemode") ? 'document.getElementsByTagName("html")[0].classList.add("mtd-disable-css");' :
 			'var injStyles = document.createElement("link");\
 			injStyles.rel = "stylesheet";\
 			injStyles.href = "moderndeck://sources/' + (useNext ? 'next/' : '') + 'moderndeck.css";\
@@ -663,7 +678,7 @@ function makeWindow() {
 
 	mainView.webContents.session.webRequest.onBeforeRequest({urls:["https://ton.twimg.com/*"]}, (details,callback) => {
 
-		if (details.url.indexOf(".css") > -1 && (details.url.indexOf("bundle") > -1 && details.url.indexOf("dist") > -1) && !disableCss) {
+		if (details.url.indexOf(".css") > -1 && (details.url.indexOf("bundle") > -1 && details.url.indexOf("dist") > -1) && !store.get("mtd_safemode")) {
 			callback({cancel:true});
 			return;
 		}
@@ -702,7 +717,6 @@ function makeWindow() {
 	// mainView.webContents.session.webRequest.onBeforeSendHeaders(
 	// 	{urls:["https://api.twitter.com/1.1/help/*"]},
 	// 	(details, callback) => {
-	// 		console.error("fuck you")
 	// 		let foo = details.requestHeaders;
 	// 		foo["X-Twitter-Auth-Type"] = [
 	// 			"OAuth2Session"
@@ -724,12 +738,11 @@ function makeWindow() {
 		if (useNitroLoad)
 			mainWindow.loadURL("moderndeck://./nitroload.html");
 		else
-			mainWindow.loadURL("https://tweetdeck.twitter.com");
+			mainWindow.loadURL("moderndeck://./view.html");
+			//mainWindow.loadURL("https://tweetdeck.twitter.com");
 	} catch(e) {
 		console.error(e);
 	}
-	mainWindow.loadURL("moderndeck://./view.html");
-
 
 	mainView.webContents.loadURL("https://tweetdeck.twitter.com");
 
@@ -747,8 +760,10 @@ function makeWindow() {
 	mainView.webContents.on("will-navigate", (event, url) => {
 		if (useNitroLoad)
 			NitroLoad.goReplace();
+
 		const { shell } = electron;
 		console.log(url);
+
 		if (url.indexOf("https://tweetdeck.twitter.com") < 0 && url.indexOf("moderndeck://.") < 0) {
 			event.preventDefault();
 			console.log(url);
@@ -758,6 +773,7 @@ function makeWindow() {
 			} else {
 				shell.openExternal(url);
 			}
+
 		}
 	});
 
@@ -793,6 +809,8 @@ function makeWindow() {
 	// i actually forget why this is here
 
 	mainView.webContents.on("context-menu", (event, params) => {
+		if (!mainView || !mainView.webContents) { return }
+
 		mainView.webContents.send("context-menu", params);
 	});
 
@@ -811,17 +829,27 @@ function makeWindow() {
 
 	ipcMain.on("drawerOpen", (event, params) => {
 		console.log("open");
+
+		if (!mainView || !mainView.webContents) { return }
+
 		mainWindow.webContents.executeJavaScript("document.querySelector(\"html\").classList.add(\"mtd-drawer-open\");");
 	});
-	
+
 	ipcMain.on("drawerClose", (event, params) => {
 		console.log("close");
+
+		if (!mainView || !mainView.webContents) { return }
+
 		mainWindow.webContents.executeJavaScript("document.querySelector(\"html\").classList.remove(\"mtd-drawer-open\");");
 	});
 
 
 	ipcMain.on("maximizeButton", (event) => {
 		let window = BrowserWindow.getFocusedWindow();
+
+		if (!window) {
+			return;
+		}
 
 		if (window.isMaximized()) {
 			window.unmaximize();
@@ -839,6 +867,8 @@ function makeWindow() {
 	*/
 
 	ipcMain.on("copy", (event) => {
+		if (!mainView || !mainView.webContents) { return }
+
 		mainView.webContents.copy();
 	});
 
@@ -847,30 +877,44 @@ function makeWindow() {
 	});
 
 	ipcMain.on("cut", (event) => {
+		if (!mainView || !mainView.webContents) { return }
+
 		mainView.webContents.cut();
 	});
 
 	ipcMain.on("paste", (event) => {
+		if (!mainView || !mainView.webContents) { return }
+
 		mainView.webContents.paste();
 	});
 
 	ipcMain.on("delete", (event) => {
+		if (!mainView || !mainView.webContents) { return }
+
 		mainView.webContents.delete();
 	});
 
 	ipcMain.on("selectAll", (event) => {
+		if (!mainView || !mainView.webContents) { return }
+
 		mainView.webContents.selectAll();
 	});
 
 	ipcMain.on("undo", (event) => {
+		if (!mainView || !mainView.webContents) { return }
+
 		mainView.webContents.undo();
 	});
 
 	ipcMain.on("redo", (event) => {
+		if (!mainView || !mainView.webContents) { return }
+
 		mainView.webContents.redo();
 	});
 
 	ipcMain.on("copyImage", (event,arg) => {
+		if (!mainView || !mainView.webContents) { return }
+
 		mainView.webContents.copyImageAt(arg.x,arg.y);
 	});
 
@@ -879,6 +923,8 @@ function makeWindow() {
 	});
 
 	ipcMain.on("inspectElement", (event,arg) => {
+		if (!mainView || !mainView.webContents) { return }
+
 		mainView.webContents.inspectElement(arg.x,arg.y);
 	});
 
@@ -925,7 +971,10 @@ function makeWindow() {
 
 		isRestarting = true;
 
-		mainWindow.close();
+		if (mainWindow) {
+			mainWindow.close();
+		}
+
 		store.set("mtd_nativetitlebar",arg);
 
 		setTimeout(() => {
@@ -944,6 +993,8 @@ function makeWindow() {
 	// Change maximise to restore size window
 
 	mainWindow.on("maximize", () => {
+		if (!mainView || !mainView.webContents) { return }
+
 		mainView.webContents.executeJavaScript('\
 			document.querySelector("html").classList.add("mtd-maximized");\
 			document.querySelector(".windowcontrol.max").innerHTML = "&#xE3E0";\
@@ -953,6 +1004,8 @@ function makeWindow() {
 	// Change restore size window to maximise
 
 	mainWindow.on("unmaximize", () => {
+		if (!mainView || !mainView.webContents) { return }
+
 		mainView.webContents.executeJavaScript('\
 			document.querySelector("html").classList.remove("mtd-maximized");\
 			document.querySelector(".windowcontrol.max").innerHTML = "&#xE3C6";\
@@ -960,6 +1013,8 @@ function makeWindow() {
 	});
 
 	if (store.get("mtd_maximised")) {
+		if (!mainWindow) { return }
+
 		mainWindow.maximize();
 	}
 
@@ -970,6 +1025,8 @@ function makeWindow() {
 	*/
 
 	mainWindow.on("enter-full-screen", () => {
+		if (!mainView || !mainView.webContents) { return }
+
 		mainView.webContents.executeJavaScript('document.querySelector("html").classList.remove("mtd-app");\
 			document.querySelector("html").classList.remove("mtd-app-win");\
 			document.querySelector("html").classList.remove("mtd-app-mac");\
@@ -983,6 +1040,8 @@ function makeWindow() {
 	}
 
 	mainWindow.on("leave-full-screen", () => {
+		if (!mainView || !mainView.webContents) { return }
+
 		mainView.webContents.executeJavaScript(mtdAppTag);
 	});
 	mainWindow.webContents.executeJavaScript(mtdAppTag);
@@ -1006,7 +1065,6 @@ electron.protocol.registerSchemesAsPrivileged([{
 
 app.on("ready", () => {
 	try {
-
 		makeWindow()
 	}
 	catch (e) {
@@ -1033,7 +1091,7 @@ app.on("activate", () => {
 // Tell mtdInject that there was an update error
 
 autoUpdater.on("error", (e,f,g) => {
-	if (!mainWindow || !mainView.webContents) {
+	if (!mainWindow || !mainView || !mainView.webContents) {
 		return;
 	}
 	mainView.webContents.send("error",e,f,g);
@@ -1044,7 +1102,7 @@ autoUpdater.on("error", (e,f,g) => {
 // ... actively checking for updates
 
 autoUpdater.on("checking-for-update", (e) => {
-	if (!mainWindow || !mainView.webContents) {
+	if (!mainWindow || !mainView || !mainView.webContents) {
 		return;
 	}
 	mainView.webContents.send("checking-for-update",e);
@@ -1052,7 +1110,7 @@ autoUpdater.on("checking-for-update", (e) => {
 
 // ...currently downloading updates
 autoUpdater.on("download-progress", (e) => {
-	if (!mainWindow || !mainView.webContents) {
+	if (!mainWindow || !mainView || !mainView.webContents) {
 		return;
 	}
 	mainView.webContents.send("download-progress",e);
@@ -1060,7 +1118,7 @@ autoUpdater.on("download-progress", (e) => {
 
 // ...have found an update
 autoUpdater.on("update-available", (e) => {
-	if (!mainWindow || !mainView.webContents) {
+	if (!mainWindow || !mainView || !mainView.webContents) {
 		return;
 	}
 	mainView.webContents.send("update-available",e);
@@ -1068,7 +1126,7 @@ autoUpdater.on("update-available", (e) => {
 
 // ...have already downloaded updates
 autoUpdater.on("update-downloaded", (e) => {
-	if (!mainWindow || !mainView.webContents) {
+	if (!mainWindow || !mainView || !mainView.webContents) {
 		return;
 	}
 	mainView.webContents.send("update-downloaded",e);
@@ -1076,7 +1134,7 @@ autoUpdater.on("update-downloaded", (e) => {
 
 // ...haven't found any updates
 autoUpdater.on("update-not-available", (e) => {
-	if (!mainWindow || !mainView.webContents) {
+	if (!mainWindow || !mainView || !mainView.webContents) {
 		return;
 	}
 	mainView.webContents.send("update-not-available",e);
@@ -1095,8 +1153,9 @@ ipcMain.on("changeChannel", (e) => {
 
 // OS inverted colour scheme (high contrast) mode changed. We automatically respond to changes for accessibility
 
-systemPreferences.on("inverted-color-scheme-changed", (e,v) => {
-	mainView.webContents.send("inverted-color-scheme-changed",v);
+nativeTheme.on("updated", (e,v) => {
+	mainView.webContents.send("inverted-color-scheme-changed",nativeTheme.shouldUseInvertedColorScheme);
+	mainView.webContents.send("color-scheme-changed", nativeTheme.shouldUseDarkColors ? "dark" : "light");
 });
 
 if (process.platform === 'darwin') {
@@ -1104,7 +1163,8 @@ if (process.platform === 'darwin') {
 		systemPreferences.subscribeNotification(
 			'AppleInterfaceThemeChangedNotification',
 			() => {
-				mainView.webContents.send("color-scheme-changed",systemPreferences.isDarkMode() ? "dark" : "light");
+				if (!mainView || !mainView.webContents) { return }
+				mainView.webContents.send("color-scheme-changed", systemPreferences.isDarkMode() ? "dark" : "light");
 			}
 		)
 	} catch(e) {
@@ -1126,7 +1186,7 @@ setTimeout(() => {
 
 		mainView.webContents.send(
 			"inverted-color-scheme-changed",
-			systemPreferences.isInvertedColorScheme()
+			!!nativeTheme.shouldUseInvertedColorScheme
 		);
 	} catch(e) {
 		console.error(e);

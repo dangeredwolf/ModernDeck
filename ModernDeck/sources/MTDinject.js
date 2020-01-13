@@ -38,6 +38,8 @@ let useNativeContextMenus = false;
 let isDev = false;
 let debugStorageSys = false;
 
+let useSafeMode = false;
+
 let isInWelcome = false;
 
 let lastScrollAt = Date.now();
@@ -278,6 +280,10 @@ let settingsData = {
 						disableStylesheetExtension("dark");
 						disableStylesheetExtension("light");
 
+						if (useSafeMode) {
+							return;
+						}
+
 						if (hasPref("mtd_highcontrast") && getPref("mtd_highcontrast") === true) {
 							opt = "dark";
 						}
@@ -320,6 +326,10 @@ let settingsData = {
 					func: (opt) => {
 
 						if (getPref("mtd_highcontrast") === true) {
+							return;
+						}
+
+						if (useSafeMode) {
 							return;
 						}
 
@@ -924,6 +934,17 @@ let settingsData = {
 				},
 				settingsKey:"mtd_updatechannel",
 				default:"latest"
+			},
+			mtdSafeMode: {
+				title:"Safe mode",
+				label:"Is something broken? Enter Safe Mode.",
+				type:"link",
+				activate:{
+					func: () => {
+						enterSafeMode();
+					}
+				},
+				enabled:isApp
 			}
 		}
 	}, system: {
@@ -1055,7 +1076,7 @@ let settingsData = {
 			},
 			tdLegacySettings: {
 				title:"Legacy settings",
-				label:"Is there a new TweetDeck setting we're missing? Visit legacy settings",
+				label:"Did TweetDeck add a new feature we're missing? Visit legacy settings",
 				type:"link",
 				activate:{
 					func: () => {
@@ -1855,6 +1876,15 @@ function replacePrettyNumber() {
 }
 
 /*
+	Enters safe mode, disabling most ModernDeck custom CSS. App-only right now.
+*/
+
+function enterSafeMode() {
+	setPref("mtd_safemode",true);
+	getIpc().send("restartApp");
+}
+
+/*
 	Overrides removeChild functions of modals, tooltips, and dropdown menus to have a fade out effect
 */
 
@@ -2119,11 +2149,12 @@ async function mtdInit() {
 		replacedLoadingSpinnerNew = true;
 	}
 
-	// The default is dark for the loading screen, once the TD settings load it can use
+	// The default is dark for the loading screen, once the TD settings load it can use the user preference
 
-	enableStylesheetExtension("dark");
 	if (html.hasClass("mtd-disable-css")) {
 		enableStylesheetExtension("micro");
+	} else {
+		enableStylesheetExtension("dark");
 	}
 	html.addClass("dark");
 
@@ -2160,6 +2191,12 @@ async function mtdInit() {
 	*/
 
 	let beGone = document.querySelector("link[rel='apple-touch-icon']+link[rel='stylesheet']");
+
+	if (getPref("mtd_safemode")) {
+		useSafeMode = true;
+		html.addClass("mtd-disable-css");
+		setPref("mtd_safemode",false)
+	}
 
 	if (exists(beGone) && !html.hasClass("mtd-disable-css")) {
 		beGone.remove();
@@ -3299,7 +3336,7 @@ function createGifPanel() {
 		if ($(this).scrollTop() + $(this).height() > $(this).prop("scrollHeight") - 200) {
 			isLoadingMoreGifs = true;
 			loadMoreGifs();
-   		}
+			}
 	})
 }
 
@@ -4094,7 +4131,7 @@ function notifyOffline() {
 		notifIcon.removeClass("Icon--notifications").addClass("mtd-icon-disconnected");
 
 		notifContent.append(
-			make("p").html("We detected that you are disconnected from the internet. Many features are unavailable without an internet connection.")
+			make("p").html("We detected that you are disconnected from the internet. Many actions are unavailable without an internet connection.")
 		)
 	}
 }
@@ -4267,7 +4304,7 @@ function mtdAppFunctions() {
 		let menu = electron.remote.menu;
 		let Menu = electron.remote.Menu;
 
-		if (useNativeContextMenus) {
+		if (useNativeContextMenus || useSafeMode) {
 			//ipcRenderer.send('nativeContextMenu',theMenu);
 			Menu.buildFromTemplate(theMenu).popup();
 			return;
@@ -4556,37 +4593,51 @@ function coreInit() {
 	}
 	// append the emoji picker script
 	head.append(
-		make("script").attr("type","text/javascript").attr("src",mtdBaseURL + "sources/libraries/emojidata.js"),
-		make("script").attr("type","text/javascript").attr("src",mtdBaseURL + "sources/libraries/twemoji.min.js"),
-		make("script").attr("type","text/javascript").attr("src",mtdBaseURL + "sources/libraries/newemojipicker.js"),
-		make("script").attr("type","text/javascript").attr("src",mtdBaseURL + "sources/libraries/jquery.visible.js")
+		make("script").attr("type", "text/javascript").attr("src", mtdBaseURL + "sources/libraries/emojidata.js"),
+		make("script").attr("type", "text/javascript").attr("src", mtdBaseURL + "sources/libraries/twemoji.min.js"),
+		make("script").attr("type", "text/javascript").attr("src", mtdBaseURL + "sources/libraries/newemojipicker.js"),
+		make("script").attr("type", "text/javascript").attr("src", mtdBaseURL + "sources/libraries/jquery.visible.js")
 	);
 
 
 	if (useRaven) {
-		Raven.config('https://92f593b102fb4c1ca010480faed582ae@sentry.io/242524', {
-			release: SystemVersion
-		}).install();
+		Sentry.init({
+			dsn: "https://92f593b102fb4c1ca010480faed582ae@sentry.io/242524",
+		 	blacklistUrls: [
+				/ton\.twimg\.com/i
+		 	]
+		});
 
-		setTimeout(Raven.context(mtdInit),10);
+		setTimeout(() => {
+			try {
+				mtdInit();
+			} catch (e) {
+				console.error(e);
+				Sentry.captureException(e);
+			}
+		}, 10);
 
-		Raven.context(() => {
-			window.addEventListener("keyup",keyboardShortcutHandler,false);
-			mutationObserver(html[0],onElementAddedToDOM,{attributes:false,subtree:true,childList:true})
+		try {
+			window.addEventListener("keyup",keyboardShortcutHandler, false);
+			mutationObserver(html[0], onElementAddedToDOM, {attributes: false, subtree: true, childList: true})
 
 			checkIfSigninFormIsPresent();
-			loginInterval = setInterval(checkIfSigninFormIsPresent,500);
+			loginInterval = setInterval(checkIfSigninFormIsPresent, 500);
 			console.info(`MTDinject ${SystemVersion} loaded`);
-		});
+		} catch (e) {
+			console.error(e);
+			Sentry.captureException(e);
+		}
+
 	} else {
 
 		mtdInit();
 
-		window.addEventListener("keyup",keyboardShortcutHandler,false);
-		mutationObserver(html[0],onElementAddedToDOM,{attributes:false,subtree:true,childList:true})
+		window.addEventListener("keyup", keyboardShortcutHandler, false);
+		mutationObserver(html[0], onElementAddedToDOM, {attributes: false, subtree: true, childList: true})
 
 		checkIfSigninFormIsPresent();
-		loginInterval = setInterval(checkIfSigninFormIsPresent,500);
+		loginInterval = setInterval(checkIfSigninFormIsPresent, 500);
 		console.info(`MTDinject ${SystemVersion} loaded`);
 	}
 

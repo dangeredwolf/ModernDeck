@@ -21,10 +21,10 @@ injStyles.href = browser.extension.getURL("sources/moderndeck.css");
 
 document.head.appendChild(injStyles);
 
-console.log("Bootstrapping Raven uwu");
+console.log("Bootstrapping Sentry");
 
 var injectScript2 = document.createElement("script");
-injectScript2.src = "https://cdn.ravenjs.com/3.19.1/raven.min.js";
+injectScript2.src = browser.extension.getURL("sources/libraries/sentry.min.js");
 injectScript2.type = "text/javascript";
 document.head.appendChild(injectScript2);
 
