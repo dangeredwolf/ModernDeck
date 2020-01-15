@@ -534,7 +534,7 @@ let settingsData = {
 					}
 				},
 				options:{
-					scrollbarsdefault:{value:"scrollbarsdefault",text:"Default"},
+					scrollbarsdefault:{value:"scrollbarsdefault",text:"Original"},
 					scrollbarsnarrow:{value:"scrollbarsnarrow",text:"Narrow"},
 					scrollbarsnone:{value:"scrollbarsnone",text:"Hidden"}
 				},
@@ -2583,13 +2583,26 @@ function openSettings(openMenu) {
 			$(".mtd-settings-tab-selected").removeClass("mtd-settings-tab-selected");
 			$(this).addClass("mtd-settings-tab-selected");
 
+			var theKey = key;
+
 			/*
 				calculates how far to move over the settings menu
 				good thing arrays start at 0, as 0 would be 0px, it's the first one
 			*/
 
+			container.attr("data-page-selected", $(this).attr("data-action"));
+
 			container.css("margin-left","-"+($(this).index()*700)+"px");
 		});
+
+		container.on("transitionend", () => {
+			let visiblePage = container.attr("data-page-selected");
+			container.children().filter(`:not([id=${visiblePage}])`).addClass("hidden");
+		})
+
+		container.on("transitionstart", () => {
+			container.children().removeClass("hidden");
+		})
 
 		let subPanel = make("div").addClass("mtd-settings-subpanel mtd-col scroll-v").attr("id",key);
 
