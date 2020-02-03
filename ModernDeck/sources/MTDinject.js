@@ -3613,10 +3613,7 @@ function hookComposer() {
 	});
 
 	if ($(".mtd-emoji").length <= 0) {
-		if (useNewEmojiPicker) {
-			makeEmojiPicker();
-		}
-		else if (isApp && useNativeEmojiPicker()) {
+		if (isApp && useNativeEmojiPicker()) {
 			$(".compose-text").after(
 				make("div").addClass("mtd-emoji").append(
 					make("div").addClass("mtd-emoji-button btn").append(
@@ -3636,11 +3633,7 @@ function hookComposer() {
 				)
 			);
 		} else {
-			try {
-				$(".compose-text").emojioneArea();
-			} catch (e) {
-				console.error("emoji area failed to initialise");
-			}
+			makeEmojiPicker();
 		}
 	}
 
@@ -4608,7 +4601,7 @@ function coreInit() {
 	head.append(
 		make("script").attr("type", "text/javascript").attr("src", mtdBaseURL + "sources/libraries/emojidata.js"),
 		make("script").attr("type", "text/javascript").attr("src", mtdBaseURL + "sources/libraries/twemoji.min.js"),
-		make("script").attr("type", "text/javascript").attr("src", mtdBaseURL + "sources/libraries/newemojipicker.js"),
+		make("script").attr("type", "text/javascript").attr("src", mtdBaseURL + "sources/libraries/emojipicker.js"),
 		make("script").attr("type", "text/javascript").attr("src", mtdBaseURL + "sources/libraries/jquery.visible.js")
 	);
 
