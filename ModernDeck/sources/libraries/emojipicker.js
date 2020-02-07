@@ -277,9 +277,13 @@ function buildCategories(categoryBlock) {
 		if (a.items.length <= 0) {
 			updateRecentEmojis();
 		} else {
-			a.items.forEach(emoji => {
-				category.append(makeEmojiButton(emoji));
-			});
+			// a.items.forEach(emoji => {
+			// 	category.append(makeEmojiButton(emoji));
+			// });
+
+			for (let i = 0; i < a.items.length; i++) {
+				category.append(makeEmojiButton(a.items[0]));
+			}
 		}
 
 		categoryBlock.append(category)
