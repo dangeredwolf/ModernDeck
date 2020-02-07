@@ -20,7 +20,7 @@ const giphyKey = "Vb45700bexRDqCkbMdUmBwDvtkWT9Vj2"; // swiper no swipey
 let lastGiphyURL = "";
 let isLoadingMoreGifs = false;
 let lastError = undefined;
-let useNewEmojiPicker = true;
+let loadEmojiPicker = false;
 
 let loginIntervalTick = 0;
 
@@ -1090,7 +1090,43 @@ let settingsData = {
 		tabId:"about",
 		options:{},
 		enum:"aboutpage"
+	}, internalSettings : {
+		enabled: false,
+		options: {
+			collapsedColumns:{
+				type:"array",
+				activate:{
+					func: (e) => {
+						console.log(e)
+						e.forEach((a, i) => {
+							console.log(a);
+							getColumnFromColumnNumber(a).addClass("mtd-collapsed")
+						})
+					}
+				},
+				settingsKey:"mtd_collapsed_columns",
+				enabled:false,
+				default:[]
+			},
+		}
 	}
+}
+
+function getColumnFromColumnNumber(num) {
+	let result;
+	$(".column").each((i, col) => {
+		console.log($(col))
+		if (typeof $(col).data("column") !== "undefined") {
+			if (parseInt($(col).data("column").match(/s\d+/g)[0].substr(1)) === num) {
+				result = col;
+			}
+		}
+	})
+	return $(result);
+}
+
+function getColumnNumber(col) {
+	return parseInt(col.data("column").match(/s\d+/g)[0].substr(1))
 }
 
 function updateColumnVisibility() {
@@ -1381,6 +1417,7 @@ function loadPreferences() {
 						case "dropdown":
 						case "textbox":
 						case "textarea":
+						case "array":
 						case "slider":
 							parseActions(pref.activate, setting, true);
 							break;
@@ -1962,6 +1999,14 @@ function processMustaches() {
 				<input type="button" name="remove-filter" value="{{_i}}Remove{{/i}}" data-id="{{id}}" class="js-remove-filter small btn btn-negative">\
 			</li>';
 
+	if (typeof TD_mustaches["column/column_options.mustache"] !== "undefined")
+		TD_mustaches["column/column_options.mustache"] =
+		TD_mustaches["column/column_options.mustache"].replace(
+			`<div class="button-group"> <button type="button" class="Button--link btn-options-tray padding-hn {{^isClearable}}is-invisible{{/isClearable}}" data-action="clear"> <i class="icon icon-clear-timeline"></i> <span class="label">{{_i}}Clear{{/i}}</span> </button> </div>`,
+			`<div class="button-group"> <button type="button" class="Button--link btn-options-tray padding-hn" data-action="mtd_collapse"> <i class='icon material-icon'>first_page</i> <span class="label">{{_i}}Collapse{{/i}}</span> </button> </div>` +
+			`<div class="button-group"> <button type="button" class="Button--link btn-options-tray padding-hn {{^isClearable}}is-invisible{{/isClearable}}" data-action="clear"> <i class="icon icon-clear-timeline"></i> <span class="label">{{_i}}Clear{{/i}}</span> </button> </div>`
+		)
+
 	if (!html.hasClass("mtd-disable-css")) {
 
 		if (typeof TD_mustaches["column_loading_placeholder.mustache"] !== "undefined")
@@ -2254,7 +2299,7 @@ async function mtdInit() {
 	}
 
 	setInterval(() => {
-		if ($(".mtd-emoji").length <= 0) {
+		if ($(".mtd-emoji").length <= 0 && loadEmojiPicker) {
 			try {
 				hookComposer()
 			} catch(e) {
@@ -2263,7 +2308,7 @@ async function mtdInit() {
 				lastError = e;
 			}
 		}
-	},500);
+	},1000);
 
 	$(document).on("uiInlineComposeTweet",(e) => {
 		setTimeout(() => {
@@ -2304,6 +2349,35 @@ async function mtdInit() {
 	$(document).off("uiShowGlobalSettings");
 	$(document).on("uiShowGlobalSettings",() => {
 		openSettings();
+	});
+
+	$(document).on("mouseup",(e) => {
+		if ($(e.target.parentElement).is("[data-action=\"mtd_collapse\"]")) {
+			let ohGodThisIsHorrible = e.target.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement;
+			$(ohGodThisIsHorrible).toggleClass("mtd-collapsed").find("[data-action=\"options\"]").click();
+
+			let arr = getPref("mtd_collapsed_columns",[]);
+			if ($(ohGodThisIsHorrible).hasClass("mtd-collapsed")) {
+				arr.push(getColumnNumber($(ohGodThisIsHorrible)));
+			} else {
+				let colNum = getColumnNumber($(ohGodThisIsHorrible));
+				arr = arr.filter(num => num !== colNum)
+			}
+
+			setPref("mtd_collapsed_columns",arr);
+
+		} else if ($(e.target.parentElement).is("[data-action=\"options\"]") && $(e.target.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement).hasClass("mtd-collapsed")) {
+			let ohGodThisIsHorrible = e.target.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement;
+			 $(ohGodThisIsHorrible).removeClass("mtd-collapsed");
+			 let arr = getPref("mtd_collapsed_columns",[]);
+ 			if ($(ohGodThisIsHorrible).hasClass("mtd-collapsed")) {
+ 				arr.push(getColumnNumber($(ohGodThisIsHorrible)));
+ 			} else {
+ 				let colNum = getColumnNumber($(ohGodThisIsHorrible));
+ 				arr = arr.filter(num => num !== colNum)
+ 			}
+			setPref("mtd_collapsed_columns",arr);
+		}
 	});
 
 	navigationSetup();
@@ -2575,7 +2649,7 @@ function openSettings(openMenu) {
 	for (var key in settingsData) {
 
 		// if set to false (NOT UNDEFINED, this is an optional parameter), skip it
-		if (settingsData[key].enabled === false) {
+		if (settingsData[key].enabled === false || settingsData[key].visible === false) {
 			continue;
 		}
 
@@ -2606,7 +2680,7 @@ function openSettings(openMenu) {
 
 		let subPanel = make("div").addClass("mtd-settings-subpanel mtd-col scroll-v").attr("id",key);
 
-		if (!settingsData[key].enum && settingsData[key].enabled !== false) {
+		if (!settingsData[key].enum && settingsData[key].enabled !== false && settingsData[key].visible !== false) {
 
 			for (let prefKey in settingsData[key].options) {
 
@@ -2617,7 +2691,7 @@ function openSettings(openMenu) {
 					option.addClass(pref.addClass);
 				}
 
-				if (pref.enabled === false) {
+				if (pref.enabled === false || pref.visible === false) {
 					continue;
 				}
 
@@ -3613,7 +3687,7 @@ function hookComposer() {
 	});
 
 	if ($(".mtd-emoji").length <= 0) {
-		if (isApp && useNativeEmojiPicker()) {
+		if (isApp && useNativeEmojiPicker() && loadEmojiPicker) {
 			$(".compose-text").after(
 				make("div").addClass("mtd-emoji").append(
 					make("div").addClass("mtd-emoji-button btn").append(
@@ -3632,7 +3706,7 @@ function hookComposer() {
 					)
 				)
 			);
-		} else {
+		} else if (loadEmojiPicker) {
 			makeEmojiPicker();
 		}
 	}

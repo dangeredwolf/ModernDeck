@@ -475,7 +475,7 @@ body.scroll-v .spinner-layer {
 	background-size:cover!important;
 	background-position:center!important;
 	pointer-events:none;
-	top: 0!important;
+	top:0!important
 }
 
 .txt-ellipsis,
@@ -863,6 +863,10 @@ button,a.btn,a.js-create-list,input[type="button"],.Button--primary,.Button {
 	text-transform:uppercase
 }
 
+button>i,a.btn>i,a.js-create-list>i,input[type="button"]>i,.Button--primary>i,.Button>i {
+	text-transform:none
+}
+
 button:hover,button:focus,.Button--primary {
 	background:transparent;
 	outline:0
@@ -878,7 +882,7 @@ button:hover,button:focus,.Button--primary {
 }
 
 .btn-options-tray i {
-	font-size:22px!important
+	font-size: 24px!important;
 }
 
 .btn-options-tray:hover,.btn-options-tray:focus {
@@ -1144,7 +1148,8 @@ button:hover,button:focus,.Button--primary {
 	margin-left:0;
 	margin-top:-2px;
 	word-wrap:break-word;
-	text-overflow:ellipsis
+	text-overflow:ellipsis;
+	z-index:5
 }
 
 .mdl .column-title {
@@ -2123,7 +2128,7 @@ a .column-title-back .icon:after {
 	height:100%!important;
 	background:var(--primaryColor);
 	z-index:6;
-	position: fixed;
+	position:fixed
 }
 
 .app-header-inner {
@@ -2240,12 +2245,12 @@ a .column-title-back .icon:after {
 	margin-top:50px!important
 }
 
-.mtd-classic-nav.mtd-head-left .js-hide-drawer.tweet-button  {
+.mtd-classic-nav.mtd-head-left .js-hide-drawer.tweet-button {
 	margin-top:5px;
 	background:none!important
 }
 
-.mtd-classic-nav.mtd-head-left:not(.mtd-app-mac) .js-hide-drawer.tweet-button  {
+.mtd-classic-nav.mtd-head-left:not(.mtd-app-mac) .js-hide-drawer.tweet-button {
 	margin-top:-14px
 }
 
@@ -2423,7 +2428,7 @@ html:not(.mtd-classic-nav) .attach-compose-buttons .tweet-button {
 }
 
 .message-banner {
-	position: absolute;
+	position:absolute;
 	text-align:center;
 	color:var(--rootWhiteColor)!important;
 	background:transparent!important;
@@ -2452,8 +2457,8 @@ html:not(.mtd-classic-nav) .attach-compose-buttons .tweet-button {
 
 .message-content a {
 	-webkit-app-region:no-drag;
-	/* padding-top: 20px!important; */
-	vertical-align: middle;
+	/* padding-top:20px!important; */
+	vertical-align:middle
 }
 
 .message-text {
@@ -4959,7 +4964,7 @@ a[rel="user"]:active,
 
 .prf-header[style="background-image: url(https://ton.twimg.com/tweetdeck-web/web/assets/global/backgrounds/td_profile_empty.b902792cc4.jpg)"],
 .mtd-nd-header-image[style="background-image: url(https://ton.twimg.com/tweetdeck-web/web/assets/global/backgrounds/td_profile_empty.b902792cc4.jpg)"],
-.prf-header[style="background-image :url(https://ton.twimg.com/tweetdeck-web/web/assets/global/backgrounds/td_profile_empty@2x.28d11b0d43.jpg)"],
+.prf-header[style="background-image: url(https://ton.twimg.com/tweetdeck-web/web/assets/global/backgrounds/td_profile_empty@2x.28d11b0d43.jpg)"],
 .mtd-nd-header-image[style="background-image: url(https://ton.twimg.com/tweetdeck-web/web/assets/global/backgrounds/td_profile_empty@2x.28d11b0d43.jpg)"] {
 	background-image:none!important
 }
@@ -5224,11 +5229,11 @@ html:not(.mtd-head-left) body .application.hide-detail-view-inline .column-navig
 
 .compose .js-quote-tweet-holder .quoted-tweet {
 	padding-left:10px!important;
-	padding-right: 10px!important;
+	padding-right:10px!important;
 	position:relative;
-	width: calc(var(--composeWidth) - 51px);
+	width:calc(var(--composeWidth) - 51px);
 	padding-bottom:10px!important;
-	margin-top:0;
+	margin-top:0
 }
 
 .is-options-open .more-tweets-btn-container--hidden {
@@ -9012,7 +9017,7 @@ html:not(.mtd-classic-nav) .js-hide-drawer:not(.tweet-button):not([data-title="A
 }
 
 .video-container>video {
-	margin-bottom:50px;
+	margin-bottom:50px
 }
 
 .video-container>.js-custom-video-controls {
@@ -9533,4 +9538,53 @@ a {
 .drawer .scroll-v>.cf .js-send-button {
 	margin-top:-13px;
 	margin-left:17px
+}
+
+.mtd-collapsed .column-content {
+	display:none!important
+}
+
+.mtd-collapsed {
+	width:54px;
+	transition:width 0.3s var(--animationTiming)
+}
+
+.mtd-collapsed .column-header {
+	height:100%;
+	width:100%
+}
+
+.mtd-collapsed .column-title {
+	height:unset;
+	transform:rotate(90deg) translateX(30px) translateY(4px);
+	transition:transform 0.3s var(--animationTiming),height 0.3s var(--animationTiming)
+}
+
+.mtd-collapsed .column-drag-handle {
+	height:100%;
+	z-index:1
+}
+
+.mtd-collapsed .column-type-icon {
+	transform:translateX(5px);
+	transition:transform 0.3s var(--animationTiming)
+}
+
+.mtd-collapsed .column-header-link {
+	z-index:10;
+	margin-top:0;
+	float:left
+}
+
+.mtd-collapsed .column-header-link .icon {
+	transform:rotate(-90deg)
+}
+
+.mtd-collapsed .column-header-links {
+	position:relative;
+	left: 90px;
+}
+
+.btn-options-tray[data-action="mtd_collapse"] i {
+	font-size:28px!important
 }

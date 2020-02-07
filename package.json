@@ -52,7 +52,7 @@
 		"@node-minify/csso": "^5.2.0",
 		"@node-minify/uglify-es": "^5.2.0",
 		"adm-zip": "^0.4.13",
-		"electron": "^7.1.8",
+		"electron": "^6.1.7",
 		"electron-builder": "^21.2.0",
 		"electron-notarize": "^0.2.1",
 		"fs-extra": "^8.1.0",

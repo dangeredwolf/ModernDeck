@@ -1152,9 +1152,13 @@ ipcMain.on("changeChannel", (e) => {
 
 // OS inverted colour scheme (high contrast) mode changed. We automatically respond to changes for accessibility
 
-nativeTheme.on("updated", (e,v) => {
-	mainWindow.webContents.send("inverted-color-scheme-changed",nativeTheme.shouldUseInvertedColorScheme);
-	mainWindow.webContents.send("color-scheme-changed", nativeTheme.shouldUseDarkColors ? "dark" : "light");
+// nativeTheme.on("updated", (e,v) => {
+// 	mainWindow.webContents.send("inverted-color-scheme-changed",nativeTheme.shouldUseInvertedColorScheme);
+// 	mainWindow.webContents.send("color-scheme-changed", nativeTheme.shouldUseDarkColors ? "dark" : "light");
+// });
+
+systemPreferences.on("inverted-color-scheme-changed", (e,v) => {
+	mainWindow.webContents.send("inverted-color-scheme-changed",v);
 });
 
 if (process.platform === 'darwin') {
@@ -1185,7 +1189,7 @@ setTimeout(() => {
 
 		mainWindow.webContents.send(
 			"inverted-color-scheme-changed",
-			!!nativeTheme.shouldUseInvertedColorScheme
+			systemPreferences.isInvertedColorScheme()//!!nativeTheme.shouldUseInvertedColorScheme
 		);
 	} catch(e) {
 		console.error(e);
