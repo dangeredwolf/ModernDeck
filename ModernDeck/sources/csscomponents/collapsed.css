@@ -60,8 +60,7 @@
 
 .mtd-collapsed .column-title-edit-box {
 	top:-20px;
-	border-bottom:0;
-	pointer-events:none
+	border-bottom:0
 }
 
 .mtd-collapsed .column-title-editable .column-header-links {
