@@ -8,7 +8,7 @@
 
 'use strict';
 
-let SystemVersion = "7.5";
+const SystemVersion = "7.5";
 const appendTextVersion = true;
 const enablePatronFeatures = true;
 
@@ -312,6 +312,7 @@ let settingsData = {
 					dark:{value:"dark",text:"Dark"},
 					light:{value:"light",text:"Light"}
 				},
+				savePreference:false,
 				queryFunction: () => {
 					html.addClass(TD.settings.getTheme());
 					return TD.settings.getTheme()
@@ -490,10 +491,10 @@ let settingsData = {
 				title:"Always display column icons in navigator",
 				type:"checkbox",
 				activate:{
-					htmlAddClass:"mtd-mtd-column-nav-always-visible"
+					htmlAddClass:"mtd-column-nav-always-visible"
 				},
 				deactivate:{
-					htmlRemoveClass:"mtd-mtd-column-nav-always-visible"
+					htmlRemoveClass:"mtd-column-nav-always-visible"
 				},
 				settingsKey:"mtd_column_nav_always_visible",
 				default:true
@@ -637,6 +638,7 @@ let settingsData = {
 						TD.settings.setDisplaySensitiveMedia(false);
 					}
 				},
+				savePreference:false,
 				queryFunction: () => {
 					return TD.settings.getDisplaySensitiveMedia();
 				}
@@ -700,6 +702,7 @@ let settingsData = {
 				headerBefore:"Function",
 				title:"Stream Tweets in realtime",
 				type:"checkbox",
+				savePreference:false,
 				activate:{
 					func: () => {
 						TD.settings.setUseStream(true);
@@ -717,6 +720,7 @@ let settingsData = {
 			autoplayGifs:{
 				title:"Automatically play GIFs",
 				type:"checkbox",
+				savePreference:false,
 				activate:{
 					func: () => {
 						TD.settings.setAutoPlayGifs(true);
@@ -734,6 +738,7 @@ let settingsData = {
 			startupNotifications:{
 				title:"Show notifications on startup",
 				type:"checkbox",
+				savePreference:false,
 				activate:{
 					func: () => {
 						TD.settings.setShowStartupNotifications(true);
@@ -747,6 +752,22 @@ let settingsData = {
 				queryFunction: () => {
 					return TD.settings.getShowStartupNotifications();
 				}
+			},
+			useModernDeckSounds:{
+				title:"Use custom ModernDeck alert sound",
+				type:"checkbox",
+				activate:{
+					func: () => {
+						$(document.querySelector("audio")).attr("src",mtdBaseURL + "sources/alert_2.mp3");
+					}
+				},
+				deactivate:{
+					func: () => {
+						$(document.querySelector("audio")).attr("src",$(document.querySelector("audio>source")).attr("src"));
+					}
+				},
+				settingsKey:"mtd_sounds",
+				default:true
 			},
 			linkshort:{
 				headerBefore:"Link Shortening",
@@ -764,6 +785,7 @@ let settingsData = {
 						TD.settings.setLinkShortener(set);
 					}
 				},
+				savePreference:false,
 				queryFunction: () => {
 					let shortener = TD.settings.getLinkShortener();
 					if (shortener === "twitter") {
@@ -788,9 +810,10 @@ let settingsData = {
 						TD.settings.setBitlyAccount({
 							apiKey:((TD.settings.getBitlyAccount() && TD.settings.getBitlyAccount().apiKey) ? TD.settings.getBitlyAccount() : {apiKey:""}).apiKey,
 							login:set
-						})
+						});
 					}
 				},
+				savePreference:false,
 				queryFunction: () => {
 					return ((TD.settings.getBitlyAccount() && TD.settings.getBitlyAccount().login) ? TD.settings.getBitlyAccount() : {login:""}).login;
 				}
@@ -807,6 +830,7 @@ let settingsData = {
 						});
 					}
 				},
+				savePreference: false,
 				queryFunction: () => {
 					return ((TD.settings.getBitlyAccount() && TD.settings.getBitlyAccount().apiKey) ? TD.settings.getBitlyAccount() : {apiKey:""}).apiKey;
 				}
@@ -1097,9 +1121,7 @@ let settingsData = {
 				type:"array",
 				activate:{
 					func: (e) => {
-						console.log(e)
 						e.forEach((a, i) => {
-							console.log(a);
 							getColumnFromColumnNumber(a).addClass("mtd-collapsed")
 						})
 					}
@@ -1982,12 +2004,6 @@ function overrideFadeOut() {
 
 }
 
-/* Change favicon and notification sound */
-
-function replaceAudioAndFavicon() {
-	$(document.querySelector("audio")).attr("src",mtdBaseURL + "sources/alert_2.mp3");
-}
-
 /* modifies tweetdeck mustaches, replacing spinners, etc */
 
 function processMustaches() {
@@ -2203,10 +2219,6 @@ async function mtdInit() {
 	}
 	html.addClass("dark");
 
-	if (html.hasClass("mtd-next")) {
-		SystemVersion = "8.0"
-	}
-
 	if (!injectedFonts) {
 		try {
 			injectFonts()
@@ -2267,14 +2279,6 @@ async function mtdInit() {
 		overrideFadeOut()
 	} catch(e) {
 		console.error("Caught error in overrideFadeOut");
-		console.error(e);
-		lastError = e;
-	}
-
-	try {
-		replaceAudioAndFavicon()
-	} catch(e) {
-		console.error("Caught error in replaceAudioAndFavicon");
 		console.error(e);
 		lastError = e;
 	}
@@ -2712,7 +2716,10 @@ function openSettings(openMenu) {
 
 					case "checkbox":
 						input = make("input").attr("type","checkbox").attr("id",prefKey).change(function() {
-							setPref(pref.settingsKey,$(this).is(":checked"));
+							if (pref.savePreference !== false) {
+								setPref(pref.settingsKey,$(this).is(":checked"));
+							}
+
 							parseActions($(this).is(":checked") ? pref.activate : pref.deactivate, $(this).val());
 
 						});
@@ -2739,7 +2746,9 @@ function openSettings(openMenu) {
 
 					case "dropdown":
 						select = make("select").attr("type","select").attr("id",prefKey).change(function() {
-							//setPref(pref.settingsKey,$(this).val());
+							if (pref.savePreference !== false) {
+								setPref(pref.settingsKey,$(this).val());
+							}
 							parseActions(pref.activate, $(this).val());
 						});
 
@@ -2785,10 +2794,16 @@ function openSettings(openMenu) {
 
 						if (pref.instantApply === true) {
 							input.on("input",function() {
+								if (pref.savePreference !== false) {
+									setPref(pref.settingsKey, $(this).val());
+								}
 								parseActions(pref.activate, $(this).val());
 							});
 						} else {
 							input.change(function() {
+								if (pref.savePreference !== false) {
+									setPref(pref.settingsKey, $(this).val());
+								}
 								parseActions(pref.activate, $(this).val());
 							});
 						}
@@ -2814,10 +2829,16 @@ function openSettings(openMenu) {
 
 						if (pref.instantApply === true) {
 							input.on("input",function() {
+								if (pref.savePreference !== false) {
+									setPref(pref.settingsKey, $(this).val());
+								}
 								parseActions(pref.activate, $(this).val());
 							});
 						} else {
 							input.change(function() {
+								if (pref.savePreference !== false) {
+									setPref(pref.settingsKey, $(this).val());
+								}
 								parseActions(pref.activate, $(this).val());
 							});
 						}
@@ -2872,6 +2893,9 @@ function openSettings(openMenu) {
 						.attr("min",pref.minimum)
 						.attr("max",pref.maximum)
 						.change(function() {
+							if (pref.savePreference !== false) {
+								setPref(pref.settingsKey, $(this).val());
+							}
 							parseActions(pref.activate, $(this).val());
 						}).on("input",function() {
 							label.html(`${pref.title} <b> ${$(this).val()} ${(pref.displayUnit || "")} </b>`);
@@ -2933,7 +2957,7 @@ function openSettings(openMenu) {
 			}
 		} else if (settingsData[key].enum === "aboutpage") {
 			let logo = make("i").addClass("mtd-logo icon-moderndeck icon");
-			let h1 = make("h1").addClass("mtd-about-title").html(html.hasClass("mtd-next") ? "ModernDeck Next" : "ModernDeck 7");
+			let h1 = make("h1").addClass("mtd-about-title").html(html.hasClass("mtd-next") ? "ModernDeck Next" : "ModernDeck");
 			let h2 = make("h2").addClass("mtd-version-title").html((appendTextVersion ? "Version " : "") +SystemVersion);
 			let logoCont = make("div").addClass("mtd-logo-container");
 

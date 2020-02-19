@@ -475,6 +475,7 @@ body.scroll-v .spinner-layer {
 	background-size:cover!important;
 	background-position:center!important;
 	pointer-events:none;
+	--verticalHeadWidth:200px;
 	top:0!important
 }
 
@@ -882,7 +883,7 @@ button:hover,button:focus,.Button--primary {
 }
 
 .btn-options-tray i {
-	font-size: 24px!important;
+	font-size:24px!important
 }
 
 .btn-options-tray:hover,.btn-options-tray:focus {
@@ -8728,8 +8729,8 @@ html.mtd-classic-nav .column-navigator {
 
 .mtd-app .column-nav-item,
 .mtd-app .column-nav-item.is-new,
-.mtd-mtd-column-nav-always-visible .column-nav-item,
-.mtd-mtd-column-nav-always-visible .column-nav-item.is-new
+.mtd-column-nav-always-visible .column-nav-item,
+.mtd-column-nav-always-visible .column-nav-item.is-new
 {
 	opacity:1!important;
 	width:40px!important;
@@ -9148,7 +9149,7 @@ html:not(.mtd-classic-nav) .js-hide-drawer:not(.tweet-button):not([data-title="A
 }
 
 .mtd-classic-nav .application:not(.is-condensed) .app-navigator .dropdown-menu {
-	margin-left:150px
+	margin-left:6px
 }
 
 .app-navigator .dropdown-menu {
@@ -9582,9 +9583,18 @@ a {
 
 .mtd-collapsed .column-header-links {
 	position:relative;
-	left: 90px;
+	left:90px
 }
 
 .btn-options-tray[data-action="mtd_collapse"] i {
 	font-size:28px!important
+}
+
+.application.is-condensed {
+	--verticalHeadWidth:50px
+}
+
+.nav-user-info .username,.nav-user-info .fullname {
+	max-width:calc(var(--verticalHeadWidth) - 50px);
+	overflow:hidden
 }
