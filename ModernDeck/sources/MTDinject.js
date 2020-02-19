@@ -758,7 +758,7 @@ let settingsData = {
 				type:"checkbox",
 				activate:{
 					func: () => {
-						$(document.querySelector("audio")).attr("src",mtdBaseURL + "sources/alert_2.mp3");
+						$(document.querySelector("audio")).attr("src",mtdBaseURL + "sources/alert_3.mp3");
 					}
 				},
 				deactivate:{
@@ -1215,12 +1215,14 @@ function attachColumnVisibilityEvents() {
 		"uiReload " +
 		"uiNavigate " +
 		"uiComposeTweet " +
-		"uiColumnsScrollToColumn "
-		,() => {
-		setTimeout(() => {
-			updateColumnVisibility();
-		},400)
-	});
+		"uiMTDColumnCollapsed " +
+		"uiColumnsScrollToColumn ",
+		() => {
+			setTimeout(() => {
+				updateColumnVisibility();
+			},400)
+		}
+	);
 	updateColumnVisibility();
 }
 
@@ -2358,7 +2360,12 @@ async function mtdInit() {
 	$(document).on("mouseup",(e) => {
 		if ($(e.target.parentElement).is("[data-action=\"mtd_collapse\"]")) {
 			let ohGodThisIsHorrible = e.target.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement;
+
+			if ($(ohGodThisIsHorrible).hasClass("column-holder")) {
+				ohGodThisIsHorrible = ohGodThisIsHorrible.parentElement;
+			}
 			$(ohGodThisIsHorrible).toggleClass("mtd-collapsed").find("[data-action=\"options\"]").click();
+			$(document).trigger("uiMTDColumnCollapsed");
 
 			let arr = getPref("mtd_collapsed_columns",[]);
 			if ($(ohGodThisIsHorrible).hasClass("mtd-collapsed")) {
@@ -2370,9 +2377,14 @@ async function mtdInit() {
 
 			setPref("mtd_collapsed_columns",arr);
 
-		} else if ($(e.target.parentElement).is("[data-action=\"options\"]") && $(e.target.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement).hasClass("mtd-collapsed")) {
+		} else if ($(e.target.parentElement).is("[data-action=\"options\"]") &&
+		($(e.target.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement).hasClass("mtd-collapsed") || $(e.target.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement).hasClass("mtd-collapsed"))) {
 			let ohGodThisIsHorrible = e.target.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement;
+			if ($(ohGodThisIsHorrible).hasClass("column-holder")) {
+				ohGodThisIsHorrible = ohGodThisIsHorrible.parentElement;
+			}
 			 $(ohGodThisIsHorrible).removeClass("mtd-collapsed");
+			 $(document).trigger("uiMTDColumnCollapsed");
 			 let arr = getPref("mtd_collapsed_columns",[]);
  			if ($(ohGodThisIsHorrible).hasClass("mtd-collapsed")) {
  				arr.push(getColumnNumber($(ohGodThisIsHorrible)));

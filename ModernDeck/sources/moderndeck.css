@@ -23,6 +23,8 @@
 @import "csscomponents/settings.css";
 @import "csscomponents/navigationdrawer.css";
 @import "csscomponents/welcome.css";
+@import "csscomponents/collapsed.css";
+@import "csscomponents/classicnav.css";
 /* stylelint-enable */
 
 :root {
@@ -8729,8 +8731,8 @@ html.mtd-classic-nav .column-navigator {
 
 .mtd-app .column-nav-item,
 .mtd-app .column-nav-item.is-new,
-.mtd-column-nav-always-visible .column-nav-item,
-.mtd-column-nav-always-visible .column-nav-item.is-new
+.mtd-mtd-column-nav-always-visible .column-nav-item,
+.mtd-mtd-column-nav-always-visible .column-nav-item.is-new
 {
 	opacity:1!important;
 	width:40px!important;
@@ -9539,55 +9541,6 @@ a {
 .drawer .scroll-v>.cf .js-send-button {
 	margin-top:-13px;
 	margin-left:17px
-}
-
-.mtd-collapsed .column-content {
-	display:none!important
-}
-
-.mtd-collapsed {
-	width:54px;
-	transition:width 0.3s var(--animationTiming)
-}
-
-.mtd-collapsed .column-header {
-	height:100%;
-	width:100%
-}
-
-.mtd-collapsed .column-title {
-	height:unset;
-	transform:rotate(90deg) translateX(30px) translateY(4px);
-	transition:transform 0.3s var(--animationTiming),height 0.3s var(--animationTiming)
-}
-
-.mtd-collapsed .column-drag-handle {
-	height:100%;
-	z-index:1
-}
-
-.mtd-collapsed .column-type-icon {
-	transform:translateX(5px);
-	transition:transform 0.3s var(--animationTiming)
-}
-
-.mtd-collapsed .column-header-link {
-	z-index:10;
-	margin-top:0;
-	float:left
-}
-
-.mtd-collapsed .column-header-link .icon {
-	transform:rotate(-90deg)
-}
-
-.mtd-collapsed .column-header-links {
-	position:relative;
-	left:90px
-}
-
-.btn-options-tray[data-action="mtd_collapse"] i {
-	font-size:28px!important
 }
 
 .application.is-condensed {
