@@ -1,6 +1,6 @@
 /*
 	MTDinject.js
-	Copyright (c) 2019 dangered wolf, et al
+	Copyright (c) 2014-2020 dangered wolf, et al
 	Released under the MIT licence
 
 	Made with <3
@@ -15,7 +15,7 @@ const enablePatronFeatures = true;
 let debugSettings = false;
 
 let mtdBaseURL = "https://raw.githubusercontent.com/dangeredwolf/ModernDeck/master/ModernDeck/";
-// Defaults to obtaining assets from GitHub if MTDURLExchange isn't completed properly
+// Defaults to obtaining assets from GitHub if MTDURLExchange isn't completed properly somehow
 const giphyKey = "Vb45700bexRDqCkbMdUmBwDvtkWT9Vj2"; // swiper no swipey
 let lastGiphyURL = "";
 let isLoadingMoreGifs = false;
@@ -1123,7 +1123,10 @@ let settingsData = {
 					func: (e) => {
 						e.forEach((a, i) => {
 							getColumnFromColumnNumber(a).addClass("mtd-collapsed")
-						})
+						});
+						setTimeout(() => {
+							$(document).trigger("uiMTDColumnCollapsed");
+						},300);
 					}
 				},
 				settingsKey:"mtd_collapsed_columns",
@@ -2358,13 +2361,16 @@ async function mtdInit() {
 	});
 
 	$(document).on("mouseup",(e) => {
+		console.log($(e.target.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement));
+		console.log($(e.target.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement).hasClass("mtd-collapsed"));
 		if ($(e.target.parentElement).is("[data-action=\"mtd_collapse\"]")) {
 			let ohGodThisIsHorrible = e.target.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement;
 
 			if ($(ohGodThisIsHorrible).hasClass("column-holder")) {
 				ohGodThisIsHorrible = ohGodThisIsHorrible.parentElement;
 			}
-			$(ohGodThisIsHorrible).toggleClass("mtd-collapsed").find("[data-action=\"options\"]").click();
+			$(ohGodThisIsHorrible).toggleClass("mtd-collapsed").find("[data-testid=\"optionsToggle\"],[data-action=\"options\"]").click();
+
 			$(document).trigger("uiMTDColumnCollapsed");
 
 			let arr = getPref("mtd_collapsed_columns",[]);
@@ -2377,21 +2383,17 @@ async function mtdInit() {
 
 			setPref("mtd_collapsed_columns",arr);
 
-		} else if ($(e.target.parentElement).is("[data-action=\"options\"]") &&
-		($(e.target.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement).hasClass("mtd-collapsed") || $(e.target.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement).hasClass("mtd-collapsed"))) {
+		} else if ($(e.target.parentElement).is("[data-testid=\"optionsToggle\"],[data-action=\"options\"]") &&
+		$(e.target.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement).hasClass("mtd-collapsed")) {
 			let ohGodThisIsHorrible = e.target.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement;
 			if ($(ohGodThisIsHorrible).hasClass("column-holder")) {
 				ohGodThisIsHorrible = ohGodThisIsHorrible.parentElement;
 			}
-			 $(ohGodThisIsHorrible).removeClass("mtd-collapsed");
-			 $(document).trigger("uiMTDColumnCollapsed");
-			 let arr = getPref("mtd_collapsed_columns",[]);
- 			if ($(ohGodThisIsHorrible).hasClass("mtd-collapsed")) {
- 				arr.push(getColumnNumber($(ohGodThisIsHorrible)));
- 			} else {
- 				let colNum = getColumnNumber($(ohGodThisIsHorrible));
- 				arr = arr.filter(num => num !== colNum)
- 			}
+			$(ohGodThisIsHorrible).removeClass("mtd-collapsed");
+			$(document).trigger("uiMTDColumnCollapsed");
+			let arr = getPref("mtd_collapsed_columns",[]);
+ 			let colNum = getColumnNumber($(ohGodThisIsHorrible));
+ 			arr = arr.filter(num => num !== colNum)
 			setPref("mtd_collapsed_columns",arr);
 		}
 	});

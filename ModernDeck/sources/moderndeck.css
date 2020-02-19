@@ -1,8 +1,8 @@
 /*
 	moderndeck.css
 
-	ModernDeck 7.4 [codename Essence]
-	Copyright 2014-2019 dangered wolf, et al
+	ModernDeck 7.5 [codename Supercharge]
+	Copyright 2014-2020 dangered wolf, et al
 	Released under the MIT Licence
 
 	For a complete list of open source projects included in this, view the "LICENCES" file in the open source project @ github.com/dangeredwolf/ModernDeck
@@ -53,7 +53,7 @@
 	--verticalHeadWidth:50px
 }
 
-/* LOADING SCREEN, DO NOT MERGE, MOVE, OR REMOVE */
+/* LOADING SCREEN, DO NOT MERGE, MOVE, OR REMOVE. It's fairly important that the renderer loads this first. */
 
 img.spinner-centered {
 	display:none

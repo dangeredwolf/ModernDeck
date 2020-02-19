@@ -1,3 +1,10 @@
+/*
+	collapsed.css
+
+	Copyright (c) 2014-2020 dangered wolf, et al
+	Released under the MIT Licence
+*/
+
 .mtd-collapsed .column-title-edit-box, .mtd-collapsed .column-header-title, .mtd-collapsed .column-title {
 	width:auto!important
 }
@@ -6,13 +13,12 @@
 	font-size:28px!important
 }
 
-
 .mtd-collapsed .column-content {
 	display:none!important
 }
 
 .mtd-collapsed {
-	width:54px;
+	width:54px!important;
 	transition:width 0.3s var(--animationTiming)
 }
 
@@ -50,4 +56,15 @@
 .mtd-collapsed .column-header-links {
 	position:relative;
 	left:90px
+}
+
+.mtd-collapsed .column-title-edit-box {
+	top:-20px;
+	border-bottom:0;
+	pointer-events:none
+}
+
+.mtd-collapsed .column-title-editable .column-header-links {
+	left:300px;
+	top:-30px
 }
