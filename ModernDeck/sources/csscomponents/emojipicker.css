@@ -48,7 +48,8 @@
 	opacity:0;
 	width:0;
 	margin:0;
-	pointer-events:none
+	pointer-events:none;
+	display:none
 }
 
 .emojifadein {

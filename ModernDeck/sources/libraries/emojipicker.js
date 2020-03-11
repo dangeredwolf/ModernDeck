@@ -7,6 +7,8 @@ const toneMap = [
 	"1f3ff"
 ]
 
+let emojiBaseURL = "https://twemoji.maxcdn.com/v/12.1.5/svg/";
+
 const parseOptions = {
 	folder:"svg",
 	callback:(icon,options,variant) => {
@@ -22,19 +24,20 @@ const parseOptions = {
 
 async function makeEmojiPicker() {
 
-	if ($(".mtd-emoji").length > 0) {
-		console.log("We already made the emoji panel. Please leave me alone.");
+	if (nQuery(".mtd-emoji").length > 0) {
+		// console.error("We already made the emoji panel. Please leave me alone.");
+		return;
 	}
 
-	var searchBox = make("input").addClass("search").attr("placeholder","Search").attr("type","text").on("input", () => {
+	var searchBox = makeN("input").addClass("search").attr("placeholder","Search").attr("type","text").on("input", () => {
 		let query = searchBox.val();
 
 		if (query === "") {
-			$(`.mtd-emoji-category>.emojibtn`).removeClass("emojifadein emojifadeout");
-			$(`.mtd-emoji-category`).removeClass("hidden")
+			nQuery(`.mtd-emoji-category>.emojibtn`).removeClass("emojifadein emojifadeout");
+			nQuery(`.mtd-emoji-category`).removeClass("hidden")
 		}
 
-		$(`.mtd-emoji-category>.emojibtn`).each((i, a) => {
+		nQuery(`.mtd-emoji-category>.emojibtn`).each((i, a) => {
 			let code = a.getAttribute("data-code");
 
 			toneMap.forEach((b, j) => {
@@ -52,52 +55,56 @@ async function makeEmojiPicker() {
 
 			let keywords = kad.keywords;
 
-			if (keywords.match(query) !== null) {
-				a.classList.remove("emojifadeout");
-				a.classList.add("emojifadein");
-			} else {
-				a.classList.remove("emojifadein");
-				a.classList.add("emojifadeout");
+			try {
+				if (keywords.match(query) !== null) {
+					a.classList.remove("emojifadeout");
+					a.classList.add("emojifadein");
+				} else {
+					a.classList.remove("emojifadein");
+					a.classList.add("emojifadeout");
+				}
+			} catch(e) {
+
 			}
 		});
 
-		$(`.mtd-emoji-category`).each((i, a) => {
-			if ($(a.children).is(".emojifadein")) {
+		nQuery(`.mtd-emoji-category`).each((i, a) => {
+			if (nQuery(a.children).is(".emojifadein")) {
 				a.classList.remove("emojihidecat");
 			} else {
 				a.classList.add("emojihidecat")
 			}
 		});
 	})
-	let search = make("div").addClass("mtd-emoji-search").append(searchBox);
+	let search = makeN("div").addClass("mtd-emoji-search").append(searchBox);
 
-	let tones = make("div").addClass("mtd-emoji-tones");
+	let tones = makeN("div").addClass("mtd-emoji-tones");
 	makeTones(tones);
 
-	let searchPanel = make("div").addClass("mtd-emoji-search-panel").append(search, tones);
-	let filterCont = make("div").addClass("mtd-emoji-filters");
-	let wrapper = make("div").addClass("mtd-emoji-wrapper").append(filterCont, searchPanel);
-	let picker = make("div").addClass("mtd-emoji-picker popover hidden").append(wrapper);
-	let cont = make("div").addClass("mtd-emoji").append(picker);
+	let searchPanel = makeN("div").addClass("mtd-emoji-search-panel").append(search, tones);
+	let filterCont = makeN("div").addClass("mtd-emoji-filters");
+	let wrapper = makeN("div").addClass("mtd-emoji-wrapper").append(filterCont, searchPanel);
+	let picker = makeN("div").addClass("mtd-emoji-picker popover hidden").append(wrapper);
+	let cont = makeN("div").addClass("mtd-emoji").append(picker);
 	makeFilters(filterCont);
 
-	let categoryBlock = make("div").addClass("mtd-emoji-category-block");
+	let categoryBlock = makeN("div").addClass("mtd-emoji-category-block");
 
 	buildCategories(categoryBlock);
 
-	let emojisList = make("div").addClass("mtd-emoji-emojis-list").append(categoryBlock);
-	let scrollArea = make("div")
+	let emojisList = makeN("div").addClass("mtd-emoji-emojis-list").append(categoryBlock);
+	let scrollArea = makeN("div")
 	.addClass("mtd-emoji-scroll-area scroll-v")
 	.append(emojisList);
 
 	picker.append(scrollArea);
 
-	$(".compose-text-container").append(cont);
+	nQuery(".compose-text-container").append(cont);
 
-	$(".compose-text").after(
-		make("div").addClass("mtd-emoji").append(
-			make("div").addClass("mtd-emoji-button btn").append(
-				make("div").addClass("mtd-emoji-button-open").click(() => {
+	nQuery(".compose-text").after(
+		makeN("div").addClass("mtd-emoji").append(
+			makeN("div").addClass("mtd-emoji-button btn").append(
+				makeN("div").addClass("mtd-emoji-button-open").click(() => {
 					picker.toggleClass("hidden")
 				})
 			)
@@ -105,14 +112,6 @@ async function makeEmojiPicker() {
 	);
 
 	updateRecentEmojis();
-}
-
-function fromCodePoint(str) {
-	let newStr = "";
-	str.replace(/\*/g,"").split("-").forEach(
-		a => {newStr += twemoji.convert.fromCodePoint(a);}
-	)
-	return newStr;
 }
 
 function convertPoint(codepoint) {
@@ -123,7 +122,10 @@ function convertPoint(codepoint) {
 }
 
 function setTone(tone) {
-	$(`.mtd-emoji-category[name="people"]>.emojibtn,.mtd-emoji-category[name="recent"]>.emojibtn`).each((i, a) => {
+	nQuery(`.mtd-emoji-category[name="people"]>.emojibtn,.mtd-emoji-category[name="recent"]>.emojibtn`).each((i, a) => {
+		if (!a.getAttribute("data-code")) {
+			return;
+		}
 		let data = a.getAttribute("data-code").replace(/(\*|\-$)/g,"");
 
 		// Remove tone off of previously toned emojis
@@ -132,6 +134,7 @@ function setTone(tone) {
 				data = data.replace("-" + b, "");
 			}
 		});
+
 
 		// Is it an emoji that supports tones?
 		if (emojiToneEmojis[data]) {
@@ -146,19 +149,18 @@ function setTone(tone) {
 			// Remove trailing minus, if there
 			data = data.replace(/\-$/g, "");
 
-			a.innerHTML = "";
-			a.setAttribute("data-code",data);
+			console.log(convertPoint(data))
+			console.log(convertPoint(data).point)
 
-			$(a).append(
-				twemoji.parse(convertPoint(data).point, parseOptions)
-			)
+			a.innerHTML = twemoji.parse(convertPoint(data).point, parseOptions)
+			a.setAttribute("data-code",data);
 		}
 	})
 }
 
 function makeFilters(filterCont) {
 	emojiCategories.forEach((a, b) => {
-		var filter = make("i")
+		var filter = makeN("i")
 		.addClass("mtd-emoji-filter" + (b === 0 ? " active" : ""))
 		.data("filter",emojiCategories[b].id)
 		.attr("title",emojiCategories[b].title)
@@ -166,11 +168,11 @@ function makeFilters(filterCont) {
 			twemoji.parse(convertPoint(emojiCategories[b].items[0] || "1f552").point, parseOptions)
 		)
 		.click(() => {
-			let scrollArea = $(".mtd-emoji-scroll-area");
-			$(".mtd-emoji-filter.active").removeClass("active");
+			let scrollArea = nQuery(".mtd-emoji-scroll-area");
+			nQuery(".mtd-emoji-filter.active").removeClass("active");
 			filter.addClass("active");
 
-			var headerOffset = $(".mtd-emoji-category[name='" + filter.data("filter") + "']").offset().top,
+			var headerOffset = nQuery(".mtd-emoji-category[name='" + filter.data("filter") + "']").offset().top,
 				scroll = scrollArea.scrollTop(),
 				offsetTop = scrollArea.offset().top;
 
@@ -188,12 +190,12 @@ function makeFilters(filterCont) {
 
 function makeTones(tones) {
 	for (let i = 0; i < 6; i++) {
-		let tone = make("i").addClass("btn-tone btn-tone-" + i);
+		let tone = makeN("i").addClass("btn-tone btn-tone-" + i);
 		if (i === 0) {
 			tone.addClass("active");
 		}
 		tone.click(() => {
-			$(".btn-tone").removeClass("active");
+			nQuery(".btn-tone").removeClass("active");
 			tone.addClass("active");
 			setTone(i);
 		});
@@ -202,9 +204,9 @@ function makeTones(tones) {
 }
 
 function updateRecentEmojis() {
-	$(`.mtd-emoji-category[name="recent"]>.emojibtn`).remove();
+	nQuery(`.mtd-emoji-category[name="recent"]>.emojibtn`).remove();
 
-	let recentCategory = $(`.mtd-emoji-category[name="recent"]`);
+	let recentCategory = nQuery(`.mtd-emoji-category[name="recent"]`);
 	let recents = getRecentEmojis();
 
 	for (i in getRecentEmojis()) {
@@ -218,61 +220,15 @@ function makeEmojiButton(emoji, title) {
 	}
 	title = title || (window.emojiKeywordsAndDescriptions[emoji] ? window.emojiKeywordsAndDescriptions[emoji].description : "Emoji");
 	// console.log(title)
-	var emojibtn = make("i").addClass("emojibtn").attr("role","button").attr("data-code",emoji.replace(/\*/g,"")).append(
-		twemoji.parse(
-			convertPoint(emoji).point,
-			parseOptions
-		)
-	).attr("title", title);
 
-	emojibtn.click(() => {
-		let theEmoji = fromCodePoint(emojibtn.attr("data-code"));//twemoji.convert.fromCodePoint(emoji);
-		let theInput = $(".compose-text")[0];
-		let oS = theInput.scrollTop;
-
-		if (!emojibtn.is(`.mtd-emoji-category[name="recent"]>.emojibtn`))
-			pushRecentEmoji(theEmoji);
-
-		if (theInput.setSelectionRange) {
-			let sS = theInput.selectionStart;
-			let sE = theInput.selectionEnd;
-			theInput.value = theInput.value.substr(0, sS) + theEmoji + theInput.value.substr(sE);
-			theInput.setSelectionRange(sS + theEmoji.length, sS + theEmoji.length);
-		} else if (theInput.createTextRange) {
-			document.selection.createRange().text = theEmoji;
-		}
-
-		theInput.focus();
-		theInput.scrollTop = oS;
-	});
-
-	return emojibtn;
-}
-
-function pushRecentEmoji(emoji) {
-	let recents = getPref("mtd_recent_emoji", "").split("|").filter(o => o !== emoji);
-
-	// maximum 24
-	if (recents.length >= 24) {
-		recents.pop();
-	}
-
-	setPref("mtd_recent_emoji", emoji + "|" + recents.join("|"));
-
-	updateRecentEmojis();
-}
-
-function getRecentEmojis() {
-	let asdf = getPref("mtd_recent_emoji", "").split("|");
-	if (asdf[asdf.length - 1] === "")
-		asdf.pop();
-	return asdf;
+	return `<i class="emojibtn" role="button" data-code="${emoji.replace(/\*/g,"")}" title="${title}">
+		<img class="mtd-emoji-code" draggable="false" alt="${convertPoint(emoji)}" src="${emojiBaseURL}${emoji}.svg"></i>
+	</i>`;
 }
 
 function buildCategories(categoryBlock) {
 	emojiCategories.forEach((a, b) => {
-		let categoryTitle = make("div").addClass("mtd-emoji-category-title txt-mute").html(a.title);
-		let category = make("div").addClass("mtd-emoji-category").attr("name", a.id).append(categoryTitle);
+		var category = makeN("div").addClass("mtd-emoji-category").attr("name", a.id);
 
 		if (a.items.length <= 0) {
 			updateRecentEmojis();
@@ -281,9 +237,13 @@ function buildCategories(categoryBlock) {
 			// 	category.append(makeEmojiButton(emoji));
 			// });
 
+			let innerHTML = `<div class="mtd-emoji-category-title txt-mute">${a.title}</div>`;
+
 			for (let i = 0; i < a.items.length; i++) {
-				category.append(makeEmojiButton(a.items[0]));
+				innerHTML += makeEmojiButton(a.items[i]);
 			}
+
+			category.html(innerHTML);
 		}
 
 		categoryBlock.append(category)

@@ -20,7 +20,7 @@ const giphyKey = "Vb45700bexRDqCkbMdUmBwDvtkWT9Vj2"; // swiper no swipey
 let lastGiphyURL = "";
 let isLoadingMoreGifs = false;
 let lastError = undefined;
-let loadEmojiPicker = false;
+let loadEmojiPicker = true;
 
 let loginIntervalTick = 0;
 
@@ -142,8 +142,12 @@ const buttonSpinner =
 	We could just make jQuery directly do it, but it's slower than calling native JS api and wrapped jQuery around it
 */
 
-const make = function(a) {
+let make = function(a) {
 	return $(document.createElement(a));
+}
+
+let makeN = function(a) {
+	return nQuery(document.createElement(a));
 }
 
 // shorthand function to return true if something exists and false otherwise
@@ -2203,6 +2207,37 @@ function loginTextReplacer() {
 	}
 }
 
+function pushRecentEmoji(emoji) {
+	let recents = getPref("mtd_recent_emoji", "").split("|").filter(o => o !== emoji);
+
+	// maximum 24
+	if (recents.length >= 24) {
+		recents.pop();
+	}
+
+	setPref("mtd_recent_emoji", emoji + "|" + recents.join("|"));
+
+	updateRecentEmojis();
+}
+
+function getRecentEmojis() {
+	let asdf = getPref("mtd_recent_emoji", "").split("|");
+	if (asdf[asdf.length - 1] === "")
+		asdf.pop();
+	return asdf;
+}
+
+function fromCodePoint(str) {
+	let newStr = "";
+	str = str.replace(/\*/g,"");
+	str = str.split("-");
+
+	str.forEach(
+		a => {newStr += twemoji.convert.fromCodePoint(a);}
+	)
+	return newStr;
+}
+
 // begin moderndeck initialisation
 
 async function mtdInit() {
@@ -2360,40 +2395,63 @@ async function mtdInit() {
 	});
 
 	$(document).on("mouseup",(e) => {
-		console.log($(e.target.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement));
-		console.log($(e.target.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement).hasClass("mtd-collapsed"));
-		if ($(e.target.parentElement).is("[data-action=\"mtd_collapse\"]")) {
-			let ohGodThisIsHorrible = e.target.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement;
+		try {
+			if ($(e.target.parentElement).is("[data-action=\"mtd_collapse\"]")) {
+				let ohGodThisIsHorrible = e.target.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement;
 
-			if ($(ohGodThisIsHorrible).hasClass("column-holder")) {
-				ohGodThisIsHorrible = ohGodThisIsHorrible.parentElement;
+				if ($(ohGodThisIsHorrible).hasClass("column-holder")) {
+					ohGodThisIsHorrible = ohGodThisIsHorrible.parentElement;
+				}
+				$(ohGodThisIsHorrible).toggleClass("mtd-collapsed").find("[data-testid=\"optionsToggle\"],[data-action=\"options\"]").click();
+
+				$(document).trigger("uiMTDColumnCollapsed");
+
+				let arr = getPref("mtd_collapsed_columns",[]);
+				if ($(ohGodThisIsHorrible).hasClass("mtd-collapsed")) {
+					arr.push(getColumnNumber($(ohGodThisIsHorrible)));
+				} else {
+					let colNum = getColumnNumber($(ohGodThisIsHorrible));
+					arr = arr.filter(num => num !== colNum)
+				}
+
+				setPref("mtd_collapsed_columns",arr);
+
+			} else if ($(e.target.parentElement).is("[data-testid=\"optionsToggle\"],[data-action=\"options\"]") &&
+			$(e.target.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement).hasClass("mtd-collapsed")) {
+				let ohGodThisIsHorrible = e.target.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement;
+				if ($(ohGodThisIsHorrible).hasClass("column-holder")) {
+					ohGodThisIsHorrible = ohGodThisIsHorrible.parentElement;
+				}
+				$(ohGodThisIsHorrible).removeClass("mtd-collapsed");
+				$(document).trigger("uiMTDColumnCollapsed");
+				let arr = getPref("mtd_collapsed_columns",[]);
+	 			let colNum = getColumnNumber($(ohGodThisIsHorrible));
+	 			arr = arr.filter(num => num !== colNum)
+				setPref("mtd_collapsed_columns",arr);
 			}
-			$(ohGodThisIsHorrible).toggleClass("mtd-collapsed").find("[data-testid=\"optionsToggle\"],[data-action=\"options\"]").click();
+		} catch (e) {
 
-			$(document).trigger("uiMTDColumnCollapsed");
+		}
+		if ($(e.target).hasClass("mtd-emoji-code")) {
+			let emojibtn = $(e.target.parentElement)
+			let theEmoji = fromCodePoint(emojibtn.attr("data-code"));//twemoji.convert.fromCodePoint(emoji);
+			let theInput = $(".compose-text")[0];
+			let oS = theInput.scrollTop;
 
-			let arr = getPref("mtd_collapsed_columns",[]);
-			if ($(ohGodThisIsHorrible).hasClass("mtd-collapsed")) {
-				arr.push(getColumnNumber($(ohGodThisIsHorrible)));
-			} else {
-				let colNum = getColumnNumber($(ohGodThisIsHorrible));
-				arr = arr.filter(num => num !== colNum)
+			if (!emojibtn.is(`.mtd-emoji-category[name="recent"]>.emojibtn`))
+				pushRecentEmoji(theEmoji);
+
+			if (theInput.setSelectionRange) {
+				let sS = theInput.selectionStart;
+				let sE = theInput.selectionEnd;
+				theInput.value = theInput.value.substr(0, sS) + theEmoji + theInput.value.substr(sE);
+				theInput.setSelectionRange(sS + theEmoji.length, sS + theEmoji.length);
+			} else if (theInput.createTextRange) {
+				document.selection.createRange().text = theEmoji;
 			}
 
-			setPref("mtd_collapsed_columns",arr);
-
-		} else if ($(e.target.parentElement).is("[data-testid=\"optionsToggle\"],[data-action=\"options\"]") &&
-		$(e.target.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement).hasClass("mtd-collapsed")) {
-			let ohGodThisIsHorrible = e.target.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement;
-			if ($(ohGodThisIsHorrible).hasClass("column-holder")) {
-				ohGodThisIsHorrible = ohGodThisIsHorrible.parentElement;
-			}
-			$(ohGodThisIsHorrible).removeClass("mtd-collapsed");
-			$(document).trigger("uiMTDColumnCollapsed");
-			let arr = getPref("mtd_collapsed_columns",[]);
- 			let colNum = getColumnNumber($(ohGodThisIsHorrible));
- 			arr = arr.filter(num => num !== colNum)
-			setPref("mtd_collapsed_columns",arr);
+			theInput.focus();
+			theInput.scrollTop = oS;
 		}
 	});
 
@@ -3674,6 +3732,33 @@ function hookComposer() {
 		return;
 	}
 
+	if (isApp && useNativeEmojiPicker() && loadEmojiPicker) {
+		$(".compose-text").after(
+			make("div").addClass("mtd-emoji").append(
+				make("div").addClass("mtd-emoji-button btn").append(
+					make("div").addClass("mtd-emoji-button-open").click(() => {
+						try {
+							require("electron").remote.app.showEmojiPanel();
+						} catch(e) {
+							console.error("Falling back to custom emoji area")
+							try {
+								makeEmojiPicker();
+							} catch (e) {
+								console.error("emoji area failed to initialise");
+							}
+						}
+					})
+				)
+			)
+		);
+	} else if (loadEmojiPicker) {
+		try {
+			makeEmojiPicker();
+		} catch (e) {
+			console.error("emoji area failed to initialise");
+		}
+	}
+
 	if ($(".compose-text-container .js-add-image-button,.compose-text-container .js-schedule-button,.compose-text-container .mtd-gif-button").length <= 0) {
 		$(".compose-text-container").append($(".js-add-image-button,.mtd-gif-button,.js-schedule-button,.js-dm-button,.js-tweet-button"));
 
@@ -3722,35 +3807,6 @@ function hookComposer() {
 			}
 		})
 	});
-
-	if ($(".mtd-emoji").length <= 0) {
-		if (isApp && useNativeEmojiPicker() && loadEmojiPicker) {
-			$(".compose-text").after(
-				make("div").addClass("mtd-emoji").append(
-					make("div").addClass("mtd-emoji-button btn").append(
-						make("div").addClass("mtd-emoji-button-open").click(() => {
-							try {
-								require("electron").remote.app.showEmojiPanel();
-							} catch(e) {
-								console.error("Falling back to custom emoji area")
-								try {
-									makeEmojiPicker();
-								} catch (e) {
-									console.error("emoji area failed to initialise");
-								}
-							}
-						})
-					)
-				)
-			);
-		} else if (loadEmojiPicker) {
-			try {
-				makeEmojiPicker();
-			} catch (e) {
-				console.error("emoji area failed to initialise");
-			}
-		}
-	}
 
 
 	if ($(".mtd-gif-button").length <= 0) {
@@ -4714,6 +4770,7 @@ function coreInit() {
 	}
 	// append the emoji picker script
 	head.append(
+		make("script").attr("type", "text/javascript").attr("src", mtdBaseURL + "sources/libraries/nquery.min.js"),
 		make("script").attr("type", "text/javascript").attr("src", mtdBaseURL + "sources/libraries/emojidata.js"),
 		make("script").attr("type", "text/javascript").attr("src", mtdBaseURL + "sources/libraries/twemoji.min.js"),
 		make("script").attr("type", "text/javascript").attr("src", mtdBaseURL + "sources/libraries/emojipicker.js"),
