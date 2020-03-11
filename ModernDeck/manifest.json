@@ -1,61 +1,64 @@
 {
-  "name": "ModernDeck",
-  "short_name": "ModernDeck",
+	"name": "ModernDeck",
+	"short_name": "ModernDeck",
 
-  "author":"dangeredwolf",
+	"author":"dangeredwolf",
 
-  "description": "__MSG_description__",
+	"description": "__MSG_description__",
 
-  "version": "7.5",
+	"version": "7.5",
 
-  "default_locale":"en",
+	"default_locale":"en",
 
-  "permissions": [
-    "webRequest",
-    "webRequestBlocking",
-    "https://*.twitter.com/",
-    "https://ton.twimg.com/",
-    "contextMenus",
-    "tabs",
-    "storage"
-  ],
+	"permissions": [
+		"webRequest",
+		"webRequestBlocking",
+		"https://*.twitter.com/",
+		"https://ton.twimg.com/",
+		"contextMenus",
+		"tabs",
+		"storage"
+	],
 
-  "content_scripts": [
-    {
-      "matches": ["https://tweetdeck.twitter.com/*"],
-      "js": ["extension/MTDLoad.js"],
-      "run_at": "document_end"
-    }
-  ],
+	"optional_permissions": [
+	],
 
-  "background": {
-    "scripts": ["extension/MTDBackground.js"],
-    "persistent": true
-  },
+	"content_scripts": [
+		{
+			"matches": ["https://tweetdeck.twitter.com/*"],
+			"js": ["extension/MTDLoad.js"],
+			"run_at": "document_end"
+		}
+	],
 
-  "icons": {
-      "16": "AppIcon16.png",
-      "24": "AppIcon24.png",
-      "32": "AppIcon32.png",
-      "48": "AppIcon48.png",
-      "64": "AppIcon64.png",
-      "150": "AppIcon150.png"
-   },
+	"background": {
+		"scripts": ["extension/MTDBackground.js"],
+		"persistent": true
+	},
 
-  "web_accessible_resources": [
-    "sources",
-    "sources/*",
-    "sources/cssextensions/*",
-    "sources/fonts/*",
-    "sources/libraries/*",
-    "sources/img/*"
-  ],
+	"icons": {
+		"16": "AppIcon16.png",
+		"24": "AppIcon24.png",
+		"32": "AppIcon32.png",
+		"48": "AppIcon48.png",
+		"64": "AppIcon64.png",
+		"150": "AppIcon150.png"
+	 },
 
-  "browser_action": {
-    "default_icon": "sources/oneclick/InstaTweetDeck.png",
-    "default_popup": "extension/ITD.html",
-    "default_title": "__MSG_launch__"
-  },
+	"web_accessible_resources": [
+		"sources",
+		"sources/*",
+		"sources/cssextensions/*",
+		"sources/fonts/*",
+		"sources/libraries/*",
+		"sources/img/*"
+	],
 
-  "manifest_version": 2
+	"browser_action": {
+		"default_icon": "sources/oneclick/InstaTweetDeck.png",
+		"default_popup": "extension/ITD.html",
+		"default_title": "__MSG_launch__"
+	},
+
+	"manifest_version": 2
 }
