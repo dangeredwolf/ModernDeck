@@ -1089,7 +1089,7 @@ let settingsData = {
 									importTweetenSettings(JSON.parse(load));
 									setTimeout(() => {
 										ipcRenderer.send("restartApp");
-									},500); // We wait to make sure that native TweetDeck settings have been propogated
+									},500); // We wait to make sure that native TweetDeck settings have been propagated
 								});
 							}
 						);
@@ -1140,7 +1140,6 @@ let settingsData = {
 function getColumnFromColumnNumber(num) {
 	let result;
 	$(".column").each((i, col) => {
-		console.log($(col))
 		if (typeof $(col).data("column") !== "undefined") {
 			if (parseInt($(col).data("column").match(/s\d+/g)[0].substr(1)) === num) {
 				result = col;
