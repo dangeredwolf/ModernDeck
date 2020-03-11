@@ -3734,7 +3734,7 @@ function hookComposer() {
 							} catch(e) {
 								console.error("Falling back to custom emoji area")
 								try {
-									$(".compose-text").emojioneArea();
+									makeEmojiPicker();
 								} catch (e) {
 									console.error("emoji area failed to initialise");
 								}
@@ -3744,7 +3744,11 @@ function hookComposer() {
 				)
 			);
 		} else if (loadEmojiPicker) {
-			makeEmojiPicker();
+			try {
+				makeEmojiPicker();
+			} catch (e) {
+				console.error("emoji area failed to initialise");
+			}
 		}
 	}
 
