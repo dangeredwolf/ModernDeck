@@ -6,27 +6,33 @@
 */
 
 @keyframes startflowIn {
+
 	0% {
 		opacity:0;
 		transform:scale(1.1,1.1);
 	}
+
 	100% {
 		opacity:1;
 		transform:scale(1,1);
 	}
+
 }
 
 @keyframes materialLoginIn {
+
 	0% {
 		opacity:0;
 		border-radius:200px;
 		transform:translateY(30px)
 	}
+
 	100% {
 		opacity:1;
 		border-radius:4px;
 		transform:translateY(0)
 	}
+
 }
 
 img.spinner-centered {
@@ -211,7 +217,7 @@ select,input {
 }
 
 .login-container .btn-positive {
-	width: 259px!important;
+	width:259px!important;
 	padding:15px 0 8px 24px;
 	text-align:center;
 	text-transform:none;

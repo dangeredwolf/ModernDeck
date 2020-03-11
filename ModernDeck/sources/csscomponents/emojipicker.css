@@ -96,7 +96,7 @@
 	height:17px;
 	position:absolute;
 	right:6px;
-	top: 5px;
+	top:5px;
 	transition:all 400ms var(--animationTiming);
 }
 
