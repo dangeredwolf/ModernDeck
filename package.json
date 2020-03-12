@@ -15,6 +15,7 @@
 		"pack": "electron-builder --dir",
 		"dist": "electron-builder . --publish always",
 		"distAll": "electron-builder -mwl --publish always",
+		"test": "electron-builder -mwl --publish always",
 		"build": "electron-builder . --config electron-builder.json",
 		"buildAll": "electron-builder -mwl --config electron-builder.json",
 		"buildWindows": "electron-builder -w --config electron-builder.json",
