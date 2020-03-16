@@ -1,5 +1,7 @@
 import { notarize } from 'electron-notarize';
 
+// todo: detect macOS target
+
 
 module.exports = async function (params) {
 	await notarize({

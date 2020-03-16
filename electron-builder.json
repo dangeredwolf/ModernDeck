@@ -65,7 +65,6 @@
 		"entitlements": "build/entitlements.plist",
 		"entitlementsInherit": "build/entitlements.inherit.plist",
 		"category": "public.app-category.social-networking",
-		"afterSign": "build/notarize.js",
 		"target": [
 			{
 				"target": "dmg",
