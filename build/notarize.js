@@ -1,4 +1,4 @@
-const notarize = require('electron-notarize');
+const {notarize} = require('electron-notarize');
 
 // todo: detect macOS target
 
