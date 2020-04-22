@@ -58,7 +58,7 @@
 		"electron-notarize": "^0.3.0",
 		"fs-extra": "^9.0.0",
 		"klaw": "^3.0.0",
-		"stylelint": "^13.3.0",
+		"stylelint": "^13.3.3",
 		"stylelint-config-recommended": "^3.0.0"
 	},
 	"stylelint": {
