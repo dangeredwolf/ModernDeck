@@ -48,7 +48,7 @@ const isAppX = !!process.windowsStore;
 
 const isMAS = !!process.mas;
 
-const isDev = true;
+const isDev = false;
 let useNitroLoad = false;
 
 let mainWindow;

@@ -4,25 +4,18 @@
 
 	"win": {
 		"icon": "build/icon.ico",
-		"legalTrademarks": "Copyright 2014-2019 dangered wolf, released under the MIT licence",
+		"legalTrademarks": "Copyright 2014-2020 dangered wolf, released under the MIT licence",
 		"publish": [
 			"github"
 		],
-		"forceCodeSigning":true,
+		"forceCodeSigning":false,
 		"verifyUpdateCodeSignature":false,
 		"compression":"maximum",
-		"certificateSubjectName":"FEC2801E-B19C-4051-A5E2-465F7B251519",
 		"target": [
 			{
-				"target": "nsis",
+				"target": "nsis-web",
 				"arch": [
-					"ia32",
-					"x64"
-				]
-			},
-			{
-				"target": "appx",
-				"arch": [
+					"arm64",
 					"ia32",
 					"x64"
 				]
