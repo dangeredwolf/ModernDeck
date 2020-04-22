@@ -520,8 +520,7 @@ function makeWindow() {
 		mainWindow.webContents.executeJavaScript(
 			(store.get("mtd_fullscreen") ? 'document.querySelector("html").classList.add("mtd-js-app");' : mtdAppTag)
 		)
-		mainWindow.webContents.openDevTools();
-
+		
 		mainWindow.webContents.executeJavaScript(
 			'\
 			var injurl = document.createElement("div");\
