@@ -2397,6 +2397,7 @@ async function mtdInit() {
 	$(document).on("mouseup",(e) => {
 		try {
 			if ($(e.target.parentElement).is("[data-action=\"mtd_collapse\"]")) {
+				//                        i or span     button  .button-group   .button-tray     form .js-column-options .column-options .column-content .column-panel .column-holder .column
 				let ohGodThisIsHorrible = e.target.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement;
 
 				if ($(ohGodThisIsHorrible).hasClass("column-holder")) {
@@ -2418,14 +2419,14 @@ async function mtdInit() {
 
 			} else if ($(e.target.parentElement).is("[data-testid=\"optionsToggle\"],[data-action=\"options\"]") &&
 			$(e.target.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement).hasClass("mtd-collapsed")) {
-				let ohGodThisIsHorrible = e.target.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement;
-				if ($(ohGodThisIsHorrible).hasClass("column-holder")) {
-					ohGodThisIsHorrible = ohGodThisIsHorrible.parentElement;
+				let ohGodThisIsEvenWorseWhatTheHeck = e.target.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement;
+				if ($(ohGodThisIsEvenWorseWhatTheHeck).hasClass("column-holder")) {
+					ohGodThisIsEvenWorseWhatTheHeck = ohGodThisIsEvenWorseWhatTheHeck.parentElement;
 				}
-				$(ohGodThisIsHorrible).removeClass("mtd-collapsed");
+				$(ohGodThisIsEvenWorseWhatTheHeck).removeClass("mtd-collapsed");
 				$(document).trigger("uiMTDColumnCollapsed");
 				let arr = getPref("mtd_collapsed_columns",[]);
-	 			let colNum = getColumnNumber($(ohGodThisIsHorrible));
+	 			let colNum = getColumnNumber($(ohGodThisIsEvenWorseWhatTheHeck));
 	 			arr = arr.filter(num => num !== colNum)
 				setPref("mtd_collapsed_columns",arr);
 			}
