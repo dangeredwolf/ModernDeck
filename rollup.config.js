@@ -6,7 +6,7 @@ export default {
 	input: "./src/MTDinject.js",
 	preserveModules: false,
 	output: {
-		file: "./ModernDeck/sources/moderndeck.js",
+		file: "./common/sources/moderndeck.js",
 		format: "es",
 		sourcemap: true,
 		banner: `/**\n* ModernDeck ${require("./package.json").version}\n* @license MIT\n* https://github.com/dangeredwolf/ModernDeck\n**/`,
