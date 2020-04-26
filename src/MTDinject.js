@@ -22,15 +22,19 @@ import { _newLoginPage, spinnerSmall, spinnerLarge, spinnerTiny, buttonSpinner }
 let newLoginPage = _newLoginPage;
 
 import { processForceFeatureFlags } from "./forceFeatureFlags.js";
+import { loadPreferences, parseActions } from "./prefHandler.js";
 
 import { initGifPanel, checkGifEligibility } from "./gifPanel.js";
 import { makeEmojiPicker, pushRecentEmoji } from "./emojipicker.js";
 import { fromCodePoint } from "./emojiHelper.js";
 
+
+import { contextMenuFunctions } from "./contextMenuFunctions.js";
+import { buildContextMenu, clearContextMenu } from "./contextMenu.js";
+
+
 const appendTextVersion = false;
 const enablePatronFeatures = true;
-
-let debugSettings = false;
 
 window.mtdBaseURL = "https://raw.githubusercontent.com/dangeredwolf/ModernDeck/master/ModernDeck/";
 // Defaults to obtaining assets from GitHub if MTDURLExchange isn't completed properly somehow
@@ -50,7 +54,7 @@ let sendingFeedback = false;
 let injectedFonts = false;
 
 let ugltStarted = false;
-let useNativeContextMenus = false;
+window.useNativeContextMenus = false;
 window.isDev = false;
 
 window.useSafeMode = false;
@@ -69,8 +73,6 @@ let offlineNotification;
 window.head = undefined;
 window.body = undefined;
 window.html = undefined;
-
-import {contextMenuFunctions} from "./contextMenuFunctions.js";
 
 // This code changes the text to respond to the time of day, naturally
 
@@ -231,58 +233,6 @@ function getProfileInfo() {
 	else
 	{
 		return null;
-	}
-}
-
-/*
-	function loadPreferences()
-
-	Loads preferences from storage and activates them
-*/
-
-function loadPreferences() {
-
-	for (let key in settingsData) {
-
-		if (!settingsData[key].enum) {
-			for (let i in settingsData[key].options) {
-				let prefKey = settingsData[key].options[i].settingsKey;
-				let pref = settingsData[key].options[i];
-
-				if (exists(prefKey)) {
-					let setting;
-					if (!hasPref(prefKey)) {
-						if (debugStorageSys)
-							console.log(`loadPreferences is setting default of ${prefKey} to ${pref.default}`);
-						setPref(prefKey, pref.default);
-						setting = pref.default;
-					} else {
-						setting = getPref(prefKey);
-					}
-
-					switch(pref.type) {
-						case "checkbox":
-							if (setting === true) {
-								parseActions(pref.activate, undefined, true);
-							} else {
-								parseActions(pref.deactivate, undefined, true);
-							}
-							break;
-						case "dropdown":
-						case "textbox":
-						case "textarea":
-						case "array":
-						case "slider":
-							parseActions(pref.activate, setting, true);
-							break;
-						/* button/link controls we can skip, they don't do anything other than in the settings menu */
-						case "button":
-						case "link":
-							break;
-					}
-				}
-			}
-		}
 	}
 }
 
@@ -2710,208 +2660,6 @@ function mtdAppFunctions() {
 	window.addEventListener("offline", updateOnlineStatus);
 
 	updateOnlineStatus();
-}
-
-/*
-	Helper function to create a context menu item
-*/
-
-function makeCMItem(p) {
-	if (useNativeContextMenus) {
-		let dataact = p.dataaction;
-		let data = p.data;
-		let nativemenu = { label:p.text, click() {contextMenuFunctions[dataact](data)}, enabled:p.enabled };
-		//nativemenu.click = ;
-		return nativemenu;
-	}
-	let a = make("a").attr("href","#").attr("data-action",p.dataaction).html(p.text).addClass("mtd-context-menu-item");
-	let li = make("li").addClass("is-selectable").append(a);
-
-	if (p.enabled === false) { // Crucially, also not undefined!
-		a.attr("disabled","disabled");
-	} else {
-		//a.click(contextMenuFunctions[p.dataaction]);
-
-		a.click(() => {
-			if (p.mousex && p.mousey) {
-				document.elementFromPoint(p.mousex, p.mousey).focus();
-			}
-			contextMenuFunctions[p.dataaction](p.data);
-			clearContextMenu();
-		});
-	}
-
-	return li;
-}
-
-/*
-	Function that clears a context menu after it's been dismissed
-*/
-
-function clearContextMenu() {
-	let removeMenu = $(".mtd-context-menu")
-	removeMenu.addClass("mtd-fade-out").on("animationend",() => {
-		removeMenu.remove();
-	});
-}
-
-/*
-	Helper function to create a context menu divider
-*/
-
-function makeCMDivider() {
-	if (useNativeContextMenus) {
-		return {type:'separator'}
-	}
-	return make("div").addClass("drp-h-divider");
-}
-
-/*
-	Helper function for the app to construct context menus that will be displayed
-*/
-
-function buildContextMenu(p) {
-	let items = [];
-	let x = p.x;
-	let y = p.y;
-
-	const xOffset = 2;
-	const yOffset = 12;
-
-	if ($(".mtd-context-menu").length > 0) {
-		let removeMenu = $(".mtd-context-menu");
-		removeMenu.addClass("mtd-fade-out");
-		removeMenu.on("animationend", () => {
-			removeMenu.remove();
-		})
-	}
-
-	if ($(document.elementFromPoint(x,y)).hasClass("mtd-context-menu-item")) {
-		return;
-	}
-
-	if (p.isEditable || (exists(p.selectionText) && p.selectionText.length > 0)) {
-		if (p.isEditable) {
-			items.push(makeCMItem({mousex:x,mousey:y,dataaction:"undo",text:"Undo",enabled:p.editFlags.canUndo}));
-			items.push(makeCMItem({mousex:x,mousey:y,dataaction:"redo",text:"Redo",enabled:p.editFlags.canRedo}));
-			items.push(makeCMDivider());
-			items.push(makeCMItem({mousex:x,mousey:y,dataaction:"cut",text:"Cut",enabled:p.editFlags.canCut}));
-		}
-		items.push(makeCMItem({mousex:x,mousey:y,dataaction:"copy",text:"Copy",enabled:p.editFlags.canCopy}));
-		if (p.isEditable) {
-			items.push(makeCMItem({mousex:x,mousey:y,dataaction:"paste",text:"Paste",enabled:p.editFlags.canPaste}));
-			items.push(makeCMItem({mousex:x,mousey:y,dataaction:"selectAll",text:"Select All",enabled:p.editFlags.canSelectAll}));
-		}
-		items.push(makeCMDivider());
-	}
-
-	if (p.linkURL !== '' && p.linkURL !== "https://tweetdeck.twitter.com/#") {
-		items.push(makeCMItem({mousex:x,mousey:y,dataaction:"openLink",text:"Open link in browser",enabled:true,data:p.linkURL}));
-		items.push(makeCMItem({mousex:x,mousey:y,dataaction:"copyLink",text:"Copy link address",enabled:true,data:p.linkURL}));
-		items.push(makeCMDivider());
-	}
-
-	if (p.srcURL !== '') {
-		if (exists(p.mediaType) && p.mediaType === "video") {
-			items.push(makeCMItem({mousex:x,mousey:y,dataaction:"openImage",text:"Open video in browser",enabled:true,data:p.srcURL}));
-			items.push(makeCMItem({mousex:x,mousey:y,dataaction:"saveImage",text:"Save video...",enabled:true,data:p.srcURL}));
-			items.push(makeCMItem({mousex:x,mousey:y,dataaction:"copyImageURL",text:"Copy video address",enabled:true,data:p.srcURL}));
-		} else {
-			items.push(makeCMItem({mousex:x,mousey:y,dataaction:"openImage",text:"Open image in browser",enabled:true,data:p.srcURL}));
-			items.push(makeCMItem({mousex:x,mousey:y,dataaction:"copyImage",text:"Copy image",enabled:true,data:{x:x,y:y}}));
-			items.push(makeCMItem({mousex:x,mousey:y,dataaction:"saveImage",text:"Save image...",enabled:true,data:p.srcURL}));
-			items.push(makeCMItem({mousex:x,mousey:y,dataaction:"copyImageURL",text:"Copy image address",enabled:true,data:p.srcURL}));
-		}
-
-		items.push(makeCMDivider());
-	}
-
-	if (getPref("mtd_inspectElement") || isDev) {
-		items.push(makeCMItem({mousex:x,mousey:y,dataaction:"inspectElement",text:"Inspect element",enabled:true,data:{x:x,y:y}}));
-	}
-
-	if (debugSettings) {
-		items.push(makeCMItem({mousex:x,mousey:y,dataaction:"newSettings",text:"Settings",enabled:true,data:{x:x,y:y}}));
-	}
-
-	if (useNativeContextMenus) {
-		return items;
-	}
-
-	let ul = make("ul");
-
-	for(let i = 0; i < items.length; i++){
-		ul.append(items[i]);
-	}
-
-
-	let menu = make("menu")
-	.addClass("mtd-context-menu dropdown-menu")
-	.attr("style","opacity:0;animation:none;transition:none")
-	.append(ul);
-
-
-	if (items.length > 0) {
-		setTimeout(() => {
-
-			if (x + xOffset + menu.width() > $(document).width()) {
-				x = $(document).width() - menu.width() - xOffset - xOffset;
-			}
-
-			if (y + yOffset + menu.height() > $(document).height()) {
-				y = $(document).height() - menu.height();
-			}
-
-			menu.attr("style",`left:${x + xOffset}px!important;top:${y + yOffset}px!important`)
-
-
-		},20);
-	} else {
-		menu.addClass("hidden");
-	}
-
-	return menu;
-}
-
-/*
-	This is used by the preference management system to activate preferences
-
-	This allows for many simple preferences to be done completely in object notation with no extra JS
-*/
-
-function parseActions(a,opt,load) {
-	for (let key in a) {
-		switch(key) {
-			case "enableStylesheet":
-				enableStylesheetExtension(a[key]);
-				break;
-			case "disableStylesheet":
-				disableStylesheetExtension(a[key]);
-				break;
-			case "htmlAddClass":
-				if (!html.hasClass(a[key]))
-					html.addClass(a[key]);
-				break;
-			case "htmlRemoveClass":
-				html.removeClass(a[key]);
-				break;
-			case "func":
-				if (typeof a[key] === "function") {
-					try {
-						a[key](opt, load);
-					} catch (e) {
-						console.error("Error occurred processing action function.");
-						console.error(e);
-						lastError = e;
-						console.error("Dump of naughty function attached below");
-						console.log(a[key])
-					}
-				} else {
-					throw "There's a func action, but it isn't a function? :thinking:";
-				}
-				break;
-		}
-	}
 }
 
 /*
