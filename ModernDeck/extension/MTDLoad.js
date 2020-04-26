@@ -41,7 +41,7 @@ function MTDURLExchange(url) {
 }
 
 MTDURLExchange(browser.extension.getURL(""));
-injectScript.src = browser.extension.getURL("sources/MTDinject.js");
+injectScript.src = browser.extension.getURL("sources/moderndeck.js");
 
 injectScript.type = "text/javascript";
 document.head.appendChild(injectScript);

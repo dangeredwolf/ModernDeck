@@ -394,7 +394,7 @@ function makeWindow() {
 			scrollBounce:true,
 			webviewTag:true,
 			nodeIntegrationInSubFrames:true
-			// preload: __dirname+separator+useDir+separator+"sources"+separator+"MTDinject.js"
+			// preload: __dirname+separator+useDir+separator+"sources"+separator+"moderndeck.js"
 		},
 		autoHideMenuBar:true,
 		title:"ModernDeck",
@@ -448,7 +448,7 @@ function makeWindow() {
 	// 			scrollBounce:true,
 	// 			webviewTag:true,
 	// 			nodeIntegrationInSubFrames:true
-	// 			// preload: __dirname+separator+useDir+separator+"sources"+separator+"MTDinject.js"
+	// 			// preload: __dirname+separator+useDir+separator+"sources"+separator+"moderndeck.js"
 	// 		}});
 	// mainWindow.setBrowserView(mainWindow);
 	// mainWindow.setBounds({ x: 0, y: 0, width: mainWindow.getSize()[0], height: mainWindow.getSize()[1] })
@@ -520,7 +520,7 @@ function makeWindow() {
 		mainWindow.webContents.executeJavaScript(
 			(store.get("mtd_fullscreen") ? 'document.querySelector("html").classList.add("mtd-js-app");' : mtdAppTag)
 		)
-		
+
 		mainWindow.webContents.executeJavaScript(
 			'\
 			var injurl = document.createElement("div");\
@@ -542,7 +542,7 @@ function makeWindow() {
 			(useNext ? 'document.getElementsByTagName("html")[0].classList.add("mtd-next");' : '')
 			+
 			'var InjectScript = document.createElement("script");\
-			InjectScript.src = "moderndeck://sources/MTDinject.js";\
+			InjectScript.src = "moderndeck://sources/moderndeck.js";\
 			InjectScript.type = "text/javascript";\
 			document.head.appendChild(InjectScript);\
 		'
@@ -1095,7 +1095,7 @@ autoUpdater.on("error", (e,f,g) => {
 	mainWindow.webContents.send("error",e,f,g);
 });
 
-// Let MTDinject know that we are...
+// Let moderndeck.js know that we are...
 
 // ... actively checking for updates
 

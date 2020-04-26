@@ -1,7 +1,7 @@
 {
 	"name": "ModernDeck",
 	"productName": "ModernDeck",
-	"version": "7.5.1",
+	"version": "7.6.0",
 	"description": "ModernDeck",
 	"copyright": "Copyright 2014-2020 dangeredwolf, et al. Released under the MIT license.",
 	"homepage": "https://github.com/dangeredwolf/ModernDeck",
@@ -12,6 +12,7 @@
 	"license": "MIT",
 	"main": "main.js",
 	"scripts": {
+		"incBuild": "node incrementBuild.js",
 		"pack": "electron-builder --dir",
 		"dist": "electron-builder . --publish always",
 		"distAll": "electron-builder -mwl --publish always",
@@ -21,8 +22,10 @@
 		"buildWindows": "electron-builder -w --config electron-builder.json",
 		"buildMac": "electron-builder -m --config electron-builder.json",
 		"buildLinux": "electron-builder -l --config electron-builder.json",
+		"buildAndMinify": "npm run rollup && npm run minify",
+		"rollup": "npm run incBuild && rollup -c",
 		"efMake": "electron-forge make --arch x64",
-		"start": "electron .",
+		"start": "npm run rollup && electron .",
 		"inspect": "electron . --inspect",
 		"release": "build"
 	},
@@ -49,17 +52,29 @@
 		"through2": "^3.0.1"
 	},
 	"devDependencies": {
+		"@babel/cli": "^7.8.4",
+		"@babel/core": "^7.9.0",
+		"@babel/plugin-proposal-export-default-from": "^7.8.3",
+		"@babel/plugin-proposal-optional-chaining": "^7.9.0",
+		"@babel/preset-env": "^7.9.0",
 		"@node-minify/core": "^5.3.0",
 		"@node-minify/csso": "^5.3.0",
 		"@node-minify/uglify-es": "^5.3.0",
+		"@rollup/plugin-json": "^4.0.3",
+		"@rollup/plugin-node-resolve": "^7.1.3",
 		"adm-zip": "^0.4.14",
+		"babel-preset-env": "^1.7.0",
+		"build-number-generator": "0.0.6",
 		"electron": "^6.1.10",
 		"electron-builder": "^22.5.1",
 		"electron-notarize": "^0.3.0",
 		"fs-extra": "^9.0.0",
 		"klaw": "^3.0.0",
+		"rollup": "^1.32.1",
+		"rollup-plugin-babel": "^4.4.0",
 		"stylelint": "^13.3.3",
-		"stylelint-config-recommended": "^3.0.0"
+		"stylelint-config-recommended": "^3.0.0",
+		"uglify-es": "^3.3.9"
 	},
 	"stylelint": {
 		"extends": "stylelint-config-recommended"

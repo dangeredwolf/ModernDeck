@@ -6,10 +6,13 @@
 	Made with <3
 */
 
-'use strict';
+import buildId from "./buildId.js";
+import {version} from "../package.json";
 
-const SystemVersion = "7.5";
-const appendTextVersion = true;
+import {make, makeN, exists} from "./utils.js";
+import {newLoginPage, spinnerSmall, spinnerLarge, spinnerTiny, buttonSpinner} from "mtdMustaches.js";
+
+const appendTextVersion = false;
 const enablePatronFeatures = true;
 
 let debugSettings = false;
@@ -49,135 +52,22 @@ let store;
 let loginInterval;
 let offlineNotification;
 
-let newLoginPage =
-'<div class="app-signin-wrap mtd-signin-wrap">\
-	<div class="js-signin-ui app-signin-form pin-top pin-right txt-weight-normal">\
-		<section class="js-login-form form-login startflow-panel-rounded" data-auth-type="twitter">\
-			<h2 class="form-legend padding-axl">\
-				Good evening!\
-			</h2>\
-			<h3 class="form-legend padding-axl">\
-				Welcome to ModernDeck\
-			</h3>\
-			<i class="icon icon-moderndeck"></i>\
-			<div class="margin-a--16">\
-				<div class="js-login-error form-message form-error-message error txt-center padding-al margin-bxl is-hidden">\
-					<p class="js-login-error-message">\
-						An unexpected error occurred. Please try again later.\
-					</p>\
-				</div>\
-				<a href="https://mobile.twitter.com/login?hide_message=true&amp;redirect_after_login=https%3A%2F%2Ftweetdeck.twitter.com%2F%3Fvia_twitter_login%3Dtrue" class="Button Button--primary block txt-size--18 txt-center btn-positive">\
-					Sign in with Twitter\
-				</a>\
-				<div class="divider-bar"></div>\
-			</section>\
-		</div>\
-	</div>\
-</div>';
-
-
-const spinnerSmall =
-'<div class="preloader-wrapper active">\
-	<div class="spinner-layer small">\
-		<div class="circle-clipper left">\
-			<div class="circle"></div>\
-		</div>\
-		<div class="gap-patch">\
-			<div class="circle"></div>\
-		</div>\
-		<div class="circle-clipper right">\
-			<div class="circle"></div>\
-		</div>\
-	</div>\
-</div>';
-
-const spinnerLarge =
-'<div class="preloader-wrapper active">\
-	<div class="spinner-layer">\
-		<div class="circle-clipper left">\
-			<div class="circle"></div>\
-		</div>\
-		<div class="gap-patch">\
-			<div class="circle"></div>\
-		</div>\
-		<div class="circle-clipper right">\
-			<div class="circle"></div>\
-		</div>\
-	</div>\
-</div>';
-
-const spinnerTiny =
-'<div class="preloader-wrapper active">\
-	<div class="spinner-layer tiny">\
-		<div class="circle-clipper left">\
-			<div class="circle"></div>\
-		</div>\
-		<div class="gap-patch">\
-			<div class="circle"></div>\
-		</div>\
-		<div class="circle-clipper right">\
-			<div class="circle"></div>\
-		</div>\
-	</div>\
-</div>';
-
-const buttonSpinner =
-'<div class="js-spinner-button-active icon-center-16 spinner-button-icon-spinner preloader-wrapper active tiny">\
-	<div class="spinner-layer small">\
-		<div class="circle-clipper left">\
-			<div class="circle"></div>\
-		</div>\
-		<div class="gap-patch">\
-			<div class="circle"></div>\
-		</div>\
-		<div class="circle-clipper right">\
-			<div class="circle"></div>\
-		</div>\
-	</div>\
-</div>';
-
 /*
 	Shorthand function to create a new element, which is helpful for concise UI building.
 
 	We could just make jQuery directly do it, but it's slower than calling native JS api and wrapped jQuery around it
 */
 
-let make = function(a) {
-	return $(document.createElement(a));
-}
-
-let makeN = function(a) {
-	return nQuery(document.createElement(a));
-}
-
 // shorthand function to return true if something exists and false otherwise
 
-const exists = function(thing) {
-	return (
-		(typeof thing === "object" && thing !== null && thing.length > 0) || // Object can't be empty or null
-		(!!thing === true) ||
-		(typeof thing === "string") ||
-		(typeof thing === "number")
-	);
-}
 
-const isOpera = typeof opera !== "undefined";
-const isSafari = typeof safari !== "undefined";
-const isEdge = typeof MSGesture !== "undefined";
-const isFirefox = typeof mozInnerScreenX !== "undefined";
+
+
 const isApp = typeof require !== "undefined";
-
-// may also return true on chromium-based clients like opera, edge chromium, and electron
-const isChrome = typeof chrome !== "undefined" && !isEdge && !isFirefox;
-
-// user agent hacks make me sad but im lazy
-const isWin = navigator.userAgent.indexOf("Windows NT") > -1;
-const isMac = navigator.userAgent.indexOf("Mac OS X") > -1;
-const isiOS = navigator.userAgent.indexOf("iPhone OS") > -1;
 
 // Use standard macOS symbols instead of writing it out like on Windows
 
-const ctrlShiftText = isMac ? "⌃⇧" : "Ctrl+Shift+";
+const ctrlShiftText = (navigator.userAgent.indexOf("Mac OS X") > -1) ? "⌃⇧" : "Ctrl+Shift+";
 
 // We define these later. FYI these are jQuery objects.
 
@@ -1340,7 +1230,7 @@ function enableStylesheetExtension(name) {
 	let url = mtdBaseURL + "sources/cssextensions/" + name + ".css";
 
 	if (name === "donors") {
-		url = "https://api.moderndeck.org/v1/patrons/donors.css?v=" + SystemVersion;
+		url = "https://api.moderndeck.org/v1/patrons/donors.css?v=" + version;
 	}
 
 	if (!isStylesheetExtensionEnabled(name)) {
@@ -1527,7 +1417,7 @@ function diag() {
 
 	log += "======= Begin ModernDeck Diagnostic Report =======\n\n";
 
-	log += "\nModernDeck Version " + SystemVersion;
+	log += "\nModernDeck Version " + version + " (Build "+ buildId +")";
 
 	log += ("\nTD.buildID: " + ((TD && TD.buildID) ? TD.buildID : "[not set]"));
 	log += ("\nTD.version: " + ((TD && TD.version) ? TD.version : "[not set]"));
@@ -3029,8 +2919,8 @@ function openSettings(openMenu) {
 			}
 		} else if (settingsData[key].enum === "aboutpage") {
 			let logo = make("i").addClass("mtd-logo icon-moderndeck icon");
-			let h1 = make("h1").addClass("mtd-about-title").html(html.hasClass("mtd-next") ? "ModernDeck Next" : "ModernDeck");
-			let h2 = make("h2").addClass("mtd-version-title").html((appendTextVersion ? "Version " : "") +SystemVersion);
+			let h1 = make("h1").addClass("mtd-about-title").html("ModernDeck");
+			let h2 = make("h2").addClass("mtd-version-title").html((appendTextVersion ? "Version " : "") +version + " (Build " + buildId + ")");
 			let logoCont = make("div").addClass("mtd-logo-container");
 
 			if (!isApp) {
@@ -4254,7 +4144,7 @@ function mtdAppUpdatePage(updateCont, updateh2, updateh3, updateIcon, updateSpin
 		$(".mtd-update-spinner").addClass("hidden");
 		updateh2.html("You're up to date");
 		updateIcon.html("check_circle").removeClass("hidden");
-		updateh3.html(SystemVersion + " is the latest version.").removeClass("hidden");
+		updateh3.html(version + " is the latest version.").removeClass("hidden");
 		tryAgain.removeClass("hidden").html("Check Again");
 		restartNow.addClass("hidden");
 		$(".mtd-welcome-inner").addClass("mtd-enable-update-next");
@@ -4802,7 +4692,7 @@ function coreInit() {
 
 			checkIfSigninFormIsPresent();
 			loginInterval = setInterval(checkIfSigninFormIsPresent, 500);
-			console.info(`MTDinject ${SystemVersion} loaded`);
+			console.info(`MTDinject ${version} loaded`);
 		} catch (e) {
 			console.error(e);
 			Sentry.captureException(e);
@@ -4817,7 +4707,7 @@ function coreInit() {
 
 		checkIfSigninFormIsPresent();
 		loginInterval = setInterval(checkIfSigninFormIsPresent, 500);
-		console.info(`MTDinject ${SystemVersion} loaded`);
+		console.info(`MTDinject ${version} loaded`);
 	}
 
 }
