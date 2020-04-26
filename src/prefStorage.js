@@ -5,7 +5,8 @@
 	https://github.com/dangeredwolf/ModernDeck/wiki/Preference-Management-Functions
 */
 
-import {exists, isApp} from "./utils.js";
+import { exists, isApp } from "./utils.js";
+import { settingsData } from "./settingsData.js";
 export const debugStorageSys = false;
 
 if (isApp) {
@@ -122,4 +123,33 @@ export function hasPref(id) {
 		console.log(`hasPref ${id}? ${hasIt}`);
 
 	return hasIt;
+}
+
+/*
+	dumpPreferences()
+
+	returns string: dump of user preferences, for diag function
+*/
+
+export function dumpPreferences() {
+
+	let prefs = "";
+
+	for (let key in settingsData) {
+
+		if (!settingsData[key].enum) {
+			for (let i in settingsData[key].options) {
+				let prefKey = settingsData[key].options[i].settingsKey;
+				let pref = settingsData[key].options[i];
+
+				if (exists(prefKey) && pref.type !== "button" && pref.type !== "link") {
+					let setting;
+
+					prefs += prefKey + ": " + (getPref(prefKey) || "[not set]") + "\n"
+				}
+			}
+		}
+	}
+
+	return prefs;
 }

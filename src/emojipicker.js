@@ -1,4 +1,6 @@
-import {makeN} from "./utils.js";
+import { makeN } from "./utils.js";
+import { fromCodePoint } from "./emojiHelper.js";
+import { getPref, setPref } from "./prefStorage.js";
 
 const toneMap = [
 	"",
@@ -116,6 +118,28 @@ export async function makeEmojiPicker() {
 	updateRecentEmojis();
 }
 
+
+
+export function pushRecentEmoji(emoji) {
+	let recents = getPref("mtd_recent_emoji", "").split("|").filter(o => o !== emoji);
+
+	// maximum 24
+	if (recents.length >= 24) {
+		recents.pop();
+	}
+
+	setPref("mtd_recent_emoji", emoji + "|" + recents.join("|"));
+
+	updateRecentEmojis();
+}
+
+function getRecentEmojis() {
+	let asdf = getPref("mtd_recent_emoji", "").split("|");
+	if (asdf[asdf.length - 1] === "")
+		asdf.pop();
+	return asdf;
+}
+
 function convertPoint(codepoint) {
 	return {
 		supportsTones: codepoint.match(/\*/g) !== null,
@@ -216,7 +240,7 @@ function updateRecentEmojis() {
 	}
 }
 
-export function makeEmojiButton(emoji, title) {
+function makeEmojiButton(emoji, title) {
 	if (!window.emojiKeywordsAndDescriptions[emoji]) {
 		console.log(emoji)
 	}
