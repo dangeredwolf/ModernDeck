@@ -1,19 +1,15 @@
-import resolve from '@rollup/plugin-node-resolve';
-import json from '@rollup/plugin-json';
-import babel from 'rollup-plugin-babel';
-
-// `npm run build` -> `production` is true
-// `npm run dev` -> `production` is false
-const production = !process.env.ROLLUP_WATCH;
+import resolve from "@rollup/plugin-node-resolve";
+import json from "@rollup/plugin-json";
+import babel from "rollup-plugin-babel";
 
 export default {
-	input: './src/MTDinject.js',
+	input: "./src/MTDinject.js",
 	preserveModules: false,
 	output: {
-		file: './ModernDeck/sources/moderndeck.js',
-		format: 'iife', // immediately-invoked function expression — suitable for <script> tags
+		file: "./ModernDeck/sources/moderndeck.js",
+		format: "es",
 		sourcemap: true,
-		banner: `/**\n* ModernDeck ${require('./package.json').version}\n* @license MIT\n* https://github.com/dangeredwolf/ModernDeck\n**/`,
+		banner: `/**\n* ModernDeck ${require("./package.json").version}\n* @license MIT\n* https://github.com/dangeredwolf/ModernDeck\n**/`,
 		hoistTransitiveImports: true
 	},
 	plugins: [

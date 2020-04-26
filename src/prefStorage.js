@@ -5,7 +5,13 @@
 	https://github.com/dangeredwolf/ModernDeck/wiki/Preference-Management-Functions
 */
 
-import {exists} from "./utils.js";
+import {exists, isApp} from "./utils.js";
+export const debugStorageSys = false;
+
+if (isApp) {
+	const Store = require('electron-store');
+	store = new Store({name:"mtdsettings"});
+}
 
 export function getPref(id, defaul) {
 	if (id === "mtd_core_theme") {
@@ -53,8 +59,6 @@ export function purgePrefs() {
 		}
 	}
 	if (isApp) {
-		const Store = require('electron-store');
-		const store = new Store({name:"mtdsettings"});
 		store.clear();
 	}
 

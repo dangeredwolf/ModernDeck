@@ -14,3 +14,5 @@ export const exists = function(thing) {
 		(typeof thing === "number")
 	);
 }
+
+export const isApp = typeof require !== "undefined";

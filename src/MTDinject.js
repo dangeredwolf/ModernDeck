@@ -6,14 +6,17 @@
 	Made with <3
 */
 
+window.MTD = {};
+
 import buildId from "./buildId.js";
+MTD.buildId = buildId;
 import {version} from "../package.json";
 
-import {make, makeN, exists} from "./utils.js";
-import {newLoginPage, spinnerSmall, spinnerLarge, spinnerTiny, buttonSpinner} from "mtdMustaches.js";
+import {make, makeN, exists, isApp} from "./utils.js";
+import {_newLoginPage, spinnerSmall, spinnerLarge, spinnerTiny, buttonSpinner} from "./mtdMustaches.js";
+let newLoginPage = _newLoginPage;
 
-
-import {hasPref, getPref, setPref, purgePrefs} from "prefStorage.js";
+import {debugStorageSys, hasPref, getPref, setPref, purgePrefs} from "./prefStorage.js";
 
 const appendTextVersion = false;
 const enablePatronFeatures = true;
@@ -42,7 +45,6 @@ let injectedFonts = false;
 let ugltStarted = false;
 let useNativeContextMenus = false;
 let isDev = false;
-let debugStorageSys = false;
 
 let useSafeMode = false;
 
@@ -66,7 +68,7 @@ let offlineNotification;
 
 
 
-const isApp = typeof require !== "undefined";
+
 
 // Use standard macOS symbols instead of writing it out like on Windows
 
