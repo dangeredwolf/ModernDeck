@@ -1,3 +1,5 @@
+import {makeN} from "./utils.js";
+
 const toneMap = [
 	"",
 	"1f3fb",
@@ -22,7 +24,7 @@ const parseOptions = {
 	}
 }
 
-async function makeEmojiPicker() {
+export async function makeEmojiPicker() {
 
 	if (nQuery(".mtd-emoji").length > 0) {
 		// console.error("We already made the emoji panel. Please leave me alone.");
@@ -214,7 +216,7 @@ function updateRecentEmojis() {
 	}
 }
 
-function makeEmojiButton(emoji, title) {
+export function makeEmojiButton(emoji, title) {
 	if (!window.emojiKeywordsAndDescriptions[emoji]) {
 		console.log(emoji)
 	}
