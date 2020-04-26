@@ -5,8 +5,8 @@
 	https://github.com/dangeredwolf/ModernDeck/wiki/Preference-Management-Functions
 */
 
-import { exists, isApp } from "./utils.js";
-import { settingsData } from "./settingsData.js";
+import { exists, isApp } from "./Utils.js";
+import { settingsData } from "./SettingsData.js";
 export const debugStorageSys = false;
 
 if (isApp) {

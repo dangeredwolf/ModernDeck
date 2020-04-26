@@ -1,5 +1,5 @@
-import {spinnerLarge} from "./mtdMustaches.js";
-import {make} from "./utils.js";
+import {spinnerLarge} from "./MTDMustaches.js";
+import {make} from "./Utils.js";
 
 const giphyKey = "Vb45700bexRDqCkbMdUmBwDvtkWT9Vj2"; // swiper no swipey
 let lastGiphyURL = "";

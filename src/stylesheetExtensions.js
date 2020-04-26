@@ -1,5 +1,5 @@
 import { version } from "../package.json";
-import { make } from "./utils.js";
+import { make } from "./Utils.js";
 
 /*
 	Returns true if specified stylesheet extension is enabled, false otherwise.

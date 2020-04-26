@@ -1,6 +1,6 @@
-import { makeN } from "./utils.js";
-import { fromCodePoint } from "./emojiHelper.js";
-import { getPref, setPref } from "./prefStorage.js";
+import { makeN } from "./Utils.js";
+import { fromCodePoint } from "./EmojiHelper.js";
+import { getPref, setPref } from "./PrefStorage.js";
 
 const toneMap = [
 	"",

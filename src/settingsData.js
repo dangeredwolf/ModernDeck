@@ -14,10 +14,10 @@
 
 
 
-import { isStylesheetExtensionEnabled, enableStylesheetExtension, disableStylesheetExtension, enableCustomStylesheetExtension } from "./stylesheetExtensions.js";
-import { debugStorageSys, hasPref, getPref, setPref, purgePrefs } from "./prefStorage.js";
-import { allColumnsVisible, updateColumnVisibility } from "./column.js"
-import { exists } from "./utils.js"
+import { isStylesheetExtensionEnabled, enableStylesheetExtension, disableStylesheetExtension, enableCustomStylesheetExtension } from "./StylesheetExtensions.js";
+import { debugStorageSys, hasPref, getPref, setPref, purgePrefs } from "./StoragePreferences.js";
+import { allColumnsVisible, updateColumnVisibility } from "./Column.js"
+import { exists } from "./Utils.js"
 
 // Use standard macOS symbols instead of writing it out like on Windows
 

@@ -1,4 +1,4 @@
-import { getPref } from "./prefStorage.js"
+import { getPref } from "./StoragePreferences.js"
 
 export function getColumnFromColumnNumber(num) {
 	let result;

@@ -10,27 +10,27 @@ import buildId from "./buildId.js";
 import { version } from "../package.json";
 const SystemVersion = version.replace(".0",""); // remove trailing .0, if present
 
-import { make, makeN, exists, isApp, mutationObserver, getIpc } from "./utils.js";
-import { diag } from "./diag.js";
-import { settingsData } from "./settingsData.js";
-import { allColumnsVisible, getColumnFromColumnNumber, getColumnNumber, updateColumnVisibility } from "./column.js";
+import { make, makeN, exists, isApp, mutationObserver, getIpc } from "./Utils.js";
+import { diag } from "./Diag.js";
+import { settingsData } from "./SettingsData.js";
+import { allColumnsVisible, getColumnFromColumnNumber, getColumnNumber, updateColumnVisibility } from "./Column.js";
 
-import { isStylesheetExtensionEnabled, enableStylesheetExtension, disableStylesheetExtension, enableCustomStylesheetExtension } from "./stylesheetExtensions.js";
+import { isStylesheetExtensionEnabled, enableStylesheetExtension, disableStylesheetExtension, enableCustomStylesheetExtension } from "./StylesheetExtensions.js";
 
-import {debugStorageSys, hasPref, getPref, setPref, purgePrefs} from "./prefStorage.js";
-import { _newLoginPage, spinnerSmall, spinnerLarge, spinnerTiny, buttonSpinner } from "./mtdMustaches.js";
+import {debugStorageSys, hasPref, getPref, setPref, purgePrefs} from "./StoragePreferences.js";
+import { _newLoginPage, spinnerSmall, spinnerLarge, spinnerTiny, buttonSpinner } from "./MTDMustaches.js";
 let newLoginPage = _newLoginPage;
 
-import { processForceFeatureFlags } from "./forceFeatureFlags.js";
-import { loadPreferences, parseActions } from "./prefHandler.js";
+import { processForceFeatureFlags } from "./ForceFeatureFlags.js";
+import { loadPreferences, parseActions } from "./PrefHandler.js";
 
-import { initGifPanel, checkGifEligibility } from "./gifPanel.js";
-import { makeEmojiPicker, pushRecentEmoji } from "./emojipicker.js";
-import { fromCodePoint } from "./emojiHelper.js";
+import { initGifPanel, checkGifEligibility } from "./GIFPanel.js";
+import { makeEmojiPicker, pushRecentEmoji } from "./EmojiPicker.js";
+import { fromCodePoint } from "./EmojiHelper.js";
 
 
-import { contextMenuFunctions } from "./contextMenuFunctions.js";
-import { buildContextMenu, clearContextMenu } from "./contextMenu.js";
+import { contextMenuFunctions } from "./ContextMenuFunctions.js";
+import { buildContextMenu, clearContextMenu } from "./ContextMenu.js";
 
 
 const appendTextVersion = false;

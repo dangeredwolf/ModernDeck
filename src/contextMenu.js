@@ -1,6 +1,6 @@
-import { make, exists } from "./utils.js";
-import { contextMenuFunctions } from "./contextMenuFunctions.js";
-import { getPref } from "./prefStorage.js";
+import { make, exists } from "./Utils.js";
+import { contextMenuFunctions } from "./ContextMenuFunctions.js";
+import { getPref } from "./StoragePreferences.js";
 
 let debugSettings = false;
 
