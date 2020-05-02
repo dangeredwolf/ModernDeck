@@ -1,4 +1,5 @@
 import { enableStylesheetExtension, disableStylesheetExtension } from "./StylesheetExtensions.js";
+import { I18n } from "./I18n.js";
 
 let ugltStarted = false;
 let loginIntervalTick = 0;
@@ -27,11 +28,11 @@ function startUpdateGoodLoginText() {
 		let newDate = new Date();
 
 		if (newDate.getHours() < 12) {
-			text = "Good morning!";
+			text = I18n("Good morning!");
 		} else if (newDate.getHours() < 18) {
-			text = "Good afternoon!";
+			text = I18n("Good afternoon!");
 		} else {
-			text = "Good evening!";
+			text = I18n("Good evening!");
 		}
 
 		$(".form-login h2").html(text);

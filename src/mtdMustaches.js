@@ -1,3 +1,6 @@
+
+import { I18n } from "./I18n.js";
+
 export const _newLoginPage =
 '<div class="app-signin-wrap mtd-signin-wrap">\
 	<div class="js-signin-ui app-signin-form pin-top pin-right txt-weight-normal">\
@@ -6,17 +9,17 @@ export const _newLoginPage =
 				Good evening!\
 			</h2>\
 			<h3 class="form-legend padding-axl">\
-				Welcome to ModernDeck\
+				'+ I18n("Welcome to ModernDeck") +'\
 			</h3>\
 			<i class="icon icon-moderndeck"></i>\
 			<div class="margin-a--16">\
 				<div class="js-login-error form-message form-error-message error txt-center padding-al margin-bxl is-hidden">\
 					<p class="js-login-error-message">\
-						An unexpected error occurred. Please try again later.\
+						'+ I18n("An unexpected error occurred. Please try again later.") +'\
 					</p>\
 				</div>\
 				<a href="https://mobile.twitter.com/login?hide_message=true&amp;redirect_after_login=https%3A%2F%2Ftweetdeck.twitter.com%2F%3Fvia_twitter_login%3Dtrue" class="Button Button--primary block txt-size--18 txt-center btn-positive">\
-					Sign in with Twitter\
+					'+ I18n("Sign in with Twitter") +'\
 				</a>\
 				<div class="divider-bar"></div>\
 			</section>\

@@ -1,6 +1,7 @@
 import { make, exists } from "./Utils.js";
 import { contextMenuFunctions } from "./ContextMenuFunctions.js";
 import { getPref } from "./StoragePreferences.js";
+import { I18n } from "./I18n.js";
 
 let debugSettings = false;
 
@@ -85,46 +86,46 @@ export function buildContextMenu(p) {
 
 	if (p.isEditable || (exists(p.selectionText) && p.selectionText.length > 0)) {
 		if (p.isEditable) {
-			items.push(makeCMItem({mousex:x,mousey:y,dataaction:"undo",text:"Undo",enabled:p.editFlags.canUndo}));
-			items.push(makeCMItem({mousex:x,mousey:y,dataaction:"redo",text:"Redo",enabled:p.editFlags.canRedo}));
+			items.push(makeCMItem({mousex:x,mousey:y,dataaction:"undo",text:I18n("Undo"),enabled:p.editFlags.canUndo}));
+			items.push(makeCMItem({mousex:x,mousey:y,dataaction:"redo",text:I18n("Redo"),enabled:p.editFlags.canRedo}));
 			items.push(makeCMDivider());
-			items.push(makeCMItem({mousex:x,mousey:y,dataaction:"cut",text:"Cut",enabled:p.editFlags.canCut}));
+			items.push(makeCMItem({mousex:x,mousey:y,dataaction:"cut",text:I18n("Cut"),enabled:p.editFlags.canCut}));
 		}
-		items.push(makeCMItem({mousex:x,mousey:y,dataaction:"copy",text:"Copy",enabled:p.editFlags.canCopy}));
+		items.push(makeCMItem({mousex:x,mousey:y,dataaction:"copy",text:I18n("Copy"),enabled:p.editFlags.canCopy}));
 		if (p.isEditable) {
-			items.push(makeCMItem({mousex:x,mousey:y,dataaction:"paste",text:"Paste",enabled:p.editFlags.canPaste}));
-			items.push(makeCMItem({mousex:x,mousey:y,dataaction:"selectAll",text:"Select All",enabled:p.editFlags.canSelectAll}));
+			items.push(makeCMItem({mousex:x,mousey:y,dataaction:"paste",text:I18n("Paste"),enabled:p.editFlags.canPaste}));
+			items.push(makeCMItem({mousex:x,mousey:y,dataaction:"selectAll",text:I18n("Select All"),enabled:p.editFlags.canSelectAll}));
 		}
 		items.push(makeCMDivider());
 	}
 
 	if (p.linkURL !== '' && p.linkURL !== "https://tweetdeck.twitter.com/#") {
-		items.push(makeCMItem({mousex:x,mousey:y,dataaction:"openLink",text:"Open link in browser",enabled:true,data:p.linkURL}));
-		items.push(makeCMItem({mousex:x,mousey:y,dataaction:"copyLink",text:"Copy link address",enabled:true,data:p.linkURL}));
+		items.push(makeCMItem({mousex:x,mousey:y,dataaction:"openLink",text:I18n("Open link in browser"),enabled:true,data:p.linkURL}));
+		items.push(makeCMItem({mousex:x,mousey:y,dataaction:"copyLink",text:I18n("Copy link address"),enabled:true,data:p.linkURL}));
 		items.push(makeCMDivider());
 	}
 
 	if (p.srcURL !== '') {
 		if (exists(p.mediaType) && p.mediaType === "video") {
-			items.push(makeCMItem({mousex:x,mousey:y,dataaction:"openImage",text:"Open video in browser",enabled:true,data:p.srcURL}));
-			items.push(makeCMItem({mousex:x,mousey:y,dataaction:"saveImage",text:"Save video...",enabled:true,data:p.srcURL}));
-			items.push(makeCMItem({mousex:x,mousey:y,dataaction:"copyImageURL",text:"Copy video address",enabled:true,data:p.srcURL}));
+			items.push(makeCMItem({mousex:x,mousey:y,dataaction:"openImage",text:I18n("Open video in browser"),enabled:true,data:p.srcURL}));
+			items.push(makeCMItem({mousex:x,mousey:y,dataaction:"saveImage",text:I18n("Save video..."),enabled:true,data:p.srcURL}));
+			items.push(makeCMItem({mousex:x,mousey:y,dataaction:"copyImageURL",text:I18n("Copy video address"),enabled:true,data:p.srcURL}));
 		} else {
-			items.push(makeCMItem({mousex:x,mousey:y,dataaction:"openImage",text:"Open image in browser",enabled:true,data:p.srcURL}));
-			items.push(makeCMItem({mousex:x,mousey:y,dataaction:"copyImage",text:"Copy image",enabled:true,data:{x:x,y:y}}));
-			items.push(makeCMItem({mousex:x,mousey:y,dataaction:"saveImage",text:"Save image...",enabled:true,data:p.srcURL}));
-			items.push(makeCMItem({mousex:x,mousey:y,dataaction:"copyImageURL",text:"Copy image address",enabled:true,data:p.srcURL}));
+			items.push(makeCMItem({mousex:x,mousey:y,dataaction:"openImage",text:I18n("Open image in browser"),enabled:true,data:p.srcURL}));
+			items.push(makeCMItem({mousex:x,mousey:y,dataaction:"copyImage",text:I18n("Copy image"),enabled:true,data:{x:x,y:y}}));
+			items.push(makeCMItem({mousex:x,mousey:y,dataaction:"saveImage",text:I18n("Save image..."),enabled:true,data:p.srcURL}));
+			items.push(makeCMItem({mousex:x,mousey:y,dataaction:"copyImageURL",text:I18n("Copy image address"),enabled:true,data:p.srcURL}));
 		}
 
 		items.push(makeCMDivider());
 	}
 
 	if (getPref("mtd_inspectElement") || isDev) {
-		items.push(makeCMItem({mousex:x,mousey:y,dataaction:"inspectElement",text:"Inspect element",enabled:true,data:{x:x,y:y}}));
+		items.push(makeCMItem({mousex:x,mousey:y,dataaction:"inspectElement",text:I18n("Inspect element"),enabled:true,data:{x:x,y:y}}));
 	}
 
 	if (debugSettings) {
-		items.push(makeCMItem({mousex:x,mousey:y,dataaction:"newSettings",text:"Settings",enabled:true,data:{x:x,y:y}}));
+		items.push(makeCMItem({mousex:x,mousey:y,dataaction:"newSettings",text:I18n("Settings"),enabled:true,data:{x:x,y:y}}));
 	}
 
 	if (useNativeContextMenus) {

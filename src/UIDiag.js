@@ -3,6 +3,7 @@ import { isApp, make } from "./Utils.js";
 import { dumpPreferences } from "./StoragePreferences.js";
 import { settingsData } from "./DataSettings.js";
 import { version } from "../package.json";
+import { I18n } from "./I18n.js";
 
 /*
 	diag makes it easier for developers to narrow down user-reported bugs.
@@ -12,9 +13,9 @@ import { version } from "../package.json";
 export function diag() {
 	let log = "";
 
-	log += "The following diagnostic report contains information about your version of ModernDeck.\
+	log += I18n("The following diagnostic report contains information about your version of ModernDeck.\
 	It contains a list of your preferences, but does not contain information related to your Twitter account(s).\
-	A ModernDeck developer may request a copy of this diagnostic report to help diagnose problems.\n\n";
+	A ModernDeck developer may request a copy of this diagnostic report to help diagnose problems.\n\n");
 
 	log += "======= Begin ModernDeck Diagnostic Report =======\n\n";
 

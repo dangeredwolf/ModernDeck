@@ -1,7 +1,7 @@
 /*
 	moderndeck.css
 
-	ModernDeck 7.6 [codename New World]
+	ModernDeck 8.0 [codename New World]
 	Copyright 2014-2020 dangered wolf, et al
 	Released under the MIT Licence
 
@@ -9155,12 +9155,12 @@ html:not(.mtd-classic-nav) .js-hide-drawer:not(.tweet-button):not([data-title="A
 }
 
 .app-navigator .dropdown-menu {
-	width:180px;
+	width: 220px;
 	animation:menuLeft 0.35s var(--animationTiming);
 	left:var(--verticalHeadWidth);
 	bottom:0;
 	margin-bottom:20px;
-	top:initial
+	top:initial;
 }
 
 .mtd-classic-nav .js-hide-drawer .icon-compose {
@@ -9258,7 +9258,8 @@ html:not(.mtd-classic-nav) .js-hide-drawer:not(.tweet-button):not([data-title="A
 	text-transform:none;
 	font-size:15px;
 	opacity:0;
-	transition:opacity 0.2s var(--animationTiming)
+	transition:opacity 0.2s var(--animationTiming);
+	white-space:nowrap
 }
 
 .mtd-classic-nav .application:not(.is-condensed) .app-header .tweet-button:not(.is-hidden) .label {

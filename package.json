@@ -1,7 +1,7 @@
 {
 	"name": "ModernDeck",
 	"productName": "ModernDeck",
-	"version": "7.6.0",
+	"version": "8.0.0",
 	"description": "ModernDeck",
 	"copyright": "Copyright 2014-2020 dangeredwolf, et al. Released under the MIT license.",
 	"homepage": "https://github.com/dangeredwolf/ModernDeck",
@@ -13,6 +13,7 @@
 	"main": "main.js",
 	"scripts": {
 		"incBuild": "node incrementBuild.js",
+		"buildi18n": "node updatei18n.js",
 		"pack": "electron-builder --dir",
 		"dist": "electron-builder . --publish always",
 		"distAll": "electron-builder -mwl --publish always",

@@ -19,6 +19,7 @@ import { UINavDrawer } from "./UINavDrawer.js";
 import { loginTextReplacer, checkIfSigninFormIsPresent } from "./UILoginController.js";
 let welcomeData = _welcomeData;
 import { allColumnsVisible, getColumnFromColumnNumber, getColumnNumber, updateColumnVisibility } from "./Column.js";
+import { startI18nEngine } from "./I18n.js";
 
 import { isStylesheetExtensionEnabled, enableStylesheetExtension, disableStylesheetExtension, enableCustomStylesheetExtension } from "./StylesheetExtensions.js";
 
@@ -324,6 +325,7 @@ async function mtdInit() {
 	handleErrors(loginTextReplacer, "Caught error in loginTextReplacer");
 	setTimeout(()=>handleErrors(loginTextReplacer, "Caught error in loginTextReplacer"),200);
 	setTimeout(()=>handleErrors(loginTextReplacer, "Caught error in loginTextReplacer"),500);
+	handleErrors(startI18nEngine, "Caught error in I18n Engine");
 
 	setInterval(() => {
 		if ($(".mtd-emoji").length <= 0 && loadEmojiPicker) {

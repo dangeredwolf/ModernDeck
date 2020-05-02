@@ -3,6 +3,7 @@
 import { _welcomeData } from "./DataWelcome.js";
 import { makeUpdateCont } from "./UISettings.js";
 import { enableStylesheetExtension, disableStylesheetExtension } from "./StylesheetExtensions.js";
+import { I18n } from "./I18n.js";
 let welcomeData = _welcomeData;
 
 export const debugWelcome = false;
@@ -55,7 +56,7 @@ export function welcomeScreen() {
 			)
 		}
 
-		let button = make("button").html("<i class='icon icon-arrow-l'></i>Previous").addClass("btn btn-positive mtd-settings-button mtd-welcome-prev-button")
+		let button = make("button").html("<i class='icon icon-arrow-l'></i>" + I18n("Previous")).addClass("btn btn-positive mtd-settings-button mtd-welcome-prev-button")
 		.click(function() {
 			$(".mtd-settings-inner").css("margin-left",((subPanel.index()-1) * -700)+"px")
 			if (typeof welc.prevFunc === "function") {
@@ -63,7 +64,7 @@ export function welcomeScreen() {
 			}
 		});
 
-		let button2 = make("button").html((key === "update" ? "Skip" : "Next") + "<i class='icon icon-arrow-r'></i>").addClass("btn btn-positive mtd-settings-button mtd-welcome-next-button")
+		let button2 = make("button").html((key === "update" ? I18n("Skip") : I18n("Next")) + "<i class='icon icon-arrow-r'></i>").addClass("btn btn-positive mtd-settings-button mtd-welcome-next-button")
 		.click(function() {
 			$(".mtd-settings-inner").css("margin-left",((subPanel.index()+1) * -700)+"px");
 			if (typeof welc.nextFunc === "function") {
@@ -72,7 +73,7 @@ export function welcomeScreen() {
 		});
 
 		if (key === "done") {
-			button2.html("Done").off("click").click(() => {
+			button2.html(I18n("Done")).off("click").click(() => {
 				setPref("mtd_welcomed",true);
 				window.location.reload();
 			});

@@ -1,3 +1,4 @@
+import { I18n } from "./I18n.js";
 
 /*
 	Shorthand function to create a new element, which is helpful for concise UI building.
@@ -54,13 +55,13 @@ export function formatBytes(val) {
 	if (val < 10**3) {
 		return val + " bytes"
 	} else if (val < 10**6) {
-		return roundMe(val/10**3) + " KB"
+		return roundMe(val/10**3) + I18n(" KB")
 	} else if (val < 10**9) {
-		return roundMe(val/10**6) + " MB"
+		return roundMe(val/10**6) + I18n(" MB")
 	} else if (val < 10**12) {
-		return roundMe(val/10**9) + " GB"
+		return roundMe(val/10**9) + I18n(" GB")
 	} else {
-		return roundMe(val/10**12) + " TB"
+		return roundMe(val/10**12) + I18n(" TB")
 	}
 }
 

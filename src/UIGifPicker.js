@@ -1,5 +1,6 @@
 import {spinnerLarge} from "./MTDMustaches.js";
 import {make} from "./Utils.js";
+import { I18n } from "./I18n.js";
 
 const giphyKey = "Vb45700bexRDqCkbMdUmBwDvtkWT9Vj2"; // swiper no swipey
 let lastGiphyURL = "";
@@ -11,7 +12,7 @@ export function initGifPanel() {
 		.addClass("js-show-tip btn btn-on-blue full-width txt-left padding-v--6 padding-h--12 margin-b--12 mtd-gif-button")
 		.append(
 			make("i").addClass("Icon icon-gif txt-size--18"),
-			make("span").addClass("label padding-ls").html("Add GIF")
+			make("span").addClass("label padding-ls").html(I18n("Add GIF"))
 		)
 		.attr("data-original-title","")
 		.click(() => {
@@ -56,18 +57,18 @@ function createGifPanel() {
 	$(".drawer .compose-text-container").after(
 		make("div").addClass("scroll-v popover mtd-gif-container").append(
 			make("div").addClass("mtd-gif-header").append(
-				//make("h1").addClass("mtd-gif-header-text").html("Trending"),
-				make("input").addClass("mtd-gif-search").attr("placeholder","Search GIFs...").change(() => {
+				//make("h1").addClass("mtd-gif-header-text").html(I18n("Trending")),
+				make("input").addClass("mtd-gif-search").attr("placeholder",I18n("Search GIFs...")).change(() => {
 					searchGifPanel($(".mtd-gif-search").val())
 				}),
 				make("img").attr("src",mtdBaseURL + "sources/img/giphy.png").addClass("mtd-giphy-logo"),
 				make("button").addClass("mtd-gif-top-button").append(
 					make("i").addClass("icon icon-arrow-u"),
-					"Go back up"
+					I18n("Go back up")
 				).click(() => {
 					$(".drawer .compose>.compose-content>.antiscroll-inner.scroll-v.scroll-styled-v").animate({ scrollTop: "0px" });
 				}),
-				make("div").addClass("mtd-gif-no-results list-placeholder hidden").html("We couldn't find anything matching what you searched. Give it another shot.")
+				make("div").addClass("mtd-gif-no-results list-placeholder hidden").html(I18n("We couldn't find anything matching what you searched. Give it another shot."))
 			),
 			make("div").addClass("mtd-gif-column mtd-gif-column-1"),
 			make("div").addClass("mtd-gif-column mtd-gif-column-2")
@@ -146,9 +147,9 @@ function renderGifResults(data, error) {
 		$(".mtd-gif-no-results").removeClass("hidden");
 
 		if (data === "error") {
-			$(".mtd-gif-no-results").html("An error occurred while trying to fetch results. " + (error || ""))
+			$(".mtd-gif-no-results").html(I18n("An error occurred while trying to fetch results.") + (error || ""))
 		} else {
-			$(".mtd-gif-no-results").html("We couldn't find anything matching what you searched. Give it another shot.")
+			$(".mtd-gif-no-results").html(I18n("We couldn't find anything matching what you searched. Give it another shot."))
 		}
 	}
 
@@ -275,11 +276,11 @@ export function checkGifEligibility() {
 
 	// has added images
 	if ($(".compose-media-grid-remove,.compose-media-bar-remove").length > 0) {
-		disabledText = "You cannot upload a GIF with other images";
+		disabledText = I18n("You cannot upload a GIF with other images");
 	}
 	// has quoted tweet
 	if ($(".compose-content .quoted-tweet").length > 0) {
-		disabledText = "Quoted Tweets cannot contain GIFs";
+		disabledText = I18n("Quoted Tweets cannot contain GIFs");
 	}
 
 	if (disabledText !== "") {

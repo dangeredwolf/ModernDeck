@@ -1,4 +1,5 @@
 import { make, exists } from "./Utils.js";
+import { I18n } from "./I18n.js";
 
 /*
 	mtdAlert(Object alertProps)
@@ -23,8 +24,8 @@ export function mtdAlert(obj) {
 	var obj = obj || {};
 
 	let alert = make("div").addClass("mdl mtd-alert");
-	let alertTitle = make("h2").addClass("mtd-alert-title").html(obj.title || "ModernDeck");
-	let alertBody = make("p").addClass("mtd-alert-body").html(obj.message || "Alert");
+	let alertTitle = make("h2").addClass("mtd-alert-title").html(obj.title || I18n("ModernDeck"));
+	let alertBody = make("p").addClass("mtd-alert-body").html(obj.message || I18n("Alert"));
 	let alertButtonContainer = make("div").addClass("mtd-alert-button-container");
 
 	let alertButton = make("button").addClass("btn-primary btn mtd-alert-button").html(obj.buttonText || "OK");
@@ -33,7 +34,7 @@ export function mtdAlert(obj) {
 	alertButtonContainer.append(alertButton);
 
 	if (exists(obj.button2Text) || obj.type === "confirm") {
-		alertButton2 = make("button").addClass("btn-primary btn mtd-alert-button mtd-alert-button-secondary").html(obj.button2Text || "Cancel");
+		alertButton2 = make("button").addClass("btn-primary btn mtd-alert-button mtd-alert-button-secondary").html(obj.button2Text || I18n("Cancel"));
 		alertButtonContainer.append(alertButton2);
 		alertButton2.click(obj.button2Click || mtdPrepareWindows);
 	}

@@ -2,6 +2,7 @@ import { make, exists, getIpc } from "./Utils.js";
 import { mtdAlert } from "./UIAlert.js";
 import { buildContextMenu } from "./UIContextMenu.js";
 import { parseActions } from "./PrefHandler.js";
+import { I18n } from "./I18n.js";
 
 let offlineNotification;
 
@@ -10,11 +11,14 @@ let offlineNotification;
 */
 
 function notifyUpdate() {
+	if (isDev) {
+		return;
+	}
 	mtdAlert({
-		title:"Update ModernDeck",
-		message:"An update is available for ModernDeck! Would you like to restart the app to install the update?",
-		buttonText:"Restart Now",
-		button2Text:"Later",
+		title:I18n("Update ModernDeck"),
+		message:I18n("An update is available for ModernDeck! Would you like to restart the app to install the update?"),
+		buttonText:I18n("Restart Now"),
+		button2Text:I18n("Later"),
 		button1Click:() => {
 			mtdPrepareWindows();
 			require("electron").ipcRenderer.send("restartAndInstallUpdates")
@@ -32,7 +36,7 @@ function notifyOffline() {
 		return;
 	}
 
-	let notifRoot = mR.findFunction("showErrorNotification")[0].showNotification({title:"Internet Disconnected",timeoutDelayMs:9999999999});
+	let notifRoot = mR.findFunction("showErrorNotification")[0].showNotification({title:I18n("Internet Disconnected"),timeoutDelayMs:9999999999});
 	let notifId = notifRoot._id;
 	offlineNotification = $("li.Notification[data-id=\""+notifId+"\"]");
 	let notifContent = $("li.Notification[data-id=\""+notifId+"\"] .Notification-content");
@@ -42,7 +46,7 @@ function notifyOffline() {
 		notifIcon.removeClass("Icon--notifications").addClass("mtd-icon-disconnected");
 
 		notifContent.append(
-			make("p").html("We detected that you are disconnected from the internet. Many actions are unavailable without an internet connection.")
+			make("p").html(I18n("We detected that you are disconnected from the internet. Many actions are unavailable without an internet connection."))
 		)
 	}
 }

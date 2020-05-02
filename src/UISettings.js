@@ -5,6 +5,7 @@ import { settingsData } from "./DataSettings.js";
 import { hasPref, getPref, setPref } from "./StoragePreferences.js";
 import { buildContextMenu } from "./UIContextMenu.js";
 import { parseActions } from "./PrefHandler.js";
+import { I18n } from "./I18n.js";
 
 const appendTextVersion = false;
 const enablePatronFeatures = true;
@@ -333,17 +334,17 @@ export function openSettings(openMenu) {
 			}
 		} else if (settingsData[key].enum === "aboutpage") {
 			let logo = make("i").addClass("mtd-logo icon-moderndeck icon");
-			let h1 = make("h1").addClass("mtd-about-title").html("ModernDeck");
-			let h2 = make("h2").addClass("mtd-version-title").html((appendTextVersion ? "Version " : "") + SystemVersion + " (Build " + buildId + ")");
+			let h1 = make("h1").addClass("mtd-about-title").html("ModernDeck 8");
+			let h2 = make("h2").addClass("mtd-version-title").html((appendTextVersion ? (I18n("Version") + " ") : "") + SystemVersion + " (Build " + buildId + ")");
 			let logoCont = make("div").addClass("mtd-logo-container");
 
 			if (!isApp) {
 				logoCont.append(
-					make("p").addClass("mtd-check-out-app").html("Did you know ModernDeck has a native app now? <a href='https://moderndeck.org/download'>Check it out!</a>")
+					make("p").addClass("mtd-check-out-app").html(I18n("Did you know ModernDeck has a native app now? <a href='https://moderndeck.org/download'>Check it out!</a>"))
 				)
 			}
 
-			let info = make("p").html("Made with <i class=\"icon icon-heart mtd-about-heart\"></i> by <a href=\"https://twitter.com/dangeredwolf\" rel=\"user\" target=\"_blank\">dangeredwolf</a> in Columbus, OH since 2014<br><br>ModernDeck is <a href=\"https://github.com/dangeredwolf/ModernDeck/\" target=\"_blank\">an open source project</a> released under the MIT license.");
+			let info = make("p").html(I18n("Made with <i class=\"icon icon-heart mtd-about-heart\"></i> by <a href=\"https://twitter.com/dangeredwolf\" rel=\"user\" target=\"_blank\">dangeredwolf</a> in Columbus, OH since 2014<br><br>ModernDeck is <a href=\"https://github.com/dangeredwolf/ModernDeck/\" target=\"_blank\">an open source project</a> released under the MIT license."));
 			let infoCont = make("div").addClass("mtd-about-info").append(info);
 
 			logoCont.append(logo,h1,h2);
@@ -363,8 +364,8 @@ export function openSettings(openMenu) {
 			if (html.hasClass("mtd-winstore")) {
 				subPanel.append(
 					make("div").append(
-						make("h2").addClass("mtd-update-h3 mtd-update-managed").html("Updates for this version of ModernDeck are managed by the Microsoft Store."),
-						make("button").addClass("btn mtd-settings-button").html("Check for Updates").click(() => {
+						make("h2").addClass("mtd-update-h3 mtd-update-managed").html(I18n("Updates for this version of ModernDeck are managed by the Microsoft Store.")),
+						make("button").addClass("btn mtd-settings-button").html(I18n("Check for Updates")).click(() => {
 							open("ms-windows-store://updates");
 						})
 					)
@@ -372,8 +373,8 @@ export function openSettings(openMenu) {
 			} else if (html.hasClass("mtd-macappstore")) {
 				subPanel.append(
 					make("div").append(
-						make("h2").addClass("mtd-update-h3 mtd-update-managed").html("Updates for this version of ModernDeck are managed by the App Store."),
-						make("button").addClass("btn mtd-settings-button").html("Check for Updates").click(() => {
+						make("h2").addClass("mtd-update-h3 mtd-update-managed").html(I18n("Updates for this version of ModernDeck are managed by the App Store.")),
+						make("button").addClass("btn mtd-settings-button").html(I18n("Check for Updates")).click(() => {
 							open("macappstore://showUpdatesPage");
 						})
 					)
@@ -387,16 +388,16 @@ export function openSettings(openMenu) {
 
 		} else if (settingsData[key].enum === "mutepage") {
 
-			let filterInput = make("input").addClass("js-filter-input").attr("name","filter-input").attr("size",30).attr("type","text").attr("placeholder","Enter a word or phrase")
+			let filterInput = make("input").addClass("js-filter-input").attr("name","filter-input").attr("size",30).attr("type","text").attr("placeholder",I18n("Enter a word or phrase"))
 
 			let selectFilterType = make("select").attr("name","filter").addClass("js-filter-types").append(
-				make("option").attr("value","phrase").html("Words or phrases"),
-				make("option").attr("value","source").html("Tweet source")
+				make("option").attr("value","phrase").html(I18n("Words or phrases")),
+				make("option").attr("value","source").html(I18n("Tweet source"))
 			).change(function() {
-				filterInput.attr("placeholder", $(this).val() === "phrase" ? "Enter a word or phrase" : "eg Tweeten")
+				filterInput.attr("placeholder", $(this).val() === "phrase" ? I18n("Enter a word or phrase") : I18n("eg TweetSpamApp"))
 			});
 
-			let muteButton = make("button").attr("name","add-filter").addClass("js-add-filter btn-on-dark disabled").html("Mute").click(() => {
+			let muteButton = make("button").attr("name","add-filter").addClass("js-add-filter btn-on-dark disabled").html(I18n("Mute")).click(() => {
 				if (filterInput.val().length > 0) {
 					TD.controller.filterManager.addFilter(selectFilterType.val(),filterInput.val(),false);
 
@@ -405,12 +406,12 @@ export function openSettings(openMenu) {
 			});
 
 			let muteTypes = make("div").addClass("control-group").append(
-				make("label").attr("for","filter-types").addClass("control-label").html("Mute"),
+				make("label").attr("for","filter-types").addClass("control-label").html(I18n("Mute")),
 				make("div").addClass("controls").append(selectFilterType)
 			)
 
 			let muteInput = make("div").addClass("control-group").append(
-				make("label").attr("for","filter-input").addClass("control-label").html("Matching"),
+				make("label").attr("for","filter-input").addClass("control-label").html(I18n("Matching")),
 				make("div").addClass("controls").append(filterInput)
 			).on("input",function() {
 				if ($(this).val().length > 0) {
@@ -473,7 +474,7 @@ function mtdAppUpdatePage(updateCont, updateh2, updateh3, updateIcon, updateSpin
 
 		$(".mtd-welcome-inner").addClass("mtd-enable-update-next");
 
-		updateh2.html("There was a problem checking for updates. ");
+		updateh2.html(I18n("There was a problem checking for updates."));
 		$(".mtd-update-spinner").addClass("hidden");
 
 		if (exists(args.code)) {
@@ -481,7 +482,7 @@ function mtdAppUpdatePage(updateCont, updateh2, updateh3, updateIcon, updateSpin
 		} else if (exists(f)) {
 			updateh3.html(f.match(/^(Cannot check for updates: )(.)+\n/g)).removeClass("hidden")
 		} else {
-			updateh3.html("We couldn't interpret the error info we received. Please try again later or DM @ModernDeck on Twitter for further help.").removeClass("hidden");
+			updateh3.html(I18n("We couldn't interpret the error info we received. Please try again later or DM @ModernDeck on Twitter for further help.")).removeClass("hidden");
 		}
 
 		updateIcon.html("error_outline").removeClass("hidden");
@@ -495,7 +496,7 @@ function mtdAppUpdatePage(updateCont, updateh2, updateh3, updateIcon, updateSpin
 		console.log(args);
 		updateIcon.addClass("hidden");
 		$(".mtd-update-spinner").removeClass("hidden");
-		updateh2.html("Checking for updates...");
+		updateh2.html(I18n("Checking for updates..."));
 		updateh3.addClass("hidden");
 		tryAgain.addClass("hidden");
 		restartNow.addClass("hidden");
@@ -518,7 +519,7 @@ function mtdAppUpdatePage(updateCont, updateh2, updateh3, updateIcon, updateSpin
 		updateIcon.addClass("hidden");
 		$(".mtd-update-spinner").removeClass("hidden");
 		updateh2.html("Downloading update...");
-		updateh3.html(Math.floor(args.percent)+"% complete ("+formatBytes(args.transferred)+"/"+formatBytes(args.total)+", "+formatBytes(args.bytesPerSecond)+"/s)").removeClass("hidden");
+		updateh3.html(Math.floor(args.percent)+I18n("% complete (")+formatBytes(args.transferred)+"/"+formatBytes(args.total)+", "+formatBytes(args.bytesPerSecond)+"/s)").removeClass("hidden");
 		tryAgain.addClass("hidden");
 		restartNow.addClass("hidden");
 	});
@@ -529,8 +530,8 @@ function mtdAppUpdatePage(updateCont, updateh2, updateh3, updateIcon, updateSpin
 		console.log(args);
 		$(".mtd-update-spinner").addClass("hidden");
 		updateIcon.html("update").removeClass("hidden");
-		updateh2.html("Update downloaded");
-		updateh3.html("Restart ModernDeck to complete the update").removeClass("hidden");
+		updateh2.html(I18n("Update downloaded"));
+		updateh3.html(I18n("Restart ModernDeck to complete the update")).removeClass("hidden");
 		tryAgain.addClass("hidden");
 		restartNow.removeClass("hidden");
 	});
@@ -539,13 +540,13 @@ function mtdAppUpdatePage(updateCont, updateh2, updateh3, updateIcon, updateSpin
 	ipcRenderer.on("update-not-available", (e,args) => {
 		console.log(args);
 		$(".mtd-update-spinner").addClass("hidden");
-		updateh2.html("You're up to date");
+		updateh2.html(I18n("You're up to date"));
 		updateIcon.html("check_circle").removeClass("hidden");
-		updateh3.html(SystemVersion + " is the latest version.").removeClass("hidden");
-		tryAgain.removeClass("hidden").html("Check Again");
+		updateh3.html(SystemVersion + I18n(" is the latest version.")).removeClass("hidden");
+		tryAgain.removeClass("hidden").html(I18n("Check Again"));
 		restartNow.addClass("hidden");
 		$(".mtd-welcome-inner").addClass("mtd-enable-update-next");
-		$("[id='update'] .mtd-welcome-next-button").html("Next<i class='icon icon-arrow-r'></i>");
+		$("[id='update'] .mtd-welcome-next-button").html(I18n("Next") + "<i class='icon icon-arrow-r'></i>");
 	});
 
 	tryAgain.click(() => {
@@ -568,10 +569,10 @@ export function makeUpdateCont() {
 	let updateCont = make("div").addClass("mtd-update-container").html('<div class="mtd-update-spinner preloader-wrapper small active"><div class="spinner-layer"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div>');
 	let updateSpinner = $(".mtd-update-spinner");
 	let updateIcon = make("i").addClass("material-icon hidden");
-	let updateh2 = make("h2").addClass("mtd-update-h2").html("Checking for updates...");
+	let updateh2 = make("h2").addClass("mtd-update-h2").html(I18n("Checking for updates..."));
 	let updateh3 = make("h3").addClass("mtd-update-h3 hidden").html("");
-	let tryAgain = make("button").addClass("btn hidden").html("Try Again");
-	let restartNow = make("button").addClass("btn hidden").html("Restart Now")
+	let tryAgain = make("button").addClass("btn hidden").html(I18n("Try Again"));
+	let restartNow = make("button").addClass("btn hidden").html(I18n("Restart Now"));
 
 
 	updateCont.append(updateIcon,updateh2,updateh3,tryAgain,restartNow);
@@ -608,7 +609,7 @@ function renderPatronInfo(info, patronBox) {
 
 	if ((exists(info.l1)) || (exists(info.l2))) {
 		patronBox.append(make("h3").html(
-			(metadataAvailable && typeof info.meta.title === "string") ? sanitiseString(info.meta.title) : "ModernDeck is made possible by people like you"
+			(metadataAvailable && typeof info.meta.title === "string") ? sanitiseString(info.meta.title) : I18n("ModernDeck is made possible by people like you")
 		))
 	}
 

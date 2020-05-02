@@ -1,5 +1,6 @@
 import { make, exists } from "./Utils.js";
 import { openSettings } from "./UISettings.js";
+import { I18n } from "./I18n.js";
 
 
 /*
@@ -43,7 +44,7 @@ function profileSetup() {
 
 export function UINavDrawer() {
 	$(".app-header-inner").append(
-		make("a").attr("id","mtd-navigation-drawer-button").attr("data-original-title","Navigation drawer").addClass("js-header-action mtd-drawer-button link-clean cf app-nav-link").html('<div class="obj-left"><div class="mtd-nav-activator"></div><div class="nbfc padding-ts"></div>')
+		make("a").attr("id","mtd-navigation-drawer-button").attr("data-original-title",I18n("Navigation drawer")).addClass("js-header-action mtd-drawer-button link-clean cf app-nav-link").html('<div class="obj-left"><div class="mtd-nav-activator"></div><div class="nbfc padding-ts"></div>')
 		.click(() => {
 			if (exists(mtd_nav_drawer_background)) {
 				$("#mtd_nav_drawer_background").removeClass("hidden");
@@ -64,21 +65,21 @@ export function UINavDrawer() {
 				$('a[data-user-name="dangeredwolf"][rel="user"][href="#"]').click();
 			}),
 			make("div").addClass("mtd-nd-header-username").attr("id","mtd_nd_header_username").html("PROFILE ERROR<br>Tell @dangeredwolf i said hi"),
-			make("button").addClass("btn mtd-nav-button mtd-nav-first-button").attr("id","tdaccsbutton").append(make("i").addClass("icon icon-user-switch")).click(() => {mtdPrepareWindows();$(".js-show-drawer.js-header-action").click();}).append("Your accounts"),
-			make("button").addClass("btn mtd-nav-button").attr("id","addcolumn").append(make("i").addClass("icon icon-plus")).click(() => {mtdPrepareWindows();TD.ui.openColumn.showOpenColumn()}).append("Add column"),
+			make("button").addClass("btn mtd-nav-button mtd-nav-first-button").attr("id","tdaccsbutton").append(make("i").addClass("icon icon-user-switch")).click(() => {mtdPrepareWindows();$(".js-show-drawer.js-header-action").click();}).append(I18n("Your accounts")),
+			make("button").addClass("btn mtd-nav-button").attr("id","addcolumn").append(make("i").addClass("icon icon-plus")).click(() => {mtdPrepareWindows();TD.ui.openColumn.showOpenColumn()}).append(I18n("Add column")),
 			make("div").addClass("mtd-nav-divider"),
 			make("button").addClass("btn mtd-nav-button").attr("id","kbshortcuts").append(make("i").addClass("icon icon-keyboard")).click(() => {
 				mtdPrepareWindows();
 				setTimeout(() => {$(".js-app-settings").click()},10);
 				setTimeout(() => {$("a[data-action='keyboardShortcutList']").click()},20);
-			}).append("Keyboard shortcuts"),
-			make("button").addClass("btn mtd-nav-button").attr("id","mtdsettings").append(make("i").addClass("icon icon-settings")).click(() => {openSettings()}).append("Settings"),
+			}).append(I18n("Keyboard shortcuts")),
+			make("button").addClass("btn mtd-nav-button").attr("id","mtdsettings").append(make("i").addClass("icon icon-settings")).click(() => {openSettings()}).append(I18n("Settings")),
 			make("div").addClass("mtd-nav-divider"),
 			make("button").addClass("btn mtd-nav-button mtd-nav-group-expand").attr("id","mtd_nav_expand").append(make("i").addClass("icon mtd-icon-arrow-down").attr("id","mtd_nav_group_arrow")).click(() => {
 				$("#mtd_nav_group").toggleClass("mtd-nav-group-expanded");
 				$("#mtd_nav_group_arrow").toggleClass("mtd-nav-group-arrow-flipped");
 				$("#mtd_nav_drawer").toggleClass("mtd-nav-drawer-group-open");
-			}).append("More..."),
+			}).append(I18n("More...")),
 			make("div").addClass("mtd-nav-group mtd-nav-group-expanded").attr("id","mtd_nav_group").append(
 				make("button").addClass("btn mtd-nav-button").append(make("i").addClass("icon mtd-icon-changelog")).click(() => {
 					mtdPrepareWindows();
@@ -92,12 +93,12 @@ export function UINavDrawer() {
 				make("div").addClass("mtd-nav-divider"),
 				make("button").addClass("btn mtd-nav-button").attr("id","mtd_signout").append(make("i").addClass("icon icon-logout")).click(() => {
 					TD.controller.init.signOut();
-				}).append("Sign out"),
+				}).append(I18n("Sign out")),
 			),
 			make("div").addClass("mtd-nav-divider mtd-nav-divider-feedback"),
 			make("button").addClass("btn mtd-nav-button mtd-nav-button-feedback").attr("id","mtdfeedback").append(make("i").addClass("icon icon-feedback")).click(() => {
 				window.open("https://github.com/dangeredwolf/ModernDeck/issues");
-			}).append("Send feedback")
+			}).append(I18n("Send feedback"))
 		),
 		make("div").attr("id","mtd_nav_drawer_background").addClass("mtd-nav-drawer-background hidden").click(function() {
 			$(this).addClass("hidden");
@@ -116,7 +117,7 @@ export function UINavDrawer() {
 				make("button").addClass("btn mtd-nav-button").append(make("i").addClass("icon mtd-icon-command-pallete")).click(() => {
 					mtdPrepareWindows();
 					$(document).trigger("uiShowCommandPalette");
-				}).append("Command Pallete"),
+				}).append(I18n("Command Pallete")),
 				make("button").addClass("btn mtd-nav-button").append(make("i").addClass("icon mtd-icon-developer")).click(() => {
 					mtdPrepareWindows();
 
@@ -126,7 +127,7 @@ export function UINavDrawer() {
 						}
 					});
 
-				}).append("Disable Dev/Dogfood")
+				}).append(I18n("Disable Dev/Dogfood"))
 			)
 		}
 	} catch(e) {
