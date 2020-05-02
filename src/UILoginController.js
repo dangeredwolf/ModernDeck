@@ -1,9 +1,6 @@
-
-
 import { enableStylesheetExtension, disableStylesheetExtension } from "./StylesheetExtensions.js";
 
 let ugltStarted = false;
-
 let loginIntervalTick = 0;
 
 // Updates the "Good morning!" / "Good afternoon!" / "Good evening!"

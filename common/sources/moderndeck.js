@@ -57,7 +57,7 @@ function getIpc() {
   return require('electron').ipcRenderer;
 }
 
-var buildId = 1142;
+var buildId = 1147;
 
 /*
 	Returns true if specified stylesheet extension is enabled, false otherwise.
@@ -120,7 +120,7 @@ function enableCustomStylesheetExtension(name, styles) {
 function getColumnNumber(col) {
   return parseInt(col.data("column").match(/s\d+/g)[0].substr(1));
 }
-function updateColumnVisibility$1() {
+function updateColumnVisibility() {
   if (getPref$1("mtd_column_visibility") === false || isInWelcome) {
     return allColumnsVisible$1();
   }
@@ -510,7 +510,7 @@ let settingsData$1 = {
         activate: {
           func: opt => {
             allColumnsVisible$1();
-            updateColumnVisibility$1(); // setPref("mtd_column_visibility",opt);
+            updateColumnVisibility(); // setPref("mtd_column_visibility",opt);
           }
         },
         deactivate: {
@@ -2946,7 +2946,7 @@ function profileSetup() {
 }
 
 function UINavDrawer() {
-  $(".app-header-inner").append(make$1("a").attr("id", "mtd-navigation-drawer-button").attr("data-original-title", "Navigation Drawer").addClass("js-header-action mtd-drawer-button link-clean cf app-nav-link").html('<div class="obj-left"><div class="mtd-nav-activator"></div><div class="nbfc padding-ts"></div>').click(() => {
+  $(".app-header-inner").append(make$1("a").attr("id", "mtd-navigation-drawer-button").attr("data-original-title", "Navigation drawer").addClass("js-header-action mtd-drawer-button link-clean cf app-nav-link").html('<div class="obj-left"><div class="mtd-nav-activator"></div><div class="nbfc padding-ts"></div>').click(() => {
     if (exists$1(mtd_nav_drawer_background)) {
       $("#mtd_nav_drawer_background").removeClass("hidden");
     }
@@ -2960,10 +2960,10 @@ function UINavDrawer() {
   }), make$1("div").addClass("mtd-nd-header-username").attr("id", "mtd_nd_header_username").html("PROFILE ERROR<br>Tell @dangeredwolf i said hi"), make$1("button").addClass("btn mtd-nav-button mtd-nav-first-button").attr("id", "tdaccsbutton").append(make$1("i").addClass("icon icon-user-switch")).click(() => {
     mtdPrepareWindows();
     $(".js-show-drawer.js-header-action").click();
-  }).append("Your Accounts"), make$1("button").addClass("btn mtd-nav-button").attr("id", "addcolumn").append(make$1("i").addClass("icon icon-plus")).click(() => {
+  }).append("Your accounts"), make$1("button").addClass("btn mtd-nav-button").attr("id", "addcolumn").append(make$1("i").addClass("icon icon-plus")).click(() => {
     mtdPrepareWindows();
     TD.ui.openColumn.showOpenColumn();
-  }).append("Add Column"), make$1("div").addClass("mtd-nav-divider"), make$1("button").addClass("btn mtd-nav-button").attr("id", "kbshortcuts").append(make$1("i").addClass("icon icon-keyboard")).click(() => {
+  }).append("Add column"), make$1("div").addClass("mtd-nav-divider"), make$1("button").addClass("btn mtd-nav-button").attr("id", "kbshortcuts").append(make$1("i").addClass("icon icon-keyboard")).click(() => {
     mtdPrepareWindows();
     setTimeout(() => {
       $(".js-app-settings").click();
@@ -2971,8 +2971,8 @@ function UINavDrawer() {
     setTimeout(() => {
       $("a[data-action='keyboardShortcutList']").click();
     }, 20);
-  }).append("Keyboard Shortcuts"), make$1("button").addClass("btn mtd-nav-button").attr("id", "mtdsettings").append(make$1("i").addClass("icon icon-settings")).click(() => {
-    openSettings();
+  }).append("Keyboard shortcuts"), make$1("button").addClass("btn mtd-nav-button").attr("id", "mtdsettings").append(make$1("i").addClass("icon icon-settings")).click(() => {
+    openSettings$1();
   }).append("Settings"), make$1("div").addClass("mtd-nav-divider"), make$1("button").addClass("btn mtd-nav-button mtd-nav-group-expand").attr("id", "mtd_nav_expand").append(make$1("i").addClass("icon mtd-icon-arrow-down").attr("id", "mtd_nav_group_arrow")).click(() => {
     $("#mtd_nav_group").toggleClass("mtd-nav-group-expanded");
     $("#mtd_nav_group_arrow").toggleClass("mtd-nav-group-arrow-flipped");
@@ -2988,11 +2988,11 @@ function UINavDrawer() {
     setTimeout(() => {
       $("a[data-action=\"searchOperatorList\"]").click();
     }, 20);
-  }).append("Search Tips"), make$1("div").addClass("mtd-nav-divider"), make$1("button").addClass("btn mtd-nav-button").attr("id", "mtd_signout").append(make$1("i").addClass("icon icon-logout")).click(() => {
+  }).append("Search tips"), make$1("div").addClass("mtd-nav-divider"), make$1("button").addClass("btn mtd-nav-button").attr("id", "mtd_signout").append(make$1("i").addClass("icon icon-logout")).click(() => {
     TD.controller.init.signOut();
-  }).append("Sign Out")), make$1("div").addClass("mtd-nav-divider mtd-nav-divider-feedback"), make$1("button").addClass("btn mtd-nav-button mtd-nav-button-feedback").attr("id", "mtdfeedback").append(make$1("i").addClass("icon icon-feedback")).click(() => {
+  }).append("Sign out")), make$1("div").addClass("mtd-nav-divider mtd-nav-divider-feedback"), make$1("button").addClass("btn mtd-nav-button mtd-nav-button-feedback").attr("id", "mtdfeedback").append(make$1("i").addClass("icon icon-feedback")).click(() => {
     window.open("https://github.com/dangeredwolf/ModernDeck/issues");
-  }).append("Send Feedback")), make$1("div").attr("id", "mtd_nav_drawer_background").addClass("mtd-nav-drawer-background hidden").click(function () {
+  }).append("Send feedback")), make$1("div").attr("id", "mtd_nav_drawer_background").addClass("mtd-nav-drawer-background hidden").click(function () {
     $(this).addClass("hidden");
     $(mtd_nav_drawer).addClass("hidden");
     $(".mtd-nav-group-expanded").removeClass("mtd-nav-group-expanded");
@@ -4021,12 +4021,7 @@ function mtdAppFunctions() {
     $(".js-show-drawer.js-header-action").click();
   });
   ipcRenderer.on("sendFeedback", (e, args) => {
-    try {
-      throw "Manually triggered feedback button";
-    } catch (e) {
-      Raven.captureException(e);
-      Raven.showReportDialog();
-    }
+    window.open("https://github.com/dangeredwolf/ModernDeck/issues");
   });
   ipcRenderer.on("msgModernDeck", (e, args) => {
     $(document).trigger("uiComposeTweet", {
@@ -4086,7 +4081,6 @@ function mtdAppFunctions() {
     let Menu = electron.remote.Menu;
 
     if (useNativeContextMenus || useSafeMode) {
-      //ipcRenderer.send('nativeContextMenu',theMenu);
       Menu.buildFromTemplate(theMenu).popup();
       return;
     } else {
@@ -4140,7 +4134,7 @@ function attachColumnVisibilityEvents() {
 	Made with <3
 */
 window.SystemVersion = version.replace(".0", ""); // remove trailing .0, if present
-let newLoginPage$1 = _newLoginPage;
+window.newLoginPage = _newLoginPage;
 window.mtdBaseURL = "https://raw.githubusercontent.com/dangeredwolf/ModernDeck/master/ModernDeck/"; // Defaults to obtaining assets from GitHub if MTDURLExchange isn't completed properly somehow
 
 let loadEmojiPicker = true;
@@ -4159,10 +4153,10 @@ let mtdStarted = new Date();
 
 if (mtdStarted.getHours() < 12) {
   // 12:00 / 12:00pm
-  newLoginPage$1 = newLoginPage$1.replace("Good evening", "Good morning");
+  newLoginPage = newLoginPage.replace("Good evening", "Good morning");
 } else if (mtdStarted.getHours() < 18) {
   // 18:00 / 6:00pm
-  newLoginPage$1 = newLoginPage$1.replace("Good evening", "Good afternoon");
+  newLoginPage = newLoginPage.replace("Good evening", "Good afternoon");
 }
 /*
 	Allows copying image to the clipboard from app context menu
@@ -4304,7 +4298,7 @@ function overrideFadeOut() {
       };
     }
   }, 1000);
-} // Fixes a bug in TweetDeck's JS caused by ModernDeck having different animations in column settings
+} // Fixes a bug (or oversight) in TweetDeck's JS caused by ModernDeck having different animations in column settings
 
 
 function fixColumnAnimations() {
@@ -4344,21 +4338,13 @@ async function mtdInit() {
   }
 
   html.addClass("dark");
-
-  try {
-    injectFonts();
-  } catch (e) {
-    console.error("Caught error in injectFonts");
-    console.error(e);
-    lastError = e;
-  } // These check to see if critical TD variables are in place before proceeding
-
+  handleErrors(injectFonts, "Caught error in injectFonts"); // These check to see if critical TD variables are in place before proceeding
 
   await TD_mustaches;
   await TD;
   await TD.util;
   await TD_mustaches["login/login_form.mustache"];
-  TD_mustaches["login/login_form.mustache"] = newLoginPage$1;
+  TD_mustaches["login/login_form.mustache"] = newLoginPage;
   /*
   	Especially on Edge, but also on Chrome shortly after launch,
   	sometimes the stylesheet isn't blocked by the network, which breaks the page heavily.
@@ -4479,25 +4465,16 @@ function hookComposer() {
   if (isApp$1 && useNativeEmojiPicker() && loadEmojiPicker) {
     $(".compose-text").after(make$1("div").addClass("mtd-emoji").append(make$1("div").addClass("mtd-emoji-button btn").append(make$1("div").addClass("mtd-emoji-button-open").click(() => {
       try {
-        require("electron").remote.app.showEmojiPanel();
+        var _require3, _require4, _require4$remote, _require4$remote$app, _require4$remote$app$;
+
+        (_require3 = require) === null || _require3 === void 0 ? void 0 : (_require4 = _require3("electron")) === null || _require4 === void 0 ? void 0 : (_require4$remote = _require4.remote) === null || _require4$remote === void 0 ? void 0 : (_require4$remote$app = _require4$remote.app) === null || _require4$remote$app === void 0 ? void 0 : (_require4$remote$app$ = _require4$remote$app.showEmojiPanel) === null || _require4$remote$app$ === void 0 ? void 0 : _require4$remote$app$.call(_require4$remote$app);
       } catch (e) {
         console.error("Falling back to custom emoji area");
-
-        try {
-          makeEmojiPicker();
-        } catch (e) {
-          console.error("emoji area failed to initialise");
-          console.error(e);
-        }
+        handleErrors(makeEmojiPicker, "Emoji Picker failed to initialise");
       }
     }))));
   } else {
-    try {
-      makeEmojiPicker();
-    } catch (e) {
-      console.error("emoji area failed to initialise");
-      console.error(e);
-    }
+    handleErrors(makeEmojiPicker, "Emoji Picker failed to initialise");
   }
 
   if ($(".compose-text-container .js-add-image-button,.compose-text-container .js-schedule-button,.compose-text-container .mtd-gif-button").length <= 0) {

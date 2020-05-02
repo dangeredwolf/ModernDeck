@@ -24,7 +24,7 @@ import { isStylesheetExtensionEnabled, enableStylesheetExtension, disableStylesh
 
 import { getPref, setPref } from "./StoragePreferences.js";
 import { _newLoginPage } from "./MTDMustaches.js";
-let newLoginPage = _newLoginPage;
+window.newLoginPage = _newLoginPage;
 
 import { processForceFeatureFlags } from "./ForceFeatureFlags.js";
 import { loadPreferences, parseActions } from "./PrefHandler.js";
@@ -239,8 +239,7 @@ function overrideFadeOut() {
 
 }
 
-
-// Fixes a bug in TweetDeck's JS caused by ModernDeck having different animations in column settings
+// Fixes a bug (or oversight) in TweetDeck's JS caused by ModernDeck having different animations in column settings
 
 function fixColumnAnimations() {
 	$(".column-scroller,.more-tweets-btn-container").each((a,b) => {
@@ -259,6 +258,7 @@ function fixColumnAnimations() {
 		},{attributes:true});
 	})
 }
+
 // begin moderndeck initialisation
 
 async function mtdInit() {
@@ -279,13 +279,7 @@ async function mtdInit() {
 	}
 	html.addClass("dark");
 
-	try {
-		injectFonts()
-	} catch (e) {
-		console.error("Caught error in injectFonts");
-		console.error(e);
-		lastError = e;
-	}
+	handleErrors(injectFonts, "Caught error in injectFonts");
 
 
 	// These check to see if critical TD variables are in place before proceeding
@@ -421,7 +415,7 @@ async function mtdInit() {
 
 // opens legacy tweetdeck settings
 
-async function openLegacySettings() {
+function openLegacySettings() {
 	$(".mtd-settings-panel").remove();
 	new TD.components.GlobalSettings;
 }
@@ -459,27 +453,17 @@ function hookComposer() {
 				make("div").addClass("mtd-emoji-button btn").append(
 					make("div").addClass("mtd-emoji-button-open").click(() => {
 						try {
-							require("electron").remote.app.showEmojiPanel();
+							require?.("electron")?.remote?.app?.showEmojiPanel?.();
 						} catch(e) {
-							console.error("Falling back to custom emoji area")
-							try {
-								makeEmojiPicker();
-							} catch (e) {
-								console.error("emoji area failed to initialise");
-								console.error(e);
-							}
+							console.error("Falling back to custom emoji area");
+							handleErrors(makeEmojiPicker, "Emoji Picker failed to initialise");
 						}
 					})
 				)
 			)
 		);
 	} else if (loadEmojiPicker) {
-		try {
-			makeEmojiPicker();
-		} catch (e) {
-			console.error("emoji area failed to initialise");
-			console.error(e);
-		}
+		handleErrors(makeEmojiPicker, "Emoji Picker failed to initialise");
 	}
 
 	if ($(".compose-text-container .js-add-image-button,.compose-text-container .js-schedule-button,.compose-text-container .mtd-gif-button").length <= 0) {

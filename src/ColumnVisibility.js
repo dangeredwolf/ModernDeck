@@ -1,4 +1,4 @@
-
+import { updateColumnVisibility } from "./Column.js";
 
 let lastScrollAt = Date.now();
 let timeout = Date.now();
