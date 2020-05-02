@@ -6,7 +6,7 @@
 */
 
 import { exists, isApp } from "./Utils.js";
-import { settingsData } from "./SettingsData.js";
+import { settingsData } from "./DataSettings.js";
 export const debugStorageSys = false;
 
 if (isApp) {

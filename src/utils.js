@@ -5,6 +5,16 @@
 	We could just make jQuery directly do it, but it's slower than calling native JS api and wrapped jQuery around it
 */
 
+export const handleErrors = (func, text) => {
+	try {
+		func();
+	} catch(e) {
+		console.error(text || "Caught an unexpected internal error");
+		console.error(e);
+		window.lastError = e;
+	}
+}
+
 export const make = function(a) {
 	return $(document.createElement(a));
 }
@@ -22,6 +32,45 @@ export const exists = function(thing) {
 		(typeof thing === "string") ||
 		(typeof thing === "number")
 	);
+}
+
+/*
+	Helper function that rounds a number to the nearest hundredth (2nd decimal)
+*/
+
+export function roundMe(val) {
+	return Math.floor(val * 100)/100;
+}
+
+/*
+	function formatBytes(int val)
+
+	Returns string: Number of bytes formatted into larger units (KB, MB, GB, TB)
+
+	i.e. formatBytes(1000) -> "1 KB"
+*/
+
+export function formatBytes(val) {
+	if (val < 10**3) {
+		return val + " bytes"
+	} else if (val < 10**6) {
+		return roundMe(val/10**3) + " KB"
+	} else if (val < 10**9) {
+		return roundMe(val/10**6) + " MB"
+	} else if (val < 10**12) {
+		return roundMe(val/10**9) + " GB"
+	} else {
+		return roundMe(val/10**12) + " TB"
+	}
+}
+
+
+/*
+	Sanitises a string so we don't get silly XSS exploits (i sure as hell hope)
+*/
+
+export function sanitiseString(str) {
+	return str.replace(/\</g,"&lt;").replace(/\&/g,"&amp;").replace(/\>/g,"&gt;").replace(/\"/g,"&quot;")
 }
 
 export const isApp = typeof require !== "undefined";

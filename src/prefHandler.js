@@ -1,7 +1,7 @@
-import { settingsData } from "./SettingsData.js";
+import { settingsData } from "./DataSettings.js";
 import { exists } from "./Utils.js";
 import { disableStylesheetExtension, enableStylesheetExtension } from "./StylesheetExtensions.js";
-import { getPref, setPref, hasPref, debugStorageSys } from "./PrefStorage.js";
+import { getPref, setPref, hasPref, debugStorageSys } from "./StoragePreferences.js";
 
 /*
 	function loadPreferences()

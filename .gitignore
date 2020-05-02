@@ -16,4 +16,4 @@ node_modules
 *.appx
 default.*
 package-lock.json
-ModernDeck/sources/moderndeck.js
+common/sources/moderndeck.js

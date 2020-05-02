@@ -1,7 +1,7 @@
 import buildId from "./buildId.js";
 import { isApp, make } from "./Utils.js";
 import { dumpPreferences } from "./StoragePreferences.js";
-import { settingsData } from "./SettingsData.js";
+import { settingsData } from "./DataSettings.js";
 import { version } from "../package.json";
 
 /*
