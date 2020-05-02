@@ -3943,7 +3943,6 @@ input[type="checkbox"]:active {
 }
 
 .recent-search-clear.list-item-last span:after {
-	content:"Clear";
 	font-size:13px;
 	margin-top:-20px;
 	margin-left:30px;
@@ -4411,10 +4410,10 @@ input[type="checkbox"]:active {
 	box-shadow:0 2px 5px 0 var(--contextMenuShadow);
 	margin-top:-18px;
 	text-indent:0;
-	width:220px;
+	width: 226px;
 	margin-right:-10px;
 	border-radius:2px;
-	animation:menuDown 0.3s var(--animationTiming)
+	animation:menuDown 0.3s var(--animationTiming);
 }
 
 .dropdown-menu li:not(.drp-h-divider),.dropdown-menu menuitem:not(.drp-h-divider) {
@@ -4706,7 +4705,6 @@ html:not(.mtd-head-left) .column-nav-link i {
 }
 
 .js-column-detail .column-title-back:after,.js-tweet-results .column-title-back:after,.js-tweet-social-proof-back:after {
-	content:"Tweet";
 	font-weight:400;
 	margin-top:3px;
 	position:absolute;
@@ -4725,7 +4723,6 @@ html:not(.mtd-head-left) .column-nav-link i {
 }
 
 .js-tweet-social-proof-back:after {
-	content:"Interactions";
 	margin-top:-53px;
 	margin-left:5px
 }
@@ -4856,7 +4853,6 @@ html:not(.mtd-head-left) .column-nav-link i {
 }
 
 .js-hide-drawer.app-nav-tab:after {
-	content:"Close Account List";
 	font-size:14px;
 	text-align:center
 }
@@ -5182,7 +5178,6 @@ html:not(.mtd-head-left) body .application.hide-detail-view-inline .column-navig
 }
 
 .js-dm-participants-back:after {
-	content:"People";
 	font-weight:400;
 	margin-top:-53px;
 	position:absolute;
@@ -5325,7 +5320,6 @@ html:not(.mtd-head-left) body .application.hide-detail-view-inline .column-navig
 
 .js-account-safeguard-text:after {
 	font-size:14px;
-	content:"Ready?";
 	margin-right:5px
 }
 
@@ -5469,8 +5463,7 @@ button.try-query,
 }
 
 .js-display-sensitive-media span:after {
-	font-size:15px;
-	content:"Show potentially sensitive media"
+	font-size:15px
 }
 
 .tweet-detail-action-item.margin-ln {
@@ -5490,7 +5483,6 @@ button.try-query,
 }
 
 .js-column-detail .column-title-back:before {
-	content:"Tweet";
 	font-weight:400;
 	text-align:left;
 	left:48px;
@@ -6281,7 +6273,6 @@ p[lang="yi"] a[rel="hashtag"],p[lang="yi"] a[rel="user"]
 }
 
 .contributor-detail>a:before {
-	content:"Change";
 	font-size:14px
 }
 
@@ -7076,7 +7067,6 @@ li.padding-axl.flex.flex-row.flex-align--center .account-summary-text>a.account-
 }
 
 .microsoft-logo:after {
-	content:"Microsoft";
 	margin-top:-7px;
 	position:absolute
 }
@@ -7744,7 +7734,6 @@ span[data-testid="trendDescription"] {
 }
 
 .pull-right>button[data-action="quote"]:after {
-	content:"Quote Tweet";
 	font-size:14px
 }
 

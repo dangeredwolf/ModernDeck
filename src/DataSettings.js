@@ -139,20 +139,20 @@ export let settingsData = {
 				options:{
 					default:{value:"default",text:I18n("Default")},
 					completeLight:{
-						name:"Complete Light Themes",
+						name:I18n("Complete Light Themes"),
 						children:{
 							paper:{value:"paper",text:I18n("Paperwhite")}
 						}
 					},
 					completeDark:{
-						name:"Complete Dark Themes",
+						name:I18n("Complete Dark Themes"),
 						children:{
 							darker:{value:"darker",text:I18n("Darker")},
 							amoled:{value:"amoled",text:I18n("AMOLED")}
 						}
 					},
 					complementary:{
-						name:"Complementary Themes",
+						name:I18n("Complementary Themes"),
 						children:{
 							grey:{value:"grey","text":I18n("Grey")},
 							red:{value:"red","text":I18n("Red")},
@@ -468,7 +468,7 @@ export let settingsData = {
 		options:{
 			stream:{
 				headerBefore:I18n("Function"),
-				title:I18n("Stream Tweets in realtime"),
+				title:I18n("Stream Tweets in real time"),
 				type:"checkbox",
 				savePreference:false,
 				activate:{
@@ -614,7 +614,7 @@ export let settingsData = {
 		options:{
 			nativeTitlebar:{
 				headerBefore:I18n("App settings"),
-				title:I18n("Use native OS titlebar (restarts ModernDeck)"),
+				title:I18n("Use native OS title bar (restarts ModernDeck)"),
 				type:"checkbox",
 				activate:{
 					func: () => {

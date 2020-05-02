@@ -233,8 +233,10 @@ select,input {
 	font-size:26px;
 	vertical-align:middle;
 	line-height:0;
-	margin-left:-40px;
-	padding-right:25px
+	margin-left: -30px;
+	padding-right:25px;
+	position: absolute;
+	margin-top: 13px;
 }
 
 .form-login .padding-axl:not(.form-legend) {

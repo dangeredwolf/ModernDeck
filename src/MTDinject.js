@@ -19,7 +19,9 @@ import { UINavDrawer } from "./UINavDrawer.js";
 import { loginTextReplacer, checkIfSigninFormIsPresent } from "./UILoginController.js";
 let welcomeData = _welcomeData;
 import { allColumnsVisible, getColumnFromColumnNumber, getColumnNumber, updateColumnVisibility } from "./Column.js";
-import { startI18nEngine } from "./I18n.js";
+import { startI18nEngine, I18n } from "./I18n.js";
+import i18nData from "./DataI18n.js";
+window.i18nData = i18nData;
 
 import { isStylesheetExtensionEnabled, enableStylesheetExtension, disableStylesheetExtension, enableCustomStylesheetExtension } from "./StylesheetExtensions.js";
 
@@ -77,9 +79,11 @@ window.html = undefined;
 let mtdStarted = new Date();
 
 if (mtdStarted.getHours() < 12) { // 12:00 / 12:00pm
-	newLoginPage = newLoginPage.replace("Good evening","Good morning");
+	newLoginPage = newLoginPage.replace("Good evening!",I18n("Good morning!"));
 } else if (mtdStarted.getHours() < 18) { // 18:00 / 6:00pm
-	newLoginPage = newLoginPage.replace("Good evening","Good afternoon");
+	newLoginPage = newLoginPage.replace("Good evening!",I18n("Good afternoon!"));
+} else {
+	newLoginPage = newLoginPage.replace("Good evening!",I18n("Good evening!"));
 }
 
 
@@ -643,6 +647,38 @@ function coreInit() {
 		make("script").attr("type", "text/javascript").attr("src", mtdBaseURL + "sources/libraries/twemoji.min.js"),
 		make("script").attr("type", "text/javascript").attr("src", mtdBaseURL + "sources/libraries/jquery.visible.js")
 	);
+
+	enableCustomStylesheetExtension("i18nCSS",`
+	.recent-search-clear.list-item-last span:after {
+		content:"${I18n("Clear")}";
+	}
+	.js-column-detail .column-title-back:before,.js-column-detail .column-title-back:after,.js-tweet-results .column-title-back:after,.js-tweet-social-proof-back:after {
+		content:"${I18n("Tweet")}";
+	}
+	.js-tweet-social-proof-back:after {
+		content:"${I18n("Interactions")}";
+	}
+	.js-hide-drawer.app-nav-tab:after {
+		content:"${I18n("Close Account List")}";
+	}
+	.js-dm-participants-back:after {
+		content:"${I18n("People")}";
+	}
+	.js-account-safeguard-text:after {
+		content:"${I18n("Ready?")}";
+	}
+	.js-display-sensitive-media span:after {
+		content:"${I18n("Show potentially sensitive media")}"
+	}
+	.contributor-detail>a:before {
+		content:"${I18n("Change")}";
+	}
+	.microsoft-logo:after {
+		content:"${I18n("Microsoft")}";
+	}
+	.pull-right>button[data-action="quote"]:after {
+		content:"${I18n("Quote Tweet")}";
+	}`)
 
 
 	mtdInit();

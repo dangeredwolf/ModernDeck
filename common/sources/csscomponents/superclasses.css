@@ -712,11 +712,6 @@ a.btn,
 	border-bottom:2px solid var(--rootWhiteColor)
 }
 
-.mtd-settings-tab-selected
-{
-	border-bottom:3px solid var(--rootWhiteColor)
-}
-
 .is-options-open .column-settings-link,
 .rpl textarea,
 .rpl input,
