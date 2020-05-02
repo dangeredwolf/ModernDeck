@@ -49,7 +49,7 @@ import { attachColumnVisibilityEvents } from "./ColumnVisibility.js";
 window.mtdBaseURL = "https://raw.githubusercontent.com/dangeredwolf/ModernDeck/master/ModernDeck/";
 // Defaults to obtaining assets from GitHub if MTDURLExchange isn't completed properly somehow
 
-let loadEmojiPicker = true;
+let loadEmojiPicker = false;
 
 const forceFeatureFlags = false;
 const useRaven = false;
@@ -413,13 +413,6 @@ async function mtdInit() {
 
 	navigationSetup();
 
-}
-
-// opens legacy tweetdeck settings
-
-function openLegacySettings() {
-	$(".mtd-settings-panel").remove();
-	new TD.components.GlobalSettings;
 }
 
 // https://staxmanade.com/2017/02/how-to-download-and-convert-an-image-to-base64-data-url/

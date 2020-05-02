@@ -20,6 +20,7 @@ import { debugStorageSys, hasPref, getPref, setPref, purgePrefs } from "./Storag
 import { allColumnsVisible, updateColumnVisibility } from "./Column.js";
 import { exists } from "./Utils.js";
 import { importTweetenSettings } from "./StorageTweetenImport.js";
+import { openLegacySettings } from "./UISettings.js";
 
 // Use standard macOS symbols instead of writing it out like on Windows
 

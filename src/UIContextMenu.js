@@ -94,7 +94,7 @@ export function buildContextMenu(p) {
 		items.push(makeCMItem({mousex:x,mousey:y,dataaction:"copy",text:I18n("Copy"),enabled:p.editFlags.canCopy}));
 		if (p.isEditable) {
 			items.push(makeCMItem({mousex:x,mousey:y,dataaction:"paste",text:I18n("Paste"),enabled:p.editFlags.canPaste}));
-			items.push(makeCMItem({mousex:x,mousey:y,dataaction:"selectAll",text:I18n("Select All"),enabled:p.editFlags.canSelectAll}));
+			items.push(makeCMItem({mousex:x,mousey:y,dataaction:"selectAll",text:I18n("Select all"),enabled:p.editFlags.canSelectAll}));
 		}
 		items.push(makeCMDivider());
 	}

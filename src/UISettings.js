@@ -10,6 +10,13 @@ import { I18n } from "./I18n.js";
 const appendTextVersion = false;
 const enablePatronFeatures = true;
 
+
+// opens legacy tweetdeck settings
+
+export function openLegacySettings() {
+	$(".mtd-settings-panel").remove();
+	new TD.components.GlobalSettings;
+}
 /*
 	function openSettings()
 	opens and settings panel, open to first page
@@ -335,7 +342,7 @@ export function openSettings(openMenu) {
 		} else if (settingsData[key].enum === "aboutpage") {
 			let logo = make("i").addClass("mtd-logo icon-moderndeck icon");
 			let h1 = make("h1").addClass("mtd-about-title").html("ModernDeck 8");
-			let h2 = make("h2").addClass("mtd-version-title").html((appendTextVersion ? (I18n("Version") + " ") : "") + SystemVersion + " (Build " + buildId + ")");
+			let h2 = make("h2").addClass("mtd-version-title").html((appendTextVersion ? (I18n("Version") + " ") : "") + SystemVersion + I18n(" (Build ") + buildId + ")");
 			let logoCont = make("div").addClass("mtd-logo-container");
 
 			if (!isApp) {
