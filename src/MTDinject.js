@@ -7,7 +7,8 @@
 */
 
 import { version } from "../package.json";
-window.SystemVersion = version.replace(".0",""); // remove trailing .0, if present
+// window.SystemVersion = version.replace(".0",""); // remove trailing .0, if present
+window.SystemVersion = version.substr(0,3)
 
 import { make, exists, isApp, mutationObserver, getIpc, handleErrors } from "./Utils.js";
 import { diag } from "./UIDiag.js";
@@ -28,6 +29,8 @@ import { isStylesheetExtensionEnabled, enableStylesheetExtension, disableStylesh
 import { getPref, setPref } from "./StoragePreferences.js";
 import { _newLoginPage } from "./MTDMustaches.js";
 window.newLoginPage = _newLoginPage;
+import { settingsData } from "./DataSettings.js";
+window.settingsData = settingsData;
 
 import { processForceFeatureFlags } from "./ForceFeatureFlags.js";
 import { loadPreferences, parseActions } from "./PrefHandler.js";
@@ -678,7 +681,14 @@ function coreInit() {
 	}
 	.pull-right>button[data-action="quote"]:after {
 		content:"${I18n("Quote Tweet")}";
-	}`)
+	}
+	.mtd-mute-text-:before {
+		content:"${I18n("Text ")}"
+	}
+	.mtd-mute-text-source:before {
+		content:"${I18n("Source ")}"
+	}
+`)
 
 
 	mtdInit();

@@ -405,10 +405,10 @@ html:not(.mtd-js-app) .mtd-settings-tab {
 .mtd-patron-info {
 	position:absolute;
 	right:0;
-	top:0;
-	bottom:71px;
+	bottom:100px;
 	float:right;
-	width:240px
+	width:100%;
+	height:100px
 }
 
 .mtd-patron-list {
@@ -503,4 +503,18 @@ html body .mtd-settings-subpanel button {
 
 .mtd-settings-subpanel.hidden {
 	pointer-events:none
+}
+
+.mtd-translation-thank-you {
+	position:absolute;
+	top:240px;
+	left:50px;
+	right:50px
+}
+
+.mtd-translation-thank-you .mtd-settings-button {
+	pointer-events:all;
+	margin-top:17px;
+	float:right;
+	margin-right:20px;
 }

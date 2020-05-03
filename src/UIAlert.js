@@ -28,7 +28,7 @@ export function mtdAlert(obj) {
 	let alertBody = make("p").addClass("mtd-alert-body").html(obj.message || I18n("Alert"));
 	let alertButtonContainer = make("div").addClass("mtd-alert-button-container");
 
-	let alertButton = make("button").addClass("btn-primary btn mtd-alert-button").html(obj.buttonText || "OK");
+	let alertButton = make("button").addClass("btn-primary btn mtd-alert-button").html(obj.buttonText || I18n("OK"));
 	var alertButton2;
 
 	alertButtonContainer.append(alertButton);

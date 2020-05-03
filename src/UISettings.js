@@ -1,11 +1,13 @@
 
 import buildId from "./buildId.js";
-import { make, exists, isApp, sanitiseString } from "./Utils.js";
+import { make, exists, isApp, sanitiseString, formatBytes } from "./Utils.js";
 import { settingsData } from "./DataSettings.js";
 import { hasPref, getPref, setPref } from "./StoragePreferences.js";
 import { buildContextMenu } from "./UIContextMenu.js";
 import { parseActions } from "./PrefHandler.js";
 import { I18n } from "./I18n.js";
+import { mtdAlert } from "./UIAlert.js";
+import { translationCredits } from "./DataTranslationCredits.js";
 
 const appendTextVersion = false;
 const enablePatronFeatures = true;
@@ -367,7 +369,7 @@ export function openSettings(openMenu) {
 
 			if (!isApp) {
 				logoCont.append(
-					make("p").addClass("mtd-check-out-app").html(I18n("Did you know ModernDeck has a native app now? <a href='https://moderndeck.org/download'>Check it out!</a>"))
+					make("p").addClass("mtd-check-out-app").html(I18n("Did you know ModernDeck has a native app? <a href='https://moderndeck.org/download'>Check it out!</a>"))
 				)
 			}
 
@@ -388,13 +390,18 @@ export function openSettings(openMenu) {
 				subPanel.append(updateCont);
 			}
 
+			subPanel.append(make("div").addClass("mtd-translation-thank-you").append(
+				"Some awesome people have helped translate ModernDeck into other languages",
+				"<br>",
+				make("button").addClass("btn mtd-settings-button").html(I18n("Translation Credits")).click(() => mtdAlert({title:I18n("Translation Credits"), message:translationCredits})),
+				make("button").addClass("btn mtd-settings-button").html(I18n("Help Translate")).click(() => open("http://translate.moderndeck.org/project/tweetdeck/invite"))
+			))
+
 			if (html.hasClass("mtd-winstore")) {
 				subPanel.append(
 					make("div").append(
 						make("h2").addClass("mtd-update-h3 mtd-update-managed").html(I18n("Updates for this version of ModernDeck are managed by the Microsoft Store.")),
-						make("button").addClass("btn mtd-settings-button").html(I18n("Check for Updates")).click(() => {
-							open("ms-windows-store://updates");
-						})
+						make("button").addClass("btn mtd-settings-button").html(I18n("Check for Updates")).click(() => open("ms-windows-store://updates"))
 					)
 				);
 			} else if (html.hasClass("mtd-macappstore")) {
@@ -527,7 +534,7 @@ function mtdAppUpdatePage(updateCont, updateh2, updateh3, updateIcon, updateSpin
 		updateh3.addClass("hidden");
 		tryAgain.addClass("hidden");
 		restartNow.addClass("hidden");
-		$("[id='update'] .mtd-welcome-next-button").html("Skip<i class='icon icon-arrow-r'></i>");
+		$("[id='update'] .mtd-welcome-next-button").html(I18n("Skip") + "<i class='icon icon-arrow-r'></i>");
 	});
 
 	ipcRenderer.on("update-available", (e,args) => {
@@ -535,7 +542,7 @@ function mtdAppUpdatePage(updateCont, updateh2, updateh3, updateIcon, updateSpin
 		console.log(args);
 		updateIcon.addClass("hidden");
 		$(".mtd-update-spinner").removeClass("hidden");
-		updateh2.html("Updating...");
+		updateh2.html(I18n("Updating..."));
 		tryAgain.addClass("hidden");
 		restartNow.addClass("hidden");
 	});
@@ -545,7 +552,7 @@ function mtdAppUpdatePage(updateCont, updateh2, updateh3, updateIcon, updateSpin
 		console.log(args);
 		updateIcon.addClass("hidden");
 		$(".mtd-update-spinner").removeClass("hidden");
-		updateh2.html("Downloading update...");
+		updateh2.html(I18n("Downloading update..."));
 		updateh3.html(Math.floor(args.percent)+I18n("% complete (")+formatBytes(args.transferred)+"/"+formatBytes(args.total)+", "+formatBytes(args.bytesPerSecond)+"/s)").removeClass("hidden");
 		tryAgain.addClass("hidden");
 		restartNow.addClass("hidden");

@@ -2,7 +2,9 @@
 
 import { _welcomeData } from "./DataWelcome.js";
 import { makeUpdateCont } from "./UISettings.js";
+import { isApp, make } from "./Utils.js";
 import { enableStylesheetExtension, disableStylesheetExtension } from "./StylesheetExtensions.js";
+import { setPref } from "./StoragePreferences.js";
 import { I18n } from "./I18n.js";
 let welcomeData = _welcomeData;
 

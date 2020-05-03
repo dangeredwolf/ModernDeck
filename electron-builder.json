@@ -13,10 +13,8 @@
 		"compression":"maximum",
 		"target": [
 			{
-				"target": "nsis-web",
+				"target": "nsis",
 				"arch": [
-					"arm64",
-					"ia32",
 					"x64"
 				]
 			}

@@ -3,6 +3,7 @@
 [![Build Status](https://travis-ci.org/dangeredwolf/ModernDeck.svg?branch=master)](https://travis-ci.org/dangeredwolf/ModernDeck)
 [![dependencies Status](https://david-dm.org/dangeredwolf/ModernDeck/status.svg)](https://david-dm.org/dangeredwolf/ModernDeck)
 [![devDependencies Status](https://david-dm.org/dangeredwolf/ModernDeck/dev-status.svg)](https://david-dm.org/dangeredwolf/ModernDeck?type=dev)
+[![Crowdin](https://badges.crowdin.net/tweetdeck/localized.svg)](https://translate.moderndeck.org/project/tweetdeck)
 
 ModernDeck is an extension/app for TweetDeck that brings a vastly overhauled interface with tons of Material Design influence, as well as new customisation features.
 

@@ -3,6 +3,7 @@ export const demoColumn = `<section class="column js-column will-animate"><div c
 import { isApp } from "./Utils.js";
 import { I18n } from "./I18n.js";
 import { getPref, setPref } from "./StoragePreferences.js";
+import { settingsData } from "./DataSettings.js";
 
 
 export let _welcomeData = {
@@ -76,10 +77,10 @@ export let _welcomeData = {
 		</div>`,
 		nextFunc: () => {
 			if (getPref("mtd_headposition") === "classic") {
-				$(".mtd-settings-subpanel:last-child .mtd-welcome-body").html(welcomeData.done.body.replace("YOU_SHOULDNT_SEE_THIS",I18n("the settings menu <i class='icon icon-settings'></i>")));
+				$(".mtd-settings-subpanel:last-child .mtd-welcome-body").html(_welcomeData.done.body.replace("YOU_SHOULDNT_SEE_THIS",I18n("the settings menu <i class='icon icon-settings'></i>")));
 			}
 			else {
-				$(".mtd-settings-subpanel:last-child .mtd-welcome-body").html(welcomeData.done.body.replace("YOU_SHOULDNT_SEE_THIS",I18n("the navigation drawer <i class='icon mtd-nav-activator'></i>")));
+				$(".mtd-settings-subpanel:last-child .mtd-welcome-body").html(_welcomeData.done.body.replace("YOU_SHOULDNT_SEE_THIS",I18n("the navigation drawer <i class='icon mtd-nav-activator'></i>")));
 			}
 		}
 	},

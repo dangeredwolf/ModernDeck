@@ -240,6 +240,7 @@ var mustachePatches = {
 	// 	"Related terms":1
 	// },
 	"keyboard_shortcut_list.mustache":{
+		"Open Navigation Drawer/Menu":1,
 		"Command palette — <b>NEW!</b>":1,
 		"Cmd &#8984;":1,
 		"Like":1,
@@ -266,7 +267,6 @@ var mustachePatches = {
 		"Column 1－9":1,
 		"Final column":1,
 		"Expand/Collapse navigation":1,
-		"Open Navigation Drawer/Menu":1,
 		"Search":1,
 		"Return":1
 	},
@@ -1131,6 +1131,6 @@ export function startI18nEngine() {
 	patchColumnTitleAddColumn();
 	// autoPatchMustaches();
 	patchMustaches();
-	patchUtil();
+	// patchUtil();
 	// patchLanguageNames();
 }

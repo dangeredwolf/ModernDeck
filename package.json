@@ -1,7 +1,7 @@
 {
 	"name": "ModernDeck",
 	"productName": "ModernDeck",
-	"version": "8.0.1234",
+	"version": "8.0.0",
 	"description": "ModernDeck",
 	"copyright": "Copyright 2014-2020 dangeredwolf, et al. Released under the MIT license.",
 	"homepage": "https://github.com/dangeredwolf/ModernDeck",
@@ -27,6 +27,8 @@
 		"rollup": "npm run incBuild && rollup -c",
 		"efMake": "electron-forge make --arch x64",
 		"start": "npm run rollup && electron .",
+		"i18nbuild": "node updatei18n.js && npm run rollup && npm run buildWindows",
+		"startNoBuild": "electron .",
 		"inspect": "electron . --inspect",
 		"release": "build"
 	},

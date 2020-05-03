@@ -38,8 +38,8 @@ buildFile.split("\n").forEach((a, i) => {
 			es_MX:(arr[19].substr(1, arr[19].length-2)).replace(/\"\"/g,"\""),
 			es_US:(arr[20].substr(1, arr[20].length-2)).replace(/\"\"/g,"\""),
 			sv:(arr[21].substr(1, arr[21].length-2)).replace(/\"\"/g,"\""),
-			zh_Hans:(arr[22].substr(1, arr[22].length-2)).replace(/\"\"/g,"\""),
-			zh_Hant:(arr[23].substr(1, arr[23].length-2)).replace(/\"\"/g,"\""),
+			zh_CN:(arr[22].substr(1, arr[22].length-2)).replace(/\"\"/g,"\""),
+			zh_TW:(arr[23].substr(1, arr[23].length-2)).replace(/\"\"/g,"\""),
 			fr_CA:(arr[24].substr(1, arr[24].length-2)).replace(/\"\"/g,"\"")
 		}
 });
