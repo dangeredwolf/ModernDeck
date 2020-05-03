@@ -27,7 +27,7 @@ window.i18nData = i18nData;
 import { isStylesheetExtensionEnabled, enableStylesheetExtension, disableStylesheetExtension, enableCustomStylesheetExtension } from "./StylesheetExtensions.js";
 
 import { getPref, setPref } from "./StoragePreferences.js";
-import { _newLoginPage } from "./MTDMustaches.js";
+import { _newLoginPage } from "./DataMustaches.js";
 window.newLoginPage = _newLoginPage;
 import { settingsData } from "./DataSettings.js";
 window.settingsData = settingsData;

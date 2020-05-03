@@ -84,12 +84,12 @@ export function UINavDrawer() {
 				make("button").addClass("btn mtd-nav-button").append(make("i").addClass("icon mtd-icon-changelog")).click(() => {
 					mtdPrepareWindows();
 					window.open("https://twitter.com/i/tweetdeck_release_notes");
-				}).append("TweetDeck Release Notes"),
+				}).append(I18n("TweetDeck Release Notes")),
 				make("button").addClass("btn mtd-nav-button").append(make("i").addClass("icon icon-search")).click(() => {
 					mtdPrepareWindows();
 					setTimeout(() => {$(".js-app-settings").click()},10);
 					setTimeout(() => {$("a[data-action=\"searchOperatorList\"]").click()},20);
-				}).append("Search tips"),
+				}).append(I18n("Search tips")),
 				make("div").addClass("mtd-nav-divider"),
 				make("button").addClass("btn mtd-nav-button").attr("id","mtd_signout").append(make("i").addClass("icon icon-logout")).click(() => {
 					TD.controller.init.signOut();

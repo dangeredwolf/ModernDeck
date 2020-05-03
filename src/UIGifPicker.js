@@ -1,4 +1,4 @@
-import {spinnerLarge} from "./MTDMustaches.js";
+import {spinnerLarge} from "./DataMustaches.js";
 import {make} from "./Utils.js";
 import { I18n } from "./I18n.js";
 

@@ -9,6 +9,7 @@
 	min-height:200px!important;
 	width:400px!important;
 	padding:0 24px;
+	overflow-y:auto!important;
 	height:auto!important
 }
 

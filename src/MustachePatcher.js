@@ -1,5 +1,5 @@
 
-import { spinnerSmall, spinnerLarge, spinnerTiny, buttonSpinner } from "./MTDMustaches.js";
+import { spinnerSmall, spinnerLarge, spinnerTiny, buttonSpinner } from "./DataMustaches.js";
 
 /* modifies tweetdeck mustaches, replacing spinners, etc */
 

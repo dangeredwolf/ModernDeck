@@ -393,7 +393,10 @@ export function openSettings(openMenu) {
 			subPanel.append(make("div").addClass("mtd-translation-thank-you").append(
 				"Some awesome people have helped translate ModernDeck into other languages",
 				"<br>",
-				make("button").addClass("btn mtd-settings-button").html(I18n("Translation Credits")).click(() => mtdAlert({title:I18n("Translation Credits"), message:translationCredits})),
+				make("button").addClass("btn mtd-settings-button").html(I18n("Translation Credits")).click(() => {
+					mtdAlert({title:I18n("Translation Credits"), message:translationCredits});
+					$(".btn-primary.mtd-alert-button").remove();
+				}),
 				make("button").addClass("btn mtd-settings-button").html(I18n("Help Translate")).click(() => open("http://translate.moderndeck.org/project/tweetdeck/invite"))
 			))
 
