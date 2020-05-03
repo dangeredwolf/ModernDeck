@@ -1,9 +1,8 @@
-var languageFull = navigator.language.replace("-","_");
-var languageMain = navigator.language.substring(0,2);
-var languageFallback = "en";
+
 let displayWarning = false;
 let TDiInitial;
 
+import { getFullLanguage, getMainLanguage, getFallbackLanguage } from "./I18nController.js";
 import { exists } from "./Utils.js";
 import languageData from "./DataI18n.js";
 
@@ -814,12 +813,12 @@ export var I18n = function(a,b,c,d,e,f) {
 			var a = a;
 			//console.log("b,c,d",b,c,d);
 			for (var key in b) {
-				var replaceMe = b[key][languageFull]||b[key][languageMain]||b[key][languageFallback];
+				var replaceMe = b[key][getFullLanguage()]||b[key][getMainLanguage()]||b[key][getFallbackLanguage()];
 				console.log("replaceMe",replaceMe);
 				a = a.replaceAll("\{\{\{"+key+"\}\}\}","\{\{\{"+replaceMe+"\}\}\}");
 			}
 			for (var key in weirdStrings) {
-				a = a.replaceAll(key,weirdStrings[key][languageFull]||weirdStrings[key][languageMain]||weirdStrings[key][languageFallback]);
+				a = a.replaceAll(key,weirdStrings[key][getFullLanguage()]||weirdStrings[key][getMainLanguage()]||weirdStrings[key][getFallbackLanguage()]);
 			}
 			return a;
 		} else if (a.includes("{{") && f===2) {
@@ -831,7 +830,7 @@ export var I18n = function(a,b,c,d,e,f) {
 
 
 			for (var key in weirdStrings) {
-				checkmateTwitter = checkmateTwitter.replaceAll(key,weirdStrings[key][languageFull]||weirdStrings[key][languageMain]||weirdStrings[key][languageFallback])
+				checkmateTwitter = checkmateTwitter.replaceAll(key,weirdStrings[key][getFullLanguage()]||weirdStrings[key][getMainLanguage()]||weirdStrings[key][getFallbackLanguage()])
 			}
 			return checkmateTwitter;
 		} else if (a.substr(0,6) === "From @") {
@@ -839,7 +838,7 @@ export var I18n = function(a,b,c,d,e,f) {
 		}
 		if (!exists(b)||f===1) {
 			if (exists(languageData[a])) {
-				return languageData[a][languageFull]||languageData[a][languageMain]||languageData[a][languageFallback];
+				return languageData[a][getFullLanguage()]||languageData[a][getMainLanguage()]||languageData[a][getFallbackLanguage()];
 			} else {
 				console.warn("Missing string: "+a);
 				return (displayWarning ? "⚠" : "") + a;

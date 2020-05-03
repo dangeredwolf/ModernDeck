@@ -1,4 +1,5 @@
 import { I18n } from "./I18n.js";
+import { getFullLanguage } from "./I18nController.js";
 
 /*
 	Shorthand function to create a new element, which is helpful for concise UI building.
@@ -35,6 +36,10 @@ export const exists = function(thing) {
 	);
 }
 
+export function formatNumberI18n(number) {
+	return new Intl.NumberFormat(getFullLanguage().replace(/\_/g,"-")).format(number);
+}
+
 /*
 	Helper function that rounds a number to the nearest hundredth (2nd decimal)
 */
@@ -53,15 +58,15 @@ export function roundMe(val) {
 
 export function formatBytes(val) {
 	if (val < 10**3) {
-		return val + " bytes"
+		return formatNumberI18n(val) + " bytes"
 	} else if (val < 10**6) {
-		return roundMe(val/10**3) + I18n(" KB")
+		return formatNumberI18n(roundMe(val/10**3)) + I18n(" KB")
 	} else if (val < 10**9) {
-		return roundMe(val/10**6) + I18n(" MB")
+		return formatNumberI18n(roundMe(val/10**6)) + I18n(" MB")
 	} else if (val < 10**12) {
-		return roundMe(val/10**9) + I18n(" GB")
+		return formatNumberI18n(roundMe(val/10**9)) + I18n(" GB")
 	} else {
-		return roundMe(val/10**12) + I18n(" TB")
+		return formatNumberI18n(roundMe(val/10**12)) + I18n(" TB")
 	}
 }
 

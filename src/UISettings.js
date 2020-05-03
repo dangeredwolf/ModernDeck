@@ -523,7 +523,7 @@ function mtdAppUpdatePage(updateCont, updateh2, updateh3, updateIcon, updateSpin
 		}
 
 		updateIcon.html("error_outline").removeClass("hidden");
-		tryAgain.removeClass("hidden").html("Try Again");
+		tryAgain.removeClass("hidden").html(I18n("Try Again"));
 		restartNow.addClass("hidden");
 
 	});
@@ -556,7 +556,7 @@ function mtdAppUpdatePage(updateCont, updateh2, updateh3, updateIcon, updateSpin
 		updateIcon.addClass("hidden");
 		$(".mtd-update-spinner").removeClass("hidden");
 		updateh2.html(I18n("Downloading update..."));
-		updateh3.html(Math.floor(args.percent)+I18n("% complete (")+formatBytes(args.transferred)+"/"+formatBytes(args.total)+", "+formatBytes(args.bytesPerSecond)+"/s)").removeClass("hidden");
+		updateh3.html(Math.floor(args.percent)+I18n("% complete (")+formatBytes(args.transferred)+I18n("/")+formatBytes(args.total)+I18n("; ")+formatBytes(args.bytesPerSecond)+("/s)")).removeClass("hidden");
 		tryAgain.addClass("hidden");
 		restartNow.addClass("hidden");
 	});
