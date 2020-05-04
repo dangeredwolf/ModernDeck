@@ -7,6 +7,9 @@ deploy:
   cache:
     directories:
       - node_modules
+      - $HOME/.cache
+      - $HOME/.cache/electron
+      - $HOME/.cache/electron-builder
 
   file_glob: true
   draft: true
