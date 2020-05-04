@@ -9,6 +9,7 @@
 import { version } from "../package.json";
 // window.SystemVersion = version.replace(".0",""); // remove trailing .0, if present
 window.SystemVersion = version.substr(0,3)
+window.ModernDeck = 8;
 
 import { I18n, startI18nEngine } from "./I18n.js";
 import { getPref, setPref } from "./StoragePreferences.js";
@@ -174,15 +175,6 @@ function replacePrettyNumber() {
 		}
 		return formatNumberI18n(howPretty);
 	}
-}
-
-/*
-	Enters safe mode, disabling most ModernDeck custom CSS. App-only right now.
-*/
-
-function enterSafeMode() {
-	setPref("mtd_safemode",true);
-	getIpc().send("restartApp");
 }
 
 /*

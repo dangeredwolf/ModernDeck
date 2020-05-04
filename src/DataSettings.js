@@ -21,6 +21,7 @@ import { allColumnsVisible, updateColumnVisibility } from "./Column.js";
 import { exists } from "./Utils.js";
 import { importTweetenSettings } from "./StorageTweetenImport.js";
 import { openLegacySettings } from "./UISettings.js";
+import { openSafeMode } from "./SafeMode.js";
 
 // Use standard macOS symbols instead of writing it out like on Windows
 
