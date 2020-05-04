@@ -1,9 +1,9 @@
 /**
-* ModernDeck 8.0.0
+* ModernDeck 8.0.1400
 * @license MIT
 * https://github.com/dangeredwolf/ModernDeck
 **/
-var version = "8.0.0";
+var version = "8.0.1400";
 
 /*
 	Shorthand function to create a new element, which is helpful for concise UI building.
@@ -261,7 +261,7 @@ function importTweetenSettings(obj) {
   }
 }
 
-var buildId = 1400;
+var buildId = 1401;
 
 // These functions allow the app's context menus to perform contextual options
 const contextMenuFunctions = {
