@@ -518,3 +518,7 @@ html body .mtd-settings-subpanel button {
 	float:right;
 	margin-right:20px;
 }
+
+.mtd-unsupported-lang {
+	margin-top:10px
+}

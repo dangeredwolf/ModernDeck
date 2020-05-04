@@ -12,24 +12,11 @@ import { translationCredits } from "./DataTranslationCredits.js";
 const appendTextVersion = false;
 const enablePatronFeatures = true;
 
-let ver = I18n("Version");
+let ver = "Version";
 let verTextId = 3;
 let verText = "";
 
-switch(verText) {
-	case 0:
-		verText = "";
-		break;
-	case 1:
-		verText = I18n("Version");
-		break;
-	case 2:
-		verText = I18n("Beta");
-		break;
-	case 3:
-		verText = I18n("Developer Version");
-		break;
-}
+
 
 
 
@@ -63,7 +50,7 @@ export function openSettings(openMenu) {
 			continue;
 		}
 
-		var tab = make("button").addClass("mtd-settings-tab").attr("data-action",key).html(settingsData[key].tabName).click(function() {
+		var tab = make("button").addClass("mtd-settings-tab").attr("data-action",key).html(I18n(settingsData[key].tabName)).click(function() {
 			$(".mtd-settings-tab-selected").removeClass("mtd-settings-tab-selected");
 			$(this).addClass("mtd-settings-tab-selected");
 
@@ -107,7 +94,7 @@ export function openSettings(openMenu) {
 
 				if (exists(pref.headerBefore)) {
 					subPanel.append(
-						make("h3").addClass("mtd-settings-panel-subheader").html(pref.headerBefore)
+						make("h3").addClass("mtd-settings-panel-subheader").html(I18n(pref.headerBefore))
 					);
 				}
 
@@ -140,7 +127,7 @@ export function openSettings(openMenu) {
 							}
 						}
 
-						label = make("label").addClass("checkbox").html(pref.title).append(input);
+						label = make("label").addClass("checkbox").html(I18n(pref.title)).append(input);
 
 						option.append(label);
 
@@ -161,7 +148,7 @@ export function openSettings(openMenu) {
 						for (let prefKey in pref.options) {
 							if (!!(pref.options[prefKey].value)) {
 								let newPrefSel = pref.options[prefKey];
-								let newoption = make("option").attr("value",newPrefSel.value).html(newPrefSel.text);
+								let newoption = make("option").attr("value",newPrefSel.value).html(I18n(newPrefSel.text));
 
 								select.append(newoption);
 							} else {
@@ -170,7 +157,7 @@ export function openSettings(openMenu) {
 
 								for (let subkey in pref.options[prefKey].children) {
 									let newSubPrefSel = pref.options[prefKey].children[subkey];
-									let newsuboption = make("option").attr("value",newSubPrefSel.value).html(newSubPrefSel.text);
+									let newsuboption = make("option").attr("value",newSubPrefSel.value).html(I18n(newSubPrefSel.text));
 
 									group.append(newsuboption);
 								}
@@ -185,7 +172,7 @@ export function openSettings(openMenu) {
 							select.val(pref.queryFunction())
 						}
 
-						label = make("label").addClass("control-label").html(pref.title);
+						label = make("label").addClass("control-label").html(I18n(pref.title));
 
 						option.append(label,select);
 
@@ -220,7 +207,7 @@ export function openSettings(openMenu) {
 							input.val(pref.queryFunction())
 						}
 
-						label = make("label").addClass("control-label").html(pref.title);
+						label = make("label").addClass("control-label").html(I18n(pref.title));
 
 						if (exists(pref.initFunc)) {
 							pref.initFunc(input);
@@ -282,7 +269,7 @@ export function openSettings(openMenu) {
 							input.val(pref.queryFunction())
 						}
 
-						label = make("label").addClass("control-label").html(pref.title);
+						label = make("label").addClass("control-label").html(I18n(pref.title));
 
 						if (exists(pref.initFunc)) {
 							pref.initFunc(input);
@@ -304,7 +291,7 @@ export function openSettings(openMenu) {
 							}
 							parseActions(pref.activate, $(this).val());
 						}).on("input",function() {
-							label.html(`${pref.title} <b> ${$(this).val()} ${(pref.displayUnit || "")} </b>`);
+							label.html(`${I18n(pref.title)} <b> ${$(this).val()} ${(I18n(pref.displayUnit || ""))} </b>`);
 						});
 
 						if (exists(pref.settingsKey)) {
@@ -315,10 +302,10 @@ export function openSettings(openMenu) {
 							input.val(pref.default);
 						}
 
-						label.html(pref.title + " <b> "+ input.val() + " " + (pref.displayUnit || "") + "</b>");
+						label.html(I18n(pref.title) + " <b> "+ input.val() + " " + (I18n(pref.displayUnit) || "") + "</b>");
 
-						maximum = make("label").addClass("control-label mtd-slider-maximum").html(pref.maximum + (pref.displayUnit || ""));
-						minimum = make("label").addClass("control-label mtd-slider-minimum").html(pref.minimum + (pref.displayUnit || ""));
+						maximum = make("label").addClass("control-label mtd-slider-maximum").html(pref.maximum + (I18n(pref.displayUnit) || ""));
+						minimum = make("label").addClass("control-label mtd-slider-minimum").html(pref.minimum + (I18n(pref.displayUnit) || ""));
 
 						if (exists(pref.initFunc)) {
 							pref.initFunc(input);
@@ -329,9 +316,9 @@ export function openSettings(openMenu) {
 						break;
 
 					case "button":
-						label = make("label").addClass("control-label").html(pref.label || "");
+						label = make("label").addClass("control-label").html(I18n(pref.label) || "");
 
-						button = make("button").html(pref.title).addClass("btn btn-positive mtd-settings-button")
+						button = make("button").html(I18n(pref.title)).addClass("btn btn-positive mtd-settings-button")
 						.click(() => {
 							parseActions(pref.activate,true);
 						});
@@ -345,7 +332,7 @@ export function openSettings(openMenu) {
 						break;
 
 					case "link":
-						link = make("a").html(pref.label).addClass("mtd-settings-link")
+						link = make("a").html(I18n(pref.label)).addClass("mtd-settings-link")
 						.click(() => {
 							parseActions(pref.activate,true);
 						});
@@ -362,9 +349,24 @@ export function openSettings(openMenu) {
 				subPanel.append(option);
 			}
 		} else if (settingsData[key].enum === "aboutpage") {
+			switch(verTextId) {
+				case 0:
+					verText = "";
+					break;
+				case 1:
+					verText = I18n("Version");
+					break;
+				case 2:
+					verText = I18n("Beta");
+					break;
+				case 3:
+					verText = I18n("Developer Version");
+					break;
+			}
+
 			let logo = make("i").addClass("mtd-logo icon-moderndeck icon");
 			let h1 = make("h1").addClass("mtd-about-title").html("ModernDeck 8");
-			let h2 = make("h2").addClass("mtd-version-title").html(verText + SystemVersion + I18n(" (Build ") + buildId + ")");
+			let h2 = make("h2").addClass("mtd-version-title").html(verText + " " + SystemVersion + I18n(" (Build ") + buildId + ")");
 			let logoCont = make("div").addClass("mtd-logo-container");
 
 			if (!isApp) {
@@ -391,7 +393,7 @@ export function openSettings(openMenu) {
 			}
 
 			subPanel.append(make("div").addClass("mtd-translation-thank-you").append(
-				"Some awesome people have helped translate ModernDeck into other languages",
+				I18n("Some awesome people have helped translate ModernDeck into other languages"),
 				"<br>",
 				make("button").addClass("btn mtd-settings-button").html(I18n("Translation Credits")).click(() => {
 					mtdAlert({title:I18n("Translation Credits"), message:translationCredits});

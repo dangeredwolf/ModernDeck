@@ -1,5 +1,4 @@
-import { I18n } from "./I18n.js";
-import { getFullLanguage } from "./I18nController.js";
+import { I18n, getFullLanguage } from "./I18n.js";
 
 /*
 	Shorthand function to create a new element, which is helpful for concise UI building.

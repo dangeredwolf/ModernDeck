@@ -10,27 +10,28 @@ import { version } from "../package.json";
 // window.SystemVersion = version.replace(".0",""); // remove trailing .0, if present
 window.SystemVersion = version.substr(0,3)
 
-import { make, exists, isApp, mutationObserver, getIpc, handleErrors } from "./Utils.js";
+import { I18n, startI18nEngine } from "./I18n.js";
+import { getPref, setPref } from "./StoragePreferences.js";
+import { make, exists, isApp, mutationObserver, getIpc, handleErrors, formatNumberI18n } from "./Utils.js";
 import { diag } from "./UIDiag.js";
 import { _welcomeData } from "./DataWelcome.js";
 import { debugWelcome, welcomeScreen } from "./UIWelcome.js";
 import { initGifPanel, checkGifEligibility } from "./UIGifPicker.js";
 import { openSettings } from "./UISettings.js";
 import { UINavDrawer } from "./UINavDrawer.js";
+import { UILanguagePicker } from "./UILanguagePicker.js";
 import { loginTextReplacer, checkIfSigninFormIsPresent } from "./UILoginController.js";
 let welcomeData = _welcomeData;
 import { allColumnsVisible, getColumnFromColumnNumber, getColumnNumber, updateColumnVisibility } from "./Column.js";
-import { startI18nEngine, I18n } from "./I18n.js";
 import i18nData from "./DataI18n.js";
 window.i18nData = i18nData;
 
 import { isStylesheetExtensionEnabled, enableStylesheetExtension, disableStylesheetExtension, enableCustomStylesheetExtension } from "./StylesheetExtensions.js";
 
-import { getPref, setPref } from "./StoragePreferences.js";
+window.getPref = getPref;
+window.setPref = setPref;
 import { _newLoginPage } from "./DataMustaches.js";
 window.newLoginPage = _newLoginPage;
-import { settingsData } from "./DataSettings.js";
-window.settingsData = settingsData;
 
 import { processForceFeatureFlags } from "./ForceFeatureFlags.js";
 import { loadPreferences, parseActions } from "./PrefHandler.js";
@@ -161,19 +162,17 @@ function replacePrettyNumber() {
 		let howPretty = parseInt(e, 10);
 
 		if (howPretty >= 100000000) {
-			return parseInt(howPretty/1000000) + "M";
+			return formatNumberI18n(parseInt(howPretty/1000000)) + I18n("M");
 		} else if (howPretty >= 10000000) {
-			return parseInt(howPretty/100000)/10 + "M";
+			return formatNumberI18n(parseInt(howPretty/100000)/10) + I18n("M");
 		} else if (howPretty >= 1000000) {
-			return parseInt(howPretty/10000)/100 + "M";
+			return formatNumberI18n(parseInt(howPretty/10000)/100) + I18n("M");
 		} else if (howPretty >= 100000) {
-			return parseInt(howPretty/1000) + "K";
+			return formatNumberI18n(parseInt(howPretty/1000)) + I18n("K");
 		} else if (howPretty >= 10000) {
-			return parseInt(howPretty/100)/10 + "K";
-		} else if (howPretty >= 1000) {
-			howPretty = howPretty.toString().substring(0,1) + "," + howPretty.toString().substring(1);
+			return formatNumberI18n(parseInt(howPretty/100)/10) + I18n("K");
 		}
-		return howPretty;
+		return formatNumberI18n(howPretty);
 	}
 }
 
@@ -547,6 +546,10 @@ function navigationSetup() {
 	if ($(".app-header-inner").length < 1) {
 		setTimeout(navigationSetup,100);
 		return;
+	}
+
+	if (getPref("mtd_last_lang") !== navigator.language) {
+		UILanguagePicker();
 	}
 
 	handleErrors(loadPreferences, "Caught error in loadPreferences");

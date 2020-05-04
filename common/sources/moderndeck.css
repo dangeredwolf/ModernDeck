@@ -4198,6 +4198,10 @@ input[type="checkbox"]:active {
 	font-weight:500
 }
 
+.prf-stats strong {
+	text-transform:none;
+}
+
 .prf-stats>li {
 	display:inline-block;
 	zoom:1;
@@ -4285,8 +4289,8 @@ input[type="checkbox"]:active {
 .social-proof-names,.social-proof-names a {
 	overflow:hidden;
 	white-space:nowrap;
-	height:15px;
-	vertical-align:middle
+	height:17px;
+	vertical-align:middle;
 }
 
 .social-proof-names a {

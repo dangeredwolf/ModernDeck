@@ -30,11 +30,11 @@ import { isApp } from "./utils.js"
 
 export let settingsData = {
 	themes: {
-		tabName:I18n("Themes"),
+		tabName:"Themes",
 		options:{
 			coretheme:{
-				headerBefore:I18n("Themes"),
-				title:I18n("Core Theme"),
+				headerBefore:"Themes",
+				title:"Core Theme",
 				type:"dropdown",
 				activate:{
 					func: (opt) => {
@@ -77,8 +77,8 @@ export let settingsData = {
 					}
 				},
 				options:{
-					dark:{value:"dark",text:I18n("Dark")},
-					light:{value:"light",text:I18n("Light")}
+					dark:{value:"dark",text:"Dark"},
+					light:{value:"light",text:"Light"}
 				},
 				savePreference:false,
 				queryFunction: () => {
@@ -89,7 +89,7 @@ export let settingsData = {
 				default:"dark"
 			},
 			theme:{
-				title:I18n("Custom Theme"),
+				title:"Custom Theme",
 				type:"dropdown",
 				activate:{
 					func: (opt) => {
@@ -137,41 +137,41 @@ export let settingsData = {
 					}
 				},
 				options:{
-					default:{value:"default",text:I18n("Default")},
+					default:{value:"default",text:"Default"},
 					completeLight:{
-						name:I18n("Complete Light Themes"),
+						name:"Complete Light Themes",
 						children:{
-							paper:{value:"paper",text:I18n("Paperwhite")}
+							paper:{value:"paper",text:"Paperwhite"}
 						}
 					},
 					completeDark:{
-						name:I18n("Complete Dark Themes"),
+						name:"Complete Dark Themes",
 						children:{
-							darker:{value:"darker",text:I18n("Darker")},
-							amoled:{value:"amoled",text:I18n("AMOLED")}
+							darker:{value:"darker",text:"Darker"},
+							amoled:{value:"amoled",text:"AMOLED"}
 						}
 					},
 					complementary:{
-						name:I18n("Complementary Themes"),
+						name:"Complementary Themes",
 						children:{
-							grey:{value:"grey","text":I18n("Grey")},
-							red:{value:"red","text":I18n("Red")},
-							pink:{value:"pink","text":I18n("Pink")},
-							orange:{value:"orange","text":I18n("Orange")},
-							violet:{value:"violet","text":I18n("Violet")},
-							teal:{value:"teal","text":I18n("Teal")},
-							green:{value:"green","text":I18n("Green")},
-							yellow:{value:"yellow","text":I18n("Yellow")},
-							cyan:{value:"cyan","text":I18n("Cyan")},
-							black:{value:"black","text":I18n("Black")},
-							blue:{value:"blue","text":I18n("Blue")},
+							grey:{value:"grey","text":"Grey"},
+							red:{value:"red","text":"Red"},
+							pink:{value:"pink","text":"Pink"},
+							orange:{value:"orange","text":"Orange"},
+							violet:{value:"violet","text":"Violet"},
+							teal:{value:"teal","text":"Teal"},
+							green:{value:"green","text":"Green"},
+							yellow:{value:"yellow","text":"Yellow"},
+							cyan:{value:"cyan","text":"Cyan"},
+							black:{value:"black","text":"Black"},
+							blue:{value:"blue","text":"Blue"},
 						}
 					}
 				},
 				settingsKey:"mtd_theme",
 				default:"default"
 			}, customCss:{
-				title:I18n("Custom CSS (") + ctrlShiftText + I18n("C disables it in case something went wrong)"),
+				title:"Custom CSS (" + ctrlShiftText + "C disables it in case something went wrong)",
 				type:"textarea",
 				placeholder:":root {\n"+
 				"	--retweetColor:red;\n"+
@@ -192,11 +192,11 @@ export let settingsData = {
 		}
 	},
 	appearance: {
-		tabName:I18n("Appearance"),
+		tabName:"Appearance",
 		options:{
 			headposition:{
-				headerBefore:I18n("Navigation"),
-				title:I18n("Navigation Style"),
+				headerBefore:"Navigation",
+				title:"Navigation Style",
 				type:"dropdown",
 				activate:{
 					func: (opt) => {
@@ -216,15 +216,15 @@ export let settingsData = {
 					}
 				},
 				options:{
-					top:{value:"top",text:I18n("Top")},
-					left:{value:"left",text:I18n("Left")},
-					classic:{value:"classic",text:I18n("Left (Classic)")},
+					top:{value:"top",text:"Top"},
+					left:{value:"left",text:"Left"},
+					classic:{value:"classic",text:"Left (Classic)"},
 				},
 				settingsKey:"mtd_headposition",
 				default:"left"
 			},
 			columnvisibility:{
-				title:I18n("Improve Timeline performance by not rendering off-screen columns"),
+				title:"Improve Timeline performance by not rendering off-screen columns",
 				type:"checkbox",
 				activate:{
 					func: (opt) => {
@@ -244,7 +244,7 @@ export let settingsData = {
 				default:true
 			},
 			fixedarrows:{
-				title:I18n("Use fixed-location media arrows for tweets with multiple photos"),
+				title:"Use fixed-location media arrows for tweets with multiple photos",
 				type:"checkbox",
 				activate:{
 					enableStylesheet:"fixedarrows"
@@ -256,7 +256,7 @@ export let settingsData = {
 				default:false
 			},
 			colNavAlwaysVis:{
-				title:I18n("Always display column icons in navigator"),
+				title:"Always display column icons in navigator",
 				type:"checkbox",
 				activate:{
 					htmlAddClass:"mtd-column-nav-always-visible"
@@ -268,7 +268,7 @@ export let settingsData = {
 				default:true
 			},
 			nonewtweetsbutton:{
-				title:I18n("Enable \"New Tweets\" indicator"),
+				title:"Enable \"New Tweets\" indicator",
 				type:"checkbox",
 				activate:{
 					disableStylesheet:"nonewtweetsbutton"
@@ -280,7 +280,7 @@ export let settingsData = {
 				default:true
 			},
 			noemojipicker:{
-				title:I18n("Enable Emoji picker"),
+				title:"Enable Emoji picker",
 				type:"checkbox",
 				activate:{
 					htmlRemoveClass:"mtd-no-emoji-picker"
@@ -292,8 +292,8 @@ export let settingsData = {
 				default:true
 			},
 			scrollbarstyle:{
-				headerBefore:I18n("Display"),
-				title:I18n("Scrollbar Style"),
+				headerBefore:"Display",
+				title:"Scrollbar Style",
 				type:"dropdown",
 				activate:{
 					func: (opt) => {
@@ -303,15 +303,15 @@ export let settingsData = {
 					}
 				},
 				options:{
-					scrollbarsdefault:{value:"scrollbarsdefault",text:I18n("Original")},
-					scrollbarsnarrow:{value:"scrollbarsnarrow",text:I18n("Narrow")},
-					scrollbarsnone:{value:"scrollbarsnone",text:I18n("Hidden")}
+					scrollbarsdefault:{value:"scrollbarsdefault",text:"Original"},
+					scrollbarsnarrow:{value:"scrollbarsnarrow",text:"Narrow"},
+					scrollbarsnone:{value:"scrollbarsnone",text:"Hidden"}
 				},
 				settingsKey:"mtd_scrollbar_style",
 				default:"scrollbarsnarrow"
 			},
 			columnwidth:{
-				title:I18n("Column width"),
+				title:"Column width",
 				type:"slider",
 				activate:{
 					func: (opt) => {
@@ -322,11 +322,11 @@ export let settingsData = {
 				minimum:275,
 				maximum:500,
 				settingsKey:"mtd_columnwidth",
-				displayUnit:I18n("px"),
+				displayUnit:"px",
 				default:325
 			},
 			fontSize:{
-				title:I18n("Font Size"),
+				title:"Font Size",
 				type:"slider",
 				activate:{
 					func: (opt) => {
@@ -337,11 +337,11 @@ export let settingsData = {
 				minimum:75,
 				maximum:130,
 				settingsKey:"mtd_fontsize",
-				displayUnit:I18n("%"),
+				displayUnit:"%",
 				default:100
 			},
 			roundprofilepics:{
-				title:I18n("Use round profile pictures"),
+				title:"Use round profile pictures",
 				type:"checkbox",
 				activate:{
 					disableStylesheet:"squareavatars"
@@ -353,7 +353,7 @@ export let settingsData = {
 				default:true
 			},
 			avatarSize:{
-				title:I18n("Profile picture size"),
+				title:"Profile picture size",
 				type:"slider",
 				activate:{
 					func: (opt) => {
@@ -366,11 +366,11 @@ export let settingsData = {
 				// Maybe we'll enable this at some point, but currently difficult graphical bugs break it
 				enabled:false,
 				settingsKey:"mtd_avatarsize",
-				displayUnit:I18n("px"),
+				displayUnit:"px",
 				default:48
 			},
 			newcharindicator:{
-				title:I18n("Use new character limit indicator"),
+				title:"Use new character limit indicator",
 				type:"checkbox",
 				activate:{
 					enableStylesheet:"newcharacterindicator"
@@ -382,7 +382,7 @@ export let settingsData = {
 				default:true
 			},
 			nocontextmenuicons:{
-				title:I18n("Display contextual icons in menus"),
+				title:"Display contextual icons in menus",
 				type:"checkbox",
 				activate:{
 					disableStylesheet:"nocontextmenuicons"
@@ -394,7 +394,7 @@ export let settingsData = {
 				default:true
 			},
 			sensitive:{
-				title:I18n("Display media that may contain sensitive content"),
+				title:"Display media that may contain sensitive content",
 				type:"checkbox",
 				activate:{
 					func: () => {
@@ -412,7 +412,7 @@ export let settingsData = {
 				}
 			},
 			altsensitive:{
-				title:I18n("Use alternative sensitive media workflow"),
+				title:"Use alternative sensitive media workflow",
 				type:"checkbox",
 				activate:{
 					enableStylesheet:"altsensitive"
@@ -424,8 +424,8 @@ export let settingsData = {
 				default:false
 			},
 			accoutline:{
-				headerBefore:I18n("Accessibility"),
-				title:I18n("Always show outlines around focused items (") + ctrlShiftText + I18n("A to toggle)"),
+				headerBefore:"Accessibility",
+				title:"Always show outlines around focused items (" + ctrlShiftText + "A to toggle)",
 				type:"checkbox",
 				activate:{
 					htmlAddClass:"mtd-acc-focus-ring"
@@ -437,7 +437,7 @@ export let settingsData = {
 				default:false
 			},
 			highcont:{
-				title:I18n("Enable High Contrast theme (") + ctrlShiftText + I18n("H to toggle)"),
+				title:"Enable High Contrast theme (" + ctrlShiftText + "H to toggle)",
 				type:"checkbox",
 				activate:{
 					func: (opt) => {
@@ -467,8 +467,8 @@ export let settingsData = {
 		tabName:"Tweets",
 		options:{
 			stream:{
-				headerBefore:I18n("Function"),
-				title:I18n("Stream Tweets in real time"),
+				headerBefore:"Function",
+				title:"Stream Tweets in real time",
 				type:"checkbox",
 				savePreference:false,
 				activate:{
@@ -486,7 +486,7 @@ export let settingsData = {
 				}
 			},
 			autoplayGifs:{
-				title:I18n("Automatically play GIFs"),
+				title:"Automatically play GIFs",
 				type:"checkbox",
 				savePreference:false,
 				activate:{
@@ -504,7 +504,7 @@ export let settingsData = {
 				}
 			},
 			startupNotifications:{
-				title:I18n("Show notifications on startup"),
+				title:"Show notifications on startup",
 				type:"checkbox",
 				savePreference:false,
 				activate:{
@@ -522,7 +522,7 @@ export let settingsData = {
 				}
 			},
 			useModernDeckSounds:{
-				title:I18n("Use custom ModernDeck alert sound"),
+				title:"Use custom ModernDeck alert sound",
 				type:"checkbox",
 				activate:{
 					func: () => {
@@ -538,8 +538,8 @@ export let settingsData = {
 				default:true
 			},
 			linkshort:{
-				headerBefore:I18n("Link Shortening"),
-				title:I18n("Link Shortener Service"),
+				headerBefore:"Link Shortening",
+				title:"Link Shortener Service",
 				type:"dropdown",
 				activate:{
 					func: set => {
@@ -566,12 +566,12 @@ export let settingsData = {
 					return shortener;
 				},
 				options:{
-					twitter:{value:"twitter",text:I18n("Twitter")},
-					bitly:{value:"bitly",text:I18n("Bit.ly")}
+					twitter:{value:"twitter",text:"Twitter"},
+					bitly:{value:"bitly",text:"Bit.ly"}
 				}
 			},
 			bitlyUsername:{
-				title:I18n("Bit.ly Username"),
+				title:"Bit.ly Username",
 				type:"textbox",
 				activate:{
 					func: set => {
@@ -587,7 +587,7 @@ export let settingsData = {
 				}
 			},
 			bitlyApiKey:{
-				title:I18n("Bit.ly API Key"),
+				title:"Bit.ly API Key",
 				type:"textbox",
 				addClass:"mtd-big-text-box",
 				activate:{
@@ -605,16 +605,16 @@ export let settingsData = {
 			}
 		}
 	}, mutes: {
-		tabName:I18n("Mutes"),
+		tabName:"Mutes",
 		options:{},
 		enum:"mutepage"
 	}, app: {
-		tabName:I18n("App"),
+		tabName:"App",
 		enabled:isApp,
 		options:{
 			nativeTitlebar:{
-				headerBefore:I18n("App settings"),
-				title:I18n("Use native OS title bar (restarts ModernDeck)"),
+				headerBefore:"App settings",
+				title:"Use native OS title bar (restarts ModernDeck)",
 				type:"checkbox",
 				activate:{
 					func: () => {
@@ -646,7 +646,7 @@ export let settingsData = {
 				default:false
 			},
 			inspectElement:{
-				title:I18n("Show Inspect Element in context menus"),
+				title:"Show Inspect Element in context menus",
 				type:"checkbox",
 				activate:{
 					func: () => {
@@ -662,7 +662,7 @@ export let settingsData = {
 				default:false
 			},
 			nativeEmoji:{
-				title:I18n("Use native Emoji Picker"),
+				title:"Use native Emoji Picker",
 				type:"checkbox",
 				activate:{
 					func: (opt, load) => {
@@ -684,7 +684,7 @@ export let settingsData = {
 				default:false
 			},
 			nativeContextMenus:{
-				title:I18n("Use OS native context menus"),
+				title:"Use OS native context menus",
 				type:"checkbox",
 				activate:{
 					func: () => {
@@ -701,7 +701,7 @@ export let settingsData = {
 				settingsKey:"mtd_nativecontextmenus",
 				default:isApp ? process.platform === "darwin" : false
 			},theme:{
-				title:I18n("App update channel"),
+				title:"App update channel",
 				type:"dropdown",
 				activate:{
 					func: (opt) => {
@@ -721,15 +721,15 @@ export let settingsData = {
 					}
 				},
 				options:{
-					latest:{value:"latest","text":I18n("Stable")},
-					beta:{value:"beta","text":I18n("Beta")}
+					latest:{value:"latest","text":"Stable"},
+					beta:{value:"beta","text":"Beta"}
 				},
 				settingsKey:"mtd_updatechannel",
 				default:"latest"
 			},
 			mtdSafeMode: {
-				title:I18n("Safe mode"),
-				label:I18n("Is something broken? Enter Safe Mode."),
+				title:"Safe mode",
+				label:"Is something broken? Enter Safe Mode.",
 				type:"link",
 				activate:{
 					func: () => {
@@ -740,11 +740,11 @@ export let settingsData = {
 			}
 		}
 	}, system: {
-		tabName:I18n("System"),
+		tabName:"System",
 		options:{
 			mtdResetSettings:{
-				title:I18n("Reset Settings"),
-				label:"<i class=\"icon material-icon mtd-icon-very-large\">restore</i>" + I18n("<b>Reset settings</b><br>If you want to reset ModernDeck to default settings, you can do so here. This will restart ModernDeck."),
+				title:"Reset Settings",
+				label:"<i class=\"icon material-icon mtd-icon-very-large\">restore</i>" + "<b>Reset settings</b><br>If you want to reset ModernDeck to default settings, you can do so here. This will restart ModernDeck.",
 				type:"button",
 				activate:{
 					func: () => {
@@ -761,8 +761,8 @@ export let settingsData = {
 				settingsKey:"mtd_resetSettings"
 			},
 			mtdClearData:{
-				title:I18n("Clear Data"),
-				label:"<i class=\"icon material-icon mtd-icon-very-large\">delete_forever</i>" + I18n("<b>Clear data</b><br>This option clears all caches and preferences. This option will log you out and restart ModernDeck."),
+				title:"Clear Data",
+				label:"<i class=\"icon material-icon mtd-icon-very-large\">delete_forever</i>" + "<b>Clear data</b><br>This option clears all caches and preferences. This option will log you out and restart ModernDeck.",
 				type:"button",
 				activate:{
 					func: () => {
@@ -777,8 +777,8 @@ export let settingsData = {
 				enabled:isApp
 			},
 			mtdSaveBackup:{
-				title:I18n("Save Backup"),
-				label:"<i class=\"icon material-icon mtd-icon-very-large\">save_alt</i>" + I18n("<b>Save backup</b><br>Saves your preferences to a file to be loaded later."),
+				title:"Save Backup",
+				label:"<i class=\"icon material-icon mtd-icon-very-large\">save_alt</i>" + "<b>Save backup</b><br>Saves your preferences to a file to be loaded later.",
 				type:"button",
 				activate:{
 					func: () => {
@@ -791,8 +791,8 @@ export let settingsData = {
 
 						dialog.showSaveDialog(
 						{
-							title: I18n("ModernDeck Preferences"),
-							filters: [{ name: I18n("Preferences JSON File"), extensions: ["json"] }]
+							title: "ModernDeck Preferences",
+							filters: [{ name: "Preferences JSON File", extensions: ["json"] }]
 						},
 						(file) => {
 							if (file === undefined) {
@@ -807,8 +807,8 @@ export let settingsData = {
 				enabled:isApp
 			},
 			mtdLoadBackup:{
-				title:I18n("Load Backup"),
-				label:"<i class=\"icon material-icon mtd-icon-very-large\">refresh</i>" + I18n("<b>Load backup</b><br>Loads your preferences that you have saved previously. This will restart ModernDeck."),
+				title:"Load Backup",
+				label:"<i class=\"icon material-icon mtd-icon-very-large\">refresh</i>" + "<b>Load backup</b><br>Loads your preferences that you have saved previously. This will restart ModernDeck.",
 				type:"button",
 				activate:{
 					func: () => {
@@ -818,7 +818,7 @@ export let settingsData = {
 						const {ipcRenderer} = require('electron');
 
 						dialog.showOpenDialog(
-							{ filters: [{ name: I18n("Preferences JSON File"), extensions: ["json"] }] },
+							{ filters: [{ name: "Preferences JSON File", extensions: ["json"] }] },
 							(file) => {
 								if (file === undefined) {
 									return;
@@ -836,8 +836,8 @@ export let settingsData = {
 				enabled:isApp
 			},
 			mtdTweetenImport:{
-				title:I18n("Import Tweeten Settings"),
-				label:"<i class=\"icon material-icon mtd-icon-very-large\">refresh</i>" + I18n("<b>Import Tweeten Settings</b><br>Imports your Tweeten settings to ModernDeck. This will restart ModernDeck."),
+				title:"Import Tweeten Settings",
+				label:"<i class=\"icon material-icon mtd-icon-very-large\">refresh</i>" + "<b>Import Tweeten Settings</b><br>Imports your Tweeten settings to ModernDeck. This will restart ModernDeck.",
 				type:"button",
 				activate:{
 					func: () => {
@@ -847,7 +847,7 @@ export let settingsData = {
 						const {ipcRenderer} = require('electron');
 
 						dialog.showOpenDialog(
-							{ filters: [{ name: I18n("Tweeten Settings JSON"), extensions: ["json"] }] },
+							{ filters: [{ name: "Tweeten Settings JSON", extensions: ["json"] }] },
 							(file) => {
 								if (file === undefined) {
 									return;
@@ -867,8 +867,8 @@ export let settingsData = {
 				enabled:isApp
 			},
 			tdLegacySettings: {
-				title:I18n("Legacy settings"),
-				label:I18n("Did TweetDeck add a new feature we're missing? Visit legacy settings"),
+				title:"Legacy settings",
+				label:"Did TweetDeck add a new feature we're missing? Visit legacy settings",
 				type:"link",
 				activate:{
 					func: () => {
@@ -878,7 +878,7 @@ export let settingsData = {
 			}
 		}
 	}, about: {
-		tabName:I18n("About"),
+		tabName:"About",
 		tabId:"about",
 		options:{},
 		enum:"aboutpage"
