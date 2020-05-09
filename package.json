@@ -24,16 +24,12 @@
 		"buildLinux": "electron-builder -l --config electron-builder.json",
 		"buildAndMinify": "npm run rollup && npm run minify",
 		"rollup": "npm run incBuild && rollup -c",
-		"efMake": "electron-forge make --arch x64",
 		"start": "npm run rollup && electron .",
 		"i18nbuild": "node updatei18n.js && npm run rollup && npm run buildWindows",
 		"startNoBuild": "electron .",
 		"inspect": "electron . --inspect",
 		"updatei18n": "node updatei18n.js",
 		"release": "build"
-	},
-	"config": {
-		"forge": "./build/config.forge.js"
 	},
 	"repository": "https://github.com/dangeredwolf/ModernDeck",
 	"keywords": [
