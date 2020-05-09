@@ -13,7 +13,6 @@
 	"main": "main.js",
 	"scripts": {
 		"incBuild": "node incrementBuild.js",
-		"buildi18n": "node updatei18n.js",
 		"pack": "electron-builder --dir",
 		"dist": "electron-builder . --publish always",
 		"distAll": "electron-builder -mwl --publish always",
@@ -30,6 +29,7 @@
 		"i18nbuild": "node updatei18n.js && npm run rollup && npm run buildWindows",
 		"startNoBuild": "electron .",
 		"inspect": "electron . --inspect",
+		"updatei18n": "node updatei18n.js",
 		"release": "build"
 	},
 	"config": {

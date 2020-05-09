@@ -15,12 +15,11 @@
 		"webRequestBlocking",
 		"https://*.twitter.com/",
 		"https://ton.twimg.com/",
-		"contextMenus",
-		"tabs",
-		"storage"
+		"contextMenus"
 	],
 
 	"optional_permissions": [
+		"tabs"
 	],
 
 	"content_scripts": [

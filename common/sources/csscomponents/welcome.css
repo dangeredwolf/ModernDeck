@@ -25,7 +25,12 @@
 
 .mtd-settings-inner.mtd-welcome-inner {
 	top:30px;
-	-webkit-app-region:no-drag
+	-webkit-app-region:no-drag;
+	left: 0;
+}
+
+.mtd-welcome-inner>.mtd-settings-subpanel {
+	width:100%;
 }
 
 .mtd-welcome-head-icon {

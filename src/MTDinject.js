@@ -6,10 +6,10 @@
 	Made with <3
 */
 
+window.ModernDeck = 8;
 import { version } from "../package.json";
 // window.SystemVersion = version.replace(".0",""); // remove trailing .0, if present
-window.SystemVersion = version.substr(0,3)
-window.ModernDeck = 8;
+window.SystemVersion = version.substr(0,3);
 
 import { I18n, startI18nEngine } from "./I18n.js";
 import { getPref, setPref } from "./StoragePreferences.js";
@@ -93,7 +93,7 @@ if (mtdStarted.getHours() < 12) { // 12:00 / 12:00pm
 
 
 /*
-	Allows copying image to the clipboard from app context menu
+	Allows copying image to the clipboard from pasting, via context menu or Ctrl/Cmd + V
 */
 
 function retrieveImageFromClipboardAsBlob(pasteEvent, callback) {
@@ -148,10 +148,10 @@ if (typeof MTDURLExchange === "object" && typeof MTDURLExchange.getAttribute ===
 	Hence why twitter sucks
 */
 
-let twitterSucks = document.createElement("script");
-twitterSucks.type = "text/javascript";
-twitterSucks.src = mtdBaseURL + "sources/libraries/moduleraid.min.js";
-document.head.appendChild(twitterSucks);
+// let twitterSucks = document.createElement("script");
+// twitterSucks.type = "text/javascript";
+// twitterSucks.src = mtdBaseURL + "sources/libraries/moduleraid.min.js";
+// document.head.appendChild(twitterSucks);
 
 
 
@@ -440,36 +440,36 @@ function hookComposer() {
 		return;
 	}
 
-	if (isApp && useNativeEmojiPicker() && loadEmojiPicker) {
-		$(".compose-text").after(
-			make("div").addClass("mtd-emoji").append(
-				make("div").addClass("mtd-emoji-button btn").append(
-					make("div").addClass("mtd-emoji-button-open").click(() => {
-						try {
-							require?.("electron")?.remote?.app?.showEmojiPanel?.();
-						} catch(e) {
-							console.error("Falling back to custom emoji area");
-							handleErrors(makeEmojiPicker, "Emoji Picker failed to initialise");
-						}
-					})
-				)
-			)
-		);
-	} else if (loadEmojiPicker) {
-		handleErrors(makeEmojiPicker, "Emoji Picker failed to initialise");
-	}
+	// if (isApp && useNativeEmojiPicker() && loadEmojiPicker) {
+	// 	$(".compose-text").after(
+	// 		make("div").addClass("mtd-emoji").append(
+	// 			make("div").addClass("mtd-emoji-button btn").append(
+	// 				make("div").addClass("mtd-emoji-button-open").click(() => {
+	// 					try {
+	// 						require?.("electron")?.remote?.app?.showEmojiPanel?.();
+	// 					} catch(e) {
+	// 						console.error("Falling back to custom emoji area");
+	// 						handleErrors(makeEmojiPicker, "Emoji Picker failed to initialise");
+	// 					}
+	// 				})
+	// 			)
+	// 		)
+	// 	);
+	// } else if (loadEmojiPicker) {
+	// 	handleErrors(makeEmojiPicker, "Emoji Picker failed to initialise");
+	// }
 
-	if ($(".compose-text-container .js-add-image-button,.compose-text-container .js-schedule-button,.compose-text-container .mtd-gif-button").length <= 0) {
-		$(".compose-text-container").append($(".js-add-image-button,.mtd-gif-button,.js-schedule-button,.js-dm-button,.js-tweet-button"));
-
-		if ($(".inline-reply").length > 0) {
-			setTimeout(()=> {
-				$(".compose-text-container").append($(".drawer .js-send-button-container.spinner-button-container"));
-			},800)
-		} else {
-			$(".compose-text-container").append($(".drawer .js-send-button-container.spinner-button-container"));
-		}
-	}
+	// if ($(".compose-text-container .js-add-image-button,.compose-text-container .js-schedule-button,.compose-text-container .mtd-gif-button").length <= 0) {
+	// 	$(".compose-text-container").append($(".js-add-image-button,.mtd-gif-button,.js-schedule-button,.js-dm-button,.js-tweet-button"));
+	//
+	// 	if ($(".inline-reply").length > 0) {
+	// 		setTimeout(()=> {
+	// 			$(".compose-text-container").append($(".drawer .js-send-button-container.spinner-button-container"));
+	// 		},800)
+	// 	} else {
+	// 		$(".compose-text-container").append($(".drawer .js-send-button-container.spinner-button-container"));
+	// 	}
+	// }
 
 	$(document).on("uiDrawerShowDrawer", () => {
 		setTimeout(hookComposer,0) // initialise one cycle after tweetdeck does its own thing
@@ -509,9 +509,7 @@ function hookComposer() {
 	});
 
 
-	if ($(".mtd-gif-button").length <= 0) {
-		initGifPanel();
-	}
+	initGifPanel();
 }
 
 /*
@@ -616,7 +614,6 @@ function coreInit() {
 			window.jQuery = jQuery;
 		} catch (e) {
 			console.error("jQuery failed. This will break approximately... everything.");
-			//alert("ModernDeck was unable to find the page's jQuery runtime. This will result in application instability. Please notify @ModernDeck or @dangeredwolf of this issue immediately.");
 		}
 	}
 

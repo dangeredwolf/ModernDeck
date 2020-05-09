@@ -7,43 +7,36 @@ let lastGiphyURL = "";
 let isLoadingMoreGifs = false;
 
 export function initGifPanel() {
-	$(".drawer .js-add-image-button").after(
-		make("button")
-		.addClass("js-show-tip btn btn-on-blue full-width txt-left padding-v--6 padding-h--12 margin-b--12 mtd-gif-button")
-		.append(
-			make("i").addClass("Icon icon-gif txt-size--18"),
-			make("span").addClass("label padding-ls").html(I18n("Add GIF"))
-		)
-		.attr("data-original-title","")
-		.click(() => {
+	$(".mtd-gif-button").click(() => {
 
-			if ($(".mtd-gif-button").hasClass("is-disabled")) {
-				return;
-			}
+		checkGifEligibility();
 
-			if (exists(window.mtdEmojiPicker)) {
-				try {
-					window.mtdEmojiPicker.hidePicker();
-				} catch(e) {
-					console.error("failed to hide emoji picker");
-					console.error(e);
-					lastError = e;
-				}
-			}
+		if ($(".mtd-gif-button").hasClass("is-disabled")) {
+			return;
+		}
 
-			if ($(".mtd-gif-container").length <= 0) {
-				createGifPanel();
+		if (window.mtdEmojiPicker) {
+			try {
+				window.mtdEmojiPicker.hidePicker();
+			} catch(e) {
+				console.error("failed to hide emoji picker");
+				console.error(e);
+				lastError = e;
 			}
+		}
 
-			$(".mtd-gif-container").toggleClass("mtd-gif-container-open");
-			if ($(".mtd-gif-container").hasClass("mtd-gif-container-open")) {
-				$(".mtd-gif-search").val("");
-				trendingGifPanel();
-			} else {
-				$(".mtd-gif-container").remove();
-			}
-		})
-	);
+		if ($(".mtd-gif-container").length <= 0) {
+			createGifPanel();
+		}
+
+		$(".mtd-gif-container").toggleClass("mtd-gif-container-open");
+		if ($(".mtd-gif-container").hasClass("mtd-gif-container-open")) {
+			$(".mtd-gif-search").val("");
+			trendingGifPanel();
+		} else {
+			$(".mtd-gif-container").remove();
+		}
+	})
 }
 
 /*
@@ -51,9 +44,12 @@ export function initGifPanel() {
 */
 
 function createGifPanel() {
+
 	if ($(".mtd-gif-container").length > 0) {
 		return;
 	}
+
+	checkGifEligibility();
 	$(".drawer .compose-text-container").after(
 		make("div").addClass("scroll-v popover mtd-gif-container").append(
 			make("div").addClass("mtd-gif-header").append(
@@ -61,7 +57,7 @@ function createGifPanel() {
 				make("input").addClass("mtd-gif-search").attr("placeholder",I18n("Search GIFs...")).change(() => {
 					searchGifPanel($(".mtd-gif-search").val())
 				}),
-				make("img").attr("src",mtdBaseURL + "sources/img/giphy.png").addClass("mtd-giphy-logo"),
+				make("img").attr("src",mtdBaseURL + "sources/img/giphy2.png").addClass("mtd-giphy-logo"),
 				make("button").addClass("mtd-gif-top-button").append(
 					make("i").addClass("icon icon-arrow-u"),
 					I18n("Go back up")

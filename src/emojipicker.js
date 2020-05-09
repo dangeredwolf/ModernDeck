@@ -1,4 +1,3 @@
-import { makeN } from "./Utils.js";
 import { fromCodePoint } from "./EmojiHelper.js";
 import { getPref, setPref } from "./StoragePreferences.js";
 
@@ -33,7 +32,7 @@ export async function makeEmojiPicker() {
 		return;
 	}
 
-	var searchBox = makeN("input").addClass("search").attr("placeholder","Search").attr("type","text").on("input", () => {
+	var searchBox = make("input").addClass("search").attr("placeholder","Search").attr("type","text").on("input", () => {
 		let query = searchBox.val();
 
 		if (query === "") {
@@ -80,24 +79,24 @@ export async function makeEmojiPicker() {
 			}
 		});
 	})
-	let search = makeN("div").addClass("mtd-emoji-search").append(searchBox);
+	let search = make("div").addClass("mtd-emoji-search").append(searchBox);
 
-	let tones = makeN("div").addClass("mtd-emoji-tones");
+	let tones = make("div").addClass("mtd-emoji-tones");
 	makeTones(tones);
 
-	let searchPanel = makeN("div").addClass("mtd-emoji-search-panel").append(search, tones);
-	let filterCont = makeN("div").addClass("mtd-emoji-filters");
-	let wrapper = makeN("div").addClass("mtd-emoji-wrapper").append(filterCont, searchPanel);
-	let picker = makeN("div").addClass("mtd-emoji-picker popover hidden").append(wrapper);
-	let cont = makeN("div").addClass("mtd-emoji").append(picker);
+	let searchPanel = make("div").addClass("mtd-emoji-search-panel").append(search, tones);
+	let filterCont = make("div").addClass("mtd-emoji-filters");
+	let wrapper = make("div").addClass("mtd-emoji-wrapper").append(filterCont, searchPanel);
+	let picker = make("div").addClass("mtd-emoji-picker popover hidden").append(wrapper);
+	let cont = make("div").addClass("mtd-emoji").append(picker);
 	makeFilters(filterCont);
 
-	let categoryBlock = makeN("div").addClass("mtd-emoji-category-block");
+	let categoryBlock = make("div").addClass("mtd-emoji-category-block");
 
 	buildCategories(categoryBlock);
 
-	let emojisList = makeN("div").addClass("mtd-emoji-emojis-list").append(categoryBlock);
-	let scrollArea = makeN("div")
+	let emojisList = make("div").addClass("mtd-emoji-emojis-list").append(categoryBlock);
+	let scrollArea = make("div")
 	.addClass("mtd-emoji-scroll-area scroll-v")
 	.append(emojisList);
 
@@ -106,9 +105,9 @@ export async function makeEmojiPicker() {
 	nQuery(".compose-text-container").append(cont);
 
 	nQuery(".compose-text").after(
-		makeN("div").addClass("mtd-emoji").append(
-			makeN("div").addClass("mtd-emoji-button btn").append(
-				makeN("div").addClass("mtd-emoji-button-open").click(() => {
+		make("div").addClass("mtd-emoji").append(
+			make("div").addClass("mtd-emoji-button btn").append(
+				make("div").addClass("mtd-emoji-button-open").click(() => {
 					picker.toggleClass("hidden")
 				})
 			)
@@ -186,7 +185,7 @@ function setTone(tone) {
 
 function makeFilters(filterCont) {
 	emojiCategories.forEach((a, b) => {
-		var filter = makeN("i")
+		var filter = make("i")
 		.addClass("mtd-emoji-filter" + (b === 0 ? " active" : ""))
 		.data("filter",emojiCategories[b].id)
 		.attr("title",emojiCategories[b].title)
@@ -216,7 +215,7 @@ function makeFilters(filterCont) {
 
 function makeTones(tones) {
 	for (let i = 0; i < 6; i++) {
-		let tone = makeN("i").addClass("btn-tone btn-tone-" + i);
+		let tone = make("i").addClass("btn-tone btn-tone-" + i);
 		if (i === 0) {
 			tone.addClass("active");
 		}
@@ -254,7 +253,7 @@ function makeEmojiButton(emoji, title) {
 
 function buildCategories(categoryBlock) {
 	emojiCategories.forEach((a, b) => {
-		var category = makeN("div").addClass("mtd-emoji-category").attr("name", a.id);
+		var category = make("div").addClass("mtd-emoji-category").attr("name", a.id);
 
 		if (a.items.length <= 0) {
 			updateRecentEmojis();

@@ -61,10 +61,10 @@
 }
 
 .mtd-giphy-logo {
-	width:120px;
+	width:70px;
 	position:absolute;
-	right:0;
-	top:10px;
+	right:8px;
+	top:14px
 }
 
 .mtd-gif-header-fixed .mtd-giphy-logo,
@@ -74,7 +74,7 @@
 }
 
 .mtd-gif-search {
-	width:50%;
+	width:52%;
 	margin-bottom:7px
 }
 
@@ -92,12 +92,12 @@
 	left:initial;
 	right:initial;
 	width:calc(var(--composeWidth) - 5px);
-	animation:mtdGifHeaderFixed 0.2s var(--animationTiming);
+	animation:mtdGifHeaderFixed 0.2s var(--animationTiming)
 }
 
 .mtd-head-left .mtd-gif-header.mtd-gif-header-fixed {
 	top:4px;
-	animation-name:mtdGifHeaderFixedHeadLeft;
+	animation-name:mtdGifHeaderFixedHeadLeft
 }
 
 html.mtd-js-app:not(.mtd-app) .mtd-gif-header.mtd-gif-header-fixed {

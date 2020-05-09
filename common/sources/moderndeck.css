@@ -4703,9 +4703,8 @@ html:not(.mtd-head-left) .column-nav-link i {
 	box-shadow:0 2px 5px rgba(117,117,117,.8)!important;
 	padding-left:5px;
 	margin-bottom:15px;
-	margin-left:10px!important;
 	width:calc(var(--composeWidth) - 35px);
-	animation:calendarMenuDown 0.3s var(--animationTiming)
+	animation:calendarMenuDown 0.3s var(--animationTiming);
 }
 
 .js-column-detail .column-title-back:after,.js-tweet-results .column-title-back:after,.js-tweet-social-proof-back:after {
@@ -4920,10 +4919,10 @@ a[rel="user"]:active,
 
 .js-media-added {
 	width:calc(var(--composeWidth) - 30px);
-	margin-left:10px;
+	/* margin-left:10px; */
 	box-shadow:0 3px 7px var(--composeShadow);
-	margin-top:15px;
-	animation:mediaDown .825s var(--animationTiming)
+	margin-top: 24px;
+	animation:mediaDown .825s var(--animationTiming);
 }
 
 .cal header span {

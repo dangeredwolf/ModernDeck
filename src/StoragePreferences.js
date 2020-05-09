@@ -8,6 +8,7 @@
 import { exists, isApp } from "./Utils.js";
 import { settingsData } from "./DataSettings.js";
 export const debugStorageSys = false;
+let store;
 
 if (isApp) {
 	const Store = require('electron-store');
@@ -21,7 +22,7 @@ export function getPref(id, defaul) {
 
 	let val;
 
-	if (exists(store)) {
+	if (store) {
 		if (store.has(id))
 			val = store.get(id);
 		else

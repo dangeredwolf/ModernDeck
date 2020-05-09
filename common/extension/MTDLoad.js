@@ -6,7 +6,7 @@
 */
 
 "use strict";
-console.log("MTDLoad 7.3");
+console.log("MTDLoad 8.0");
 
 var isDev = true;
 var storage = {};
@@ -24,7 +24,7 @@ document.head.appendChild(injStyles);
 console.log("Bootstrapping Sentry");
 
 var injectScript2 = document.createElement("script");
-injectScript2.src = browser.extension.getURL("sources/libraries/sentry.min.js");
+injectScript2.src = browser.extension.getURL("sources/libraries/moduleraid.min.js");
 injectScript2.type = "text/javascript";
 document.head.appendChild(injectScript2);
 

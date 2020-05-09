@@ -7,6 +7,7 @@
 
 let displayWarning = false;
 let tweetDeckTranslateInitial;
+let debugI18n = false;
 
 // ModernDeck specific import, dummy function in tweetdeck-i18n
 import { getPref } from "./StoragePreferences.js";
@@ -17,10 +18,15 @@ let langFull;
 let langRoot;
 
 // ModernDeck specific code, safe to ignore within tweetdeck-i18n
-if (window.ModernDeck) {
+if (window.version) {
+	console.log("I18n: Detected ModernDeck");
 	langFull = getPref("mtd_lang");
+	if (!langFull) {
+		langFull = navigator.language.replace("-","_");
+	}
 	langRoot = langFull.substring(0,2);
 } else {
+	console.log("I18n: Detected TweetDeck i18n");
 	langFull = navigator.language.replace("-","_");
 	langRoot = navigator.language.substring(0,2);
 }
@@ -244,13 +250,18 @@ function patchMiscStrings() {
 function patchTDTranslateFunction() {
 	if (mR && mR.findFunction && mR.findFunction("en-x-psaccent")[0]) {
 		tweetDeckTranslateInitial = mR.findFunction("en-x-psaccent")[0].default;
-		mR.findFunction("en-x-psaccent")[0].default = function(a,b,c,d,e,f){ return I18n(a,b,c,d,e,f)}
+		mR.findFunction("en-x-psaccent")[0].default = I18n
 	} else {
 		setTimeout(patchTDTranslateFunction,10);
 	}
 }
 
 export function startI18nEngine() {
+	if (window.TweetDecki18nStarted) {
+		return;
+	}
+
+	window.TweetDecki18nStarted = true;
 	// Developer helper function to find strings within the mustache cluster
 	window.findMustache = (str) => {
 		let results = {};
@@ -271,6 +282,6 @@ export function startI18nEngine() {
 }
 
 // In ModernDeck, the function is executed via mtdInject.js
-if (!window.ModernDeck) {
+if (!window.version) {
 	startI18nEngine();
 }

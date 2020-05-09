@@ -5,28 +5,11 @@ import { getPref, setPref } from "./StoragePreferences.js";
 import unsupportedCodeTable from "./DataUnsupportedLanguage.js";
 import languageText from "./DataTextThatSaysLanguage.js";
 
-/*
-	mtdAlert(Object alertProps)
-
-	alertProps is an object with the following options:
-
-	String title: Title of the alert
-	String message: Body message of the alert
-	String buttonText: Button 1 text
-	String button2Text: Button 2 text
-
-	function button1Click: Button 1 click function
-	function button2Click: Button 2 click function
-
-	Note: make sure you call mtdPrepareWindows afterward to close the alert box
-
-	String type: supported types are "confirm", "alert"
-*/
 import languageData from "./DataI18n.js";
 
 export function UILanguagePicker() {
 	window.languageData = languageData;
-	let alert = make("div").addClass("mdl mtd-alert");
+	let alert = make("div").addClass("mdl mtd-alert mtd-language-picker");
 	let alertTitle = make("h2").addClass("mtd-alert-title").html("<i class='material-icon'>language</i>" + (languageText[navigator.language.substr(0,2)] || languageText["en"]));
 	let alertButton = make("button").addClass("btn-primary btn mtd-alert-button hidden").html("OK");
 	let selectLanguage = make("select").attr("id","mtd_language_select").append(
@@ -49,7 +32,7 @@ export function UILanguagePicker() {
 		make("option").val("zh_CN").html("简体中文")
 	).change(() => {
 		if (languageData.OK[selectLanguage.val()]) {
-			alertTitle.html("<i class='material-icon'>language</i>" + languageData.Language[selectLanguage.val()]);
+			alertTitle.html("<i class='material-icon'>language</i> " + languageData.Language[selectLanguage.val()]);
 			alertButton.removeClass("hidden");
 		}
 		alertButton.html(languageData.OK[selectLanguage.val()] || "OK");
@@ -90,8 +73,6 @@ export function UILanguagePicker() {
 	if (!DataI18n.GIF[navigator.language.substr(0,2)]) {
 		alert.append(unsupportedLang);
 	}
-
-	// new TD.components.GlobalSettings;
 
 	$("#splash-modal>.mdl").remove();
 	$("#splash-modal").attr("style", "display: block;")

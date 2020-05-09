@@ -529,7 +529,7 @@ function makeWindow() {
 			document.head.appendChild(injurl);\
 			\
 			var InjectScript2 = document.createElement("script");\
-			InjectScript2.src = "moderndeck://sources/libraries/sentry.min.js";\
+			InjectScript2.src = "moderndeck://sources/libraries/moduleraid.min.js";\
 			InjectScript2.type = "text/javascript";\
 			document.head.appendChild(InjectScript2);'
 			+
