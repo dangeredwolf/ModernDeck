@@ -7,7 +7,7 @@ let lastGiphyURL = "";
 let isLoadingMoreGifs = false;
 
 export function initGifPanel() {
-	$(".mtd-gif-button").click(() => {
+	$(".mtd-gif-button").off("click").click(() => {
 
 		checkGifEligibility();
 

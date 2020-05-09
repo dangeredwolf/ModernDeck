@@ -22,6 +22,7 @@ import { exists } from "./Utils.js";
 import { importTweetenSettings } from "./StorageTweetenImport.js";
 import { openLegacySettings } from "./UISettings.js";
 import { enterSafeMode } from "./SafeMode.js";
+import { UILanguagePicker } from "./UILanguagePicker.js";
 
 // Use standard macOS symbols instead of writing it out like on Windows
 
@@ -31,7 +32,7 @@ import { isApp } from "./utils.js"
 
 export let settingsData = {
 	themes: {
-		tabName:"Themes",
+		tabName:"<i class='material-icon'>format_paint</i> Themes",
 		options:{
 			coretheme:{
 				headerBefore:"Themes",
@@ -193,7 +194,7 @@ export let settingsData = {
 		}
 	},
 	appearance: {
-		tabName:"Appearance",
+		tabName:"<i class='material-icon'>rounded_corner</i> Appearance",
 		options:{
 			headposition:{
 				headerBefore:"Navigation",
@@ -290,6 +291,7 @@ export let settingsData = {
 					htmlAddClass:"mtd-no-emoji-picker"
 				},
 				settingsKey:"mtd_noemojipicker",
+				enabled:false,
 				default:true
 			},
 			scrollbarstyle:{
@@ -341,18 +343,6 @@ export let settingsData = {
 				displayUnit:"%",
 				default:100
 			},
-			roundprofilepics:{
-				title:"Use round profile pictures",
-				type:"checkbox",
-				activate:{
-					disableStylesheet:"squareavatars"
-				},
-				deactivate:{
-					enableStylesheet:"squareavatars"
-				},
-				settingsKey:"mtd_round_avatars",
-				default:true
-			},
 			avatarSize:{
 				title:"Profile picture size",
 				type:"slider",
@@ -364,11 +354,22 @@ export let settingsData = {
 				},
 				minimum:24,
 				maximum:64,
-				// Maybe we'll enable this at some point, but currently difficult graphical bugs break it
-				enabled:false,
+				enabled:true,
 				settingsKey:"mtd_avatarsize",
 				displayUnit:"px",
 				default:48
+			},
+			roundprofilepics:{
+				title:"Use round profile pictures",
+				type:"checkbox",
+				activate:{
+					disableStylesheet:"squareavatars"
+				},
+				deactivate:{
+					enableStylesheet:"squareavatars"
+				},
+				settingsKey:"mtd_round_avatars",
+				default:true
 			},
 			newcharindicator:{
 				title:"Use new character limit indicator",
@@ -465,7 +466,7 @@ export let settingsData = {
 			}
 		}
 	}, tweets: {
-		tabName:"Tweets",
+		tabName:"<i class='Icon icon-twitter-bird'></i> Tweets",
 		options:{
 			stream:{
 				headerBefore:"Function",
@@ -606,11 +607,11 @@ export let settingsData = {
 			}
 		}
 	}, mutes: {
-		tabName:"Mutes",
+		tabName:"<i class='material-icon'>volume_off</i> Mutes",
 		options:{},
 		enum:"mutepage"
 	}, app: {
-		tabName:"App",
+		tabName:"<i class='icon icon-moderndeck'></i> App",
 		enabled:isApp,
 		options:{
 			nativeTitlebar:{
@@ -741,7 +742,7 @@ export let settingsData = {
 			}
 		}
 	}, system: {
-		tabName:"System",
+		tabName:"<i class='material-icon'>settings_backup_restore</i> System",
 		options:{
 			mtdResetSettings:{
 				title:"Reset Settings",
@@ -878,8 +879,24 @@ export let settingsData = {
 				}
 			}
 		}
+	}, language: {
+		tabName:"<i class='material-icon'>language</i> Language",
+		options:{
+			mtdResetSettings:{
+				title:"Change Language",
+				label:"<b>Changing your language will restart ModernDeck</b>",
+				type:"button",
+				activate:{
+					func: () => {
+						mtdPrepareWindows();
+						new UILanguagePicker();
+					}
+				},
+				settingsKey:"mtd_resetSettings"
+			},
+		}
 	}, about: {
-		tabName:"About",
+		tabName:"<i class='material-icon'>info_outline</i> About",
 		tabId:"about",
 		options:{},
 		enum:"aboutpage"

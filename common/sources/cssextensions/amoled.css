@@ -27,6 +27,7 @@
 	--genericBlack15Shadow:rgba(52,66,72,.15) !important;
 	--genericDarkBlackShadow:rgba(52,66,72,.5) !important;
 	--genericLightBlackShadow:rgba(52,66,72,.1) !important;
+	--settingsTabColor:#000
 }
 
 div.drawer[data-drawer="compose"],.hide-detail-view-inline .tweet-button:not(.js-hide-drawer) {
@@ -35,4 +36,13 @@ div.drawer[data-drawer="compose"],.hide-detail-view-inline .tweet-button:not(.js
 
 .media-size-large-height::after,.media-item.media-size-large::after {
 	background-image:linear-gradient(var(--navDrawerBackground),rgba(0,0,0,0))
+}
+
+.mtd-nav-divider {
+	background:var(--contextMenuDividerColor)
+}
+
+.text-like-keyboard-key {
+	background:#333;
+	box-shadow:0 3px 5px rgba(50,50,50,.5)
 }

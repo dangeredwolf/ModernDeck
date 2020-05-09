@@ -36,7 +36,8 @@
 	--backdropColor:#344248;
 	--modalWindowColor:#2E3B41;
 	--overlayBackgroundColor:rgba(88,100,107,.4);
-	--defaultShadowColor:rgba(41,41,41,.35)
+	--defaultShadowColor:rgba(41,41,41,.35);
+	--settingsTabColor:#344248
 }
 
 a, a:not([href="#"]):not(.column-header-link):not(.js-column-back):not(.js-tweet-social-proof-back):not(.account-selector-grid-mode):not(.account-link):not(.dropdown-menu-url-item):hover, .calweek a:hover, .btn:not([disabled]):not(.is-disabled):not(.btn-options-tray):not(.mtd-nav-button):not(.btn-bg-negative):not(.btn-negative), .compose-send-button-success, .icon-follow-color, .tweet-actions.is-visible .icon-reply, #caltoday, input[type="checkbox"]:checked:before, button, input[type="radio"]:checked:before, .mtd-logo
@@ -147,7 +148,6 @@ li:not(.selected) .list-twitter-list .txt-ellipsis, .list-twitter-list .subtitle
 	color:var(--placeholderTextColor)
 }
 
-.mtd-settings-tab:not(.mtd-settings-tab-selected),
 input[type="checkbox"][disabled]:before
 {
 	color:var(--placeholderTextColor) !important
@@ -216,8 +216,7 @@ optgroup,
 .compose-message-recipient-input-container,
 .compose-media-grid-holder,
 .compose-text-container,
-.status-message,
-.mtd-settings-tab-container
+.status-message
 {
 	background:var(--primaryColor)
 }

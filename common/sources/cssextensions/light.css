@@ -43,7 +43,8 @@
 	--deepShadowColor:rgba(0,0,0,.25);
 	--materialSplashColor:rgba(0,0,0,.1);
 	--mdlPrimaryColor:#29B6F6;
-	--columnAlt:rgba(255,255,255,.7)
+	--columnAlt:rgba(255,255,255,.7);
+	--settingsTabColor:#f0f0f0
 }
 
 a,
@@ -314,8 +315,7 @@ input[type="checkbox"][disabled]:before {
 	color:var(--disabledColor)
 }
 
-.js-setting-list .list-link strong,
-.mtd-settings-tab:not(.mtd-settings-tab-selected)
+.js-setting-list .list-link strong
 {
 	font-weight:400;
 	color:var(--modalWindowColor);
@@ -336,7 +336,7 @@ input[type="checkbox"][disabled]:before {
 	color:var(--typeaheadColor)!important
 }
 
-.edit-conversation-name, .app-navigator .js-hide-drawer, .column-message, .drawer-header, body, .mtd-settings-tab-container
+.edit-conversation-name, .app-navigator .js-hide-drawer, .column-message, .drawer-header, body
 {
 	background:var(--primaryColor)
 }

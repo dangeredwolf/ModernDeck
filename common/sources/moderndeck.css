@@ -6983,34 +6983,11 @@ li.padding-axl.flex.flex-row.flex-align--center .account-summary-text>a.account-
 }
 
 .controls {
-	margin-left:100px
+	margin-left:100px;
 }
 
 .icon-info.icon-large {
 	margin-right:6px
-}
-
-#global_filter_settings .control-group {
-	width:49%
-}
-
-.list-filter,.js-filter-list>ul {
-	width:280px
-}
-
-.js-filter-list {
-	position:absolute;
-	left:50%;
-	top:0;
-	width:300px;
-	max-height:400px;
-	overflow-y:auto;
-	overflow-x:hidden
-}
-
-#global_filter_settings .txt-size--12 {
-	position:absolute;
-	bottom:40px
 }
 
 .drawer .js-character-count {
@@ -9465,8 +9442,8 @@ a {
 	margin:0 auto!important;
 	text-align:left;
 	border-radius:2px;
-	min-height:525px;
-	max-height:707px
+	/* min-height:525px; */
+	max-height:707px;
 }
 
 .js-modal-panel.mdl.s-fluid.s-wide.cmp.s-minimal {

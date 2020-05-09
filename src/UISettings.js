@@ -13,7 +13,7 @@ const appendTextVersion = false;
 const enablePatronFeatures = true;
 
 let ver = "Version";
-let verTextId = 3;
+let verTextId = 2;
 let verText = "";
 
 
@@ -139,10 +139,10 @@ export function openSettings(openMenu) {
 
 					case "dropdown":
 						select = make("select").attr("type","select").attr("id",prefKey).change(function() {
+							parseActions(pref.activate, $(this).val());
 							if (pref.savePreference !== false) {
 								setPref(pref.settingsKey,$(this).val());
 							}
-							parseActions(pref.activate, $(this).val());
 						});
 
 						for (let prefKey in pref.options) {
@@ -187,17 +187,17 @@ export function openSettings(openMenu) {
 
 						if (pref.instantApply === true) {
 							input.on("input",function() {
+								parseActions(pref.activate, $(this).val());
 								if (pref.savePreference !== false) {
 									setPref(pref.settingsKey, $(this).val());
 								}
-								parseActions(pref.activate, $(this).val());
 							});
 						} else {
 							input.change(function() {
+								parseActions(pref.activate, $(this).val());
 								if (pref.savePreference !== false) {
 									setPref(pref.settingsKey, $(this).val());
 								}
-								parseActions(pref.activate, $(this).val());
 							});
 						}
 
@@ -222,17 +222,17 @@ export function openSettings(openMenu) {
 
 						if (pref.instantApply === true) {
 							input.on("input",function() {
+								parseActions(pref.activate, $(this).val());
 								if (pref.savePreference !== false) {
 									setPref(pref.settingsKey, $(this).val());
 								}
-								parseActions(pref.activate, $(this).val());
 							});
 						} else {
 							input.change(function() {
+								parseActions(pref.activate, $(this).val());
 								if (pref.savePreference !== false) {
 									setPref(pref.settingsKey, $(this).val());
 								}
-								parseActions(pref.activate, $(this).val());
 							});
 						}
 
@@ -286,10 +286,10 @@ export function openSettings(openMenu) {
 						.attr("min",pref.minimum)
 						.attr("max",pref.maximum)
 						.change(function() {
+							parseActions(pref.activate, $(this).val());
 							if (pref.savePreference !== false) {
 								setPref(pref.settingsKey, $(this).val());
 							}
-							parseActions(pref.activate, $(this).val());
 						}).on("input",function() {
 							label.html(`${I18n(pref.title)} <b> ${$(this).val()} ${(I18n(pref.displayUnit || ""))} </b>`);
 						});
@@ -436,7 +436,7 @@ export function openSettings(openMenu) {
 				filterInput.attr("placeholder", $(this).val() === "phrase" ? I18n("Enter a word or phrase") : I18n("eg TweetSpamApp"))
 			});
 
-			let muteButton = make("button").attr("name","add-filter").addClass("js-add-filter btn-on-dark disabled").html(I18n("Mute")).click(() => {
+			let muteButton = make("button").attr("name","add-filter").addClass("js-add-filter btn-on-dark disabled btn-primary").html(I18n("Mute")).click(() => {
 				if (filterInput.val().length > 0) {
 					TD.controller.filterManager.addFilter(selectFilterType.val(),filterInput.val(),false);
 
