@@ -343,7 +343,7 @@ html:not(.mtd-js-app) .mtd-settings-tab {
 .mtd-settings-option-button .control-label {
 	display:block;
 	width:100%!important;
-	float:none
+	float:none;
 }
 
 .mtd-settings-option-button .control-label b {
@@ -357,7 +357,9 @@ html:not(.mtd-js-app) .mtd-settings-tab {
 }
 
 .mtd-settings-option-button {
-	height:auto
+	height:auto;
+	width: 80%;
+	padding: 10px;
 }
 
 .mtd-textarea {
@@ -467,11 +469,11 @@ html body .mtd-settings-subpanel button {
 
 .mtd-settings-button {
 	float:none;
-	margin-top:40px;
+	margin-top: 50px;
 	box-shadow:0 3px 7px var(--composeShadow);
 	padding:11px;
 	border-radius:4px;
-	transition:background 0.2s var(--animationTiming),transform 0.25s var(--animationTiming)!important
+	transition:background 0.2s var(--animationTiming),transform 0.25s var(--animationTiming)!important;
 }
 
 .mtd-auto-scroll {

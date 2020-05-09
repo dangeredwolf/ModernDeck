@@ -298,9 +298,9 @@ export let settingsData = {
 				type:"dropdown",
 				activate:{
 					func: (opt) => {
-						disableStylesheetExtension(getPref("mtd_scrollbar_style"));
-						setPref("mtd_scrollbar_style",opt);
-						enableStylesheetExtension(opt || "default");
+						disableStylesheetExtension("scrollbarsnarrow");
+						disableStylesheetExtension("scrollbarsnone");
+						enableStylesheetExtension(opt || "scrollbarsdefault");
 					}
 				},
 				options:{
@@ -890,6 +890,9 @@ export let settingsData = {
 				type:"array",
 				activate:{
 					func: (e) => {
+						if (!e) {
+							return;
+						}
 						e.forEach((a, i) => {
 							getColumnFromColumnNumber(a).addClass("mtd-collapsed")
 						});

@@ -40,7 +40,7 @@ export function openSettings(openMenu) {
 
 	let tabs = make("div").addClass("mtd-settings-tab-container mtd-tabs");
 	let container = make("div").addClass("mtd-settings-inner");
-	let panel = make("div").addClass("mdl mtd-settings-panel").append(tabs).append(container);
+	let panel = make("div").addClass("mdl mtd-settings-panel").append(tabs).append(make("div").addClass("mtd-settings-inner-container").append(container));
 
 
 	for (var key in settingsData) {

@@ -31,7 +31,13 @@ export function welcomeScreen() {
 	},0);
 	$(".app-content,.app-header").remove();
 
-	$(".application").attr("style",`background-image:url(${mtdBaseURL}sources/img/bg1.jpg)`)
+	$(".application").attr("style",`background-image:url(${mtdBaseURL}sources/img/bg1.jpg)`);
+
+	$(".message-banner").attr("style","display: none;");
+
+	if ($(".mtd-language-picker").length > 0) { //language > welcome
+		return;
+	}
 
 	let container = make("div").addClass("mtd-settings-inner mtd-welcome-inner");
 	let panel = make("div").addClass("mdl mtd-settings-panel").append(container);

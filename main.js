@@ -28,8 +28,7 @@ const path = require("path");
 const url = require("url");
 const util = require("util");
 const through2 = require("through2");
-const { NitroLoad } = require("./nitroload");
-console.log(NitroLoad)
+
 const separator = process.platform === "win32" ? "\\" : "/"
 
 const packagedUsesDifferentDir = false;
@@ -49,7 +48,7 @@ const isAppX = !!process.windowsStore;
 const isMAS = !!process.mas;
 
 const isDev = false;
-let useNitroLoad = false;
+
 
 let mainWindow;
 let mR;
@@ -323,10 +322,8 @@ function saveImageAs(url) {
 
 };
 
-// we should make use of this soon
-
 function saveWindowBounds() {
-	if (mainWindow === null) {
+	if (!mainWindow) {
 		return;
 	}
 	try {
@@ -439,21 +436,6 @@ function makeWindow() {
 
 	}
 
-	// mainWindow = new BrowserView({		webPreferences: {
-	// 			defaultFontFamily:"Roboto",
-	// 			nodeIntegration: true,
-	// 			contextIsolation: false,
-	// 			webgl: false,
-	// 			plugins: false,
-	// 			scrollBounce:true,
-	// 			webviewTag:true,
-	// 			nodeIntegrationInSubFrames:true
-	// 			// preload: __dirname+separator+useDir+separator+"sources"+separator+"moderndeck.js"
-	// 		}});
-	// mainWindow.setBrowserView(mainWindow);
-	// mainWindow.setBounds({ x: 0, y: 0, width: mainWindow.getSize()[0], height: mainWindow.getSize()[1] })
-	// mainWindow.setAutoResize({width:true,height:true});
-	// mainWindow.setBackgroundColor("#263238")
 	// Prevent changing the Page Title
 
 	mainWindow.on("page-title-updated", (event,url) => {
@@ -463,13 +445,13 @@ function makeWindow() {
 	// Save window bounds if it's closed, or otherwise occasionally
 
 	mainWindow.on("close",(e) => {
-		// console.log("Saving window bounds");
 		setTimeout(saveWindowBounds,0);
 	});
 
 	setInterval(saveWindowBounds,60 * 1000);
 
 	mainWindow.show();
+
 	// Here, we add platform-specific tags to html, to help moderndeck CSS know what to do
 
 	mtdAppTag += 'document.querySelector("html").classList.add("mtd-js-app");\n';
@@ -502,19 +484,6 @@ function makeWindow() {
 
 	mainWindow.webContents.on('dom-ready', (event, url) => {
 
-		// if (useNitroLoad && NitroLoad.ready()) {
-		// 	mainWindow.webContents.executeJavaScript(`
-		// 		var InjectScript = document.createElement("script");
-		// 		InjectScript.src = "${NitroLoad.vendor}";
-		// 		InjectScript.type = "text/javascript";
-		// 		document.body.appendChild(InjectScript);
-		//
-		// 		var InjectScript2 = document.createElement("script");
-		// 		InjectScript2.src = "${NitroLoad.bundle}";
-		// 		InjectScript2.type = "text/javascript";
-		// 		document.body.appendChild(InjectScript2);
-		// 	`)
-		// }
 
 
 		mainWindow.webContents.executeJavaScript(
@@ -689,59 +658,6 @@ function makeWindow() {
 		callback({cancel:false});
 	});
 
-	// mainWindow.webContents.session.webRequest.onBeforeSendHeaders(
-	// 	{urls:["https://*.twitter.com/*","https://*.twimg.com/*"]},
-	// 	(details, callback) => {
-	// 		let foo = details.requestHeaders;
-	// 		foo["Origin"] = [
-	// 			"https://tweetdeck.twitter.com"
-	// 		];
-	// 		foo["Referer"] = [
-	// 			"https://tweetdeck.twitter.com/"
-	// 		];
-	// 		foo["X-Twitter-Auth-Type"] = [
-	// 			"OAuth2Session"
-	// 		];
-	// 		foo["X-Twitter-Client-Version"] = [
-	// 			"Twitter-TweetDeck-blackbird-chrome/4.0.190822112648 web/"
-	// 		];
-	// 		foo["Sec-Fetch-Dest"] = [
-	// 			"empty"
-	// 		];
-	// 		callback({ requestHeaders: foo});
-	// 	}
-	// );
-	//
-	// mainWindow.webContents.session.webRequest.onBeforeSendHeaders(
-	// 	{urls:["https://api.twitter.com/1.1/help/*"]},
-	// 	(details, callback) => {
-	// 		let foo = details.requestHeaders;
-	// 		foo["X-Twitter-Auth-Type"] = [
-	// 			"OAuth2Session"
-	// 		];
-	// 		foo["X-Twitter-Client-Version"] = [
-	// 			"Twitter-TweetDeck-blackbird-chrome/4.0.190822112648 web/"
-	// 		];
-	// 		foo["Sec-Fetch-Dest"] = [
-	// 			"empty"
-	// 		];
-	// 		callback({ requestHeaders: foo});
-	// 	}
-	// );
-
-	// this is pretty self-explanatory
-	try {
-		if (useNitroLoad)
-			NitroLoad.goReplace();
-		if (useNitroLoad)
-			mainWindow.loadURL("moderndeck://./nitroload.html");
-		else
-			mainWindow.loadURL("moderndeck://./view.html");
-			//mainWindow.loadURL("https://tweetdeck.twitter.com");
-	} catch(e) {
-		console.error(e);
-	}
-
 	mainWindow.webContents.loadURL("https://tweetdeck.twitter.com");
 
 	/*
@@ -756,8 +672,6 @@ function makeWindow() {
 	*/
 
 	mainWindow.webContents.on("will-navigate", (event, url) => {
-		if (useNitroLoad)
-			NitroLoad.goReplace();
 
 		const { shell } = electron;
 		console.log(url);
@@ -793,7 +707,7 @@ function makeWindow() {
 		if (url.indexOf("https://twitter.com/teams/authorize") >= 0) {
 			console.log("this is a login teams window! new-window");
 			event.newGuest = makeLoginWindow(url,true);
-		} else if (url.indexOf("https://twitter.com/login") >= 0 || url.indexOf("https://twitter.com/logout") >= 0) {
+		} else if (url.indexOf("twitter.com/login") >= 0 || url.indexOf("twitter.com/logout") >= 0) {
 			console.log("this is a login non-teams window! new-window");
 			event.newGuest = makeLoginWindow(url,false);
 		} else {
@@ -868,10 +782,6 @@ function makeWindow() {
 		if (!mainWindow || !mainWindow.webContents) { return }
 
 		mainWindow.webContents.copy();
-	});
-
-	ipcMain.on("nitroload-begin", (event) => {
-		NitroLoad.goReplace();
 	});
 
 	ipcMain.on("cut", (event) => {
@@ -1140,13 +1050,17 @@ autoUpdater.on("update-not-available", (e) => {
 
 // mtdInject can send manual update check requests
 ipcMain.on("checkForUpdates", (e) => {
-	autoUpdater.checkForUpdates();
+	if (autoUpdater) {
+		autoUpdater.checkForUpdates();
+	}
 });
 
 // Main -> Beta and vice versa
 ipcMain.on("changeChannel", (e) => {
-	autoUpdater.allowPrerelease = store.get("mtd_updatechannel") === "beta";
-	autoUpdater.channel = store.get("mtd_updatechannel");
+	if (autoUpdater) {
+		autoUpdater.allowPrerelease = store.get("mtd_updatechannel") === "beta";
+		autoUpdater.channel = store.get("mtd_updatechannel");
+	}
 });
 
 // OS inverted colour scheme (high contrast) mode changed. We automatically respond to changes for accessibility
