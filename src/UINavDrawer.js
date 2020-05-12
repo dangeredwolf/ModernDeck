@@ -117,7 +117,7 @@ export function UINavDrawer() {
 				make("button").addClass("btn mtd-nav-button").append(make("i").addClass("icon mtd-icon-command-pallete")).click(() => {
 					mtdPrepareWindows();
 					$(document).trigger("uiShowCommandPalette");
-				}).append(I18n("Command pallete")),
+				}).append(I18n("Command palette")),
 				make("button").addClass("btn mtd-nav-button").append(make("i").addClass("icon mtd-icon-developer")).click(() => {
 					mtdPrepareWindows();
 

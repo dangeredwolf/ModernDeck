@@ -162,7 +162,7 @@ export function openSettings(openMenu) {
 								select.append(newoption);
 							} else {
 
-								let group = make("optgroup").attr("label",pref.options[prefKey].name)
+								let group = make("optgroup").attr("label",internationaliseSettingString(pref.options[prefKey].name))
 
 								for (let subkey in pref.options[prefKey].children) {
 									let newSubPrefSel = pref.options[prefKey].children[subkey];
@@ -626,9 +626,7 @@ export function makeUpdateCont() {
 	updateCont.append(updateIcon,updateh2,updateh3,tryAgain,restartNow);
 
 	if (isApp && !html.hasClass("mtd-winstore") && !html.hasClass("mtd-macappstore")) {
-		if (!html.hasClass("mtd-winstore") && !html.hasClass("mtd-macappstore")) {
-			mtdAppUpdatePage(updateCont,updateh2,updateh3,updateIcon,updateSpinner,tryAgain,restartNow);
-		}
+		mtdAppUpdatePage(updateCont,updateh2,updateh3,updateIcon,updateSpinner,tryAgain,restartNow);
 	}
 
 	return updateCont;

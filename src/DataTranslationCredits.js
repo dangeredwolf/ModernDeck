@@ -1,6 +1,6 @@
 export const translationCredits = `
 <b>български</b><br>
-vancho1 (I don't know your twitter account, please DM me)<br>
+vancho1<br>
 <a href="https://twitter.com/Khar0s" rel="user" target="_blank">Kharos</a><br>
 
 <br><b>中文</b><br>
@@ -20,9 +20,9 @@ vancho1 (I don't know your twitter account, please DM me)<br>
 <a href="https://twitter.com/en_penumbras" rel="user" target="_blank">en_penumbras</a><br>
 <a href="https://twitter.com/FibonacciPrower" rel="user" target="_blank">Fibonacci Prower</a><br>
 <a href="https://twitter.com/RichardWolfVI" rel="user" target="_blank">Juan Marulanda</a><br>
-minyfriki (I don't know your twitter account, please DM me)<br>
+minyfriki<br>
 <a href="https://twitter.com/tetrisdog" rel="user" target="_blank">tetrisdog</a><br>
-TAKAHASHI Shuuji (I don't know your twitter account, please DM me)<br>
+TAKAHASHI Shuuji<br>
 
 <br><b>Français</b><br>
 <a href="https://twitter.com/COLAMAroro" rel="user" target="_blank">COLAMAroro</a><br>
@@ -35,7 +35,8 @@ TAKAHASHI Shuuji (I don't know your twitter account, please DM me)<br>
 <a href="https://twitter.com/robot275" rel="user" target="_blank">Robot275</a><br>
 
 <br><b>日本語</b><br>
-TAKAHASHI Shuuji (I don't know your twitter account, please DM me)<br>
+<a href="https://twitter.com/hideki_0403" rel="user" target="_blank">ゆきねこ (hideki_0403)</a><br>
+TAKAHASHI Shuuji<br>
 
 <br><b>Hrvatski</b><br>
 <a href="https://twitter.com/jptjohnny" rel="user" target="_blank">JPTJohnny</a><br>
@@ -45,8 +46,8 @@ TAKAHASHI Shuuji (I don't know your twitter account, please DM me)<br>
 <a href="https://twitter.com/w1nk000" rel="user" target="_blank">w1nk000</a><br>
 
 <br><b>Português (Brasil)</b><br>
-André Gama / ToeOficial (I don't know your twitter account, please DM me)<br>
-Chef! / chefwireframe (I don't know your twitter account, please DM me)<br>
+André Gama / ToeOficial<br>
+Chef! / chefwireframe<br>
 
 <br><b>русский</b><br>
 <a href="https://twitter.com/coldarchie" rel="user" target="_blank">Archie</a><br>

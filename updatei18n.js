@@ -14,7 +14,7 @@ let results = path.format({
 let buildFile = fs.readFileSync(i18n) + "";
 let newObj = {};
 
-let langMap = ["src","af","bg","ca","zh_CN","zh_TW","hr","cs","da","en","en_CA","en_GB","en_US","et","fi","fr","fr_CA","de","el","hi","hu","it","ja","ko","mi","no","pl","pt","pt_BR","ro","ru","sr","es","es_AR","es_419","es_US","sv","tr","uk","vi","eo"];
+let langMap = ["src","af","bg","ca","zh_CN","zh_TW","hr","cs","da","nl","en","en_CA","en_GB","en_US","et","fi","fr","fr_CA","de","el","hi","hu","it","ja","ko","mi","no","pl","pt","pt_BR","ro","ru","sr","es","es_AR","es_419","es_US","sv","tr","uk","vi","eo"];
 
 buildFile.split("\n").forEach((a, i) => {
 	let arr = a.replace(/\"\,\"/g,"\"=,=\"").replace(/\=\"\"/g,"=\"").replace(/\"\" /g,"\" ").replace(/\"\"\>/g,"\">").replace(/ \"\"/g," \"").replace(/\"\" /g,"\" ").split("=,=");
