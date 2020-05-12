@@ -32,11 +32,11 @@ import { isApp } from "./utils.js"
 
 export let settingsData = {
 	themes: {
-		tabName:"<i class='material-icon'>format_paint</i> Themes",
+		tabName:"<i class='material-icon'>format_paint</i> {{Themes}}",
 		options:{
 			coretheme:{
-				headerBefore:"Themes",
-				title:"Core Theme",
+				headerBefore:"{{Themes}}",
+				title:"{{Core Theme}}",
 				type:"dropdown",
 				activate:{
 					func: (opt) => {
@@ -79,8 +79,8 @@ export let settingsData = {
 					}
 				},
 				options:{
-					dark:{value:"dark",text:"Dark"},
-					light:{value:"light",text:"Light"}
+					dark:{value:"dark",text:"{{Dark}}"},
+					light:{value:"light",text:"{{Light}}"}
 				},
 				savePreference:false,
 				queryFunction: () => {
@@ -91,7 +91,7 @@ export let settingsData = {
 				default:"dark"
 			},
 			theme:{
-				title:"Custom Theme",
+				title:"{{Custom Theme}}",
 				type:"dropdown",
 				activate:{
 					func: (opt) => {
@@ -139,41 +139,41 @@ export let settingsData = {
 					}
 				},
 				options:{
-					default:{value:"default",text:"Default"},
+					default:{value:"default",text:"{{Default}}"},
 					completeLight:{
-						name:"Complete Light Themes",
+						name:"{{Complete Light Themes}}",
 						children:{
-							paper:{value:"paper",text:"Paperwhite"}
+							paper:{value:"paper",text:"{{Paperwhite}}"}
 						}
 					},
 					completeDark:{
-						name:"Complete Dark Themes",
+						name:"{{Complete Dark Themes}}",
 						children:{
-							darker:{value:"darker",text:"Darker"},
-							amoled:{value:"amoled",text:"AMOLED"}
+							darker:{value:"darker",text:"{{Darker}}"},
+							amoled:{value:"amoled",text:"{{AMOLED}}"}
 						}
 					},
 					complementary:{
-						name:"Complementary Themes",
+						name:"{{Complementary Themes}}",
 						children:{
-							grey:{value:"grey","text":"Grey"},
-							red:{value:"red","text":"Red"},
-							pink:{value:"pink","text":"Pink"},
-							orange:{value:"orange","text":"Orange"},
-							violet:{value:"violet","text":"Violet"},
-							teal:{value:"teal","text":"Teal"},
-							green:{value:"green","text":"Green"},
-							yellow:{value:"yellow","text":"Yellow"},
-							cyan:{value:"cyan","text":"Cyan"},
-							black:{value:"black","text":"Black"},
-							blue:{value:"blue","text":"Blue"},
+							grey:{value:"grey",text:"{{Grey}}"},
+							red:{value:"red",text:"{{Red}}"},
+							pink:{value:"pink",text:"{{Pink}}"},
+							orange:{value:"orange",text:"{{Orange}}"},
+							violet:{value:"violet",text:"{{Violet}}"},
+							teal:{value:"teal",text:"{{Teal}}"},
+							green:{value:"green",text:"{{Green}}"},
+							yellow:{value:"yellow",text:"{{Yellow}}"},
+							cyan:{value:"cyan",text:"{{Cyan}}"},
+							black:{value:"black",text:"{{Black}}"},
+							blue:{value:"blue",text:"{{Blue}}"},
 						}
 					}
 				},
 				settingsKey:"mtd_theme",
 				default:"default"
 			}, customCss:{
-				title:"Custom CSS (" + ctrlShiftText + "C disables it in case something went wrong)",
+				title:"{{Custom CSS (}}" + ctrlShiftText + "{{C disables it in case something went wrong)}}",
 				type:"textarea",
 				placeholder:":root {\n"+
 				"	--retweetColor:red;\n"+
@@ -194,11 +194,11 @@ export let settingsData = {
 		}
 	},
 	appearance: {
-		tabName:"<i class='material-icon'>rounded_corner</i> Appearance",
+		tabName:"<i class='material-icon'>rounded_corner</i> {{Appearance}}",
 		options:{
 			headposition:{
-				headerBefore:"Navigation",
-				title:"Navigation Style",
+				headerBefore:"{{Navigation}}",
+				title:"{{Navigation Style}}",
 				type:"dropdown",
 				activate:{
 					func: (opt) => {
@@ -218,15 +218,15 @@ export let settingsData = {
 					}
 				},
 				options:{
-					top:{value:"top",text:"Top"},
-					left:{value:"left",text:"Left"},
-					classic:{value:"classic",text:"Left (Classic)"},
+					top:{value:"top",text:"{{Top}}"},
+					left:{value:"left",text:"{{Left}}"},
+					classic:{value:"classic",text:"{{Left (Classic)}}"},
 				},
 				settingsKey:"mtd_headposition",
 				default:"left"
 			},
 			columnvisibility:{
-				title:"Improve Timeline performance by not rendering off-screen columns",
+				title:"{{Improve Timeline performance by not rendering off-screen columns}}",
 				type:"checkbox",
 				activate:{
 					func: (opt) => {
@@ -246,7 +246,7 @@ export let settingsData = {
 				default:true
 			},
 			fixedarrows:{
-				title:"Use fixed-location media arrows for tweets with multiple photos",
+				title:"{{Use fixed-location media arrows for tweets with multiple photos}}",
 				type:"checkbox",
 				activate:{
 					enableStylesheet:"fixedarrows"
@@ -258,8 +258,9 @@ export let settingsData = {
 				default:false
 			},
 			colNavAlwaysVis:{
-				title:"Always display column icons in navigator",
+				title:"{{Always display column icons in navigator}}",
 				type:"checkbox",
+				enabled:false,
 				activate:{
 					htmlAddClass:"mtd-column-nav-always-visible"
 				},
@@ -270,7 +271,7 @@ export let settingsData = {
 				default:true
 			},
 			nonewtweetsbutton:{
-				title:"Enable \"New Tweets\" indicator",
+				title:"{{Enable \"New Tweets\" indicator}}",
 				type:"checkbox",
 				activate:{
 					disableStylesheet:"nonewtweetsbutton"
@@ -282,7 +283,7 @@ export let settingsData = {
 				default:true
 			},
 			noemojipicker:{
-				title:"Enable Emoji picker",
+				title:"{{Enable Emoji picker}}",
 				type:"checkbox",
 				activate:{
 					htmlRemoveClass:"mtd-no-emoji-picker"
@@ -295,8 +296,8 @@ export let settingsData = {
 				default:true
 			},
 			scrollbarstyle:{
-				headerBefore:"Display",
-				title:"Scrollbar Style",
+				headerBefore:"{{Display}}",
+				title:"{{Scrollbar Style}}",
 				type:"dropdown",
 				activate:{
 					func: (opt) => {
@@ -306,15 +307,15 @@ export let settingsData = {
 					}
 				},
 				options:{
-					scrollbarsdefault:{value:"scrollbarsdefault",text:"Original"},
-					scrollbarsnarrow:{value:"scrollbarsnarrow",text:"Narrow"},
-					scrollbarsnone:{value:"scrollbarsnone",text:"Hidden"}
+					scrollbarsdefault:{value:"scrollbarsdefault",text:"{{Original}}"},
+					scrollbarsnarrow:{value:"scrollbarsnarrow",text:"{{Narrow}}"},
+					scrollbarsnone:{value:"scrollbarsnone",text:"{{Hidden}}"}
 				},
 				settingsKey:"mtd_scrollbar_style",
 				default:"scrollbarsnarrow"
 			},
 			columnwidth:{
-				title:"Column width",
+				title:"{{Column width}}",
 				type:"slider",
 				activate:{
 					func: (opt) => {
@@ -329,7 +330,7 @@ export let settingsData = {
 				default:325
 			},
 			fontSize:{
-				title:"Font Size",
+				title:"{{Font size}}",
 				type:"slider",
 				activate:{
 					func: (opt) => {
@@ -340,11 +341,11 @@ export let settingsData = {
 				minimum:75,
 				maximum:130,
 				settingsKey:"mtd_fontsize",
-				displayUnit:"%",
+				displayUnit:"{{%}}",
 				default:100
 			},
 			avatarSize:{
-				title:"Profile picture size",
+				title:"{{Profile picture size}}",
 				type:"slider",
 				activate:{
 					func: (opt) => {
@@ -360,7 +361,7 @@ export let settingsData = {
 				default:48
 			},
 			roundprofilepics:{
-				title:"Use round profile pictures",
+				title:"{{Use round profile pictures}}",
 				type:"checkbox",
 				activate:{
 					disableStylesheet:"squareavatars"
@@ -372,7 +373,7 @@ export let settingsData = {
 				default:true
 			},
 			newcharindicator:{
-				title:"Use new character limit indicator",
+				title:"{{Use new character limit indicator}}",
 				type:"checkbox",
 				activate:{
 					enableStylesheet:"newcharacterindicator"
@@ -384,7 +385,7 @@ export let settingsData = {
 				default:true
 			},
 			nocontextmenuicons:{
-				title:"Display contextual icons in menus",
+				title:"{{Display contextual icons in menus}}",
 				type:"checkbox",
 				activate:{
 					disableStylesheet:"nocontextmenuicons"
@@ -396,7 +397,7 @@ export let settingsData = {
 				default:true
 			},
 			sensitive:{
-				title:"Display media that may contain sensitive content",
+				title:"{{Display media that may contain sensitive content}}",
 				type:"checkbox",
 				activate:{
 					func: () => {
@@ -414,7 +415,7 @@ export let settingsData = {
 				}
 			},
 			altsensitive:{
-				title:"Use alternative sensitive media workflow",
+				title:"{{Use alternative sensitive media workflow}}",
 				type:"checkbox",
 				activate:{
 					enableStylesheet:"altsensitive"
@@ -427,7 +428,7 @@ export let settingsData = {
 			},
 			accoutline:{
 				headerBefore:"Accessibility",
-				title:"Always show outlines around focused items (" + ctrlShiftText + "A to toggle)",
+				title:"{{Always show outlines around focused items (}}" + ctrlShiftText + "A {{to toggle)}}",
 				type:"checkbox",
 				activate:{
 					htmlAddClass:"mtd-acc-focus-ring"
@@ -439,7 +440,7 @@ export let settingsData = {
 				default:false
 			},
 			highcont:{
-				title:"Enable High Contrast theme (" + ctrlShiftText + "H to toggle)",
+				title:"{{Enable High Contrast theme (}}" + ctrlShiftText + "H {{to toggle)}}",
 				type:"checkbox",
 				activate:{
 					func: (opt) => {
@@ -466,11 +467,11 @@ export let settingsData = {
 			}
 		}
 	}, tweets: {
-		tabName:"<i class='Icon icon-twitter-bird'></i> Tweets",
+		tabName:"<i class='Icon icon-twitter-bird'></i> {{Tweets}}",
 		options:{
 			stream:{
-				headerBefore:"Function",
-				title:"Stream Tweets in real time",
+				headerBefore:"{{Function}}",
+				title:"{{Stream Tweets in real time}}",
 				type:"checkbox",
 				savePreference:false,
 				activate:{
@@ -488,7 +489,7 @@ export let settingsData = {
 				}
 			},
 			autoplayGifs:{
-				title:"Automatically play GIFs",
+				title:"{{Automatically play GIFs}}",
 				type:"checkbox",
 				savePreference:false,
 				activate:{
@@ -506,7 +507,7 @@ export let settingsData = {
 				}
 			},
 			startupNotifications:{
-				title:"Show notifications on startup",
+				title:"{{Show notifications on startup}}",
 				type:"checkbox",
 				savePreference:false,
 				activate:{
@@ -524,7 +525,7 @@ export let settingsData = {
 				}
 			},
 			useModernDeckSounds:{
-				title:"Use custom ModernDeck alert sound",
+				title:"{{Use custom ModernDeck alert sound}}",
 				type:"checkbox",
 				activate:{
 					func: () => {
@@ -540,8 +541,8 @@ export let settingsData = {
 				default:true
 			},
 			linkshort:{
-				headerBefore:"Link Shortening",
-				title:"Link Shortener Service",
+				headerBefore:"{{Link Shortening}}",
+				title:"{{Link Shortener Service}}",
 				type:"dropdown",
 				activate:{
 					func: set => {
@@ -568,12 +569,12 @@ export let settingsData = {
 					return shortener;
 				},
 				options:{
-					twitter:{value:"twitter",text:"Twitter"},
-					bitly:{value:"bitly",text:"Bit.ly"}
+					twitter:{value:"twitter",text:"{{Twitter}}"},
+					bitly:{value:"bitly",text:"{{Bit.ly}}"}
 				}
 			},
 			bitlyUsername:{
-				title:"Bit.ly Username",
+				title:"{{Bit.ly Username}}",
 				type:"textbox",
 				activate:{
 					func: set => {
@@ -589,7 +590,7 @@ export let settingsData = {
 				}
 			},
 			bitlyApiKey:{
-				title:"Bit.ly API Key",
+				title:"{{Bit.ly API Key}}",
 				type:"textbox",
 				addClass:"mtd-big-text-box",
 				activate:{
@@ -607,16 +608,16 @@ export let settingsData = {
 			}
 		}
 	}, mutes: {
-		tabName:"<i class='material-icon'>volume_off</i> Mutes",
+		tabName:"<i class='material-icon'>volume_off</i> {{Mutes}}",
 		options:{},
 		enum:"mutepage"
 	}, app: {
-		tabName:"<i class='icon icon-moderndeck'></i> App",
+		tabName:"<i class='icon icon-moderndeck'></i> {{App}}",
 		enabled:isApp,
 		options:{
 			nativeTitlebar:{
-				headerBefore:"App settings",
-				title:"Use native OS title bar (restarts ModernDeck)",
+				headerBefore:"{{App settings}}",
+				title:"{{Use native OS title bar (restarts ModernDeck)}}",
 				type:"checkbox",
 				activate:{
 					func: () => {
@@ -648,7 +649,7 @@ export let settingsData = {
 				default:false
 			},
 			inspectElement:{
-				title:"Show Inspect Element in context menus",
+				title:"{{Show Inspect Element in context menus}}",
 				type:"checkbox",
 				activate:{
 					func: () => {
@@ -664,7 +665,7 @@ export let settingsData = {
 				default:false
 			},
 			nativeEmoji:{
-				title:"Use native Emoji Picker",
+				title:"{{Use native Emoji Picker}}",
 				type:"checkbox",
 				activate:{
 					func: (opt, load) => {
@@ -686,7 +687,7 @@ export let settingsData = {
 				default:false
 			},
 			nativeContextMenus:{
-				title:"Use OS native context menus",
+				title:"{{Use OS native context menus}}",
 				type:"checkbox",
 				activate:{
 					func: () => {
@@ -703,7 +704,7 @@ export let settingsData = {
 				settingsKey:"mtd_nativecontextmenus",
 				default:isApp ? process.platform === "darwin" : false
 			},theme:{
-				title:"App update channel",
+				title:"{{App update channel}}",
 				type:"dropdown",
 				activate:{
 					func: (opt) => {
@@ -723,15 +724,15 @@ export let settingsData = {
 					}
 				},
 				options:{
-					latest:{value:"latest","text":"Stable"},
-					beta:{value:"beta","text":"Beta"}
+					latest:{value:"latest",text:"{{Stable}}"},
+					beta:{value:"beta",text:"{{Beta}}"}
 				},
 				settingsKey:"mtd_updatechannel",
 				default:"latest"
 			},
 			mtdSafeMode: {
-				title:"Safe mode",
-				label:"Is something broken? Enter Safe Mode.",
+				title:"{{Safe mode}}",
+				label:"{{Is something broken? Enter Safe Mode.}}",
 				type:"link",
 				activate:{
 					func: () => {
@@ -742,11 +743,11 @@ export let settingsData = {
 			}
 		}
 	}, system: {
-		tabName:"<i class='material-icon'>settings_backup_restore</i> System",
+		tabName:"<i class='material-icon'>settings_backup_restore</i> {{System}}",
 		options:{
 			mtdResetSettings:{
-				title:"Reset Settings",
-				label:"<i class=\"icon material-icon mtd-icon-very-large\">restore</i>" + "<b>Reset settings</b><br>If you want to reset ModernDeck to default settings, you can do so here. This will restart ModernDeck.",
+				title:"{{Reset settings}}",
+				label:"<i class=\"icon material-icon mtd-icon-very-large\">restore</i><b>{{Reset settings}}</b><br>{{If you want to reset ModernDeck to default settings, you can do so here. This will restart ModernDeck.}}",
 				type:"button",
 				activate:{
 					func: () => {
@@ -763,8 +764,8 @@ export let settingsData = {
 				settingsKey:"mtd_resetSettings"
 			},
 			mtdClearData:{
-				title:"Clear Data",
-				label:"<i class=\"icon material-icon mtd-icon-very-large\">delete_forever</i>" + "<b>Clear data</b><br>This option clears all caches and preferences. This option will log you out and restart ModernDeck.",
+				title:"{{Clear data}}",
+				label:"<i class=\"icon material-icon mtd-icon-very-large\">delete_forever</i><b>{{Clear data}}</b><br>{{This option clears all caches and preferences. This option will log you out and restart ModernDeck.}}",
 				type:"button",
 				activate:{
 					func: () => {
@@ -779,8 +780,8 @@ export let settingsData = {
 				enabled:isApp
 			},
 			mtdSaveBackup:{
-				title:"Save Backup",
-				label:"<i class=\"icon material-icon mtd-icon-very-large\">save_alt</i>" + "<b>Save backup</b><br>Saves your preferences to a file to be loaded later.",
+				title:"{{Save backup}}",
+				label:"<i class=\"icon material-icon mtd-icon-very-large\">save_alt</i><b>{{Save backup}}</b><br>{{Saves your preferences to a file to be loaded later.}}",
 				type:"button",
 				activate:{
 					func: () => {
@@ -793,8 +794,8 @@ export let settingsData = {
 
 						dialog.showSaveDialog(
 						{
-							title: "ModernDeck Preferences",
-							filters: [{ name: "Preferences JSON File", extensions: ["json"] }]
+							title: I18n("ModernDeck Preferences"),
+							filters: [{ name: I18n("Preferences JSON File"), extensions: ["json"] }]
 						},
 						(file) => {
 							if (file === undefined) {
@@ -809,8 +810,8 @@ export let settingsData = {
 				enabled:isApp
 			},
 			mtdLoadBackup:{
-				title:"Load Backup",
-				label:"<i class=\"icon material-icon mtd-icon-very-large\">refresh</i>" + "<b>Load backup</b><br>Loads your preferences that you have saved previously. This will restart ModernDeck.",
+				title:"{{Load backup}}",
+				label:"<i class=\"icon material-icon mtd-icon-very-large\">refresh</i><b>{{Load backup}}</b><br>{{Loads your preferences that you have saved previously. This will restart ModernDeck.}}",
 				type:"button",
 				activate:{
 					func: () => {
@@ -820,7 +821,7 @@ export let settingsData = {
 						const {ipcRenderer} = require('electron');
 
 						dialog.showOpenDialog(
-							{ filters: [{ name: "Preferences JSON File", extensions: ["json"] }] },
+							{ filters: [{ name: I18n("Preferences JSON File"), extensions: ["json"] }] },
 							(file) => {
 								if (file === undefined) {
 									return;
@@ -838,8 +839,8 @@ export let settingsData = {
 				enabled:isApp
 			},
 			mtdTweetenImport:{
-				title:"Import Tweeten Settings",
-				label:"<i class=\"icon material-icon mtd-icon-very-large\">refresh</i>" + "<b>Import Tweeten Settings</b><br>Imports your Tweeten settings to ModernDeck. This will restart ModernDeck.",
+				title:"{{Import Tweeten settings}}",
+				label:"<i class=\"icon material-icon mtd-icon-very-large\">refresh</i><b>{{Import Tweeten settings}}</b><br>{{Imports your Tweeten settings to ModernDeck. This will restart ModernDeck.}}",
 				type:"button",
 				activate:{
 					func: () => {
@@ -849,7 +850,7 @@ export let settingsData = {
 						const {ipcRenderer} = require('electron');
 
 						dialog.showOpenDialog(
-							{ filters: [{ name: "Tweeten Settings JSON", extensions: ["json"] }] },
+							{ filters: [{ name: I18n("Tweeten Settings JSON"), extensions: ["json"] }] },
 							(file) => {
 								if (file === undefined) {
 									return;
@@ -869,8 +870,8 @@ export let settingsData = {
 				enabled:isApp
 			},
 			tdLegacySettings: {
-				title:"Legacy settings",
-				label:"Did TweetDeck add a new feature we're missing? Visit legacy settings",
+				title:"{{Legacy settings}}",
+				label:"{{Did TweetDeck add a new feature we're missing? Visit legacy settings}}",
 				type:"link",
 				activate:{
 					func: () => {
@@ -880,11 +881,11 @@ export let settingsData = {
 			}
 		}
 	}, language: {
-		tabName:"<i class='material-icon'>language</i> Language",
+		tabName:"<i class='material-icon'>language</i> {{Language}}",
 		options:{
 			mtdResetSettings:{
-				title:"Change Language",
-				label:"<b>Changing your language will restart ModernDeck</b>",
+				title:"{{Change Language}}",
+				label:"<b>{{Changing your language will restart ModernDeck}}</b>",
 				type:"button",
 				activate:{
 					func: () => {
@@ -896,7 +897,7 @@ export let settingsData = {
 			},
 		}
 	}, about: {
-		tabName:"<i class='material-icon'>info_outline</i> About",
+		tabName:"<i class='material-icon'>info_outline</i> {{About}}",
 		tabId:"about",
 		options:{},
 		enum:"aboutpage"

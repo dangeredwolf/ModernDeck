@@ -1,5 +1,6 @@
 import { make, exists, getIpc } from "./Utils.js";
 import { mtdAlert } from "./UIAlert.js";
+import { UIUpdateNotify } from "./UIUpdateNotify.js";
 import { buildContextMenu } from "./UIContextMenu.js";
 import { parseActions } from "./PrefHandler.js";
 import { I18n } from "./I18n.js";
@@ -14,16 +15,7 @@ function notifyUpdate() {
 	if (isDev) {
 		return;
 	}
-	mtdAlert({
-		title:I18n("Update ModernDeck"),
-		message:I18n("An update is available for ModernDeck! Would you like to restart the app to install the update?"),
-		buttonText:I18n("Restart Now"),
-		button2Text:I18n("Later"),
-		button1Click:() => {
-			mtdPrepareWindows();
-			require("electron").ipcRenderer.send("restartAndInstallUpdates")
-		}
-	});
+	UIUpdateNotify();
 }
 
 /*

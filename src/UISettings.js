@@ -19,6 +19,15 @@ let verText = "";
 
 
 
+function internationaliseSettingString(str) {
+	let matches = str.match(/{{.+?}}/g);
+	(matches || []).forEach((i) => {
+		let translatedString = I18n(i.substr(2, i.length - 4));
+		str = str.replace(i, translatedString);
+	});
+	return str;
+}
+
 
 // opens legacy tweetdeck settings
 
@@ -50,7 +59,7 @@ export function openSettings(openMenu) {
 			continue;
 		}
 
-		var tab = make("button").addClass("mtd-settings-tab").attr("data-action",key).html(I18n(settingsData[key].tabName)).click(function() {
+		var tab = make("button").addClass("mtd-settings-tab").attr("data-action",key).html(internationaliseSettingString(settingsData[key].tabName)).click(function() {
 			$(".mtd-settings-tab-selected").removeClass("mtd-settings-tab-selected");
 			$(this).addClass("mtd-settings-tab-selected");
 
@@ -94,7 +103,7 @@ export function openSettings(openMenu) {
 
 				if (exists(pref.headerBefore)) {
 					subPanel.append(
-						make("h3").addClass("mtd-settings-panel-subheader").html(I18n(pref.headerBefore))
+						make("h3").addClass("mtd-settings-panel-subheader").html(internationaliseSettingString(pref.headerBefore))
 					);
 				}
 
@@ -127,7 +136,7 @@ export function openSettings(openMenu) {
 							}
 						}
 
-						label = make("label").addClass("checkbox").html(I18n(pref.title)).append(input);
+						label = make("label").addClass("checkbox").html(internationaliseSettingString(pref.title)).append(input);
 
 						option.append(label);
 
@@ -148,7 +157,7 @@ export function openSettings(openMenu) {
 						for (let prefKey in pref.options) {
 							if (!!(pref.options[prefKey].value)) {
 								let newPrefSel = pref.options[prefKey];
-								let newoption = make("option").attr("value",newPrefSel.value).html(I18n(newPrefSel.text));
+								let newoption = make("option").attr("value",newPrefSel.value).html(internationaliseSettingString(newPrefSel.text));
 
 								select.append(newoption);
 							} else {
@@ -157,7 +166,7 @@ export function openSettings(openMenu) {
 
 								for (let subkey in pref.options[prefKey].children) {
 									let newSubPrefSel = pref.options[prefKey].children[subkey];
-									let newsuboption = make("option").attr("value",newSubPrefSel.value).html(I18n(newSubPrefSel.text));
+									let newsuboption = make("option").attr("value",newSubPrefSel.value).html(internationaliseSettingString(newSubPrefSel.text));
 
 									group.append(newsuboption);
 								}
@@ -172,7 +181,7 @@ export function openSettings(openMenu) {
 							select.val(pref.queryFunction())
 						}
 
-						label = make("label").addClass("control-label").html(I18n(pref.title));
+						label = make("label").addClass("control-label").html(internationaliseSettingString(pref.title));
 
 						option.append(label,select);
 
@@ -207,7 +216,7 @@ export function openSettings(openMenu) {
 							input.val(pref.queryFunction())
 						}
 
-						label = make("label").addClass("control-label").html(I18n(pref.title));
+						label = make("label").addClass("control-label").html(internationaliseSettingString(pref.title));
 
 						if (exists(pref.initFunc)) {
 							pref.initFunc(input);
@@ -269,7 +278,7 @@ export function openSettings(openMenu) {
 							input.val(pref.queryFunction())
 						}
 
-						label = make("label").addClass("control-label").html(I18n(pref.title));
+						label = make("label").addClass("control-label").html(internationaliseSettingString(pref.title));
 
 						if (exists(pref.initFunc)) {
 							pref.initFunc(input);
@@ -291,7 +300,7 @@ export function openSettings(openMenu) {
 								setPref(pref.settingsKey, $(this).val());
 							}
 						}).on("input",function() {
-							label.html(`${I18n(pref.title)} <b> ${$(this).val()} ${(I18n(pref.displayUnit || ""))} </b>`);
+							label.html(`${internationaliseSettingString(pref.title)} <b> ${$(this).val()} ${(internationaliseSettingString(pref.displayUnit || ""))} </b>`);
 						});
 
 						if (exists(pref.settingsKey)) {
@@ -302,10 +311,10 @@ export function openSettings(openMenu) {
 							input.val(pref.default);
 						}
 
-						label.html(I18n(pref.title) + " <b> "+ input.val() + " " + (I18n(pref.displayUnit) || "") + "</b>");
+						label.html(internationaliseSettingString(pref.title) + " <b> "+ input.val() + " " + (internationaliseSettingString(pref.displayUnit) || "") + "</b>");
 
-						maximum = make("label").addClass("control-label mtd-slider-maximum").html(pref.maximum + (I18n(pref.displayUnit) || ""));
-						minimum = make("label").addClass("control-label mtd-slider-minimum").html(pref.minimum + (I18n(pref.displayUnit) || ""));
+						maximum = make("label").addClass("control-label mtd-slider-maximum").html(pref.maximum + (internationaliseSettingString(pref.displayUnit) || ""));
+						minimum = make("label").addClass("control-label mtd-slider-minimum").html(pref.minimum + (internationaliseSettingString(pref.displayUnit) || ""));
 
 						if (exists(pref.initFunc)) {
 							pref.initFunc(input);
@@ -316,9 +325,9 @@ export function openSettings(openMenu) {
 						break;
 
 					case "button":
-						label = make("label").addClass("control-label").html(I18n(pref.label) || "");
+						label = make("label").addClass("control-label").html(internationaliseSettingString(pref.label) || "");
 
-						button = make("button").html(I18n(pref.title)).addClass("btn btn-positive mtd-settings-button")
+						button = make("button").html(internationaliseSettingString(pref.title)).addClass("btn btn-positive mtd-settings-button")
 						.click(() => {
 							parseActions(pref.activate,true);
 						});
@@ -332,7 +341,7 @@ export function openSettings(openMenu) {
 						break;
 
 					case "link":
-						link = make("a").html(I18n(pref.label)).addClass("mtd-settings-link")
+						link = make("a").html(internationaliseSettingString(pref.label)).addClass("mtd-settings-link")
 						.click(() => {
 							parseActions(pref.activate,true);
 						});

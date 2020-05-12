@@ -1,6 +1,7 @@
 /* Main thread for welcome screen */
 
 import { _welcomeData } from "./DataWelcome.js";
+import { settingsData } from "./DataSettings.js";
 import { makeUpdateCont } from "./UISettings.js";
 import { isApp, make } from "./Utils.js";
 import { enableStylesheetExtension, disableStylesheetExtension } from "./StylesheetExtensions.js";

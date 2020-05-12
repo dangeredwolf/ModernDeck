@@ -117,7 +117,7 @@ export function UINavDrawer() {
 				make("button").addClass("btn mtd-nav-button").append(make("i").addClass("icon mtd-icon-command-pallete")).click(() => {
 					mtdPrepareWindows();
 					$(document).trigger("uiShowCommandPalette");
-				}).append(I18n("Command Pallete")),
+				}).append(I18n("Command pallete")),
 				make("button").addClass("btn mtd-nav-button").append(make("i").addClass("icon mtd-icon-developer")).click(() => {
 					mtdPrepareWindows();
 
@@ -127,7 +127,7 @@ export function UINavDrawer() {
 						}
 					});
 
-				}).append(I18n("Disable Dev/Dogfood"))
+				}).append(I18n("Disable dev/dogfood"))
 			)
 		}
 	} catch(e) {

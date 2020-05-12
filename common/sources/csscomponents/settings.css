@@ -185,7 +185,7 @@
 
 
 html:not(.mtd-js-app) .mtd-settings-tab {
-	padding:20px 29.6px!important
+	/*! padding:20px 29.6px!important; */
 }
 
 .mtd-settings-tab:not(.mtd-settings-tab-selected) {
@@ -578,6 +578,7 @@ html body .mtd-settings-subpanel button {
 	position:absolute;
 	bottom:40px
 }
+
 .js-add-filter-container {
 	position:absolute;
 	left:315px;

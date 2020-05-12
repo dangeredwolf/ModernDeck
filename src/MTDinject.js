@@ -8,8 +8,7 @@
 
 window.ModernDeck = 8;
 import { version } from "../package.json";
-// window.SystemVersion = version.replace(".0",""); // remove trailing .0, if present
-window.SystemVersion = version.substr(0,3);
+window.SystemVersion = version.replace(".0.0",".0"); // remove trailing .0, if present
 
 import { I18n, startI18nEngine } from "./I18n.js";
 import { getPref, setPref } from "./StoragePreferences.js";
@@ -59,7 +58,6 @@ window.mtdBaseURL = "https://raw.githubusercontent.com/dangeredwolf/ModernDeck/m
 let loadEmojiPicker = false;
 
 const forceFeatureFlags = false;
-const useRaven = false;
 
 let replacedLoadingSpinnerNew = false;
 let sendingFeedback = false;
@@ -594,11 +592,6 @@ function onElementAddedToDOM(e) {
 */
 
 function coreInit() {
-	if (useRaven && typeof Raven === "undefined") {
-		setTimeout(coreInit,10);
-		console.info("waiting on raven...");
-		return;
-	}
 
 	if (typeof mR === "undefined") {
 		setTimeout(coreInit,10);
@@ -619,7 +612,7 @@ function coreInit() {
 
 	head = $(document.head);
 	body = $(document.body);
-	html = $(document.querySelector("html")); // Only 1 result; faster to find
+	html = $(document.querySelector("html"));
 
 
 

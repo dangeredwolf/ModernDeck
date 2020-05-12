@@ -6,7 +6,7 @@
 */
 
 @import "coredefinitions.css";
-@import "dark.css";
+@import "../cssextensions/dark.css";
 
 @font-face {
 	font-family:Material;

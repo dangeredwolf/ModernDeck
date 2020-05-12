@@ -1,8 +1,8 @@
 {
 	"description": {
-		"message": "The most powerful Twitter client for desktop."
+		"message": "最も強力なデスクトップ用Twitterクライアント"
 	},
 	"launch": {
-		"message": "Launch ModernDeck"
+		"message": "ModernDeckを起動"
 	}
 }

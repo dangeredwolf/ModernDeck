@@ -1,8 +1,8 @@
 {
 	"description": {
-		"message": "The most powerful Twitter client for desktop."
+		"message": "史上最强大的 Twitter 客户端。"
 	},
 	"launch": {
-		"message": "Launch ModernDeck"
+		"message": "启动 ModernDeck"
 	}
 }
