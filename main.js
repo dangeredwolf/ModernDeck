@@ -398,7 +398,7 @@ function makeWindow() {
 		icon:__dirname+useDir+"/sources/favicon.ico",
 		frame:useFrame,
 		titleBarStyle:titleBarStyle,
-		minWidth:400,
+		minWidth:375,
 		show:false,
 		enableRemoteModule:true,
 		backgroundColor:"#263238"

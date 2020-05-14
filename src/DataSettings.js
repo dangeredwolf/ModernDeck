@@ -109,6 +109,7 @@ export let settingsData = {
 						}
 
 						disableStylesheetExtension(getPref("mtd_theme"));
+						disableStylesheetExtension("amoled");
 						setPref("mtd_theme",opt);
 						enableStylesheetExtension(opt || "default");
 
@@ -156,22 +157,41 @@ export let settingsData = {
 					complementary:{
 						name:"{{Complementary Themes}}",
 						children:{
+							black:{value:"black",text:"{{Black}}"},
 							grey:{value:"grey",text:"{{Grey}}"},
 							red:{value:"red",text:"{{Red}}"},
-							pink:{value:"pink",text:"{{Pink}}"},
 							orange:{value:"orange",text:"{{Orange}}"},
-							violet:{value:"violet",text:"{{Violet}}"},
-							teal:{value:"teal",text:"{{Teal}}"},
-							green:{value:"green",text:"{{Green}}"},
 							yellow:{value:"yellow",text:"{{Yellow}}"},
+							green:{value:"green",text:"{{Green}}"},
+							teal:{value:"teal",text:"{{Teal}}"},
 							cyan:{value:"cyan",text:"{{Cyan}}"},
-							black:{value:"black",text:"{{Black}}"},
 							blue:{value:"blue",text:"{{Blue}}"},
+							violet:{value:"violet",text:"{{Violet}}"},
+							pink:{value:"pink",text:"{{Pink}}"}
 						}
 					}
 				},
 				settingsKey:"mtd_theme",
 				default:"default"
+			}, selectedFont:{
+				title:"{{Preferred Font}}",
+				type:"dropdown",
+				options:{
+					Roboto:{value:"Roboto",text:"Roboto"},
+					RobotoCondensed:{value:"RobotoCondensed",text:"Roboto Condensed"},
+					RobotoSlab:{value:"RobotoSlab",text:"Roboto Slab"},
+					RobotoMono:{value:"RobotoMono",text:"Roboto Mono"},
+					OpenSans:{value:"OpenSans",text:"Open Sans"},
+					Lato:{value:"Lato",text:"Lato"},
+					Jost:{value:"Jost",text:"Jost"}
+				},
+				activate:{
+					func: (opt) => {
+						enableCustomStylesheetExtension("selectedFont",":root{--selectedFont:"+ opt +"!important}");
+					}
+				},
+				settingsKey:"mtd_selectedfont",
+				default:"Roboto"
 			}, customCss:{
 				title:"{{Custom CSS (}}" + ctrlShiftText + "{{C disables it in case something went wrong)}}",
 				type:"textarea",
@@ -254,8 +274,8 @@ export let settingsData = {
 				deactivate:{
 					disableStylesheet:"fixedarrows"
 				},
-				settingsKey:"mtd_fixedarrows",
-				default:false
+				settingsKey:"mtd_usefixedarrows",
+				default:true
 			},
 			colNavAlwaysVis:{
 				title:"{{Always display column icons in navigator}}",
@@ -425,7 +445,12 @@ export let settingsData = {
 				},
 				settingsKey:"mtd_sensitive_alt",
 				default:false
-			},
+			}
+		}
+	},
+	accessibility: {
+		tabName:"<i class='material-icon'>accessibility</i> {{Accessibility}}",
+		options:{
 			accoutline:{
 				headerBefore:"Accessibility",
 				title:"{{Always show outlines around focused items (}}" + ctrlShiftText + "A {{to toggle)}}",

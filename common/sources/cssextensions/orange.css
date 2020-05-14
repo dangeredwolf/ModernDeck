@@ -12,6 +12,7 @@
 .dark:root {
 	--secondaryColor:#d25c37 !important;
 	--secondaryColorBright:#FF5722 !important;
+	--selectionBackgroundColor:rgba(210,92,55,.57) !important;
 	--secondaryColorAlt:#d25c37;
 	--secondaryColorPress:#FF5722;
 	--secondaryColorDeep:#a0492e

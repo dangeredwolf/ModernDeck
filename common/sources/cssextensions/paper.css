@@ -81,7 +81,11 @@ html body .js-column-message .dark-only--color-twitter-gray,
 }
 /* stylelint-enable */
 
-.mtd-nd-header-username {
+.mtd-nd-header-username,
+.mtd-nd-header-atname,
+.btn.mtd-notification-button,
+.Notification-closeButton
+{
 	color:var(--pureWhite)!important
 }
 

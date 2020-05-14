@@ -83,14 +83,14 @@
 }
 
 .mtd-settings-subpanel {
-	height:100%;
+	height:525px;
 	width:500px;
 	display:block;
 	position:absolute;
 	overflow-y:auto;
 	overflow-x:hidden;
 	padding:20px;
-	padding-top:0
+	padding-top:0;
 }
 
 .mtd-settings-subpanel:first-child .mtd-welcome-prev-button
@@ -99,49 +99,54 @@
 }
 
 .mtd-settings-subpanel:nth-child(1) {
-	margin-left:0
+	margin-top:0
 }
 
 .mtd-settings-subpanel:nth-child(2) {
-	margin-left:700px
+	margin-top:545px;
 }
 
 .mtd-settings-subpanel:nth-child(3) {
-	margin-left:1400px
+	margin-top:1090px
 }
 
 .mtd-settings-subpanel:nth-child(4) {
-	margin-left:2100px
+	margin-top:1635px
 }
 
 .mtd-settings-subpanel:nth-child(5) {
-	margin-left:2800px
+	margin-top:2180px
 }
 
 .mtd-settings-subpanel:nth-child(6) {
-	margin-left:3500px
+	margin-top:2725px
 }
 
 .mtd-settings-subpanel:nth-child(7) {
-	margin-left:4200px
+	margin-top:3270px
 }
 
 .mtd-settings-subpanel:nth-child(8) {
-	margin-left:4900px
+	margin-top:3815px
+}
+
+.mtd-settings-subpanel:nth-child(9) {
+	margin-top:4360px
 }
 
 .mtd-settings-inner {
 	min-height:300px;
-	transition:margin-left 0.3s var(--animationTiming);
+	transition:margin-top 0.3s var(--animationTiming);
 	bottom:0;
 	top:0;
 	left:0;
 	right:0;
 	position:absolute;
-	overflow:hidden;
+	/* overflow:hidden; */
 	-webkit-app-region:no-drag;
 	pointer-events:none;
-	z-index:5
+	z-index:5;
+	width:540px;
 }
 
 .mtd-settings-panel-subheader {
@@ -162,7 +167,7 @@
 }
 
 .mtd-settings-tab {
-	padding:14px 20px!important;
+	padding:14px 0 14px 18px!important;
 	color:var(--bodyTextColor);
 	-webkit-app-region:no-drag!important;
 	transition:color 0.3s var(--animationTiming), border-bottom 0.3s var(--animationTiming)!important;
@@ -175,21 +180,24 @@
 	width:100%;
 	text-align:left;
 	text-transform:none;
-	font-size:16px
-}
-
-.mtd-settings-tab-selected {
-	/* border-right:3px solid var(--bodyTextColor) */
-	background:var(--selectionBackgroundColor)!important
-}
-
-
-html:not(.mtd-js-app) .mtd-settings-tab {
-	/*! padding:20px 29.6px!important; */
+	font-size:16px;
+	height:50px;
+	z-index:2
 }
 
 .mtd-settings-tab:not(.mtd-settings-tab-selected) {
 	border-right:0 solid rgba(0,0,0,0)!important
+}
+
+.mtd-settings-tab-selection {
+	height:52px;
+	position:absolute;
+	background:var(--selectionBackgroundColor)!important;
+	z-index:1;
+	left:0;
+	width:170px;
+	transition:top 0.3s var(--animationTiming)!important;
+	pointer-events:none
 }
 
 .mtd-settings-tab-container {
@@ -197,7 +205,8 @@ html:not(.mtd-js-app) .mtd-settings-tab {
 	width:var(--settingsTabWidth);
 	height:100%;
 	z-index:20;
-	background:var(--settingsTabColor)
+	background:var(--settingsTabColor);
+	box-shadow:0 2px 13px var(--genericDropShadow)
 }
 
 .mtd-logo-container {
@@ -244,7 +253,6 @@ html:not(.mtd-js-app) .mtd-settings-tab {
 
 .mtd-settings-option input[type="checkbox"], .mtd-settings-option input[type="radio"] {
 	position:relative;
-	margin-left:0;
 	/* height:40px; */
 	margin-left:-40px
 }

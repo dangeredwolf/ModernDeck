@@ -9,9 +9,13 @@ html {
 	color:#fff
 }
 
-.is-options-open .column-settings-link,.column-message,.column-options,.more-tweets-btn,.tooltip,.Tooltip,.dropdown-menu,.mdl:not(.med-fullpanel),.mtd-nav-drawer,.popover {
+.prf-actions .js-follow-button,.Notification-inner,.btn-primary,.mtd-settings-button,.is-options-open .column-settings-link,.column-message,.column-options,.more-tweets-btn,.tooltip,.Tooltip,.dropdown-menu,.mdl:not(.med-fullpanel),.mtd-nav-drawer,.popover {
 	background:#000;
 	border:#54707f 2px solid
+}
+
+.prf-actions .js-follow-button,.mtd-settings-button,.btn-primary {
+	background:#000!important
 }
 
 .is-options-open .column-settings-link {
@@ -91,7 +95,7 @@ input, textarea, select, .uneditable-input {
 }
 
 
-.txt-mute a:not(:focus):not(.tweet-action):not([data-action]) {
+.mtd-notification-button,.btn-primary,.txt-mute a:not(:focus):not(.tweet-action):not([data-action]) {
 	color:#fff!important;
 	text-decoration:underline
 }
@@ -148,11 +152,11 @@ html .is-new .column-header, html .is-new .column-header-temp
 	box-shadow:none!important
 }
 
-html.dark div.drawer[data-drawer="compose"], html.dark .lst-group .selected, html.dark #calcurrent, html.dark .btn-compose:not(.js-hide-drawer), html.dark .compose, html.dark .drawer, html.dark .column-options .button-tray, html.dark .column-options, html.dark .facet-type, html.dark .is-options-open .column-settings-link, html.dark .is-favorite.is-retweet .tweet-dogear, html.dark .is-unread, html.dark .js-add-column, html.dark .mdl .js-add-column, html.dark .list-item.is-selected, html.dark .more-tweets-btn, html.dark .more-tweets-btn:hover, html.dark .tweet-button:not(.js-hide-drawer), html.dark .PillGroup .Pill.is-selected, html.dark .DatePicker-calendarDay.is-withinRange, html.dark button.try-query {
+.mtd-nd-header-image,html.dark div.drawer[data-drawer="compose"], html.dark .lst-group .selected, html.dark #calcurrent, html.dark .btn-compose:not(.js-hide-drawer), html.dark .compose, html.dark .drawer, html.dark .column-options .button-tray, html.dark .column-options, html.dark .facet-type, html.dark .is-options-open .column-settings-link, html.dark .is-favorite.is-retweet .tweet-dogear, html.dark .is-unread, html.dark .js-add-column, html.dark .mdl .js-add-column, html.dark .list-item.is-selected, html.dark .more-tweets-btn, html.dark .more-tweets-btn:hover, html.dark .tweet-button:not(.js-hide-drawer), html.dark .PillGroup .Pill.is-selected, html.dark .DatePicker-calendarDay.is-withinRange, html.dark button.try-query {
 	background:#000
 }
 
-.prf-header {
+.mdl .js-user-actions-menu,.prf-header {
 	text-shadow:0 0 5px #000,0 0 5px #000,0 0 5px #000,0 0 5px #000,0 0 5px #000,0 0 5px #000,0 0 5px #000,0 0 5px #000,0 0 5px #000,0 0 5px #000,0 0 5px #000,0 0 5px #000,0 0 5px #000,0 0 5px #000,0 0 5px #000,0 0 5px #000,0 0 5px #000,0 0 5px #000,0 0 5px #000,0 0 5px #000
 }
 
@@ -174,7 +178,7 @@ html .js-modal[style="display: none;"],html .mtd-nav-drawer-background.mtd-nav-d
 	opacity:0.7!important
 }
 
-.cal button,.compose-reply-tweet-remove {
+.mtd-logo,.mtd-settings-panel .btn,.cal button,.compose-reply-tweet-remove {
 	color:#fff!important
 }
 
@@ -189,7 +193,7 @@ html .js-modal[style="display: none;"],html .mtd-nav-drawer-background.mtd-nav-d
 	color:#EA6B6B!important
 }
 
-.calweek>a:not(.caldisabled) {
+.mtd-settings-panel .btn,.tweet-body a,.calweek>a:not(.caldisabled) {
 	text-decoration:underline!important
 }
 
@@ -207,12 +211,16 @@ html .js-modal[style="display: none;"],html .mtd-nav-drawer-background.mtd-nav-d
 	margin-top:-8px
 }
 
+.js-compose-stay-open {
+	opacity:1
+}
+
 .mtd-context-menu a[disabled] {
 	opacity:0.5
 }
 
 /* stylelint-disable */
-.account-link, .account-link:hover, .account-link:focus, .mtd-about-title.list-placeholder, .cal, select, input, .txt-normal, .account-bio, .link-complex.block[rel="user"] {
+.btn-negative:not([disabled]):not(.is-disabled),a,.account-link, .account-link:hover, .account-link:focus, .mtd-about-title.list-placeholder, .cal, select, input, .txt-normal, .account-bio, .link-complex.block[rel="user"] {
 	color:#fff!important
 }
 
@@ -221,7 +229,25 @@ html .js-modal[style="display: none;"],html .mtd-nav-drawer-background.mtd-nav-d
 	border:3px #54707f solid
 }
 
-.column-nav-link,.account-bio,.prf-stats>li>a,.lst-profile a,.tweet-action, .tweet-detail-action, .tweet-stats>li>a,.tweet-action:active, .tweet-action:hover, .tweet-detail-action:active, .tweet-detail-action:hover, .stream-item.is-actionable .tweet-action:hover, .stream-item.is-actionable .tweet-detail-action:hover, .stream-item.is-actionable .tweet-action:focus, .stream-item.is-actionable .tweet-detail-action:focus, .stream-item.is-actionable .tweet-action:active, .stream-item.is-actionable .tweet-detail-action:active, .stream-item.is-actionable .tweet-action.is-selected, .stream-item.is-actionable a.is-selected.tweet-detail-action, .tweet-stats>li>a:hover,.txt-mute,.mtd-back-default .js-setting-list>li:not(.selected)>.list-link strong, .txt-mute, .txt-r-dark-gray, .typeahead .username, .l-column.mdl-column.mdl-column-sml .list-link, .lst-group .list-account .username, html .btd-grayscale_notification_icons i.icon.activity-indicator, .other-replies,.tweet-stats>li,.txt-r-deep-gray,.color-twitter-dark-gray,.lst-launcher :not(.is-disabled) .color-twitter-darker-gray, .js-send-button[disabled],.js-add-image-button, .js-tweet-button, .js-dm-button, .js-schedule-button,.caldisabled,.caldisabled:hover,.caldisabled:active,.calweek a:hover,.caloff:hover,.caloff,#caldays span,.caloff,.mdl-links span {
+input[type="checkbox"]:checked:before, button, input[type="radio"]:checked:before,.mtd-gif-button,.column-nav-link,.account-bio,.prf-stats>li>a,.lst-profile a,.tweet-action, .tweet-detail-action, .tweet-stats>li>a,.tweet-action:active, .tweet-action:hover, .tweet-detail-action:active, .tweet-detail-action:hover, .stream-item.is-actionable .tweet-action:hover, .stream-item.is-actionable .tweet-detail-action:hover, .stream-item.is-actionable .tweet-action:focus, .stream-item.is-actionable .tweet-detail-action:focus, .stream-item.is-actionable .tweet-action:active, .stream-item.is-actionable .tweet-detail-action:active, .stream-item.is-actionable .tweet-action.is-selected, .stream-item.is-actionable a.is-selected.tweet-detail-action, .tweet-stats>li>a:hover,.txt-mute,.mtd-back-default .js-setting-list>li:not(.selected)>.list-link strong, .txt-mute, .txt-r-dark-gray, .typeahead .username, .l-column.mdl-column.mdl-column-sml .list-link, .lst-group .list-account .username, html .btd-grayscale_notification_icons i.icon.activity-indicator, .other-replies,.tweet-stats>li,.txt-r-deep-gray,.color-twitter-dark-gray,.lst-launcher :not(.is-disabled) .color-twitter-darker-gray, .js-send-button[disabled],.js-add-image-button, .js-tweet-button, .js-dm-button, .js-schedule-button,.caldisabled,.caldisabled:hover,.caldisabled:active,.calweek a:hover,.caloff:hover,.caloff,#caldays span,.caloff,.mdl-links span {
 	color:#fff!important
 }
 /* stylelint-enable */
+
+.account-selector-grid-mode {
+	opacity:0.5
+}
+
+.is-selected.account-selector-grid-mode {
+	opacity:1
+}
+
+.stroke-twitter-blue {
+	stroke:#fff
+}
+
+.mtd-settings-tab-selection {
+	width:5px!important;
+	left:152px;
+	background:#fff!important
+}

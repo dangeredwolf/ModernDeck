@@ -39,6 +39,7 @@ function profileSetup() {
 		}
 	});
 	$(mtd_nd_header_username).html(name); // Fetch twitter handle and place in nav drawer
+	$(mtd_nd_header_atname).html("@" + username); // Fetch twitter handle and place in nav drawer
 
 }
 
@@ -61,10 +62,11 @@ export function UINavDrawer() {
 		.addClass("mtd-nav-drawer hidden")
 		.append(
 			make("img").attr("id","mtd_nd_header_image").addClass("mtd-nd-header-image").attr("style",""),
-			make("img").addClass("avatar size73 mtd-nd-header-photo").attr("id","mtd_nd_header_photo").attr("src","").click(() => {
-				$('a[data-user-name="dangeredwolf"][rel="user"][href="#"]').click();
+			make("img").addClass("avatar mtd-nd-header-photo").attr("id","mtd_nd_header_photo").attr("src","").click(() => {
+				$('a[data-user-name="'+getProfileInfo().screenName+'"][rel="user"][href="#"]')[0].click();
 			}),
-			make("div").addClass("mtd-nd-header-username").attr("id","mtd_nd_header_username").html("PROFILE ERROR<br>Tell @dangeredwolf i said hi"),
+			make("div").addClass("mtd-nd-header-username").attr("id","mtd_nd_header_username").html("PROFILE ERROR"),
+			make("div").addClass("mtd-nd-header-atname").attr("id","mtd_nd_header_atname").html("Tell @dangeredwolf i said hi"),
 			make("button").addClass("btn mtd-nav-button mtd-nav-first-button").attr("id","tdaccsbutton").append(make("i").addClass("icon icon-user-switch")).click(() => {mtdPrepareWindows();$(".js-show-drawer.js-header-action").click();}).append(I18n("Your accounts")),
 			make("button").addClass("btn mtd-nav-button").attr("id","addcolumn").append(make("i").addClass("icon icon-plus")).click(() => {mtdPrepareWindows();TD.ui.openColumn.showOpenColumn()}).append(I18n("Add column")),
 			make("div").addClass("mtd-nav-divider"),

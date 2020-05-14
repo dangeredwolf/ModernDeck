@@ -48,7 +48,8 @@
 	--rootLightGreyColor:#eee;
 	--rootBlackColor:#000;
 	--animationTiming:cubic-bezier(.1,1,.1,1);
-	--defaultFontOrder:Roboto,"Noto Sans","Noto Sans CJK";
+	--selectedFont:Roboto; /* selectedFont is controlled by the preference system */
+	--defaultFontOrder:var(--selectedFont),Roboto,"Noto Sans","Noto Sans CJK";
 	--composeWidth:300px;
 	--scrollbarWidth:10px;
 	--verticalHeadWidth:50px
@@ -61,7 +62,8 @@ img.spinner-centered {
 }
 
 body,body.signin-sheet-present {
-	background:var(--loginBackgroundColor)
+	background:var(--loginBackgroundColor);
+	-webkit-app-region: drag;
 }
 
 /* Animation Keyframes */
@@ -123,8 +125,8 @@ body,body.signin-sheet-present {
 }
 
 @keyframes mediaDown {
-	0% {opacity:0;margin-top:-198px}
-	100% {opacity:1;margin-top:15px}
+	0% {opacity:0;margin-top:-189px}
+	100% {opacity:1;margin-top:24px}
 }
 
 @keyframes menuUp {
@@ -467,9 +469,10 @@ body.scroll-v .spinner-layer {
 	overflow:hidden;
 	background-size:cover!important;
 	background-position:center!important;
-	pointer-events:none;
+	/* pointer-events:none; */
 	--verticalHeadWidth:200px;
-	top:0!important
+	top:0!important;
+	-webkit-app-region: drag;
 }
 
 .txt-ellipsis,
@@ -4088,8 +4091,8 @@ input[type="checkbox"]:active {
 	background-size:100%!important;
 	background-repeat:no-repeat!important;
 	text-align:center;
-	text-shadow:0 3px 6px var(--rootBlackColor);
-	overflow:hidden
+	text-shadow: 0 2px 9px var(--rootBlackColor),0 4px 9px var(--rootBlackColor);
+	overflow:hidden;
 }
 
 .prf-header .prf-siteurl:active,.prf-header .prf-bio a:active,.prf-header .pretty-link:active {
@@ -4752,7 +4755,7 @@ html:not(.mtd-head-left) .column-nav-link i {
 .compose-text-container .mtd-gif-button
 {
 	margin-left:4px;
-	margin-top:-5px
+	margin-top:-5px;
 }
 
 .compose-text-container .mtd-gif-button {
@@ -4779,7 +4782,7 @@ html:not(.mtd-head-left) .column-nav-link i {
 }
 
 .js-tweet-button>i,.js-dm-button>i,.js-add-image-button>i,.js-schedule-button>i {
-	font-size:24px
+	font-size:24px;
 }
 
 .mtd-gif-button>i {
@@ -4912,7 +4915,7 @@ a[rel="user"]:active,
 	width:calc(var(--composeWidth) - 30px);
 	/* margin-left:10px; */
 	box-shadow:0 3px 7px var(--composeShadow);
-	margin-top: 24px;
+	margin-top:24px;
 	animation:mediaDown .825s var(--animationTiming);
 }
 
@@ -5215,8 +5218,7 @@ html:not(.mtd-head-left) body .application.hide-detail-view-inline .column-navig
 	padding-right:25px!important;
 	padding-bottom:40px!important;
 	width:145px;
-	border-radius:2px;
-	margin-left:10px
+	border-radius:2px
 }
 
 .compose .js-quote-tweet-holder .quoted-tweet {
@@ -5225,7 +5227,7 @@ html:not(.mtd-head-left) body .application.hide-detail-view-inline .column-navig
 	position:relative;
 	width:calc(var(--composeWidth) - 51px);
 	padding-bottom:10px!important;
-	margin-top:0
+	margin-left:-10px
 }
 
 .is-options-open .more-tweets-btn-container--hidden {
@@ -5991,11 +5993,15 @@ textarea:not(.compose-text):not(.js-compose-text):not(.js-list-description):not(
 }
 
 .js-tweet .tweet-text {
-	padding-left:calc(var(--avatarSize) * 1.16);
+	padding-left: calc(var(--avatarSize) * 1.16);
 	/* padding-top:calc(50px - var(--avatarSize)); */
 	margin-top:0;
 	min-height:17px;
 	padding-bottom:7px;
+}
+
+.is-conversation.js-tweet .tweet-text {
+	padding-left: calc(52px);
 }
 
 .tweet-text:not(.with-linebreaks) {
@@ -6085,7 +6091,7 @@ body>.message-banner[style="color:rgb(85, 85, 85); background-color:rgb(178, 213
 }
 
 .compose .quoted-tweet {
-	animation:menuUpRelative 0.3s var(--animationTiming)
+	animation:menuUp 0.3s var(--animationTiming)
 }
 
 .compose .quoted-tweet .account-link>.nbfc {
@@ -9307,7 +9313,7 @@ a {
 	margin:0 auto!important;
 	text-align:left;
 	border-radius:2px;
-	/* min-height:525px; */
+	min-height:525px;
 	max-height:707px;
 	-webkit-app-region: no-drag;
 }
@@ -9386,4 +9392,18 @@ a {
 .nav-user-info .username,.nav-user-info .fullname {
 	max-width:calc(var(--verticalHeadWidth) - 50px);
 	overflow:hidden
+}
+
+button.js-add-filter {
+	margin-left:-36px;
+	margin-top:-6px
+}
+
+.mtd-app .mtd-app-drag-handle {
+	top:0;
+	position:absolute;
+	right:130px;
+	left:300px;
+	-webkit-app-region:drag;
+	height:40px;
 }

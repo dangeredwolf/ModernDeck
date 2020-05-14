@@ -10,6 +10,7 @@ import { getPref, setPref, hasPref, debugStorageSys } from "./StoragePreferences
 */
 
 export function loadPreferences() {
+	window.settingsData = settingsData;
 
 	for (let key in settingsData) {
 

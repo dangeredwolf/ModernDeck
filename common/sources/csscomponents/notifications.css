@@ -52,7 +52,7 @@
 	margin-bottom:9px;
 	border-radius:4px;
 	transition:box-shadow 0.2s var(--animationTiming);
-	background:#363c46;
+	background:var(--secondaryColor);
 	color:var(--rootWhiteColor)
 }
 

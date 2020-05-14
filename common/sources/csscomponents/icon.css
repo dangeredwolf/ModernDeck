@@ -527,28 +527,6 @@ span[data-testid="trendMovement"] .icon-pointer-d:before,span[data-testid="trend
 	content:"\e04f"
 }
 
-.mtd-icon-arrow-down {
-	transition:transform 0.3s var(--animationTiming)
-}
-
-.mtd-nav-activator:before,.icon-arrow-r-double:before {
-	font-style:normal;
-	font-size:26px;
-	font-weight:400;
-	font-family:Material;
-	content:"\e5d2"
-}
-
-.mtd-nav-button i:before {
-	display:block
-}
-
-.mtd-nav-button i {
-	margin-top:-3px;
-	font-size:24px;
-	margin-right:12px
-}
-
 .icon-xsmall,.Icon--xsmall {
 	font-size:8px
 }

@@ -48,6 +48,7 @@ export function openSettings(openMenu) {
 	mtdPrepareWindows();
 
 	let tabs = make("div").addClass("mtd-settings-tab-container mtd-tabs");
+	let tabSelection = make("button").addClass("mtd-settings-tab mtd-settings-tab-selection");
 	let container = make("div").addClass("mtd-settings-inner");
 	let panel = make("div").addClass("mdl mtd-settings-panel").append(tabs).append(make("div").addClass("mtd-settings-inner-container").append(container));
 
@@ -71,8 +72,8 @@ export function openSettings(openMenu) {
 			*/
 
 			container.attr("data-page-selected", $(this).attr("data-action"));
-
-			container.css("margin-left","-"+($(this).index()*700)+"px");
+			tabSelection.css("top",($(this).index()*50)+"px");
+			container.css("margin-top","-"+($(this).index()*545)+"px");
 		});
 
 		container.on("transitionend", () => {
@@ -502,6 +503,9 @@ export function openSettings(openMenu) {
 			tab.click();
 		}
 	}
+
+
+	tabs.append(tabSelection);
 
 	new TD.components.GlobalSettings;
 
