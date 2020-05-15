@@ -3,6 +3,7 @@ import { I18n } from "./I18n.js";
 import DataI18n from "./DataI18n.js";
 import { getPref, setPref } from "./StoragePreferences.js";
 import unsupportedCodeTable from "./DataUnsupportedLanguage.js";
+import inaccuraciesCodeTable from "./DataTranslationsMayBeInaccurate.js";
 import languageText from "./DataTextThatSaysLanguage.js";
 
 import languageData from "./DataI18n.js";
@@ -12,6 +13,7 @@ export function UILanguagePicker() {
 	let alert = make("div").addClass("mdl mtd-alert mtd-language-picker");
 	let alertTitle = make("h2").addClass("mtd-alert-title").html("<i class='material-icon'>language</i>" + (languageText[navigator.language.substr(0,2)] || languageText["en"]));
 	let alertButton = make("button").addClass("btn-primary btn mtd-alert-button hidden").html("OK");
+	let inaccuracy = make("div").addClass("mtd-unsupported-lang mtd-lang-inaccuracies").html(((DataI18n[navigator.language.substr(0,2)] && DataI18n[navigator.language.substr(0,2)]["Translations may be incomplete or inaccurate."] ? DataI18n[navigator.language.substr(0,2)]["Translations may be incomplete or inaccurate."] : (inaccuraciesCodeTable[navigator.language.substr(0,2)] || inaccuraciesCodeTable["en"]) ))+ " <a href='https://translate.moderndeck.org'>translate.moderndeck.org</a>")
 	let selectLanguage = make("select").attr("id","mtd_language_select").append(
 		make("option").val("default").html("-").attr("selected","true").attr("disabled","true"),
 		make("option").val("bg").html("български"),
@@ -25,6 +27,7 @@ export function UILanguagePicker() {
 		make("option").val("fr_CA").html("Français (Canada)"),
 		make("option").val("fr_FR").html("Français (France)"),
 		make("option").val("hr").html("Hrvatski"),
+		make("option").val("no").html("norsk"),
 		make("option").val("pl").html("Polskie"),
 		make("option").val("pt_BR").html("Português (Brasil)"),
 		make("option").val("ja").html("日本語"),
@@ -35,8 +38,12 @@ export function UILanguagePicker() {
 			alertTitle.html("<i class='material-icon'>language</i> " + languageData.Language[selectLanguage.val()]);
 			alertButton.removeClass("hidden");
 		}
+
 		alertButton.html(languageData.OK[selectLanguage.val()] || "OK");
+
+		inaccuracy.html(((DataI18n[selectLanguage.val().substr(0,2)] && DataI18n[selectLanguage.val().substr(0,2)]["Translations may be incomplete or inaccurate."] ? DataI18n[selectLanguage.val().substr(0,2)]["Translations may be incomplete or inaccurate."] : (inaccuraciesCodeTable[selectLanguage.val().substr(0,2)] || inaccuraciesCodeTable["en"]) ))+ " <a href='https://translate.moderndeck.org'>translate.moderndeck.org</a>")
 	});
+
 
 	setTimeout(() => {
 		let mainLang = $("#mtd_language_select>option[value=\"" + navigator.language.substr(0,2) + "\"]");
@@ -54,10 +61,11 @@ export function UILanguagePicker() {
 	})
 
 
-
+	window.inaccuraciesCodeTable = inaccuraciesCodeTable;
 	let alertBody = make("p").addClass("mtd-alert-body").append(selectLanguage);
 	let alertButtonContainer = make("div").addClass("mtd-alert-button-container");
 	let unsupportedLang = make("div").addClass("mtd-unsupported-lang").html((unsupportedCodeTable[navigator.language.substr(0,2)] || unsupportedCodeTable["en"]) + " <a href='https://translate.moderndeck.org'>translate.moderndeck.org</a>")
+
 
 
 	alertButtonContainer.append(alertButton);
@@ -72,6 +80,8 @@ export function UILanguagePicker() {
 
 	if (!DataI18n.GIF[navigator.language.substr(0,2)]) {
 		alert.append(unsupportedLang);
+	} else {
+		alert.append(inaccuracy);
 	}
 
 	$("#splash-modal>.mdl").remove();

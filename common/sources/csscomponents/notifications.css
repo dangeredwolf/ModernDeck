@@ -33,7 +33,8 @@
 	animation-fill-mode:both;
 	animation-timing-function:var(--animationTiming);
 	transition:height .17s var(--animationTiming);
-	pointer-events:all
+	pointer-events:all;
+	-webkit-app-region:no-drag
 }
 
 .Notification:not(:last-child):not(.is-expired) {
@@ -59,7 +60,8 @@
 .Notification-content p {
 	font-size:13px;
 	padding-top:3px;
-	display:block
+	display:block;
+	max-width:170px
 }
 
 .Notification-content button {
