@@ -30,11 +30,11 @@ export let _welcomeData = {
 		body: I18n("There are additional options for themes in <i class='icon icon-settings'></i> <b>Settings</b>"),
 		html: `<div class="obj-left mtd-welcome-theme-picker">
 			<label class="fixed-width-label radio">
-			<input type="radio" name="theme" onclick="parseActions(settingsData.themes.options.coretheme.activate,'dark');$('.mtd-welcome-inner .tweet-text').html(${I18n("This tweet is quite dark!")})" value="dark">
+			<input type="radio" name="theme" onclick="parseActions(settingsData.themes.options.coretheme.activate,'dark');$('.mtd-welcome-inner .tweet-text').html('${I18n("This tweet is quite dark!")}')" value="dark">
 				${I18n("Dark")}
 			</label>
 			<label class="fixed-width-label radio">
-			<input type="radio" name="theme" onclick="parseActions(settingsData.themes.options.coretheme.activate,'light');$('.mtd-welcome-inner .tweet-text').html(${I18n("This tweet is quite light!")})" value="light">
+			<input type="radio" name="theme" onclick="parseActions(settingsData.themes.options.coretheme.activate,'light');$('.mtd-welcome-inner .tweet-text').html('${I18n("This tweet is quite light!")}')" value="light">
 				${I18n("Light")}
 			</label>
 		</div>` + demoColumn,

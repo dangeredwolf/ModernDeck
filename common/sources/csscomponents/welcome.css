@@ -29,6 +29,10 @@
 	left:0
 }
 
+.mtd-welcome-inner .mtd-settings-subpanel {
+	height:100%
+}
+
 .mtd-welcome-inner>.mtd-settings-subpanel {
 	width:660px;
 }
@@ -72,4 +76,49 @@
 
 .mtd-welcome-body .mtd-nav-activator {
 	margin:0!important
+}
+
+
+.mtd-welcome-inner .mtd-settings-subpanel:nth-child(1) {
+	margin-left:0;
+	margin-top:0
+}
+
+.mtd-welcome-inner .mtd-settings-subpanel:nth-child(2) {
+	margin-left:700px;
+	margin-top:0
+}
+
+.mtd-welcome-inner .mtd-settings-subpanel:nth-child(3) {
+	margin-left:1400px;
+	margin-top:0
+}
+
+.mtd-welcome-inner .mtd-settings-subpanel:nth-child(4) {
+	margin-left:2100px;
+	margin-top:0
+}
+
+.mtd-welcome-inner .mtd-settings-subpanel:nth-child(5) {
+	margin-left:2800px;
+	margin-top:0
+}
+
+.mtd-welcome-inner .mtd-settings-subpanel:nth-child(6) {
+	margin-left:3500px;
+	margin-top:0
+}
+
+.mtd-welcome-inner .mtd-settings-subpanel:nth-child(7) {
+	margin-left:4200px;
+	margin-top:0
+}
+
+.mtd-welcome-inner .mtd-settings-subpanel:nth-child(8) {
+	margin-left:4900px;
+	margin-top:0
+}
+
+.mtd-welcome-inner .js-tweet .tweet-text {
+	padding-top:4px
 }
