@@ -91,6 +91,7 @@
 	overflow-x:hidden;
 	padding:20px;
 	padding-top:0;
+	pointer-events:all
 }
 
 .mtd-settings-subpanel:first-child .mtd-welcome-prev-button
@@ -103,7 +104,7 @@
 }
 
 .mtd-settings-subpanel:nth-child(2) {
-	margin-top:545px;
+	margin-top:545px
 }
 
 .mtd-settings-subpanel:nth-child(3) {
@@ -136,17 +137,16 @@
 
 .mtd-settings-inner {
 	min-height:300px;
-	transition:margin-top 0.3s var(--animationTiming);
+	transition:margin-top 0.3s var(--animationTiming),margin-left 0.3s var(--animationTiming);
 	bottom:0;
 	top:0;
 	left:0;
 	right:0;
 	position:absolute;
-	/* overflow:hidden; */
 	-webkit-app-region:no-drag;
 	pointer-events:none;
 	z-index:5;
-	width:540px;
+	width:540px
 }
 
 .mtd-settings-panel-subheader {
@@ -191,17 +191,16 @@
 
 .mtd-settings-tab-selection {
 	height:52px;
-	position:absolute;
+	position: absolute!important;
 	background:var(--selectionBackgroundColor)!important;
 	z-index:1;
 	left:0;
 	width:170px;
 	transition:top 0.3s var(--animationTiming)!important;
-	pointer-events:none
+	pointer-events:none;
 }
 
 .mtd-settings-tab-container {
-	box-shadow:var(--genericBlackShadow);
 	width:var(--settingsTabWidth);
 	height:100%;
 	z-index:20;
