@@ -9,24 +9,22 @@ ModernDeck is an app/extension for TweetDeck that brings a vastly overhauled int
 
 ModernDeck is designed by dangeredwolf in Columbus, OH and released under the MIT License.
 
-Disclaimer: ModernDeck 8 is a work in progress. It can have broken functionality, and features might be changed at any time. The build instructions have been updated for ModernDeck 8, but they might not work 100% and might change before release.
-
 
 ## Building ModernDeck
 
 
 ### Dependencies
 
-To build ModernDeck, you need to first install Node.js (which comes with npm)
+To build ModernDeck, you need to first install Node.js (which comes with npm) and git if you don't have it installed already
 
 ℹ *ModernDeck is tested against the latest current version of Node.js, but it will likely work fine with the LTS version as well.*
-
 
 
 #### Windows
 
 For Windows, [you can download Node.js here](https://nodejs.org/en/)
 
+⚠ *On Windows, you will need to download git if you haven't yet already. You can either [download just git itself](https://git-scm.com/download/win), or [download GitHub's Windows client](https://desktop.github.com/), which also includes git and other tools, even if you don't use the GUI portion.*
 
 
 #### macOS
@@ -53,8 +51,6 @@ On Linux, it varies depending on your distribution. If you're using Ubuntu or De
 
 You'll want to use your Terminal (macOS and Linux) or PowerShell (Windows) for this.
 
-⚠ *On Windows, you will need to download git if you haven't yet already. You can either [download just git itself](https://git-scm.com/download/win), or [download GitHub's Windows client](https://desktop.github.com/), which also includes git and other tools, even if you don't use the GUI portion.*
-
 First, of course, `cd` into a directory where you want to clone the source to.
 
 Next, clone the git.
@@ -76,9 +72,14 @@ From the main folder where you just were, you can run the app for testing using:
 `npm start`
 
 This will run rollup and create an electron instance for it.
+
 ℹ Building ModernDeck's source with Rollup increments the Build number as well
 
+To start without building...
+`npm run startNoBuild`
 
+To update language data (DataI18n) from tweetdeck-i18n.csv...
+`npm run updatei18n`
 
 If you want to create the proper installers, you can run:
 
@@ -128,18 +129,18 @@ Check *Developer Mode* in the corner if you haven't already.
 
 Click the **Load Unpacked** button
 
-Navigate to *ModernDeck\common* and click Select Folder
+Navigate to *ModernDeck/common* and click Select Folder
 
 
 #### Firefox
 
 Go to *about:debugging*
 
-Check **Enable add-on debugging**
+Click **This Firefox**
 
 Click **Load Temporary Add-on...**
 
-Navigate to *ModernDeck\common\manifest.json*
+Navigate to *ModernDeck/common/manifest.json*
 
 
 #### Microsoft Edge
@@ -150,7 +151,7 @@ Click **Extension**
 
 Turn on **Developer Mode** in the bottom left if you haven't already
 
-Microsoft Edge Legacy (The EdgeHTML-based browser) is no longer supported as of ModernDeck 8.0.
+Microsoft Edge Legacy (The EdgeHTML-based browser) is no longer supported as of ModernDeck 8.0. It might still work, but no problems with it will be corrected.
 
 #### Opera
 
@@ -160,10 +161,10 @@ Check **Developer Mode** if you haven't already
 
 Click **Load Unpacked**
 
-Select *ModernDeck\common*
+Select *ModernDeck/common*
 
 
-## Compile Extension for Release
+## Building Extension for Release
 
 Run `npm install && node build/build.js` from the root ModernDeck directory. The corresponding ZIPs will appear in the dist folder
 
