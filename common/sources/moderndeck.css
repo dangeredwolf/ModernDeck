@@ -2433,7 +2433,8 @@ html:not(.mtd-classic-nav) .attach-compose-buttons .tweet-button {
 	right:0;
 	top:0;
 	z-index:100;
-	text-shadow:var(--rootBlackColor) 0 4px 7px
+	text-shadow:var(--rootBlackColor) 0 4px 7px;
+	overflow:visible
 }
 
 .message-banner .dismiss {
@@ -2447,9 +2448,13 @@ html:not(.mtd-classic-nav) .attach-compose-buttons .tweet-button {
 
 .message-content {
 	display:table;
-	width:100%;
 	text-align:center;
-	box-sizing:border-box
+	box-sizing:border-box;
+	margin-left:35%;
+	margin-right:0;
+	padding-left:10px;
+	background-color:var(--primaryColor);
+	box-shadow:var(--genericDropShadow)
 }
 
 .message-content a {
@@ -4836,11 +4841,11 @@ html:not(.mtd-head-left) .column-nav-link i {
 }
 
 .facet-type .control-group select,.facet-type .control-group input:not([type="checkbox"]) {
-	width:55%;
+	width: 49%;
 	float:right;
 	display:block;
 	margin-right:8px;
-	max-width:188px
+	max-width: 174px;
 }
 
 .app-nav-link.js-header-add-column .obj-left {
@@ -5310,13 +5315,8 @@ html:not(.mtd-head-left) body .application.hide-detail-view-inline .column-navig
 
 .js-account-safeguard-checkbox {
 	position:absolute;
-	margin-left:calc(var(--composeWidth) - 96px);
-	margin-top:15px
-}
-
-.js-account-safeguard-text:after {
-	font-size:14px;
-	margin-right:5px
+	margin-left:calc(var(--composeWidth) - 190px);
+	margin-top:24px
 }
 
 .more-tweets-btn-container {
@@ -6186,7 +6186,13 @@ body>.message-banner[style="color:rgb(85, 85, 85); background-color:rgb(178, 213
 
 label[for="account-safeguard-checkbox"] {
 	padding-top:0;
-	padding-right:10px
+	width:120px;
+	text-align:right;
+	padding-right:25px
+}
+
+.js-account-safeguard-text {
+	font-size:14px
 }
 
 #account-safeguard-checkbox {
@@ -9208,7 +9214,9 @@ html:not(.mtd-classic-nav) .js-hide-drawer:not(.tweet-button):not([data-title="A
 	overflow-y:auto!important;
 	top:0;
 	padding:10px;
-	font-size:14px
+	font-size:14px;
+	width: 680px;
+	pointer-events: all;
 }
 
 .contributor-row .icon-protected {

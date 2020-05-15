@@ -43,7 +43,7 @@ import { injectFonts } from "./FontHandler.js";
 
 
 import { contextMenuFunctions } from "./ContextMenuFunctions.js";
-import { buildContextMenu, clearContextMenu } from "./UIContextMenu.js";
+import { clearContextMenu } from "./UIContextMenu.js";
 
 import { keyboardShortcutHandler } from "./KeyboardShortcutHandler.js";
 import { download } from "./DownloadController.js";
@@ -652,9 +652,6 @@ function coreInit() {
 	}
 	.js-dm-participants-back:after {
 		content:"${I18n("People")}";
-	}
-	.js-account-safeguard-text:after {
-		content:"${I18n("Ready?")}";
 	}
 	.js-display-sensitive-media span:after {
 		content:"${I18n("Show potentially sensitive media")}"
