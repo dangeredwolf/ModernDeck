@@ -23,6 +23,7 @@ import { importTweetenSettings } from "./StorageTweetenImport.js";
 import { openLegacySettings } from "./UISettings.js";
 import { enterSafeMode } from "./SafeMode.js";
 import { UILanguagePicker } from "./UILanguagePicker.js";
+import { getColumnFromColumnNumber } from "./Column.js";
 
 // Use standard macOS symbols instead of writing it out like on Windows
 
@@ -263,7 +264,7 @@ export let settingsData = {
 					}
 				},
 				settingsKey:"mtd_column_visibility",
-				default:true
+				default:navigator.userAgent.match("Firefox") !== null // Firefox is so much faster that column visibility is unlikely to benefit
 			},
 			fixedarrows:{
 				title:"{{Use fixed-location media arrows for tweets with multiple photos}}",
@@ -276,6 +277,18 @@ export let settingsData = {
 				},
 				settingsKey:"mtd_usefixedarrows",
 				default:true
+			},
+			altsensitive:{
+				title:"{{Use alternative sensitive media workflow}}",
+				type:"checkbox",
+				activate:{
+					enableStylesheet:"altsensitive"
+				},
+				deactivate:{
+					disableStylesheet:"altsensitive"
+				},
+				settingsKey:"mtd_sensitive_alt",
+				default:false
 			},
 			colNavAlwaysVis:{
 				title:"{{Always display column icons in navigator}}",
@@ -433,18 +446,6 @@ export let settingsData = {
 				queryFunction: () => {
 					return TD.settings.getDisplaySensitiveMedia();
 				}
-			},
-			altsensitive:{
-				title:"{{Use alternative sensitive media workflow}}",
-				type:"checkbox",
-				activate:{
-					enableStylesheet:"altsensitive"
-				},
-				deactivate:{
-					disableStylesheet:"altsensitive"
-				},
-				settingsKey:"mtd_sensitive_alt",
-				default:false
 			}
 		}
 	},
@@ -452,7 +453,7 @@ export let settingsData = {
 		tabName:"<i class='material-icon'>accessibility</i> {{Accessibility}}",
 		options:{
 			accoutline:{
-				headerBefore:"Accessibility",
+				headerBefore:"{{Accessibility}}",
 				title:"{{Always show outlines around focused items (}}" + ctrlShiftText + "A {{to toggle)}}",
 				type:"checkbox",
 				activate:{
