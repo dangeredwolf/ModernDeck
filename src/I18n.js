@@ -4,6 +4,7 @@
 	Released under the MIT license
 */
 
+"use strict";
 
 let displayWarning = false;
 let tweetDeckTranslateInitial;
@@ -27,8 +28,8 @@ if (window.version) {
 	langRoot = langFull.substring(0,2);
 } else {
 	console.log("I18n: Detected TweetDeck i18n");
-	langFull = navigator.language.replace("-","_");
-	langRoot = navigator.language.substring(0,2);
+	langFull = "ja_JP";//navigator.language.replace("-","_");
+	langRoot = "ja";//navigator.language.substring(0,2);
 }
 
 export const getFullLanguage = () => langFull;
@@ -71,6 +72,12 @@ const mustachePatches = {
 	"twitter_profile_social_proof.mustache":{
 		"and":1
 	},
+	"status/tweet_detail.mustache":{
+		"Reply to":1
+	},
+	"menus/quality_filter_info.mustache":{
+		"Quality filter {{qualityFilterText}}":1
+	}
 }
 
 export const I18n = function(a, b, c, d, e, f) {
@@ -207,38 +214,28 @@ function patchMiscStrings() {
 		setTimeout(patchMiscStrings,10);
 		return;
 	}
-	if (TD && TD.controller && TD.controller.columnManager && TD.controller.columnManager.DISPLAY_ORDER_PROFILE) {
-		for (const key2 in TD.controller.columnManager.DISPLAY_ORDER_PROFILE) {
-			let prof = TD.controller.columnManager.DISPLAY_ORDER_PROFILE[key2];
-			prof.title = I18n(prof.title);
+	if (TD && TD.controller && TD.controller.columnManager) {
+		if (TD.controller.columnManager.DISPLAY_ORDER_PROFILE) {
+			for (const key2 in TD.controller.columnManager.DISPLAY_ORDER_PROFILE) {
+				let prof = TD.controller.columnManager.DISPLAY_ORDER_PROFILE[key2];
+				prof.title = I18n(prof.title);
+			}
 		}
-	} else {
-		console.log("Waiting on TDApi...");
-		setTimeout(patchMiscStrings,10);
-		return;
-	}
-	if (TD && TD.controller && TD.controller.columnManager && TD.controller.columnManager.MENU_TITLE) {
-		for (const key2 in TD.controller.columnManager.MENU_TITLE) {
-			TD.controller.columnManager.MENU_TITLE[key2] = I18n(TD.controller.columnManager.MENU_TITLE[key2]);
+		if (TD.controller.columnManager.MENU_TITLE) {
+			for (const key2 in TD.controller.columnManager.MENU_TITLE) {
+				TD.controller.columnManager.MENU_TITLE[key2] = I18n(TD.controller.columnManager.MENU_TITLE[key2]);
+			}
 		}
-	} else {
-		console.log("Waiting on TDApi...");
-		setTimeout(patchMiscStrings,10);
-		return;
-	}
-	if (TD && TD.controller && TD.controller.columnManager && TD.controller.columnManager.MENU_ATTRIBUTION) {
-		for (const key2 in TD.controller.columnManager.MENU_ATTRIBUTION) {
-			TD.controller.columnManager.MENU_ATTRIBUTION[key2] = I18n(TD.controller.columnManager.MENU_ATTRIBUTION[key2]);
+		if (TD.controller.columnManager.MENU_ATTRIBUTION) {
+			for (const key2 in TD.controller.columnManager.MENU_ATTRIBUTION) {
+				TD.controller.columnManager.MENU_ATTRIBUTION[key2] = I18n(TD.controller.columnManager.MENU_ATTRIBUTION[key2]);
+			}
 		}
-	} else {
-		console.log("Waiting on TDApi...");
-		setTimeout(patchMiscStrings,10);
-		return;
-	}
-	if (TD && TD.controller && TD.controller.columnManager && TD.controller.columnManager.MODAL_TITLE) {
-		for (const key2 in TD.controller.columnManager.MODAL_TITLE) {
-			TD.controller.columnManager.MODAL_TITLE[key2] =
-			I18n(TD.controller.columnManager.MODAL_TITLE[key2]);
+		if (TD.controller.columnManager.MODAL_TITLE) {
+			for (const key2 in TD.controller.columnManager.MODAL_TITLE) {
+				TD.controller.columnManager.MODAL_TITLE[key2] =
+				I18n(TD.controller.columnManager.MODAL_TITLE[key2]);
+			}
 		}
 	} else {
 		console.log("Waiting on TDApi...");
@@ -247,12 +244,59 @@ function patchMiscStrings() {
 	}
 }
 
-function patchTDTranslateFunction() {
+function patchTDFunctions() {
 	if (mR && mR.findFunction && mR.findFunction("en-x-psaccent")[0]) {
 		tweetDeckTranslateInitial = mR.findFunction("en-x-psaccent")[0].default;
-		mR.findFunction("en-x-psaccent")[0].default = I18n
+		mR.findFunction("en-x-psaccent")[0].default = I18n;
+
+		const months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+		let newMonths = [];
+		months.forEach(month => newMonths.push(I18n(month)));
+
+		const shortMonths = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+		let newShortMonths = [];
+		shortMonths.forEach(month => newShortMonths.push(I18n(month)));
+
+		const days = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+		let newDays = [];
+		days.forEach(day => newDays.push(I18n(day)));
+
+		const shortDays = [
+			"ABBREV_SUNDAY",
+			"ABBREV_MONDAY",
+			"ABBREV_TUESDAY",
+			"ABBREV_WEDNESDAY",
+			"ABBREV_THURSDAY",
+			"ABBREV_FRIDAY",
+			"ABBREV_SATURDAY"
+		];
+
+		const englishShortDays = ["S","M","T","W","T","F","S"];
+
+		let newShortDays = [];
+		shortDays.forEach((day, i) => {
+			let translatedDay = I18n(day);
+			if (translatedDay.match("ABBREV") !== null) {
+				translatedDay = englishShortDays[i];
+			}
+			 newShortDays.push(translatedDay);
+		});
+
+		mR.findFunction("jQuery")[0].tools.dateinput.localize("en",{
+			months: newMonths.join(","),
+			shortMonths: newShortMonths.join(","),
+			days: newDays.join(","),
+			shortDays: newShortDays.join(",")
+		});
+		let firstDay = parseInt(I18n("CALENDAR_FIRST_DAY_NUMBER"));
+
+		if (isNaN(firstDay)) {
+			firstDay = 0;
+		}
+
+		mR.findFunction("jQuery")[0].tools.dateinput.conf.firstDay = firstDay;
 	} else {
-		setTimeout(patchTDTranslateFunction,10);
+		setTimeout(patchTDFunctions,10);
 	}
 }
 
@@ -263,7 +307,7 @@ export function startI18nEngine() {
 
 	window.TweetDecki18nStarted = true;
 	// Developer helper function to find strings within the mustache cluster
-	window.findMustache = (str) => {
+	window.findMustaches = (str) => {
 		let results = {};
 		for (let mustache in TD_mustaches) {
 			if (TD_mustaches[mustache].match(str)) {
@@ -273,7 +317,7 @@ export function startI18nEngine() {
 		return results;
 	}
 
-	patchTDTranslateFunction();
+	patchTDFunctions();
 	patchMiscStrings();
 	patchColumnTitle();
 	patchButtonText();
@@ -281,7 +325,6 @@ export function startI18nEngine() {
 	patchMustaches();
 }
 
-// In ModernDeck, the function is executed via mtdInject.js
-if (!window.version) {
-	startI18nEngine();
-}
+window.I18n = I18n;
+
+startI18nEngine();
