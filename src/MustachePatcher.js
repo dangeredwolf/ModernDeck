@@ -131,12 +131,12 @@ export function processMustaches() {
 				)
 	}
 
-	if (typeof TD_mustaches["media/native_video.mustache"] !== "undefined")
-		TD_mustaches["media/native_video.mustache"] =
-			"<div class=\"position-rel\">\
-			<iframe src=\"{{videoUrl}}\" class=\"js-media-native-video {{#isPossiblySensitive}}is-invisible{{/isPossiblySensitive}}\"\
-			height=\"{{height}}\" width=\"{{width}}\" frameborder=\"0\" scrolling=\"no\" allowfullscreen style=\"margin: 0px; padding: 0px; border: 0px;\">\
-			</iframe> {{> status/media_sensitive}} </div>";
+	// if (typeof TD_mustaches["media/native_video.mustache"] !== "undefined")
+	// 	TD_mustaches["media/native_video.mustache"] =
+	// 		"<div class=\"position-rel\">\
+	// 		<iframe src=\"{{videoUrl}}\" class=\"js-media-native-video {{#isPossiblySensitive}}is-invisible{{/isPossiblySensitive}}\"\
+	// 		height=\"{{height}}\" width=\"{{width}}\" frameborder=\"0\" scrolling=\"no\" allowfullscreen style=\"margin: 0px; padding: 0px; border: 0px;\">\
+	// 		</iframe> {{> status/media_sensitive}} </div>";
 
 	if (typeof TD_mustaches["compose/docked_compose.mustache"] !== "undefined" && !window.useSafeMode)
 
