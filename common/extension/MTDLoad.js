@@ -54,6 +54,10 @@ browser.runtime.onMessage.addListener((m) => {
 	}
 });
 
+if (document.getElementsByTagName("title").length > 0) {
+	document.getElementsByTagName("title")[0].innerHTML = "ModernDeck"
+}
+
 window.addEventListener("message", (event) => {
 	if (event.source === window && event.data.type) {
 		if (event.data.type === "setStorage") {
