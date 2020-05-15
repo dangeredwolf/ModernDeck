@@ -128,7 +128,7 @@ export function buildContextMenu(p) {
 		items.push(makeCMItem({mousex:x,mousey:y,dataaction:"newSettings",text:I18n("Settings"),enabled:true,data:{x:x,y:y}}));
 	}
 
-	if (useNativeContextMenus) {
+	if (useNativeContextMenus || window.useSafeMode) {
 		return items;
 	}
 
