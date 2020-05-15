@@ -1,3 +1,8 @@
+/*
+	Copyright (c) 2018-2020 dangered wolf, et al.
+	Released under the MIT license
+*/
+
 const fs = require("fs");
 const path = require("path");
 
