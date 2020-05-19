@@ -316,7 +316,7 @@ input[type="radio"]:checked:before {
 	content:"\e251"
 }
 
-.icon-more:before,.icon-user-dd:before,.icon-sliders:before {
+.icon-more:before,.icon-user-dd:before {
 	content:"\e5d3"
 }
 
@@ -353,7 +353,7 @@ input[type="radio"]:checked:before {
 }
 
 .icon-schedule:before,.Icon--schedule:before {
-	content:"\e8b5"
+	content:"\e614"
 }
 
 .is-new>.icon-dot:before {
@@ -527,6 +527,28 @@ span[data-testid="trendMovement"] .icon-pointer-d:before,span[data-testid="trend
 	content:"\e04f"
 }
 
+.mtd-icon-arrow-down {
+	transition:transform 0.3s var(--animationTiming)
+}
+
+.mtd-nav-activator:before,.icon-arrow-r-double:before {
+	font-style:normal;
+	font-size:26px;
+	font-weight:400;
+	font-family:Material;
+	content:"\e5d2"
+}
+
+.mtd-nav-button i:before {
+	display:block
+}
+
+.mtd-nav-button i {
+	margin-top:-3px;
+	font-size:24px;
+	margin-right:12px
+}
+
 .icon-xsmall,.Icon--xsmall {
 	font-size:8px
 }
@@ -676,7 +698,7 @@ span[data-testid="trendMovement"] .icon-pointer-d:before,span[data-testid="trend
 	color:inherit
 }
 
-.mdl .js-user-actions-menu i:before {
+.mdl .js-user-actions-menu i:before,.icon-sliders:before {
 	content:"\e5d4"
 }
 
@@ -858,4 +880,8 @@ span[data-testid="trendMovement"] .icon-pointer-d:before,span[data-testid="trend
 	font-size:1.3em;
 	margin-left:7px;
 	margin-right:-7px
+}
+
+.js-dm-button[data-original-title=""]+.js-scheduler .icon-schedule:before {
+	content:"\e878"
 }

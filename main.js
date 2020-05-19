@@ -279,46 +279,71 @@ function saveImageAs(url) {
 		return;
 	}
 
-	const pipePromise = (source, outputPath) => {
-		if (!outputPath) {
-			return Promise.resolve();
+	console.log("saveImageAs");
+
+	let savePath = dialog.showSaveDialogSync();
+	console.log(savePath);
+	return;
+
+	dialog.showSaveDialog().then((cancelled, filePath) => {
+		console.log(filePath);
+		if (!cancelled) {
+			console.log("Save was NOT cancelled!");
+			const http = require("http");
+			const fs = require("fs");
+
+			const file = fs.createWriteStream(filePath);
+			const request = http.get(url, function(response) {
+				console.log("Piping file...");
+				response.pipe(file);
+			});
+		} else {
+			console.log("Save was cancelled??")
 		}
+	})
 
-		const stream = source.pipe(fs.createWriteStream(outputPath));
 
-		return new Promise((resolve, reject) => {
-			stream.on("finish", resolve);
-			stream.on("error", reject);
-		});
-	};
 
-	let path = url.match(/(([A-z0-9_\-])+\w+\.[A-z0-9]+)/g);
-	path = path[1];
-
-	const getOutputPath = (ext) => {
-		return dialog.showSaveDialog({ defaultPath: path });
-	};
-
-	const got = require("got");
-
-	const promise = new Promise(resolve => {
-		let resolved;
-
-		const stream = got.stream(url).pipe(
-			through2(function(chunk, enc, callback) {
-				if (!resolved) {
-					resolve({ ext: imageType(chunk).ext, stream });
-					resolved = true;
-				}
-
-				this.push(chunk);
-				callback();
-			}
-		));
-	});
-
-	return promise
-	.then(result => pipePromise(result.stream, getOutputPath(result.ext)));
+	// const pipePromise = (source, outputPath) => {
+	// 	if (!outputPath) {
+	// 		return Promise.resolve();
+	// 	}
+	//
+	// 	const stream = source.pipe(fs.createWriteStream(outputPath));
+	//
+	// 	return new Promise((resolve, reject) => {
+	// 		stream.on("finish", resolve);
+	// 		stream.on("error", reject);
+	// 	});
+	// };
+	//
+	// let path = url.match(/(([A-z0-9_\-])+\w+\.[A-z0-9]+)/g);
+	// path = path[1];
+	//
+	// const getOutputPath = (ext) => {
+	// 	return
+	// };
+	//
+	// const got = require("got");
+	//
+	// const promise = new Promise(resolve => {
+	// 	let resolved;
+	//
+	// 	const stream = got.stream(url).pipe(
+	// 		through2(function(chunk, enc, callback) {
+	// 			if (!resolved) {
+	// 				resolve({ ext: imageType(chunk).ext, stream });
+	// 				resolved = true;
+	// 			}
+	//
+	// 			this.push(chunk);
+	// 			callback();
+	// 		}
+	// 	));
+	// });
+	//
+	// return promise
+	// .then(result => pipePromise(result.stream, getOutputPath(result.ext)));
 
 };
 
@@ -483,8 +508,6 @@ function makeWindow() {
 	}
 
 	mainWindow.webContents.on('dom-ready', (event, url) => {
-
-
 
 		mainWindow.webContents.executeJavaScript(
 			(store.get("mtd_fullscreen") ? 'document.querySelector("html").classList.add("mtd-js-app");' : mtdAppTag)

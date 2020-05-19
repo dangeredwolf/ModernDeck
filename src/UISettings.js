@@ -321,7 +321,9 @@ export function openSettings(openMenu) {
 							pref.initFunc(input);
 						}
 
-						option.append(label,maximum,input,minimum);
+						let sliderCont = make("div").addClass("mtd-slider-container").append(maximum,input,minimum)
+
+						option.append(label,sliderCont);
 
 						break;
 
@@ -338,6 +340,21 @@ export function openSettings(openMenu) {
 						}
 
 						option.append(label,button);
+
+						break;
+
+					case "buttons":
+						label = make("label").addClass("control-label").html(internationaliseSettingString(pref.label) || "");
+
+						option.append(label);
+
+						pref.buttons.forEach(btn => {
+							option.append(make("button").html(internationaliseSettingString(btn.text)).addClass("btn btn-positive mtd-settings-button").click(() => btn.func))
+						})
+
+						if (exists(pref.initFunc)) {
+							pref.initFunc(button);
+						}
 
 						break;
 
@@ -385,7 +402,7 @@ export function openSettings(openMenu) {
 				)
 			}
 
-			let info = make("p").html(I18n("Made with <i class=\"icon icon-heart mtd-about-heart\"></i> by <a href=\"https://twitter.com/dangeredwolf\" rel=\"user\" target=\"_blank\">dangeredwolf</a> in Columbus, OH since 2014<br><br>ModernDeck is <a href=\"https://github.com/dangeredwolf/ModernDeck/\" target=\"_blank\">an open source project</a> released under the MIT license."));
+			let info = make("p").html(I18n("Made with <i class=\"icon icon-heart mtd-about-heart\"></i> by <a href=\"https://twitter.com/dangeredwolf\" rel=\"user\" target=\"_blank\">dangeredwolf</a> in Columbus, OH since 2014<br>ModernDeck is <a href=\"https://github.com/dangeredwolf/ModernDeck/\" target=\"_blank\">an open source project</a> released under the MIT license."));
 			let infoCont = make("div").addClass("mtd-about-info").append(info);
 
 			logoCont.append(logo,h1,h2);
@@ -760,7 +777,7 @@ function updateFilterPanel(filterList) {
 			make("li").addClass("list-filter").append(
 				make("div").addClass("mtd-mute-text mtd-mute-text-" + (myFilter.type === "source" ? "source" : "")),
 				make("em").html(myFilter.value),
-				make("input").attr("type","button").attr("name","remove-filter").attr("value","Remove").addClass("js-remove-filter small btn btn-negative").click(() => {
+				make("input").attr("type","button").attr("name","remove-filter").attr("value",I18n("Remove")).addClass("js-remove-filter small btn btn-negative").click(() => {
 					TD.controller.filterManager.removeFilter(myFilter);
 					updateFilterPanel(filterList);
 				})

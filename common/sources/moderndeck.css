@@ -4796,6 +4796,11 @@ html:not(.mtd-head-left) .column-nav-link i {
 	margin-left:-12px
 }
 
+.js-schedule-button>i {
+	font-size:26px;
+	margin-top:-2px
+}
+
 .inline-reply.is-inline-inactive {
 	opacity:0;
 	height:45px

@@ -199,6 +199,7 @@ export let settingsData = {
 				placeholder:":root {\n"+
 				"	--retweetColor:red;\n"+
 				"	--primaryColor:#00ff00!important;\n"+
+				"	--defaultFontOrder:Comic Sans MS;\n"+
 				"}\n\n"+
 				"a:hover {\n"+
 				"	text-decoration:underline\n"+

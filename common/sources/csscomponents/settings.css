@@ -305,9 +305,13 @@
 	position:absolute
 }
 
+.mtd-about-info i {
+	line-height:1
+}
+
 .mtd-about-info p {
 	font-size:14px;
-	line-height:0.9
+	line-height: 1.7;
 }
 
 .mtd-big-text-box>input[type="text"] {
@@ -322,7 +326,7 @@
 
 .mtd-settings-option-slider input[type="range"] {
 	-webkit-appearance:none;
-	width:32%;
+	width:370px;
 	float:right;
 	border-radius:2px;
 	padding:0;
@@ -370,8 +374,8 @@
 
 .mtd-settings-option-button {
 	height:auto;
-	width:80%;
-	padding:10px
+	width: 95%;
+	padding:10px;
 }
 
 .mtd-textarea {
@@ -590,4 +594,13 @@ html body .mtd-settings-subpanel button {
 	position:absolute;
 	left:315px;
 	top:85px
+}
+
+.mtd-slider-container {
+	position:absolute;
+	margin-top:40px
+}
+
+.mtd-settings-option-slider {
+	height:100px
 }
