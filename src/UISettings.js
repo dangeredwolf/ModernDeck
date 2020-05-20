@@ -10,7 +10,7 @@ import { mtdAlert } from "./UIAlert.js";
 import { translationCredits } from "./DataTranslationCredits.js";
 
 const appendTextVersion = false;
-const enablePatronFeatures = true;
+const enablePatronFeatures = false;
 
 let ver = "Version";
 let verTextId = 2;
@@ -349,7 +349,7 @@ export function openSettings(openMenu) {
 						option.append(label);
 
 						pref.buttons.forEach(btn => {
-							option.append(make("button").html(internationaliseSettingString(btn.text)).addClass("btn btn-positive mtd-settings-button").click(() => btn.func))
+							option.append(make("button").html(internationaliseSettingString(btn.text)).addClass("btn btn-positive mtd-settings-button").click(() => btn.func()))
 						})
 
 						if (exists(pref.initFunc)) {
@@ -418,16 +418,6 @@ export function openSettings(openMenu) {
 			if (isApp && !html.hasClass("mtd-winstore") && !html.hasClass("mtd-macappstore")) {
 				subPanel.append(updateCont);
 			}
-
-			subPanel.append(make("div").addClass("mtd-translation-thank-you").append(
-				I18n("Some awesome people have helped translate ModernDeck into other languages"),
-				"<br>",
-				make("button").addClass("btn mtd-settings-button").html(I18n("Translation Credits")).click(() => {
-					mtdAlert({title:I18n("Translation Credits"), message:translationCredits});
-					$(".btn-primary.mtd-alert-button").remove();
-				}),
-				make("button").addClass("btn mtd-settings-button").html(I18n("Help Translate")).click(() => open("http://translate.moderndeck.org/project/tweetdeck/invite"))
-			))
 
 			if (html.hasClass("mtd-winstore")) {
 				subPanel.append(
@@ -764,7 +754,7 @@ function makePatronView() {
 	return patronBox;
 }
 
-/* Updates the mutes on twitter's backend */
+/* Updates the mute list UI from twitter's backend */
 
 function updateFilterPanel(filterList) {
 	let filters = TD.controller.filterManager.getAll();

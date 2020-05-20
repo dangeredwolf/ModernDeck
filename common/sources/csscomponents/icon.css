@@ -885,3 +885,7 @@ span[data-testid="trendMovement"] .icon-pointer-d:before,span[data-testid="trend
 .js-dm-button[data-original-title=""]+.js-scheduler .icon-schedule:before {
 	content:"\e878"
 }
+
+h2 i {
+	font-weight:400
+}

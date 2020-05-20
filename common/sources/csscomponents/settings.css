@@ -191,13 +191,13 @@
 
 .mtd-settings-tab-selection {
 	height:52px;
-	position: absolute!important;
+	position:absolute!important;
 	background:var(--selectionBackgroundColor)!important;
 	z-index:1;
 	left:0;
 	width:170px;
 	transition:top 0.3s var(--animationTiming)!important;
-	pointer-events:none;
+	pointer-events:none
 }
 
 .mtd-settings-tab-container {
@@ -311,7 +311,7 @@
 
 .mtd-about-info p {
 	font-size:14px;
-	line-height: 1.7;
+	line-height:1.7
 }
 
 .mtd-big-text-box>input[type="text"] {
@@ -372,10 +372,10 @@
 	margin-left:10px
 }
 
-.mtd-settings-option-button {
+.mtd-settings-option-button, .mtd-settings-option-buttons {
 	height:auto;
-	width: 95%;
-	padding:10px;
+	width:95%;
+	padding:10px
 }
 
 .mtd-textarea {
@@ -523,7 +523,7 @@ html body .mtd-settings-subpanel button {
 	pointer-events:none
 }
 
-.mtd-translation-thank-you {
+/* .mtd-translation-thank-you {
 	position:absolute;
 	top:240px;
 	left:50px;
@@ -535,7 +535,7 @@ html body .mtd-settings-subpanel button {
 	margin-top:17px;
 	float:right;
 	margin-right:20px
-}
+} */
 
 .mtd-unsupported-lang {
 	margin-top:10px
@@ -559,7 +559,7 @@ html body .mtd-settings-subpanel button {
 	font-size:24px
 }
 
-#language .mtd-settings-button {
+#language .mtd-settings-option-button .mtd-settings-button {
 	margin-top:10px
 }
 
@@ -603,4 +603,24 @@ html body .mtd-settings-subpanel button {
 
 .mtd-settings-option-slider {
 	height:100px
+}
+
+.mtd-settings-option-buttons .control-label {
+	font-size:16px
+}
+
+.mtd-settings-option-buttons .mtd-settings-button {
+	pointer-events:all;
+	margin-top:20px;
+	float:left;
+	margin-right:20px
+}
+
+.mtd-settings-option-buttons {
+	bottom:45px;
+	position:absolute;
+	right:0;
+	padding:30px;
+	left:0;
+	width:auto
 }

@@ -1,5 +1,5 @@
 {
-	"name": "ModernDeck",
+	"name": "__MSG_name__",
 	"short_name": "ModernDeck",
 
 	"author":"dangeredwolf",
@@ -41,6 +41,7 @@
 		"32": "AppIcon32.png",
 		"48": "AppIcon48.png",
 		"64": "AppIcon64.png",
+		"128": "AppIcon128.png",
 		"150": "AppIcon150.png"
 	 },
 

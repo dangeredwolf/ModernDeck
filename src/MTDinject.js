@@ -10,12 +10,13 @@ window.ModernDeck = 8;
 import { version } from "../package.json";
 window.SystemVersion = version.replace(".0.0",".0"); // remove trailing .0, if present
 
+import { AsciiArtController } from "./AsciiArtController.js"
 import { I18n, startI18nEngine } from "./I18n.js";
 import { getPref, setPref } from "./StoragePreferences.js";
 import { make, exists, isApp, mutationObserver, getIpc, handleErrors, formatNumberI18n } from "./Utils.js";
 import { diag } from "./UIDiag.js";
 import { _welcomeData } from "./DataWelcome.js";
-import { debugWelcome, welcomeScreen } from "./UIWelcome.js";
+import { debugWelcome, UIWelcome } from "./UIWelcome.js";
 import { initGifPanel, checkGifEligibility } from "./UIGifPicker.js";
 import { openSettings } from "./UISettings.js";
 import { UINavDrawer } from "./UINavDrawer.js";
@@ -37,7 +38,6 @@ window.newLoginPage = _newLoginPage;
 import { processForceFeatureFlags } from "./ForceFeatureFlags.js";
 import { loadPreferences, parseActions } from "./PrefHandler.js";
 
-import { makeEmojiPicker, pushRecentEmoji } from "./EmojiPicker.js";
 import { fromCodePoint } from "./EmojiHelper.js";
 import { injectFonts } from "./FontHandler.js";
 
@@ -47,7 +47,7 @@ import { clearContextMenu } from "./UIContextMenu.js";
 
 import { keyboardShortcutHandler } from "./KeyboardShortcutHandler.js";
 import { download } from "./DownloadController.js";
-import { mtdAlert } from "./UIAlert.js";
+import { UIAlert } from "./UIAlert.js";
 import { processMustaches } from "./MustachePatcher.js";
 import { mtdAppFunctions } from "./AppController.js";
 
@@ -425,7 +425,7 @@ async function getBlobFromUrl(imageUrl) {
 }
 
 function useNativeEmojiPicker() {
-	return getPref("mtd_nativeEmoji") && require?.("electron")?.remote?.app?.isEmojiPanelSupported?.();
+	return /*getPref("mtd_nativeEmoji") && */require?.("electron")?.remote?.app?.isEmojiPanelSupported?.();
 }
 
 
@@ -490,22 +490,20 @@ function hookComposer() {
 
 	$(document).off("uiShowConfirmationDialog");
 
-	$(document).on("uiShowConfirmationDialog",(a,b,c) => {
-		mtdAlert({
-			title:b.title,
-			message:b.message,
-			buttonText:b.okLabel,
-			button2Text:b.cancelLabel,
-			button1Click:() => {
-				$(document).trigger("uiConfirmationAction", {id:b.id, result:true});
-				mtdPrepareWindows();
-			},
-			button2Click:() => {
-				$(document).trigger("uiConfirmationAction", {id:b.id, result:false});
-				mtdPrepareWindows();
-			}
-		})
-	});
+	$(document).on("uiShowConfirmationDialog", (a,b,c) => new UIAlert({
+		title:b.title,
+		message:b.message,
+		buttonText:b.okLabel,
+		button2Text:b.cancelLabel,
+		button1Click:() => {
+			$(document).trigger("uiConfirmationAction", {id:b.id, result:true});
+			mtdPrepareWindows();
+		},
+		button2Click:() => {
+			$(document).trigger("uiConfirmationAction", {id:b.id, result:false});
+			mtdPrepareWindows();
+		}
+	}));
 
 
 	initGifPanel();
@@ -538,7 +536,7 @@ function navigationSetup() {
 	}
 
 	if (getPref("mtd_last_lang") !== navigator.language) {
-		UILanguagePicker();
+		new UILanguagePicker();
 	}
 
 	handleErrors(loadPreferences, "Caught error in loadPreferences");
@@ -549,7 +547,7 @@ function navigationSetup() {
 	UINavDrawer();
 
 	if (!getPref("mtd_welcomed") || debugWelcome) {
-		handleErrors(welcomeScreen, "Error in Welcome Screen");
+		handleErrors(new UIWelcome, "Error in Welcome Screen");
 	}
 
 	$(".app-navigator>a").off("mouseenter").off("mouseover"); // disable tooltips for common items as they're superfluous (and also break styling)
@@ -600,6 +598,8 @@ function coreInit() {
 		return;
 	}
 
+	handleErrors(AsciiArtController.draw, "Error occurred while trying to draw ModernDeck version easter egg")
+
 	if (typeof $ === "undefined") {
 		try {
 			let jQuery = mR.findFunction('jQuery')[0];
@@ -614,6 +614,7 @@ function coreInit() {
 	head = $(document.head);
 	body = $(document.body);
 	html = $(document.querySelector("html"));
+
 
 
 

@@ -4,5 +4,11 @@
 	},
 	"launch": {
 		"message": "ModernDeckを起動"
+	},
+	"name": {
+		"message": "ModernDeck - Twitter Client for Desktop"
+	},
+	"webstoreDescription": {
+		"message": "ModernDeck is a TweetDeck-based Twitter client with a beautiful, Material Design-inspired interface. It combines the power of TweetDeck with the ease-of-use you expect from a Twitter client.\n\nYou can customize how ModernDeck looks and acts to make it your own, including:\n-Size of columns and text\n-Fonts\n-Themes, including alternate color schemes\n-Size and shape of profile pictures\nAnd much more\n\nModernDeck is available in several languages, and is also available for other platforms at https://moderndeck.org/download"
 	}
 }

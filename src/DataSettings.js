@@ -15,6 +15,7 @@
 
 
 import { I18n } from "./I18n.js";
+import { UIAlert } from "./UIAlert.js";
 import { isStylesheetExtensionEnabled, enableStylesheetExtension, disableStylesheetExtension, enableCustomStylesheetExtension } from "./StylesheetExtensions.js";
 import { debugStorageSys, hasPref, getPref, setPref, purgePrefs } from "./StoragePreferences.js";
 import { allColumnsVisible, updateColumnVisibility } from "./Column.js";
@@ -922,6 +923,14 @@ export let settingsData = {
 				},
 				settingsKey:"mtd_resetSettings"
 			},
+			translationCredits:{
+				label:"{{Some awesome people have helped translate ModernDeck into other languages}}",
+				type:"buttons",
+				buttons:[
+					{text:"{{Help Translate}}", func:() => open("http://translate.moderndeck.org/project/tweetdeck/invite") },
+					{text:"{{Translation Credits}}", func:() => new UIAlert({title:I18n("Translation Credits"), message:translationCredits}).alertButton.remove()}
+				]
+			}
 		}
 	}, about: {
 		tabName:"<i class='material-icon'>info_outline</i> {{About}}",

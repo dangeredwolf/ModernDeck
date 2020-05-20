@@ -2179,7 +2179,8 @@ a .column-title-back .icon:after {
 	top:0;
 	position:relative;
 	opacity:0;
-	padding-left:0!important
+	padding-left:0!important;
+	-webkit-app-region:no-drag
 }
 
 .mtd-classic-nav .app-navigator {
@@ -2284,7 +2285,8 @@ a .column-title-back .icon:after {
 	transform:scale(0);
 	animation:popIn 0.5s forwards var(--animationTiming);
 	z-index:5;
-	transition:all 0.2s var(--animationTiming)
+	transition:all 0.2s var(--animationTiming);
+	-webkit-app-region:no-drag
 }
 
 .js-hide-drawer.is-hidden {
@@ -5906,10 +5908,6 @@ button.mtd-no-transform-case {
 
 .accordion-panel .padding-ts,.accordion-panel .padding-txs {
 	padding-left:32px
-}
-
-.typeahead-item.padding-am>.padding-ts {
-	padding-left:32px!important
 }
 
 .typeahead-item {
