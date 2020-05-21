@@ -7,7 +7,6 @@ import { buildContextMenu } from "./UIContextMenu.js";
 import { parseActions } from "./PrefHandler.js";
 import { I18n } from "./I18n.js";
 import { mtdAlert } from "./UIAlert.js";
-import { translationCredits } from "./DataTranslationCredits.js";
 
 const appendTextVersion = false;
 const enablePatronFeatures = false;
@@ -61,8 +60,9 @@ export function openSettings(openMenu) {
 		}
 
 		var tab = make("button").addClass("mtd-settings-tab").attr("data-action",key).html(internationaliseSettingString(settingsData[key].tabName)).click(function() {
-			$(".mtd-settings-tab-selected").removeClass("mtd-settings-tab-selected");
+			$(".mtd-settings-tab-selected").removeClass("mtd-settings-tab-selected").attr("aria-selected","false");
 			$(this).addClass("mtd-settings-tab-selected");
+			$(this).attr("aria-selected","true");
 
 			var theKey = key;
 
@@ -500,9 +500,11 @@ export function openSettings(openMenu) {
 
 		tabs.append(tab);
 		container.append(subPanel);
+		tab.attr("aria-selected","false");
 
 		if (!exists(openMenu) && tab.index() === 0) {
 			tab.addClass("mtd-settings-tab-selected");
+			tab.attr("aria-selected","true");
 			tab.click();
 		}
 
