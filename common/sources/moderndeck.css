@@ -26,6 +26,7 @@
 @import "csscomponents/collapsed.css";
 @import "csscomponents/notifications.css";
 @import "csscomponents/classicnav.css";
+@import "csscomponents/accessibilityHelper.css";
 /* stylelint-enable */
 
 :root {
@@ -63,7 +64,7 @@ img.spinner-centered {
 
 body,body.signin-sheet-present {
 	background:var(--loginBackgroundColor);
-	-webkit-app-region: drag;
+	-webkit-app-region:drag
 }
 
 /* Animation Keyframes */
@@ -472,7 +473,7 @@ body.scroll-v .spinner-layer {
 	/* pointer-events:none; */
 	--verticalHeadWidth:200px;
 	top:0!important;
-	-webkit-app-region: drag;
+	-webkit-app-region:drag
 }
 
 .txt-ellipsis,
@@ -537,10 +538,6 @@ html.scroll-v {
 .antiscroll-inner {
 	overflow-y:scroll;
 	overflow-x:hidden
-}
-
-.mtd-classic-nav #column-navigator {
-	overflow:visible
 }
 
 .emoji-container>div,.emoji-container {
@@ -688,22 +685,6 @@ html.scroll-v {
 .js-card-container {
 	margin-left:var(--avatarSize);
 	height:auto!important
-}
-
-.mtd-js-app .js-card-container[style="height: 150px;"],
-.mtd-js-app .js-card-container[style="height: 150px;"]>div,
-.mtd-js-app .js-card-container[style="height: 150px;"]>div>div,
-.mtd-js-app .js-card-container[style="height: 150px;"]>div>div>iframe
-{
-	height:270px!important
-}
-
-.mtd-js-app .js-card-container[style="height: 270px;"],
-.mtd-js-app .js-card-container[style="height: 270px;"]>div,
-.mtd-js-app .js-card-container[style="height: 270px;"]>div>div,
-.mtd-js-app .js-card-container[style="height: 270px;"]>div>div>iframe
-{
-	height:270px!important
 }
 
 .tweet-detail-wrapper .js-card-container {
@@ -1427,7 +1408,8 @@ a .column-title-back .icon:after {
 }
 
 .activity-header .avatar {
-	margin-left:6px
+	margin-left:6px;
+	margin-right:3px
 }
 
 .activity-header .align-below-header {
@@ -1574,7 +1556,7 @@ a .column-title-back .icon:after {
 
 .account-summary-text>a.account-link {
 	margin-left:6px;
-	margin-top:10px
+	margin-top:7px
 }
 
 .user-results .account-summary-text>a.account-link {
@@ -1614,7 +1596,7 @@ a .column-title-back .icon:after {
 .account-inline .fullname,.account-inline .username,.account-link.txt-bold {
 	text-overflow:ellipsis;
 	font-size:0.9rem;
-	margin-left:3px
+	white-space:nowrap
 }
 
 .media-item {
@@ -1889,7 +1871,8 @@ a .column-title-back .icon:after {
 
 .tweet-avatar {
 	margin-top:2px;
-	margin-bottom:2px
+	margin-bottom:2px;
+	margin-right:3px
 }
 
 .is-conversation .tweet-avatar {
@@ -2181,18 +2164,6 @@ a .column-title-back .icon:after {
 	opacity:0;
 	padding-left:0!important;
 	-webkit-app-region:no-drag
-}
-
-.mtd-classic-nav .app-navigator {
-	visibility:visible
-}
-
-.mtd-classic-nav .app-nav-link {
-	opacity:1
-}
-
-.mtd-classic-nav .app-nav-link[data-action="settings-menu"] {
-	width:100%
 }
 
 .app-nav-link,.app-search-fake i {
@@ -2534,7 +2505,7 @@ html:not(.mtd-classic-nav) .attach-compose-buttons .tweet-button {
 
 .facet-title {
 	padding-left:28px;
-	text-transform:uppercase
+	/* text-transform:uppercase */
 }
 
 .facet-subtitle {
@@ -4098,8 +4069,8 @@ input[type="checkbox"]:active {
 	background-size:100%!important;
 	background-repeat:no-repeat!important;
 	text-align:center;
-	text-shadow: 0 2px 9px var(--rootBlackColor),0 4px 9px var(--rootBlackColor);
-	overflow:hidden;
+	text-shadow:0 2px 9px var(--rootBlackColor),0 4px 9px var(--rootBlackColor);
+	overflow:hidden
 }
 
 .prf-header .prf-siteurl:active,.prf-header .prf-bio a:active,.prf-header .pretty-link:active {
@@ -4200,7 +4171,7 @@ input[type="checkbox"]:active {
 }
 
 .prf-stats strong {
-	text-transform:none;
+	text-transform:none
 }
 
 .prf-stats>li {
@@ -4291,7 +4262,7 @@ input[type="checkbox"]:active {
 	overflow:hidden;
 	white-space:nowrap;
 	height:17px;
-	vertical-align:middle;
+	vertical-align:middle
 }
 
 .social-proof-names a {
@@ -4415,10 +4386,10 @@ input[type="checkbox"]:active {
 	box-shadow:0 2px 5px 0 var(--contextMenuShadow);
 	margin-top:-18px;
 	text-indent:0;
-	width: 226px;
+	width:226px;
 	margin-right:-10px;
 	border-radius:2px;
-	animation:menuDown 0.3s var(--animationTiming);
+	animation:menuDown 0.3s var(--animationTiming)
 }
 
 .dropdown-menu li:not(.drp-h-divider),.dropdown-menu menuitem:not(.drp-h-divider) {
@@ -4675,7 +4646,8 @@ html:not(.mtd-head-left) .column-nav-link i {
 	padding-left:32px;
 	font-weight:500;
 	text-overflow:ellipsis;
-	height:50px
+	height:50px;
+	white-space:nowrap
 }
 
 .hide-condensed>.column-heading {
@@ -4705,7 +4677,7 @@ html:not(.mtd-head-left) .column-nav-link i {
 	padding-left:5px;
 	margin-bottom:15px;
 	width:calc(var(--composeWidth) - 35px);
-	animation:calendarMenuDown 0.3s var(--animationTiming);
+	animation:calendarMenuDown 0.3s var(--animationTiming)
 }
 
 .js-column-detail .column-title-back:after,.js-tweet-results .column-title-back:after,.js-tweet-social-proof-back:after {
@@ -4762,7 +4734,7 @@ html:not(.mtd-head-left) .column-nav-link i {
 .compose-text-container .mtd-gif-button
 {
 	margin-left:4px;
-	margin-top:-5px;
+	margin-top:-5px
 }
 
 .compose-text-container .mtd-gif-button {
@@ -4789,7 +4761,11 @@ html:not(.mtd-head-left) .column-nav-link i {
 }
 
 .js-tweet-button>i,.js-dm-button>i,.js-add-image-button>i,.js-schedule-button>i {
-	font-size:24px;
+	font-size:24px
+}
+
+.js-tweet-button>i {
+	margin-top:-3px
 }
 
 .mtd-gif-button>i {
@@ -4848,11 +4824,11 @@ html:not(.mtd-head-left) .column-nav-link i {
 }
 
 .facet-type .control-group select,.facet-type .control-group input:not([type="checkbox"]) {
-	width: 49%;
+	width:49%;
 	float:right;
 	display:block;
 	margin-right:8px;
-	max-width: 174px;
+	max-width:174px
 }
 
 .app-nav-link.js-header-add-column .obj-left {
@@ -4928,7 +4904,7 @@ a[rel="user"]:active,
 	/* margin-left:10px; */
 	box-shadow:0 3px 7px var(--composeShadow);
 	margin-top:24px;
-	animation:mediaDown .825s var(--animationTiming);
+	animation:mediaDown .825s var(--animationTiming)
 }
 
 .cal header span {
@@ -5133,16 +5109,6 @@ html:not(.mtd-head-left) body .application.hide-detail-view-inline .column-navig
 	opacity:0;
 	width:0!important;
 	height:0!important
-}
-
-.mtd-classic-nav .js-show-drawer.app-nav-tab,.mtd-classic-nav .js-hide-drawer.app-nav-tab {
-	height:35px!important;
-	width:100%!important;
-	opacity:1;
-	margin-top:19px;
-	position:relative;
-	margin-left:0;
-	box-shadow:none
 }
 
 .app-nav-tab.is-hidden {
@@ -5848,6 +5814,7 @@ button.mtd-no-transform-case {
 	top:5px;
 	left:28px;
 	opacity:0;
+	white-space:nowrap;
 	text-align:center;
 	transition:opacity 0.3s var(--animationTiming) 0.1s,left 0.25s var(--animationTiming)
 }
@@ -5996,15 +5963,15 @@ textarea:not(.compose-text):not(.js-compose-text):not(.js-list-description):not(
 }
 
 .js-tweet .tweet-text {
-	padding-left: calc(var(--avatarSize) * 1.16);
+	padding-left:calc(var(--avatarSize) * 1.16);
 	/* padding-top:calc(50px - var(--avatarSize)); */
 	margin-top:0;
 	min-height:17px;
-	padding-bottom:7px;
+	padding-bottom:7px
 }
 
 .is-conversation.js-tweet .tweet-text {
-	padding-left: calc(52px);
+	padding-left:calc(52px)
 }
 
 .tweet-text:not(.with-linebreaks) {
@@ -6029,8 +5996,8 @@ textarea:not(.compose-text):not(.js-compose-text):not(.js-list-description):not(
 
 .js-mediatable .tweet-body {
 	font-size:0.9rem;
-	margin-left: calc(var(--avatarSize) + 5px);
-	margin-top:-3px;
+	margin-left:calc(var(--avatarSize) + 5px);
+	margin-top:-3px
 }
 
 /* Theme standard message banners */
@@ -6989,7 +6956,7 @@ li.padding-axl.flex.flex-row.flex-align--center .account-summary-text>a.account-
 }
 
 .controls {
-	margin-left:100px;
+	margin-left:100px
 }
 
 .icon-info.icon-large {
@@ -8788,10 +8755,6 @@ footer>.js-tweet-stats>.tweet-stats:not(.js-stats-list) {
 	color:var(--rootWhiteColor)
 }
 
-.js-card-container iframe {
-	height:auto!important
-}
-
 .column-header-temp>.padding-h--10 {
 	margin-block-end:0;
 	margin-block-start:0
@@ -8827,19 +8790,6 @@ footer>.js-tweet-stats>.tweet-stats:not(.js-stats-list) {
  {
 	transform:translateX(var(--composeWidth))!important;
 	margin-right:var(--composeWidth)!important
-}
-
-.mtd-classic-nav .js-hide-drawer:not(.tweet-button):not([data-title="Accounts"]) {
-	-webkit-app-region:no-drag;
-	pointer-events:all;
-	left:0;
-	margin-left:5px;
-	float:left;
-	position:absolute
-}
-
-.mtd-classic-nav .js-hide-drawer:not(.tweet-button):not([data-title="Accounts"])>div {
-	margin-top:-7px!important
 }
 
 html:not(.mtd-classic-nav) .js-hide-drawer:not(.tweet-button):not([data-title="Accounts"]) {
@@ -9004,12 +8954,12 @@ html:not(.mtd-classic-nav) .js-hide-drawer:not(.tweet-button):not([data-title="A
 }
 
 .app-navigator .dropdown-menu {
-	width: 220px;
+	width:220px;
 	animation:menuLeft 0.35s var(--animationTiming);
 	left:var(--verticalHeadWidth);
 	bottom:0;
 	margin-bottom:20px;
-	top:initial;
+	top:initial
 }
 
 .mtd-classic-nav .js-hide-drawer .icon-compose {
@@ -9218,8 +9168,8 @@ html:not(.mtd-classic-nav) .js-hide-drawer:not(.tweet-button):not([data-title="A
 	top:0;
 	padding:10px;
 	font-size:14px;
-	width: 680px;
-	pointer-events: all;
+	width:680px;
+	pointer-events:all
 }
 
 .contributor-row .icon-protected {
@@ -9326,7 +9276,7 @@ a {
 	border-radius:2px;
 	min-height:525px;
 	max-height:707px;
-	-webkit-app-region: no-drag;
+	-webkit-app-region:no-drag
 }
 
 .js-modal-panel.mdl.s-fluid.s-wide.cmp.s-minimal {
@@ -9416,5 +9366,5 @@ button.js-add-filter {
 	right:130px;
 	left:300px;
 	-webkit-app-region:drag;
-	height:40px;
+	height:40px
 }
