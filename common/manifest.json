@@ -19,7 +19,7 @@
 	"content_scripts": [
 		{
 			"matches": ["https://tweetdeck.twitter.com/*"],
-			"js": ["extension/MTDLoad.js"],
+			"js": ["extension/content.js"],
 			"run_at": "document_end"
 		}
 	],
