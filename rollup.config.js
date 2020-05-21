@@ -1,6 +1,7 @@
 import resolve from "@rollup/plugin-node-resolve";
 import json from "@rollup/plugin-json";
 import babel from "rollup-plugin-babel";
+import { terser } from "rollup-plugin-terser";
 
 export default {
 	input: "./src/MTDinject.js",
@@ -15,6 +16,7 @@ export default {
 	plugins: [
 		resolve(),
 		json(),
-		babel({configFile:"./babel.modern.config.json"})
+		babel({configFile:"./babel.modern.config.json"}),
+		terser()
 	]
 };
