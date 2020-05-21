@@ -1,5 +1,8 @@
 import buildId from "./buildId.js";
 
+// Side effect of the build process: This is loaded first, so to compensate, we put this here
+window.ModernDeck = 8;
+
 export class AsciiArtController {
 	static platformName() {
 		let browserName = "Unknown Browser";
