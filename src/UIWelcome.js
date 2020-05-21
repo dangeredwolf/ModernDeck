@@ -39,7 +39,7 @@ export class UIWelcome extends UIModal {
 		},0);
 		$(".app-content,.app-header").remove();
 
-		$(".application").attr("style",`background-image:url(${mtdBaseURL}sources/img/bg1.jpg)`);
+		$(".application").attr("style",`background-image:url(${mtdBaseURL}resources/img/bg1.jpg)`);
 
 		$(".message-banner").attr("style","display: none;");
 

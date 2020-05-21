@@ -191,8 +191,7 @@ function makeLoginWindow(url,teams) {
 		},
 		parent:mainWindow || null,
 		scrollBounce:true,
-		autoHideMenuBar:true,
-		icon:__dirname+useDir+"/sources/favicon.ico",
+		autoHideMenuBar:true
 	});
 
 	loginWindow.on('closed', () => {
@@ -374,11 +373,11 @@ function makeWindow() {
 			scrollBounce:true,
 			webviewTag:true,
 			nodeIntegrationInSubFrames:true
-			// preload: __dirname+separator+useDir+separator+"sources"+separator+"moderndeck.js"
+			// preload: __dirname+separator+useDir+separator+"resources"+separator+"moderndeck.js"
 		},
 		autoHideMenuBar:true,
 		title:"ModernDeck",
-		icon:__dirname+useDir+"/sources/favicon.ico",
+		icon:__dirname+useDir+"/resources/favicon.ico",
 		frame:useFrame,
 		titleBarStyle:titleBarStyle,
 		minWidth:375,
@@ -479,20 +478,20 @@ function makeWindow() {
 			document.head.appendChild(injurl);\
 			\
 			var InjectScript2 = document.createElement("script");\
-			InjectScript2.src = "moderndeck://sources/libraries/moduleraid.min.js";\
+			InjectScript2.src = "moderndeck://resources/libraries/moduleraid.min.js";\
 			InjectScript2.type = "text/javascript";\
 			document.head.appendChild(InjectScript2);'
 			+
 			(store.get("mtd_safemode") ? 'document.getElementsByTagName("html")[0].classList.add("mtd-disable-css");' :
 			'var injStyles = document.createElement("link");\
 			injStyles.rel = "stylesheet";\
-			injStyles.href = "moderndeck://sources/' + (useNext ? 'next/' : '') + 'moderndeck.css";\
+			injStyles.href = "moderndeck://resources/' + (useNext ? 'next/' : '') + 'moderndeck.css";\
 			document.head.appendChild(injStyles);')
 			+
 			(useNext ? 'document.getElementsByTagName("html")[0].classList.add("mtd-next");' : '')
 			+
 			'var InjectScript = document.createElement("script");\
-			InjectScript.src = "moderndeck://sources/moderndeck.js";\
+			InjectScript.src = "moderndeck://resources/moderndeck.js";\
 			InjectScript.type = "text/javascript";\
 			document.head.appendChild(InjectScript);\
 		'
@@ -632,7 +631,7 @@ function makeWindow() {
 		}
 
 		// if (details.url.indexOf(".css") > -1 && details.url.indexOf("tfw") > -1 && details.url.indexOf("css") > -1 && details.url.indexOf("tweetdeck_bundle") > -1) {
-		// 	callback({redirectURL:"moderndeck://sources/cssextensions/twittercard.css"});
+		// 	callback({redirectURL:"moderndeck://resources/cssextensions/twittercard.css"});
 		// 	return;
 		// }
 

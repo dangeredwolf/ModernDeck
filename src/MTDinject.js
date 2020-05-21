@@ -6,7 +6,6 @@
 	Made with <3
 */
 
-window.ModernDeck = 8;
 import { version } from "../package.json";
 window.SystemVersion = version.replace(".0.0",".0"); // remove trailing .0, if present
 
@@ -149,7 +148,7 @@ if (typeof MTDURLExchange === "object" && typeof MTDURLExchange.getAttribute ===
 
 // let twitterSucks = document.createElement("script");
 // twitterSucks.type = "text/javascript";
-// twitterSucks.src = mtdBaseURL + "sources/libraries/moduleraid.min.js";
+// twitterSucks.src = mtdBaseURL + "resources/libraries/moduleraid.min.js";
 // document.head.appendChild(twitterSucks);
 
 
@@ -632,10 +631,10 @@ function coreInit() {
 	}
 	// append extra scripts
 	head.append(
-		make("script").attr("type", "text/javascript").attr("src", mtdBaseURL + "sources/libraries/nquery.min.js"),
-		make("script").attr("type", "text/javascript").attr("src", mtdBaseURL + "sources/libraries/emojidata.js"),
-		make("script").attr("type", "text/javascript").attr("src", mtdBaseURL + "sources/libraries/twemoji.min.js"),
-		make("script").attr("type", "text/javascript").attr("src", mtdBaseURL + "sources/libraries/jquery.visible.js")
+		make("script").attr("type", "text/javascript").attr("src", mtdBaseURL + "resources/libraries/nquery.min.js"),
+		make("script").attr("type", "text/javascript").attr("src", mtdBaseURL + "resources/libraries/emojidata.js"),
+		make("script").attr("type", "text/javascript").attr("src", mtdBaseURL + "resources/libraries/twemoji.min.js"),
+		make("script").attr("type", "text/javascript").attr("src", mtdBaseURL + "resources/libraries/jquery.visible.js")
 	);
 
 	enableCustomStylesheetExtension("i18nCSS",`

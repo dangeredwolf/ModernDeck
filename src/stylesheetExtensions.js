@@ -10,12 +10,12 @@ export function isStylesheetExtensionEnabled(name) {
 	if ($("#mtd_custom_css_"+name).length > 0) {
 		return true;
 	}
-	return !!document.querySelector("link.mtd-stylesheet-extension[href=\"" + mtdBaseURL + "sources/cssextensions/" + name + ".css\"\]");
+	return !!document.querySelector("link.mtd-stylesheet-extension[href=\"" + mtdBaseURL + "resources/cssextensions/" + name + ".css\"\]");
 }
 
 /*
 	Enables a certain stylesheet extension.
-	Stylesheet extensions are loaded from sources/cssextensions/[name].css
+	Stylesheet extensions are loaded from resources/cssextensions/[name].css
 
 	These are the predefined ModernDeck ones including colour themes, default light and dark themes, and various preferences
 
@@ -27,7 +27,7 @@ export function enableStylesheetExtension(name) {
 		return;
 
 	// This is where components are located
-	let url = mtdBaseURL + "sources/cssextensions/" + name + ".css";
+	let url = mtdBaseURL + "resources/cssextensions/" + name + ".css";
 
 	if (name === "donors") {
 		url = "https://api.moderndeck.org/v1/patrons/donors.css?v=" + version;
@@ -53,7 +53,7 @@ export function disableStylesheetExtension(name) {
 	if (!isStylesheetExtensionEnabled(name))
 		return;
 
-	$('head>link[href="' + mtdBaseURL + "sources/cssextensions/" + name + '.css"]').remove();
+	$('head>link[href="' + mtdBaseURL + "resources/cssextensions/" + name + '.css"]').remove();
 
 	if ($("#mtd_custom_css_"+name).length > 0) {
 		$("#mtd_custom_css_"+name).remove();
