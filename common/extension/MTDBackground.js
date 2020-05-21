@@ -22,33 +22,4 @@ if (browser !== "undefined") {
 		}
 
 	}, {urls:["https://tweetdeck.twitter.com/*","https://twitter.com/i/cards/*"]});
-
-	browser.webRequest.onBeforeRequest.addListener((details) => {
-
-		if (details.url.indexOf(".css") > -1 && (details.url.indexOf("tfw/css") > -1 && details.url.indexOf("tweetdeck_bundle") > -1)) {
-			return ({redirectURL:browser.runtime.getURL("sources/cssextensions/twittercard.css")});
-		}
-
-		return;
-	}, {urls:["https://ton.twimg.com/*"]});
-
-	browser.runtime.onMessage.addListener((m) => {
-		console.log("Message received");
-		console.log(m);
-		if (m == "getStorage") {
-			browser.storage.local.get(null, (items) => {
-				browser.tabs.query({url: "https://tweetdeck.twitter.com/"}, (tabs) => {
-					if (typeof tabs[0] !== "undefined") {
-						browser.tabs.sendMessage(tabs[0].id, {"name": "sendStorage", "storage": JSON.stringify(items)});
-					} else {
-						browser.tabs.sendMessage(tabs.id, {"name": "sendStorage", "message": JSON.stringify(items)});
-					}
-					console.log("Reply sent");
-					console.log(items);
-				});
-			});
-		} else if (m.name == "setStorage") {
-			browser.storage.local.set(m.content);
-		}
-	});
 }
