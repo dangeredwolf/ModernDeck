@@ -90,11 +90,16 @@ html.mtd-classic-nav.mtd-head-left body .app-header .column-nav-item {
 
 .mtd-classic-nav .js-hide-drawer:not(.tweet-button):not([data-title="Accounts"]) {
 	-webkit-app-region:no-drag;
-	pointer-events:all;
-	left:0;
-	margin-left:5px;
-	float:left;
-	position:absolute
+	height:35px!important;
+	width:100%!important;
+	opacity:1;
+	margin-top:19px;
+	position:relative;
+	margin-left:0;
+	box-shadow:none;
+	float:none;
+	animation:none;
+	transform:none
 }
 
 .mtd-classic-nav .js-hide-drawer:not(.tweet-button):not([data-title="Accounts"])>div {
