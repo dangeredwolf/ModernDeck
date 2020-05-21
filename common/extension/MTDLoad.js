@@ -46,28 +46,6 @@ injectScript.src = browser.extension.getURL("sources/moderndeck.js");
 injectScript.type = "text/javascript";
 document.head.appendChild(injectScript);
 
-browser.runtime.sendMessage("getStorage");
-
-browser.runtime.onMessage.addListener((m) => {
-	if (m.name === "sendStorage") {
-		storage = m.storage;
-	}
-});
-
 if (document.getElementsByTagName("title").length > 0) {
 	document.getElementsByTagName("title")[0].innerHTML = "ModernDeck"
 }
-
-window.addEventListener("message", (event) => {
-	if (event.source === window && event.data.type) {
-		if (event.data.type === "setStorage") {
-			browser.runtime.sendMessage({"name": "setStorage", "content": event.data.message});
-		}
-		else if (event.data.type === "getStorage") {
-			window.postMessage({
-				type: "sendStorage",
-				message: storage
-			}, "*");
-		}
-	}
-});

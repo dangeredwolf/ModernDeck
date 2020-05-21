@@ -4,19 +4,24 @@
 
 	Released under the MIT licence
 */
-
+window.open("https://tweetdeck.twitter.com");
 
 var browser = browser || chrome;
-const createNewTab = () => browser.tabs.create({url:"https://tweetdeck.twitter.com"}, a => {});
+const createNewTab = () => browser.tabs.create({url:"https://tweetdeck.twitter.com"}, a => close());
 
-browser.permissions.remove({permissions:["tabs"]})
+needsPermission.innerHTML = browser.i18n.getMessage("needsPermission");
+needsPermissionParagraph.innerHTML = browser.i18n.getMessage("needsPermissionParagraph");
+grantButton.innerHTML = browser.i18n.getMessage("grantButton");
+grantButton.onclick = function() {
+	browser.permissions.request({permissions:["tabs"]}, (res) => {
+		createNewTab();
+	})
+}
 
 browser.permissions.contains({permissions:["tabs"]}, (res) => {
 	if (res) {
 		createNewTab();
 	} else {
-		browser.permissions.request({permissions:["tabs"]}, (res) => {
-			createNewTab();
-		})
+
 	}
-})
+});

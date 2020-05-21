@@ -10,13 +10,7 @@
 
 	"default_locale":"en",
 
-	"permissions": [
-		"webRequest",
-		"webRequestBlocking",
-		"https://*.twitter.com/",
-		"https://ton.twimg.com/",
-		"contextMenus"
-	],
+	"permissions": [],
 
 	"optional_permissions": [
 		"tabs"
@@ -29,11 +23,6 @@
 			"run_at": "document_end"
 		}
 	],
-
-	"background": {
-		"scripts": ["extension/MTDBackground.js"],
-		"persistent": true
-	},
 
 	"icons": {
 		"16": "AppIcon16.png",

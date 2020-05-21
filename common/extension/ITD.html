@@ -1,9 +1,88 @@
 <!-- InstaTweetDeck Button (Browser Variant) -->
 <html style="font-family:apple-system, Segoe UI, Roboto, San Francisco, Verdana, Arial, sans-serif">
 	<head>
-		<script src="ITD.js"></script>
+		<meta charset="UTF-8">
 	</head>
+
+	<style>
+
+		html, a, button, input {
+			font-family:Roboto,"Segoe UI","Noto Sans","Noto Sans CJK","MS UI Gothic","MS Gothic","Microsoft JhengHei UI",Ubuntu,sans-serif;
+		}
+
+		html {
+			min-height:300px;
+			height:auto;
+			font-size:14px
+		}
+
+		body {
+			width:250px;
+			padding:12px;
+			overflow-x:hidden;
+			font-size:100%
+		}
+
+		input[type="checkbox"] {
+			height:20px;
+			width:20px;
+			padding-right:3px;
+			vertical-align:middle;
+		}
+
+		button,a.btn {
+			position:relative;
+			display:inline-block;
+			pointer-events:all;
+			padding:9px 10px;
+			text-align:center;
+			text-decoration:none;
+			cursor:pointer;
+			font-size:14px;
+			font-weight:500;
+			border:0;
+			border-color:transparent;
+			background:transparent;
+			text-shadow:none;
+			text-transform:uppercase;
+			color:#fff;
+			background-color:#09e;
+			border-radius:3px;
+			margin:10px;
+			box-shadow:0 2px 4px rgba(17,17,17,.5);
+			transition:all 0.12s
+		}
+
+		button:hover,a.btn:hover,button:focus,a.btn:focus {
+			outline:0;
+			box-shadow:0 3px 7px rgba(17,17,17,.5);
+			background-color:#0af
+		}
+
+		button:active,a.btn:active {
+			background-color:#5af
+		}
+
+		a {
+			color:#5af;
+			text-decoration:none
+		}
+
+		a:not([role="button"]):hover, a:not([role="button"]):focus {
+			text-decoration:underline
+		}
+
+	</style>
+
 	<body>
-		Opening...
+
+		<b id="needsPermission">needsPermission</b>
+		<div class="form-group form-check">
+			<p id="needsPermissionParagraph">needsPermissionParagraph</b>
+			</p>
+			<a role="button" class="btn btn-primary" id="grantButton" href="#">grantButton</a>
+		</div>
+
+		<script src="ITD.js"></script>
 	</body>
 </html>
