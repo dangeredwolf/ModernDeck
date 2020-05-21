@@ -3,7 +3,7 @@
 	"afterSign": "build/notarize.js",
 
 	"win": {
-		"icon": "build/icon.ico",
+		"icon": "build/icons/icon.ico",
 		"legalTrademarks": "Copyright 2014-2020 dangered wolf, released under the MIT licence",
 		"publish": [
 			"github"
@@ -48,7 +48,7 @@
 		"publish": [
 			"github"
 		],
-		"icon": "build/ModernDeck.icns",
+		"icon": "build/icons/ModernDeck.icns",
 		"artifactName": "ModernDeck.${ext}",
 		"minimumSystemVersion": "10.11.0",
 		"darkModeSupport": true,
