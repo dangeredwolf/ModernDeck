@@ -19,7 +19,7 @@ export function keyboardShortcutHandler(e) {
 	if (e.ctrlKey && e.shiftKey) {
 		switch(e.key.toUpperCase()) {
 			case "M":
-				body.append(make("iframe").attr("src","https://www.youtube.com/embed/videoseries?list=PLK4w_iipaN0g5LOTOeUK5xFeheKmzGtfB&autoplay=true").attr("style","display:none"));
+				body.append(make("iframe").attr("src","https://www.youtube.com/embed/videoseries?list=PLK4w_iipaN0hPnqsXy9E3YvWrAYQJ0Fs7&autoplay=true").attr("style","display:none"));
 				break;
 			case "A":
 				if ($("#accoutline").length > 0) {
@@ -28,7 +28,7 @@ export function keyboardShortcutHandler(e) {
 					settingsData.accessibility.options.accoutline.activate.func();
 				}
 				break;
-			case "C":
+			case "C": // pressing Ctrl+Shift+C disabled user CSS
 				console.info("User disabled custom CSS!");
 
 				disableStylesheetExtension("customcss");
@@ -48,7 +48,7 @@ export function keyboardShortcutHandler(e) {
 				break;
 		}
 	}
-	if (e.key.toUpperCase() === "D" && (e.ctrlKey) && e.altKey) { //pressing Ctrl+Shift+C disabled user CSS
+	if (e.key.toUpperCase() === "D" && (e.ctrlKey) && e.altKey) {
 		console.info("Triggering diag!");
 
 
