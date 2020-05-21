@@ -19,7 +19,7 @@ let langFull;
 let langRoot;
 
 // ModernDeck specific code, safe to ignore within tweetdeck-i18n
-if (window.version) {
+if (window.ModernDeck) {
 	console.log("I18n: Detected ModernDeck");
 	langFull = getPref("mtd_lang");
 	if (!langFull) {
@@ -38,7 +38,7 @@ export const getFallbackLanguage = () => "en";
 
 
 const mustachePatches = {
-	"keyboard_shortcut_list.mustache":{
+	"keyboard_shortcut_list.mustache": {
 		"Open Navigation Drawer/Menu":1,
 		"Command palette — <b>NEW!</b>":1,
 		"Cmd &#8984;":1,
@@ -69,14 +69,23 @@ const mustachePatches = {
 		"Search":1,
 		"Return":1
 	},
-	"twitter_profile_social_proof.mustache":{
+	"twitter_profile_social_proof.mustache": {
 		"and":1
 	},
-	"status/tweet_detail.mustache":{
+	"status/tweet_detail.mustache": {
 		"Reply to":1
 	},
-	"menus/quality_filter_info.mustache":{
+	"menus/quality_filter_info.mustache": {
 		"Quality filter {{qualityFilterText}}":1
+	},
+	"lists/edit_list_details.mustache": {
+		"Under 100 characters, optional":1
+	},
+	"customtimeline/edit_customtimeline.mustache": {
+		"Under 160 characters, optional":1
+	},
+	"menus/dm_conversations_menu.mustache": {
+		"Delete conversation":1
 	}
 }
 
