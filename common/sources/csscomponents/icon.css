@@ -773,7 +773,6 @@ span[data-testid="trendMovement"] .icon-pointer-d:before,span[data-testid="trend
 	font-size:32px
 }
 
-
 .dropdown-menu a[data-action="embed"]:before,.dropdown-menu a[data-action="inspectElement"]:before {
 	content:"\e86f"
 }
@@ -819,7 +818,7 @@ span[data-testid="trendMovement"] .icon-pointer-d:before,span[data-testid="trend
 	content:"\e153"
 }
 
-.dropdown-menu a[data-action="mute"]:before,.dropdown-menu a[data-action="muteConversation"]:before {
+.dropdown-menu a[data-action="mute"]:before,.dropdown-menu a[data-action="muteConversation"]:before,.dropdown-menu a[data-action="unmuteConversation"]:before {
 	content:"\e04f"
 }
 
