@@ -84,14 +84,13 @@
 
 .mtd-settings-subpanel {
 	height:525px;
-	width:500px;
+	width:489px;
 	display:block;
 	position:absolute;
 	overflow-y:auto;
 	overflow-x:hidden;
 	padding:20px;
-	padding-top:0;
-	pointer-events:all
+	padding-top:0
 }
 
 .mtd-settings-subpanel:first-child .mtd-welcome-prev-button
@@ -191,7 +190,7 @@
 
 .mtd-settings-tab-selection {
 	height:52px;
-	position:absolute!important;
+	position:absolute;
 	background:var(--selectionBackgroundColor)!important;
 	z-index:1;
 	left:0;
@@ -305,13 +304,14 @@
 	position:absolute
 }
 
-.mtd-about-info i {
-	line-height:1
-}
-
 .mtd-about-info p {
 	font-size:14px;
-	line-height:1.7
+	line-height:2
+}
+
+
+.mtd-about-info i {
+	line-height:1
 }
 
 .mtd-big-text-box>input[type="text"] {
@@ -326,7 +326,7 @@
 
 .mtd-settings-option-slider input[type="range"] {
 	-webkit-appearance:none;
-	width:370px;
+	width:32%;
 	float:right;
 	border-radius:2px;
 	padding:0;
@@ -363,7 +363,7 @@
 }
 
 .mtd-settings-option-button .control-label b {
-	font-size:18px;
+	font-size:16px;
 	font-weight:400;
 	margin-right:33px;
 	width:300px;
@@ -372,14 +372,14 @@
 	margin-left:10px
 }
 
-.mtd-settings-option-button, .mtd-settings-option-buttons {
+.mtd-settings-option-button {
 	height:auto;
 	width:95%;
 	padding:10px
 }
 
 .mtd-textarea {
-	height:200px!important;
+	height:240px!important;
 	font-family:RobotoMono!important;
 	tab-size:43px;
 	-moz-tab-size:43px /* https://bugzilla.mozilla.org/show_bug.cgi?id=737785 */
@@ -523,19 +523,17 @@ html body .mtd-settings-subpanel button {
 	pointer-events:none
 }
 
-/* .mtd-translation-thank-you {
-	position:absolute;
-	top:240px;
-	left:50px;
-	right:50px
-}
-
-.mtd-translation-thank-you .mtd-settings-button {
+.mtd-settings-option-buttons .mtd-settings-button {
 	pointer-events:all;
 	margin-top:17px;
-	float:right;
-	margin-right:20px
-} */
+	margin-left:10px
+}
+
+.mtd-settings-option-buttons .control-label {
+	font-size:16px;
+	padding-left:10px;
+	margin-bottom:10px
+}
 
 .mtd-unsupported-lang {
 	margin-top:10px
@@ -559,7 +557,7 @@ html body .mtd-settings-subpanel button {
 	font-size:24px
 }
 
-#language .mtd-settings-option-button .mtd-settings-button {
+#language .mtd-settings-button {
 	margin-top:10px
 }
 
@@ -594,33 +592,4 @@ html body .mtd-settings-subpanel button {
 	position:absolute;
 	left:315px;
 	top:85px
-}
-
-.mtd-slider-container {
-	position:absolute;
-	margin-top:40px
-}
-
-.mtd-settings-option-slider {
-	height:100px
-}
-
-.mtd-settings-option-buttons .control-label {
-	font-size:16px
-}
-
-.mtd-settings-option-buttons .mtd-settings-button {
-	pointer-events:all;
-	margin-top:20px;
-	float:left;
-	margin-right:20px
-}
-
-.mtd-settings-option-buttons {
-	bottom:45px;
-	position:absolute;
-	right:0;
-	padding:30px;
-	left:0;
-	width:auto
 }
