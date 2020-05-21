@@ -25,10 +25,10 @@
 		"buildAndMinify": "npm run rollup && npm run minify",
 		"rollup": "npm run incBuild && rollup -c",
 		"start": "npm run rollup && electron .",
-		"i18nbuild": "node updatei18n.js && npm run rollup && npm run buildWindows",
+		"i18nbuild": "npm run updatei18n && npm run rollup && npm run buildWindows",
 		"startNoBuild": "electron .",
 		"inspect": "electron . --inspect",
-		"updatei18n": "node updatei18n.js",
+		"updatei18n": "node build/updatei18n.js",
 		"release": "build"
 	},
 	"repository": "https://github.com/dangeredwolf/ModernDeck",
