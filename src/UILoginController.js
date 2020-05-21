@@ -21,7 +21,7 @@ function startUpdateGoodLoginText() {
 	// we can't do this in the new login mustache because when it's initialised,
 	// MTDURLExchange hasn't completed yet
 
-	$(".startflow-background").attr("style",`background-image:url(${mtdBaseURL}sources/img/bg1.jpg)`)
+	$(".startflow-background").attr("style",`background-image:url(${mtdBaseURL}resources/img/bg1.jpg)`)
 
 	setInterval(() => {
 		let text;

@@ -558,7 +558,7 @@ export let settingsData = {
 				type:"checkbox",
 				activate:{
 					func: () => {
-						$(document.querySelector("audio")).attr("src",mtdBaseURL + "sources/alert_3.mp3");
+						$(document.querySelector("audio")).attr("src",mtdBaseURL + "resources/alert_3.mp3");
 					}
 				},
 				deactivate:{

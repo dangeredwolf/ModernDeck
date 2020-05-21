@@ -12,7 +12,7 @@ let i18n = path.format({
 });
 
 let results = path.format({
-	dir:__dirname + "\\src",
+	dir:__dirname + "\\..\\src",
 	base:"DataI18n.js"
 });
 

@@ -57,7 +57,7 @@ function createGifPanel() {
 				make("input").addClass("mtd-gif-search").attr("placeholder",I18n("Search GIFs...")).change(() => {
 					searchGifPanel($(".mtd-gif-search").val())
 				}),
-				make("img").attr("src",mtdBaseURL + "sources/img/giphy2.png").addClass("mtd-giphy-logo"),
+				make("img").attr("src",mtdBaseURL + "resources/img/giphy2.png").addClass("mtd-giphy-logo"),
 				make("button").addClass("mtd-gif-top-button").append(
 					make("i").addClass("icon icon-arrow-u"),
 					I18n("Go back up")

@@ -45,7 +45,6 @@ import { contextMenuFunctions } from "./ContextMenuFunctions.js";
 import { clearContextMenu } from "./UIContextMenu.js";
 
 import { keyboardShortcutHandler } from "./KeyboardShortcutHandler.js";
-import { download } from "./DownloadController.js";
 import { UIAlert } from "./UIAlert.js";
 import { processMustaches } from "./MustachePatcher.js";
 import { mtdAppFunctions } from "./AppController.js";
@@ -409,18 +408,6 @@ async function mtdInit() {
 
 	navigationSetup();
 
-}
-
-// https://staxmanade.com/2017/02/how-to-download-and-convert-an-image-to-base64-data-url/
-
-async function getBlobFromUrl(imageUrl) {
-	let res = await fetch(imageUrl);
-	let blob = await res.blob();
-
-	return new Promise((resolve, reject) => {
-		resolve(blob);
-		return blob;
-	})
 }
 
 function useNativeEmojiPicker() {
