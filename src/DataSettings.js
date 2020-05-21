@@ -25,10 +25,11 @@ import { openLegacySettings } from "./UISettings.js";
 import { enterSafeMode } from "./SafeMode.js";
 import { UILanguagePicker } from "./UILanguagePicker.js";
 import { getColumnFromColumnNumber } from "./Column.js";
+import { translationCredits } from "./DataTranslationCredits.js";
 
 // Use standard macOS symbols instead of writing it out like on Windows
 
-const ctrlShiftText = (navigator.userAgent.indexOf("Mac OS X") > -1) ? "⌃⇧" : "Ctrl+Shift+";
+const ctrlShiftText = (navigator.userAgent.indexOf("Mac OS X") > -1) ? "⌃⇧" : "{{Ctrl+Shift+}}";
 
 import { isApp } from "./utils.js"
 
@@ -719,13 +720,11 @@ export let settingsData = {
 				type:"checkbox",
 				activate:{
 					func: () => {
-						setPref("mtd_nativecontextmenus",true);
 						useNativeContextMenus = true;
 					}
 				},
 				deactivate:{
 					func: () => {
-						setPref("mtd_nativecontextmenus",false);
 						useNativeContextMenus = false;
 					}
 				},
