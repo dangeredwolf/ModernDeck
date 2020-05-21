@@ -5,7 +5,7 @@
 	Released under the MIT licence
 */
 
-const browser = browser || chrome;
+var browser = browser || chrome;
 
 browser.webRequest.onHeadersReceived.addListener((details) => {
 	if (details.type !== "main_frame" && details.type !== "sub_frame") {
