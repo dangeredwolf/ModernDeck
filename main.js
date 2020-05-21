@@ -279,71 +279,29 @@ function saveImageAs(url) {
 		return;
 	}
 
+	let fileType = url.match(/(?<=format=)(\w{3,4})|(?<=\.)(\w{3,4}(?=\?))/g)[0] || "file";
+	let fileName = url.match(/(?<=media\/)[\w\d_\-]+|[\w\d_\-]+(?=\.m)/g)[0] || "jpg";
+
 	console.log("saveImageAs");
 
-	let savePath = dialog.showSaveDialogSync();
+	let savePath = dialog.showSaveDialogSync({defaultPath:fileName + "." + fileType});
 	console.log(savePath);
-	return;
-
-	dialog.showSaveDialog().then((cancelled, filePath) => {
-		console.log(filePath);
-		if (!cancelled) {
-			console.log("Save was NOT cancelled!");
-			const http = require("http");
+	if (savePath) {
+		try {
+			const https = require("https");
 			const fs = require("fs");
 
-			const file = fs.createWriteStream(filePath);
-			const request = http.get(url, function(response) {
+			const file = fs.createWriteStream(savePath);
+			const request = https.get(url, function(response) {
 				console.log("Piping file...");
 				response.pipe(file);
 			});
-		} else {
-			console.log("Save was cancelled??")
+		} catch(e) {
+			console.log(e);
 		}
-	})
+	}
 
 
-
-	// const pipePromise = (source, outputPath) => {
-	// 	if (!outputPath) {
-	// 		return Promise.resolve();
-	// 	}
-	//
-	// 	const stream = source.pipe(fs.createWriteStream(outputPath));
-	//
-	// 	return new Promise((resolve, reject) => {
-	// 		stream.on("finish", resolve);
-	// 		stream.on("error", reject);
-	// 	});
-	// };
-	//
-	// let path = url.match(/(([A-z0-9_\-])+\w+\.[A-z0-9]+)/g);
-	// path = path[1];
-	//
-	// const getOutputPath = (ext) => {
-	// 	return
-	// };
-	//
-	// const got = require("got");
-	//
-	// const promise = new Promise(resolve => {
-	// 	let resolved;
-	//
-	// 	const stream = got.stream(url).pipe(
-	// 		through2(function(chunk, enc, callback) {
-	// 			if (!resolved) {
-	// 				resolve({ ext: imageType(chunk).ext, stream });
-	// 				resolved = true;
-	// 			}
-	//
-	// 			this.push(chunk);
-	// 			callback();
-	// 		}
-	// 	));
-	// });
-	//
-	// return promise
-	// .then(result => pipePromise(result.stream, getOutputPath(result.ext)));
 
 };
 
@@ -673,10 +631,10 @@ function makeWindow() {
 			return;
 		}
 
-		if (details.url.indexOf(".css") > -1 && details.url.indexOf("tfw") > -1 && details.url.indexOf("css") > -1 && details.url.indexOf("tweetdeck_bundle") > -1) {
-			callback({redirectURL:"moderndeck://sources/cssextensions/twittercard.css"});
-			return;
-		}
+		// if (details.url.indexOf(".css") > -1 && details.url.indexOf("tfw") > -1 && details.url.indexOf("css") > -1 && details.url.indexOf("tweetdeck_bundle") > -1) {
+		// 	callback({redirectURL:"moderndeck://sources/cssextensions/twittercard.css"});
+		// 	return;
+		// }
 
 		callback({cancel:false});
 	});
