@@ -45,7 +45,7 @@
 
 	"browser_action": {
 		"default_icon": "sources/oneclick/InstaTweetDeck.png",
-		"default_popup": "extension/ITD.html",
+		"default_popup": "extension/popover.html",
 		"default_title": "__MSG_launch__"
 	},
 
