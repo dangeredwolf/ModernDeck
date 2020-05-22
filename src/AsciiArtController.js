@@ -39,6 +39,10 @@ export class AsciiArtController {
 		return `${browserName} (${systemName})`
 	}
 	static draw() {
+		if (navigator.userAgent.indexOf("Gecko/") > 0) {
+			return; // https://twitter.com/dangeredwolf/status/1263968859637395466
+		}
+		
 		document.getElementsByTagName("html")[0].prepend(document.createComment(
 `
     █████████████████████████████████████████
