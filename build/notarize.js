@@ -6,9 +6,9 @@ module.exports = async function (params) {
 		return;
 	}
 
-	console.log("Notarizing macOS app... this will take a while...");
-	console.log("Seriously. it'll be a while. Go use the bathroom, maybe grab a snack or something. You might need it.");
-	
+	console.log("   Notarizing macOS app... this will take a while...");
+	console.log("   Seriously. it'll be a while. Go use the bathroom, maybe grab a snack or something. You might need it.");
+
 	await notarize({
 		appBundleId: "com.dangeredwolf.ModernDeck",
 		appPath: "./dist/mac/ModernDeck.app",

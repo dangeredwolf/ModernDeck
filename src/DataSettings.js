@@ -955,7 +955,18 @@ export let settingsData = {
 					}
 				},
 				settingsKey:"mtd_collapsed_columns",
-				enabled:false,
+				default:[]
+			},
+			lastVersion:{
+				type:"textbox",
+				activate:{
+					func: (e) => {
+						if (window.SystemVersion !== getPref("mtd_last_version")) {
+							// todo: something
+						}
+					}
+				},
+				settingsKey:"mtd_last_version",
 				default:[]
 			},
 		}

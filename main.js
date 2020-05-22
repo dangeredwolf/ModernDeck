@@ -39,7 +39,6 @@ const Store = require("electron-store");
 const store = new Store({name:"mtdsettings"});
 
 // const disableCss = false; // use storage.mtd_safemode
-const useNext = false;
 
 const isAppX = !!process.windowsStore;
 
@@ -483,10 +482,8 @@ function makeWindow() {
 			(store.get("mtd_safemode") ? 'document.getElementsByTagName("html")[0].classList.add("mtd-disable-css");' :
 			'var injStyles = document.createElement("link");\
 			injStyles.rel = "stylesheet";\
-			injStyles.href = "moderndeck://resources/' + (useNext ? 'next/' : '') + 'moderndeck.css";\
+			injStyles.href = "moderndeck://resources/moderndeck.css";\
 			document.head.appendChild(injStyles);')
-			+
-			(useNext ? 'document.getElementsByTagName("html")[0].classList.add("mtd-next");' : '')
 			+
 			'var InjectScript = document.createElement("script");\
 			InjectScript.src = "moderndeck://resources/moderndeck.js";\

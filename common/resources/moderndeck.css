@@ -1556,7 +1556,7 @@ a .column-title-back .icon:after {
 }
 
 .account-summary-text>a.account-link {
-	margin-left:6px;
+	margin-left:9px;
 	margin-top:7px
 }
 
@@ -2084,6 +2084,10 @@ a .column-title-back .icon:after {
 	width:26px;
 	margin-left:-15px;
 	opacity:1
+}
+
+.inline-reply .spinner-button-icon-spinner {
+	margin-top:10px
 }
 
 .spinner-button-icon-spinner.is-hidden {
@@ -3129,8 +3133,8 @@ html:not(.mtd-app).mtd-classic-nav .compose-content {
 }
 
 .inline-reply .compose-send-button-success {
-	margin-left:-28px;
-	margin-top:-13px
+	margin-left:-18px;
+	margin-top:-16px
 }
 
 .compose-send-button-success {

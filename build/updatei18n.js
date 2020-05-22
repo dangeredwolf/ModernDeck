@@ -7,7 +7,7 @@ const fs = require("fs");
 const path = require("path");
 
 let i18n = path.format({
-	dir:__dirname,
+	dir:__dirname+"\\..",
 	base:"tweetdeck-i18n.csv"
 });
 

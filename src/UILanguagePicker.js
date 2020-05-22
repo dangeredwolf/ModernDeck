@@ -41,10 +41,10 @@ export class UILanguagePicker extends UIModal {
 		).change(() => {
 			if (languageData.OK[this.selectLanguage.val()]) {
 				this.alertTitle.html("<i class='material-icon'>language</i> " + languageData.Language[this.selectLanguage.val()]);
-				this.alertButton.removeClass("hidden");
 			}
 
 			this.alertButton.html(languageData.OK[this.selectLanguage.val()] || "OK");
+			this.alertButton.removeClass("hidden");
 
 			this.inaccuracy.html(((DataI18n[this.selectLanguage.val().substr(0,2)] && DataI18n[this.selectLanguage.val().substr(0,2)]["Translations may be incomplete or inaccurate."] ? DataI18n[this.selectLanguage.val().substr(0,2)]["Translations may be incomplete or inaccurate."] : (inaccuraciesCodeTable[this.selectLanguage.val().substr(0,2)] || inaccuraciesCodeTable["en"]) ))+ " <a href='https://translate.moderndeck.org'>translate.moderndeck.org</a>")
 		});

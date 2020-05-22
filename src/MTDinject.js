@@ -20,6 +20,7 @@ import { initGifPanel, checkGifEligibility } from "./UIGifPicker.js";
 import { openSettings } from "./UISettings.js";
 import { UINavDrawer } from "./UINavDrawer.js";
 import { FunctionPatcher } from "./FunctionPatcher.js";
+import { LanguageFunctionPatcher } from "./LanguageFunctionPatcher.js";
 import { UILanguagePicker } from "./UILanguagePicker.js";
 import { loginTextReplacer, checkIfSigninFormIsPresent } from "./UILoginController.js";
 let welcomeData = _welcomeData;
@@ -661,6 +662,7 @@ function coreInit() {
 `)
 
 	FunctionPatcher();
+	LanguageFunctionPatcher();
 
 
 	mtdInit();
