@@ -1127,6 +1127,7 @@ button:hover,button:focus,.Button--primary {
 	margin-top:-2px;
 	word-wrap:break-word;
 	text-overflow:ellipsis;
+	pointer-events:none;
 	z-index:5
 }
 
@@ -9346,7 +9347,7 @@ a {
 	margin-left:17px
 }
 
-.application.is-condensed {
+.application.is-condensed, .mtd-head-left:not(.mtd-classic-nav) .application{
 	--verticalHeadWidth:50px
 }
 
@@ -9367,4 +9368,8 @@ button.js-add-filter {
 	left:300px;
 	-webkit-app-region:drag;
 	height:40px
+}
+
+.quoted-tweet .account-link {
+	margin-left:4px
 }

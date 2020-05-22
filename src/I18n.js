@@ -8,7 +8,7 @@
 
 let displayWarning = false;
 let tweetDeckTranslateInitial;
-let debugI18n = true;
+let debugI18n = false;
 
 // ModernDeck specific import, dummy function in tweetdeck-i18n
 import { getPref } from "./StoragePreferences.js";
@@ -96,20 +96,24 @@ export const I18n = function(a, b, c, d, e, f) {
 		return "";
 	}
 
+	if (debugI18n) {
+		console.log(a, b, c, d, e, f)
+	}
+
 	if ((a.includes("{{{") || a.includes("{{")) && !f){
 		let hmm = I18n(a, b, c, d, e, 1);
 		let no = I18n(hmm, b, c, d, e, 2);
 		return no;
 	}
 
-	if (a.includes("{{{") && f === 2) {
-		for (const key in b) {
-			const replaceMe = b[key][getFullLanguage()] || b[key][getMainLanguage()] || b[key][getFallbackLanguage()];
-
-			a = a.replace(/\{\{\{"+key+"\}\}\}/g,"\{\{\{"+replaceMe+"\}\}\}");
-		}
-		return a;
-	}
+	// if (a.includes("{{{") && f === 2) {
+	// 	for (const key in b) {
+	// 		const replaceMe = b[key][getFullLanguage()] || b[key][getMainLanguage()] || b[key][getFallbackLanguage()];
+	//
+	// 		a = a.replace(/\{\{\{"+key+"\}\}\}/g,"\{\{\{"+replaceMe+"\}\}\}");
+	// 	}
+	// 	return a;
+	// }
 
 	if (a.includes("{{") && f === 2) {
 		return tweetDeckTranslateInitial(a, b, c, d, e);
