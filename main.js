@@ -22,12 +22,10 @@ const {
 	protocol
 }		= require("electron");
 
-const imageType = require("file-type");
 const fs = require("fs");
 const path = require("path");
 const url = require("url");
 const util = require("util");
-const through2 = require("through2");
 
 const separator = process.platform === "win32" ? "\\" : "/"
 
@@ -1087,4 +1085,4 @@ setTimeout(() => {
 	} catch(e) {
 		console.error(e);
 	}
-},10000);
+}, 5000);

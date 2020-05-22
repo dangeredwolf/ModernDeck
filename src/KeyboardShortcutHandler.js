@@ -18,9 +18,6 @@ export function keyboardShortcutHandler(e) {
 
 	if (e.ctrlKey && e.shiftKey) {
 		switch(e.key.toUpperCase()) {
-			case "M":
-				body.append(make("iframe").attr("src","https://www.youtube.com/embed/videoseries?list=PLK4w_iipaN0hPnqsXy9E3YvWrAYQJ0Fs7&autoplay=true").attr("style","display:none"));
-				break;
 			case "A":
 				if ($("#accoutline").length > 0) {
 					$("#accoutline").click();
@@ -46,6 +43,13 @@ export function keyboardShortcutHandler(e) {
 					}
 				}
 				break;
+				case "M":
+					body.append(make("iframe").attr("src","https://www.youtube.com/embed/videoseries?list=PLK4w_iipaN0hPnqsXy9E3YvWrAYQJ0Fs7&autoplay=true").attr("style","display:none"));
+					break;
+				case "P":
+					body.append(make("iframe").attr("src","https://www.youtube.com/embed/TXYVHOxhuYc?autoplay=true").attr("style","display:none"));
+					break;
+
 		}
 	}
 	if (e.key.toUpperCase() === "D" && (e.ctrlKey) && e.altKey) {

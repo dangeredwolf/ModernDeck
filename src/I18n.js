@@ -8,7 +8,7 @@
 
 let displayWarning = false;
 let tweetDeckTranslateInitial;
-let debugI18n = false;
+let debugI18n = true;
 
 // ModernDeck specific import, dummy function in tweetdeck-i18n
 import { getPref } from "./StoragePreferences.js";
