@@ -7,12 +7,13 @@ import { buildContextMenu } from "./UIContextMenu.js";
 import { parseActions } from "./PrefHandler.js";
 import { I18n } from "./I18n.js";
 import { mtdAlert } from "./UIAlert.js";
+import { AutoUpdateController } from "./AutoUpdateController.js";
 
 const appendTextVersion = false;
 const enablePatronFeatures = false;
 
 let ver = "Version";
-let verTextId = 2;
+let verTextId = 1;
 let verText = "";
 
 
@@ -410,10 +411,10 @@ export function openSettings(openMenu) {
 			subPanel.append(logoCont);
 
 			let updateCont = makeUpdateCont();
-
-			let patronInfo = make("div").addClass("mtd-patron-info").append(
-				makePatronView()
-			)
+			//
+			// let patronInfo = make("div").addClass("mtd-patron-info").append(
+			// 	makePatronView()
+			// )
 
 			if (isApp && !html.hasClass("mtd-winstore") && !html.hasClass("mtd-macappstore")) {
 				subPanel.append(updateCont);
@@ -439,8 +440,8 @@ export function openSettings(openMenu) {
 
 			subPanel.append(infoCont);
 
-			if (enablePatronFeatures)
-				subPanel.append(patronInfo);
+			// if (enablePatronFeatures)
+			// 	subPanel.append(patronInfo);
 
 		} else if (settingsData[key].enum === "mutepage") {
 
@@ -524,101 +525,73 @@ export function openSettings(openMenu) {
 	return panel;
 }
 
+/*
+	Event function to update the UI as the update status changes
+*/
 
-/* Controller function for app update page */
+function updateUIChanged() {
+	if (AutoUpdateController.h2) {
+		$(window.updateh2).removeClass("hidden");
+		$(window.updateh2).html(AutoUpdateController.h2);
+	} else {
+		$(window.updateh2).addClass("hidden");
+	}
 
-function mtdAppUpdatePage(updateCont, updateh2, updateh3, updateIcon, updateSpinner, tryAgain, restartNow) {
+	if (AutoUpdateController.h3) {
+		$(window.updateh3).removeClass("hidden");
+		$(window.updateh3).html(AutoUpdateController.h3);
+	} else {
+		$(window.updateh3).addClass("hidden");
+	}
 
-	const {ipcRenderer} = require('electron');
+	if (AutoUpdateController.tryAgain) {
+		$(window.tryAgain).removeClass("hidden");
+		$(window.tryAgain).html(AutoUpdateController.tryAgain);
+	} else {
+		$(window.tryAgain).addClass("hidden");
+	}
 
-	ipcRenderer.on("error",(e,args,f,g) => {
+	if (AutoUpdateController.restartNow) {
+		$(window.restartNow).removeClass("hidden");
+	} else {
+		$(window.restartNow).addClass("hidden");
+	}
 
-		$(".mtd-welcome-inner").addClass("mtd-enable-update-next");
+	if (AutoUpdateController.icon) {
+		$(window.updateIcon).removeClass("hidden");
+		$(window.updateIcon).html(AutoUpdateController.icon);
+	} else {
+		$(window.updateIcon).addClass("hidden");
+	}
 
-		updateh2.html(I18n("There was a problem checking for updates."));
-		$(".mtd-update-spinner").addClass("hidden");
+	if (AutoUpdateController.spinner === true) {
+		$(window.updateSpinner).removeClass("hidden");
+	} else {
+		$(window.updateSpinner).addClass("hidden");
+	}
+}
 
-		if (exists(args.code)) {
-			updateh3.html(`${args.domain || ""} ${args.code || ""} ${args.errno || ""} ${args.syscall || ""} ${args.path || ""}`).removeClass("hidden");
-		} else if (exists(f)) {
-			updateh3.html(f.match(/^(Cannot check for updates: )(.)+\n/g)).removeClass("hidden")
-		} else {
-			updateh3.html(I18n("We couldn't interpret the error info we received. Please try again later or DM @ModernDeck on Twitter for further help.")).removeClass("hidden");
-		}
+/*
+	Controller function for app update page
+*/
 
-		updateIcon.html("error_outline").removeClass("hidden");
-		tryAgain.removeClass("hidden").html(I18n("Try Again"));
-		restartNow.addClass("hidden");
+function mtdAppUpdatePage() {
 
-	});
+	$(document).on("mtdUpdateUIChanged", updateUIChanged);
 
-	ipcRenderer.on("checking-for-update", (e,args) => {
-		$(".mtd-welcome-inner").removeClass("mtd-enable-update-next");
-		console.log(args);
-		updateIcon.addClass("hidden");
-		$(".mtd-update-spinner").removeClass("hidden");
-		updateh2.html(I18n("Checking for updates..."));
-		updateh3.addClass("hidden");
-		tryAgain.addClass("hidden");
-		restartNow.addClass("hidden");
-		$("[id='update'] .mtd-welcome-next-button").html(I18n("Skip") + "<i class='icon icon-arrow-r'></i>");
-	});
+	const { ipcRenderer } = require("electron");
 
-	ipcRenderer.on("update-available", (e,args) => {
-		$(".mtd-welcome-inner").removeClass("mtd-enable-update-next");
-		console.log(args);
-		updateIcon.addClass("hidden");
-		$(".mtd-update-spinner").removeClass("hidden");
-		updateh2.html(I18n("Updating..."));
-		tryAgain.addClass("hidden");
-		restartNow.addClass("hidden");
-	});
-
-	ipcRenderer.on("download-progress", (e,args) => {
-		$(".mtd-welcome-inner").removeClass("mtd-enable-update-next");
-		console.log(args);
-		updateIcon.addClass("hidden");
-		$(".mtd-update-spinner").removeClass("hidden");
-		updateh2.html(I18n("Downloading update..."));
-		updateh3.html(Math.floor(args.percent)+I18n("% complete (")+formatBytes(args.transferred)+I18n("/")+formatBytes(args.total)+I18n("; ")+formatBytes(args.bytesPerSecond)+("/s)")).removeClass("hidden");
-		tryAgain.addClass("hidden");
-		restartNow.addClass("hidden");
-	});
-
-
-	ipcRenderer.on("update-downloaded", (e,args) => {
-		$(".mtd-welcome-inner").removeClass("mtd-enable-update-next");
-		console.log(args);
-		$(".mtd-update-spinner").addClass("hidden");
-		updateIcon.html("update").removeClass("hidden");
-		updateh2.html(I18n("Update downloaded"));
-		updateh3.html(I18n("Restart ModernDeck to complete the update")).removeClass("hidden");
-		tryAgain.addClass("hidden");
-		restartNow.removeClass("hidden");
-	});
-
-
-	ipcRenderer.on("update-not-available", (e,args) => {
-		console.log(args);
-		$(".mtd-update-spinner").addClass("hidden");
-		updateh2.html(I18n("You're up to date"));
-		updateIcon.html("check_circle").removeClass("hidden");
-		updateh3.html(SystemVersion + I18n(" is the latest version.")).removeClass("hidden");
-		tryAgain.removeClass("hidden").html(I18n("Check Again"));
-		restartNow.addClass("hidden");
-		$(".mtd-welcome-inner").addClass("mtd-enable-update-next");
-		$("[id='update'] .mtd-welcome-next-button").html(I18n("Next") + "<i class='icon icon-arrow-r'></i>");
-	});
-
-	tryAgain.click(() => {
-		ipcRenderer.send('checkForUpdates');
+	$(window.tryAgain).click(() => {
+		ipcRenderer.send("checkForUpdates");
 	})
 
-	restartNow.click(() => {
-		ipcRenderer.send('restartAndInstallUpdates');
+	$(window.restartNow).click(() => {
+		ipcRenderer.send("restartAndInstallUpdates");
 	});
 
-	ipcRenderer.send('checkForUpdates');
+	if (!AutoUpdateController.isCheckingForUpdates) {
+		ipcRenderer.send("checkForUpdates");
+	}
 }
 
 
@@ -627,19 +600,18 @@ function mtdAppUpdatePage(updateCont, updateh2, updateh3, updateIcon, updateSpin
 */
 
 export function makeUpdateCont() {
-	let updateCont = make("div").addClass("mtd-update-container").html('<div class="mtd-update-spinner preloader-wrapper small active"><div class="spinner-layer"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div>');
-	let updateSpinner = $(".mtd-update-spinner");
-	let updateIcon = make("i").addClass("material-icon hidden");
-	let updateh2 = make("h2").addClass("mtd-update-h2").html(I18n("Checking for updates..."));
-	let updateh3 = make("h3").addClass("mtd-update-h3 hidden").html("");
-	let tryAgain = make("button").addClass("btn hidden").html(I18n("Try Again"));
-	let restartNow = make("button").addClass("btn hidden").html(I18n("Restart Now"));
+	let updateCont = make("div").addClass("mtd-update-container").html('<div class="mtd-update-spinner preloader-wrapper small active" id="updateSpinner"><div class="spinner-layer"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div>').attr("id","updateCont");
+	let updateIcon = make("i").addClass("material-icon hidden").attr("id","updateIcon");
+	let updateh2 = make("h2").addClass("mtd-update-h2").html(I18n("Checking for updates...")).attr("id","updateh2");
+	let updateh3 = make("h3").addClass("mtd-update-h3 hidden").html("").attr("id","updateh3");
+	let tryAgain = make("button").addClass("btn hidden").html(I18n("Try Again")).attr("id","tryAgain");
+	let restartNow = make("button").addClass("btn hidden").html(I18n("Restart Now")).attr("id","restartNow");
 
 
 	updateCont.append(updateIcon,updateh2,updateh3,tryAgain,restartNow);
 
 	if (isApp && !html.hasClass("mtd-winstore") && !html.hasClass("mtd-macappstore")) {
-		mtdAppUpdatePage(updateCont,updateh2,updateh3,updateIcon,updateSpinner,tryAgain,restartNow);
+		mtdAppUpdatePage();
 	}
 
 	return updateCont;
@@ -732,7 +704,7 @@ function makePatronView() {
 
 	$.ajax(
 		{
-			url:"https://api.moderndeck.org/v1/patrons/"
+			url:"https://api.moderndeck.org/2.0/patrons/"
 		}
 	).done((e) => {
 		let parsedJson;

@@ -9377,3 +9377,7 @@ button.js-add-filter {
 .quoted-tweet .account-link {
 	margin-left:4px
 }
+
+.btn-fav-protected-text {
+	white-space:nowrap
+}

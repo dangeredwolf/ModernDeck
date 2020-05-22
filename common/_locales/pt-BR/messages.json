@@ -1,30 +1,30 @@
 {
 	"description": {
-		"message": "The most powerful Twitter client for desktop.",
+		"message": "O cliente do Twitter mais poderoso para desktop.",
 		"description": "Short description for the extension"
 	},
 	"launch": {
-		"message": "Launch ModernDeck",
+		"message": "Iniciar o ModernDeck",
 		"description": "The ModernDeck Launcher button"
 	},
 	"name": {
-		"message": "ModernDeck - Twitter Client for Desktop",
+		"message": "ModernDeck - Cliente Twitter para Desktop",
 		"description": "The name of the extension that appears on the Chrome Web Store"
 	},
 	"webstoreDescription": {
-		"message": "ModernDeck is a TweetDeck-based Twitter client with a beautiful, Material Design-inspired interface. It combines the power of TweetDeck with the ease-of-use you expect from a Twitter client.\n\nYou can customize how ModernDeck looks and acts to make it your own, including:\n-Size of columns and text\n-Fonts\n-Themes, including alternate color schemes\n-Size and shape of profile pictures\nAnd much more\n\nModernDeck is available in several languages, and is also available for other platforms at https://moderndeck.org/download",
+		"message": "O ModernDeck é um cliente doTwitter baseado no TweetDeck com uma bela interface e inspirada no Material Design. Ele é uma combinação do TweetDeck com a facilidade de uso, é tudo que você espera de um cliente do Twitter.\n\nVocê pode personalizar o ModernDeck e torná-lo seu, incluindo:\n-Tamanho de colunas e texto\n-Fontes\n-Temas, incluindo esquemas de cores alternativas\n-Tamanho e formato das fotos de perfil\ne muito mais\n\nModernDeck está disponível em vários idiomas. e também está disponível para outras plataformas em https://moderndeck. R/download",
 		"description": "The description of the extension that appears on the Chrome Web Store"
 	},
 	"grantButton": {
-		"message": "Grant Permission",
+		"message": "Conceder permissão",
 		"description": "A button to grant tabs permission in Firefox"
 	},
 	"needsPermission": {
-		"message": "Sorry to interrupt &mdash; We need permission to open tabs",
+		"message": "Desculpe interromper &mdash; Precisamos de permissão para abrir abas",
 		"description": "A title about granting tabs permission in Firefox"
 	},
 	"needsPermissionParagraph": {
-		"message": "ModernDeck requires the tab permission from Firefox in order to create new tabs.<br><br>\nThis is optional, and only required for the launcher feature. You can still access ModernDeck at <a href=\"https://tweetdeck.twitter.com\" target=\"_blank\">tweetdeck.twitter.com</a> even without this permission.<br><br>\nIf you don't accept these permissions, you can remove the launcher button by right clicking it and selecting <i>Remove from Toolbar</i><br><br>\n<b>ModernDeck does not read your open tabs.</b>",
+		"message": "O ModernDeck requer a permissão de abas do Firefox para poder criar novas abas.<br><br>\nIsso é opcional e necessário apenas para iniciar. Você ainda pode acessar o ModernDeck em<a href=\"https://tweetdeck.twitter.com\" target=\"_blank\">tweetdeck.twitter.com</a> mesmo sem essa permissão.<br><br>\nSe você não aceitar essas permissões, poderá removê-lo clicando com o botão direito do mouse e selecionando <i>\nRemover da barra de ferramentas</i><br><br>",
 		"description": "A description about granting tabs permission in Firefox"
 	}
 }

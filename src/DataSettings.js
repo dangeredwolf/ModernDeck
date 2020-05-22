@@ -712,6 +712,7 @@ export let settingsData = {
 						setPref("mtd_nativeEmoji",false);
 					}
 				},
+				enabled:false,
 				settingsKey:"mtd_nativeEmoji",
 				default:false
 			},

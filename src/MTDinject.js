@@ -2,14 +2,13 @@
 	MTDinject.js
 	Copyright (c) 2014-2020 dangered wolf, et al
 	Released under the MIT licence
-
-	Made with <3
 */
 
 import { version } from "../package.json";
 window.SystemVersion = version.replace(".0.0",".0"); // remove trailing .0, if present
 
-import { AsciiArtController } from "./AsciiArtController.js"
+import { AsciiArtController } from "./AsciiArtController.js";
+import { AutoUpdateController } from "./AutoUpdateController.js";
 import { I18n, startI18nEngine } from "./I18n.js";
 import { getPref, setPref } from "./StoragePreferences.js";
 import { make, exists, isApp, mutationObserver, getIpc, handleErrors, formatNumberI18n } from "./Utils.js";
@@ -27,6 +26,7 @@ let welcomeData = _welcomeData;
 import { allColumnsVisible, getColumnFromColumnNumber, getColumnNumber, updateColumnVisibility } from "./Column.js";
 import i18nData from "./DataI18n.js";
 window.i18nData = i18nData;
+window.AutoUpdateController = AutoUpdateController;
 
 import { isStylesheetExtensionEnabled, enableStylesheetExtension, disableStylesheetExtension, enableCustomStylesheetExtension } from "./StylesheetExtensions.js";
 
@@ -586,6 +586,8 @@ function coreInit() {
 	}
 
 	handleErrors(AsciiArtController.draw, "Error occurred while trying to draw ModernDeck version easter egg")
+
+	handleErrors(AutoUpdateController.initialize, "Error occurred while initialising AutoUpdateController")
 
 	if (typeof $ === "undefined") {
 		try {

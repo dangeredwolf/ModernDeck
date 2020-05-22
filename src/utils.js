@@ -36,7 +36,10 @@ export const exists = function(thing) {
 }
 
 export function formatNumberI18n(number) {
-	return new Intl.NumberFormat(getFullLanguage().replace(/\_/g,"-")).format(number);
+	if (!window.mtdNumberFormat) {
+		window.mtdNumberFormat = new Intl.NumberFormat(getFullLanguage().replace(/\_/g,"-"));
+	}
+	return window.mtdNumberFormat.format(number);
 }
 
 /*

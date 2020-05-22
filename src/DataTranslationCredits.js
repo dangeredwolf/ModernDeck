@@ -9,6 +9,7 @@ vancho1<br>
 <br><b>Deutsche</b><br>
 <a href="https://twitter.com/FLUFFSQUEAKER" rel="user" target="_blank">milanmat-fluffsqueaker</a><br>
 <a href="https://twitter.com/ItsJustMirko" rel="user" target="_blank">Mirko</a><br>
+<a href="https://twitter.com/Machtergreifung" rel="user" target="_blank">Machtergreifung</a><br>
 <a href="https://twitter.com/TecraFox" rel="user" target="_blank">Tecra</a><br>
 
 <br><b>English</b><br>
@@ -42,15 +43,20 @@ TAKAHASHI Shuuji<br>
 <a href="https://twitter.com/jptjohnny" rel="user" target="_blank">JPTJohnny</a><br>
 
 <br><b>Polski</b><br>
+<a href="https://twitter.com/4D3s12" rel="user" target="_blank">Ad3s12</a><br>
+<a href="https://twitter.com/Patryk1023PL" rel="user" target="_blank">Patryk1023</a><br>
 <a href="https://twitter.com/PeCeT_full" rel="user" target="_blank">PeCeT_full</a><br>
 <a href="https://twitter.com/w1nk000" rel="user" target="_blank">w1nk000</a><br>
 
 <br><b>Português (Brasil)</b><br>
+<a href="https://twitter.com/eubyt" rel="user" target="_blank">Adrian César</a><br>
 André Gama / ToeOficial<br>
 Chef! / chefwireframe<br>
 
 <br><b>русский</b><br>
+<a href="https://twitter.com/Sominemo" rel="user" target="_blank">Sominemo</a><br>
 <a href="https://twitter.com/coldarchie" rel="user" target="_blank">Archie</a><br>
+<a href="https://twitter.com/reig_xvi" rel="user" target="_blank">reig_xvi</a><br>
 <a href="https://twitter.com/Tailsray2" rel="user" target="_blank">Tailsray</a><br>
 <br>
 <br>
