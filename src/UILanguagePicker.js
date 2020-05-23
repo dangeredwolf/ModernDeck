@@ -24,6 +24,7 @@ export class UILanguagePicker extends UIModal {
 		this.selectLanguage = make("select").attr("id","mtd_language_select").append(
 			make("option").val("default").html("-").attr("selected","true").attr("disabled","true"),
 			make("option").val("bg").html("български"),
+			make("option").val("cs").html("čeština"),
 			make("option").val("de").html("Deutsche"),
 			make("option").val("en_CA").html("English (Canada)"),
 			make("option").val("en_US").html("English (United States)"),
