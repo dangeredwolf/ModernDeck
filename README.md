@@ -125,9 +125,9 @@ To test the extension, you'll want to load the unpacked extension. This, of cour
 
 Open the Chrome menu, go to **More tools > Extensions**
 
-Check *Developer Mode* in the corner if you haven't already.
+Turn on **Developer Mode** in the top right corner if you haven't already.
 
-Click the **Load Unpacked** button
+Click the **Load unpacked** button
 
 Navigate to *ModernDeck/common* and click Select Folder
 
@@ -147,28 +147,32 @@ Navigate to *ModernDeck/common/manifest.json*
 
 Open the **...** menu
 
-Click **Extension**
+Click **Extensions**
 
-Turn on **Developer Mode** in the bottom left if you haven't already
+Turn on **Developer Mode** in the bottom left corner if you haven't already
+
+Click the **Load unpacked** button
+
+Navigate to *ModernDeck/common* and click Select Folder
 
 Microsoft Edge Legacy (The EdgeHTML-based browser) is no longer supported as of ModernDeck 8.0. It might still work, but no problems with it will be corrected.
 
 #### Opera
 
-Press *Ctrl+Alt+E* to open Extensions
+Click the **Extensions** button in the bar on the left side (the icon looks like a box) 
 
-Check **Developer Mode** if you haven't already
+Turn on **Developer Mode** in the top right if you haven't already
 
-Click **Load Unpacked**
+Click **Load unpacked**
 
-Select *ModernDeck/common*
+Select *ModernDeck/common* and click Select Folder
 
 
 ## Building Extension for Release
 
 Run `npm install && node build/build.js` from the root ModernDeck directory. The corresponding ZIPs will appear in the dist folder
 
-## ❓ Questions?
+## ❓ Problems or questions?
 
 Don't hesitate to ask!
-twitter.com/dangeredwolf or twitter.com/ModernDeck
+[twitter@dangeredwolf](https://twitter.com/dangeredwolf), [twitter@ModernDeck](https://twitter.com/ModernDeck), or [telegram@dangeredwolf](https://t.me/dangeredwolf)
