@@ -1,5 +1,7 @@
 import { enableStylesheetExtension, disableStylesheetExtension } from "./StylesheetExtensions.js";
 import { I18n } from "./I18n.js";
+import { UILanguagePicker } from "./UILanguagePicker.js";
+import { getPref } from "./StoragePreferences.js";
 
 let ugltStarted = false;
 let loginIntervalTick = 0;
@@ -48,9 +50,7 @@ function startUpdateGoodLoginText() {
 export function checkIfSigninFormIsPresent() {
 
 	if ($(".app-signin-form").length > 0 || $("body>.js-app-loading.login-container:not([style])").length > 0) {
-		if (!html.hasClass("signin-sheet-now-present")) {
-			html.addClass("signin-sheet-now-present");
-		}
+		html.addClass("signin-sheet-now-present");
 
 		loginIntervalTick++;
 		enableStylesheetExtension("loginpage");
@@ -69,6 +69,11 @@ export function checkIfSigninFormIsPresent() {
 export function loginTextReplacer() {
 	if ($(".app-signin-wrap:not(.mtd-signin-wrap)").length > 0) {
 		console.info("oh no, we're too late!");
+		window.UILanguagePicker = UILanguagePicker;
+
+		if (getPref("mtd_last_lang") !== navigator.language) {
+			new UILanguagePicker();
+		}
 		$(".app-signin-wrap:not(.mtd-signin-wrap)").remove();
 		$(".login-container .startflow").html(newLoginPage);
 		startUpdateGoodLoginText();

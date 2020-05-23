@@ -14,6 +14,8 @@ export class UILanguagePicker extends UIModal {
 		super();
 		window.languageData = languageData;
 
+		this.hasMadeChange = false;
+
 		this.element = make("div").addClass("mdl mtd-alert mtd-language-picker");
 		this.alertTitle = make("h2").addClass("mtd-alert-title").html("<i class='material-icon'>language</i>" + (languageText[navigator.language.substr(0,2)] || languageText["en"]));
 		this.alertButton = make("button").addClass("btn-primary btn mtd-alert-button hidden").html("OK");
@@ -43,6 +45,8 @@ export class UILanguagePicker extends UIModal {
 				this.alertTitle.html("<i class='material-icon'>language</i> " + languageData.Language[this.selectLanguage.val()]);
 			}
 
+			this.hasMadeChange = true;
+
 			this.alertButton.html(languageData.OK[this.selectLanguage.val()] || "OK");
 			this.alertButton.removeClass("hidden");
 
@@ -63,6 +67,12 @@ export class UILanguagePicker extends UIModal {
 				localLang.attr("selected","true");
 				this.selectLanguage.trigger("change");
 			}
+
+			this.hasMadeChange = false;
+
+			setTimeout(() => {
+				this.hasMadeChange = false;
+			})
 		})
 
 
@@ -78,7 +88,16 @@ export class UILanguagePicker extends UIModal {
 		this.alertButton.click(() => {
 			setPref("mtd_last_lang", navigator.language);
 			setPref("mtd_lang", this.selectLanguage.val());
-			setTimeout(() => location.reload(), 500);
+
+			if (this.hasMadeChange) {
+				setTimeout(() => location.reload(), 200);
+			} else {
+				this.dismiss();
+			}
+
+			if (window.isInWelcome) {
+				setTimeout(() => new window.UIWelcome, 100)
+			}
 		});
 
 		this.element.append(this.alertTitle, this.alertBody, this.alertButtonContainer);
@@ -89,7 +108,13 @@ export class UILanguagePicker extends UIModal {
 			this.element.append(this.inaccuracy);
 		}
 
-		this.modalRoot = "#splash-modal";
+		if ($("#splash-modal").length < 1) {
+			this.modalRoot = ".login-container";
+		} else {
+			this.modalRoot = "#splash-modal";
+		}
+
+
 		$(this.modalRoot).attr("style", "display: block;").append(this.element)
 	}
 }

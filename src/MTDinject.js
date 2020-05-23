@@ -530,6 +530,8 @@ function navigationSetup() {
 
 	UINavDrawer();
 
+	window.UIWelcome = UIWelcome;
+
 	if (!getPref("mtd_welcomed") || debugWelcome) {
 		handleErrors(()=>{new UIWelcome()}, "Error in Welcome Screen");
 	}
@@ -618,7 +620,6 @@ function coreInit() {
 	}
 	// append extra scripts
 	head.append(
-		make("script").attr("type", "text/javascript").attr("src", mtdBaseURL + "resources/libraries/nquery.min.js"),
 		make("script").attr("type", "text/javascript").attr("src", mtdBaseURL + "resources/libraries/emojidata.js"),
 		make("script").attr("type", "text/javascript").attr("src", mtdBaseURL + "resources/libraries/twemoji.min.js"),
 		make("script").attr("type", "text/javascript").attr("src", mtdBaseURL + "resources/libraries/jquery.visible.js")

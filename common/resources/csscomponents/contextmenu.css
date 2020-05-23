@@ -12,8 +12,8 @@
 .mtd-context-menu.dropdown-menu a[data-action]:before {
 	padding-right:0;
 	padding-top:4px;
-	margin-left: 7px;
-	margin-right:-10px;
+	margin-left:7px;
+	margin-right:-10px
 }
 
 .mtd-context-menu,.mtd-context-menu ul,.mtd-context-menu a,.mtd-context-menu div {

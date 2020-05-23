@@ -166,7 +166,7 @@ select,input {
 	background-position:center;
 	opacity:0.01;
 	animation:startflowIn .6s .3s cubic-bezier(.19,1,.22,1);
-	animation-fill-mode:both;
+	animation-fill-mode:both
 }
 
 .startflow-background:before {
@@ -188,7 +188,7 @@ select,input {
 	left:0;
 	bottom:0;
 	height:auto;
-	overflow:hidden;
+	overflow:hidden
 }
 
 .form-login h2 {
@@ -236,7 +236,7 @@ select,input {
 	margin-left:-30px;
 	padding-right:25px;
 	position:absolute;
-	margin-top:13px;
+	margin-top:13px
 }
 
 .form-login .padding-axl:not(.form-legend) {
@@ -246,6 +246,7 @@ select,input {
 .form-login h3 {
 	display:inline;
 	padding-bottom:36px;
+	white-space:nowrap
 }
 
 .app-signin-form {

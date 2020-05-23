@@ -201,14 +201,19 @@ function makeLoginWindow(url,teams) {
 		const { shell } = electron;
 
 		if (url.indexOf("https://tweetdeck.twitter.com") >= 0 && !teams) {
+			console.log("Hello tweetdeck!");
 			if (loginWindow) {
 				loginWindow.close();
+			}
+			if (mainWindow) {
+				mainWindow.reload();
 			}
 			event.preventDefault();
 			return;
 		}
 
 		if (url.indexOf("twitter.com/logout") >= 0) {
+			console.log("Hello logout!");
 			if (mainWindow) {
 				mainWindow.reload();
 			}
@@ -238,6 +243,7 @@ function makeLoginWindow(url,teams) {
 
 
 		if (url.indexOf("https://tweetdeck.twitter.com") >= 0) {
+			console.log("Hello tweetdeck2!");
 			if (mainWindow) {
 				mainWindow.loadURL(url);
 			}

@@ -1,6 +1,7 @@
 
 export class UIModal {
-	modalRoot = "#settings-modal"
+	modalRoot = "#settings-modal";
+	sharedRoot = false;
 
 	constructor() {
 
@@ -15,5 +16,8 @@ export class UIModal {
 
 	dismiss() {
 		this.element.remove?.();
+		if (!this.sharedRoot) {
+			$(this.modalRoot).attr("style","display: none;")
+		}
 	}
 }
