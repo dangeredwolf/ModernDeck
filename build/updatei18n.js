@@ -7,12 +7,12 @@ const fs = require("fs");
 const path = require("path");
 
 let i18n = path.format({
-	dir:__dirname+"\\..",
+	dir:__dirname + path.sep + "..",
 	base:"tweetdeck-i18n.csv"
 });
 
 let results = path.format({
-	dir:__dirname + "\\..\\src",
+	dir:__dirname +  path.sep + ".." + path.sep + "src",
 	base:"DataI18n.js"
 });
 
