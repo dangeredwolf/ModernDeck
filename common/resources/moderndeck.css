@@ -3759,48 +3759,6 @@ input[type="checkbox"]:active {
 	padding-right:25px
 }
 
-.control-group {
-	margin-bottom:20px;
-	min-height:40px;
-	pointer-events:none
-}
-
-.controls-space-58 {
-	margin-left:58px
-}
-
-.control-group>div:not([class]) {
-	pointer-events:all;
-	padding:15px
-}
-
-.checkbox,.radio {
-	min-height:18px
-}
-
-.checkbox input[type="checkbox"],.radio input[type="radio"] {
-	float:left
-}
-
-.checkbox-reversed input[type="checkbox"] {
-	float:right;
-	height:22px;
-	font-size:24px;
-	margin-bottom:18px
-}
-
-.checkbox span {
-	margin-right:20px;
-	display:block
-}
-
-.control-label {
-	float:left;
-	width:auto;
-	text-align:left;
-	display:inline-block
-}
-
 .js-fhf-body.pin-all {
 	bottom:0!important
 }
@@ -4391,13 +4349,13 @@ input[type="checkbox"]:active {
 	box-shadow:0 2px 5px 0 var(--contextMenuShadow);
 	margin-top:-18px;
 	text-indent:0;
-	width: auto;
+	width:auto;
 	margin-right:-10px;
 	border-radius:2px;
 	animation:menuDown 0.3s var(--animationTiming);
-	padding-right: 5px;
-	padding-top: 5px;
-	padding-bottom: 5px;
+	padding-right:5px;
+	padding-top:5px;
+	padding-bottom:9px
 }
 
 .dropdown-menu.pos-r {
@@ -4411,17 +4369,17 @@ input[type="checkbox"]:active {
 .dropdown-menu li:not(.drp-h-divider),.dropdown-menu menuitem:not(.drp-h-divider) {
 	position:relative;
 	display:block;
-	padding: 8px 3px 3px 12px;
+	padding:8px 3px 3px 12px;
 	height:27px;
-	white-space: nowrap;
-	width: auto;
+	white-space:nowrap;
+	width:auto;
 }
 
 .dropdown-menu a {
 	/* position:absolute; */
 	line-height:2;
-	padding: 7px 24px 7px 10px;
-	white-space: nowrap;
+	padding:7px 24px 7px 10px;
+	white-space:nowrap;
 }
 
 .conversation-menu-position.dropdown-menu a {
@@ -8663,8 +8621,8 @@ label.checkbox::selection,label.control-label::selection {
 	font-size:22px;
 	vertical-align:middle;
 	line-height:28px;
-	position: relative;
-	padding-left: 4px;
+	position:relative;
+	padding-left:4px;
 	display:block;
 	float:left;
 }

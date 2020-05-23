@@ -10,7 +10,7 @@ let debugSettings = false;
 */
 
 function makeCMItem(p) {
-	if (useNativeContextMenus) {
+	if (useNativeContextMenus || window.useSafeMode) {
 		let dataact = p.dataaction;
 		let data = p.data;
 		let nativemenu = { label:p.text, click() {contextMenuFunctions[dataact](data)}, enabled:p.enabled };
@@ -43,7 +43,7 @@ function makeCMItem(p) {
 */
 
 function makeCMDivider() {
-	if (useNativeContextMenus) {
+	if (useNativeContextMenus || window.useSafeMode) {
 		return {type:'separator'}
 	}
 	return make("div").addClass("drp-h-divider");
@@ -72,7 +72,7 @@ export function buildContextMenu(p) {
 	const xOffset = 2;
 	const yOffset = 12;
 
-	if ($(".mtd-context-menu").length > 0) {
+	if (!window.useSafeMode && $(".mtd-context-menu").length > 0) {
 		let removeMenu = $(".mtd-context-menu");
 		removeMenu.addClass("mtd-fade-out");
 		removeMenu.on("animationend", () => {
@@ -80,7 +80,7 @@ export function buildContextMenu(p) {
 		})
 	}
 
-	if ($(document.elementFromPoint(x,y)).hasClass("mtd-context-menu-item")) {
+	if (!window.useSafeMode && $(document.elementFromPoint(x,y)).hasClass("mtd-context-menu-item")) {
 		return;
 	}
 
@@ -130,39 +130,41 @@ export function buildContextMenu(p) {
 
 	if (useNativeContextMenus || window.useSafeMode) {
 		return items;
-	}
-
-	let ul = make("ul");
-
-	for(let i = 0; i < items.length; i++){
-		ul.append(items[i]);
-	}
-
-
-	let menu = make("menu")
-	.addClass("mtd-context-menu dropdown-menu")
-	.attr("style","opacity:0;animation:none;transition:none")
-	.append(ul);
-
-
-	if (items.length > 0) {
-		setTimeout(() => {
-
-			if (x + xOffset + menu.width() > $(document).width()) {
-				x = $(document).width() - menu.width() - xOffset - xOffset;
-			}
-
-			if (y + yOffset + menu.height() > $(document).height()) {
-				y = $(document).height() - menu.height();
-			}
-
-			menu.attr("style",`left:${x + xOffset}px!important;top:${y + yOffset}px!important`)
-
-
-		},20);
 	} else {
-		menu.addClass("hidden");
+		let ul = make("ul");
+
+		for(let i = 0; i < items.length; i++){
+			ul.append(items[i]);
+		}
+
+
+		let menu = make("menu")
+		.addClass("mtd-context-menu dropdown-menu")
+		.attr("style","opacity:0;animation:none;transition:none")
+		.append(ul);
+
+
+		if (items.length > 0) {
+			setTimeout(() => {
+
+				if (x + xOffset + menu.width() > $(document).width()) {
+					x = $(document).width() - menu.width() - xOffset - xOffset;
+				}
+
+				if (y + yOffset + menu.height() > $(document).height()) {
+					y = $(document).height() - menu.height();
+				}
+
+				menu.attr("style",`left:${x + xOffset}px!important;top:${y + yOffset}px!important`)
+
+
+			},20);
+		} else {
+			menu.addClass("hidden");
+		}
+
+		return menu;
 	}
 
-	return menu;
+
 }
