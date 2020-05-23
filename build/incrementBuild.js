@@ -2,7 +2,7 @@ const fs = require("fs");
 const path = require("path");
 
 let thePath = path.format({
-	dir:__dirname + "\\..\\src",
+	dir:__dirname + path.sep + ".." + path.sep + "src",
 	base:"buildId.js"
 });
 

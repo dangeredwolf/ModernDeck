@@ -31,7 +31,7 @@ import { translationCredits } from "./DataTranslationCredits.js";
 
 const ctrlShiftText = (navigator.userAgent.indexOf("Mac OS X") > -1) ? "⌃⇧" : "{{Ctrl+Shift+}}";
 
-import { isApp } from "./utils.js"
+import { isApp } from "./Utils.js"
 
 export let settingsData = {
 	themes: {
