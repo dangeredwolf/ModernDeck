@@ -24,7 +24,7 @@
 		"description": "A title about granting tabs permission in Firefox"
 	},
 	"needsPermissionParagraph": {
-		"message": "ModernDeck requires the tab permission from Firefox in order to create new tabs.<br><br>\nThis is optional, and only required for the launcher feature. You can still access ModernDeck at <a href=\"https://tweetdeck.twitter.com\" target=\"_blank\">tweetdeck.twitter.com</a> even without this permission.<br><br>\nIf you don't accept these permissions, you can remove the launcher button by right clicking it and selecting <i>Remove from Toolbar</i><br><br>\n<b>ModernDeck does not read your open tabs.</b>",
+		"message": "ModernDeck benötigt die Tab Berechtigung von Firefox, um neue Tabs öffnen zu können.<br><br>\nDas ist optional, und wird nur für das Launcher Feature benötigt. Du kannst ModernDeck weiterhin unter <a href=\"https://tweetdeck.twitter.com\" target=\"_blank\">tweetdeck.twitter.com</a> nutzen, auch ohne diese Berechtigung zu erteilen.<br><br>\nWenn du diese Berechtigung nicht akzeptierst kannst du den Launcher Button entfernen, indem du nach einem Rechtsklick darauf <i>Aus Symbolleiste entfernen</i> auswählst<br><br>\n<b>ModernDeck überwacht nicht deine geöffneten Tabs.</b>",
 		"description": "A description about granting tabs permission in Firefox"
 	}
 }
