@@ -10,10 +10,9 @@ import { mtdAlert } from "./UIAlert.js";
 import { AutoUpdateController } from "./AutoUpdateController.js";
 
 const appendTextVersion = false;
-const enablePatronFeatures = false;
 
 let ver = "Version";
-let verTextId = 1;
+let verTextId = 2;
 let verText = "";
 
 
@@ -411,10 +410,6 @@ export function openSettings(openMenu) {
 			subPanel.append(logoCont);
 
 			let updateCont = makeUpdateCont();
-			//
-			// let patronInfo = make("div").addClass("mtd-patron-info").append(
-			// 	makePatronView()
-			// )
 
 			if (isApp && !html.hasClass("mtd-winstore") && !html.hasClass("mtd-macappstore")) {
 				subPanel.append(updateCont);
@@ -439,9 +434,6 @@ export function openSettings(openMenu) {
 			}
 
 			subPanel.append(infoCont);
-
-			// if (enablePatronFeatures)
-			// 	subPanel.append(patronInfo);
 
 		} else if (settingsData[key].enum === "mutepage") {
 
@@ -581,17 +573,21 @@ function mtdAppUpdatePage() {
 
 	const { ipcRenderer } = require("electron");
 
-	$(window.tryAgain).click(() => {
-		ipcRenderer.send("checkForUpdates");
+	setTimeout(() => {
+		$(window.tryAgain).click(() => {
+			ipcRenderer.send("checkForUpdates");
+		})
+
+		$(window.restartNow).click(() => {
+			ipcRenderer.send("restartAndInstallUpdates");
+		});
+
+		if (!AutoUpdateController.isCheckingForUpdates) {
+			ipcRenderer.send("checkForUpdates");
+		}
+
+		updateUIChanged();
 	})
-
-	$(window.restartNow).click(() => {
-		ipcRenderer.send("restartAndInstallUpdates");
-	});
-
-	if (!AutoUpdateController.isCheckingForUpdates) {
-		ipcRenderer.send("checkForUpdates");
-	}
 }
 
 
@@ -610,122 +606,11 @@ export function makeUpdateCont() {
 
 	updateCont.append(updateIcon,updateh2,updateh3,tryAgain,restartNow);
 
-	if (isApp && !html.hasClass("mtd-winstore") && !html.hasClass("mtd-macappstore")) {
+	if (require && !html.hasClass("mtd-winstore") && !html.hasClass("mtd-macappstore")) {
 		mtdAppUpdatePage();
 	}
 
 	return updateCont;
-}
-
-
-/*
-	Renders the patron display in the about page
-*/
-
-function renderPatronInfo(info, patronBox) {
-
-	let scroller = make("div").addClass("mtd-auto-scroll scroll-v");
-
-	let isInline = false;
-
-	let metadataAvailable = typeof info.meta === "object";
-
-	if (metadataAvailable) {
-		if (exists(info.meta.inline)) {
-			if (info.meta.inline === "true" || info.meta.inline === true) {
-				isInline = true;
-			}
-		}
-	}
-
-	if ((exists(info.l1)) || (exists(info.l2))) {
-		patronBox.append(make("h3").html(
-			(metadataAvailable && typeof info.meta.title === "string") ? sanitiseString(info.meta.title) : I18n("ModernDeck is made possible by people like you")
-		))
-	}
-
-	if (exists(info.l1)) {
-
-		let patronList = make("div").addClass("mtd-patron-list mtd-patron-list-level1");
-
-		if (isInline) {
-			patronList.addClass("mtd-patron-list-inline");
-		}
-
-		$(info.l1).each((a, b) => {
-			patronList.append(
-				make("p").addClass("mtd-patron-level mtd-patron-level-1").html(sanitiseString(b))
-			)
-		});
-
-		scroller.append(patronList);
-	}
-
-	if (exists(info.l2)) {
-
-		let patronList = make("div").addClass("mtd-patron-list mtd-patron-list-level2");
-
-		if (isInline) {
-			patronList.addClass("mtd-patron-list-inline");
-		}
-
-		$(info.l2).each((a, b) => {
-			patronList.append(
-				make("p").addClass("mtd-patron-level mtd-patron-level-2").html(sanitiseString(b))
-			)
-		});
-
-		scroller.append(patronList);
-	}
-
-	patronBox.append(scroller);
-
-	if ((exists(info.l1)) || (exists(info.l2))) {
-		patronBox.append(
-			make("button")
-			.click(function() {
-				window.open(this.getAttribute("data-url"))
-			})
-			.addClass("btn btn-primary mtd-patreon-button")
-			.html((metadataAvailable && typeof info.meta.buttonText === "string") ? sanitiseString(info.meta.buttonText) : "Support on Patreon")
-			.attr("data-url",(metadataAvailable && typeof info.meta.buttonLink === "string") ? sanitiseString(info.meta.buttonLink) : "https://www.patreon.com/ModernDeck")
-
-		)
-	}
-}
-
-
-/*
-	Begins construction of the patron view for those who contribute on Patreon
-*/
-
-function makePatronView() {
-	let patronBox = make("div").addClass("mtd-patron-render");
-
-	$.ajax(
-		{
-			url:"https://api.moderndeck.org/2.0/patrons/"
-		}
-	).done((e) => {
-		let parsedJson;
-
-		try {
-			parsedJson = JSON.parse(e);
-		} catch (e) {
-			console.error("Error occurred while parsing JSON of patron data");
-			console.error(e);
-			lastError = e;
-		} finally {
-			renderPatronInfo(parsedJson, patronBox)
-		}
-	})
-	.error((e) => {
-		console.error("Error trying to fetch patron data");
-		console.error(e);
-		lastError = e;
-	});
-
-	return patronBox;
 }
 
 /* Updates the mute list UI from twitter's backend */

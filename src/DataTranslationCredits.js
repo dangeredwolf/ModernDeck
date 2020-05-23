@@ -6,6 +6,9 @@ vancho1<br>
 <br><b>中文</b><br>
 <a href="https://twitter.com/N0PELGND" rel="user" target="_blank">DatNopeLegend</a><br>
 
+<br><b>čeština</b><br>
+<a href="https://twitter.com/JamesTheWusky" rel="user" target="_blank">JamesTheWusky</a><br>
+
 <br><b>Deutsche</b><br>
 <a href="https://twitter.com/FLUFFSQUEAKER" rel="user" target="_blank">milanmat-fluffsqueaker</a><br>
 <a href="https://twitter.com/ItsJustMirko" rel="user" target="_blank">Mirko</a><br>
