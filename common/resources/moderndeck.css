@@ -4968,7 +4968,9 @@ a[rel="user"]:active,
 .prf-header[style="background-image: url(https://ton.twimg.com/tweetdeck-web/web/assets/global/backgrounds/td_profile_empty.b902792cc4.jpg)"],
 .mtd-nd-header-image[style="background-image: url(https://ton.twimg.com/tweetdeck-web/web/assets/global/backgrounds/td_profile_empty.b902792cc4.jpg)"],
 .prf-header[style="background-image: url(https://ton.twimg.com/tweetdeck-web/web/assets/global/backgrounds/td_profile_empty@2x.28d11b0d43.jpg)"],
-.mtd-nd-header-image[style="background-image: url(https://ton.twimg.com/tweetdeck-web/web/assets/global/backgrounds/td_profile_empty@2x.28d11b0d43.jpg)"] {
+.mtd-nd-header-image[style="background-image: url(https://ton.twimg.com/tweetdeck-web/web/assets/global/backgrounds/td_profile_empty@2x.28d11b0d43.jpg)"],
+.prf-header[style="background-image: url(https://ton.twimg.com/tweetdeck-web/web/assets/global/backgrounds/td_profile_empty@2x.41be8a92c4.jpg)"],
+.mtd-nd-header-image[style="background-image: url(https://ton.twimg.com/tweetdeck-web/web/assets/global/backgrounds/td_profile_empty@2x.41be8a92c4.jpg)"] {
 	background-image:none!important
 }
 
