@@ -1,6 +1,6 @@
 {
 	"description": {
-		"message": "The most powerful Twitter client for desktop.",
+		"message": "Най-мощният Туитър клиент за десктоп.",
 		"description": "Short description for the extension"
 	},
 	"launch": {
@@ -16,7 +16,7 @@
 		"description": "The description of the extension that appears on the Chrome Web Store"
 	},
 	"grantButton": {
-		"message": "Grant Permission",
+		"message": "Дайте разрешение",
 		"description": "A button to grant tabs permission in Firefox"
 	},
 	"needsPermission": {

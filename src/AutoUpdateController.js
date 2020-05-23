@@ -17,7 +17,7 @@ export class AutoUpdateController {
 		if (!require) {
 			return;
 		}
-		
+
 		const { ipcRenderer } = require("electron");
 
 
@@ -49,7 +49,7 @@ export class AutoUpdateController {
 			AutoUpdateController.h3 = undefined;
 			AutoUpdateController.updateh3 = undefined;
 			AutoUpdateController.tryAgain = undefined;
-			AutoUpdateController.restartNow;
+			AutoUpdateController.restartNow = false;
 			$("[id='update'] .mtd-welcome-next-button").html(I18n("Skip") + "<i class='icon icon-arrow-r'></i>");
 
 			AutoUpdateController.isCheckingForUpdates = true;
@@ -72,10 +72,9 @@ export class AutoUpdateController {
 			AutoUpdateController.icon = undefined;
 			AutoUpdateController.spinner = true;
 			AutoUpdateController.h2 = I18n("Downloading update...");
-			AutoUpdateController.h3 =
-			Math.floor(args.percent) + I18n("% complete (") +
-			formatBytes(args.transferred) + I18n("/") + formatBytes(args.total) + I18n("; ") +
-			formatBytes(args.bytesPerSecond) + ("/s)");
+			AutoUpdateController.h3 = Math.floor(args.percent) + I18n("% complete (") +
+									  formatBytes(args.transferred) + I18n("/") + formatBytes(args.total) + I18n("; ") +
+									  formatBytes(args.bytesPerSecond) + ("/s)");
 
 			AutoUpdateController.tryAgain = undefined;
 			AutoUpdateController.restartNow = false;

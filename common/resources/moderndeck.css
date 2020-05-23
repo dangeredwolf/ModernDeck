@@ -4391,23 +4391,37 @@ input[type="checkbox"]:active {
 	box-shadow:0 2px 5px 0 var(--contextMenuShadow);
 	margin-top:-18px;
 	text-indent:0;
-	width:226px;
+	width: auto;
 	margin-right:-10px;
 	border-radius:2px;
-	animation:menuDown 0.3s var(--animationTiming)
+	animation:menuDown 0.3s var(--animationTiming);
+	padding-right: 5px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+
+.dropdown-menu.pos-r {
+	left:50%;
+	margin-left:-40px;
+	margin-right:0;
+	right:initial;
+	width:auto
 }
 
 .dropdown-menu li:not(.drp-h-divider),.dropdown-menu menuitem:not(.drp-h-divider) {
 	position:relative;
 	display:block;
-	padding:8px 0 0 18px;
-	height:27px
+	padding: 8px 3px 3px 12px;
+	height:27px;
+	white-space: nowrap;
+	width: auto;
 }
 
 .dropdown-menu a {
-	position:absolute;
+	/* position:absolute; */
 	line-height:2;
-	padding:5px 0 0 15px
+	padding: 7px 24px 7px 10px;
+	white-space: nowrap;
 }
 
 .conversation-menu-position.dropdown-menu a {
@@ -5399,10 +5413,6 @@ button.try-query,
 	animation:menuUpRelative .325s var(--animationTiming),fadeIn .325s var(--animationTiming);
 	margin-top:0;
 	box-shadow:0 10px 20px 0 var(--contextMenuShadow)
-}
-
-.dropdown-menu ul {
-	max-width:240px
 }
 
 .compose-message-recipient-container {
@@ -8651,10 +8661,10 @@ label.checkbox::selection,label.control-label::selection {
 	font-size:22px;
 	vertical-align:middle;
 	line-height:28px;
-	position:relative;
-	padding-right:5px;
+	position: relative;
+	padding-left: 4px;
 	display:block;
-	float:left
+	float:left;
 }
 
 .tweet-message>.l-table {

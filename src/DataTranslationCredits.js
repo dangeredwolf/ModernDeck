@@ -12,9 +12,6 @@ vancho1<br>
 <a href="https://twitter.com/Machtergreifung" rel="user" target="_blank">Machtergreifung</a><br>
 <a href="https://twitter.com/TecraFox" rel="user" target="_blank">Tecra</a><br>
 
-<br><b>English</b><br>
-<a href="https://twitter.com/dangeredwolf" rel="user" target="_blank">dangeredwolf</a><br>
-
 <br><b>Español</b><br>
 <a href="https://twitter.com/klopma" rel="user" target="_blank">Carlos López</a><br>
 <a href="https://twitter.com/dangeredwolf" rel="user" target="_blank">dangeredwolf</a><br>
@@ -56,7 +53,7 @@ Chef! / chefwireframe<br>
 <br><b>русский</b><br>
 <a href="https://twitter.com/Sominemo" rel="user" target="_blank">Sominemo</a><br>
 <a href="https://twitter.com/coldarchie" rel="user" target="_blank">Archie</a><br>
-<a href="https://twitter.com/reig_xvi" rel="user" target="_blank">reig_xvi</a><br>
+<a href="https://twitter.com/reig_xvi" rel="user" target="_blank">Cyxtru</a><br>
 <a href="https://twitter.com/Tailsray2" rel="user" target="_blank">Tailsray</a><br>
 <br>
 <br>
