@@ -398,7 +398,7 @@ export function openSettings(openMenu) {
 
 			if (!isApp) {
 				logoCont.append(
-					make("p").addClass("mtd-check-out-app").html(I18n("Did you know ModernDeck has a native app? <a href='https://moderndeck.org/download'>Check it out!</a>"))
+					make("p").addClass("mtd-check-out-app").html(I18n("Did you know ModernDeck has a native app? <a href='https://moderndeck.org/'>Check it out!</a>"))
 				)
 			}
 
@@ -606,7 +606,7 @@ export function makeUpdateCont() {
 
 	updateCont.append(updateIcon,updateh2,updateh3,tryAgain,restartNow);
 
-	if (require && !html.hasClass("mtd-winstore") && !html.hasClass("mtd-macappstore")) {
+	if (typeof require !== "undefined" && !html.hasClass("mtd-winstore") && !html.hasClass("mtd-macappstore")) {
 		mtdAppUpdatePage();
 	}
 

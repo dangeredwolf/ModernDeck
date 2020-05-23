@@ -12,15 +12,19 @@ export function processMustaches() {
 				<input type="button" name="remove-filter" value="{{_i}}Remove{{/i}}" data-id="{{id}}" class="js-remove-filter small btn btn-negative">\
 			</li>';
 
-	if (typeof TD_mustaches["column/column_options.mustache"] !== "undefined")
-		TD_mustaches["column/column_options.mustache"] =
-		TD_mustaches["column/column_options.mustache"].replace(
-			`<div class="button-group"> <button type="button" class="Button--link btn-options-tray padding-hn {{^isClearable}}is-invisible{{/isClearable}}" data-action="clear"> <i class="icon icon-clear-timeline"></i> <span class="label">{{_i}}Clear{{/i}}</span> </button> </div>`,
-			`<div class="button-group"> <button type="button" class="Button--link btn-options-tray padding-hn" data-action="mtd_collapse"> <i class='icon material-icon'>first_page</i> <span class="label">{{_i}}Collapse{{/i}}</span> </button> </div>` +
-			`<div class="button-group"> <button type="button" class="Button--link btn-options-tray padding-hn {{^isClearable}}is-invisible{{/isClearable}}" data-action="clear"> <i class="icon icon-clear-timeline"></i> <span class="label">{{_i}}Clear{{/i}}</span> </button> </div>`
-		)
+	if (typeof TD_mustaches["media/native_video.mustache"] !== "undefined")
+		TD_mustaches["media/native_video.mustache"] = TD_mustaches["media/native_video.mustache"].replace("preload=\"auto\"","preload=\"auto\" autoplay=\"true\"");
 
 	if (!html.hasClass("mtd-disable-css")) {
+
+
+		if (typeof TD_mustaches["column/column_options.mustache"] !== "undefined")
+			TD_mustaches["column/column_options.mustache"] =
+			TD_mustaches["column/column_options.mustache"].replace(
+				`<div class="button-group"> <button type="button" class="Button--link btn-options-tray padding-hn {{^isClearable}}is-invisible{{/isClearable}}" data-action="clear"> <i class="icon icon-clear-timeline"></i> <span class="label">{{_i}}Clear{{/i}}</span> </button> </div>`,
+				`<div class="button-group"> <button type="button" class="Button--link btn-options-tray padding-hn" data-action="mtd_collapse"> <i class='icon material-icon'>first_page</i> <span class="label">{{_i}}Collapse{{/i}}</span> </button> </div>` +
+				`<div class="button-group"> <button type="button" class="Button--link btn-options-tray padding-hn {{^isClearable}}is-invisible{{/isClearable}}" data-action="clear"> <i class="icon icon-clear-timeline"></i> <span class="label">{{_i}}Clear{{/i}}</span> </button> </div>`
+			)
 
 		if (typeof TD_mustaches["column_loading_placeholder.mustache"] !== "undefined")
 			TD_mustaches["column_loading_placeholder.mustache"] =

@@ -37,6 +37,7 @@ window.newLoginPage = _newLoginPage;
 
 import { processForceFeatureFlags } from "./ForceFeatureFlags.js";
 import { loadPreferences, parseActions } from "./PrefHandler.js";
+window.parseActions = parseActions;
 
 import { fromCodePoint } from "./EmojiHelper.js";
 import { injectFonts } from "./FontHandler.js";
@@ -258,7 +259,11 @@ function fixColumnAnimations() {
 
 // begin moderndeck initialisation
 
-async function mtdInit() {
+function mtdInit() {
+	if (typeof TD === "undefined" || typeof TD_mustaches === "undefined" || typeof TD_mustaches["login/login_form.mustache"] === "undefined" || typeof TD.util === "undefined") {
+		setTimeout(mtdInit,0);
+		return;
+	}
 
 	console.log("mtdInit");
 
@@ -280,12 +285,6 @@ async function mtdInit() {
 
 
 	// These check to see if critical TD variables are in place before proceeding
-
-
-	await TD_mustaches;
-	await TD;
-	await TD.util;
-	await TD_mustaches["login/login_form.mustache"];
 
 	TD_mustaches["login/login_form.mustache"] = newLoginPage;
 
@@ -529,12 +528,10 @@ function navigationSetup() {
 	handleErrors(loadPreferences, "Caught error in loadPreferences");
 	handleErrors(hookComposer, "Caught error in hookComposer");
 
-	enableStylesheetExtension("donors");
-
 	UINavDrawer();
 
 	if (!getPref("mtd_welcomed") || debugWelcome) {
-		handleErrors(new UIWelcome, "Error in Welcome Screen");
+		handleErrors(()=>{new UIWelcome()}, "Error in Welcome Screen");
 	}
 
 	$(".app-navigator>a").off("mouseenter").off("mouseover"); // disable tooltips for common items as they're superfluous (and also break styling)

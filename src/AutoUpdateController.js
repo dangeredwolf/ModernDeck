@@ -14,7 +14,7 @@ export class AutoUpdateController {
 
 	static initialize() {
 
-		if (!require) {
+		if (typeof require === "undefined") {
 			return;
 		}
 

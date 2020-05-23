@@ -11,7 +11,17 @@ export let _welcomeData = {
 		title: "<i class='icon icon-moderndeck icon-xxlarge mtd-welcome-head-icon' style='color:var(--secondaryColor)'></i>" + I18n("Welcome to ModernDeck!"),
 		body: I18n("We're glad to have you here. Click Next to continue."),
 		nextFunc: () => {
-			if (!require || !isApp || html.hasClass("mtd-winstore") || html.hasClass("mtd-macappstore")) {
+
+			$(window.mtd_welcome_dark).click(()=>{
+				parseActions(settingsData.themes.options.coretheme.activate,"dark");
+				$(".mtd-welcome-inner .tweet-text").html(I18n("This tweet is quite dark!"))
+			})
+
+			$(window.mtd_welcome_light).click(()=>{
+				parseActions(settingsData.themes.options.coretheme.activate,"light");
+				$(".mtd-welcome-inner .tweet-text").html(I18n("This tweet is quite light!"))
+			})
+			if (typeof require === "undefined" || !isApp || html.hasClass("mtd-winstore") || html.hasClass("mtd-macappstore")) {
 				return;
 			}
 			const {ipcRenderer} = require('electron');
@@ -30,11 +40,11 @@ export let _welcomeData = {
 		body: I18n("There are additional options for themes in <i class='icon icon-settings'></i> <b>Settings</b>"),
 		html: `<div class="obj-left mtd-welcome-theme-picker">
 			<label class="fixed-width-label radio">
-			<input type="radio" name="theme" onclick="parseActions(settingsData.themes.options.coretheme.activate,'dark');$('.mtd-welcome-inner .tweet-text').html('${I18n("This tweet is quite dark!")}')" value="dark">
+			<input type="radio" name="theme" id="mtd_welcome_dark" value="dark">
 				${I18n("Dark")}
 			</label>
 			<label class="fixed-width-label radio">
-			<input type="radio" name="theme" onclick="parseActions(settingsData.themes.options.coretheme.activate,'light');$('.mtd-welcome-inner .tweet-text').html('${I18n("This tweet is quite light!")}')" value="light">
+			<input type="radio" name="theme" id="mtd_welcome_light" value="light">
 				${I18n("Light")}
 			</label>
 		</div>` + demoColumn,
@@ -42,10 +52,14 @@ export let _welcomeData = {
 			if (!require || !isApp || html.hasClass("mtd-winstore") || html.hasClass("mtd-macappstore")) {
 				return;
 			}
-			const {ipcRenderer} = require('electron');
-			ipcRenderer.send('checkForUpdates');
+			const {ipcRenderer} = require("electron");
+			ipcRenderer.send("checkForUpdates");
 		},
 		nextFunc: () => {
+			$(window.mtd_welcome_top).click(()=>parseActions(settingsData.appearance.options.headposition.activate,"top"))
+			$(window.mtd_welcome_left).click(()=>parseActions(settingsData.appearance.options.headposition.activate,"left"))
+			$(window.mtd_welcome_classic).click(()=>parseActions(settingsData.appearance.options.headposition.activate,"classic"))
+
 			let pos = getPref("mtd_headposition");
 			if (pos === "top") {
 				$("input[value='top']").click();
@@ -63,23 +77,22 @@ export let _welcomeData = {
 			  I18n("<b>Left (Classic):</b> Left, but uses classic TweetDeck navigation methods instead of drawer."),
 		html: `<div class="obj-left mtd-welcome-theme-picker">
 			<label class="fixed-width-label radio">
-			<input type="radio" name="layout" onclick="parseActions(settingsData.appearance.options.headposition.activate,'top')" value="top">
+			<input type="radio" name="layout" id="mtd_welcome_top" value="top">
 				${I18n("Top")}
 			</label>
 			<label class="fixed-width-label radio">
-			<input type="radio" name="layout" onclick="parseActions(settingsData.appearance.options.headposition.activate,'left')" value="left">
+			<input type="radio" name="layout" id="mtd_welcome_left" value="left">
 				${I18n("Left")}
 			</label>
 			<label class="fixed-width-label radio">
-			<input type="radio" name="layout" onclick="parseActions(settingsData.appearance.options.headposition.activate,'classic')" value="classic">
+			<input type="radio" name="layout" id="mtd_welcome_classic" value="classic">
 				${I18n("Left (Classic)")}
 			</label>
 		</div>`,
 		nextFunc: () => {
 			if (getPref("mtd_headposition") === "classic") {
 				$(".mtd-settings-subpanel:last-child .mtd-welcome-body").html(_welcomeData.done.body.replace("YOU_SHOULDNT_SEE_THIS",I18n("the settings menu <i class='icon icon-settings'></i>")));
-			}
-			else {
+			} else {
 				$(".mtd-settings-subpanel:last-child .mtd-welcome-body").html(_welcomeData.done.body.replace("YOU_SHOULDNT_SEE_THIS",I18n("the navigation drawer <i class='icon mtd-nav-activator'></i>")));
 			}
 		}
