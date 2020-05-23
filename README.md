@@ -5,7 +5,9 @@
 [![devDependencies Status](https://david-dm.org/dangeredwolf/ModernDeck/dev-status.svg)](https://david-dm.org/dangeredwolf/ModernDeck?type=dev)
 [![Crowdin](https://badges.crowdin.net/tweetdeck/localized.svg)](https://translate.moderndeck.org/project/tweetdeck)
 
-ModernDeck is an app/extension for TweetDeck that brings a vastly overhauled interface with tons of Material Design influence, as well as new customisation features.
+ModernDeck is an app/extension running atop TweetDeck that brings a new, Material Design-inspired interface, as well as new customization features.
+
+![ModernDeck Screenshot](https://github.com/dangeredwolf/ModernDeck/raw/8.0/build/en_screenshot.png)
 
 ModernDeck is designed by dangeredwolf in Columbus, OH and released under the MIT License.
 
