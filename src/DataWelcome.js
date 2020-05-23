@@ -11,7 +11,7 @@ export let _welcomeData = {
 		title: "<i class='icon icon-moderndeck icon-xxlarge mtd-welcome-head-icon' style='color:var(--secondaryColor)'></i>" + I18n("Welcome to ModernDeck!"),
 		body: I18n("We're glad to have you here. Click Next to continue."),
 		nextFunc: () => {
-			if (!isApp || html.hasClass("mtd-winstore") || html.hasClass("mtd-macappstore")) {
+			if (!require || !isApp || html.hasClass("mtd-winstore") || html.hasClass("mtd-macappstore")) {
 				return;
 			}
 			const {ipcRenderer} = require('electron');
@@ -39,7 +39,7 @@ export let _welcomeData = {
 			</label>
 		</div>` + demoColumn,
 		prevFunc: () => {
-			if (!isApp || html.hasClass("mtd-winstore") || html.hasClass("mtd-macappstore")) {
+			if (!require || !isApp || html.hasClass("mtd-winstore") || html.hasClass("mtd-macappstore")) {
 				return;
 			}
 			const {ipcRenderer} = require('electron');
