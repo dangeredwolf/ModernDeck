@@ -34,6 +34,7 @@ TAKAHASHI Shuuji<br>
 <a href="https://twitter.com/Meylody_" rel="user" target="_blank">Mélodie</a><br>
 <a href="https://twitter.com/@Nintenloup_Wolf" rel="user" target="_blank">Nintenloup</a><br>
 <a href="https://twitter.com/robot275" rel="user" target="_blank">Robot275</a><br>
+<a href="https://twitter.com/ShadyFennec" rel="user" target="_blank">ShadyFennec</a><br>
 
 <br><b>日本語</b><br>
 <a href="https://twitter.com/hideki_0403" rel="user" target="_blank">ゆきねこ (hideki_0403)</a><br>
