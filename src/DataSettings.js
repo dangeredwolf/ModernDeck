@@ -677,22 +677,6 @@ export let settingsData = {
 				settingsKey:"mtd_nativetitlebar",
 				default:false
 			},
-			inspectElement:{
-				title:"{{Show Inspect Element in context menus}}",
-				type:"checkbox",
-				activate:{
-					func: () => {
-						setPref("mtd_inspectElement",true);
-					}
-				},
-				deactivate:{
-					func: () => {
-						setPref("mtd_inspectElement",false);
-					}
-				},
-				settingsKey:"mtd_inspectElement",
-				default:false
-			},
 			nativeEmoji:{
 				title:"{{Use native Emoji Picker}}",
 				type:"checkbox",
@@ -749,24 +733,7 @@ export let settingsData = {
 				},
 				settingsKey:"mtd_systemtray",
 				default:true
-			},  backgroundNotifications:{
-				title:"{{Run ModernDeck in the background to deliver notifications}}",
-				type:"checkbox",
-				activate:{
-					func: () => {
-						const {ipcRenderer} = require("electron");
-						ipcRenderer.send("enableBackground");
-					}
-				},
-				deactivate:{
-					func: () => {
-						const {ipcRenderer} = require("electron");
-						ipcRenderer.send("disableBackground");
-					}
-				},
-				settingsKey:"mtd_background",
-				default:false
-			}, theme:{
+			}, updateChannel:{
 				title:"{{App update channel}}",
 				type:"dropdown",
 				activate:{
@@ -792,6 +759,41 @@ export let settingsData = {
 				},
 				settingsKey:"mtd_updatechannel",
 				default:"latest"
+			},
+			backgroundNotifications:{
+				title:"{{Run ModernDeck in the background to deliver notifications}}",
+				type:"checkbox",
+				activate:{
+					func: () => {
+						const {ipcRenderer} = require("electron");
+						ipcRenderer.send("enableBackground");
+					}
+				},
+				deactivate:{
+					func: () => {
+						const {ipcRenderer} = require("electron");
+						ipcRenderer.send("disableBackground");
+					}
+				},
+				settingsKey:"mtd_background",
+				default:false
+			},
+			inspectElement:{
+				headerBefore:"{{Developer}}",
+				title:"{{Show Inspect Element in context menus}}",
+				type:"checkbox",
+				activate:{
+					func: () => {
+						setPref("mtd_inspectElement",true);
+					}
+				},
+				deactivate:{
+					func: () => {
+						setPref("mtd_inspectElement",false);
+					}
+				},
+				settingsKey:"mtd_inspectElement",
+				default:false
 			},
 			mtdSafeMode: {
 				title:"{{Safe mode}}",
