@@ -19,7 +19,8 @@ const {
 	Menu,
 	dialog,
 	nativeTheme,
-	protocol
+	protocol,
+	Tray
 }		= require("electron");
 
 const fs = require("fs");
@@ -46,11 +47,16 @@ const isMAS = !!process.mas;
 
 const isDev = false;
 
+let enableTray = true;
+let enableBackground = true;
 
+let hidden = false;
 let mainWindow;
+let tray = null;
 let mR;
 
 let isRestarting = false;
+let closeForReal = false;
 
 let mtdAppTag = '';
 
@@ -96,7 +102,6 @@ const template = [
 		]
 	},
 	{
-		label: "File",
 		role: "fileMenu",
 		submenu: [
 			{ label: "New Tweet...", click(){ if (!mainWindow){return;}mainWindow.webContents.send("newTweet"); } },
@@ -106,7 +111,6 @@ const template = [
 		]
 	},
 	{
-		label: "Edit",
 		role: "editMenu",
 		submenu: [
 			{ role: "undo" },
@@ -128,7 +132,6 @@ const template = [
 		]
 	},
 	{
-		label: "View",
 		role: "viewMenu",
 		submenu: [
 			{ role: "reload" },
@@ -143,7 +146,6 @@ const template = [
 		]
 	},
 	{
-		label: "Window",
 		role: "windowMenu",
 		submenu: [
 			{ role: "minimize" },
@@ -166,7 +168,7 @@ const template = [
 
 const menu = Menu.buildFromTemplate(template);
 
-if (process.platform === 'darwin')
+if (process.platform === "darwin")
 	Menu.setApplicationMenu(menu);
 
 /*try {
@@ -379,6 +381,7 @@ function makeWindow() {
 			// preload: __dirname+separator+useDir+separator+"resources"+separator+"moderndeck.js"
 		},
 		autoHideMenuBar:true,
+		nodeIntegrationInSubFrames:false,
 		title:"ModernDeck",
 		icon:__dirname+useDir+"/resources/favicon.ico",
 		frame:useFrame,
@@ -386,6 +389,7 @@ function makeWindow() {
 		minWidth:375,
 		show:false,
 		enableRemoteModule:true,
+		backgroundThrottling:true,
 		backgroundColor:"#263238"
 	});
 
@@ -436,6 +440,7 @@ function makeWindow() {
 	setInterval(saveWindowBounds,60 * 1000);
 
 	mainWindow.show();
+	hidden = false;
 
 	// Here, we add platform-specific tags to html, to help moderndeck CSS know what to do
 
@@ -586,6 +591,7 @@ function makeWindow() {
 			if (response === 0) { // Retry
 				mainWindow.reload();
 			} else if (response === 1) { // Close
+				closeForReal = true;
 				mainWindow.close();
 			}
 		});
@@ -861,6 +867,7 @@ function makeWindow() {
 		isRestarting = true;
 
 		if (mainWindow) {
+			closeForReal = true;
 			mainWindow.close();
 		}
 
@@ -871,6 +878,45 @@ function makeWindow() {
 			app.exit();
 		},100);
 
+	});
+
+	mainWindow.on("close", e => {
+		if (enableBackground && !closeForReal) {
+			e.preventDefault();
+			mainWindow.hide();
+			hidden = true;
+
+			// If tray disabled, show tray only if background is enabled
+			if (!enableTray) {
+				makeTray();
+			}
+		}
+	})
+
+	// Enable tray icon
+
+	ipcMain.on("enableTray", (event,arg) => {
+		enableTray = true;
+		makeTray();
+	});
+
+	// Disable tray icon
+
+	ipcMain.on("disableTray", (event,arg) => {
+		enableTray = false;
+		destroyTray();
+	});
+
+	// Enable tray icon
+
+	ipcMain.on("enableBackground", (event,arg) => {
+		enableBackground = true;
+	});
+
+	// Disable tray icon
+
+	ipcMain.on("disableBackground", (event,arg) => {
+		enableBackground = false;
 	});
 
 	// Upon closing, set mainWindow to null
@@ -925,6 +971,7 @@ function makeWindow() {
 
 
 	if (store.get("mtd_fullscreen")) {
+		mainWindow.webContents.executeJavaScript('document.querySelector("html").classList.remove("mtd-app");');
 		mainWindow.setFullScreen(true)
 	}
 
@@ -934,6 +981,49 @@ function makeWindow() {
 		mainWindow.webContents.executeJavaScript(mtdAppTag);
 	});
 	mainWindow.webContents.executeJavaScript(mtdAppTag);
+}
+
+function showHiddenWindow() {
+	if (!mainWindow){
+		return;
+	}
+
+	mainWindow.show();
+	hidden = false;
+
+	if (!enableTray) {
+		destroyTray();
+	}
+}
+
+function makeTray() {
+	if (tray !== null) {
+		return;
+	}
+	tray = new Tray("common/AppIcon32.png")
+	const contextMenu = Menu.buildFromTemplate([
+		{ label: "Open ModernDeck", click(){ showHiddenWindow() } },
+		{ label: "Settings", click(){ if (!mainWindow){return;}mainWindow.webContents.send("openSettings"); } },
+
+		{ type: "separator" },
+
+		{ label: "New Tweet...", click(){ if (!mainWindow){return;}mainWindow.webContents.send("newTweet"); } },
+		{ label: "New Direct Message...", click(){ if (!mainWindow){return;}mainWindow.webContents.send("newDM"); } },
+
+		{ type: "separator" },
+
+		{ label: "Exit", click(){ if (!mainWindow){return;} closeForReal = true; mainWindow.close(); } },
+	])
+	tray.setToolTip("ModernDeck");
+	tray.setContextMenu(contextMenu);
+	tray.on("click", () => {
+		showHiddenWindow();
+	})
+}
+
+function destroyTray() {
+	tray.destroy();
+	tray = null;
 }
 
 // Register moderndeck:// protocol for accessing moderndeck resources, like CSS
@@ -954,7 +1044,10 @@ electron.protocol.registerSchemesAsPrivileged([{
 
 app.on("ready", () => {
 	try {
-		makeWindow()
+		makeWindow();
+		if (enableTray) {
+			makeTray();
+		}
 	}
 	catch (e) {
 		console.error(e);
@@ -975,6 +1068,10 @@ app.on("window-all-closed", () => {
 app.on("activate", () => {
 	if (mainWindow === null)
 		makeWindow();
+	if (hidden && mainWindow && mainWindow.show) {
+		mainWindow.show();
+		hidden = false;
+	}
 });
 
 // Tell mtdInject that there was an update error
@@ -1055,10 +1152,10 @@ systemPreferences.on("inverted-color-scheme-changed", (e,v) => {
 	mainWindow.webContents.send("inverted-color-scheme-changed",v);
 });
 
-if (process.platform === 'darwin') {
+if (process.platform === "darwin") {
 	try {
 		systemPreferences.subscribeNotification(
-			'AppleInterfaceThemeChangedNotification',
+			"AppleInterfaceThemeChangedNotification",
 			() => {
 				if (!mainWindow || !mainWindow.webContents) { return }
 				mainWindow.webContents.send("color-scheme-changed", systemPreferences.isDarkMode() ? "dark" : "light");

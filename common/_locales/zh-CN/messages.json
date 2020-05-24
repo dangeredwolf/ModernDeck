@@ -16,15 +16,15 @@
 		"description": "The description of the extension that appears on the Chrome Web Store"
 	},
 	"grantButton": {
-		"message": "Grant Permission",
+		"message": "授权",
 		"description": "A button to grant tabs permission in Firefox"
 	},
 	"needsPermission": {
-		"message": "Sorry to interrupt &mdash; We need permission to open tabs",
+		"message": "抱歉打断 &mdash; 我们需要打开标签的权限",
 		"description": "A title about granting tabs permission in Firefox"
 	},
 	"needsPermissionParagraph": {
-		"message": "ModernDeck requires the tab permission from Firefox in order to create new tabs.<br><br>\nThis is optional, and only required for the launcher feature. You can still access ModernDeck at <a href=\"https://tweetdeck.twitter.com\" target=\"_blank\">tweetdeck.twitter.com</a> even without this permission.<br><br>\nIf you don't accept these permissions, you can remove the launcher button by right clicking it and selecting <i>Remove from Toolbar</i><br><br>\n<b>ModernDeck does not read your open tabs.</b>",
+		"message": "ModernDeck 需要 Firefox 的标签权限才能创建新标签。<br><br>\n这是可选的，并仅需要启动器功能。即使没有此权限，您仍然可以在 <a href=\"https://tweetdeck.twitter.com\" target=\"_blank\">tweetdeck.twitter.com</a> 访问ModernDeck。<br><br>\n如果您不接受这些权限 您可以通过右键点击按钮并选择 <i>从工具栏中删除</i><br><br>\n<b>ModernDeck 不会读取您打开的标签。</b>",
 		"description": "A description about granting tabs permission in Firefox"
 	}
 }

@@ -87,6 +87,18 @@ function createGifPanel() {
 	})
 }
 
+// https://staxmanade.com/2017/02/how-to-download-and-convert-an-image-to-base64-data-url/
+
+async function getBlobFromUrl(imageUrl) {
+	let res = await fetch(imageUrl);
+	let blob = await res.blob();
+
+	return new Promise((resolve, reject) => {
+		resolve(blob);
+		return blob;
+	})
+}
+
 /*
 	Renders a specific GIF, handles click function
 */

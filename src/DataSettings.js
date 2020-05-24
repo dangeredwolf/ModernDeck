@@ -731,7 +731,42 @@ export let settingsData = {
 				},
 				settingsKey:"mtd_nativecontextmenus",
 				default:isApp ? process.platform === "darwin" : false
-			},theme:{
+			}, trayEnabled:{
+				headerBefore:"Tray",
+				title:"{{Show ModernDeck in the system tray}}",
+				type:"checkbox",
+				activate:{
+					func: () => {
+						const {ipcRenderer} = require("electron");
+						ipcRenderer.send("enableTray");
+					}
+				},
+				deactivate:{
+					func: () => {
+						const {ipcRenderer} = require("electron");
+						ipcRenderer.send("disableTray");
+					}
+				},
+				settingsKey:"mtd_systemtray",
+				default:true
+			},  backgroundNotifications:{
+				title:"{{Run ModernDeck in the background to deliver notifications}}",
+				type:"checkbox",
+				activate:{
+					func: () => {
+						const {ipcRenderer} = require("electron");
+						ipcRenderer.send("enableBackground");
+					}
+				},
+				deactivate:{
+					func: () => {
+						const {ipcRenderer} = require("electron");
+						ipcRenderer.send("disableBackground");
+					}
+				},
+				settingsKey:"mtd_background",
+				default:false
+			}, theme:{
 				title:"{{App update channel}}",
 				type:"dropdown",
 				activate:{
@@ -742,11 +777,11 @@ export let settingsData = {
 						setPref("mtd_updatechannel",opt);
 
 						setTimeout(() => {
-							const {ipcRenderer} = require('electron');
+							const {ipcRenderer} = require("electron");
 							if (!!ipcRenderer) {
 								ipcRenderer.send("changeChannel", opt);
 
-								ipcRenderer.send('checkForUpdates');
+								ipcRenderer.send("checkForUpdates");
 							}
 						},300)
 					}

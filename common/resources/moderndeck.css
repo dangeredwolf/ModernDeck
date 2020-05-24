@@ -278,14 +278,14 @@ body,body.signin-sheet-present {
 	animation:windowDown 0.2s var(--animationTiming)!important
 }
 
-.overlay.mtd-fade-out,
-.dropdown-menu.mtd-fade-out,
+.mtd-fade-out,
 .accs-header {
 	animation:fadeOut 0.2s var(--animationTiming)!important
 }
 
 .mtd-fade-out {
-	animation-fill-mode:both;
+	animation-fill-mode:forwards;
+	animation:fadeOut 0.2s var(--animationTiming)!important;
 	pointer-events:none
 }
 
@@ -2733,8 +2733,7 @@ html:not(.mtd-classic-nav) .attach-compose-buttons .tweet-button {
 	padding:15px;
 	pointer-events:none;
 	height:40px;
-	box-shadow:0 5px 10px rgba(15,15,15,0.3);
-	z-index:3
+	z-index:3;
 }
 
 .s-tall-fixed .mdl-header {
@@ -2746,7 +2745,7 @@ html:not(.mtd-classic-nav) .attach-compose-buttons .tweet-button {
 }
 
 .mdl-header-title {
-	font-size:16px;
+	font-size:20px;
 	text-align:left;
 	margin-top:0;
 	z-index:6;

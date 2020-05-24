@@ -15,6 +15,8 @@ export function UIUpdateNotify() {
 	let notifContent = $("li.Notification[data-id=\""+notifId+"\"] .Notification-content");
 	let notifIcon = $("li.Notification[data-id=\""+notifId+"\"] .Notification-icon .Icon");
 
+	window.updateNotifyID = notifRoot._id;
+
 	if (notif.length > 0) {
 		notif.addClass("mtd-update-notification");
 		notifIcon.removeClass("Icon--notifications").addClass("material-icon").html("update");

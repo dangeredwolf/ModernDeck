@@ -142,18 +142,6 @@ if (typeof MTDURLExchange === "object" && typeof MTDURLExchange.getAttribute ===
 	console.info("MTDURLExchange completed with URL " + mtdBaseURL);
 }
 
-/*
-	Moduleraid became a requirement for ModernDeck after they removed jQuery from the global context
-	Hence why twitter sucks
-*/
-
-// let twitterSucks = document.createElement("script");
-// twitterSucks.type = "text/javascript";
-// twitterSucks.src = mtdBaseURL + "resources/libraries/moduleraid.min.js";
-// document.head.appendChild(twitterSucks);
-
-
-
 // This makes numbers appear nicer by overriding tweetdeck's original function which did basically nothing
 
 function replacePrettyNumber() {
@@ -211,7 +199,7 @@ function overrideFadeOut() {
 
 	// body's removeChild function is overriden to give tooltips their fade out animation
 
-	body.removeChild = (i) => {
+	body[0].removeChild = (i) => {
 		if ($(i).hasClass("tooltip")) {
 			setTimeout(() => {
 				i.remove(); // Tooltips automagically animate themselves out. But here we clean them up as well ourselves.

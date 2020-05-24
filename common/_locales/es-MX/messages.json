@@ -1,6 +1,6 @@
 {
 	"description": {
-		"message": "El cliente de Twitter más poderoso para tu computadora.",
+		"message": "El cliente de Twitter más poderoso para escritorio.",
 		"description": "Short description for the extension"
 	},
 	"launch": {
@@ -24,7 +24,7 @@
 		"description": "A title about granting tabs permission in Firefox"
 	},
 	"needsPermissionParagraph": {
-		"message": "ModernDeck requires the tab permission from Firefox in order to create new tabs.<br><br>\nThis is optional, and only required for the launcher feature. You can still access ModernDeck at <a href=\"https://tweetdeck.twitter.com\" target=\"_blank\">tweetdeck.twitter.com</a> even without this permission.<br><br>\nIf you don't accept these permissions, you can remove the launcher button by right clicking it and selecting <i>Remove from Toolbar</i><br><br>\n<b>ModernDeck does not read your open tabs.</b>",
+		"message": "ModernDeck requiere de permisos de pestañas en Firefox para crear nuevas pestañas.<br><br>\nEsto es opcional y solo es necesario para la función del lanzador. Aún puedes acceder a ModernDeck en <a href=\"https://tweetdeck.twitter.com\" target=\"_blank\">tweetdeck.twitter.com</a> incluso sin este permiso.<br><br>\nSi no aceptas estos permisos, puedes eliminar el botón del lanzador haciendo clic derecho sobre él y seleccionando <i>Eliminar de la barra de herramientas</i><br><br>\n<b>ModernDeck no lee las pestañas abiertas.</b>",
 		"description": "A description about granting tabs permission in Firefox"
 	}
 }

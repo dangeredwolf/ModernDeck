@@ -1,6 +1,7 @@
 import { make, exists, getIpc } from "./Utils.js";
 import { mtdAlert } from "./UIAlert.js";
 import { UIUpdateNotify } from "./UIUpdateNotify.js";
+import { openSettings } from "./UISettings.js";
 import { buildContextMenu } from "./UIContextMenu.js";
 import { parseActions } from "./PrefHandler.js";
 import { I18n } from "./I18n.js";
