@@ -3,6 +3,7 @@ import { I18n } from "./I18n.js";
 import DataI18n from "./DataI18n.js";
 import { UIModal } from "./UIModal.js";
 import { getPref, setPref } from "./StoragePreferences.js";
+import { getFullLanguage, getMainLanguage } from "./I18n.js";
 import unsupportedCodeTable from "./DataUnsupportedLanguage.js";
 import inaccuraciesCodeTable from "./DataTranslationsMayBeInaccurate.js";
 import languageText from "./DataTextThatSaysLanguage.js";
@@ -90,7 +91,7 @@ export class UILanguagePicker extends UIModal {
 			setPref("mtd_last_lang", navigator.language);
 			setPref("mtd_lang", this.selectLanguage.val());
 
-			if (this.hasMadeChange) {
+			if (getFullLanguage() !== this.selectLanguage.val() && getMainLanguage() !== this.selectLanguage.val()) {
 				setTimeout(() => location.reload(), 200);
 			} else {
 				this.dismiss();
