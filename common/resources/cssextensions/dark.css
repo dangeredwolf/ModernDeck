@@ -441,7 +441,8 @@ textarea
 .scroll-styled-h::-webkit-scrollbar-thumb,
 .s-tall-fixed::-webkit-scrollbar-thumb,
 #lists-modal .mdl-content::-webkit-scrollbar-thumb,
-.keyboard-shortcut-list-modal::-webkit-scrollbar-thumb
+.keyboard-shortcut-list-modal::-webkit-scrollbar-thumb,
+.Dropdown::-webkit-scrollbar-thumb
 {
 	border-radius:var(--scrollbarWidth);
 	background:var(--scrollbarDefaultColor)
@@ -455,7 +456,8 @@ textarea
 .scroll-v::-webkit-scrollbar-thumb:hover,
 .scroll-styled-h::-webkit-scrollbar-thumb:hover,
 #lists-modal .mdl-content::-webkit-scrollbar-thumb:hover,
-.keyboard-shortcut-list-modal::-webkit-scrollbar-thumb:hover
+.keyboard-shortcut-list-modal::-webkit-scrollbar-thumb:hover,
+.Dropdown::-webkit-scrollbar-thumb:hover
 {
 	background:var(--scrollbarHoverColor)
 }
@@ -468,7 +470,8 @@ textarea
 .scroll-v,
 .scroll-styled-h,
 #lists-modal .mdl-content,
-.keyboard-shortcut-list-modal {
+.keyboard-shortcut-list-modal,
+.Dropdown {
 	scrollbar-color:var(--scrollbarDefaultColor) var(--backdropColor)
 }
 

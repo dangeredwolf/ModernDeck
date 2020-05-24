@@ -17,6 +17,7 @@
 .mdl,
 .scroll-styled-h,
 #lists-modal .mdl-content,
+.Dropdown,
 .keyboard-shortcut-list-modal {
 	scrollbar-width:thin
 }

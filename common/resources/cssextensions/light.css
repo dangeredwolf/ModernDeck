@@ -371,7 +371,8 @@ html,body:not(.signin-sheet-now-present) {
 .scroll-alt::-webkit-scrollbar-thumb,
 .s-tall-fixed::-webkit-scrollbar-thumb,
 #lists-modal .mdl-content::-webkit-scrollbar-thumb,
-.keyboard-shortcut-list-modal::-webkit-scrollbar-thumb
+.keyboard-shortcut-list-modal::-webkit-scrollbar-thumb,
+.Dropdown::-webkit-scrollbar-thumb
 {
 	border-radius:5px;
 	background:var(--scrollbarDefaultColor)
@@ -386,7 +387,8 @@ html,body:not(.signin-sheet-now-present) {
 .scroll-styled-h::-webkit-scrollbar-thumb:hover,
 .scroll-alt::-webkit-scrollbar-thumb:hover,
 #lists-modal .mdl-content::-webkit-scrollbar-thumb:hover,
-.keyboard-shortcut-list-modal::-webkit-scrollbar-thumb:hover
+.keyboard-shortcut-list-modal::-webkit-scrollbar-thumb:hover,
+.Dropdown::-webkit-scrollbar-thumb:hover
 {
 	background:var(--scrollbarHoverColor)
 }
@@ -400,7 +402,8 @@ html,body:not(.signin-sheet-now-present) {
 .scroll-v,
 .scroll-styled-h,
 #lists-modal .mdl-content,
-.keyboard-shortcut-list-modal {
+.keyboard-shortcut-list-modal,
+.Dropdown {
 	scrollbar-color:var(--txtMuteLink) var(--backdropColor)
 }
 
@@ -972,7 +975,7 @@ button[type="submit"]:active,button[type="submit"]:focus,.mtd-settings-button:fo
 
 .detail-view-inline-text {
 	color:var(--txtMuteLink);
-	border-bottom:3px solid var(--secondaryColorAlt)
+	border-bottom:3px solid var(--secondaryColor)
 }
 
 .mtd-giphy-logo {

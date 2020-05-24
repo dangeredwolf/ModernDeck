@@ -11,6 +11,7 @@
 
 /* stylelint-disable */
 @import "csscomponents/alert.css";
+@import "csscomponents/calendarDropdown.css";
 @import "csscomponents/contextmenu.css";
 @import "csscomponents/coredefinitions.css";
 @import "csscomponents/windowcontrol.css";
@@ -515,7 +516,7 @@ html.scroll-v {
 	overflow-x:auto
 }
 
-.mdl:not(.s-tall-fixed)::-webkit-scrollbar,.keyboard-shortcut-list-modal::-webkit-scrollbar,.mdl.s-profile::-webkit-scrollbar,.scroll-styled-v::-webkit-scrollbar,.scroll-v::-webkit-scrollbar,.lst-launcher::-webkit-scrollbar,.mtd-nav-drawer::-webkit-scrollbar,.emoji-container>div::-webkit-scrollbar,.emoji-container::-webkit-scrollbar {
+.Dropdown::-webkit-scrollbar,.mdl:not(.s-tall-fixed)::-webkit-scrollbar,.keyboard-shortcut-list-modal::-webkit-scrollbar,.mdl.s-profile::-webkit-scrollbar,.scroll-styled-v::-webkit-scrollbar,.scroll-v::-webkit-scrollbar,.lst-launcher::-webkit-scrollbar,.mtd-nav-drawer::-webkit-scrollbar,.emoji-container>div::-webkit-scrollbar,.emoji-container::-webkit-scrollbar {
 	width:var(--scrollbarWidth);
 	pointer-events:all
 }
