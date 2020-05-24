@@ -28,7 +28,7 @@ const path = require("path");
 const url = require("url");
 const util = require("util");
 
-const separator = process.platform === "win32" ? "\\" : "/"
+const separator = path.sep
 
 const packagedUsesDifferentDir = false;
 
@@ -1000,7 +1000,7 @@ function makeTray() {
 	if (tray !== null) {
 		return;
 	}
-	tray = new Tray("common/AppIcon32.png")
+	tray = new Tray(__dirname + separator + useDir + path.sep + "AppIcon32.png")
 	const contextMenu = Menu.buildFromTemplate([
 		{ label: "Open ModernDeck", click(){ showHiddenWindow() } },
 		{ label: "Settings", click(){ if (!mainWindow){return;}mainWindow.webContents.send("openSettings"); } },
