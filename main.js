@@ -1022,7 +1022,9 @@ function makeTray() {
 }
 
 function destroyTray() {
-	tray.destroy();
+	if (tray) {
+		tray.destroy();
+	}
 	tray = null;
 }
 

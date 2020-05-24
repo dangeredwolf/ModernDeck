@@ -645,7 +645,7 @@ export let settingsData = {
 		enabled:isApp,
 		options:{
 			nativeTitlebar:{
-				headerBefore:"{{App settings}}",
+				headerBefore:"{{App}}",
 				title:"{{Use native OS title bar (restarts ModernDeck)}}",
 				type:"checkbox",
 				activate:{
@@ -715,24 +715,6 @@ export let settingsData = {
 				},
 				settingsKey:"mtd_nativecontextmenus",
 				default:isApp ? process.platform === "darwin" : false
-			}, trayEnabled:{
-				headerBefore:"Tray",
-				title:"{{Show ModernDeck in the system tray}}",
-				type:"checkbox",
-				activate:{
-					func: () => {
-						const {ipcRenderer} = require("electron");
-						ipcRenderer.send("enableTray");
-					}
-				},
-				deactivate:{
-					func: () => {
-						const {ipcRenderer} = require("electron");
-						ipcRenderer.send("disableTray");
-					}
-				},
-				settingsKey:"mtd_systemtray",
-				default:true
 			}, updateChannel:{
 				title:"{{App update channel}}",
 				type:"dropdown",
@@ -759,6 +741,25 @@ export let settingsData = {
 				},
 				settingsKey:"mtd_updatechannel",
 				default:"latest"
+			},
+			trayEnabled:{
+				headerBefore:"Tray",
+				title:"{{Show ModernDeck in the system tray}}",
+				type:"checkbox",
+				activate:{
+					func: () => {
+						const {ipcRenderer} = require("electron");
+						ipcRenderer.send("enableTray");
+					}
+				},
+				deactivate:{
+					func: () => {
+						const {ipcRenderer} = require("electron");
+						ipcRenderer.send("disableTray");
+					}
+				},
+				settingsKey:"mtd_systemtray",
+				default:true
 			},
 			backgroundNotifications:{
 				title:"{{Run ModernDeck in the background to deliver notifications}}",
