@@ -1,3 +1,9 @@
+/*
+	UILoginController.js
+	Copyright (c) 2014-2020 dangered wolf, et al
+	Released under the MIT licence
+*/
+
 import { enableStylesheetExtension, disableStylesheetExtension } from "./StylesheetExtensions.js";
 import { I18n } from "./I18n.js";
 import { UILanguagePicker } from "./UILanguagePicker.js";

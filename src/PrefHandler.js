@@ -1,3 +1,9 @@
+/*
+	PrefHandler.js
+	Copyright (c) 2014-2020 dangered wolf, et al
+	Released under the MIT licence
+*/
+
 import { settingsData } from "./DataSettings.js";
 import { exists } from "./Utils.js";
 import { disableStylesheetExtension, enableStylesheetExtension } from "./StylesheetExtensions.js";

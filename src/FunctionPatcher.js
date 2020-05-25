@@ -1,3 +1,9 @@
+/*
+	FunctionPatcher.js
+	Copyright (c) 2014-2020 dangered wolf, et al
+	Released under the MIT licence
+*/
+
 export function FunctionPatcher() {
 	if (window.localStorage && typeof require === "undefined") {
 		window.localStorage.actuallyClear = window.localStorage.clear;

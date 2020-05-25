@@ -1,3 +1,9 @@
+/*
+	StylesheetExtensions.js
+	Copyright (c) 2014-2020 dangered wolf, et al
+	Released under the MIT licence
+*/
+
 import { version } from "../package.json";
 import { make } from "./Utils.js";
 

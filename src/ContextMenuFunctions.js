@@ -1,3 +1,9 @@
+/*
+	ContextMenuFunctions.js
+	Copyright (c) 2014-2020 dangered wolf, et al
+	Released under the MIT licence
+*/
+
 // These functions allow the app's context menus to perform contextual options
 
 import { getIpc } from "./Utils.js";

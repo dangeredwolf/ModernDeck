@@ -1,3 +1,9 @@
+/*
+	UIContextMenu.js
+	Copyright (c) 2014-2020 dangered wolf, et al
+	Released under the MIT licence
+*/
+
 import { make, exists } from "./Utils.js";
 import { contextMenuFunctions } from "./ContextMenuFunctions.js";
 import { getPref } from "./StoragePreferences.js";

@@ -1,4 +1,10 @@
 /*
+	StoragePreferences.js
+	Copyright (c) 2014-2020 dangered wolf, et al
+	Released under the MIT licence
+*/
+
+/*
 	getPref(String preferenceKey)
 	Returns value of preference, either string or boolean
 

@@ -1,4 +1,10 @@
 /*
+	KeyboardShortcutHandler.js
+	Copyright (c) 2014-2020 dangered wolf, et al
+	Released under the MIT licence
+*/
+
+/*
 	Handles Keyboard shortcuts
 
 	Ctrl+Shift+A -> Toggle outline accessibility option

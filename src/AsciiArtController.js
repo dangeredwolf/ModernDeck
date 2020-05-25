@@ -1,3 +1,9 @@
+/*
+	AsciiArtController.js
+	Copyright (c) 2014-2020 dangered wolf, et al
+	Released under the MIT licence
+*/
+
 import buildId from "./buildId.js";
 
 // Side effect of the build process: This is loaded first, so to compensate, we put this here
@@ -42,7 +48,7 @@ export class AsciiArtController {
 		if (navigator.userAgent.indexOf("Gecko/") > 0) {
 			return; // https://twitter.com/dangeredwolf/status/1263968859637395466
 		}
-		
+
 		document.getElementsByTagName("html")[0].prepend(document.createComment(
 `
     █████████████████████████████████████████

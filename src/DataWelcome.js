@@ -1,3 +1,8 @@
+/*
+	DataWelcome.js
+	Copyright (c) 2014-2020 dangered wolf, et al
+	Released under the MIT licence
+*/
 
 import { isApp } from "./Utils.js";
 import { I18n } from "./I18n.js";
@@ -37,7 +42,7 @@ export let _welcomeData = {
 			if (typeof require === "undefined" || !isApp || html.hasClass("mtd-winstore") || html.hasClass("mtd-macappstore")) {
 				return;
 			}
-			
+
 			const {ipcRenderer} = require('electron');
 			ipcRenderer.send('checkForUpdates');
 		}

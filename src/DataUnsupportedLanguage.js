@@ -1,3 +1,9 @@
+/*
+	DataUnsupportedLanguage.js
+	Copyright (c) 2014-2020 dangered wolf, et al
+	Released under the MIT licence
+*/
+
 export default {
 	af:"U stelselstelsel word nog nie deur ModernDeck ondersteun nie. Help om te vertaal:",
 	am:"የስርዓት ቋንቋዎ ገና በአገር ደረጃ ገና አይደገፍም። ለመተርጎም እገዛ:",

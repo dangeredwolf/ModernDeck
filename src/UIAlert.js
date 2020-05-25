@@ -1,3 +1,9 @@
+/*
+	UIAlert.js
+	Copyright (c) 2014-2020 dangered wolf, et al
+	Released under the MIT licence
+*/
+
 import { make, exists } from "./Utils.js";
 import { I18n } from "./I18n.js";
 import { UIModal } from "./UIModal.js";

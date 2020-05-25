@@ -1,3 +1,9 @@
+/*
+	LanguageFunctionPatcher.js
+	Copyright (c) 2014-2020 dangered wolf, et al
+	Released under the MIT licence
+*/
+
 export function LanguageFunctionPatcher() {
 	if (window.TD && window.TD.languages) {
 		window.TD.languages.getSystemLanguageCode = function(e) {
