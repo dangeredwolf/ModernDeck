@@ -1,6 +1,6 @@
 {
 	"description": {
-		"message": "Najpotężniejszy klient Twittera na komputery.",
+		"message": "Najmocniejszy klient Twittera na komputery.",
 		"description": "Short description for the extension"
 	},
 	"launch": {
@@ -24,7 +24,7 @@
 		"description": "A title about granting tabs permission in Firefox"
 	},
 	"needsPermissionParagraph": {
-		"message": "ModernDeck requires the tab permission from Firefox in order to create new tabs.<br><br>\nThis is optional, and only required for the launcher feature. You can still access ModernDeck at <a href=\"https://tweetdeck.twitter.com\" target=\"_blank\">tweetdeck.twitter.com</a> even without this permission.<br><br>\nIf you don't accept these permissions, you can remove the launcher button by right clicking it and selecting <i>Remove from Toolbar</i><br><br>\n<b>ModernDeck does not read your open tabs.</b>",
+		"message": "ModernDeck potrzebuje uprawnień do kart od Firefoxa aby tworzyć nowe karty.<br><br>\nJest to opcjonalne, i tylko potrzebne do funkcji „launchera”. Możesz nadal uzyskać dostęp do ModernDecka w <a href=\"https://tweetdeck.twitter.com\" target=\"_blank\">tweetdeck.twitter.com</a> nawet bez tego uprawnienia.\nJeśli nie akceptujesz tych uprawnień możesz usunąć ikonę „launchera” klikając prawym przyciskiem myszy i wybraniem opcji „Usuń z paska narzędzi”\nModernDeck nie czyta twoich otwartych kart",
 		"description": "A description about granting tabs permission in Firefox"
 	}
 }

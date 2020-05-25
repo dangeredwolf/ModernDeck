@@ -20,7 +20,7 @@
 		"description": "A button to grant tabs permission in Firefox"
 	},
 	"needsPermission": {
-		"message": "Perdona por interrumpir &mdash; Necesitamos permiso para abrir pestañas",
+		"message": "Disculpa interrumpir &mdash; Necesitamos permiso para abrir pestañas",
 		"description": "A title about granting tabs permission in Firefox"
 	},
 	"needsPermissionParagraph": {
