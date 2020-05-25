@@ -1,5 +1,5 @@
 /*
-	MTDinject.js
+	ModernDeckInit.js
 	Copyright (c) 2014-2020 dangered wolf, et al
 	Released under the MIT licence
 */
