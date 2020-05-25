@@ -993,10 +993,11 @@ function makeTray() {
 	if (tray !== null) {
 		return;
 	}
+
 	let pathName = __dirname + separator + "common" + separator + "app" + separator + "Tray.png";
-	console.log(pathName);
-	console.log(typeof pathName);
+
 	tray = new Tray(pathName);
+
 	const contextMenu = Menu.buildFromTemplate([
 		{ label: "Open ModernDeck", click(){ showHiddenWindow() } },
 		{ label: "Settings", click(){ if (!mainWindow){return;}mainWindow.webContents.send("openSettings"); } },
@@ -1009,12 +1010,14 @@ function makeTray() {
 		{ type: "separator" },
 
 		{ label: "Exit", click(){ if (!mainWindow){return;} closeForReal = true; mainWindow.close(); } },
-	])
+	]);
+
 	tray.setToolTip("ModernDeck");
 	tray.setContextMenu(contextMenu);
+
 	tray.on("click", () => {
 		showHiddenWindow();
-	})
+	});
 }
 
 function destroyTray() {
