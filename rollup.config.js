@@ -4,7 +4,7 @@ import babel from "rollup-plugin-babel";
 import { terser } from "rollup-plugin-terser";
 
 export default {
-	input: "./src/MTDinject.js",
+	input: "./src/ModernDeckInit.js",
 	preserveModules: false,
 	output: {
 		file: "./common/resources/moderndeck.js",
