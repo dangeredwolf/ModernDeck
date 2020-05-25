@@ -28,7 +28,7 @@ const path = require("path");
 const url = require("url");
 const util = require("util");
 
-const separator = path.sep
+const separator = process.platform === "win32" ? "\\" : "/";
 
 const packagedUsesDifferentDir = false;
 
@@ -1000,7 +1000,10 @@ function makeTray() {
 	if (tray !== null) {
 		return;
 	}
-	tray = new Tray(__dirname + separator + useDir + path.sep + "AppIcon32.png")
+	let pathName = __dirname + separator + "common" + separator + "app" + separator + "Tray.png";
+	console.log(pathName);
+	console.log(typeof pathName);
+	tray = new Tray(pathName);
 	const contextMenu = Menu.buildFromTemplate([
 		{ label: "Open ModernDeck", click(){ showHiddenWindow() } },
 		{ label: "Settings", click(){ if (!mainWindow){return;}mainWindow.webContents.send("openSettings"); } },
