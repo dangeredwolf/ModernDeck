@@ -337,6 +337,12 @@ function saveWindowBounds() {
 
 function makeWindow() {
 
+	const lock = app.requestSingleInstanceLock();
+
+	if (!lock) {
+		app.quit();
+	}
+
 	let display = {};
 
 	if (!store.has("mtd_nativetitlebar")) {
@@ -442,41 +448,9 @@ function makeWindow() {
 	mainWindow.show();
 	hidden = false;
 
-	// Here, we add platform-specific tags to html, to help moderndeck CSS know what to do
-
-	mtdAppTag += 'document.querySelector("html").classList.add("mtd-js-app");\n';
-
-	if (isAppX) {
-		mtdAppTag += 'document.querySelector("html").classList.add("mtd-winstore");\n';
-	}
-
-	if (isMAS) {
-		mtdAppTag += 'document.querySelector("html").classList.add("mtd-macappstore");\n';
-	}
-
-	if (!store.get("mtd_nativetitlebar")) {
-
-		mtdAppTag += 'document.querySelector("html").classList.add("mtd-app");\n';
-
-		if (process.platform === "darwin") {
-			mtdAppTag += 'document.querySelector("html").classList.add("mtd-app-mac");\n'
-		}
-
-		if (process.platform === "linux") {
-			mtdAppTag += 'document.querySelector("html").classList.add("mtd-app-linux");\n'
-		}
-
-		if (process.platform === "win32") {
-			mtdAppTag += 'document.querySelector("html").classList.add("mtd-app-win");\n'
-		}
-
-	}
+	updateAppTag();
 
 	mainWindow.webContents.on('dom-ready', (event, url) => {
-
-		mainWindow.webContents.executeJavaScript(
-			(store.get("mtd_fullscreen") ? 'document.querySelector("html").classList.add("mtd-js-app");' : mtdAppTag)
-		)
 
 		mainWindow.webContents.executeJavaScript(
 			'\
@@ -978,9 +952,10 @@ function makeWindow() {
 	mainWindow.on("leave-full-screen", () => {
 		if (!mainWindow || !mainWindow.webContents) { return }
 
-		mainWindow.webContents.executeJavaScript(mtdAppTag);
+		updateAppTag();
 	});
-	mainWindow.webContents.executeJavaScript(mtdAppTag);
+
+	updateAppTag();
 }
 
 function showHiddenWindow() {
@@ -1079,6 +1054,16 @@ app.on("activate", () => {
 	}
 });
 
+app.on("second-instance", () => {
+	if (mainWindow) {
+		if (mainWindow.isMinimized()) {
+			mainWindow.restore();
+		}
+		mainWindow.show();
+		mainWindow.focus();
+	}
+})
+
 // Tell mtdInject that there was an update error
 
 autoUpdater.on("error", (e,f,g) => {
@@ -1145,6 +1130,48 @@ ipcMain.on("changeChannel", (e) => {
 		autoUpdater.channel = store.get("mtd_updatechannel");
 	}
 });
+
+function updateAppTag() {
+	mainWindow.webContents.executeJavaScript('document.querySelector("html").classList.remove("mtd-app");\
+		document.querySelector("html").classList.remove("mtd-app-win");\
+		document.querySelector("html").classList.remove("mtd-app-mac");\
+		document.querySelector("html").classList.remove("mtd-app-linux");\
+	');
+
+	// Here, we add platform-specific tags to html, to help moderndeck CSS know what to do
+
+	mtdAppTag = 'document.querySelector("html").classList.add("mtd-js-app");\n';
+
+	if (isAppX) {
+		mtdAppTag += 'document.querySelector("html").classList.add("mtd-winstore");\n';
+	}
+
+	if (isMAS) {
+		mtdAppTag += 'document.querySelector("html").classList.add("mtd-macappstore");\n';
+	}
+
+	if (!store.get("mtd_nativetitlebar")) {
+
+		mtdAppTag += 'document.querySelector("html").classList.add("mtd-app");\n';
+
+		if (process.platform === "darwin") {
+			mtdAppTag += 'document.querySelector("html").classList.add("mtd-app-mac");\n'
+		}
+
+		if (process.platform === "linux") {
+			mtdAppTag += 'document.querySelector("html").classList.add("mtd-app-linux");\n'
+		}
+
+		if (process.platform === "win32") {
+			mtdAppTag += 'document.querySelector("html").classList.add("mtd-app-win");\n'
+		}
+
+	}
+
+	mainWindow.webContents.executeJavaScript(
+		(store.get("mtd_fullscreen") ? 'document.querySelector("html").classList.add("mtd-js-app");' : mtdAppTag)
+	)
+}
 
 // OS inverted colour scheme (high contrast) mode changed. We automatically respond to changes for accessibility
 
