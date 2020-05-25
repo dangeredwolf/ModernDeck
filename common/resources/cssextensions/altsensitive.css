@@ -9,21 +9,15 @@
 	font-size:0
 }
 
-.media-sensitive p:before {
-	font-size:12px;
-	content:"Click here to open this media anyways"
-}
-
-.mdl .chirp-container .media-sensitive p:before,.is-actionable .is-gif .media-sensitive p:before {
-	font-size:12px;
-	content:"Open details of this tweet to view this media."
+.media-sensitive p:before, .mdl .chirp-container .media-sensitive p:before, .is-actionable .is-gif .media-sensitive p:before {
+	font-size:12px
 }
 
 .media-sensitive-content a {
 	display:none
 }
 
-.media-item.is-invisible,.media-item,.mdl .chirp-container .media-sensitive {
+.media-item.is-invisible, .media-item, .mdl .chirp-container .media-sensitive {
 	visibility:visible!important
 }
 
@@ -86,11 +80,11 @@
 	content:""
 }
 
-.tweet-detail-wrapper .padding-am,.tweet-detail-wrapper .padding-am p {
+.tweet-detail-wrapper .padding-am, .tweet-detail-wrapper .padding-am p {
 	font-size:12px!important
 }
 
-.tweet-detail-wrapper .media-sensitive.is-hidden a,.detail-preview .media-sensitive.is-hidden {
+.tweet-detail-wrapper .media-sensitive.is-hidden a, .detail-preview .media-sensitive.is-hidden {
 	visibility:hidden!important;
 	display:none
 }
