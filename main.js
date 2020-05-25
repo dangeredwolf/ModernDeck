@@ -372,8 +372,8 @@ function makeWindow() {
 	let useXY = !!bounds.x && !!bounds.y
 
 	mainWindow = new BrowserWindow({
-		width: bounds.width || 975,
-		height: bounds.height || 650,
+		width: bounds.width || 1024,
+		height: bounds.height || 660,
 		x: useXY ? bounds.x : undefined,
 		y: useXY ? bounds.y : undefined,
 		webPreferences: {

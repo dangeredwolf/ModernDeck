@@ -650,7 +650,6 @@ function coreInit() {
 	.mtd-altsensitive .media-sensitive p:before {
 		content:"${I18n("Click here to open this media anyway")}"
 	}
-
 	.mtd-altsensitive .mdl .chirp-container .media-sensitive p:before,.mtd-altsensitive .is-actionable .is-gif .media-sensitive p:before {
 		content:"${I18n("Open details of this tweet to view this media.")}"
 	}

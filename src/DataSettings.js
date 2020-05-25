@@ -746,7 +746,7 @@ export let settingsData = {
 				default:"latest"
 			},
 			trayEnabled:{
-				headerBefore:"Tray",
+				headerBefore:"{{Tray}}",
 				title:"{{Show ModernDeck in the system tray}}",
 				type:"checkbox",
 				activate:{
@@ -1011,6 +1011,17 @@ export let settingsData = {
 				settingsKey:"mtd_last_version",
 				default:[]
 			},
+			replaceFavicon:{
+				type:"checkbox",
+				activate:{
+					func: () => {
+						$("link[rel=\"shortcut icon\"]").attr("href",mtdBaseURL + "resources/img/favicon.ico");
+					}
+				},
+				settingsKey:"mtd_replace_favicon",
+				savePreference:false,
+				default:true
+			}
 		}
 	}
 }

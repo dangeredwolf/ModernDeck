@@ -148,10 +148,6 @@ select,input {
 	z-index:5
 }
 
-.startflow-panel .bg-r-dark-blue {
-	background:rgb(14,208,210)
-}
-
 .startflow-panel .bg-r-dark-blue h1 {
 	margin:0!important
 }
@@ -177,7 +173,7 @@ select,input {
 	bottom:0;
 	left:0;
 	opacity:.8;
-	background-image:linear-gradient(#000000b3 0%,transparent 150%)
+	background-image:linear-gradient(#00000075 0%,transparent 75%)
 }
 
 .login-container {
@@ -233,7 +229,7 @@ select,input {
 	font-size:26px;
 	vertical-align:middle;
 	line-height:0;
-	margin-left:-34px;
+	margin-left:-39px;
 	padding-right:25px;
 	position:absolute;
 	margin-top:13px
@@ -284,5 +280,6 @@ body {
 }
 
 .form-login .Button {
-	padding-left:20px!important
+	padding-left:28px!important;
+	margin-left:-3px!important
 }
