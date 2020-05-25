@@ -1,7 +1,7 @@
 {
 	"name": "ModernDeck",
 	"productName": "ModernDeck",
-	"version": "8.0.1773",
+	"version": "8.0.0",
 	"description": "ModernDeck",
 	"copyright": "Copyright 2014-2020 dangeredwolf, et al. Released under the MIT license.",
 	"homepage": "https://github.com/dangeredwolf/ModernDeck",
@@ -13,20 +13,23 @@
 	"main": "main.js",
 	"scripts": {
 		"incBuild": "node build/incrementBuild.js",
+
 		"pack": "electron-builder --dir",
 		"dist": "electron-builder . --publish always",
 		"distAll": "electron-builder -mwl --publish always",
 		"test": "electron-builder -mwl --publish always",
+
 		"build": "electron-builder . --config electron-builder.json",
 		"buildAll": "electron-builder -mwl --config electron-builder.json",
 		"buildWindows": "electron-builder -w --config electron-builder.json",
 		"buildMac": "electron-builder -m --config electron-builder.json",
 		"buildLinux": "electron-builder -l --config electron-builder.json",
+
 		"buildAndMinify": "npm run rollup && npm run minify",
 		"rollup": "npm run incBuild && rollup -c",
 		"start": "npm run rollup && electron .",
-		"i18nbuild": "npm run updatei18n && npm run rollup && npm run buildWindows",
 		"startNoBuild": "electron .",
+
 		"inspect": "electron . --inspect",
 		"updatei18n": "node build/updatei18n.js",
 		"release": "build"

@@ -199,15 +199,15 @@ function overrideFadeOut() {
 
 	// body's removeChild function is overriden to give tooltips their fade out animation
 
-	body[0].removeChild = (i) => {
-		if ($(i).hasClass("tooltip")) {
-			setTimeout(() => {
-				i.remove(); // Tooltips automagically animate themselves out. But here we clean them up as well ourselves.
-			},300);
-		} else {
-			i.remove();
-		}
-	};
+	// body[0].removeChild = (i) => {
+	// 	if ($(i).hasClass("tooltip")) {
+	// 		setTimeout(() => {
+	// 			i.remove(); // Tooltips automagically animate themselves out. But here we clean them up as well ourselves.
+	// 		},300);
+	// 	} else {
+	// 		i.remove();
+	// 	}
+	// };
 	setTimeout(() => {
 		if (exists($(".app-navigator")[0])) {
 			$(".app-navigator")[0].removeChild = (i) => {
@@ -255,7 +255,7 @@ function mtdInit() {
 
 	console.log("mtdInit");
 
-	if (typeof document.getElementsByClassName("js-signin-ui block")[0] !== "undefined" && !replacedLoadingSpinnerNew && !html.hasClass("mtd-disable-css")) {
+	if (typeof require === "undefined" && typeof document.getElementsByClassName("js-signin-ui block")[0] !== "undefined" && !replacedLoadingSpinnerNew && !html.hasClass("mtd-disable-css")) {
 		document.getElementsByClassName("js-signin-ui block")[0].innerHTML = '<div class="preloader-wrapper big active"><div class="spinner-layer"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div>';
 		replacedLoadingSpinnerNew = true;
 	}
@@ -646,6 +646,13 @@ function coreInit() {
 	}
 	.mtd-mute-text-source:before {
 		content:"${I18n("Source ")}"
+	}
+	.mtd-altsensitive .media-sensitive p:before {
+		content:"${I18n("Click here to open this media anyway")}"
+	}
+
+	.mtd-altsensitive .mdl .chirp-container .media-sensitive p:before,.mtd-altsensitive .is-actionable .is-gif .media-sensitive p:before {
+		content:"${I18n("Open details of this tweet to view this media.")}"
 	}
 `)
 

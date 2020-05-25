@@ -252,21 +252,21 @@ function patchMiscStrings() {
 				I18n(TD.controller.columnManager.MODAL_TITLE[key2]);
 			}
 		}
-		let apiErrors = findFunction("This user has been");
-		if (apiErrors[0]) {
-			for (const key2 in apiErrors[0]) {
-				console.log(key2);
-				apiErrors[0][key2] =
-				I18n(apiErrors[0][key2]);
-			}
-		}
-		if (apiErrors[1]) {
-			for (const key2 in apiErrors[1]) {
-				console.log(key2);
-				apiErrors[1][key2] =
-				I18n(apiErrors[1][key2]);
-			}
-		}
+		// let apiErrors = findFunction("This user has been");
+		// if (apiErrors[0]) {
+		// 	for (const key2 in apiErrors[0]) {
+		// 		console.log(key2);
+		// 		apiErrors[0][key2] =
+		// 		I18n(apiErrors[0][key2]);
+		// 	}
+		// }
+		// if (apiErrors[1]) {
+		// 	for (const key2 in apiErrors[1]) {
+		// 		console.log(key2);
+		// 		apiErrors[1][key2] =
+		// 		I18n(apiErrors[1][key2]);
+		// 	}
+		// }
 	} else {
 		console.log("Waiting on TDApi...");
 		setTimeout(patchMiscStrings,10);

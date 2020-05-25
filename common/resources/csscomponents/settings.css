@@ -558,10 +558,9 @@ html body .mtd-settings-subpanel button {
 }
 
 .mtd-settings-tab>i {
-	margin-right:10px
+	margin-right:10px;
+	margin-top:-2px
 }
-
-
 
 .control-group {
 	margin-bottom:20px;

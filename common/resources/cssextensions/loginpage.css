@@ -233,7 +233,7 @@ select,input {
 	font-size:26px;
 	vertical-align:middle;
 	line-height:0;
-	margin-left:-30px;
+	margin-left:-34px;
 	padding-right:25px;
 	position:absolute;
 	margin-top:13px
@@ -281,4 +281,8 @@ body {
 
 .app-info {
 	display:none
+}
+
+.form-login .Button {
+	padding-left:20px!important
 }

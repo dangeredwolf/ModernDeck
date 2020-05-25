@@ -267,7 +267,7 @@ export let settingsData = {
 					}
 				},
 				settingsKey:"mtd_column_visibility",
-				default:navigator.userAgent.match("Firefox") !== null // Firefox is so much faster that column visibility is unlikely to benefit
+				default:navigator.userAgent.match("Firefox") === null // Firefox is so much faster that column visibility is unlikely to benefit
 			},
 			fixedarrows:{
 				title:"{{Use fixed-location media arrows for tweets with multiple photos}}",
@@ -285,13 +285,15 @@ export let settingsData = {
 				title:"{{Use alternative sensitive media workflow}}",
 				type:"checkbox",
 				activate:{
-					enableStylesheet:"altsensitive"
+					enableStylesheet:"altsensitive",
+					htmlAddClass:"mtd-altsensitive"
 				},
 				deactivate:{
-					disableStylesheet:"altsensitive"
+					disableStylesheet:"altsensitive",
+					htmlRemoveClass:"mtd-altsensitive"
 				},
 				settingsKey:"mtd_sensitive_alt",
-				default:false
+				default:true
 			},
 			colNavAlwaysVis:{
 				title:"{{Always display column icons in navigator}}",
@@ -739,6 +741,7 @@ export let settingsData = {
 					latest:{value:"latest",text:"{{Stable}}"},
 					beta:{value:"beta",text:"{{Beta}}"}
 				},
+				enabled:!document.getElementsByTagName("html")[0].classList.contains("mtd-winstore") && !document.getElementsByTagName("html")[0].classList.contains("mtd-macappstore"),
 				settingsKey:"mtd_updatechannel",
 				default:"latest"
 			},
@@ -809,7 +812,7 @@ export let settingsData = {
 			}
 		}
 	}, system: {
-		tabName:"<i class='material-icon'>settings_backup_restore</i> {{System}}",
+		tabName:"<i class='material-icon'>storage</i> {{System}}",
 		options:{
 			mtdResetSettings:{
 				title:"{{Reset settings}}",

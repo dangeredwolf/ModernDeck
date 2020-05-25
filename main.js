@@ -57,6 +57,7 @@ let mR;
 
 let isRestarting = false;
 let closeForReal = false;
+let interval;
 
 let mtdAppTag = '';
 
@@ -446,11 +447,21 @@ function makeWindow() {
 	setInterval(saveWindowBounds,60 * 1000);
 
 	mainWindow.show();
+
 	hidden = false;
 
 	updateAppTag();
 
+	try {
+		mainWindow.webContents.executeJavaScript(`document.getElementsByClassName("js-signin-ui block")[0].innerHTML = '<div class="preloader-wrapper big active"><div class="spinner-layer"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div>';`)
+	} catch(e) {
+
+	}
+
+
 	mainWindow.webContents.on('dom-ready', (event, url) => {
+
+		mainWindow.webContents.executeJavaScript(`document.getElementsByClassName("js-signin-ui block")[0].innerHTML = '<div class="preloader-wrapper big active"><div class="spinner-layer"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div>';`)
 
 		mainWindow.webContents.executeJavaScript(
 			'\
@@ -474,8 +485,10 @@ function makeWindow() {
 			InjectScript.src = "moderndeck://resources/moderndeck.js";\
 			InjectScript.type = "text/javascript";\
 			document.head.appendChild(InjectScript);\
-		'
-	);
+		');
+
+		updateAppTag();
+
 	});
 
 	mainWindow.webContents.on('did-fail-load', (event, code, desc) => {
@@ -648,6 +661,9 @@ function makeWindow() {
 			}
 
 		}
+
+
+		updateAppTag();
 	});
 
 	/*
@@ -951,6 +967,8 @@ function makeWindow() {
 
 	mainWindow.on("leave-full-screen", () => {
 		if (!mainWindow || !mainWindow.webContents) { return }
+
+		store.set("mtd_fullscreen", false);
 
 		updateAppTag();
 	});
