@@ -9,7 +9,7 @@
 
 	0% {
 		opacity:0;
-		transform:scale(1.1,1.1);
+		transform:translateY(20px) scale(1.1,1.1);
 	}
 
 	100% {
@@ -119,7 +119,7 @@ select,input {
 
 .startflow-panel,.startflow-panel-rounded {
 	opacity:0.01;
-	animation:materialLoginIn .4s .5s cubic-bezier(.19,1,.22,1);
+	animation:materialLoginIn .4s .35s cubic-bezier(.19,1,.22,1);
 	animation-fill-mode:both;
 	background:#fff;
 	color:#444;
@@ -165,7 +165,7 @@ select,input {
 	background-size:cover;
 	background-position:center;
 	opacity:0.01;
-	animation:startflowIn .6s .3s cubic-bezier(.19,1,.22,1);
+	animation:startflowIn .6s .1s cubic-bezier(.19,1,.22,1);
 	animation-fill-mode:both
 }
 
