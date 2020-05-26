@@ -507,6 +507,8 @@ export function openSettings(openMenu) {
 		}
 
 		if (exists(openMenu) && openMenu === key) {
+			tab.addClass("mtd-settings-tab-selected");
+			tab.attr("aria-selected","true");
 			tab.click();
 		}
 	}

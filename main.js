@@ -19,6 +19,7 @@ const {
 	Menu,
 	dialog,
 	nativeTheme,
+	nativeImage,
 	protocol,
 	Tray
 }		= require("electron");
@@ -89,6 +90,7 @@ const template = [
 		role: "appMenu",
 		submenu: [
 			{ label: "About ModernDeck...", click() { if (!mainWindow){return;}mainWindow.webContents.send("aboutMenu"); } },
+			{ label: "Check for Updates...", click(){ if (!mainWindow){return;}mainWindow.webContents.send("checkForUpdatesMenu"); } },
 			{ type: "separator" },
 			{ label: "Preferences...", click(){ if (!mainWindow){return;}mainWindow.webContents.send("openSettings"); } },
 			{ label: "Accounts...", click(){ if (!mainWindow){return;}mainWindow.webContents.send("accountsMan"); } },
@@ -408,8 +410,8 @@ function makeWindow() {
 		dialog.showMessageBox({
 			type: "warning",
 			title: "ModernDeck",
-			message: "Updates might not work correctly if you don't run ModernDeck from the Applications folder. Would you like to move it there?",
-			buttons: ["Not now", "Yes, move it"]
+			message: "Updates might not work correctly if you aren't running ModernDeck from the Applications folder.\n\nWould you like to move it there?",
+			buttons: ["Not Now", "Yes, Move It"]
 		}, (response) => {
 			if (response == 1) {
 				let moveMe;
@@ -994,13 +996,16 @@ function makeTray() {
 		return;
 	}
 
-	let pathName = __dirname + separator + "common" + separator + "app" + separator + "Tray.png";
+	let pathName = __dirname + separator + "common" + separator + "app" + separator + (process.platform === "darwin" ? "macOSTrayTemplate.png" : "Tray.png");
 
+	const image = nativeImage.createFromPath(pathName);
+	image.setTemplateImage(true);
 	tray = new Tray(pathName);
 
 	const contextMenu = Menu.buildFromTemplate([
 		{ label: "Open ModernDeck", click(){ showHiddenWindow() } },
-		{ label: "Settings", click(){ if (!mainWindow){return;}mainWindow.webContents.send("openSettings"); } },
+		{ label: (process.platform === "darwin" ? "Preferences..." : "Settings..."), click(){ if (!mainWindow){return;}mainWindow.webContents.send("openSettings"); } },
+		{ label: "Check for Updates...", click(){ if (!mainWindow){return;}mainWindow.webContents.send("checkForUpdatesMenu"); } },
 
 		{ type: "separator" },
 

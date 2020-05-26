@@ -43,12 +43,12 @@
 	margin-top:-22px
 }
 
-.mtd-app-mac.mtd-head-left .mtd-drawer-button:active:after {
+.mtd-app-mac.mtd-app.mtd-head-left .mtd-drawer-button:active:after {
 	margin-top:0
 }
 
 .mtd-app.mtd-head-left .mtd-drawer-button:active:after {
-	margin-top:-20px
+	margin-top:-20px;
 }
 
 .mtd-drawer-button:after {

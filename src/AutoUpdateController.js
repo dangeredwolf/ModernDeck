@@ -35,7 +35,7 @@ export class AutoUpdateController {
 			} else if (f) {
 				AutoUpdateController.h3 = f.match(/^(Cannot check for updates: )(.)+\n/g)
 			} else {
-				AutoUpdateController.h3 = I18n("We couldn't interpret the error info we received. Please try again later or DM @ModernDeck on Twitter for further help.");
+				AutoUpdateController.h3 = I18n("An unknown error occurred. Please try again shortly.");
 			}
 
 			AutoUpdateController.icon = "error_outline";

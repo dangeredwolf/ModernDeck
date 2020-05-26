@@ -7,6 +7,7 @@
 import { make, exists, getIpc } from "./Utils.js";
 import { mtdAlert } from "./UIAlert.js";
 import { UIUpdateNotify } from "./UIUpdateNotify.js";
+import { AutoUpdateController } from "./AutoUpdateController.js";
 import { openSettings } from "./UISettings.js";
 import { buildContextMenu } from "./UIContextMenu.js";
 import { parseActions } from "./PrefHandler.js";
@@ -108,10 +109,28 @@ export function mtdAppFunctions() {
 	});
 
 	ipcRenderer.on("aboutMenu", (e,args) => {
-		if ($(".mtd-settings-tab[data-action=\"about\"]").length > 0){
+		if ($(".mtd-settings-tab[data-action=\"about\"]").length > 0 && $("#settings-modal").attr("style") === "display: block;"){
 			$(".mtd-settings-tab[data-action=\"about\"]").click();
 		} else {
-			openSettings("about");
+			openSettings();
+			if ($(".mtd-settings-tab[data-action=\"about\"]").length > 0){
+				$(".mtd-settings-tab[data-action=\"about\"]").click();
+			}
+		}
+	});
+
+	ipcRenderer.on("checkForUpdatesMenu", (e,args) => {
+		if ($(".mtd-settings-tab[data-action=\"about\"]").length > 0 && $("#settings-modal").attr("style") === "display: block;"){
+			$(".mtd-settings-tab[data-action=\"about\"]").click();
+		} else {
+			openSettings();
+			if ($(".mtd-settings-tab[data-action=\"about\"]").length > 0){
+				$(".mtd-settings-tab[data-action=\"about\"]").click();
+			}
+		}
+
+		if (!AutoUpdateController.isCheckingForUpdates) {
+			ipcRenderer.send("checkForUpdates");
 		}
 	});
 
