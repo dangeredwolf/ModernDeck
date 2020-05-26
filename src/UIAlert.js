@@ -59,3 +59,8 @@ export function mtdAlert(obj) {
 	console.warn("Someone tried to access the ModernDeck 7 Alert API. Please upgrade to ModernDeck 8 UIAlert.");
 	return new UIAlert(obj);
 }
+
+window.originalAlert = window.alert;
+window.alert = text => {
+	return new UIAlert({message:text})
+}

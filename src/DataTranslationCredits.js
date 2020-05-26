@@ -38,7 +38,7 @@ TAKAHASHI Shuuji<br>
 <a href="https://twitter.com/Fenrykos" rel="user" target="_blank">Fenrykos</a><br>
 <a href="https://twitter.com/MuraseEtienne" rel="user" target="_blank">Étienne Murase</a><br>
 <a href="https://twitter.com/Meylody_" rel="user" target="_blank">Mélodie</a><br>
-<a href="https://twitter.com/@Nintenloup_Wolf" rel="user" target="_blank">Nintenloup</a><br>
+<a href="https://twitter.com/Nintenloup_Wolf" rel="user" target="_blank">Nintenloup</a><br>
 <a href="https://twitter.com/robot275" rel="user" target="_blank">Robot275</a><br>
 <a href="https://twitter.com/ShadyFennec" rel="user" target="_blank">ShadyFennec</a><br>
 
