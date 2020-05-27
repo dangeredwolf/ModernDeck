@@ -4,9 +4,10 @@ osx_image: xcode11.4
 node_js:
 - node
 before_deploy:
+  - if [ "$TRAVIS_OS_NAME" = osx ]; then echo hello fi
   - if [ "$TRAVIS_OS_NAME" = osx ]; then chmod +x build/macOSaddcert.sh; fi
   - if [ "$TRAVIS_OS_NAME" = osx ]; then ./build/macOSaddcert.sh; fi
-  - if [ "$TRAVIS_OS_NAME" = osx ]; then xcode-select -s /Applications/Xcode.app
+  - if [ "$TRAVIS_OS_NAME" = osx ]; then xcode-select -s /Applications/Xcode.app fi
 deploy:
   provider: releases
   cache:
