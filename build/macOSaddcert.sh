@@ -1,5 +1,7 @@
 #!/usr/bin/env sh
 
+echo hi.
+
 KEY_CHAIN=build.keychain
 CERTIFICATE_P12=certificate.p12
 
