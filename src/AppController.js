@@ -69,9 +69,9 @@ export function mtdAppFunctions() {
 
 	if (typeof require === "undefined") {return;}
 
-	const { remote, ipcRenderer } = require('electron');
+	const { remote, ipcRenderer } = require("electron");
 
-	const Store = require('electron-store');
+	const Store = require("electron-store");
 	store = new Store({name:"mtdsettings"});
 
 
@@ -162,10 +162,12 @@ export function mtdAppFunctions() {
 	});
 
 	ipcRenderer.on("newTweet", (e,args) => {
+		mtdPrepareWindows();
 		$(document).trigger("uiComposeTweet");
 	});
 
 	ipcRenderer.on("newDM", (e,args) => {
+		mtdPrepareWindows();
 		$(document).trigger("uiComposeTweet");
 		$(".js-dm-button").click();
 	});
@@ -211,11 +213,11 @@ export function mtdAppFunctions() {
 		}
 
 		minimise.click((data,handler) => {
-			ipcRenderer.send('minimize');
+			ipcRenderer.send("minimize");
 		});
 
 		maximise.click((data,handler) => {
-			ipcRenderer.send('maximizeButton');
+			ipcRenderer.send("maximizeButton");
 		});
 
 		closeButton.click(() => {
@@ -224,7 +226,7 @@ export function mtdAppFunctions() {
 
 	}
 
-	ipcRenderer.on('context-menu', (event, p) => {
+	ipcRenderer.on("context-menu", (event, p) => {
 		const electron = require("electron")
 		let theMenu = buildContextMenu(p);
 		let menu = electron.remote.menu;

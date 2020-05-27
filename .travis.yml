@@ -2,6 +2,9 @@ language: node_js
 os: osx
 node_js:
 - node
+before_deploy:
+  - if [ "$TRAVIS_OS_NAME" = osx ]; then chmod +x build/macOSaddcert.sh; fi
+  - if [ "$TRAVIS_OS_NAME" = osx ]; then ./build/macOSaddcert.sh; fi
 deploy:
   provider: releases
   cache:

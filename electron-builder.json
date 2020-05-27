@@ -1,6 +1,6 @@
 {
 	"appId": "com.dangeredwolf.ModernDeck",
-	"afterSign": "build/notarize.js",
+	"afterSign": "./build/notarize.js",
 
 	"files": [
 		"**/*",

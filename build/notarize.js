@@ -1,13 +1,11 @@
-const {notarize} = require('electron-notarize');
+const { notarize } = require('electron-notarize');
 
 module.exports = async function (params) {
-	const { electronPlatformName } = context;
-	if (electronPlatformName !== "darwin") {
-		return;
-	}
+	if (process.platform !== 'darwin' || typeof process.env.MDAppleID === "undefined") {
+        return;
+    }
 
-	console.log("   Notarizing macOS app... this will take a while...");
-	console.log("   Seriously. it'll be a while. Go use the bathroom, maybe grab a snack or something. You might need it.");
+	console.log("   Notarizing macOS app... this WILLß take a while...");
 
 	await notarize({
 		appBundleId: "com.dangeredwolf.ModernDeck",
@@ -16,5 +14,3 @@ module.exports = async function (params) {
 		appleIdPassword: process.env.MDAppleAppPassword
 	});
 };
-
-module.exports = async function(){}

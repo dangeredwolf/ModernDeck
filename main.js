@@ -89,11 +89,11 @@ const template = [
 		label: "ModernDeck",
 		role: "appMenu",
 		submenu: [
-			{ label: "About ModernDeck...", click() { if (!mainWindow){return;}mainWindow.webContents.send("aboutMenu"); } },
-			{ label: "Check for Updates...", click(){ if (!mainWindow){return;}mainWindow.webContents.send("checkForUpdatesMenu"); } },
+			{ label: "About ModernDeck", click() { if (!mainWindow){return;}mainWindow.show();mainWindow.webContents.send("aboutMenu"); } },
+			{ label: "Check for Updates...", click(){ if (!mainWindow){return;}mainWindow.show();mainWindow.webContents.send("checkForUpdatesMenu"); } },
 			{ type: "separator" },
-			{ label: "Preferences...", click(){ if (!mainWindow){return;}mainWindow.webContents.send("openSettings"); } },
-			{ label: "Accounts...", click(){ if (!mainWindow){return;}mainWindow.webContents.send("accountsMan"); } },
+			{ label: "Preferences...", click(){ if (!mainWindow){return;}mainWindow.show();mainWindow.webContents.send("openSettings"); } },
+			{ label: "Accounts...", click(){ if (!mainWindow){return;}mainWindow.show();mainWindow.webContents.send("accountsMan"); } },
 			{ type: "separator" },
 			{ role: "services" },
 			{ type: "separator" },
@@ -107,8 +107,8 @@ const template = [
 	{
 		role: "fileMenu",
 		submenu: [
-			{ label: "New Tweet...", click(){ if (!mainWindow){return;}mainWindow.webContents.send("newTweet"); } },
-			{ label: "New Direct Message...", click(){ if (!mainWindow){return;}mainWindow.webContents.send("newDM"); } },
+			{ label: "New Tweet...", click(){ if (!mainWindow){return;}mainWindow.show();mainWindow.webContents.send("newTweet"); } },
+			{ label: "New Direct Message...", click(){ if (!mainWindow){return;}mainWindow.show();mainWindow.webContents.send("newDM"); } },
 			{ type: "separator" },
 			{ role: "close" }
 		]
@@ -162,8 +162,8 @@ const template = [
 	{
 		role: "help",
 		submenu: [
-			{ label: "Send Feedback", click(){ if (!mainWindow){return;}mainWindow.webContents.send("sendFeedback");}},
-			{ label: "Message @ModernDeck", click(){ if (!mainWindow){electron.shell.openExternal("https://twitter.com/messages/compose?recipient_id=2927859037");return;}mainWindow.webContents.send("msgModernDeck"); } },
+			{ label: "Send Feedback", click(){ if (!mainWindow){return;}mainWindow.show();mainWindow.webContents.send("sendFeedback");}},
+			{ label: "Message @ModernDeck", click(){ if (!mainWindow){electron.shell.openExternal("https://twitter.com/messages/compose?recipient_id=2927859037");return;}mainWindow.show();mainWindow.webContents.send("msgModernDeck"); } },
 		]
 	}
 ]
@@ -1004,13 +1004,13 @@ function makeTray() {
 
 	const contextMenu = Menu.buildFromTemplate([
 		{ label: "Open ModernDeck", click(){ showHiddenWindow() } },
-		{ label: (process.platform === "darwin" ? "Preferences..." : "Settings..."), click(){ if (!mainWindow){return;}mainWindow.webContents.send("openSettings"); } },
-		{ label: "Check for Updates...", click(){ if (!mainWindow){return;}mainWindow.webContents.send("checkForUpdatesMenu"); } },
+		{ label: (process.platform === "darwin" ? "Preferences..." : "Settings..."), click(){ if (!mainWindow){return;}mainWindow.show();mainWindow.webContents.send("openSettings"); } },
+		{ label: "Check for Updates...", click(){ if (!mainWindow){return;}mainWindow.show();mainWindow.webContents.send("checkForUpdatesMenu"); } },
 
 		{ type: "separator" },
 
-		{ label: "New Tweet...", click(){ if (!mainWindow){return;}mainWindow.webContents.send("newTweet"); } },
-		{ label: "New Direct Message...", click(){ if (!mainWindow){return;}mainWindow.webContents.send("newDM"); } },
+		{ label: "New Tweet...", click(){ if (!mainWindow){return;}mainWindow.show();mainWindow.webContents.send("newTweet"); } },
+		{ label: "New Direct Message...", click(){ if (!mainWindow){return;}mainWindow.show();mainWindow.webContents.send("newDM"); } },
 
 		{ type: "separator" },
 
