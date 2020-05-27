@@ -3,7 +3,7 @@
 	Released under the MIT license
 */
 
-const fs = require("fs");
+const fs = require("fs-extra");
 const path = require("path");
 
 let i18n = path.format({
@@ -38,4 +38,96 @@ buildFile.split("\n").forEach((a, j) => {
 
 
 
-fs.writeFileSync(results,"export default " + JSON.stringify(newObj))
+fs.writeFileSync(results,"export default " + JSON.stringify(newObj));
+
+// Crowdin is stupid and doesn't export the correct folders
+
+try {
+	fs.copy(path.format({
+		dir:__dirname +  path.sep + ".." + path.sep + "common" + path.sep + "_locales" + path.sep + "en-US"
+	}), path.format({
+		dir:__dirname +  path.sep + ".." + path.sep + "common" + path.sep + "_locales" + path.sep + "en_US"
+	}))
+} catch (e) {
+	console.error(e);
+}
+
+try {
+	fs.copy(path.format({
+		dir:__dirname +  path.sep + ".." + path.sep + "common" + path.sep + "_locales" + path.sep + "en-GB"
+	}), path.format({
+		dir:__dirname +  path.sep + ".." + path.sep + "common" + path.sep + "_locales" + path.sep + "en_GB"
+	}))
+} catch (e) {
+	console.error(e);
+}
+
+try {
+	fs.copy(path.format({
+		dir:__dirname +  path.sep + ".." + path.sep + "common" + path.sep + "_locales" + path.sep + "en-CA"
+	}), path.format({
+		dir:__dirname +  path.sep + ".." + path.sep + "common" + path.sep + "_locales" + path.sep + "en_CA"
+	}))
+} catch (e) {
+	console.error(e);
+}
+
+try {
+	fs.copy(path.format({
+		dir:__dirname +  path.sep + ".." + path.sep + "common" + path.sep + "_locales" + path.sep + "es-ES"
+	}), path.format({
+		dir:__dirname +  path.sep + ".." + path.sep + "common" + path.sep + "_locales" + path.sep + "es_ES"
+	}))
+} catch (e) {
+	console.error(e);
+}
+
+try {
+	fs.copy(path.format({
+		dir:__dirname +  path.sep + ".." + path.sep + "common" + path.sep + "_locales" + path.sep + "es-MX"
+	}), path.format({
+		dir:__dirname +  path.sep + ".." + path.sep + "common" + path.sep + "_locales" + path.sep + "es_MX"
+	}))
+} catch (e) {
+	console.error(e);
+}
+
+try {
+	fs.copy(path.format({
+		dir:__dirname +  path.sep + ".." + path.sep + "common" + path.sep + "_locales" + path.sep + "zh-CN"
+	}), path.format({
+		dir:__dirname +  path.sep + ".." + path.sep + "common" + path.sep + "_locales" + path.sep + "zh_CN"
+	}))
+} catch (e) {
+	console.error(e);
+}
+
+try {
+	fs.copy(path.format({
+		dir:__dirname +  path.sep + ".." + path.sep + "common" + path.sep + "_locales" + path.sep + "zh-TW"
+	}), path.format({
+		dir:__dirname +  path.sep + ".." + path.sep + "common" + path.sep + "_locales" + path.sep + "zh_TW"
+	}))
+} catch (e) {
+	console.error(e);
+}
+
+try {
+	fs.copy(path.format({
+		dir:__dirname +  path.sep + ".." + path.sep + "common" + path.sep + "_locales" + path.sep + "pt-BR"
+	}), path.format({
+		dir:__dirname +  path.sep + ".." + path.sep + "common" + path.sep + "_locales" + path.sep + "pt_BR"
+	}))
+} catch (e) {
+	console.error(e);
+}
+
+try {
+	fs.copy(path.format({
+		dir:__dirname +  path.sep + ".." + path.sep + "common" + path.sep + "_locales" + path.sep + "sv-SE"
+	}), path.format({
+		dir:__dirname +  path.sep + ".." + path.sep + "common" + path.sep + "_locales" + path.sep + "sv"
+	}))
+} catch (e) {
+	console.error(e);
+}

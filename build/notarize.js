@@ -1,7 +1,7 @@
 const { notarize } = require('electron-notarize');
 
 module.exports = async function (params) {
-	if (process.platform !== 'darwin' || typeof process.env.MDAppleID === "undefined") {
+	if (process.platform !== 'darwin' || typeof process.env.MDAppleID === "undefined" || typeof process.env.ELECTRON_CACHE !== "undefined") {
         return;
     }
 

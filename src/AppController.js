@@ -46,7 +46,7 @@ function notifyOffline() {
 		notifIcon.removeClass("Icon--notifications").addClass("mtd-icon-disconnected");
 
 		notifContent.append(
-			make("p").html(I18n("We detected that you are disconnected from the internet. Many actions are unavailable without an internet connection."))
+			make("p").attr("style","max-width:initial!important").html(I18n("We detected that you are disconnected from the internet. Many actions are unavailable without an internet connection."))
 		)
 	}
 }

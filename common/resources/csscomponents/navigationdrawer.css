@@ -31,7 +31,7 @@
 .mtd-drawer-button:active:after {
 	width:65px;
 	height:65px;
-	margin-top:-44px;
+	margin-top:-24px;
 	margin-left:-14px;
 	transform:scale(1);
 	opacity:1;
@@ -43,12 +43,8 @@
 	margin-top:-22px
 }
 
-.mtd-app-mac.mtd-app.mtd-head-left .mtd-drawer-button:active:after {
-	margin-top:0
-}
-
 .mtd-app.mtd-head-left .mtd-drawer-button:active:after {
-	margin-top:-20px;
+	margin-top:-20px
 }
 
 .mtd-drawer-button:after {
@@ -57,8 +53,8 @@
 	width:30px;
 	height:30px;
 	position:absolute;
-	margin-top:-30px;
-	margin-left:30px;
+	margin-top:-40px;
+	margin-left:-40px;
 	border-radius:33px;
 	z-index:5;
 	transform:scale(.5);
@@ -103,7 +99,7 @@ html:not(.mtd-head-left) .hide-detail-view-inline .mtd-drawer-button {
 .mtd-nav-drawer-background.hidden {
 	display:block!important;
 	opacity:0!important;
-	pointer-events:none!important;
+	pointer-events:none!important
 }
 
 .mtd-nd-header-image {
@@ -187,8 +183,8 @@ html:not(.mtd-head-left) .hide-detail-view-inline .mtd-drawer-button {
 	margin-top:2px
 }
 
-.mtd-app-mac.mtd-head-left .mtd-nav-activator {
-	margin-top:22px
+.mtd-app-mac.mtd-head-left .mtd-drawer-button {
+	margin-top:18px!important
 }
 
 .mtd-app-mac:not(.mtd-head-left) .application:not(.hide-detail-view-inline) .mtd-drawer-button {
@@ -215,4 +211,8 @@ html:not(.mtd-head-left) .hide-detail-view-inline .mtd-drawer-button {
 	margin-top:-3px;
 	font-size:24px;
 	margin-right:16px
+}
+
+.mtd-nav-group-expanded {
+	height:134px
 }

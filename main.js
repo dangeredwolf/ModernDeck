@@ -101,7 +101,7 @@ const template = [
 			{ role: "hideothers" },
 			{ role: "unhide" },
 			{ type: "separator" },
-			{ role: "quit" }
+			{ label: "Quit ModernDeck", click(){ console.log("it's time to quit NOW"); closeForReal = true; app.quit(); } }
 		]
 	},
 	{
@@ -162,7 +162,7 @@ const template = [
 	{
 		role: "help",
 		submenu: [
-			{ label: "Send Feedback", click(){ if (!mainWindow){return;}mainWindow.show();mainWindow.webContents.send("sendFeedback");}},
+			{ label: "Send Feedback", click(){ electron.shell.openExternal("https://github.com/dangeredwolf/ModernDeck/issues");}},
 			{ label: "Message @ModernDeck", click(){ if (!mainWindow){electron.shell.openExternal("https://twitter.com/messages/compose?recipient_id=2927859037");return;}mainWindow.show();mainWindow.webContents.send("msgModernDeck"); } },
 		]
 	}
@@ -1014,7 +1014,7 @@ function makeTray() {
 
 		{ type: "separator" },
 
-		{ label: "Exit", click(){ if (!mainWindow){return;} closeForReal = true; mainWindow.close(); } },
+		{ label: (process.platform === "darwin" ? "Quit" : "Exit"), click(){ if (!mainWindow){return;} closeForReal = true; mainWindow.close(); } },
 	]);
 
 	tray.setToolTip("ModernDeck");
