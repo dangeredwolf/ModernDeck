@@ -10,7 +10,6 @@ before_install:
   - if [ "$TRAVIS_OS_NAME" = osx ]; then brew install openssl; fi
   - if [ "$TRAVIS_OS_NAME" = osx ]; then export CPPFLAGS="-I/usr/local/opt/openssl/include"; fi
   - if [ "$TRAVIS_OS_NAME" = osx ]; then export LDFLAGS="-L/usr/local/opt/openssl/lib"; fi
-  - if [ "$TRAVIS_OS_NAME" = osx ]; then echo hello fi
   - if [ "$TRAVIS_OS_NAME" = osx ]; then chmod +x build/macOSaddcert.sh; fi
   - if [ "$TRAVIS_OS_NAME" = osx ]; then ./build/macOSaddcert.sh; fi
   - if [ "$TRAVIS_OS_NAME" = osx ]; then xcode-select -s /Applications/Xcode.app fi
