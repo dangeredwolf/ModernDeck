@@ -19,5 +19,7 @@ security import $CERTIFICATE_P12 -k $KEY_CHAIN -P $CERTIFICATE_PASSWORD -T /usr/
 
 security set-key-partition-list -S apple-tool:,apple: -s -k travis $KEY_CHAIN
 
+security find-identity -v
+
 # remove certs
 rm -fr *.p12
