@@ -459,50 +459,7 @@ export let settingsData = {
 			}
 		}
 	},
-	accessibility: {
-		tabName:"<i class='material-icon'>accessibility</i> {{Accessibility}}",
-		options:{
-			accoutline:{
-				headerBefore:"{{Accessibility}}",
-				title:"{{Always show outlines around focused items (}}" + ctrlShiftText + "A {{to toggle)}}",
-				type:"checkbox",
-				activate:{
-					htmlAddClass:"mtd-acc-focus-ring"
-				},
-				deactivate:{
-					htmlRemoveClass:"mtd-acc-focus-ring"
-				},
-				settingsKey:"mtd_outlines",
-				default:false
-			},
-			highcont:{
-				title:"{{Enable High Contrast theme (}}" + ctrlShiftText + "H {{to toggle)}}",
-				type:"checkbox",
-				activate:{
-					func: (opt) => {
-						if (TD.settings.getTheme() === "light") {
-							TD.settings.setTheme("dark");
-							disableStylesheetExtension("light");
-							enableStylesheetExtension("dark");
-						}
-						disableStylesheetExtension(getPref("mtd_theme") || "default");
-						setPref("mtd_theme","amoled");
-						setPref("mtd_highcontrast",true);
-						enableStylesheetExtension("amoled");
-						enableStylesheetExtension("highcontrast");
-					}
-				},
-				deactivate:{
-					func: (opt) => {
-						setPref("mtd_highcontrast",false);
-						disableStylesheetExtension("highcontrast");
-					}
-				},
-				settingsKey:"mtd_highcontrast",
-				default:false
-			}
-		}
-	}, tweets: {
+	tweets: {
 		tabName:"<i class='Icon icon-twitter-bird'></i> {{Tweets}}",
 		options:{
 			stream:{
@@ -647,6 +604,49 @@ export let settingsData = {
 		tabName:"<i class='material-icon'>volume_off</i> {{Mutes}}",
 		options:{},
 		enum:"mutepage"
+	}, accessibility: {
+		tabName:"<i class='material-icon'>accessibility</i> {{Accessibility}}",
+		options:{
+			accoutline:{
+				headerBefore:"{{Accessibility}}",
+				title:"{{Always show outlines around focused items (}}" + ctrlShiftText + "A {{to toggle)}}",
+				type:"checkbox",
+				activate:{
+					htmlAddClass:"mtd-acc-focus-ring"
+				},
+				deactivate:{
+					htmlRemoveClass:"mtd-acc-focus-ring"
+				},
+				settingsKey:"mtd_outlines",
+				default:false
+			},
+			highcont:{
+				title:"{{Enable High Contrast theme (}}" + ctrlShiftText + "H {{to toggle)}}",
+				type:"checkbox",
+				activate:{
+					func: (opt) => {
+						if (TD.settings.getTheme() === "light") {
+							TD.settings.setTheme("dark");
+							disableStylesheetExtension("light");
+							enableStylesheetExtension("dark");
+						}
+						disableStylesheetExtension(getPref("mtd_theme") || "default");
+						setPref("mtd_theme","amoled");
+						setPref("mtd_highcontrast",true);
+						enableStylesheetExtension("amoled");
+						enableStylesheetExtension("highcontrast");
+					}
+				},
+				deactivate:{
+					func: (opt) => {
+						setPref("mtd_highcontrast",false);
+						disableStylesheetExtension("highcontrast");
+					}
+				},
+				settingsKey:"mtd_highcontrast",
+				default:false
+			}
+		}
 	}, app: {
 		tabName:"<i class='icon icon-moderndeck'></i> {{App}}",
 		enabled:isApp,
