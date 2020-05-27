@@ -819,6 +819,7 @@ function makeWindow() {
 
 	ipcMain.on("restartApp", (event,arg) => {
 		setTimeout(() => {
+			closeForReal = true;
 			app.relaunch();
 			app.exit();
 		},100);
@@ -844,6 +845,7 @@ function makeWindow() {
 			quotas: ['temporary','persistent','syncable']
 		},() => {
 			setTimeout(() => {
+				closeForReal = true;
 				app.relaunch();
 				app.exit();
 			},500);
@@ -866,6 +868,7 @@ function makeWindow() {
 		store.set("mtd_nativetitlebar",arg);
 
 		setTimeout(() => {
+			closeForReal = true;
 			app.relaunch();
 			app.exit();
 		},100);
