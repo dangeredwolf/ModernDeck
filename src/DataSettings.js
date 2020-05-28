@@ -773,7 +773,7 @@ export let settingsData = {
 					}
 				},
 				settingsKey:"mtd_systemtray",
-				default:(process?.platform !== "darwin")
+				default:(typeof process !== "undefined" && process.platform !== "darwin")
 			},
 			backgroundNotifications:{
 				title:"{{Run ModernDeck in the background to deliver notifications}}",
