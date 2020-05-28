@@ -1,0 +1,156 @@
+/*
+	notifications.css
+
+	Copyright (c) 2014-2020 dangered wolf, et al
+	Released under the MIT Licence
+*/
+
+@keyframes feather-notification-list-show {
+	0% {display:none;opacity:0;transform:translateX(50%)}
+	1% {display:block}
+	100% {opacity:1;transform:translateX(0)}
+}
+
+@keyframes feather-notification-list-hide {
+	to {transform:translateX(50%);opacity:0}
+}
+
+.NotificationList {
+	position:absolute;
+	bottom:40px;
+	right:30px;
+	width:372px;
+	padding:0;
+	margin:0;
+	list-style:none;
+	margin-left:-186px
+}
+
+.Notification {
+	height:0;
+	animation-name:feather-notification-list-show;
+	animation-duration:0.17s;
+	animation-fill-mode:both;
+	animation-timing-function:var(--animationTiming);
+	transition:height .17s var(--animationTiming);
+	pointer-events:all;
+	-webkit-app-region:no-drag
+}
+
+.Notification:not(:last-child):not(.is-expired) {
+	animation-delay:0.17s
+}
+
+.Notification.is-expired {
+	animation-name:feather-notification-list-hide;
+	animation-timing-function:var(--animationTiming)
+}
+
+.Notification-inner {
+	position:absolute;
+	display:flex;
+	width:100%;
+	margin-bottom:9px;
+	border-radius:4px;
+	transition:box-shadow 0.2s var(--animationTiming);
+	background:var(--secondaryColor);
+	color:var(--rootWhiteColor)
+}
+
+.Notification-content p {
+	font-size:13px;
+	padding-top:3px;
+	display:block;
+	max-width:170px
+}
+
+.Notification-content button {
+	width:33%;
+	display:block;
+	float:right!important;
+	position:relative;
+	padding-left:10px;
+	justify-content:normal;
+	white-space:nowrap
+}
+
+.Notification-content button+button {
+	margin-top:-30px;
+	margin-left:150px
+}
+
+.Notification-icon {
+	display:flex;
+	align-items:center;
+	justify-content:center;
+	min-width:54px;
+	min-height:54px;
+	border-radius:4px 0 0 4px;
+	color:var(--rootWhiteColor)
+}
+
+.Notification-icon .Icon {
+	position:relative;
+	top:3px
+}
+
+.Notification-content {
+	display:flex;
+	flex-direction:column;
+	justify-content:center;
+	flex-grow:1;
+	width:0;
+	padding:8px 35px 8px 12px;
+	left:50%;
+	overflow:hidden;
+	margin-right:35px
+}
+
+.Notification-title {
+	font-weight:400;
+	display:block
+}
+
+.Notification-title+.Notification-body {
+	font-size:12px;
+	line-height:18px;
+	position:relative;
+	top:1px;
+	color:#657786
+}
+
+.Notification-closeButton {
+	position:absolute;
+	right:0;
+	height:100%;
+	width:55px;
+	line-height:0;
+	font-size:19px;
+	color:var(--rootWhiteColor);
+	transition:color .15s var(--animationTiming);
+	cursor:pointer
+}
+
+.Notification--green .Notification-inner {
+	background-color:#4CAF50
+}
+
+.Notification--red .Notification-inner {
+	background-color:#F44336
+}
+
+.Notification--green .Notification-closeButton,.Notification--red .Notification-closeButton {
+	color:rgba(255,255,255,1)
+}
+
+.btn.mtd-notification-button {
+	position:absolute;
+	color:var(--rootWhiteColor)!important;
+	right:50px;
+	padding:15px 5px;
+	width:auto
+}
+
+.mtd-update-notification .Notification-content {
+	margin-right:50px
+}

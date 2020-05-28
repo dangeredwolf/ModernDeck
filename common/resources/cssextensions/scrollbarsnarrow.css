@@ -1,0 +1,23 @@
+/*
+	scrollbarsnarrow.css
+
+	Copyright (c) 2014-2020 dangered wolf, et al
+	Released under the MIT Licence
+*/
+
+:root {
+	--scrollbarWidth:5px!important
+}
+
+.mdl.s-profile,
+.mtd-nav-drawer,
+.lst-launcher,
+.scroll-styled-v,
+.scroll-v,
+.mdl,
+.scroll-styled-h,
+#lists-modal .mdl-content,
+.Dropdown,
+.keyboard-shortcut-list-modal {
+	scrollbar-width:thin
+}

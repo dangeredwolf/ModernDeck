@@ -1,0 +1,19 @@
+/*
+	orange.css
+
+	Copyright (c) 2014-2020 dangered wolf, et al
+	Released under the MIT Licence
+*/
+
+.light:root {
+	--primaryColor:#FF5722 !important
+}
+
+.dark:root {
+	--secondaryColor:#d25c37 !important;
+	--secondaryColorBright:#FF5722 !important;
+	--selectionBackgroundColor:rgba(210,92,55,.57) !important;
+	--secondaryColorAlt:#d25c37;
+	--secondaryColorPress:#FF5722;
+	--secondaryColorDeep:#a0492e
+}

@@ -1,0 +1,19 @@
+/*
+	pink.css
+
+	Copyright (c) 2014-2020 dangered wolf, et al
+	Released under the MIT Licence
+*/
+
+.light:root {
+	--primaryColor:#E91E63 !important
+}
+
+.dark:root {
+	--secondaryColor:#d84074 !important;
+	--secondaryColorBright:#E91E63 !important;
+	--selectionBackgroundColor:rgba(216,64,116,.57) !important;
+	--secondaryColorAlt:#d84074;
+	--secondaryColorPress:#E53935;
+	--secondaryColorDeep:#b52858
+}

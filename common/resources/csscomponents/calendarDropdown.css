@@ -1,0 +1,440 @@
+.DatePickerDropdown.Dropdown {
+	padding:0
+}
+
+.DatePickerDropdown.Dropdown,.DatePickerDropdown.Dropdown .Dropdown-menuItemList {
+	max-width:none
+}
+
+.DatePickerDropdown-menuItem {
+	padding:15px
+}
+
+.DatePickerDropdown-menuItem--footer {
+	padding:10px 15px;
+	text-align:right
+}
+
+.DatePickerDropdown-menuItem--footer .Button+.Button,.DatePickerDropdown-menuItem--footer .Button+button,.DatePickerDropdown-menuItem--footer .Button+input[type="button"],.DatePickerDropdown-menuItem--footer button+.Button,.DatePickerDropdown-menuItem--footer button+button,.DatePickerDropdown-menuItem--footer button+input[type="button"],.DatePickerDropdown-menuItem--footer input[type="button"]+.Button,.DatePickerDropdown-menuItem--footer input[type="button"]+button,.DatePickerDropdown-menuItem--footer input[type="button"]+input[type="button"] {
+	margin-left:10px
+}
+
+.DatePicker {
+	font-size:12px;
+	line-height:18px;
+	width:210px
+}
+
+.DatePicker-nav {
+	height:40px;
+	line-height:30px;
+	text-align:center
+}
+
+.DatePicker-nav .FormSelect {
+	width:73px
+}
+
+.DatePicker-nav .FormSelect .Button,.DatePicker-nav .FormSelect button,.DatePicker-nav .FormSelect input[type="button"] {
+	text-align:center
+}
+
+.DatePicker-monthButton {
+	width:30px;
+	height:30px;
+	padding:0;
+	border:0;
+	background:none;
+	line-height:1
+}
+
+.DatePicker-monthButton:focus,.DatePicker-monthButton:hover {
+	color:var(--secondaryColor)
+}
+
+.DatePicker-monthButton[disabled] {
+	color:var(--disabledColor)
+}
+
+.DatePicker-monthButton--left {
+	float:left
+}
+
+.DatePicker-monthButton--right {
+	float:right
+}
+
+.DatePicker-calendar {
+	font-size:12px;
+	line-height:18px;
+	display:table;
+	border-collapse:separate;
+	border-spacing:0 4px
+}
+
+.DatePicker-calendarHeader {
+	display:table-header-group
+}
+
+.DatePicker-calendarBody {
+	display:table-row-group
+}
+
+.DatePicker-calendarWeek {
+	display:table-row
+}
+
+.DatePicker-calendarDay,.DatePicker-calendarDayHeader {
+	display:table-cell;
+	width:30px;
+	height:30px;
+	padding:1px;
+	line-height:28px
+}
+
+.DatePicker-calendarDayHeader {
+	text-align:center;
+	font-weight:700;
+	color:var(--disabledColor)
+}
+
+.DatePicker-calendarDay {
+	border-radius:15px;
+	text-align:center;
+	color:var(--scrollbarHoverColor)
+}
+
+.DatePicker-calendarDay.is-selectable {
+	color:var(--bodyTextColor);
+	cursor:pointer
+}
+
+.DatePicker-calendarDay.is-selectable.is-adjacentMonth {
+	color:var(--disabledColor)
+}
+
+.DatePicker-calendarDay.is-selectable:hover {
+	background-color:var(--secondaryColor);
+	color:var(--bodyTextColor)
+}
+
+.DatePicker-calendarDay.is-withinRange {
+	border-radius:0;
+	background-color:var(--secondaryColor);
+	color:var(--bodyTextColor)
+}
+
+.DatePicker-calendarDay.is-withinRange.is-adjacentMonth {
+	color:var(--bodyTextColor)
+}
+
+.DatePicker-calendarDay.is-rangeEnd,.DatePicker-calendarDay.is-rangeStart {
+	background-color:var(--secondaryColor);
+	color:#fff
+}
+
+.DatePicker-calendarDay.is-rangeEnd.is-adjacentMonth,.DatePicker-calendarDay.is-rangeStart.is-adjacentMonth {
+	color:#ccd6dd
+}
+
+.DatePicker--withPendingRange .DatePicker-calendarDay.is-rangeEnd,.DatePicker--withPendingRange .DatePicker-calendarDay.is-rangeStart,.DatePicker--withPendingRange .DatePicker-calendarDay.is-withinRange {
+	padding:0 1px;
+	border:1px solid #1da1f2;
+	border-width:1px 0;
+	background-color:#fff;
+	color:#14171a
+}
+
+.DatePicker--withPendingRange .DatePicker-calendarDay.is-rangeEnd.is-adjacentMonth,.DatePicker--withPendingRange .DatePicker-calendarDay.is-rangeStart.is-adjacentMonth,.DatePicker--withPendingRange .DatePicker-calendarDay.is-withinRange.is-adjacentMonth {
+	color:#657786
+}
+
+.DatePicker--withPendingRange .DatePicker-calendarDay.is-rangeEnd,.DatePicker--withPendingRange .DatePicker-calendarDay.is-rangeStart {
+	background-color:#eaf5fd
+}
+
+.DatePicker-time {
+	padding-top:10px;
+	border-top:1px solid #ccd6dd;
+	margin-top:10px;
+	text-align:center
+}
+
+.DatePicker-time .TimePicker {
+	width:75px
+}
+
+.DatePicker-timeZone {
+	margin-top:10px;
+	color:#657786;
+	text-align:center
+}
+
+.DatePicker--fixedHeight {
+	height:282px
+}
+
+.DatePicker--withoutCalendarHeader .DatePicker-calendarDayHeader {
+	display:none
+}
+
+.DatePicker--withoutCalendarHeader.DatePicker--fixedHeight {
+	height:248px
+}
+
+.DatePicker--withoutAdjacentMonthDays .DatePicker-calendarDay.is-adjacentMonth {
+	visibility:hidden
+}
+
+.DatePicker .DatePicker-yearFormSelect {
+	margin-left:4px
+}
+
+.DatePicker .DatePicker-calendarDay.is-rangeStart {
+	border-top-left-radius:15px;
+	border-bottom-left-radius:15px
+}
+
+.DatePicker .DatePicker-calendarDay.is-rangeEnd {
+	border-top-right-radius:15px;
+	border-bottom-right-radius:15px
+}
+
+.DatePicker.DatePicker--withPendingRange .DatePicker-calendarDay.is-rangeStart {
+	padding-left:0;
+	border-left-width:1px
+}
+
+.DatePicker.DatePicker--withPendingRange .DatePicker-calendarDay.is-rangeEnd {
+	padding-right:0;
+	border-right-width:1px
+}
+
+.Dropdown {
+	position:absolute;
+	display:none;
+	margin:3px 0;
+	background:var(--modalWindowColor);
+	border-radius:4px;
+	box-shadow:0 1px 4px var(--contextMenuShadow);
+	z-index:9;
+	pointer-events:all;
+	outline:none
+}
+
+.Dropdown.is-open {
+	display:block;
+	min-width:auto!important
+}
+
+.Dropdown.Dropdown--withScrollbarX {
+	overflow-x:auto
+}
+
+.Dropdown.Dropdown--withScrollbarY {
+	overflow-y:auto
+}
+
+.Dropdown.Dropdown--withMenuItemList {
+	max-width:none
+}
+
+.Dropdown.Dropdown--withMenuItemList.is-open {
+	display:flex
+}
+
+.Dropdown.Dropdown--withMenuItemList,.Dropdown.Dropdown--withMenuItemList.Dropdown--withScrollbarX,.Dropdown.Dropdown--withMenuItemList.Dropdown--withScrollbarY {
+	overflow:hidden
+}
+
+.Dropdown,.Dropdown-menuItemList {
+	max-width:274px;
+	padding:0;
+	list-style:none
+}
+
+.Dropdown-menuItemList {
+	max-height:100%;
+	margin:0;
+	overflow-x:auto
+}
+
+.Dropdown--bottom .Dropdown-menuItemList {
+	align-self:flex-end
+}
+
+.Dropdown-menuItemList--withScrollbarY {
+	overflow-y:scroll
+}
+
+.Dropdown-detailPanel {
+	order:1;
+	width:240px;
+	padding:9px 12px;
+	border:solid #ccd6dd;
+	border-width:0 0 0 1px;
+	overflow:auto;
+	background-color:#f5f8fa
+}
+
+.Dropdown--right .Dropdown-detailPanel {
+	order:-1;
+	border-width:0 1px 0 0
+}
+
+.Dropdown-divider {
+	height:1px;
+	margin:5px 1px 6px;
+	overflow:hidden;
+	background-color:#ccd6dd
+}
+
+.Dropdown-menuItem {
+	font-size:12px;
+	line-height:18px;
+	display:block;
+	overflow:hidden;
+	cursor:pointer
+}
+
+.Dropdown-menuItem:first-child {
+	margin-top:5px
+}
+
+.Dropdown-menuItem:last-child {
+	margin-bottom:5px
+}
+
+.Dropdown-menuGroupLabel,.Dropdown-menuItem .Dropdown-menuItemContent {
+	display:block;
+	width:100%;
+	padding:3.5px 13px;
+	background:transparent;
+	border:none;
+	color:#14171a;
+	text-align:left;
+	text-decoration:none;
+	font-weight:400
+}
+
+.Dropdown-menuItem .Dropdown-menuItemContent input[type="checkbox"] {
+	margin-right:5px
+}
+
+.Dropdown-menuItem .Dropdown-menuItemContent .Icon--check {
+	display:inline-block;
+	visibility:hidden;
+	width:10px;
+	margin-right:5px;
+	margin-top:0;
+	margin-left:2px;
+	line-height:1;
+	color:#1da1f2
+}
+
+.Dropdown-menuItem .Dropdown-menuItemContent input[type="radio"] {
+	position:absolute;
+	z-index:-1;
+	opacity:0
+}
+
+.Dropdown-menuItem .Dropdown-menuItemContent input[type="radio"]:checked+.Icon.Icon--check {
+	visibility:visible
+}
+
+.Dropdown-menuItem.is-focus {
+	background-color:#1da1f2
+}
+
+.Dropdown-menuItem.is-focus .Dropdown-menuItemContent,.Dropdown-menuItem.is-focus input[type="radio"]:checked+.Icon.Icon--check {
+	color:#fff
+}
+
+.Dropdown-menuItem.is-focus .User .Icon,.Dropdown-menuItem.is-focus .User .User-screenName {
+	color:#fff
+}
+
+.Dropdown-menuItem.is-focus .User .Icon--verified:before {
+	color:#1da1f2
+}
+
+.Dropdown-menuItem .Dropdown-menuItemDetail {
+	display:none
+}
+
+.Dropdown-menuGroupLabel {
+	font-weight:700;
+	letter-spacing:.5px;
+	text-transform:uppercase;
+	font-size:12px;
+	line-height:18px;
+	color:#657786
+}
+
+.Dropdown-menuGroupLabel:first-child {
+	margin-top:5px
+}
+
+.Dropdown-menuGroupLabel:last-child {
+	margin-bottom:5px
+}
+
+.FormSelect {
+	display:inline-block;
+	position:relative;
+	min-width:0
+}
+
+.FormSelect.is-disabled select,.FormSelect[disabled] select {
+	display:none
+}
+
+.FormSelect select {
+	z-index:1;
+	position:absolute;
+	top:0;
+	left:0;
+	width:100%;
+	height:100%;
+	padding:0;
+	border:none;
+	margin:0;
+	opacity:0;
+	cursor:pointer
+}
+
+.FormSelect .Button,.FormSelect .FormInput,.FormSelect button,.FormSelect input[type="button"] {
+	width:inherit;
+	overflow:hidden;
+	text-overflow:ellipsis;
+	white-space:nowrap;
+	text-align:left
+}
+
+.FormSelect .Button-adornment {
+	position:absolute
+}
+
+.FormSelect .Button,.FormSelect button,.FormSelect input[type="button"] {
+	padding-right:36px
+}
+
+.FormSelect .Button .Button-adornment,.FormSelect button .Button-adornment,.FormSelect input[type="button"] .Button-adornment {
+	right:15px
+}
+
+.FormSelect .Button--xsmall {
+	padding-right:31px
+}
+
+.FormSelect .Button--xsmall .Button-adornment {
+	right:13px
+}
+
+.FormSelect .Button--small {
+	padding-right:31px
+}
+
+.FormSelect .Button--small .Button-adornment {
+	right:13px
+}

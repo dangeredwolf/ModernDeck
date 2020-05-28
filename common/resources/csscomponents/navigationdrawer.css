@@ -1,0 +1,218 @@
+/*
+	navigationdrawer.css
+
+	Copyright (c) 2014-2020 dangered wolf, et al
+	Released under the MIT Licence
+*/
+
+:root {
+	--navDrawerWidth:260px
+}
+
+.mtd-drawer-button {
+	transition:0.15s all;
+	top:5px!important;
+	z-index:5;
+	position:absolute!important
+}
+
+.mtd-classic-nav .mtd-drawer-button {
+	display:none
+}
+
+.mtd-head-left .mtd-drawer-button {
+	margin-top:0!important
+}
+
+.mtd-drawer-button:active {
+	background-color:transparent
+}
+
+.mtd-drawer-button:active:after {
+	width:65px;
+	height:65px;
+	margin-top:-24px;
+	margin-left:-14px;
+	transform:scale(1);
+	opacity:1;
+	pointer-events:none;
+	transition:0.07s all,.08s margin
+}
+
+.mtd-app-mac .mtd-drawer-button:active:after {
+	margin-top:-22px
+}
+
+.mtd-app.mtd-head-left .mtd-drawer-button:active:after {
+	margin-top:-20px
+}
+
+.mtd-drawer-button:after {
+	content:" ";
+	background:rgba(255,255,255,.2);
+	width:30px;
+	height:30px;
+	position:absolute;
+	margin-top:-40px;
+	margin-left:-40px;
+	border-radius:33px;
+	z-index:5;
+	transform:scale(.5);
+	opacity:0;
+	transition:0.5s all,.15s opacity
+}
+
+html:not(.mtd-head-left) .hide-detail-view-inline .mtd-drawer-button {
+	top:5px;
+	margin-left:calc(var(--composeWidth) - 55px)
+}
+
+.mtd-nav-drawer {
+	width:var(--navDrawerWidth);
+	height:100%;
+	z-index:7;
+	position:absolute;
+	margin-left:0;
+	box-shadow:0 15px 40px var(--avatarHoverShadow);
+	transition:0.3s all var(--animationTiming);
+	overflow-x:hidden;
+	overflow-y:auto
+}
+
+.mtd-nav-drawer.hidden {
+	display:block!important;
+	margin-left:-320px;
+	transition:0.4s all var(--animationTiming)
+}
+
+.mtd-nav-drawer-background {
+	position:absolute;
+	z-index:5;
+	background:var(--navDrawerBackground);
+	height:100%;
+	width:100%;
+	transition:0.3s all var(--animationTiming);
+	pointer-events:all;
+	opacity:1
+}
+
+.mtd-nav-drawer-background.hidden {
+	display:block!important;
+	opacity:0!important;
+	pointer-events:none!important
+}
+
+.mtd-nd-header-image {
+	width:102%;
+	height:150px;
+	position:absolute;
+	border:0!important;
+	background-size:400px 200px;
+	background-position:-50px -30px;
+	border-color:transparent;
+	margin:0;
+	padding:0;
+	margin-left:-2px;
+	margin-top:-2px;
+	background-color:var(--secondaryColorAlt)
+}
+
+.mtd-nd-header-photo {
+	z-index:7;
+	position:absolute;
+	margin-left:18px;
+	margin-top:20px;
+	--avatarSize:56px
+}
+
+.mtd-nd-header-username, .mtd-nd-header-atname {
+	position:absolute;
+	width:100%;
+	margin-top:90px;
+	padding-left:20px;
+	text-align:left;
+	text-shadow:0 3px 6px var(--rootBlackColor);
+	font-weight:500;
+	font-size:14px;
+	color:var(--rootWhiteColor)
+}
+
+.mtd-nd-header-atname {
+	margin-top:110px;
+	opacity:0.7;
+	font-weight:400
+}
+
+.compose-reply-tweet.is-hidden {
+	display:block!important;
+	opacity:0;
+	pointer-events:none;
+	margin-top:-60px;
+	height:20px
+}
+
+.mtd-nav-button {
+	text-transform:none;
+	font-weight:500;
+	text-align:left;
+	height:40px;
+	width:100%;
+	padding-left:15px
+}
+
+.mtd-nav-button:active {
+	opacity:1;
+	transform:none
+}
+
+.mtd-nav-first-button {
+	margin-top:154px
+}
+
+.mtd-nav-divider {
+	width:100%;
+	height:2px;
+	margin-top:6px;
+	margin-bottom:6px
+}
+
+.mtd-nav-activator {
+	width:20px;
+	height:20px;
+	margin-left:7px;
+	margin-top:2px
+}
+
+.mtd-app-mac.mtd-head-left .mtd-drawer-button {
+	margin-top:18px!important
+}
+
+.mtd-app-mac:not(.mtd-head-left) .application:not(.hide-detail-view-inline) .mtd-drawer-button {
+	margin-left:65px
+}
+
+.mtd-icon-arrow-down {
+	transition:transform 0.3s var(--animationTiming)
+}
+
+.mtd-nav-activator:before,.icon-arrow-r-double:before {
+	font-style:normal;
+	font-size:26px;
+	font-weight:400;
+	font-family:Material;
+	content:"\e5d2"
+}
+
+.mtd-nav-button i:before {
+	display:block
+}
+
+.mtd-nav-button i {
+	margin-top:-3px;
+	font-size:24px;
+	margin-right:16px
+}
+
+.mtd-nav-group-expanded {
+	height:134px
+}

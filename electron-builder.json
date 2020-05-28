@@ -1,9 +1,33 @@
 {
 	"appId": "com.dangeredwolf.ModernDeck",
-	"afterSign": "build/notarize.js",
+	"afterSign": "./build/notarize.js",
+
+	"files": [
+		"**/*",
+		"!**/node_modules/*/{README,readme.md,readme,*.md,LICENSE,license,*.js.map,LICENSE.*,LICENCE,LICENCE.*}",
+		"!**/node_modules/*/{test,__tests__,tests,powered-test,example,examples,test-browser.js,test-node.js,tests.js}",
+		"!**/node_modules/*.d.ts",
+		"!**/node_modules/.bin",
+		"!**/*.{iml,o,hprof,orig,pyc,pyo,rbc,swp,csproj,sln,xproj}",
+		"!**/._*",
+		"!dist",
+		"!docs",
+		"!src",
+		"!build",
+		"!common/extension",
+		"!common/_locales",
+		"!common/*.png",
+		"!common/manifest.json",
+		"!rollup.config.js",
+		"!dev-app-update.yml",
+		"!**/{.stylelintrc.json,.DS_Store,.git,.hg,.svn,CVS,RCS,SCCS,.gitignore,.gitattributes,.editorconfig}",
+		"!**/{__pycache__,thumbs.db,.flowconfig,.idea,.vs,.nyc_output}",
+		"!**/{appveyor.yml,.travis.yml,circle.yml}",
+		"!**/{npm-debug.log,yarn.lock,.yarn-integrity,.yarn-metadata.json}"
+	],
 
 	"win": {
-		"icon": "build/icon.ico",
+		"icon": "build/icons/icon.ico",
 		"legalTrademarks": "Copyright 2014-2020 dangered wolf, released under the MIT licence",
 		"publish": [
 			"github"
@@ -13,11 +37,10 @@
 		"compression":"maximum",
 		"target": [
 			{
-				"target": "nsis-web",
+				"target": "nsis",
 				"arch": [
-					"arm64",
-					"ia32",
-					"x64"
+					"x64",
+					"arm64"
 				]
 			}
 		]
@@ -49,7 +72,7 @@
 		"publish": [
 			"github"
 		],
-		"icon": "build/ModernDeck.icns",
+		"icon": "build/icons/ModernDeck.icns",
 		"artifactName": "ModernDeck.${ext}",
 		"minimumSystemVersion": "10.11.0",
 		"darkModeSupport": true,

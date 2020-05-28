@@ -1,0 +1,19 @@
+/*
+	teal.css
+
+	Copyright (c) 2014-2020 dangered wolf, et al
+	Released under the MIT Licence
+*/
+
+.light:root {
+	--primaryColor:#009688 !important
+}
+
+.dark:root {
+	--secondaryColor:#0aa596 !important;
+	--secondaryColorBright:#009688 !important;
+	--selectionBackgroundColor:rgba(10,165,150,.57) !important;
+	--secondaryColorAlt:#007368;
+	--secondaryColorPress:#0aa596;
+	--secondaryColorDeep:#0a5f56
+}

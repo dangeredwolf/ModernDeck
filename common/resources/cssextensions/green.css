@@ -1,0 +1,19 @@
+/*
+	green.css
+
+	Copyright (c) 2014-2020 dangered wolf, et al
+	Released under the MIT Licence
+*/
+
+.light:root {
+	--primaryColor:#4CAF50 !important;
+}
+
+.dark:root {
+	--secondaryColor:#338036 !important;
+	--secondaryColorBright:#338036 !important;
+	--selectionBackgroundColor:rgba(51,128,54,.57) !important;
+	--secondaryColorAlt:#338036;
+	--secondaryColorPress:#4CAF50;
+	--secondaryColorDeep:#338036;
+}

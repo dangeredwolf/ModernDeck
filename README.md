@@ -1,37 +1,32 @@
-# ModernDeck
+# ModernDeck 8
 
 [![Build Status](https://travis-ci.org/dangeredwolf/ModernDeck.svg?branch=master)](https://travis-ci.org/dangeredwolf/ModernDeck)
 [![dependencies Status](https://david-dm.org/dangeredwolf/ModernDeck/status.svg)](https://david-dm.org/dangeredwolf/ModernDeck)
 [![devDependencies Status](https://david-dm.org/dangeredwolf/ModernDeck/dev-status.svg)](https://david-dm.org/dangeredwolf/ModernDeck?type=dev)
+[![Crowdin](https://badges.crowdin.net/tweetdeck/localized.svg)](https://translate.moderndeck.org/project/tweetdeck)
 
-ModernDeck is an extension/app for TweetDeck that brings a vastly overhauled interface with tons of Material Design influence, as well as new customisation features.
+ModernDeck is an app/extension running atop TweetDeck that brings a new, Material Design-inspired interface, as well as new customization features.
+
+![ModernDeck Screenshot](https://github.com/dangeredwolf/ModernDeck/raw/8.0/build/en_screenshot.png)
 
 ModernDeck is designed by dangeredwolf in Columbus, OH and released under the MIT License.
 
 
-
-Preparation for building ModernDeck from source varies depending on whether you want to build the extension only, or the extension and app.
-
-
-
-## Building the ModernDeck (Electron-based) app
-
-ℹ *These steps are not required if you only plan on testing the browser extension and not the app, you can skip to "Building the extension for different browsers" below.*
-
+## Building ModernDeck
 
 
 ### Dependencies
 
-To build the ModernDeck app, you need to first install Node.js (which comes with npm)
+To build ModernDeck, you need to first install Node.js (which comes with npm) and git if you don't have it installed already
 
-ℹ *ModernDeck is tested against the latest LTS version of Node.js, but it will likely work fine with the Current version as well.*
-
+ℹ *ModernDeck is tested against the latest current version of Node.js, but it will likely work fine with the LTS version as well.*
 
 
 #### Windows
 
 For Windows, [you can download Node.js here](https://nodejs.org/en/)
 
+⚠ *On Windows, you will need to download git if you haven't yet already. You can either [download just git itself](https://git-scm.com/download/win), or [download GitHub's Windows client](https://desktop.github.com/), which also includes git and other tools, even if you don't use the GUI portion.*
 
 
 #### macOS
@@ -58,15 +53,13 @@ On Linux, it varies depending on your distribution. If you're using Ubuntu or De
 
 You'll want to use your Terminal (macOS and Linux) or PowerShell (Windows) for this.
 
-⚠ *On Windows, you will need to download git if you haven't yet already. You can either [download just git itself](https://git-scm.com/download/win), or [download GitHub's Windows client](https://desktop.github.com/), which also includes git and other tools, even if you don't use the GUI portion.*
-
 First, of course, `cd` into a directory where you want to clone the source to.
 
 Next, clone the git.
 
 `git clone https://github.com/dangeredwolf/ModernDeck.git`
 
-Finally, install all the necessary dependencies
+Finally, install all the necessary NPM dependencies
 
 `npm install`
 
@@ -74,15 +67,21 @@ Finally, install all the necessary dependencies
 
 
 
-### Testing and building
+### Building the Electron app
 
 From the main folder where you just were, you can run the app for testing using:
 
 `npm start`
 
-This will allow you to test code changes without creating an installer every time.
+This will run rollup and create an electron instance for it.
 
+ℹ Building ModernDeck's source with Rollup increments the Build number as well
 
+To start without building...
+`npm run startNoBuild`
+
+To update language data (DataI18n) from tweetdeck-i18n.csv...
+`npm run updatei18n`
 
 If you want to create the proper installers, you can run:
 
@@ -98,43 +97,28 @@ If you want to create the proper installers, you can run:
 `npm run buildLinux`
 ...to build for Linux
 
-ModernDeck 7.4 by default must be signed, even self-signed, in order to build. If this isn't necessary, change `forceCodeSigning` to `false` in electron-builder.json.
-
 [Click here for more information about electron-builder code signing.](https://www.electron.build/code-signing)
 
-ModernDeck 7.4 and later also include `build.bat` for Windows.
-It requires Windows 10 or Windows Server 2019, with WSL installed (including wsl.exe), with the proper tools (node, npm).
+ModernDeck also includes `build.bat` for Windows.
+It requires Windows 10 or Windows Server 2019, with WSL installed (including wsl.exe), with the proper tools (node, npm) installed on both WSL and Windows.
+
 This makes it very quick to build for every platform, including extension, except macOS, particularly because it doesn't require the electron build server.
 
 
 ❓ *For more advanced users, you may prefer to [run electron-builder directly.](https://www.electron.build/)*
 
-⚠ *Building for macOS requires running under macOS. Under macOS, you can build for Windows, macOS, and Linux. Under both Linux and Windows, you can build for both Linux and Windows.*
+⚠ *Building for macOS requires running under macOS. Under macOS, you can build for Windows, macOS, and Linux. Under both Linux and Windows, you can build for both Linux and Windows. (Windows requires WSL, see above)*
 
 
+### Building the browser extension
 
-## Building the extension for different browsers
+First, you need to run rollup.
 
-ℹ *If you have already done the steps above to begin building for apps, you can skip the Checking out section.*
+`npm run rollup`
 
+This will transpile moderndeck.js and dependencies. This needs to be run if you make JS changes under the ModernDeck/src directory
 
-### Checking out
-
-You'll want to use your Terminal (macOS and Linux) or PowerShell (Windows) for this.
-
-⚠ *On Windows, you will need to download git if you haven't yet already. You can either [download just git itself](https://git-scm.com/download/win), or [download GitHub's Windows client](https://desktop.github.com/), which also includes git and other tools, even if you don't use the GUI portion.*
-
-First, of course, `cd` into a directory where you want to clone the source to.
-
-Next, clone the git.
-
-`git clone https://github.com/dangeredwolf/ModernDeck.git`
-
-❓ *You can also use [GitHub Desktop](https://desktop.github.com/) to clone ModernDeck*
-
-ℹ *You can simply load ModernDeck into the browser with no compilation required*
-
-### Loading the unpacked extension into your browser
+ℹ Building ModernDeck's source with Rollup increments the Build number as well
 
 To test the extension, you'll want to load the unpacked extension. This, of course, varies by browser.
 
@@ -143,70 +127,54 @@ To test the extension, you'll want to load the unpacked extension. This, of cour
 
 Open the Chrome menu, go to **More tools > Extensions**
 
-Check *Developer Mode* in the corner if you haven't already.
+Turn on **Developer Mode** in the top right corner if you haven't already.
 
-Click the **Load Unpacked** button
+Click the **Load unpacked** button
 
-Navigate to *ModernDeck\ModernDeck* and click Select Folder
+Navigate to *ModernDeck/common* and click Select Folder
 
 
 #### Firefox
 
 Go to *about:debugging*
 
-Check **Enable add-on debugging**
+Click **This Firefox**
 
 Click **Load Temporary Add-on...**
 
-Navigate to *ModernDeck\ModernDeck\manifest.json*
+Navigate to *ModernDeck/common/manifest.json*
 
 
-#### Microsoft Edge (Chromium-based)
-
-Open the **...** menu
-
-Click **Extension**
-
-Turn on **Developer Mode** in the bottom left if you haven't already
-
-
-#### Microsoft Edge (EdgeHTML-based)
-
-First, you need to enabled Developer Features, if you haven't already.
-
-Go to *about:flags*
-
-Check *Enable extension developer features*
-
-Restart Edge if it asks you to
+#### Microsoft Edge
 
 Open the **...** menu
 
 Click **Extensions**
 
-Scroll down to the bottom
+Turn on **Developer Mode** in the bottom left corner if you haven't already
 
-Click **Load Extension**
+Click the **Load unpacked** button
 
-Select the folder *ModernDeck\ModernDeck*
+Navigate to *ModernDeck/common* and click Select Folder
 
+Microsoft Edge Legacy (The EdgeHTML-based browser) is no longer supported as of ModernDeck 8.0. It might still work, but no problems with it will be corrected.
 
 #### Opera
 
-Press *Ctrl+Alt+E* to open Extensions
+Click the **Extensions** button in the bar on the left side (the icon looks like a box) 
 
-Check **Developer Mode** if you haven't already
+Turn on **Developer Mode** in the top right if you haven't already
 
-Click **Load Unpacked**
+Click **Load unpacked**
 
-Select *ModernDeck\ModernDeck*
+Select *ModernDeck/common* and click Select Folder
 
 
-## Compile Extension for Release
+## Building Extension for Release
 
 Run `npm install && node build/build.js` from the root ModernDeck directory. The corresponding ZIPs will appear in the dist folder
 
-## ❓ Questions?
+## ❓ Problems or questions?
 
 Don't hesitate to ask!
-twitter.com/dangeredwolf or twitter.com/ModernDeck
+[twitter@dangeredwolf](https://twitter.com/dangeredwolf), [twitter@ModernDeck](https://twitter.com/ModernDeck), or [telegram@dangeredwolf](https://t.me/dangeredwolf)

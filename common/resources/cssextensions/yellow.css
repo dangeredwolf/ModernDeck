@@ -1,0 +1,19 @@
+/*
+	yellow.css
+
+	Copyright (c) 2014-2020 dangered wolf, et al
+	Released under the MIT Licence
+*/
+
+.light:root {
+	--primaryColor:#FFC107 !important
+}
+
+.dark:root {
+	--secondaryColor:#d6a410 !important;
+	--secondaryColorBright:#d6a410 !important;
+	--selectionBackgroundColor:rgba(214,164,16,.57) !important;
+	--secondaryColorAlt:#b79326;
+	--secondaryColorPress:#FFC107;
+	--secondaryColorDeep:#9c7c18
+}

@@ -1,0 +1,30 @@
+{
+	"description": {
+		"message": "Le client Twitter le plus puissant pour bureau.",
+		"description": "Short description for the extension"
+	},
+	"launch": {
+		"message": "Lancer ModernDeck",
+		"description": "The ModernDeck Launcher button"
+	},
+	"name": {
+		"message": "ModernDeck - Client Twitter pour bureau",
+		"description": "The name of the extension that appears on the Chrome Web Store"
+	},
+	"webstoreDescription": {
+		"message": "ModernDeck est un client Twitter basé sur TweetDeck avec une belle interface inspirée du Material Design. Il combine la puissance de TweetDeck avec la facilité d'utilisation que vous attendriez d'un client Twitter.\n\nVous pouvez personnaliser l'apparence de ModernDeck et vous l'approprier, comme par exemple :\n- La taille des colonnes et du texte\n- Les polices de caractère\n- Les thèmes, qui incluent des palettes alternatives de couleurs\n- La taille et la forme des images de profil\nEt bien plus\n\nModernDeck est disponible dans plusieurs langues, et sur d'autres plateformes, sur https://moderndeck.org/download",
+		"description": "The description of the extension that appears on the Chrome Web Store"
+	},
+	"grantButton": {
+		"message": "Accorder la permission",
+		"description": "A button to grant tabs permission in Firefox"
+	},
+	"needsPermission": {
+		"message": "Désolé de vous interrompre &mdash; Nous avons besoin de la permission pour ouvrir des onglets",
+		"description": "A title about granting tabs permission in Firefox"
+	},
+	"needsPermissionParagraph": {
+		"message": "ModernDeck requiert la permission pour ouvrir des onglets de Firefox afin de créer de nouveaux onglets.<br><br>\nCette opération est optionnelle, et est seulement requise pour la fonction de lanceur. Vous pouvez toujours accéder à ModernDeck depuis <a href=\"https://tweetdeck.twitter.com\" target=\"_blank\">tweetdeck.twitter.com</a> même sans cette permission.<br><br> Si vous n'acceptez pas cette permission, vous pouvez enlever le bouton de lanceur en effectuant un clic droit dessus et en sélectionnant <i>Retirer de la barre d'outils</i><br><br>\n<b>ModernDeck ne lit pas vos onglets ouverts.</b>",
+		"description": "A description about granting tabs permission in Firefox"
+	}
+}

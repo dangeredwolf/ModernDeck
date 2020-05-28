@@ -19,18 +19,17 @@ const {
 	Menu,
 	dialog,
 	nativeTheme,
-	protocol
+	nativeImage,
+	protocol,
+	Tray
 }		= require("electron");
 
-const imageType = require("file-type");
 const fs = require("fs");
 const path = require("path");
 const url = require("url");
 const util = require("util");
-const through2 = require("through2");
-const { NitroLoad } = require("./nitroload");
-console.log(NitroLoad)
-const separator = process.platform === "win32" ? "\\" : "/"
+
+const separator = process.platform === "win32" ? "\\" : "/";
 
 const packagedUsesDifferentDir = false;
 
@@ -42,19 +41,24 @@ const Store = require("electron-store");
 const store = new Store({name:"mtdsettings"});
 
 // const disableCss = false; // use storage.mtd_safemode
-const useNext = false;
 
 const isAppX = !!process.windowsStore;
 
 const isMAS = !!process.mas;
 
 const isDev = false;
-let useNitroLoad = false;
 
+let enableTray = true;
+let enableBackground = true;
+
+let hidden = false;
 let mainWindow;
+let tray = null;
 let mR;
 
 let isRestarting = false;
+let closeForReal = false;
+let interval;
 
 let mtdAppTag = '';
 
@@ -69,7 +73,7 @@ autoUpdater.logger.transports.file.level = "info";
 
 app.setAppUserModelId("com.dangeredwolf.ModernDeck");
 
-let useDir = (app.isPackaged && packagedUsesDifferentDir) ? "ModernDeck_app_tmp" : "ModernDeck";
+let useDir = "common";
 
 const mtdSchemeHandler = async (request, callback) => {
 	let myUrl = new url.URL(request.url);
@@ -85,10 +89,11 @@ const template = [
 		label: "ModernDeck",
 		role: "appMenu",
 		submenu: [
-			{ label: "About ModernDeck...", click() { if (!mainWindow){return;}mainWindow.webContents.send("aboutMenu"); } },
+			{ label: "About ModernDeck", click() { if (!mainWindow){return;}mainWindow.show();mainWindow.webContents.send("aboutMenu"); } },
+			{ label: "Check for Updates...", click(){ if (!mainWindow){return;}mainWindow.show();mainWindow.webContents.send("checkForUpdatesMenu"); } },
 			{ type: "separator" },
-			{ label: "Preferences...", click(){ if (!mainWindow){return;}mainWindow.webContents.send("openSettings"); } },
-			{ label: "Accounts...", click(){ if (!mainWindow){return;}mainWindow.webContents.send("accountsMan"); } },
+			{ label: "Preferences...", click(){ if (!mainWindow){return;}mainWindow.show();mainWindow.webContents.send("openSettings"); } },
+			{ label: "Accounts...", click(){ if (!mainWindow){return;}mainWindow.show();mainWindow.webContents.send("accountsMan"); } },
 			{ type: "separator" },
 			{ role: "services" },
 			{ type: "separator" },
@@ -96,21 +101,19 @@ const template = [
 			{ role: "hideothers" },
 			{ role: "unhide" },
 			{ type: "separator" },
-			{ role: "quit" }
+			{ label: "Quit ModernDeck", click(){ console.log("it's time to quit NOW"); closeForReal = true; app.quit(); } }
 		]
 	},
 	{
-		label: "File",
 		role: "fileMenu",
 		submenu: [
-			{ label: "New Tweet...", click(){ if (!mainWindow){return;}mainWindow.webContents.send("newTweet"); } },
-			{ label: "New Direct Message...", click(){ if (!mainWindow){return;}mainWindow.webContents.send("newDM"); } },
+			{ label: "New Tweet...", click(){ if (!mainWindow){return;}mainWindow.show();mainWindow.webContents.send("newTweet"); } },
+			{ label: "New Direct Message...", click(){ if (!mainWindow){return;}mainWindow.show();mainWindow.webContents.send("newDM"); } },
 			{ type: "separator" },
 			{ role: "close" }
 		]
 	},
 	{
-		label: "Edit",
 		role: "editMenu",
 		submenu: [
 			{ role: "undo" },
@@ -132,7 +135,6 @@ const template = [
 		]
 	},
 	{
-		label: "View",
 		role: "viewMenu",
 		submenu: [
 			{ role: "reload" },
@@ -147,7 +149,6 @@ const template = [
 		]
 	},
 	{
-		label: "Window",
 		role: "windowMenu",
 		submenu: [
 			{ role: "minimize" },
@@ -161,8 +162,8 @@ const template = [
 	{
 		role: "help",
 		submenu: [
-			{ label: "Send Feedback", click(){ if (!mainWindow){return;}mainWindow.webContents.send("sendFeedback");}},
-			{ label: "Message @ModernDeck", click(){ if (!mainWindow){electron.shell.openExternal("https://twitter.com/messages/compose?recipient_id=2927859037");return;}mainWindow.webContents.send("msgModernDeck"); } },
+			{ label: "Send Feedback", click(){ electron.shell.openExternal("https://github.com/dangeredwolf/ModernDeck/issues");}},
+			{ label: "Message @ModernDeck", click(){ if (!mainWindow){electron.shell.openExternal("https://twitter.com/messages/compose?recipient_id=2927859037");return;}mainWindow.show();mainWindow.webContents.send("msgModernDeck"); } },
 		]
 	}
 ]
@@ -170,7 +171,7 @@ const template = [
 
 const menu = Menu.buildFromTemplate(template);
 
-if (process.platform === 'darwin')
+if (process.platform === "darwin")
 	Menu.setApplicationMenu(menu);
 
 /*try {
@@ -192,8 +193,7 @@ function makeLoginWindow(url,teams) {
 		},
 		parent:mainWindow || null,
 		scrollBounce:true,
-		autoHideMenuBar:true,
-		icon:__dirname+useDir+"/sources/favicon.ico",
+		autoHideMenuBar:true
 	});
 
 	loginWindow.on('closed', () => {
@@ -206,14 +206,19 @@ function makeLoginWindow(url,teams) {
 		const { shell } = electron;
 
 		if (url.indexOf("https://tweetdeck.twitter.com") >= 0 && !teams) {
+			console.log("Hello tweetdeck!");
 			if (loginWindow) {
 				loginWindow.close();
+			}
+			if (mainWindow) {
+				mainWindow.reload();
 			}
 			event.preventDefault();
 			return;
 		}
 
 		if (url.indexOf("twitter.com/logout") >= 0) {
+			console.log("Hello logout!");
 			if (mainWindow) {
 				mainWindow.reload();
 			}
@@ -243,6 +248,7 @@ function makeLoginWindow(url,teams) {
 
 
 		if (url.indexOf("https://tweetdeck.twitter.com") >= 0) {
+			console.log("Hello tweetdeck2!");
 			if (mainWindow) {
 				mainWindow.loadURL(url);
 			}
@@ -280,53 +286,34 @@ function saveImageAs(url) {
 		return;
 	}
 
-	const pipePromise = (source, outputPath) => {
-		if (!outputPath) {
-			return Promise.resolve();
+	let fileType = url.match(/(?<=format=)(\w{3,4})|(?<=\.)(\w{3,4}(?=\?))/g)[0] || "file";
+	let fileName = url.match(/(?<=media\/)[\w\d_\-]+|[\w\d_\-]+(?=\.m)/g)[0] || "jpg";
+
+	console.log("saveImageAs");
+
+	let savePath = dialog.showSaveDialogSync({defaultPath:fileName + "." + fileType});
+	console.log(savePath);
+	if (savePath) {
+		try {
+			const https = require("https");
+			const fs = require("fs");
+
+			const file = fs.createWriteStream(savePath);
+			const request = https.get(url, function(response) {
+				console.log("Piping file...");
+				response.pipe(file);
+			});
+		} catch(e) {
+			console.log(e);
 		}
+	}
 
-		const stream = source.pipe(fs.createWriteStream(outputPath));
 
-		return new Promise((resolve, reject) => {
-			stream.on("finish", resolve);
-			stream.on("error", reject);
-		});
-	};
-
-	let path = url.match(/(([A-z0-9_\-])+\w+\.[A-z0-9]+)/g);
-	path = path[1];
-
-	const getOutputPath = (ext) => {
-		return dialog.showSaveDialog({ defaultPath: path });
-	};
-
-	const got = require("got");
-
-	const promise = new Promise(resolve => {
-		let resolved;
-
-		const stream = got.stream(url).pipe(
-			through2(function(chunk, enc, callback) {
-				if (!resolved) {
-					resolve({ ext: imageType(chunk).ext, stream });
-					resolved = true;
-				}
-
-				this.push(chunk);
-				callback();
-			}
-		));
-	});
-
-	return promise
-	.then(result => pipePromise(result.stream, getOutputPath(result.ext)));
 
 };
 
-// we should make use of this soon
-
 function saveWindowBounds() {
-	if (mainWindow === null) {
+	if (!mainWindow) {
 		return;
 	}
 	try {
@@ -352,6 +339,12 @@ function saveWindowBounds() {
 
 
 function makeWindow() {
+
+	const lock = app.requestSingleInstanceLock();
+
+	if (!lock) {
+		app.quit();
+	}
 
 	let display = {};
 
@@ -381,8 +374,8 @@ function makeWindow() {
 	let useXY = !!bounds.x && !!bounds.y
 
 	mainWindow = new BrowserWindow({
-		width: bounds.width || 975,
-		height: bounds.height || 650,
+		width: bounds.width || 1024,
+		height: bounds.height || 660,
 		x: useXY ? bounds.x : undefined,
 		y: useXY ? bounds.y : undefined,
 		webPreferences: {
@@ -394,16 +387,18 @@ function makeWindow() {
 			scrollBounce:true,
 			webviewTag:true,
 			nodeIntegrationInSubFrames:true
-			// preload: __dirname+separator+useDir+separator+"sources"+separator+"MTDinject.js"
+			// preload: __dirname+separator+useDir+separator+"resources"+separator+"moderndeck.js"
 		},
 		autoHideMenuBar:true,
+		nodeIntegrationInSubFrames:false,
 		title:"ModernDeck",
-		icon:__dirname+useDir+"/sources/favicon.ico",
+		icon:__dirname+useDir+"/resources/favicon.ico",
 		frame:useFrame,
 		titleBarStyle:titleBarStyle,
-		minWidth:400,
+		minWidth:375,
 		show:false,
 		enableRemoteModule:true,
+		backgroundThrottling:true,
 		backgroundColor:"#263238"
 	});
 
@@ -415,8 +410,8 @@ function makeWindow() {
 		dialog.showMessageBox({
 			type: "warning",
 			title: "ModernDeck",
-			message: "Updates might not work correctly if you don't run ModernDeck from the Applications folder. Would you like to move it there?",
-			buttons: ["Not now", "Yes, move it"]
+			message: "Updates might not work correctly if you aren't running ModernDeck from the Applications folder.\n\nWould you like to move it there?",
+			buttons: ["Not Now", "Yes, Move It"]
 		}, (response) => {
 			if (response == 1) {
 				let moveMe;
@@ -439,21 +434,6 @@ function makeWindow() {
 
 	}
 
-	// mainWindow = new BrowserView({		webPreferences: {
-	// 			defaultFontFamily:"Roboto",
-	// 			nodeIntegration: true,
-	// 			contextIsolation: false,
-	// 			webgl: false,
-	// 			plugins: false,
-	// 			scrollBounce:true,
-	// 			webviewTag:true,
-	// 			nodeIntegrationInSubFrames:true
-	// 			// preload: __dirname+separator+useDir+separator+"sources"+separator+"MTDinject.js"
-	// 		}});
-	// mainWindow.setBrowserView(mainWindow);
-	// mainWindow.setBounds({ x: 0, y: 0, width: mainWindow.getSize()[0], height: mainWindow.getSize()[1] })
-	// mainWindow.setAutoResize({width:true,height:true});
-	// mainWindow.setBackgroundColor("#263238")
 	// Prevent changing the Page Title
 
 	mainWindow.on("page-title-updated", (event,url) => {
@@ -463,64 +443,28 @@ function makeWindow() {
 	// Save window bounds if it's closed, or otherwise occasionally
 
 	mainWindow.on("close",(e) => {
-		// console.log("Saving window bounds");
 		setTimeout(saveWindowBounds,0);
 	});
 
 	setInterval(saveWindowBounds,60 * 1000);
 
 	mainWindow.show();
-	// Here, we add platform-specific tags to html, to help moderndeck CSS know what to do
 
-	mtdAppTag += 'document.querySelector("html").classList.add("mtd-js-app");\n';
+	hidden = false;
 
-	if (isAppX) {
-		mtdAppTag += 'document.querySelector("html").classList.add("mtd-winstore");\n';
-	}
+	updateAppTag();
 
-	if (isMAS) {
-		mtdAppTag += 'document.querySelector("html").classList.add("mtd-macappstore");\n';
-	}
-
-	if (!store.get("mtd_nativetitlebar")) {
-
-		mtdAppTag += 'document.querySelector("html").classList.add("mtd-app");\n';
-
-		if (process.platform === "darwin") {
-			mtdAppTag += 'document.querySelector("html").classList.add("mtd-app-mac");\n'
-		}
-
-		if (process.platform === "linux") {
-			mtdAppTag += 'document.querySelector("html").classList.add("mtd-app-linux");\n'
-		}
-
-		if (process.platform === "win32") {
-			mtdAppTag += 'document.querySelector("html").classList.add("mtd-app-win");\n'
-		}
+	try {
+		mainWindow.webContents.executeJavaScript(`document.getElementsByClassName("js-signin-ui block")[0].innerHTML = '<div class="preloader-wrapper big active"><div class="spinner-layer"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div>';`)
+	} catch(e) {
 
 	}
+
 
 	mainWindow.webContents.on('dom-ready', (event, url) => {
 
-		// if (useNitroLoad && NitroLoad.ready()) {
-		// 	mainWindow.webContents.executeJavaScript(`
-		// 		var InjectScript = document.createElement("script");
-		// 		InjectScript.src = "${NitroLoad.vendor}";
-		// 		InjectScript.type = "text/javascript";
-		// 		document.body.appendChild(InjectScript);
-		//
-		// 		var InjectScript2 = document.createElement("script");
-		// 		InjectScript2.src = "${NitroLoad.bundle}";
-		// 		InjectScript2.type = "text/javascript";
-		// 		document.body.appendChild(InjectScript2);
-		// 	`)
-		// }
+		mainWindow.webContents.executeJavaScript(`document.getElementsByClassName("js-signin-ui block")[0].innerHTML = '<div class="preloader-wrapper big active"><div class="spinner-layer"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div>';`)
 
-
-		mainWindow.webContents.executeJavaScript(
-			(store.get("mtd_fullscreen") ? 'document.querySelector("html").classList.add("mtd-js-app");' : mtdAppTag)
-		)
-		
 		mainWindow.webContents.executeJavaScript(
 			'\
 			var injurl = document.createElement("div");\
@@ -529,24 +473,24 @@ function makeWindow() {
 			document.head.appendChild(injurl);\
 			\
 			var InjectScript2 = document.createElement("script");\
-			InjectScript2.src = "moderndeck://sources/libraries/sentry.min.js";\
+			InjectScript2.src = "moderndeck://resources/libraries/moduleraid.min.js";\
 			InjectScript2.type = "text/javascript";\
 			document.head.appendChild(InjectScript2);'
 			+
 			(store.get("mtd_safemode") ? 'document.getElementsByTagName("html")[0].classList.add("mtd-disable-css");' :
 			'var injStyles = document.createElement("link");\
 			injStyles.rel = "stylesheet";\
-			injStyles.href = "moderndeck://sources/' + (useNext ? 'next/' : '') + 'moderndeck.css";\
+			injStyles.href = "moderndeck://resources/moderndeck.css";\
 			document.head.appendChild(injStyles);')
 			+
-			(useNext ? 'document.getElementsByTagName("html")[0].classList.add("mtd-next");' : '')
-			+
 			'var InjectScript = document.createElement("script");\
-			InjectScript.src = "moderndeck://sources/MTDinject.js";\
+			InjectScript.src = "moderndeck://resources/moderndeck.js";\
 			InjectScript.type = "text/javascript";\
 			document.head.appendChild(InjectScript);\
-		'
-	);
+		');
+
+		updateAppTag();
+
 	});
 
 	mainWindow.webContents.on('did-fail-load', (event, code, desc) => {
@@ -636,6 +580,7 @@ function makeWindow() {
 			if (response === 0) { // Retry
 				mainWindow.reload();
 			} else if (response === 1) { // Close
+				closeForReal = true;
 				mainWindow.close();
 			}
 		});
@@ -681,66 +626,13 @@ function makeWindow() {
 			return;
 		}
 
-		if (details.url.indexOf(".css") > -1 && details.url.indexOf("tfw") > -1 && details.url.indexOf("css") > -1 && details.url.indexOf("tweetdeck_bundle") > -1) {
-			callback({redirectURL:"moderndeck://sources/cssextensions/twittercard.css"});
-			return;
-		}
+		// if (details.url.indexOf(".css") > -1 && details.url.indexOf("tfw") > -1 && details.url.indexOf("css") > -1 && details.url.indexOf("tweetdeck_bundle") > -1) {
+		// 	callback({redirectURL:"moderndeck://resources/cssextensions/twittercard.css"});
+		// 	return;
+		// }
 
 		callback({cancel:false});
 	});
-
-	// mainWindow.webContents.session.webRequest.onBeforeSendHeaders(
-	// 	{urls:["https://*.twitter.com/*","https://*.twimg.com/*"]},
-	// 	(details, callback) => {
-	// 		let foo = details.requestHeaders;
-	// 		foo["Origin"] = [
-	// 			"https://tweetdeck.twitter.com"
-	// 		];
-	// 		foo["Referer"] = [
-	// 			"https://tweetdeck.twitter.com/"
-	// 		];
-	// 		foo["X-Twitter-Auth-Type"] = [
-	// 			"OAuth2Session"
-	// 		];
-	// 		foo["X-Twitter-Client-Version"] = [
-	// 			"Twitter-TweetDeck-blackbird-chrome/4.0.190822112648 web/"
-	// 		];
-	// 		foo["Sec-Fetch-Dest"] = [
-	// 			"empty"
-	// 		];
-	// 		callback({ requestHeaders: foo});
-	// 	}
-	// );
-	//
-	// mainWindow.webContents.session.webRequest.onBeforeSendHeaders(
-	// 	{urls:["https://api.twitter.com/1.1/help/*"]},
-	// 	(details, callback) => {
-	// 		let foo = details.requestHeaders;
-	// 		foo["X-Twitter-Auth-Type"] = [
-	// 			"OAuth2Session"
-	// 		];
-	// 		foo["X-Twitter-Client-Version"] = [
-	// 			"Twitter-TweetDeck-blackbird-chrome/4.0.190822112648 web/"
-	// 		];
-	// 		foo["Sec-Fetch-Dest"] = [
-	// 			"empty"
-	// 		];
-	// 		callback({ requestHeaders: foo});
-	// 	}
-	// );
-
-	// this is pretty self-explanatory
-	try {
-		if (useNitroLoad)
-			NitroLoad.goReplace();
-		if (useNitroLoad)
-			mainWindow.loadURL("moderndeck://./nitroload.html");
-		else
-			mainWindow.loadURL("moderndeck://./view.html");
-			//mainWindow.loadURL("https://tweetdeck.twitter.com");
-	} catch(e) {
-		console.error(e);
-	}
 
 	mainWindow.webContents.loadURL("https://tweetdeck.twitter.com");
 
@@ -756,8 +648,6 @@ function makeWindow() {
 	*/
 
 	mainWindow.webContents.on("will-navigate", (event, url) => {
-		if (useNitroLoad)
-			NitroLoad.goReplace();
 
 		const { shell } = electron;
 		console.log(url);
@@ -773,6 +663,9 @@ function makeWindow() {
 			}
 
 		}
+
+
+		updateAppTag();
 	});
 
 	/*
@@ -793,7 +686,7 @@ function makeWindow() {
 		if (url.indexOf("https://twitter.com/teams/authorize") >= 0) {
 			console.log("this is a login teams window! new-window");
 			event.newGuest = makeLoginWindow(url,true);
-		} else if (url.indexOf("https://twitter.com/login") >= 0 || url.indexOf("https://twitter.com/logout") >= 0) {
+		} else if (url.indexOf("twitter.com/login") >= 0 || url.indexOf("twitter.com/logout") >= 0) {
 			console.log("this is a login non-teams window! new-window");
 			event.newGuest = makeLoginWindow(url,false);
 		} else {
@@ -870,10 +763,6 @@ function makeWindow() {
 		mainWindow.webContents.copy();
 	});
 
-	ipcMain.on("nitroload-begin", (event) => {
-		NitroLoad.goReplace();
-	});
-
 	ipcMain.on("cut", (event) => {
 		if (!mainWindow || !mainWindow.webContents) { return }
 
@@ -930,6 +819,7 @@ function makeWindow() {
 
 	ipcMain.on("restartApp", (event,arg) => {
 		setTimeout(() => {
+			closeForReal = true;
 			app.relaunch();
 			app.exit();
 		},100);
@@ -955,6 +845,7 @@ function makeWindow() {
 			quotas: ['temporary','persistent','syncable']
 		},() => {
 			setTimeout(() => {
+				closeForReal = true;
 				app.relaunch();
 				app.exit();
 			},500);
@@ -970,16 +861,57 @@ function makeWindow() {
 		isRestarting = true;
 
 		if (mainWindow) {
+			closeForReal = true;
 			mainWindow.close();
 		}
 
 		store.set("mtd_nativetitlebar",arg);
 
 		setTimeout(() => {
+			closeForReal = true;
 			app.relaunch();
 			app.exit();
 		},100);
 
+	});
+
+	mainWindow.on("close", e => {
+		if (enableBackground && !closeForReal) {
+			e.preventDefault();
+			mainWindow.hide();
+			hidden = true;
+
+			// If tray disabled, show tray only if background is enabled
+			if (!enableTray && process.platform !== "darwin") {
+				makeTray();
+			}
+		}
+	})
+
+	// Enable tray icon
+
+	ipcMain.on("enableTray", (event,arg) => {
+		enableTray = true;
+		makeTray();
+	});
+
+	// Disable tray icon
+
+	ipcMain.on("disableTray", (event,arg) => {
+		enableTray = false;
+		destroyTray();
+	});
+
+	// Enable tray icon
+
+	ipcMain.on("enableBackground", (event,arg) => {
+		enableBackground = true;
+	});
+
+	// Disable tray icon
+
+	ipcMain.on("disableBackground", (event,arg) => {
+		enableBackground = false;
 	});
 
 	// Upon closing, set mainWindow to null
@@ -1034,15 +966,73 @@ function makeWindow() {
 
 
 	if (store.get("mtd_fullscreen")) {
+		mainWindow.webContents.executeJavaScript('document.querySelector("html").classList.remove("mtd-app");');
 		mainWindow.setFullScreen(true)
 	}
 
 	mainWindow.on("leave-full-screen", () => {
 		if (!mainWindow || !mainWindow.webContents) { return }
 
-		mainWindow.webContents.executeJavaScript(mtdAppTag);
+		store.set("mtd_fullscreen", false);
+
+		updateAppTag();
 	});
-	mainWindow.webContents.executeJavaScript(mtdAppTag);
+
+	updateAppTag();
+}
+
+function showHiddenWindow() {
+	if (!mainWindow){
+		return;
+	}
+
+	mainWindow.show();
+	hidden = false;
+
+	if (!enableTray) {
+		destroyTray();
+	}
+}
+
+function makeTray() {
+	if (tray !== null) {
+		return;
+	}
+
+	let pathName = __dirname + separator + "common" + separator + "app" + separator + (process.platform === "darwin" ? "macOSTrayTemplate.png" : "Tray.png");
+
+	const image = nativeImage.createFromPath(pathName);
+	image.setTemplateImage(true);
+	tray = new Tray(pathName);
+
+	const contextMenu = Menu.buildFromTemplate([
+		{ label: "Open ModernDeck", click(){ showHiddenWindow() } },
+		{ label: (process.platform === "darwin" ? "Preferences..." : "Settings..."), click(){ if (!mainWindow){return;}mainWindow.show();mainWindow.webContents.send("openSettings"); } },
+		{ label: "Check for Updates...", click(){ if (!mainWindow){return;}mainWindow.show();mainWindow.webContents.send("checkForUpdatesMenu"); } },
+
+		{ type: "separator" },
+
+		{ label: "New Tweet...", click(){ if (!mainWindow){return;}mainWindow.show();mainWindow.webContents.send("newTweet"); } },
+		{ label: "New Direct Message...", click(){ if (!mainWindow){return;}mainWindow.show();mainWindow.webContents.send("newDM"); } },
+
+		{ type: "separator" },
+
+		{ label: (process.platform === "darwin" ? "Quit" : "Exit"), click(){ if (!mainWindow){return;} closeForReal = true; mainWindow.close(); } },
+	]);
+
+	tray.setToolTip("ModernDeck");
+	tray.setContextMenu(contextMenu);
+
+	tray.on("click", () => {
+		showHiddenWindow();
+	});
+}
+
+function destroyTray() {
+	if (tray) {
+		tray.destroy();
+	}
+	tray = null;
 }
 
 // Register moderndeck:// protocol for accessing moderndeck resources, like CSS
@@ -1063,7 +1053,10 @@ electron.protocol.registerSchemesAsPrivileged([{
 
 app.on("ready", () => {
 	try {
-		makeWindow()
+		makeWindow();
+		if (enableTray) {
+			makeTray();
+		}
 	}
 	catch (e) {
 		console.error(e);
@@ -1084,7 +1077,21 @@ app.on("window-all-closed", () => {
 app.on("activate", () => {
 	if (mainWindow === null)
 		makeWindow();
+	if (hidden && mainWindow && mainWindow.show) {
+		mainWindow.show();
+		hidden = false;
+	}
 });
+
+app.on("second-instance", () => {
+	if (mainWindow) {
+		if (mainWindow.isMinimized()) {
+			mainWindow.restore();
+		}
+		mainWindow.show();
+		mainWindow.focus();
+	}
+})
 
 // Tell mtdInject that there was an update error
 
@@ -1095,7 +1102,7 @@ autoUpdater.on("error", (e,f,g) => {
 	mainWindow.webContents.send("error",e,f,g);
 });
 
-// Let MTDinject know that we are...
+// Let moderndeck.js know that we are...
 
 // ... actively checking for updates
 
@@ -1140,14 +1147,60 @@ autoUpdater.on("update-not-available", (e) => {
 
 // mtdInject can send manual update check requests
 ipcMain.on("checkForUpdates", (e) => {
-	autoUpdater.checkForUpdates();
+	if (autoUpdater) {
+		autoUpdater.checkForUpdates();
+	}
 });
 
 // Main -> Beta and vice versa
 ipcMain.on("changeChannel", (e) => {
-	autoUpdater.allowPrerelease = store.get("mtd_updatechannel") === "beta";
-	autoUpdater.channel = store.get("mtd_updatechannel");
+	if (autoUpdater) {
+		autoUpdater.allowPrerelease = store.get("mtd_updatechannel") === "beta";
+		autoUpdater.channel = store.get("mtd_updatechannel");
+	}
 });
+
+function updateAppTag() {
+	mainWindow.webContents.executeJavaScript('document.querySelector("html").classList.remove("mtd-app");\
+		document.querySelector("html").classList.remove("mtd-app-win");\
+		document.querySelector("html").classList.remove("mtd-app-mac");\
+		document.querySelector("html").classList.remove("mtd-app-linux");\
+	');
+
+	// Here, we add platform-specific tags to html, to help moderndeck CSS know what to do
+
+	mtdAppTag = 'document.querySelector("html").classList.add("mtd-js-app");\n';
+
+	if (isAppX) {
+		mtdAppTag += 'document.querySelector("html").classList.add("mtd-winstore");\n';
+	}
+
+	if (isMAS) {
+		mtdAppTag += 'document.querySelector("html").classList.add("mtd-macappstore");\n';
+	}
+
+	if (!store.get("mtd_nativetitlebar")) {
+
+		mtdAppTag += 'document.querySelector("html").classList.add("mtd-app");\n';
+
+		if (process.platform === "darwin") {
+			mtdAppTag += 'document.querySelector("html").classList.add("mtd-app-mac");\n'
+		}
+
+		if (process.platform === "linux") {
+			mtdAppTag += 'document.querySelector("html").classList.add("mtd-app-linux");\n'
+		}
+
+		if (process.platform === "win32") {
+			mtdAppTag += 'document.querySelector("html").classList.add("mtd-app-win");\n'
+		}
+
+	}
+
+	mainWindow.webContents.executeJavaScript(
+		(store.get("mtd_fullscreen") ? 'document.querySelector("html").classList.add("mtd-js-app");' : mtdAppTag)
+	)
+}
 
 // OS inverted colour scheme (high contrast) mode changed. We automatically respond to changes for accessibility
 
@@ -1160,10 +1213,10 @@ systemPreferences.on("inverted-color-scheme-changed", (e,v) => {
 	mainWindow.webContents.send("inverted-color-scheme-changed",v);
 });
 
-if (process.platform === 'darwin') {
+if (process.platform === "darwin") {
 	try {
 		systemPreferences.subscribeNotification(
-			'AppleInterfaceThemeChangedNotification',
+			"AppleInterfaceThemeChangedNotification",
 			() => {
 				if (!mainWindow || !mainWindow.webContents) { return }
 				mainWindow.webContents.send("color-scheme-changed", systemPreferences.isDarkMode() ? "dark" : "light");
@@ -1193,4 +1246,4 @@ setTimeout(() => {
 	} catch(e) {
 		console.error(e);
 	}
-},10000);
+}, 5000);

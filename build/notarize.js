@@ -1,18 +1,16 @@
-const {notarize} = require('electron-notarize');
+const { notarize } = require('electron-notarize');
 
-// todo: detect macOS target
+module.exports = async function (params) {
+	if (process.platform !== 'darwin' || typeof process.env.MDAppleID === "undefined" || typeof process.env.ELECTRON_CACHE !== "undefined") {
+        return;
+    }
 
-console.log("Notarizing app... this will take a while...");
-console.log("Seriously. it'll be a while. Go use the bathroom, maybe grab a snack or something. You might need it.");
+	console.log("   Notarizing macOS app... this WILL take a while...");
 
-// module.exports = async function (params) {
-
-// 	await notarize({
-// 		appBundleId: "com.dangeredwolf.ModernDeck",
-// 		appPath: "./dist/mac/ModernDeck.app",
-// 		appleId: process.env.MDAppleID,
-// 		appleIdPassword: process.env.MDAppleAppPassword
-// 	});
-// };
-
-module.exports = async function(){}
+	await notarize({
+		appBundleId: "com.dangeredwolf.ModernDeck",
+		appPath: "./dist/mac/ModernDeck.app",
+		appleId: process.env.MDAppleID,
+		appleIdPassword: process.env.MDAppleAppPassword
+	});
+};

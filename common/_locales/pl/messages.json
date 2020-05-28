@@ -1,0 +1,30 @@
+{
+	"description": {
+		"message": "Najmocniejszy klient Twittera na komputery.",
+		"description": "Short description for the extension"
+	},
+	"launch": {
+		"message": "Uruchom ModernDeck",
+		"description": "The ModernDeck Launcher button"
+	},
+	"name": {
+		"message": "ModernDeck - Klient Twittera dla komputerów",
+		"description": "The name of the extension that appears on the Chrome Web Store"
+	},
+	"webstoreDescription": {
+		"message": "ModernDeck to klient Twittera bazujący na TweetDeck, z pięknym interfejsem inspirowanym Material Design. Łączy on moc TweetDecka z prostotą używania której możesz się spodziewać z klienta Twittera.\n\nMożesz spersonalizować wygląd, jak i zachowanie ModernDecka, aby dostosować go pod siebie, wliczając:\n-Zmianę wielkości kolumn i tekstu\n-Zmiana czcionki\n-Motywy, wliczając alternatywne schematy kolorów\n-Zmiana wielkości i kształtu zdjęć profilowych\nI wiele więcej\n\nModernDeck jest dostępny w wielu językach, i jest również dostępny na inne platformy na\nhttps://moderndeck.org/download",
+		"description": "The description of the extension that appears on the Chrome Web Store"
+	},
+	"grantButton": {
+		"message": "Przyznaj uprawnienie",
+		"description": "A button to grant tabs permission in Firefox"
+	},
+	"needsPermission": {
+		"message": "Przepraszamy za przerwanie &mdash; Potrzebujemy uprawnień do otwierania kart",
+		"description": "A title about granting tabs permission in Firefox"
+	},
+	"needsPermissionParagraph": {
+		"message": "ModernDeck potrzebuje uprawnień do kart od Firefoxa aby tworzyć nowe karty.<br><br>\nJest to opcjonalne, i tylko potrzebne do funkcji „launchera”. Możesz nadal uzyskać dostęp do ModernDecka w <a href=\"https://tweetdeck.twitter.com\" target=\"_blank\">tweetdeck.twitter.com</a> nawet bez tego uprawnienia.\nJeśli nie akceptujesz tych uprawnień możesz usunąć ikonę „launchera” klikając prawym przyciskiem myszy i wybraniem opcji „Usuń z paska narzędzi”\nModernDeck nie czyta twoich otwartych kart",
+		"description": "A description about granting tabs permission in Firefox"
+	}
+}

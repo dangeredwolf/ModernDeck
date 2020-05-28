@@ -1,0 +1,54 @@
+{
+	"name": "__MSG_name__",
+	"short_name": "ModernDeck",
+
+	"author":"dangeredwolf",
+
+	"description": "__MSG_description__",
+
+	"version": "8.0",
+
+	"default_locale":"en",
+
+	"permissions": [],
+
+	"optional_permissions": [
+		"tabs"
+	],
+
+	"content_scripts": [
+		{
+			"matches": ["https://tweetdeck.twitter.com/*"],
+			"js": ["extension/content.js"],
+			"run_at": "document_end"
+		}
+	],
+
+	"icons": {
+		"16": "AppIcon16.png",
+		"24": "AppIcon24.png",
+		"32": "AppIcon32.png",
+		"48": "AppIcon48.png",
+		"64": "AppIcon64.png",
+		"128": "AppIcon128.png",
+		"150": "AppIcon150.png"
+	 },
+
+	"web_accessible_resources": [
+		"resources",
+		"resources/*",
+		"resources/moderndeck.js.map",
+		"resources/cssextensions/*",
+		"resources/fonts/*",
+		"resources/libraries/*",
+		"resources/img/*"
+	],
+
+	"browser_action": {
+		"default_icon": "AppIcon64.png",
+		"default_popup": "extension/popover.html",
+		"default_title": "__MSG_launch__"
+	},
+
+	"manifest_version": 2
+}

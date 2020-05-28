@@ -1,7 +1,10 @@
 language: node_js
 os: osx
+osx_image: xcode11.3
 node_js:
 - node
+
+
 deploy:
   provider: releases
   cache:
@@ -10,7 +13,6 @@ deploy:
       - $HOME/.cache
       - $HOME/.cache/electron
       - $HOME/.cache/electron-builder
-
   file_glob: true
   draft: true
   api_key:
