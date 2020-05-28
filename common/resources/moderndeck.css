@@ -2431,12 +2431,12 @@ html:not(.mtd-classic-nav) .attach-compose-buttons .tweet-button {
 }
 
 .message-banner .dismiss {
-	position:absolute;
 	left:5px;
 	margin-top:10px!important;
 	top:0.45em;
-	font-size:16px;
-	margin-left:10px
+	font-size:22px;
+	margin-right:15px;
+	display:block
 }
 
 .message-content {
