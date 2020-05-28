@@ -17,7 +17,7 @@ import { AutoUpdateController } from "./AutoUpdateController.js";
 const appendTextVersion = false;
 
 let ver = "Version";
-let verTextId = 2;
+let verTextId = 1;
 let verText = "";
 
 
