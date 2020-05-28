@@ -516,22 +516,32 @@ html.scroll-v {
 	overflow-x:auto
 }
 
-.Dropdown::-webkit-scrollbar,.mdl:not(.s-tall-fixed)::-webkit-scrollbar,.keyboard-shortcut-list-modal::-webkit-scrollbar,.mdl.s-profile::-webkit-scrollbar,.scroll-styled-v::-webkit-scrollbar,.scroll-v::-webkit-scrollbar,.lst-launcher::-webkit-scrollbar,.mtd-nav-drawer::-webkit-scrollbar,.emoji-container>div::-webkit-scrollbar,.emoji-container::-webkit-scrollbar {
+html:not(.os-osx) .Dropdown::-webkit-scrollbar,
+html:not(.os-osx) .mdl:not(.s-tall-fixed)::-webkit-scrollbar,
+html:not(.os-osx) .keyboard-shortcut-list-modal::-webkit-scrollbar,
+html:not(.os-osx) .mdl.s-profile::-webkit-scrollbar,
+html:not(.os-osx) .scroll-styled-v::-webkit-scrollbar,
+html:not(.os-osx) .scroll-v::-webkit-scrollbar,
+html:not(.os-osx) .lst-launcher::-webkit-scrollbar,
+html:not(.os-osx) .mtd-nav-drawer::-webkit-scrollbar,
+html:not(.os-osx) .emoji-container>div::-webkit-scrollbar,
+html:not(.os-osx) .emoji-container::-webkit-scrollbar {
 	width:var(--scrollbarWidth);
 	pointer-events:all
 }
 
-.scroll-styled-h::-webkit-scrollbar,.scroll-h::-webkit-scrollbar {
+html:not(.os-osx) .scroll-styled-h::-webkit-scrollbar,
+html:not(.os-osx) .scroll-h::-webkit-scrollbar {
 	height:var(--scrollbarWidth);
 	pointer-events:all
 }
 
-.antiscroll-inner::-webkit-scrollbar {
+html:not(.os-osx) .antiscroll-inner::-webkit-scrollbar {
 	width:0;
 	height:0
 }
 
-.antiscroll-inner::-moz-scrollbar {
+html:not(.os-osx) .antiscroll-inner::-moz-scrollbar {
 	width:0;
 	height:0
 }
@@ -546,7 +556,7 @@ html.scroll-v {
 	overflow-x:hidden!important
 }
 
-.antiscroll-scrollbar {
+html:not(.os-osx) .antiscroll-scrollbar {
 	z-index:11;
 	background:rgba(255,255,255,.2);
 	border-radius:7px;
@@ -555,37 +565,37 @@ html.scroll-v {
 	transition:0.3s opacity
 }
 
-.mtd-head-left .antiscroll-scrollbar {
+.mtd-head-left:not(.os-osx) .antiscroll-scrollbar {
 	opacity:1
 }
 
-.mtd-head-left .antiscroll-scrollbar-horizontal {
+.mtd-head-left:not(.os-osx) .antiscroll-scrollbar-horizontal {
 	display:none
 }
 
-.antiscroll-scrollbar-horizontal {
+html:not(.os-osx) .antiscroll-scrollbar-horizontal {
 	height:7px;
 	margin-left:2px;
 	bottom:2px;
 	left:0
 }
 
-.antiscroll-scrollbar-vertical {
+html:not(.os-osx) .antiscroll-scrollbar-vertical {
 	width:5px;
 	margin-top:2px;
 	top:0
 }
 
-.mtd-head-left .antiscroll-scrollbar-position-left {
+.mtd-head-left:not(.os-osx) .antiscroll-scrollbar-position-left {
 	left:initial;
 	right:0
 }
 
-.antiscroll-scrollbar-position-left {
+html:not(.os-osx) .antiscroll-scrollbar-position-left {
 	left:1px
 }
 
-.antiscroll-scrollbar-position-right {
+html:not(.os-osx) .antiscroll-scrollbar-position-right {
 	right:1px
 }
 
@@ -941,6 +951,10 @@ button:hover,button:focus,.Button--primary {
 	box-sizing:border-box;
 	padding-bottom:4px;
 	height:100%
+}
+
+.os-osx .app-columns {
+	padding-bottom:0
 }
 
 .column {
@@ -7165,6 +7179,11 @@ div[data-testid="trend"]>.txt-bold {
 .follow-btn .btn-loader>div {
 	margin-left:1px;
 	margin-top:-5px
+}
+
+.prf-actions .follow-btn .btn-loader>div {
+	margin-left:-6px;
+	margin-top:5px
 }
 
 .follow-btn .action-text {

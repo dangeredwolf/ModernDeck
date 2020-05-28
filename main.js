@@ -882,7 +882,7 @@ function makeWindow() {
 			hidden = true;
 
 			// If tray disabled, show tray only if background is enabled
-			if (!enableTray) {
+			if (!enableTray && process.platform !== "darwin") {
 				makeTray();
 			}
 		}

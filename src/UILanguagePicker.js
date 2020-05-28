@@ -49,13 +49,11 @@ export class UILanguagePicker extends UIModal {
 			make("option").val("ru").html("русский"),
 			make("option").val("zh_CN").html("简体中文")
 		).change(() => {
-			if (languageData.OK[this.selectLanguage.val()]) {
-				this.alertTitle.html("<i class='material-icon'>language</i> " + languageData.Language[this.selectLanguage.val()]);
-			}
+			this.alertTitle.html("<i class='material-icon'>language</i> " + (languageData.Language[this.selectLanguage.val()] || languageData.Language[this.selectLanguage.val().substr(0,2)] || "broken"));
 
 			this.hasMadeChange = true;
 
-			this.alertButton.html(languageData.OK[this.selectLanguage.val()] || "OK");
+			this.alertButton.html(languageData.OK[this.selectLanguage.val()] || languageData.OK[this.selectLanguage.val().substr(0,2)] || "OK");
 			this.alertButton.removeClass("hidden");
 
 			this.inaccuracy.html(((DataI18n[this.selectLanguage.val().substr(0,2)] && DataI18n[this.selectLanguage.val().substr(0,2)]["Translations may be incomplete or inaccurate."] ? DataI18n[this.selectLanguage.val().substr(0,2)]["Translations may be incomplete or inaccurate."] : (inaccuraciesCodeTable[this.selectLanguage.val().substr(0,2)] || inaccuraciesCodeTable["en"]) ))+ " <a href='https://translate.moderndeck.org'>translate.moderndeck.org</a>")

@@ -254,26 +254,6 @@ export let settingsData = {
 				settingsKey:"mtd_headposition",
 				default:"left"
 			},
-			columnvisibility:{
-				title:"{{Improve Timeline performance by not rendering off-screen columns}}",
-				type:"checkbox",
-				activate:{
-					func: (opt) => {
-						allColumnsVisible();
-						updateColumnVisibility();
-
-						// setPref("mtd_column_visibility",opt);
-					}
-				},
-				deactivate:{
-					func: (opt) => {
-						allColumnsVisible();
-						// setPref("mtd_column_visibility",opt);
-					}
-				},
-				settingsKey:"mtd_column_visibility",
-				default:navigator.userAgent.match("Firefox") === null // Firefox is so much faster that column visibility is unlikely to benefit
-			},
 			fixedarrows:{
 				title:"{{Use fixed-location media arrows for tweets with multiple photos}}",
 				type:"checkbox",
@@ -480,6 +460,26 @@ export let settingsData = {
 				queryFunction: () => {
 					return TD.settings.getUseStream();
 				}
+			},
+			columnvisibility:{
+				title:"{{Improve Timeline performance by not rendering off-screen columns}}",
+				type:"checkbox",
+				activate:{
+					func: (opt) => {
+						allColumnsVisible();
+						updateColumnVisibility();
+
+						// setPref("mtd_column_visibility",opt);
+					}
+				},
+				deactivate:{
+					func: (opt) => {
+						allColumnsVisible();
+						// setPref("mtd_column_visibility",opt);
+					}
+				},
+				settingsKey:"mtd_column_visibility",
+				default:navigator.userAgent.match("Firefox") === null // Firefox is so much faster that column visibility is unlikely to benefit
 			},
 			autoplayGifs:{
 				title:"{{Automatically play GIFs}}",
@@ -756,30 +756,42 @@ export let settingsData = {
 				type:"checkbox",
 				activate:{
 					func: () => {
+						if (typeof require === "undefined") {
+							return;
+						}
 						const {ipcRenderer} = require("electron");
 						ipcRenderer.send("enableTray");
 					}
 				},
 				deactivate:{
 					func: () => {
+						if (typeof require === "undefined") {
+							return;
+						}
 						const {ipcRenderer} = require("electron");
 						ipcRenderer.send("disableTray");
 					}
 				},
 				settingsKey:"mtd_systemtray",
-				default:true
+				default:(process?.platform !== "darwin")
 			},
 			backgroundNotifications:{
 				title:"{{Run ModernDeck in the background to deliver notifications}}",
 				type:"checkbox",
 				activate:{
 					func: () => {
+						if (typeof require === "undefined") {
+							return;
+						}
 						const {ipcRenderer} = require("electron");
 						ipcRenderer.send("enableBackground");
 					}
 				},
 				deactivate:{
 					func: () => {
+						if (typeof require === "undefined") {
+							return;
+						}
 						const {ipcRenderer} = require("electron");
 						ipcRenderer.send("disableBackground");
 					}
