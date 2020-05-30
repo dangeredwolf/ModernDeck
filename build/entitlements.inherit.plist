@@ -8,7 +8,5 @@
 	<true/>
 	<key>com.apple.security.inherit</key>
 	<true/>
-	<key>com.apple.security.app-sandbox</key>
-	<false/>
 </dict>
 </plist>

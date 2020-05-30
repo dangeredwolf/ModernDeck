@@ -5976,7 +5976,7 @@ textarea:not(.compose-text):not(.js-compose-text):not(.js-list-description):not(
 }
 
 .js-media.item-box-full-bleed {
-	margin-top:20px!important
+	margin-top:10px!important
 }
 
 .js-quoted-tweet-text.with-linebreaks {
@@ -9360,6 +9360,7 @@ button.js-add-filter {
 	right:130px;
 	left:300px;
 	-webkit-app-region:drag;
+	z-index:99;
 	height:40px
 }
 

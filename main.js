@@ -343,7 +343,9 @@ function makeWindow() {
 	const lock = app.requestSingleInstanceLock();
 
 	if (!lock) {
+		closeForReal = true;
 		app.quit();
+		return;
 	}
 
 	let display = {};
@@ -392,7 +394,7 @@ function makeWindow() {
 		autoHideMenuBar:true,
 		nodeIntegrationInSubFrames:false,
 		title:"ModernDeck",
-		icon:__dirname+useDir+"/resources/favicon.ico",
+		// icon:__dirname+useDir+"/resources/favicon.ico",
 		frame:useFrame,
 		titleBarStyle:titleBarStyle,
 		minWidth:375,
@@ -1238,6 +1240,10 @@ setInterval(() => {
 setTimeout(() => {
 	try {
 		autoUpdater.checkForUpdates();
+
+		if (!mainWindow) {
+			return;
+		}
 
 		mainWindow.webContents.send(
 			"inverted-color-scheme-changed",

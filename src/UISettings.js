@@ -430,7 +430,7 @@ export function openSettings(openMenu) {
 			} else if (html.hasClass("mtd-macappstore")) {
 				subPanel.append(
 					make("div").append(
-						make("h2").addClass("mtd-update-h3 mtd-update-managed").html(I18n("Updates for this version of ModernDeck are managed by the App Store.")),
+						make("h2").addClass("mtd-update-h3 mtd-update-managed").html(I18n("Thank you for purchasing ModernDeck from the App Store!")),
 						make("button").addClass("btn mtd-settings-button").html(I18n("Check for Updates")).click(() => {
 							open("macappstore://showUpdatesPage");
 						})
