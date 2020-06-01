@@ -830,6 +830,7 @@ function makeWindow() {
 	// mtdInject initiated app restart, after user clicks to restart to install updates
 
 	ipcMain.on("restartAndInstallUpdates", (event,arg) => {
+		closeForReal = true;
 		autoUpdater.quitAndInstall(false,true);
 	});
 
