@@ -1,4 +1,4 @@
-# Auto detect text files and perform CRLF normalization
+# Auto detect text files and perform LF normalization
 * text=auto
 *.json text eol=lf
 *.js text eol=lf
