@@ -277,9 +277,8 @@ function mtdInit() {
 	TD_mustaches["login/login_form.mustache"] = newLoginPage;
 
 	/*
-		Especially on Edge, but also on Chrome shortly after launch,
-		sometimes the stylesheet isn't blocked by the network, which breaks the page heavily.
-		This ensures that the stylesheet is manually removed so that it doesn't cause problems
+		In ModernDeck 8.0+ for extensions, we need to remove the TweetDeck
+		stylesheet as it is no longer blocked with webRequest anymore
 	*/
 
 	let beGone = document.querySelector("link[rel='apple-touch-icon']+link[rel='stylesheet']");
@@ -345,7 +344,7 @@ function mtdInit() {
 
 				$(document).trigger("uiMTDColumnCollapsed");
 
-				let arr = getPref("mtd_collapsed_columns",[]);
+				let arr = getPref("mtd_collapsed_columns", []);
 				if ($(ohGodThisIsHorrible).hasClass("mtd-collapsed")) {
 					arr.push(getColumnNumber($(ohGodThisIsHorrible)));
 				} else {
@@ -363,7 +362,7 @@ function mtdInit() {
 				}
 				$(ohGodThisIsEvenWorseWhatTheHeck).removeClass("mtd-collapsed");
 				$(document).trigger("uiMTDColumnCollapsed");
-				let arr = getPref("mtd_collapsed_columns",[]);
+				let arr = getPref("mtd_collapsed_columns", []);
 	 			let colNum = getColumnNumber($(ohGodThisIsEvenWorseWhatTheHeck));
 	 			arr = arr.filter(num => num !== colNum)
 				setPref("mtd_collapsed_columns",arr);
