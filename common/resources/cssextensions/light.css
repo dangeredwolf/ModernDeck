@@ -142,7 +142,22 @@ button:active
 	background:var(--buttonPressColor)
 }
 
-.js-account-action, .accordion:not(.js-account-settings-detail) .is-active, .txt-mute, li:not(.selected) .list-twitter-list .txt-ellipsis, .list-twitter-list .subtitle, .txt-r-dark-gray, .txt-mute a:not(:hover):not(:focus):not(.tweet-action), .txt-normal, .caloff, .l-column.mdl-column.mdl-column-sml .list-link, .typeahead .username, .lst-group li:not(.selected) .list-account .username, html .btd-grayscale_notification_icons i.icon.activity-indicator, .txt-r-deep-gray, .color-twitter-dark-gray, .color-twitter-darker-gray, .js-send-button.is-disabled
+.js-account-action,
+.txt-mute,
+li:not(.selected) .list-twitter-list .txt-ellipsis,
+.list-twitter-list .subtitle,
+.txt-r-dark-gray,
+.txt-mute a:not(:hover):not(:focus):not(.tweet-action),
+.txt-normal,
+.caloff,
+.l-column.mdl-column.mdl-column-sml .list-link,
+.typeahead .username,
+.lst-group li:not(.selected) .list-account .username,
+html .btd-grayscale_notification_icons i.icon.activity-indicator,
+.txt-r-deep-gray,
+.color-twitter-dark-gray,
+.color-twitter-darker-gray,
+.js-send-button.is-disabled
 {
 	color:var(--tweetActionColor)
 }

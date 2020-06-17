@@ -9,6 +9,7 @@ window.SystemVersion = version.replace(".0.0",".0"); // remove trailing .0, if p
 
 import { AsciiArtController } from "./AsciiArtController.js";
 import { AutoUpdateController } from "./AutoUpdateController.js";
+import { PWAManifest } from "./PWAManifest.js";
 import { I18n, startI18nEngine } from "./I18n.js";
 import { getPref, setPref } from "./StoragePreferences.js";
 import { make, exists, isApp, mutationObserver, getIpc, handleErrors, formatNumberI18n } from "./Utils.js";
@@ -571,6 +572,8 @@ function coreInit() {
 		return;
 	}
 
+	handleErrors(PWAManifest.injectManifest, "Error occurred while injecting PWA manifest");
+
 	handleErrors(AsciiArtController.draw, "Error occurred while trying to draw ModernDeck version easter egg")
 
 	handleErrors(AutoUpdateController.initialize, "Error occurred while initialising AutoUpdateController")
@@ -665,7 +668,8 @@ function coreInit() {
 
 	checkIfSigninFormIsPresent();
 	loginInterval = setInterval(checkIfSigninFormIsPresent, 500);
-	console.info(`MTDinject ${SystemVersion} loaded`);
+	console.info(`ModernDeck ${SystemVersion}`);
+	console.info("ModernDeckInit.coreInit completed. Good job.");
 
 }
 

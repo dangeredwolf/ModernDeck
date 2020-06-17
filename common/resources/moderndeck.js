@@ -5,7 +5,7 @@
 **/
 var version = "8.0.3";
 
-var buildId = 1860;
+var buildId = 1863;
 
 /*
 	AsciiArtController.js
@@ -3682,6 +3682,16 @@ class AutoUpdateController {
 
 }
 
+class PWAManifest {
+  static injectManifest() {
+    let link = document.createElement("link");
+    link.setAttribute("rel", "manifest");
+    link.setAttribute("href", window.mtdBaseURL + "resources/pwa.json");
+    document.head.appendChild(link);
+  }
+
+}
+
 /*
 	UIDiag.js
 	Copyright (c) 2014-2020 dangered wolf, et al
@@ -6213,6 +6223,7 @@ function coreInit() {
     return;
   }
 
+  handleErrors(PWAManifest.injectManifest, "Error occurred while injecting PWA manifest");
   handleErrors(AsciiArtController.draw, "Error occurred while trying to draw ModernDeck version easter egg");
   handleErrors(AutoUpdateController.initialize, "Error occurred while initialising AutoUpdateController");
 
