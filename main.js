@@ -1075,6 +1075,14 @@ app.on("window-all-closed", () => {
 	app.quit();
 });
 
+app.on("quit", () => {
+	console.log("aaaadfsfds");
+})
+
+app.on("before-quit", () => {
+	app.quit();
+})
+
 // Make window if it doesn't exist, if user clicks app icon
 
 app.on("activate", () => {
