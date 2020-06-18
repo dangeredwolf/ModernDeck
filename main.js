@@ -101,7 +101,7 @@ const template = [
 			{ role: "hideothers" },
 			{ role: "unhide" },
 			{ type: "separator" },
-			{ label: "Quit ModernDeck", click(){ console.log("it's time to quit NOW"); closeForReal = true; app.quit(); } }
+			{ role: "quit" }
 		]
 	},
 	{
