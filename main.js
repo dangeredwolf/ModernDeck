@@ -1075,13 +1075,8 @@ app.on("window-all-closed", () => {
 	app.quit();
 });
 
-app.on("quit", () => {
-	console.log("aaaadfsfds");
-})
-
 app.on("before-quit", () => {
-	if (process.platform === "darwin")
-		app.quit();
+	closeForReal = true;
 })
 
 // Make window if it doesn't exist, if user clicks app icon
