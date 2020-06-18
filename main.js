@@ -1080,7 +1080,8 @@ app.on("quit", () => {
 })
 
 app.on("before-quit", () => {
-	app.quit();
+	if (process.platform === "darwin")
+		app.quit();
 })
 
 // Make window if it doesn't exist, if user clicks app icon
