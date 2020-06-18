@@ -27,7 +27,7 @@
 	--genericBlack15Shadow:rgba(52,66,72,.15) !important;
 	--genericDarkBlackShadow:rgba(52,66,72,.5) !important;
 	--genericLightBlackShadow:rgba(52,66,72,.1) !important;
-	--settingsTabColor:#000
+	--settingsTabColor:#000 !important
 }
 
 div.drawer[data-drawer="compose"],.hide-detail-view-inline .tweet-button:not(.js-hide-drawer) {

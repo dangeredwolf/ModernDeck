@@ -67,9 +67,13 @@ input[type="radio"]:checked:before,
 	color:var(--secondaryColor)
 }
 
-a:not(.list-account):not(.js-column-back):not(.compose-account):not(.js-toggle-item):not(.column-header-link):not(.js-account-action):not(.js-tweet-social-proof-back):active, a:not(.list-account):not(.js-column-back):not(.compose-account):not(.js-toggle-item):not(.column-header-link):not(.js-account-action):not(.js-tweet-social-proof-back):focus
+a:not(.list-account):not(.js-column-back):not(.compose-account):not(.js-toggle-item):not(.column-header-link):not(.js-account-action):not(.js-tweet-social-proof-back):active, .mdl-header-title a, a:not(.list-account):not(.js-column-back):not(.compose-account):not(.js-toggle-item):not(.column-header-link):not(.js-account-action):not(.js-tweet-social-proof-back):focus
 {
 	color:var(--secondaryColor)
+}
+
+.mdl-header-title {
+	color:var(--bodyTextColor)
 }
 
 .mtd-settings-option-slider input[type="range"]::-webkit-slider-thumb {
@@ -668,7 +672,6 @@ button.try-query
 	background:rgba(100,100,100,.4)!important
 }
 
-.mdl-header,
 .list-item.is-selected
 {
 	background:var(--mdlPrimaryColor)
