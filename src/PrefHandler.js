@@ -6,6 +6,7 @@
 
 import { settingsData } from "./DataSettings.js";
 import { exists } from "./Utils.js";
+import { ModernDeck8ThemeMigration } from "./ModernDeck8ThemeMigration.js";
 import { disableStylesheetExtension, enableStylesheetExtension } from "./StylesheetExtensions.js";
 import { getPref, setPref, hasPref, debugStorageSys } from "./StoragePreferences.js";
 
@@ -17,6 +18,8 @@ import { getPref, setPref, hasPref, debugStorageSys } from "./StoragePreferences
 
 export function loadPreferences() {
 	window.settingsData = settingsData;
+
+	ModernDeck8ThemeMigration.migrate();
 
 	for (let key in settingsData) {
 
@@ -30,8 +33,15 @@ export function loadPreferences() {
 					if (!hasPref(prefKey)) {
 						if (debugStorageSys)
 							console.log(`loadPreferences is setting default of ${prefKey} to ${pref.default}`);
-						setPref(prefKey, pref.default);
-						setting = pref.default;
+						if (typeof pref.default === "function") {
+							let def = pref.default();
+							setPref(prefKey, def);
+							setting = def;
+						} else {
+							setPref(prefKey, pref.default);
+							setting = pref.default;
+						}
+
 					} else {
 						setting = getPref(prefKey);
 					}

@@ -5,7 +5,7 @@
 */
 
 import { version } from "../package.json";
-window.SystemVersion = version.replace(".0.0",".0"); // remove trailing .0, if present
+window.SystemVersion = version.replace(/\.0$/,""); // remove trailing .0, if present
 
 import { AsciiArtController } from "./AsciiArtController.js";
 import { AutoUpdateController } from "./AutoUpdateController.js";

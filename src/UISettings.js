@@ -16,8 +16,7 @@ import { AutoUpdateController } from "./AutoUpdateController.js";
 
 const appendTextVersion = false;
 
-let ver = "Version";
-let verTextId = 1;
+let verTextId = 3;
 let verText = "";
 
 
@@ -46,6 +45,308 @@ export function openLegacySettings() {
 	function openSettings(openMenu)
 	opens and returns settings panel with string openMenu, the tabId of the corresponding settings page
 */
+
+export function renderTab(key, subPanel) {
+
+	if (typeof subPanel === "undefined") {
+		subPanel = $(".mtd-settings-subpanel#"+key);
+	}
+
+	subPanel.empty();
+
+	for (let prefKey in settingsData[key].options) {
+
+		let pref = settingsData[key].options[prefKey];
+		let option = make("div").addClass("mtd-settings-option").addClass("mtd-settings-option-"+pref.type);
+
+		if (exists(pref.addClass)) {
+			option.addClass(pref.addClass);
+		}
+
+		if (typeof pref.enabled === "function") {
+			if (!pref.enabled()) {
+				continue
+			}
+		} else if (pref.enabled === false) {
+			continue;
+		}
+
+
+
+		if (exists(pref.headerBefore)) {
+			subPanel.append(
+				make("h3").addClass("mtd-settings-panel-subheader").html(internationaliseSettingString(pref.headerBefore))
+			);
+		}
+
+		if (exists(pref.settingsKey) && exists(pref.default) && !hasPref(pref.settingsKey)) {
+			setPref(pref.settingsKey, pref.default);
+		}
+
+		let input,select,label,minimum,maximum,button,link;
+
+
+		switch(pref.type) {
+
+			case "checkbox":
+				input = make("input").attr("type","checkbox").attr("id",prefKey).change(function() {
+					if (pref.savePreference !== false) {
+						setPref(pref.settingsKey,$(this).is(":checked"));
+					}
+
+					parseActions($(this).is(":checked") ? pref.activate : pref.deactivate, $(this).val());
+
+				});
+
+				if (exists(pref.settingsKey) && getPref(pref.settingsKey) === true) {
+					input.attr("checked","checked");
+				}
+
+				if (!exists(pref.settingsKey) && exists(pref.queryFunction)) {
+					if (pref.queryFunction()) {
+						input.attr("checked","checked");
+					}
+				}
+
+				label = make("label").addClass("checkbox").html(internationaliseSettingString(pref.title)).append(input);
+
+				option.append(label);
+
+				if (exists(pref.initFunc)) {
+					pref.initFunc(select);
+				}
+
+				break;
+
+			case "dropdown":
+				select = make("select").attr("type","select").attr("id",prefKey).change(function() {
+					parseActions(pref.activate, $(this).val());
+					if (pref.savePreference !== false) {
+						setPref(pref.settingsKey,$(this).val());
+					}
+				});
+
+				for (let prefKey in pref.options) {
+					if (!!(pref.options[prefKey].value)) {
+						let newPrefSel = pref.options[prefKey];
+						let newoption = make("option").attr("value",newPrefSel.value).html(internationaliseSettingString(newPrefSel.text));
+
+						select.append(newoption);
+					} else {
+
+						let group = make("optgroup").attr("label",internationaliseSettingString(pref.options[prefKey].name))
+
+						for (let subkey in pref.options[prefKey].children) {
+							let newSubPrefSel = pref.options[prefKey].children[subkey];
+							let newsuboption = make("option").attr("value",newSubPrefSel.value).html(internationaliseSettingString(newSubPrefSel.text));
+
+							group.append(newsuboption);
+						}
+
+						select.append(group);
+					}
+				}
+
+				if (exists(pref.settingsKey)) {
+					select.val(getPref(pref.settingsKey));
+				} else if (!exists(pref.settingsKey) && exists(pref.queryFunction)) {
+					select.val(pref.queryFunction())
+				}
+
+				label = make("label").addClass("control-label").html(internationaliseSettingString(pref.title));
+
+				option.append(label,select);
+
+				if (exists(pref.initFunc)) {
+					pref.initFunc(select);
+				}
+
+				break;
+
+			case "textbox":
+				input = make("input").attr("type","text").attr("id",prefKey);
+
+				if (pref.instantApply === true) {
+					input.on("input",function() {
+						parseActions(pref.activate, $(this).val());
+						if (pref.savePreference !== false) {
+							setPref(pref.settingsKey, $(this).val());
+						}
+					});
+				} else {
+					input.change(function() {
+						parseActions(pref.activate, $(this).val());
+						if (pref.savePreference !== false) {
+							setPref(pref.settingsKey, $(this).val());
+						}
+					});
+				}
+
+				if (exists(pref.settingsKey)) {
+					input.val(getPref(pref.settingsKey));
+				} else if (!exists(pref.settingsKey) && exists(pref.queryFunction)) {
+					input.val(pref.queryFunction())
+				}
+
+				label = make("label").addClass("control-label").html(internationaliseSettingString(pref.title));
+
+				if (exists(pref.initFunc)) {
+					pref.initFunc(input);
+				}
+
+				option.append(label,input);
+
+				break;
+
+			case "textarea":
+				input = make("textarea").addClass("mtd-textarea").attr("id",prefKey).attr("rows","10").attr("cols","80").attr("placeholder",pref.placeholder || "").attr("spellcheck",false);
+
+				if (pref.instantApply === true) {
+					input.on("input",function() {
+						parseActions(pref.activate, $(this).val());
+						if (pref.savePreference !== false) {
+							setPref(pref.settingsKey, $(this).val());
+						}
+					});
+				} else {
+					input.change(function() {
+						parseActions(pref.activate, $(this).val());
+						if (pref.savePreference !== false) {
+							setPref(pref.settingsKey, $(this).val());
+						}
+					});
+				}
+
+
+				// https://sumtips.com/snippets/javascript/tab-in-textarea/
+				input.keydown((e) =>
+				{
+
+					let kC = e.keyCode ? e.keyCode : e.charCode ? e.charCode : e.which;
+					if (kC == 9 && !e.shiftKey && !e.ctrlKey && !e.metaKey && !e.altKey)
+						// If it's a tab, but not Ctrl+Tab, Super+Tab, Shift+Tab, or Alt+Tab
+					{
+						let oS = input[0].scrollTop;
+						if (input[0].setSelectionRange)
+						{
+							let sS = input[0].selectionStart;
+							let sE = input[0].selectionEnd;
+							input[0].value = input[0].value.substring(0, sS) + "\t" + input[0].value.substr(sE);
+							input[0].setSelectionRange(sS + 1, sS + 1);
+							input[0].focus();
+						}
+						input[0].scrollTop = oS;
+
+						e.preventDefault();
+
+						return false;
+					}
+					return true;
+				});
+
+				if (exists(pref.settingsKey)) {
+					input.val(getPref(pref.settingsKey));
+				} else if (!exists(pref.settingsKey) && exists(pref.queryFunction)) {
+					input.val(pref.queryFunction())
+				}
+
+				label = make("label").addClass("control-label").html(internationaliseSettingString(pref.title));
+
+				if (exists(pref.initFunc)) {
+					pref.initFunc(input);
+				}
+
+				option.append(label,input);
+
+				break;
+
+			case "slider":
+				label = make("label").addClass("control-label");
+
+				input = make("input").attr("type","range")
+				.attr("min",pref.minimum)
+				.attr("max",pref.maximum)
+				.change(function() {
+					parseActions(pref.activate, $(this).val());
+					if (pref.savePreference !== false) {
+						setPref(pref.settingsKey, $(this).val());
+					}
+				}).on("input",function() {
+					label.html(`${internationaliseSettingString(pref.title)} <b> ${$(this).val()} ${(internationaliseSettingString(pref.displayUnit || ""))} </b>`);
+				});
+
+				if (exists(pref.settingsKey)) {
+					input.val(parseInt(getPref(pref.settingsKey)));
+				} else if (!exists(pref.settingsKey) && exists(pref.queryFunction)) {
+					input.val(pref.queryFunction());
+				} else if (exists(pref.default)) {
+					input.val(pref.default);
+				}
+
+				label.html(internationaliseSettingString(pref.title) + " <b> "+ input.val() + " " + (internationaliseSettingString(pref.displayUnit) || "") + "</b>");
+
+				maximum = make("label").addClass("control-label mtd-slider-maximum").html(pref.maximum + (internationaliseSettingString(pref.displayUnit) || ""));
+				minimum = make("label").addClass("control-label mtd-slider-minimum").html(pref.minimum + (internationaliseSettingString(pref.displayUnit) || ""));
+
+				if (exists(pref.initFunc)) {
+					pref.initFunc(input);
+				}
+
+				let sliderCont = make("div").addClass("mtd-slider-container").append(maximum,input,minimum)
+
+				option.append(label,sliderCont);
+
+				break;
+
+			case "button":
+				label = make("label").addClass("control-label").html(internationaliseSettingString(pref.label) || "");
+
+				button = make("button").html(internationaliseSettingString(pref.title)).addClass("btn btn-positive mtd-settings-button")
+				.click(() => {
+					parseActions(pref.activate,true);
+				});
+
+				if (exists(pref.initFunc)) {
+					pref.initFunc(button);
+				}
+
+				option.append(label,button);
+
+				break;
+
+			case "buttons":
+				label = make("label").addClass("control-label").html(internationaliseSettingString(pref.label) || "");
+
+				option.append(label);
+
+				pref.buttons.forEach(btn => {
+					option.append(make("button").html(internationaliseSettingString(btn.text)).addClass("btn btn-positive mtd-settings-button").click(() => btn.func()))
+				})
+
+				if (exists(pref.initFunc)) {
+					pref.initFunc(button);
+				}
+
+				break;
+
+			case "link":
+				link = make("a").html(internationaliseSettingString(pref.label)).addClass("mtd-settings-link")
+				.click(() => {
+					parseActions(pref.activate,true);
+				});
+
+				if (exists(pref.initFunc)) {
+					pref.initFunc(link);
+				}
+
+				option.append(link);
+
+				break;
+		}
+
+		subPanel.append(option);
+	}
+}
 
 export function openSettings(openMenu) {
 
@@ -94,292 +395,8 @@ export function openSettings(openMenu) {
 
 		if (!settingsData[key].enum && settingsData[key].enabled !== false && settingsData[key].visible !== false) {
 
-			for (let prefKey in settingsData[key].options) {
+			renderTab(key, subPanel);
 
-				let pref = settingsData[key].options[prefKey];
-				let option = make("div").addClass("mtd-settings-option").addClass("mtd-settings-option-"+pref.type);
-
-				if (exists(pref.addClass)) {
-					option.addClass(pref.addClass);
-				}
-
-				if (pref.enabled === false || pref.visible === false) {
-					continue;
-				}
-
-				if (exists(pref.headerBefore)) {
-					subPanel.append(
-						make("h3").addClass("mtd-settings-panel-subheader").html(internationaliseSettingString(pref.headerBefore))
-					);
-				}
-
-				if (exists(pref.settingsKey) && exists(pref.default) && !hasPref(pref.settingsKey)) {
-					setPref(pref.settingsKey, pref.default);
-				}
-
-				let input,select,label,minimum,maximum,button,link;
-
-
-				switch(pref.type) {
-
-					case "checkbox":
-						input = make("input").attr("type","checkbox").attr("id",prefKey).change(function() {
-							if (pref.savePreference !== false) {
-								setPref(pref.settingsKey,$(this).is(":checked"));
-							}
-
-							parseActions($(this).is(":checked") ? pref.activate : pref.deactivate, $(this).val());
-
-						});
-
-						if (exists(pref.settingsKey) && getPref(pref.settingsKey) === true) {
-							input.attr("checked","checked");
-						}
-
-						if (!exists(pref.settingsKey) && exists(pref.queryFunction)) {
-							if (pref.queryFunction()) {
-								input.attr("checked","checked");
-							}
-						}
-
-						label = make("label").addClass("checkbox").html(internationaliseSettingString(pref.title)).append(input);
-
-						option.append(label);
-
-						if (exists(pref.initFunc)) {
-							pref.initFunc(select);
-						}
-
-						break;
-
-					case "dropdown":
-						select = make("select").attr("type","select").attr("id",prefKey).change(function() {
-							parseActions(pref.activate, $(this).val());
-							if (pref.savePreference !== false) {
-								setPref(pref.settingsKey,$(this).val());
-							}
-						});
-
-						for (let prefKey in pref.options) {
-							if (!!(pref.options[prefKey].value)) {
-								let newPrefSel = pref.options[prefKey];
-								let newoption = make("option").attr("value",newPrefSel.value).html(internationaliseSettingString(newPrefSel.text));
-
-								select.append(newoption);
-							} else {
-
-								let group = make("optgroup").attr("label",internationaliseSettingString(pref.options[prefKey].name))
-
-								for (let subkey in pref.options[prefKey].children) {
-									let newSubPrefSel = pref.options[prefKey].children[subkey];
-									let newsuboption = make("option").attr("value",newSubPrefSel.value).html(internationaliseSettingString(newSubPrefSel.text));
-
-									group.append(newsuboption);
-								}
-
-								select.append(group);
-							}
-						}
-
-						if (exists(pref.settingsKey)) {
-							select.val(getPref(pref.settingsKey));
-						} else if (!exists(pref.settingsKey) && exists(pref.queryFunction)) {
-							select.val(pref.queryFunction())
-						}
-
-						label = make("label").addClass("control-label").html(internationaliseSettingString(pref.title));
-
-						option.append(label,select);
-
-						if (exists(pref.initFunc)) {
-							pref.initFunc(select);
-						}
-
-						break;
-
-					case "textbox":
-						input = make("input").attr("type","text").attr("id",prefKey);
-
-						if (pref.instantApply === true) {
-							input.on("input",function() {
-								parseActions(pref.activate, $(this).val());
-								if (pref.savePreference !== false) {
-									setPref(pref.settingsKey, $(this).val());
-								}
-							});
-						} else {
-							input.change(function() {
-								parseActions(pref.activate, $(this).val());
-								if (pref.savePreference !== false) {
-									setPref(pref.settingsKey, $(this).val());
-								}
-							});
-						}
-
-						if (exists(pref.settingsKey)) {
-							input.val(getPref(pref.settingsKey));
-						} else if (!exists(pref.settingsKey) && exists(pref.queryFunction)) {
-							input.val(pref.queryFunction())
-						}
-
-						label = make("label").addClass("control-label").html(internationaliseSettingString(pref.title));
-
-						if (exists(pref.initFunc)) {
-							pref.initFunc(input);
-						}
-
-						option.append(label,input);
-
-						break;
-
-					case "textarea":
-						input = make("textarea").addClass("mtd-textarea").attr("id",prefKey).attr("rows","10").attr("cols","80").attr("placeholder",pref.placeholder || "").attr("spellcheck",false);
-
-						if (pref.instantApply === true) {
-							input.on("input",function() {
-								parseActions(pref.activate, $(this).val());
-								if (pref.savePreference !== false) {
-									setPref(pref.settingsKey, $(this).val());
-								}
-							});
-						} else {
-							input.change(function() {
-								parseActions(pref.activate, $(this).val());
-								if (pref.savePreference !== false) {
-									setPref(pref.settingsKey, $(this).val());
-								}
-							});
-						}
-
-
-						// https://sumtips.com/snippets/javascript/tab-in-textarea/
-						input.keydown((e) =>
-						{
-
-							let kC = e.keyCode ? e.keyCode : e.charCode ? e.charCode : e.which;
-							if (kC == 9 && !e.shiftKey && !e.ctrlKey && !e.metaKey && !e.altKey)
-								// If it's a tab, but not Ctrl+Tab, Super+Tab, Shift+Tab, or Alt+Tab
-							{
-								let oS = input[0].scrollTop;
-								if (input[0].setSelectionRange)
-								{
-									let sS = input[0].selectionStart;
-									let sE = input[0].selectionEnd;
-									input[0].value = input[0].value.substring(0, sS) + "\t" + input[0].value.substr(sE);
-									input[0].setSelectionRange(sS + 1, sS + 1);
-									input[0].focus();
-								}
-								input[0].scrollTop = oS;
-
-								e.preventDefault();
-
-								return false;
-							}
-							return true;
-						});
-
-						if (exists(pref.settingsKey)) {
-							input.val(getPref(pref.settingsKey));
-						} else if (!exists(pref.settingsKey) && exists(pref.queryFunction)) {
-							input.val(pref.queryFunction())
-						}
-
-						label = make("label").addClass("control-label").html(internationaliseSettingString(pref.title));
-
-						if (exists(pref.initFunc)) {
-							pref.initFunc(input);
-						}
-
-						option.append(label,input);
-
-						break;
-
-					case "slider":
-						label = make("label").addClass("control-label");
-
-						input = make("input").attr("type","range")
-						.attr("min",pref.minimum)
-						.attr("max",pref.maximum)
-						.change(function() {
-							parseActions(pref.activate, $(this).val());
-							if (pref.savePreference !== false) {
-								setPref(pref.settingsKey, $(this).val());
-							}
-						}).on("input",function() {
-							label.html(`${internationaliseSettingString(pref.title)} <b> ${$(this).val()} ${(internationaliseSettingString(pref.displayUnit || ""))} </b>`);
-						});
-
-						if (exists(pref.settingsKey)) {
-							input.val(parseInt(getPref(pref.settingsKey)));
-						} else if (!exists(pref.settingsKey) && exists(pref.queryFunction)) {
-							input.val(pref.queryFunction());
-						} else if (exists(pref.default)) {
-							input.val(pref.default);
-						}
-
-						label.html(internationaliseSettingString(pref.title) + " <b> "+ input.val() + " " + (internationaliseSettingString(pref.displayUnit) || "") + "</b>");
-
-						maximum = make("label").addClass("control-label mtd-slider-maximum").html(pref.maximum + (internationaliseSettingString(pref.displayUnit) || ""));
-						minimum = make("label").addClass("control-label mtd-slider-minimum").html(pref.minimum + (internationaliseSettingString(pref.displayUnit) || ""));
-
-						if (exists(pref.initFunc)) {
-							pref.initFunc(input);
-						}
-
-						let sliderCont = make("div").addClass("mtd-slider-container").append(maximum,input,minimum)
-
-						option.append(label,sliderCont);
-
-						break;
-
-					case "button":
-						label = make("label").addClass("control-label").html(internationaliseSettingString(pref.label) || "");
-
-						button = make("button").html(internationaliseSettingString(pref.title)).addClass("btn btn-positive mtd-settings-button")
-						.click(() => {
-							parseActions(pref.activate,true);
-						});
-
-						if (exists(pref.initFunc)) {
-							pref.initFunc(button);
-						}
-
-						option.append(label,button);
-
-						break;
-
-					case "buttons":
-						label = make("label").addClass("control-label").html(internationaliseSettingString(pref.label) || "");
-
-						option.append(label);
-
-						pref.buttons.forEach(btn => {
-							option.append(make("button").html(internationaliseSettingString(btn.text)).addClass("btn btn-positive mtd-settings-button").click(() => btn.func()))
-						})
-
-						if (exists(pref.initFunc)) {
-							pref.initFunc(button);
-						}
-
-						break;
-
-					case "link":
-						link = make("a").html(internationaliseSettingString(pref.label)).addClass("mtd-settings-link")
-						.click(() => {
-							parseActions(pref.activate,true);
-						});
-
-						if (exists(pref.initFunc)) {
-							pref.initFunc(link);
-						}
-
-						option.append(link);
-
-						break;
-				}
-
-				subPanel.append(option);
-			}
 		} else if (settingsData[key].enum === "aboutpage") {
 			switch(verTextId) {
 				case 0:
@@ -397,7 +414,7 @@ export function openSettings(openMenu) {
 			}
 
 			let logo = make("i").addClass("mtd-logo icon-moderndeck icon");
-			let h1 = make("h1").addClass("mtd-about-title").html("ModernDeck 8");
+			let h1 = make("h1").addClass("mtd-about-title").html("ModernDeck Oasis");
 			let h2 = make("h2").addClass("mtd-version-title").html(verText + " " + SystemVersion + I18n(" (Build ") + buildId + ")");
 			let logoCont = make("div").addClass("mtd-logo-container");
 
@@ -410,7 +427,7 @@ export function openSettings(openMenu) {
 			let info = make("p").html(I18n("Made with <i class=\"icon icon-heart mtd-about-heart\"></i> by <a href=\"https://twitter.com/dangeredwolf\" rel=\"user\" target=\"_blank\">dangeredwolf</a> in Columbus, OH since 2014<br>ModernDeck is <a href=\"https://github.com/dangeredwolf/ModernDeck/\" target=\"_blank\">an open source project</a> released under the MIT license."));
 			let infoCont = make("div").addClass("mtd-about-info").append(info);
 
-			logoCont.append(logo,h1,h2);
+			logoCont.append(logo, h1, h2);
 
 			subPanel.append(logoCont);
 

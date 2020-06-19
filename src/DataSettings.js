@@ -44,143 +44,124 @@ export let settingsData = {
 		options:{
 			coretheme:{
 				headerBefore:"{{Themes}}",
-				title:"{{Core Theme}}",
+				title:"{{Theme}}",
 				type:"dropdown",
 				activate:{
 					func: (opt) => {
-
-						if (typeof opt === "undefined" || opt === "undefined") {
-							throw "Attempt to pass undefined for mtd_core_theme. This will break TweetDeck across platforms. Something has to be wrong";
-							TD.settings.setTheme("dark");
-							return;
-						}
-
-						disableStylesheetExtension("dark");
-						disableStylesheetExtension("light");
-
 						if (useSafeMode) {
 							return;
 						}
 
-						if (hasPref("mtd_highcontrast") && getPref("mtd_highcontrast") === true) {
-							opt = "dark";
+						// Migration for ModernDeck pre-Oasis (8.0 or before)
+						if (opt === "default") {
+							opt = TD.settings.getTheme();
+							setPref("mtd_theme", opt);
 						}
-
-						html.removeClass("dark").removeClass("light").addClass(opt);
-						TD.settings.setTheme(opt);
-						enableStylesheetExtension(opt);
-
-						if (opt === "light" && (isStylesheetExtensionEnabled("amoled") || isStylesheetExtensionEnabled("darker"))) {
-							disableStylesheetExtension("darker");
-							disableStylesheetExtension("amoled");
-							setPref("mtd_theme","default");
-						}
-						if (opt === "dark" && isStylesheetExtensionEnabled("paper")) {
-							disableStylesheetExtension("paper");
-							setPref("mtd_theme","default");
-						}
-
-						if (hasPref("mtd_customcss")) {
-							disableStylesheetExtension("customcss");
-							enableCustomStylesheetExtension("customcss",getPref("mtd_customcss"));
-						}
-					}
-				},
-				options:{
-					dark:{value:"dark",text:"{{Dark}}"},
-					light:{value:"light",text:"{{Light}}"}
-				},
-				savePreference:false,
-				queryFunction: () => {
-					html.addClass(TD.settings.getTheme());
-					return TD.settings.getTheme()
-				},
-				settingsKey:"mtd_core_theme",
-				default:"dark"
-			},
-			theme:{
-				title:"{{Custom Theme}}",
-				type:"dropdown",
-				activate:{
-					func: (opt) => {
 
 						if (getPref("mtd_highcontrast") === true) {
-							return;
-						}
-
-						if (useSafeMode) {
-							return;
-						}
-
-						if (!hasPref("mtd_theme")) {
-							setPref("mtd_theme","default")
-						}
-
-						disableStylesheetExtension(getPref("mtd_theme"));
-						disableStylesheetExtension("amoled");
-						setPref("mtd_theme",opt);
-
-						if ((opt === "amoled" || opt === "darker") && TD.settings.getTheme() === "light") {
-							TD.settings.setTheme("dark");
 							disableStylesheetExtension("light");
+							disableStylesheetExtension("darker");
+							disableStylesheetExtension("paper");
 							enableStylesheetExtension("dark");
-							html.removeClass("light").addClass("dark");
-						}
-
-						if (opt === "paper" && TD.settings.getTheme() === "dark") {
-							TD.settings.setTheme("light");
-							disableStylesheetExtension("dark");
-							enableStylesheetExtension("light");
-							html.removeClass("dark").addClass("light");
-						}
-
-						if (opt === "black" && TD.settings.getTheme() === "dark") {
-							disableStylesheetExtension("black");
 							enableStylesheetExtension("amoled");
-							setPref("mtd_theme","amoled");
+							enableStylesheetExtension("highcontrast");
+							return;
 						}
-						
-						enableStylesheetExtension(opt || "default");
 
-						if (hasPref("mtd_customcss")) {
-							disableStylesheetExtension("customcss");
-							enableCustomStylesheetExtension("customcss",getPref("mtd_customcss"));
+						switch (opt) {
+							case "light":
+								disableStylesheetExtension("amoled");
+								disableStylesheetExtension("darker");
+								disableStylesheetExtension("dark");
+								disableStylesheetExtension("paper");
+								enableStylesheetExtension("light");
+								break;
+							case "paper":
+								disableStylesheetExtension("amoled");
+								disableStylesheetExtension("darker");
+								disableStylesheetExtension("dark");
+								enableStylesheetExtension("paper");
+								break;
+							case "dark":
+								disableStylesheetExtension("amoled");
+								disableStylesheetExtension("darker");
+								disableStylesheetExtension("light");
+								disableStylesheetExtension("paper");
+								enableStylesheetExtension("dark");
+								break;
+							case "darker":
+								disableStylesheetExtension("amoled");
+								disableStylesheetExtension("light");
+								disableStylesheetExtension("paper");
+								enableStylesheetExtension("dark");
+								enableStylesheetExtension("darker");
+								break;
+							case "amoled":
+								disableStylesheetExtension("light");
+								disableStylesheetExtension("darker");
+								disableStylesheetExtension("paper");
+								enableStylesheetExtension("dark");
+								enableStylesheetExtension("amoled");
+								break;
+
 						}
 					}
 				},
 				options:{
-					default:{value:"default",text:"{{Default}}"},
 					completeLight:{
-						name:"{{Complete Light Themes}}",
+						name:"{{Light Themes}}",
 						children:{
+							light:{value:"light",text:"{{Light}}"},
 							paper:{value:"paper",text:"{{Paperwhite}}"}
 						}
 					},
 					completeDark:{
-						name:"{{Complete Dark Themes}}",
+						name:"{{Dark Themes}}",
 						children:{
+							dark:{value:"dark",text:"{{Dark}}"},
 							darker:{value:"darker",text:"{{Darker}}"},
 							amoled:{value:"amoled",text:"{{AMOLED}}"}
 						}
 					},
-					complementary:{
-						name:"{{Complementary Themes}}",
-						children:{
-							black:{value:"black",text:"{{Black}}"},
-							grey:{value:"grey",text:"{{Grey}}"},
-							red:{value:"red",text:"{{Red}}"},
-							orange:{value:"orange",text:"{{Orange}}"},
-							yellow:{value:"yellow",text:"{{Yellow}}"},
-							green:{value:"green",text:"{{Green}}"},
-							teal:{value:"teal",text:"{{Teal}}"},
-							cyan:{value:"cyan",text:"{{Cyan}}"},
-							blue:{value:"blue",text:"{{Blue}}"},
-							violet:{value:"violet",text:"{{Violet}}"},
-							pink:{value:"pink",text:"{{Pink}}"}
+				},
+				savePreference:false,
+				settingsKey:"mtd_theme",
+				default:() => TD.settings.getTheme()
+			},
+			theme:{
+				title:"{{Theme Color}}",
+				type:"dropdown",
+				activate:{
+					func: (opt) => {
+
+						if (useSafeMode) {
+							return;
 						}
+
+						for (let i in window.settingsData.themes.options.theme.options) {
+							if (opt !== i)
+								disableStylesheetExtension(i);
+						}
+
+						enableStylesheetExtension(opt);
 					}
 				},
-				settingsKey:"mtd_theme",
+				options:{
+					default:{value:"default",text:"{{Default}}"},
+					black:{value:"black",text:"{{Black}}"},
+					grey:{value:"grey",text:"{{Grey}}"},
+					red:{value:"red",text:"{{Red}}"},
+					orange:{value:"orange",text:"{{Orange}}"},
+					yellow:{value:"yellow",text:"{{Yellow}}"},
+					green:{value:"green",text:"{{Green}}"},
+					teal:{value:"teal",text:"{{Teal}}"},
+					cyan:{value:"cyan",text:"{{Cyan}}"},
+					blue:{value:"blue",text:"{{Blue}}"},
+					violet:{value:"violet",text:"{{Violet}}"},
+					pink:{value:"pink",text:"{{Pink}}"},
+					custom:{value:"custom",text:"{{Custom...}}"}
+				},
+				settingsKey:"mtd_color_theme",
 				default:"default"
 			}, selectedFont:{
 				title:"{{Preferred Font}}",
@@ -267,20 +248,6 @@ export let settingsData = {
 				settingsKey:"mtd_usefixedarrows",
 				default:true
 			},
-			altsensitive:{
-				title:"{{Use alternative sensitive media workflow}}",
-				type:"checkbox",
-				activate:{
-					enableStylesheet:"altsensitive",
-					htmlAddClass:"mtd-altsensitive"
-				},
-				deactivate:{
-					disableStylesheet:"altsensitive",
-					htmlRemoveClass:"mtd-altsensitive"
-				},
-				settingsKey:"mtd_sensitive_alt",
-				default:true
-			},
 			colNavAlwaysVis:{
 				title:"{{Always display column icons in navigator}}",
 				type:"checkbox",
@@ -319,8 +286,43 @@ export let settingsData = {
 				enabled:false,
 				default:true
 			},
-			scrollbarstyle:{
+			sensitive:{
 				headerBefore:"{{Display}}",
+				title:"{{Display media that may contain sensitive content}}",
+				type:"checkbox",
+				activate:{
+					func: () => {
+						TD.settings.setDisplaySensitiveMedia(true);
+						setTimeout(() => window.renderTab("appearance"));
+					}
+				},
+				deactivate:{
+					func: () => {
+						TD.settings.setDisplaySensitiveMedia(false);
+						setTimeout(() => window.renderTab("appearance"));
+					}
+				},
+				savePreference:false,
+				queryFunction: () => {
+					return TD.settings.getDisplaySensitiveMedia();
+				}
+			},
+			altsensitive:{
+				title:"{{Use alternative sensitive media workflow}}",
+				type:"checkbox",
+				activate:{
+					enableStylesheet:"altsensitive",
+					htmlAddClass:"mtd-altsensitive"
+				},
+				deactivate:{
+					disableStylesheet:"altsensitive",
+					htmlRemoveClass:"mtd-altsensitive"
+				},
+				enabled:() => !TD.settings.getDisplaySensitiveMedia(),
+				settingsKey:"mtd_sensitive_alt",
+				default:true
+			},
+			scrollbarstyle:{
 				title:"{{Scrollbar Style}}",
 				type:"dropdown",
 				activate:{
@@ -419,24 +421,6 @@ export let settingsData = {
 				},
 				settingsKey:"mtd_nocontextmenuicons",
 				default:true
-			},
-			sensitive:{
-				title:"{{Display media that may contain sensitive content}}",
-				type:"checkbox",
-				activate:{
-					func: () => {
-						TD.settings.setDisplaySensitiveMedia(true);
-					}
-				},
-				deactivate:{
-					func: () => {
-						TD.settings.setDisplaySensitiveMedia(false);
-					}
-				},
-				savePreference:false,
-				queryFunction: () => {
-					return TD.settings.getDisplaySensitiveMedia();
-				}
 			}
 		}
 	},
@@ -444,7 +428,7 @@ export let settingsData = {
 		tabName:"<i class='Icon icon-twitter-bird'></i> {{Tweets}}",
 		options:{
 			stream:{
-				headerBefore:"{{Function}}",
+				headerBefore:"{{Behavior}}",
 				title:"{{Stream Tweets in real time}}",
 				type:"checkbox",
 				savePreference:false,
@@ -540,26 +524,13 @@ export let settingsData = {
 				type:"dropdown",
 				activate:{
 					func: set => {
-						if (shortener === "twitter") {
-							$(".bitlyUsername").addClass("hidden");
-							$(".bitlyApiKey").addClass("hidden");
-						} else if (shortener === "bitly") {
-							$(".bitlyUsername").removeClass("hidden");
-							$(".bitlyApiKey").removeClass("hidden");
-						}
 						TD.settings.setLinkShortener(set);
+						setTimeout(() => window.renderTab("tweets"), 0);
 					}
 				},
 				savePreference:false,
 				queryFunction: () => {
 					let shortener = TD.settings.getLinkShortener();
-					if (shortener === "twitter") {
-						$(".bitlyUsername").addClass("hidden");
-						$(".bitlyApiKey").addClass("hidden");
-					} else if (shortener === "bitly") {
-						$(".bitlyUsername").removeClass("hidden");
-						$(".bitlyApiKey").removeClass("hidden");
-					}
 					return shortener;
 				},
 				options:{
@@ -578,6 +549,7 @@ export let settingsData = {
 						});
 					}
 				},
+				enabled:() => TD.settings.getLinkShortener() === "bitly",
 				savePreference:false,
 				queryFunction: () => {
 					return ((TD.settings.getBitlyAccount() && TD.settings.getBitlyAccount().login) ? TD.settings.getBitlyAccount() : {login:""}).login;
@@ -587,6 +559,7 @@ export let settingsData = {
 				title:"{{Bit.ly API Key}}",
 				type:"textbox",
 				addClass:"mtd-big-text-box",
+				enabled:() => TD.settings.getLinkShortener() === "bitly",
 				activate:{
 					func: set => {
 						TD.settings.setBitlyAccount({
@@ -626,21 +599,16 @@ export let settingsData = {
 				type:"checkbox",
 				activate:{
 					func: (opt) => {
-						if (TD.settings.getTheme() === "light") {
-							TD.settings.setTheme("dark");
-							disableStylesheetExtension("light");
-							enableStylesheetExtension("dark");
-						}
-						disableStylesheetExtension(getPref("mtd_theme") || "default");
-						setPref("mtd_theme","amoled");
-						setPref("mtd_highcontrast",true);
+						disableStylesheetExtension("light");
+						disableStylesheetExtension("darker");
+						disableStylesheetExtension("paper");
+						enableStylesheetExtension("dark");
 						enableStylesheetExtension("amoled");
 						enableStylesheetExtension("highcontrast");
 					}
 				},
 				deactivate:{
 					func: (opt) => {
-						setPref("mtd_highcontrast",false);
 						disableStylesheetExtension("highcontrast");
 					}
 				},
@@ -1027,7 +995,7 @@ export let settingsData = {
 					}
 				},
 				settingsKey:"mtd_last_version",
-				default:[]
+				default:window.SystemVersion
 			},
 			replaceFavicon:{
 				type:"checkbox",
