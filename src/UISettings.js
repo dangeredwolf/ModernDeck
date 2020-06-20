@@ -414,7 +414,7 @@ export function openSettings(openMenu) {
 			}
 
 			let logo = make("i").addClass("mtd-logo icon-moderndeck icon");
-			let h1 = make("h1").addClass("mtd-about-title").html("ModernDeck Oasis");
+			let h1 = make("h1").addClass("mtd-about-title").html("ModernDeck - codename Oasis");
 			let h2 = make("h2").addClass("mtd-version-title").html(verText + " " + SystemVersion + I18n(" (Build ") + buildId + ")");
 			let logoCont = make("div").addClass("mtd-logo-container");
 

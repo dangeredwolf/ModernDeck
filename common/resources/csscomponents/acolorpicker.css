@@ -1,0 +1,195 @@
+/*!
+ * a-color-picker
+ * https://github.com/narsenico/a-color-picker
+ *
+ * Copyright (c) 2017-2018, Gianfranco Caldi.
+ * Released under the MIT License.
+ */
+
+.a-color-picker {
+    background-color: #FFFFFF;
+    padding: 0px;
+    box-sizing: border-box;
+    display: inline-flex;
+    flex-direction: column;
+    user-select: none;
+    width: 232px;
+    font: 400 10px Helvetica,Arial,sans-serif;
+    border-radius: 3px;
+    box-shadow: 0px 0px 0px 1px rgba(0,0,0,0.05), 0px 2px 4px rgba(0,0,0,0.25);
+}
+
+.a-color-picker input {
+    box-sizing: border-box;
+}
+
+.a-color-picker-row {
+    padding: 15px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    user-select: none;
+}
+
+.a-color-picker-row-top {
+    padding: 0;
+}
+
+.a-color-picker-row:not(:first-child) {
+    border-top: solid 1px #F5F5F5;
+}
+
+.a-color-picker-column {
+    display: flex;
+    flex-direction: column;
+}
+
+.a-color-picker-cell {
+    flex: 1 1 auto;
+    margin-bottom: 4px;
+}
+
+.a-color-picker-cell:last-child {
+    margin-bottom: 0;
+}
+
+.a-color-picker-stack {
+    position: relative;
+}
+
+.a-color-picker-dot {
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    top: 0px;
+    left: 0px;
+    background: #ffffff;
+    pointer-events: none;
+    border-radius: 50px;
+    z-index: 1000;
+    box-shadow: 0px 1px 2px rgba(0,0,0,0.75);
+}
+
+.a-color-picker-a, .a-color-picker-h, .a-color-picker-sl {
+    cursor: cell;
+}
+
+.a-color-picker-h+.a-color-picker-dot,
+.a-color-picker-a+.a-color-picker-dot {
+    top: -2px;
+}
+
+.a-color-picker-h,
+.a-color-picker-a {
+    border-radius: 2px;
+}
+
+.a-color-picker-preview {
+    box-sizing: border-box;
+    width: 30px;
+    height: 30px;
+    user-select: none;
+    border-radius: 15px;
+}
+
+.a-color-picker-circle {
+    border-radius: 50px;
+    border: solid 1px #eee;
+}
+
+.a-color-picker-hsl,
+.a-color-picker-rgb,
+.a-color-picker-single-input {
+    justify-content: space-evenly;
+}
+
+.a-color-picker-hsl>label,
+.a-color-picker-rgb>label,
+.a-color-picker-single-input>label {
+    padding: 0 8px;
+    flex: 0 0 auto;
+    color: #969696;
+}
+
+.a-color-picker-hsl>input,
+.a-color-picker-rgb>input,
+.a-color-picker-single-input>input {
+    text-align: center;
+    padding: 2px 0px;
+    width: 0;
+    flex: 1 1 auto;
+    border: 1px solid #e0e0e0;
+    line-height: 20px;
+}
+
+.a-color-picker-hsl>input::-webkit-inner-spin-button,
+.a-color-picker-rgb>input::-webkit-inner-spin-button,
+.a-color-picker-single-input>input::-webkit-inner-spin-button,
+.a-color-picker-hsl>input::-webkit-inner-spin-button,
+.a-color-picker-rgb>input::-webkit-inner-spin-button,
+.a-color-picker-single-input>input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.a-color-picker-hsl>input:focus,
+.a-color-picker-rgb>input:focus,
+.a-color-picker-single-input>input:focus {
+    border-color: #04a9f4;
+    outline: none;
+}
+
+.a-color-picker-transparent {
+    background-image: linear-gradient(-45deg, #cdcdcd 25%, transparent 25%), linear-gradient(45deg, #cdcdcd 25%, transparent 25%), linear-gradient(-45deg, transparent 75%, #cdcdcd 75%), linear-gradient(45deg, transparent 75%, #cdcdcd 75%);
+    background-size: 11px 11px;
+    background-position: 0 0, 0 -5.5px, -5.5px 5.5px, 5.5px 0px;
+
+}
+
+.a-color-picker-sl {
+    border-radius: 3px 3px 0px 0px;
+}
+
+.a-color-picker.hide-hsl [show-on-hsl],
+.a-color-picker.hide-rgb [show-on-rgb],
+.a-color-picker.hide-single-input [show-on-single-input],
+.a-color-picker.hide-alpha [show-on-alpha] {
+    display: none;
+}
+
+.a-color-picker-clipbaord {
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.a-color-picker-palette {
+    flex-flow: wrap;
+    flex-direction: row;
+    justify-content: flex-start;
+    padding: 10px;
+}
+
+.a-color-picker-palette-color {
+    width: 15px;
+    height: 15px;
+    flex: 0 1 15px;
+    margin: 3px;
+    box-sizing: border-box;
+    cursor: pointer;
+    border-radius: 3px;
+    box-shadow: 0px 0px 0px 1px inset rgba(0,0,0,0.10);
+}
+
+.a-color-picker-palette-add {
+    text-align: center;
+    line-height: 13px;
+    color: #607D8B;
+}
+
+.a-color-picker.hidden {
+    display: none;
+}

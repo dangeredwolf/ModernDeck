@@ -22,6 +22,7 @@ import { UINavDrawer } from "./UINavDrawer.js";
 import { FunctionPatcher } from "./FunctionPatcher.js";
 import { LanguageFunctionPatcher } from "./LanguageFunctionPatcher.js";
 import { UILanguagePicker } from "./UILanguagePicker.js";
+import { UIThemeEditor } from "./UIThemeEditor.js";
 import { loginTextReplacer, checkIfSigninFormIsPresent } from "./UILoginController.js";
 let welcomeData = _welcomeData;
 import { allColumnsVisible, getColumnFromColumnNumber, getColumnNumber, updateColumnVisibility } from "./Column.js";
@@ -612,6 +613,7 @@ function coreInit() {
 	head.append(
 		make("script").attr("type", "text/javascript").attr("src", mtdBaseURL + "resources/libraries/emojidata.js"),
 		make("script").attr("type", "text/javascript").attr("src", mtdBaseURL + "resources/libraries/twemoji.min.js"),
+		make("script").attr("type", "text/javascript").attr("src", mtdBaseURL + "resources/libraries/spectrum.js"),
 		make("script").attr("type", "text/javascript").attr("src", mtdBaseURL + "resources/libraries/jquery.visible.js")
 	);
 

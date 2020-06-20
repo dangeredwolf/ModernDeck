@@ -55,8 +55,9 @@ export let settingsData = {
 						// Migration for ModernDeck pre-Oasis (8.0 or before)
 						if (opt === "default") {
 							opt = TD.settings.getTheme();
-							setPref("mtd_theme", opt);
 						}
+
+						setTimeout(() => window.renderTab("themes"));
 
 						if (getPref("mtd_highcontrast") === true) {
 							disableStylesheetExtension("light");
@@ -103,6 +104,14 @@ export let settingsData = {
 								enableStylesheetExtension("dark");
 								enableStylesheetExtension("amoled");
 								break;
+							case "custom":
+								disableStylesheetExtension("light");
+								disableStylesheetExtension("darker");
+								disableStylesheetExtension("paper");
+								disableStylesheetExtension("dark");
+								disableStylesheetExtension("amoled");
+								disableStylesheetExtension("highcontrast");
+								break;
 
 						}
 					}
@@ -123,8 +132,8 @@ export let settingsData = {
 							amoled:{value:"amoled",text:"{{AMOLED}}"}
 						}
 					},
+					custom:{value:"custom",text:"{{Custom...}}"}
 				},
-				savePreference:false,
 				settingsKey:"mtd_theme",
 				default:() => TD.settings.getTheme()
 			},
@@ -158,9 +167,9 @@ export let settingsData = {
 					cyan:{value:"cyan",text:"{{Cyan}}"},
 					blue:{value:"blue",text:"{{Blue}}"},
 					violet:{value:"violet",text:"{{Violet}}"},
-					pink:{value:"pink",text:"{{Pink}}"},
-					custom:{value:"custom",text:"{{Custom...}}"}
+					pink:{value:"pink",text:"{{Pink}}"}
 				},
+				enabled:() => (getPref("mtd_theme") !== "custom"),
 				settingsKey:"mtd_color_theme",
 				default:"default"
 			}, selectedFont:{
@@ -525,7 +534,7 @@ export let settingsData = {
 				activate:{
 					func: set => {
 						TD.settings.setLinkShortener(set);
-						setTimeout(() => window.renderTab("tweets"), 0);
+						setTimeout(() => window.renderTab("tweets"));
 					}
 				},
 				savePreference:false,

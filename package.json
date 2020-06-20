@@ -1,7 +1,7 @@
 {
 	"name": "ModernDeck",
 	"productName": "ModernDeck",
-	"version": "8.1.1905",
+	"version": "8.1.0",
 	"description": "ModernDeck",
 	"copyright": "Copyright 2014-2020 dangeredwolf, et al. Released under the MIT license.",
 	"homepage": "https://github.com/dangeredwolf/ModernDeck",
@@ -43,6 +43,7 @@
 		"Twitter"
 	],
 	"dependencies": {
+		"a-color-picker": "^1.2.1",
 		"asar": "^3.0.3",
 		"electron-log": "^4.2.0",
 		"electron-store": "^5.1.1",

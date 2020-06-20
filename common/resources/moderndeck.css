@@ -10,6 +10,7 @@
  */
 
 /* stylelint-disable */
+@import "csscomponents/acolorpicker.css";
 @import "csscomponents/alert.css";
 @import "csscomponents/calendarDropdown.css";
 @import "csscomponents/contextmenu.css";
@@ -27,6 +28,7 @@
 @import "csscomponents/collapsed.css";
 @import "csscomponents/notifications.css";
 @import "csscomponents/classicnav.css";
+@import "csscomponents/themeeditor.css";
 @import "csscomponents/accessibilityHelper.css";
 /* stylelint-enable */
 
@@ -9268,7 +9270,7 @@ a {
 	min-height:250px!important
 }
 
-.mdl:not(.sentry-error-embed):not(.med-fullpanel) {
+.mdl:not(.med-fullpanel) {
 	display:inline-block;
 	vertical-align:middle;
 	position:relative;
@@ -9310,7 +9312,7 @@ a {
 
 .settings-modal .mdl {
 	overflow:hidden;
-	width: 645px;
+	width:645px
 }
 
 .mdl .prf-follow-state .js-user-actions-menu {
@@ -9385,6 +9387,6 @@ button.js-add-filter {
 }
 
 #settings-modal .mdl-column-lrg {
-	top: -70px;
-	height: 525px;
+	top:-70px;
+	height:525px
 }
