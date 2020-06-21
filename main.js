@@ -8,6 +8,7 @@
 */
 
 const electron = require("electron");
+const I18nData = require("./i18nMain.js");
 
 const {
 	app,
@@ -61,6 +62,7 @@ let closeForReal = false;
 let interval;
 
 let mtdAppTag = '';
+let lang = store.get("mtd_lang");
 
 autoUpdater.setFeedURL({
 	"owner": "dangeredwolf",
@@ -74,6 +76,14 @@ autoUpdater.logger.transports.file.level = "info";
 app.setAppUserModelId("com.dangeredwolf.ModernDeck");
 
 let useDir = "common";
+
+const I18n = function(key) {
+	let foundStr = I18nData[key][lang];
+	if (!foundStr) {
+		console.warn("Main process missing translation: " + key);
+	}
+	return foundStr || key;
+}
 
 const mtdSchemeHandler = async (request, callback) => {
 	let myUrl = new url.URL(request.url);
@@ -89,11 +99,11 @@ const template = [
 		label: "ModernDeck",
 		role: "appMenu",
 		submenu: [
-			{ label: "About ModernDeck", click() { if (!mainWindow){return;}mainWindow.show();mainWindow.webContents.send("aboutMenu"); } },
-			{ label: "Check for Updates...", click(){ if (!mainWindow){return;}mainWindow.show();mainWindow.webContents.send("checkForUpdatesMenu"); } },
+			{ label: I18n("About ModernDeck"), click() { if (!mainWindow){return;}mainWindow.show();mainWindow.webContents.send("aboutMenu"); } },
+			{ label: I18n("Check for Updates..."), click(){ if (!mainWindow){return;}mainWindow.show();mainWindow.webContents.send("checkForUpdatesMenu"); } },
 			{ type: "separator" },
-			{ label: "Preferences...", click(){ if (!mainWindow){return;}mainWindow.show();mainWindow.webContents.send("openSettings"); } },
-			{ label: "Accounts...", click(){ if (!mainWindow){return;}mainWindow.show();mainWindow.webContents.send("accountsMan"); } },
+			{ label: I18n("Preferences..."), click(){ if (!mainWindow){return;}mainWindow.show();mainWindow.webContents.send("openSettings"); } },
+			{ label: I18n("Accounts..."), click(){ if (!mainWindow){return;}mainWindow.show();mainWindow.webContents.send("accountsMan"); } },
 			{ type: "separator" },
 			{ role: "services" },
 			{ type: "separator" },
@@ -107,8 +117,8 @@ const template = [
 	{
 		role: "fileMenu",
 		submenu: [
-			{ label: "New Tweet...", click(){ if (!mainWindow){return;}mainWindow.show();mainWindow.webContents.send("newTweet"); } },
-			{ label: "New Direct Message...", click(){ if (!mainWindow){return;}mainWindow.show();mainWindow.webContents.send("newDM"); } },
+			{ label: I18n("New Tweet..."), click(){ if (!mainWindow){return;}mainWindow.show();mainWindow.webContents.send("newTweet"); } },
+			{ label: I18n("New Direct Message..."), click(){ if (!mainWindow){return;}mainWindow.show();mainWindow.webContents.send("newDM"); } },
 			{ type: "separator" },
 			{ role: "close" }
 		]
@@ -126,7 +136,7 @@ const template = [
 			{ role: "selectAll" },
 			{ type: "separator" },
 			{
-				label: "Speech",
+				label: I18n("Speech"),
 				submenu: [
 					{ role: "startspeaking" },
 					{ role: "stopspeaking" }
@@ -162,8 +172,8 @@ const template = [
 	{
 		role: "help",
 		submenu: [
-			{ label: "Send Feedback", click(){ electron.shell.openExternal("https://github.com/dangeredwolf/ModernDeck/issues");}},
-			{ label: "Message @ModernDeck", click(){ if (!mainWindow){electron.shell.openExternal("https://twitter.com/messages/compose?recipient_id=2927859037");return;}mainWindow.show();mainWindow.webContents.send("msgModernDeck"); } },
+			{ label: I18n("Send Feedback"), click(){ electron.shell.openExternal("https://github.com/dangeredwolf/ModernDeck/issues");}},
+			{ label: I18n("Message @ModernDeck"), click(){ if (!mainWindow){electron.shell.openExternal("https://twitter.com/messages/compose?recipient_id=2927859037");return;}mainWindow.show();mainWindow.webContents.send("msgModernDeck"); } },
 		]
 	}
 ]
@@ -412,8 +422,8 @@ function makeWindow() {
 		dialog.showMessageBox({
 			type: "warning",
 			title: "ModernDeck",
-			message: "Updates might not work correctly if you aren't running ModernDeck from the Applications folder.\n\nWould you like to move it there?",
-			buttons: ["Not Now", "Yes, Move It"]
+			message: I18n("Updates might not work correctly if you aren't running ModernDeck from the Applications folder.\n\nWould you like to move it there?"),
+			buttons: [I18n("Not Now"), I18n("Yes, Move It")]
 		}, (response) => {
 			if (response == 1) {
 				let moveMe;
@@ -427,8 +437,8 @@ function makeWindow() {
 					dialog.showMessageBox({
 						type: "error",
 						title: "ModernDeck",
-						message: "We couldn't automatically move ModernDeck to the applications folder. You may need to move it yourself.",
-						buttons: ["OK"]
+						message: I18n("We couldn't automatically move ModernDeck to the applications folder. You may need to move it yourself."),
+						buttons: [I18n("OK")]
 					});
 				}
 			}
@@ -496,7 +506,7 @@ function makeWindow() {
 	});
 
 	mainWindow.webContents.on('did-fail-load', (event, code, desc) => {
-		let msg = "ModernDeck failed to start.\n\n";
+		let msg = I18n("ModernDeck failed to start.") + "\n\n";
 
 		console.log(desc);
 
@@ -577,7 +587,7 @@ function makeWindow() {
 			title:"ModernDeck",
 			message:msg,
 			type:"error",
-			buttons:["Retry","Close"]
+			buttons:[I18n("Retry"),I18n("Close")]
 		}, (response) => {
 			if (response === 0) { // Retry
 				mainWindow.reload();

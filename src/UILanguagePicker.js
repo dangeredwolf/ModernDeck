@@ -96,7 +96,14 @@ export class UILanguagePicker extends UIModal {
 			setPref("mtd_lang", this.selectLanguage.val());
 
 			if (getFullLanguage() !== this.selectLanguage.val() && getMainLanguage() !== this.selectLanguage.val()) {
-				setTimeout(() => location.reload(), 200);
+				setTimeout(() => {
+					if (typeof require !== "undefined") {
+						const { ipcRenderer } = require("electron");
+						ipcRenderer.send("restartApp");
+					} else {
+						location.reload();
+					}
+				}, 200);
 			} else {
 				this.dismiss();
 			}
