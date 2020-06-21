@@ -51,9 +51,11 @@ const isDev = false;
 
 let enableTray = true;
 let enableBackground = true;
+let shouldQuitIfErrorClosed = true;
 
 let hidden = false;
 let mainWindow;
+let errorWindow;
 let tray = null;
 let mR;
 
@@ -78,11 +80,12 @@ app.setAppUserModelId("com.dangeredwolf.ModernDeck");
 let useDir = "common";
 
 const I18n = function(key) {
-	let foundStr = I18nData[key][lang];
+	let foundStr = I18nData[key];
 	if (!foundStr) {
 		console.warn("Main process missing translation: " + key);
+		return key;
 	}
-	return foundStr || key;
+	return foundStr[lang] || key;
 }
 
 const mtdSchemeHandler = async (request, callback) => {
@@ -184,12 +187,46 @@ const menu = Menu.buildFromTemplate(template);
 if (process.platform === "darwin")
 	Menu.setApplicationMenu(menu);
 
-/*try {
-	if (require('electron-squirrel-startup')) return app.quit();
-} catch(e) {
-	console.error(e);
-}*/
+function makeErrorWindow() {
 
+	const { shell } = electron;
+	shell.beep();
+
+	errorWindow = new BrowserWindow({
+		width: 600,
+		height: 260,
+		webPreferences: {
+			nodeIntegration: true
+		},
+		enableRemoteModule:true,
+		parent:mainWindow || null,
+		scrollBounce:true,
+		autoHideMenuBar:true
+	});
+
+	shouldQuitIfErrorClosed = true;
+
+	errorWindow.webContents.on("new-window", (event, url) => {
+		const { shell } = electron;
+		event.preventDefault();
+		shell.openExternal(url);
+	});
+
+	errorWindow.on("closed", () => {
+		errorWindow = null;
+		if (shouldQuitIfErrorClosed) {
+			app.quit();
+		}
+	});
+
+	errorWindow.loadURL(__dirname + separator + "sadmoderndeck.html");
+
+	errorWindow.webContents.on("did-start-navigation", (event, url) => {
+		event.preventDefault();
+	});
+
+
+}
 
 function makeLoginWindow(url,teams) {
 
@@ -206,7 +243,7 @@ function makeLoginWindow(url,teams) {
 		autoHideMenuBar:true
 	});
 
-	loginWindow.on('closed', () => {
+	loginWindow.on("closed", () => {
 		loginWindow = null;
 	});
 
@@ -505,16 +542,30 @@ function makeWindow() {
 
 	});
 
-	mainWindow.webContents.on('did-fail-load', (event, code, desc) => {
-		let msg = I18n("ModernDeck failed to start.") + "\n\n";
+	mainWindow.webContents.on("did-fail-load", (event, code, desc) => {
+		let msg = "ModernDeck failed to start." + "\n\n";
 
-		console.log(desc);
 
 		// These codes aren't necessarily fatal errors, so we ignore them instead of forcing the user to shut down ModernDeck.
 
 		if (code === -3 || code === -11 || code === -2 || code === -1) {
 			return;
 		}
+
+		makeErrorWindow();
+
+		mainWindow.hide();
+
+		errorWindow.webContents.executeJavaScript(`
+			document.getElementById("code").innerHTML = "${desc}";
+			document.getElementById("close").innerHTML = "${I18n("Close")}";
+			document.getElementById("retry").innerHTML = "${I18n("Retry")}";
+			document.getElementById("twitterStatus").innerHTML = "${I18n("Twitter Status")}";
+		`);
+
+		console.log(desc);
+
+		return;
 
 		/*
 			This variable is used to display the chromium error code.
@@ -728,6 +779,13 @@ function makeWindow() {
 		let newMenu = Menu.buildFromTemplate(params);
 		console.log(newMenu);
 		newMenu.popup();
+	});
+
+	ipcMain.on("errorReload", (event, params) => {
+		mainWindow.reload();
+		mainWindow.show();
+		shouldQuitIfErrorClosed = false;
+		errorWindow.close();
 	});
 
 	ipcMain.on("drawerOpen", (event, params) => {
@@ -1019,18 +1077,18 @@ function makeTray() {
 	tray = new Tray(pathName);
 
 	const contextMenu = Menu.buildFromTemplate([
-		{ label: "Open ModernDeck", click(){ showHiddenWindow() } },
-		{ label: (process.platform === "darwin" ? "Preferences..." : "Settings..."), click(){ if (!mainWindow){return;}mainWindow.show();mainWindow.webContents.send("openSettings"); } },
-		{ label: "Check for Updates...", click(){ if (!mainWindow){return;}mainWindow.show();mainWindow.webContents.send("checkForUpdatesMenu"); } },
+		{ label: I18n("Open ModernDeck"), click(){ showHiddenWindow() } },
+		{ label: (process.platform === "darwin" ? I18n("Preferences...") : I18n("Settings...")), click(){ if (!mainWindow){return;}mainWindow.show();mainWindow.webContents.send("openSettings"); } },
+		{ label: I18n("Check for Updates..."), click(){ if (!mainWindow){return;}mainWindow.show();mainWindow.webContents.send("checkForUpdatesMenu"); } },
 
 		{ type: "separator" },
 
-		{ label: "New Tweet...", click(){ if (!mainWindow){return;}mainWindow.show();mainWindow.webContents.send("newTweet"); } },
-		{ label: "New Direct Message...", click(){ if (!mainWindow){return;}mainWindow.show();mainWindow.webContents.send("newDM"); } },
+		{ label: I18n("New Tweet..."), click(){ if (!mainWindow){return;}mainWindow.show();mainWindow.webContents.send("newTweet"); } },
+		{ label: I18n("New Direct Message..."), click(){ if (!mainWindow){return;}mainWindow.show();mainWindow.webContents.send("newDM"); } },
 
 		{ type: "separator" },
 
-		{ label: (process.platform === "darwin" ? "Quit" : "Exit"), click(){ if (!mainWindow){return;} closeForReal = true; mainWindow.close(); } },
+		{ label: (process.platform === "darwin" ? I18n("Quit") : I18n("Exit")), click(){ if (!mainWindow){return;} closeForReal = true; mainWindow.close(); } },
 	]);
 
 	tray.setToolTip("ModernDeck");

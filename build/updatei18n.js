@@ -61,7 +61,7 @@ function processFile(file) {
 }
 
 fs.writeFileSync(results,"export default " + JSON.stringify(processFile(buildFile)));
-fs.writeFileSync(resultsMain,"export default " + JSON.stringify(processFile(buildFileMain)));
+fs.writeFileSync(resultsMain,"exports.default = " + JSON.stringify(processFile(buildFileMain)));
 
 // Crowdin is stupid and doesn't export the correct folders
 

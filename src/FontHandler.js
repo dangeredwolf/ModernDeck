@@ -30,7 +30,7 @@ export function injectFonts() {
 	window.injectedFonts = true;
 
 	$(document.head).append(make("style").html(
-		fontParseHelper({family:"MD",name:"Icon/mdvectors"}) +
+		fontParseHelper({family:"MD",name:"Icon/ModernDeckVectors"}) +
 		fontParseHelper({family:"Material",name:"Icon/MaterialIcons"}) +
 
 		/* Roboto Family */
