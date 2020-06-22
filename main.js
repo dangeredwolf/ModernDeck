@@ -1079,7 +1079,7 @@ function makeTray() {
 	const contextMenu = Menu.buildFromTemplate([
 		{ label: I18n("Open ModernDeck"), click(){ showHiddenWindow() } },
 		{ label: (process.platform === "darwin" ? I18n("Preferences...") : I18n("Settings...")), click(){ if (!mainWindow){return;}mainWindow.show();mainWindow.webContents.send("openSettings"); } },
-		{ label: I18n("Check for Updates..."), click(){ if (!mainWindow){return;}mainWindow.show();mainWindow.webContents.send("checkForUpdatesMenu"); } },
+		{ label: (process.platform === "darwin" ? I18n("Check for Updates...") : I18n("Check for updates...")), click(){ if (!mainWindow){return;}mainWindow.show();mainWindow.webContents.send("checkForUpdatesMenu"); } },
 
 		{ type: "separator" },
 
