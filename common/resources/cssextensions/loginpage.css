@@ -82,14 +82,6 @@ select,input {
 	margin-top:-128px
 }
 
-@media (max-width:800px) {
-
-	.app-signin-form {
-		margin-top:30px;
-	}
-
-}
-
 .app-info-panel {
 	position:relative;
 	pointer-events:none;
@@ -124,7 +116,8 @@ select,input {
 	background:#fff;
 	color:#444;
 	box-shadow:0 10px 30px rgba(0,0,0,.75);
-	border-radius:4px
+	border-radius:4px;
+	margin-top:20px
 }
 
 .form-message {
@@ -157,7 +150,7 @@ select,input {
 }
 
 .startflow-background {
-	background-image:url("moderndeck://resources/img/bg1.jpg");
+	background-image:url("moderndeck://resources/img/oasis.jpg");
 	background-size:cover;
 	background-position:center;
 	opacity:0.01;
@@ -173,7 +166,8 @@ select,input {
 	bottom:0;
 	left:0;
 	opacity:.8;
-	background-image:linear-gradient(#00000075 0%,transparent 75%)
+/* 	background-image:linear-gradient(#00000075 0%,transparent 75%) */
+ 	background-image:linear-gradient(#00000033 0,transparent 75%)
 }
 
 .login-container {
