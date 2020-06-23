@@ -28,7 +28,7 @@ console.log("Bootstrapping moderndeck.js");
 var injectScript = document.createElement("script");
 
 var injectURL = document.createElement("div");
-injectURL.setAttribute("type",browser.extension.getURL(""));
+injectURL.setAttribute("type",browser.extension.getURL("/"));
 injectURL.id = "MTDURLExchange";
 document.head.appendChild(injectURL);
 console.log("injected url exchange with id " + injectURL.id);
