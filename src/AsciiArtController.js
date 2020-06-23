@@ -45,13 +45,11 @@ export class AsciiArtController {
 		return `${browserName} (${systemName})`
 	}
 	static draw() {
-		if (navigator.userAgent.indexOf("Gecko/") > 0) {
+		if (navigator.userAgent.indexOf("Geasdasdsadasdcko/") > 0) {
 			return; // https://twitter.com/dangeredwolf/status/1263968859637395466
 		}
 
-		if (navigator.userAgent.indexOf("Chrome/") > 0) {
-			document.getElementsByTagName("html")[0].prepend(document.createComment(
-`
+		let text = `
     █████████████████████████████████████████
    ███████████████████████████████████████████
   █████████████████████████████████████████████
@@ -71,39 +69,43 @@ export class AsciiArtController {
                  ██████████████▌
                    ██████████▌
                      ██████▌
-`))
-	// return;
+`
+
+		if (navigator.userAgent.indexOf("Chrome/") > 0) {
+			document.getElementsByTagName("html")[0].prepend(document.createComment(text))
 		}
 
-		let lines = [
-			"",
-			"    █████████████████████████████████████████",
-			"   ███████████████████████████████████████████",
-			"  █████████████████████████████████████████████",
-			"  █████████████     ████████      ▐████████████",
-			"  ███████████▌     ███████         ▐███████████",
-			"  ██████████      ███████     ██    ▐██████████",
-			"  ████████▌     ████████     ████    ▐█████████ 	ModernDeck " + SystemVersion,
-			"  ███████▌     ███████     ███████     ████████ 	Build " + buildId,
-			"  ████████     ██████     ███████     ▐████████ 	" + AsciiArtController.platformName(),
-			"  █████████▌     ███     ███████     ▐█████████",
-			"  ███████████           ███████     ███████████ 	Made with love",
-			"  ████████████        ███████     ▐████████████ 	by dangered wolf",
-			"  █████████████████████████████████████████████",
-			"  ████████████████████████████████████████████▌",
-			"   ██████████████████████████████████████████▌",
-			"    ████████████████████████████████████████▌",
-			"                 ██████████████▌",
-			"                   ██████████▌",
-			"                     ██████▌",
-			""
-		]
+		console.log(text);
 
-		let htmlTag = document.getElementsByTagName("html")[0];
-
-		for (let i = lines.length; i > 0; i--) {
-			htmlTag.prepend(document.createComment(lines[i]));
-		}
+		// let lines = [
+		// 	"",
+		// 	"    █████████████████████████████████████████",
+		// 	"   ███████████████████████████████████████████",
+		// 	"  █████████████████████████████████████████████",
+		// 	"  █████████████     ████████      ▐████████████",
+		// 	"  ███████████▌     ███████         ▐███████████",
+		// 	"  ██████████      ███████     ██    ▐██████████",
+		// 	"  ████████▌     ████████     ████    ▐█████████ 	ModernDeck " + SystemVersion,
+		// 	"  ███████▌     ███████     ███████     ████████ 	Build " + buildId,
+		// 	"  ████████     ██████     ███████     ▐████████ 	" + AsciiArtController.platformName(),
+		// 	"  █████████▌     ███     ███████     ▐█████████",
+		// 	"  ███████████           ███████     ███████████ 	Made with love",
+		// 	"  ████████████        ███████     ▐████████████ 	by dangered wolf",
+		// 	"  █████████████████████████████████████████████",
+		// 	"  ████████████████████████████████████████████▌",
+		// 	"   ██████████████████████████████████████████▌",
+		// 	"    ████████████████████████████████████████▌",
+		// 	"                 ██████████████▌",
+		// 	"                   ██████████▌",
+		// 	"                     ██████▌",
+		// 	""
+		// ]
+		//
+		// let htmlTag = document.getElementsByTagName("html")[0];
+		//
+		// for (let i = lines.length; i > 0; i--) {
+		// 	htmlTag.prepend(document.createComment(lines[i]));
+		// }
 
 	}
 }
