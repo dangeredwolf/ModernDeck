@@ -356,5 +356,7 @@ export function startI18nEngine() {
 }
 
 window.I18n = I18n;
+window.I18n.getFullLanguage = getFullLanguage;
+window.I18n.getMainLanguage = getMainLanguage;
 
 startI18nEngine();
