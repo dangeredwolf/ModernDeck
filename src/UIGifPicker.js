@@ -162,7 +162,15 @@ async function getBlobFromUrl(imageUrl) {
 function renderGif(preview, mainOg, provider) {
 	let main = mainOg;
 
-	return make("img").attr("src", preview).attr("data-provider",provider).click(function() {
+	let element;
+
+	if (provider === "gfycat") {
+		element = make("img").attr("src", preview).attr("data-provider", provider);
+	} else {
+		element = make("video").attr("autoplay", "true").attr("muted", "muted").attr("loop", "true").attr("src", preview).attr("data-provider", provider);
+	}
+
+	return element.click(function() {
 		let img;
 
 		$(".mtd-gif-container").removeClass("mtd-gif-container-open");
@@ -232,13 +240,17 @@ function renderGifResults(data, error) {
 			originalURL = obj.gifUrl
 		} else if (obj.media) {
 			provider = "tenor";
-			previewURL = obj.media[0].nanogif.url;
+			previewURL = obj.media[0].nanomp4.url;
 			originalURL = obj.media[0].gif.url;
 		} else if (obj.images) {
 			provider = "giphy";
-			previewURL = obj.images.preview_gif.url;
+			previewURL = obj.images.preview.mp4;
 			originalURL = obj.images.original.url;
 		}
+
+		obj.provider = provider;
+
+		console.log(obj);
 
 		let renderedGif = renderGif(previewURL, originalURL, provider);
 
@@ -247,6 +259,8 @@ function renderGifResults(data, error) {
 		} else {
 			col2.append(renderedGif);
 		}
+
+		renderedGif.attr("muted","muted")
 	}
 }
 
