@@ -33,6 +33,9 @@ let dataGiphy = null;
 let dataGfycat = null;
 let dataTenor = null;
 
+// let isHoveringOver = false;
+let hoverTimeout = null;
+
 export function initGifPanel() {
 	$(".mtd-gif-button").off("click").click(() => {
 
@@ -74,17 +77,30 @@ function createGifPanel() {
 				make("input").addClass("mtd-gif-search").attr("placeholder",I18n("Search GIFs...")).change(() => {
 					searchGifPanel($(".mtd-gif-search").val())
 				}),
-				make("img").attr("src",mtdBaseURL + "resources/img/giphy2.png").addClass("mtd-giphy-logo"),
+				make("button").addClass("mtd-gif-info-button").append(make("i").addClass("icon icon-info")).mouseover(() => {
+					hoverTimeout = setTimeout(() => {
+						$(".mtd-gif-info").removeClass("hidden")
+					}, 500)
+				}).mouseout(() => {
+					$(".mtd-gif-info").addClass("hidden");
+					if (hoverTimeout)
+						clearTimeout(hoverTimeout);
+				}),
 				make("button").addClass("mtd-gif-top-button").append(
-					make("i").addClass("icon icon-arrow-u"),
-					I18n("Go back up")
+					make("i").addClass("icon icon-arrow-u")
 				).click(() => {
 					$(".drawer .compose>.compose-content>.antiscroll-inner.scroll-v.scroll-styled-v").animate({ scrollTop: "0px" });
 				}),
 				make("div").addClass("mtd-gif-no-results list-placeholder hidden").html(I18n("We couldn't find anything matching what you searched. Give it another shot."))
 			),
 			make("div").addClass("mtd-gif-column mtd-gif-column-1"),
-			make("div").addClass("mtd-gif-column mtd-gif-column-2")
+			make("div").addClass("mtd-gif-column mtd-gif-column-2"),
+			make("div").addClass("mtd-gif-info dropdown-menu hidden").append(
+				make("p").html(I18n("ModernDeck GIF Search uses the following sources:")),
+				make("img").attr("src",mtdBaseURL + "resources/img/giphy.png").addClass("mtd-giphy-logo"),
+				make("img").attr("src",mtdBaseURL + "resources/img/tenor.png").addClass("mtd-giphy-logo"),
+				"Gfycat"
+			)
 		)
 	)
 
@@ -159,18 +175,11 @@ async function getBlobFromUrl(imageUrl) {
 	Renders a specific GIF, handles click function
 */
 
-function renderGif(preview, mainOg, provider) {
+function renderGif(preview, mainOg, provider, audio) {
 	let main = mainOg;
 
-	let element;
 
-	if (provider === "gfycat") {
-		element = make("img").attr("src", preview).attr("data-provider", provider);
-	} else {
-		element = make("video").attr("autoplay", "true").attr("muted", "muted").attr("loop", "true").attr("src", preview).attr("data-provider", provider);
-	}
-
-	return element.click(function() {
+	return make("img").attr("src", preview).attr("data-provider", provider).click(function() {
 		let img;
 
 		$(".mtd-gif-container").removeClass("mtd-gif-container-open");
@@ -187,8 +196,8 @@ function renderGif(preview, mainOg, provider) {
 				}
 			};
 
-			let buildEvent = jQuery.Event("dragenter",eventThing);
-			let buildEvent2 = jQuery.Event("drop",eventThing);
+			let buildEvent = jQuery.Event("dragenter", eventThing);
+			let buildEvent2 = jQuery.Event("drop", eventThing);
 
 			console.info("alright so these are the events we're gonna be triggering:");
 			console.info(buildEvent);
@@ -240,11 +249,11 @@ function renderGifResults(data, error) {
 			originalURL = obj.gifUrl
 		} else if (obj.media) {
 			provider = "tenor";
-			previewURL = obj.media[0].nanomp4.url;
+			previewURL = obj.media[0].nanogif.url;
 			originalURL = obj.media[0].gif.url;
 		} else if (obj.images) {
 			provider = "giphy";
-			previewURL = obj.images.preview.mp4;
+			previewURL = obj.images.preview_gif.url;
 			originalURL = obj.images.original.url;
 		}
 
@@ -252,7 +261,7 @@ function renderGifResults(data, error) {
 
 		console.log(obj);
 
-		let renderedGif = renderGif(previewURL, originalURL, provider);
+		let renderedGif = renderGif(previewURL, originalURL, provider, obj.hasAudio || obj.hasaudio);
 
 		if (i % 2 === 0) {
 			col1.append(renderedGif);

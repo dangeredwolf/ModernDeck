@@ -1,7 +1,7 @@
 {
 	"name": "ModernDeck",
 	"productName": "ModernDeck",
-	"version": "8.1.2000",
+	"version": "8.1.0",
 	"description": "ModernDeck",
 	"copyright": "Copyright 2014-2020 dangeredwolf, et al. Released under the MIT license.",
 	"homepage": "https://github.com/dangeredwolf/ModernDeck",
@@ -58,6 +58,7 @@
 		"@babel/plugin-proposal-optional-chaining": "^7.10.0",
 		"@babel/plugin-transform-exponentiation-operator": "^7.10.1",
 		"@babel/preset-env": "^7.10.0",
+		"@joeattardi/emoji-button": "^3.1.1",
 		"@node-minify/core": "^5.3.0",
 		"@node-minify/csso": "^5.3.0",
 		"@node-minify/uglify-es": "^5.3.0",

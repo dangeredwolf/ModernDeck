@@ -417,6 +417,11 @@
 	width:auto
 }
 
+.mtd-about-title>span {
+	padding-left:8px;
+	font-size:14px
+}
+
 .mtd-version-title {
 	font-weight:400;
 	font-size:14px;
