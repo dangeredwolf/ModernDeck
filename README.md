@@ -9,7 +9,7 @@ ModernDeck is an app/extension running atop TweetDeck that brings a new, Materia
 
 ![ModernDeck Screenshot](https://github.com/dangeredwolf/ModernDeck/raw/8.0/build/en_screenshot.png)
 
-ModernDeck is designed by dangeredwolf in Columbus, OH and released under the MIT License.
+ModernDeck is designed by dangeredwolf and released under the MIT License.
 
 
 ## Building ModernDeck
@@ -161,7 +161,7 @@ Microsoft Edge Legacy (The EdgeHTML-based browser) is no longer supported as of 
 
 #### Opera
 
-Click the **Extensions** button in the bar on the left side (the icon looks like a box) 
+Click the **Extensions** button in the bar on the left side (the icon looks like a box)
 
 Turn on **Developer Mode** in the top right if you haven't already
 

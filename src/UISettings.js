@@ -424,7 +424,7 @@ export function openSettings(openMenu) {
 				)
 			}
 
-			let info = make("p").html(I18n("Made with <i class=\"icon icon-heart mtd-about-heart\"></i> by <a href=\"https://twitter.com/dangeredwolf\" rel=\"user\" target=\"_blank\">dangeredwolf</a> in Columbus, OH since 2014<br>ModernDeck is <a href=\"https://github.com/dangeredwolf/ModernDeck/\" target=\"_blank\">an open source project</a> released under the MIT license."));
+			let info = make("p").html(I18n("Made with <i class=\"icon icon-heart mtd-about-heart\"></i> by <a href=\"https://twitter.com/dangeredwolf\" rel=\"user\" target=\"_blank\">dangeredwolf</a> since 2014<br>ModernDeck is <a href=\"https://github.com/dangeredwolf/ModernDeck/\" target=\"_blank\">an open source project</a> released under the MIT license."));
 			let infoCont = make("div").addClass("mtd-about-info").append(info);
 
 			logoCont.append(logo, h1, h2);
