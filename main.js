@@ -8,7 +8,7 @@
 */
 
 const electron = require("electron");
-const I18nData = require("./i18nMain.js");
+const I18nData = require("./i18nMain.js").default;
 
 const {
 	app,
@@ -79,8 +79,12 @@ app.setAppUserModelId("com.dangeredwolf.ModernDeck");
 
 let useDir = "common";
 
+console.log(I18nData)
+
 const I18n = function(key) {
+	console.log(key);
 	let foundStr = I18nData[key];
+	console.log(foundStr)
 	if (!foundStr) {
 		console.warn("Main process missing translation: " + key);
 		return key;
@@ -654,15 +658,15 @@ function makeWindow() {
 		We need to replace the content security policy in order to load any third-party content, including JS, CSS, fonts
 	*/
 
-	mainWindow.webContents.session.webRequest.onHeadersReceived(
-		{urls:["https://tweetdeck.twitter.com/*","https://twitter.com/i/cards/*"]},
-		(details, callback) => {
-			let foo = details.responseHeaders;
-			foo["content-security-policy"] =[
-				"default-src 'self'; connect-src * moderndeck:; font-src https: blob: data: * moderndeck:; frame-src https: moderndeck:; frame-ancestors 'self' https: moderndeck:; img-src https: data: blob: moderndeck:; media-src * moderndeck: blob: https:; object-src 'self' https:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://moderndeck.org https://c6.patreon.com https://sentry.io https://cdn.jsdelivr.net https://ajax.googleapis.com moderndeck: https://cdn.ravenjs.com/ https://*.twitter.com https://*.twimg.com https://api-ssl.bitly.com blob:; style-src 'self' 'unsafe-inline' 'unsafe-eval' https: moderndeck: blob:;"];
-			callback({ responseHeaders: foo});
-		}
-	);
+	// mainWindow.webContents.session.webRequest.onHeadersReceived(
+	// 	{urls:["https://tweetdeck.twitter.com/*","https://twitter.com/i/cards/*"]},
+	// 	(details, callback) => {
+	// 		let foo = details.responseHeaders;
+	// 		foo["content-security-policy"] =[
+	// 			"default-src 'self'; connect-src * moderndeck:; font-src https: blob: data: * moderndeck:; frame-src https: moderndeck:; frame-ancestors 'self' https: moderndeck:; img-src https: data: blob: moderndeck:; media-src * moderndeck: blob: https:; object-src 'self' https:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://moderndeck.org https://c6.patreon.com https://sentry.io https://cdn.jsdelivr.net https://ajax.googleapis.com moderndeck: https://cdn.ravenjs.com/ https://*.twitter.com https://*.twimg.com https://api-ssl.bitly.com blob:; style-src 'self' 'unsafe-inline' 'unsafe-eval' https: moderndeck: blob:;"];
+	// 		callback({ responseHeaders: foo});
+	// 	}
+	// );
 
 	// mainWindow.webContents.session.webRequest.onHeadersReceived(
 	// 	{urls:["https://*.twitter.com/*","https://*.twimg.com/*"]},
@@ -676,26 +680,6 @@ function makeWindow() {
 	// 		callback({ responseHeaders: foo});
 	// 	}
 	// );
-
-	/*
-		Block original tweetdeck css bundle, just in case. Plus, it saves bandwidth.
-		We also replace twitter card CSS to make those look pretty
-	*/
-
-	mainWindow.webContents.session.webRequest.onBeforeRequest({urls:["https://ton.twimg.com/*"]}, (details,callback) => {
-
-		if (details.url.indexOf(".css") > -1 && (details.url.indexOf("bundle") > -1 && details.url.indexOf("dist") > -1) && !store.get("mtd_safemode")) {
-			callback({cancel:true});
-			return;
-		}
-
-		// if (details.url.indexOf(".css") > -1 && details.url.indexOf("tfw") > -1 && details.url.indexOf("css") > -1 && details.url.indexOf("tweetdeck_bundle") > -1) {
-		// 	callback({redirectURL:"moderndeck://resources/cssextensions/twittercard.css"});
-		// 	return;
-		// }
-
-		callback({cancel:false});
-	});
 
 	mainWindow.webContents.loadURL("https://tweetdeck.twitter.com");
 

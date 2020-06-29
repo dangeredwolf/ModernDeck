@@ -23,6 +23,7 @@ import { FunctionPatcher } from "./FunctionPatcher.js";
 import { LanguageFunctionPatcher } from "./LanguageFunctionPatcher.js";
 import { UILanguagePicker } from "./UILanguagePicker.js";
 import { UIThemeEditor } from "./UIThemeEditor.js";
+import { UIEmojiPanel } from "./UIEmojiPanel.js";
 import { loginTextReplacer, checkIfSigninFormIsPresent } from "./UILoginController.js";
 let welcomeData = _welcomeData;
 import { allColumnsVisible, getColumnFromColumnNumber, getColumnNumber, updateColumnVisibility } from "./Column.js";
@@ -482,6 +483,7 @@ function hookComposer() {
 
 
 	initGifPanel();
+	UIEmojiPanel.attachEvents();
 }
 
 /*

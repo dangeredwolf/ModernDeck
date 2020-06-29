@@ -52,7 +52,7 @@ export let settingsData = {
 							return;
 						}
 
-						// Migration for ModernDeck pre-Oasis (8.0 or before)
+						// Migration for ModernDeck pre-Oasis (8.0.x or before)
 						if (opt === "default") {
 							opt = TD.settings.getTheme();
 						}

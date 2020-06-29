@@ -142,7 +142,7 @@ export const I18n = function(a, b, c, d, e, f) {
 }
 
 function patchColumnTitle() {
-	if (TD && mR) {
+	if (window.TD && window.mR) {
 		var columnData = mR.findFunction("getColumnTitleArgs")[0].columnMetaTypeToTitleTemplateData;
 		for (var key in columnData) {
 			columnData[key].title = I18n(columnData[key].title);
@@ -155,7 +155,7 @@ function patchColumnTitle() {
 }
 
 function patchButtonText() {
-	if (TD && mR) {
+	if (window.TD && window.mR) {
 		let buttonData = mR.findFunction("tooltipText");
 
 		for (let i = 0; i < buttonData.length; i++) {
@@ -180,7 +180,7 @@ function patchButtonText() {
 }
 
 function patchColumnTitleAddColumn() {
-	if (TD && TD.controller && TD.controller.columnManager && TD.controller.columnManager.DISPLAY_ORDER) {
+	if (window.TD && TD.controller && TD.controller.columnManager && TD.controller.columnManager.DISPLAY_ORDER) {
 		let columnData = TD.controller.columnManager.DISPLAY_ORDER;
 
 		for (const key in columnData) {
