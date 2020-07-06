@@ -21,6 +21,29 @@ if (isApp) {
 	store = new Store({name:"mtdsettings"});
 }
 
+export function resetPref(id) {
+	for (let key in settingsData) {
+		if (settingsData[key].options) {
+			for (let i in settingsData[key].options) {
+				let prefKey = settingsData[key].options[i].settingsKey;
+				let pref = settingsData[key].options[i];
+
+				let def;
+
+				if (typeof pref.default === "function") {
+					def = pref.default();
+				} else {
+					def = pref.default;
+				}
+
+				if (prefKey === id) {
+					setPref(prefKey, def)
+				}
+			}
+		}
+	}
+}
+
 export function getPref(id, defaul) {
 	if (id === "mtd_core_theme") {
 		return TD.settings.getTheme();

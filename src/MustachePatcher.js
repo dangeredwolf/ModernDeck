@@ -153,17 +153,17 @@ export function processMustaches() {
 			'<i class="js-spinner-button-active icon-center-16 spinner-button-icon-spinner is-hidden"></i>',
 					buttonSpinner
 				);
-	if (typeof TD_mustaches["status/tweet_single.mustache"] !== "undefined") {
-		TD_mustaches["status/tweet_single.mustache"] =
-			TD_mustaches["status/tweet_single.mustache"]
-			.replace('{{^hasMedia}}', '')
-			.replace('{{/hasMedia}}', '')
-			.replace(`{{>status/tweet_media_wrapper}}`, '')
-			.replace(
-	  		`<div class="js-card-container"></div>  {{#quotedTweet}}`,
-	  		`{{>status/tweet_media_wrapper}}  {{#quotedTweet}}`);
-
-	}
+	// if (typeof TD_mustaches["status/tweet_single.mustache"] !== "undefined") {
+	// 	TD_mustaches["status/tweet_single.mustache"] =
+	// 		TD_mustaches["status/tweet_single.mustache"]
+	// 		.replace('{{^hasMedia}}', '')
+	// 		.replace('{{/hasMedia}}', '')
+	// 		.replace(`{{>status/tweet_media_wrapper}}`, '')
+	// 		.replace(
+	//   		`<div class="js-card-container"></div>  {{#quotedTweet}}`,
+	//   		`{{>status/tweet_media_wrapper}}  {{#quotedTweet}}`);
+	//
+	// }
 
 	if (typeof TD_mustaches["menus/actions.mustache"] !== "undefined") {
 		TD_mustaches["menus/actions.mustache"] =

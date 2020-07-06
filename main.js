@@ -79,12 +79,8 @@ app.setAppUserModelId("com.dangeredwolf.ModernDeck");
 
 let useDir = "common";
 
-console.log(I18nData)
-
 const I18n = function(key) {
-	console.log(key);
 	let foundStr = I18nData[key];
-	console.log(foundStr)
 	if (!foundStr) {
 		console.warn("Main process missing translation: " + key);
 		return key;
@@ -570,103 +566,28 @@ function makeWindow() {
 		console.log(desc);
 
 		return;
-
-		/*
-			This variable is used to display the chromium error code.
-
-			This isn't necessary for obvious errors, such as ERR_INTERNET_DISCONNECTED,
-			so we don't bother showing it in such cases.
-		*/
-
-		let addChromiumErrorCode = false;
-
-		if (code === -13 || code === -12) {
-			msg += "Your PC ran out of memory trying to start ModernDeck. Try closing some programs or restarting your PC and trying again."
-		} else if ((code <= -800 && code >= -900) || code === -137 || code === -105) {
-			msg += "We can't connect to Twitter due to a DNS error.\nPlease check your internet connection.";
-			addChromiumErrorCode = true;
-		} else if (code === -106) {
-			msg += "You are disconnected from the Internet. ModernDeck requires an internet connection.";
-		} else if (code === -201) {
-			msg += "Please check that your PC's date and time are set correctly. Twitter presented us with a security certificate that either expired or not yet valid.\nIf your date and time are correct, check https://api.twitterstat.us to see if there are any problems at Twitter."
-		} else if (code === -130 || code === -131 || code === -111 || code === -127 || code === -115 || code === -336) {
-			msg += "We can't connect to your internet connection's proxy server."
-
-			if (process.platform === "win32") {
-				msg += "\n\nIf you don't need to connect to a proxy server, you can take the following steps on Windows:\n1. Press Windows Key + R to open the Run dialog.\n2. Enter inetcpl.cpl\n3. Go to the Connections tab\n4. Click the LAN settings button near the bottom\n5. Uncheck \"Use a proxy server for your LAN\""
-			}
-
-			addChromiumErrorCode = true;
-		} else if (code === -22) {
-			msg += "Your domain administrator has blocked access to tweetdeck.twitter.com.\nIf your device is owned by an organization, you might need to ask an administrator to unblock it."
-
-			if (process.platform === "win32") {
-				msg += "\nIf you are not logged in as part of a domain, you may need to configure your Local Group Policy settings."
-			}
-		} else if (code === -7 || code === -118) {
-			msg += "We can't connect to Twitter because the request timed out.\nPlease check your internet connection.\nIf it still doesn't work, check https://api.twitterstat.us to see if there are any problems at Twitter."
-		} else if (code === -29 || code === -107 || (code <= -110 && code >= -117) || code === -123 || (code <= -125 && code >= -129) || code === -134 || code === -135 || code === -141 || (code <= -148 && code >= -153) || code === -156 || code === -159 || code === -164 || code === -167 || code === -172 || code === -175 || (code <= -177 && code >= -181) || (code <= -501 && code >= -504)) {
-			msg += "We can't establish a secure connection to Twitter.\nThis may be caused by network interference or a problem at Twitter.\n\nIf it still doesn't work, but other HTTPS websites appear to load (such as google.com), check https://api.twitterstat.us to see if there are any problems at Twitter.";
-			addChromiumErrorCode = true;
-		} else if (code <= -200 && code >= -220) {
-			msg += "We can't establish a secure connection to Twitter.\nThere is a problem with the digital certificate that was presented to us by Twitter.\n\nPlease try again, or if it persists, check https://api.twitterstat.us to see if there are any problems at Twitter.";
-			addChromiumErrorCode = true;
-		} else if (code <= -1 && code >= -99) {
-			msg += "We can't connect to Twitter due to an unexpected system error. Please refer to the error code below.";
-			addChromiumErrorCode = true;
-		} else if (code <= -100 && code >= -199) {
-			msg += "We can't connect to Twitter due to an unexpected connection error. Please refer to the error code below.";
-			addChromiumErrorCode = true;
-		} else if (code <= -200 && code >= -299) {
-			msg += "We can't connect to Twitter due to an unexpected certificate error. Please refer to the error code below.";
-			addChromiumErrorCode = true;
-		} else if (code <= -300 && code >= -399) {
-			msg += "We can't connect to Twitter due to an unexpected protocol error. Please refer to the error code below.";
-			addChromiumErrorCode = true;
-		} else if (code <= -400 && code >= -499) {
-			msg += "We can't connect to Twitter due to an unexpected caching error. Please refer to the error code below.";
-			addChromiumErrorCode = true;
-		} else {
-			msg += "We can't connect to Twitter due to an unexpected error. Please refer to the error code below.";
-			addChromiumErrorCode = true;
-		}
-
-		if (addChromiumErrorCode) {
-			msg += "\n\n" + desc + " " + code
-		}
-
-
-		console.log(code);
-
-		dialog.showMessageBox(mainWindow,{
-			title:"ModernDeck",
-			message:msg,
-			type:"error",
-			buttons:[I18n("Retry"),I18n("Close")]
-		}, (response) => {
-			if (response === 0) { // Retry
-				mainWindow.reload();
-			} else if (response === 1) { // Close
-				closeForReal = true;
-				mainWindow.close();
-			}
-		});
-		return;
 	});
 
 	/*
-		We need to replace the content security policy in order to load any third-party content, including JS, CSS, fonts
+		The content security policy needs to be replaced to be able to interact with GIF services
 	*/
 
-	// mainWindow.webContents.session.webRequest.onHeadersReceived(
-	// 	{urls:["https://tweetdeck.twitter.com/*","https://twitter.com/i/cards/*"]},
-	// 	(details, callback) => {
-	// 		let foo = details.responseHeaders;
-	// 		foo["content-security-policy"] =[
-	// 			"default-src 'self'; connect-src * moderndeck:; font-src https: blob: data: * moderndeck:; frame-src https: moderndeck:; frame-ancestors 'self' https: moderndeck:; img-src https: data: blob: moderndeck:; media-src * moderndeck: blob: https:; object-src 'self' https:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://moderndeck.org https://c6.patreon.com https://sentry.io https://cdn.jsdelivr.net https://ajax.googleapis.com moderndeck: https://cdn.ravenjs.com/ https://*.twitter.com https://*.twimg.com https://api-ssl.bitly.com blob:; style-src 'self' 'unsafe-inline' 'unsafe-eval' https: moderndeck: blob:;"];
-	// 		callback({ responseHeaders: foo});
-	// 	}
-	// );
+	mainWindow.webContents.session.webRequest.onHeadersReceived(
+		{urls:["https://tweetdeck.twitter.com/*"]},
+		(details, callback) => {
+			let foo = details.responseHeaders;
+			foo["content-security-policy"] =[
+				"default-src 'self'; connect-src * moderndeck:; "+
+				"font-src https: blob: data: * moderndeck:; "+
+				"frame-src https: moderndeck:; "+
+				"frame-ancestors 'self' https: moderndeck:; "+
+				"img-src https: data: blob: moderndeck:; "+
+				"media-src * moderndeck: blob: https:; "+
+				"object-src 'self' https:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://moderndeck.org moderndeck: https://*.twitter.com https://*.twimg.com https://api-ssl.bitly.com blob:; "+
+				"style-src 'self' 'unsafe-inline' 'unsafe-eval' https: moderndeck: blob:;"];
+			callback({ responseHeaders: foo});
+		}
+	);
 
 	// mainWindow.webContents.session.webRequest.onHeadersReceived(
 	// 	{urls:["https://*.twitter.com/*","https://*.twimg.com/*"]},
@@ -1054,7 +975,7 @@ function makeTray() {
 		return;
 	}
 
-	let pathName = __dirname + separator + "common" + separator + "app" + separator + (process.platform === "darwin" ? "macOSTrayTemplate.png" : "Tray.png");
+	let pathName = __dirname + separator + "common" + separator + "resources" + separator + "img" + separator + "app" + separator + (process.platform === "darwin" ? "macOSTrayTemplate.png" : "Tray.png");
 
 	const image = nativeImage.createFromPath(pathName);
 	image.setTemplateImage(true);

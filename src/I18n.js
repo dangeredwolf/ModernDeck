@@ -275,7 +275,7 @@ function patchMiscStrings() {
 }
 
 function patchTDFunctions() {
-	if (mR && mR.findFunction && mR.findFunction("en-x-psaccent")[0]) {
+	if (typeof mR !== "undefined" && mR.findFunction && mR.findFunction("en-x-psaccent")[0]) {
 		tweetDeckTranslateInitial = mR.findFunction("en-x-psaccent")[0].default;
 		mR.findFunction("en-x-psaccent")[0].default = I18n;
 

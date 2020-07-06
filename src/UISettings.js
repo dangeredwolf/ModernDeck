@@ -80,7 +80,11 @@ export function renderTab(key, subPanel) {
 		}
 
 		if (exists(pref.settingsKey) && exists(pref.default) && !hasPref(pref.settingsKey)) {
-			setPref(pref.settingsKey, pref.default);
+			if (typeof pref.default === "function") {
+				setPref(pref.settingsKey, pref.default());
+			} else {
+				setPref(pref.settingsKey, pref.default);
+			}
 		}
 
 		let input,select,label,minimum,maximum,button,link;
@@ -280,7 +284,11 @@ export function renderTab(key, subPanel) {
 				} else if (!exists(pref.settingsKey) && exists(pref.queryFunction)) {
 					input.val(pref.queryFunction());
 				} else if (exists(pref.default)) {
-					input.val(pref.default);
+					if (typeof pref.default === "function") {
+						input.val(pref.default());
+					} else {
+						input.val(pref.default);
+					}
 				}
 
 				label.html(internationaliseSettingString(pref.title) + " <b> "+ input.val() + " " + (internationaliseSettingString(pref.displayUnit) || "") + "</b>");

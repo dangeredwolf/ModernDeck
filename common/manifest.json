@@ -10,9 +10,10 @@
 
 	"default_locale":"en",
 
-	"permissions": [],
-
-	"optional_permissions": [
+	"permissions": [
+		"webRequest",
+		"webRequestBlocking",
+		"https://tweetdeck.twitter.com/*"
 	],
 
 	"content_scripts": [
@@ -42,6 +43,13 @@
 		"resources/libraries/*",
 		"resources/img/*"
 	],
+
+	"background": {
+		"scripts": [
+			"extension/background.js"
+		],
+		"persistent": true
+	},
 
 	"browser_action": {
 		"default_icon": "AppIcon64.png",

@@ -6,28 +6,32 @@
 */
 window.open("https://tweetdeck.twitter.com");
 
-var browser = browser || chrome;
-const createNewTab = () => browser.tabs.create({url:"https://tweetdeck.twitter.com"}, a => close());
+if (typeof chrome === "undefined") {
 
-try {
-	createNewTab();
-} catch (e) {
+	var browser = browser || chrome;
+	const createNewTab = () => browser.tabs.create({url:"https://tweetdeck.twitter.com"}, a => close());
 
-}
-
-needsPermission.innerHTML = browser.i18n.getMessage("needsPermission");
-needsPermissionParagraph.innerHTML = browser.i18n.getMessage("needsPermissionParagraph");
-grantButton.innerHTML = browser.i18n.getMessage("grantButton");
-grantButton.onclick = function() {
-	browser.permissions.request({permissions:["tabs"]}, (res) => {
+	try {
 		createNewTab();
-	})
-}
-
-browser.permissions.contains({permissions:["tabs"]}, (res) => {
-	if (res) {
-		createNewTab();
-	} else {
+	} catch (e) {
 
 	}
-});
+
+	needsPermission.innerHTML = browser.i18n.getMessage("needsPermission");
+	needsPermissionParagraph.innerHTML = browser.i18n.getMessage("needsPermissionParagraph");
+	grantButton.innerHTML = browser.i18n.getMessage("grantButton");
+	grantButton.onclick = function() {
+		browser.permissions.request({permissions:["tabs"]}, (res) => {
+			createNewTab();
+		})
+	}
+
+	browser.permissions.contains({permissions:["tabs"]}, (res) => {
+		if (res) {
+			createNewTab();
+		} else {
+
+		}
+	});
+
+}

@@ -2430,7 +2430,8 @@ html:not(.mtd-classic-nav) .attach-compose-buttons .tweet-button {
 	top:0;
 	z-index:100;
 	text-shadow:var(--rootBlackColor) 0 4px 7px;
-	overflow:visible
+	overflow:visible;
+	pointer-events: none;
 }
 
 .message-banner .dismiss {
@@ -2449,8 +2450,9 @@ html:not(.mtd-classic-nav) .attach-compose-buttons .tweet-button {
 	margin-left:35%;
 	margin-right:0;
 	padding-left:10px;
-	background-color:var(--primaryColor);
-	box-shadow:var(--genericDropShadow)
+	background-color: var(--modalWindowColor);
+	box-shadow: var(--genericDropShadow) 0 6px 6px;
+	border-radius: 0 0 10px 10px;
 }
 
 .message-content a {
@@ -9215,7 +9217,7 @@ html:not(.mtd-head-left) .column-nav-flyout {
 	pointer-events:none;
 	background:var(--modalWindowColor);
 	box-shadow:0 7px 15px var(--modalDropShadow);
-	animation:flyoutflyin 0.15s
+	/* animation:flyoutflyin 0.15s */
 }
 
 .column-nav-flyout .column-heading {
