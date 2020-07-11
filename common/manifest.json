@@ -6,13 +6,14 @@
 
 	"description": "__MSG_description__",
 
-	"version": "8.0.3.1",
+	"version": "8.0.4",
 
 	"default_locale":"en",
 
-	"permissions": [],
-
-	"optional_permissions": [
+	"permissions": [
+		"webRequest",
+		"webRequestBlocking",
+		"https://tweetdeck.twitter.com/*"
 	],
 
 	"content_scripts": [
@@ -42,6 +43,13 @@
 		"resources/libraries/*",
 		"resources/img/*"
 	],
+
+	"background": {
+		"scripts": [
+			"extension/background.js"
+		],
+		"persistent": true
+	},
 
 	"browser_action": {
 		"default_icon": "AppIcon64.png",
