@@ -1,10 +1,10 @@
 {
 	"description": {
-		"message": "The most powerful Twitter client for desktop.",
+		"message": "데스크톱에 가장 강력한 Twitter 클라이언트.",
 		"description": "Short description for the extension"
 	},
 	"launch": {
-		"message": "Launch ModernDeck",
+		"message": "ModernDeck 시작",
 		"description": "The ModernDeck Launcher button"
 	},
 	"name": {
@@ -12,19 +12,19 @@
 		"description": "The name of the extension that appears on the Chrome Web Store"
 	},
 	"webstoreDescription": {
-		"message": "ModernDeck is a TweetDeck-based Twitter client with a beautiful, Material Design-inspired interface. It combines the power of TweetDeck with the ease-of-use you expect from a Twitter client.\n\nYou can customize how ModernDeck looks and acts to make it your own, including:\n-Size of columns and text\n-Fonts\n-Themes, including alternate color schemes\n-Size and shape of profile pictures\nAnd much more\n\nModernDeck is available in several languages, and is also available for other platforms at https://moderndeck.org/download",
+		"message": "ModernDeck은 TweetDeck 기반의 Twitter 클라이언트로서 머티리얼 디자인에 영감을 받은 아름다운 인터페이스를 가지고 있으며, TweetDeck의 강력한 위력과 Twitter 클라이언트에서의 사용 편의성을 결합한 것이다.\n\n다음 항목들은 ModernDeck에서 디자인과 동작을 사용자가 직접 커스터마이징 할 수 있습니다.\n- 텍스트의 크기 및 행렬\n- 폰트\n- 각종 테마 및 색상 대체\n- 프로필 사진의 크기 및 모양\n그 외 다수\n\nModernDeck는 여러 언어로 제공되며, https://moderndeck.org/download 에서 다른 플랫폼용으로 다운로드 할 수 있습니다.",
 		"description": "The description of the extension that appears on the Chrome Web Store"
 	},
 	"grantButton": {
-		"message": "Grant Permission",
+		"message": "권한 부여",
 		"description": "A button to grant tabs permission in Firefox"
 	},
 	"needsPermission": {
-		"message": "Sorry to interrupt &mdash; We need permission to open tabs",
+		"message": "&mdash; 탭을 열려면 권한이 필요합니다.",
 		"description": "A title about granting tabs permission in Firefox"
 	},
 	"needsPermissionParagraph": {
-		"message": "ModernDeck requires the tab permission from Firefox in order to create new tabs.<br><br>\nThis is optional, and only required for the launcher feature. You can still access ModernDeck at <a href=\"https://tweetdeck.twitter.com\" target=\"_blank\">tweetdeck.twitter.com</a> even without this permission.<br><br>\nIf you don't accept these permissions, you can remove the launcher button by right clicking it and selecting <i>Remove from Toolbar</i><br><br>\n<b>ModernDeck does not read your open tabs.</b>",
+		"message": "ModernDeck은 새 탭을 만들려면 Firefox의 탭 권한이 필요합니다. <br><br>\n이것은 선택 사항이며 프로그램 버전에서만 필요합니다. 이 권한 없이도 <a href=\"https://tweetdeck.twitter.com\" target=\"_blank\">tweetdeck.twitter.com</a>에서 ModernDeck에 계속 액세스 할 수 있습니다..<br><br>\n이러한 권한을 수락하지 않는 경우 시작 단추에서 마우스 오른쪽 단추를 클릭하고 <i>도구 모음에서 제거</i>를 선택하여 실행 단추를 제거할 수 있습니다.<br><br>\n<b>ModernDeck는 열려 있는 탭을 읽지 않습니다.</b>",
 		"description": "A description about granting tabs permission in Firefox"
 	}
 }
