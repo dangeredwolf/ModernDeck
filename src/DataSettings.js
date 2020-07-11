@@ -119,7 +119,6 @@ export let settingsData = {
 						disableStylesheetExtension(getPref("mtd_theme"));
 						disableStylesheetExtension("amoled");
 						setPref("mtd_theme",opt);
-						enableStylesheetExtension(opt || "default");
 
 						if ((opt === "amoled" || opt === "darker") && TD.settings.getTheme() === "light") {
 							TD.settings.setTheme("dark");
@@ -140,6 +139,8 @@ export let settingsData = {
 							enableStylesheetExtension("amoled");
 							setPref("mtd_theme","amoled");
 						}
+						
+						enableStylesheetExtension(opt || "default");
 
 						if (hasPref("mtd_customcss")) {
 							disableStylesheetExtension("customcss");

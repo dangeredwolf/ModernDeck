@@ -101,7 +101,7 @@ const template = [
 			{ role: "hideothers" },
 			{ role: "unhide" },
 			{ type: "separator" },
-			{ label: "Quit ModernDeck", click(){ console.log("it's time to quit NOW"); closeForReal = true; app.quit(); } }
+			{ role: "quit" }
 		]
 	},
 	{
@@ -343,7 +343,9 @@ function makeWindow() {
 	const lock = app.requestSingleInstanceLock();
 
 	if (!lock) {
+		closeForReal = true;
 		app.quit();
+		return;
 	}
 
 	let display = {};
@@ -392,7 +394,7 @@ function makeWindow() {
 		autoHideMenuBar:true,
 		nodeIntegrationInSubFrames:false,
 		title:"ModernDeck",
-		icon:__dirname+useDir+"/resources/favicon.ico",
+		// icon:__dirname+useDir+"/resources/favicon.ico",
 		frame:useFrame,
 		titleBarStyle:titleBarStyle,
 		minWidth:375,
@@ -828,6 +830,7 @@ function makeWindow() {
 	// mtdInject initiated app restart, after user clicks to restart to install updates
 
 	ipcMain.on("restartAndInstallUpdates", (event,arg) => {
+		closeForReal = true;
 		autoUpdater.quitAndInstall(false,true);
 	});
 
@@ -1072,6 +1075,10 @@ app.on("window-all-closed", () => {
 	app.quit();
 });
 
+app.on("before-quit", () => {
+	closeForReal = true;
+})
+
 // Make window if it doesn't exist, if user clicks app icon
 
 app.on("activate", () => {
@@ -1238,6 +1245,10 @@ setInterval(() => {
 setTimeout(() => {
 	try {
 		autoUpdater.checkForUpdates();
+
+		if (!mainWindow) {
+			return;
+		}
 
 		mainWindow.webContents.send(
 			"inverted-color-scheme-changed",

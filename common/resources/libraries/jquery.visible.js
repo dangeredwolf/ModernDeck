@@ -15,10 +15,10 @@
 
         if (this.length < 1)
             return;
-	
+
 	// Set direction default to 'both'.
 	direction = direction || 'both';
-	    
+
         var $t          = this.length > 1 ? this.eq(0) : this,
 						isContained = typeof container !== 'undefined' && container !== null,
 						$c				  = isContained ? $(container) : $w,
@@ -80,4 +80,4 @@
         }
     };
 
-})(jQuery);
+})($);

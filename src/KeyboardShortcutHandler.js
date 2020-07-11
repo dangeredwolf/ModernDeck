@@ -22,8 +22,6 @@ import { diag } from "./UIDiag.js";
 
 export function keyboardShortcutHandler(e) {
 
-	console.log(e);
-
 	if (e.ctrlKey && e.shiftKey) {
 		switch(e.key.toUpperCase()) {
 			case "A":

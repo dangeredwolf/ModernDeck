@@ -1,2 +1,12 @@
 # Auto detect text files and perform LF normalization
 * text=auto
+*.json text eol=lf
+*.js text eol=lf
+*.css text eol=lf
+.gitattributes text eol=lf
+.gitignore text eol=lf
+*.csv text eol=lf
+*.yml text eol=lf
+*.md text eol=lf
+*.png binary
+*.jpg binary

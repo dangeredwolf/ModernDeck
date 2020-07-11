@@ -84,7 +84,7 @@
 
 .mtd-settings-subpanel {
 	height:525px;
-	width:489px;
+	width:calc(659px - var(--settingsTabWidth));
 	display:block;
 	position:absolute;
 	overflow-y:auto;
@@ -158,7 +158,7 @@
 	pointer-events:all;
 	margin-bottom:0;
 	min-height:2px;
-	padding-left:34px;
+	padding-left:39px;
 	vertical-align:text-top!important;
 	padding-top:4px;
 	height:20px;
@@ -194,7 +194,7 @@
 	background:var(--selectionBackgroundColor)!important;
 	z-index:1;
 	left:0;
-	width:170px;
+	width:var(--settingsTabWidth);
 	transition:top 0.3s var(--animationTiming)!important;
 	pointer-events:none
 }
@@ -213,7 +213,7 @@
 }
 
 .mtd-settings-subpanel select, .mtd-settings-subpanel input[type="text"] {
-	width:var(--settingsTabWidth)!important;
+	width:200px!important;
 	display:inline-block;
 	float:right
 }
@@ -373,7 +373,6 @@
 
 .mtd-settings-option-button .control-label b {
 	font-size:16px;
-	font-weight:400;
 	margin-right:33px;
 	width:300px;
 	display:inline;
@@ -520,7 +519,7 @@ html body .mtd-settings-subpanel button {
 	margin-top:50px;
 	line-height:2;
 	font-weight:400;
-	width:58%
+	width:88%
 }
 
 .mtd-update-managed+.mtd-settings-button {

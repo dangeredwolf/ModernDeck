@@ -1,0 +1,9 @@
+{
+	"name": "ModernDeck",
+	"short_name": "ModernDeck",
+	"theme_color": "#263238",
+	"background_color": "#263238",
+	"display": "minimal-ui",
+	"scope": "/",
+	"start_url": "/"
+}

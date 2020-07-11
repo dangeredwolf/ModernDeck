@@ -33,7 +33,23 @@ export function FunctionPatcher() {
 			getWrapperVersion:() => window.version,
 			inApp:() => true,
 			tearDown:() => {},
-			doGrowl:()=>{console.warn("doGrowl: ",arguments)},
+			doGrowl:(title, text, icon, tweet, column)=>{
+				console.warn("doGrowl: ", title, text, icon, tweet, column);
+				let col = TD.controller.columnManager.get(column);
+				let tweetObj;
+
+
+
+				let notif = new Notification(title,{body:text,icon:icon,silent:true});
+				notif.onclick = () => {
+					col.updateArray.forEach(privateTweetObj => {
+						if (privateTweetObj.id === tweet) {
+							tweetObj = privateTweetObj;
+						}
+					})
+					TD.ui.updates.showDetailView(col, tweetObj);
+				}
+			},
 			setTheme:(str) => {console.log("Theme: "+str)},
 			authenticateOn:() => {console.warn("authenticateOn");return {hide:()=>{},deleteLater:()=>{}}},
 			closeLoadingScreen:()=>{console.warn("closeLoadingScreen")}

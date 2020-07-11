@@ -926,8 +926,8 @@ button:hover,button:focus,.Button--primary {
 	border-radius:0
 }
 
-.med-img,.embed-iframe,.js-contributor-manager-back,.l-column.mdl-column.mdl-column-sml+.mdl-column.mdl-column-lrg,.med-embeditem>.l-table,.button-group-toggle {
-	width:100%
+.med-img,.embed-iframe,.js-contributor-manager-back,.med-embeditem>.l-table,.button-group-toggle {
+	width:100%;
 }
 
 .half-width,.button-group-toggle button {
@@ -2770,8 +2770,9 @@ html:not(.mtd-classic-nav) .attach-compose-buttons .tweet-button {
 	font-weight:700
 }
 
-#settings-modal .mdl:not(.mtd-settings-panel) .mdl-header-title {
-	font-size:0
+#settings-modal .mdl-header-title {
+	width:170px;
+	text-align:right
 }
 
 .s-tall-fixed .mdl-header-title {
@@ -4647,8 +4648,8 @@ html:not(.mtd-head-left) .column-nav-link i {
 
 .media-img {
 	max-width:100%!important;
-	min-width:100px;
-	min-height:100px
+	/* min-width:100px;
+	min-height:100px */
 }
 
 .compose-content .account-selector-grid-toggle {
@@ -5166,7 +5167,7 @@ html:not(.mtd-head-left) body .application.hide-detail-view-inline .column-navig
 
 #general_settings .control-group label.checkbox,#general_settings .control-group label.radio {
 	margin-left:30px;
-	margin-bottom:4px
+	margin-bottom:4px;
 }
 
 .mdl .checkbox,.mdl .radio {
@@ -5761,6 +5762,7 @@ button.mtd-no-transform-case {
 .js-mediatable {
 	position:absolute;
 	pointer-events:none;
+	overflow:hidden;
 	background:rgba(0,0,0,.3)
 }
 
@@ -5771,12 +5773,16 @@ button.mtd-no-transform-case {
 }
 
 .l-column.mdl-column.mdl-column-sml {
-	top:-50px;
+	top: -70px;
 	left:0;
 	pointer-events:none;
-	width:100%;
 	background:0;
-	position:absolute
+	height: 525px;
+	background:var(--primaryColor)
+}
+
+#settings-modal .mdl-column-sml .l-column-scrollv {
+	top:70px
 }
 
 .l-column.mdl-column.mdl-column-sml li {
@@ -5786,16 +5792,22 @@ button.mtd-no-transform-case {
 	box-shadow:none!important;
 	text-align:center;
 	padding-left:20px;
-	padding-right:20px
+	padding-right:20px;
+	float: right;
 }
 
 .js-toggle.padding-al button.is-selected,.mtd-nav-drawer-background-hidden,.l-column.mdl-column.mdl-column-sml .selected {
 	background:transparent
 }
 
+.l-column.mdl-column.mdl-column-sml .selected {
+	border-right:solid 4px var(--rootWhiteColor)
+}
+
 .l-column.mdl-column.mdl-column-sml .list-link {
 	padding:16px 0 16px 0;
-	background:none!important
+	background:none!important;
+	float: right;
 }
 
 .btn-fav-faved-text,.btn-fav-fav-text,.btn-fav-unfav-text {
@@ -5976,7 +5988,7 @@ textarea:not(.compose-text):not(.js-compose-text):not(.js-list-description):not(
 }
 
 .js-media.item-box-full-bleed {
-	margin-top:20px!important
+	margin-top:10px!important
 }
 
 .js-quoted-tweet-text.with-linebreaks {
@@ -6941,7 +6953,7 @@ li.padding-axl.flex.flex-row.flex-align--center .account-summary-text>a.account-
 }
 
 .obj-left.js-theme,.obj-left.js-column-size,.obj-left.js-font-size {
-	width:170px
+	width:130px
 }
 
 .controls {
@@ -8898,14 +8910,9 @@ html:not(.mtd-classic-nav) .js-hide-drawer:not(.tweet-button):not([data-title="A
 	transition:0.07s all,.08s margin
 }
 
-.mtd-gif-button:active {
-	-moz-transform:scale(0.5) translateX(-20px) translateY(30px)!important
-}
-
 .mtd-gif-button:active:after {
 	margin-left:-20px;
-	margin-top:-42px;
-	-moz-transform:scale(1) translateX(-20px) translateY(30px)
+	margin-top:-42px
 }
 
 .js-quoted-tweet-text+.txt-ellipsis.txt-size-variable--12 {
@@ -9240,7 +9247,7 @@ a {
 	max-height:900px;
 	bottom:auto;
 	top:auto;
-	height:auto
+	height:auto;
 }
 
 .prf-stats>li:nth-child(2) {
@@ -9270,7 +9277,7 @@ a {
 	border-radius:2px;
 	min-height:525px;
 	max-height:707px;
-	-webkit-app-region:no-drag
+	-webkit-app-region:no-drag;
 }
 
 .js-modal-panel.mdl.s-fluid.s-wide.cmp.s-minimal {
@@ -9302,7 +9309,8 @@ a {
 }
 
 .settings-modal .mdl {
-	overflow:hidden
+	overflow:hidden;
+	width: 645px;
 }
 
 .mdl .prf-follow-state .js-user-actions-menu {
@@ -9360,6 +9368,7 @@ button.js-add-filter {
 	right:130px;
 	left:300px;
 	-webkit-app-region:drag;
+	z-index:99;
 	height:40px
 }
 
@@ -9369,4 +9378,13 @@ button.js-add-filter {
 
 .btn-fav-protected-text {
 	white-space:nowrap
+}
+
+#general_settings .fixed-width-label {
+	width:40%
+}
+
+#settings-modal .mdl-column-lrg {
+	top: -70px;
+	height: 525px;
 }

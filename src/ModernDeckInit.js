@@ -9,6 +9,7 @@ window.SystemVersion = version.replace(".0.0",".0"); // remove trailing .0, if p
 
 import { AsciiArtController } from "./AsciiArtController.js";
 import { AutoUpdateController } from "./AutoUpdateController.js";
+import { PWAManifest } from "./PWAManifest.js";
 import { I18n, startI18nEngine } from "./I18n.js";
 import { getPref, setPref } from "./StoragePreferences.js";
 import { make, exists, isApp, mutationObserver, getIpc, handleErrors, formatNumberI18n } from "./Utils.js";
@@ -277,9 +278,8 @@ function mtdInit() {
 	TD_mustaches["login/login_form.mustache"] = newLoginPage;
 
 	/*
-		Especially on Edge, but also on Chrome shortly after launch,
-		sometimes the stylesheet isn't blocked by the network, which breaks the page heavily.
-		This ensures that the stylesheet is manually removed so that it doesn't cause problems
+		In ModernDeck 8.0+ for extensions, we need to remove the TweetDeck
+		stylesheet as it is no longer blocked with webRequest anymore
 	*/
 
 	let beGone = document.querySelector("link[rel='apple-touch-icon']+link[rel='stylesheet']");
@@ -345,7 +345,7 @@ function mtdInit() {
 
 				$(document).trigger("uiMTDColumnCollapsed");
 
-				let arr = getPref("mtd_collapsed_columns",[]);
+				let arr = getPref("mtd_collapsed_columns", []);
 				if ($(ohGodThisIsHorrible).hasClass("mtd-collapsed")) {
 					arr.push(getColumnNumber($(ohGodThisIsHorrible)));
 				} else {
@@ -363,7 +363,7 @@ function mtdInit() {
 				}
 				$(ohGodThisIsEvenWorseWhatTheHeck).removeClass("mtd-collapsed");
 				$(document).trigger("uiMTDColumnCollapsed");
-				let arr = getPref("mtd_collapsed_columns",[]);
+				let arr = getPref("mtd_collapsed_columns", []);
 	 			let colNum = getColumnNumber($(ohGodThisIsEvenWorseWhatTheHeck));
 	 			arr = arr.filter(num => num !== colNum)
 				setPref("mtd_collapsed_columns",arr);
@@ -572,6 +572,8 @@ function coreInit() {
 		return;
 	}
 
+	handleErrors(PWAManifest.injectManifest, "Error occurred while injecting PWA manifest");
+
 	handleErrors(AsciiArtController.draw, "Error occurred while trying to draw ModernDeck version easter egg")
 
 	handleErrors(AutoUpdateController.initialize, "Error occurred while initialising AutoUpdateController")
@@ -666,7 +668,8 @@ function coreInit() {
 
 	checkIfSigninFormIsPresent();
 	loginInterval = setInterval(checkIfSigninFormIsPresent, 500);
-	console.info(`MTDinject ${SystemVersion} loaded`);
+	console.info(`ModernDeck ${SystemVersion}`);
+	console.info("ModernDeckInit.coreInit completed. Good job.");
 
 }
 
