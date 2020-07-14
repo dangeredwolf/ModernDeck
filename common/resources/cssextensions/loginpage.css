@@ -74,6 +74,11 @@ select,input {
 	position:absolute
 }
 
+.startflow ::selection {
+	background:var(--selectionBackgroundColor);
+	color:var(--selectionTextColor)
+}
+
 .app-signin-wrap {
 	position:relative;
 	max-width:360px;

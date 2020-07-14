@@ -59,8 +59,6 @@
 	--verticalHeadWidth:50px
 }
 
-/* LOADING SCREEN, DO NOT MERGE, MOVE, OR REMOVE. It's fairly important that the renderer loads this first. */
-
 img.spinner-centered {
 	display:none
 }
@@ -286,8 +284,8 @@ body,body.signin-sheet-present {
 }
 
 .mtd-fade-out {
-	animation-fill-mode:forwards;
 	animation:fadeOut 0.2s var(--animationTiming)!important;
+	animation-fill-mode:forwards;
 	pointer-events:none
 }
 
@@ -341,6 +339,7 @@ a.js-create-list,
 }
 
 html {
+	color:var(--bodyTextColor);
 	font-family:var(--defaultFontOrder)
 }
 
@@ -855,6 +854,10 @@ button,a.btn,a.js-create-list,input[type="button"],.Button--primary,.Button {
 	text-transform:uppercase
 }
 
+button {
+	color:var(--secondaryColor)
+}
+
 button>i,a.btn>i,a.js-create-list>i,input[type="button"]>i,.Button--primary>i,.Button>i {
 	text-transform:none
 }
@@ -966,6 +969,7 @@ button:hover,button:focus,.Button--primary {
 	z-index:1;
 	display:inline-block;
 	overflow:hidden;
+	background:var(--backdropColor);
 	width:var(--columnSize);
 	height:100%;
 	font-size:0.9rem;
@@ -1003,6 +1007,7 @@ button:hover,button:focus,.Button--primary {
 }
 
 .column-content {
+	border-right:3px solid var(--columnBorderColor);
 	position:absolute;
 	top:54px;
 	left:0;
@@ -1065,6 +1070,7 @@ button:hover,button:focus,.Button--primary {
 }
 
 .column-scroller {
+	background:var(--backdropColor);
 	width:100%;
 	overflow-x:hidden;
 	opacity:1!important;
@@ -1107,6 +1113,7 @@ button:hover,button:focus,.Button--primary {
 }
 
 .column-detail-level-2 {
+	background:var(--backdropColor);
 	z-index:10!important;
 	opacity:1
 }
@@ -1116,7 +1123,10 @@ button:hover,button:focus,.Button--primary {
 	overflow:visible
 }
 
-.column-header,.column-header-temp {
+.column-header,
+.column-header-temp
+{
+	background:linear-gradient(var(--primaryColor),var(--primaryColor));
 	box-sizing:border-box;
 	position:relative;
 	height:54px;
@@ -1128,7 +1138,17 @@ button:hover,button:focus,.Button--primary {
 	width:var(--columnSize)
 }
 
-.column-temp .column-header,.column-header-temp {
+.is-new .column-header,
+.is-new .column-header-temp
+{
+	background:linear-gradient(var(--primaryColor),var(--secondaryColor))
+}
+
+.column-temp .column-header,
+.column-header-temp
+{/* Background is a quirk specific to light mode,
+	 default theme */
+	background:linear-gradient(var(--mdlPrimaryColor),var(--mdlPrimaryColor));
 	width:100%;
 	box-shadow:0 5px 10px 0 var(--columnShadow)
 }
@@ -1305,6 +1325,7 @@ a .column-title-back .icon:after {
 }
 
 .column-message {
+	background:var(--primaryColor);
 	height:21px!important;
 	box-sizing:border-box;
 	overflow:hidden;
@@ -1845,6 +1866,12 @@ a .column-title-back .icon:after {
 
 .tweet-action {
 	max-width:50px
+}
+
+.stream-item.is-actionable .tweet-action,
+.stream-item.is-actionable .tweet-detail-action
+{
+	color:var(--scrollbarDefaultColor)
 }
 
 .is-conversation>.tweet-body {
@@ -2450,9 +2477,9 @@ html:not(.mtd-classic-nav) .attach-compose-buttons .tweet-button {
 	margin-left:35%;
 	margin-right:0;
 	padding-left:10px;
-	background-color: var(--modalWindowColor);
-	box-shadow: var(--genericDropShadow) 0 6px 6px;
-	border-radius: 0 0 10px 10px;
+	background-color:var(--modalWindowColor);
+	box-shadow:var(--genericDropShadow) 0 6px 6px;
+	border-radius:0 0 10px 10px
 }
 
 .message-content a {
@@ -2641,6 +2668,7 @@ html:not(.mtd-classic-nav) .attach-compose-buttons .tweet-button {
 
 .drawer {
 	position:absolute;
+	background:var(--secondaryColorAlt);
 	width:var(--composeWidth);
 	top:0;
 	/* stylelint-disable */
@@ -3057,6 +3085,7 @@ html:not(.mtd-classic-nav) .attach-compose-buttons .tweet-button {
 .compose {
 	height:100%;
 	margin-left:100px;
+	background:var(--secondaryColorAlt);
 	width:var(--composeWidth);
 	float:right;
 	border-radius:135px;
@@ -3158,6 +3187,7 @@ html:not(.mtd-app).mtd-classic-nav .compose-content {
 }
 
 .compose-send-button-success {
+	color:var(--secondaryColorAlt);
 	margin-left:0;
 	margin-top:0;
 	z-index:5;
@@ -4011,6 +4041,10 @@ input[type="checkbox"]:active {
 
 .calweek a:hover,.caloff:hover {
 	background:rgba(0,0,0,.04)
+}
+
+.calweek a:hover {
+	color:var(--secondaryColor)
 }
 
 .caldisabled[href],.caldisabled[href]:hover,.caldisabled[href]:active {
@@ -5047,6 +5081,7 @@ html:not(.mtd-head-left) body .application.hide-detail-view-inline .column-navig
 }
 
 .drawer-header,.Panel-header {
+	background:var(--primaryColor);
 	box-shadow:0 1px 10px var(--avatarHoverShadow);
 	position:relative;
 	height:53px
@@ -5125,6 +5160,7 @@ html:not(.mtd-head-left) body .application.hide-detail-view-inline .column-navig
 }
 
 .edit-conversation-name {
+	background:var(--primaryColor);
 	position:absolute;
 	top:0;
 	right:-30px;
@@ -5230,6 +5266,7 @@ html:not(.mtd-head-left) body .application.hide-detail-view-inline .column-navig
 }
 
 .gap-chirp-text {
+	color:var(--secondaryColorAlt);
 	width:90%;
 	text-align:center;
 	text-transform:uppercase;
@@ -5327,7 +5364,8 @@ html:not(.mtd-head-left) body .application.hide-detail-view-inline .column-navig
 .stream-item.is-actionable.is-selected-tweet,
 button.try-query,
 .Notification-inner
- {
+{
+	background:var(--secondaryColor);
 	box-shadow:0 2px 5px 0 rgba(0,0,0,.16),0 2px 5px 0 var(--contextMenuShadow)
 }
 
@@ -5335,8 +5373,13 @@ button.try-query,
 	top:-5.75em
 }
 
-.Notification-inner:hover,button.try-query:hover,button.try-query:active,.stream-item.is-actionable:active,.more-tweets-btn:active,.more-tweets-btn:hover,.more-tweets-btn:focus,.tweet-button:not(.js-hide-drawer):active,.tweet-button:not(.js-hide-drawer):focus,.tweet-button:not(.js-hide-drawer):hover {
+.Notification-inner:hover,button.try-query:hover,button.try-query:active,.stream-item.is-actionable:active,.tweet-button:not(.js-hide-drawer):active,.tweet-button:not(.js-hide-drawer):focus,.tweet-button:not(.js-hide-drawer):hover {
 	box-shadow:0 2px 10px 0 rgba(0,0,0,.16),0 8px 10px 0 var(--contextMenuShadow)
+}
+
+.more-tweets-btn:active,.more-tweets-btn:hover,.more-tweets-btn:focus {
+	box-shadow:0 2px 10px 0 rgba(0,0,0,.16),0 8px 10px 0 var(--contextMenuShadow);
+	color:var(--secondaryColorAlt)
 }
 
 .more-tweets-btn:active {
@@ -5729,9 +5772,16 @@ button.mtd-no-transform-case {
 
 .btn-login[type="submit"],.login-container .btn-positive {
 	width:300px;
+	background:var(--secondaryColor)!important;
 	border-radius:3px;
 	font-weight:500;
 	box-shadow:0 1px 2px 1px rgba(0,0,0,.25)
+}
+
+.btn-login[type="submit"]:active,
+.login-container .btn-positive:active
+{
+	background:var(--secondaryColorPress)!important
 }
 
 .btn-login[type="submit"].full-width {
@@ -5945,7 +5995,7 @@ button.mtd-no-transform-case {
 	float:right
 }
 
-textarea:not(.compose-text):not(.js-compose-text):not(.js-list-description):not(.height--415):not(#id_comments):not(.mtd-textarea) {
+textarea:not(.compose-text):not(.js-compose-text):not(.js-list-description):not(.height--415):not(.mtd-textarea) {
 	width:100%;
 	border-top:none;
 	border-left:none;
@@ -6454,6 +6504,10 @@ legend.frm-legend+div+.control-group>.control-label,legend.frm-legend+div+div+.c
 	height:5px
 }
 
+.tweet-stats>li>a {
+	color:var(--tweetActionColor)
+}
+
 .tweet-detail-reply .account-link>.nbfc {
 	margin-bottom:3px
 }
@@ -6529,251 +6583,14 @@ legend.frm-legend+div+.control-group>.control-label,legend.frm-legend+div+div+.c
 	margin-bottom:0
 }
 
-.sentry-error-embed {
-	animation:windowDown 0.3s var(--animationTiming)!important;
-	width:600px!important;
-	margin:0 auto!important;
-	max-height:900px!important;
-	bottom:auto!important;
-	height:auto!important;
-	left:50%!important;
-	margin-left:-300px!important;
-	top:0!important;
-	text-align:left;
-	padding:40px;
-	max-width:700px;
-	overflow:auto;
-	border-radius:3px;
-	box-shadow:0 0 0 1px var(--contextMenuShadow),0 10px 40px var(--contextMenuShadow)
-}
-
-.sentry-error-embed-wrapper {
-	overflow:auto
-}
-
-.sentry-error-embed * {
-	-webkit-font-smoothing:antialiased;
-	margin:0;
-	padding:0
-}
-
-.sentry-error-embed a,
-.sentry-error-embed a:visited {
-	color:#546076;
-	font-weight:500;
-	text-decoration:none
-}
-
-.sentry-error-embed p {
-	margin:0 0 20px
-}
-
-.sentry-error-embed form {
-	margin:0
-}
-
-.sentry-error-embed h2 {
-	font-size:28px;
-	font-weight:500;
-	margin:0 0 5px
-}
-
-.sentry-error-embed header {
-	text-align:center;
-	margin-bottom:20px;
-	padding-bottom:8px;
-	border-bottom:rgba(255,255,255,0.04)
-}
-
-.sentry-error-embed header p {
-	color:#94A0B3;
-	font-size:16px
-}
-
-.sentry-error-embed .form-field {
-	margin-bottom:20px;
-	position:relative;
-	width:100%
-}
-
-.sentry-error-embed .form-field label {
-	font-size:14px;
-	text-transform:uppercase;
-	font-weight:500;
-	display:block;
-	margin-bottom:5px;
-	width:60px;
-	position:absolute;
-	vertical-align:middle;
-	height:0;
-	padding-top:12px
-}
-
-.sentry-error-embed .form-field input,
-.sentry-error-embed .form-field textarea {
-	font-size:15px;
-	padding:8px 12px;
-	box-shadow:none;
-	width:500px;
-	height:auto;
-	box-sizing:border-box;
-	border-radius:2px;
-	margin-left:100px
-}
-
-.sentry-error-embed .form-field input::placeholder,
-.sentry-error-embed .form-field textarea::placeholder {
-	color:#94A0B3
-}
-
-.sentry-error-embed .form-field input:focus,
-.sentry-error-embed .form-field textarea:focus {
-	outline:none;
-	border-color:#94A0B3
-}
-
-.sentry-error-embed .form-errors input,
-.sentry-error-embed .form-errors textarea {
-	border-color:#E35141
-}
-
-.sentry-error-embed .form-field textarea {
-	height:100px
-}
-
-.sentry-error-embed .form-submit .btn {
-	border:none;
-	color:var(--rootWhiteColor);
-	padding:10px 15px;
-	margin-right:15px;
-	font-weight:500;
-	cursor:pointer;
-	float:left;
-	box-shadow:0 1px 1px rgba(0,0,0,.12)
-}
-
-.sentry-error-embed .form-submit .close {
-	padding:10px 0;
-	font-size:14px;
-	font-weight:500;
-	cursor:pointer;
-	float:left
-}
-
-.sentry-error-embed .form-submit .powered-by {
-	padding:10px 0;
-	margin:0;
-	float:right;
-	font-size:14px
-}
-
-.sentry-error-embed .form-submit .powered-by a {
-	text-indent:-9999em;
-	display:inline-block;
-	width:81px;
-	height:18px;
-	background-image:url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz48IURPQ1RZUEUgc3ZnIFBVQkxJQyAiLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4iICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPjxzdmcgdmVyc2lvbj0iMS4xIiBpZD0iTGF5ZXJfMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgeD0iMHB4IiB5PSIwcHgiIHZpZXdCb3g9IjAgMCAyMzkuOCA1MyIgZW5hYmxlLWJhY2tncm91bmQ9Im5ldyAwIDAgMjM5LjggNTMiIHhtbDpzcGFjZT0icHJlc2VydmUiPjxnPjxnPjxwYXRoIGZpbGw9IiMxRDI2M0MiIGQ9Ik01NCw1M2gtNS42di00LjVINTRjMC41LDAsMC43LTAuMywwLjgtMC41YzAuMS0wLjIsMC4yLTAuNSwwLTFMMzAuNiw1Yy0wLjItMC40LTAuNi0wLjUtMC44LTAuNVMyOS4yLDQuNiwyOC45LDVsLTQuOSw4LjRDMzUuOSwyMi4xLDQzLDM1LjksNDMsNTAuN1Y1M0gyNy43di0yLjNjMC05LjMtNC4zLTE4LTExLjUtMjMuN2wtMy4xLDUuNGM1LjEsNC42LDguMSwxMS4zLDguMSwxOC4zVjUzSDUuNWMtMiwwLTMuOC0xLTQuOC0yLjdzLTEtMy44LDAtNS41bDMuNS02LjFsMy45LDIuM0w0LjcsNDdjLTAuMiwwLjQtMC4xLDAuOCwwLDFjMC4xLDAuMiwwLjMsMC41LDAuOCwwLjVoMTEuMUMxNiw0MywxMy4yLDM4LDguOCwzNC43bC0xLjYtMS4ybDcuNS0xMy4xbDIsMS4zYzkuMSw2LDE0LjcsMTUuOSwxNS40LDI2LjZoNi4yQzM3LjYsMzUuMywzMC44LDIzLjMsMTkuOCwxNkwxOCwxNC44bDctMTIuMUMyNiwxLDI3LjgsMCwyOS44LDBzMy44LDEsNC44LDIuN2wyNC4zLDQyYzEsMS43LDEsMy44LDAsNS41UzU2LDUzLDU0LDUzeiIvPjwvZz48cGF0aCBmaWxsPSIjMUQyNjNDIiBkPSJNODQuMiw0Mi4zYy00LjcsMC05LTEuNi0xMi42LTQuNmwyLjctMy4yYzMuMywyLjcsNi40LDMuOSwxMCwzLjljMy43LDAsNi4xLTEuOCw2LjEtNC41YzAtMi44LTEuOC00LjEtNy42LTUuNGMtNi42LTEuNi0xMC4yLTMuNS0xMC4yLTljMC01LjIsNC4zLTguOCwxMC4zLTguOGM0LjIsMCw3LjYsMS4xLDEwLjgsMy42bC0yLjQsMy40Yy0yLjktMi4xLTUuNy0zLjEtOC41LTMuMWMtMy40LDAtNS43LDEuNy01LjcsNC4zYzAsMi45LDEuNyw0LDcuOSw1LjVjNy4xLDEuNyw5LjgsNC4yLDkuOCw4LjlDOTUsMzguOCw5MC44LDQyLjMsODQuMiw0Mi4zeiIvPjxwb2x5Z29uIGZpbGw9IiMxRDI2M0MiIHBvaW50cz0iOTkuMyw0MS45IDk5LjMsMTEuMSAxMjEuOSwxMS4xIDEyMS45LDE1LjEgMTAzLjksMTUuMSAxMDMuOSwyNC40IDExOS44LDI0LjQgMTE5LjgsMjguMyAxMDMuOSwyOC4zIDEwMy45LDM3LjkgMTIyLjEsMzcuOSAxMjIuMSw0MS45ICIvPjxwb2x5Z29uIGZpbGw9IiMxRDI2M0MiIHBvaW50cz0iMTQ5LjIsNDEuOSAxMzEsMTguMyAxMzEsNDEuOSAxMjYuNSw0MS45IDEyNi41LDExLjEgMTMwLjksMTEuMSAxNDguNywzNC4xIDE0OC43LDExLjEgMTUzLjIsMTEuMSAxNTMuMiw0MS45ICIvPjxwb2x5Z29uIGZpbGw9IiMxRDI2M0MiIHBvaW50cz0iMTY2LjksNDEuOSAxNjYuOSwxNS4zIDE1Ni44LDE1LjMgMTU2LjgsMTEuMSAxODEuNiwxMS4xIDE4MS42LDE1LjMgMTcxLjUsMTUuMyAxNzEuNSw0MS45ICIvPjxwYXRoIGZpbGw9IiMxRDI2M0MiIGQ9Ik0yMDUuNCw0MS45bC03LjgtMTEuMWgtNy44djExLjFoLTQuNlYxMS4xaDEzLjdjNywwLDExLjMsMy43LDExLjMsOS42YzAsNC42LTIuNiw3LjktNy4yLDkuMmwtMC43LDAuMmw4LjQsMTEuOEgyMDUuNHogTTE4OS44LDI2LjloOC43YzQuMywwLDctMi4zLDctNS45YzAtMy43LTIuNi01LjgtNy4xLTUuOGgtOC42VjI2Ljl6Ii8+PHBvbHlnb24gZmlsbD0iIzFEMjYzQyIgcG9pbnRzPSIyMjMsNDEuOSAyMjMsMjkuNyAyMTAuOCwxMS4xIDIxNi4yLDExLjEgMjI1LjQsMjUuNiAyMzQuNiwxMS4xIDIzOS44LDExLjEgMjI3LjYsMjkuNiAyMjcuNiw0MS45ICIvPjwvZz48L3N2Zz4=");
-	background-repeat:no-repeat;
-	background-size:81px 18px;
-	margin-left:4px;
-	position:relative;
-	top:2px;
-	opacity:0.75
-}
-
-.sentry-error-embed .message-success,
-.sentry-error-embed .message-error {
-	text-align:center;
-	font-size:16px;
-	padding:30px;
-	margin:-21px 0 20px;
-	border-radius:3px;
-	box-shadow:0 1px 1px rgba(0,0,0,.06)
-}
-
-.sentry-error-embed .error-wrapper p:last-child {
-	margin-bottom:0
-}
-
-@media screen and (max-height:570px) {
-
-	.sentry-error-embed {
-		max-height:none;
-		margin-top:0
-	}
-
-}
-
-@media screen and (max-width:660px) {
-
-	.sentry-error-embed {
-		padding:10px;
-		max-width:none
-	}
-
-	.sentry-error-embed h2 {
-		font-size:22px
-	}
-
-	.sentry-error-embed header p {
-		font-size:14px
-	}
-
-}
-
-@media screen and (max-width:480px) {
-
-	.sentry-error-embed {
-		padding:10px;
-		margin-top:0;
-		position:absolute;
-		top:0;
-		bottom:0;
-		right:0;
-		left:0;
-		height:100%;
-		max-height:none
-	}
-
-	.sentry-error-embed h2 {
-		font-size:20px;
-		line-height:24px
-	}
-
-	.sentry-error-embed header p {
-		font-size:13px
-	}
-
-	.sentry-error-embed header h2 > span,
-	.sentry-error-embed header p > span {
-		display:none
-	}
-
-	.sentry-error-embed .form-submit {
-		text-align:center
-	}
-
-	.sentry-error-embed .form-submit .btn,
-	.sentry-error-embed .form-submit .close,
-	.sentry-error-embed .form-submit .powered-by {
-		float:none;
-		display:block;
-		margin:0 auto
-	}
-
-	.sentry-error-embed .form-submit .powered-by {
-		margin-top:10px;
-		font-size:10px
-	}
-
-}
-
 button[type="submit"] {
+	background:var(--secondaryColor)!important;
 	border-radius:3px;
 	color:var(--rootWhiteColor)!important
 }
 
-button[type="submit"]:active {
+button[type="submit"]:active,button[type="submit"]:focus {
+	background:var(--secondaryColorBright)!important;
 	transform:none!important
 }
 
@@ -7666,7 +7483,7 @@ li.padding-axl.flex.flex-row.flex-align--center .fullname {
 	margin-top:0!important
 }
 
-.mdl-bottom-right.mdl:not(.sentry-error-embed):not(.med-fullpanel).s-fluid {
+.mdl-bottom-right.mdl:not(.med-fullpanel).s-fluid {
 	vertical-align:bottom;
 	bottom:0;
 	height:280px!important;
@@ -7856,6 +7673,7 @@ li.padding-axl.flex.flex-row.flex-align--center .fullname {
 }
 
 .contributor-manager {
+	background:var(--backdropColor);
 	margin-top:10px
 }
 
@@ -8714,11 +8532,21 @@ footer>.js-tweet-stats>.tweet-stats:not(.js-stats-list) {
 
 .btn-primary,.Button--primary:not(.tweet-button):not(.action-text):not(.more-tweets-btn):not(.js-add-column):not(.js-spinner-button) {
 	float:none;
+	background:var(--secondaryColor)!important;
+	color:var(--rootWhiteColor)!important;
 	box-shadow:0 3px 7px var(--composeShadow);
 	border-radius:4px;
 	transition:background 0.2s var(--animationTiming),transform 0.25s var(--animationTiming)!important;
 	margin:5px 5px 5px 5px;
 	padding:7px 12px 7px 12px
+}
+
+/* .btn-primary:hover,.Button--primary:not(.tweet-button):not(.action-text):not(.more-tweets-btn):not(.js-add-column):not(.js-spinner-button):hover {
+	background:var(--secondaryColorBright)!important
+} */
+
+.btn-primary:focus,.Button--primary:not(.tweet-button):not(.action-text):not(.more-tweets-btn):not(.js-add-column):not(.js-spinner-button):focus,.btn-primary:active,.Button--primary:not(.tweet-button):not(.action-text):not(.more-tweets-btn):not(.js-add-column):not(.js-spinner-button):active {
+	background:var(--secondaryColorBright)!important
 }
 
 .js-spinner-button {
@@ -9392,4 +9220,36 @@ button.js-add-filter {
 #settings-modal .mdl-column-lrg {
 	top:-70px;
 	height:525px
+}
+
+.icon-follow-color {
+	color:var(--secondaryColorAlt)
+}
+
+.tweet-actions.is-visible .icon-reply {
+	color:var(--secondaryColor)
+}
+
+.PollXChoice-vote--button {
+	background:var(--secondaryColor)!important
+}
+
+.PollXChoice-vote--button:active {
+	background:var(--secondaryColorPress)!important
+}
+
+.stroke-twitter-light-gray {
+	stroke:var(--placeholderTextColor)
+}
+
+textarea {
+	border:2px solid var(--disabledColor)
+}
+
+.stroke-twitter-blue {
+	stroke:var(--secondaryColor)
+}
+
+.stroke-twitter-red {
+	stroke:var(--redDefault)
 }

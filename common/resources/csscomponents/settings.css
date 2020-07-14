@@ -344,6 +344,7 @@
 }
 
 .mtd-settings-option-slider input[type="range"]::-webkit-slider-thumb {
+	background:var(--secondaryColor);
 	-webkit-appearance:none;
 	appearance:none;
 	width:16px;
@@ -353,6 +354,7 @@
 }
 
 .mtd-settings-option-slider input[type="range"]::-moz-range-thumb {
+	background:var(--secondaryColor);
 	width:16px;
 	height:16px;
 	border-radius:50%;
@@ -402,6 +404,7 @@
 }
 
 .mtd-logo {
+	color:var(--secondaryColor);
 	width:96px;
 	font-size:96px!important;
 	line-height:1;
@@ -501,12 +504,18 @@ html body .mtd-settings-subpanel button {
 }
 
 .mtd-settings-button {
+	background:var(--secondaryColor)!important;
+	color:var(--rootWhiteColor)!important;
 	float:none;
 	margin-top:50px;
 	box-shadow:0 3px 7px var(--composeShadow);
 	padding:11px;
 	border-radius:4px;
 	transition:background 0.2s var(--animationTiming),transform 0.25s var(--animationTiming)!important
+}
+
+.mtd-settings-button:focus {
+	background:var(--secondaryColorBright)!important
 }
 
 .mtd-auto-scroll {

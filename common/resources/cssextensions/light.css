@@ -9,6 +9,7 @@
 :root{
 	--primaryColor:#03A9F4;
 	--secondaryColor:#00BCD4;
+	--secondaryColorAlt:var(--secondaryColor);
 	--secondaryColorPress:#58CDDB;
 	--secondaryColorDeep:#0E4B50;
 	--secondaryColorDeepTrans:rgba(25,112,120,.5);
@@ -49,11 +50,7 @@
 
 a,
 a:not(.column-header-link):not(.js-column-back):not(.list-account):not(.account-selector-grid-mode):not(.account-link):hover,
-.calweek a:hover,
 .btn:not([disabled]):not(.is-disabled):not(.btn-options-tray):not(.mtd-nav-button):not(.btn-bg-negative),
-button,
-.compose-send-button-success,
-.icon-follow-color,
 .tweet-actions.is-visible .icon-reply,
 #caltoday,
 .lst-profile a,
@@ -74,14 +71,6 @@ a:not(.list-account):not(.js-column-back):not(.compose-account):not(.js-toggle-i
 
 .mdl-header-title {
 	color:var(--bodyTextColor)
-}
-
-.mtd-settings-option-slider input[type="range"]::-webkit-slider-thumb {
-	background:var(--secondaryColor)
-}
-
-.mtd-settings-option-slider input[type="range"]::-moz-range-thumb {
-	background:var(--secondaryColor)
 }
 
 a:not(.compose-account):not(.js-toggle-item):not(.column-header-link):active,
@@ -356,7 +345,8 @@ input[type="checkbox"][disabled]:before {
 	color:var(--typeaheadColor)!important
 }
 
-.edit-conversation-name, .app-navigator .js-hide-drawer, .column-message, .drawer-header, body
+.app-navigator .js-hide-drawer,
+body
 {
 	background:var(--primaryColor)
 }
@@ -490,33 +480,11 @@ html,body:not(.signin-sheet-now-present) {
 }
 /* stylelint-enable */
 
-.column-scroller,
-.column-detail-level-2,
-.contributor-manager,
 .js-contributor-manager-container,
 .column-panel,
 .contributor-adder-block
 {
 	background:var(--backdropColor)
-}
-
-.is-new .column-header,
-.is-new .column-header-temp
-{
-	background:linear-gradient(var(--primaryColor),var(--secondaryColor))
-}
-
-.column-header,
-.column-header-temp
-{
-	background:linear-gradient(var(--primaryColor),var(--primaryColor))
-}
-
-.column-temp .column-header,
-.column-header-temp
-{ /* Quirk specific to light mode,
-	 default theme */
-	background:linear-gradient(var(--mdlPrimaryColor),var(--mdlPrimaryColor))
 }
 
 /* stylelint-disable */
@@ -526,8 +494,6 @@ html,body:not(.signin-sheet-now-present) {
 .more-tweets-btn,
 .is-unread,
 .more-tweets-btn,
-.compose,
-.drawer,
 .tweet-button:not(.js-hide-drawer),
 .PillGroup .Pill.is-selected,
 .DatePicker-calendarDay.is-withinRange,
@@ -710,7 +676,6 @@ button.try-query
 }
 
 .app-columns-container,
-.column,
 .contributor-row
 {
 	background:var(--backdropColor)
@@ -858,11 +823,6 @@ textarea::placeholder
 	color:var(--tweetActionColor)!important
 }
 
-.mtd-nd-header-image
-{
-	background-color:var(--secondaryColor)
-}
-
 .popover .column-header
 {
 	background:var(--backdropColor);
@@ -935,43 +895,11 @@ textarea::placeholder
 	border-color:var(--contextMenuDividerColor)
 }
 
-textarea
-{
-	border:2px solid var(--disabledColor)
-}
-
-.column-content
-{
-	border-right:3px solid var(--columnBorderColor)
-}
-
 .tweet-action,
 .tweet-detail-action,
 .social-proof-for-tweet-title
 {
 	color:var(--tweetActionColor)
-}
-
-button[type="submit"],.mtd-settings-button,.btn-primary,.Button--primary:not(.tweet-button):not(.action-text):not(.more-tweets-btn):not(.js-add-column):not(.js-spinner-button) {
-	background:var(--secondaryColor)!important
-}
-
-button[type="submit"]:hover,.mtd-settings-button:hover,.btn-primary:hover,.Button--primary:not(.tweet-button):not(.action-text):not(.more-tweets-btn):not(.js-add-column):not(.js-spinner-button):hover {
-	background:var(--secondaryColorBright)
-}
-
-button[type="submit"]:active,button[type="submit"]:focus,.mtd-settings-button:focus,.btn-primary:focus,.Button--primary:not(.tweet-button):not(.action-text):not(.more-tweets-btn):not(.js-add-column):not(.js-spinner-button):focus,.btn-primary:active,.Button--primary:not(.tweet-button):not(.action-text):not(.more-tweets-btn):not(.js-add-column):not(.js-spinner-button):active {
-	background:var(--secondaryColorBright)!important
-}
-
-.btn-primary,.Button--primary:not(.tweet-button):not(.action-text):not(.more-tweets-btn):not(.js-add-column):not(.js-spinner-button)
-{
-	color:var(--rootWhiteColor)!important
-}
-
-
-#id_comments {
-	border:2px solid var(--disabledColor)
 }
 
 .js-column-message .dark-only--color-twitter-gray,.mtd-settings-button {
@@ -980,18 +908,6 @@ button[type="submit"]:active,button[type="submit"]:focus,.mtd-settings-button:fo
 
 .account-settings-bb a[rel="user"] {
 	color:var(--typeaheadColor)
-}
-
-.stroke-twitter-light-gray {
-	stroke:var(--disabledColor)
-}
-
-.stroke-twitter-blue {
-	stroke:var(--secondaryColor)
-}
-
-.stroke-twitter-red {
-	stroke:var(--redDefault)
 }
 
 .detail-view-inline-text {

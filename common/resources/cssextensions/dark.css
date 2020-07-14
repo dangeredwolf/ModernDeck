@@ -7,6 +7,8 @@
 
 :root {
 	--primaryColor:#263238;
+	--mdlPrimaryColor:var(--primaryColor);
+	--columnBorderColor:var(--primaryColor);
 	--secondaryColor:#009EAD;
 	--secondaryColorAlt:#00838F;
 	--secondaryColorPress:#00737E;
@@ -37,10 +39,16 @@
 	--modalWindowColor:#2E3B41;
 	--overlayBackgroundColor:rgba(88,100,107,.4);
 	--defaultShadowColor:rgba(41,41,41,.35);
-	--settingsTabColor:#344248
+	--settingsTabColor:#344248;
 }
 
-a, a:not([href="#"]):not(.column-header-link):not(.js-column-back):not(.js-tweet-social-proof-back):not(.account-selector-grid-mode):not(.account-link):not(.dropdown-menu-url-item):hover, .calweek a:hover, .btn:not([disabled]):not(.is-disabled):not(.btn-options-tray):not(.mtd-nav-button):not(.btn-bg-negative):not(.btn-negative), .compose-send-button-success, .icon-follow-color, .tweet-actions.is-visible .icon-reply, #caltoday, input[type="checkbox"]:checked:before, button, input[type="radio"]:checked:before, .mtd-logo
+a,
+a:not([href="#"]):not(.column-header-link):not(.js-column-back):not(.js-tweet-social-proof-back):not(.account-selector-grid-mode):not(.account-link):not(.dropdown-menu-url-item):hover,
+.btn:not([disabled]):not(.is-disabled):not(.btn-options-tray):not(.mtd-nav-button):not(.btn-bg-negative):not(.btn-negative),
+.tweet-actions.is-visible .icon-reply,
+#caltoday,
+input[type="checkbox"]:checked:before,
+input[type="radio"]:checked:before
 {
 	color:var(--secondaryColor);
 	transition:color .3s
@@ -53,15 +61,6 @@ a:not(.list-account):not(.js-column-back):not(.compose-account):not(.js-toggle-i
 {
 	color:var(--secondaryColorPress);
 	background-color:var(--linkPressColor)
-}
-
-
-.mtd-settings-option-slider input[type="range"]::-webkit-slider-thumb {
-	background:var(--secondaryColor)
-}
-
-.mtd-settings-option-slider input[type="range"]::-moz-range-thumb {
-	background:var(--secondaryColor)
 }
 
 .account-link,
@@ -78,24 +77,44 @@ input,
 	color:var(--bodyTextColor)!important
 }
 
-.account-summary-text .fullname, .compose-reply-tweet .fullname, .compose-reply-tweet, .list-item, .list-item.is-actionable.item-box.is-selected, .tooltip-inner, .Tooltip-inner, .list-account .fullname, option, .dropdown-menu li a, .dropdown-menu li a[data-action]:hover,.dropdown-menu li a:hover, .frm, .med-fullpanel, .media-sensitive, .prf-stats a strong, .js-item-launch a.btn:not([disabled]):not(.is-disabled), .js-item-launch a.Button:not([disabled]):not(.is-disabled), html, .media-sensitive-content p, .compose .typeahead-item strong.fullname, .account-remove-check-message, .media-sensitive-title
+.account-summary-text .fullname,
+.compose-reply-tweet .fullname,
+.compose-reply-tweet,
+.list-item,
+.list-item.is-actionable.item-box.is-selected,
+.tooltip-inner,
+.Tooltip-inner,
+.list-account .fullname,
+option,
+.dropdown-menu li a,
+.dropdown-menu li a[data-action]:hover,.dropdown-menu li a:hover,
+.frm,
+.med-fullpanel,
+.media-sensitive,
+.prf-stats a strong,
+.js-item-launch a.btn:not([disabled]):not(.is-disabled),
+.js-item-launch a.Button:not([disabled]):not(.is-disabled),
+.media-sensitive-content p,
+.compose .typeahead-item strong.fullname,
+.account-remove-check-message,
+.media-sensitive-title
 {
 	color:var(--bodyTextColor)
 }
 
-.dropdown-menu a[data-action]:active, .column, .column-scroller, .column-detail-level-2, .js-account-manager-container, .contributor-manager, .js-contributor-manager-container, .column-panel, .contributor-adder-block, .contributor-row, .DateRange
+.dropdown-menu a[data-action]:active,
+.js-account-manager-container,
+.js-contributor-manager-container,
+.column-panel,
+.contributor-adder-block,
+.contributor-row,
+.DateRange
 {
 	background:var(--backdropColor)
 }
 
-.gap-chirp-text,
 .sprite:before,
-.compose-send-button-success,
-.more-tweets-btn:focus,
-.more-tweets-btn:hover,
-.more-tweets-btn:active,
 .account-stats a,
-.icon-follow-color,
 .tweet-action[data-actions-menu-position]:focus,
 .tweet-actions .tweet-action.is-selected,
 .tweet-detail-actions .tweet-action.is-selected,
@@ -117,8 +136,6 @@ div.drawer[data-drawer="compose"],
 .lst-group .selected,
 #calcurrent,
 .btn-compose:not(.js-hide-drawer),
-.compose,
-.drawer,
 .column-options .button-tray,
 .column-options,
 .facet-type,
@@ -195,7 +212,6 @@ textarea:not(.compose-text):not(.js-compose-text),
 .dropdown-menu,
 .app-navigator .js-hide-drawer,
 .app-columns-container,
-.column-message,
 body[class=""],
 html.js,
 .prf-header,
@@ -206,9 +222,7 @@ body,
 .app-content,
 .compose-media-bar-holder,
 optgroup,
-.edit-conversation-name,
 .popover,
-.drawer-header,
 .compose-reply-tweet,
 .compose-message-recipient-list,
 .compose-message-recipient-input-container,
@@ -241,18 +255,6 @@ optgroup,
 .lst-group .username
 {
 	color:var(--txtMuteLink)
-}
-
-.column-content
-{
-	border-right:3px solid var(--primaryColor)
-}
-
-.tweet-action,
-.tweet-detail-action,
-.tweet-stats>li>a
-{
-	color:var(--scrollbarDefaultColor)!important
 }
 
 .tweet-action:active,
@@ -408,11 +410,6 @@ button.is-disabled:active,
 {
 	color:var(--bodyTextColor);
 	border-bottom:none
-}
-
-textarea
-{
-	border:2px solid var(--placeholderTextColor)
 }
 
 .drp-h-divider
@@ -629,20 +626,6 @@ select,
 	color:var(--placeholderTextColor)
 }
 
-.btn-login[type="submit"],
-.login-container .btn-positive,
-.PollXChoice-vote--button
-{
-	background:var(--secondaryColor)!important
-}
-
-.btn-login[type="submit"]:active,
-.login-container .btn-positive:active,
-.PollXChoice-vote--button:active
-{
-	background:var(--secondaryColorPress)!important
-}
-
 .js-toggle.padding-al button>span
 {
 	color:var(--placeholderTextColor)
@@ -651,18 +634,6 @@ select,
 .spinner-layer
 {
 	border-color:var(--secondaryColor)
-}
-
-.startflow ::selection
-{
-	background:var(--selectionBackgroundColor);
-	color:var(--selectionTextColor)
-}
-
-.startflow ::-moz-selection
-{
-	background:var(--selectionBackgroundColor);
-	color:var(--selectionTextColor)
 }
 
 .mdl-column.l-column .search-input::-webkit-input-placeholder
@@ -680,54 +651,26 @@ select,
 	color:var(--primaryTextColor)
 }
 
-button[type="submit"],.mtd-settings-button,.btn-primary,.Button--primary:not(.tweet-button):not(.action-text):not(.more-tweets-btn):not(.js-add-column):not(.js-spinner-button) {
-	background:var(--secondaryColor)!important
-}
 
-button[type="submit"]:hover,.mtd-settings-button:hover,.btn-primary:hover,.Button--primary:not(.tweet-button):not(.action-text):not(.more-tweets-btn):not(.js-add-column):not(.js-spinner-button):hover {
+.btn-primary:hover,.Button--primary:not(.tweet-button):not(.action-text):not(.more-tweets-btn):not(.js-add-column):not(.js-spinner-button):hover {
 	background:var(--secondaryColorBright)
 }
 
-button[type="submit"]:active,button[type="submit"]:focus,.mtd-settings-button:focus,.btn-primary:focus,.Button--primary:not(.tweet-button):not(.action-text):not(.more-tweets-btn):not(.js-add-column):not(.js-spinner-button):focus,.btn-primary:active,.Button--primary:not(.tweet-button):not(.action-text):not(.more-tweets-btn):not(.js-add-column):not(.js-spinner-button):active {
+.btn-primary:focus,.Button--primary:not(.tweet-button):not(.action-text):not(.more-tweets-btn):not(.js-add-column):not(.js-spinner-button):focus,.btn-primary:active,.Button--primary:not(.tweet-button):not(.action-text):not(.more-tweets-btn):not(.js-add-column):not(.js-spinner-button):active {
 	background:var(--secondaryColorBright)!important
 }
 
-.btn-primary,.Button--primary:not(.tweet-button):not(.action-text):not(.more-tweets-btn):not(.js-add-column):not(.js-spinner-button),.mtd-settings-button,.js-character-count:not(.color-twitter-red), .lst-group .selected, .lst-launcher a:not(.is-disabled), .lst-launcher a:not(.is-disabled):hover, .character-count, .character-count-compose, .lst-launcher a:not(.is-disabled):focus, .lst-launcher a:not(.is-disabled):active, .lst-launcher li:not(.is-disabled) span, .calweek a:not(.caloff), .mtd-settings-tab
+.js-character-count:not(.color-twitter-red), .lst-group .selected, .lst-launcher a:not(.is-disabled), .lst-launcher a:not(.is-disabled):hover, .character-count, .character-count-compose, .lst-launcher a:not(.is-disabled):focus, .lst-launcher a:not(.is-disabled):active, .lst-launcher li:not(.is-disabled) span, .calweek a:not(.caloff), .mtd-settings-tab
 {
 	color:var(--primaryTextColor)!important
-}
-
-#id_comments {
-	border:2px solid var(--disabledColor)
-}
-
-.sentry-error-embed .form-submit .powered-by a {
-	filter:brightness(1000%)
 }
 
 .sprite-verified-mini:before,.sprite-verified:before {
 	color:inherit!important
 }
 
-.Notification-inner {
-	background:var(--secondaryColor)
-}
-
 .account-settings-bb a[rel="user"] {
 	color:var(--primaryTextColor)
-}
-
-
-.stroke-twitter-light-gray {
-	stroke:var(--placeholderTextColor)
-}
-
-.stroke-twitter-blue {
-	stroke:var(--secondaryColor)
-}
-
-.stroke-twitter-red {
-	stroke:var(--redDefault)
 }
 
 .detail-view-inline-text {
