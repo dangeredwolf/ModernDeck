@@ -1,6 +1,6 @@
 import { make } from "./Utils.js";
 import { CustomThemes } from "./CustomThemes.js";
-import AColorPicker from "a-color-picker";
+// import AColorPicker from "a-color-picker";
 
 export class UIThemeEditor {
 	panel;
