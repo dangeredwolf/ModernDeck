@@ -12,16 +12,16 @@ var browser = browser || chrome;
 
 console.log("bootstrapping moderndeck.css for extensibility");
 
+var injectScript2 = document.createElement("script");
+injectScript2.src = browser.extension.getURL("resources/libraries/moduleraid.min.js");
+injectScript2.type = "text/javascript";
+document.head.appendChild(injectScript2);
+
 var injStyles = document.createElement("link");
 injStyles.rel = "stylesheet";
 injStyles.href = browser.extension.getURL("resources/moderndeck.css");
 
 document.head.appendChild(injStyles);
-
-var injectScript2 = document.createElement("script");
-injectScript2.src = browser.extension.getURL("resources/libraries/moduleraid.min.js");
-injectScript2.type = "text/javascript";
-document.head.appendChild(injectScript2);
 
 console.log("Bootstrapping moderndeck.js");
 
