@@ -54,7 +54,8 @@
 	--defaultFontOrder:var(--selectedFont),Roboto,"Noto Sans","Noto Sans CJK";
 	--composeWidth:300px;
 	--scrollbarWidth:10px;
-	--verticalHeadWidth:50px
+	--verticalHeadWidth:50px;
+	--inlineComposeHeight:200px
 }
 
 /* LOADING SCREEN, DO NOT MERGE, MOVE, OR REMOVE. It's fairly important that the renderer loads this first. */
@@ -2080,7 +2081,7 @@ a .column-title-back .icon:after {
 	display:block;
 	position:absolute;
 	right:0;
-	bottom:10px
+	bottom: 10px;
 }
 
 .drawer .compose-text-container .spinner-button-container {
@@ -3298,18 +3299,19 @@ html:not(.mtd-app).mtd-classic-nav .compose-content {
 
 .inline-reply {
 	cursor:default;
-	height:180px;
+	height: var(--inlineComposeHeight);
 	margin-top:8px;
 	box-sizing:border-box;
-	box-shadow:0 2px 8px var(--rootBlackColor);
+	box-shadow:0 2px 8px var(
+	--rootBlackColor);
 	margin-left:-7px;
-	margin-bottom:5px
+	margin-bottom:5px;
 }
 
 .inline-reply .compose-text-container {
 	display:inline-block;
 	width:100%;
-	height:180px;
+	height:var(--inlineComposeHeight);
 	border-radius:0;
 	margin-left:-1px;
 	margin-top:0;
@@ -3351,8 +3353,8 @@ html:not(.mtd-app).mtd-classic-nav .compose-content {
 
 .inline-reply .compose-text {
 	padding:10px;
-	height:100px!important;
-	width:100%
+	height: calc(var(--inlineComposeHeight) - 80px)!important;
+	width:100%;
 }
 
 .detail-view-inline {
@@ -9385,6 +9387,11 @@ button.js-add-filter {
 }
 
 #settings-modal .mdl-column-lrg {
-	top: -70px;
-	height: 525px;
+	top:-70px;
+	height:525px
+}
+
+.js-header-add-column {
+	padding-bottom:6px;
+	padding-top:6px
 }
