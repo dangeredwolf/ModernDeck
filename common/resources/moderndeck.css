@@ -1009,13 +1009,13 @@ button:hover,button:focus,.Button--primary {
 }
 
 .column-content {
-	border-right:3px solid var(--columnBorderColor);
+	border-right: 4px solid var(--columnBorderColor);
 	position:absolute;
 	top:54px;
 	left:0;
 	right:0;
 	bottom:0;
-	opacity:1!important
+	opacity:1!important;
 }
 
 .drawer-header-title.drawer-column-header-title {
@@ -1217,14 +1217,15 @@ button:hover,button:focus,.Button--primary {
 
 .column-drag-handle {
 	position:absolute;
-	top:13px;
+	top: 25px;
 	left:1px;
-	height:70px;
+	height: 100%;
 	margin-top:-25px;
-	width:70%;
+	width: 40px;
 	display:block;
 	opacity:0;
-	z-index:3
+	z-index:3;
+	cursor: all-scroll;
 }
 
 .column-title-back {
@@ -7665,8 +7666,7 @@ li.padding-axl.flex.flex-row.flex-align--center .fullname {
 }
 
 .inline-reply .js-character-count {
-	padding-right:102px;
-	margin-top:13px
+	padding-right:102px
 }
 
 .account-settings-bb.hyphenate {
