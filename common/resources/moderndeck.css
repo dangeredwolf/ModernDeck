@@ -345,12 +345,12 @@ html {
 }
 
 .preloader-wrapper {
-	display:inline-block;
+	/* display:inline-block; */
 	position:relative;
 	width:48px;
 	height:48px;
 	box-sizing:border-box;
-	animation:containerRotate 1.568s linear infinite
+	animation:containerRotate 1.568s linear infinite;
 }
 
 .med-embeditem>.preloader-wrapper {
@@ -990,6 +990,7 @@ button:hover,button:focus,.Button--primary {
 	margin:auto;
 	position:relative;
 	transition:transform 0.25s var(--animationTiming);
+	will-change:transform;
 	top:0
 }
 
@@ -1043,6 +1044,7 @@ button:hover,button:focus,.Button--primary {
 	position:absolute;
 	z-index:5;
 	width:100%;
+	will-change:left;
 	transition:opacity var(--animationTiming) 0.5s,left var(--animationTiming) 0.5s
 }
 
@@ -1428,7 +1430,8 @@ a .column-title-back .icon:after {
 
 .column:not(.draggable-dragging) .stream-item,.js-tweet-translation,.replies-after .stream-item.is-actionable {
 	animation:tweetIncomingTimeline 0.4s var(--animationTiming);
-	transition:background 0.25s var(--animationTiming),box-shadow 0.25s var(--animationTiming),transform 0.25s var(--animationTiming),left .35s var(--animationTiming)
+	transition:background 0.25s var(--animationTiming),box-shadow 0.25s var(--animationTiming),transform 0.25s var(--animationTiming),left .35s var(--animationTiming);
+	will-change: margin-top, background, box-shadow;
 }
 
 .js-column-social-proof .stream-item {
@@ -1866,7 +1869,8 @@ a .column-title-back .icon:after {
 }
 
 .tweet-action {
-	max-width:50px
+	max-width:50px;
+	will-change: color;
 }
 
 .stream-item.is-actionable .tweet-action,
@@ -2170,11 +2174,12 @@ a .column-title-back .icon:after {
 }
 
 .app-content {
+	will-change:transform, margin-right;
 	top:40px;
 	margin-left:0;
 	overflow:visible;
 	transition:left 0.15s var(--animationTiming),width 0.15s var(--animationTiming),transform 0.15s var(--animationTiming);
-	-webkit-app-region:no-drag
+	-webkit-app-region:no-drag;
 }
 
 .mtd-head-left .app-content {
@@ -2308,7 +2313,8 @@ a .column-title-back .icon:after {
 	animation:popIn 0.5s forwards var(--animationTiming);
 	z-index:5;
 	transition:all 0.2s var(--animationTiming);
-	-webkit-app-region:no-drag
+	-webkit-app-region:no-drag;
+	will-change: margin-left, margin-top, width, border-radius;
 }
 
 .js-hide-drawer.is-hidden {
@@ -2680,7 +2686,7 @@ html:not(.mtd-classic-nav) .attach-compose-buttons .tweet-button {
 	pointer-events:all;
 	overflow:hidden;
 	bottom:0;
-	z-index:6
+	z-index:6;
 }
 
 .drawer-header-title {
@@ -8618,6 +8624,7 @@ footer>.js-tweet-stats>.tweet-stats:not(.js-stats-list) {
 	width:100%
 }
 
+.app-content.is-open,
 .app-content[style="transition-duration: 0ms; transform: translateX(400px); margin-right: 400px;"],
 .app-content[style="transition-duration: 200ms; transform: translateX(400px); margin-right: 400px;"],
 .app-content[style="transition-duration: 200ms; transform: translateX(400px); margin-right: 0px;"],

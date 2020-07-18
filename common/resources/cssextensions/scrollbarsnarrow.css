@@ -21,3 +21,8 @@
 .keyboard-shortcut-list-modal {
 	scrollbar-width:thin
 }
+
+html:not(.os-osx) .scroll-h.app-columns-container::-webkit-scrollbar {
+	height:9px;
+	pointer-events:all
+}

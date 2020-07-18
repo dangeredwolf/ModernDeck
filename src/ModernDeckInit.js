@@ -152,6 +152,10 @@ function replacePrettyNumber() {
 	TD.util.prettyNumber = (e) => {
 		let howPretty = parseInt(e, 10);
 
+		if (!window.mtdAbbrevNumbers) {
+			return formatNumberI18n(howPretty);
+		}
+
 		if (howPretty >= 100000000) {
 			return formatNumberI18n(parseInt(howPretty/1000000)) + I18n("M");
 		} else if (howPretty >= 10000000) {
@@ -663,6 +667,16 @@ function coreInit() {
 
 	FunctionPatcher();
 	LanguageFunctionPatcher();
+
+	I18n.customTimeHandler = function(timeString) {
+		if (window.mtdTimeHandler === "h12") {
+			return timeString.replace(/\{\{hours24\}\}\:\{\{minutes\}\}/g,"{{hours12}}:{{minutes}} {{amPm}}")
+		} else if (window.mtdTimeHandler === "h24") {
+			return timeString.replace(/\{\{hours12\}\}\:\{\{minutes\}\} ?\{\{amPm\}\}/g,"{{hours24}}:{{minutes}}")
+		} else {
+			return timeString;
+		}
+	}
 
 
 	mtdInit();

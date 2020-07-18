@@ -42,8 +42,26 @@ export const exists = function(thing) {
 }
 
 export function formatNumberI18n(number) {
-	if (!window.mtdNumberFormat) {
-		window.mtdNumberFormat = new Intl.NumberFormat(getFullLanguage().replace(/\_/g,"-"));
+	if (!window.mtdNumberFormat || window.mtdNeedsResetNumberFormatting) {
+		let format;
+		switch(getPref("mtd_shortDateFormat")) {
+			case "default":
+				format = getFullLanguage().replace(/\_/g,"-");
+				break;
+			case "english":
+				format = "en";
+				break;
+			case "europe":
+				format = "de";
+				break;
+			case "blank":
+				format = "fr";
+				break;
+			case "indian":
+				format = "hi";
+				break;
+		}
+		window.mtdNumberFormat = new Intl.NumberFormat(format);
 	}
 	return window.mtdNumberFormat.format(number);
 }

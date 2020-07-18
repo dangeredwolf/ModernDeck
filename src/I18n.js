@@ -92,7 +92,7 @@ const mustachePatches = {
 export const I18n = function(a, b, c, d, e, f) {
 
 	if (!a) {
-		console.warn("The I18n function was supposed to receive data but didn't. Here's some other information, if they aren't undefined: ", a, b, c, d, e);
+		// console.warn("The I18n function was supposed to receive data but didn't. Here's some other information, if they aren't undefined: ", a, b, c, d, e);
 		return "";
 	}
 
@@ -127,7 +127,13 @@ export const I18n = function(a, b, c, d, e, f) {
 
 	if (!b || f === 1) {
 		if (languageData[a]) {
-			return languageData[a][getFullLanguage()]||languageData[a][getMainLanguage()]||languageData[a][getFallbackLanguage()];
+			let result = languageData[a][getFullLanguage()]||languageData[a][getMainLanguage()]||languageData[a][getFallbackLanguage()];
+			if (result.indexOf("hours12") > -1 || result.indexOf("hours24") > -1) {
+				if (I18n.customTimeHandler) {
+					return I18n.customTimeHandler(result); 
+				}
+			}
+			return result;
 		} else {
 			console.warn("Missing string translation: " + a);
 			return (displayWarning ? "⚠" : "") + a;

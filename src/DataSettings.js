@@ -973,7 +973,7 @@ export let settingsData = {
 				type:"dropdown",
 				activate:{
 					func: (opt) => {
-						// TODO: Stuff
+						window.mtdTimeHandler = opt;
 					}
 				},
 				options:{
@@ -984,24 +984,40 @@ export let settingsData = {
 				settingsKey:"mtd_timeFormat",
 				default:"default"
 			},
-			shortDateFormat:{
+			numberFormat:{
 				title:"{{Number formatting}}",
 				type:"dropdown",
 				activate:{
 					func: (opt) => {
-						// TODO: Stuff
+						window.mtdNeedsResetNumberFormatting = true;
 					}
 				},
 				options:{
 					default:{value:"default",text:"{{Language default}}"},
 					english:{value:"english",text:"1,234,567.89"},
-					intl:{value:"intl",text:"1.234.567,89"},
+					europe:{value:"europe",text:"1.234.567,89"},
 					blank:{value:"blank",text:"1 234 567,89"},
 					indian:{value:"indian",text:"12,34,567.89"}
 				},
 				settingsKey:"mtd_shortDateFormat",
 				default:"default"
-			}
+			},
+			abbrevNumbers:{
+				title:"{{Abbreviate large numbers (thousands, millions)}}",
+				type:"checkbox",
+				activate:{
+					func: () => {
+						window.mtdAbbrevNumbers = true
+					}
+				},
+				deactivate:{
+					func: () => {
+						window.mtdAbbrevNumbers = false
+					}
+				},
+				settingsKey:"mtd_abbrevNumbers",
+				default:true
+			},
 		}
 	}, about: {
 		tabName:"<i class='material-icon'>info_outline</i> {{About}}",
