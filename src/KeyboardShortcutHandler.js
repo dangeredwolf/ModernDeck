@@ -22,21 +22,23 @@ import { diag } from "./UIDiag.js";
 
 export function keyboardShortcutHandler(e) {
 
+	console.log(e);
+
 	if (e.ctrlKey && e.shiftKey) {
-		switch(e.key.toUpperCase()) {
-			case "A":
+		switch(e.keyCode) {
+			case 65: // A
 				if ($("#accoutline").length > 0) {
 					$("#accoutline").click();
 				} else {
 					settingsData.accessibility.options.accoutline.activate.func();
 				}
 				break;
-			case "C": // pressing Ctrl+Shift+C disabled user CSS
+			case 67: // C
 				console.info("User disabled custom CSS!");
 
 				disableStylesheetExtension("customcss");
 				break;
-			case "H":
+			case 72: // H
 				console.info("User has pressed the proper key combination to toggle high contrast!");
 
 				if ($("#highcont").length > 0) {
@@ -49,16 +51,16 @@ export function keyboardShortcutHandler(e) {
 					}
 				}
 				break;
-				case "M":
-					body.append(make("iframe").attr("src","https://www.youtube.com/embed/videoseries?list=PLK4w_iipaN0hPnqsXy9E3YvWrAYQJ0Fs7&autoplay=true").attr("style","display:none"));
-					break;
-				case "P":
-					body.append(make("iframe").attr("src","https://www.youtube.com/embed/TXYVHOxhuYc?autoplay=true").attr("style","display:none"));
-					break;
+			case 77: // M
+				body.append(make("iframe").attr("src","https://www.youtube.com/embed/videoseries?list=PLK4w_iipaN0hPnqsXy9E3YvWrAYQJ0Fs7&autoplay=true").attr("style","display:none"));
+				break;
+			case 80: // P
+				body.append(make("iframe").attr("src","https://www.youtube.com/embed/TXYVHOxhuYc?autoplay=true").attr("style","display:none"));
+				break;
 
 		}
 	}
-	if (e.key.toUpperCase() === "D" && (e.ctrlKey) && e.altKey) {
+	if ((e.keyCode === 68 && (e.ctrlKey) && e.altKey)) {
 		console.info("Triggering diag!");
 
 
