@@ -2295,7 +2295,8 @@ a .column-title-back .icon:after {
 
 .mtd-head-left.mtd-classic-nav .tweet-button.is-hidden {
 	-webkit-app-region:drag;
-	pointer-events:none
+	pointer-events:none;
+	width: 0;
 }
 
 .mtd-classic-nav .app-header:not(.is-condensed) .tweet-button.is-hidden {
@@ -2325,6 +2326,7 @@ a .column-title-back .icon:after {
 .tweet-button>i {
 	font-size:30px;
 	margin-left:-5px;
+	transition:opacity 0.2s var(--animationTiming);
 	margin-top:-3px
 }
 
@@ -3149,10 +3151,10 @@ html:not(.mtd-classic-nav) .attach-compose-buttons .tweet-button {
 	bottom:40px;
 	left:0;
 	right:0;
-	top:50px;
+	top: 0;
 	transition:0.5s all var(--animationTiming);
 	-webkit-app-region:no-drag;
-	overflow:visible
+	overflow:visible;
 }
 
 html:not(.mtd-app).mtd-classic-nav .compose-content {
@@ -3769,10 +3771,11 @@ textarea,.l-fullwidth {
 }
 
 .is-new>.column-nav-updates.icon-dot {
-	right:0;
+	right:4px;
 	position:absolute;
 	display:block;
-	margin-top:7px
+	margin-top:7px;
+	font-size:12px
 }
 
 .s-error input {
@@ -4545,8 +4548,7 @@ input[type="checkbox"]:active {
 	font-size:32px
 }
 
-.media-item,
-.tweet-button>i {
+.media-item {
 	transition:0.3s all
 }
 
@@ -4578,7 +4580,7 @@ input[type="checkbox"]:active {
 .column-nav-link {
 	position:relative;
 	height:30px;
-	color:rgba(255,255,255,.5)!important;
+	color:rgba(255,255,255,.5);
 	font-size:18px;
 	cursor:pointer;
 	overflow:visible;
@@ -4588,6 +4590,10 @@ input[type="checkbox"]:active {
 	padding:0!important;
 	margin-top:4px;
 	display:flex
+}
+
+.is-new .column-nav-link {
+	color:rgba(255,255,255,.75)!important
 }
 
 .column-nav-link,
@@ -4648,7 +4654,7 @@ html:not(.mtd-head-left) .column-nav-item {
 }
 
 .mtd-head-left .column-nav-link i {
-	padding-left:12px
+	padding-left: 13px;
 }
 
 .column-nav-link i {
@@ -5126,6 +5132,10 @@ html:not(.mtd-head-left) body .application.hide-detail-view-inline .column-navig
 
 .is-hidden .icon-compose {
 	margin-left:10px
+}
+
+.mtd-classic-nav .is-hidden .icon-compose {
+	opacity:0
 }
 
 .js-save.block,.js-cancel.block {
@@ -9235,6 +9245,10 @@ button.js-add-filter {
 	padding-top:6px
 }
 
+.js-header-add-column i {
+	padding-left:13px!important
+}
+
 .icon-follow-color {
 	color:var(--secondaryColorAlt)
 }
@@ -9265,4 +9279,12 @@ textarea {
 
 .stroke-twitter-red {
 	stroke:var(--redDefault)
+}
+
+div.drawer[data-drawer="compose"] {
+	background:var(--secondaryColorAlt);
+}
+
+.mtd-classic-nav.mtd-app div.drawer[data-drawer="compose"] {
+	top: -40px;
 }
