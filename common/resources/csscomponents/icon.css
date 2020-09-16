@@ -18,6 +18,7 @@ i {
 .Icon:before,
 .search-input-control:before,
 .sprite-gif:before,
+.js-show-this-thread>p:before,
 .material-icon
 {
 	content:" ";
@@ -32,7 +33,12 @@ i {
 	font-feature-settings:"liga"
 }
 
-.icon:before,.Icon:before,.search-input-control:before,.sprite-gif:before {
+.icon:before,
+.Icon:before,
+.search-input-control:before,
+.js-show-this-thread>p:before,
+.sprite-gif:before
+{
 	font-weight:400;
 	font-family:Material
 }
@@ -227,7 +233,7 @@ a[data-action="undo-retweet"]:before,
 	content:"\e87d"
 }
 
-.icon-mention:before,.Icon--mention:before {
+.js-show-this-thread>p:before,.icon-mention:before,.Icon--mention:before {
 	content:"\e0c9"
 }
 
@@ -362,7 +368,7 @@ input[type="radio"]:checked:before {
 }
 
 .is-new>.icon-dot:before {
-	content:"\e031"
+	content:"\e3fa"; /* \e031 */
 }
 
 .icon-user:before,.Icon--user:before {
