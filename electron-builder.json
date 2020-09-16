@@ -37,14 +37,16 @@
 		"compression":"maximum",
 		"target": [
 			{
-				"target": "nsis",
+				"target": "appx",
 				"arch": [
+					"arm64",
 					"x64"
 				]
 			},
 			{
-				"target": "appx",
+				"target": "nsis",
 				"arch": [
+					"arm64",
 					"x64"
 				]
 			},
@@ -72,6 +74,11 @@
 		"artifactName": "ModernDeck_${arch}.${ext}",
 		"uninstallDisplayName": "ModernDeck",
 		"differentialPackage": true
+	},
+	"msi": {
+		"artifactName": "ModernDeck_${arch}.${ext}",
+		"perMachine": true,
+		"runAfterFinish": false
 	},
 	"nsisWeb": {
 		"deleteAppDataOnUninstall": true,
