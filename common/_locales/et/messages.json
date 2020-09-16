@@ -4,7 +4,7 @@
 		"description": "Short description for the extension"
 	},
 	"launch": {
-		"message": "Launch ModernDeck",
+		"message": "Käivita ModernDeck",
 		"description": "The ModernDeck Launcher button"
 	},
 	"name": {
@@ -16,11 +16,11 @@
 		"description": "The description of the extension that appears on the Chrome Web Store"
 	},
 	"grantButton": {
-		"message": "Grant Permission",
+		"message": "Anna luba",
 		"description": "A button to grant tabs permission in Firefox"
 	},
 	"needsPermission": {
-		"message": "Sorry to interrupt &mdash; We need permission to open tabs",
+		"message": "Vabandust vahele segamast &mdash; Me vajame vahelehtede avamiseks luba",
 		"description": "A title about granting tabs permission in Firefox"
 	},
 	"needsPermissionParagraph": {
