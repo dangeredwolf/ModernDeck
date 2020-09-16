@@ -1,0 +1,22 @@
+.js-show-this-thread {
+	display:block
+}
+
+.js-show-this-thread>p {
+	font-size:0;
+	float:right;
+	line-height:0;
+	display:block
+}
+
+.js-show-this-thread>p:before {
+	font-size:13px;
+	display:block;
+	margin-left:-20px
+}
+
+.js-show-this-thread>p:after {
+	font-size:12px;
+	margin-bottom:4px;
+	display:block
+}
