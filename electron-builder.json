@@ -40,7 +40,6 @@
 			{
 				"target": "appx",
 				"arch": [
-					"arm64",
 					"x64"
 				]
 			},
