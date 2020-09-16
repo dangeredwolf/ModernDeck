@@ -409,7 +409,8 @@
 	font-size:96px!important;
 	line-height:1;
 	display:inline;
-	float:left
+	float:left;
+	pointer-events:all
 }
 
 .mtd-about-title {
@@ -437,7 +438,7 @@
 	position:relative;
 	padding-top:43px;
 	width:305px;
-	padding-left:96px
+	margin-left:96px
 }
 
 .mtd-patron-info {
