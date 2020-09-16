@@ -364,7 +364,7 @@ export function openSettings(openMenu) {
 	let tabSelection = make("button").addClass("mtd-settings-tab mtd-settings-tab-selection");
 	let container = make("div").addClass("mtd-settings-inner");
 	let panel = make("div").addClass("mdl mtd-settings-panel").append(tabs).append(make("div").addClass("mtd-settings-inner-container").append(container));
-
+	let diagClickNumber = 0;
 
 	for (var key in settingsData) {
 
@@ -421,7 +421,14 @@ export function openSettings(openMenu) {
 					break;
 			}
 
-			let logo = make("i").addClass("mtd-logo icon-moderndeck icon");
+			let logo = make("i").addClass("mtd-logo icon-moderndeck icon").click(() => {
+				diagClickNumber++;
+				console.log(diagClickNumber);
+				if (diagClickNumber >= 5) {
+					diagClickNumber = 0;
+					window.diag();
+				}
+			});
 			let h1 = make("h1").addClass("mtd-about-title").html("ModernDeck<span>codename Oasis</span>");
 			let h2 = make("h2").addClass("mtd-version-title").html(verText + " " + SystemVersion + I18n(" (Build ") + buildId + ")");
 			let logoCont = make("div").addClass("mtd-logo-container");
