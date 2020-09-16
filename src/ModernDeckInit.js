@@ -497,7 +497,7 @@ function hookComposer() {
 window.mtdPrepareWindows = () => {
 	console.info("mtdPrepareWindows called");
 	$("#update-sound,.js-click-trap").click();
-	mtd_nav_drawer_background.click();
+	$("#mtd_nav_drawer_background").click();
 
 	$(".js-modal[style=\"display: block;\"]").click();
 
@@ -662,6 +662,9 @@ function coreInit() {
 	}
 	.mtd-altsensitive .mdl .chirp-container .media-sensitive p:before,.mtd-altsensitive .is-actionable .is-gif .media-sensitive p:before {
 		content:"${I18n("Open details of this tweet to view this media.")}"
+	}
+	.js-show-this-thread>p:after {
+		content:"${I18n("Thread")}"
 	}
 `)
 
