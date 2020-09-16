@@ -781,6 +781,7 @@ export let settingsData = {
 				headerBefore:"{{Developer}}",
 				title:"{{Show Inspect Element in context menus}}",
 				type:"checkbox",
+				isDevTool:true,
 				activate:{
 					func: () => {
 						setPref("mtd_inspectElement",true);
@@ -796,14 +797,26 @@ export let settingsData = {
 			},
 			mtdSafeMode: {
 				title:"{{Safe mode}}",
-				label:"{{Is something broken? Enter Safe Mode.}}",
+				label:"{{Safe mode}}",
 				type:"link",
+				isDevTool:true,
 				activate:{
 					func: () => {
 						enterSafeMode();
 					}
 				},
 				enabled:isApp
+			},
+			tdLegacySettings: {
+				title:"{{Legacy settings}}",
+				label:"{{Legacy settings}}",
+				type:"link",
+				isDevTool:true,
+				activate:{
+					func: () => {
+						openLegacySettings();
+					}
+				}
 			}
 		}
 	}, system: {
@@ -932,16 +945,6 @@ export let settingsData = {
 				},
 				settingsKey:"mtd_tweetenImportSettings",
 				enabled:isApp
-			},
-			tdLegacySettings: {
-				title:"{{Legacy settings}}",
-				label:"{{Did TweetDeck add a new feature we're missing? Visit legacy settings}}",
-				type:"link",
-				activate:{
-					func: () => {
-						openLegacySettings();
-					}
-				}
 			}
 		}
 	}, language: {

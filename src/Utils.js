@@ -30,6 +30,10 @@ export const makeN = function(a) {
 	return nQuery(document.createElement(a));
 }
 
+export const isEnterprise = function() {
+	return typeof process !== "undefined" && process.execPath.match(/:\\Program Files/g) !== null;
+}
+
 // shorthand function to return true if something exists and false otherwise
 
 export const exists = function(thing) {

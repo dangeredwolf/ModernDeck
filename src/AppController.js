@@ -5,12 +5,13 @@
 */
 
 import { make, exists, getIpc } from "./Utils.js";
-import { mtdAlert } from "./UIAlert.js";
+import { UIAlert } from "./UIAlert.js";
 import { UIUpdateNotify } from "./UIUpdateNotify.js";
 import { AutoUpdateController } from "./AutoUpdateController.js";
 import { openSettings } from "./UISettings.js";
 import { buildContextMenu } from "./UIContextMenu.js";
-import { parseActions } from "./PrefHandler.js";
+import { parseActions, loadPreferences } from "./PrefHandler.js";
+import { parseConfig } from "./EnterpriseConfigParser.js";
 import { I18n } from "./I18n.js";
 
 let offlineNotification;
@@ -20,7 +21,7 @@ let offlineNotification;
 */
 
 function notifyUpdate() {
-	if (isDev) {
+	if (isDev || enterpriseConfig.disableUpdateNotification) {
 		return;
 	}
 	UIUpdateNotify();
@@ -85,6 +86,13 @@ export function mtdAppFunctions() {
 	$(document).on("uiDrawerActive",(e) => {
 		if (!$(".application").hasClass("hide-detail-view-inline"))
 			getIpc().send("drawerOpen");
+	});
+
+
+	ipcRenderer.on("enterpriseConfig", (e, config) => {
+		window.enterpriseConfig = config;
+		parseConfig(config);
+		loadPreferences();
 	});
 
 
@@ -242,10 +250,18 @@ export function mtdAppFunctions() {
 
 	})
 
+	ipcRenderer.on("failedOpenUrl", (event, p) => {
+		new UIAlert({
+			title:I18n("Failed to open link in browser"),
+			message:I18n("ModernDeck failed to open a link you clicked in the default browser.\n\n(Sometimes, this can be caused if you have the Twitter for Windows app installed)"),
+			buttonText:I18n("OK")
+		})
+	})
+
 	const updateOnlineStatus = () => {
 
 		if (!navigator.onLine) {
-			notifyOffline();
+			// notifyOffline();
 		} else {
 			dismissOfflineNotification();
 		}

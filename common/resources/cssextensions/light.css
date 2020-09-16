@@ -51,7 +51,6 @@
 a,
 a:not(.column-header-link):not(.js-column-back):not(.list-account):not(.account-selector-grid-mode):not(.account-link):hover,
 .btn:not([disabled]):not(.is-disabled):not(.btn-options-tray):not(.mtd-nav-button):not(.btn-bg-negative),
-.tweet-actions.is-visible .icon-reply,
 #caltoday,
 .lst-profile a,
 .lst-profile a:hover,

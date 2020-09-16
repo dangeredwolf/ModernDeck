@@ -22,7 +22,8 @@ const {
 	nativeTheme,
 	nativeImage,
 	protocol,
-	Tray
+	Tray,
+	globalShortcut
 }		= require("electron");
 
 const fs = require("fs");
@@ -66,11 +67,44 @@ let interval;
 let mtdAppTag = '';
 let lang = store.get("mtd_lang");
 
-autoUpdater.setFeedURL({
-	"owner": "dangeredwolf",
-	"repo": "ModernDeck",
-	"provider": "github"
-});
+if (process.execPath.match(/:\\Program Files/g) === null) {
+	autoUpdater.setFeedURL({
+		"owner": "dangeredwolf",
+		"repo": "ModernDeck",
+		"provider": "github"
+	});
+} else {
+	autoUpdater.setFeedURL({
+		"owner": "dangeredwolf",
+		"repo": "ModernDeckEnterprise",
+		"provider": "github"
+	});
+}
+
+let enterpriseConfig = {};
+
+if (process.platform === "win32") {
+	try {
+		let configFile = fs.readFileSync("C:\\ProgramData\\ModernDeck\\config.json");
+
+		try {
+			enterpriseConfig = JSON.parse(configFile);
+		} catch(e) {
+			app.on("ready", () => {
+				dialog.showMessageBoxSync({
+					type:"error",
+					title:"ModernDeck",
+					message:"ModernDeck detected an enterprise config file, but an error occurred while reading it. Please ensure the JSON is free from any errors.\n\n" + e
+				});
+			})
+		}
+	} catch (e) {
+		console.error("Could not read organization config file");
+		console.error(e);
+	}
+}
+
+console.log(enterpriseConfig);
 
 autoUpdater.logger = log;
 autoUpdater.logger.transports.file.level = "info";
@@ -186,6 +220,17 @@ const menu = Menu.buildFromTemplate(template);
 
 if (process.platform === "darwin")
 	Menu.setApplicationMenu(menu);
+
+function loadEnterpriseConfigMain() {
+	if (enterpriseConfig.disableDevTools) {
+		// https://stackoverflow.com/questions/40304833/how-to-make-the-dev-tools-not-show-up-on-screen-by-default-electron
+		globalShortcut.register("Control+Shift+I", () => {});
+	}if (enterpriseConfig.disableZoom) {
+		// https://stackoverflow.com/questions/40304833/how-to-make-the-dev-tools-not-show-up-on-screen-by-default-electron
+		globalShortcut.register("Control+-", () => {});
+		globalShortcut.register("Control+Shift+=", () => {});
+	}
+}
 
 function makeErrorWindow() {
 
@@ -355,8 +400,6 @@ function saveImageAs(url) {
 		}
 	}
 
-
-
 };
 
 function saveWindowBounds() {
@@ -492,10 +535,10 @@ function makeWindow() {
 	// Save window bounds if it's closed, or otherwise occasionally
 
 	mainWindow.on("close",(e) => {
-		setTimeout(saveWindowBounds,0);
+		setTimeout(saveWindowBounds, 0);
 	});
 
-	setInterval(saveWindowBounds,60 * 1000);
+	setInterval(saveWindowBounds, 60 * 1000);
 
 	mainWindow.show();
 
@@ -510,7 +553,7 @@ function makeWindow() {
 	}
 
 
-	mainWindow.webContents.on('dom-ready', (event, url) => {
+	mainWindow.webContents.on("dom-ready", (event, url) => {
 
 		mainWindow.webContents.executeJavaScript(`document.getElementsByClassName("js-signin-ui block")[0].innerHTML = '<div class="preloader-wrapper big active"><div class="spinner-layer"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div>';`)
 
@@ -658,7 +701,9 @@ function makeWindow() {
 			console.log("this is a login non-teams window! new-window");
 			event.newGuest = makeLoginWindow(url,false);
 		} else {
-			shell.openExternal(url);
+			shell.openExternal(url).catch(() => {
+				mainWindow.webContents.send("failedOpenUrl");
+			})
 		}
 
 		return event.newGuest;
@@ -678,6 +723,15 @@ function makeWindow() {
 		to put up a native context menu with the given commands, instead
 		of it doing it itself.
 	*/
+
+
+
+	ipcMain.on("getEnterpriseConfig", (event, params) => {
+		console.log("GOT REQUEST TO GET ENTERPRISE CONFIG");
+		if (!mainWindow || !mainWindow.webContents) { return }
+
+		mainWindow.webContents.send("enterpriseConfig", enterpriseConfig);
+	});
 
 	ipcMain.on("nativeContextMenu", (event, params) => {
 		console.log(params);
@@ -1030,6 +1084,7 @@ electron.protocol.registerSchemesAsPrivileged([{
 app.on("ready", () => {
 	try {
 		makeWindow();
+		loadEnterpriseConfigMain();
 		if (enableTray) {
 			makeTray();
 		}

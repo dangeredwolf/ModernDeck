@@ -11,6 +11,7 @@
 		"!**/*.{iml,o,hprof,orig,pyc,pyo,rbc,swp,csproj,sln,xproj}",
 		"!**/._*",
 		"!dist",
+		"!distEnterprise",
 		"!docs",
 		"!src",
 		"!build",

@@ -39,7 +39,7 @@ import { _newLoginPage } from "./DataMustaches.js";
 window.newLoginPage = _newLoginPage;
 
 import { processForceFeatureFlags } from "./ForceFeatureFlags.js";
-import { loadPreferences, parseActions } from "./PrefHandler.js";
+import { loadPreferences, loadPreferencesWindows, parseActions } from "./PrefHandler.js";
 window.parseActions = parseActions;
 
 import { fromCodePoint } from "./EmojiHelper.js";
@@ -520,7 +520,12 @@ function navigationSetup() {
 		new UILanguagePicker();
 	}
 
-	handleErrors(loadPreferences, "Caught error in loadPreferences");
+	if (typeof process !== "undefined" && process.platform === "win32") {
+		handleErrors(loadPreferencesWindows, "Caught error in loadPreferences");
+	} else {
+		handleErrors(loadPreferences, "Caught error in loadPreferencesWindows");
+	}
+
 	handleErrors(hookComposer, "Caught error in hookComposer");
 
 	UINavDrawer();

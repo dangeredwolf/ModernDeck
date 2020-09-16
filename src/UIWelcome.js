@@ -26,6 +26,10 @@ export class UIWelcome extends UIModal {
 	constructor() {
 		super();
 
+		if (enterpriseConfig && enterpriseConfig.disableOOBE) {
+			return;
+		}
+
 		window.isInWelcome = true;
 
 		try {

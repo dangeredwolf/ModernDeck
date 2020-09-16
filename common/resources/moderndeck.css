@@ -1874,8 +1874,8 @@ a .column-title-back .icon:after {
 	will-change: color;
 }
 
-.stream-item.is-actionable .tweet-action,
-.stream-item.is-actionable .tweet-detail-action
+.stream-item .tweet-action,
+.stream-item .tweet-detail-action
 {
 	color:var(--scrollbarDefaultColor)
 }
@@ -9282,9 +9282,9 @@ textarea {
 }
 
 div.drawer[data-drawer="compose"] {
-	background:var(--secondaryColorAlt);
+	background:var(--secondaryColorAlt)
 }
 
 .mtd-classic-nav.mtd-app div.drawer[data-drawer="compose"] {
-	top: -40px;
+	top:-40px
 }

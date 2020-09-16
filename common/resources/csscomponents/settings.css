@@ -244,8 +244,9 @@
 }
 
 .mtd-settings-option-link {
-	padding-top:16px;
-	cursor:pointer
+	padding-bottom:16px;
+	cursor:pointer;
+	height:20px
 }
 
 .mtd-settings-subpanel p {
@@ -662,4 +663,9 @@ html body .mtd-settings-subpanel button {
 	position:absolute;
 	left:315px;
 	top:85px
+}
+
+.mtd-update-container img {
+	vertical-align:middle;
+	padding-right:5px
 }

@@ -5,7 +5,7 @@
 */
 
 import buildId from "./buildId.js";
-import { make, exists, isApp, sanitiseString, formatBytes } from "./Utils.js";
+import { make, exists, isApp, sanitiseString, formatBytes, isEnterprise } from "./Utils.js";
 import { settingsData } from "./DataSettings.js";
 import { hasPref, getPref, setPref } from "./StoragePreferences.js";
 import { buildContextMenu } from "./UIContextMenu.js";
@@ -19,8 +19,11 @@ const appendTextVersion = false;
 let verTextId = 3;
 let verText = "";
 
+let productName = "ModernDeck";
 
-
+if (isEnterprise()) {
+	productName = "ModernDeck Enterprise"
+}
 
 function internationaliseSettingString(str) {
 	let matches = str.match(/{{.+?}}/g);
@@ -54,6 +57,8 @@ export function renderTab(key, subPanel) {
 
 	subPanel.empty();
 
+	let settingsHidden = false;
+
 	for (let prefKey in settingsData[key].options) {
 
 		let pref = settingsData[key].options[prefKey];
@@ -71,7 +76,10 @@ export function renderTab(key, subPanel) {
 			continue;
 		}
 
-
+		if (pref.isDevTool && typeof window.enterpriseConfig !== undefined && window.enterpriseConfig.disableDevTools) {
+			settingsHidden = true;
+			continue;
+		}
 
 		if (exists(pref.headerBefore)) {
 			subPanel.append(
@@ -354,6 +362,10 @@ export function renderTab(key, subPanel) {
 
 		subPanel.append(option);
 	}
+
+	if (settingsHidden) {
+		subPanel.prepend(make("p").addClass("mtd-enterprise-management-text").text(I18n("Some settings are hidden by your organization")));
+	}
 }
 
 export function openSettings(openMenu) {
@@ -429,7 +441,8 @@ export function openSettings(openMenu) {
 					window.diag();
 				}
 			});
-			let h1 = make("h1").addClass("mtd-about-title").html("ModernDeck<span>codename Oasis</span>");
+
+			let h1 = make("h1").addClass("mtd-about-title").html(productName + `<span>${isEnterprise() ? "evaluation copy" : "codename Oasis"}</span>`);
 			let h2 = make("h2").addClass("mtd-version-title").html(verText + " " + SystemVersion + I18n(" (Build ") + buildId + ")");
 			let logoCont = make("div").addClass("mtd-logo-container");
 
@@ -640,8 +653,15 @@ export function makeUpdateCont() {
 	let updateh2 = make("h2").addClass("mtd-update-h2").html(I18n("Checking for updates...")).attr("id","updateh2");
 	let updateh3 = make("h3").addClass("mtd-update-h3 hidden").html("").attr("id","updateh3");
 	let tryAgain = make("button").addClass("btn hidden").html(I18n("Try Again")).attr("id","tryAgain");
-	let restartNow = make("button").addClass("btn hidden").html(I18n("Restart Now")).attr("id","restartNow");
 
+	let restartNow = make("button").addClass("btn hidden").attr("id","restartNow");
+	let restartNowHtml = I18n("Restart Now");
+
+	if (isEnterprise()) {
+		restartNowHtml = `<img src="moderndeck://resources/img/uac.png">${restartNowHtml}`;
+	}
+
+	restartNow.html(restartNowHtml);
 
 	updateCont.append(updateIcon,updateh2,updateh3,tryAgain,restartNow);
 

@@ -5,12 +5,13 @@
 */
 
 import buildId from "./buildId.js";
-import { isApp, make } from "./Utils.js";
+import { isApp, make, isEnterprise } from "./Utils.js";
 import { dumpPreferences } from "./StoragePreferences.js";
 import { settingsData } from "./DataSettings.js";
 import { version } from "../package.json";
 import { I18n } from "./I18n.js";
 import { UIAlert } from "./UIAlert.js";
+import { AsciiArtController } from "./AsciiArtController.js";
 
 /*
 	diag makes it easier for developers to narrow down user-reported bugs.
@@ -27,6 +28,9 @@ export function diag() {
 	if (isApp) {
 		log += "Electron";
 
+		if (isEnterprise()) {
+			log += " (Enterprise)";
+		}
 		if (html.hasClass("mtd-winstore")) {
 			log += " (Microsoft Store)";
 		}
@@ -40,7 +44,7 @@ export function diag() {
 
 	log += ("\n\nTD.buildID: " + ((TD && TD.buildID) ? TD.buildID : "[not set]"));
 	log += ("\nTD.version: " + ((TD && TD.version) ? TD.version : "[not set]"));
-	
+
 	log += "\nUser agent: " + navigator.userAgent;
 
 

@@ -5,11 +5,10 @@
 */
 
 import { settingsData } from "./DataSettings.js";
-import { exists } from "./Utils.js";
+import { exists, getIpc } from "./Utils.js";
 import { ModernDeck8ThemeMigration } from "./ModernDeck8ThemeMigration.js";
 import { disableStylesheetExtension, enableStylesheetExtension } from "./StylesheetExtensions.js";
 import { getPref, setPref, hasPref, debugStorageSys } from "./StoragePreferences.js";
-
 /*
 	function loadPreferences()
 
@@ -70,6 +69,11 @@ export function loadPreferences() {
 			}
 		}
 	}
+}
+
+export function loadPreferencesWindows() {
+	console.log("Sending get enterprise config");
+	getIpc().send("getEnterpriseConfig");
 }
 
 /*

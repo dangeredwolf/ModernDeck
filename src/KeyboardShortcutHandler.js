@@ -21,7 +21,6 @@ import { disableStylesheetExtension } from "./StylesheetExtensions.js";
 import { diag } from "./UIDiag.js";
 
 export function keyboardShortcutHandler(e) {
-	console.log(e);
 
 	if (e.ctrlKey && e.shiftKey) {
 		switch(e.code) {
@@ -72,10 +71,10 @@ export function keyboardShortcutHandler(e) {
 
 	if (e.key === "KeyQ" && document.querySelector("input:focus,textarea:focus") === null) {
 		if (getPref("mtd_headposition") !== "classic") {
-			if ($(mtd_nav_drawer).hasClass("hidden")) {
+			if ($("#mtd_nav_drawer").hasClass("hidden")) {
 				$("#mtd-navigation-drawer-button").click();
 			} else {
-				$(mtd_nav_drawer_background).click();
+				$("#mtd_nav_drawer_background").click();
 			}
 		}
 	}
