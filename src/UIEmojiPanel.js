@@ -1,4 +1,4 @@
-import EmojiButton from './emojibutton.js';
+import { EmojiButton } from '@joeattardi/emoji-button';
 
 export class UIEmojiPanel {
 	static attachEvents() {
