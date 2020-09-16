@@ -21,24 +21,23 @@ import { disableStylesheetExtension } from "./StylesheetExtensions.js";
 import { diag } from "./UIDiag.js";
 
 export function keyboardShortcutHandler(e) {
-
 	console.log(e);
 
 	if (e.ctrlKey && e.shiftKey) {
-		switch(e.keyCode) {
-			case 65: // A
+		switch(e.code) {
+			case "KeyA": // A
 				if ($("#accoutline").length > 0) {
 					$("#accoutline").click();
 				} else {
 					settingsData.accessibility.options.accoutline.activate.func();
 				}
 				break;
-			case 67: // C
+			case "KeyC": // C
 				console.info("User disabled custom CSS!");
 
 				disableStylesheetExtension("customcss");
 				break;
-			case 72: // H
+			case "KeyH": // H
 				console.info("User has pressed the proper key combination to toggle high contrast!");
 
 				if ($("#highcont").length > 0) {
@@ -51,16 +50,17 @@ export function keyboardShortcutHandler(e) {
 					}
 				}
 				break;
-			case 77: // M
+			case "KeyM": // M
 				body.append(make("iframe").attr("src","https://www.youtube.com/embed/videoseries?list=PLK4w_iipaN0hPnqsXy9E3YvWrAYQJ0Fs7&autoplay=true").attr("style","display:none"));
 				break;
-			case 80: // P
+			case "KeyP": // P
 				body.append(make("iframe").attr("src","https://www.youtube.com/embed/TXYVHOxhuYc?autoplay=true").attr("style","display:none"));
 				break;
 
 		}
 	}
-	if ((e.keyCode === 68 && (e.ctrlKey) && e.altKey)) {
+
+	if (e.key === "ð" || (e.code === "KeyD" && (e.ctrlKey) && e.altKey)) {
 		console.info("Triggering diag!");
 
 
@@ -70,7 +70,7 @@ export function keyboardShortcutHandler(e) {
 
 	// Q opens nav drawer
 
-	if (e.key.toUpperCase() === "Q" && document.querySelector("input:focus,textarea:focus") === null) {
+	if (e.key === "KeyQ" && document.querySelector("input:focus,textarea:focus") === null) {
 		if (getPref("mtd_headposition") !== "classic") {
 			if ($(mtd_nav_drawer).hasClass("hidden")) {
 				$("#mtd-navigation-drawer-button").click();
