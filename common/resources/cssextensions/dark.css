@@ -132,7 +132,6 @@ option,
 	background:var(--tweetDetailWrapperColor)
 }
 
-div.drawer[data-drawer="compose"],
 .lst-group .selected,
 #calcurrent,
 .btn-compose:not(.js-hide-drawer),
