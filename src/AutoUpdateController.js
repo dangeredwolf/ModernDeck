@@ -12,6 +12,7 @@ export class AutoUpdateController {
 	h2;
 	tryAgain;
 	restartNow;
+	installButton;
 	spinner;
 	icon;
 
@@ -25,6 +26,14 @@ export class AutoUpdateController {
 
 		const { ipcRenderer } = require("electron");
 
+		AutoUpdateController.h2 = I18n("Check for updates");
+		AutoUpdateController.spinner = false;
+		AutoUpdateController.h3 = I18n("ModernDeck updates help keep you secure and add new features.");
+		AutoUpdateController.icon = "info_outline";
+		AutoUpdateController.tryAgain = I18n("Check now");
+		AutoUpdateController.restartNow = false;
+		AutoUpdateController.installButton = undefined;
+		AutoUpdateController.isCheckingForUpdates = false;
 
 		ipcRenderer.on("error",(e, args, f, g) => {
 			AutoUpdateController.h2 = I18n("There was a problem checking for updates.");
@@ -41,7 +50,7 @@ export class AutoUpdateController {
 			AutoUpdateController.icon = "error_outline";
 			AutoUpdateController.tryAgain = I18n("Try Again");
 			AutoUpdateController.restartNow = false;
-
+			AutoUpdateController.installButton = undefined;
 			AutoUpdateController.isCheckingForUpdates = false;
 			$(document).trigger("mtdUpdateUIChanged");
 
@@ -54,6 +63,7 @@ export class AutoUpdateController {
 			AutoUpdateController.h3 = undefined;
 			AutoUpdateController.updateh3 = undefined;
 			AutoUpdateController.tryAgain = undefined;
+			AutoUpdateController.installButton = undefined;
 			AutoUpdateController.restartNow = false;
 			$("[id='update'] .mtd-welcome-next-button").html(I18n("Skip") + "<i class='icon icon-arrow-r'></i>");
 
@@ -62,10 +72,19 @@ export class AutoUpdateController {
 		});
 
 		ipcRenderer.on("update-available", (e,args) => {
-			AutoUpdateController.icon = undefined;
-			AutoUpdateController.spinner = true;
-			AutoUpdateController.h2 = I18n("Updating...");
-			AutoUpdateController.h3 = undefined;
+			if (typeof window.enterpriseConfig !== "undefined" && (window.enterpriseConfig.autoUpdatePolicy === "checkOnly" || window.enterpriseConfig.autoUpdatePolicy === "manual")) {
+				AutoUpdateController.h2 = I18n("An update for ModernDeck is available");
+				AutoUpdateController.h3 = I18n("ModernDeck updates help keep you secure and add new features.");
+				AutoUpdateController.spinner = false;
+				AutoUpdateController.icon = "error_outline";
+				AutoUpdateController.installButton = I18n("Download");
+			} else {
+				AutoUpdateController.h2 = I18n("Updating...");
+				AutoUpdateController.h3 = undefined;
+				AutoUpdateController.spinner = true;
+				AutoUpdateController.icon = undefined;
+				AutoUpdateController.installButton = undefined;
+			}
 			AutoUpdateController.tryAgain = undefined;
 			AutoUpdateController.restartNow = false;
 
@@ -82,6 +101,7 @@ export class AutoUpdateController {
 									  formatBytes(args.bytesPerSecond) + ("/s)");
 
 			AutoUpdateController.tryAgain = undefined;
+			AutoUpdateController.installButton = undefined;
 			AutoUpdateController.restartNow = false;
 
 			AutoUpdateController.isCheckingForUpdates = true;
@@ -96,6 +116,7 @@ export class AutoUpdateController {
 			AutoUpdateController.h3 = I18n("Restart ModernDeck to complete the update");
 
 			AutoUpdateController.tryAgain = undefined;
+			AutoUpdateController.installButton = undefined;
 			AutoUpdateController.restartNow = true;
 
 			AutoUpdateController.isCheckingForUpdates = false;
@@ -110,6 +131,7 @@ export class AutoUpdateController {
 			AutoUpdateController.h3 = SystemVersion + I18n(" is the latest version.");
 
 			AutoUpdateController.tryAgain = I18n("Check Again");
+			AutoUpdateController.installButton = undefined;
 			AutoUpdateController.restartNow = false;
 			$("[id='update'] .mtd-welcome-next-button").html(I18n("Next") + "<i class='icon icon-arrow-r'></i>");
 
