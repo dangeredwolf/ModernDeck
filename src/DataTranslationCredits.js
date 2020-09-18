@@ -9,17 +9,21 @@ export const translationCredits = `
 vancho1<br>
 <a href="https://twitter.com/Khar0s" rel="user" target="_blank">Kharos</a><br>
 
-<br><b>中文</b><br>
-<a href="https://twitter.com/N0PELGND" rel="user" target="_blank">DatNopeLegend</a><br>
-
 <br><b>čeština</b><br>
 <a href="https://twitter.com/JamesTheWusky" rel="user" target="_blank">JamesTheWusky</a><br>
 
+<br><b>中文</b><br>
+<a href="https://twitter.com/N0PELGND" rel="user" target="_blank">DatNopeLegend</a><br>
+
 <br><b>Deutsche</b><br>
+<a href="https://twitter.com/cmdrfletcher" rel="user" target="_blank">cmdrfletcher</a><br>
 <a href="https://twitter.com/FLUFFSQUEAKER" rel="user" target="_blank">milanmat-fluffsqueaker</a><br>
 <a href="https://twitter.com/ItsJustMirko" rel="user" target="_blank">Mirko</a><br>
 <a href="https://twitter.com/Machtergreifung" rel="user" target="_blank">Machtergreifung</a><br>
 <a href="https://twitter.com/TecraFox" rel="user" target="_blank">Tecra</a><br>
+
+<br><b>Eesti</b><br>
+Thoth<br>
 
 <br><b>Español</b><br>
 <a href="https://twitter.com/klopma" rel="user" target="_blank">Carlos López</a><br>
@@ -28,7 +32,7 @@ vancho1<br>
 <a href="https://twitter.com/FibonacciPrower" rel="user" target="_blank">Fibonacci Prower</a><br>
 <a href="https://twitter.com/RichardWolfVI" rel="user" target="_blank">Juan Marulanda</a><br>
 minyfriki<br>
-<a href="https://twitter.com/tetrisdog" rel="user" target="_blank">tetrisdog</a><br>
+tetrisdog<br>
 TAKAHASHI Shuuji<br>
 
 <br><b>Français</b><br>
@@ -45,6 +49,10 @@ TAKAHASHI Shuuji<br>
 <br><b>日本語</b><br>
 <a href="https://twitter.com/hideki_0403" rel="user" target="_blank">ゆきねこ (hideki_0403)</a><br>
 TAKAHASHI Shuuji<br>
+
+<br><b>한국어</b><br>
+kemoshota<br>
+Lastorder<br>
 
 <br><b>Hrvatski</b><br>
 <a href="https://twitter.com/jptjohnny" rel="user" target="_blank">JPTJohnny</a><br>
