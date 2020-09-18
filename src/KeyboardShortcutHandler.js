@@ -28,7 +28,7 @@ export function keyboardShortcutHandler(e) {
 				if ($("#accoutline").length > 0) {
 					$("#accoutline").click();
 				} else {
-					settingsData.accessibility.options.accoutline.activate.func();
+					settingsData.accessibility.options.focusOutline.activate.func();
 				}
 				break;
 			case "KeyC": // C
@@ -43,9 +43,9 @@ export function keyboardShortcutHandler(e) {
 					$("#highcont").click();
 				} else {
 					if (getPref("mtd_highcontrast") === true) {
-						settingsData.accessibility.options.highcont.deactivate.func();
+						settingsData.accessibility.options.highContrast.deactivate.func();
 					} else {
-						settingsData.accessibility.options.highcont.activate.func();
+						settingsData.accessibility.options.highContrast.activate.func();
 					}
 				}
 				break;
