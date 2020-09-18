@@ -49,7 +49,16 @@ export class UIWelcome extends UIModal {
 		},0);
 		$(".app-content,.app-header").remove();
 
-		$(".application").attr("style",`background-image:url(${mtdBaseURL}resources/img/oasis.jpg)`);
+		$(".application").attr("style",`background-image:url(${mtdBaseURL}resources/img/bg1.jpg)`)
+
+		if (window.enterpriseConfig.customLoginImage) {
+			if (window.enterpriseConfig.customLoginImage.match(/https:\/\//gm) !== null) {
+				$(".application").attr("style",`background-image:url(${window.enterpriseConfig.customLoginImage})`)
+			} else {
+				$(".application").attr("style",`background-image:url(moderndeck://background)`)
+			}
+
+		}
 
 		$(".message-banner").attr("style","display: none;");
 

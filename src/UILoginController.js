@@ -29,7 +29,15 @@ function startUpdateGoodLoginText() {
 	// we can't do this in the new login mustache because when it's initialised,
 	// MTDURLExchange hasn't completed yet
 
-	$(".startflow-background").attr("style",`background-image:url(${mtdBaseURL}resources/img/oasis.jpg)`)
+	$(".startflow-background").attr("style",`background-image:url(${mtdBaseURL}resources/img/bg1.jpg)`)
+
+	if (window.enterpriseConfig.customLoginImage) {
+		if (window.enterpriseConfig.customLoginImage.match(/https:\/\//gm) !== null) {
+			$(".startflow-background").attr("style",`background-image:url(${window.enterpriseConfig.customLoginImage})`)
+		} else {
+			$(".startflow-background").attr("style",`background-image:url(moderndeck://background)`)
+		}
+	}
 
 	setInterval(() => {
 		let text;
@@ -65,6 +73,7 @@ export function checkIfSigninFormIsPresent() {
 			clearInterval(loginInterval);
 		}
 	} else {
+		console.log("Not on signin sheet anymore");
 		disableStylesheetExtension("loginpage");
 		html.removeClass("signin-sheet-now-present");
 	}
