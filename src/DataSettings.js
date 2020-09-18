@@ -42,7 +42,7 @@ export let settingsData = {
 	themes: {
 		tabName:"<i class='material-icon'>format_paint</i> {{Themes}}",
 		options:{
-			coretheme:{
+			theme:{
 				headerBefore:"{{Themes}}",
 				title:"{{Theme}}",
 				type:"dropdown",
@@ -81,6 +81,7 @@ export let settingsData = {
 								disableStylesheetExtension("amoled");
 								disableStylesheetExtension("darker");
 								disableStylesheetExtension("dark");
+								enableStylesheetExtension("light");
 								enableStylesheetExtension("paper");
 								break;
 							case "dark":
@@ -132,12 +133,12 @@ export let settingsData = {
 							amoled:{value:"amoled",text:"{{AMOLED}}"}
 						}
 					},
-					custom:{value:"custom",text:"{{Custom...}}"}
+					// custom:{value:"custom",text:"{{Custom...}}"}
 				},
 				settingsKey:"mtd_theme",
 				default:() => TD.settings.getTheme()
 			},
-			theme:{
+			themeColor:{
 				title:"{{Theme Color}}",
 				type:"dropdown",
 				activate:{
@@ -209,6 +210,7 @@ export let settingsData = {
 					}
 				},
 				settingsKey:"mtd_customcss",
+				enabled:() => window.enterpriseConfig === undefined ? true : !window.enterpriseConfig.disableCustomCSS,
 				default:""
 			}
 		}
@@ -216,7 +218,7 @@ export let settingsData = {
 	appearance: {
 		tabName:"<i class='material-icon'>rounded_corner</i> {{Appearance}}",
 		options:{
-			headposition:{
+			 navigationStyle:{
 				headerBefore:"{{Navigation}}",
 				title:"{{Navigation Style}}",
 				type:"dropdown",
@@ -245,7 +247,7 @@ export let settingsData = {
 				settingsKey:"mtd_headposition",
 				default:"left"
 			},
-			fixedarrows:{
+			fixedArrows:{
 				title:"{{Use fixed-location media arrows for tweets with multiple photos}}",
 				type:"checkbox",
 				activate:{
@@ -270,7 +272,7 @@ export let settingsData = {
 				settingsKey:"mtd_column_nav_always_visible",
 				default:true
 			},
-			nonewtweetsbutton:{
+			enableNewTweetsButton:{
 				title:"{{Enable \"New Tweets\" indicator}}",
 				type:"checkbox",
 				activate:{
@@ -282,7 +284,7 @@ export let settingsData = {
 				settingsKey:"mtd_nonewtweetsbutton",
 				default:true
 			},
-			noemojipicker:{
+			enableEmojiPicker:{
 				title:"{{Enable Emoji picker}}",
 				type:"checkbox",
 				activate:{
@@ -295,7 +297,7 @@ export let settingsData = {
 				enabled:false,
 				default:true
 			},
-			sensitive:{
+			sensitiveMedia:{
 				headerBefore:"{{Display}}",
 				title:"{{Display media that may contain sensitive content}}",
 				type:"checkbox",
@@ -316,7 +318,7 @@ export let settingsData = {
 					return TD.settings.getDisplaySensitiveMedia();
 				}
 			},
-			altsensitive:{
+			altSensitiveMedia:{
 				title:"{{Use alternative sensitive media workflow}}",
 				type:"checkbox",
 				activate:{
@@ -331,7 +333,7 @@ export let settingsData = {
 				settingsKey:"mtd_sensitive_alt",
 				default:true
 			},
-			scrollbarstyle:{
+			scrollbarStyle:{
 				title:"{{Scrollbar Style}}",
 				type:"dropdown",
 				activate:{
@@ -349,7 +351,7 @@ export let settingsData = {
 				settingsKey:"mtd_scrollbar_style",
 				default:"scrollbarsnarrow"
 			},
-			columnwidth:{
+			columnWidth:{
 				title:"{{Column width}}",
 				type:"slider",
 				activate:{
@@ -395,7 +397,7 @@ export let settingsData = {
 				displayUnit:"px",
 				default:48
 			},
-			roundprofilepics:{
+			roundProfilePics:{
 				title:"{{Use round profile pictures}}",
 				type:"checkbox",
 				activate:{
@@ -407,7 +409,7 @@ export let settingsData = {
 				settingsKey:"mtd_round_avatars",
 				default:true
 			},
-			newcharindicator:{
+			newCharIndicator:{
 				title:"{{Use new character limit indicator}}",
 				type:"checkbox",
 				activate:{
@@ -419,7 +421,7 @@ export let settingsData = {
 				settingsKey:"mtd_newcharindicator",
 				default:true
 			},
-			nocontextmenuicons:{
+			disableContextMenuIcons:{
 				title:"{{Display contextual icons in menus}}",
 				type:"checkbox",
 				activate:{
@@ -455,7 +457,7 @@ export let settingsData = {
 					return TD.settings.getUseStream();
 				}
 			},
-			columnvisibility:{
+			columnVisibility:{
 				title:"{{Improve Timeline performance by not rendering off-screen columns}}",
 				type:"checkbox",
 				activate:{
@@ -511,7 +513,7 @@ export let settingsData = {
 					return TD.settings.getShowStartupNotifications();
 				}
 			},
-			useModernDeckSounds:{
+			useModernDeckAlertSound:{
 				title:"{{Use custom ModernDeck alert sound}}",
 				type:"checkbox",
 				activate:{
@@ -527,7 +529,7 @@ export let settingsData = {
 				settingsKey:"mtd_sounds",
 				default:true
 			},
-			linkshort:{
+			linkShortener:{
 				headerBefore:"{{Link Shortening}}",
 				title:"{{Link Shortener Service}}",
 				type:"dropdown",
@@ -590,7 +592,7 @@ export let settingsData = {
 	}, accessibility: {
 		tabName:"<i class='material-icon'>accessibility</i> {{Accessibility}}",
 		options:{
-			accoutline:{
+			focusOutline:{
 				headerBefore:"{{Accessibility}}",
 				title:"{{Always show outlines around focused items (}}" + ctrlShiftText + "A {{to toggle)}}",
 				type:"checkbox",
@@ -603,7 +605,7 @@ export let settingsData = {
 				settingsKey:"mtd_outlines",
 				default:false
 			},
-			highcont:{
+			highContrast:{
 				title:"{{Enable High Contrast theme (}}" + ctrlShiftText + "H {{to toggle)}}",
 				type:"checkbox",
 				activate:{
@@ -715,7 +717,9 @@ export let settingsData = {
 							if (!!ipcRenderer) {
 								ipcRenderer.send("changeChannel", opt);
 
-								ipcRenderer.send("checkForUpdates");
+								if (window.enterpriseConfig.updatePolicy !== "disabled" && window.enterpriseConfig.updatePolicy !== "manual") {
+									ipcRenderer.send("checkForUpdates");
+								}
 							}
 						},300)
 					}
@@ -998,7 +1002,7 @@ export let settingsData = {
 				options:{
 					default:{value:"default",text:"{{Language default}}"},
 					english:{value:"english",text:"1,234,567.89"},
-					europe:{value:"europe",text:"1.234.567,89"},
+					european:{value:"european",text:"1.234.567,89"},
 					blank:{value:"blank",text:"1 234 567,89"},
 					indian:{value:"indian",text:"12,34,567.89"}
 				},
