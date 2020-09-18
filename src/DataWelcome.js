@@ -18,15 +18,15 @@ export let _welcomeData = {
 		body: I18n("We're glad to have you here. Click Next to continue."),
 		nextFunc: () => {
 
-			let currentTheme = settingsData.themes.options.coretheme.queryFunction();
+			let currentTheme = settingsData.themes.options.theme.queryFunction();
 
 			$(window.mtd_welcome_dark).click(()=>{
-				parseActions(settingsData.themes.options.coretheme.activate,"dark");
+				parseActions(settingsData.themes.options.theme.activate,"dark");
 				$(".mtd-welcome-inner .tweet-text").html(I18n("This tweet is quite dark!"))
 			})
 
 			$(window.mtd_welcome_light).click(()=>{
-				parseActions(settingsData.themes.options.coretheme.activate,"light");
+				parseActions(settingsData.themes.options.theme.activate,"light");
 				$(".mtd-welcome-inner .tweet-text").html(I18n("This tweet is quite light!"))
 			})
 
@@ -43,8 +43,8 @@ export let _welcomeData = {
 				return;
 			}
 
-			const {ipcRenderer} = require('electron');
-			ipcRenderer.send('checkForUpdates');
+			const {ipcRenderer} = require("electron");
+			ipcRenderer.send("checkForUpdates");
 		}
 	},
 	update: {
@@ -75,9 +75,9 @@ export let _welcomeData = {
 			ipcRenderer.send("checkForUpdates");
 		},
 		nextFunc: () => {
-			$(window.mtd_welcome_top).click(()=>parseActions(settingsData.appearance.options.headposition.activate,"top"))
-			$(window.mtd_welcome_left).click(()=>parseActions(settingsData.appearance.options.headposition.activate,"left"))
-			$(window.mtd_welcome_classic).click(()=>parseActions(settingsData.appearance.options.headposition.activate,"classic"))
+			$(window.mtd_welcome_top).click(()=>parseActions(settingsData.appearance.options.navigationStyle.activate,"top"))
+			$(window.mtd_welcome_left).click(()=>parseActions(settingsData.appearance.options.navigationStyle.activate,"left"))
+			$(window.mtd_welcome_classic).click(()=>parseActions(settingsData.appearance.options.navigationStyle.activate,"classic"))
 
 			let pos = getPref("mtd_headposition");
 			if (pos === "top") {
