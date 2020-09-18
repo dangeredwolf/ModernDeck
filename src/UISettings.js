@@ -16,7 +16,7 @@ import { AutoUpdateController } from "./AutoUpdateController.js";
 
 const appendTextVersion = false;
 
-let verTextId = 3;
+let verTextId = 2;
 let verText = "";
 
 let productName = "ModernDeck";
@@ -58,11 +58,14 @@ export function renderTab(key, subPanel) {
 	subPanel.empty();
 
 	let settingsHidden = false;
+	let settingsDisabled = false;
 
 	for (let prefKey in settingsData[key].options) {
 
 		let pref = settingsData[key].options[prefKey];
 		let option = make("div").addClass("mtd-settings-option").addClass("mtd-settings-option-"+pref.type);
+		let disableSetting = false;
+		let overrideSetting;
 
 		if (exists(pref.addClass)) {
 			option.addClass(pref.addClass);
@@ -74,6 +77,14 @@ export function renderTab(key, subPanel) {
 			}
 		} else if (pref.enabled === false) {
 			continue;
+		}
+
+		if (typeof window.enterpriseConfig !== undefined && window.enterpriseConfig[key] && window.enterpriseConfig[key][prefKey]) {
+			console.log(window.enterpriseConfig[key][prefKey]);
+			console.log("Setting disabled: " + prefKey)
+			settingsDisabled = true;
+			disableSetting = true;
+			overrideSetting = window.enterpriseConfig[key][prefKey];
 		}
 
 		if (pref.isDevTool && typeof window.enterpriseConfig !== undefined && window.enterpriseConfig.disableDevTools) {
@@ -110,12 +121,24 @@ export function renderTab(key, subPanel) {
 
 				});
 
-				if (exists(pref.settingsKey) && getPref(pref.settingsKey) === true) {
+				if (exists(pref.settingsKey) && getPref(pref.settingsKey) === true && overrideSetting !== false) {
 					input.attr("checked","checked");
 				}
 
+				if (disableSetting) {
+					input.attr("disabled","disabled")
+				}
+
+				if (typeof overrideSetting !== "undefined") {
+					if (overrideSetting) {
+						input.attr("checked","checked");
+					} else {
+						input.removeAttr("checked");
+					}
+				}
+
 				if (!exists(pref.settingsKey) && exists(pref.queryFunction)) {
-					if (pref.queryFunction()) {
+					if (pref.queryFunction() && overrideSetting !== false) {
 						input.attr("checked","checked");
 					}
 				}
@@ -137,6 +160,10 @@ export function renderTab(key, subPanel) {
 						setPref(pref.settingsKey,$(this).val());
 					}
 				});
+
+				if (disableSetting) {
+					select.attr("disabled","disabled")
+				}
 
 				for (let prefKey in pref.options) {
 					if (!!(pref.options[prefKey].value)) {
@@ -165,6 +192,10 @@ export function renderTab(key, subPanel) {
 					select.val(pref.queryFunction())
 				}
 
+				if (overrideSetting) {
+					select.val(overrideSetting);
+				}
+
 				label = make("label").addClass("control-label").html(internationaliseSettingString(pref.title));
 
 				option.append(label,select);
@@ -177,6 +208,10 @@ export function renderTab(key, subPanel) {
 
 			case "textbox":
 				input = make("input").attr("type","text").attr("id",prefKey);
+
+				if (disableSetting) {
+					input.attr("disabled","disabled")
+				}
 
 				if (pref.instantApply === true) {
 					input.on("input",function() {
@@ -200,6 +235,10 @@ export function renderTab(key, subPanel) {
 					input.val(pref.queryFunction())
 				}
 
+				if (overrideSetting) {
+					input.val(overrideSetting);
+				}
+
 				label = make("label").addClass("control-label").html(internationaliseSettingString(pref.title));
 
 				if (exists(pref.initFunc)) {
@@ -212,6 +251,10 @@ export function renderTab(key, subPanel) {
 
 			case "textarea":
 				input = make("textarea").addClass("mtd-textarea").attr("id",prefKey).attr("rows","10").attr("cols","80").attr("placeholder",pref.placeholder || "").attr("spellcheck",false);
+
+				if (disableSetting) {
+					input.attr("disabled","disabled")
+				}
 
 				if (pref.instantApply === true) {
 					input.on("input",function() {
@@ -262,6 +305,10 @@ export function renderTab(key, subPanel) {
 					input.val(pref.queryFunction())
 				}
 
+				if (overrideSetting) {
+					input.val(overrideSetting);
+				}
+
 				label = make("label").addClass("control-label").html(internationaliseSettingString(pref.title));
 
 				if (exists(pref.initFunc)) {
@@ -287,6 +334,10 @@ export function renderTab(key, subPanel) {
 					label.html(`${internationaliseSettingString(pref.title)} <b> ${$(this).val()} ${(internationaliseSettingString(pref.displayUnit || ""))} </b>`);
 				});
 
+				if (disableSetting) {
+					input.attr("disabled","disabled")
+				}
+
 				if (exists(pref.settingsKey)) {
 					input.val(parseInt(getPref(pref.settingsKey)));
 				} else if (!exists(pref.settingsKey) && exists(pref.queryFunction)) {
@@ -297,6 +348,10 @@ export function renderTab(key, subPanel) {
 					} else {
 						input.val(pref.default);
 					}
+				}
+
+				if (overrideSetting) {
+					input.val(overrideSetting);
 				}
 
 				label.html(internationaliseSettingString(pref.title) + " <b> "+ input.val() + " " + (internationaliseSettingString(pref.displayUnit) || "") + "</b>");
@@ -321,6 +376,10 @@ export function renderTab(key, subPanel) {
 				.click(() => {
 					parseActions(pref.activate,true);
 				});
+
+				if (disableSetting) {
+					button.attr("disabled","disabled")
+				}
 
 				if (exists(pref.initFunc)) {
 					pref.initFunc(button);
@@ -351,6 +410,10 @@ export function renderTab(key, subPanel) {
 					parseActions(pref.activate,true);
 				});
 
+				if (disableSetting) {
+					link.attr("disabled","disabled")
+				}
+
 				if (exists(pref.initFunc)) {
 					pref.initFunc(link);
 				}
@@ -365,6 +428,10 @@ export function renderTab(key, subPanel) {
 
 	if (settingsHidden) {
 		subPanel.prepend(make("p").addClass("mtd-enterprise-management-text").text(I18n("Some settings are hidden by your organization")));
+	}
+
+	if (settingsDisabled) {
+		subPanel.prepend(make("p").addClass("mtd-enterprise-management-text").text(I18n("Some settings are managed by your organization")));
 	}
 }
 
@@ -382,6 +449,10 @@ export function openSettings(openMenu) {
 
 		// if set to false (NOT UNDEFINED, this is an optional parameter), skip it
 		if (settingsData[key].enabled === false || settingsData[key].visible === false) {
+			continue;
+		}
+
+		if (key === "system" && typeof window.enterpriseConfig !== undefined && window.enterpriseConfig.disableSystemTab) {
 			continue;
 		}
 
@@ -442,17 +513,21 @@ export function openSettings(openMenu) {
 				}
 			});
 
-			let h1 = make("h1").addClass("mtd-about-title").html(productName + `<span>${isEnterprise() ? "evaluation copy" : "codename Oasis"}</span>`);
+			let h1 = make("h1").addClass("mtd-about-title").html(productName + `<span>${isEnterprise() ? "evaluation copy" : "<!--codename Oasis-->"}</span>`);
 			let h2 = make("h2").addClass("mtd-version-title").html(verText + " " + SystemVersion + I18n(" (Build ") + buildId + ")");
 			let logoCont = make("div").addClass("mtd-logo-container");
 
 			if (!isApp) {
 				logoCont.append(
-					make("p").addClass("mtd-check-out-app").html(I18n("Did you know ModernDeck has a native app? <a href='https://moderndeck.org/'>Check it out!</a>"))
+					make("p").addClass("mtd-check-out-app").html(I18n("Get background notifications, enterprise features, and more with the free <a href='https://moderndeck.org/'>ModernDeck App</a>!"))
+				)
+			} else if (window.enterpriseConfig && window.enterpriseConfig.autoUpdatePolicy === "never") {
+				logoCont.append(
+					make("p").addClass("mtd-check-out-app").html(I18n("Updates are disabled by your organization"))
 				)
 			}
 
-			let info = make("p").html(I18n("Made with <i class=\"icon icon-heart mtd-about-heart\"></i> by <a href=\"https://twitter.com/dangeredwolf\" rel=\"user\" target=\"_blank\">dangeredwolf</a> since 2014<br>ModernDeck is <a href=\"https://github.com/dangeredwolf/ModernDeck/\" target=\"_blank\">an open source project</a> released under the MIT license."));
+			let info = make("p").html(I18n("Made with <i class=\"icon icon-heart mtd-about-heart\"></i> by <a href=\"https://twitter.com/dangeredwolf\" rel=\"user\" target=\"_blank\">dangered wolf</a> since 2014<br>ModernDeck is <a href=\"https://github.com/dangeredwolf/ModernDeck/\" target=\"_blank\">an open source project</a> released under the MIT license."));
 			let infoCont = make("div").addClass("mtd-about-info").append(info);
 
 			logoCont.append(logo, h1, h2);
@@ -461,7 +536,7 @@ export function openSettings(openMenu) {
 
 			let updateCont = makeUpdateCont();
 
-			if (isApp && !html.hasClass("mtd-winstore") && !html.hasClass("mtd-macappstore")) {
+			if (isApp && !html.hasClass("mtd-winstore") && !html.hasClass("mtd-macappstore") && (window.enterpriseConfig && window.enterpriseConfig.autoUpdatePolicy !== "never")) {
 				subPanel.append(updateCont);
 			}
 
@@ -588,6 +663,13 @@ function updateUIChanged() {
 		$(window.updateh3).addClass("hidden");
 	}
 
+	if (AutoUpdateController.installButton) {
+		$(window.installButton).removeClass("hidden");
+		$(window.installButton).html(AutoUpdateController.installButton);
+	} else {
+		$(window.installButton).addClass("hidden");
+	}
+
 	if (AutoUpdateController.tryAgain) {
 		$(window.tryAgain).removeClass("hidden");
 		$(window.tryAgain).html(AutoUpdateController.tryAgain);
@@ -630,11 +712,16 @@ function mtdAppUpdatePage() {
 			ipcRenderer.send("checkForUpdates");
 		})
 
+		$(window.installButton).click(() => {
+			ipcRenderer.send("downloadUpdates");
+		})
+
 		$(window.restartNow).click(() => {
 			ipcRenderer.send("restartAndInstallUpdates");
 		});
 
-		if (!AutoUpdateController.isCheckingForUpdates) {
+		if (!AutoUpdateController.isCheckingForUpdates && window.enterpriseConfig.autoUpdatePolicy !== "disabled" && window.enterpriseConfig.autoUpdatePolicy !== "manual") {
+			console.log("heck");
 			ipcRenderer.send("checkForUpdates");
 		}
 
@@ -653,6 +740,7 @@ export function makeUpdateCont() {
 	let updateh2 = make("h2").addClass("mtd-update-h2").html(I18n("Checking for updates...")).attr("id","updateh2");
 	let updateh3 = make("h3").addClass("mtd-update-h3 hidden").html("").attr("id","updateh3");
 	let tryAgain = make("button").addClass("btn hidden").html(I18n("Try Again")).attr("id","tryAgain");
+	let installButton = make("button").addClass("btn hidden").html(I18n("Download")).attr("id","installButton");
 
 	let restartNow = make("button").addClass("btn hidden").attr("id","restartNow");
 	let restartNowHtml = I18n("Restart Now");
@@ -663,7 +751,7 @@ export function makeUpdateCont() {
 
 	restartNow.html(restartNowHtml);
 
-	updateCont.append(updateIcon,updateh2,updateh3,tryAgain,restartNow);
+	updateCont.append(updateIcon,updateh2,updateh3,tryAgain,installButton,restartNow);
 
 	if (typeof require !== "undefined" && !html.hasClass("mtd-winstore") && !html.hasClass("mtd-macappstore")) {
 		mtdAppUpdatePage();
