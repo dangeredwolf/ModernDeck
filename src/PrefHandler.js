@@ -45,11 +45,19 @@ export function loadPreferences() {
 						setting = getPref(prefKey);
 					}
 
+					if (window.enterpriseConfig && window.enterpriseConfig[key] && window.enterpriseConfig[key][i]) {
+						console.log(window.enterpriseConfig[key]);
+						console.log(window.enterpriseConfig[key][i]);
+						setting = window.enterpriseConfig[key][i];
+					}
+
 					switch(pref.type) {
 						case "checkbox":
 							if (setting === true) {
+								console.log("activate " + prefKey);
 								parseActions(pref.activate, undefined, true);
 							} else {
+								console.log("deactivate " + prefKey);
 								parseActions(pref.deactivate, undefined, true);
 							}
 							break;
@@ -72,8 +80,8 @@ export function loadPreferences() {
 }
 
 export function loadPreferencesWindows() {
-	console.log("Sending get enterprise config");
-	getIpc().send("getEnterpriseConfig");
+	// console.log("Sending get enterprise config");
+	loadPreferences();
 }
 
 /*
