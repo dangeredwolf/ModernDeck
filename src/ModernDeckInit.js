@@ -405,7 +405,7 @@ function mtdInit() {
 }
 
 function useNativeEmojiPicker() {
-	return /*getPref("mtd_nativeEmoji") && */require?.("electron")?.remote?.app?.isEmojiPanelSupported?.();
+	return /*getPref("mtd_nativeEmoji") && */ html.hasClass("mtd-supportsNativeEmojiPicker");
 }
 
 
@@ -605,12 +605,15 @@ function coreInit() {
 	body = $(document.body);
 	html = $(document.querySelector("html"));
 
+	window.enterpriseConfig = {};
+
 
 
 
 	if (isApp) {
 		try {
 			mtdAppFunctions();
+			getIpc().send("getEnterpriseConfig");
 			window.addEventListener('mousedown', (e) => {
 				clearContextMenu();
 			}, false);
