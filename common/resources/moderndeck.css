@@ -350,7 +350,7 @@ html {
 	width:48px;
 	height:48px;
 	box-sizing:border-box;
-	animation:containerRotate 1.568s linear infinite;
+	animation:containerRotate 1.568s linear infinite
 }
 
 .med-embeditem>.preloader-wrapper {
@@ -934,7 +934,7 @@ button:hover,button:focus,.Button--primary {
 }
 
 .med-img,.embed-iframe,.js-contributor-manager-back,.med-embeditem>.l-table,.button-group-toggle {
-	width:100%;
+	width:100%
 }
 
 .half-width,.button-group-toggle button {
@@ -1009,13 +1009,13 @@ button:hover,button:focus,.Button--primary {
 }
 
 .column-content {
-	border-right: 4px solid var(--columnBorderColor);
+	border-right:4px solid var(--columnBorderColor);
 	position:absolute;
 	top:54px;
 	left:0;
 	right:0;
 	bottom:0;
-	opacity:1!important;
+	opacity:1!important
 }
 
 .drawer-header-title.drawer-column-header-title {
@@ -1217,15 +1217,15 @@ button:hover,button:focus,.Button--primary {
 
 .column-drag-handle {
 	position:absolute;
-	top: 25px;
+	top:25px;
 	left:1px;
-	height: 100%;
+	height:100%;
 	margin-top:-25px;
-	width: 40px;
+	width:40px;
 	display:block;
 	opacity:0;
 	z-index:3;
-	cursor: all-scroll;
+	cursor:all-scroll
 }
 
 .column-title-back {
@@ -1432,7 +1432,7 @@ a .column-title-back .icon:after {
 .column:not(.draggable-dragging) .stream-item,.js-tweet-translation,.replies-after .stream-item.is-actionable {
 	animation:tweetIncomingTimeline 0.4s var(--animationTiming);
 	transition:background 0.25s var(--animationTiming),box-shadow 0.25s var(--animationTiming),transform 0.25s var(--animationTiming),left .35s var(--animationTiming);
-	will-change: margin-top, background, box-shadow;
+	will-change:margin-top, background, box-shadow
 }
 
 .js-column-social-proof .stream-item {
@@ -1650,6 +1650,7 @@ a .column-title-back .icon:after {
 	min-height:70px;
 	position:relative;
 	display:block;
+	transition:0.3s all;
 	margin-top:0;
 	background-repeat:no-repeat;
 	background-position:50% 50%;
@@ -1871,11 +1872,11 @@ a .column-title-back .icon:after {
 
 .tweet-action {
 	max-width:50px;
-	will-change: color;
+	will-change:color
 }
 
-.stream-item .tweet-action,
-.stream-item .tweet-detail-action
+.tweet-action-item .tweet-action,
+.tweet-detail-action-item .tweet-detail-action
 {
 	color:var(--scrollbarDefaultColor)
 }
@@ -2180,7 +2181,7 @@ a .column-title-back .icon:after {
 	margin-left:0;
 	overflow:visible;
 	transition:left 0.15s var(--animationTiming),width 0.15s var(--animationTiming),transform 0.15s var(--animationTiming);
-	-webkit-app-region:no-drag;
+	-webkit-app-region:no-drag
 }
 
 .mtd-head-left .app-content {
@@ -2296,7 +2297,7 @@ a .column-title-back .icon:after {
 .mtd-head-left.mtd-classic-nav .tweet-button.is-hidden {
 	-webkit-app-region:drag;
 	pointer-events:none;
-	width: 0;
+	width:0
 }
 
 .mtd-classic-nav .app-header:not(.is-condensed) .tweet-button.is-hidden {
@@ -2316,7 +2317,7 @@ a .column-title-back .icon:after {
 	z-index:5;
 	transition:all 0.2s var(--animationTiming);
 	-webkit-app-region:no-drag;
-	will-change: margin-left, margin-top, width, border-radius;
+	will-change:margin-left, margin-top, width, border-radius
 }
 
 .js-hide-drawer.is-hidden {
@@ -2468,7 +2469,7 @@ html:not(.mtd-classic-nav) .attach-compose-buttons .tweet-button {
 	z-index:100;
 	text-shadow:var(--rootBlackColor) 0 4px 7px;
 	overflow:visible;
-	pointer-events: none;
+	pointer-events:none
 }
 
 .message-banner .dismiss {
@@ -2689,7 +2690,7 @@ html:not(.mtd-classic-nav) .attach-compose-buttons .tweet-button {
 	pointer-events:all;
 	overflow:hidden;
 	bottom:0;
-	z-index:6;
+	z-index:6
 }
 
 .drawer-header-title {
@@ -2790,7 +2791,7 @@ html:not(.mtd-classic-nav) .attach-compose-buttons .tweet-button {
 	padding:15px;
 	pointer-events:none;
 	height:40px;
-	z-index:3;
+	z-index:3
 }
 
 .s-tall-fixed .mdl-header {
@@ -3151,10 +3152,10 @@ html:not(.mtd-classic-nav) .attach-compose-buttons .tweet-button {
 	bottom:40px;
 	left:0;
 	right:0;
-	top: 0;
+	top:0;
 	transition:0.5s all var(--animationTiming);
 	-webkit-app-region:no-drag;
-	overflow:visible;
+	overflow:visible
 }
 
 html:not(.mtd-app).mtd-classic-nav .compose-content {
@@ -4437,14 +4438,14 @@ input[type="checkbox"]:active {
 	padding:8px 3px 3px 12px;
 	height:27px;
 	white-space:nowrap;
-	width:auto;
+	width:auto
 }
 
 .dropdown-menu a {
 	/* position:absolute; */
 	line-height:2;
 	padding:7px 24px 7px 10px;
-	white-space:nowrap;
+	white-space:nowrap
 }
 
 .conversation-menu-position.dropdown-menu a {
@@ -4546,10 +4547,6 @@ input[type="checkbox"]:active {
 	text-align:center;
 	font-weight:300;
 	font-size:32px
-}
-
-.media-item {
-	transition:0.3s all
 }
 
 .column-navigator {
@@ -4654,7 +4651,7 @@ html:not(.mtd-head-left) .column-nav-item {
 }
 
 .mtd-head-left .column-nav-link i {
-	padding-left: 13px;
+	padding-left:13px
 }
 
 .column-nav-link i {
@@ -5226,7 +5223,7 @@ html:not(.mtd-head-left) body .application.hide-detail-view-inline .column-navig
 
 #general_settings .control-group label.checkbox,#general_settings .control-group label.radio {
 	margin-left:30px;
-	margin-bottom:4px;
+	margin-bottom:4px
 }
 
 .mdl .checkbox,.mdl .radio {
@@ -5846,11 +5843,10 @@ button.mtd-no-transform-case {
 }
 
 .l-column.mdl-column.mdl-column-sml {
-	top: -70px;
+	top:-70px;
 	left:0;
 	pointer-events:none;
-	background:0;
-	height: 525px;
+	height:525px;
 	background:var(--primaryColor)
 }
 
@@ -5866,7 +5862,7 @@ button.mtd-no-transform-case {
 	text-align:center;
 	padding-left:20px;
 	padding-right:20px;
-	float: right;
+	float:right
 }
 
 .js-toggle.padding-al button.is-selected,.mtd-nav-drawer-background-hidden,.l-column.mdl-column.mdl-column-sml .selected {
@@ -5880,7 +5876,7 @@ button.mtd-no-transform-case {
 .l-column.mdl-column.mdl-column-sml .list-link {
 	padding:16px 0 16px 0;
 	background:none!important;
-	float: right;
+	float:right
 }
 
 .btn-fav-faved-text,.btn-fav-fav-text,.btn-fav-unfav-text {
@@ -8495,7 +8491,7 @@ label.checkbox::selection,label.control-label::selection {
 	position:relative;
 	padding-left:4px;
 	display:block;
-	float:left;
+	float:left
 }
 
 .tweet-message>.l-table {
@@ -9094,11 +9090,18 @@ a {
 .mdl:not(.med-fullpanel) {
 	animation:windowDown .3s cubic-bezier(.19,1,.22,1);
 	width:calc(var(--columnSize) + 252px);
-	margin:0 auto;
-	max-height:900px;
 	bottom:auto;
 	top:auto;
 	height:auto;
+	display:inline-block;
+	vertical-align:middle;
+	position:relative;
+	margin:0 auto!important;
+	text-align:left;
+	border-radius:2px;
+	min-height:525px;
+	max-height:707px;
+	-webkit-app-region:no-drag
 }
 
 .prf-stats>li:nth-child(2) {
@@ -9117,18 +9120,6 @@ a {
 
 .mdl.cmp.s-inreply {
 	min-height:250px!important
-}
-
-.mdl:not(.med-fullpanel) {
-	display:inline-block;
-	vertical-align:middle;
-	position:relative;
-	margin:0 auto!important;
-	text-align:left;
-	border-radius:2px;
-	min-height:525px;
-	max-height:707px;
-	-webkit-app-region:no-drag;
 }
 
 .js-modal-panel.mdl.s-fluid.s-wide.cmp.s-minimal {
