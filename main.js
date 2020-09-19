@@ -109,6 +109,22 @@ console.log(enterpriseConfig);
 autoUpdater.logger = log;
 autoUpdater.logger.transports.file.level = "info";
 
+switch(enterpriseConfig.autoUpdatePolicy) {
+	case "disabled":
+	case "manual":
+	case "checkOnly":
+	case "autoDownload":
+		if (enterpriseConfig.autoUpdateInstallOnQuit === false) {
+			autoUpdater.autoInstallOnAppQuit = false;
+		}
+
+		if (enterpriseConfig.autoUpdatePolicy !== "autoDownload") {
+			autoUpdater.autoDownload = false;
+		}
+
+		break;
+}
+
 app.setAppUserModelId("com.dangeredwolf.ModernDeck");
 
 let useDir = "common";
@@ -123,6 +139,12 @@ const I18n = function(key) {
 }
 
 const mtdSchemeHandler = async (request, callback) => {
+	if (request.url === "moderndeck://background/") {
+		callback({
+			path: enterpriseConfig.customLoginImage
+		});
+		return;
+	}
 	let myUrl = new url.URL(request.url);
 	const filePath = path.join(electron.app.getAppPath(), useDir, myUrl.hostname, myUrl.pathname);
 
@@ -294,7 +316,7 @@ function makeLoginWindow(url,teams) {
 
 	loginWindow.webContents.on("will-navigate", (event, url) => {
 
-		console.log(url);
+		// console.log(url);
 		const { shell } = electron;
 
 		if (url.indexOf("https://tweetdeck.twitter.com") >= 0 && !teams) {
@@ -335,9 +357,7 @@ function makeLoginWindow(url,teams) {
 	});
 
 	loginWindow.webContents.on("did-navigate-in-page", (event, url) => {
-		console.log(url);
-
-
+		// console.log(url);
 
 		if (url.indexOf("https://tweetdeck.twitter.com") >= 0) {
 			console.log("Hello tweetdeck2!");
@@ -381,10 +401,10 @@ function saveImageAs(url) {
 	let fileType = url.match(/(?<=format=)(\w{3,4})|(?<=\.)(\w{3,4}(?=\?))/g)[0] || "file";
 	let fileName = url.match(/(?<=media\/)[\w\d_\-]+|[\w\d_\-]+(?=\.m)/g)[0] || "jpg";
 
-	console.log("saveImageAs");
+	// console.log("saveImageAs");
 
 	let savePath = dialog.showSaveDialogSync({defaultPath:fileName + "." + fileType});
-	console.log(savePath);
+	// console.log(savePath);
 	if (savePath) {
 		try {
 			const https = require("https");
@@ -392,7 +412,7 @@ function saveImageAs(url) {
 
 			const file = fs.createWriteStream(savePath);
 			const request = https.get(url, function(response) {
-				console.log("Piping file...");
+				// console.log("Piping file...");
 				response.pipe(file);
 			});
 		} catch(e) {
@@ -624,7 +644,7 @@ function makeWindow() {
 				"font-src https: blob: data: * moderndeck:; "+
 				"frame-src https: moderndeck:; "+
 				"frame-ancestors 'self' https: moderndeck:; "+
-				"img-src https: data: blob: moderndeck:; "+
+				"img-src https: file: data: blob: moderndeck:; "+
 				"media-src * moderndeck: blob: https:; "+
 				"object-src 'self' https:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://moderndeck.org moderndeck: https://*.twitter.com https://*.twimg.com https://api-ssl.bitly.com blob:; "+
 				"style-src 'self' 'unsafe-inline' 'unsafe-eval' https: moderndeck: blob:;"];
@@ -727,7 +747,6 @@ function makeWindow() {
 
 
 	ipcMain.on("getEnterpriseConfig", (event, params) => {
-		console.log("GOT REQUEST TO GET ENTERPRISE CONFIG");
 		if (!mainWindow || !mainWindow.webContents) { return }
 
 		mainWindow.webContents.send("enterpriseConfig", enterpriseConfig);
@@ -932,13 +951,13 @@ function makeWindow() {
 		destroyTray();
 	});
 
-	// Enable tray icon
+	// Enable background notifications
 
 	ipcMain.on("enableBackground", (event,arg) => {
 		enableBackground = true;
 	});
 
-	// Disable tray icon
+	// Disable background notifications
 
 	ipcMain.on("disableBackground", (event,arg) => {
 		enableBackground = false;
@@ -1038,7 +1057,7 @@ function makeTray() {
 	const contextMenu = Menu.buildFromTemplate([
 		{ label: I18n("Open ModernDeck"), click(){ showHiddenWindow() } },
 		{ label: (process.platform === "darwin" ? I18n("Preferences...") : I18n("Settings...")), click(){ if (!mainWindow){return;}mainWindow.show();mainWindow.webContents.send("openSettings"); } },
-		{ label: (process.platform === "darwin" ? I18n("Check for Updates...") : I18n("Check for updates...")), click(){ if (!mainWindow){return;}mainWindow.show();mainWindow.webContents.send("checkForUpdatesMenu"); } },
+		{ visible: (typeof process.windowStore === "undefined" && enterpriseConfig.autoUpdatePolicy !== "disabled"), label: (process.platform === "darwin" ? I18n("Check for Updates...") : I18n("Check for updates...")), click(){ if (!mainWindow){return;}mainWindow.show();mainWindow.webContents.send("checkForUpdatesMenu"); } },
 
 		{ type: "separator" },
 
@@ -1180,10 +1199,18 @@ autoUpdater.on("update-not-available", (e) => {
 	mainWindow.webContents.send("update-not-available",e);
 });
 
-// mtdInject can send manual update check requests
+// moderndeck can send manual update check requests
 ipcMain.on("checkForUpdates", (e) => {
-	if (autoUpdater) {
+	console.log("Client requested update check");
+	if (autoUpdater && enterpriseConfig.autoUpdatePolicy !== "disabled") {
 		autoUpdater.checkForUpdates();
+	}
+});
+
+ipcMain.on("downloadUpdates", (e) => {
+	console.log("Client requested update download");
+	if (autoUpdater && enterpriseConfig.autoUpdatePolicy !== "disabled") {
+		autoUpdater.downloadUpdate();
 	}
 });
 
@@ -1212,6 +1239,10 @@ function updateAppTag() {
 
 	if (isMAS) {
 		mtdAppTag += 'document.querySelector("html").classList.add("mtd-macappstore");\n';
+	}
+
+	if (app.isEmojiPanelSupported()) {
+		mtdAppTag += 'document.querySelector("html").classList.add("mtd-supportsNativeEmojiPicker");\n';
 	}
 
 	if (!store.get("mtd_nativetitlebar")) {
@@ -1262,17 +1293,23 @@ if (process.platform === "darwin") {
 	}
 }
 
-setInterval(() => {
-	try {
-		autoUpdater.checkForUpdates();
-	} catch(e) {
-		console.error(e);
-	}
-},1000*60*15); //check for updates once every 15 minutes
+if (enterpriseConfig.autoUpdatePolicy !== "disabled" && enterpriseConfig.autoUpdatePolicy !== "manual") {
+	setInterval(() => {
+		try {
+			autoUpdater.checkForUpdates();
+		} catch(e) {
+			console.error(e);
+		}
+	},1000*60*15); //check for updates once every 15 minutes
+}
+
+
 
 setTimeout(() => {
 	try {
-		autoUpdater.checkForUpdates();
+		if (enterpriseConfig.autoUpdatePolicy !== "disabled" &&  enterpriseConfig.autoUpdatePolicy !== "manual") {
+			autoUpdater.checkForUpdates();
+		}
 
 		if (!mainWindow) {
 			return;
