@@ -92,7 +92,6 @@ export function mtdAppFunctions() {
 	ipcRenderer.on("enterpriseConfig", (e, config) => {
 		window.enterpriseConfig = config;
 		parseConfig(config);
-		loadPreferences();
 	});
 
 
@@ -137,7 +136,7 @@ export function mtdAppFunctions() {
 			}
 		}
 
-		if (!AutoUpdateController.isCheckingForUpdates) {
+		if (!AutoUpdateController.isCheckingForUpdates && window.enterpriseConfig.updatePolicy !== "disabled") {
 			ipcRenderer.send("checkForUpdates");
 		}
 	});
