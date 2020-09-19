@@ -87,7 +87,7 @@ html:not(.mtd-head-left) .hide-detail-view-inline .mtd-drawer-button {
 
 .mtd-nav-drawer-background {
 	position:absolute;
-	z-index:5;
+	z-index:6;
 	background:var(--navDrawerBackground);
 	height:100%;
 	width:100%;
