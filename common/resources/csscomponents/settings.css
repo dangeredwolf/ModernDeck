@@ -218,6 +218,10 @@
 	float:right
 }
 
+.mtd-settings-subpanel select[disabled], .mtd-settings-subpanel input[disabled] {
+	opacity:0.5
+}
+
 .mtd-settings-subpanel label {
 	display:inline-block;
 	margin-bottom:0;
@@ -231,7 +235,7 @@
 
 .mtd-settings-option {
 	width:100%;
-	height:53px;
+	height:53px
 }
 
 .mtd-settings-option-slider {
@@ -376,10 +380,7 @@
 
 .mtd-settings-option-button .control-label b {
 	font-size:16px;
-	margin-right:33px;
 	width:300px;
-	display:inline;
-	white-space:nowrap;
 	margin-left:10px
 }
 
@@ -640,14 +641,10 @@ html body .mtd-settings-subpanel button {
 	width:67%
 }
 
-.list-filter,.js-filter-list>ul {
-	width:280px
-}
-
 .js-filter-list {
 	position:absolute;
 	top:150px;
-	width:80%;
+	width:85%;
 	max-height:400px;
 	overflow-y:auto;
 	overflow-x:hidden;
@@ -661,11 +658,20 @@ html body .mtd-settings-subpanel button {
 
 .js-add-filter-container {
 	position:absolute;
-	left:315px;
+	left:365px;
 	top:85px
 }
 
 .mtd-update-container img {
 	vertical-align:middle;
 	padding-right:5px
+}
+
+.mtd-enterprise-management-text {
+	padding:20px 0 5px 0!important
+}
+
+#global_filter_settings select,#global_filter_settings .controls input {
+	width:250px!important;
+	float:left
 }
