@@ -1,0 +1,8 @@
+.column[data-mtd-column-type="direct"] .column-scroller {
+	filter:blur(10px);
+	transition:filter 0.3s var(--animationTiming)
+}
+
+.column[data-mtd-column-type="direct"]:hover .column-scroller {
+	filter:blur(0.1px)
+}

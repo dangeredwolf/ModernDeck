@@ -26,7 +26,7 @@ import { UIThemeEditor } from "./UIThemeEditor.js";
 import { UIEmojiPanel } from "./UIEmojiPanel.js";
 import { loginTextReplacer, checkIfSigninFormIsPresent } from "./UILoginController.js";
 let welcomeData = _welcomeData;
-import { allColumnsVisible, getColumnFromColumnNumber, getColumnNumber, updateColumnVisibility } from "./Column.js";
+import { getColumnNumber, updateColumnTypes } from "./Column.js";
 import i18nData from "./DataI18n.js";
 window.i18nData = i18nData;
 window.AutoUpdateController = AutoUpdateController;
@@ -528,12 +528,20 @@ function navigationSetup() {
 
 	handleErrors(hookComposer, "Caught error in hookComposer");
 
+	handleErrors(() => {
+		$(document).on("dataColumnOrder", () => {
+			updateColumnTypes();
+		});
+
+		updateColumnTypes();
+	}, "Caught error in updateColumnTypes event")
+
 	UINavDrawer();
 
 	window.UIWelcome = UIWelcome;
 
 	if (!getPref("mtd_welcomed") || debugWelcome) {
-		handleErrors(()=>{new UIWelcome()}, "Error in Welcome Screen");
+		handleErrors(() => {new UIWelcome()}, "Error in Welcome Screen");
 	}
 
 	$(".app-navigator>a").off("mouseenter").off("mouseover"); // disable tooltips for common items as they're superfluous (and also break styling)
@@ -584,11 +592,9 @@ function coreInit() {
 		return;
 	}
 
-	handleErrors(PWAManifest.injectManifest, "Error occurred while injecting PWA manifest");
-
-	handleErrors(AsciiArtController.draw, "Error occurred while trying to draw ModernDeck version easter egg")
-
-	handleErrors(AutoUpdateController.initialize, "Error occurred while initialising AutoUpdateController")
+	handleErrors(PWAManifest.injectManifest, "Caught error while injecting PWA manifest");
+	handleErrors(AsciiArtController.draw, "Caught error while trying to draw ModernDeck version easter egg");
+	handleErrors(AutoUpdateController.initialize, "Caught error while initialising AutoUpdateController");
 
 	if (typeof $ === "undefined") {
 		try {

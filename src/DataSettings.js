@@ -24,7 +24,7 @@ import { UIAlert } from "./UIAlert.js";
 import { isStylesheetExtensionEnabled, enableStylesheetExtension, disableStylesheetExtension, enableCustomStylesheetExtension } from "./StylesheetExtensions.js";
 import { debugStorageSys, hasPref, getPref, setPref, resetPref, purgePrefs } from "./StoragePreferences.js";
 import { allColumnsVisible, updateColumnVisibility } from "./Column.js";
-import { exists } from "./Utils.js";
+import { exists, isApp } from "./Utils.js";
 import { importTweetenSettings } from "./StorageTweetenImport.js";
 import { openLegacySettings } from "./UISettings.js";
 import { enterSafeMode } from "./SafeMode.js";
@@ -35,8 +35,6 @@ import { translationCredits } from "./DataTranslationCredits.js";
 // Use standard macOS symbols instead of writing it out like on Windows
 
 const ctrlShiftText = (navigator.userAgent.indexOf("Mac OS X") > -1) ? "⌃⇧" : "{{Ctrl+Shift+}}";
-
-import { isApp } from "./Utils.js"
 
 export let settingsData = {
 	themes: {
@@ -317,6 +315,18 @@ export let settingsData = {
 				queryFunction: () => {
 					return TD.settings.getDisplaySensitiveMedia();
 				}
+			},
+			blurMessages:{
+				title:"{{Blur direct messages columns until hovered over}}",
+				type:"checkbox",
+				activate:{
+					enableStylesheet:"hideMessages"
+				},
+				deactivate:{
+					disableStylesheet:"hideMessages"
+				},
+				settingsKey:"mtd_hideMessages",
+				default:false
 			},
 			altSensitiveMedia:{
 				title:"{{Use alternative sensitive media workflow}}",
@@ -629,7 +639,7 @@ export let settingsData = {
 		}
 	}, app: {
 		tabName:"<i class='icon icon-moderndeck'></i> {{App}}",
-		enabled:isApp,
+		enabled:() => isApp,
 		options:{
 			nativeTitlebar:{
 				headerBefore:"{{App}}",
@@ -701,7 +711,7 @@ export let settingsData = {
 					}
 				},
 				settingsKey:"mtd_nativecontextmenus",
-				default:isApp ? process.platform === "darwin" : false
+				default:() => (isApp ? process.platform === "darwin" : false)
 			}, updateChannel:{
 				title:"{{App update channel}}",
 				type:"dropdown",
@@ -809,7 +819,7 @@ export let settingsData = {
 						enterSafeMode();
 					}
 				},
-				enabled:isApp
+				enabled:() => isApp
 			},
 			tdLegacySettings: {
 				title:"{{Legacy settings}}",
@@ -858,7 +868,7 @@ export let settingsData = {
 					}
 				},
 				settingsKey:"mtd_resetSettings",
-				enabled:isApp
+				enabled:() => isApp
 			},
 			mtdSaveBackup:{
 				title:"{{Save backup}}",
@@ -888,7 +898,7 @@ export let settingsData = {
 					}
 				},
 				settingsKey:"mtd_backupSettings",
-				enabled:isApp
+				enabled:() => isApp
 			},
 			mtdLoadBackup:{
 				title:"{{Load backup}}",
@@ -917,7 +927,7 @@ export let settingsData = {
 					}
 				},
 				settingsKey:"mtd_loadSettings",
-				enabled:isApp
+				enabled:() => isApp
 			},
 			mtdTweetenImport:{
 				title:"{{Import Tweeten settings}}",
@@ -948,7 +958,7 @@ export let settingsData = {
 					}
 				},
 				settingsKey:"mtd_tweetenImportSettings",
-				enabled:isApp
+				enabled:() => isApp
 			}
 		}
 	}, language: {

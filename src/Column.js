@@ -45,3 +45,11 @@ export function updateColumnVisibility() {
 export function allColumnsVisible() {
 	$(".column-content:not(.mtd-example-column)").attr("style","display:block");
 }
+
+export function updateColumnTypes() {
+	TD.controller.columnManager.getAllOrdered().forEach(column => {
+		if (!!column && !!column.ui) {
+			$(`.js-column[data-column="${column.ui.state.columnKey}"]`).attr("data-mtd-column-type", column._feeds[0].state.type);
+		}
+	})
+}
