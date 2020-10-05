@@ -238,9 +238,8 @@ export let settingsData = {
 					}
 				},
 				options:{
-					top:{value:"top",text:"{{Top}}"},
-					left:{value:"left",text:"{{Left}}"},
-					classic:{value:"classic",text:"{{Left (Classic)}}"},
+					simplified:{value:"simplified",text:"{{Left}}"},
+					classic:{value:"classic",text:"{{Classic}} (TweetDeck)"},
 				},
 				settingsKey:"mtd_headposition",
 				default:"left"
@@ -316,8 +315,8 @@ export let settingsData = {
 					return TD.settings.getDisplaySensitiveMedia();
 				}
 			},
-			blurMessages:{
-				title:"{{Blur direct messages columns until hovered over}}",
+			censorMessages:{
+				title:"{{Censor direct messages unless hovered over}}",
 				type:"checkbox",
 				activate:{
 					enableStylesheet:"hideMessages"
