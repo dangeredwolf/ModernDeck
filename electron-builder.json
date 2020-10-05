@@ -33,6 +33,7 @@
 			"github"
 		],
 		"forceCodeSigning":false,
+		"certificateSubjectName":"Open Source Developer, Ryan Dolan",
 		"verifyUpdateCodeSignature":false,
 		"compression":"maximum",
 		"target": [
