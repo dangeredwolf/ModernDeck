@@ -308,6 +308,7 @@ function mtdInit() {
 		lastError = e;
 	}
 
+	handleErrors(AsciiArtController.draw, "Caught error while trying to draw ModernDeck version easter egg");
 	handleErrors(replacePrettyNumber, "Caught error in replacePrettyNumber");
 	handleErrors(overrideFadeOut, "Caught error in overrideFadeOut");
 	handleErrors(processMustaches, "Caught error in processMustaches");
@@ -487,7 +488,7 @@ function hookComposer() {
 
 
 	initGifPanel();
-	UIEmojiPanel.attachEvents();
+	// UIEmojiPanel.attachEvents();
 }
 
 /*
@@ -593,7 +594,6 @@ function coreInit() {
 	}
 
 	handleErrors(PWAManifest.injectManifest, "Caught error while injecting PWA manifest");
-	handleErrors(AsciiArtController.draw, "Caught error while trying to draw ModernDeck version easter egg");
 	handleErrors(AutoUpdateController.initialize, "Caught error while initialising AutoUpdateController");
 
 	if (typeof $ === "undefined") {

@@ -371,6 +371,10 @@ input[type="radio"]:checked:before {
 	content:"\e3fa"; /* \e031 */
 }
 
+.is-new>.icon-dot:before {
+	content:"";
+}
+
 .icon-user:before,.Icon--user:before {
 	content:"\e7fd"
 }

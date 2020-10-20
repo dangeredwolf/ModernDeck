@@ -116,14 +116,14 @@ export let settingsData = {
 					}
 				},
 				options:{
-					completeLight:{
+					lightThemes:{
 						name:"{{Light Themes}}",
 						children:{
 							light:{value:"light",text:"{{Light}}"},
 							paper:{value:"paper",text:"{{Paperwhite}}"}
 						}
 					},
-					completeDark:{
+					darkThemes:{
 						name:"{{Dark Themes}}",
 						children:{
 							dark:{value:"dark",text:"{{Dark}}"},
@@ -181,11 +181,25 @@ export let settingsData = {
 					RobotoMono:{value:"RobotoMono",text:"Roboto Mono"},
 					OpenSans:{value:"OpenSans",text:"Open Sans"},
 					Lato:{value:"Lato",text:"Lato"},
-					Jost:{value:"Jost",text:"Jost"}
+					Jost:{value:"Jost",text:"Jost"},
+					SystemUI:{value:"SystemUI", text:"System UI"}
 				},
 				activate:{
 					func: (opt) => {
-						enableCustomStylesheetExtension("selectedFont",":root{--selectedFont:"+ opt +"!important}");
+						html.removeClass("mtd-linux-system-font");
+
+						if (opt === "SystemUI") {
+							if (navigator.userAgent.match("Windows NT")) {
+								enableCustomStylesheetExtension("selectedFont",":root{--selectedFont:Segoe UI,Tahoma,sans-serif!important}");
+							} else if (navigator.userAgent.match("Mac OS X")) {
+								enableCustomStylesheetExtension("selectedFont",":root{--selectedFont:San Francisco,Helvetica Neue,Lucida Grande!important}");
+							} else {
+								disableStylesheetExtension("selectedFont");
+								html.addClass("mtd-linux-system-font");
+							}
+						} else {
+							enableCustomStylesheetExtension("selectedFont",":root{--selectedFont:"+ opt +"!important}");
+						}
 					}
 				},
 				settingsKey:"mtd_selectedfont",
@@ -222,11 +236,7 @@ export let settingsData = {
 				type:"dropdown",
 				activate:{
 					func: (opt) => {
-						if (opt === "top") {
-							html.removeClass("mtd-head-left");
-							html.removeClass("mtd-classic-nav");
-							$(document).trigger("uiNavbarWidthChangeAction",{navbarWidth:"condensed"})
-						} else if (opt === "left") {
+						if (opt === "simplified") {
 							html.addClass("mtd-head-left");
 							html.removeClass("mtd-classic-nav");
 							$(document).trigger("uiNavbarWidthChangeAction",{navbarWidth:"condensed"})
@@ -238,8 +248,8 @@ export let settingsData = {
 					}
 				},
 				options:{
-					simplified:{value:"simplified",text:"{{Left}}"},
-					classic:{value:"classic",text:"{{Classic}} (TweetDeck)"},
+					simplified:{value:"simplified",text:"{{Simplified}}"},
+					classic:{value:"classic",text:"{{Classic (TweetDeck)}}"},
 				},
 				settingsKey:"mtd_headposition",
 				default:"left"
@@ -254,19 +264,6 @@ export let settingsData = {
 					disableStylesheet:"fixedarrows"
 				},
 				settingsKey:"mtd_usefixedarrows",
-				default:true
-			},
-			colNavAlwaysVis:{
-				title:"{{Always display column icons in navigator}}",
-				type:"checkbox",
-				enabled:false,
-				activate:{
-					htmlAddClass:"mtd-column-nav-always-visible"
-				},
-				deactivate:{
-					htmlRemoveClass:"mtd-column-nav-always-visible"
-				},
-				settingsKey:"mtd_column_nav_always_visible",
 				default:true
 			},
 			enableNewTweetsButton:{
@@ -315,8 +312,8 @@ export let settingsData = {
 					return TD.settings.getDisplaySensitiveMedia();
 				}
 			},
-			censorMessages:{
-				title:"{{Censor direct messages unless hovered over}}",
+			blurMessages:{
+				title:"{{Blur direct message contents unless hovered over}}",
 				type:"checkbox",
 				activate:{
 					enableStylesheet:"hideMessages"
@@ -325,6 +322,18 @@ export let settingsData = {
 					disableStylesheet:"hideMessages"
 				},
 				settingsKey:"mtd_hideMessages",
+				default:false
+			},
+			threadIndicator:{
+				title:`{{Display "Thread" on Tweets that are threads}}`,
+				type:"checkbox",
+				activate:{
+					enableStylesheet:"threadIndicator"
+				},
+				deactivate:{
+					disableStylesheet:"threadIndicator"
+				},
+				settingsKey:"mtd_threadIndicator",
 				default:false
 			},
 			altSensitiveMedia:{

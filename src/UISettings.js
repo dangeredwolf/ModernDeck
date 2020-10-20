@@ -19,10 +19,10 @@ const appendTextVersion = false;
 let verTextId = 2;
 let verText = "";
 
-let productName = "ModernDeck";
+let productName = "ModernDeck 9";
 
 if (isEnterprise()) {
-	productName = "ModernDeck Enterprise"
+	productName = "ModernDeck 9 Enterprise"
 }
 
 function internationaliseSettingString(str) {

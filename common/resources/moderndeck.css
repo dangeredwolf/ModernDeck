@@ -344,6 +344,10 @@ html {
 	font-family:var(--defaultFontOrder)
 }
 
+html.mtd-linux-system-font {
+	font:caption!important
+}
+
 .preloader-wrapper {
 	/* display:inline-block; */
 	position:relative;
@@ -564,23 +568,12 @@ html:not(.os-osx) .antiscroll-scrollbar {
 	background:rgba(255,255,255,.2);
 	border-radius:7px;
 	position:absolute;
-	opacity:0;
+	opacity:1;
 	transition:0.3s opacity
 }
 
-.mtd-head-left:not(.os-osx) .antiscroll-scrollbar {
-	opacity:1
-}
-
-.mtd-head-left:not(.os-osx) .antiscroll-scrollbar-horizontal {
-	display:none
-}
-
 html:not(.os-osx) .antiscroll-scrollbar-horizontal {
-	height:7px;
-	margin-left:2px;
-	bottom:2px;
-	left:0
+	display:none
 }
 
 html:not(.os-osx) .antiscroll-scrollbar-vertical {
@@ -589,13 +582,9 @@ html:not(.os-osx) .antiscroll-scrollbar-vertical {
 	top:0
 }
 
-.mtd-head-left:not(.os-osx) .antiscroll-scrollbar-position-left {
+html:not(.os-osx) .antiscroll-scrollbar-position-left {
 	left:initial;
 	right:0
-}
-
-html:not(.os-osx) .antiscroll-scrollbar-position-left {
-	left:1px
 }
 
 html:not(.os-osx) .antiscroll-scrollbar-position-right {
@@ -2153,14 +2142,8 @@ a .column-title-back .icon:after {
 }
 
 .app-header {
-	height:40px;
-	width:100%;
-	background:rgba(0,0,0,.1);
 	transition:width 0.15s var(--animationTiming);
-	pointer-events:none
-}
-
-.mtd-head-left .app-header {
+	pointer-events:none;
 	width:var(--verticalHeadWidth);
 	height:100%!important;
 	background:var(--primaryColor);
@@ -2177,23 +2160,19 @@ a .column-title-back .icon:after {
 
 .app-content {
 	will-change:transform, margin-right;
-	top:40px;
 	margin-left:0;
 	overflow:visible;
 	transition:left 0.15s var(--animationTiming),width 0.15s var(--animationTiming),transform 0.15s var(--animationTiming);
-	-webkit-app-region:no-drag
-}
-
-.mtd-head-left .app-content {
+	-webkit-app-region:no-drag;
 	top:0;
 	left:var(--verticalHeadWidth)
 }
 
-.mtd-app.mtd-head-left .app-content {
+.mtd-app .app-content {
 	top:36px
 }
 
-.mtd-app.mtd-app-mac.mtd-head-left .app-content {
+.mtd-app.mtd-app-mac .app-content {
 	top:24px
 }
 
@@ -2229,8 +2208,12 @@ a .column-title-back .icon:after {
 }
 
 .app-nav-link i {
-	padding-left:18px;
-	margin-right:13px
+	padding-left: 17px;
+	margin-right:13px;
+}
+
+.app-nav-link i.icon-plus {
+	padding-left: 18px;
 }
 
 .app-nav-tab {
@@ -2255,49 +2238,39 @@ a .column-title-back .icon:after {
 	padding-left:1px
 }
 
-.mtd-head-left .tweet-button,
-.mtd-head-left .js-hide-drawer:not(.tweet-button)
-{
-	margin-left:0;
-	margin-top:35px
-}
-
-.mtd-app-mac.mtd-head-left.mtd-classic-nav .js-hide-drawer.tweet-button
+.mtd-app-mac.mtd-classic-nav .js-hide-drawer.tweet-button
 {
 	margin-top:3px!important
 }
 
-.mtd-app-mac.mtd-head-left .tweet-button:not(.is-hidden):not(.js-hide-drawer)
-{
-	margin-top:50px!important
-}
-
-.mtd-classic-nav.mtd-head-left .js-hide-drawer.tweet-button {
+.mtd-classic-nav .js-hide-drawer.tweet-button {
 	margin-top:5px;
 	background:none!important
 }
 
-.mtd-classic-nav.mtd-head-left:not(.mtd-app-mac) .js-hide-drawer.tweet-button {
-	margin-top:-14px
+.mtd-classic-nav:not(.mtd-app-mac) .js-hide-drawer.tweet-button {
+	margin-top: 11px;
 }
 
-.mtd-head-left .js-hide-drawer[data-title="Accounts"] {
+.js-hide-drawer[data-title="Accounts"] {
 	background:transparent;
 	width:var(--verticalHeadWidth)
 }
 
-.mtd-head-left.mtd-app-mac .tweet-button:not(.is-hidden):not(.js-hide-drawer) {
+.mtd-app-mac .tweet-button:not(.is-hidden):not(.js-hide-drawer) {
 	margin-top:52px
 }
 
-.mtd-head-left .tweet-button.is-hidden {
+.tweet-button.is-hidden {
 	margin-left:calc(var(--verticalHeadWidth) - 4px)
 }
 
-.mtd-head-left.mtd-classic-nav .tweet-button.is-hidden {
+.mtd-classic-nav .tweet-button.is-hidden {
 	-webkit-app-region:drag;
 	pointer-events:none;
-	width:0
+	margin-top: -50px;
+	/* padding: 0; */
+	/* height: 0; */
 }
 
 .mtd-classic-nav .app-header:not(.is-condensed) .tweet-button.is-hidden {
@@ -2309,15 +2282,15 @@ a .column-title-back .icon:after {
 	height:40px;
 	font-size:18px;
 	text-align:left;
-	margin-top:-2px;
-	margin-left:45px;
+	margin-left:0;
+	margin-top:35px;
 	border-radius:32px;
 	transform:scale(0);
 	animation:popIn 0.5s forwards var(--animationTiming);
 	z-index:5;
 	transition:all 0.2s var(--animationTiming);
 	-webkit-app-region:no-drag;
-	will-change:margin-left, margin-top, width, border-radius
+	will-change:margin-left, margin-top, width, border-radius;
 }
 
 .js-hide-drawer.is-hidden {
@@ -2375,20 +2348,12 @@ a .column-title-back .icon:after {
 	transform:scale(1)!important
 }
 
-.attach-compose-buttons {
-	margin-right:-11px
-}
-
 html:not(.mtd-classic-nav) .attach-compose-buttons .tweet-button {
 	border-radius:0;
 	margin-top:-65px;
 	margin-left:-5px;
-	width:calc(var(--composeWidth) + 1px);
-	cursor:pointer
-}
-
-.mtd-head-left:not(.mtd-classic-nav) .attach-compose-buttons .tweet-button {
-	width:calc(var(--composeWidth) + var(--verticalHeadWidth))
+	cursor:pointer;
+	width:calc(var(--composeWidth) + var(--verticalHeadWidth));
 }
 
 .attach-compose-buttons .icon-compose-dm {
@@ -2422,14 +2387,15 @@ html:not(.mtd-classic-nav) .attach-compose-buttons .tweet-button {
 	border:0;
 	outline:0;
 	display:block;
-	top:0;
-	position:fixed;
 	margin:0;
-	margin-top:2px;
-	margin-left:70px;
 	right:0;
 	pointer-events:all;
-	z-index:6
+	z-index:6;
+	margin-top:0!important;
+	position:fixed;
+	left:0;
+	margin-left:6px;
+	top:80px
 }
 
 .app-search-fake i {
@@ -3772,11 +3738,17 @@ textarea,.l-fullwidth {
 }
 
 .is-new>.column-nav-updates.icon-dot {
-	right:4px;
+	left: 0;
 	position:absolute;
 	display:block;
-	margin-top:7px;
-	font-size:12px
+	font-size: 0;
+	background: #fff;
+	opacity: 0.7;
+	border-radius: 0 50% 50% 0;
+	height: 7px;
+	width: 5px;
+	top: 50%;
+	margin-top:3px
 }
 
 .s-error input {
@@ -4489,10 +4461,7 @@ input[type="checkbox"]:active {
 	left:65px;
 	top:-60px;
 	right:0;
-	animation:rightPopoverDown 0.25s var(--animationTiming)
-}
-
-.mtd-head-left .popover-position-rt {
+	animation:rightPopoverDown 0.25s var(--animationTiming);
 	margin-left:-60px;
 	margin-top:103px!important
 }
@@ -4551,20 +4520,18 @@ input[type="checkbox"]:active {
 
 .column-navigator {
 	position:absolute;
-	top:-4px;
-	left:100px;
-	bottom:0;
 	right:0;
 	opacity:0;
-	animation:fadeIn 0.4s forwards 4s var(--animationTiming)
+	animation:fadeIn 0.4s forwards 4s var(--animationTiming);
+	left:0;
+	width:var(--verticalHeadWidth);
+	bottom:0;
+	top:80px;
+	height:auto!important
 }
 
 .mtd-app:not(.mtd-maximized):not(.mtd-app-mac) .column-navigator {
 	right:30px
-}
-
-.mtd-js-app .column-navigator {
-	top:0
 }
 
 .column-navigator,
@@ -4617,15 +4584,12 @@ input[type="checkbox"]:active {
 .column-nav-item {
 	position:relative;
 	width:0;
-	/* top:4px; */
 	box-sizing:border-box;
 	color:rgba(255,255,255,.75);
 	display:inline-flex;
 	left:initial!important;
 	box-shadow:none!important;
 	background:none;
-	transform:translate3d(15px,0,0);
-	opacity:0;
 	height:30px;
 	transition:0.4s all var(--animationTiming) 1s
 }
@@ -4634,36 +4598,17 @@ input[type="checkbox"]:active {
 	color:rgba(255,255,255,.3)!important
 }
 
-html:not(.mtd-head-left) .column-nav-item {
-	position:relative!important;
-	top:9px!important;
-	height:30px!important
-}
-
-.column-navigator:hover .column-nav-item,.column-nav-item.is-new,.mtd-head-left .column-nav-item {
-	opacity:1;
+.column-navigator:hover .column-nav-item,.column-nav-item.is-new,.column-nav-item {
 	width:40px;
 	transition:0.2s all var(--animationTiming),.4s transform
 }
 
-.mtd-head-left .column-nav-item {
-	transform:none
-}
-
-.mtd-head-left .column-nav-link i {
-	padding-left:13px
-}
-
 .column-nav-link i {
-	padding-left:16px;
+	padding-left:13px;
 	vertical-align:4px;
 	padding-right:5px;
 	padding-top:5px;
 	display:block
-}
-
-html:not(.mtd-head-left) .column-nav-link i {
-	padding-top:0
 }
 
 .column-nav-link .attribution {
@@ -5016,10 +4961,6 @@ a[rel="user"]:active,
 	transition:margin-top 1s 0.2s!important
 }
 
-html:not(.mtd-head-left) body .application.hide-detail-view-inline .column-navigator {
-	left:calc(var(--composeWidth))!important
-}
-
 .tweet-action .icon-retweet,.tweet-detail-action .icon-retweet {
 	margin-right:3px
 }
@@ -5122,7 +5063,7 @@ html:not(.mtd-head-left) body .application.hide-detail-view-inline .column-navig
 	display:inline-block!important;
 	border-radius:0;
 	width:var(--composeWidth);
-	margin-left:-4px;
+	margin-left:calc(var(--verticalHeadWidth) - 4px);
 	margin-top:-4px;
 	box-shadow:none!important
 }
@@ -8268,105 +8209,74 @@ li.padding-axl.flex.flex-row.flex-align--center .fullname {
 	-webkit-app-region:no-drag
 }
 
-.mtd-app:not(.mtd-maximized):not(.mtd-head-left) .app-content {
-	top:80px
-}
-
 .mtd-app:not(.mtd-maximized) .column-navigator {
-	height:40px;
-	margin-top:40px;
+	margin-top: 40px;
 	-webkit-app-region:no-drag;
-	left:0!important
+	left:0!important;
 }
 
-.mtd-head-left:not(.mtd-app-mac) .column-navigator {
+html:not(.mtd-app-mac) .column-navigator {
 	margin-top:36px
 }
 
-.mtd-head-left:not(.mtd-app-mac):not(.mtd-classic-nav) .hide-detail-view-inline .column-navigator {
+html:not(.mtd-app-mac):not(.mtd-classic-nav) .hide-detail-view-inline .column-navigator {
 	margin-top:0
 }
 
-.mtd-classic-nav.mtd-head-left .column-navigator {
+.mtd-classic-nav .column-navigator {
 	width:100%
 }
 
-.mtd-app.mtd-head-left.mtd-maximized:not(.mtd-classic-nav) .column-navigator {
+.mtd-app.mtd-maximized:not(.mtd-classic-nav) .column-navigator {
 	-webkit-app-region:no-drag;
 	position:fixed;
 	left:0!important;
 	width:60px
 }
 
-.mtd-classic-nav .application:not(.is-condensed) .column-navigator {
-	margin-top:50px;
-	bottom:170px
-}
-
 html.mtd-classic-nav .column-navigator {
-	bottom:160px
+	bottom:169px
 }
 
-.mtd-app.mtd-head-left:not(.mtd-classic-nav) .column-navigator {
+.mtd-app:not(.mtd-classic-nav) .column-navigator {
 	bottom:0
 }
 
-.mtd-app.mtd-head-left .hide-detail-view-inline .column-navigator {
+.mtd-app .hide-detail-view-inline .column-navigator {
 	left:0!important
 }
 
-.mtd-app.mtd-head-left:not(.mtd-classic-nav) .hide-detail-view-inline .column-navigator {
+.mtd-app:not(.mtd-classic-nav) .hide-detail-view-inline .column-navigator {
 	margin-top:0
 }
 
-.mtd-head-left .column-navigator {
-	left:0;
-	width:var(--verticalHeadWidth);
-	bottom:0;
-	top:80px;
-	height:auto!important
-}
-
-.mtd-app-mac.mtd-head-left .column-navigator {
+.mtd-app-mac .column-navigator {
 	top:95px
 }
 
-.mtd-app-mac.mtd-head-left.mtd-maximized .is-condensed .column-navigator {
+.mtd-app-mac.mtd-maximized .is-condensed .column-navigator {
 	top:135px
 }
 
-.mtd-head-left .app-content:not(.is-open)>.drawer {
+.app-content:not(.is-open)>.drawer {
 	/* stylelint-disable */
 	left:calc(0px - var(--verticalHeadWidth) - var(--composeWidth));
 	/* stylelint-enable */
 }
 
-.mtd-app:not(.mtd-maximized):not(.mtd-head-left) .drawer {
-	top:-40px;
-	bottom:0
-}
-
 .mtd-app:not(.mtd-maximized):not(.mtd-app-mac) .app-search-fake {
-	margin-top:40px
+	margin-top:40px;
 }
 
-.mtd-head-left .app-search-fake {
-	margin-top:0!important;
-	position:fixed;
-	left:0;
-	margin-left:6px;
-	top:80px
-}
-
-.mtd-head-left.mtd-app-mac .app-search-fake {
+.mtd-app-mac .app-search-fake {
 	top:100px
 }
 
-.mtd-head-left:not(.mtd-classic-nav) .hide-detail-view-inline .app-search-fake {
-	top:40px
+:not(.mtd-classic-nav) .hide-detail-view-inline .app-search-fake {
+	top:40px;
 }
 
-.mtd-head-left.mtd-app-mac:not(.mtd-classic-nav) .hide-detail-view-inline .app-search-fake {
+.mtd-app-mac:not(.mtd-classic-nav) .hide-detail-view-inline .app-search-fake {
 	top:60px
 }
 
@@ -8381,26 +8291,6 @@ html.mtd-classic-nav .column-navigator {
 
 .mtd-app:not(.mtd-maximized) .js-search-in-popover .popover-position-rt {
 	margin-top:50px
-}
-
-.mtd-app-mac .js-search-in-popover .popover-position-rt {
-	margin-top:10px
-}
-
-.mtd-app .column-nav-item,
-.mtd-app .column-nav-item.is-new,
-.mtd-mtd-column-nav-always-visible .column-nav-item,
-.mtd-mtd-column-nav-always-visible .column-nav-item.is-new
-{
-	opacity:1!important;
-	width:40px!important;
-	transform:none;
-	transition:0.2s all var(--animationTiming),.4s transform
-}
-
-html.mtd-classic-nav.mtd-head-left body .app-header .column-nav-item {
-	width:100%!important;
-	height:30px
 }
 
 .mtd-maximized .windowcontrol.max {
@@ -8566,14 +8456,9 @@ footer>.js-tweet-stats>.tweet-stats:not(.js-stats-list) {
 	background:none!important
 }
 
-.mtd-app-mac:not(.mtd-head-left) .tweet-button:not(.is-hidden):not(.js-hide-drawer)
-{
-	margin-left:105px
-}
-
 .mtd-app-mac .windowcontrols,
-.mtd-app-mac:not(.mtd-head-left) .tweet-button>i:after,
-.mtd-app-mac:not(.mtd-head-left) .js-hide-drawer>i:after
+.mtd-app-mac .tweet-button>i:after,
+.mtd-app-mac .js-hide-drawer>i:after
 {
 	display:none
 }
@@ -9045,10 +8930,6 @@ html:not(.mtd-classic-nav) .js-hide-drawer:not(.tweet-button):not([data-title="A
 
 /* stylelint-enable */
 
-html:not(.mtd-head-left) .column-nav-flyout {
-	display:none
-}
-
 .column-nav-flyout {
 	z-index:20;
 	position:absolute;
@@ -9190,7 +9071,7 @@ a {
 	margin-left:17px
 }
 
-.application.is-condensed, .mtd-head-left:not(.mtd-classic-nav) .application{
+.application.is-condensed, html:not(.mtd-classic-nav) .application {
 	--verticalHeadWidth:50px
 }
 

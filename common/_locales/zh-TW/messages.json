@@ -1,14 +1,14 @@
 {
 	"description": {
-		"message": "The most powerful Twitter client for desktop.",
+		"message": "最強大的 Twitter 桌面客戶端。",
 		"description": "Short description for the extension"
 	},
 	"launch": {
-		"message": "Launch ModernDeck",
+		"message": "執行 ModernDeck",
 		"description": "The ModernDeck Launcher button"
 	},
 	"name": {
-		"message": "ModernDeck - Twitter Client for Desktop",
+		"message": "ModernDeck — Twitter 桌面客戶端",
 		"description": "The name of the extension that appears on the Chrome Web Store"
 	},
 	"webstoreDescription": {
@@ -16,7 +16,7 @@
 		"description": "The description of the extension that appears on the Chrome Web Store"
 	},
 	"grantButton": {
-		"message": "Grant Permission",
+		"message": "授予權限",
 		"description": "A button to grant tabs permission in Firefox"
 	},
 	"needsPermission": {

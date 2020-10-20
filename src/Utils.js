@@ -88,7 +88,7 @@ export function roundMe(val) {
 
 export function formatBytes(val) {
 	if (val < 10**3) {
-		return formatNumberI18n(val) + " bytes"
+		return formatNumberI18n(val) + I18n(" bytes")
 	} else if (val < 10**6) {
 		return formatNumberI18n(roundMe(val/10**3)) + I18n(" KB")
 	} else if (val < 10**9) {

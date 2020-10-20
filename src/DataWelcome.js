@@ -25,8 +25,23 @@ export let _welcomeData = {
 				$(".mtd-welcome-inner .tweet-text").html(I18n("This tweet is quite dark!"))
 			})
 
+			$(window.mtd_welcome_darker).click(()=>{
+				parseActions(settingsData.themes.options.theme.activate,"darker");
+				$(".mtd-welcome-inner .tweet-text").html(I18n("This tweet is quite dark!"))
+			})
+
+			$(window.mtd_welcome_amoled).click(()=>{
+				parseActions(settingsData.themes.options.theme.activate,"amoled");
+				$(".mtd-welcome-inner .tweet-text").html(I18n("This tweet is quite dark!"))
+			})
+
 			$(window.mtd_welcome_light).click(()=>{
 				parseActions(settingsData.themes.options.theme.activate,"light");
+				$(".mtd-welcome-inner .tweet-text").html(I18n("This tweet is quite light!"))
+			})
+
+			$(window.mtd_welcome_paper).click(()=>{
+				parseActions(settingsData.themes.options.theme.activate,"paper");
 				$(".mtd-welcome-inner .tweet-text").html(I18n("This tweet is quite light!"))
 			})
 
@@ -34,8 +49,17 @@ export let _welcomeData = {
 				case "dark":
 					mtd_welcome_dark.click();
 					break;
+				case "darker":
+					mtd_welcome_darker.click();
+					break;
+				case "amoled":
+					mtd_welcome_amoled.click();
+					break;
 				case "light":
 					mtd_welcome_light.click();
+					break;
+				case "paper":
+					mtd_welcome_paper.click();
 					break;
 			}
 
@@ -55,57 +79,62 @@ export let _welcomeData = {
 		nextText: I18n("Skip")
 	},
 	theme: {
-		title: I18n("Pick a core theme"),
-		body: I18n("There are additional options for themes in <i class='icon icon-settings'></i> <b>Settings</b>"),
+		title: I18n("Pick a theme"),
+		body: I18n("You can customize the theme colors in <i class='icon icon-settings'></i> <b>Settings</b>"),
 		html: `<div class="obj-left mtd-welcome-theme-picker">
+			<label class="fixed-width-label radio">
+			<input type="radio" name="theme" id="mtd_welcome_light" value="light">
+				${I18n("Light")}
+			</label>
+			<label class="fixed-width-label radio">
+			<input type="radio" name="theme" id="mtd_welcome_paper" value="paper">
+				${I18n("Paperwhite")}
+			</label>
 			<label class="fixed-width-label radio">
 			<input type="radio" name="theme" id="mtd_welcome_dark" value="dark">
 				${I18n("Dark")}
 			</label>
 			<label class="fixed-width-label radio">
-			<input type="radio" name="theme" id="mtd_welcome_light" value="light">
-				${I18n("Light")}
+			<input type="radio" name="theme" id="mtd_welcome_darker" value="darker">
+				${I18n("Darker")}
 			</label>
+			<label class="fixed-width-label radio">
+			<input type="radio" name="theme" id="mtd_welcome_amoled" value="amoled">
+				${I18n("AMOLED")}
+			</label>
+
 		</div>` + demoColumn,
 		prevFunc: () => {
-			if (!require || !isApp || html.hasClass("mtd-winstore") || html.hasClass("mtd-macappstore")) {
+			if (!isApp || html.hasClass("mtd-winstore") || html.hasClass("mtd-macappstore")) {
 				return;
 			}
 			const {ipcRenderer} = require("electron");
 			ipcRenderer.send("checkForUpdates");
 		},
 		nextFunc: () => {
-			$(window.mtd_welcome_top).click(()=>parseActions(settingsData.appearance.options.navigationStyle.activate,"top"))
-			$(window.mtd_welcome_left).click(()=>parseActions(settingsData.appearance.options.navigationStyle.activate,"left"))
+			$(window.mtd_welcome_simplified).click(()=>parseActions(settingsData.appearance.options.navigationStyle.activate,"simplified"))
 			$(window.mtd_welcome_classic).click(()=>parseActions(settingsData.appearance.options.navigationStyle.activate,"classic"))
 
 			let pos = getPref("mtd_headposition");
-			if (pos === "top") {
-				$("input[value='top']").click();
-			} else if (pos === "classic") {
+			if (pos === "classic") {
 				$("input[value='classic']").click();
 			} else {
-				$("input[value='left']").click();
+				$("input[value='simplified']").click();
 			}
 		}
 	},
 	layout: {
 		title: I18n("Select a layout"),
-		body: I18n("<b>Top:</b> Your column icons are laid out along the top. Uses navigation drawer.<br>")+
-			  I18n("<b>Left:</b> Your column icons are laid out along the left side. Uses navigation drawer.<br>")+
-			  I18n("<b>Left (Classic):</b> Left, but uses classic TweetDeck navigation methods instead of drawer."),
+		body: I18n("<b>Simplified:</b> Common features are always displayed, like Tweet and Search. Less common options like adding columns are available in the Navigation Drawer.<br>") +
+			  I18n("<b>Classic (TweetDeck):</b> All buttons are displayed. This layout more closely resembles stock TweetDeck."),
 		html: `<div class="obj-left mtd-welcome-theme-picker">
 			<label class="fixed-width-label radio">
-			<input type="radio" name="layout" id="mtd_welcome_top" value="top">
-				${I18n("Top")}
-			</label>
-			<label class="fixed-width-label radio">
-			<input type="radio" name="layout" id="mtd_welcome_left" value="left">
-				${I18n("Left")}
+			<input type="radio" name="layout" id="mtd_welcome_simplified" value="simplified">
+				${I18n("Simplified")}
 			</label>
 			<label class="fixed-width-label radio">
 			<input type="radio" name="layout" id="mtd_welcome_classic" value="classic">
-				${I18n("Left (Classic)")}
+				${I18n("Classic (TweetDeck)")}
 			</label>
 		</div>`,
 		nextFunc: () => {

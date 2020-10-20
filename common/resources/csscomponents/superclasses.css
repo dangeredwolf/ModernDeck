@@ -747,14 +747,6 @@ a.btn,
 	clear:both
 }
 
-.js-add-column:active,
-.column-navigator:hover .column-nav-item,
-.mtd-head-left .column-nav-item,
-.column-nav-item.is-new
-{
-	transform:none
-}
-
 .antiscroll-inner,
 .pin-all,
 .gif-pause,

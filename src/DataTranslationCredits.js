@@ -14,6 +14,7 @@ vancho1<br>
 
 <br><b>中文</b><br>
 <a href="https://twitter.com/N0PELGND" rel="user" target="_blank">DatNopeLegend</a><br>
+<a href="https://twitter.com/hugoalhofficial" rel="user" target="_blank">hugoalh</a><br>
 
 <br><b>Deutsche</b><br>
 <a href="https://twitter.com/cmdrfletcher" rel="user" target="_blank">cmdrfletcher</a><br>
@@ -37,7 +38,8 @@ TAKAHASHI Shuuji<br>
 
 <br><b>Français</b><br>
 <a href="https://twitter.com/COLAMAroro" rel="user" target="_blank">COLAMAroro</a><br>
-<a href="https://twitter.com/eramdam" rel="user" target="_blank">Damien Erambert</a><br>
+<a href="https://twitter.com/dracoz" rel="user" target="_blank">Draco</a><br>
+<a href="https://twitter.com/eramdam" rel="user" target="_blank">Damien Erambert (eramdam)</a><br>
 <a href="https://twitter.com/embraser01" rel="user" target="_blank">embraser01</a><br>
 <a href="https://twitter.com/Fenrykos" rel="user" target="_blank">Fenrykos</a><br>
 <a href="https://twitter.com/MuraseEtienne" rel="user" target="_blank">Étienne Murase</a><br>
@@ -62,6 +64,9 @@ Lastorder<br>
 <a href="https://twitter.com/Patryk1023PL" rel="user" target="_blank">Patryk1023</a><br>
 <a href="https://twitter.com/PeCeT_full" rel="user" target="_blank">PeCeT_full</a><br>
 <a href="https://twitter.com/w1nk000" rel="user" target="_blank">w1nk000</a><br>
+
+<br><b>Português</b><br>
+João Ferreira
 
 <br><b>Português (Brasil)</b><br>
 <a href="https://twitter.com/eubyt" rel="user" target="_blank">Adrian César</a><br>

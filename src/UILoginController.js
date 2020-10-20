@@ -10,7 +10,7 @@ import { UILanguagePicker } from "./UILanguagePicker.js";
 import { getPref } from "./StoragePreferences.js";
 
 let ugltStarted = false;
-let loginIntervalTick = 0;
+window.loginIntervalTick = 0;
 
 // Updates the "Good morning!" / "Good afternoon!" / "Good evening!"
 // text on the login screen every once in a while (10s, ish)
@@ -66,10 +66,10 @@ export function checkIfSigninFormIsPresent() {
 	if ($(".app-signin-form").length > 0 || $("body>.js-app-loading.login-container:not([style])").length > 0) {
 		html.addClass("signin-sheet-now-present");
 
-		loginIntervalTick++;
+		window.loginIntervalTick++;
 		enableStylesheetExtension("loginpage");
 
-		if (loginIntervalTick > 5) {
+		if (window.loginIntervalTick > 5) {
 			clearInterval(loginInterval);
 		}
 	} else {

@@ -155,7 +155,7 @@ select,input {
 }
 
 .startflow-background {
-	/* background-image:url("moderndeck://resources/img/oasis.jpg"); */
+	background-image:url("moderndeck://resources/img/bg1.jpg");
 	background-size:cover;
 	background-position:center;
 	opacity:0.01;

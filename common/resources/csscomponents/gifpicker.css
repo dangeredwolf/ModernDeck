@@ -6,11 +6,6 @@
 */
 
 @keyframes mtdGifHeaderFixed {
-	0% {opacity:0;top:-80px}
-	100% {opacity:1;top:-40px}
-}
-
-@keyframes mtdGifHeaderFixedHeadLeft {
 	0% {opacity:0;top:-16px}
 	100% {opacity:1;top:4px}
 }
@@ -87,7 +82,7 @@
 .mtd-gif-header.mtd-gif-header-fixed {
 	position:fixed;
 	border-radius:0;
-	top:-40px;
+	top:4px;
 	z-index:10;
 	left:initial;
 	right:initial;
@@ -95,14 +90,12 @@
 	animation:mtdGifHeaderFixed 0.2s var(--animationTiming)
 }
 
-.mtd-head-left .mtd-gif-header.mtd-gif-header-fixed {
-	top:4px;
-	animation-name:mtdGifHeaderFixedHeadLeft
+.mtd-classic-nav .mtd-gif-header.mtd-gif-header-fixed {
+	top:-31px
 }
 
 html.mtd-js-app:not(.mtd-app) .mtd-gif-header.mtd-gif-header-fixed {
-	top:40px;
-	animation-name:mtdGifHeaderFixed
+	top:40px
 }
 
 .mtd-gif-top-button {
