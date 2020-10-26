@@ -37,7 +37,7 @@ export function diag() {
 		if (html.hasClass("mtd-macappstore")) {
 			log += " (App Store)"
 		}
-		log += "\nOS: " + process.platform + "\nArchitecture: " + (process.arch === "x64" ? "amd64" : process.arch);
+		log += "\nOS: " + AsciiArtController.systemName() + "\nArchitecture: " + (process.arch === "x64" ? "amd64" : process.arch);
 	} else {
 		log += AsciiArtController.platformName();
 	}

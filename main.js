@@ -494,6 +494,7 @@ function makeWindow() {
 			defaultFontFamily:"Roboto",
 			nodeIntegration: true,
 			contextIsolation: false,
+			enableRemoteModule: true,
 			webgl: false,
 			plugins: false,
 			scrollBounce:true,
@@ -509,7 +510,6 @@ function makeWindow() {
 		titleBarStyle:titleBarStyle,
 		minWidth:375,
 		show:false,
-		enableRemoteModule:true,
 		backgroundThrottling:true,
 		backgroundColor:"#263238"
 	});
