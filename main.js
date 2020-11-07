@@ -388,6 +388,7 @@ function makeWindow() {
 			plugins: false,
 			scrollBounce:true,
 			webviewTag:true,
+			enableRemoteModule:true,
 			nodeIntegrationInSubFrames:true
 			// preload: __dirname+separator+useDir+separator+"resources"+separator+"moderndeck.js"
 		},
@@ -399,7 +400,6 @@ function makeWindow() {
 		titleBarStyle:titleBarStyle,
 		minWidth:375,
 		show:false,
-		enableRemoteModule:true,
 		backgroundThrottling:true,
 		backgroundColor:"#263238"
 	});
