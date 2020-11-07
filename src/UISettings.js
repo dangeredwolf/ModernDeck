@@ -63,7 +63,7 @@ export function renderTab(key, subPanel) {
 	for (let prefKey in settingsData[key].options) {
 
 		let pref = settingsData[key].options[prefKey];
-		let option = make("div").addClass("mtd-settings-option").addClass("mtd-settings-option-"+pref.type);
+		let option = make("div").addClass("mtd-settings-option").addClass("mtd-settings-option-" + pref.type);
 		let disableSetting = false;
 		let overrideSetting;
 
@@ -106,7 +106,7 @@ export function renderTab(key, subPanel) {
 			}
 		}
 
-		let input,select,label,minimum,maximum,button,link;
+		let input,select,label,minimum,maximum,button,link,defaultButton;
 
 
 		switch(pref.type) {
@@ -334,6 +334,10 @@ export function renderTab(key, subPanel) {
 					label.html(`${internationaliseSettingString(pref.title)} <b> ${$(this).val()} ${(internationaliseSettingString(pref.displayUnit || ""))} </b>`);
 				});
 
+				defaultButton = make("button").addClass("btn btn-positive mtd-settings-button mtd-default-button").text(I18n("Restore default")).click(() => {
+					input.val(typeof pref.default === "function" ? pref.default() : pref.default).trigger("input").trigger("change");
+				})
+
 				if (disableSetting) {
 					input.attr("disabled","disabled")
 				}
@@ -363,9 +367,9 @@ export function renderTab(key, subPanel) {
 					pref.initFunc(input);
 				}
 
-				let sliderCont = make("div").addClass("mtd-slider-container").append(maximum,input,minimum)
+				let sliderCont = make("div").addClass("mtd-slider-container").append(maximum, input, minimum)
 
-				option.append(label,sliderCont);
+				option.append(label, sliderCont, defaultButton);
 
 				break;
 

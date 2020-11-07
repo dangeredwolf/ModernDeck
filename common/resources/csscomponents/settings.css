@@ -675,3 +675,12 @@ html body .mtd-settings-subpanel button {
 	width:250px!important;
 	float:left
 }
+
+.mtd-settings-button.mtd-default-button {
+	display:block;
+	position:absolute;
+	right:20px;
+	text-align:right;
+	margin-top:12px;
+	padding:7px;
+}
