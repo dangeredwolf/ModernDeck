@@ -84,7 +84,7 @@
 		"publish": [
 			"github"
 		],
-		"icon": "build/icons/ModernDeck.icns",
+		"icon": "build/icons/macOS11.png",
 		"artifactName": "ModernDeck.${ext}",
 		"minimumSystemVersion": "10.11.0",
 		"darkModeSupport": true,
@@ -97,6 +97,7 @@
 			{
 				"target": "dmg",
 				"arch": [
+					"arm64",
 					"x64"
 				]
 			},
