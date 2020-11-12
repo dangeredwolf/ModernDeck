@@ -84,7 +84,7 @@
 		"publish": [
 			"github"
 		],
-		"icon": "build/icons/macOS11.png",
+		"icon": "build/icons/macOS Big Sur.png",
 		"artifactName": "ModernDeck.${ext}",
 		"minimumSystemVersion": "10.11.0",
 		"darkModeSupport": true,
@@ -109,6 +109,7 @@
 			{
 				"target": "zip",
 				"arch": [
+					"arm64",
 					"x64"
 				]
 			}
