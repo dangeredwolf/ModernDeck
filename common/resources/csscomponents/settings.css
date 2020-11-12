@@ -415,6 +415,17 @@
 	pointer-events:all
 }
 
+.mtd-app-mac .mtd-settings-panel .mtd-logo:before {
+	content:""
+}
+
+.mtd-app-mac .mtd-settings-panel .mtd-logo {
+	background-image:url(moderndeck://resources/img/macOS.png);
+	background-size:80px;
+	margin-right:-10px;
+	background-repeat:no-repeat
+}
+
 .mtd-about-title {
 	display:inline-block;
 	position:relative;
@@ -441,6 +452,10 @@
 	padding-top:43px;
 	width:305px;
 	margin-left:96px
+}
+
+.mtd-app-mac .mtd-version-title {
+	margin-left:80px;
 }
 
 .mtd-patron-info {
