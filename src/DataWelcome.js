@@ -18,7 +18,7 @@ export let _welcomeData = {
 		body: I18n("We're glad to have you here. Click Next to continue."),
 		nextFunc: () => {
 
-			let currentTheme = settingsData.themes.options.theme.queryFunction();
+			let currentTheme = getPref("mtd_theme");
 
 			$(window.mtd_welcome_dark).click(()=>{
 				parseActions(settingsData.themes.options.theme.activate,"dark");

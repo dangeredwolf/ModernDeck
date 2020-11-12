@@ -420,6 +420,14 @@ function hookComposer() {
 		return;
 	}
 
+	if (isApp && useNativeEmojiPicker()) {
+		$(".mtd-emoji").click(() => {
+			$(".js-compose-text").focus();
+			require("electron").remote.require("electron").app.showEmojiPanel();
+			$(".js-compose-text").focus();
+		})
+	}
+
 	// if (isApp && useNativeEmojiPicker() && loadEmojiPicker) {
 	// 	$(".compose-text").after(
 	// 		make("div").addClass("mtd-emoji").append(

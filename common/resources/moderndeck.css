@@ -6794,7 +6794,7 @@ li.padding-axl.flex.flex-row.flex-align--center .account-summary-text>a.account-
 }
 
 .js-message-detail .tweet-body {
-	padding-left:56px
+	padding-left: calc(var(--avatarSize) + 6px);
 }
 
 .microsoft-logo:after {
@@ -8387,7 +8387,8 @@ label.checkbox::selection,label.control-label::selection {
 .tweet-message>.l-table {
 	width:77%;
 	float:left;
-	margin-top:-24px
+	margin-top:-24px;
+	margin-left:calc(var(--avatarSize) + 8px)
 }
 
 .message-stream-item .tweet-actions>li {
@@ -8982,7 +8983,7 @@ a {
 	border-radius:2px;
 	min-height:525px;
 	max-height:707px;
-	-webkit-app-region:no-drag
+	-webkit-app-region:no-drag;
 }
 
 .prf-stats>li:nth-child(2) {
@@ -9021,9 +9022,7 @@ a {
 .med-fullpanel {
 	position:absolute;
 	left:0;
-	right:0;
-	margin-bottom:10px!important;
-	vertical-align:bottom!important
+	right:0
 }
 
 .s-tall-fixed.s-fluid .mdl-content {

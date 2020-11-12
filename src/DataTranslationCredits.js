@@ -14,6 +14,7 @@ vancho1<br>
 
 <br><b>中文</b><br>
 <a href="https://twitter.com/N0PELGND" rel="user" target="_blank">DatNopeLegend</a><br>
+<a href="https://twitter.com/jeff7262" rel="user" target="_blank">JeffW</a><br>
 <a href="https://twitter.com/hugoalhofficial" rel="user" target="_blank">hugoalh</a><br>
 
 <br><b>Deutsche</b><br>
@@ -50,6 +51,7 @@ TAKAHASHI Shuuji<br>
 
 <br><b>日本語</b><br>
 <a href="https://twitter.com/hideki_0403" rel="user" target="_blank">ゆきねこ (hideki_0403)</a><br>
+pukutaaang<br>
 TAKAHASHI Shuuji<br>
 
 <br><b>한국어</b><br>
@@ -63,10 +65,11 @@ Lastorder<br>
 <a href="https://twitter.com/4D3s12" rel="user" target="_blank">Ad3s12</a><br>
 <a href="https://twitter.com/Patryk1023PL" rel="user" target="_blank">Patryk1023</a><br>
 <a href="https://twitter.com/PeCeT_full" rel="user" target="_blank">PeCeT_full</a><br>
+Paweł Amroziewicz<br>
 <a href="https://twitter.com/w1nk000" rel="user" target="_blank">w1nk000</a><br>
 
 <br><b>Português</b><br>
-João Ferreira
+João Ferreira<br>
 
 <br><b>Português (Brasil)</b><br>
 <a href="https://twitter.com/eubyt" rel="user" target="_blank">Adrian César</a><br>
