@@ -6,7 +6,7 @@
 */
 window.open("https://tweetdeck.twitter.com");
 
-if (typeof chrome === "undefined") {
+if (typeof mozInnerScreenX !== "undefined") {
 
 	var browser = browser || chrome;
 	const createNewTab = () => browser.tabs.create({url:"https://tweetdeck.twitter.com"}, a => close());
@@ -34,4 +34,6 @@ if (typeof chrome === "undefined") {
 		}
 	});
 
+} else {
+	window.close();
 }
