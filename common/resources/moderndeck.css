@@ -5170,7 +5170,7 @@ a[rel="user"]:active,
 .mdl .checkbox,.mdl .radio {
 	display:block;
 	pointer-events:all;
-	margin-bottom:10px;
+	margin-bottom:0;
 	vertical-align:bottom
 }
 
