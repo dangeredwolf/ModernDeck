@@ -675,3 +675,9 @@ select,
 	color:var(--txtMuteLink);
 	border-bottom:3px solid var(--secondaryColorAlt)
 }
+
+.tweet-action-item .tweet-action,
+.tweet-detail-action-item .tweet-detail-action
+{
+	color:var(--scrollbarDefaultColor)
+}

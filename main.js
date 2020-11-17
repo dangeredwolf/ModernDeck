@@ -256,7 +256,7 @@ function loadEnterpriseConfigMain() {
 function isRosetta() {
 	let cpu0 = require("os").cpus()[0];
 	if (cpu0 && cpu0.model) {
-		return process.arch === "x64" && cpu0.model.indexOf("VirtualApple") > -1
+		return process.arch === "x64" && process.platform === "darwin" && cpu0.model.indexOf("VirtualApple") > -1
 	} else {
 		return false;
 	}
