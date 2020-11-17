@@ -316,7 +316,7 @@ function makeLoginWindow(url,teams) {
 
 	loginWindow.webContents.on("will-navigate", (event, url) => {
 
-		// console.log(url);
+		// console.log("will-navigate", url);
 		const { shell } = electron;
 
 		if (url.indexOf("https://tweetdeck.twitter.com") >= 0 && !teams) {
@@ -353,11 +353,15 @@ function makeLoginWindow(url,teams) {
 			return;
 		}
 
+		if (url.indexOf("twitter.com/sessions") >= 0) {
+			return;
+		}
+
 		event.preventDefault();
 	});
 
 	loginWindow.webContents.on("did-navigate-in-page", (event, url) => {
-		// console.log(url);
+		// console.log("did-navigate-in-page", url);
 
 		if (url.indexOf("https://tweetdeck.twitter.com") >= 0) {
 			console.log("Hello tweetdeck2!");
