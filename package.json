@@ -44,6 +44,8 @@
 		"Twitter"
 	],
 	"dependencies": {
+		"@sentry/browser": "^5.27.4",
+		"@sentry/tracing": "^5.27.4",
 		"a-color-picker": "^1.2.1",
 		"asar": "^3.0.3",
 		"electron-log": "^4.3.0",

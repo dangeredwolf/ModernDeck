@@ -179,6 +179,7 @@ export let settingsData = {
 					RobotoCondensed:{value:"RobotoCondensed",text:"Roboto Condensed"},
 					RobotoSlab:{value:"RobotoSlab",text:"Roboto Slab"},
 					RobotoMono:{value:"RobotoMono",text:"Roboto Mono"},
+					NotoSans:{value:"NotoSans",text:"Noto Sans"},
 					OpenSans:{value:"OpenSans",text:"Open Sans"},
 					Lato:{value:"Lato",text:"Lato"},
 					Jost:{value:"Jost",text:"Jost"},
@@ -325,7 +326,7 @@ export let settingsData = {
 				default:false
 			},
 			threadIndicator:{
-				title:`{{Display "Thread" on Tweets that are threads}}`,
+				title:`{{Display "Thread" on Tweets that are part of a thread}}`,
 				type:"checkbox",
 				activate:{
 					enableStylesheet:"threadIndicator"

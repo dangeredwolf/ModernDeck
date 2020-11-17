@@ -45,7 +45,6 @@ window.parseActions = parseActions;
 import { fromCodePoint } from "./EmojiHelper.js";
 import { injectFonts } from "./FontHandler.js";
 
-
 import { contextMenuFunctions } from "./ContextMenuFunctions.js";
 import { clearContextMenu } from "./UIContextMenu.js";
 
@@ -55,6 +54,9 @@ import { processMustaches } from "./MustachePatcher.js";
 import { mtdAppFunctions } from "./AppController.js";
 
 import { attachColumnVisibilityEvents } from "./ColumnVisibility.js";
+
+import * as Sentry from "@sentry/browser";
+import { Integrations } from "@sentry/tracing";
 
 window.mtdBaseURL = "https://raw.githubusercontent.com/dangeredwolf/ModernDeck/master/ModernDeck/";
 // Defaults to obtaining assets from GitHub if MTDURLExchange isn't completed properly somehow

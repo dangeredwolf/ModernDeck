@@ -103,8 +103,16 @@ a.column-nav-link,.column-nav-item,.js-setting-list .list-link strong {
 	color:rgba(85,85,85,.75) !important
 }
 
+.is-new a.column-nav-link {
+	color:rgba(50,50,50,.75) !important
+}
+
 a .column-title-back .icon:after,.drawer-header:active .drawer-header-title .icon:after,.btn-back:after,.app-search-fake .icon:after,.mtd-drawer-button:active:after {
 	background:rgba(85,85,85,.2)!important
+}
+
+.is-new>.column-nav-updates.icon-dot {
+	background:rgb(50,50,50) !important
 }
 
 .spinner-layer,.spinner-default
@@ -126,4 +134,21 @@ a .column-title-back .icon:after,.drawer-header:active .drawer-header-title .ico
 
 .mdl-btn-media,.Notification-inner,.Notification-icon  {
 	color:var(--pureWhite)!important
+}
+
+.btn-options-tray:hover,.btn-options-tray:focus {
+	color:rgba(0,0,0,.8)
+}
+
+
+html:not(.os-osx) .antiscroll-scrollbar {
+	background:rgba(0,0,0,.2);
+}
+
+.windowcontrol.close:hover {
+	color:#fff!important
+}
+
+.btn-primary {
+	color:#fff!important
 }
