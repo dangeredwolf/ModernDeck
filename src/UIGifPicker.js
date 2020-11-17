@@ -99,7 +99,7 @@ function createGifPanel() {
 				make("p").html(I18n("ModernDeck GIF Search uses the following sources:")),
 				make("img").attr("src",mtdBaseURL + "resources/img/giphy.png").addClass("mtd-giphy-logo"),
 				make("img").attr("src",mtdBaseURL + "resources/img/tenor.png").addClass("mtd-giphy-logo"),
-				"Gfycat"
+				make("img").attr("src",mtdBaseURL + "resources/img/gfycat.svg").addClass("mtd-giphy-logo")
 			)
 		)
 	)
