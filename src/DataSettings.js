@@ -326,7 +326,7 @@ export let settingsData = {
 				default:false
 			},
 			threadIndicator:{
-				title:`{{Display "Thread" on Tweets that are threads}}`,
+				title:`{{Display "Thread" on Tweets that are part of a thread}}`,
 				type:"checkbox",
 				activate:{
 					enableStylesheet:"threadIndicator"
