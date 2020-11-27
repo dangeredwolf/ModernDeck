@@ -1,3 +1,10 @@
+/*
+	UIThemeEditor.js
+
+	Copyright (c) 2014-2020 dangered wolf, et al
+	Released under the MIT License
+*/
+
 import { make } from "./Utils.js";
 import { CustomThemes } from "./CustomThemes.js";
 // import AColorPicker from "a-color-picker";

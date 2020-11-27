@@ -1,3 +1,10 @@
+/*
+	UIEmojiPanel.js
+
+	Copyright (c) 2014-2020 dangered wolf, et al
+	Released under the MIT License
+*/
+
 // import { EmojiButton } from '@joeattardi/emoji-button';
 
 export class UIEmojiPanel {

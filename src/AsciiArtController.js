@@ -1,7 +1,8 @@
 /*
 	AsciiArtController.js
+
 	Copyright (c) 2014-2020 dangered wolf, et al
-	Released under the MIT licence
+	Released under the MIT License
 */
 
 import buildId from "./buildId.js";

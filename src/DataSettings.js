@@ -1,7 +1,8 @@
 /*
 	DataSettings.js
+
 	Copyright (c) 2014-2020 dangered wolf, et al
-	Released under the MIT licence
+	Released under the MIT License
 */
 
 /*
@@ -16,8 +17,6 @@
 
 	https://github.com/dangeredwolf/ModernDeck/wiki/settingsData
 */
-
-
 
 import { I18n } from "./I18n.js";
 import { UIAlert } from "./UIAlert.js";

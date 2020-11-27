@@ -1,7 +1,8 @@
 /*
 	Utils.js
+
 	Copyright (c) 2014-2020 dangered wolf, et al
-	Released under the MIT licence
+	Released under the MIT License
 */
 
 import { I18n, getFullLanguage } from "./I18n.js";
