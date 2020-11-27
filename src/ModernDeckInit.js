@@ -409,7 +409,7 @@ function mtdInit() {
 		setTimeout(() => {
 			new UIAlert({
 				title:I18n("ModernDeck on Apple Silicon"),
-				message:I18n(`${I18n("We detected that ModernDeck is running under Rosetta.")}<br><br>
+				message:`${I18n("We detected that ModernDeck is running under Rosetta.")}<br><br>
 							${I18n("While it will still work, ModernDeck will run a lot faster if you download the native Apple Silicon build.")}<br><br>
 							${I18n("Would you like to download the native version?")}<br><br><br><br>`,
 				buttonText:I18n("Yes"),

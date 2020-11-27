@@ -517,7 +517,7 @@ export function openSettings(openMenu) {
 				}
 			});
 
-			let h1 = make("h1").addClass("mtd-about-title").html(productName + `<span>${isEnterprise() ? "evaluation copy" : "<!--codename Oasis-->"}</span>`);
+			let h1 = make("h1").addClass("mtd-about-title").html(productName + `<span>${isEnterprise() ? "" : ""}</span>`);
 			let h2 = make("h2").addClass("mtd-version-title").html(verText + " " + SystemVersion + I18n(" (Build ") + buildId + ")");
 			let logoCont = make("div").addClass("mtd-logo-container");
 

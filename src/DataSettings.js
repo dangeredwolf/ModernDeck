@@ -179,7 +179,7 @@ export let settingsData = {
 					RobotoCondensed:{value:"RobotoCondensed",text:"Roboto Condensed"},
 					RobotoSlab:{value:"RobotoSlab",text:"Roboto Slab"},
 					RobotoMono:{value:"RobotoMono",text:"Roboto Mono"},
-					NotoSans:{value:"NotoSans",text:"Noto Sans"},
+					"Noto Sans CJK":{value:"Noto Sans CJK",text:"Noto Sans"},
 					OpenSans:{value:"OpenSans",text:"Open Sans"},
 					Lato:{value:"Lato",text:"Lato"},
 					Jost:{value:"Jost",text:"Jost"},

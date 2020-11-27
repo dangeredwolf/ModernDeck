@@ -1,7 +1,7 @@
 /*
 	moderndeck.css
 
-	ModernDeck 8.1 [codename Oasis]
+	ModernDeck 9.0 [codename Oasis]
 	Copyright 2014-2020 dangered wolf, et al
 	Released under the MIT Licence
 
@@ -8434,12 +8434,12 @@ footer>.js-tweet-stats>.tweet-stats:not(.js-stats-list) {
 .btn-primary,.Button--primary:not(.tweet-button):not(.action-text):not(.more-tweets-btn):not(.js-add-column):not(.js-spinner-button) {
 	float:none;
 	background:var(--secondaryColor)!important;
-	color:var(--rootWhiteColor)!important;
+	color: var(--rootWhiteColor);
 	box-shadow:0 3px 7px var(--composeShadow);
 	border-radius:4px;
 	transition:background 0.2s var(--animationTiming),transform 0.25s var(--animationTiming)!important;
 	margin:5px 5px 5px 5px;
-	padding:7px 12px 7px 12px
+	padding:7px 12px 7px 12px;
 }
 
 /* .btn-primary:hover,.Button--primary:not(.tweet-button):not(.action-text):not(.more-tweets-btn):not(.js-add-column):not(.js-spinner-button):hover {
@@ -9120,10 +9120,6 @@ button.js-add-filter {
 
 .icon-follow-color {
 	color:var(--secondaryColorAlt)
-}
-
-.tweet-actions.is-visible .icon-reply {
-	color:var(--secondaryColor)
 }
 
 .PollXChoice-vote--button {

@@ -42,14 +42,15 @@ export class UILanguagePicker extends UIModal {
 			make("option").val("es_419").html("Español (México)"),
 			make("option").val("fr_CA").html("Français (Canada)"),
 			make("option").val("fr_FR").html("Français (France)"),
-			make("option").val("zh_CN").html("简体中文"),
 			make("option").val("ko").html("한국어"),
 			make("option").val("hr").html("Hrvatski"),
+			make("option").val("it").html("italiano"),
 			make("option").val("ja").html("日本語"),
 			make("option").val("no").html("norsk"),
 			make("option").val("pl").html("Polskie"),
 			make("option").val("pt_BR").html("Português (Brasil)"),
-			make("option").val("ru").html("русский")
+			make("option").val("ru").html("русский"),
+			make("option").val("zh_CN").html("简体中文")
 		).change(() => {
 			this.alertTitle.html("<i class='material-icon'>language</i> " + (languageData.Language[this.selectLanguage.val()] || languageData.Language[this.selectLanguage.val().substr(0,2)] || "broken"));
 

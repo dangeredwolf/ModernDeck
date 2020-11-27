@@ -152,3 +152,11 @@ html:not(.os-osx) .antiscroll-scrollbar {
 .btn-primary {
 	color:#fff!important
 }
+
+.pull-right>button.Button--primary:not(.tweet-button):not(.action-text):not(.more-tweets-btn):not(.js-add-column):not(.js-spinner-button)[data-action="retweet"] {
+	color:#fff!important
+}
+
+.column-nav-item .attribution {
+	color:rgba(0,0,0,.3)!important
+}

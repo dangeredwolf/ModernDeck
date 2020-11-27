@@ -19,21 +19,34 @@
 	color:#fff!important
 }
 
+.mtd-settings-option option[value="light"] {
+	background:#fff;
+	color:#000!important
+}
+
+.mtd-settings-option option[value="dark"] {
+	background:#444;
+	color:#fff!important
+}
+
 .mtd-settings-option option[value="darker"] {
 	background:#333;
 	color:#fff!important
 }
 
 .mtd-settings-option option[value="red"] {
-	background:#F44336
+	background:#F44336;
+	color:#fff!important
 }
 
 .mtd-settings-option option[value="pink"] {
-	background:#E91E63
+	background:#E91E63;
+	color:#fff!important
 }
 
 .mtd-settings-option option[value="orange"] {
-	background:#FF5722
+	background:#FF5722;
+	color:#fff!important
 }
 
 .mtd-settings-option option[value="violet"] {
@@ -42,11 +55,13 @@
 }
 
 .mtd-settings-option option[value="teal"] {
-	background:#009688
+	background:#009688;
+	color:#fff!important
 }
 
 .mtd-settings-option option[value="green"] {
-	background:#4CAF50
+	background:#4CAF50;
+	color:#fff!important
 }
 
 .mtd-settings-option option[value="yellow"] {
@@ -54,7 +69,8 @@
 }
 
 .mtd-settings-option option[value="cyan"] {
-	background:#00BCD4
+	background:#00BCD4;
+	color:#fff!important
 }
 
 .mtd-settings-option option[value="black"],.mtd-settings-option option[value="amoled"] {
@@ -63,7 +79,8 @@
 }
 
 .mtd-settings-option option[value="blue"] {
-	background:#2196F3
+	background:#2196F3;
+	color:#fff!important
 }
 
 .mtd-settings-subpanel-hidden {
@@ -226,7 +243,7 @@
 	display:inline-block;
 	margin-bottom:0;
 	padding-top:14px;
-	padding-left:0
+	padding-left:0;
 }
 
 .mtd-settings-subpanel label.control-label {
@@ -381,7 +398,7 @@
 .mtd-settings-option-button .control-label b {
 	font-size:16px;
 	width:300px;
-	margin-left:10px
+	margin-left:10px;
 }
 
 .mtd-settings-option-button {
@@ -649,7 +666,7 @@ html body .mtd-settings-subpanel button {
 }
 
 #language b {
-	margin-left:2px
+	margin-left:0;
 }
 
 #global_filter_settings .control-group {
