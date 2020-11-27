@@ -34,7 +34,6 @@
 			"github"
 		],
 		"forceCodeSigning":false,
-		"certificateSubjectName":"Open Source Developer, Ryan Dolan",
 		"verifyUpdateCodeSignature":false,
 		"compression":"maximum",
 		"target": [
@@ -54,7 +53,7 @@
 	},
 	"appx": {
 		"publisher": "CN=FEC2801E-B19C-4051-A5E2-465F7B251519",
-		"publisherDisplayName": "dangeredwolf",
+		"publisherDisplayName": "dangered wolf",
 		"identityName": "53434dangeredwolf.ModernDeck",
 		"artifactName": "ModernDeck_${arch}.${ext}",
 		"applicationId": "ModernDeck",
@@ -66,6 +65,7 @@
 	"nsis": {
 		"deleteAppDataOnUninstall": true,
 		"artifactName": "ModernDeck_${arch}.${ext}",
+		"certificateSubjectName":"Open Source Developer, Ryan Dolan",
 		"uninstallDisplayName": "ModernDeck",
 		"differentialPackage": true
 	},
