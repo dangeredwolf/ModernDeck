@@ -99,7 +99,7 @@ html.mtd-js-app:not(.mtd-app) .mtd-gif-header.mtd-gif-header-fixed {
 
 .mtd-gif-top-button {
 	padding-top:14px;
-	background: var(--secondaryColor)!important;
+	background:var(--secondaryColor)!important;
 	color:#fff;
 	border-radius:50%;
 	margin-top:60px;
@@ -121,7 +121,8 @@ html.mtd-js-app:not(.mtd-app) .mtd-gif-header.mtd-gif-header-fixed {
 	margin-right:-150px!important;
 	width:200px!important;
 	padding:20px!important;
-	text-align:center!important
+	text-align:center!important;
+	pointer-events:none
 }
 
 .mtd-gif-info > p {

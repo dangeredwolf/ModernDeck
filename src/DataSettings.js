@@ -974,7 +974,7 @@ export let settingsData = {
 		tabName:"<i class='material-icon'>language</i> {{Language}}",
 		options:{
 			mtdChangeLanguage:{
-				headerBefore:"Language",
+				headerBefore:"{{Language}}",
 				title:"{{Change Language}}",
 				label:"<b>{{Changing your language will reset formatting customizations and restart ModernDeck}}</b>",
 				type:"button",
