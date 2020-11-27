@@ -5,6 +5,8 @@
 */
 
 import { I18n, getFullLanguage } from "./I18n.js";
+import * as Sentry from "@sentry/browser";
+import { Integrations } from "@sentry/tracing";
 
 /*
 	Shorthand function to create a new element, which is helpful for concise UI building.
@@ -19,6 +21,7 @@ export const handleErrors = (func, text) => {
 		console.error(text || "Caught an unexpected internal error");
 		console.error(e);
 		window.lastError = e;
+		Sentry.captureException(e);
 	}
 }
 

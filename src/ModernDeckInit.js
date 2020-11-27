@@ -302,13 +302,8 @@ function mtdInit() {
 		beGone.remove();
 	}
 
-	if (forceFeatureFlags) try {
-		processForceFeatureFlags()
-	} catch (e) {
-		console.error("Caught error in processForceFeatureFlags");
-		console.error(e);
-		lastError = e;
-	}
+	if (forceFeatureFlags)
+		handleErrors(processForceFeatureFlags, "Caught error in processForceFeatureFlags");
 
 	handleErrors(AsciiArtController.draw, "Caught error while trying to draw ModernDeck version easter egg");
 	handleErrors(replacePrettyNumber, "Caught error in replacePrettyNumber");
@@ -731,5 +726,27 @@ function coreInit() {
 	console.info("ModernDeckInit.coreInit completed. Good job.");
 
 }
+
+try {
+	throw "Intentional error to test sentry"
+} catch(e) {
+	Sentry.captureException(e);
+}
+
+
+
+Sentry.init({
+	dsn: "https://92f593b102fb4c1ca010480faed582ae@o110170.ingest.sentry.io/242524",
+
+	// To set your release version
+	release: "moderndeck@" + version,
+	integrations: [new Integrations.BrowserTracing()],
+
+	// Set tracesSampleRate to 1.0 to capture 100%
+	// of transactions for performance monitoring.
+	// We recommend adjusting this value in production
+	tracesSampleRate: 1.0,
+
+});
 
 coreInit();
