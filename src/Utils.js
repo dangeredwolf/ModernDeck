@@ -22,7 +22,9 @@ export const handleErrors = (func, text) => {
 		console.error(text || "Caught an unexpected internal error");
 		console.error(e);
 		window.lastError = e;
-		Sentry.captureException(e);
+		if (window.useSentry) {
+			Sentry.captureException(e);
+		}
 	}
 }
 

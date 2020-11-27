@@ -65,14 +65,13 @@ window.mtdBaseURL = "https://raw.githubusercontent.com/dangeredwolf/ModernDeck/m
 let loadEmojiPicker = false;
 
 const forceFeatureFlags = false;
+window.useSentry = true;
 
 let replacedLoadingSpinnerNew = false;
 let sendingFeedback = false;
 window.useNativeContextMenus = false;
 window.isDev = false;
-
 window.useSafeMode = false;
-
 window.isInWelcome = false;
 
 window.loginInterval = undefined;
@@ -728,26 +727,20 @@ function coreInit() {
 
 }
 
-try {
-	throw "Intentional error to test sentry"
-} catch(e) {
-	Sentry.captureException(e);
+if (window.useSentry) {
+	Sentry.init({
+		dsn: "https://92f593b102fb4c1ca010480faed582ae@o110170.ingest.sentry.io/242524",
+
+		// To set your release version
+		release: "moderndeck@" + version,
+		integrations: [new Integrations.BrowserTracing()],
+
+		// Set tracesSampleRate to 1.0 to capture 100%
+		// of transactions for performance monitoring.
+		// We recommend adjusting this value in production
+		tracesSampleRate: 1.0,
+
+	});
 }
-
-
-
-Sentry.init({
-	dsn: "https://92f593b102fb4c1ca010480faed582ae@o110170.ingest.sentry.io/242524",
-
-	// To set your release version
-	release: "moderndeck@" + version,
-	integrations: [new Integrations.BrowserTracing()],
-
-	// Set tracesSampleRate to 1.0 to capture 100%
-	// of transactions for performance monitoring.
-	// We recommend adjusting this value in production
-	tracesSampleRate: 1.0,
-
-});
 
 coreInit();
