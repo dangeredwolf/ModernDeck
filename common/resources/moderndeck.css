@@ -1,9 +1,9 @@
 /*
 	moderndeck.css
 
-	ModernDeck 8.1 [codename Oasis]
-	Copyright 2014-2020 dangered wolf, et al
-	Released under the MIT Licence
+	ModernDeck 9.0 [codename Oasis]
+	Copyright (c) 2014-2020 dangered wolf, et al
+	Released under the MIT License
 
 	For a complete list of open source projects included in this, view the "LICENCES" file in the open source project @ github.com/dangeredwolf/ModernDeck
 
@@ -1867,7 +1867,7 @@ a .column-title-back .icon:after {
 .tweet-action-item .tweet-action,
 .tweet-detail-action-item .tweet-detail-action
 {
-	color:var(--scrollbarDefaultColor)
+	/* color:var(--scrollbarDefaultColor) */
 }
 
 .is-conversation>.tweet-body {
@@ -2208,12 +2208,12 @@ a .column-title-back .icon:after {
 }
 
 .app-nav-link i {
-	padding-left: 17px;
+	padding-left:17px;
 	margin-right:13px;
 }
 
 .app-nav-link i.icon-plus {
-	padding-left: 18px;
+	padding-left:18px;
 }
 
 .app-nav-tab {
@@ -2249,16 +2249,12 @@ a .column-title-back .icon:after {
 }
 
 .mtd-classic-nav:not(.mtd-app-mac) .js-hide-drawer.tweet-button {
-	margin-top: 11px;
+	margin-top:11px;
 }
 
 .js-hide-drawer[data-title="Accounts"] {
 	background:transparent;
 	width:var(--verticalHeadWidth)
-}
-
-.mtd-app-mac .tweet-button:not(.is-hidden):not(.js-hide-drawer) {
-	margin-top:52px
 }
 
 .tweet-button.is-hidden {
@@ -2268,9 +2264,9 @@ a .column-title-back .icon:after {
 .mtd-classic-nav .tweet-button.is-hidden {
 	-webkit-app-region:drag;
 	pointer-events:none;
-	margin-top: -50px;
-	/* padding: 0; */
-	/* height: 0; */
+	margin-top:-50px;
+	/* padding:0; */
+	/* height:0; */
 }
 
 .mtd-classic-nav .app-header:not(.is-condensed) .tweet-button.is-hidden {
@@ -2321,6 +2317,10 @@ a .column-title-back .icon:after {
 
 .mtd-classic-nav .js-show-drawer.tweet-button:not(.is-hidden) {
 	margin-top:32px
+}
+
+.mtd-app-mac .tweet-button:not(.is-hidden):not(.js-hide-drawer) {
+	margin-top:52px;
 }
 
 .tweet-button>i:after {
@@ -3125,7 +3125,7 @@ html:not(.mtd-classic-nav) .attach-compose-buttons .tweet-button {
 }
 
 html:not(.mtd-app).mtd-classic-nav .compose-content {
-	top:30px
+	top:10px
 }
 
 .compose-text-container {
@@ -3738,16 +3738,16 @@ textarea,.l-fullwidth {
 }
 
 .is-new>.column-nav-updates.icon-dot {
-	left: 0;
+	left:0;
 	position:absolute;
 	display:block;
-	font-size: 0;
-	background: #fff;
-	opacity: 0.7;
-	border-radius: 0 50% 50% 0;
-	height: 7px;
-	width: 5px;
-	top: 50%;
+	font-size:0;
+	background:#fff;
+	opacity:0.7;
+	border-radius:0 50% 50% 0;
+	height:7px;
+	width:5px;
+	top:50%;
 	margin-top:3px
 }
 
@@ -4934,11 +4934,8 @@ a[rel="user"]:active,
 }
 
 .prf-header[style="background-image: url(https://ton.twimg.com/tweetdeck-web/web/assets/global/backgrounds/td_profile_empty.b902792cc4.jpg)"],
-.mtd-nd-header-image[style="background-image: url(https://ton.twimg.com/tweetdeck-web/web/assets/global/backgrounds/td_profile_empty.b902792cc4.jpg)"],
-.prf-header[style="background-image: url(https://ton.twimg.com/tweetdeck-web/web/assets/global/backgrounds/td_profile_empty@2x.28d11b0d43.jpg)"],
-.mtd-nd-header-image[style="background-image: url(https://ton.twimg.com/tweetdeck-web/web/assets/global/backgrounds/td_profile_empty@2x.28d11b0d43.jpg)"],
-.prf-header[style="background-image: url(https://ton.twimg.com/tweetdeck-web/web/assets/global/backgrounds/td_profile_empty@2x.41be8a92c4.jpg)"],
-.mtd-nd-header-image[style="background-image: url(https://ton.twimg.com/tweetdeck-web/web/assets/global/backgrounds/td_profile_empty@2x.41be8a92c4.jpg)"] {
+.mtd-nd-header-image[style="background-image: url(https://ton.twimg.com/tweetdeck-web/web/assets/global/backgrounds/td_profile_empty.b902792cc4.jpg)"]
+{
 	background-image:none!important
 }
 
@@ -5170,7 +5167,7 @@ a[rel="user"]:active,
 .mdl .checkbox,.mdl .radio {
 	display:block;
 	pointer-events:all;
-	margin-bottom:10px;
+	margin-bottom:0;
 	vertical-align:bottom
 }
 
@@ -6794,7 +6791,7 @@ li.padding-axl.flex.flex-row.flex-align--center .account-summary-text>a.account-
 }
 
 .js-message-detail .tweet-body {
-	padding-left: calc(var(--avatarSize) + 6px);
+	padding-left:calc(var(--avatarSize) + 6px);
 }
 
 .microsoft-logo:after {
@@ -8210,7 +8207,7 @@ li.padding-axl.flex.flex-row.flex-align--center .fullname {
 }
 
 .mtd-app:not(.mtd-maximized) .column-navigator {
-	margin-top: 40px;
+	margin-top:40px;
 	-webkit-app-region:no-drag;
 	left:0!important;
 }
@@ -8265,15 +8262,15 @@ html.mtd-classic-nav .column-navigator {
 }
 
 .mtd-app:not(.mtd-maximized):not(.mtd-app-mac) .app-search-fake {
-	margin-top:40px;
+	margin-top:0px!important;
+}
+
+html:not(.mtd-classic-nav):not(.mtd-app-mac) .hide-detail-view-inline .app-search-fake {
+	top:40px;
 }
 
 .mtd-app-mac .app-search-fake {
 	top:100px
-}
-
-:not(.mtd-classic-nav) .hide-detail-view-inline .app-search-fake {
-	top:40px;
 }
 
 .mtd-app-mac:not(.mtd-classic-nav) .hide-detail-view-inline .app-search-fake {
@@ -8437,12 +8434,12 @@ footer>.js-tweet-stats>.tweet-stats:not(.js-stats-list) {
 .btn-primary,.Button--primary:not(.tweet-button):not(.action-text):not(.more-tweets-btn):not(.js-add-column):not(.js-spinner-button) {
 	float:none;
 	background:var(--secondaryColor)!important;
-	color:var(--rootWhiteColor)!important;
+	color: var(--rootWhiteColor);
 	box-shadow:0 3px 7px var(--composeShadow);
 	border-radius:4px;
 	transition:background 0.2s var(--animationTiming),transform 0.25s var(--animationTiming)!important;
 	margin:5px 5px 5px 5px;
-	padding:7px 12px 7px 12px
+	padding:7px 12px 7px 12px;
 }
 
 /* .btn-primary:hover,.Button--primary:not(.tweet-button):not(.action-text):not(.more-tweets-btn):not(.js-add-column):not(.js-spinner-button):hover {
@@ -8792,7 +8789,8 @@ html:not(.mtd-classic-nav) .js-hide-drawer:not(.tweet-button):not([data-title="A
 	font-size:15px;
 	opacity:0;
 	transition:opacity 0.2s var(--animationTiming);
-	white-space:nowrap
+	white-space:nowrap;
+	pointer-events:none
 }
 
 .mtd-classic-nav .application:not(.is-condensed) .app-header .tweet-button:not(.is-hidden) .label {
@@ -9122,10 +9120,6 @@ button.js-add-filter {
 
 .icon-follow-color {
 	color:var(--secondaryColorAlt)
-}
-
-.tweet-actions.is-visible .icon-reply {
-	color:var(--secondaryColor)
 }
 
 .PollXChoice-vote--button {

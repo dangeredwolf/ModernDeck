@@ -1,7 +1,8 @@
 /*
 	DataSettings.js
+
 	Copyright (c) 2014-2020 dangered wolf, et al
-	Released under the MIT licence
+	Released under the MIT License
 */
 
 /*
@@ -16,8 +17,6 @@
 
 	https://github.com/dangeredwolf/ModernDeck/wiki/settingsData
 */
-
-
 
 import { I18n } from "./I18n.js";
 import { UIAlert } from "./UIAlert.js";
@@ -179,6 +178,7 @@ export let settingsData = {
 					RobotoCondensed:{value:"RobotoCondensed",text:"Roboto Condensed"},
 					RobotoSlab:{value:"RobotoSlab",text:"Roboto Slab"},
 					RobotoMono:{value:"RobotoMono",text:"Roboto Mono"},
+					"Noto Sans CJK":{value:"Noto Sans CJK",text:"Noto Sans"},
 					OpenSans:{value:"OpenSans",text:"Open Sans"},
 					Lato:{value:"Lato",text:"Lato"},
 					Jost:{value:"Jost",text:"Jost"},
@@ -325,7 +325,7 @@ export let settingsData = {
 				default:false
 			},
 			threadIndicator:{
-				title:`{{Display "Thread" on Tweets that are threads}}`,
+				title:`{{Display "Thread" on Tweets that are part of a thread}}`,
 				type:"checkbox",
 				activate:{
 					enableStylesheet:"threadIndicator"
@@ -973,7 +973,7 @@ export let settingsData = {
 		tabName:"<i class='material-icon'>language</i> {{Language}}",
 		options:{
 			mtdChangeLanguage:{
-				headerBefore:"Language",
+				headerBefore:"{{Language}}",
 				title:"{{Change Language}}",
 				label:"<b>{{Changing your language will reset formatting customizations and restart ModernDeck}}</b>",
 				type:"button",

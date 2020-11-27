@@ -1,7 +1,8 @@
 /*
 	DataTranslationCredits.js
+
 	Copyright (c) 2014-2020 dangered wolf, et al
-	Released under the MIT licence
+	Released under the MIT License
 */
 
 export const translationCredits = `
@@ -19,6 +20,7 @@ vancho1<br>
 
 <br><b>Deutsche</b><br>
 <a href="https://twitter.com/cmdrfletcher" rel="user" target="_blank">cmdrfletcher</a><br>
+<a href="https://twitter.com/hamburgator" rel="user" target="_blank">hamburgator</a><br>
 <a href="https://twitter.com/FLUFFSQUEAKER" rel="user" target="_blank">milanmat-fluffsqueaker</a><br>
 <a href="https://twitter.com/ItsJustMirko" rel="user" target="_blank">Mirko</a><br>
 <a href="https://twitter.com/Machtergreifung" rel="user" target="_blank">Machtergreifung</a><br>
@@ -60,6 +62,9 @@ Lastorder<br>
 
 <br><b>Hrvatski</b><br>
 <a href="https://twitter.com/jptjohnny" rel="user" target="_blank">JPTJohnny</a><br>
+
+<br><b>italiano</b><br>
+<a href="https://twitter.com/hamburgator" rel="user" target="_blank">hamburgator</a><br>
 
 <br><b>Polski</b><br>
 <a href="https://twitter.com/4D3s12" rel="user" target="_blank">Ad3s12</a><br>

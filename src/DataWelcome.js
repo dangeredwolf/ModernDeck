@@ -1,7 +1,8 @@
 /*
 	DataWelcome.js
+
 	Copyright (c) 2014-2020 dangered wolf, et al
-	Released under the MIT licence
+	Released under the MIT License
 */
 
 import { isApp } from "./Utils.js";
@@ -125,8 +126,8 @@ export let _welcomeData = {
 	},
 	layout: {
 		title: I18n("Select a layout"),
-		body: I18n("<b>Simplified:</b> Common features are always displayed, like Tweet and Search. Less common options like adding columns are available in the Navigation Drawer.<br>") +
-			  I18n("<b>Classic (TweetDeck):</b> All buttons are displayed. This layout more closely resembles stock TweetDeck."),
+		body: I18n("<b>Simplified:</b> Common features are always displayed, like Tweet and Search. Less common options like adding columns are available in the Navigation Drawer.") + "<br><br>" +
+			  I18n("<b>Classic (TweetDeck):</b> All buttons are displayed. This layout more closely resembles default TweetDeck."),
 		html: `<div class="obj-left mtd-welcome-theme-picker">
 			<label class="fixed-width-label radio">
 			<input type="radio" name="layout" id="mtd_welcome_simplified" value="simplified">

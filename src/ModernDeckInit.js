@@ -1,7 +1,8 @@
 /*
 	ModernDeckInit.js
+
 	Copyright (c) 2014-2020 dangered wolf, et al
-	Released under the MIT licence
+	Released under the MIT License
 */
 
 import { version } from "../package.json";
@@ -45,7 +46,6 @@ window.parseActions = parseActions;
 import { fromCodePoint } from "./EmojiHelper.js";
 import { injectFonts } from "./FontHandler.js";
 
-
 import { contextMenuFunctions } from "./ContextMenuFunctions.js";
 import { clearContextMenu } from "./UIContextMenu.js";
 
@@ -56,20 +56,22 @@ import { mtdAppFunctions } from "./AppController.js";
 
 import { attachColumnVisibilityEvents } from "./ColumnVisibility.js";
 
+import * as Sentry from "@sentry/browser";
+import { Integrations } from "@sentry/tracing";
+
 window.mtdBaseURL = "https://raw.githubusercontent.com/dangeredwolf/ModernDeck/master/ModernDeck/";
 // Defaults to obtaining assets from GitHub if MTDURLExchange isn't completed properly somehow
 
 let loadEmojiPicker = false;
 
 const forceFeatureFlags = false;
+window.useSentry = true;
 
 let replacedLoadingSpinnerNew = false;
 let sendingFeedback = false;
 window.useNativeContextMenus = false;
 window.isDev = false;
-
 window.useSafeMode = false;
-
 window.isInWelcome = false;
 
 window.loginInterval = undefined;
@@ -300,13 +302,8 @@ function mtdInit() {
 		beGone.remove();
 	}
 
-	if (forceFeatureFlags) try {
-		processForceFeatureFlags()
-	} catch (e) {
-		console.error("Caught error in processForceFeatureFlags");
-		console.error(e);
-		lastError = e;
-	}
+	if (forceFeatureFlags)
+		handleErrors(processForceFeatureFlags, "Caught error in processForceFeatureFlags");
 
 	handleErrors(AsciiArtController.draw, "Caught error while trying to draw ModernDeck version easter egg");
 	handleErrors(replacePrettyNumber, "Caught error in replacePrettyNumber");
@@ -402,6 +399,20 @@ function mtdInit() {
 	});
 
 	navigationSetup();
+
+	if (html.hasClass("mtd-mac-rosetta")) {
+		setTimeout(() => {
+			new UIAlert({
+				title:I18n("ModernDeck on Apple Silicon"),
+				message:`${I18n("We detected that ModernDeck is running under Rosetta.")}<br><br>
+							${I18n("While it will still work, ModernDeck will run a lot faster if you download the native Apple Silicon build.")}<br><br>
+							${I18n("Would you like to download the native version?")}<br><br><br><br>`,
+				buttonText:I18n("Yes"),
+				button2Text:I18n("Maybe later"),
+				button1Click:() => { window.open("https://moderndeck.org/download/#macOS"); }
+			})
+		}, 2000)
+	}
 
 }
 
@@ -714,6 +725,22 @@ function coreInit() {
 	console.info(`ModernDeck ${SystemVersion}`);
 	console.info("ModernDeckInit.coreInit completed. Good job.");
 
+}
+
+if (window.useSentry) {
+	Sentry.init({
+		dsn: "https://92f593b102fb4c1ca010480faed582ae@o110170.ingest.sentry.io/242524",
+
+		// To set your release version
+		release: "moderndeck@" + version,
+		integrations: [new Integrations.BrowserTracing()],
+
+		// Set tracesSampleRate to 1.0 to capture 100%
+		// of transactions for performance monitoring.
+		// We recommend adjusting this value in production
+		tracesSampleRate: 1.0,
+
+	});
 }
 
 coreInit();

@@ -2,7 +2,7 @@
 	dark.css
 
 	Copyright (c) 2014-2020 dangered wolf, et al
-	Released under the MIT Licence
+	Released under the MIT License
 */
 
 :root {
@@ -44,7 +44,7 @@
 
 a,
 a:not([href="#"]):not(.column-header-link):not(.js-column-back):not(.js-tweet-social-proof-back):not(.account-selector-grid-mode):not(.account-link):not(.dropdown-menu-url-item):hover,
-.btn:not([disabled]):not(.is-disabled):not(.btn-options-tray):not(.mtd-nav-button):not(.btn-bg-negative):not(.btn-negative),
+.btn:not([disabled]):not(.is-disabled):not(.btn-options-tray):not(.mtd-nav-button):not(.btn-bg-negative):not(.btn-negative):not(.mtd-alert-button),
 #caltoday,
 input[type="checkbox"]:checked:before,
 input[type="radio"]:checked:before
@@ -674,4 +674,10 @@ select,
 .detail-view-inline-text {
 	color:var(--txtMuteLink);
 	border-bottom:3px solid var(--secondaryColorAlt)
+}
+
+.tweet-action-item .tweet-action,
+.tweet-detail-action-item .tweet-detail-action
+{
+	color:var(--scrollbarDefaultColor)
 }

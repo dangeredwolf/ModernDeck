@@ -240,17 +240,25 @@ const template = [
 
 const menu = Menu.buildFromTemplate(template);
 
-if (process.platform === "darwin")
-	Menu.setApplicationMenu(menu);
+// if (process.platform === "darwin")
+Menu.setApplicationMenu(menu);
 
 function loadEnterpriseConfigMain() {
 	if (enterpriseConfig.disableDevTools) {
 		// https://stackoverflow.com/questions/40304833/how-to-make-the-dev-tools-not-show-up-on-screen-by-default-electron
 		globalShortcut.register("Control+Shift+I", () => {});
 	}if (enterpriseConfig.disableZoom) {
-		// https://stackoverflow.com/questions/40304833/how-to-make-the-dev-tools-not-show-up-on-screen-by-default-electron
 		globalShortcut.register("Control+-", () => {});
 		globalShortcut.register("Control+Shift+=", () => {});
+	}
+}
+
+function isRosetta() {
+	let cpu0 = require("os").cpus()[0];
+	if (cpu0 && cpu0.model) {
+		return process.arch === "x64" && process.platform === "darwin" && cpu0.model.indexOf("VirtualApple") > -1
+	} else {
+		return false;
 	}
 }
 
@@ -263,11 +271,11 @@ function makeErrorWindow() {
 		width: 600,
 		height: 260,
 		webPreferences: {
+			scrollBounce: true,
 			nodeIntegration: true
 		},
 		enableRemoteModule:true,
 		parent:mainWindow || null,
-		scrollBounce:true,
 		autoHideMenuBar:true
 	});
 
@@ -303,10 +311,10 @@ function makeLoginWindow(url,teams) {
 		width: 710,
 		height: 490,
 		webPreferences: {
+			scrollBounce: true,
 			nodeIntegration: false
 		},
 		parent:mainWindow || null,
-		scrollBounce:true,
 		autoHideMenuBar:true
 	});
 
@@ -316,7 +324,7 @@ function makeLoginWindow(url,teams) {
 
 	loginWindow.webContents.on("will-navigate", (event, url) => {
 
-		// console.log(url);
+		// console.log("will-navigate", url);
 		const { shell } = electron;
 
 		if (url.indexOf("https://tweetdeck.twitter.com") >= 0 && !teams) {
@@ -353,11 +361,15 @@ function makeLoginWindow(url,teams) {
 			return;
 		}
 
+		if (url.indexOf("twitter.com/sessions") >= 0) {
+			return;
+		}
+
 		event.preventDefault();
 	});
 
 	loginWindow.webContents.on("did-navigate-in-page", (event, url) => {
-		// console.log(url);
+		// console.log("did-navigate-in-page", url);
 
 		if (url.indexOf("https://tweetdeck.twitter.com") >= 0) {
 			console.log("Hello tweetdeck2!");
@@ -498,8 +510,6 @@ function makeWindow() {
 			webgl: false,
 			plugins: false,
 			scrollBounce:true,
-			webviewTag:true,
-			nodeIntegrationInSubFrames:true
 			// preload: __dirname+separator+useDir+separator+"resources"+separator+"moderndeck.js"
 		},
 		autoHideMenuBar:true,
@@ -1239,6 +1249,10 @@ function updateAppTag() {
 
 	if (isMAS) {
 		mtdAppTag += 'document.querySelector("html").classList.add("mtd-macappstore");\n';
+	}
+
+	if (isRosetta()) {
+		mtdAppTag += 'document.querySelector("html").classList.add("mtd-mac-rosetta");\n';
 	}
 
 	if (app.isEmojiPanelSupported()) {

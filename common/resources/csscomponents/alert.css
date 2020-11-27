@@ -2,7 +2,7 @@
 	alert.css
 
 	Copyright (c) 2014-2020 dangered wolf, et al
-	Released under the MIT Licence
+	Released under the MIT License
 */
 
 .mdl.mtd-alert {
@@ -16,10 +16,10 @@
 
 .mtd-alert-button {
 	font-size:15px;
-	float:right;
+	float:right!important;
 	margin:16px;
 	padding:10px 13px;
-	margin-left:0
+	margin-left:0;
 }
 
 .mtd-alert-button-container {
