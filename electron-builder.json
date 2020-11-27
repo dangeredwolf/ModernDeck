@@ -1,6 +1,6 @@
 {
 	"appId": "com.dangeredwolf.ModernDeck",
-	"afterSign": "./build/notarize.js",
+	"afterSign": "electron-builder-notarize",
 
 	"files": [
 		"**/*",
@@ -85,7 +85,7 @@
 			"github"
 		],
 		"icon": "build/icons/macOS Big Sur.png",
-		"artifactName": "ModernDeck.${ext}",
+		"artifactName": "${productName}-${arch}.${ext}",
 		"minimumSystemVersion": "10.11.0",
 		"darkModeSupport": true,
 		"hardenedRuntime": true,
@@ -97,8 +97,7 @@
 			{
 				"target": "dmg",
 				"arch": [
-					"arm64",
-					"x64"
+					"arm64"
 				]
 			},
 			{
@@ -109,8 +108,7 @@
 			{
 				"target": "zip",
 				"arch": [
-					"arm64",
-					"x64"
+					"arm64"
 				]
 			}
 		]
