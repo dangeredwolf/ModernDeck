@@ -1002,7 +1002,7 @@ export let settingsData = {
 					}
 				},
 				options:{
-					default:{value:"default",text:"Language default"},
+					default:{value:"default",text:"{{Language default}}"},
 					h12:{value:"h12",text:"1:30 {{pm}}"},
 					h24:{value:"h24",text:"13:30"}
 				},
