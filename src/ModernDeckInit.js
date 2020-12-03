@@ -652,7 +652,6 @@ function coreInit() {
 	head.append(
 		make("script").attr("type", "text/javascript").attr("src", mtdBaseURL + "resources/libraries/emojidata.js"),
 		make("script").attr("type", "text/javascript").attr("src", mtdBaseURL + "resources/libraries/twemoji.min.js"),
-		make("script").attr("type", "text/javascript").attr("src", mtdBaseURL + "resources/libraries/spectrum.js"),
 		make("script").attr("type", "text/javascript").attr("src", mtdBaseURL + "resources/libraries/jquery.visible.js")
 	);
 
