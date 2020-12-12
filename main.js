@@ -1,7 +1,7 @@
 /*
 	main.js
 	Copyright (c) 2014-2020 dangeredwolf
-	Released under the MIT licence
+	Released under the MIT license
 
 	made with love <3
 
@@ -1107,6 +1107,8 @@ electron.protocol.registerSchemesAsPrivileged([{
 		corsEnabled:true
 	}
 }]);
+
+app.setAsDefaultProtocolClient("moderndeck");
 
 // Make window when app is ready
 

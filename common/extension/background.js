@@ -1,3 +1,10 @@
+/*
+	background.js
+
+	Copyright (c) 2014-2020 dangered wolf, et al
+	Released under the MIT License
+*/
+
 var browser = browser || chrome;
 
 console.log("TEST");
