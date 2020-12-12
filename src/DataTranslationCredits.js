@@ -19,6 +19,7 @@ vancho1<br>
 <a href="https://twitter.com/hugoalhofficial" rel="user" target="_blank">hugoalh</a><br>
 
 <br><b>Deutsche</b><br>
+Bandie<br>
 <a href="https://twitter.com/cmdrfletcher" rel="user" target="_blank">cmdrfletcher</a><br>
 <a href="https://twitter.com/hamburgator" rel="user" target="_blank">Planke</a><br>
 <a href="https://twitter.com/FLUFFSQUEAKER" rel="user" target="_blank">milanmat-fluffsqueaker</a><br>
