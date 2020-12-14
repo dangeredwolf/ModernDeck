@@ -8,7 +8,7 @@
 		"description": "The ModernDeck Launcher button"
 	},
 	"name": {
-		"message": "ModernDeck - Twitter Client für den Desktop",
+		"message": "ModernDeck - Twitter-Client für den Desktop",
 		"description": "The name of the extension that appears on the Chrome Web Store"
 	},
 	"webstoreDescription": {
@@ -24,7 +24,7 @@
 		"description": "A title about granting tabs permission in Firefox"
 	},
 	"needsPermissionParagraph": {
-		"message": "ModernDeck benötigt die Tab Berechtigung von Firefox, um neue Tabs öffnen zu können.<br><br>\nDas ist optional, und wird nur für das Launcher Feature benötigt. Du kannst ModernDeck weiterhin unter <a href=\"https://tweetdeck.twitter.com\" target=\"_blank\">tweetdeck.twitter.com</a> nutzen, auch ohne diese Berechtigung zu erteilen.<br><br>\nWenn du diese Berechtigung nicht akzeptierst kannst du den Launcher Button entfernen, indem du nach einem Rechtsklick darauf <i>Aus Symbolleiste entfernen</i> auswählst<br><br>\n<b>ModernDeck überwacht nicht deine geöffneten Tabs.</b>",
+		"message": "ModernDeck benötigt die Tab Berechtigung von Firefox, um neue Tabs öffnen zu können.<br><br>\nDies ist optional, und wird nur für das Launcher-Feature benötigt. Du kannst ModernDeck weiterhin unter <a href=\"https://tweetdeck.twitter.com\" target=\"_blank\">tweetdeck.twitter.com</a> nutzen, auch ohne diese Berechtigung zu erteilen.<br><br>\nWenn du diese Berechtigung nicht akzeptierst kannst du den Launcher-Button entfernen, indem du nach einem Rechtsklick darauf <i>Aus Symbolleiste entfernen</i> auswählst<br><br>\n<b>ModernDeck überwacht nicht deine geöffneten Tabs.</b>",
 		"description": "A description about granting tabs permission in Firefox"
 	}
 }
