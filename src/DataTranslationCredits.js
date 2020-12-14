@@ -55,6 +55,7 @@ TAKAHASHI Shuuji<br>
 <br><b>日本語</b><br>
 <a href="https://twitter.com/hideki_0403" rel="user" target="_blank">ゆきねこ (hideki_0403)</a><br>
 pukutaaang<br>
+るいーね (ruine)<br>
 TAKAHASHI Shuuji<br>
 
 <br><b>한국어</b><br>
