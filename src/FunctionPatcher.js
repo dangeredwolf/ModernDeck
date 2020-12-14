@@ -5,6 +5,8 @@
 	Released under the MIT License
 */
 
+const pretendToBeWrapperApp = true;
+
 export function FunctionPatcher() {
 	if (window.localStorage && typeof require === "undefined") {
 		window.localStorage.actuallyClear = window.localStorage.clear;
@@ -20,7 +22,7 @@ export function FunctionPatcher() {
 			window.localStorage.removeItem("typeaheadUserLastPrefetch", undefined);
 		}
 	}
-	if (window.TD && window.TD.util) {
+	if (window.TD && window.TD.util && pretendToBeWrapperApp) {
 		window.TD.util.isWrapperApp = () => true;
 		window.deck = {
 			osname:() => {
