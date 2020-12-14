@@ -48,7 +48,7 @@ html:not(.signin-sheet-now-present) body {
 	color:inherit
 }
 
-.mdl,.modal-content {
+.mdl:not(.mtd-settings-panel),.modal-content {
 	background:#fff
 }
 
@@ -281,4 +281,22 @@ body {
 .form-login .Button {
 	padding-left:28px!important;
 	margin-left:-3px!important
+}
+
+
+.mtd-login-info-button {
+	color:#fff
+}
+
+.mtd-login-info-version {
+	float:left;
+	padding-top:8px;
+	opacity:0.7;
+	font-size:13px
+}
+
+.mtd-login-info {
+	position:fixed;
+	bottom:0;
+	right:0
 }
