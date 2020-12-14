@@ -8,6 +8,7 @@
 import { enableStylesheetExtension, disableStylesheetExtension } from "./StylesheetExtensions.js";
 import { I18n } from "./I18n.js";
 import { UILanguagePicker } from "./UILanguagePicker.js";
+import { openSettings } from "./UISettings.js";
 import { getPref } from "./StoragePreferences.js";
 
 let ugltStarted = false;
@@ -93,5 +94,7 @@ export function loginTextReplacer() {
 		$(".app-signin-wrap:not(.mtd-signin-wrap)").remove();
 		$(".login-container .startflow").html(newLoginPage);
 		startUpdateGoodLoginText();
+
+		$(".mtd-login-info-button").click(() => openSettings(undefined, true))
 	}
 }

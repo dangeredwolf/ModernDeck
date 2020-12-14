@@ -14,10 +14,21 @@ export class UIModal {
 	}
 
 	display() {
-		new TD.components.GlobalSettings;
 
-		$(this.modalRoot + ">.mdl").remove();
-		$(this.modalRoot).append(this.element);
+		if (typeof $(this.modalRoot)[0] !== "undefined") {
+			new TD.components.GlobalSettings;
+
+			$(this.modalRoot + ">.mdl").remove();
+			$(this.modalRoot).append(this.element);
+		} else {
+			$(".js-modals-container").append(
+				make("div").addClass("ovl mtd-login-overlay").attr("style","display: block;").append(this.element).click(event => {
+					if (event.currentTarget === event.target) {
+						mtdPrepareWindows();
+					}
+				})
+			);
+		}
 	}
 
 	dismiss() {

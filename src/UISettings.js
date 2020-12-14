@@ -20,10 +20,10 @@ const appendTextVersion = false;
 let verTextId = 3;
 let verText = "";
 
-let productName = "ModernDeck 9";
+let productName = "ModernDeck";
 
 if (isEnterprise()) {
-	productName = "ModernDeck 9 Enterprise"
+	productName = "ModernDeck for Enterprise"
 }
 
 function internationaliseSettingString(str) {
@@ -73,7 +73,15 @@ export function renderTab(key, subPanel) {
 		}
 
 		if (typeof pref.enabled === "function") {
-			if (!pref.enabled()) {
+			let isEnabled;
+			try {
+				isEnabled = pref.enabled();
+			} catch(e) {
+				console.error(e);
+				isEnabled = false;
+			}
+
+			if (!isEnabled) {
 				continue
 			}
 		} else if (pref.enabled === false) {
@@ -139,7 +147,16 @@ export function renderTab(key, subPanel) {
 				}
 
 				if (!exists(pref.settingsKey) && exists(pref.queryFunction)) {
-					if (pref.queryFunction() && overrideSetting !== false) {
+					let checkValue;
+
+					try {
+						checkValue = pref.queryFunction();
+					} catch(e) {
+						console.error(e);
+						checkValue = pref.default || false;
+					}
+
+					if (checkValue && overrideSetting !== false) {
 						input.attr("checked","checked");
 					}
 				}
@@ -190,7 +207,16 @@ export function renderTab(key, subPanel) {
 				if (exists(pref.settingsKey)) {
 					select.val(getPref(pref.settingsKey));
 				} else if (!exists(pref.settingsKey) && exists(pref.queryFunction)) {
-					select.val(pref.queryFunction())
+					let checkValue;
+
+					try {
+						checkValue = pref.queryFunction();
+					} catch(e) {
+						console.error(e);
+						checkValue = pref.default;
+					}
+
+					select.val(checkValue)
 				}
 
 				if (overrideSetting) {
@@ -233,7 +259,16 @@ export function renderTab(key, subPanel) {
 				if (exists(pref.settingsKey)) {
 					input.val(getPref(pref.settingsKey));
 				} else if (!exists(pref.settingsKey) && exists(pref.queryFunction)) {
-					input.val(pref.queryFunction())
+					let checkValue;
+
+					try {
+						checkValue = pref.queryFunction();
+					} catch(e) {
+						console.error(e);
+						checkValue = pref.default;
+					}
+
+					input.val(checkValue)
 				}
 
 				if (overrideSetting) {
@@ -303,7 +338,16 @@ export function renderTab(key, subPanel) {
 				if (exists(pref.settingsKey)) {
 					input.val(getPref(pref.settingsKey));
 				} else if (!exists(pref.settingsKey) && exists(pref.queryFunction)) {
-					input.val(pref.queryFunction())
+					let checkValue;
+
+					try {
+						checkValue = pref.queryFunction();
+					} catch(e) {
+						console.error(e);
+						checkValue = pref.default;
+					}
+
+					input.val(checkValue)
 				}
 
 				if (overrideSetting) {
@@ -346,7 +390,16 @@ export function renderTab(key, subPanel) {
 				if (exists(pref.settingsKey)) {
 					input.val(parseInt(getPref(pref.settingsKey)));
 				} else if (!exists(pref.settingsKey) && exists(pref.queryFunction)) {
-					input.val(pref.queryFunction());
+					let checkValue;
+
+					try {
+						checkValue = pref.queryFunction();
+					} catch(e) {
+						console.error(e);
+						checkValue = pref.default;
+					}
+
+					input.val(checkValue);
 				} else if (exists(pref.default)) {
 					if (typeof pref.default === "function") {
 						input.val(pref.default());
@@ -440,7 +493,7 @@ export function renderTab(key, subPanel) {
 	}
 }
 
-export function openSettings(openMenu) {
+export function openSettings(openMenu, limitedMenu) {
 
 	mtdPrepareWindows();
 
@@ -459,6 +512,17 @@ export function openSettings(openMenu) {
 
 		if (key === "system" && typeof window.enterpriseConfig !== undefined && window.enterpriseConfig.disableSystemTab) {
 			continue;
+		}
+
+		switch(key) {
+			case "themes":
+			case "appearance":
+			case "tweets":
+			case "mutes":
+				if (limitedMenu) {
+					continue;
+				}
+				break;
 		}
 
 		var tab = make("button").addClass("mtd-settings-tab").attr("data-action",key).html(internationaliseSettingString(settingsData[key].tabName)).click(function() {
@@ -641,10 +705,20 @@ export function openSettings(openMenu) {
 
 	tabs.append(tabSelection);
 
-	new TD.components.GlobalSettings;
+	if (typeof $("#settings-modal")[0] !== "undefined") {
+		new TD.components.GlobalSettings;
 
-	$("#settings-modal>.mdl").remove();
-	$("#settings-modal").append(panel);
+		$("#settings-modal>.mdl").remove();
+		$("#settings-modal").append(panel);
+	} else {
+		$(".js-modals-container").append(
+			make("div").addClass("ovl mtd-login-overlay").attr("style","display: block;").append(panel).click(event => {
+				if (event.currentTarget === event.target) {
+					mtdPrepareWindows();
+				}
+			})
+		);
+	}
 
 	return panel;
 }
