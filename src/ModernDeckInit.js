@@ -519,6 +519,8 @@ window.mtdPrepareWindows = () => {
 	$("#update-sound,.js-click-trap").click();
 	$("#mtd_nav_drawer_background").click();
 
+	$(".js-modals-container>.ovl.mtd-login-overlay").remove();
+
 	$(".js-modal[style=\"display: block;\"]").click();
 
 	$(".mtd-nav-group-expanded").removeClass("mtd-nav-group-expanded");
