@@ -8,7 +8,9 @@
 import buildId from "./buildId.js";
 
 // Side effect of the build process: This is loaded first, so to compensate, we put this here
-window.ModernDeck = 9;
+window.ModernDeck = {
+	version:9.1
+};
 
 const isEnterprise = function() {
 	return typeof process !== "undefined" && process.execPath.match(/:\\Program Files/g) !== null;
