@@ -251,3 +251,15 @@ input[type="checkbox"]:checked:before, button, input[type="radio"]:checked:befor
 	left:152px;
 	background:#fff!important
 }
+
+.startflow-background {
+	background:#000!important
+}
+
+.form-login .Button {
+	--secondaryColor:#000!important
+}
+
+.mtd-signin-wrap .icon-moderndeck {
+	opacity:1
+}
