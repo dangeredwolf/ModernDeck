@@ -32,11 +32,11 @@ Thoth<br>
 
 <br><b>Español</b><br>
 <a href="https://twitter.com/klopma" rel="user" target="_blank">Carlos López</a><br>
-<a href="https://twitter.com/dangeredwolf" rel="user" target="_blank">dangeredwolf</a><br>
+<a href="https://twitter.com/dangeredwolf" rel="user" target="_blank">dangered wolf</a><br>
 <a href="https://twitter.com/en_penumbras" rel="user" target="_blank">en_penumbras</a><br>
 <a href="https://twitter.com/FibonacciPrower" rel="user" target="_blank">Fibonacci Prower</a><br>
-<a href="https://twitter.com/RichardWolfVI" rel="user" target="_blank">Juan Marulanda</a><br>
 minyfriki<br>
+<a href="https://twitter.com/RichardWolfVI" rel="user" target="_blank">Juan Marulanda</a><br>
 tetrisdog<br>
 TAKAHASHI Shuuji<br>
 
@@ -68,6 +68,9 @@ Lastorder<br>
 <br><b>italiano</b><br>
 <a href="https://twitter.com/hamburgator" rel="user" target="_blank">Planke</a><br>
 
+<br><b>norsk</b><br>
+Loke
+
 <br><b>Polski</b><br>
 <a href="https://twitter.com/4D3s12" rel="user" target="_blank">Ad3s12</a><br>
 <a href="https://twitter.com/Patryk1023PL" rel="user" target="_blank">Patryk1023</a><br>
@@ -84,10 +87,13 @@ André Gama / ToeOficial<br>
 Chef! / chefwireframe<br>
 
 <br><b>русский</b><br>
-<a href="https://twitter.com/Sominemo" rel="user" target="_blank">Sominemo</a><br>
 <a href="https://twitter.com/coldarchie" rel="user" target="_blank">Archie</a><br>
 <a href="https://twitter.com/reig_xvi" rel="user" target="_blank">Cyxtru</a><br>
+<a href="https://twitter.com/Sominemo" rel="user" target="_blank">Sominemo</a><br>
 <a href="https://twitter.com/Tailsray2" rel="user" target="_blank">Tailsray</a><br>
+
+<br><b>සිංහල</b><br>
+<a href="https://twitter.com/HelaBasa" rel="user" target="_blank">Store (HelaBasa)</a><br>
 <br>
 <br>
 `
