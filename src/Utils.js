@@ -37,7 +37,7 @@ export const makeN = function(a) {
 }
 
 export const isEnterprise = function() {
-	return typeof process !== "undefined" && process.execPath.match(/:\\Program Files/g) !== null;
+	return typeof process !== "undefined" && process.execPath.match(/:\\Program Files/g) !== null && !process.windowsStore;
 }
 
 // shorthand function to return true if something exists and false otherwise
