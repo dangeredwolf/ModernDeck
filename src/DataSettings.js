@@ -37,7 +37,7 @@ const ctrlShiftText = (navigator.userAgent.indexOf("Mac OS X") > -1) ? "⌃⇧" 
 
 export let settingsData = {
 	themes: {
-		tabName:"<i class='material-icon'>format_paint</i> {{Themes}}",
+		tabName:"<i class='material-icon' aria-hidden='true'>format_paint</i> {{Themes}}",
 		options:{
 			theme:{
 				headerBefore:"{{Themes}}",
@@ -182,7 +182,7 @@ export let settingsData = {
 					OpenSans:{value:"OpenSans",text:"Open Sans"},
 					Lato:{value:"Lato",text:"Lato"},
 					Jost:{value:"Jost",text:"Jost"},
-					SystemUI:{value:"SystemUI", text:"System UI"}
+					SystemUI:{value:"SystemUI", text:"{{System UI}}"}
 				},
 				activate:{
 					func: (opt) => {
@@ -228,7 +228,7 @@ export let settingsData = {
 		}
 	},
 	appearance: {
-		tabName:"<i class='material-icon'>rounded_corner</i> {{Appearance}}",
+		tabName:"<i class='material-icon' aria-hidden='true'>rounded_corner</i> {{Appearance}}",
 		options:{
 			 navigationStyle:{
 				headerBefore:"{{Navigation}}",
@@ -604,11 +604,11 @@ export let settingsData = {
 			}
 		}
 	}, mutes: {
-		tabName:"<i class='material-icon'>volume_off</i> {{Mutes}}",
+		tabName:"<i class='material-icon' aria-hidden='true'>volume_off</i> {{Mutes}}",
 		options:{},
 		enum:"mutepage"
 	}, accessibility: {
-		tabName:"<i class='material-icon'>accessibility</i> {{Accessibility}}",
+		tabName:"<i class='material-icon' aria-hidden='true'>accessibility</i> {{Accessibility}}",
 		options:{
 			focusOutline:{
 				headerBefore:"{{Accessibility}}",
@@ -639,6 +639,7 @@ export let settingsData = {
 				deactivate:{
 					func: (opt) => {
 						disableStylesheetExtension("highcontrast");
+						disableStylesheetExtension("amoled");
 					}
 				},
 				settingsKey:"mtd_highcontrast",
@@ -834,6 +835,7 @@ export let settingsData = {
 				label:"{{Legacy settings}}",
 				type:"link",
 				isDevTool:true,
+				enabled:() => !html.hasClass("signin-sheet-now-present"),
 				activate:{
 					func: () => {
 						openLegacySettings();
@@ -842,7 +844,7 @@ export let settingsData = {
 			}
 		}
 	}, system: {
-		tabName:"<i class='material-icon'>storage</i> {{System}}",
+		tabName:"<i class='material-icon' aria-hidden='true'>storage</i> {{System}}",
 		options:{
 			mtdResetSettings:{
 				title:"{{Reset settings}}",
@@ -970,12 +972,12 @@ export let settingsData = {
 			}
 		}
 	}, language: {
-		tabName:"<i class='material-icon'>language</i> {{Language}}",
+		tabName:"<i class='material-icon' aria-hidden='true'>language</i> {{Language}}",
 		options:{
 			mtdChangeLanguage:{
 				headerBefore:"{{Language}}",
 				title:"{{Change Language}}",
-				label:"<b>{{Changing your language will reset formatting customizations and restart ModernDeck}}</b>",
+				label:"{{Changing your language will reset formatting customizations and restart ModernDeck}}",
 				type:"button",
 				activate:{
 					func: () => {
@@ -1045,7 +1047,7 @@ export let settingsData = {
 			},
 		}
 	}, about: {
-		tabName:"<i class='material-icon'>info_outline</i> {{About}}",
+		tabName:"<i class='material-icon' aria-hidden='true'>info_outline</i> {{About}}",
 		tabId:"about",
 		options:{},
 		enum:"aboutpage"
