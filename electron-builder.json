@@ -33,6 +33,7 @@
 		"publish": [
 			"github"
 		],
+		"certificateSubjectName":"Open Source Developer, Ryan Dolan",
 		"forceCodeSigning":false,
 		"verifyUpdateCodeSignature":false,
 		"compression":"maximum",
@@ -65,7 +66,6 @@
 	"nsis": {
 		"deleteAppDataOnUninstall": true,
 		"artifactName": "ModernDeck_${arch}.${ext}",
-		"certificateSubjectName":"Open Source Developer, Ryan Dolan",
 		"uninstallDisplayName": "ModernDeck",
 		"differentialPackage": true
 	},
