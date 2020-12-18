@@ -38,7 +38,7 @@ export class UIModal {
 
 	dismiss() {
 		this.element.remove?.();
-		if (!this.sharedRoot) {
+		if (!this.sharedRoot && this.modalRoot !== ".login-container") {
 			$(this.modalRoot).attr("style","display: none;")
 		}
 	}
