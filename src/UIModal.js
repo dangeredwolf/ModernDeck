@@ -5,6 +5,8 @@
 	Released under the MIT License
 */
 
+import { make } from "./Utils.js";
+
 export class UIModal {
 	modalRoot = "#settings-modal";
 	sharedRoot = false;
@@ -15,12 +17,15 @@ export class UIModal {
 
 	display() {
 
+		console.log( $(this.modalRoot)[0])
+
 		if (typeof $(this.modalRoot)[0] !== "undefined") {
 			new TD.components.GlobalSettings;
 
 			$(this.modalRoot + ">.mdl").remove();
 			$(this.modalRoot).append(this.element);
 		} else {
+			mtdPrepareWindows();
 			$(".js-modals-container").append(
 				make("div").addClass("ovl mtd-login-overlay").attr("style","display: block;").append(this.element).click(event => {
 					if (event.currentTarget === event.target) {
