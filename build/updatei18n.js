@@ -49,7 +49,10 @@ function processFile(file) {
 			newObj[key] = {};
 			for (let i = 1; i < langMap.length; i++) {
 				if (arr[i]) {
-					newObj[key][langMap[i]] = arr[i].substr(1, arr[i].length-2).replace(/\"\"/g,"\"");
+
+					if (arr[i].length > 1) {
+						newObj[key][langMap[i]] = arr[i].substr(1, arr[i].length-2).replace(/\"\"/g,"\"");
+					}
 				} else {
 					console.log("Language array missing items: Line " + j + " Column " + i + "\nSource string: " + arr[0] + "\nThe language data may be corrupted. This can be caused by unescaped newlines.")
 				}

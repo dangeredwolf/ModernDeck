@@ -120,17 +120,17 @@ export class UILanguagePicker extends UIModal {
 
 		this.element.append(this.alertTitle, this.alertBody, this.alertButtonContainer);
 
-		if (!DataI18n.GIF[navigator.language.substr(0,2)]) {
+		if (!DataI18n.source[navigator.language.substr(0,2)]) {
 			this.element.append(this.unsupportedLang);
 		} else {
 			this.element.append(this.inaccuracy);
 		}
 
-		// if ($("#splash-modal").length < 1) {
-		// 	this.modalRoot = ".login-container";
-		// } else {
+		if ($("#splash-modal").length < 1) {
+			this.modalRoot = ".login-container";
+		} else {
 			this.modalRoot = "#splash-modal";
-		// }
+		}
 
 
 		$(this.modalRoot).attr("style", "display: block;").append(this.element)

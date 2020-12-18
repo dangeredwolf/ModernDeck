@@ -34,7 +34,7 @@ if (window.ModernDeck) {
 
 export const getFullLanguage = () => langFull;
 export const getMainLanguage = () => langRoot;
-export const getFallbackLanguage = () => "en";
+export const getFallbackLanguage = () => "en_US";
 
 
 const mustachePatches = {
@@ -128,9 +128,13 @@ export const I18n = function(a, b, c, d, e, f) {
 	if (!b || f === 1) {
 		if (languageData[a]) {
 			let result = languageData[a][getFullLanguage()]||languageData[a][getMainLanguage()]||languageData[a][getFallbackLanguage()];
+			if (typeof result === "undefined") {
+				console.error("Can't find English US translation of this string? " + a);
+				return a;
+			}
 			if (result.indexOf("hours12") > -1 || result.indexOf("hours24") > -1) {
 				if (I18n.customTimeHandler) {
-					return I18n.customTimeHandler(result); 
+					return I18n.customTimeHandler(result);
 				}
 			}
 			return result;
