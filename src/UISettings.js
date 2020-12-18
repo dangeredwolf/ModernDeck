@@ -12,7 +12,6 @@ import { hasPref, getPref, setPref } from "./StoragePreferences.js";
 import { buildContextMenu } from "./UIContextMenu.js";
 import { parseActions } from "./PrefHandler.js";
 import { I18n } from "./I18n.js";
-import { mtdAlert } from "./UIAlert.js";
 import { AutoUpdateController } from "./AutoUpdateController.js";
 
 const appendTextVersion = false;
@@ -640,7 +639,7 @@ export function openSettings(openMenu, limitedMenu) {
 				filterInput.attr("placeholder", $(this).val() === "phrase" ? I18n("Enter a word or phrase") : I18n("eg TweetSpamApp"))
 			});
 
-			let muteButton = make("button").attr("name","add-filter").addClass("js-add-filter btn-on-dark disabled btn-primary").html(I18n("Mute")).click(() => {
+			let muteButton = make("button").attr("name","add-filter").addClass("js-add-filter btn-on-dark disabled btn-primary").html(make("i").addClass("material-icon").html("volume_off")).click(() => {
 				if (filterInput.val().length > 0) {
 					TD.controller.filterManager.addFilter(selectFilterType.val(),filterInput.val(),false);
 

@@ -4721,7 +4721,8 @@ input[type="checkbox"]:active {
 .compose-text-container .mtd-gif-button
 {
 	margin-left:4px;
-	margin-top:-5px
+	margin-top:-5px;
+	font-family:Roboto /*Fix height problems with icons on different fonts*/
 }
 
 .compose-text-container .mtd-gif-button {
@@ -6731,7 +6732,7 @@ li.padding-axl.flex.flex-row.flex-align--center .account-summary-text>a.account-
 }
 
 .controls {
-	margin-left:100px
+	margin-left: 120px;
 }
 
 .icon-info.icon-large {
@@ -6828,7 +6829,7 @@ li.padding-axl.flex.flex-row.flex-align--center .account-summary-text>a.account-
 }
 
 .tweet-message .tweet-header {
-	height:50px
+	height:50px;
 }
 
 .quoted-tweet .tweet-header {
@@ -8385,7 +8386,7 @@ label.checkbox::selection,label.control-label::selection {
 	width:77%;
 	float:left;
 	margin-top:-24px;
-	margin-left:calc(var(--avatarSize) + 8px)
+	margin-left:calc(var(--avatarSize) + 8px);
 }
 
 .message-stream-item .tweet-actions>li {
@@ -9078,8 +9079,15 @@ a {
 }
 
 button.js-add-filter {
-	margin-left:-36px;
-	margin-top:-6px
+	margin-left: -30px;
+	margin-top: -13px;
+	background: var(--redDefault)!important;
+	border-radius: 33px;
+	padding: 12px;
+}
+
+button.js-add-filter:active,button.js-add-filter:focus {
+	background:var(--redHover)!important;
 }
 
 .mtd-app .mtd-app-drag-handle {
