@@ -44,7 +44,12 @@ html .login-container>.mdl.mtd-language-picker {
 	margin-left:-224px!important;
 	top:50%;
 	margin-top:-100px!important;
-	color:#222
+	background:#fff;
+	color:#222;
+}
+
+html .login-container>.mdl.mtd-language-picker .mtd-alert-button {
+	color:#fff
 }
 
 .login-container #mtd_language_select,.login-container option {

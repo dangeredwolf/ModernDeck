@@ -48,10 +48,6 @@ html:not(.signin-sheet-now-present) body {
 	color:inherit
 }
 
-.mdl:not(.mtd-settings-panel),.modal-content {
-	background:#fff
-}
-
 a:active,.signin-sheet-now-present .btn-positive,a:hover,a:focus,.btn:not([disabled]):not(.is-disabled),.btn-positive,.btn-positive-alt,.btn-fav.s-favorited,.s-following .follow-btn,a {
 	color:#00BCD4
 }
