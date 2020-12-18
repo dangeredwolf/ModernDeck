@@ -16,7 +16,7 @@ import { AutoUpdateController } from "./AutoUpdateController.js";
 
 const appendTextVersion = false;
 
-let verTextId = 3;
+let verTextId = 1;
 let verText = "";
 
 let productName = "ModernDeck";
