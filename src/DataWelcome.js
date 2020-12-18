@@ -23,26 +23,31 @@ export let _welcomeData = {
 
 			$(window.mtd_welcome_dark).click(()=>{
 				parseActions(settingsData.themes.options.theme.activate,"dark");
+				setPref("mtd_theme", "dark");
 				$(".mtd-welcome-inner .tweet-text").html(I18n("This tweet is quite dark!"))
 			})
 
 			$(window.mtd_welcome_darker).click(()=>{
 				parseActions(settingsData.themes.options.theme.activate,"darker");
+				setPref("mtd_theme", "darker");
 				$(".mtd-welcome-inner .tweet-text").html(I18n("This tweet is quite dark!"))
 			})
 
 			$(window.mtd_welcome_amoled).click(()=>{
 				parseActions(settingsData.themes.options.theme.activate,"amoled");
+				setPref("mtd_theme", "amoled");
 				$(".mtd-welcome-inner .tweet-text").html(I18n("This tweet is quite dark!"))
 			})
 
 			$(window.mtd_welcome_light).click(()=>{
 				parseActions(settingsData.themes.options.theme.activate,"light");
+				setPref("mtd_theme", "light");
 				$(".mtd-welcome-inner .tweet-text").html(I18n("This tweet is quite light!"))
 			})
 
 			$(window.mtd_welcome_paper).click(()=>{
 				parseActions(settingsData.themes.options.theme.activate,"paper");
+				setPref("mtd_theme", "paper");
 				$(".mtd-welcome-inner .tweet-text").html(I18n("This tweet is quite light!"))
 			})
 
