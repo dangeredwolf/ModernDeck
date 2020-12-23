@@ -16,13 +16,13 @@ import { AutoUpdateController } from "./AutoUpdateController.js";
 
 const appendTextVersion = false;
 
-let verTextId = 1;
+let verTextId = 3;
 let verText = "";
 
-let productName = "ModernDeck";
+let productName = "ModernDeck 10";
 
 if (isEnterprise()) {
-	productName = "ModernDeck for Enterprise"
+	productName = "ModernDeck 10"
 }
 
 function internationaliseSettingString(str) {
