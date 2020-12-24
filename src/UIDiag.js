@@ -22,7 +22,7 @@ import { AsciiArtController } from "./AsciiArtController.js";
 export function diag() {
 	let log = "";
 
-	log += "\nModernDeck " + version + " (Build "+ buildId +")";
+	log += "\nModernDeck 10, version " + version + " (Build "+ buildId +")";
 
 	log += "\n\nPlatform: ";
 
