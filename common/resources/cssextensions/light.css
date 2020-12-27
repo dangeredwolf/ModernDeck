@@ -1,12 +1,11 @@
 /*
 	light.css
 
-	Copyright (c) 2014-2020 dangered wolf, et al
+	Copyright (c) 2014-2021 dangered wolf, et al
 	Released under the MIT License
 */
 
-
-:root{
+:root {
 	--primaryColor:#03A9F4;
 	--secondaryColor:#00BCD4;
 	--secondaryColorAlt:var(--secondaryColor);

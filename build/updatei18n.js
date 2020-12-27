@@ -1,5 +1,5 @@
 /*
-	Copyright (c) 2018-2020 dangered wolf, et al.
+	Copyright (c) 2018-2021 dangered wolf, et al.
 	Released under the MIT license
 */
 
