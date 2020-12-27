@@ -25,13 +25,15 @@
 	],
 
 	"icons": {
-		"16": "AppIcon16.png",
-		"24": "AppIcon24.png",
-		"32": "AppIcon32.png",
-		"48": "AppIcon48.png",
-		"64": "AppIcon64.png",
-		"128": "AppIcon128.png",
-		"150": "AppIcon150.png"
+		"16": "ModernDeck16.png",
+		"24": "ModernDeck24.png",
+		"32": "ModernDeck32.png",
+		"44": "ModernDeck44.png",
+		"48": "ModernDeck48.png",
+		"50": "ModernDeck50.png",
+		"64": "ModernDeck64.png",
+		"128": "ModernDeck128.png",
+		"150": "ModernDeck150.png"
 	 },
 
 	"web_accessible_resources": [
