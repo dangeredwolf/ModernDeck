@@ -1,6 +1,6 @@
 /*
 	main.js
-	Copyright (c) 2014-2020 dangeredwolf
+	Copyright (c) 2014-2021 dangeredwolf
 	Released under the MIT license
 
 	made with love <3
