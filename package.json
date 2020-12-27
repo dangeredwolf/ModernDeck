@@ -30,6 +30,7 @@
 		"startNoBuild": "electron .",
 		"inspect": "electron . --inspect",
 		"updatei18n": "node build/updatei18n.js",
+		"updateFonts": "node build/updateFonts.js",
 		"release": "build"
 	},
 	"repository": "https://github.com/dangeredwolf/ModernDeck",
@@ -68,6 +69,7 @@
 		"@rollup/plugin-json": "^4.1.0",
 		"@rollup/plugin-node-resolve": "^8.0.1",
 		"adm-zip": "^0.4.16",
+		"axios": "^0.21.1",
 		"electron": "^11.0.3",
 		"electron-builder": "22.9.1",
 		"electron-builder-notarize": "^1.2.0",
