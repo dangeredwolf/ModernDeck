@@ -28,7 +28,7 @@
 	],
 
 	"win": {
-		"icon": "build/icons/icon.ico",
+		"icon": "build/icons/iconWindows.ico",
 		"legalTrademarks": "Copyright 2014-2021 dangered wolf, released under the MIT license",
 		"publish": [
 			"github"
