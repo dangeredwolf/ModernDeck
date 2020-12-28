@@ -3,7 +3,7 @@
 	"productName": "ModernDeck",
 	"version": "10.0.0",
 	"description": "ModernDeck",
-	"copyright": "Copyright 2014-2020 dangeredwolf, et al. Released under the MIT license.",
+	"copyright": "Copyright 2014-2021 dangered wolf, et al. Released under the MIT license.",
 	"homepage": "https://github.com/dangeredwolf/ModernDeck",
 	"bugs": {
 		"url": "https://github.com/dangeredwolf/ModernDeck/issues"
@@ -31,6 +31,7 @@
 		"inspect": "electron . --inspect",
 		"updatei18n": "node build/updatei18n.js",
 		"updateFonts": "node build/updateFonts.js",
+		"updateFontsCK": "node build/updateFontsCK.js",
 		"release": "build"
 	},
 	"repository": "https://github.com/dangeredwolf/ModernDeck",
