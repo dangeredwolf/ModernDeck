@@ -1,7 +1,7 @@
 /*
 	moderndeck.css
 
-	ModernDeck 10 [codename Oasis]
+	ModernDeck 10.0 [codename Oasis]
 	Copyright (c) 2014-2021 dangered wolf, et al
 	Released under the MIT License
 
@@ -87,11 +87,11 @@ body,body.signin-sheet-present {
 	100% {opacity:1;transform:scale(1,1)}
 }
 
-@keyframes windowSlider {
-	0% {opacity:0.5;margin-left:-700px}
-	100% {opacity:1;margin-left:0}
+@keyframes windowSlideDown {
+	0% {opacity:0;transform:translateY(-60px)}
+	50% {opacity:1;}
+	100% {opacity:1;transform:translateY(0)}
 }
-
 @keyframes menuDown {
 	0% {opacity:0;margin-top:-38px}
 	100% {opacity:1;margin-top:-18px}
@@ -8969,7 +8969,7 @@ a {
 }
 
 .mdl:not(.med-fullpanel) {
-	animation:windowDown .3s cubic-bezier(.19,1,.22,1);
+	animation:windowSlideDown .4s cubic-bezier(.10,1,.20,1);
 	width:calc(var(--columnSize) + 252px);
 	bottom:auto;
 	top:auto;
