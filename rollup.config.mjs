@@ -4,6 +4,26 @@ import babel from "@rollup/plugin-babel";
 import { terser } from "rollup-plugin-terser";
 
 // import { version } from "./package.json";
+import buildId from "./src/buildId.js";
+
+const fs = require("fs");
+const path = require("path");
+
+let thePath = path.format({
+	dir:__dirname + path.sep + "src",
+	base:"BuildProps.js"
+});
+
+let buildFile = fs.readFileSync(thePath) + "";
+
+let buildProps = {
+	id: buildId,
+	date: String(new Date(Date.now())),
+	packager: "Rollup"
+}
+
+fs.writeFileSync(thePath,"export default " + JSON.stringify(buildProps) + ";")
+
 
 export default {
 	input: "./src/ModernDeckInit.js",

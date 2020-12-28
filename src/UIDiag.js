@@ -6,6 +6,7 @@
 */
 
 import buildId from "./buildId.js";
+import buildProps from "./BuildProps.js";
 import { isApp, make, isEnterprise } from "./Utils.js";
 import { dumpPreferences } from "./StoragePreferences.js";
 import { settingsData } from "./DataSettings.js";
@@ -43,11 +44,13 @@ export function diag() {
 		log += AsciiArtController.platformName();
 	}
 
-	log += ("\n\nTD.buildID: " + ((TD && TD.buildID) ? TD.buildID : "[not set]"));
-	log += ("\nTD.version: " + ((TD && TD.version) ? TD.version : "[not set]"));
+	log += ("\n\nTweetDeck version: " + ((TD && TD.version) ? TD.version : "[not set]"));
 
 	log += "\nUser agent: " + navigator.userAgent;
 
+	log += "\n\nBuild Date: " + buildProps.date;
+
+	log += "\nPackager: " + buildProps.packager;
 
 	log += "\n\nLoaded extensions:\n";
 
