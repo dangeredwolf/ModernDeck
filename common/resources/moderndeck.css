@@ -89,9 +89,16 @@ body,body.signin-sheet-present {
 
 @keyframes windowSlideDown {
 	0% {opacity:0;transform:translateY(-60px)}
-	50% {opacity:1;}
+	60% {opacity:1;}
 	100% {opacity:1;transform:translateY(0)}
 }
+
+@keyframes alert {
+	0% {opacity:0;transform:scale(1.25,1.25)}
+	50% {opacity:1;transform:scale(0.97,0.97)}
+	100% {opacity:1;transform:scale(1,1)}
+}
+
 @keyframes menuDown {
 	0% {opacity:0;margin-top:-38px}
 	100% {opacity:1;margin-top:-18px}
@@ -9160,4 +9167,8 @@ div.drawer[data-drawer="compose"] {
 
 .mtd-classic-nav.mtd-app div.drawer[data-drawer="compose"] {
 	top:-40px
+}
+
+.mtd-alert,.mdl.s-fluid-height,.mdl.s-fluid:not(.prf) {
+	animation:alert .5s cubic-bezier(.11,1,.21,1)!important;
 }
