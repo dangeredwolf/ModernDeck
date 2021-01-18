@@ -32,6 +32,7 @@
 		"updatei18n": "node build/updatei18n.js",
 		"updateFonts": "node build/updateFonts.js",
 		"updateFontsCK": "node build/updateFontsCK.js",
+		"fetch": "node build/fetch.js",
 		"release": "build"
 	},
 	"repository": "https://github.com/dangeredwolf/ModernDeck",

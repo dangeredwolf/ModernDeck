@@ -96,6 +96,12 @@ if (process.platform === "win32") {
 					title:"ModernDeck",
 					message:"ModernDeck detected an enterprise config file, but an error occurred while reading it. Please ensure the JSON is free from any errors.\n\n" + e
 				});
+
+
+
+				protocol.interceptHttpProtocol("https", (req, callback) => {
+					console.log(req);
+				});
 			})
 		}
 	} catch (e) {
@@ -128,6 +134,7 @@ switch(enterpriseConfig.autoUpdatePolicy) {
 app.setAppUserModelId("com.dangeredwolf.ModernDeck");
 
 let useDir = "common";
+let useDirTD = "tweetdeck";
 
 const I18n = function(key) {
 	let foundStr = I18nData[key];
@@ -146,7 +153,20 @@ const mtdSchemeHandler = async (request, callback) => {
 		return;
 	}
 	let myUrl = new url.URL(request.url);
-	const filePath = path.join(electron.app.getAppPath(), useDir, myUrl.hostname, myUrl.pathname);
+
+	let currentPath = myUrl.pathname;
+	let currentDir = useDir;
+
+	// console.log(myUrl.pathname);
+
+	if (myUrl.pathname.substr(0,10) === "/tweetdeck") {
+		// console.log("Caught tweetdeck path");
+		currentPath = myUrl.pathname.substr(11);
+		currentDir = useDirTD;
+	}
+	const filePath = path.join(electron.app.getAppPath(), currentDir, myUrl.hostname, currentPath);
+
+	// console.log(filePath)
 
 	callback({
 		path: filePath
@@ -521,7 +541,7 @@ function makeWindow() {
 		minWidth:375,
 		show:false,
 		backgroundThrottling:true,
-		backgroundColor:"#263238"
+		backgroundColor:"#111"
 	});
 
 	// macOS specific: Don't run from DMG, move to Applications folder.
@@ -577,7 +597,36 @@ function makeWindow() {
 	updateAppTag();
 
 	try {
-		mainWindow.webContents.executeJavaScript(`document.getElementsByClassName("js-signin-ui block")[0].innerHTML = '<div class="preloader-wrapper big active"><div class="spinner-layer"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div>';`)
+		mainWindow.webContents.executeJavaScript(`
+			document.getElementsByTagName("html")[0].style = "background: #111!important;";
+			document.getElementsByTagName("body")[0].style = "background: #111!important;";
+			let mtdLoadStyleCSS = \`
+				img.spinner-centered {
+					display:none!important
+				}
+			\`
+			let mtdLoadStyle = document.createElement("style");
+			mtdLoadStyle.appendChild(document.createTextNode(mtdLoadStyleCSS))
+			document.head.appendChild(mtdLoadStyle);
+
+			document.getElementsByClassName("spinner-centered")[0].remove();
+
+			document.getElementsByClassName("js-signin-ui block")[0].innerHTML =
+			\`<img class="mtd-loading-logo" src="moderndeck://resources/img/moderndeck.png" style="display: none;">
+			<div class="preloader-wrapper active">
+				<div class="spinner-layer">
+					<div class="circle-clipper left">
+						<div class="circle"></div>
+					</div>
+					<div class="gap-patch">
+						<div class="circle"></div>
+					</div>
+					<div class="circle-clipper right">
+						<div class="circle"></div>
+					</div>
+				</div>
+			</div>\`;
+		`)
 	} catch(e) {
 
 	}
@@ -585,7 +634,36 @@ function makeWindow() {
 
 	mainWindow.webContents.on("dom-ready", (event, url) => {
 
-		mainWindow.webContents.executeJavaScript(`document.getElementsByClassName("js-signin-ui block")[0].innerHTML = '<div class="preloader-wrapper big active"><div class="spinner-layer"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div>';`)
+		mainWindow.webContents.executeJavaScript(`
+			document.getElementsByTagName("html")[0].style = "background: #111!important;";
+			document.getElementsByTagName("body")[0].style = "background: #111!important;";
+			let mtdLoadStyleCSS = \`
+				img.spinner-centered {
+					display:none!important
+				}
+			\`
+			let mtdLoadStyle = document.createElement("style");
+			mtdLoadStyle.appendChild(document.createTextNode(mtdLoadStyleCSS))
+			document.head.appendChild(mtdLoadStyle);
+
+			document.getElementsByClassName("spinner-centered")[0].remove();
+
+			document.getElementsByClassName("js-signin-ui block")[0].innerHTML =
+			\`<img class="mtd-loading-logo" src="moderndeck://resources/img/moderndeck.png" style="display: none;">
+			<div class="preloader-wrapper active">
+				<div class="spinner-layer">
+					<div class="circle-clipper left">
+						<div class="circle"></div>
+					</div>
+					<div class="gap-patch">
+						<div class="circle"></div>
+					</div>
+					<div class="circle-clipper right">
+						<div class="circle"></div>
+					</div>
+				</div>
+			</div>\`;
+		`)
 
 		mainWindow.webContents.executeJavaScript(
 			'\
@@ -657,10 +735,20 @@ function makeWindow() {
 				"img-src https: file: data: blob: moderndeck:; "+
 				"media-src * moderndeck: blob: https:; "+
 				"object-src 'self' https:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://moderndeck.org moderndeck: https://*.twitter.com https://*.twimg.com https://api-ssl.bitly.com blob:; "+
-				"style-src 'self' 'unsafe-inline' 'unsafe-eval' https: moderndeck: blob:;"];
+				"style-src 'self' 'unsafe-inline' 'unsafe-eval' moderndeck: blob:;"];
 			callback({ responseHeaders: foo});
 		}
 	);
+
+	mainWindow.webContents.session.webRequest.onBeforeRequest({urls:["https://ton.twimg.com/*"]}, (details,callback) => {
+
+		if (details.url.indexOf("spinner_blue") > -1) {
+			callback({redirectURL:"moderndeck://resources/img/null.png"});
+			return;
+		}
+
+		callback({cancel:false});
+	});
 
 	// mainWindow.webContents.session.webRequest.onHeadersReceived(
 	// 	{urls:["https://*.twitter.com/*","https://*.twimg.com/*"]},
@@ -1113,6 +1201,7 @@ app.setAsDefaultProtocolClient("moderndeck");
 // Make window when app is ready
 
 app.on("ready", () => {
+	session.defaultSession.cookies.get({}).then(cookies => console.log(cookies))
 	try {
 		makeWindow();
 		loadEnterpriseConfigMain();
