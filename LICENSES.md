@@ -2,7 +2,7 @@ ModernDeck is made possible by other open source projects!
 
 === Electron (ModernDeck App only) ===
 
-Copyright (c) 2013-2019 GitHub Inc.
+Copyright (c) 2013-2021 GitHub Inc.
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the

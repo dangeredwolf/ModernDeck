@@ -29,7 +29,7 @@
 
 	"win": {
 		"icon": "build/icons/icon.ico",
-		"legalTrademarks": "Copyright 2014-2020 dangered wolf, released under the MIT license",
+		"legalTrademarks": "Copyright 2014-2021 dangered wolf, released under the MIT license",
 		"publish": [
 			"github"
 		],
@@ -97,7 +97,8 @@
 			{
 				"target": "dmg",
 				"arch": [
-					"x64"
+					"x64",
+					"arm64"
 				]
 			},
 			{
@@ -108,13 +109,20 @@
 			{
 				"target": "zip",
 				"arch": [
-					"x64"
+					"x64",
+					"arm64"
 				]
 			}
 		]
 	},
 	"dmg": {
-		"background": "build/dmg/background.png",
+		"background": "build/dmg/background@2x.png",
+		"iconSize": 120,
+		"window": {
+			"width": 540,
+			"height": 380
+		},
+		"format": "ULFO",
 		"title": "ModernDeck"
 	},
 	"mas": {
