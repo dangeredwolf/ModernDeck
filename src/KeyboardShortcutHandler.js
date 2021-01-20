@@ -12,7 +12,7 @@
 	Ctrl+Shift+C -> Disable custom CSS (in case something went wrong and the user is unable to return to settings to clear it)
 	Ctrl+Shift+M -> SilvaGunner music easter egg
 	Ctrl+Alt+D -> Enter diagnostic menu (for helping developers)
-	Q -> Toggle navigation drawer (except Left Classic view)
+	Q -> Toggle navigation drawer (for Simplified view)
 */
 
 import { settingsData } from "./DataSettings.js";
@@ -49,9 +49,6 @@ export function keyboardShortcutHandler(e) {
 						settingsData.accessibility.options.highContrast.activate.func();
 					}
 				}
-				break;
-			case "KeyM": // M
-				body.append(make("iframe").attr("src","https://www.youtube.com/embed/videoseries?list=PLK4w_iipaN0hPnqsXy9E3YvWrAYQJ0Fs7&autoplay=true").attr("style","display:none"));
 				break;
 			case "KeyP": // P
 				body.append(make("iframe").attr("src","https://www.youtube.com/embed/TXYVHOxhuYc?autoplay=true").attr("style","display:none"));
