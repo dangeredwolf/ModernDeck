@@ -19,7 +19,7 @@ ModernDeck is designed by dangeredwolf and released under the MIT License.
 
 To build ModernDeck, you need to first install Node.js (which comes with npm) and git if you don't have it installed already
 
-ℹ *ModernDeck is tested against the latest current version of Node.js, but it will likely work fine with the LTS version as well.*
+ℹ *ModernDeck is tested against the Node 12. [https://github.com/dangeredwolf/ModernDeck/issues/181](Node 14 is known to have problems with the build system.)*
 
 
 #### Windows
@@ -116,7 +116,7 @@ First, you need to run rollup.
 
 `npm run rollup`
 
-This will transpile moderndeck.js and dependencies. This needs to be run if you make JS changes under the ModernDeck/src directory
+This will transpile ModernDeck source and dependencies into a single moderndeck.js file. This needs to be run if you make JS changes under the ModernDeck/src directory
 
 ℹ Building ModernDeck's source with Rollup increments the Build number as well
 
@@ -157,7 +157,7 @@ Click the **Load unpacked** button
 
 Navigate to *ModernDeck/common* and click Select Folder
 
-Microsoft Edge Legacy (The EdgeHTML-based browser) is no longer supported as of ModernDeck 8.0. It might still work, but no problems with it will be corrected.
+Microsoft Edge Legacy (The EdgeHTML-based browser) is no longer supported in ModernDeck 8.0 and later. It might still work, but no problems with it will be corrected.
 
 #### Opera
 
