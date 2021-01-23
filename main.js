@@ -335,6 +335,7 @@ function makeLoginWindow(url,teams) {
 			nodeIntegration: false
 		},
 		parent:mainWindow || null,
+		modal:true,
 		autoHideMenuBar:true
 	});
 
@@ -371,13 +372,13 @@ function makeLoginWindow(url,teams) {
 			return;
 		}
 
-		if (url.indexOf("twitter.com/logout") >= 0 || url.indexOf("twitter.com/login") >= 0 || teams) {
+		if (url.indexOf("twitter.com/logout") >= 0 || url.indexOf("twitter.com/login") >= 0 || url.indexOf("twitter.com/account/login_verification") >= 0 || teams) {
 			return;
 		}
 
-		if (url.indexOf("twitter.com/account") >= 0 || url.indexOf("twitter.com/signup") >= 0) {
-			shell.openExternal(url);
+		if (url.indexOf("twitter.com/account") >= 0 || url.indexOf("twitter.com/signup") >= 0 || url.indexOf("twitter.com/signup") >= 0) {
 			event.preventDefault();
+			shell.openExternal(url);
 			return;
 		}
 
@@ -403,6 +404,14 @@ function makeLoginWindow(url,teams) {
 			return;
 		}
 
+		if (url.indexOf("/i/flow/signup") >= 0) {
+			event.preventDefault();
+			loginWindow.webContents.goBack();
+			const {shell} = electron;
+			shell.openExternal(url);
+			return;
+		}
+
 		if (url.indexOf("twitter.com/logout") >= 0 || url.indexOf("twitter.com/login") >= 0) {
 			return;
 		}
@@ -414,6 +423,7 @@ function makeLoginWindow(url,teams) {
 
 	loginWindow.webContents.on("new-window", (event, url) => {
 		const {shell} = electron;
+		event.preventDefault();
 		shell.openExternal(url);
 	});
 
