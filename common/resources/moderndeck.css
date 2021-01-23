@@ -113,7 +113,7 @@ body {
 
 @keyframes alert {
 	0% {opacity:0;transform:scale(1.25,1.25)}
-	50% {opacity:1;transform:scale(0.97,0.97)}
+	50% {opacity:1}
 	100% {opacity:1;transform:scale(1,1)}
 }
 
@@ -2802,7 +2802,7 @@ html:not(.mtd-classic-nav) .attach-compose-buttons .tweet-button {
 }
 
 .mdl-header-title {
-	font-size:19px;
+	font-size: 20px;
 	text-align:left;
 	margin-top:0;
 	z-index:6;
@@ -2810,7 +2810,7 @@ html:not(.mtd-classic-nav) .attach-compose-buttons .tweet-button {
 	width:100%;
 	padding-top:10px;
 	pointer-events:none;
-	font-weight:700
+	font-weight:700;
 }
 
 #settings-modal .mdl-header-title {
@@ -4664,10 +4664,10 @@ input[type="checkbox"]:active {
 	text-align:left;
 	display:inline;
 	padding-left:32px;
-	font-weight:500;
+	font-weight: 700;
 	text-overflow:ellipsis;
 	height:50px;
-	white-space:nowrap
+	white-space:nowrap;
 }
 
 .hide-condensed>.column-heading {
@@ -9196,5 +9196,5 @@ div.drawer[data-drawer="compose"] {
 }
 
 .mtd-alert,.mdl.s-fluid-height,.mdl.s-fluid:not(.prf) {
-	animation:alert .5s cubic-bezier(.11,1,.21,1)!important;
+	animation:alert .4s cubic-bezier(.11,1,.21,1)!important;
 }

@@ -19,6 +19,7 @@ import { _welcomeData } from "./DataWelcome.js";
 import { debugWelcome, UIWelcome } from "./UIWelcome.js";
 import { initGifPanel, checkGifEligibility } from "./UIGifPicker.js";
 import { openSettings } from "./UISettings.js";
+import { UISettings } from "./Settings/UISettings.js";
 import { UINavDrawer } from "./UINavDrawer.js";
 import { FunctionPatcher } from "./FunctionPatcher.js";
 import { LanguageFunctionPatcher } from "./LanguageFunctionPatcher.js";
