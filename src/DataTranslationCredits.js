@@ -51,6 +51,7 @@ TAKAHASHI Shuuji<br>
 <a href="https://twitter.com/Nintenloup_Wolf" rel="user" target="_blank">Nintenloup</a><br>
 <a href="https://twitter.com/robot275" rel="user" target="_blank">Robot275</a><br>
 <a href="https://twitter.com/ShadyFennec" rel="user" target="_blank">ShadyFennec</a><br>
+<a href="https://twitter.com/Yakonche" rel="user" target="_blank">Yakonche</a><br>
 
 <br><b>日本語</b><br>
 <a href="https://twitter.com/hideki_0403" rel="user" target="_blank">ゆきねこ (hideki_0403)</a><br>
@@ -94,6 +95,12 @@ Chef! / chefwireframe<br>
 
 <br><b>සිංහල</b><br>
 <a href="https://twitter.com/HelaBasa" rel="user" target="_blank">Store (HelaBasa)</a><br>
+
+<br><b>Slovenščina</b><br>
+<a href="https://twitter.com/LeoTheFolf" rel="user" target="_blank">Leo</a><br>
+
+
 <br>
 <br>
+
 `
