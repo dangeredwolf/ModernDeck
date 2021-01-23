@@ -32,7 +32,7 @@ export function injectFonts() {
 
 	$(document.head).append(make("style").html(
 		fontParseHelper({family:"MD",name:"Icon/ModernDeckVectors"}) +
-		fontParseHelper({family:"Material",name:"Icon/MaterialIcons"}) +
+		fontParseHelper({family:"Material Icons",name:"Icon/MaterialIcons"}) +
 
 		/* Roboto Family */
 		fontParseHelper({family:"Roboto",name:"Roboto/400-cyrillicext",range:"U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F"}) +

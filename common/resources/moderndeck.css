@@ -6225,7 +6225,7 @@ label[for="account-safeguard-checkbox"] {
 
 #account-safeguard-checkbox:before {
 	content:"\e835";
-	font-family:Material;
+	font-family:"Material Icons";
 	color:var(--rootWhiteColor)
 }
 
@@ -6341,7 +6341,7 @@ p[lang="yi"] a[rel="hashtag"],p[lang="yi"] a[rel="user"]
 
 .prf-actions .action-text:after {
 	font-size:28px;
-	font-family:Material;
+	font-family:"Material Icons";
 	color:var(--rootWhiteColor)
 }
 
@@ -8405,7 +8405,7 @@ label.checkbox::selection,label.control-label::selection {
 .dropdown-menu a[data-action]:before,.dropdown-menu-url-item:before {
 	height:24px;
 	width:24px;
-	font-family:Material;
+	font-family:"Material Icons";
 	font-size:22px;
 	vertical-align:middle;
 	line-height:28px;

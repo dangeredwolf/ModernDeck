@@ -33,6 +33,8 @@ import i18nData from "./DataI18n.js";
 window.i18nData = i18nData;
 window.AutoUpdateController = AutoUpdateController;
 
+window.UISettings = UISettings;
+
 import { isStylesheetExtensionEnabled, enableStylesheetExtension, disableStylesheetExtension, enableCustomStylesheetExtension } from "./StylesheetExtensions.js";
 
 window.getPref = getPref;

@@ -33,7 +33,7 @@ html:not(.mtd-app) .windowcontrols, .mtd-app-mac .windowcontrols {
 	line-height:0;
 	top:-13px;
 	opacity:0.8;
-	font-family:Material;
+	font-family:"Material Icons";
 	font-weight:600;
 	-webkit-appearance:none;
 	color:var(--rootWhiteColor)!important;

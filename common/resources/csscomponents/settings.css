@@ -5,6 +5,8 @@
 	Released under the MIT License
 */
 
+/* stylelint-disable selector-type-no-unknown */
+
 :root {
 	--settingsTabWidth:170px
 }
@@ -715,4 +717,22 @@ html body .mtd-settings-subpanel button {
 	text-align:right;
 	margin-top:12px;
 	padding:7px;
+}
+
+.mtd-settings.mtd-settings-new {
+	width:800px!important
+}
+
+.mtd-settings-list {
+	width:300px;
+	position:absolute;
+	left:0;
+	top:0;
+	bottom:0;
+	border-right:2px solid #eee
+}
+
+html {
+	--mdc-typography-subtitle1-font-size: 16px
+	--mdc-typography-body2-font-size: 12px!important;
 }

@@ -350,7 +350,7 @@ body
 }
 
 html,body:not(.signin-sheet-now-present) {
-	background:var(--primaryColor)
+	background: var(--primaryColor)!important;
 }
 
 .prf-actions .js-follow-button

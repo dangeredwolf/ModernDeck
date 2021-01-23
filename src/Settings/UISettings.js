@@ -5,6 +5,9 @@
 	Released under the MIT License
 */
 
+import { UIModal } from "./../UIModal.js";
+import { make } from "./../Utils.js";
+
 import "@material/mwc-list/mwc-list-item.js";
 import "@material/mwc-list/mwc-list.js";
 import "@material/mwc-icon";
@@ -18,39 +21,35 @@ export class UISettings extends UIModal {
 
 		this.listColumn = make("div").addClass("mtd-settings-list").html(
 			`<mwc-list>
-				<mwc-list-item graphic="avatar">
-					<span>Avatar graphic</span>
+				<mwc-list-item graphic="avatar" twoline>
+					<span>Test</span>
 					<mwc-icon slot="graphic">folder</mwc-icon>
+					<span slot="secondary">Some test settings lorem ipsum</span>
 				</mwc-list-item>
-				<mwc-list-item graphic="icon">
-					<span>Icon graphic</span>
+				<mwc-list-item graphic="avatar" twoline>
+					<span>Test</span>
 					<mwc-icon slot="graphic">folder</mwc-icon>
+					<span slot="secondary">Some test settings lorem ipsum</span>
 				</mwc-list-item>
-				<mwc-list-item graphic="medium">
-					<span>medium graphic</span>
+				<mwc-list-item graphic="avatar" twoline>
+					<span>Test</span>
 					<mwc-icon slot="graphic">folder</mwc-icon>
+					<span slot="secondary">Some test settings lorem ipsum</span>
 				</mwc-list-item>
-				<mwc-list-item graphic="large">
-					<span>large graphic</span>
+				<mwc-list-item graphic="avatar" twoline>
+					<span>Test</span>
 					<mwc-icon slot="graphic">folder</mwc-icon>
+					<span slot="secondary">Some test settings lorem ipsum</span>
 				</mwc-list-item>
 			</mwc-list>`
 		)
-		this.alertTitle = make("h2").addClass("mtd-alert-title").html(obj.title || I18n("ModernDeck"));
-		this.alertBody = make("p").addClass("mtd-alert-body").html(obj.message || I18n("Alert"));
+		this.alertTitle = make("h2").addClass("mtd-alert-title").html(I18n("ModernDeck"));
+		this.alertBody = make("p").addClass("mtd-alert-body").html(I18n("Alert"));
 		this.alertButtonContainer = make("div").addClass("mtd-alert-button-container");
 
-		this.alertButton = make("button").addClass("btn-primary btn mtd-alert-button").html(obj.buttonText || I18n("OK"));
+		this.alertButton = make("button").addClass("btn-primary btn mtd-alert-button").html(I18n("OK"));
 
 		this.alertButtonContainer.append(this.alertButton);
-
-		if (exists(obj.button2Text) || obj.type === "confirm") {
-			this.alertButton2 = make("button").addClass("btn-primary btn mtd-alert-button mtd-alert-button-secondary").html(obj.button2Text || I18n("Cancel"));
-			this.alertButtonContainer.append(this.alertButton2);
-			this.alertButton2.click(obj.button2Click || mtdPrepareWindows);
-		}
-
-		this.alertButton.click(obj.button1Click || mtdPrepareWindows);
 
 		this.element.append(this.listColumn);
 
@@ -58,6 +57,6 @@ export class UISettings extends UIModal {
 	}
 
 	display(page) {
-		super();
+		super.display();
 	}
 }
