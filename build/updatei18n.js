@@ -34,7 +34,7 @@ let resultsMain = path.format({
 let buildFile = fs.readFileSync(i18n) + "\n" + fs.readFileSync(i18nMD) + "";
 let buildFileMain = fs.readFileSync(i18nMain) + "";
 
-let langMap = ["src","af","bg","ca","zh_CN","zh_TW","hr","cs","da","nl","en","en_CA","en_GB","en_US","et","fi","fr","fr_CA","de","el","hi","hu","it","ja","ko","mi","no","pl","pt","pt_BR","ro","ru","sr","es","es_AR","es_419","es_US","sv","tr","uk","vi","eo","gd","si"];
+let langMap = ["src","af","bg","ca","zh_CN","zh_TW","hr","cs","da","nl","en","en_CA","en_GB","en_US","et","fi","fr","fr_CA","de","el","hi","hu","it","ja","ko","mi","no","pl","pt","pt_BR","ro","ru","sr","es","es_AR","es_419","es_US","sv","tr","uk","vi","eo","gd","si","sl"];
 
 function processFile(file) {
 	let newObj = {};
