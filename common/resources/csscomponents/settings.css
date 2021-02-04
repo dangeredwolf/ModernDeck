@@ -240,10 +240,11 @@
 }
 
 .mtd-settings-subpanel label {
-	display:inline-block;
+	display: inline-block;
 	margin-bottom:0;
 	padding-top:14px;
 	padding-left:0;
+	/* position: absolute; */
 }
 
 .mtd-settings-subpanel label.control-label {
@@ -347,22 +348,30 @@
 
 .mtd-settings-option-slider .mtd-slider-minimum,.mtd-settings-option-slider .mtd-slider-maximum {
 	float:right!important;
-	padding-left:8px!important;
-	padding-top:17px!important
+	margin-left: 8px!important;
+	padding-top:17px!important;
+	display: block;
+	position: absolute;
+}
+
+.mtd-settings-option-slider .mtd-slider-minimum {
+	margin-top:48px
 }
 
 .mtd-settings-option-slider .mtd-slider-maximum  {
-	margin-top:48px
+	margin-top:48px;
+	margin-left:440px!important
 }
 
 .mtd-settings-option-slider input[type="range"] {
 	-webkit-appearance:none;
 	width:370px;
-	float:right;
+	float: left;
 	border-radius:2px;
 	padding:0;
 	padding-top:24px;
-	height:1px
+	height:1px;
+	margin-left: 60px;
 }
 
 .mtd-settings-option-slider input[type="range"]::-webkit-slider-thumb {
@@ -714,5 +723,5 @@ html body .mtd-settings-subpanel button {
 	right:20px;
 	text-align:right;
 	margin-top:12px;
-	padding:7px;
+	padding:7px
 }

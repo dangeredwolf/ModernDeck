@@ -1,7 +1,7 @@
 /*
 	UILanguagePicker.js
 
-	Copyright (c) 2014-2020 dangered wolf, et al
+	Copyright (c) 2014-2021 dangered wolf, et al
 	Released under the MIT License
 */
 
@@ -46,15 +46,17 @@ export class UILanguagePicker extends UIModal {
 			make("option").val("ko").html("한국어"),
 			make("option").val("hr").html("Hrvatski"),
 			make("option").val("it").html("italiano"),
+			make("option").val("zh_CN").html("简体中文"),
 			make("option").val("ja").html("日本語"),
 			make("option").val("no").html("norsk"),
 			make("option").val("pl").html("Polskie"),
 			make("option").val("pt_BR").html("Português (Brasil)"),
 			make("option").val("ru").html("русский"),
+			make("option").val("sl").html("Slovenščina"),
 			make("option").val("si").html("සිංහල"),
-			make("option").val("zh_CN").html("简体中文")
+			make("option").val("uk").html("Українська")
 		).change(() => {
-			this.alertTitle.html("<i class='material-icon'>language</i> " + (languageData.Language[this.selectLanguage.val()] || languageData.Language[this.selectLanguage.val().substr(0,2)] || "broken"));
+			this.alertTitle.html("<i class='material-icon'>language</i> " + (languageData.Language[this.selectLanguage.val()] || languageData.Language[this.selectLanguage.val().substr(0,2)] || "Language"));
 
 			this.hasMadeChange = true;
 

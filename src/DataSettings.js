@@ -177,7 +177,6 @@ export let settingsData = {
 					Roboto:{value:"Roboto",text:"Roboto"},
 					RobotoCondensed:{value:"RobotoCondensed",text:"Roboto Condensed"},
 					RobotoSlab:{value:"RobotoSlab",text:"Roboto Slab"},
-					RobotoMono:{value:"RobotoMono",text:"Roboto Mono"},
 					"Noto Sans CJK":{value:"Noto Sans CJK",text:"Noto Sans"},
 					OpenSans:{value:"OpenSans",text:"Open Sans"},
 					Lato:{value:"Lato",text:"Lato"},
@@ -187,6 +186,11 @@ export let settingsData = {
 				activate:{
 					func: (opt) => {
 						html.removeClass("mtd-linux-system-font");
+
+						if (opt === "RobotoMono") {
+							setPref("mtd_selectedfont", "Roboto")
+							opt = "Roboto";
+						}
 
 						if (opt === "SystemUI") {
 							if (navigator.userAgent.match("Windows NT")) {

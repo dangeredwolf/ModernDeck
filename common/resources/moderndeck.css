@@ -2209,11 +2209,11 @@ a .column-title-back .icon:after {
 
 .app-nav-link i {
 	padding-left:17px;
-	margin-right:13px;
+	margin-right:13px
 }
 
 .app-nav-link i.icon-plus {
-	padding-left:18px;
+	padding-left:18px
 }
 
 .app-nav-tab {
@@ -2249,7 +2249,7 @@ a .column-title-back .icon:after {
 }
 
 .mtd-classic-nav:not(.mtd-app-mac) .js-hide-drawer.tweet-button {
-	margin-top:11px;
+	margin-top:11px
 }
 
 .js-hide-drawer[data-title="Accounts"] {
@@ -2286,7 +2286,7 @@ a .column-title-back .icon:after {
 	z-index:5;
 	transition:all 0.2s var(--animationTiming);
 	-webkit-app-region:no-drag;
-	will-change:margin-left, margin-top, width, border-radius;
+	will-change:margin-left, margin-top, width, border-radius
 }
 
 .js-hide-drawer.is-hidden {
@@ -2320,7 +2320,7 @@ a .column-title-back .icon:after {
 }
 
 .mtd-app-mac .tweet-button:not(.is-hidden):not(.js-hide-drawer) {
-	margin-top:52px;
+	margin-top:52px
 }
 
 .tweet-button>i:after {
@@ -2353,7 +2353,7 @@ html:not(.mtd-classic-nav) .attach-compose-buttons .tweet-button {
 	margin-top:-65px;
 	margin-left:-5px;
 	cursor:pointer;
-	width:calc(var(--composeWidth) + var(--verticalHeadWidth));
+	width:calc(var(--composeWidth) + var(--verticalHeadWidth))
 }
 
 .attach-compose-buttons .icon-compose-dm {
@@ -5563,7 +5563,7 @@ button.mtd-no-transform-case {
 	width:65px;
 	height:65px;
 	margin-top:-48px;
-	margin-left:-30px;
+	margin-left:-20px;
 	transform:scale(1);
 	transition:0.07s all,.08s margin;
 	opacity:1
@@ -5585,7 +5585,7 @@ button.mtd-no-transform-case {
 	height:30px;
 	position:absolute;
 	margin-top:-60px;
-	margin-left:5px;
+	margin-left:15px;
 	border-radius:33px;
 	z-index:5;
 	transform:scale(.5);
@@ -6732,7 +6732,7 @@ li.padding-axl.flex.flex-row.flex-align--center .account-summary-text>a.account-
 }
 
 .controls {
-	margin-left: 120px;
+	margin-left:120px
 }
 
 .icon-info.icon-large {
@@ -6792,7 +6792,7 @@ li.padding-axl.flex.flex-row.flex-align--center .account-summary-text>a.account-
 }
 
 .js-message-detail .tweet-body {
-	padding-left:calc(var(--avatarSize) + 6px);
+	padding-left:calc(var(--avatarSize) + 6px)
 }
 
 .microsoft-logo:after {
@@ -6829,7 +6829,7 @@ li.padding-axl.flex.flex-row.flex-align--center .account-summary-text>a.account-
 }
 
 .tweet-message .tweet-header {
-	height:50px;
+	height:50px
 }
 
 .quoted-tweet .tweet-header {
@@ -8210,7 +8210,7 @@ li.padding-axl.flex.flex-row.flex-align--center .fullname {
 .mtd-app:not(.mtd-maximized) .column-navigator {
 	margin-top:40px;
 	-webkit-app-region:no-drag;
-	left:0!important;
+	left:0!important
 }
 
 html:not(.mtd-app-mac) .column-navigator {
@@ -8263,11 +8263,11 @@ html.mtd-classic-nav .column-navigator {
 }
 
 .mtd-app:not(.mtd-maximized):not(.mtd-app-mac) .app-search-fake {
-	margin-top:0px!important;
+	margin-top:0px!important
 }
 
 html:not(.mtd-classic-nav):not(.mtd-app-mac) .hide-detail-view-inline .app-search-fake {
-	top:40px;
+	top:40px
 }
 
 .mtd-app-mac .app-search-fake {
@@ -8386,7 +8386,7 @@ label.checkbox::selection,label.control-label::selection {
 	width:77%;
 	float:left;
 	margin-top:-24px;
-	margin-left:calc(var(--avatarSize) + 8px);
+	margin-left:calc(var(--avatarSize) + 8px)
 }
 
 .message-stream-item .tweet-actions>li {
@@ -8435,12 +8435,12 @@ footer>.js-tweet-stats>.tweet-stats:not(.js-stats-list) {
 .btn-primary,.Button--primary:not(.tweet-button):not(.action-text):not(.more-tweets-btn):not(.js-add-column):not(.js-spinner-button) {
 	float:none;
 	background:var(--secondaryColor)!important;
-	color: var(--rootWhiteColor);
+	color:var(--rootWhiteColor);
 	box-shadow:0 3px 7px var(--composeShadow);
 	border-radius:4px;
 	transition:background 0.2s var(--animationTiming),transform 0.25s var(--animationTiming)!important;
 	margin:5px 5px 5px 5px;
-	padding:7px 12px 7px 12px;
+	padding:7px 12px 7px 12px
 }
 
 /* .btn-primary:hover,.Button--primary:not(.tweet-button):not(.action-text):not(.more-tweets-btn):not(.js-add-column):not(.js-spinner-button):hover {
@@ -8982,7 +8982,7 @@ a {
 	border-radius:2px;
 	min-height:525px;
 	max-height:707px;
-	-webkit-app-region:no-drag;
+	-webkit-app-region:no-drag
 }
 
 .prf-stats>li:nth-child(2) {
@@ -9079,15 +9079,15 @@ a {
 }
 
 button.js-add-filter {
-	margin-left: -30px;
-	margin-top: -13px;
-	background: var(--redDefault)!important;
-	border-radius: 33px;
-	padding: 12px;
+	margin-left:-30px;
+	margin-top:-13px;
+	background:var(--redDefault)!important;
+	border-radius:33px;
+	padding:12px
 }
 
 button.js-add-filter:active,button.js-add-filter:focus {
-	background:var(--redHover)!important;
+	background:var(--redHover)!important
 }
 
 .mtd-app .mtd-app-drag-handle {
@@ -9160,4 +9160,8 @@ div.drawer[data-drawer="compose"] {
 
 .mtd-classic-nav.mtd-app div.drawer[data-drawer="compose"] {
 	top:-40px
+}
+
+.btn[data-action="manageContributors"] {
+	color:var(--rootWhiteColor)!important
 }

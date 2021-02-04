@@ -1,7 +1,7 @@
 /*
 	UIWelcome.js
 
-	Copyright (c) 2014-2020 dangered wolf, et al
+	Copyright (c) 2014-2021 dangered wolf, et al
 	Released under the MIT License
 */
 
@@ -50,7 +50,7 @@ export class UIWelcome extends UIModal {
 		},0);
 		$(".app-content,.app-header").remove();
 
-		$(".application").attr("style",`background-image:url(${mtdBaseURL}resources/img/bg1.jpg)`)
+		$(".application").attr("style",`background-image:url(${mtdBaseURL}resources/img/bg1.webp)`)
 
 		if (window.enterpriseConfig.customLoginImage) {
 			if (window.enterpriseConfig.customLoginImage.match(/https:\/\//gm) !== null) {
