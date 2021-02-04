@@ -71,5 +71,5 @@ export function getVersionText() {
 }
 
 export function getProductName() {
-	return isEnterprise() ? "ModernDeck Enterprise" : "ModernDeck";
+	return isEnterprise() ? "ModernDeck LTS" : "ModernDeck";
 }

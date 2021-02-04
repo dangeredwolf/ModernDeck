@@ -245,7 +245,7 @@
 	display:inline-block;
 	margin-bottom:0;
 	padding-top:14px;
-	padding-left:0;
+	padding-left:0
 }
 
 .mtd-settings-subpanel label.control-label {
@@ -400,7 +400,7 @@
 .mtd-settings-option-button .control-label b {
 	font-size:16px;
 	width:300px;
-	margin-left:10px;
+	margin-left:10px
 }
 
 .mtd-settings-option-button {
@@ -474,7 +474,7 @@
 }
 
 .mtd-app-mac .mtd-version-title {
-	margin-left:80px;
+	margin-left:80px
 }
 
 .mtd-patron-info {
@@ -668,7 +668,7 @@ html body .mtd-settings-subpanel button {
 }
 
 #language b {
-	margin-left:0;
+	margin-left:0
 }
 
 #global_filter_settings .control-group {
@@ -716,15 +716,19 @@ html body .mtd-settings-subpanel button {
 	right:20px;
 	text-align:right;
 	margin-top:12px;
-	padding:7px;
+	padding:7px
+}
+
+.mtd-settings-new {
+	--settingsSidebarWidth:280px
 }
 
 .mtd-settings.mtd-settings-new {
-	width:800px!important
+	width:750px!important
 }
 
 .mtd-settings-list {
-	width:300px;
+	width:var(--settingsSidebarWidth);
 	position:absolute;
 	left:0;
 	top:0;
@@ -732,7 +736,18 @@ html body .mtd-settings-subpanel button {
 	border-right:2px solid #eee
 }
 
-html {
-	--mdc-typography-subtitle1-font-size: 16px
-	--mdc-typography-body2-font-size: 12px!important;
+mwc-list {
+	--mdc-typography-body2-font-size:12px!important;
+	--mdc-typography-subtitle1-font-size:14px!important;
+	--mdc-list-vertical-padding:4px
+}
+
+mwc-list-item {
+	height:54px!important;
+	line-height:1rem;
+	font-weight:500
+}
+
+.mdc-list-item__primary-text {
+	margin-top:-9px!important
 }

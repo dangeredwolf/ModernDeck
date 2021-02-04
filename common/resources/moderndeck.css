@@ -1,7 +1,7 @@
 /*
 	moderndeck.css
 
-	ModernDeck 10.0 [codename Oasis]
+	ModernDeck 10.0 [codename Interstellar]
 	Copyright (c) 2014-2021 dangered wolf, et al
 	Released under the MIT License
 
@@ -30,6 +30,7 @@
 @import "csscomponents/classicnav.css";
 @import "csscomponents/themeeditor.css";
 @import "csscomponents/accessibilityHelper.css";
+@import "csscomponents/3rdparty/waves.css";
 /* stylelint-enable */
 
 :root {

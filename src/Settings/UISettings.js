@@ -7,6 +7,8 @@
 
 import { UIModal } from "./../UIModal.js";
 import { make } from "./../Utils.js";
+import { newSettingsData } from "./SettingsData.js"
+import { generateList } from "./UI/ListGenerator.js"
 
 import "@material/mwc-list/mwc-list-item.js";
 import "@material/mwc-list/mwc-list.js";
@@ -19,7 +21,11 @@ export class UISettings extends UIModal {
 
 		this.element = make("div").addClass("mdl mtd-settings mtd-settings-new");
 
-		this.listColumn = make("div").addClass("mtd-settings-list").html(
+		this.listColumn = make("div").addClass("mtd-settings-list").append(
+			generateList(newSettingsData)
+		);
+
+		/*.html(
 			`<mwc-list>
 				<mwc-list-item graphic="avatar" twoline>
 					<span>Test</span>
@@ -42,7 +48,7 @@ export class UISettings extends UIModal {
 					<span slot="secondary">Some test settings lorem ipsum</span>
 				</mwc-list-item>
 			</mwc-list>`
-		)
+		)*/
 		this.alertTitle = make("h2").addClass("mtd-alert-title").html(I18n("ModernDeck"));
 		this.alertBody = make("p").addClass("mtd-alert-body").html(I18n("Alert"));
 		this.alertButtonContainer = make("div").addClass("mtd-alert-button-container");

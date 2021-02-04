@@ -64,7 +64,7 @@ export function getPref(id, defaul) {
 	if (debugStorageSys)
 		console.log("getPref "+id+"? "+val);
 
-	if (typeof val === "undefined")
+	if (typeof val === "undefined" || val === null)
 		return defaul;
 
 	if (val === "true")
