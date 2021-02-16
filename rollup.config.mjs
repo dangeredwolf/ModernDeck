@@ -36,8 +36,8 @@ export default {
 		hoistTransitiveImports: true
 	},
 	plugins: [
-		resolve(),
 		json(),
+		resolve(),
 		babel({configFile:"./build/babel.json"}),
 		terser({mangle:false})
 	]

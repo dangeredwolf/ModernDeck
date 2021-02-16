@@ -610,16 +610,21 @@ function makeWindow() {
 		mainWindow.webContents.executeJavaScript(`
 			document.getElementsByTagName("html")[0].style = "background: #111!important;";
 			document.getElementsByTagName("body")[0].style = "background: #111!important;";
-			let mtdLoadStyleCSS = \`
-				img.spinner-centered {
-					display:none!important
-				}
-			\`
-			let mtdLoadStyle = document.createElement("style");
-			mtdLoadStyle.appendChild(document.createTextNode(mtdLoadStyleCSS))
-			document.head.appendChild(mtdLoadStyle);
 
-			document.getElementsByClassName("spinner-centered")[0].remove();
+			if (typeof mtdLoadStyleCSS === "undefined") {
+				mtdLoadStyleCSS = \`
+					img.spinner-centered {
+						display:none!important
+					}
+				\`
+				mtdLoadStyle = document.createElement("style");
+				mtdLoadStyle.appendChild(document.createTextNode(mtdLoadStyleCSS))
+				document.head.appendChild(mtdLoadStyle);
+			}
+
+			if (document.getElementsByClassName("spinner-centered")[0]) {
+				document.getElementsByClassName("spinner-centered")[0].remove();
+			}
 
 			document.getElementsByClassName("js-signin-ui block")[0].innerHTML =
 			\`<img class="mtd-loading-logo" src="moderndeck://resources/img/moderndeck.png" style="display: none;">
@@ -647,16 +652,21 @@ function makeWindow() {
 		mainWindow.webContents.executeJavaScript(`
 			document.getElementsByTagName("html")[0].style = "background: #111!important;";
 			document.getElementsByTagName("body")[0].style = "background: #111!important;";
-			let mtdLoadStyleCSS = \`
-				img.spinner-centered {
-					display:none!important
-				}
-			\`
-			let mtdLoadStyle = document.createElement("style");
-			mtdLoadStyle.appendChild(document.createTextNode(mtdLoadStyleCSS))
-			document.head.appendChild(mtdLoadStyle);
 
-			document.getElementsByClassName("spinner-centered")[0].remove();
+			if (typeof mtdLoadStyleCSS === "undefined") {
+				mtdLoadStyleCSS = \`
+					img.spinner-centered {
+						display:none!important
+					}
+				\`
+				mtdLoadStyle = document.createElement("style");
+				mtdLoadStyle.appendChild(document.createTextNode(mtdLoadStyleCSS))
+				document.head.appendChild(mtdLoadStyle);
+			}
+
+			if (document.getElementsByClassName("spinner-centered")[0]) {
+				document.getElementsByClassName("spinner-centered")[0].remove();
+			}
 
 			document.getElementsByClassName("js-signin-ui block")[0].innerHTML =
 			\`<img class="mtd-loading-logo" src="moderndeck://resources/img/moderndeck.png" style="display: none;">
