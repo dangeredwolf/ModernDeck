@@ -69,12 +69,12 @@ function dismissOfflineNotification() {
 
 export function mtdAppFunctions() {
 
-	if (typeof require === "undefined") {return;}
+	if (typeof window["require"] === "undefined") {return;}
 
-	const { remote, ipcRenderer } = require("electron");
+	const { remote, ipcRenderer } = window["require"]("electron");
 
-	const Store = require("electron-store");
-	store = new Store({name:"mtdsettings"});
+	const Store = window["require"]("electron-store");
+	window.store = new Store({name:"mtdsettings"});
 
 
 	// Enable high contrast if system is set to high contrast
@@ -235,7 +235,7 @@ export function mtdAppFunctions() {
 	}
 
 	ipcRenderer.on("context-menu", (event, p) => {
-		const electron = require("electron")
+		const electron = window["require"]("electron")
 		let theMenu = buildContextMenu(p);
 		let menu = electron.remote.menu;
 		let Menu = electron.remote.Menu;

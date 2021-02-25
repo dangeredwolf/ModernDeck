@@ -783,7 +783,7 @@ function mtdAppUpdatePage() {
 
 	$(document).on("mtdUpdateUIChanged", updateUIChanged);
 
-	const { ipcRenderer } = require("electron");
+	const { ipcRenderer } = window.require("electron");
 
 	setTimeout(() => {
 		$(window.tryAgain).click(() => {
@@ -831,7 +831,7 @@ export function makeUpdateCont() {
 
 	updateCont.append(updateIcon,updateh2,updateh3,tryAgain,installButton,restartNow);
 
-	if (typeof require !== "undefined" && !html.hasClass("mtd-winstore") && !html.hasClass("mtd-macappstore")) {
+	if (typeof window.require !== "undefined" && !html.hasClass("mtd-winstore") && !html.hasClass("mtd-macappstore")) {
 		mtdAppUpdatePage();
 	}
 
@@ -862,3 +862,5 @@ function updateFilterPanel(filterList) {
 
 	return filterList;
 }
+
+window.renderTab = renderTab;

@@ -48,8 +48,8 @@ export function diag() {
 
 	log += "\nUser agent: " + navigator.userAgent;
 
-	log += "\n\nBuild Date: " + buildProps.date;
-
+	log += "\n\nBuild date: " + buildProps.date;
+	log += "\nBuild number: " + buildProps.id;
 	log += "\nPackager: " + buildProps.packager;
 
 	log += "\n\nLoaded extensions:\n";
@@ -98,3 +98,5 @@ export function showDiag(str) {
 
 	return panel;
 }
+
+window.diag = diag;

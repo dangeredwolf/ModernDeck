@@ -8,7 +8,7 @@
 import { make } from "./../../Utils.js";
 import { evaluateOrReturn } from "./../Util.js";
 
-import "mustaches";
+import "mustache";
 
 const listItemMustache = `
 <mwc-list-item graphic="avatar" twoline>

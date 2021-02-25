@@ -26,7 +26,9 @@
 		"buildLinux": "electron-builder -l --config electron-builder.json",
 		"buildAndMinify": "npm run rollup && npm run minify",
 		"rollup": "npm run incBuild && rollup -c rollup.config.mjs",
+		"webpack": "npm run incBuild && webpack -c webpack.config.js",
 		"start": "npm run rollup && electron .",
+		"startWebpack": "npm run webpack && electron .",
 		"startNoBuild": "electron .",
 		"inspect": "electron . --inspect",
 		"updatei18n": "node build/updatei18n.js",
@@ -74,6 +76,7 @@
 		"@rollup/plugin-node-resolve": "^8.0.1",
 		"adm-zip": "^0.4.16",
 		"axios": "^0.21.1",
+		"babel-loader": "^8.2.2",
 		"electron": "11.2.0",
 		"electron-builder": "22.9.1",
 		"electron-builder-notarize": "^1.2.0",
@@ -83,7 +86,9 @@
 		"rollup": "^2.35.1",
 		"rollup-plugin-terser": "^6.1.0",
 		"stylelint": "^13.8.0",
-		"stylelint-config-recommended": "^3.0.0"
+		"stylelint-config-recommended": "^3.0.0",
+		"webpack": "^5.22.0",
+		"webpack-cli": "^4.5.0"
 	},
 	"stylelint": {
 		"extends": "stylelint-config-recommended"

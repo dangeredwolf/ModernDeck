@@ -16,10 +16,12 @@ let thePath = path.format({
 
 let buildFile = fs.readFileSync(thePath) + "";
 
+let rollupVersion = require("./package.json")["devDependencies"]["rollup"].replace("^", "")
+
 let buildProps = {
 	id: buildId,
 	date: String(new Date(Date.now())),
-	packager: "Rollup"
+	packager: "Rollup " + rollupVersion
 }
 
 fs.writeFileSync(thePath,"export default " + JSON.stringify(buildProps) + ";")
