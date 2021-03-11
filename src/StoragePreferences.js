@@ -17,8 +17,8 @@ import { settingsData } from "./DataSettings.js";
 export const debugStorageSys = false;
 let store;
 
-if (isApp) {
-	const Store = require('electron-store');
+if (typeof window["require"] !== "undefined") {
+	const Store = window.require('electron-store');
 	store = new Store({name:"mtdsettings"});
 }
 

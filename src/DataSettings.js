@@ -662,7 +662,7 @@ export let settingsData = {
 
 						setPref("mtd_nativetitlebar",true);
 
-						const {ipcRenderer} = require('electron');
+						const {ipcRenderer} = window["require"]("electron");
 						if (!!ipcRenderer)
 							ipcRenderer.send("setNativeTitlebar", true);
 					}
@@ -675,7 +675,7 @@ export let settingsData = {
 
 						setPref("mtd_nativetitlebar",false);
 
-						const {ipcRenderer} = require('electron');
+						const {ipcRenderer} = window["require"]("electron");
 						if (!!ipcRenderer)
 							ipcRenderer.send("setNativeTitlebar", false);
 					}
@@ -720,7 +720,7 @@ export let settingsData = {
 					}
 				},
 				settingsKey:"mtd_nativecontextmenus",
-				default:() => (isApp ? process.platform === "darwin" : false)
+				default:() => (typeof process !== "undefined" ? process.platform === "darwin" : false)
 			}, updateChannel:{
 				title:"{{App update channel}}",
 				type:"dropdown",
@@ -732,7 +732,7 @@ export let settingsData = {
 						setPref("mtd_updatechannel",opt);
 
 						setTimeout(() => {
-							const {ipcRenderer} = require("electron");
+							const {ipcRenderer} = window["require"]("electron");
 							if (!!ipcRenderer) {
 								ipcRenderer.send("changeChannel", opt);
 
@@ -757,19 +757,19 @@ export let settingsData = {
 				type:"checkbox",
 				activate:{
 					func: () => {
-						if (typeof require === "undefined") {
+						if (typeof window["require"] === "undefined") {
 							return;
 						}
-						const {ipcRenderer} = require("electron");
+						const {ipcRenderer} = window["require"]("electron");
 						ipcRenderer.send("enableTray");
 					}
 				},
 				deactivate:{
 					func: () => {
-						if (typeof require === "undefined") {
+						if (typeof window["require"] === "undefined") {
 							return;
 						}
-						const {ipcRenderer} = require("electron");
+						const {ipcRenderer} = window["require"]("electron");
 						ipcRenderer.send("disableTray");
 					}
 				},
@@ -781,19 +781,19 @@ export let settingsData = {
 				type:"checkbox",
 				activate:{
 					func: () => {
-						if (typeof require === "undefined") {
+						if (typeof window["require"] === "undefined") {
 							return;
 						}
-						const {ipcRenderer} = require("electron");
+						const {ipcRenderer} = window["require"]("electron");
 						ipcRenderer.send("enableBackground");
 					}
 				},
 				deactivate:{
 					func: () => {
-						if (typeof require === "undefined") {
+						if (typeof window["require"] === "undefined") {
 							return;
 						}
-						const {ipcRenderer} = require("electron");
+						const {ipcRenderer} = window["require"]("electron");
 						ipcRenderer.send("disableBackground");
 					}
 				},
@@ -855,7 +855,7 @@ export let settingsData = {
 						purgePrefs();
 
 						if (isApp) {
-							const {ipcRenderer} = require('electron');
+							const {ipcRenderer} = window["require"]("electron");
 							ipcRenderer.send('restartApp');
 						} else {
 							window.location.reload();
@@ -871,7 +871,7 @@ export let settingsData = {
 				activate:{
 					func: () => {
 						if (isApp) {
-							const {ipcRenderer} = require('electron');
+							const {ipcRenderer} = window["require"]("electron");
 
 							ipcRenderer.send('destroyEverything');
 						}
@@ -886,10 +886,10 @@ export let settingsData = {
 				type:"button",
 				activate:{
 					func: () => {
-						const app = require("electron").remote;
+						const app = window["require"]("electron").remote;
 						const dialog = app.dialog;
-						const fs = require("fs");
-						const {ipcRenderer} = require('electron');
+						const fs = window["require"]("fs");
+						const {ipcRenderer} = window["require"]("electron");
 
 						let preferences = JSON.stringify(store.store);
 
@@ -916,10 +916,10 @@ export let settingsData = {
 				type:"button",
 				activate:{
 					func: () => {
-						const app = require("electron").remote;
+						const app = window["require"]("electron").remote;
 						const dialog = app.dialog;
-						const fs = require("fs");
-						const {ipcRenderer} = require('electron');
+						const fs = window["require"]("fs");
+						const {ipcRenderer} = window["require"]("electron");
 
 						dialog.showOpenDialog(
 							{ filters: [{ name: I18n("Preferences JSON File"), extensions: ["json"] }] },
@@ -945,10 +945,10 @@ export let settingsData = {
 				type:"button",
 				activate:{
 					func: () => {
-						const app = require("electron").remote;
+						const app = window["require"]("electron").remote;
 						const dialog = app.dialog;
-						const fs = require("fs");
-						const {ipcRenderer} = require('electron');
+						const fs = window["require"]("fs");
+						const {ipcRenderer} = window["require"]("electron");
 
 						dialog.showOpenDialog(
 							{ filters: [{ name: I18n("Tweeten Settings JSON"), extensions: ["json"] }] },

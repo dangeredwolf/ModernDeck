@@ -97,7 +97,7 @@ module.exports = {
 		];
 		return function (context, request, callback) {
 			if (ignoreRequire.indexOf(request) >= 0) {
-				return callback(null, `require("${request}")`);
+				return callback(null, ` typeof require !== "undefined" ? require("${request}") : undefined`);
 			}
 			return callback();
 		};

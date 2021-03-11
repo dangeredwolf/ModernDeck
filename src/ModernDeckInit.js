@@ -61,8 +61,8 @@ import { mtdAppFunctions } from "./AppController.js";
 
 import { attachColumnVisibilityEvents } from "./ColumnVisibility.js";
 
-import * as Sentry from "@sentry/browser";
-import { Integrations } from "@sentry/tracing";
+// import * as Sentry from "@sentry/browser";
+// import { Integrations } from "@sentry/tracing";
 
 window.mtdBaseURL = "https://raw.githubusercontent.com/dangeredwolf/ModernDeck/master/ModernDeck/";
 // Defaults to obtaining assets from GitHub if MTDURLExchange isn't completed properly somehow
@@ -70,7 +70,7 @@ window.mtdBaseURL = "https://raw.githubusercontent.com/dangeredwolf/ModernDeck/m
 let loadEmojiPicker = false;
 
 const forceFeatureFlags = false;
-window.useSentry = true;
+window.useSentry = false;
 
 let replacedLoadingSpinnerNew = false;
 let sendingFeedback = false;
