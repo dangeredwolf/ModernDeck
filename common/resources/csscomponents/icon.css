@@ -410,7 +410,7 @@ span[data-testid="trendMovement"] .icon-pointer-d:before,span[data-testid="trend
 }
 
 .icon-verified:before,.sprite-verified:before,.sprite-verified-mini:before,.Icon--verified:before {
-	content:"\e8e8"
+	content:"\ef76" // e8e8
 }
 
 .icon-blocked:before,.Icon--blocked:before {
@@ -671,7 +671,8 @@ span[data-testid="trendMovement"] .icon-pointer-d:before,span[data-testid="trend
 
 .sprite-verified-mini {
 	width:16px;
-	font-size:1.25rem
+	font-size:1.25rem;
+	margin-top:-0.25em;
 }
 
 .sprite-close {

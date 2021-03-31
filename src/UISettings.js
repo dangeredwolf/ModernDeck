@@ -16,7 +16,7 @@ import { AutoUpdateController } from "./AutoUpdateController.js";
 
 const appendTextVersion = false;
 
-let verTextId = 3;
+let verTextId = 4;
 let verText = "";
 
 let productName = "ModernDeck 10";
@@ -505,6 +505,13 @@ export function openSettings(openMenu, limitedMenu) {
 	for (var key in settingsData) {
 
 		// if set to false (NOT UNDEFINED, this is an optional parameter), skip it
+
+		if (typeof settingsData[key].enabled === "function") {
+			if (settingsData[key].enabled() === false) {
+				continue;
+			}
+		}
+
 		if (settingsData[key].enabled === false || settingsData[key].visible === false) {
 			continue;
 		}
@@ -569,6 +576,9 @@ export function openSettings(openMenu, limitedMenu) {
 					break;
 				case 3:
 					verText = I18n("Developer Version");
+					break;
+				case 4:
+					verText = I18n("Alpha");
 					break;
 			}
 

@@ -1221,7 +1221,7 @@ app.setAsDefaultProtocolClient("moderndeck");
 // Make window when app is ready
 
 app.on("ready", () => {
-	session.defaultSession.cookies.get({}).then(cookies => console.log(cookies))
+	// session.defaultSession.cookies.get({}).then(cookies => console.log(cookies))
 	try {
 		makeWindow();
 		loadEnterpriseConfigMain();
@@ -1395,14 +1395,14 @@ function updateAppTag() {
 
 // OS inverted colour scheme (high contrast) mode changed. We automatically respond to changes for accessibility
 
-// nativeTheme.on("updated", (e,v) => {
-// 	mainWindow.webContents.send("inverted-color-scheme-changed",nativeTheme.shouldUseInvertedColorScheme);
-// 	mainWindow.webContents.send("color-scheme-changed", nativeTheme.shouldUseDarkColors ? "dark" : "light");
-// });
-
-systemPreferences.on("inverted-color-scheme-changed", (e,v) => {
-	mainWindow.webContents.send("inverted-color-scheme-changed",v);
+nativeTheme.on("updated", (e,v) => {
+	mainWindow.webContents.send("inverted-color-scheme-changed",nativeTheme.shouldUseInvertedColorScheme);
+	mainWindow.webContents.send("color-scheme-changed", nativeTheme.shouldUseDarkColors ? "dark" : "light");
 });
+
+// systemPreferences.on("inverted-color-scheme-changed", (e,v) => {
+// 	mainWindow.webContents.send("inverted-color-scheme-changed",v);
+// });
 
 if (process.platform === "darwin") {
 	try {
@@ -1442,7 +1442,7 @@ setTimeout(() => {
 
 		mainWindow.webContents.send(
 			"inverted-color-scheme-changed",
-			systemPreferences.isInvertedColorScheme()//!!nativeTheme.shouldUseInvertedColorScheme
+			!!nativeTheme.shouldUseInvertedColorScheme //systemPreferences.isInvertedColorScheme()
 		);
 	} catch(e) {
 		console.error(e);

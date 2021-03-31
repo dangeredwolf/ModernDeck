@@ -2199,7 +2199,7 @@ a .column-title-back .icon:after {
 	transition:left 0.15s var(--animationTiming),width 0.15s var(--animationTiming),transform 0.15s var(--animationTiming);
 	-webkit-app-region:no-drag;
 	top:0;
-	left:var(--verticalHeadWidth)
+	left:var(--verticalHeadWidth);
 }
 
 .mtd-app .app-content {
@@ -5758,6 +5758,36 @@ button.mtd-no-transform-case {
 	z-index:10
 }
 
+.login-container {
+	background:rgb(17,17,17)!important;
+	opacity:1;
+	transition:opacity 0.5s cubic-bezier(.19,1,.22,1)
+}
+
+@keyframes fadeLoadAnimation {
+	0% {
+		opacity:1
+	}
+
+	100% {
+		opacity:0
+	}
+}
+
+.login-container[style="display: none;"] {
+	opacity:0;
+	background:rgb(17,17,17)!important;
+	display:block!important;
+	animation:fadeLoadAnimation 0.4s forwards;
+	pointer-events:none;
+	top:0;
+	bottom:0;
+	left:0;
+	right:0;
+	position:absolute;
+	z-index:99
+}
+
 .btn-login[type="submit"],.login-container .btn-positive {
 	width:300px;
 	background:var(--secondaryColor)!important;
@@ -8510,11 +8540,10 @@ footer>.js-tweet-stats>.tweet-stats:not(.js-stats-list) {
 
 .popover .search-results-container {
 	overflow-y:auto;
-	position:fixed;
 	bottom:0;
 	top:47px;
 	right:0;
-	width:355px
+	width:355px;
 }
 
 .mtd-app:not(.mtd-app-mac) .popover .search-results-container {
@@ -8560,7 +8589,7 @@ footer>.js-tweet-stats>.tweet-stats:not(.js-stats-list) {
 .app-content[style="transition-duration: 0ms; transform: translateX(270px); margin-right: 270px;"]
  {
 	transform:translateX(var(--composeWidth))!important;
-	margin-right:var(--composeWidth)!important
+	margin-right:var(--composeWidth)!important;
 }
 
 html:not(.mtd-classic-nav) .js-hide-drawer:not(.tweet-button):not([data-title="Accounts"]) {

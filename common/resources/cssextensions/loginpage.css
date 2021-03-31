@@ -179,7 +179,7 @@ select,input {
 	left:0;
 	bottom:0;
 	height:auto;
-	overflow:hidden
+	overflow:hidden;
 }
 
 .form-login h2 {

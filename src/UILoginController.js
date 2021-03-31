@@ -75,7 +75,7 @@ export function checkIfSigninFormIsPresent() {
 			clearInterval(loginInterval);
 		}
 	} else {
-		console.log("Not on signin sheet anymore");
+		// console.log("Not on signin sheet anymore");
 		disableStylesheetExtension("loginpage");
 		html.removeClass("signin-sheet-now-present");
 	}

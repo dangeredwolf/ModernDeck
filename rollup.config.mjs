@@ -41,6 +41,6 @@ export default {
 		json(),
 		resolve(),
 		babel({configFile:"./build/babel.json"}),
-		terser({mangle:false})
+		// terser({mangle:false})
 	]
 };
