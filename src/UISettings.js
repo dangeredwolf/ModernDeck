@@ -504,6 +504,13 @@ export function openSettings(openMenu, limitedMenu) {
 
 	for (var key in settingsData) {
 
+
+		if (typeof settingsData[key].enabled === "function") {
+			if (settingsData[key].enabled() === false) {
+				continue;
+			}
+		}
+
 		// if set to false (NOT UNDEFINED, this is an optional parameter), skip it
 		if (settingsData[key].enabled === false || settingsData[key].visible === false) {
 			continue;
