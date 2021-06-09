@@ -280,6 +280,22 @@ function mtdInit() {
 				</div>
 			</div>
 		</div>`;
+
+		if (document.getElementsByClassName("spinner-centered")[0]) {
+			document.getElementsByClassName("spinner-centered")[0].remove();
+		}
+
+		if (typeof mtdLoadStyleCSS === "undefined") {
+			mtdLoadStyleCSS = `
+				img.spinner-centered {
+					display:none!important
+				}
+			`
+			mtdLoadStyle = document.createElement("style");
+			mtdLoadStyle.appendChild(document.createTextNode(mtdLoadStyleCSS))
+			document.head.appendChild(mtdLoadStyle);
+		}
+
 		replacedLoadingSpinnerNew = true;
 	}
 
