@@ -10,7 +10,6 @@
  */
 
 /* stylelint-disable */
-@import "csscomponents/acolorpicker.css";
 @import "csscomponents/alert.css";
 @import "csscomponents/calendarDropdown.css";
 @import "csscomponents/contextmenu.css";
@@ -9190,4 +9189,34 @@ div.drawer[data-drawer="compose"] {
 
 .btn[data-action="manageContributors"] {
 	color:var(--rootWhiteColor)!important
+}
+
+.login-container {
+	background:rgb(17,17,17)!important;
+	opacity:1;
+	transition:opacity 0.5s cubic-bezier(.19,1,.22,1)
+}
+
+@keyframes fadeLoadAnimation {
+	0% {
+		opacity:1
+	}
+
+	100% {
+		opacity:0
+	}
+}
+
+.login-container[style="display: none;"] {
+	opacity:0;
+	background:rgb(17,17,17)!important;
+	display:block!important;
+	animation:fadeLoadAnimation 0.25s forwards;
+	pointer-events:none;
+	top:0;
+	bottom:0;
+	left:0;
+	right:0;
+	position:absolute;
+	z-index:99
 }
