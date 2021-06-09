@@ -921,6 +921,15 @@ function makeWindow() {
 			},500);
 		});
 
+		// Workaround: If electron doesn't report that data is cleared within 4 seconds, restart anyway.
+		// 4 seconds is plenty of time for it to get it done.
+
+		setTimeout(() => {
+			closeForReal = true;
+			app.relaunch();
+			app.exit();
+		},4000);
+
 
 	});
 
@@ -1297,14 +1306,14 @@ function updateAppTag() {
 
 // OS inverted colour scheme (high contrast) mode changed. We automatically respond to changes for accessibility
 
-// nativeTheme.on("updated", (e,v) => {
-// 	mainWindow.webContents.send("inverted-color-scheme-changed",nativeTheme.shouldUseInvertedColorScheme);
-// 	mainWindow.webContents.send("color-scheme-changed", nativeTheme.shouldUseDarkColors ? "dark" : "light");
-// });
-
-systemPreferences.on("inverted-color-scheme-changed", (e,v) => {
-	mainWindow.webContents.send("inverted-color-scheme-changed",v);
+nativeTheme.on("updated", (e,v) => {
+	mainWindow.webContents.send("inverted-color-scheme-changed",nativeTheme.shouldUseInvertedColorScheme);
+	// mainWindow.webContents.send("color-scheme-changed", nativeTheme.shouldUseDarkColors ? "dark" : "light");
 });
+
+// systemPreferences.on("inverted-color-scheme-changed", (e,v) => {
+// 	mainWindow.webContents.send("inverted-color-scheme-changed",v);
+// });
 
 if (process.platform === "darwin") {
 	try {
@@ -1312,7 +1321,7 @@ if (process.platform === "darwin") {
 			"AppleInterfaceThemeChangedNotification",
 			() => {
 				if (!mainWindow || !mainWindow.webContents) { return }
-				mainWindow.webContents.send("color-scheme-changed", systemPreferences.isDarkMode() ? "dark" : "light");
+				// mainWindow.webContents.send("color-scheme-changed", systemPreferences.isDarkMode() ? "dark" : "light");
 			}
 		)
 	} catch(e) {
@@ -1344,7 +1353,7 @@ setTimeout(() => {
 
 		mainWindow.webContents.send(
 			"inverted-color-scheme-changed",
-			systemPreferences.isInvertedColorScheme()//!!nativeTheme.shouldUseInvertedColorScheme
+			!!nativeTheme.shouldUseInvertedColorScheme
 		);
 	} catch(e) {
 		console.error(e);
