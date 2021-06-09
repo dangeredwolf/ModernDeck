@@ -145,9 +145,9 @@ export let settingsData = {
 							return;
 						}
 
-						for (let i in window.settingsData.themes.options.theme.options) {
-							if (opt !== i)
-								disableStylesheetExtension(i);
+
+						for (let i in window.settingsData.themes.options.themeColor.options) {
+							disableStylesheetExtension(i);
 						}
 
 						enableStylesheetExtension(opt);
