@@ -48,18 +48,18 @@ export class UIWelcome extends UIModal {
 		setTimeout(() => {
 			$("#settings-modal").off("click");
 		},0);
-		$(".app-content,.app-header").remove();
+		// $(".app-content,.app-header").remove();
 
-		$(".application").attr("style",`background-image:url(${mtdBaseURL}resources/img/bg1.webp)`)
-
-		if (window.enterpriseConfig.customLoginImage) {
-			if (window.enterpriseConfig.customLoginImage.match(/https:\/\//gm) !== null) {
-				$(".application").attr("style",`background-image:url(${window.enterpriseConfig.customLoginImage})`)
-			} else {
-				$(".application").attr("style",`background-image:url(moderndeck://background)`)
-			}
-
-		}
+		// $(".application").attr("style",`background-image:url(${mtdBaseURL}resources/img/bg1.webp)`)
+		//
+		// if (window.enterpriseConfig.customLoginImage) {
+		// 	if (window.enterpriseConfig.customLoginImage.match(/https:\/\//gm) !== null) {
+		// 		$(".application").attr("style",`background-image:url(${window.enterpriseConfig.customLoginImage})`)
+		// 	} else {
+		// 		$(".application").attr("style",`background-image:url(moderndeck://background)`)
+		// 	}
+		//
+		// }
 
 		$(".message-banner").attr("style","display: none;");
 
@@ -111,7 +111,7 @@ export class UIWelcome extends UIModal {
 			if (key === "done") {
 				button2.html(I18n("Done")).off("click").click(() => {
 					setPref("mtd_welcomed",true);
-					window.location.reload();
+					// window.location.reload();
 				});
 			}
 
