@@ -1,7 +1,7 @@
 /*
 	moderndeck.css
 
-	ModernDeck 9.0 [codename Oasis]
+	ModernDeck 9.5 [codename Oasis]
 	Copyright (c) 2014-2021 dangered wolf, et al
 	Released under the MIT License
 
@@ -37,6 +37,7 @@
 	--avatarSize:48px;
 	--navDrawerBackground:rgba(100,100,100,.4);
 	--loginBackgroundColor:#263238;
+	--loadingBackground:#111;
 	--lightShadow:rgba(17,17,17,.1);
 	--contextMenuShadow:rgba(0,0,0,.23);
 	--thickerShadow:rgba(0,0,0,.4);
@@ -69,7 +70,24 @@ body,body.signin-sheet-present {
 	-webkit-app-region:drag
 }
 
+body {
+	background:var(--loadingBackground)!important
+}
+
 /* Animation Keyframes */
+
+/* stylelint-disable */
+@keyframes loadingLogo {
+	0% {
+		opacity:0;
+		transform:scale(0.7)
+	}
+	100% {
+		opacity:1;
+		transform:scale(1)
+	}
+}
+/* stylelint-enable */
 
 @keyframes moreTweetsButtonDown {
 	0% {opacity:1;top:-35px}
@@ -273,6 +291,14 @@ body,body.signin-sheet-present {
 	100% {color:#F44336}
 }
 
+.mtd-loading-logo {
+	height:200px;
+	display:block!important;
+	animation:loadingLogo 1s cubic-bezier(.1,1,.1,1);
+	margin-left:-75px;
+	margin-bottom:20px;
+}
+
 .account-remove-check-open .account-remove-check,
 .contributor-row[data-state="confirmRemove"] .contributor-confirm-remove,
 .contributor-row[data-state="settings"] .contributor-settings {
@@ -392,7 +418,7 @@ html.mtd-linux-system-font {
 }
 
 body.scroll-v .spinner-layer {
-	border-color:#26a69a
+	border-color:#fff
 }
 
 .spinner-layer {

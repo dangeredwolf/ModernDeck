@@ -265,7 +265,21 @@ function mtdInit() {
 	console.log("mtdInit");
 
 	if (typeof require === "undefined" && typeof document.getElementsByClassName("js-signin-ui block")[0] !== "undefined" && !replacedLoadingSpinnerNew && !html.hasClass("mtd-disable-css")) {
-		document.getElementsByClassName("js-signin-ui block")[0].innerHTML = '<div class="preloader-wrapper big active"><div class="spinner-layer"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div>';
+		document.getElementsByClassName("js-signin-ui block")[0].innerHTML =
+		`<img class="mtd-loading-logo" src="${mtdBaseURL + "resources/img/moderndeck.svg"}" style="display: none;">
+		<div class="preloader-wrapper big active">
+			<div class="spinner-layer">
+				<div class="circle-clipper left">
+					<div class="circle"></div>
+				</div>
+				<div class="gap-patch">
+					<div class="circle"></div>
+				</div>
+				<div class="circle-clipper right">
+					<div class="circle"></div>
+				</div>
+			</div>
+		</div>`;
 		replacedLoadingSpinnerNew = true;
 	}
 
