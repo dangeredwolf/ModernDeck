@@ -24,7 +24,7 @@ let deletedFiles = 0;
 
 console.log("\n");
 console.log("ModernDeck build.js");
-console.log("Copyright 2019 dangeredwolf, et al");
+console.log("Copyright 2019-2021 dangeredwolf, et al");
 console.log("Released under the MIT license");
 console.log("\n");
 
