@@ -298,6 +298,10 @@ body {
 	margin-bottom:20px;
 }
 
+.block.txt-center.js-signin-ui {
+	margin-left:75px
+}
+
 .account-remove-check-open .account-remove-check,
 .contributor-row[data-state="confirmRemove"] .contributor-confirm-remove,
 .contributor-row[data-state="settings"] .contributor-settings {
@@ -1235,7 +1239,7 @@ button:hover,button:focus,.Button--primary {
 	left:1px;
 	height:100%;
 	margin-top:-25px;
-	width:40px;
+	width:150px;
 	display:block;
 	opacity:0;
 	z-index:3;
@@ -2355,6 +2359,7 @@ a .column-title-back .icon:after {
 	width:26px;
 	height:26px;
 	position:absolute;
+	font-family:"Material Icons";
 	z-index:7;
 	background-size:26px 26px;
 	font-style:normal;
@@ -4806,8 +4811,8 @@ input[type="checkbox"]:active {
 }
 
 .link-clean[href="https://twitter.com/ModernDeck"] .avatar,.js-typeahead-user-item[data-user-id="2927859037"] .avatar,.item-img[href="https://twitter.com/ModernDeck"] .avatar,.account-link[href="https://twitter.com/ModernDeck"] .avatar,.js-account-item[data-account-key="twitter:2927859037"] .avatar,.account-settings-row[data-user-id="2927859037"] .avatar,.avatar[alt="@ModernDeck"] {
-	box-shadow:none!important;
-	border-radius:0!important
+	/* box-shadow:none!important;
+	border-radius:0!important */
 }
 
 .tweet-button span.label {
@@ -6217,7 +6222,7 @@ label[for="account-safeguard-checkbox"] {
 
 #account-safeguard-checkbox:before {
 	content:"\e835";
-	font-family:Material;
+	font-family:"Material Icons";
 	color:var(--rootWhiteColor)
 }
 
@@ -6333,7 +6338,7 @@ p[lang="yi"] a[rel="hashtag"],p[lang="yi"] a[rel="user"]
 
 .prf-actions .action-text:after {
 	font-size:28px;
-	font-family:Material;
+	font-family:"Material Icons";
 	color:var(--rootWhiteColor)
 }
 
@@ -8397,7 +8402,7 @@ label.checkbox::selection,label.control-label::selection {
 .dropdown-menu a[data-action]:before,.dropdown-menu-url-item:before {
 	height:24px;
 	width:24px;
-	font-family:Material;
+	font-family:"Material Icons";
 	font-size:22px;
 	vertical-align:middle;
 	line-height:28px;

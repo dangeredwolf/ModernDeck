@@ -57,8 +57,7 @@
 		"publisherDisplayName": "dangered wolf",
 		"identityName": "53434dangeredwolf.ModernDeck",
 		"artifactName": "ModernDeck_${arch}.${ext}",
-		"applicationId": "ModernDeck",
-		"backgroundColor": "#0078D7"
+		"applicationId": "ModernDeck"
 	},
 	"squirrelWindows": {
 		"artifactName": "ModernDeck_${arch}.${ext}"

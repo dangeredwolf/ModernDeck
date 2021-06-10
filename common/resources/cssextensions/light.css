@@ -344,14 +344,13 @@ input[type="checkbox"][disabled]:before {
 	color:var(--typeaheadColor)!important
 }
 
-.app-navigator .js-hide-drawer,
-body
+.app-navigator .js-hide-drawer
 {
 	background:var(--primaryColor)
 }
 
-html,body:not(.signin-sheet-now-present) {
-	background:var(--primaryColor)
+html,body:not(.signin-sheet-now-present),.application {
+	background:var(--primaryColor)!important
 }
 
 .prf-actions .js-follow-button

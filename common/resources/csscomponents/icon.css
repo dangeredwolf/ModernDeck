@@ -40,11 +40,11 @@ i {
 .sprite-gif:before
 {
 	font-weight:400;
-	font-family:Material
+	font-family:"Material Icons"
 }
 
 .material-icon {
-	font-family:Material;
+	font-family:"Material Icons";
 	font-size:24px;
 	display:inline-block;
 	line-height:1
@@ -211,7 +211,7 @@ a[data-action="undo-retweet"]:before,
 
 .app-nav-tab .icon-user-switch:before,.mtd-nav-drawer .icon-user-switch:before {
 	content:"\e8d3";
-	font-family:Material!important
+	font-family:"Material Icons"!important
 }
 
 .icon-compose-minigrid:before,.Icon--compose-minigrid:before {
@@ -251,14 +251,14 @@ a[data-action="undo-retweet"]:before,
 
 .other-replies:before {
 	font-size:0.75rem;
-	font-family:Material;
+	font-family:"Material Icons";
 	padding-top:4px;
 	margin-top:4px
 }
 
 input[type="checkbox"]:before,.icon-toggle-off:before,.Icon--toggle-off:before {
 	content:"\e835";
-	font-family:Material
+	font-family:"Material Icons"
 }
 
 input[type="checkbox"]:checked:before,.icon-toggle-on:before,.Icon--toggle-on:before {
@@ -267,7 +267,7 @@ input[type="checkbox"]:checked:before,.icon-toggle-on:before,.Icon--toggle-on:be
 
 input[type="radio"]:before {
 	content:"\e836";
-	font-family:Material
+	font-family:"Material Icons"
 }
 
 input[type="radio"]:checked:before {
@@ -302,13 +302,11 @@ input[type="radio"]:checked:before {
 }
 
 .tweet-button .icon-compose:after,.tweet-button .Icon--compose:after,.btn-back:before,.icon-arrow-l:before,.Icon--caretLeft:before {
-	content:"\e5c4";
-	font-family:Material
+	content:"\e5c4"
 }
 
 .icon-arrow-r:before,.Icon--caretRight:before {
-	content:"\e5c8";
-	font-family:Material
+	content:"\e5c8"
 }
 
 .mtd-classic-nav .tweet-button .icon-compose:after {
@@ -397,7 +395,7 @@ span[data-testid="trendMovement"] .icon-pointer-d:before,span[data-testid="trend
 
 .js-send-button:after {
 	content:"\e163";
-	font-family:Material;
+	font-family:"Material Icons";
 	font-size:23px
 }
 
@@ -467,7 +465,7 @@ span[data-testid="trendMovement"] .icon-pointer-d:before,span[data-testid="trend
 
 .recent-search-clear.list-item-last span:before,.icon-clear-timeline:before,.Icon--clear-timeline:before {
 	content:"\e0b8";
-	font-family:Material
+	font-family:"Material Icons"
 }
 
 .icon-custom-timeline:before,.Icon--custom-timeline:before {
@@ -544,14 +542,6 @@ span[data-testid="trendMovement"] .icon-pointer-d:before,span[data-testid="trend
 
 .mtd-icon-arrow-down {
 	transition:transform 0.3s var(--animationTiming)
-}
-
-.mtd-nav-activator:before,.icon-arrow-r-double:before {
-	font-style:normal;
-	font-size:26px;
-	font-weight:400;
-	font-family:Material;
-	content:"\e5d2"
 }
 
 .mtd-nav-button i:before {
@@ -669,7 +659,7 @@ span[data-testid="trendMovement"] .icon-pointer-d:before,span[data-testid="trend
 }
 
 .sprite:before {
-	font-family:Material;
+	font-family:"Material Icons";
 	font-style:normal
 }
 
@@ -731,7 +721,7 @@ span[data-testid="trendMovement"] .icon-pointer-d:before,span[data-testid="trend
 
 .js-compose-stay-open:before {
 	content:"\e898"!important;
-	font-family:Material;
+	font-family:"Material Icons";
 	color:var(--rootWhiteColor)!important
 }
 
@@ -751,7 +741,7 @@ span[data-testid="trendMovement"] .icon-pointer-d:before,span[data-testid="trend
 }
 
 .mtd-emoji-button-open:after {
-	font-family:Material;
+	font-family:"Material Icons";
 	content:"\e24e";
 	font-size:17px
 }
@@ -784,7 +774,7 @@ span[data-testid="trendMovement"] .icon-pointer-d:before,span[data-testid="trend
 
 .js-add-image-description:before {
 	content:"\e873";
-	font-family:Material;
+	font-family:"Material Icons";
 	font-size:32px
 }
 

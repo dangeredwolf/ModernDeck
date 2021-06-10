@@ -285,6 +285,9 @@ function mtdInit() {
 			document.getElementsByClassName("spinner-centered")[0].remove();
 		}
 
+		document.getElementsByTagName("html")[0].style = "background: #111";
+		document.getElementsByTagName("body")[0].style = "background: #111";
+
 		if (typeof mtdLoadStyleCSS === "undefined") {
 			mtdLoadStyleCSS = `
 				img.spinner-centered {

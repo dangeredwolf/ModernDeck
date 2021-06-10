@@ -532,7 +532,7 @@ function makeWindow() {
 		minWidth:375,
 		show:false,
 		backgroundThrottling:true,
-		backgroundColor:"#263238"
+		backgroundColor:"#111"
 	});
 
 	// macOS specific: Don't run from DMG, move to Applications folder.
@@ -588,7 +588,42 @@ function makeWindow() {
 	updateAppTag();
 
 	try {
-		mainWindow.webContents.executeJavaScript(`document.getElementsByClassName("js-signin-ui block")[0].innerHTML = '<div class="preloader-wrapper big active"><div class="spinner-layer"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div>';`)
+		mainWindow.webContents.executeJavaScript(`
+
+			document.getElementsByClassName("js-signin-ui block")[0].innerHTML =
+			\`<img class="mtd-loading-logo" src="moderndeck://resources/img/moderndeck.png" style="display: none;">
+			<div class="preloader-wrapper active">
+				<div class="spinner-layer">
+					<div class="circle-clipper left">
+						<div class="circle"></div>
+					</div>
+					<div class="gap-patch">
+						<div class="circle"></div>
+					</div>
+					<div class="circle-clipper right">
+						<div class="circle"></div>
+					</div>
+				</div>
+			</div>\`;
+
+			if (typeof mtdLoadStyleCSS === "undefined") {
+				mtdLoadStyleCSS = \`
+					img.spinner-centered {
+						display:none!important
+					}
+				\`
+				mtdLoadStyle = document.createElement("style");
+				mtdLoadStyle.appendChild(document.createTextNode(mtdLoadStyleCSS))
+				document.head.appendChild(mtdLoadStyle);
+			}
+
+			if (document.getElementsByClassName("spinner-centered")[0]) {
+				document.getElementsByClassName("spinner-centered")[0].remove();
+			}
+
+			document.getElementsByTagName("html")[0].style = "background: #111;";
+			document.getElementsByTagName("body")[0].style = "background: #111;";
+		`)
 	} catch(e) {
 
 	}
@@ -596,7 +631,41 @@ function makeWindow() {
 
 	mainWindow.webContents.on("dom-ready", (event, url) => {
 
-		mainWindow.webContents.executeJavaScript(`document.getElementsByClassName("js-signin-ui block")[0].innerHTML = '<div class="preloader-wrapper big active"><div class="spinner-layer"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div>';`)
+		mainWindow.webContents.executeJavaScript(`
+			document.getElementsByTagName("html")[0].style = "background: #111!important;";
+			document.getElementsByTagName("body")[0].style = "background: #111!important;";
+
+			if (typeof mtdLoadStyleCSS === "undefined") {
+				mtdLoadStyleCSS = \`
+					img.spinner-centered {
+						display:none!important
+					}
+				\`
+				mtdLoadStyle = document.createElement("style");
+				mtdLoadStyle.appendChild(document.createTextNode(mtdLoadStyleCSS))
+				document.head.appendChild(mtdLoadStyle);
+			}
+
+			if (document.getElementsByClassName("spinner-centered")[0]) {
+				document.getElementsByClassName("spinner-centered")[0].remove();
+			}
+
+			document.getElementsByClassName("js-signin-ui block")[0].innerHTML =
+			\`<img class="mtd-loading-logo" src="moderndeck://resources/img/moderndeck.png" style="display: none;">
+			<div class="preloader-wrapper active">
+				<div class="spinner-layer">
+					<div class="circle-clipper left">
+						<div class="circle"></div>
+					</div>
+					<div class="gap-patch">
+						<div class="circle"></div>
+					</div>
+					<div class="circle-clipper right">
+						<div class="circle"></div>
+					</div>
+				</div>
+			</div>\`;
+		`)
 
 		mainWindow.webContents.executeJavaScript(
 			'\

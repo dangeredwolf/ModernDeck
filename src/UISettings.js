@@ -16,7 +16,7 @@ import { AutoUpdateController } from "./AutoUpdateController.js";
 
 const appendTextVersion = false;
 
-let verTextId = 1;
+let verTextId = 2;
 let verText = "";
 
 let productName = "ModernDeck";
@@ -579,7 +579,7 @@ export function openSettings(openMenu, limitedMenu) {
 					break;
 			}
 
-			let logo = make("i").addClass("mtd-logo icon-moderndeck icon").click(() => {
+			let logo = make("i").addClass("mtd-logo mtd-settings-logo").click(() => {
 				diagClickNumber++;
 				console.log(diagClickNumber);
 				if (diagClickNumber >= 5) {
@@ -593,9 +593,9 @@ export function openSettings(openMenu, limitedMenu) {
 			let logoCont = make("div").addClass("mtd-logo-container");
 
 			if (!isApp) {
-				logoCont.append(
-					make("p").addClass("mtd-check-out-app").html(I18n("Get background notifications, enterprise features, and more with the free <a href='https://moderndeck.org/'>ModernDeck App</a>!"))
-				)
+				// logoCont.append(
+				// 	make("p").addClass("mtd-check-out-app").html(I18n("Get background notifications, enterprise features, and more with the free <a href='https://moderndeck.org/'>ModernDeck App</a>!"))
+				// )
 			} else if (window.enterpriseConfig && window.enterpriseConfig.autoUpdatePolicy === "never") {
 				logoCont.append(
 					make("p").addClass("mtd-check-out-app").html(I18n("Updates are disabled by your organization"))
