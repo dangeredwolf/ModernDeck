@@ -1,6 +1,6 @@
 {
 	"description": {
-		"message": "The most powerful Twitter client for desktop.",
+		"message": "Kõige võimsam Twitter'i klient töölauale.",
 		"description": "Short description for the extension"
 	},
 	"launch": {
@@ -8,7 +8,7 @@
 		"description": "The ModernDeck Launcher button"
 	},
 	"name": {
-		"message": "ModernDeck - Twitter Client for Desktop",
+		"message": "ModernDeck - Twitter'i klient töölauale",
 		"description": "The name of the extension that appears on the Chrome Web Store"
 	},
 	"webstoreDescription": {

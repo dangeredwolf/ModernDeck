@@ -102,6 +102,16 @@ try {
 	fs.copy(path.format({
 		dir:__dirname +  path.sep + ".." + path.sep + "common" + path.sep + "_locales" + path.sep + "es-ES"
 	}), path.format({
+		dir:__dirname +  path.sep + ".." + path.sep + "common" + path.sep + "_locales" + path.sep + "es"
+	}))
+} catch (e) {
+	console.error(e);
+}
+
+try {
+	fs.copy(path.format({
+		dir:__dirname +  path.sep + ".." + path.sep + "common" + path.sep + "_locales" + path.sep + "es-ES"
+	}), path.format({
 		dir:__dirname +  path.sep + ".." + path.sep + "common" + path.sep + "_locales" + path.sep + "es_ES"
 	}))
 } catch (e) {
@@ -117,7 +127,6 @@ try {
 } catch (e) {
 	console.error(e);
 }
-
 try {
 	fs.copy(path.format({
 		dir:__dirname +  path.sep + ".." + path.sep + "common" + path.sep + "_locales" + path.sep + "zh-CN"
