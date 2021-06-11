@@ -6835,7 +6835,7 @@ li.padding-axl.flex.flex-row.flex-align--center .account-summary-text>a.account-
 	padding-left:20px
 }
 
-.prf-header .sprite-verified:before {
+.prf-header .sprite-verified:before,.prf-header .sprite-translator:before {
 	color:inherit
 }
 

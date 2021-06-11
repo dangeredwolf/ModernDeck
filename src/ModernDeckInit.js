@@ -266,7 +266,7 @@ function mtdInit() {
 
 	if (typeof require === "undefined" && typeof document.getElementsByClassName("js-signin-ui block")[0] !== "undefined" && !replacedLoadingSpinnerNew && !html.hasClass("mtd-disable-css")) {
 		document.getElementsByClassName("js-signin-ui block")[0].innerHTML =
-		`<img class="mtd-loading-logo" src="${mtdBaseURL + "resources/img/moderndeck.svg"}" style="display: none;">
+		`<img class="mtd-loading-logo" src="${mtdBaseURL + "sources/img/moderndeck.svg"}" style="display: none;">
 		<div class="preloader-wrapper big active">
 			<div class="spinner-layer">
 				<div class="circle-clipper left">
@@ -685,9 +685,9 @@ function coreInit() {
 	}
 	// append extra scripts
 	head.append(
-		make("script").attr("type", "text/javascript").attr("src", mtdBaseURL + "resources/libraries/emojidata.js"),
-		make("script").attr("type", "text/javascript").attr("src", mtdBaseURL + "resources/libraries/twemoji.min.js"),
-		make("script").attr("type", "text/javascript").attr("src", mtdBaseURL + "resources/libraries/jquery.visible.js")
+		make("script").attr("type", "text/javascript").attr("src", mtdBaseURL + "sources/libraries/emojidata.js"),
+		make("script").attr("type", "text/javascript").attr("src", mtdBaseURL + "sources/libraries/twemoji.min.js"),
+		make("script").attr("type", "text/javascript").attr("src", mtdBaseURL + "sources/libraries/jquery.visible.js")
 	);
 
 	enableCustomStylesheetExtension("i18nCSS",`

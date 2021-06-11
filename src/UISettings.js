@@ -21,10 +21,6 @@ let verText = "";
 
 let productName = "ModernDeck";
 
-if (isEnterprise()) {
-	productName = "ModernDeck for Enterprise"
-}
-
 function internationaliseSettingString(str) {
 	let matches = str.match(/{{.+?}}/g);
 	(matches || []).forEach((i) => {
@@ -831,7 +827,7 @@ export function makeUpdateCont() {
 	let restartNowHtml = I18n("Restart Now");
 
 	if (isEnterprise()) {
-		restartNowHtml = `<img src="moderndeck://resources/img/uac.png">${restartNowHtml}`;
+		restartNowHtml = `<img src="moderndeck://sources/img/uac.png">${restartNowHtml}`;
 	}
 
 	restartNow.html(restartNowHtml);

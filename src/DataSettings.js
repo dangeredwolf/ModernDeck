@@ -546,7 +546,7 @@ export let settingsData = {
 				type:"checkbox",
 				activate:{
 					func: () => {
-						$(document.querySelector("audio")).attr("src",mtdBaseURL + "resources/alert_3.mp3");
+						$(document.querySelector("audio")).attr("src",mtdBaseURL + "sources/alert_3.mp3");
 					}
 				},
 				deactivate:{
@@ -1098,7 +1098,7 @@ export let settingsData = {
 				type:"checkbox",
 				activate:{
 					func: () => {
-						$("link[rel=\"shortcut icon\"]").attr("href",mtdBaseURL + "resources/img/favicon.ico");
+						$("link[rel=\"shortcut icon\"]").attr("href",mtdBaseURL + "sources/img/favicon.ico");
 					}
 				},
 				settingsKey:"mtd_replace_favicon",

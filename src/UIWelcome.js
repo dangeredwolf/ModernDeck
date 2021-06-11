@@ -45,12 +45,9 @@ export class UIWelcome extends UIModal {
 		disableStylesheetExtension("light");
 		enableStylesheetExtension("dark");
 
-		setTimeout(() => {
-			$("#settings-modal").off("click");
-		},0);
 		// $(".app-content,.app-header").remove();
 
-		// $(".application").attr("style",`background-image:url(${mtdBaseURL}resources/img/bg1.webp)`)
+		// $(".application").attr("style",`background-image:url(${mtdBaseURL}sources/img/bg1.webp)`)
 		//
 		// if (window.enterpriseConfig.customLoginImage) {
 		// 	if (window.enterpriseConfig.customLoginImage.match(/https:\/\//gm) !== null) {
@@ -112,6 +109,7 @@ export class UIWelcome extends UIModal {
 				button2.html(I18n("Done")).off("click").click(() => {
 					setPref("mtd_welcomed",true);
 					// window.location.reload();
+					$("#settings-modal").click();
 				});
 			}
 

@@ -14,12 +14,12 @@ console.log("Injecting moderndeck.css");
 
 var injStyles = document.createElement("link");
 injStyles.rel = "stylesheet";
-injStyles.href = browser.extension.getURL("resources/moderndeck.css");
+injStyles.href = browser.extension.getURL("sources/moderndeck.css");
 
 document.head.appendChild(injStyles);
 
 var injectScript2 = document.createElement("script");
-injectScript2.src = browser.extension.getURL("resources/libraries/moduleraid.min.js");
+injectScript2.src = browser.extension.getURL("sources/libraries/moduleraid.min.js");
 injectScript2.type = "text/javascript";
 document.head.appendChild(injectScript2);
 
@@ -33,7 +33,7 @@ injectURL.id = "MTDURLExchange";
 document.head.appendChild(injectURL);
 console.log("injected url exchange with id " + injectURL.id);
 
-injectScript.src = browser.extension.getURL("resources/moderndeck.js");
+injectScript.src = browser.extension.getURL("sources/moderndeck.js");
 
 injectScript.type = "text/javascript";
 document.head.appendChild(injectScript);
