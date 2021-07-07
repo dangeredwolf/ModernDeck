@@ -15,17 +15,20 @@ let timeout = Date.now();
 function scrollStartStop() {
 	var $this = $(this)
 
-	if (Date.now() - lastScrollAt > 150)
-		$this.trigger('scrollstart')
+	if (Date.now() - lastScrollAt > 150) {
+		$this.trigger('scrollstart');
+	}
 
-	lastScrollAt = Date.now()
+	lastScrollAt = Date.now();
 
-	clearTimeout(timeout)
+	clearTimeout(timeout);
 
 	timeout = setTimeout(function() {
 
-	if (Date.now() - lastScrollAt > 149)
-		$this.trigger('scrollend')
+		if (Date.now() - lastScrollAt > 149) {
+			$this.trigger('scrollend');
+		}
+
 	}, 150)
 }
 
