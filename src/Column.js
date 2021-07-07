@@ -44,7 +44,7 @@ export function updateColumnVisibility() {
 }
 
 export function allColumnsVisible() {
-	$(".column-content:not(.mtd-example-column)").style("display", "block");
+	$(".column-content").style("display", "block");
 }
 
 export function updateColumnTypes() {
