@@ -29,14 +29,14 @@ export function updateColumnVisibility() {
 		return allColumnsVisible()
 	}
 
-	$(".column-content:not(.mtd-example-column)").attr("style","display:block");
+	$(".column-content").style("display", "block")
 
 	setTimeout(() => { // wait for redraw
 		$(".column").each((a, element) => {
 			if ($(element).visible(true)) {
-				$(element).find(".column-content:not(.mtd-example-column)").attr("style","display:block")
+				$(element).find(".column-content").style("display", "block");
 			} else {
-				$(element).find(".column-content:not(.mtd-example-column)").attr("style","display:none")
+				$(element).find(".column-content").style("display", "none");
 			}
 		});
 	},20)
@@ -44,7 +44,7 @@ export function updateColumnVisibility() {
 }
 
 export function allColumnsVisible() {
-	$(".column-content:not(.mtd-example-column)").attr("style","display:block");
+	$(".column-content:not(.mtd-example-column)").style("display", "block");
 }
 
 export function updateColumnTypes() {
