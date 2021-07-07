@@ -50,7 +50,7 @@ export function allColumnsVisible() {
 export function updateColumnTypes() {
 	TD.controller.columnManager.getAllOrdered().forEach(column => {
 		if (!!column && !!column.ui) {
-			$(`.js-column[data-column="${column.ui.state.columnKey}"]`).attr("data-mtd-column-type", column._feeds[0].state.type);
+			$(`.js-column[data-column="${column.ui.state.columnKey}"]`).data("mtd-column-type", column._feeds[0].state.type);
 		}
 	})
 }
