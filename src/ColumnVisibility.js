@@ -31,10 +31,10 @@ function scrollStartStop() {
 
 export function attachColumnVisibilityEvents() {
 
-	$(window).on("resize",updateColumnVisibility);
+	$(window).on("resize", updateColumnVisibility);
 
-	$(".app-columns-container").on("scroll",scrollStartStop);
-	$(".app-columns-container").on("scrollend",updateColumnVisibility);
+	$(".app-columns-container").on("scroll", scrollStartStop);
+	$(".app-columns-container").on("scrollend", updateColumnVisibility);
 
 	$(document).on(
 		"uiInlineComposeTweet " +
