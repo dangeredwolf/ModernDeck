@@ -22,7 +22,12 @@ let i18nMain = path.format({
 });
 
 let results = path.format({
-	dir:__dirname +  path.sep + ".." + path.sep + "src",
+	dir:__dirname +  path.sep + ".." + path.sep + "src" + path.sep + "Blackbird",
+	base:"DataI18n.js"
+});
+
+let resultsGryphon = path.format({
+	dir:__dirname +  path.sep + ".." + path.sep + "src" + path.sep + "Gryphon",
 	base:"DataI18n.js"
 });
 
@@ -32,6 +37,7 @@ let resultsMain = path.format({
 });
 
 let buildFile = fs.readFileSync(i18n) + "\n" + fs.readFileSync(i18nMD) + "";
+let buildFileGryphon  = fs.readFileSync(i18nMD) + "";
 let buildFileMain = fs.readFileSync(i18nMain) + "";
 
 let langMap = ["src","af","bg","ca","zh_CN","zh_TW","hr","cs","da","nl","en","en_CA","en_GB","en_US","et","fi","fr","fr_CA","de","el","hi","hu","it","ja","ko","mi","no","pl","pt","pt_BR","ro","ru","sr","es","es_AR","es_419","es_US","sv","tr","uk","vi","eo","gd","si"];
@@ -64,6 +70,7 @@ function processFile(file) {
 }
 
 fs.writeFileSync(results,"export default " + JSON.stringify(processFile(buildFile)));
+fs.writeFileSync(resultsGryphon,"export default " + JSON.stringify(processFile(buildFileGryphon)));
 fs.writeFileSync(resultsMain,"exports.default = " + JSON.stringify(processFile(buildFileMain)));
 
 // Crowdin is stupid and doesn't export the correct folders

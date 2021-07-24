@@ -2,7 +2,7 @@ const fs = require("fs");
 const path = require("path");
 
 let thePath = path.format({
-	dir:__dirname + path.sep + ".." + path.sep + "src" + path.sep + "Blackbird",
+	dir:__dirname + path.sep + ".." + path.sep + "src" + path.sep + "Gryphon",
 	base:"buildId.js"
 });
 

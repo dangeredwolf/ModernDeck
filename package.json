@@ -1,7 +1,7 @@
 {
 	"name": "ModernDeck",
 	"productName": "ModernDeck",
-	"version": "9.5.0",
+	"version": "10.0.0",
 	"description": "ModernDeck",
 	"copyright": "Copyright 2014-2021 dangeredwolf, et al. Released under the MIT license.",
 	"homepage": "https://github.com/dangeredwolf/ModernDeck",
@@ -13,6 +13,7 @@
 	"main": "main.js",
 	"scripts": {
 		"incBuild": "node build/incrementBuild.js",
+		"incBuildGryphon": "node build/incrementBuildGryphon.js",
 		"pack": "electron-builder --dir",
 		"dist": "electron-builder . --publish always",
 		"distAll": "electron-builder -mwl --publish always",
@@ -26,6 +27,7 @@
 		"buildLinux": "electron-builder -l --config electron-builder.json",
 		"buildAndMinify": "npm run rollup && npm run minify",
 		"rollup": "npm run incBuild && rollup -c rollup.config.mjs",
+		"rollupGryphon": "npm run incBuildGryphon && rollup -c rollup.gryphon.config.mjs",
 		"start": "npm run rollup && electron .",
 		"startNoBuild": "electron .",
 		"inspect": "electron . --inspect",

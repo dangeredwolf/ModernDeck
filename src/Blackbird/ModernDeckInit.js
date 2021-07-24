@@ -5,7 +5,7 @@
 	Released under the MIT License
 */
 
-import { version } from "../package.json";
+import { version } from "../../package.json";
 window.SystemVersion = version.replace(/\.0$/,""); // remove trailing .0, if present
 
 import { AsciiArtController } from "./AsciiArtController.js";

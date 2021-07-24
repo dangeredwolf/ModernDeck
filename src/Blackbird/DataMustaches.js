@@ -7,7 +7,7 @@
 
 import { I18n } from "./I18n.js";
 import buildId from "./buildId.js";
-import { version } from "../package.json";
+import { version } from "../../package.json";
 const shortVer = version.replace(/\.0$/,""); // remove trailing .0, if present
 
 export const _newLoginPage = `<div class="app-signin-wrap mtd-signin-wrap">

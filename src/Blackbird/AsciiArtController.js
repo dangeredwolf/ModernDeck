@@ -77,7 +77,7 @@ export class AsciiArtController {
   ███████████▌     ███████         ▐███████████
   ██████████      ███████     ██    ▐██████████
   ████████▌     ████████     ████    ▐█████████ 	ModernDeck ${SystemVersion}
-  ███████▌     ███████     ███████     ████████ 	Build ${buildId}
+  ███████▌     ███████     ███████     ████████ 	Blackbird Build ${buildId}
   ████████     ██████     ███████     ▐████████ 	${AsciiArtController.platformName()}
   █████████▌     ███     ███████     ▐█████████
   ███████████           ███████     ███████████ 	Made with love

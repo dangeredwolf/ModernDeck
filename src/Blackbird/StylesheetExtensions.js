@@ -5,7 +5,7 @@
 	Released under the MIT License
 */
 
-import { version } from "../package.json";
+import { version } from "../../package.json";
 import { make } from "./Utils.js";
 
 /*

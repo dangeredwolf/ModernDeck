@@ -6,10 +6,10 @@ import { terser } from "rollup-plugin-terser";
 // import { version } from "./package.json";
 
 export default {
-	input: "./src/Blackbird/ModernDeckInit.js",
+	input: "./src/Gryphon/ModernDeckInit.js",
 	preserveModules: false,
 	output: {
-		file: "./common/sources/release_blackbird.js",
+		file: "./common/sources/release_gryphon.js",
 		format: "es",
 		sourcemap: true,
 		banner: `/**\n* ModernDeck\n* @license MIT\n* https://github.com/dangeredwolf/ModernDeck\n**/`,
