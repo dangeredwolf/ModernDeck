@@ -23,6 +23,7 @@
 		"buildWindows": "electron-builder -w --config electron-builder.json",
 		"buildMac": "electron-builder -m --config electron-builder.json",
 		"buildLinux": "electron-builder -l --config electron-builder.json",
+		"buildLinuxFlatpak": "electron-builder -l --config electron-builder-flatpak.json",
 		"buildAndMinify": "npm run rollup && npm run minify",
 		"rollup": "npm run incBuild && rollup -c",
 		"start": "npm run rollup && electron .",
