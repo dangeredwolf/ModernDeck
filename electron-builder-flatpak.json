@@ -31,7 +31,7 @@
 		"artifactName": "ModernDeck_${arch}.${ext}",
 		"target": [
 			{
-				"target": "AppImage"
+				"target": "dir"
 			}
 		]
 	}
