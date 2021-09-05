@@ -48,6 +48,8 @@ const isAppX = !!process.windowsStore;
 
 const isMAS = !!process.mas;
 
+const isFlatpak = (process.platform==="linux",process.env.FLATPAK_HOST==='1')
+
 const isDev = false;
 
 let enableTray = true;
@@ -73,7 +75,7 @@ if (process.execPath.match(/:\\Program Files/g) === null) {
 		"repo": "ModernDeck",
 		"provider": "github"
 	});
-} else {
+} else if (isFlatpak===false) {
 	autoUpdater.setFeedURL({
 		"owner": "dangeredwolf",
 		"repo": "ModernDeckEnterprise",
@@ -967,7 +969,9 @@ function makeWindow() {
 
 	ipcMain.on("restartAndInstallUpdates", (event,arg) => {
 		closeForReal = true;
-		autoUpdater.quitAndInstall(false,true);
+		if (isFlatpak === false){
+			autoUpdater.quitAndInstall(false,true);
+		}
 	});
 
 	// When user elects to erase all of their settings, we wipe everything clean, including caches
@@ -1262,7 +1266,7 @@ autoUpdater.on("error", (e,f,g) => {
 // ... actively checking for updates
 
 autoUpdater.on("checking-for-update", (e) => {
-	if (!mainWindow || !mainWindow || !mainWindow.webContents) {
+	if (!mainWindow || !mainWindow || !mainWindow.webContents || isFlatpak) {
 		return;
 	}
 	mainWindow.webContents.send("checking-for-update",e);
@@ -1278,7 +1282,7 @@ autoUpdater.on("download-progress", (e) => {
 
 // ...have found an update
 autoUpdater.on("update-available", (e) => {
-	if (!mainWindow || !mainWindow || !mainWindow.webContents) {
+	if (!mainWindow || !mainWindow || !mainWindow.webContents || isFlatpak) {
 		return;
 	}
 	mainWindow.webContents.send("update-available",e);
@@ -1294,7 +1298,7 @@ autoUpdater.on("update-downloaded", (e) => {
 
 // ...haven't found any updates
 autoUpdater.on("update-not-available", (e) => {
-	if (!mainWindow || !mainWindow || !mainWindow.webContents) {
+	if (!mainWindow || !mainWindow || !mainWindow.webContents || isFlatpak) {
 		return;
 	}
 	mainWindow.webContents.send("update-not-available",e);
@@ -1303,14 +1307,14 @@ autoUpdater.on("update-not-available", (e) => {
 // moderndeck can send manual update check requests
 ipcMain.on("checkForUpdates", (e) => {
 	console.log("Client requested update check");
-	if (autoUpdater && enterpriseConfig.autoUpdatePolicy !== "disabled") {
+	if (autoUpdater && enterpriseConfig.autoUpdatePolicy !== "disabled" && isFlatpak===false) {
 		autoUpdater.checkForUpdates();
 	}
 });
 
 ipcMain.on("downloadUpdates", (e) => {
 	console.log("Client requested update download");
-	if (autoUpdater && enterpriseConfig.autoUpdatePolicy !== "disabled") {
+	if (autoUpdater && enterpriseConfig.autoUpdatePolicy !== "disabled" & isFlatpak===false) {
 		autoUpdater.downloadUpdate();
 	}
 });
@@ -1412,7 +1416,7 @@ if (enterpriseConfig.autoUpdatePolicy !== "disabled" && enterpriseConfig.autoUpd
 
 setTimeout(() => {
 	try {
-		if (enterpriseConfig.autoUpdatePolicy !== "disabled" &&  enterpriseConfig.autoUpdatePolicy !== "manual") {
+		if (enterpriseConfig.autoUpdatePolicy !== "disabled" &&  enterpriseConfig.autoUpdatePolicy !== "manual" & isFlatpak===false) {
 			autoUpdater.checkForUpdates();
 		}
 
