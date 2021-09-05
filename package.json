@@ -25,7 +25,7 @@
 		"buildWindowsE": "electron-builder -w --config electron-builder-enterprise.json",
 		"buildMac": "electron-builder -m --config electron-builder.json",
 		"buildLinux": "electron-builder -l --config electron-builder.json",
-		"buildLinuxFlatpak": "electron-builder -l --config electron-builder-flatpak.json",
+		"buildLinuxFlatpak": "electron-builder --linux --dir",
 		"buildAndMinify": "npm run rollup && npm run minify",
 		"rollup": "npm run incBuild && rollup -c rollup.config.mjs",
 		"rollupGryphon": "npm run incBuildGryphon && rollup -c rollup.gryphon.config.mjs",
