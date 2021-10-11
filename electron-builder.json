@@ -33,7 +33,6 @@
 		"publish": [
 			"github"
 		],
-		"certificateSubjectName":"Open Source Developer, Ryan Dolan",
 		"forceCodeSigning":false,
 		"verifyUpdateCodeSignature":false,
 		"compression":"maximum",
