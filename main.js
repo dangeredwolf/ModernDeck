@@ -352,7 +352,7 @@ function makeLoginWindow(url,teams) {
 			return;
 		}
 
-		if (url.indexOf("twitter.com/logout") >= 0 || url.indexOf("twitter.com/login") >= 0 ||url.indexOf("twitter.com/account/login_verification") >= 0 || teams) {
+		if (url.indexOf("twitter.com/logout") >= 0 || url.indexOf("twitter.com/login") >= 0  || url.indexOf("twitter.com/i/flow/login") >= 0 ||url.indexOf("twitter.com/account/login_verification") >= 0 || teams) {
 			return;
 		}
 
@@ -384,7 +384,7 @@ function makeLoginWindow(url,teams) {
 			return;
 		}
 
-		if (url.indexOf("/i/flow/signup") >= 0) {
+		if (url.indexOf("/i/flow/signup") >= 0 || url.indexOf("/i/flow/password_reset") >= 0) {
 			event.preventDefault();
 			loginWindow.webContents.goBack();
 			const {shell} = electron;
@@ -392,7 +392,7 @@ function makeLoginWindow(url,teams) {
 			return;
 		}
 
-		if (url.indexOf("twitter.com/logout") >= 0 || url.indexOf("twitter.com/login") >= 0) {
+		if (url.indexOf("twitter.com/logout") >= 0 || url.indexOf("twitter.com/login") >= 0 || url.indexOf("twitter.com/i/flow/login") >= 0) {
 			return;
 		}
 
@@ -532,7 +532,7 @@ function makeWindow() {
 		minWidth:375,
 		show:false,
 		backgroundThrottling:true,
-		backgroundColor:"#263238"
+		backgroundColor:"#111"
 	});
 
 	// macOS specific: Don't run from DMG, move to Applications folder.
@@ -588,7 +588,42 @@ function makeWindow() {
 	updateAppTag();
 
 	try {
-		mainWindow.webContents.executeJavaScript(`document.getElementsByClassName("js-signin-ui block")[0].innerHTML = '<div class="preloader-wrapper big active"><div class="spinner-layer"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div>';`)
+		mainWindow.webContents.executeJavaScript(`
+
+			document.getElementsByClassName("js-signin-ui block")[0].innerHTML =
+			\`<img class="mtd-loading-logo" src="moderndeck://resources/img/moderndeck.png" style="display: none;">
+			<div class="preloader-wrapper active">
+				<div class="spinner-layer">
+					<div class="circle-clipper left">
+						<div class="circle"></div>
+					</div>
+					<div class="gap-patch">
+						<div class="circle"></div>
+					</div>
+					<div class="circle-clipper right">
+						<div class="circle"></div>
+					</div>
+				</div>
+			</div>\`;
+
+			if (typeof mtdLoadStyleCSS === "undefined") {
+				mtdLoadStyleCSS = \`
+					img.spinner-centered {
+						display:none!important
+					}
+				\`
+				mtdLoadStyle = document.createElement("style");
+				mtdLoadStyle.appendChild(document.createTextNode(mtdLoadStyleCSS))
+				document.head.appendChild(mtdLoadStyle);
+			}
+
+			if (document.getElementsByClassName("spinner-centered")[0]) {
+				document.getElementsByClassName("spinner-centered")[0].remove();
+			}
+
+			document.getElementsByTagName("html")[0].style = "background: #111;";
+			document.getElementsByTagName("body")[0].style = "background: #111;";
+		`)
 	} catch(e) {
 
 	}
@@ -596,7 +631,41 @@ function makeWindow() {
 
 	mainWindow.webContents.on("dom-ready", (event, url) => {
 
-		mainWindow.webContents.executeJavaScript(`document.getElementsByClassName("js-signin-ui block")[0].innerHTML = '<div class="preloader-wrapper big active"><div class="spinner-layer"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div>';`)
+		mainWindow.webContents.executeJavaScript(`
+			document.getElementsByTagName("html")[0].style = "background: #111!important;";
+			document.getElementsByTagName("body")[0].style = "background: #111!important;";
+
+			if (typeof mtdLoadStyleCSS === "undefined") {
+				mtdLoadStyleCSS = \`
+					img.spinner-centered {
+						display:none!important
+					}
+				\`
+				mtdLoadStyle = document.createElement("style");
+				mtdLoadStyle.appendChild(document.createTextNode(mtdLoadStyleCSS))
+				document.head.appendChild(mtdLoadStyle);
+			}
+
+			if (document.getElementsByClassName("spinner-centered")[0]) {
+				document.getElementsByClassName("spinner-centered")[0].remove();
+			}
+
+			document.getElementsByClassName("js-signin-ui block")[0].innerHTML =
+			\`<img class="mtd-loading-logo" src="moderndeck://resources/img/moderndeck.png" style="display: none;">
+			<div class="preloader-wrapper active">
+				<div class="spinner-layer">
+					<div class="circle-clipper left">
+						<div class="circle"></div>
+					</div>
+					<div class="gap-patch">
+						<div class="circle"></div>
+					</div>
+					<div class="circle-clipper right">
+						<div class="circle"></div>
+					</div>
+				</div>
+			</div>\`;
+		`)
 
 		mainWindow.webContents.executeJavaScript(
 			'\
@@ -707,7 +776,7 @@ function makeWindow() {
 		if (url.indexOf("https://tweetdeck.twitter.com") < 0 && url.indexOf("moderndeck://.") < 0) {
 			event.preventDefault();
 			console.log(url);
-			if (url.indexOf("twitter.com/login") >= 0 || url.indexOf("twitter.com/logout") >= 0) {
+			if (url.indexOf("twitter.com/login") >= 0 || url.indexOf("twitter.com/i/flow/login") >= 0 || url.indexOf("twitter.com/logout") >= 0) {
 				console.log("this is a login window! will-navigate");
 				event.newGuest = makeLoginWindow(url,false);
 			} else {
@@ -738,7 +807,7 @@ function makeWindow() {
 		if (url.indexOf("https://twitter.com/teams/authorize") >= 0) {
 			console.log("this is a login teams window! new-window");
 			event.newGuest = makeLoginWindow(url,true);
-		} else if (url.indexOf("twitter.com/login") >= 0 || url.indexOf("twitter.com/logout") >= 0) {
+		} else if (url.indexOf("twitter.com/login") >= 0 || url.indexOf("twitter.com/i/flow/login") >= 0 || url.indexOf("twitter.com/logout") >= 0) {
 			console.log("this is a login non-teams window! new-window");
 			event.newGuest = makeLoginWindow(url,false);
 		} else {
@@ -920,6 +989,15 @@ function makeWindow() {
 				app.exit();
 			},500);
 		});
+
+		// Workaround: If electron doesn't report that data is cleared within 4 seconds, restart anyway.
+		// 4 seconds is plenty of time for it to get it done.
+
+		setTimeout(() => {
+			closeForReal = true;
+			app.relaunch();
+			app.exit();
+		},4000);
 
 
 	});
@@ -1297,14 +1375,14 @@ function updateAppTag() {
 
 // OS inverted colour scheme (high contrast) mode changed. We automatically respond to changes for accessibility
 
-// nativeTheme.on("updated", (e,v) => {
-// 	mainWindow.webContents.send("inverted-color-scheme-changed",nativeTheme.shouldUseInvertedColorScheme);
-// 	mainWindow.webContents.send("color-scheme-changed", nativeTheme.shouldUseDarkColors ? "dark" : "light");
-// });
-
-systemPreferences.on("inverted-color-scheme-changed", (e,v) => {
-	mainWindow.webContents.send("inverted-color-scheme-changed",v);
+nativeTheme.on("updated", (e,v) => {
+	mainWindow.webContents.send("inverted-color-scheme-changed",nativeTheme.shouldUseInvertedColorScheme);
+	// mainWindow.webContents.send("color-scheme-changed", nativeTheme.shouldUseDarkColors ? "dark" : "light");
 });
+
+// systemPreferences.on("inverted-color-scheme-changed", (e,v) => {
+// 	mainWindow.webContents.send("inverted-color-scheme-changed",v);
+// });
 
 if (process.platform === "darwin") {
 	try {
@@ -1312,7 +1390,7 @@ if (process.platform === "darwin") {
 			"AppleInterfaceThemeChangedNotification",
 			() => {
 				if (!mainWindow || !mainWindow.webContents) { return }
-				mainWindow.webContents.send("color-scheme-changed", systemPreferences.isDarkMode() ? "dark" : "light");
+				// mainWindow.webContents.send("color-scheme-changed", systemPreferences.isDarkMode() ? "dark" : "light");
 			}
 		)
 	} catch(e) {
@@ -1344,7 +1422,7 @@ setTimeout(() => {
 
 		mainWindow.webContents.send(
 			"inverted-color-scheme-changed",
-			systemPreferences.isInvertedColorScheme()//!!nativeTheme.shouldUseInvertedColorScheme
+			!!nativeTheme.shouldUseInvertedColorScheme
 		);
 	} catch(e) {
 		console.error(e);

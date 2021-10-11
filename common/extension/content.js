@@ -12,32 +12,69 @@ var browser = browser || chrome;
 
 console.log("Injecting moderndeck.css");
 
-var injStyles = document.createElement("link");
-injStyles.rel = "stylesheet";
-injStyles.href = browser.extension.getURL("resources/moderndeck.css");
+if (document.querySelector(`[rel="manifest"]`) === null) {
 
-document.head.appendChild(injStyles);
+	var injStyles = document.createElement("link");
+	injStyles.rel = "stylesheet";
+	injStyles.href = browser.extension.getURL("resources/moderndeck.css");
 
-var injectScript2 = document.createElement("script");
-injectScript2.src = browser.extension.getURL("resources/libraries/moduleraid.min.js");
-injectScript2.type = "text/javascript";
-document.head.appendChild(injectScript2);
+	document.head.appendChild(injStyles);
 
-console.log("Injecting moderndeck.js");
+	var injectScript2 = document.createElement("script");
+	injectScript2.src = browser.extension.getURL("resources/libraries/moduleraid.min.js");
+	injectScript2.type = "text/javascript";
+	document.head.appendChild(injectScript2);
 
-var injectScript = document.createElement("script");
+	console.log("Injecting moderndeck.js");
 
-var injectURL = document.createElement("div");
-injectURL.setAttribute("type", browser.extension.getURL("/"));
-injectURL.id = "MTDURLExchange";
-document.head.appendChild(injectURL);
-console.log("injected url exchange with id " + injectURL.id);
+	var injectScript = document.createElement("script");
 
-injectScript.src = browser.extension.getURL("resources/moderndeck.js");
+	var injectURL = document.createElement("div");
+	injectURL.setAttribute("type", browser.extension.getURL("/"));
+	injectURL.id = "MTDURLExchange";
+	document.head.appendChild(injectURL);
+	console.log("injected url exchange with id " + injectURL.id);
 
-injectScript.type = "text/javascript";
-document.head.appendChild(injectScript);
+	injectScript.src = browser.extension.getURL("resources/moderndeck.js");
 
-if (document.getElementsByTagName("title").length > 0) {
-	document.getElementsByTagName("title")[0].innerHTML = "ModernDeck"
+	document.getElementsByClassName("js-signin-ui block")[0].innerHTML =
+	`<img class="mtd-loading-logo" src="${browser.extension.getURL("/resources/img/moderndeck.svg")}" style="display: none;">
+	<div class="preloader-wrapper active">
+		<div class="spinner-layer">
+			<div class="circle-clipper left">
+				<div class="circle"></div>
+			</div>
+			<div class="gap-patch">
+				<div class="circle"></div>
+			</div>
+			<div class="circle-clipper right">
+				<div class="circle"></div>
+			</div>
+		</div>
+	</div>`
+
+	if (typeof mtdLoadStyleCSS === "undefined") {
+		var mtdLoadStyleCSS = `
+			img.spinner-centered {
+				display:none!important
+			}
+		`
+		var mtdLoadStyle = document.createElement("style");
+		mtdLoadStyle.appendChild(document.createTextNode(mtdLoadStyleCSS))
+		document.head.appendChild(mtdLoadStyle);
+	}
+
+	if (document.getElementsByClassName("spinner-centered")[0]) {
+		document.getElementsByClassName("spinner-centered")[0].remove();
+	}
+
+	document.getElementsByTagName("html")[0].style = "background: #111;";
+	document.getElementsByTagName("body")[0].style = "background: #111;";
+
+	injectScript.type = "text/javascript";
+	document.head.appendChild(injectScript);
+
+	if (document.getElementsByTagName("title").length > 0) {
+		document.getElementsByTagName("title")[0].innerHTML = "ModernDeck"
+	}
 }

@@ -1,8 +1,8 @@
 /*
 	moderndeck.css
 
-	ModernDeck 9.0 [codename Oasis]
-	Copyright (c) 2014-2020 dangered wolf, et al
+	ModernDeck 9.2 [codename Oasis]
+	Copyright (c) 2014-2021 dangered wolf, et al
 	Released under the MIT License
 
 	For a complete list of open source projects included in this, view the "LICENCES" file in the open source project @ github.com/dangeredwolf/ModernDeck
@@ -10,7 +10,6 @@
  */
 
 /* stylelint-disable */
-@import "csscomponents/acolorpicker.css";
 @import "csscomponents/alert.css";
 @import "csscomponents/calendarDropdown.css";
 @import "csscomponents/contextmenu.css";
@@ -70,6 +69,19 @@ body,body.signin-sheet-present {
 }
 
 /* Animation Keyframes */
+
+/* stylelint-disable */
+@keyframes loadingLogo {
+	0% {
+		opacity:0;
+		transform:scale(0.7)
+	}
+	100% {
+		opacity:1;
+		transform:scale(1)
+	}
+}
+/* stylelint-enable */
 
 @keyframes moreTweetsButtonDown {
 	0% {opacity:1;top:-35px}
@@ -273,6 +285,18 @@ body,body.signin-sheet-present {
 	100% {color:#F44336}
 }
 
+.mtd-loading-logo {
+	height:200px;
+	display:block!important;
+	animation:loadingLogo 1s cubic-bezier(.1,1,.1,1);
+	margin-left:-75px;
+	margin-bottom:20px;
+}
+
+.block.txt-center.js-signin-ui {
+	margin-left:75px
+}
+
 .account-remove-check-open .account-remove-check,
 .contributor-row[data-state="confirmRemove"] .contributor-confirm-remove,
 .contributor-row[data-state="settings"] .contributor-settings {
@@ -392,7 +416,12 @@ html.mtd-linux-system-font {
 }
 
 body.scroll-v .spinner-layer {
-	border-color:#26a69a
+	border-color:#fff
+}
+
+body.scroll-v .preloader-wrapper {
+	width:51px!important;
+	height:51px!important
 }
 
 .spinner-layer {
@@ -1210,7 +1239,7 @@ button:hover,button:focus,.Button--primary {
 	left:1px;
 	height:100%;
 	margin-top:-25px;
-	width:40px;
+	width:150px;
 	display:block;
 	opacity:0;
 	z-index:3;
@@ -4774,15 +4803,6 @@ input[type="checkbox"]:active {
 
 .is-actionable .inline-reply.is-inline-inactive {
 	height:0
-}
-
-.link-clean[href="https://twitter.com/ModernDeck"] .avatar {
-	transform:scale(1.25,1.25)
-}
-
-.link-clean[href="https://twitter.com/ModernDeck"] .avatar,.js-typeahead-user-item[data-user-id="2927859037"] .avatar,.item-img[href="https://twitter.com/ModernDeck"] .avatar,.account-link[href="https://twitter.com/ModernDeck"] .avatar,.js-account-item[data-account-key="twitter:2927859037"] .avatar,.account-settings-row[data-user-id="2927859037"] .avatar,.avatar[alt="@ModernDeck"] {
-	box-shadow:none!important;
-	border-radius:0!important
 }
 
 .tweet-button span.label {
@@ -9164,4 +9184,34 @@ div.drawer[data-drawer="compose"] {
 
 .btn[data-action="manageContributors"] {
 	color:var(--rootWhiteColor)!important
+}
+
+.login-container {
+	background:rgb(17,17,17)!important;
+	opacity:1;
+	transition:opacity 0.5s cubic-bezier(.19,1,.22,1)
+}
+
+@keyframes fadeLoadAnimation {
+	0% {
+		opacity:1
+	}
+
+	100% {
+		opacity:0
+	}
+}
+
+.login-container[style="display: none;"] {
+	opacity:0;
+	background:rgb(17,17,17)!important;
+	display:block!important;
+	animation:fadeLoadAnimation 0.25s forwards;
+	pointer-events:none;
+	top:0;
+	bottom:0;
+	left:0;
+	right:0;
+	position:absolute;
+	z-index:99
 }

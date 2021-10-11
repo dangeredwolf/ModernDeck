@@ -593,9 +593,9 @@ export function openSettings(openMenu, limitedMenu) {
 			let logoCont = make("div").addClass("mtd-logo-container");
 
 			if (!isApp) {
-				logoCont.append(
-					make("p").addClass("mtd-check-out-app").html(I18n("Get background notifications, enterprise features, and more with the free <a href='https://moderndeck.org/'>ModernDeck App</a>!"))
-				)
+				// logoCont.append(
+				// 	make("p").addClass("mtd-check-out-app").html(I18n("Get background notifications, enterprise features, and more with the free <a href='https://moderndeck.org/'>ModernDeck App</a>!"))
+				// )
 			} else if (window.enterpriseConfig && window.enterpriseConfig.autoUpdatePolicy === "never") {
 				logoCont.append(
 					make("p").addClass("mtd-check-out-app").html(I18n("Updates are disabled by your organization"))
