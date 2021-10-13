@@ -586,6 +586,8 @@ function makeWindow() {
 
 	hidden = false;
 
+	require("@electron/remote/main").enable(mainWindow.webContents);
+
 	updateAppTag();
 
 	try {
@@ -938,25 +940,29 @@ function makeWindow() {
 		mainWindow.webContents.redo();
 	});
 
-	ipcMain.on("copyImage", (event,arg) => {
+	ipcMain.on("copyImage", (event, arg) => {
 		if (!mainWindow || !mainWindow.webContents) { return }
 
-		mainWindow.webContents.copyImageAt(arg.x,arg.y);
+		mainWindow.webContents.copyImageAt(arg.x, arg.y);
 	});
 
-	ipcMain.on("saveImage", (event,arg) => {
+	ipcMain.on("saveImage", (event, arg) => {
 		saveImageAs(arg);
 	});
 
-	ipcMain.on("inspectElement", (event,arg) => {
+	ipcMain.on("inspectElement", (event, arg) => {
 		if (!mainWindow || !mainWindow.webContents) { return }
 
-		mainWindow.webContents.inspectElement(arg.x,arg.y);
+		mainWindow.webContents.inspectElement(arg.x, arg.y);
 	});
+
+	ipcMain.on("showEmojiPanel", () => {
+		app.showEmojiPanel();
+	})
 
 	// mtdInject initiated app restart
 
-	ipcMain.on("restartApp", (event,arg) => {
+	ipcMain.on("restartApp", () => {
 		setTimeout(() => {
 			closeForReal = true;
 			app.relaunch();
@@ -966,14 +972,14 @@ function makeWindow() {
 
 	// mtdInject initiated app restart, after user clicks to restart to install updates
 
-	ipcMain.on("restartAndInstallUpdates", (event,arg) => {
+	ipcMain.on("restartAndInstallUpdates", (event, arg) => {
 		closeForReal = true;
 		autoUpdater.quitAndInstall(false,true);
 	});
 
 	// When user elects to erase all of their settings, we wipe everything clean, including caches
 
-	ipcMain.on("destroyEverything", (event,arg) => {
+	ipcMain.on("destroyEverything", (event, arg) => {
 		let ses = session.defaultSession;
 		store.clear();
 		ses.flushStorageData();
@@ -1005,7 +1011,7 @@ function makeWindow() {
 
 	// Changing from immersive titlebar to native
 
-	ipcMain.on("setNativeTitlebar", (event,arg) => {
+	ipcMain.on("setNativeTitlebar", (event, arg) => {
 
 		isRestarting = true;
 
@@ -1014,7 +1020,7 @@ function makeWindow() {
 			mainWindow.close();
 		}
 
-		store.set("mtd_nativetitlebar",arg);
+		store.set("mtd_nativetitlebar", arg);
 
 		setTimeout(() => {
 			closeForReal = true;
@@ -1039,27 +1045,27 @@ function makeWindow() {
 
 	// Enable tray icon
 
-	ipcMain.on("enableTray", (event,arg) => {
+	ipcMain.on("enableTray", (event, arg) => {
 		enableTray = true;
 		makeTray();
 	});
 
 	// Disable tray icon
 
-	ipcMain.on("disableTray", (event,arg) => {
+	ipcMain.on("disableTray", (event, arg) => {
 		enableTray = false;
 		destroyTray();
 	});
 
 	// Enable background notifications
 
-	ipcMain.on("enableBackground", (event,arg) => {
+	ipcMain.on("enableBackground", (event, arg) => {
 		enableBackground = true;
 	});
 
 	// Disable background notifications
 
-	ipcMain.on("disableBackground", (event,arg) => {
+	ipcMain.on("disableBackground", (event, arg) => {
 		enableBackground = false;
 	});
 

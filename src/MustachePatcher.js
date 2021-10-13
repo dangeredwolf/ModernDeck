@@ -149,7 +149,6 @@ export function processMustaches() {
 	// 		</iframe> {{> status/media_sensitive}} </div>";
 
 	if (typeof TD_mustaches["compose/docked_compose.mustache"] !== "undefined" && !window.useSafeMode) {
-		// if (typeof require !== "undefined" && require("electron").remote.require("electron").app.isEmojiPanelSupported()) {
 		if (html.hasClass("mtd-supportsNativeEmojiPicker")) {
 			TD_mustaches["compose/docked_compose.mustache"] = TD_mustaches["compose/docked_compose.mustache"].replace(/<\/textarea>/g,"</textarea><div class=\"mtd-emoji\"><div class=\"mtd-emoji-button btn\"><div class=\"mtd-emoji-button-open\"></div></div></div>")
 		}

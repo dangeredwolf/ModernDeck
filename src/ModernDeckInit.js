@@ -467,7 +467,7 @@ function hookComposer() {
 	if (isApp && useNativeEmojiPicker()) {
 		$(".mtd-emoji").click(() => {
 			$(".js-compose-text").focus();
-			require("electron").remote.require("electron").app.showEmojiPanel();
+			require("electron").ipcRenderer.send("showEmojiPanel")
 			$(".js-compose-text").focus();
 		})
 	}

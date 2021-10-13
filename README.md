@@ -19,7 +19,7 @@ ModernDeck is designed by dangeredwolf and released under the MIT License.
 
 To build ModernDeck, you need to first install Node.js (which comes with npm) and git if you don't have it installed already
 
-ℹ *ModernDeck is tested against the Node 12. [https://github.com/dangeredwolf/ModernDeck/issues/181](Node 14 is known to have problems with the build system.)*
+ℹ *ModernDeck is tested against the Node 16. It will probably work fine on Node 12+*
 
 
 #### Windows
@@ -97,18 +97,14 @@ If you want to create the proper installers, you can run:
 `npm run buildLinux`
 ...to build for Linux
 
-[Click here for more information about electron-builder code signing.](https://www.electron.build/code-signing)
+[Click here for more information about electron-builder](https://www.electron.build/)*
 
 ModernDeck also includes `build.bat` for Windows.
 It requires Windows 10 or Windows Server 2019, with WSL installed (including wsl.exe), with the proper tools (node, npm) installed on both WSL and Windows.
 
 This makes it very quick to build for every platform, including extension, except macOS, particularly because it doesn't require the electron build server.
 
-
-❓ *For more advanced users, you may prefer to [run electron-builder directly.](https://www.electron.build/)*
-
 ⚠ *Building for macOS requires running under macOS. Under macOS, you can build for Windows, macOS, and Linux. Under both Linux and Windows, you can build for both Linux and Windows. (Windows requires WSL, see above)*
-
 
 ### Building the browser extension
 

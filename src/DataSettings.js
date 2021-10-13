@@ -920,19 +920,18 @@ export let settingsData = {
 				type:"button",
 				activate:{
 					func: () => {
-						const app = require("electron").remote;
-						const dialog = app.dialog;
+						const dialog = require("electron").remote.dialog;
 						const fs = require("fs");
-						const {ipcRenderer} = require('electron');
+						const { ipcRenderer } = require("electron");
 
 						dialog.showOpenDialog(
 							{ filters: [{ name: I18n("Preferences JSON File"), extensions: ["json"] }] },
 							(file) => {
-								if (file === undefined) {
+								if (typeof file === "undefined") {
 									return;
 								}
 
-								fs.readFile(file[0],"utf-8",(e, load) => {
+								fs.readFile(file[0], "utf-8", (_, load) => {
 									store.store = JSON.parse(load);
 									ipcRenderer.send("restartApp");
 								});
@@ -949,19 +948,18 @@ export let settingsData = {
 				type:"button",
 				activate:{
 					func: () => {
-						const app = require("electron").remote;
-						const dialog = app.dialog;
+						const dialog = require("electron").remote.dialog;
 						const fs = require("fs");
-						const {ipcRenderer} = require('electron');
+						const { ipcRenderer } = require('electron');
 
 						dialog.showOpenDialog(
 							{ filters: [{ name: I18n("Tweeten Settings JSON"), extensions: ["json"] }] },
 							(file) => {
-								if (file === undefined) {
+								if (typeof file === "undefined") {
 									return;
 								}
 
-								fs.readFile(file[0],"utf-8",(e, load) => {
+								fs.readFile(file[0], "utf-8", (_, load) => {
 									importTweetenSettings(JSON.parse(load));
 									setTimeout(() => {
 										ipcRenderer.send("restartApp");
