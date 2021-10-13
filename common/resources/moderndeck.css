@@ -9215,3 +9215,14 @@ div.drawer[data-drawer="compose"] {
 	position:absolute;
 	z-index:99
 }
+
+.js-header-add-column  {
+    width:100%;
+    display:inline
+}
+
+.js-header-add-column .hide-condensed {
+    width:100px;
+    margin-top:-24px;
+    margin-left:42px
+}

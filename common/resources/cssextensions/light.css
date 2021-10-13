@@ -147,8 +147,8 @@ li:not(.selected) .list-twitter-list .txt-ellipsis,
 .lst-group li:not(.selected) .list-account .username,
 html .btd-grayscale_notification_icons i.icon.activity-indicator,
 .txt-r-deep-gray,
-.color-twitter-dark-gray,
-.color-twitter-darker-gray,
+.color-twitter-dark-gray:not(.dark-only--color-twitter-gray),
+.color-twitter-darker-gray:not(.dark-only--color-twitter-gray),
 .js-send-button.is-disabled
 {
 	color:var(--tweetActionColor)
@@ -715,7 +715,7 @@ select,
 	border-bottom:2px solid var(--modalWindowColor)!important
 }
 
-.search-input
+.js-search-in-popover .search-input
 {
 	border-bottom:2px solid var(--disabledColor)
 }
@@ -916,4 +916,41 @@ textarea::placeholder
 
 .mtd-giphy-logo {
 	filter:brightness(0%)
+}
+
+.nav-user-info .username {
+	color:rgba(255,255,255,0.5)
+}
+
+.js-search .search-input
+{
+	border-bottom:2px solid rgba(255,255,255,0.5)
+}
+
+.js-search .search-input::placeholder {
+	color:rgba(255,255,255,0.5)
+}
+
+.column-nav-link:hover {
+	color:rgba(255,255,255,0.8)!important
+}
+
+.js-accordion-panel p.nbfc.txt-size--13 {
+	color:#000;
+}
+
+.js-accordion-panel p.nbfc.txt-size--13:not(.color-twitter-darker-gray) {
+	font-weight:500
+}
+
+a.js-show-drawer.js-header-action.link-clean.cf.app-nav-tab.padding-h--10.padding-v--2:hover {
+	color:#fff!important
+}
+
+.facet-type .control-group select optgroup {
+	color:#000!important
+}
+
+.js-item-launch>a {
+	color:#000!important
 }

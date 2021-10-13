@@ -809,6 +809,10 @@ span[data-testid="trendMovement"] .icon-pointer-d:before,span[data-testid="trend
 	font-family:MD!important
 }
 
+.dropdown-menu a[data-action="unfollow"]:before {
+	content:"\e7f6"
+}
+
 .dropdown-menu a[data-action="followOrUnfollow"]:before {
 	content:"\e7fe"
 }

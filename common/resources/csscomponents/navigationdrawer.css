@@ -129,7 +129,8 @@
 	text-shadow:0 3px 6px var(--rootBlackColor);
 	font-weight:500;
 	font-size:14px;
-	color:var(--rootWhiteColor)
+	color:var(--rootWhiteColor);
+	white-space:nowrap
 }
 
 .mtd-nd-header-atname {
