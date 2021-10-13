@@ -75,6 +75,16 @@ export function checkIfSigninFormIsPresent() {
 			clearInterval(loginInterval);
 		}
 	} else {
+		if (typeof window.signinSheetPings === "undefined") {
+			window.signinSheetPings = 0;
+		}
+
+		window.signinSheetPings++;
+
+		if (window.signinSheetPings > 6) {
+			console.log("I am no longer asking");
+			clearInterval(loginInterval);
+		}
 		console.log("Not on signin sheet anymore");
 		disableStylesheetExtension("loginpage");
 		html.removeClass("signin-sheet-now-present");
