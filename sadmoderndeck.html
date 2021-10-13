@@ -106,7 +106,7 @@
 
 		<script>
 			document.getElementById("close").addEventListener("click", function() {
-				require("electron").remote.require("electron").app.quit();
+				require("electron").ipcRenderer.send("quit")
 			});
 
 			document.getElementById("retry").addEventListener("click", function() {

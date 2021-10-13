@@ -859,6 +859,10 @@ function makeWindow() {
 		errorWindow.close();
 	});
 
+	ipcMain.on("errorQuit", (event, params) => {
+		app.quit();
+	});
+
 	ipcMain.on("drawerOpen", (event, params) => {
 		console.log("open");
 
