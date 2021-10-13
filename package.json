@@ -44,11 +44,11 @@
 		"Twitter"
 	],
 	"dependencies": {
-		"@sentry/browser": "^5.30.0",
-		"@sentry/tracing": "^5.30.0",
+		"@sentry/browser": "^6.13.3",
+		"@sentry/tracing": "^6.13.3",
 		"asar": "^3.0.3",
 		"electron-log": "^4.3.1",
-		"electron-store": "^6.0.0",
+		"electron-store": "^8.0.1",
 		"electron-updater": "^4.3.4",
 		"through2": "^4.0.1"
 	},
@@ -60,22 +60,18 @@
 		"@babel/plugin-proposal-optional-chaining": "^7.12.13",
 		"@babel/plugin-transform-exponentiation-operator": "^7.12.13",
 		"@babel/preset-env": "^7.12.13",
-		"@node-minify/core": "^6.2.0",
-		"@node-minify/csso": "^6.2.0",
-		"@node-minify/uglify-es": "^6.2.0",
 		"@rollup/plugin-babel": "^5.2.3",
 		"@rollup/plugin-json": "^4.1.0",
-		"@rollup/plugin-node-resolve": "^8.0.1",
-		"adm-zip": "^0.4.16",
-		"electron": "^13.5.1",
+		"@rollup/plugin-node-resolve": "^13.0.5",
+		"adm-zip": "^0.5.9",
+		"electron": "^15.1.2",
 		"electron-builder": "^22.13.1",
 		"electron-builder-notarize": "^1.2.0",
-		"electron-notarize": "^1.0.0",
-		"fs-extra": "^9.1.0",
+		"fs-extra": "^10.0.0",
 		"rollup": "^2.38.4",
-		"rollup-plugin-terser": "^6.1.0",
+		"rollup-plugin-terser": "^7.0.2",
 		"stylelint": "^13.9.0",
-		"stylelint-config-recommended": "^3.0.0"
+		"stylelint-config-recommended": "^5.0.0"
 	},
 	"stylelint": {
 		"extends": "stylelint-config-recommended"
