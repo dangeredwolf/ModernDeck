@@ -24,7 +24,6 @@ import { isStylesheetExtensionEnabled, enableStylesheetExtension, disableStylesh
 import { debugStorageSys, hasPref, getPref, setPref, resetPref, purgePrefs } from "./StoragePreferences.js";
 import { allColumnsVisible, updateColumnVisibility } from "./Column.js";
 import { exists, isApp } from "./Utils.js";
-import { importTweetenSettings } from "./StorageTweetenImport.js";
 import { openLegacySettings } from "./UISettings.js";
 import { enterSafeMode } from "./SafeMode.js";
 import { UILanguagePicker } from "./UILanguagePicker.js";
@@ -666,7 +665,7 @@ export let settingsData = {
 
 						setPref("mtd_nativetitlebar",true);
 
-						const {ipcRenderer} = require('electron');
+						const {ipcRenderer, ipcMain} = require("electron");
 						if (!!ipcRenderer)
 							ipcRenderer.send("setNativeTitlebar", true);
 					}
@@ -679,7 +678,7 @@ export let settingsData = {
 
 						setPref("mtd_nativetitlebar",false);
 
-						const {ipcRenderer} = require('electron');
+						const { ipcRenderer } = require("electron");
 						if (!!ipcRenderer)
 							ipcRenderer.send("setNativeTitlebar", false);
 					}
@@ -736,7 +735,7 @@ export let settingsData = {
 						setPref("mtd_updatechannel",opt);
 
 						setTimeout(() => {
-							const {ipcRenderer} = require("electron");
+							const { ipcRenderer } = require("electron");
 							if (!!ipcRenderer) {
 								ipcRenderer.send("changeChannel", opt);
 
@@ -764,7 +763,7 @@ export let settingsData = {
 						if (typeof require === "undefined") {
 							return;
 						}
-						const {ipcRenderer} = require("electron");
+						const { ipcRenderer } = require("electron");
 						ipcRenderer.send("enableTray");
 					}
 				},
@@ -773,7 +772,7 @@ export let settingsData = {
 						if (typeof require === "undefined") {
 							return;
 						}
-						const {ipcRenderer} = require("electron");
+						const { ipcRenderer } = require("electron");
 						ipcRenderer.send("disableTray");
 					}
 				},
@@ -788,7 +787,7 @@ export let settingsData = {
 						if (typeof require === "undefined") {
 							return;
 						}
-						const {ipcRenderer} = require("electron");
+						const { ipcRenderer } = require("electron");
 						ipcRenderer.send("enableBackground");
 					}
 				},
@@ -797,7 +796,7 @@ export let settingsData = {
 						if (typeof require === "undefined") {
 							return;
 						}
-						const {ipcRenderer} = require("electron");
+						const { ipcRenderer } = require("electron");
 						ipcRenderer.send("disableBackground");
 					}
 				},
@@ -859,7 +858,7 @@ export let settingsData = {
 						purgePrefs();
 
 						if (isApp) {
-							const {ipcRenderer} = require('electron');
+							const { ipcRenderer } = require("electron");
 							ipcRenderer.send('restartApp');
 						} else {
 							window.location.reload();
@@ -875,7 +874,7 @@ export let settingsData = {
 				activate:{
 					func: () => {
 						if (isApp) {
-							const {ipcRenderer} = require('electron');
+							const { ipcRenderer } = require("electron");
 
 							ipcRenderer.send('destroyEverything');
 						}
@@ -890,25 +889,8 @@ export let settingsData = {
 				type:"button",
 				activate:{
 					func: () => {
-						const app = require("electron").remote;
-						const dialog = app.dialog;
-						const fs = require("fs");
-						const {ipcRenderer} = require('electron');
-
-						let preferences = JSON.stringify(store.store);
-
-						dialog.showSaveDialog(
-						{
-							title: I18n("ModernDeck Preferences"),
-							filters: [{ name: I18n("Preferences JSON File"), extensions: ["json"] }]
-						},
-						(file) => {
-							if (file === undefined) {
-								return;
-							}
-							fs.writeFile(file, preferences, (e) => {});
-						}
-					);
+						const { ipcRenderer } = require("electron");
+						ipcRenderer.send("saveSettings", JSON.stringify(store.store));
 					}
 				},
 				settingsKey:"mtd_backupSettings",
@@ -920,23 +902,8 @@ export let settingsData = {
 				type:"button",
 				activate:{
 					func: () => {
-						const dialog = require("electron").remote.dialog;
-						const fs = require("fs");
 						const { ipcRenderer } = require("electron");
-
-						dialog.showOpenDialog(
-							{ filters: [{ name: I18n("Preferences JSON File"), extensions: ["json"] }] },
-							(file) => {
-								if (typeof file === "undefined") {
-									return;
-								}
-
-								fs.readFile(file[0], "utf-8", (_, load) => {
-									store.store = JSON.parse(load);
-									ipcRenderer.send("restartApp");
-								});
-							}
-						);
+						ipcRenderer.send("loadSettingsDialog");
 					}
 				},
 				settingsKey:"mtd_loadSettings",
@@ -948,25 +915,8 @@ export let settingsData = {
 				type:"button",
 				activate:{
 					func: () => {
-						const dialog = require("electron").remote.dialog;
-						const fs = require("fs");
-						const { ipcRenderer } = require('electron');
-
-						dialog.showOpenDialog(
-							{ filters: [{ name: I18n("Tweeten Settings JSON"), extensions: ["json"] }] },
-							(file) => {
-								if (typeof file === "undefined") {
-									return;
-								}
-
-								fs.readFile(file[0], "utf-8", (_, load) => {
-									importTweetenSettings(JSON.parse(load));
-									setTimeout(() => {
-										ipcRenderer.send("restartApp");
-									},500); // We wait to make sure that native TweetDeck settings have been propagated
-								});
-							}
-						);
+						const { ipcRenderer } = require("electron");
+						ipcRenderer.send("tweetenImportDialog");
 					}
 				},
 				settingsKey:"mtd_tweetenImportSettings",

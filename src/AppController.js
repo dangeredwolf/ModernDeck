@@ -13,6 +13,7 @@ import { openSettings } from "./UISettings.js";
 import { buildContextMenu } from "./UIContextMenu.js";
 import { parseActions, loadPreferences } from "./PrefHandler.js";
 import { parseConfig } from "./EnterpriseConfigParser.js";
+import { importTweetenSettings } from "./StorageTweetenImport.js";
 import { I18n } from "./I18n.js";
 
 let offlineNotification;
@@ -256,6 +257,19 @@ export function mtdAppFunctions() {
 			message:I18n("ModernDeck failed to open a link you clicked in the default browser.\n\n(Sometimes, this can be caused if you have the Twitter for Windows app installed)"),
 			buttonText:I18n("OK")
 		})
+	})
+
+	ipcRenderer.on("settingsReceived", (_, load) => {
+		console.log("settingsReceived");
+		store.store = load;
+		ipcRenderer.send("restartApp");
+	})
+
+	ipcRenderer.on("tweetenSettingsReceived", (_, load) => {
+		importTweetenSettings(load);
+		setTimeout(() => {
+			ipcRenderer.send("restartApp");
+		},500); // We wait to make sure that native TweetDeck settings have been propagated
 	})
 
 	const updateOnlineStatus = () => {

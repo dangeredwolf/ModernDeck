@@ -30,6 +30,7 @@ const fs = require("fs");
 const path = require("path");
 const url = require("url");
 const util = require("util");
+const https = require("https");
 
 const separator = process.platform === "win32" ? "\\" : "/";
 
@@ -431,8 +432,6 @@ function saveImageAs(url) {
 	// console.log(savePath);
 	if (savePath) {
 		try {
-			const https = require("https");
-			const fs = require("fs");
 
 			const file = fs.createWriteStream(savePath);
 			const request = https.get(url, function(response) {
@@ -859,6 +858,53 @@ function makeWindow() {
 		errorWindow.close();
 	});
 
+	ipcMain.on("loadSettingsDialog", (event, params) => {
+
+		dialog.showOpenDialog(
+			{ filters: [{ name: I18n("Preferences JSON File"), extensions: ["json"] }] }
+		).then((results) => {
+			console.log(results);
+			if (typeof results.filePaths === "undefined") {
+				return;
+			}
+
+			fs.readFile(results.filePaths[0], "utf-8", (_, load) => {
+				mainWindow.webContents.send("settingsReceived", JSON.parse(load));
+			});
+		});
+	});
+
+	ipcMain.on("tweetenImportDialog", (event, params) => {
+		
+
+		dialog.showOpenDialog(
+			{ filters: [{ name: I18n("Tweeten Settings JSON"), extensions: ["json"] }] }
+		).then((results) => {
+			if (typeof results.filePaths === "undefined") {
+				return;
+			}
+
+			fs.readFile(results.filePaths[0], "utf-8", (_, load) => {
+				mainWindow.webContents.send("tweetenSettingsReceived", JSON.parse(load));
+			});
+		});
+	});
+
+	ipcMain.on("saveSettings", (event, params) => {
+		dialog.showSaveDialog(
+			{
+				title: I18n("ModernDeck Preferences"),
+				defaultPath: "settings.json",
+				filters: [{ name: I18n("Preferences JSON File"), extensions: ["json"] }]
+			}
+		).then((results) => {
+			if (results.filePath === undefined) {
+				return;
+			}
+			fs.writeFile(results.filePath, params, (e) => {});
+		});
+	})
+
 	ipcMain.on("errorQuit", (event, params) => {
 		app.quit();
 	});
@@ -1176,7 +1222,7 @@ function makeTray() {
 
 		{ type: "separator" },
 
-		{ label: (process.platform === "darwin" ? I18n("Quit") : I18n("Exit")), click(){ if (!mainWindow){return;} closeForReal = true; mainWindow.close(); } },
+		{ label: (process.platform === "darwin" ? I18n("Quit") : I18n("Exit")), click(){ if (!mainWindow){return;} closeForReal = true; autoUpdater.quitAndInstall(true,true); } },
 	]);
 
 	tray.setToolTip("ModernDeck");
