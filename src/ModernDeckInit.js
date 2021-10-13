@@ -472,37 +472,6 @@ function hookComposer() {
 		})
 	}
 
-	// if (isApp && useNativeEmojiPicker() && loadEmojiPicker) {
-	// 	$(".compose-text").after(
-	// 		make("div").addClass("mtd-emoji").append(
-	// 			make("div").addClass("mtd-emoji-button btn").append(
-	// 				make("div").addClass("mtd-emoji-button-open").click(() => {
-	// 					try {
-	// 						require?.("electron")?.remote?.app?.showEmojiPanel?.();
-	// 					} catch(e) {
-	// 						console.error("Falling back to custom emoji area");
-	// 						handleErrors(makeEmojiPicker, "Emoji Picker failed to initialise");
-	// 					}
-	// 				})
-	// 			)
-	// 		)
-	// 	);
-	// } else if (loadEmojiPicker) {
-	// 	handleErrors(makeEmojiPicker, "Emoji Picker failed to initialise");
-	// }
-
-	// if ($(".compose-text-container .js-add-image-button,.compose-text-container .js-schedule-button,.compose-text-container .mtd-gif-button").length <= 0) {
-	// 	$(".compose-text-container").append($(".js-add-image-button,.mtd-gif-button,.js-schedule-button,.js-dm-button,.js-tweet-button"));
-	//
-	// 	if ($(".inline-reply").length > 0) {
-	// 		setTimeout(()=> {
-	// 			$(".compose-text-container").append($(".drawer .js-send-button-container.spinner-button-container"));
-	// 		},800)
-	// 	} else {
-	// 		$(".compose-text-container").append($(".drawer .js-send-button-container.spinner-button-container"));
-	// 	}
-	// }
-
 	$(document).on("uiDrawerShowDrawer", () => {
 		setTimeout(hookComposer,0) // initialise one cycle after tweetdeck does its own thing
 	});
