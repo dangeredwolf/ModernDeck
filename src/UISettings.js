@@ -6,17 +6,14 @@
 */
 
 import buildId from "./buildId.js";
-import { make, exists, isApp, sanitiseString, formatBytes, isEnterprise } from "./Utils.js";
+import { make, exists, isApp,  isEnterprise } from "./Utils.js";
 import { settingsData } from "./DataSettings.js";
 import { hasPref, getPref, setPref } from "./StoragePreferences.js";
-import { buildContextMenu } from "./UIContextMenu.js";
 import { parseActions } from "./PrefHandler.js";
 import { I18n } from "./I18n.js";
 import { AutoUpdateController } from "./AutoUpdateController.js";
 
-const appendTextVersion = false;
-
-let verTextId = 1;
+let verTextId = 3;
 let verText = "";
 
 let productName = "ModernDeck";
@@ -611,7 +608,7 @@ export function openSettings(openMenu, limitedMenu) {
 
 			let updateCont = makeUpdateCont();
 
-			if (isApp && !html.hasClass("mtd-winstore") && !html.hasClass("mtd-macappstore") && (window.enterpriseConfig && window.enterpriseConfig.autoUpdatePolicy !== "never")) {
+			if (isApp && !html.hasClass("mtd-winstore") && !html.hasClass("mtd-flatpak") && !html.hasClass("mtd-macappstore") && (window.enterpriseConfig && window.enterpriseConfig.autoUpdatePolicy !== "never")) {
 				subPanel.append(updateCont);
 			}
 
@@ -838,7 +835,7 @@ export function makeUpdateCont() {
 
 	updateCont.append(updateIcon,updateh2,updateh3,tryAgain,installButton,restartNow);
 
-	if (typeof require !== "undefined" && !html.hasClass("mtd-winstore") && !html.hasClass("mtd-macappstore")) {
+	if (typeof require !== "undefined" && !html.hasClass("mtd-flatpak") && !html.hasClass("mtd-winstore") && !html.hasClass("mtd-macappstore")) {
 		mtdAppUpdatePage();
 	}
 

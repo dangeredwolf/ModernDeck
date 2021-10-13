@@ -1,7 +1,6 @@
 *.zip
 *.crx
 *.pem
-*.map
 *.exe
 *.dmg
 *.AppImage

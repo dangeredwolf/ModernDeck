@@ -751,7 +751,7 @@ export let settingsData = {
 					latest:{value:"latest",text:"{{Stable}}"},
 					beta:{value:"beta",text:"{{Beta}}"}
 				},
-				enabled:!document.getElementsByTagName("html")[0].classList.contains("mtd-winstore") && !document.getElementsByTagName("html")[0].classList.contains("mtd-macappstore"),
+				enabled:!document.getElementsByTagName("html")[0].classList.contains("mtd-flatpak") &&!document.getElementsByTagName("html")[0].classList.contains("mtd-winstore") && !document.getElementsByTagName("html")[0].classList.contains("mtd-macappstore"),
 				settingsKey:"mtd_updatechannel",
 				default:"latest"
 			},

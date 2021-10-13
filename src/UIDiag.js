@@ -35,6 +35,9 @@ export function diag() {
 		if (html.hasClass("mtd-winstore")) {
 			log += " (Microsoft Store)";
 		}
+		if (html.hasClass("mtd-flatpak")) {
+			log += " (Flatpak)";
+		}
 		if (html.hasClass("mtd-macappstore")) {
 			log += " (App Store)"
 		}

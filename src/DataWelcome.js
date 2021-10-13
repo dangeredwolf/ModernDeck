@@ -111,7 +111,7 @@ export let _welcomeData = {
 
 		</div>` + demoColumn,
 		prevFunc: () => {
-			if (!isApp || html.hasClass("mtd-winstore") || html.hasClass("mtd-macappstore")) {
+			if (!isApp || html.hasClass("mtd-winstore") || html.hasClass("mtd-flatpak") || html.hasClass("mtd-macappstore")) {
 				return;
 			}
 			const {ipcRenderer} = require("electron");

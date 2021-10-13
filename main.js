@@ -45,6 +45,7 @@ const store = new Store({name:"mtdsettings"});
 // const disableCss = false; // use storage.mtd_safemode
 
 const isAppX = !!process.windowsStore;
+const isFlatpak = (process.platform === "linux" && process.env.FLATPAK_HOST === "1")
 
 const isMAS = !!process.mas;
 
@@ -1336,6 +1337,10 @@ function updateAppTag() {
 
 	if (isAppX) {
 		mtdAppTag += 'document.querySelector("html").classList.add("mtd-winstore");\n';
+	}
+
+	if (isFlatpak) {
+		mtdAppTag += 'document.querySelector("html").classList.add("mtd-flatpak");\n';
 	}
 
 	if (isMAS) {

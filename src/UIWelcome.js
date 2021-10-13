@@ -37,7 +37,7 @@ export class UIWelcome extends UIModal {
 			allColumnsVisible();
 		} catch(e) {}
 
-		welcomeData.update.enabled = isApp && !html.hasClass("mtd-winstore") && !html.hasClass("mtd-macappstore");
+		welcomeData.update.enabled = isApp && !html.hasClass("mtd-winstore") && !html.hasClass("mtd-macappstore") && !html.hasClass("mtd-flatpak");
 		welcomeData.update.html = makeUpdateCont();
 
 		mtdPrepareWindows();
