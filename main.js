@@ -1360,7 +1360,7 @@ autoUpdater.on("update-not-available", (e) => {
 // moderndeck can send manual update check requests
 ipcMain.on("checkForUpdates", (e) => {
 	console.log("Client requested update check");
-	if (autoUpdater && enterpriseConfig.autoUpdatePolicy !== "disabled") {
+	if (autoUpdater && enterpriseConfig.autoUpdatePolicy !== "disabled" && isFlatpak !== true) {
 		autoUpdater.checkForUpdates();
 	}
 });
@@ -1459,7 +1459,7 @@ if (process.platform === "darwin") {
 	}
 }
 
-if (enterpriseConfig.autoUpdatePolicy !== "disabled" && enterpriseConfig.autoUpdatePolicy !== "manual") {
+if (enterpriseConfig.autoUpdatePolicy !== "disabled" && enterpriseConfig.autoUpdatePolicy !== "manual" && isFlatpak !== false) {
 	setInterval(() => {
 		try {
 			autoUpdater.checkForUpdates();
@@ -1473,7 +1473,7 @@ if (enterpriseConfig.autoUpdatePolicy !== "disabled" && enterpriseConfig.autoUpd
 
 setTimeout(() => {
 	try {
-		if (enterpriseConfig.autoUpdatePolicy !== "disabled" &&  enterpriseConfig.autoUpdatePolicy !== "manual") {
+		if (enterpriseConfig.autoUpdatePolicy !== "disabled" &&  enterpriseConfig.autoUpdatePolicy !== "manual" && isFlatpak !== true) {
 			autoUpdater.checkForUpdates();
 		}
 
