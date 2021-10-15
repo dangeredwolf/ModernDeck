@@ -236,9 +236,8 @@ export function mtdAppFunctions() {
 	}
 
 	ipcRenderer.on("context-menu", (event, p) => {
-		const electron = require("electron")
 		let theMenu = buildContextMenu(p);
-		let Menu = require("electron").remote.Menu;
+		let Menu = require('@electron/remote').Menu;
 
 		if (useNativeContextMenus || useSafeMode) {
 			Menu.buildFromTemplate(theMenu).popup();

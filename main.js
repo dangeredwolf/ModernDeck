@@ -9,7 +9,7 @@
 
 const electron = require("electron");
 const I18nData = require("./i18nMain.js").default;
-
+require('@electron/remote/main').initialize()
 const {
 	app,
 	BrowserWindow,

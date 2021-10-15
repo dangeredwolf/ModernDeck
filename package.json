@@ -65,7 +65,7 @@
 		"@rollup/plugin-json": "^4.1.0",
 		"@rollup/plugin-node-resolve": "^13.0.5",
 		"adm-zip": "^0.5.9",
-		"electron": "^13.5.1",
+		"electron": "^15.2.0",
 		"electron-builder": "^22.13.1",
 		"fs-extra": "^10.0.0",
 		"rollup": "^2.38.4",
