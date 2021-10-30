@@ -1,7 +1,7 @@
 /*
 	Utils.js
 
-	Copyright (c) 2014-2020 dangered wolf, et al
+	Copyright (c) 2014-2021 dangered wolf, et al
 	Released under the MIT License
 */
 
@@ -28,9 +28,13 @@ export const handleErrors = (func, text) => {
 	}
 }
 
+// Creates a new element in jQuery
+
 export const make = function(a) {
 	return $(document.createElement(a));
 }
+
+// Creates a new element in nQuery
 
 export const makeN = function(a) {
 	return nQuery(document.createElement(a));
@@ -50,6 +54,10 @@ export const exists = function(thing) {
 		(typeof thing === "number")
 	);
 }
+
+/*
+	Formats a number for a given locale
+*/
 
 export function formatNumberI18n(number) {
 	if (!window.mtdNumberFormat || window.mtdNeedsResetNumberFormatting) {

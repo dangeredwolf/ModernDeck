@@ -1,7 +1,7 @@
 /*
 	ModernDeckVersionController.js
 
-	Copyright (c) 2014-2020 dangered wolf, et al
+	Copyright (c) 2014-2021 dangered wolf, et al
 	Released under the MIT License
 */
 
@@ -27,6 +27,8 @@ export function getPlatformName() {
 		browserName = "Edge (Legacy)"
 	} else if (navigator.userAgent.indexOf("Safari/") > 0) {
 		browserName = "Safari"
+	} else if (navigator.userAgent.indexOf("Trident/") > 0) {
+		browserName = "Internet Explorer";
 	}
 
 	if (navigator.userAgent.indexOf("Windows NT") > 0) {
