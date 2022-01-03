@@ -1,7 +1,7 @@
 /*
 	DataTranslationCredits.js
 
-	Copyright (c) 2014-2021 dangered wolf, et al
+	Copyright (c) 2014-2022 dangered wolf, et al
 	Released under the MIT License
 */
 
@@ -15,12 +15,15 @@ vancho1<br>
 
 <br><b>中文</b><br>
 <a href="https://twitter.com/N0PELGND" rel="user" target="_blank">DatNopeLegend</a><br>
-<a href="https://twitter.com/jeff7262" rel="user" target="_blank">JeffW</a><br>
+gledos<br>
 <a href="https://twitter.com/hugoalhofficial" rel="user" target="_blank">hugoalh</a><br>
+<a href="https://twitter.com/jeff7262" rel="user" target="_blank">JeffW</a><br>
+<a href="https://twitter.com/snow370208" rel="user" target="_blank">楊穆承 (snow370208)</a><br>
 
 <br><b>Deutsche</b><br>
 Bandie<br>
 <a href="https://twitter.com/cmdrfletcher" rel="user" target="_blank">cmdrfletcher</a><br>
+<a href="https://twitter.com/EpicLPer" rel="user" target="_blank">EpicLPer</a><br>
 <a href="https://twitter.com/hamburgator" rel="user" target="_blank">Planke</a><br>
 <a href="https://twitter.com/FLUFFSQUEAKER" rel="user" target="_blank">milanmat-fluffsqueaker</a><br>
 <a href="https://twitter.com/ItsJustMirko" rel="user" target="_blank">Mirko</a><br>
@@ -37,6 +40,7 @@ Thoth<br>
 <a href="https://twitter.com/FibonacciPrower" rel="user" target="_blank">Fibonacci Prower</a><br>
 Lyla Bravo<br>
 minyfriki<br>
+<a href="https://twitter.com/j0shdee" rel="user" target="_blank">Joshua (joshdee)</a><br>
 <a href="https://twitter.com/RichardWolfVI" rel="user" target="_blank">Juan Marulanda</a><br>
 tetrisdog<br>
 TAKAHASHI Shuuji<br>
@@ -52,12 +56,15 @@ TAKAHASHI Shuuji<br>
 <a href="https://twitter.com/Nintenloup_Wolf" rel="user" target="_blank">Nintenloup</a><br>
 <a href="https://twitter.com/robot275" rel="user" target="_blank">Robot275</a><br>
 <a href="https://twitter.com/ShadyFennec" rel="user" target="_blank">ShadyFennec</a><br>
+<a href="https://twitter.com/Siphonay" rel="user" target="_blank">Siphonay</a><br>
 <a href="https://twitter.com/Yakonche" rel="user" target="_blank">Yakonche</a><br>
 
 <br><b>日本語</b><br>
 <a href="https://twitter.com/hideki_0403" rel="user" target="_blank">ゆきねこ (hideki_0403)</a><br>
+<a href="https://twitter.com/MapleTheDeer" rel="user" target="_blank">Maple</a><br>
+NiiG4m3s<br>
 pukutaaang<br>
-るいーね (ruine)<br>
+<a href="https://twitter.com/strayedwave" rel="user" target="_blank">strayedwave</a><br>
 TAKAHASHI Shuuji<br>
 
 <br><b>한국어</b><br>
@@ -71,13 +78,16 @@ Lastorder<br>
 <a href="https://twitter.com/hamburgator" rel="user" target="_blank">Planke</a><br>
 
 <br><b>norsk</b><br>
-Loke
+<a href="https://twitter.com/ShiftTGC" rel="user" target="_blank">ShiftTGC</a><br>
+Loke<br>
 
 <br><b>Polski</b><br>
 <a href="https://twitter.com/4D3s12" rel="user" target="_blank">Ad3s12</a><br>
+<a href="https://twitter.com/MrRocketFX" rel="user" target="_blank">Mr. Rocket</a><br>
 <a href="https://twitter.com/Patryk1023PL" rel="user" target="_blank">Patryk1023</a><br>
 <a href="https://twitter.com/PeCeT_full" rel="user" target="_blank">PeCeT_full</a><br>
 Paweł Amroziewicz<br>
+<a href="https://twitter.com/9172unknownuser" rel="user" target="_blank">Max (9172unknownuser)</a><br>
 <a href="https://twitter.com/w1nk000" rel="user" target="_blank">w1nk000</a><br>
 
 <br><b>Português</b><br>
