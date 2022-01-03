@@ -2306,10 +2306,10 @@ a .column-title-back .icon:after {
 	will-change: color
 }
 
-.tweet-action-item .tweet-action,
+/* .tweet-action-item .tweet-action,
 .tweet-detail-action-item .tweet-detail-action {
-	/* color:var(--scrollbarDefaultColor) */
-}
+	color:var(--scrollbarDefaultColor)
+} */
 
 .is-conversation>.tweet-body {
 	margin-left: -15px;
@@ -3850,7 +3850,7 @@ html:not(.mtd-app).mtd-classic-nav .compose-content {
 
 .inline-reply .compose-text {
 	padding: 10px;
-	height: calc(var(--inlineComposeHeight) - 80px) !important !important;
+	height: calc(var(--inlineComposeHeight) - 80px) !important;
 	width: 100%
 }
 
