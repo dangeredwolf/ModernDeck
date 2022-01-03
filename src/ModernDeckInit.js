@@ -1,7 +1,7 @@
 /*
 	ModernDeckInit.js
 
-	Copyright (c) 2014-2021 dangered wolf, et al
+	Copyright (c) 2014-2022 dangered wolf, et al
 	Released under the MIT License
 */
 
@@ -31,6 +31,7 @@ import { getColumnNumber, updateColumnTypes } from "./Column.js";
 import i18nData from "./DataI18n.js";
 window.i18nData = i18nData;
 window.AutoUpdateController = AutoUpdateController;
+import modalKeepOpen from "./ModalKeepOpen";
 
 import { isStylesheetExtensionEnabled, enableStylesheetExtension, disableStylesheetExtension, enableCustomStylesheetExtension } from "./StylesheetExtensions.js";
 
@@ -539,6 +540,8 @@ function navigationSetup() {
 		setTimeout(navigationSetup,100);
 		return;
 	}
+
+	handleErrors(modalKeepOpen, "Caught error in modalKeepOpen");
 
 	if (getPref("mtd_last_lang") !== navigator.language) {
 		new UILanguagePicker();

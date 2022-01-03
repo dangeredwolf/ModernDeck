@@ -100,6 +100,10 @@ export let settingsData = {
 								disableStylesheetExtension("paper");
 								enableStylesheetExtension("dark");
 								enableStylesheetExtension("amoled");
+
+								/* Dirty hack to fix amoled theme being reset by the high contrast setting later on upon loading */
+								setTimeout(() => enableStylesheetExtension("amoled"), 0);
+								
 								break;
 							case "custom":
 								disableStylesheetExtension("light");
@@ -292,6 +296,20 @@ export let settingsData = {
 				},
 				settingsKey:"mtd_noemojipicker",
 				enabled:false,
+				default:true
+			},
+			modalKeepOpen:{
+				title:"{{Keep modals open to like/follow from multiple accounts}}",
+				type:"checkbox",
+				activate:{
+					func: () => {
+					}
+				},
+				deactivate:{
+					func: () => {
+					}
+				},
+				settingsKey:"mtd_modalKeepOpen",
 				default:true
 			},
 			sensitiveMedia:{

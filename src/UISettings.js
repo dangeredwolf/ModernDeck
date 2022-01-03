@@ -1,7 +1,7 @@
 /*
 	UISettings.js
 
-	Copyright (c) 2014-2021 dangered wolf, et al
+	Copyright (c) 2014-2022 dangered wolf, et al
 	Released under the MIT License
 */
 
@@ -13,14 +13,14 @@ import { parseActions } from "./PrefHandler.js";
 import { I18n } from "./I18n.js";
 import { AutoUpdateController } from "./AutoUpdateController.js";
 
-let verTextId = 3;
+let verTextId = 1;
 let verText = "";
 
 let productName = "ModernDeck";
 
-if (isEnterprise()) {
-	productName = "ModernDeck for Enterprise"
-}
+// if (isEnterprise()) {
+// 	productName = "ModernDeck for Enterprise"
+// }
 
 function internationaliseSettingString(str) {
 	let matches = str.match(/{{.+?}}/g);
