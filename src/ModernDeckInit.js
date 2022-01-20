@@ -710,6 +710,22 @@ function coreInit() {
 	FunctionPatcher();
 	LanguageFunctionPatcher();
 
+	// Request access to nft avatar and other Labs features
+
+	$.ajaxPrefilter((ajaxOptions) => {
+		try {
+			const url = new URL(ajaxOptions.url || '');
+	
+			if (!url.searchParams.has('include_entities')) {
+				return;
+			}
+	
+			ajaxOptions.url = ajaxOptions.url + "&ext=mediaStats,highlightedLabel,voiceInfo,superFollowMetadata&include_ext_has_nft_avatar=true"
+		} catch (e) {
+		  console.error(e)
+		}
+	});
+
 	I18n.customTimeHandler = function(timeString) {
 		if (window.mtdTimeHandler === "h12") {
 			return timeString.replace(/\{\{hours24\}\}\:\{\{minutes\}\}/g,"{{hours12}}:{{minutes}} {{amPm}}")
