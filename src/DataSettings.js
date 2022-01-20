@@ -568,6 +568,22 @@ export let settingsData = {
 				settingsKey:"mtd_sounds",
 				default:true
 			},
+			nftAvatarAction:{
+				headerBefore:"{{NFT Behavior}}",
+				title:"{{Action to take against users with NFT avatars}}",
+				type:"dropdown",
+				settingsKey:"mtd_nftAvatarAction",
+				activate:{
+					func: set => {
+
+					}
+				},
+				options:{
+					nothing:{value:"nothing",text:"{{Nothing}}"},
+					mute:{value:"mute",text:"{{Mute user}}"},
+					block:{value:"block",text:"{{Block user}}"}
+				}
+			},
 			linkShortener:{
 				headerBefore:"{{Link Shortening}}",
 				title:"{{Link Shortener Service}}",
