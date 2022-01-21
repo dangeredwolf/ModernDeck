@@ -18,7 +18,7 @@ export default class NFTActionQueue {
             this.queue.push(user);
             this.recentMutes.push(user);
 
-            if (new Date() - lastAction > 18000 && !this.isThreadRunning) {
+            if (new Date() - this.lastAction > 18000 && !this.isThreadRunning) {
                 // It's already been a while, so should be fairly safe to start running through
                 this.takeUserAction(user);
             }
@@ -26,6 +26,8 @@ export default class NFTActionQueue {
     }
 
     takeUserAction(user) {
+        this.lastAction = new Date();
+        
         switch(getPref("mtd_nftAvatarAction")) {
             case "nothing":
                 break;
