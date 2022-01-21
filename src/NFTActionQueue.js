@@ -15,6 +15,7 @@ export default class NFTActionQueue {
 	lastAction = 0;
 	notif = null;
 	clearNotificationTimeout;
+	actionToTake = getPref("mtd_nftAvatarAction");
 
 	constructor () {
 		if (this.queue.length > 0 && this.isThreadRunning === false) {
@@ -26,12 +27,14 @@ export default class NFTActionQueue {
 	}
 
 	_createNewNotification() {
+		console.log("Creating new notification");
 		this.notifRoot = mR.findFunction("showErrorNotification")[0].showNotification({title:I18n("NFT Actions"), timeoutDelayMs:9999999999999});
 		this.notifId = this.notifRoot._id;
 		this.notif = $("li.Notification[data-id=\""+this.notifId+"\"]").attr("style", "display: none");
 		this.notifContent = $("li.Notification[data-id=\""+this.notifId+"\"] .Notification-content");
 		this.notifTitle = $("li.Notification[data-id=\""+this.notifId+"\"] .Notification-title");
 		this.notifIcon = $("li.Notification[data-id=\""+this.notifId+"\"] .Notification-icon .Icon");
+		this.notifClose = $("li.Notification[data-id=\""+this.notifId+"\"] .Notification-closeButton");
 
 		if (this.notif.length > 0) {
 			this.notif.addClass("mtd-update-notification mtd-nft-block-notification");
@@ -60,9 +63,7 @@ export default class NFTActionQueue {
 		console.log(`NFTActionQueue: Checking if user ${user.screen_name} is already dealt with`);
 
 		let dealtWith = false;
-		let actionToTake = getPref("mtd_nftAvatarAction");
-
-		clearTimeout(this.clearNotificationTimeout);
+		this.actionToTake = getPref("mtd_nftAvatarAction");
 
 		// Check if we've already dealt with this user
 		this.recentMutes.forEach(mutedUser => {
@@ -72,13 +73,14 @@ export default class NFTActionQueue {
 		});
 
 		// Check if already muted or blocked
-		if (actionToTake === "mute" ? TD.controller.clients.getPreferredClient().mutes[user.id_str] :
-		   (actionToTake === "block" ? TD.controller.clients.getPreferredClient().blocks[user.id_str] : false)) {
+		if (this.actionToTake === "mute" ? TD.controller.clients.getPreferredClient().mutes[user.id_str] :
+		   (this.actionToTake === "block" ? TD.controller.clients.getPreferredClient().blocks[user.id_str] : false)) {
 			dealtWith = true;
 		}
 
 		// If not dealt with, add to queue
 		if (!dealtWith) {
+			clearTimeout(this.clearNotificationTimeout);
 
 			console.log(`NFTActionQueue: Queued user ${user.screen_name}`);
 			// console.log(`NFTActionQueue: Adding user ${user.screen_name} to queue`);
@@ -106,7 +108,12 @@ export default class NFTActionQueue {
 		if (this.notif === null || this.notif.hasClass("is-expired")) {
 			this._createNewNotification();
 		}
-		this.notifTitle.text(this.queue.length > 1 ? I18n("Blocking NFT avatar users") : I18n("Blocking NFT avatar user"));
+		if (actionToTake === "block") {
+			this.notifTitle.text(this.queue.length > 1 ? I18n("Blocking NFT avatar users") : I18n("Blocking NFT avatar user"));
+		} else if (actionToTake === "mute") {
+			this.notifTitle.text(this.queue.length > 1 ? I18n("Muting NFT avatar users") : I18n("Muting NFT avatar user"));
+		}
+		
 		this.notifText.text(this.queue.length > 1 ? (this.queue.length + " users") : ("@" + this.queue[0].screen_name));
 
 		if (timeOut) {
@@ -135,7 +142,8 @@ export default class NFTActionQueue {
 			this.isThreadRunning = false;
 			setPref("mtd_nftActionQueue", []);
 
-			$("li.Notification[data-id=\""+this.notifId+"\"] .Notification-closeButton").click();
+			this.notifClose.addClass("is-expired").click();
+			this.notif = null;
 			this.notif = null;
 		});
 	}
@@ -191,18 +199,24 @@ export default class NFTActionQueue {
 			}
 
 			this.notif.attr("style", "display: block");
-			this.notifTitle.text(I18n("Blocked NFT avatar user"));
+
+			if (this.actionToTake === "block") {
+				this.notifTitle.text(I18n("Blocked NFT avatar user"));
+			} else if (this.actionToTake === "mute") {
+				this.notifTitle.text(I18n("Muted NFT avatar user"));
+			}
+
 			this.notifText.text("@" + user.screen_name);
 
 			this.notifButton.off("click").text(I18n("Undo")).on("click", () => {
 				this.undoUserAction(user);
 
-				$("li.Notification[data-id=\""+this.notifId+"\"] .Notification-closeButton").click();
+				this.notifClose.addClass("is-expired").click();
 				this.notif = null;
 			});
 			
 			this.clearNotificationTimeout = setTimeout(() => {
-				$("li.Notification[data-id=\""+this.notifId+"\"] .Notification-closeButton").click();
+				this.notifClose.addClass("is-expired").click();
 				this.notif = null;
 			}, 5000);
 		}
