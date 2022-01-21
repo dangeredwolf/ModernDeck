@@ -1,3 +1,10 @@
+/*
+	NFTActionQueue.js
+
+	Copyright (c) 2014-2022 dangered wolf, et al
+	Released under the MIT License
+*/
+
 export default class NFTActionQueue {
     queue = [];
     recentMutes = [];
