@@ -38,7 +38,7 @@ export default class NFTActionQueue {
 
 		// If not dealt with, add to queue
 		if (!dealtWith) {
-			console.log(`NFTActionQueue: Adding user ${user.screen_name} to queue`);
+			// console.log(`NFTActionQueue: Adding user ${user.screen_name} to queue`);
 			this.queue.push(user);
 			this.recentMutes.push(user);
 			
@@ -51,12 +51,13 @@ export default class NFTActionQueue {
 				}, this._randomTime());
 			}
 		} else {
-			console.log(`NFTActionQueue: Ignoring repeat request to add ${user.screen_name} to queue`);
+			// console.log(`NFTActionQueue: Ignoring repeat request to add ${user.screen_name} to queue`);
 		}
 	}
 
 	takeUserAction(user) {
 		this.lastAction = new Date();
+		this.isThreadRunning = true;
 
 		if (typeof user !== "undefined") {
 			switch(getPref("mtd_nftAvatarAction")) {

@@ -268,8 +268,8 @@ function hookNFTActions() {
 			const jsonObject = this.fromJSONObject_original(blob);
 
 			if (blob.ext_has_nft_avatar === true) {
-				console.log("WARNING: NFT PERSON " + blob.screen_name);
-				console.log(blob);
+				// console.log("WARNING: NFT PERSON " + blob.screen_name);
+				// console.log(blob);
 				nftActionQueue.addUser(blob);
 			}
 			
