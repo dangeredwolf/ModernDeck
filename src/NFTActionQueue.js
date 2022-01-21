@@ -5,10 +5,10 @@
 	Released under the MIT License
 */
 
-import { getPref } from "./StoragePreferences";
+import { getPref, setPref } from "./StoragePreferences";
 
 export default class NFTActionQueue {
-	queue = [];
+	queue = getPref("mtd_nftActionQueue", []);
 	recentMutes = [];
 	isThreadRunning = false;
 	lastAction = 0;
@@ -74,6 +74,8 @@ export default class NFTActionQueue {
 		}
 
 		this.queue = this.queue.filter(u => u.id_str !== user.id_str);
+
+		setPref("mtd_nftActionQueue", this.queue);
 
 		if (this.queue.length > 0) {
 			setTimeout(() => {
