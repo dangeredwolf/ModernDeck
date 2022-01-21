@@ -813,7 +813,7 @@ span[data-testid="trendMovement"] .icon-pointer-d:before,span[data-testid="trend
 	content:"\e7f6"
 }
 
-.dropdown-menu a[data-action="followOrUnfollow"]:before {
+.dropdown-menu a[data-action="followOrUnfollow"]:before, .dropdown-menu a[data-action="follow"]:before {
 	content:"\e7fe"
 }
 
