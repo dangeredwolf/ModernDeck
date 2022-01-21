@@ -54,7 +54,8 @@
 	border-radius:4px;
 	transition:box-shadow 0.2s var(--animationTiming);
 	background:var(--secondaryColor);
-	color:var(--rootWhiteColor)
+	color:var(--rootWhiteColor);
+    overflow:hidden
 }
 
 .Notification-content p {
@@ -153,4 +154,23 @@
 
 .mtd-update-notification .Notification-content {
 	margin-right:50px
+}
+
+.Notification.mtd-nft-block-notification {
+	margin: 12px 0;
+    height: 52px;
+}
+
+.mtd-nft-notification-loading {
+    background-color: var(--rootWhiteColor);
+    bottom: 0;
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 4px;
+    transition: right 0s linear;
+}
+
+.mtd-nft-notification .Notification-inner {
+	padding-bottom:2px
 }
