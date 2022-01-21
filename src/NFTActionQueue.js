@@ -35,6 +35,7 @@ export default class NFTActionQueue {
 		this.notifTitle = $("li.Notification[data-id=\""+this.notifId+"\"] .Notification-title");
 		this.notifIcon = $("li.Notification[data-id=\""+this.notifId+"\"] .Notification-icon .Icon");
 		this.notifClose = $("li.Notification[data-id=\""+this.notifId+"\"] .Notification-closeButton");
+		
 
 		if (this.notif.length > 0) {
 			this.notif.addClass("mtd-update-notification mtd-nft-block-notification");
@@ -59,6 +60,45 @@ export default class NFTActionQueue {
 		return 10000 + (Math.random() * 5000);
 	}
 
+	_uiDismissNotification() {
+		console.log("NFTActionQueue: Dismissing notification");
+		this.notifClose.click();
+
+		// Need setTimeout for this for some reason
+		setTimeout(() => {
+			this.notif.addClass("is-expired");
+			this.notif = null;
+		})
+		setTimeout(() => {
+			if (this.notif !== null) {
+				this.notif.addClass("is-expired");
+				this.notif = null;
+			}
+		},50)
+	}
+
+	_uiUpdateBlockQueue(timeOut) {
+		console.log("NFTActionQueue: Updating block queue UI");
+		if (this.notif === null || this.notif.hasClass("is-expired")) {
+			this._createNewNotification();
+		}
+		if (this.actionToTake === "block") {
+			this.notifTitle.text(this.queue.length > 1 ? I18n("Blocking NFT avatar users") : I18n("Blocking NFT avatar user"));
+		} else if (this.actionToTake === "mute") {
+			this.notifTitle.text(this.queue.length > 1 ? I18n("Muting NFT avatar users") : I18n("Muting NFT avatar user"));
+		}
+		
+		this.notifText.text(this.queue.length > 1 ? (this.queue.length + " users") : ("@" + this.queue[0].screen_name));
+
+		if (timeOut) {
+			this.notifLoading.attr("style", "right: 0");
+
+			setTimeout(() => {
+				this.notifLoading.attr("style", "right: 372px; transition-duration: " + timeOut + "ms");
+			})
+		}
+	}
+
 	addUser(user) {
 		console.log(`NFTActionQueue: Checking if user ${user.screen_name} is already dealt with`);
 
@@ -80,6 +120,7 @@ export default class NFTActionQueue {
 
 		// If not dealt with, add to queue
 		if (!dealtWith) {
+			console.log("NFTActionQueue: Clearing timeout");
 			clearTimeout(this.clearNotificationTimeout);
 
 			console.log(`NFTActionQueue: Queued user ${user.screen_name}`);
@@ -97,38 +138,17 @@ export default class NFTActionQueue {
 
 				this.queueNewUserAction();
 			} else {
-				this.updateBlockQueueUI(false);
+				this._uiUpdateBlockQueue(false);
 			}
 		} else {
 			// console.log(`NFTActionQueue: Ignoring repeat request to add ${user.screen_name} to queue`);
 		}
 	}
 
-	updateBlockQueueUI(timeOut) {
-		if (this.notif === null || this.notif.hasClass("is-expired")) {
-			this._createNewNotification();
-		}
-		if (actionToTake === "block") {
-			this.notifTitle.text(this.queue.length > 1 ? I18n("Blocking NFT avatar users") : I18n("Blocking NFT avatar user"));
-		} else if (actionToTake === "mute") {
-			this.notifTitle.text(this.queue.length > 1 ? I18n("Muting NFT avatar users") : I18n("Muting NFT avatar user"));
-		}
-		
-		this.notifText.text(this.queue.length > 1 ? (this.queue.length + " users") : ("@" + this.queue[0].screen_name));
-
-		if (timeOut) {
-			this.notifLoading.attr("style", "right: 0");
-
-			setTimeout(() => {
-				this.notifLoading.attr("style", "right: 372px; transition-duration: " + timeOut + "ms");
-			})
-		}
-	}
-
 	queueNewUserAction() {
 		let timeOut = this._randomTime();
 
-		this.updateBlockQueueUI(timeOut);
+		this._uiUpdateBlockQueue(timeOut);
 
 		this.notif.attr("style", "display: block");
 
@@ -138,13 +158,14 @@ export default class NFTActionQueue {
 
 		this.notifButton.off("click").text(I18n("Cancel")).on("click", () => {
 			clearTimeout(timeoutFunc);
+			
+			this.isThreadRunning = false; // Stop thread
+
+			// Clear queue
 			this.queue = [];
-			this.isThreadRunning = false;
 			setPref("mtd_nftActionQueue", []);
 
-			this.notifClose.addClass("is-expired").click();
-			this.notif = null;
-			this.notif = null;
+			this._uiDismissNotification();
 		});
 	}
 
@@ -189,11 +210,14 @@ export default class NFTActionQueue {
 
 		setPref("mtd_nftActionQueue", this.queue);
 
+		// Queue next action if available
+
 		if (this.queue.length > 0) {
 			this.queueNewUserAction();
 		} else {
 			this.isThreadRunning = false;
 
+			// Missing or expired notifications must be recreated
 			if (this.notif === null || this.notif.hasClass("is-expired")) {
 				this._createNewNotification();
 			}
@@ -210,15 +234,11 @@ export default class NFTActionQueue {
 
 			this.notifButton.off("click").text(I18n("Undo")).on("click", () => {
 				this.undoUserAction(user);
-
-				this.notifClose.addClass("is-expired").click();
-				this.notif = null;
+				this._uiDismissNotification();
 			});
-			
-			this.clearNotificationTimeout = setTimeout(() => {
-				this.notifClose.addClass("is-expired").click();
-				this.notif = null;
-			}, 5000);
+		
+			let clearNotificationTimeout = setTimeout(() => this._uiDismissNotification(), 5000);
+			this.clearNotificationTimeout = clearNotificationTimeout;
 		}
 	}
 
