@@ -360,12 +360,13 @@ export const setupAME = () => {
 
   // Custom pass function to apply our filters
   TD.vo.Filter.prototype.pass = function pass(e) {
-    // console.log(this.type);
-    if (AMEFilters[this.type]) {
+    console.log(this.type);
+    if (Object.values(AMEFilters).indexOf(this.type) !== -1) {
+      console.log("Passing filter: " + this.type);
       const t = this;
       e = this._getFilterTarget(e);
 
-      const shouldDisplay = AmeFilters[this.type].function(t, e);
+      const shouldDisplay = Object.values(AmeFilters)[Object.values(AMEFilters).indexOf(this.type)].function(t, e);
       maybeLogMuteCatch(e, this, shouldDisplay);
 
       return shouldDisplay;
@@ -388,8 +389,8 @@ export const setupAME = () => {
 
   // Custom display type function to show proper description in filter list
   TD.vo.Filter.prototype.getDisplayType = function getDisplayType() {
-    if (AMEFilters[this.type]) {
-      return AmeFilters[this.type].descriptor;
+    if (Object.values(AMEFilters).indexOf(this.type)) {
+      return Object.values(AmeFilters)[Object.values(AmeFilters).indexOf(this.type)].descriptor;
     }
     return this._getDisplayType();
   };

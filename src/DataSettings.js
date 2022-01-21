@@ -589,13 +589,18 @@ export let settingsData = {
 								TD.controller.filterManager.addFilter('BTD_nft_avatar', '');
 							}
 						} else {
-
+							TD.controller.filterManager.getAll().forEach(filter => {
+								if (filter.type === "BTD_nft_avatar") {
+									TD.controller.filterManager.removeFilter(filter);
+								}
+							});
 						}
 					}
 				},
 				default:"nothing",
 				options:{
 					nothing:{value:"nothing",text:"{{Nothing}}"},
+					hide:{value:"hide",text:"{{Hide in ModernDeck}}"},
 					mute:{value:"mute",text:"{{Mute user}}"},
 					block:{value:"block",text:"{{Block user}}"}
 				}
