@@ -586,7 +586,7 @@ export let settingsData = {
 							});
 
 							if (!alreadyHasFilter) {
-								TD.controller.filterManager.addFilter('BTD_nft_avatar', '');
+								TD.controller.filterManager.addFilter('BTD_nft_avatar', 'ModernDeck NFT Avatar Filter');
 							}
 						} else {
 							TD.controller.filterManager.getAll().forEach(filter => {
@@ -606,7 +606,7 @@ export let settingsData = {
 				}
 			},
 			nftSubtext: {
-				label: "{{Some things to keep in mind}}<br><br>- {{At the moment, due to Twitter API limits, actions don't work against users on Search columns}}<br>- {{If you are using the mute or block actions, these actions might not be executed immediately due to Twitter API limits and to prevent your account from being locked for automated activity. So while the users will disappear from ModernDeck immediately, it may take some time for the queue to flush and mutes or blocks to appear on other devices.}}",
+				label: "{{Some things to keep in mind}}<br><br>- {{At the moment, due to Twitter API limits, actions don't work against users on Search columns}}<br>- {{If you are using the mute or block actions, these actions might not be executed immediately due to Twitter API limits and to prevent your account from being locked for automated activity. So while the users will disappear from ModernDeck immediately, it may take some time for the queue to flush and mutes or blocks to appear on other devices.}}<br>- {{Turning off this feature won't unblock ur unmute anyone on the server, but their tweets will no longer be automatically hidden in ModernDeck.}}",
 				type:"subtext"
 			},
 			nftDontBlockFollowing:{
@@ -617,6 +617,7 @@ export let settingsData = {
 				deactivate:{
 				},
 				settingsKey:"mtd_nftDontBlockFollowing",
+				enabled:false,
 				default:true
 			},
 			nftNotify:{

@@ -191,7 +191,8 @@ export default class NFTActionQueue {
 		if (typeof user !== "undefined") {
 			switch(getPref("mtd_nftAvatarAction")) {
 				case "nothing":
-					break;
+				case "hide":
+					return;
 				case "mute":
 					console.log(TD.controller.clients.getPreferredClient().unmuteUser(user?.id_str));
 					console.log(`NFTActionQueue: Unmuted user ${user?.screen_name}`);
@@ -210,7 +211,8 @@ export default class NFTActionQueue {
 		if (typeof user !== "undefined") {
 			switch(getPref("mtd_nftAvatarAction")) {
 				case "nothing":
-					break;
+				case "hide":
+					return;
 				case "mute":
 					console.log(TD.controller.clients.getPreferredClient().muteUser(user?.id_str));
 					TD.controller.clients.getPreferredClient().addIdToMuteList(user?.id_str);

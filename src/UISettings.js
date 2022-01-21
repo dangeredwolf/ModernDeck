@@ -13,7 +13,7 @@ import { parseActions } from "./PrefHandler.js";
 import { I18n } from "./I18n.js";
 import { AutoUpdateController } from "./AutoUpdateController.js";
 
-let verTextId = 1;
+let verTextId = 2;
 let verText = "";
 
 let productName = "ModernDeck";

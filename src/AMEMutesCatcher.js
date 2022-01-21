@@ -1,7 +1,3 @@
-
-
-
-
 const MTD_MUTE_CATCHES_KEY = `mtd_ame_mute_catches`;
 
 function safeInitialDataFromLocalStorage() {
