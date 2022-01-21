@@ -27,27 +27,31 @@
  *
  */
 
-import {AMEFilters} from './AMEMutesCatcher';
+import { getPref, setPref } from "./StoragePreferences";
+
+/*
+  ModernDeck uses the BTD namespace for AME to enable interoperability between them,
+  and so 
+*/
 
 const AMEFilters = {
-  NFT_AVATAR: 'MTD_nft_avatar',
-  IS_RETWEET_FROM: 'MTD_is_retweet_from',
-  MUTE_USER_KEYWORD: 'MTD_mute_user_keyword',
-  REGEX_DISPLAYNAME: 'MTD_mute_displayname',
-  REGEX: 'MTD_regex',
-  USER_REGEX: 'MTD_user_regex',
-  MUTE_QUOTES: 'MTD_mute_quotes',
-  USER_BIOGRAPHIES: 'MTD_user_biographies',
-  DEFAULT_AVATARS: 'MTD_default_avatars',
-  FOLLOWER_COUNT_LESS_THAN: 'MTD_follower_count_less_than',
-  FOLLOWER_COUNT_GREATER_THAN: 'MTD_follower_count_greater_than',
-  SPECIFIC_TWEET: 'MTD_specific_tweet',
+  NFT_AVATAR: 'BTD_nft_avatar',
+  IS_RETWEET_FROM: 'BTD_is_retweet_from',
+  MUTE_USER_KEYWORD: 'BTD_mute_user_keyword',
+  REGEX_DISPLAYNAME: 'BTD_mute_displayname',
+  REGEX: 'BTD_regex',
+  USER_REGEX: 'BTD_user_regex',
+  MUTE_QUOTES: 'BTD_mute_quotes',
+  USER_BIOGRAPHIES: 'BTD_user_biographies',
+  DEFAULT_AVATARS: 'BTD_default_avatars',
+  FOLLOWER_COUNT_LESS_THAN: 'BTD_follower_count_less_than',
+  FOLLOWER_COUNT_GREATER_THAN: 'BTD_follower_count_greater_than',
+  SPECIFIC_TWEET: 'BTD_specific_tweet',
 }
 
-
 const nonUserSpecificsTypes = [
-  TweetDeckFilterTypes.SOURCE,
-  TweetDeckFilterTypes.PHRASE,
+  "source", // TD.vo.Filter.SOURCE
+  "phrase", // TD.vo.Filter.SOURCE
   AMEFilters.REGEX,
 ];
 
@@ -65,7 +69,7 @@ const userSpecificTypes = [
 const muteTypeAllowlist = [...nonUserSpecificsTypes, ...userSpecificTypes];
 
 function getInitialMuteCatches() {
-  const fromLocalStorage = getPref("mtd_ame_filter_list").filter((c) => RMuteCatch.is(c));
+  const fromLocalStorage = getPref("mtd_ame_mute_catches", []).filter((c) => RMuteCatch.is(c));
   return new Map(fromLocalStorage);
 }
 
@@ -74,6 +78,53 @@ const muteCatches = getInitialMuteCatches();
 const clearMuteCatches = () => {
   muteCatches.clear();
 };
+
+export function encodeCatchKey(muteCatch) {
+  return [muteCatch.filterType, muteCatch.user.id, encodeURIComponent(muteCatch.value)].join('$_$');
+}
+
+export function encodeMuteReasonKey(muteReason) {
+  return [muteReason.filterType, encodeURIComponent(muteReason.value)].join('$_$');
+}
+export function decodeMuteReasonKey(muteReasonKey) {
+  const [filterType, rawValue] = muteReasonKey.split('$_$');
+
+  return {
+    filterType: filterType,
+    value: decodeURIComponent(rawValue),
+  };
+}
+
+function getMeaningfulUser(target) {
+  return (
+    target.retweetedStatus?.user ||
+    target.sourceUser ||
+    target.user ||
+    target.following ||
+    target.owner || []
+  );
+}
+
+function serializeMuteCatch(target, filter)  {
+  const meaningfulUser = getMeaningfulUser(target);
+  // console.log(meaningfulUser);
+  if (!meaningfulUser) {
+    console.debug(filter, target);
+  }
+
+  const simplifiedUser = {
+    avatar: meaningfulUser.profileImageURL,
+    id: meaningfulUser.id,
+    screenName: meaningfulUser.screenName,
+    name: meaningfulUser.name,
+  };
+
+  return {
+    filterType: filter.type,
+    value: filter.value,
+    user: simplifiedUser,
+  };
+}
 
 function maybeLogMuteCatch(
   target,
@@ -309,7 +360,8 @@ export const setupAME = () => {
 
   // Custom pass function to apply our filters
   TD.vo.Filter.prototype.pass = function pass(e) {
-    if (AMEFilters.is(this.type)) {
+    // console.log(this.type);
+    if (AMEFilters[this.type]) {
       const t = this;
       e = this._getFilterTarget(e);
 
@@ -336,7 +388,7 @@ export const setupAME = () => {
 
   // Custom display type function to show proper description in filter list
   TD.vo.Filter.prototype.getDisplayType = function getDisplayType() {
-    if (AMEFilters.is(this.type)) {
+    if (AMEFilters[this.type]) {
       return AmeFilters[this.type].descriptor;
     }
     return this._getDisplayType();
@@ -348,7 +400,7 @@ export const setupAME = () => {
     let filterString = '';
 
     filters.forEach((filter) => {
-      if (!AMEFilters.is(filter)) {
+      if (!AMEFilters[filter]) {
         return;
       }
       const fil = AmeFilters[filter];
@@ -361,31 +413,31 @@ export const setupAME = () => {
   };
 
   // Helper function to build <li>s for the actions dropdown
-  const userDropdown = function userDropdown() {
-    const filters = Object.keys(AmeFilters);
-    let filterString = '';
+  // const userDropdown = function userDropdown() {
+  //   const filters = Object.keys(AmeFilters);
+  //   let filterString = '';
 
-    filters.forEach((filter) => {
-      if (!AMEFilters.is(filter)) {
-        return;
-      }
-      const fil = AmeFilters[filter];
-      if (fil.display && fil.display.actions) {
-        const templateString =
-          fil.options && fil.options.templateString ? fil.options.templateString : '{{screenName}}';
-        const name =
-          fil.options && fil.options.nameInDropdown
-            ? fil.options.nameInDropdown
-            : `Mute ${fil.name}`;
+  //   filters.forEach((filter) => {
+  //     if (!AMEFilters[filter]) {
+  //       return;
+  //     }
+  //     const fil = AmeFilters[filter];
+  //     if (fil.display && fil.display.actions) {
+  //       const templateString =
+  //         fil.options && fil.options.templateString ? fil.options.templateString : '{{screenName}}';
+  //       const name =
+  //         fil.options && fil.options.nameInDropdown
+  //           ? fil.options.nameInDropdown
+  //           : `Mute ${fil.name}`;
 
-        filterString += `<li class="is-selectable">
-            <a href="#" data-mtd-filter="${filter}" data-mtd-value="${templateString}">{{_i}}${name}{{/i}}</a>
-          </li>`;
-      }
-    });
+  //       filterString += `<li class="is-selectable">
+  //           <a href="#" data-mtd-filter="${filter}" data-mtd-value="${templateString}">{{_i}}${name}{{/i}}</a>
+  //         </li>`;
+  //     }
+  //   });
 
-    return filterString;
-  };
+  //   return filterString;
+  // };
 
   $(document).on('change', '.js-filter-types', (e) => {
     e.preventDefault();
@@ -393,7 +445,7 @@ export const setupAME = () => {
     const options = e.target.options;
     const filter = e.target.options[options.selectedIndex].value;
 
-    if (AMEFilters.is(filter)) {
+    if (AMEFilters[filter]) {
       $('.js-filter-input').attr('placeholder', AmeFilters[filter].placeholder);
     }
   });
@@ -407,27 +459,27 @@ export const setupAME = () => {
   });
 
   // Add our custom filters to the filter dropdown
-  TD.mustaches['settings/global_setting_filter.mustache'] = TD.mustaches[
-    'settings/global_setting_filter.mustache'
-  ].replace('</select>', `${filterDropdown()}</select>`);
+  // TD.mustaches['settings/global_setting_filter.mustache'] = TD.mustaches[
+  //   'settings/global_setting_filter.mustache'
+  // ].replace('</select>', `${filterDropdown()}</select>`);
 
   // Add our custom filters to the actions dropdown
-  TD.mustaches['menus/actions.mustache'] = TD.mustaches['menus/actions.mustache'].replace(
-    '{{/isMuted}} ',
-    `{{/isMuted}} {{#user}} {{^isMe}} ${userDropdown()} {{/isMe}} {{/user}}`
-  );
+  // TD.mustaches['menus/actions.mustache'] = TD.mustaches['menus/actions.mustache'].replace(
+  //   '{{/isMuted}} ',
+  //   `{{/isMuted}} {{#user}} {{^isMe}} ${userDropdown()} {{/isMe}} {{/user}}`
+  //);
 
-  const filterKey = 'MTD_specific_tweet';
+  const filterKey = 'moderndeck_specific_tweet';
   const filter = AmeFilters[filterKey];
 
   if (filter.options) {
-    TD.mustaches['menus/actions.mustache'] = TD.mustaches['menus/actions.mustache'].replace(
-      '{{/isOwnChirp}}',
-      `{{/isOwnChirp}}
-            <li class="is-selectable">
-              <a href="#" action="_" data-mtd-filter="${filterKey}" data-mtd-value="${filter.options.templateString}">${filter.options.nameInDropdown}</a>
-            </li>
-          `
-    );
+    // TD.mustaches['menus/actions.mustache'] = TD.mustaches['menus/actions.mustache'].replace(
+    //   '{{/isOwnChirp}}',
+    //   `{{/isOwnChirp}}
+    //         <li class="is-selectable">
+    //           <a href="#" action="_" data-mtd-filter="${filterKey}" data-mtd-value="${filter.options.templateString}">${filter.options.nameInDropdown}</a>
+    //         </li>
+    //       `
+    // );
   }
 };
