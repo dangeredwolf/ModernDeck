@@ -13,6 +13,12 @@ export default class NFTActionQueue {
 	isThreadRunning = false;
 	lastAction = 0;
 
+	constructor () {
+		if (this.queue.length > 0 && this.isThreadRunning === false) {
+			this.takeUserAction(this.queue[0]);
+		}
+	}
+
 	_randomTime() {
 		return 10000 + (Math.random() * 5000);
 	}
@@ -49,7 +55,7 @@ export default class NFTActionQueue {
 				this.takeUserAction(user);
 			} else if (!this.isThreadRunning) {
 				this.isThreadRunning = true;
-				
+
 				setTimeout(() => {
 					this.takeUserAction(user);
 				}, this._randomTime());
