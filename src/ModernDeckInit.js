@@ -257,12 +257,14 @@ function fixColumnAnimations() {
 
 function hookNFTActions() {
 	setTimeout(() => {
+		console.log("Starting NFT actions...");
 		TD.services.TwitterUser.prototype.fromJSONObject = (blob) => {
 			if (blob.ext_has_nft_avatar === true) {
 				console.log("WARNING: NFT PERSON " + blob.screen_name);
 			}
+			return blob;
 		};
-	}, 100)
+	}, 4000)
 }
 
 // begin moderndeck initialisation

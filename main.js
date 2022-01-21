@@ -745,7 +745,7 @@ function makeWindow() {
 	);
 
 
-	mainWindow.webContents.session.webRequest.onBeforeSendHeaders({urls:["https://twitter.com/i/jot*"]}, (details, callback) => {
+	mainWindow.webContents.session.webRequest.onBeforeSendHeaders({urls:["https://twitter.com/i/jot*", "https://tweetdeck.twitter.com/Users*"]}, (details, callback) => {
 		callback({cancel: true})
 	})
 
