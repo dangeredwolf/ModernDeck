@@ -58,22 +58,24 @@ export default class NFTActionQueue {
 	takeUserAction(user) {
 		this.lastAction = new Date();
 
-		switch(getPref("mtd_nftAvatarAction")) {
-			case "nothing":
-				break;
-			case "mute":
-				console.log(TD.controller.clients.getPreferredClient().muteUser(user.id_str));
-				TD.controller.clients.getPreferredClient().addIdToMuteList(user.id_str);
-				console.log(`NFTActionQueue: Muted user ${user.screen_name}`);
-				break;
-			case "block":
-				console.log(TD.controller.clients.getPreferredClient().blockUser(user.id_str));
-				TD.controller.clients.getPreferredClient().addIdToBlockList(user.id_str);
-				console.log(`NFTActionQueue: Blocked user ${user.screen_name}`);
-				break;
-		}
+		if (typeof user !== "undefined") {
+			switch(getPref("mtd_nftAvatarAction")) {
+				case "nothing":
+					break;
+				case "mute":
+					console.log(TD.controller.clients.getPreferredClient().muteUser(user?.id_str));
+					TD.controller.clients.getPreferredClient().addIdToMuteList(user?.id_str);
+					console.log(`NFTActionQueue: Muted user ${user?.screen_name}`);
+					break;
+				case "block":
+					console.log(TD.controller.clients.getPreferredClient().blockUser(user?.screen_name));
+					TD.controller.clients.getPreferredClient().addIdToBlockList(user?.screen_name);
+					console.log(`NFTActionQueue: Blocked user ${user?.screen_name}`);
+					break;
+			}
 
-		this.queue = this.queue.filter(u => u.id_str !== user.id_str);
+			this.queue = this.queue.filter(u => u.id_str !== user.id_str);
+		}
 
 		setPref("mtd_nftActionQueue", this.queue);
 
