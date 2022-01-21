@@ -31,7 +31,8 @@ export default class NFTActionQueue {
 		});
 
 		// Check if already muted or blocked
-		if (actionToTake === "mute" ? TD.controller.clients.getPreferredClient().mutes[user.id_str] : (actionToTake === "block" ? TD.controller.clients.getPreferredClient().blocks[user.id_str] : false)) {
+		if (actionToTake === "mute" ? TD.controller.clients.getPreferredClient().mutes[user.id_str] :
+		   (actionToTake === "block" ? TD.controller.clients.getPreferredClient().blocks[user.id_str] : false)) {
 			dealtWith = true;
 		}
 
