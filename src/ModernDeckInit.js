@@ -32,6 +32,7 @@ import i18nData from "./DataI18n.js";
 window.i18nData = i18nData;
 window.AutoUpdateController = AutoUpdateController;
 import modalKeepOpen from "./ModalKeepOpen";
+import NFTActionQueue from "./NFTActionQueue";
 
 import { isStylesheetExtensionEnabled, enableStylesheetExtension, disableStylesheetExtension, enableCustomStylesheetExtension } from "./StylesheetExtensions.js";
 
@@ -59,6 +60,7 @@ import { attachColumnVisibilityEvents } from "./ColumnVisibility.js";
 
 import * as Sentry from "@sentry/browser";
 import { Integrations } from "@sentry/tracing";
+import NFTActionQueue from "./NFTActionQueue";
 
 window.mtdBaseURL = "https://raw.githubusercontent.com/dangeredwolf/ModernDeck/master/ModernDeck/";
 // Defaults to obtaining assets from GitHub if MTDURLExchange isn't completed properly somehow
@@ -66,7 +68,7 @@ window.mtdBaseURL = "https://raw.githubusercontent.com/dangeredwolf/ModernDeck/m
 let loadEmojiPicker = false;
 
 const forceFeatureFlags = false;
-window.useSentry = true;
+window.useSentry = false;
 
 let replacedLoadingSpinnerNew = false;
 let sendingFeedback = false;
@@ -256,15 +258,24 @@ function fixColumnAnimations() {
 }
 
 function hookNFTActions() {
+	window.nftActionQueue = new NFTActionQueue;
+
 	setTimeout(() => {
-		console.log("Starting NFT actions...");
-		TD.services.TwitterUser.prototype.fromJSONObject = (blob) => {
+		console.log("Starting NFT actions module...");
+		TD.services.TwitterUser.prototype.fromJSONObject_original = TD.services.TwitterUser.prototype.fromJSONObject;
+
+		TD.services.TwitterUser.prototype.fromJSONObject = function(blob) {
+			const jsonObject = this.fromJSONObject_original(blob);
+
 			if (blob.ext_has_nft_avatar === true) {
 				console.log("WARNING: NFT PERSON " + blob.screen_name);
+				console.log(blob);
+				nftActionQueue.addUser(blob);
 			}
-			return blob;
+			
+			return jsonObject;
 		};
-	}, 4000)
+	}, 1000)
 }
 
 // begin moderndeck initialisation

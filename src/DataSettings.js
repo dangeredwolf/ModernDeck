@@ -578,11 +578,22 @@ export let settingsData = {
 
 					}
 				},
+				default:"nothing",
 				options:{
 					nothing:{value:"nothing",text:"{{Nothing}}"},
 					mute:{value:"mute",text:"{{Mute user}}"},
 					block:{value:"block",text:"{{Block user}}"}
 				}
+			},
+			nftDontBlockFollowing:{
+				title:"{{Don't auto-block or mute people you follow on your default account}}",
+				type:"checkbox",
+				activate:{
+				},
+				deactivate:{
+				},
+				settingsKey:"mtd_nftDontBlockFollowing",
+				default:true
 			},
 			linkShortener:{
 				headerBefore:"{{Link Shortening}}",
