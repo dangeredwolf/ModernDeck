@@ -255,6 +255,14 @@ function fixColumnAnimations() {
 	})
 }
 
+function hookNFTActions() {
+	TD.services.TwitterUser.prototype.fromJSONObject = (blob) => {
+		if (blob.ext_has_nft_avatar === true) {
+			console.log("WARNING: NFT PERSON " + blob.screen_name);
+		}
+	};
+}
+
 // begin moderndeck initialisation
 
 function mtdInit() {
@@ -343,6 +351,7 @@ function mtdInit() {
 	handleErrors(replacePrettyNumber, "Caught error in replacePrettyNumber");
 	handleErrors(overrideFadeOut, "Caught error in overrideFadeOut");
 	handleErrors(processMustaches, "Caught error in processMustaches");
+	handleErrors(hookNFTActions, "Caught error in hookNFTActions");
 	handleErrors(loginTextReplacer, "Caught error in loginTextReplacer");
 	setTimeout(()=>handleErrors(loginTextReplacer, "Caught error in loginTextReplacer"),200);
 	setTimeout(()=>handleErrors(loginTextReplacer, "Caught error in loginTextReplacer"),500);
