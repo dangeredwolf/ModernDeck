@@ -36,17 +36,17 @@ import { getPref, setPref } from "./StoragePreferences";
 
 const AMEFilters = {
   NFT_AVATAR: 'BTD_nft_avatar',
-  IS_RETWEET_FROM: 'BTD_is_retweet_from',
-  MUTE_USER_KEYWORD: 'BTD_mute_user_keyword',
-  REGEX_DISPLAYNAME: 'BTD_mute_displayname',
-  REGEX: 'BTD_regex',
-  USER_REGEX: 'BTD_user_regex',
-  MUTE_QUOTES: 'BTD_mute_quotes',
-  USER_BIOGRAPHIES: 'BTD_user_biographies',
-  DEFAULT_AVATARS: 'BTD_default_avatars',
-  FOLLOWER_COUNT_LESS_THAN: 'BTD_follower_count_less_than',
-  FOLLOWER_COUNT_GREATER_THAN: 'BTD_follower_count_greater_than',
-  SPECIFIC_TWEET: 'BTD_specific_tweet',
+  // IS_RETWEET_FROM: 'BTD_is_retweet_from',
+  // MUTE_USER_KEYWORD: 'BTD_mute_user_keyword',
+  // REGEX_DISPLAYNAME: 'BTD_mute_displayname',
+  // REGEX: 'BTD_regex',
+  // USER_REGEX: 'BTD_user_regex',
+  // MUTE_QUOTES: 'BTD_mute_quotes',
+  // USER_BIOGRAPHIES: 'BTD_user_biographies',
+  // DEFAULT_AVATARS: 'BTD_default_avatars',
+  // FOLLOWER_COUNT_LESS_THAN: 'BTD_follower_count_less_than',
+  // FOLLOWER_COUNT_GREATER_THAN: 'BTD_follower_count_greater_than',
+  // SPECIFIC_TWEET: 'BTD_specific_tweet',
 }
 
 const nonUserSpecificsTypes = [
@@ -56,14 +56,14 @@ const nonUserSpecificsTypes = [
 ];
 
 const userSpecificTypes = [
-  AMEFilters.DEFAULT_AVATARS,
-  AMEFilters.FOLLOWER_COUNT_GREATER_THAN,
-  AMEFilters.FOLLOWER_COUNT_LESS_THAN,
-  AMEFilters.MUTE_USER_KEYWORD,
+  // AMEFilters.DEFAULT_AVATARS,
+  // AMEFilters.FOLLOWER_COUNT_GREATER_THAN,
+  // AMEFilters.FOLLOWER_COUNT_LESS_THAN,
+  // AMEFilters.MUTE_USER_KEYWORD,
   AMEFilters.NFT_AVATAR,
-  AMEFilters.REGEX_DISPLAYNAME,
-  AMEFilters.USER_BIOGRAPHIES,
-  AMEFilters.USER_REGEX,
+  // AMEFilters.REGEX_DISPLAYNAME,
+  // AMEFilters.USER_BIOGRAPHIES,
+  // AMEFilters.USER_REGEX,
 ];
 
 const muteTypeAllowlist = [...nonUserSpecificsTypes, ...userSpecificTypes];
