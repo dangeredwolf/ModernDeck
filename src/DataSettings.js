@@ -586,14 +586,7 @@ export let settingsData = {
 							});
 
 							if (!alreadyHasFilter) {
-								TD.controller.filterManager.addFilter({
-									type:"BTD_nft_avatar",
-									name:"NFT Avatar",
-									description:"Filter out users with NFT avatars",
-									filter:function(tweet) {
-										return tweet.user.avatar && tweet.user.avatar.indexOf("https://nft.moderndeck.com/") === 0;
-									}
-								});
+								TD.controller.filterManager.addFilter('BTD_nft_avatar', '');
 							}
 						} else {
 
