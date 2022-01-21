@@ -574,8 +574,8 @@ export let settingsData = {
 				type:"dropdown",
 				settingsKey:"mtd_nftAvatarAction",
 				activate:{
-					func: set => {
-
+					func: opt => {
+						window.nftAvatarAction ? window.nftAvatarAction.actionToTake = opt : false;
 					}
 				},
 				default:"nothing",
@@ -597,6 +597,24 @@ export let settingsData = {
 				deactivate:{
 				},
 				settingsKey:"mtd_nftDontBlockFollowing",
+				default:true
+			},
+			nftNotify:{
+				title:"{{Notify me when an NFT auto-action has occurred}}",
+				type:"checkbox",
+				activate:{
+					func: () => {
+						window?.nftAvatarAction?.notifyClose?.click?.();
+						window.nftAvatarAction ? window.nftAvatarAction.notify = null : false;
+						window.nftAvatarAction ? window.nftAvatarAction.enableNotifications = true : false;
+					}
+				},
+				deactivate:{
+					func: () => {
+						window.nftAvatarAction ? window.nftAvatarAction.enableNotifications = false : false;
+					}
+				},
+				settingsKey:"mtd_nftNotify",
 				default:true
 			},
 			linkShortener:{

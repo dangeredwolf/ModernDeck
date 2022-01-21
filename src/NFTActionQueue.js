@@ -12,6 +12,7 @@ export default class NFTActionQueue {
 	queue = getPref("mtd_nftActionQueue", []);
 	recentMutes = [];
 	isThreadRunning = false;
+	enableNotifications = getPref("mtd_nftNotify", true);
 	lastAction = 0;
 	notif = null;
 	clearNotificationTimeout;
@@ -27,6 +28,9 @@ export default class NFTActionQueue {
 	}
 
 	_createNewNotification() {
+		if (!this.enableNotifications) {
+			return;
+		}
 		console.log("Creating new notification");
 		this.notifRoot = mR.findFunction("showErrorNotification")[0].showNotification({title:I18n("NFT Actions"), timeoutDelayMs:9999999999999});
 		this.notifId = this.notifRoot._id;
@@ -61,6 +65,10 @@ export default class NFTActionQueue {
 	}
 
 	_uiDismissNotification() {
+		if (!this.enableNotifications) {
+			return;
+		}
+
 		console.log("NFTActionQueue: Dismissing notification");
 		this.notifClose.click();
 
@@ -78,6 +86,11 @@ export default class NFTActionQueue {
 	}
 
 	_uiUpdateBlockQueue(timeOut) {
+
+		if (!this.enableNotifications) {
+			return;
+		}
+
 		console.log("NFTActionQueue: Updating block queue UI");
 		if (this.notif === null || this.notif.hasClass("is-expired")) {
 			this._createNewNotification();
@@ -156,17 +169,22 @@ export default class NFTActionQueue {
 			this.takeUserAction(this.queue[0]);
 		}, timeOut)
 
-		this.notifButton.off("click").text(I18n("Cancel")).on("click", () => {
-			clearTimeout(timeoutFunc);
-			
-			this.isThreadRunning = false; // Stop thread
 
-			// Clear queue
-			this.queue = [];
-			setPref("mtd_nftActionQueue", []);
+		if (this.enableNotifications) {
+			this.notifButton.off("click").text(I18n("Cancel")).on("click", () => {
+				clearTimeout(timeoutFunc);
+				
+				this.isThreadRunning = false; // Stop thread
+	
+				// Clear queue
+				this.queue = [];
+				setPref("mtd_nftActionQueue", []);
+	
+				this._uiDismissNotification();
+			});
+		}
 
-			this._uiDismissNotification();
-		});
+		
 	}
 
 	undoUserAction(user) {
@@ -217,28 +235,31 @@ export default class NFTActionQueue {
 		} else {
 			this.isThreadRunning = false;
 
-			// Missing or expired notifications must be recreated
-			if (this.notif === null || this.notif.hasClass("is-expired")) {
-				this._createNewNotification();
+			if (this.enableNotifications) {
+				// Missing or expired notifications must be recreated
+				if (this.notif === null || this.notif.hasClass("is-expired")) {
+					this._createNewNotification();
+				}
+				
+				this.notif.attr("style", "display: block");
+
+				if (this.actionToTake === "block") {
+					this.notifTitle.text(I18n("Blocked NFT avatar user"));
+				} else if (this.actionToTake === "mute") {
+					this.notifTitle.text(I18n("Muted NFT avatar user"));
+				}
+
+				this.notifText.text("@" + user.screen_name);
+
+				this.notifButton.off("click").text(I18n("Undo")).on("click", () => {
+					this.undoUserAction(user);
+					this._uiDismissNotification();
+				});
+			
+				let clearNotificationTimeout = setTimeout(() => this._uiDismissNotification(), 5000);
+				this.clearNotificationTimeout = clearNotificationTimeout;
+
 			}
-
-			this.notif.attr("style", "display: block");
-
-			if (this.actionToTake === "block") {
-				this.notifTitle.text(I18n("Blocked NFT avatar user"));
-			} else if (this.actionToTake === "mute") {
-				this.notifTitle.text(I18n("Muted NFT avatar user"));
-			}
-
-			this.notifText.text("@" + user.screen_name);
-
-			this.notifButton.off("click").text(I18n("Undo")).on("click", () => {
-				this.undoUserAction(user);
-				this._uiDismissNotification();
-			});
-		
-			let clearNotificationTimeout = setTimeout(() => this._uiDismissNotification(), 5000);
-			this.clearNotificationTimeout = clearNotificationTimeout;
 		}
 	}
 

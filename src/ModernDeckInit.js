@@ -267,6 +267,8 @@ function hookNFTActions() {
 			// console.log("fromJSONObject called", blob);
 			const jsonObject = this.fromJSONObject_original(blob);
 
+			jsonObject.hasNftAvatar = blob.ext_has_nft_avatar;
+
 			if (blob.ext_has_nft_avatar === true) {
 				// console.log("WARNING: NFT PERSON " + blob.screen_name);
 				// console.log(blob);
@@ -275,7 +277,7 @@ function hookNFTActions() {
 			
 			return jsonObject;
 		};
-	}, 1000)
+	}, 0)
 }
 
 // begin moderndeck initialisation
@@ -367,6 +369,7 @@ function mtdInit() {
 	handleErrors(overrideFadeOut, "Caught error in overrideFadeOut");
 	handleErrors(processMustaches, "Caught error in processMustaches");
 	handleErrors(hookNFTActions, "Caught error in hookNFTActions");
+	handleErrors(setupAME, "Caught error in Advanced Mute Engine")
 	handleErrors(loginTextReplacer, "Caught error in loginTextReplacer");
 	setTimeout(()=>handleErrors(loginTextReplacer, "Caught error in loginTextReplacer"),200);
 	setTimeout(()=>handleErrors(loginTextReplacer, "Caught error in loginTextReplacer"),500);
