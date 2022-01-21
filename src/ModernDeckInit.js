@@ -256,11 +256,13 @@ function fixColumnAnimations() {
 }
 
 function hookNFTActions() {
-	TD.services.TwitterUser.prototype.fromJSONObject = (blob) => {
-		if (blob.ext_has_nft_avatar === true) {
-			console.log("WARNING: NFT PERSON " + blob.screen_name);
-		}
-	};
+	setTimeout(() => {
+		TD.services.TwitterUser.prototype.fromJSONObject = (blob) => {
+			if (blob.ext_has_nft_avatar === true) {
+				console.log("WARNING: NFT PERSON " + blob.screen_name);
+			}
+		};
+	}, 100)
 }
 
 // begin moderndeck initialisation

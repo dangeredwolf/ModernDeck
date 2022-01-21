@@ -744,6 +744,11 @@ function makeWindow() {
 		}
 	);
 
+
+	mainWindow.webContents.session.webRequest.onBeforeSendHeaders({urls:["https://twitter.com/i/jot*"]}, (details, callback) => {
+		callback({cancel: true})
+	})
+
 	// mainWindow.webContents.session.webRequest.onHeadersReceived(
 	// 	{urls:["https://*.twitter.com/*","https://*.twimg.com/*"]},
 	// 	(details, callback) => {
