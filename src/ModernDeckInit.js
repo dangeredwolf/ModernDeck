@@ -60,7 +60,6 @@ import { attachColumnVisibilityEvents } from "./ColumnVisibility.js";
 
 import * as Sentry from "@sentry/browser";
 import { Integrations } from "@sentry/tracing";
-import NFTActionQueue from "./NFTActionQueue";
 
 window.mtdBaseURL = "https://raw.githubusercontent.com/dangeredwolf/ModernDeck/master/ModernDeck/";
 // Defaults to obtaining assets from GitHub if MTDURLExchange isn't completed properly somehow

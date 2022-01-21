@@ -11,8 +11,9 @@ export default class NFTActionQueue {
     isThreadRunning = false;
     lastAction = 0;
 
-    addUser(userId) {
-        if (this.queue.indexOf(user) === -1 && this.recentMutes.indexOf(userId) === -1) {
+    addUser(user) {
+        console.log(`NFTActionQueue: Checking if user ${user.screen_name} is already dealt with`);
+        if (this.queue.indexOf(user) === -1 && this.recentMutes.indexOf(user) === -1) {
             console.log(`NFTActionQueue: Adding user ${user.screen_name} to queue`);
             this.queue.push(user);
             this.recentMutes.push(user);
@@ -29,8 +30,8 @@ export default class NFTActionQueue {
             case "nothing":
                 break;
             case "mute":
-                console.log(TD.controller.clients.getPreferredClient().muteUser(user.id_str));
-                TD.controller.clients.getPreferredClient().addIdToMuteList(user.id_str);
+                // console.log(TD.controller.clients.getPreferredClient().muteUser(user.id_str));
+                // TD.controller.clients.getPreferredClient().addIdToMuteList(user.id_str);
                 console.log(`NFTActionQueue: Muted user ${user.screen_name}`);
                 break;
         }
