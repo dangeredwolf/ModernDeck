@@ -475,6 +475,13 @@ export function renderTab(key, subPanel) {
 				option.append(link);
 
 				break;
+			
+			case "subtext":
+				label = make("label").addClass("control-label txt-mute mtd-settings-subtext").html(internationaliseSettingString(pref.label) || "");
+				option.append(label);
+
+				break;
+
 		}
 
 		subPanel.append(option);

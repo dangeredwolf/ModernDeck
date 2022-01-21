@@ -264,6 +264,7 @@ function hookNFTActions() {
 		TD.services.TwitterUser.prototype.fromJSONObject_original = TD.services.TwitterUser.prototype.fromJSONObject;
 
 		TD.services.TwitterUser.prototype.fromJSONObject = function(blob) {
+			// console.log("fromJSONObject called", blob);
 			const jsonObject = this.fromJSONObject_original(blob);
 
 			if (blob.ext_has_nft_avatar === true) {

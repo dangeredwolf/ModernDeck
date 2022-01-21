@@ -14,7 +14,7 @@ export default class NFTActionQueue {
 	lastAction = 0;
 
 	_randomTime() {
-		return 16000 + (Math.random() * 5000);
+		return 10000 + (Math.random() * 5000);
 	}
 
 	addUser(user) {
@@ -60,8 +60,9 @@ export default class NFTActionQueue {
 			case "nothing":
 				break;
 			case "mute":
-				// console.log(TD.controller.clients.getPreferredClient().muteUser(user.id_str));
-				// TD.controller.clients.getPreferredClient().addIdToMuteList(user.id_str);
+				console.log(TD.controller.clients.getPreferredClient().muteUser(user.id_str));
+				TD.controller.clients.getPreferredClient().mutes[user.id_str] = true;
+				TD.controller.clients.getPreferredClient().addIdToMuteList(user.id_str);
 				console.log(`NFTActionQueue: Muted user ${user.screen_name}`);
 				break;
 		}

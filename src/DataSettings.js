@@ -570,7 +570,7 @@ export let settingsData = {
 			},
 			nftAvatarAction:{
 				headerBefore:"{{NFT Behavior}}",
-				title:"{{Action to take against users with NFT avatars}}",
+				title:"{{Automatic action to take against users with NFT avatars}}",
 				type:"dropdown",
 				settingsKey:"mtd_nftAvatarAction",
 				activate:{
@@ -584,6 +584,10 @@ export let settingsData = {
 					mute:{value:"mute",text:"{{Mute user}}"},
 					block:{value:"block",text:"{{Block user}}"}
 				}
+			},
+			nftSubtext: {
+				label: "{{Some things to keep in mind}}<br><br>- {{At the moment, due to Twitter API limits, actions don't work against users on Search columns}}<br>- {{If you are using the mute or block actions, these actions might not be executed immediately due to Twitter API limits and to prevent your account from being locked for automated activity. So while the users will disappear from ModernDeck immediately, it may take some time for the queue to flush and mutes or blocks to appear on other devices.}}}",
+				type:"subtext"
 			},
 			nftDontBlockFollowing:{
 				title:"{{Don't auto-block or mute people you follow on your default account}}",

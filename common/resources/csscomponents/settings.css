@@ -262,7 +262,14 @@
 
 .mtd-settings-option-checkbox {
 	height:28px;
-	margin-bottom:16px
+	margin-bottom:8px;
+	margin-top:8px
+}
+
+.mtd-settings-option-subtext {
+	margin-top:-10px;
+	height:auto!important;
+    display:inline-block
 }
 
 .mtd-settings-option-link {
@@ -728,4 +735,8 @@ html body .mtd-settings-subpanel button {
 
 .mtd-settings-option-dropdown label.control-label {
 	max-width: 260px;
+}
+
+.mtd-settings-subtext {
+	height:auto!important
 }
