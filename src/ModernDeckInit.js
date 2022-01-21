@@ -24,6 +24,7 @@ import { FunctionPatcher } from "./FunctionPatcher.js";
 import { LanguageFunctionPatcher } from "./LanguageFunctionPatcher.js";
 import { UILanguagePicker } from "./UILanguagePicker.js";
 import { UIThemeEditor } from "./UIThemeEditor.js";
+import { setupAME } from "./AdvancedMuteEngine.js";
 import { UIEmojiPanel } from "./UIEmojiPanel.js";
 import { loginTextReplacer, checkIfSigninFormIsPresent } from "./UILoginController.js";
 let welcomeData = _welcomeData;
@@ -369,7 +370,7 @@ function mtdInit() {
 	handleErrors(overrideFadeOut, "Caught error in overrideFadeOut");
 	handleErrors(processMustaches, "Caught error in processMustaches");
 	handleErrors(hookNFTActions, "Caught error in hookNFTActions");
-	handleErrors(setupAME, "Caught error in Advanced Mute Engine")
+	handleErrors(setupAME, "Caught error in Advanced Mute Engine");
 	handleErrors(loginTextReplacer, "Caught error in loginTextReplacer");
 	setTimeout(()=>handleErrors(loginTextReplacer, "Caught error in loginTextReplacer"),200);
 	setTimeout(()=>handleErrors(loginTextReplacer, "Caught error in loginTextReplacer"),500);

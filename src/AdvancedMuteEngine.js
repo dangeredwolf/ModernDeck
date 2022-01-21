@@ -31,7 +31,7 @@ import { getPref, setPref } from "./StoragePreferences";
 
 /*
   ModernDeck uses the BTD namespace for AME to enable interoperability between them,
-  and so 
+  and so mutes will work across them whenever ModernDeck fully supports AME in the future.
 */
 
 const AMEFilters = {

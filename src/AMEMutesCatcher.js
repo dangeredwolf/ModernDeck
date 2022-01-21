@@ -1,54 +1,11 @@
 
-function getMeaningfulUser(target) {
-  return (
-    target.retweetedStatus?.user ||
-    target.sourceUser ||
-    target.user ||
-    target.following ||
-    target.owner
-  );
-}
 
-function serializeMuteCatch(target, filter)  {
-  const meaningfulUser = getMeaningfulUser(target);
-  if (!meaningfulUser) {
-    console.debug(filter, target);
-  }
 
-  const simplifiedUser = {
-    avatar: meaningfulUser.profileImageURL,
-    id: meaningfulUser.id,
-    screenName: meaningfulUser.screenName,
-    name: meaningfulUser.name,
-  };
 
-  return {
-    filterType: filter.type,
-    value: filter.value,
-    user: simplifiedUser,
-  };
-}
-
-export function encodeCatchKey(muteCatch) {
-  return [muteCatch.filterType, muteCatch.user.id, encodeURIComponent(muteCatch.value)].join('$_$');
-}
-
-export function encodeMuteReasonKey(muteReason) {
-  return [muteReason.filterType, encodeURIComponent(muteReason.value)].join('$_$');
-}
-export function decodeMuteReasonKey(muteReasonKey) {
-  const [filterType, rawValue] = muteReasonKey.split('$_$');
-
-  return {
-    filterType: filterType,
-    value: decodeURIComponent(rawValue),
-  };
-}
-
-const BTD_MUTE_CATCHES_KEY = `btd_mute_catches`;
+const MTD_MUTE_CATCHES_KEY = `mtd_ame_mute_catches`;
 
 function safeInitialDataFromLocalStorage() {
-  const raw = window.localStorage.getItem(BTD_MUTE_CATCHES_KEY);
+  const raw = window.localStorage.getItem(MTD_MUTE_CATCHES_KEY);
 
   try {
     const parsed = JSON.parse(raw || '[]');
@@ -64,7 +21,7 @@ function safeInitialDataFromLocalStorage() {
 }
 
 window.addEventListener('beforeunload', () => {
-  window.localStorage.setItem(BTD_MUTE_CATCHES_KEY, JSON.stringify(muteCatches));
+  window.localStorage.setItem(MTD_MUTE_CATCHES_KEY, JSON.stringify(muteCatches));
 });
 
 export function formatMuteReason(muteCatch) {

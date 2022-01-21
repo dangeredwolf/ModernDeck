@@ -576,6 +576,28 @@ export let settingsData = {
 				activate:{
 					func: opt => {
 						window.nftAvatarAction ? window.nftAvatarAction.actionToTake = opt : false;
+						if (opt !== "nothing") {
+							let alreadyHasFilter = false;
+
+							TD.controller.filterManager.getAll().forEach(filter => {
+								if (filter.type === "BTD_nft_avatar") {
+									alreadyHasFilter = true;
+								}
+							});
+
+							if (!alreadyHasFilter) {
+								TD.controller.filterManager.addFilter({
+									type:"BTD_nft_avatar",
+									name:"NFT Avatar",
+									description:"Filter out users with NFT avatars",
+									filter:function(tweet) {
+										return tweet.user.avatar && tweet.user.avatar.indexOf("https://nft.moderndeck.com/") === 0;
+									}
+								});
+							}
+						} else {
+
+						}
 					}
 				},
 				default:"nothing",
