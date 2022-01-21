@@ -21,6 +21,7 @@ export default class NFTActionQueue {
 		console.log(`NFTActionQueue: Checking if user ${user.screen_name} is already dealt with`);
 
 		let dealtWith = false;
+		let actionToTake = getPref("mtd_nftAvatarAction")
 
 		// Check if we've already dealt with this user
 		this.recentMutes.forEach(mutedUser => {
@@ -30,7 +31,7 @@ export default class NFTActionQueue {
 		});
 
 		// Check if already muted or blocked
-		if (TD.controller.clients.getPreferredClient().mutes[user.id_str] || TD.controller.clients.getPreferredClient().blocks[user.id_str]) {
+		if (actionToTake === "mute" ? TD.controller.clients.getPreferredClient().mutes[user.id_str] : (actionToTake === "block" ? TD.controller.clients.getPreferredClient().blocks[user.id_str] : false)) {
 			dealtWith = true;
 		}
 
@@ -61,9 +62,13 @@ export default class NFTActionQueue {
 				break;
 			case "mute":
 				console.log(TD.controller.clients.getPreferredClient().muteUser(user.id_str));
-				TD.controller.clients.getPreferredClient().mutes[user.id_str] = true;
 				TD.controller.clients.getPreferredClient().addIdToMuteList(user.id_str);
 				console.log(`NFTActionQueue: Muted user ${user.screen_name}`);
+				break;
+			case "block":
+				console.log(TD.controller.clients.getPreferredClient().blockUser(user.id_str));
+				TD.controller.clients.getPreferredClient().addIdToBlockList(user.id_str);
+				console.log(`NFTActionQueue: Blocked user ${user.screen_name}`);
 				break;
 		}
 
