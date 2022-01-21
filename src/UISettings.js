@@ -858,6 +858,10 @@ function updateFilterPanel(filterList) {
 	for (let n in filters) {
 		let myFilter = filters[n];
 
+		if (myFilter.type !== "source" && myFilter.type !== "phrase") {
+			continue;
+		}
+
 		filterList.append(
 			make("li").addClass("list-filter").append(
 				make("div").addClass("mtd-mute-text mtd-mute-text-" + (myFilter.type === "source" ? "source" : "")),
