@@ -44,6 +44,7 @@ minyfriki<br>
 <a href="https://twitter.com/RichardWolfVI" rel="user" target="_blank">Juan Marulanda</a><br>
 tetrisdog<br>
 TAKAHASHI Shuuji<br>
+<a href="https://twitter.com/xKaiman" rel="user" target="_blank">xKaiman</a><br>
 
 <br><b>Français</b><br>
 <a href="https://twitter.com/COLAMAroro" rel="user" target="_blank">COLAMAroro</a><br>

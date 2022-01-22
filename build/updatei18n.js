@@ -43,12 +43,16 @@ function processFile(file) {
 		if (a.substr(0,1) === "#" || a.length <= 1) {
 			return;
 		}
-		let arr = a.replace(/\"\,\"/g,"\"=,=\"").replace(/\=\"\"/g,"=\"").replace(/\"\" /g,"\" ").replace(/\"\"\>/g,"\">").replace(/ \"\"/g," \"").replace(/\"\" /g,"\" ").split("=,=");
+		let arr = a.replace(/\"\,\"/g,"\"=,=\"").replace(/\\n/g,"\n").replace(/\=\"\"/g,"=\"").replace(/\"\" /g,"\" ").replace(/\"\"\>/g,"\">").replace(/ \"\"/g," \"").replace(/\"\" /g,"\" ").split("=,=");
 		if (arr[0]) {
 			let key = arr[0].substr(1, arr[0].length-2);
 			newObj[key] = {};
 			for (let i = 1; i < langMap.length; i++) {
 				if (arr[i]) {
+
+					if (key.indexOf("\\") > -1) {
+						console.log(key);
+					}
 
 					if (arr[i].length > 1) {
 						newObj[key][langMap[i]] = arr[i].substr(1, arr[i].length-2).replace(/\"\"/g,"\"");

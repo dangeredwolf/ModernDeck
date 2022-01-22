@@ -9919,3 +9919,7 @@ html:not(.mtd-classic-nav) .js-hide-drawer[data-title="Accounts"]:after {
 .drawer[data-drawer="accountSettings"] {
 	top: -36px
 }
+
+.mtd-app-mac .drawer[data-drawer="accountSettings"] {
+	top: 0!important
+}
