@@ -5,6 +5,7 @@
 	Released under the MIT License
 */
 
+import { I18n } from "./I18n";
 import { getPref, setPref } from "./StoragePreferences";
 import { make } from "./Utils";
 
@@ -101,7 +102,7 @@ export default class NFTActionQueue {
 			this.notifTitle.text(this.queue.length > 1 ? I18n("Muting NFT avatar users") : I18n("Muting NFT avatar user"));
 		}
 		
-		this.notifText.text(this.queue.length > 1 ? (this.queue.length + " users") : ("@" + this.queue[0].screen_name));
+		this.notifText.text(this.queue.length > 1 ? (I18n("{length} users").replace("{length}", this.queue.length)) : ("@" + this.queue[0].screen_name));
 
 		if (timeOut) {
 			this.notifLoading.attr("style", "right: 0");
