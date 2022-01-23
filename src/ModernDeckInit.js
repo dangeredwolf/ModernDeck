@@ -14,8 +14,6 @@ import { PWAManifest } from "./PWAManifest.js";
 import { I18n, startI18nEngine } from "./I18n.js";
 import { getPref, setPref } from "./StoragePreferences.js";
 import { make, exists, isApp, mutationObserver, getIpc, handleErrors, formatNumberI18n } from "./Utils.js";
-import { diag } from "./UIDiag.js";
-import { _welcomeData } from "./DataWelcome.js";
 import { debugWelcome, UIWelcome } from "./UIWelcome.js";
 import { initGifPanel, checkGifEligibility } from "./UIGifPicker.js";
 import { openSettings } from "./UISettings.js";
@@ -23,11 +21,8 @@ import { UINavDrawer } from "./UINavDrawer.js";
 import { FunctionPatcher } from "./FunctionPatcher.js";
 import { LanguageFunctionPatcher } from "./LanguageFunctionPatcher.js";
 import { UILanguagePicker } from "./UILanguagePicker.js";
-import { UIThemeEditor } from "./UIThemeEditor.js";
 import { setupAME } from "./AdvancedMuteEngine.js";
-import { UIEmojiPanel } from "./UIEmojiPanel.js";
 import { loginTextReplacer, checkIfSigninFormIsPresent } from "./UILoginController.js";
-let welcomeData = _welcomeData;
 import { getColumnNumber, updateColumnTypes } from "./Column.js";
 import i18nData from "./DataI18n.js";
 window.i18nData = i18nData;
@@ -35,7 +30,7 @@ window.AutoUpdateController = AutoUpdateController;
 import modalKeepOpen from "./ModalKeepOpen";
 import NFTActionQueue from "./NFTActionQueue";
 
-import { isStylesheetExtensionEnabled, enableStylesheetExtension, disableStylesheetExtension, enableCustomStylesheetExtension } from "./StylesheetExtensions.js";
+import { enableStylesheetExtension, enableCustomStylesheetExtension } from "./StylesheetExtensions.js";
 
 window.getPref = getPref;
 window.setPref = setPref;
@@ -49,7 +44,6 @@ window.parseActions = parseActions;
 import { fromCodePoint } from "./EmojiHelper.js";
 import { injectFonts } from "./FontHandler.js";
 
-import { contextMenuFunctions } from "./ContextMenuFunctions.js";
 import { clearContextMenu } from "./UIContextMenu.js";
 
 import { keyboardShortcutHandler } from "./KeyboardShortcutHandler.js";

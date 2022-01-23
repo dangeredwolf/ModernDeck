@@ -7,8 +7,6 @@
 
 import { make } from "./Utils.js";
 import { I18n } from "./I18n.js";
-import DataI18n from "./DataI18n.js";
-import { getPref, setPref } from "./StoragePreferences.js";
 
 export function UIUpdateNotify() {
 	if (window.mtdHasNotifiedUpdate) {

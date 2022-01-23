@@ -5,8 +5,6 @@
 	Released under the MIT License
 */
 
-import { isEnterprise, isApp } from "./Utils.js";
-
 let verTextId = 2;
 
 export function getPlatformName() {
@@ -73,5 +71,5 @@ export function getVersionText() {
 }
 
 export function getProductName() {
-	return isEnterprise() ? "ModernDeck Enterprise" : "ModernDeck";
+	return "ModernDeck";
 }

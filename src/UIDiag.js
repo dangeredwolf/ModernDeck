@@ -8,7 +8,6 @@
 import buildId from "./buildId.js";
 import { isApp, make, isEnterprise } from "./Utils.js";
 import { dumpPreferences } from "./StoragePreferences.js";
-import { settingsData } from "./DataSettings.js";
 import { version } from "../package.json";
 import { I18n } from "./I18n.js";
 import { UIAlert } from "./UIAlert.js";

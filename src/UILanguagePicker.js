@@ -6,10 +6,8 @@
 */
 
 import { make } from "./Utils.js";
-import { I18n } from "./I18n.js";
 import DataI18n from "./DataI18n.js";
 import { UIModal } from "./UIModal.js";
-import { getPref, setPref } from "./StoragePreferences.js";
 import { getFullLanguage, getMainLanguage } from "./I18n.js";
 import unsupportedCodeTable from "./DataUnsupportedLanguage.js";
 import inaccuraciesCodeTable from "./DataTranslationsMayBeInaccurate.js";

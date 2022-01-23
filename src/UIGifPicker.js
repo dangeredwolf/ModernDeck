@@ -30,10 +30,6 @@ let isWaitingOnGiphy = false;
 let isWaitingOnGfycat = false;
 let isWaitingOnTenor = false;
 
-let dataGiphy = null;
-let dataGfycat = null;
-let dataTenor = null;
-
 // let isHoveringOver = false;
 let hoverTimeout = null;
 

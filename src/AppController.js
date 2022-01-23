@@ -11,7 +11,7 @@ import { UIUpdateNotify } from "./UIUpdateNotify.js";
 import { AutoUpdateController } from "./AutoUpdateController.js";
 import { openSettings } from "./UISettings.js";
 import { buildContextMenu } from "./UIContextMenu.js";
-import { parseActions, loadPreferences } from "./PrefHandler.js";
+import { parseActions } from "./PrefHandler.js";
 import { parseConfig } from "./EnterpriseConfigParser.js";
 import { importTweetenSettings } from "./StorageTweetenImport.js";
 import { I18n } from "./I18n.js";
