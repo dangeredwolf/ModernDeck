@@ -13,7 +13,6 @@ const I18nData = require("./i18nMain.js").default;
 const {
 	app,
 	BrowserWindow,
-	BrowserView,
 	ipcMain,
 	session,
 	systemPreferences,
@@ -29,12 +28,9 @@ const {
 const fs = require("fs");
 const path = require("path");
 const url = require("url");
-const util = require("util");
 const https = require("https");
 
 const separator = process.platform === "win32" ? "\\" : "/";
-
-const packagedUsesDifferentDir = false;
 
 const log = require("electron-log");
 
@@ -60,11 +56,9 @@ let hidden = false;
 let mainWindow;
 let errorWindow;
 let tray = null;
-let mR;
 
 let isRestarting = false;
 let closeForReal = false;
-let interval;
 
 let mtdAppTag = '';
 let lang = store.get("mtd_lang");
@@ -494,7 +488,7 @@ function makeWindow() {
 	let useFrame = store.get("mtd_nativetitlebar") || store.get("mtd_safemode") || process.platform === "darwin";
 	let titleBarStyle = "hidden";
 
-	if (store.get("mtd_nativetitlebar") && process.platform === "darwin") {
+	if (store.get("mtd_nativetitlebar")) {
 		titleBarStyle = "default";
 	}
 
