@@ -68,7 +68,7 @@
 		"electron": "13.6.6",
 		"electron-builder": "^22.14.5",
 		"fs-extra": "^10.0.0",
-		"rollup": "^2.62.0",
+		"rollup": "2.66.1",
 		"rollup-plugin-terser": "^7.0.2"
 	},
 	"optionalDependencies": {
