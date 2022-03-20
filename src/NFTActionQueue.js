@@ -48,10 +48,7 @@ export default class NFTActionQueue {
 
 			this.notifContent.append(
 				make("p").addClass("mtd-nft-notification-text"),
-				make("button").addClass("btn mtd-notification-button mtd-nft-notification-button").click(() => {
-					mtdPrepareWindows();
-					require("electron").ipcRenderer.send("restartAndInstallUpdates")
-				}),
+				make("button").addClass("btn mtd-notification-button mtd-nft-notification-button").click(),
 				make("div").addClass("mtd-nft-notification-loading").attr("style", "right: 372px")
 			)
 
@@ -93,13 +90,17 @@ export default class NFTActionQueue {
 		}
 
 		console.log("NFTActionQueue: Updating block queue UI");
+
 		if (this.notif === null || this.notif.hasClass("is-expired")) {
 			this._createNewNotification();
 		}
+
 		if (this.actionToTake === "block") {
 			this.notifTitle.text(this.queue.length > 1 ? I18n("Blocking NFT avatar users") : I18n("Blocking NFT avatar user"));
 		} else if (this.actionToTake === "mute") {
 			this.notifTitle.text(this.queue.length > 1 ? I18n("Muting NFT avatar users") : I18n("Muting NFT avatar user"));
+		} else if (this.actionToTake === "hide" || this.actionToTake === "nothing") {
+			this._uiDismissNotification();
 		}
 		
 		this.notifText.text(this.queue.length > 1 ? (I18n("{length} users").replace("{length}", this.queue.length)) : ("@" + this.queue[0].screen_name));
@@ -170,7 +171,6 @@ export default class NFTActionQueue {
 			this.takeUserAction(this.queue[0]);
 		}, timeOut)
 
-
 		if (this.enableNotifications) {
 			this.notifButton.off("click").text(I18n("Cancel")).on("click", () => {
 				clearTimeout(timeoutFunc);
@@ -184,8 +184,6 @@ export default class NFTActionQueue {
 				this._uiDismissNotification();
 			});
 		}
-
-		
 	}
 
 	undoUserAction(user) {
@@ -250,6 +248,9 @@ export default class NFTActionQueue {
 					this.notifTitle.text(I18n("Blocked NFT avatar user"));
 				} else if (this.actionToTake === "mute") {
 					this.notifTitle.text(I18n("Muted NFT avatar user"));
+				} else {
+					this._uiDismissNotification();
+					this.queue = [];
 				}
 
 				this.notifText.text("@" + user.screen_name);

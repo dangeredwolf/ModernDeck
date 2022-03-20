@@ -907,3 +907,7 @@ span[data-testid="trendMovement"] .icon-pointer-d:before,span[data-testid="trend
 h2 i {
 	font-weight:400
 }
+
+.btn-options-tray i.icon-share {
+	font-size:20px!important
+}

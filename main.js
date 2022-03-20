@@ -63,58 +63,50 @@ let closeForReal = false;
 let mtdAppTag = '';
 let lang = store.get("mtd_lang");
 
-if (process.execPath.match(/:\\Program Files/g) === null) {
-	autoUpdater.setFeedURL({
-		"owner": "dangeredwolf",
-		"repo": "ModernDeck",
-		"provider": "github"
-	});
-} else {
-	autoUpdater.setFeedURL({
-		"owner": "dangeredwolf",
-		"repo": "ModernDeckEnterprise",
-		"provider": "github"
-	});
-}
+autoUpdater.setFeedURL({
+	"owner": "dangeredwolf",
+	"repo": "ModernDeck",
+	"provider": "github"
+});
 
-let enterpriseConfig = {};
+let deviceConfig = {};
 
 if (process.platform === "win32") {
 	try {
 		let configFile = fs.readFileSync("C:\\ProgramData\\ModernDeck\\config.json");
 
 		try {
-			enterpriseConfig = JSON.parse(configFile);
+			deviceConfig = JSON.parse(configFile);
 		} catch(e) {
 			app.on("ready", () => {
 				dialog.showMessageBoxSync({
 					type:"error",
 					title:"ModernDeck",
-					message:"ModernDeck detected an enterprise config file, but an error occurred while reading it. Please ensure the JSON is free from any errors.\n\n" + e
+					message:"ModernDeck detected a device config file, but an error occurred while reading it. Please ensure the JSON is free from any errors.\n\n" + e
 				});
 			})
 		}
 	} catch (e) {
-		console.error("Could not read organization config file");
+		console.error("Could not read device config file");
 		console.error(e);
 	}
 }
 
-console.log(enterpriseConfig);
+console.log(deviceConfig);
 
 autoUpdater.logger = log;
 autoUpdater.logger.transports.file.level = "info";
 
-switch(enterpriseConfig.autoUpdatePolicy) {
+switch(deviceConfig.autoUpdatePolicy) {
 	case "disabled":
 	case "manual":
 	case "checkOnly":
 	case "autoDownload":
-		if (enterpriseConfig.autoUpdateInstallOnQuit === false) {
+		if (deviceConfig.autoUpdateInstallOnQuit === false) {
 			autoUpdater.autoInstallOnAppQuit = false;
 		}
 
-		if (enterpriseConfig.autoUpdatePolicy !== "autoDownload") {
+		if (deviceConfig.autoUpdatePolicy !== "autoDownload") {
 			autoUpdater.autoDownload = false;
 		}
 
@@ -137,7 +129,7 @@ const I18n = function(key) {
 const mtdSchemeHandler = async (request, callback) => {
 	if (request.url === "moderndeck://background/") {
 		callback({
-			path: enterpriseConfig.customLoginImage
+			path: deviceConfig.customLoginImage
 		});
 		return;
 	}
@@ -239,11 +231,11 @@ const menu = Menu.buildFromTemplate(template);
 // if (process.platform === "darwin")
 Menu.setApplicationMenu(menu);
 
-function loadEnterpriseConfigMain() {
-	if (enterpriseConfig.disableDevTools) {
+function loadDeviceConfigMain() {
+	if (deviceConfig.disableDevTools) {
 		// https://stackoverflow.com/questions/40304833/how-to-make-the-dev-tools-not-show-up-on-screen-by-default-electron
 		globalShortcut.register("Control+Shift+I", () => {});
-	}if (enterpriseConfig.disableZoom) {
+	}if (deviceConfig.disableZoom) {
 		globalShortcut.register("Control+-", () => {});
 		globalShortcut.register("Control+Shift+=", () => {});
 	}
@@ -464,9 +456,7 @@ function saveWindowBounds() {
 	}
 }
 
-
 function makeWindow() {
-
 	const lock = app.requestSingleInstanceLock();
 
 	if (!lock) {
@@ -474,8 +464,6 @@ function makeWindow() {
 		app.quit();
 		return;
 	}
-
-	let display = {};
 
 	if (!store.has("mtd_nativetitlebar")) {
 		store.set("mtd_nativetitlebar",false);
@@ -530,7 +518,6 @@ function makeWindow() {
 	});
 
 	// macOS specific: Don't run from DMG, move to Applications folder.
-
 	if (process.platform === "darwin" && !app.isInApplicationsFolder() && !isDev) {
 		const { dialog } = electron;
 
@@ -562,14 +549,12 @@ function makeWindow() {
 	}
 
 	// Prevent changing the Page Title
-
-	mainWindow.on("page-title-updated", (event,url) => {
+	mainWindow.on("page-title-updated", (event) => {
 		event.preventDefault();
 	});
 
 	// Save window bounds if it's closed, or otherwise occasionally
-
-	mainWindow.on("close",(e) => {
+	mainWindow.on("close", (_event) => {
 		setTimeout(saveWindowBounds, 0);
 	});
 
@@ -585,7 +570,6 @@ function makeWindow() {
 
 	try {
 		mainWindow.webContents.executeJavaScript(`
-
 			document.getElementsByClassName("js-signin-ui block")[0].innerHTML =
 			\`<img class="mtd-loading-logo" src="moderndeck://resources/img/moderndeck.png" style="display: none;">
 			<div class="preloader-wrapper active">
@@ -625,7 +609,7 @@ function makeWindow() {
 	}
 
 
-	mainWindow.webContents.on("dom-ready", (event, url) => {
+	mainWindow.webContents.on("dom-ready", () => {
 
 		mainWindow.webContents.executeJavaScript(`
 			document.getElementsByTagName("html")[0].style = "background: #111!important;";
@@ -691,7 +675,7 @@ function makeWindow() {
 
 	});
 
-	mainWindow.webContents.on("did-fail-load", (event, code, desc) => {
+	mainWindow.webContents.on("did-fail-load", (_event, code, desc) => {
 		let msg = "ModernDeck failed to start." + "\n\n";
 
 
@@ -779,7 +763,7 @@ function makeWindow() {
 			console.log(url);
 			if (url.indexOf("twitter.com/login") >= 0 || url.indexOf("twitter.com/i/flow/login") >= 0 || url.indexOf("twitter.com/logout") >= 0) {
 				console.log("this is a login window! will-navigate");
-				event.newGuest = makeLoginWindow(url,false);
+				event.newGuest = makeLoginWindow(url, false);
 			} else {
 				shell.openExternal(url);
 			}
@@ -823,42 +807,39 @@ function makeWindow() {
 
 	// i actually forget why this is here
 
-	mainWindow.webContents.on("context-menu", (event, params) => {
+	mainWindow.webContents.on("context-menu", (_event, params) => {
 		if (!mainWindow || !mainWindow.webContents) { return }
 
 		mainWindow.webContents.send("context-menu", params);
 	});
 
+	ipcMain.on("getEnterpriseConfig", () => {
+		if (!mainWindow || !mainWindow.webContents) { return }
+
+		mainWindow.webContents.send("enterpriseConfig", deviceConfig);
+	});
+
 	/*
-		If a user uses native context menus, this is mtdInject telling us
+		If a user uses native context menus, this is browser telling us
 		to put up a native context menu with the given commands, instead
 		of it doing it itself.
 	*/
 
-
-
-	ipcMain.on("getEnterpriseConfig", (event, params) => {
-		if (!mainWindow || !mainWindow.webContents) { return }
-
-		mainWindow.webContents.send("enterpriseConfig", enterpriseConfig);
-	});
-
-	ipcMain.on("nativeContextMenu", (event, params) => {
+	ipcMain.on("nativeContextMenu", (_event, params) => {
 		console.log(params);
 		let newMenu = Menu.buildFromTemplate(params);
 		console.log(newMenu);
 		newMenu.popup();
 	});
 
-	ipcMain.on("errorReload", (event, params) => {
+	ipcMain.on("errorReload", () => {
 		mainWindow.reload();
 		mainWindow.show();
 		shouldQuitIfErrorClosed = false;
 		errorWindow.close();
 	});
 
-	ipcMain.on("loadSettingsDialog", (event, params) => {
-
+	ipcMain.on("loadSettingsDialog", () => {
 		dialog.showOpenDialog(
 			{ filters: [{ name: I18n("Preferences JSON File"), extensions: ["json"] }] }
 		).then((results) => {
@@ -873,9 +854,7 @@ function makeWindow() {
 		});
 	});
 
-	ipcMain.on("tweetenImportDialog", (event, params) => {
-		
-
+	ipcMain.on("tweetenImportDialog", () => {
 		dialog.showOpenDialog(
 			{ filters: [{ name: I18n("Tweeten Settings JSON"), extensions: ["json"] }] }
 		).then((results) => {
@@ -889,7 +868,7 @@ function makeWindow() {
 		});
 	});
 
-	ipcMain.on("saveSettings", (event, params) => {
+	ipcMain.on("saveSettings", (_event, params) => {
 		dialog.showSaveDialog(
 			{
 				title: I18n("ModernDeck Preferences"),
@@ -904,11 +883,11 @@ function makeWindow() {
 		});
 	})
 
-	ipcMain.on("errorQuit", (event, params) => {
+	ipcMain.on("errorQuit", () => {
 		app.quit();
 	});
 
-	ipcMain.on("drawerOpen", (event, params) => {
+	ipcMain.on("drawerOpen", () => {
 		console.log("open");
 
 		if (!mainWindow || !mainWindow.webContents) { return }
@@ -916,7 +895,7 @@ function makeWindow() {
 		mainWindow.webContents.executeJavaScript("document.querySelector(\"html\").classList.add(\"mtd-drawer-open\");");
 	});
 
-	ipcMain.on("drawerClose", (event, params) => {
+	ipcMain.on("drawerClose", () => {
 		console.log("close");
 
 		if (!mainWindow || !mainWindow.webContents) { return }
@@ -925,7 +904,7 @@ function makeWindow() {
 	});
 
 
-	ipcMain.on("maximizeButton", (event) => {
+	ipcMain.on("maximizeButton", () => {
 		let window = BrowserWindow.getFocusedWindow();
 
 		if (!window) {
@@ -939,7 +918,7 @@ function makeWindow() {
 		}
 	});
 
-	ipcMain.on("minimize", (event) => {
+	ipcMain.on("minimize", () => {
 		BrowserWindow.getFocusedWindow().minimize();
 	});
 
@@ -947,59 +926,59 @@ function makeWindow() {
 		The options below are for right click menu actions
 	*/
 
-	ipcMain.on("copy", (event) => {
+	ipcMain.on("copy", () => {
 		if (!mainWindow || !mainWindow.webContents) { return }
 
 		mainWindow.webContents.copy();
 	});
 
-	ipcMain.on("cut", (event) => {
+	ipcMain.on("cut", () => {
 		if (!mainWindow || !mainWindow.webContents) { return }
 
 		mainWindow.webContents.cut();
 	});
 
-	ipcMain.on("paste", (event) => {
+	ipcMain.on("paste", () => {
 		if (!mainWindow || !mainWindow.webContents) { return }
 
 		mainWindow.webContents.paste();
 	});
 
-	ipcMain.on("delete", (event) => {
+	ipcMain.on("delete", () => {
 		if (!mainWindow || !mainWindow.webContents) { return }
 
 		mainWindow.webContents.delete();
 	});
 
-	ipcMain.on("selectAll", (event) => {
+	ipcMain.on("selectAll", () => {
 		if (!mainWindow || !mainWindow.webContents) { return }
 
 		mainWindow.webContents.selectAll();
 	});
 
-	ipcMain.on("undo", (event) => {
+	ipcMain.on("undo", () => {
 		if (!mainWindow || !mainWindow.webContents) { return }
 
 		mainWindow.webContents.undo();
 	});
 
-	ipcMain.on("redo", (event) => {
+	ipcMain.on("redo", () => {
 		if (!mainWindow || !mainWindow.webContents) { return }
 
 		mainWindow.webContents.redo();
 	});
 
-	ipcMain.on("copyImage", (event, arg) => {
+	ipcMain.on("copyImage", (_event, arg) => {
 		if (!mainWindow || !mainWindow.webContents) { return }
 
 		mainWindow.webContents.copyImageAt(arg.x, arg.y);
 	});
 
-	ipcMain.on("saveImage", (event, arg) => {
+	ipcMain.on("saveImage", (_event, arg) => {
 		saveImageAs(arg);
 	});
 
-	ipcMain.on("inspectElement", (event, arg) => {
+	ipcMain.on("inspectElement", (_event, arg) => {
 		if (!mainWindow || !mainWindow.webContents) { return }
 
 		mainWindow.webContents.inspectElement(arg.x, arg.y);
@@ -1009,7 +988,7 @@ function makeWindow() {
 		app.showEmojiPanel();
 	})
 
-	// mtdInject initiated app restart
+	// browser initiated app restart
 
 	ipcMain.on("restartApp", () => {
 		setTimeout(() => {
@@ -1019,16 +998,16 @@ function makeWindow() {
 		},100);
 	});
 
-	// mtdInject initiated app restart, after user clicks to restart to install updates
+	// browser initiated app restart, after user clicks to restart to install updates
 
-	ipcMain.on("restartAndInstallUpdates", (event, arg) => {
+	ipcMain.on("restartAndInstallUpdates", () => {
 		closeForReal = true;
 		autoUpdater.quitAndInstall(false,true);
 	});
 
 	// When user elects to erase all of their settings, we wipe everything clean, including caches
 
-	ipcMain.on("destroyEverything", (event, arg) => {
+	ipcMain.on("destroyEverything", () => {
 		let ses = session.defaultSession;
 		store.clear();
 		ses.flushStorageData();
@@ -1060,7 +1039,7 @@ function makeWindow() {
 
 	// Changing from immersive titlebar to native
 
-	ipcMain.on("setNativeTitlebar", (event, arg) => {
+	ipcMain.on("setNativeTitlebar", (_event, arg) => {
 
 		isRestarting = true;
 
@@ -1093,39 +1072,33 @@ function makeWindow() {
 	})
 
 	// Enable tray icon
-
 	ipcMain.on("enableTray", (event, arg) => {
 		enableTray = true;
 		makeTray();
 	});
 
 	// Disable tray icon
-
 	ipcMain.on("disableTray", (event, arg) => {
 		enableTray = false;
 		destroyTray();
 	});
 
 	// Enable background notifications
-
 	ipcMain.on("enableBackground", (event, arg) => {
 		enableBackground = true;
 	});
 
 	// Disable background notifications
-
 	ipcMain.on("disableBackground", (event, arg) => {
 		enableBackground = false;
 	});
 
 	// Upon closing, set mainWindow to null
-
 	mainWindow.on("closed", () => {
 		mainWindow = null;
 	});
 
 	// Change maximise to restore size window
-
 	mainWindow.on("maximize", () => {
 		if (!mainWindow || !mainWindow.webContents) { return }
 
@@ -1135,8 +1108,7 @@ function makeWindow() {
 		');
 	});
 
-	// Change restore size window to maximise
-
+	// Change restore size window to maximize
 	mainWindow.on("unmaximize", () => {
 		if (!mainWindow || !mainWindow.webContents) { return }
 
@@ -1157,7 +1129,6 @@ function makeWindow() {
 		as there is less reason for a huge drag bar in full screen,
 		at least in comparison to in windowed. Chrome itself does this too.
 	*/
-
 	mainWindow.on("enter-full-screen", () => {
 		if (!mainWindow || !mainWindow.webContents) { return }
 
@@ -1167,7 +1138,6 @@ function makeWindow() {
 			document.querySelector("html").classList.remove("mtd-app-linux");\
 		');
 	});
-
 
 	if (store.get("mtd_fullscreen")) {
 		mainWindow.webContents.executeJavaScript('document.querySelector("html").classList.remove("mtd-app");');
@@ -1212,7 +1182,7 @@ function makeTray() {
 	const contextMenu = Menu.buildFromTemplate([
 		{ label: I18n("Open ModernDeck"), click(){ showHiddenWindow() } },
 		{ label: (process.platform === "darwin" ? I18n("Preferences...") : I18n("Settings...")), click(){ if (!mainWindow){return;}mainWindow.show();mainWindow.webContents.send("openSettings"); } },
-		{ visible: (typeof process.windowStore === "undefined" && enterpriseConfig.autoUpdatePolicy !== "disabled"), label: (process.platform === "darwin" ? I18n("Check for Updates...") : I18n("Check for updates...")), click(){ if (!mainWindow){return;}mainWindow.show();mainWindow.webContents.send("checkForUpdatesMenu"); } },
+		{ visible: (typeof process.windowStore === "undefined" && deviceConfig.autoUpdatePolicy !== "disabled"), label: (process.platform === "darwin" ? I18n("Check for Updates...") : I18n("Check for updates...")), click(){ if (!mainWindow){return;}mainWindow.show();mainWindow.webContents.send("checkForUpdatesMenu"); } },
 
 		{ type: "separator" },
 
@@ -1221,7 +1191,19 @@ function makeTray() {
 
 		{ type: "separator" },
 
-		{ label: (process.platform === "darwin" ? I18n("Quit") : I18n("Exit")), click(){ if (!mainWindow){return;} closeForReal = true; autoUpdater.quitAndInstall(true,true); } },
+		{ label: (process.platform === "darwin" ? I18n("Quit") : I18n("Exit")), click(){
+			if (!mainWindow) {
+				return;
+			}
+			closeForReal = true;
+			autoUpdater.quitAndInstall(true,true);
+			
+			setTimeout(() => {
+				/* if auto updater is dumb and does not quit then do it anyway
+				 i think electron-updater changed their behavior because previously quitAndInstall always worked */
+				app.quit();
+			},200)
+		}},
 	]);
 
 	tray.setToolTip("ModernDeck");
@@ -1239,7 +1221,7 @@ function destroyTray() {
 	tray = null;
 }
 
-// Register moderndeck:// protocol for accessing moderndeck resources, like CSS
+// Register moderndeck:// protocol for accessing moderndeck resources, like CSS, images, etc.
 
 electron.protocol.registerSchemesAsPrivileged([{
 	scheme:"moderndeck",
@@ -1260,7 +1242,7 @@ app.setAsDefaultProtocolClient("moderndeck");
 app.on("ready", () => {
 	try {
 		makeWindow();
-		loadEnterpriseConfigMain();
+		loadDeviceConfigMain();
 		if (enableTray) {
 			makeTray();
 		}
@@ -1304,7 +1286,7 @@ app.on("second-instance", () => {
 	}
 })
 
-// Tell mtdInject that there was an update error
+// Tell browser that there was an update error
 
 autoUpdater.on("error", (e,f,g) => {
 	if (!mainWindow || !mainWindow || !mainWindow.webContents) {
@@ -1316,7 +1298,6 @@ autoUpdater.on("error", (e,f,g) => {
 // Let moderndeck.js know that we are...
 
 // ... actively checking for updates
-
 autoUpdater.on("checking-for-update", (e) => {
 	if (!mainWindow || !mainWindow || !mainWindow.webContents) {
 		return;
@@ -1359,14 +1340,14 @@ autoUpdater.on("update-not-available", (e) => {
 // moderndeck can send manual update check requests
 ipcMain.on("checkForUpdates", (e) => {
 	console.log("Client requested update check");
-	if (autoUpdater && enterpriseConfig.autoUpdatePolicy !== "disabled" && isFlatpak !== true) {
+	if (autoUpdater && deviceConfig.autoUpdatePolicy !== "disabled" && isFlatpak !== true) {
 		autoUpdater.checkForUpdates();
 	}
 });
 
 ipcMain.on("downloadUpdates", (e) => {
 	console.log("Client requested update download");
-	if (autoUpdater && enterpriseConfig.autoUpdatePolicy !== "disabled") {
+	if (autoUpdater && deviceConfig.autoUpdatePolicy !== "disabled") {
 		autoUpdater.downloadUpdate();
 	}
 });
@@ -1379,6 +1360,7 @@ ipcMain.on("changeChannel", (e) => {
 	}
 });
 
+// App tags control browser behavior like CSS layouts and sometimes JS
 function updateAppTag() {
 	mainWindow.webContents.executeJavaScript('document.querySelector("html").classList.remove("mtd-app");\
 		document.querySelector("html").classList.remove("mtd-app-win");\
@@ -1440,10 +1422,6 @@ nativeTheme.on("updated", (e,v) => {
 	// mainWindow.webContents.send("color-scheme-changed", nativeTheme.shouldUseDarkColors ? "dark" : "light");
 });
 
-// systemPreferences.on("inverted-color-scheme-changed", (e,v) => {
-// 	mainWindow.webContents.send("inverted-color-scheme-changed",v);
-// });
-
 if (process.platform === "darwin") {
 	try {
 		systemPreferences.subscribeNotification(
@@ -1458,7 +1436,7 @@ if (process.platform === "darwin") {
 	}
 }
 
-if (enterpriseConfig.autoUpdatePolicy !== "disabled" && enterpriseConfig.autoUpdatePolicy !== "manual" && isFlatpak !== false) {
+if (deviceConfig.autoUpdatePolicy !== "disabled" && deviceConfig.autoUpdatePolicy !== "manual" && isFlatpak !== false) {
 	setInterval(() => {
 		try {
 			autoUpdater.checkForUpdates();
@@ -1468,11 +1446,9 @@ if (enterpriseConfig.autoUpdatePolicy !== "disabled" && enterpriseConfig.autoUpd
 	},1000*60*15); //check for updates once every 15 minutes
 }
 
-
-
 setTimeout(() => {
 	try {
-		if (enterpriseConfig.autoUpdatePolicy !== "disabled" &&  enterpriseConfig.autoUpdatePolicy !== "manual" && isFlatpak !== true) {
+		if (deviceConfig.autoUpdatePolicy !== "disabled" &&  deviceConfig.autoUpdatePolicy !== "manual" && isFlatpak !== true) {
 			autoUpdater.checkForUpdates();
 		}
 

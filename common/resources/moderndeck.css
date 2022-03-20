@@ -8912,7 +8912,6 @@ html:not(.mtd-app-mac):not(.mtd-classic-nav) .hide-detail-view-inline .column-na
 	-webkit-app-region: no-drag;
 	position: fixed;
 	left: 0 !important;
-	width: 60px
 }
 
 html.mtd-classic-nav .column-navigator {

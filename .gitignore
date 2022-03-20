@@ -15,4 +15,3 @@ node_modules
 *.log
 *.appx
 default.*
-common/sources/moderndeck.js

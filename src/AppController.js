@@ -221,11 +221,11 @@ export function mtdAppFunctions() {
 			}
 		}
 
-		minimise.click((data,handler) => {
+		minimise.click(() => {
 			ipcRenderer.send("minimize");
 		});
 
-		maximise.click((data,handler) => {
+		maximise.click(() => {
 			ipcRenderer.send("maximizeButton");
 		});
 
@@ -236,7 +236,6 @@ export function mtdAppFunctions() {
 	}
 
 	ipcRenderer.on("context-menu", (event, p) => {
-		const electron = require("electron")
 		let theMenu = buildContextMenu(p);
 		let Menu = require("electron").remote.Menu;
 

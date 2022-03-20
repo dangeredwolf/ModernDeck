@@ -109,7 +109,7 @@ function serializeMuteCatch(target, filter)  {
   const meaningfulUser = getMeaningfulUser(target);
   // console.log(meaningfulUser);
   if (!meaningfulUser) {
-    console.debug(filter, target);
+    // console.debug(filter, target);
   }
 
   const simplifiedUser = {
@@ -360,9 +360,9 @@ export const setupAME = () => {
 
   // Custom pass function to apply our filters
   TD.vo.Filter.prototype.pass = function pass(e) {
-    console.log(this.type);
+    // console.log(this.type);
     if (Object.values(AMEFilters).indexOf(this.type) !== -1) {
-      console.log("Passing filter: " + this.type);
+      // console.log("Passing filter: " + this.type);
       const t = this;
       e = this._getFilterTarget(e);
 

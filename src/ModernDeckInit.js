@@ -62,7 +62,7 @@ window.mtdBaseURL = "https://raw.githubusercontent.com/dangeredwolf/ModernDeck/m
 let loadEmojiPicker = false;
 
 const forceFeatureFlags = false;
-window.useSentry = false;
+window.useSentry = true;
 
 let replacedLoadingSpinnerNew = false;
 let sendingFeedback = false;
