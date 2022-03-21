@@ -564,6 +564,7 @@ function makeWindow() {
 
 	hidden = false;
 
+	require('@electron/remote/main').initialize();
 	require("@electron/remote/main").enable(mainWindow.webContents);
 
 	updateAppTag();
