@@ -1,10 +1,6 @@
 /*
 	ForceFeatureFlags.js
-	Copyright (c) 2014-2020 dangered wolf, et al
-	Released under the MIT licence
-*/
 
-/*
 	These are features that can be used to force enable tweetdeck developer features.
 	Code updated by @pixeldesu, DeckHackers, et al
 */

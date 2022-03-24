@@ -1,8 +1,8 @@
 /*
 	alert.css
 
-	Copyright (c) 2014-2020 dangered wolf, et al
-	Released under the MIT Licence
+	Copyright (c) 2014-2022 dangered wolf, et al
+	Released under the MIT License
 */
 
 .mdl.mtd-alert {
@@ -10,15 +10,16 @@
 	width:400px!important;
 	padding:0 24px;
 	overflow-y:auto!important;
-	height:auto!important
+	height:auto!important;
+	max-height:500px!important;
 }
 
 .mtd-alert-button {
 	font-size:15px;
-	float:right;
+	float:right!important;
 	margin:16px;
 	padding:10px 13px;
-	margin-left:0
+	margin-left:0;
 }
 
 .mtd-alert-button-container {
@@ -28,7 +29,8 @@
 }
 
 .mtd-alert-title {
-	font-size:20px
+	font-size:20px;
+	font-weight:500
 }
 
 .mtd-alert-button.mtd-alert-button-secondary {
@@ -42,7 +44,12 @@ html .login-container>.mdl.mtd-language-picker {
 	margin-left:-224px!important;
 	top:50%;
 	margin-top:-100px!important;
-	color:#222
+	background:#fff;
+	color:#222;
+}
+
+html .login-container>.mdl.mtd-language-picker .mtd-alert-button {
+	color:#fff
 }
 
 .login-container #mtd_language_select,.login-container option {

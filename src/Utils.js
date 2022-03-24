@@ -1,10 +1,13 @@
 /*
 	Utils.js
-	Copyright (c) 2014-2020 dangered wolf, et al
-	Released under the MIT licence
+
+	Copyright (c) 2014-2022 dangered wolf, et al
+	Released under the MIT License
 */
 
 import { I18n, getFullLanguage } from "./I18n.js";
+import * as Sentry from "@sentry/browser";
+import { Integrations } from "@sentry/tracing";
 
 /*
 	Shorthand function to create a new element, which is helpful for concise UI building.
@@ -19,15 +22,26 @@ export const handleErrors = (func, text) => {
 		console.error(text || "Caught an unexpected internal error");
 		console.error(e);
 		window.lastError = e;
+		if (window.useSentry) {
+			Sentry.captureException(e);
+		}
 	}
 }
+
+// Creates a new element in jQuery
 
 export const make = function(a) {
 	return $(document.createElement(a));
 }
 
+// Creates a new element in nQuery
+
 export const makeN = function(a) {
 	return nQuery(document.createElement(a));
+}
+
+export const isEnterprise = function() {
+	return typeof process !== "undefined" && process.execPath.match(/:\\Program Files/g) !== null && !process.windowsStore;
 }
 
 // shorthand function to return true if something exists and false otherwise
@@ -41,9 +55,31 @@ export const exists = function(thing) {
 	);
 }
 
+/*
+	Formats a number for a given locale
+*/
+
 export function formatNumberI18n(number) {
-	if (!window.mtdNumberFormat) {
-		window.mtdNumberFormat = new Intl.NumberFormat(getFullLanguage().replace(/\_/g,"-"));
+	if (!window.mtdNumberFormat || window.mtdNeedsResetNumberFormatting) {
+		let format;
+		switch(getPref("mtd_shortDateFormat")) {
+			case "default":
+				format = getFullLanguage().replace(/\_/g,"-");
+				break;
+			case "english":
+				format = "en";
+				break;
+			case "europe":
+				format = "de";
+				break;
+			case "blank":
+				format = "fr";
+				break;
+			case "indian":
+				format = "hi";
+				break;
+		}
+		window.mtdNumberFormat = new Intl.NumberFormat(format);
 	}
 	return window.mtdNumberFormat.format(number);
 }
@@ -66,7 +102,7 @@ export function roundMe(val) {
 
 export function formatBytes(val) {
 	if (val < 10**3) {
-		return formatNumberI18n(val) + " bytes"
+		return formatNumberI18n(val) + I18n(" bytes")
 	} else if (val < 10**6) {
 		return formatNumberI18n(roundMe(val/10**3)) + I18n(" KB")
 	} else if (val < 10**9) {

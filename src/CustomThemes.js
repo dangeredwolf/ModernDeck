@@ -1,0 +1,65 @@
+/*
+	CustomThemes.js
+
+	Copyright (c) 2014-2022 dangered wolf, et al
+	Released under the MIT License
+*/
+
+export class CustomThemes {
+	static themeParameters = [
+		"primaryColor",
+		"secondaryColor",
+		"secondaryColorBright",
+		"secondaryColorDeep",
+		"secondaryColorDeepTrans",
+		"secondaryColorBright",
+		"redDefault",
+		"redHover",
+		"redActive",
+		"redDisabled",
+		"txtMuteLink",
+		"disabledColor",
+		"linkPressColor",
+		"buttonPressColor",
+		"scrollbarDefaultColor",
+		"scrollbarHoverColor",
+		"bodyTextColor",
+		"typeaheadColor",
+		"typeaheadBackgroundColor",
+		"primaryTextColor",
+		"placeholderTextColor",
+		"selectionBackgroundColor",
+		"selectionTextColor",
+		"tweetDetailWrapperColor",
+		"contextMenuDividerColor",
+		"columnBorderColor",
+		"backdropColor",
+		"modalWindowColor",
+		"overlayBackgroundColor",
+		"defaultShadowColor",
+		"tweetActionColor",
+		"tweetActionHoverColor",
+		"altTweetActionColor",
+		"deepShadowColor",
+		"materialSplashColor",
+		"mdlPrimaryColor",
+		"columnAlt",
+		"settingsTabColor",
+		"navDrawerBackground",
+		"loginBackgroundColor",
+		"lightShadow",
+		"contextMenuShadow",
+		"thickerShadow",
+		"composeShadow",
+		"columnShadow",
+		"avatarHoverShadow",
+		"avatarActiveShadow",
+		"genericDropShadow",
+		"modalDropShadow",
+		"retweetColor",
+		"likeColor",
+		"rootWhiteColor",
+		"rootLightGreyColor",
+		"rootBlackColor"
+	]
+}

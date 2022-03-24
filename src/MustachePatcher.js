@@ -1,7 +1,8 @@
 /*
 	MustachePatcher.js
-	Copyright (c) 2014-2020 dangered wolf, et al
-	Released under the MIT licence
+
+	Copyright (c) 2014-2022 dangered wolf, et al
+	Released under the MIT License
 */
 
 import { spinnerSmall, spinnerLarge, spinnerTiny, buttonSpinner } from "./DataMustaches.js";
@@ -147,13 +148,28 @@ export function processMustaches() {
 	// 		height=\"{{height}}\" width=\"{{width}}\" frameborder=\"0\" scrolling=\"no\" allowfullscreen style=\"margin: 0px; padding: 0px; border: 0px;\">\
 	// 		</iframe> {{> status/media_sensitive}} </div>";
 
-	if (typeof TD_mustaches["compose/docked_compose.mustache"] !== "undefined" && !window.useSafeMode)
-
+	if (typeof TD_mustaches["compose/docked_compose.mustache"] !== "undefined" && !window.useSafeMode) {
+		if (html.hasClass("mtd-supportsNativeEmojiPicker")) {
+			TD_mustaches["compose/docked_compose.mustache"] = TD_mustaches["compose/docked_compose.mustache"].replace(/<\/textarea>/g,"</textarea><div class=\"mtd-emoji\"><div class=\"mtd-emoji-button btn\"><div class=\"mtd-emoji-button-open\"></div></div></div>")
+		}
 		TD_mustaches["compose/docked_compose.mustache"] = TD_mustaches["compose/docked_compose.mustache"].replace(`<button class="js-add-image-button js-show-tip needsclick btn btn-on-blue full-width txt-left margin-b--12 padding-v--6 padding-h--12 is-disabled"> <i class="Icon icon-camera txt-size--18"></i> <span class="js-add-image-button-label label padding-ls">{{_i}}Add image{{/i}}</span> </button> <div class="js-scheduler"> <button class="js-schedule-button js-show-tip btn btn-on-blue full-width txt-left margin-b--12 padding-v--6 padding-h--12 is-disabled"> <i class="Icon icon-schedule txt-size--18"></i> <span class="js-schedule-button-label label padding-ls">{{_i}}Schedule Tweet{{/i}}</span> </button> <span class="js-schedule-datepicker-holder"/> </div> <div class="js-tweet-type-button"> <button class="js-tweet-button btn btn-on-blue full-width txt-left margin-b--12 padding-v--6 padding-h--12"> <i class="Icon icon-twitter-bird txt-size--18"></i> <span class="label padding-ls">{{_i}}New Tweet{{/i}}</span> </button> <button class="js-dm-button js-show-tip btn btn-on-blue full-width txt-left padding-v--6 padding-h--12 margin-b--12"> <i class="Icon icon-message txt-size--18"></i> <span class="label padding-ls">{{_i}}Direct message{{/i}}</span> </button>`,"").replace(`<div class="js-send-button-container spinner-button-container"> <button class="js-send-button js-spinner-button js-show-tip Button--primary btn-extra-height padding-v--6 padding-h--12 is-disabled"> {{_i}}Tweet{{/i}}> </button> <i class="js-compose-sending-success icon-center-16 compose-send-button-success icon icon-check is-hidden"></i> <span class="js-media-upload-progress media-upload-progress is-hidden"></span> <i class="js-spinner-button-active icon-center-16 spinner-button-icon-spinner is-hidden"></i> </div>`,"").replace(`</textarea>`,`</textarea> <button class="js-add-image-button js-show-tip needsclick btn btn-on-blue full-width txt-left margin-b--12 padding-v--6 padding-h--12 is-disabled" data-original-title="Add images or video"> <i class="Icon icon-camera txt-size--18"></i> <span class="js-add-image-button-label label padding-ls">{{_i}}Add image{{/i}}</span> </button>  <button class="mtd-gif-button js-show-tip needsclick btn btn-on-blue full-width txt-left margin-b--12 padding-v--6 padding-h--12" data-original-title> <i class="Icon icon-gif txt-size--18"></i> <span class="label padding-ls">{{_i}}Add GIF{{/i}}</span> </button> <div class="js-tweet-type-button"> <button class="js-tweet-button btn btn-on-blue full-width txt-left margin-b--12 padding-v--6 padding-h--12"> <i class="Icon icon-twitter-bird txt-size--18"></i> <span class="label padding-ls">{{_i}}New Tweet{{/i}}</span> </button> <button class="js-dm-button js-show-tip btn btn-on-blue full-width txt-left padding-v--6 padding-h--12 margin-b--12"> <i class="Icon icon-message txt-size--18"></i> <span class="label padding-ls">{{_i}}Direct message{{/i}}</span> </button>  <div class="js-scheduler"> <button class="js-schedule-button js-show-tip btn btn-on-blue full-width txt-left margin-b--12 padding-v--6 padding-h--12 is-disabled"> <i class="Icon icon-schedule txt-size--18"></i> <span class="js-schedule-button-label label padding-ls">{{_i}}Schedule Tweet{{/i}}</span> </button> <span class="js-schedule-datepicker-holder"/> </div>  <div class="js-send-button-container spinner-button-container"> <button class="js-send-button js-spinner-button js-show-tip Button--primary btn-extra-height padding-v--6 padding-h--12 is-disabled"> {{_i}}Tweet{{/i}}> </button> <i class="js-compose-sending-success icon-center-16 compose-send-button-success icon icon-check is-hidden"></i> <span class="js-media-upload-progress media-upload-progress is-hidden"></span> <i class="js-spinner-button-active icon-center-16 spinner-button-icon-spinner is-hidden"></i> </div>`).replace(
 			'<i class="js-spinner-button-active icon-center-16 spinner-button-icon-spinner is-hidden"></i>',
 					buttonSpinner
 				);
+	}
 
+
+	// if (typeof TD_mustaches["status/tweet_single.mustache"] !== "undefined") {
+	// 	TD_mustaches["status/tweet_single.mustache"] =
+	// 		TD_mustaches["status/tweet_single.mustache"]
+	// 		.replace('{{^hasMedia}}', '')
+	// 		.replace('{{/hasMedia}}', '')
+	// 		.replace(`{{>status/tweet_media_wrapper}}`, '')
+	// 		.replace(
+	//   		`<div class="js-card-container"></div>  {{#quotedTweet}}`,
+	//   		`{{>status/tweet_media_wrapper}}  {{#quotedTweet}}`);
+	//
+	// }
 
 	if (typeof TD_mustaches["menus/actions.mustache"] !== "undefined") {
 		TD_mustaches["menus/actions.mustache"] =

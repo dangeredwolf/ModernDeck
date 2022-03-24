@@ -1,8 +1,8 @@
 /*
 	loginpage.css
 
-	Copyright (c) 2014-2020 dangered wolf, et al
-	Released under the MIT Licence
+	Copyright (c) 2014-2022 dangered wolf, et al
+	Released under the MIT License
 */
 
 @keyframes startflowIn {
@@ -43,26 +43,16 @@ html:not(.signin-sheet-now-present) body {
 	background:#263238!important
 }
 
-::selection {
-	background:rgba(0,0,0,0);
+.startflow ::selection {
+	background:var(--selectionBackgroundColor);
 	color:inherit
 }
 
-.mdl,.modal-content {
-	background:#fff
-}
-
-a:active,.signin-sheet-now-present .btn-positive,a:hover,a:focus,.btn:not([disabled]):not(.is-disabled),.btn-positive,.btn-positive-alt,.btn-fav.s-favorited,.s-following .follow-btn,a {
+.startflow a:active,.signin-sheet-now-present .startflow .btn-positive,.startflow a:hover,.startflow a:focus,.startflow .btn:not([disabled]):not(.is-disabled),.startflow .btn-positive,.startflow .btn-positive-alt,.startflow .btn-fav.s-favorited,.startflow .s-following .follow-btn,.startflow a {
 	color:#00BCD4
 }
 
-select,input {
-	color:#333;
-	border-bottom:2px solid #ccc;
-	border-radius:0!important
-}
-
-.btn:not(.btn-positive):active,.btn.is-selected {
+.startflow .btn:not(.btn-positive):active,.startflow .btn.is-selected {
 	background-color:rgba(0,0,0,.04)!important
 }
 
@@ -82,36 +72,7 @@ select,input {
 	margin-top:-128px
 }
 
-@media (max-width:800px) {
-
-	.app-signin-form {
-		margin-top:30px;
-	}
-
-}
-
-.app-info-panel {
-	position:relative;
-	pointer-events:none;
-	left:0
-}
-
-.app-info-title {
-	font-size:32px;
-	color:#fff
-}
-
-.app-info-text {
-	width:400px;
-	text-shadow:0 10px 30px #000;
-	color:#fff
-}
-
-.app-info-text p {
-	padding-top:15px
-}
-
-.form-legend {
+.startflow .form-legend {
 	text-align:left;
 	font-weight:500;
 	font-size:20px
@@ -124,12 +85,8 @@ select,input {
 	background:#fff;
 	color:#444;
 	box-shadow:0 10px 30px rgba(0,0,0,.75);
-	border-radius:4px
-}
-
-.form-message {
-	font-size:20px;
-	color:#555
+	border-radius:4px;
+	margin-top:20px
 }
 
 .form-error-message {
@@ -137,27 +94,8 @@ select,input {
 	font-size:20px
 }
 
-.form-verification {
-	width:50%;
-	height:30px;
-	padding:5px 8px;
-	color:#000
-}
-
-.startflow-message-wrap .bg-r-dark-blue .margin-rxl {
-	z-index:5
-}
-
-.startflow-panel .bg-r-dark-blue h1 {
-	margin:0!important
-}
-
-.startflow-panel .txt-large.padding-tn {
-	font-size:16px!important
-}
-
 .startflow-background {
-	background-image:url("moderndeck://resources/img/bg1.jpg");
+	background-image:url("moderndeck://resources/img/bg1.webp");
 	background-size:cover;
 	background-position:center;
 	opacity:0.01;
@@ -178,24 +116,19 @@ select,input {
 
 .login-container {
 	top:0;
-	-webkit-app-region:no-drag;
 	position:absolute;
 	right:0;
 	left:0;
 	bottom:0;
 	height:auto;
-	overflow:hidden
+	overflow:hidden;
+	-webkit-app-region:no-drag
 }
 
 .form-login h2 {
 	font-weight:400;
 	font-size:22px;
 	margin-bottom:35px
-}
-
-.form-login p {
-	padding-top:5px;
-	padding-bottom:5px
 }
 
 @keyframes menuDownLoginError {
@@ -245,16 +178,6 @@ select,input {
 	white-space:nowrap
 }
 
-.app-signin-form {
-	-webkit-app-region:no-drag;
-	display:block;
-	position:relative
-}
-
-body {
-	-webkit-app-region:drag
-}
-
 .mtd-app .login-container:before {
 	content:"";
 	position:absolute;
@@ -282,4 +205,21 @@ body {
 .form-login .Button {
 	padding-left:28px!important;
 	margin-left:-3px!important
+}
+
+.mtd-login-info-button {
+	color:#fff
+}
+
+.mtd-login-info-version {
+	float:left;
+	padding-top:8px;
+	opacity:0.7;
+	font-size:13px
+}
+
+.mtd-login-info {
+	position:fixed;
+	bottom:0;
+	right:0
 }

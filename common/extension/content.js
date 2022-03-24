@@ -1,43 +1,90 @@
 /*
 	content.js
-	Copyright (c) 2014-2020 dangered wolf, et al
 
-	Released under the MIT licence
+	Copyright (c) 2014-2022 dangered wolf, et al
+	Released under the MIT License
 */
 
 "use strict";
-console.log("ModernDeck content.js 8.0");
+console.log("ModernDeck content.js");
 
 var browser = browser || chrome;
 
-console.log("bootstrapping moderndeck.css for extensibility");
+console.log("Injecting moderndeck.css");
 
-var injStyles = document.createElement("link");
-injStyles.rel = "stylesheet";
-injStyles.href = browser.extension.getURL("resources/moderndeck.css");
+if (document.querySelector(`[rel="manifest"]`) === null) {
 
-document.head.appendChild(injStyles);
+	document.querySelector("link[rel=\"stylesheet\"]").remove();
 
-var injectScript2 = document.createElement("script");
-injectScript2.src = browser.extension.getURL("resources/libraries/moduleraid.min.js");
-injectScript2.type = "text/javascript";
-document.head.appendChild(injectScript2);
+	var injStyles = document.createElement("link");
+	injStyles.rel = "stylesheet";
+	injStyles.href = browser.extension.getURL("resources/moderndeck.css");
 
-console.log("Bootstrapping moderndeck.js");
+	document.head.appendChild(injStyles);
 
-var injectScript = document.createElement("script");
+	// Gross hack for 9.4 because modenrdeck.css is not being loaded
 
-var injectURL = document.createElement("div");
-injectURL.setAttribute("type",browser.extension.getURL(""));
-injectURL.id = "MTDURLExchange";
-document.head.appendChild(injectURL);
-console.log("injected url exchange with id " + injectURL.id);
+	var injStyles2 = document.createElement("link");
+	injStyles2.rel = "stylesheet";
+	injStyles2.href = browser.extension.getURL("resources/moderndeck.css");
 
-injectScript.src = browser.extension.getURL("resources/moderndeck.js");
+	document.head.appendChild(injStyles2);
 
-injectScript.type = "text/javascript";
-document.head.appendChild(injectScript);
+	var injectScript2 = document.createElement("script");
+	injectScript2.src = browser.extension.getURL("resources/libraries/moduleraid.min.js");
+	injectScript2.type = "text/javascript";
+	document.head.appendChild(injectScript2);
 
-if (document.getElementsByTagName("title").length > 0) {
-	document.getElementsByTagName("title")[0].innerHTML = "ModernDeck"
+	console.log("Injecting moderndeck.js");
+
+	var injectScript = document.createElement("script");
+
+	var injectURL = document.createElement("div");
+	injectURL.setAttribute("type", browser.extension.getURL("/"));
+	injectURL.id = "MTDURLExchange";
+	document.head.appendChild(injectURL);
+	console.log("injected url exchange with id " + injectURL.id);
+
+	injectScript.src = browser.extension.getURL("resources/moderndeck.js");
+
+	document.getElementsByClassName("js-signin-ui block")[0].innerHTML =
+	`<img class="mtd-loading-logo" src="${browser.extension.getURL("/resources/img/moderndeck.svg")}" style="display: none;">
+	<div class="preloader-wrapper active">
+		<div class="spinner-layer">
+			<div class="circle-clipper left">
+				<div class="circle"></div>
+			</div>
+			<div class="gap-patch">
+				<div class="circle"></div>
+			</div>
+			<div class="circle-clipper right">
+				<div class="circle"></div>
+			</div>
+		</div>
+	</div>`
+
+	if (typeof mtdLoadStyleCSS === "undefined") {
+		var mtdLoadStyleCSS = `
+			img.spinner-centered {
+				display:none!important
+			}
+		`
+		var mtdLoadStyle = document.createElement("style");
+		mtdLoadStyle.appendChild(document.createTextNode(mtdLoadStyleCSS))
+		document.head.appendChild(mtdLoadStyle);
+	}
+
+	if (document.getElementsByClassName("spinner-centered")[0]) {
+		document.getElementsByClassName("spinner-centered")[0].remove();
+	}
+
+	document.getElementsByTagName("html")[0].style = "background: #111;";
+	document.getElementsByTagName("body")[0].style = "background: #111;";
+
+	injectScript.type = "text/javascript";
+	document.head.appendChild(injectScript);
+
+	if (document.getElementsByTagName("title").length > 0) {
+		document.getElementsByTagName("title")[0].innerHTML = "ModernDeck"
+	}
 }

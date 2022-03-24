@@ -1,8 +1,8 @@
 /*
 	welcome.css
 
-	Copyright (c) 2014-2020 dangered wolf, et al
-	Released under the MIT Licence
+	Copyright (c) 2014-2022 dangered wolf, et al
+	Released under the MIT License
 */
 
 
@@ -61,8 +61,8 @@
 }
 
 .mtd-enable-update-next .mtd-settings-subpanel[id="update"] .mtd-welcome-head,
-.mtd-enable-update-next .mtd-settings-subpanel[id="update"] .mtd-welcome-body,
-/*.mtd-welcome-inner:not(.mtd-enable-update-next) .mtd-settings-subpanel[id="update"] .mtd-welcome-next-button */{
+.mtd-enable-update-next .mtd-settings-subpanel[id="update"] .mtd-welcome-body
+/*,.mtd-welcome-inner:not(.mtd-enable-update-next) .mtd-settings-subpanel[id="update"] .mtd-welcome-next-button */{
 	display:none
 }
 

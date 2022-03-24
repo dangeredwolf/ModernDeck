@@ -1,8 +1,8 @@
 /*
 	settings.css
 
-	Copyright (c) 2014-2020 dangered wolf, et al
-	Released under the MIT Licence
+	Copyright (c) 2014-2022 dangered wolf, et al
+	Released under the MIT License
 */
 
 :root {
@@ -19,21 +19,34 @@
 	color:#fff!important
 }
 
+.mtd-settings-option option[value="light"] {
+	background:#fff;
+	color:#000!important
+}
+
+.mtd-settings-option option[value="dark"] {
+	background:#444;
+	color:#fff!important
+}
+
 .mtd-settings-option option[value="darker"] {
 	background:#333;
 	color:#fff!important
 }
 
 .mtd-settings-option option[value="red"] {
-	background:#F44336
+	background:#F44336;
+	color:#fff!important
 }
 
 .mtd-settings-option option[value="pink"] {
-	background:#E91E63
+	background:#E91E63;
+	color:#fff!important
 }
 
 .mtd-settings-option option[value="orange"] {
-	background:#FF5722
+	background:#FF5722;
+	color:#fff!important
 }
 
 .mtd-settings-option option[value="violet"] {
@@ -42,11 +55,13 @@
 }
 
 .mtd-settings-option option[value="teal"] {
-	background:#009688
+	background:#009688;
+	color:#fff!important
 }
 
 .mtd-settings-option option[value="green"] {
-	background:#4CAF50
+	background:#4CAF50;
+	color:#fff!important
 }
 
 .mtd-settings-option option[value="yellow"] {
@@ -54,7 +69,8 @@
 }
 
 .mtd-settings-option option[value="cyan"] {
-	background:#00BCD4
+	background:#00BCD4;
+	color:#fff!important
 }
 
 .mtd-settings-option option[value="black"],.mtd-settings-option option[value="amoled"] {
@@ -63,7 +79,8 @@
 }
 
 .mtd-settings-option option[value="blue"] {
-	background:#2196F3
+	background:#2196F3;
+	color:#fff!important
 }
 
 .mtd-settings-subpanel-hidden {
@@ -218,11 +235,16 @@
 	float:right
 }
 
+.mtd-settings-subpanel select[disabled], .mtd-settings-subpanel input[disabled] {
+	opacity:0.5
+}
+
 .mtd-settings-subpanel label {
-	display:inline-block;
+	display: inline-block;
 	margin-bottom:0;
 	padding-top:14px;
-	padding-left:0
+	padding-left:0;
+	/* position: absolute; */
 }
 
 .mtd-settings-subpanel label.control-label {
@@ -240,12 +262,20 @@
 
 .mtd-settings-option-checkbox {
 	height:28px;
-	margin-bottom:16px
+	margin-bottom:8px;
+	margin-top:8px
+}
+
+.mtd-settings-option-subtext {
+	margin-top:-10px;
+	height:auto!important;
+    display:inline-block
 }
 
 .mtd-settings-option-link {
-	padding-top:16px;
-	cursor:pointer
+	padding-bottom:16px;
+	cursor:pointer;
+	height:20px
 }
 
 .mtd-settings-subpanel p {
@@ -325,25 +355,34 @@
 
 .mtd-settings-option-slider .mtd-slider-minimum,.mtd-settings-option-slider .mtd-slider-maximum {
 	float:right!important;
-	padding-left:8px!important;
-	padding-top:17px!important
+	margin-left: 8px!important;
+	padding-top:17px!important;
+	display: block;
+	position: absolute;
+}
+
+.mtd-settings-option-slider .mtd-slider-minimum {
+	margin-top:48px
 }
 
 .mtd-settings-option-slider .mtd-slider-maximum  {
-	margin-top:48px
+	margin-top:48px;
+	margin-left:440px!important
 }
 
 .mtd-settings-option-slider input[type="range"] {
 	-webkit-appearance:none;
 	width:370px;
-	float:right;
+	float: left;
 	border-radius:2px;
 	padding:0;
 	padding-top:24px;
-	height:1px
+	height:1px;
+	margin-left: 60px;
 }
 
 .mtd-settings-option-slider input[type="range"]::-webkit-slider-thumb {
+	background:var(--secondaryColor);
 	-webkit-appearance:none;
 	appearance:none;
 	width:16px;
@@ -353,6 +392,7 @@
 }
 
 .mtd-settings-option-slider input[type="range"]::-moz-range-thumb {
+	background:var(--secondaryColor);
 	width:16px;
 	height:16px;
 	border-radius:50%;
@@ -373,17 +413,18 @@
 
 .mtd-settings-option-button .control-label b {
 	font-size:16px;
-	margin-right:33px;
 	width:300px;
-	display:inline;
-	white-space:nowrap;
-	margin-left:10px
+	margin-left:10px;
 }
 
 .mtd-settings-option-button {
 	height:auto;
 	width:95%;
 	padding:10px
+}
+
+.mtd-settings-option-buttons {
+	height:auto
 }
 
 .mtd-textarea {
@@ -398,11 +439,24 @@
 }
 
 .mtd-logo {
+	color:var(--secondaryColor);
 	width:96px;
 	font-size:96px!important;
 	line-height:1;
 	display:inline;
-	float:left
+	float:left;
+	pointer-events:all
+}
+
+.mtd-app-mac .mtd-settings-panel .mtd-logo:before {
+	content:""
+}
+
+.mtd-app-mac .mtd-settings-panel .mtd-logo {
+	background-image:url(moderndeck://resources/img/macOS.png);
+	background-size:80px;
+	margin-right:-10px;
+	background-repeat:no-repeat
 }
 
 .mtd-about-title {
@@ -417,6 +471,11 @@
 	width:auto
 }
 
+.mtd-about-title>span {
+	padding-left:8px;
+	font-size:14px
+}
+
 .mtd-version-title {
 	font-weight:400;
 	font-size:14px;
@@ -424,8 +483,12 @@
 	display:block;
 	position:relative;
 	padding-top:43px;
-	width:247px;
-	padding-left:96px
+	width:305px;
+	margin-left:96px
+}
+
+.mtd-app-mac .mtd-version-title {
+	margin-left:80px;
 }
 
 .mtd-patron-info {
@@ -492,12 +555,18 @@ html body .mtd-settings-subpanel button {
 }
 
 .mtd-settings-button {
+	background:var(--secondaryColor)!important;
+	color:var(--rootWhiteColor)!important;
 	float:none;
 	margin-top:50px;
 	box-shadow:0 3px 7px var(--composeShadow);
 	padding:11px;
 	border-radius:4px;
 	transition:background 0.2s var(--animationTiming),transform 0.25s var(--animationTiming)!important
+}
+
+.mtd-settings-button:focus {
+	background:var(--secondaryColorBright)!important
 }
 
 .mtd-auto-scroll {
@@ -613,21 +682,17 @@ html body .mtd-settings-subpanel button {
 }
 
 #language b {
-	margin-left:2px
+	margin-left:0;
 }
 
 #global_filter_settings .control-group {
 	width:67%
 }
 
-.list-filter,.js-filter-list>ul {
-	width:280px
-}
-
 .js-filter-list {
 	position:absolute;
 	top:150px;
-	width:80%;
+	width:85%;
 	max-height:400px;
 	overflow-y:auto;
 	overflow-x:hidden;
@@ -641,6 +706,37 @@ html body .mtd-settings-subpanel button {
 
 .js-add-filter-container {
 	position:absolute;
-	left:315px;
+	left:365px;
 	top:85px
+}
+
+.mtd-update-container img {
+	vertical-align:middle;
+	padding-right:5px
+}
+
+.mtd-enterprise-management-text {
+	padding:20px 0 5px 0!important
+}
+
+#global_filter_settings select,#global_filter_settings .controls input {
+	width:250px!important;
+	float:left
+}
+
+.mtd-settings-button.mtd-default-button {
+	display:block;
+	position:absolute;
+	right:20px;
+	text-align:right;
+	margin-top:12px;
+	padding:7px
+}
+
+.mtd-settings-option-dropdown label.control-label {
+	max-width: 260px;
+}
+
+.mtd-settings-subtext {
+	height:auto!important
 }

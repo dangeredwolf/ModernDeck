@@ -1,6 +1,6 @@
 /*
 	TweetDeck i18n v2
-	Copyright (c) 2018-2020 dangered wolf, et al.
+	Copyright (c) 2018-2022 dangered wolf, et al.
 	Released under the MIT license
 */
 
@@ -34,7 +34,7 @@ if (window.ModernDeck) {
 
 export const getFullLanguage = () => langFull;
 export const getMainLanguage = () => langRoot;
-export const getFallbackLanguage = () => "en";
+export const getFallbackLanguage = () => "en_US";
 
 
 const mustachePatches = {
@@ -92,7 +92,7 @@ const mustachePatches = {
 export const I18n = function(a, b, c, d, e, f) {
 
 	if (!a) {
-		console.warn("The I18n function was supposed to receive data but didn't. Here's some other information, if they aren't undefined: ", a, b, c, d, e);
+		// console.warn("The I18n function was supposed to receive data but didn't. Here's some other information, if they aren't undefined: ", a, b, c, d, e);
 		return "";
 	}
 
@@ -127,7 +127,17 @@ export const I18n = function(a, b, c, d, e, f) {
 
 	if (!b || f === 1) {
 		if (languageData[a]) {
-			return languageData[a][getFullLanguage()]||languageData[a][getMainLanguage()]||languageData[a][getFallbackLanguage()];
+			let result = languageData[a][getFullLanguage()]||languageData[a][getMainLanguage()]||languageData[a][getFallbackLanguage()];
+			if (typeof result === "undefined") {
+				console.error("Can't find English US translation of this string? " + a);
+				return a;
+			}
+			if (result.indexOf("hours12") > -1 || result.indexOf("hours24") > -1) {
+				if (I18n.customTimeHandler) {
+					return I18n.customTimeHandler(result);
+				}
+			}
+			return result;
 		} else {
 			console.warn("Missing string translation: " + a);
 			return (displayWarning ? "⚠" : "") + a;
@@ -142,7 +152,7 @@ export const I18n = function(a, b, c, d, e, f) {
 }
 
 function patchColumnTitle() {
-	if (TD && mR) {
+	if (window.TD && window.mR) {
 		var columnData = mR.findFunction("getColumnTitleArgs")[0].columnMetaTypeToTitleTemplateData;
 		for (var key in columnData) {
 			columnData[key].title = I18n(columnData[key].title);
@@ -155,7 +165,7 @@ function patchColumnTitle() {
 }
 
 function patchButtonText() {
-	if (TD && mR) {
+	if (window.TD && window.mR) {
 		let buttonData = mR.findFunction("tooltipText");
 
 		for (let i = 0; i < buttonData.length; i++) {
@@ -180,7 +190,7 @@ function patchButtonText() {
 }
 
 function patchColumnTitleAddColumn() {
-	if (TD && TD.controller && TD.controller.columnManager && TD.controller.columnManager.DISPLAY_ORDER) {
+	if (window.TD && TD.controller && TD.controller.columnManager && TD.controller.columnManager.DISPLAY_ORDER) {
 		let columnData = TD.controller.columnManager.DISPLAY_ORDER;
 
 		for (const key in columnData) {
@@ -275,7 +285,7 @@ function patchMiscStrings() {
 }
 
 function patchTDFunctions() {
-	if (mR && mR.findFunction && mR.findFunction("en-x-psaccent")[0]) {
+	if (typeof mR !== "undefined" && mR.findFunction && mR.findFunction("en-x-psaccent")[0]) {
 		tweetDeckTranslateInitial = mR.findFunction("en-x-psaccent")[0].default;
 		mR.findFunction("en-x-psaccent")[0].default = I18n;
 
@@ -356,5 +366,7 @@ export function startI18nEngine() {
 }
 
 window.I18n = I18n;
+window.I18n.getFullLanguage = getFullLanguage;
+window.I18n.getMainLanguage = getMainLanguage;
 
 startI18nEngine();

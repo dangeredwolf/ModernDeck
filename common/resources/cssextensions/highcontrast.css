@@ -1,8 +1,8 @@
 /*
 	highcontrast.css
 
-	Copyright (c) 2014-2020 dangered wolf, et al
-	Released under the MIT Licence
+	Copyright (c) 2014-2022 dangered wolf, et al
+	Released under the MIT License
 */
 
 html {
@@ -250,4 +250,16 @@ input[type="checkbox"]:checked:before, button, input[type="radio"]:checked:befor
 	width:5px!important;
 	left:152px;
 	background:#fff!important
+}
+
+.startflow-background {
+	background:#000!important
+}
+
+.form-login .Button {
+	--secondaryColor:#000!important
+}
+
+.mtd-signin-wrap .icon-moderndeck {
+	opacity:1
 }

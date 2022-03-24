@@ -1,11 +1,11 @@
 *.zip
 *.crx
 *.pem
-*.map
 *.exe
 *.dmg
 *.AppImage
 dist
+distEnterprise
 ModernDeck_app_tmp
 ModernDeck_ext_tmp
 node_modules
@@ -15,5 +15,3 @@ node_modules
 *.log
 *.appx
 default.*
-package-lock.json
-common/sources/moderndeck.js

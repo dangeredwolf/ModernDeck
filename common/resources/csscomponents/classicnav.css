@@ -1,8 +1,8 @@
 /*
 	classicnav.css
 
-	Copyright (c) 2014-2020 dangered wolf, et al
-	Released under the MIT Licence
+	Copyright (c) 2014-2022 dangered wolf, et al
+	Released under the MIT License
 */
 
 .mtd-classic-nav #column-navigator {
@@ -23,16 +23,12 @@
 
 .mtd-app-mac.mtd-head-left.mtd-classic-nav .js-hide-drawer.tweet-button
 {
-	margin-top:3px!important
+	margin-top:29px!important
 }
 
 .mtd-classic-nav.mtd-head-left .js-hide-drawer.tweet-button {
 	margin-top:5px;
 	background:none!important
-}
-
-.mtd-classic-nav.mtd-head-left:not(.mtd-app-mac) .js-hide-drawer.tweet-button {
-	margin-top:-14px
 }
 
 .mtd-head-left.mtd-classic-nav .tweet-button.is-hidden {
@@ -75,8 +71,8 @@ html:not(.mtd-app).mtd-classic-nav .compose-content {
 }
 
 .mtd-classic-nav .application:not(.is-condensed) .column-navigator {
-	margin-top:50px;
-	bottom:170px
+	margin-top: 50px;
+	bottom:170px;
 }
 
 html.mtd-classic-nav .column-navigator {

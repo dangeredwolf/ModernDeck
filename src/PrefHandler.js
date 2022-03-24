@@ -1,14 +1,15 @@
 /*
 	PrefHandler.js
-	Copyright (c) 2014-2020 dangered wolf, et al
-	Released under the MIT licence
+
+	Copyright (c) 2014-2022 dangered wolf, et al
+	Released under the MIT License
 */
 
 import { settingsData } from "./DataSettings.js";
-import { exists } from "./Utils.js";
+import { exists, getIpc } from "./Utils.js";
+import { ModernDeckPrefMigration } from "./ModernDeckPrefMigration.js";
 import { disableStylesheetExtension, enableStylesheetExtension } from "./StylesheetExtensions.js";
 import { getPref, setPref, hasPref, debugStorageSys } from "./StoragePreferences.js";
-
 /*
 	function loadPreferences()
 
@@ -17,6 +18,8 @@ import { getPref, setPref, hasPref, debugStorageSys } from "./StoragePreferences
 
 export function loadPreferences() {
 	window.settingsData = settingsData;
+
+	ModernDeckPrefMigration.migrate();
 
 	for (let key in settingsData) {
 
@@ -30,17 +33,32 @@ export function loadPreferences() {
 					if (!hasPref(prefKey)) {
 						if (debugStorageSys)
 							console.log(`loadPreferences is setting default of ${prefKey} to ${pref.default}`);
-						setPref(prefKey, pref.default);
-						setting = pref.default;
+						if (typeof pref.default === "function") {
+							let def = pref.default();
+							setPref(prefKey, def);
+							setting = def;
+						} else {
+							setPref(prefKey, pref.default);
+							setting = pref.default;
+						}
+
 					} else {
 						setting = getPref(prefKey);
+					}
+
+					if (window.enterpriseConfig && window.enterpriseConfig[key] && window.enterpriseConfig[key][i]) {
+						console.log(window.enterpriseConfig[key]);
+						console.log(window.enterpriseConfig[key][i]);
+						setting = window.enterpriseConfig[key][i];
 					}
 
 					switch(pref.type) {
 						case "checkbox":
 							if (setting === true) {
+								console.log("activate " + prefKey);
 								parseActions(pref.activate, undefined, true);
 							} else {
+								console.log("deactivate " + prefKey);
 								parseActions(pref.deactivate, undefined, true);
 							}
 							break;
@@ -60,6 +78,11 @@ export function loadPreferences() {
 			}
 		}
 	}
+}
+
+export function loadPreferencesWindows() {
+	// console.log("Sending get enterprise config");
+	loadPreferences();
 }
 
 /*

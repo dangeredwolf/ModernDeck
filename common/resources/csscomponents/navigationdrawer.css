@@ -1,8 +1,8 @@
 /*
 	navigationdrawer.css
 
-	Copyright (c) 2014-2020 dangered wolf, et al
-	Released under the MIT Licence
+	Copyright (c) 2014-2022 dangered wolf, et al
+	Released under the MIT License
 */
 
 :root {
@@ -20,7 +20,7 @@
 	display:none
 }
 
-.mtd-head-left .mtd-drawer-button {
+.mtd-drawer-button {
 	margin-top:0!important
 }
 
@@ -43,7 +43,7 @@
 	margin-top:-22px
 }
 
-.mtd-app.mtd-head-left .mtd-drawer-button:active:after {
+.mtd-drawer-button:active:after {
 	margin-top:-20px
 }
 
@@ -60,11 +60,6 @@
 	transform:scale(.5);
 	opacity:0;
 	transition:0.5s all,.15s opacity
-}
-
-html:not(.mtd-head-left) .hide-detail-view-inline .mtd-drawer-button {
-	top:5px;
-	margin-left:calc(var(--composeWidth) - 55px)
 }
 
 .mtd-nav-drawer {
@@ -87,7 +82,7 @@ html:not(.mtd-head-left) .hide-detail-view-inline .mtd-drawer-button {
 
 .mtd-nav-drawer-background {
 	position:absolute;
-	z-index:5;
+	z-index:6;
 	background:var(--navDrawerBackground);
 	height:100%;
 	width:100%;
@@ -134,7 +129,8 @@ html:not(.mtd-head-left) .hide-detail-view-inline .mtd-drawer-button {
 	text-shadow:0 3px 6px var(--rootBlackColor);
 	font-weight:500;
 	font-size:14px;
-	color:var(--rootWhiteColor)
+	color:var(--rootWhiteColor);
+	white-space:nowrap
 }
 
 .mtd-nd-header-atname {
@@ -183,12 +179,8 @@ html:not(.mtd-head-left) .hide-detail-view-inline .mtd-drawer-button {
 	margin-top:2px
 }
 
-.mtd-app-mac.mtd-head-left .mtd-drawer-button {
+.mtd-app-mac .mtd-drawer-button {
 	margin-top:18px!important
-}
-
-.mtd-app-mac:not(.mtd-head-left) .application:not(.hide-detail-view-inline) .mtd-drawer-button {
-	margin-left:65px
 }
 
 .mtd-icon-arrow-down {

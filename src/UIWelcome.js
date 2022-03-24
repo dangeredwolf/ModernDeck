@@ -1,13 +1,13 @@
 /*
 	UIWelcome.js
-	Copyright (c) 2014-2020 dangered wolf, et al
-	Released under the MIT licence
+
+	Copyright (c) 2014-2022 dangered wolf, et al
+	Released under the MIT License
 */
 
 /* Main thread for welcome screen */
 
 import { _welcomeData } from "./DataWelcome.js";
-import { settingsData } from "./DataSettings.js";
 import { makeUpdateCont } from "./UISettings.js";
 import { isApp, make } from "./Utils.js";
 import { enableStylesheetExtension, disableStylesheetExtension } from "./StylesheetExtensions.js";
@@ -26,13 +26,17 @@ export class UIWelcome extends UIModal {
 	constructor() {
 		super();
 
+		if (enterpriseConfig && enterpriseConfig.disableOOBE) {
+			return;
+		}
+
 		window.isInWelcome = true;
 
 		try {
 			allColumnsVisible();
 		} catch(e) {}
 
-		welcomeData.update.enabled = isApp && !html.hasClass("mtd-winstore") && !html.hasClass("mtd-macappstore");
+		welcomeData.update.enabled = isApp && !html.hasClass("mtd-winstore") && !html.hasClass("mtd-macappstore") && !html.hasClass("mtd-flatpak");
 		welcomeData.update.html = makeUpdateCont();
 
 		mtdPrepareWindows();
@@ -45,7 +49,16 @@ export class UIWelcome extends UIModal {
 		},0);
 		$(".app-content,.app-header").remove();
 
-		$(".application").attr("style",`background-image:url(${mtdBaseURL}resources/img/bg1.jpg)`);
+		$(".application").attr("style",`background-image:url(${mtdBaseURL}resources/img/bg1.webp)`)
+
+		if (window.enterpriseConfig.customLoginImage) {
+			if (window.enterpriseConfig.customLoginImage.match(/https:\/\//gm) !== null) {
+				$(".application").attr("style",`background-image:url(${window.enterpriseConfig.customLoginImage})`)
+			} else {
+				$(".application").attr("style",`background-image:url(moderndeck://background)`)
+			}
+
+		}
 
 		$(".message-banner").attr("style","display: none;");
 

@@ -1,0 +1,22 @@
+/*
+	themeeditor.css
+
+	Copyright (c) 2014-2022 dangered wolf, et al
+	Released under the MIT License
+*/
+
+html>body>.mdl.mtd-theme-editor {
+	position:absolute!important;
+	left:50%!important;
+	bottom:0;
+	width:600px;
+	margin-left:-300px!important;
+	overflow-y:auto;
+	max-height:400px!important;
+	min-height:400px!important;
+	z-index:99
+}
+
+.mtd-theme-editor input {
+	width:100px
+}

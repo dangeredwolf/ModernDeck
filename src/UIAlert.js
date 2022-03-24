@@ -1,7 +1,8 @@
 /*
 	UIAlert.js
-	Copyright (c) 2014-2020 dangered wolf, et al
-	Released under the MIT licence
+
+	Copyright (c) 2014-2022 dangered wolf, et al
+	Released under the MIT License
 */
 
 import { make, exists } from "./Utils.js";
@@ -53,11 +54,6 @@ export class UIAlert extends UIModal {
 
 		this.display();
 	}
-}
-
-export function mtdAlert(obj) {
-	console.warn("Someone tried to access the ModernDeck 7 Alert API. Please upgrade to ModernDeck 8 UIAlert.");
-	return new UIAlert(obj);
 }
 
 window.originalAlert = window.alert;

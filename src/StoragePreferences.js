@@ -1,7 +1,8 @@
 /*
 	StoragePreferences.js
-	Copyright (c) 2014-2020 dangered wolf, et al
-	Released under the MIT licence
+
+	Copyright (c) 2014-2022 dangered wolf, et al
+	Released under the MIT License
 */
 
 /*
@@ -19,6 +20,29 @@ let store;
 if (isApp) {
 	const Store = require('electron-store');
 	store = new Store({name:"mtdsettings"});
+}
+
+export function resetPref(id) {
+	for (let key in settingsData) {
+		if (settingsData[key].options) {
+			for (let i in settingsData[key].options) {
+				let prefKey = settingsData[key].options[i].settingsKey;
+				let pref = settingsData[key].options[i];
+
+				let def;
+
+				if (typeof pref.default === "function") {
+					def = pref.default();
+				} else {
+					def = pref.default;
+				}
+
+				if (prefKey === id) {
+					setPref(prefKey, def)
+				}
+			}
+		}
+	}
 }
 
 export function getPref(id, defaul) {

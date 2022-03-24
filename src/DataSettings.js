@@ -1,7 +1,8 @@
 /*
 	DataSettings.js
-	Copyright (c) 2014-2020 dangered wolf, et al
-	Released under the MIT licence
+
+	Copyright (c) 2014-2021 dangered wolf, et al
+	Released under the MIT License
 */
 
 /*
@@ -17,15 +18,12 @@
 	https://github.com/dangeredwolf/ModernDeck/wiki/settingsData
 */
 
-
-
 import { I18n } from "./I18n.js";
 import { UIAlert } from "./UIAlert.js";
 import { isStylesheetExtensionEnabled, enableStylesheetExtension, disableStylesheetExtension, enableCustomStylesheetExtension } from "./StylesheetExtensions.js";
-import { debugStorageSys, hasPref, getPref, setPref, purgePrefs } from "./StoragePreferences.js";
+import { debugStorageSys, hasPref, getPref, setPref, resetPref, purgePrefs } from "./StoragePreferences.js";
 import { allColumnsVisible, updateColumnVisibility } from "./Column.js";
-import { exists } from "./Utils.js";
-import { importTweetenSettings } from "./StorageTweetenImport.js";
+import { exists, isApp } from "./Utils.js";
 import { openLegacySettings } from "./UISettings.js";
 import { enterSafeMode } from "./SafeMode.js";
 import { UILanguagePicker } from "./UILanguagePicker.js";
@@ -36,151 +34,144 @@ import { translationCredits } from "./DataTranslationCredits.js";
 
 const ctrlShiftText = (navigator.userAgent.indexOf("Mac OS X") > -1) ? "⌃⇧" : "{{Ctrl+Shift+}}";
 
-import { isApp } from "./Utils.js"
-
 export let settingsData = {
 	themes: {
-		tabName:"<i class='material-icon'>format_paint</i> {{Themes}}",
+		tabName:"<i class='material-icon' aria-hidden='true'>format_paint</i> {{Themes}}",
 		options:{
-			coretheme:{
+			theme:{
 				headerBefore:"{{Themes}}",
-				title:"{{Core Theme}}",
+				title:"{{Theme}}",
 				type:"dropdown",
 				activate:{
 					func: (opt) => {
-
-						if (typeof opt === "undefined" || opt === "undefined") {
-							throw "Attempt to pass undefined for mtd_core_theme. This will break TweetDeck across platforms. Something has to be wrong";
-							TD.settings.setTheme("dark");
-							return;
-						}
-
-						disableStylesheetExtension("dark");
-						disableStylesheetExtension("light");
-
 						if (useSafeMode) {
 							return;
 						}
 
-						if (hasPref("mtd_highcontrast") && getPref("mtd_highcontrast") === true) {
-							opt = "dark";
+						// Migration for ModernDeck pre-Oasis (8.0.x or before)
+						if (opt === "default") {
+							opt = TD.settings.getTheme();
 						}
 
-						html.removeClass("dark").removeClass("light").addClass(opt);
-						TD.settings.setTheme(opt);
-						enableStylesheetExtension(opt);
-
-						if (opt === "light" && (isStylesheetExtensionEnabled("amoled") || isStylesheetExtensionEnabled("darker"))) {
-							disableStylesheetExtension("darker");
-							disableStylesheetExtension("amoled");
-							setPref("mtd_theme","default");
-						}
-						if (opt === "dark" && isStylesheetExtensionEnabled("paper")) {
-							disableStylesheetExtension("paper");
-							setPref("mtd_theme","default");
-						}
-
-						if (hasPref("mtd_customcss")) {
-							disableStylesheetExtension("customcss");
-							enableCustomStylesheetExtension("customcss",getPref("mtd_customcss"));
-						}
-					}
-				},
-				options:{
-					dark:{value:"dark",text:"{{Dark}}"},
-					light:{value:"light",text:"{{Light}}"}
-				},
-				savePreference:false,
-				queryFunction: () => {
-					html.addClass(TD.settings.getTheme());
-					return TD.settings.getTheme()
-				},
-				settingsKey:"mtd_core_theme",
-				default:"dark"
-			},
-			theme:{
-				title:"{{Custom Theme}}",
-				type:"dropdown",
-				activate:{
-					func: (opt) => {
+						setTimeout(() => window.renderTab("themes"));
 
 						if (getPref("mtd_highcontrast") === true) {
-							return;
-						}
-
-						if (useSafeMode) {
-							return;
-						}
-
-						if (!hasPref("mtd_theme")) {
-							setPref("mtd_theme","default")
-						}
-
-						disableStylesheetExtension(getPref("mtd_theme"));
-						disableStylesheetExtension("amoled");
-						setPref("mtd_theme",opt);
-
-						if ((opt === "amoled" || opt === "darker") && TD.settings.getTheme() === "light") {
-							TD.settings.setTheme("dark");
 							disableStylesheetExtension("light");
+							disableStylesheetExtension("darker");
+							disableStylesheetExtension("paper");
 							enableStylesheetExtension("dark");
-							html.removeClass("light").addClass("dark");
-						}
-
-						if (opt === "paper" && TD.settings.getTheme() === "dark") {
-							TD.settings.setTheme("light");
-							disableStylesheetExtension("dark");
-							enableStylesheetExtension("light");
-							html.removeClass("dark").addClass("light");
-						}
-
-						if (opt === "black" && TD.settings.getTheme() === "dark") {
-							disableStylesheetExtension("black");
 							enableStylesheetExtension("amoled");
-							setPref("mtd_theme","amoled");
+							enableStylesheetExtension("highcontrast");
+							return;
 						}
-						
-						enableStylesheetExtension(opt || "default");
 
-						if (hasPref("mtd_customcss")) {
-							disableStylesheetExtension("customcss");
-							enableCustomStylesheetExtension("customcss",getPref("mtd_customcss"));
+						switch (opt) {
+							case "light":
+								disableStylesheetExtension("amoled");
+								disableStylesheetExtension("darker");
+								disableStylesheetExtension("dark");
+								disableStylesheetExtension("paper");
+								enableStylesheetExtension("light");
+								break;
+							case "paper":
+								disableStylesheetExtension("amoled");
+								disableStylesheetExtension("darker");
+								disableStylesheetExtension("dark");
+								enableStylesheetExtension("light");
+								enableStylesheetExtension("paper");
+								break;
+							case "dark":
+								disableStylesheetExtension("amoled");
+								disableStylesheetExtension("darker");
+								disableStylesheetExtension("light");
+								disableStylesheetExtension("paper");
+								enableStylesheetExtension("dark");
+								break;
+							case "darker":
+								disableStylesheetExtension("amoled");
+								disableStylesheetExtension("light");
+								disableStylesheetExtension("paper");
+								enableStylesheetExtension("dark");
+								enableStylesheetExtension("darker");
+								break;
+							case "amoled":
+								disableStylesheetExtension("light");
+								disableStylesheetExtension("darker");
+								disableStylesheetExtension("paper");
+								enableStylesheetExtension("dark");
+								enableStylesheetExtension("amoled");
+
+								/* Dirty hack to fix amoled theme being reset by the high contrast setting later on upon loading */
+								setTimeout(() => enableStylesheetExtension("amoled"), 0);
+								
+								break;
+							case "custom":
+								disableStylesheetExtension("light");
+								disableStylesheetExtension("darker");
+								disableStylesheetExtension("paper");
+								disableStylesheetExtension("dark");
+								disableStylesheetExtension("amoled");
+								disableStylesheetExtension("highcontrast");
+								break;
+
 						}
 					}
 				},
 				options:{
-					default:{value:"default",text:"{{Default}}"},
-					completeLight:{
-						name:"{{Complete Light Themes}}",
+					lightThemes:{
+						name:"{{Light Themes}}",
 						children:{
+							light:{value:"light",text:"{{Light}}"},
 							paper:{value:"paper",text:"{{Paperwhite}}"}
 						}
 					},
-					completeDark:{
-						name:"{{Complete Dark Themes}}",
+					darkThemes:{
+						name:"{{Dark Themes}}",
 						children:{
+							dark:{value:"dark",text:"{{Dark}}"},
 							darker:{value:"darker",text:"{{Darker}}"},
 							amoled:{value:"amoled",text:"{{AMOLED}}"}
 						}
 					},
-					complementary:{
-						name:"{{Complementary Themes}}",
-						children:{
-							black:{value:"black",text:"{{Black}}"},
-							grey:{value:"grey",text:"{{Grey}}"},
-							red:{value:"red",text:"{{Red}}"},
-							orange:{value:"orange",text:"{{Orange}}"},
-							yellow:{value:"yellow",text:"{{Yellow}}"},
-							green:{value:"green",text:"{{Green}}"},
-							teal:{value:"teal",text:"{{Teal}}"},
-							cyan:{value:"cyan",text:"{{Cyan}}"},
-							blue:{value:"blue",text:"{{Blue}}"},
-							violet:{value:"violet",text:"{{Violet}}"},
-							pink:{value:"pink",text:"{{Pink}}"}
-						}
-					}
+					// custom:{value:"custom",text:"{{Custom...}}"}
 				},
 				settingsKey:"mtd_theme",
+				default:() => TD.settings.getTheme()
+			},
+			themeColor:{
+				title:"{{Theme Color}}",
+				type:"dropdown",
+				activate:{
+					func: (opt) => {
+
+						if (useSafeMode) {
+							return;
+						}
+
+						for (let i in window.settingsData.themes.options.theme.options) {
+							if (opt !== i)
+								disableStylesheetExtension(i);
+						}
+
+						enableStylesheetExtension(opt);
+					}
+				},
+				options:{
+					default:{value:"default",text:"{{Default}}"},
+					black:{value:"black",text:"{{Black}}"},
+					grey:{value:"grey",text:"{{Grey}}"},
+					red:{value:"red",text:"{{Red}}"},
+					orange:{value:"orange",text:"{{Orange}}"},
+					yellow:{value:"yellow",text:"{{Yellow}}"},
+					green:{value:"green",text:"{{Green}}"},
+					teal:{value:"teal",text:"{{Teal}}"},
+					cyan:{value:"cyan",text:"{{Cyan}}"},
+					blue:{value:"blue",text:"{{Blue}}"},
+					violet:{value:"violet",text:"{{Violet}}"},
+					pink:{value:"pink",text:"{{Pink}}"}
+				},
+				enabled:() => (getPref("mtd_theme") !== "custom"),
+				settingsKey:"mtd_color_theme",
 				default:"default"
 			}, selectedFont:{
 				title:"{{Preferred Font}}",
@@ -189,14 +180,33 @@ export let settingsData = {
 					Roboto:{value:"Roboto",text:"Roboto"},
 					RobotoCondensed:{value:"RobotoCondensed",text:"Roboto Condensed"},
 					RobotoSlab:{value:"RobotoSlab",text:"Roboto Slab"},
-					RobotoMono:{value:"RobotoMono",text:"Roboto Mono"},
+					"Noto Sans CJK":{value:"Noto Sans CJK",text:"Noto Sans"},
 					OpenSans:{value:"OpenSans",text:"Open Sans"},
 					Lato:{value:"Lato",text:"Lato"},
-					Jost:{value:"Jost",text:"Jost"}
+					Jost:{value:"Jost",text:"Jost"},
+					SystemUI:{value:"SystemUI", text:"{{System UI}}"}
 				},
 				activate:{
 					func: (opt) => {
-						enableCustomStylesheetExtension("selectedFont",":root{--selectedFont:"+ opt +"!important}");
+						html.removeClass("mtd-linux-system-font");
+
+						if (opt === "RobotoMono") {
+							setPref("mtd_selectedfont", "Roboto")
+							opt = "Roboto";
+						}
+
+						if (opt === "SystemUI") {
+							if (navigator.userAgent.match("Windows NT")) {
+								enableCustomStylesheetExtension("selectedFont",":root{--selectedFont:Segoe UI,Tahoma,sans-serif!important}");
+							} else if (navigator.userAgent.match("Mac OS X")) {
+								enableCustomStylesheetExtension("selectedFont",":root{--selectedFont:San Francisco,Helvetica Neue,Lucida Grande!important}");
+							} else {
+								disableStylesheetExtension("selectedFont");
+								html.addClass("mtd-linux-system-font");
+							}
+						} else {
+							enableCustomStylesheetExtension("selectedFont",":root{--selectedFont:"+ opt +"!important}");
+						}
 					}
 				},
 				settingsKey:"mtd_selectedfont",
@@ -219,24 +229,21 @@ export let settingsData = {
 					}
 				},
 				settingsKey:"mtd_customcss",
+				enabled:() => window.enterpriseConfig === undefined ? true : !window.enterpriseConfig.disableCustomCSS,
 				default:""
 			}
 		}
 	},
 	appearance: {
-		tabName:"<i class='material-icon'>rounded_corner</i> {{Appearance}}",
+		tabName:"<i class='material-icon' aria-hidden='true'>rounded_corner</i> {{Appearance}}",
 		options:{
-			headposition:{
+			 navigationStyle:{
 				headerBefore:"{{Navigation}}",
 				title:"{{Navigation Style}}",
 				type:"dropdown",
 				activate:{
 					func: (opt) => {
-						if (opt === "top") {
-							html.removeClass("mtd-head-left");
-							html.removeClass("mtd-classic-nav");
-							$(document).trigger("uiNavbarWidthChangeAction",{navbarWidth:"condensed"})
-						} else if (opt === "left") {
+						if (opt === "simplified") {
 							html.addClass("mtd-head-left");
 							html.removeClass("mtd-classic-nav");
 							$(document).trigger("uiNavbarWidthChangeAction",{navbarWidth:"condensed"})
@@ -248,14 +255,13 @@ export let settingsData = {
 					}
 				},
 				options:{
-					top:{value:"top",text:"{{Top}}"},
-					left:{value:"left",text:"{{Left}}"},
-					classic:{value:"classic",text:"{{Left (Classic)}}"},
+					simplified:{value:"simplified",text:"{{Simplified}}"},
+					classic:{value:"classic",text:"{{Classic (TweetDeck)}}"},
 				},
 				settingsKey:"mtd_headposition",
 				default:"left"
 			},
-			fixedarrows:{
+			fixedArrows:{
 				title:"{{Use fixed-location media arrows for tweets with multiple photos}}",
 				type:"checkbox",
 				activate:{
@@ -267,34 +273,7 @@ export let settingsData = {
 				settingsKey:"mtd_usefixedarrows",
 				default:true
 			},
-			altsensitive:{
-				title:"{{Use alternative sensitive media workflow}}",
-				type:"checkbox",
-				activate:{
-					enableStylesheet:"altsensitive",
-					htmlAddClass:"mtd-altsensitive"
-				},
-				deactivate:{
-					disableStylesheet:"altsensitive",
-					htmlRemoveClass:"mtd-altsensitive"
-				},
-				settingsKey:"mtd_sensitive_alt",
-				default:true
-			},
-			colNavAlwaysVis:{
-				title:"{{Always display column icons in navigator}}",
-				type:"checkbox",
-				enabled:false,
-				activate:{
-					htmlAddClass:"mtd-column-nav-always-visible"
-				},
-				deactivate:{
-					htmlRemoveClass:"mtd-column-nav-always-visible"
-				},
-				settingsKey:"mtd_column_nav_always_visible",
-				default:true
-			},
-			nonewtweetsbutton:{
+			enableNewTweetsButton:{
 				title:"{{Enable \"New Tweets\" indicator}}",
 				type:"checkbox",
 				activate:{
@@ -306,7 +285,7 @@ export let settingsData = {
 				settingsKey:"mtd_nonewtweetsbutton",
 				default:true
 			},
-			noemojipicker:{
+			enableEmojiPicker:{
 				title:"{{Enable Emoji picker}}",
 				type:"checkbox",
 				activate:{
@@ -319,8 +298,81 @@ export let settingsData = {
 				enabled:false,
 				default:true
 			},
-			scrollbarstyle:{
+			modalKeepOpen:{
+				title:"{{Keep modals open to like/follow from multiple accounts}}",
+				type:"checkbox",
+				activate:{
+					func: () => {
+					}
+				},
+				deactivate:{
+					func: () => {
+					}
+				},
+				settingsKey:"mtd_modalKeepOpen",
+				default:true
+			},
+			sensitiveMedia:{
 				headerBefore:"{{Display}}",
+				title:"{{Display media that may contain sensitive content}}",
+				type:"checkbox",
+				activate:{
+					func: () => {
+						TD.settings.setDisplaySensitiveMedia(true);
+						setTimeout(() => window.renderTab("appearance"));
+					}
+				},
+				deactivate:{
+					func: () => {
+						TD.settings.setDisplaySensitiveMedia(false);
+						setTimeout(() => window.renderTab("appearance"));
+					}
+				},
+				savePreference:false,
+				queryFunction: () => {
+					return TD.settings.getDisplaySensitiveMedia();
+				}
+			},
+			blurMessages:{
+				title:"{{Blur direct message contents unless hovered over}}",
+				type:"checkbox",
+				activate:{
+					enableStylesheet:"hideMessages"
+				},
+				deactivate:{
+					disableStylesheet:"hideMessages"
+				},
+				settingsKey:"mtd_hideMessages",
+				default:false
+			},
+			threadIndicator:{
+				title:`{{Display "Thread" on Tweets that are part of a thread}}`,
+				type:"checkbox",
+				activate:{
+					enableStylesheet:"threadIndicator"
+				},
+				deactivate:{
+					disableStylesheet:"threadIndicator"
+				},
+				settingsKey:"mtd_threadIndicator",
+				default:false
+			},
+			altSensitiveMedia:{
+				title:"{{Use alternative sensitive media workflow}}",
+				type:"checkbox",
+				activate:{
+					enableStylesheet:"altsensitive",
+					htmlAddClass:"mtd-altsensitive"
+				},
+				deactivate:{
+					disableStylesheet:"altsensitive",
+					htmlRemoveClass:"mtd-altsensitive"
+				},
+				enabled:() => !TD.settings.getDisplaySensitiveMedia(),
+				settingsKey:"mtd_sensitive_alt",
+				default:true
+			},
+			scrollbarStyle:{
 				title:"{{Scrollbar Style}}",
 				type:"dropdown",
 				activate:{
@@ -338,7 +390,7 @@ export let settingsData = {
 				settingsKey:"mtd_scrollbar_style",
 				default:"scrollbarsnarrow"
 			},
-			columnwidth:{
+			columnWidth:{
 				title:"{{Column width}}",
 				type:"slider",
 				activate:{
@@ -384,7 +436,7 @@ export let settingsData = {
 				displayUnit:"px",
 				default:48
 			},
-			roundprofilepics:{
+			roundProfilePics:{
 				title:"{{Use round profile pictures}}",
 				type:"checkbox",
 				activate:{
@@ -396,7 +448,7 @@ export let settingsData = {
 				settingsKey:"mtd_round_avatars",
 				default:true
 			},
-			newcharindicator:{
+			newCharIndicator:{
 				title:"{{Use new character limit indicator}}",
 				type:"checkbox",
 				activate:{
@@ -408,7 +460,7 @@ export let settingsData = {
 				settingsKey:"mtd_newcharindicator",
 				default:true
 			},
-			nocontextmenuicons:{
+			disableContextMenuIcons:{
 				title:"{{Display contextual icons in menus}}",
 				type:"checkbox",
 				activate:{
@@ -419,24 +471,6 @@ export let settingsData = {
 				},
 				settingsKey:"mtd_nocontextmenuicons",
 				default:true
-			},
-			sensitive:{
-				title:"{{Display media that may contain sensitive content}}",
-				type:"checkbox",
-				activate:{
-					func: () => {
-						TD.settings.setDisplaySensitiveMedia(true);
-					}
-				},
-				deactivate:{
-					func: () => {
-						TD.settings.setDisplaySensitiveMedia(false);
-					}
-				},
-				savePreference:false,
-				queryFunction: () => {
-					return TD.settings.getDisplaySensitiveMedia();
-				}
 			}
 		}
 	},
@@ -444,7 +478,7 @@ export let settingsData = {
 		tabName:"<i class='Icon icon-twitter-bird'></i> {{Tweets}}",
 		options:{
 			stream:{
-				headerBefore:"{{Function}}",
+				headerBefore:"{{Behavior}}",
 				title:"{{Stream Tweets in real time}}",
 				type:"checkbox",
 				savePreference:false,
@@ -462,7 +496,7 @@ export let settingsData = {
 					return TD.settings.getUseStream();
 				}
 			},
-			columnvisibility:{
+			columnVisibility:{
 				title:"{{Improve Timeline performance by not rendering off-screen columns}}",
 				type:"checkbox",
 				activate:{
@@ -518,7 +552,7 @@ export let settingsData = {
 					return TD.settings.getShowStartupNotifications();
 				}
 			},
-			useModernDeckSounds:{
+			useModernDeckAlertSound:{
 				title:"{{Use custom ModernDeck alert sound}}",
 				type:"checkbox",
 				activate:{
@@ -534,32 +568,89 @@ export let settingsData = {
 				settingsKey:"mtd_sounds",
 				default:true
 			},
-			linkshort:{
+			nftAvatarAction:{
+				headerBefore:"{{NFT Behavior}}",
+				title:"{{Automatic action to take against users with NFT avatars}}",
+				type:"dropdown",
+				settingsKey:"mtd_nftAvatarAction",
+				activate:{
+					func: opt => {
+						window.nftAvatarAction ? window.nftAvatarAction.actionToTake = opt : false;
+						if (opt !== "nothing") {
+							let alreadyHasFilter = false;
+
+							TD.controller.filterManager.getAll().forEach(filter => {
+								if (filter.type === "BTD_nft_avatar") {
+									alreadyHasFilter = true;
+								}
+							});
+
+							if (!alreadyHasFilter) {
+								TD.controller.filterManager.addFilter('BTD_nft_avatar', 'ModernDeck NFT Avatar Filter');
+							}
+						} else {
+							TD.controller.filterManager.getAll().forEach(filter => {
+								if (filter.type === "BTD_nft_avatar") {
+									TD.controller.filterManager.removeFilter(filter);
+								}
+							});
+						}
+					}
+				},
+				default:"nothing",
+				options:{
+					nothing:{value:"nothing",text:"{{Nothing}}"},
+					hide:{value:"hide",text:"{{Hide in ModernDeck}}"},
+					mute:{value:"mute",text:"{{Mute user}}"},
+					block:{value:"block",text:"{{Block user}}"}
+				}
+			},
+			nftSubtext: {
+				label: "{{Some things to keep in mind}}<br><br>- {{At the moment, due to Twitter API limits, actions don't work against users on Search columns.}}<br>- {{If you are using the mute or block actions, a queue is used if there are multiple accounts to deal with due to API and website constraints.}}<br>- {{Turning off this feature won't unblock or unmute anyone on the server, but their tweets will no longer be automatically hidden in ModernDeck.}}<br>- {{This setting only applies to NFT users that linked their NFTs directly on Twitter.}}",
+				type:"subtext"
+			},
+			nftDontBlockFollowing:{
+				title:"{{Don't auto-block or mute people you follow on your default account}}",
+				type:"checkbox",
+				activate:{
+				},
+				deactivate:{
+				},
+				settingsKey:"mtd_nftDontBlockFollowing",
+				enabled:false,
+				default:true
+			},
+			nftNotify:{
+				title:"{{Notify me when an NFT auto-action has occurred}}",
+				type:"checkbox",
+				activate:{
+					func: () => {
+						window?.nftAvatarAction?.notifyClose?.click?.();
+						window.nftAvatarAction ? window.nftAvatarAction.notify = null : false;
+						window.nftAvatarAction ? window.nftAvatarAction.enableNotifications = true : false;
+					}
+				},
+				deactivate:{
+					func: () => {
+						window.nftAvatarAction ? window.nftAvatarAction.enableNotifications = false : false;
+					}
+				},
+				settingsKey:"mtd_nftNotify",
+				default:true
+			},
+			linkShortener:{
 				headerBefore:"{{Link Shortening}}",
 				title:"{{Link Shortener Service}}",
 				type:"dropdown",
 				activate:{
 					func: set => {
-						if (shortener === "twitter") {
-							$(".bitlyUsername").addClass("hidden");
-							$(".bitlyApiKey").addClass("hidden");
-						} else if (shortener === "bitly") {
-							$(".bitlyUsername").removeClass("hidden");
-							$(".bitlyApiKey").removeClass("hidden");
-						}
 						TD.settings.setLinkShortener(set);
+						setTimeout(() => window.renderTab("tweets"));
 					}
 				},
 				savePreference:false,
 				queryFunction: () => {
 					let shortener = TD.settings.getLinkShortener();
-					if (shortener === "twitter") {
-						$(".bitlyUsername").addClass("hidden");
-						$(".bitlyApiKey").addClass("hidden");
-					} else if (shortener === "bitly") {
-						$(".bitlyUsername").removeClass("hidden");
-						$(".bitlyApiKey").removeClass("hidden");
-					}
 					return shortener;
 				},
 				options:{
@@ -578,6 +669,7 @@ export let settingsData = {
 						});
 					}
 				},
+				enabled:() => TD.settings.getLinkShortener() === "bitly",
 				savePreference:false,
 				queryFunction: () => {
 					return ((TD.settings.getBitlyAccount() && TD.settings.getBitlyAccount().login) ? TD.settings.getBitlyAccount() : {login:""}).login;
@@ -587,6 +679,7 @@ export let settingsData = {
 				title:"{{Bit.ly API Key}}",
 				type:"textbox",
 				addClass:"mtd-big-text-box",
+				enabled:() => TD.settings.getLinkShortener() === "bitly",
 				activate:{
 					func: set => {
 						TD.settings.setBitlyAccount({
@@ -602,13 +695,13 @@ export let settingsData = {
 			}
 		}
 	}, mutes: {
-		tabName:"<i class='material-icon'>volume_off</i> {{Mutes}}",
+		tabName:"<i class='material-icon' aria-hidden='true'>volume_off</i> {{Mutes}}",
 		options:{},
 		enum:"mutepage"
 	}, accessibility: {
-		tabName:"<i class='material-icon'>accessibility</i> {{Accessibility}}",
+		tabName:"<i class='material-icon' aria-hidden='true'>accessibility</i> {{Accessibility}}",
 		options:{
-			accoutline:{
+			focusOutline:{
 				headerBefore:"{{Accessibility}}",
 				title:"{{Always show outlines around focused items (}}" + ctrlShiftText + "A {{to toggle)}}",
 				type:"checkbox",
@@ -621,27 +714,23 @@ export let settingsData = {
 				settingsKey:"mtd_outlines",
 				default:false
 			},
-			highcont:{
+			highContrast:{
 				title:"{{Enable High Contrast theme (}}" + ctrlShiftText + "H {{to toggle)}}",
 				type:"checkbox",
 				activate:{
 					func: (opt) => {
-						if (TD.settings.getTheme() === "light") {
-							TD.settings.setTheme("dark");
-							disableStylesheetExtension("light");
-							enableStylesheetExtension("dark");
-						}
-						disableStylesheetExtension(getPref("mtd_theme") || "default");
-						setPref("mtd_theme","amoled");
-						setPref("mtd_highcontrast",true);
+						disableStylesheetExtension("light");
+						disableStylesheetExtension("darker");
+						disableStylesheetExtension("paper");
+						enableStylesheetExtension("dark");
 						enableStylesheetExtension("amoled");
 						enableStylesheetExtension("highcontrast");
 					}
 				},
 				deactivate:{
 					func: (opt) => {
-						setPref("mtd_highcontrast",false);
 						disableStylesheetExtension("highcontrast");
+						disableStylesheetExtension("amoled");
 					}
 				},
 				settingsKey:"mtd_highcontrast",
@@ -650,7 +739,7 @@ export let settingsData = {
 		}
 	}, app: {
 		tabName:"<i class='icon icon-moderndeck'></i> {{App}}",
-		enabled:isApp,
+		enabled:() => isApp,
 		options:{
 			nativeTitlebar:{
 				headerBefore:"{{App}}",
@@ -664,7 +753,7 @@ export let settingsData = {
 
 						setPref("mtd_nativetitlebar",true);
 
-						const {ipcRenderer} = require('electron');
+						const {ipcRenderer, ipcMain} = require("electron");
 						if (!!ipcRenderer)
 							ipcRenderer.send("setNativeTitlebar", true);
 					}
@@ -677,7 +766,7 @@ export let settingsData = {
 
 						setPref("mtd_nativetitlebar",false);
 
-						const {ipcRenderer} = require('electron');
+						const { ipcRenderer } = require("electron");
 						if (!!ipcRenderer)
 							ipcRenderer.send("setNativeTitlebar", false);
 					}
@@ -722,7 +811,7 @@ export let settingsData = {
 					}
 				},
 				settingsKey:"mtd_nativecontextmenus",
-				default:isApp ? process.platform === "darwin" : false
+				default:() => (isApp ? process.platform === "darwin" : false)
 			}, updateChannel:{
 				title:"{{App update channel}}",
 				type:"dropdown",
@@ -734,11 +823,13 @@ export let settingsData = {
 						setPref("mtd_updatechannel",opt);
 
 						setTimeout(() => {
-							const {ipcRenderer} = require("electron");
+							const { ipcRenderer } = require("electron");
 							if (!!ipcRenderer) {
 								ipcRenderer.send("changeChannel", opt);
 
-								ipcRenderer.send("checkForUpdates");
+								if (window.enterpriseConfig.updatePolicy !== "disabled" && window.enterpriseConfig.updatePolicy !== "manual") {
+									ipcRenderer.send("checkForUpdates");
+								}
 							}
 						},300)
 					}
@@ -747,7 +838,7 @@ export let settingsData = {
 					latest:{value:"latest",text:"{{Stable}}"},
 					beta:{value:"beta",text:"{{Beta}}"}
 				},
-				enabled:!document.getElementsByTagName("html")[0].classList.contains("mtd-winstore") && !document.getElementsByTagName("html")[0].classList.contains("mtd-macappstore"),
+				enabled:!document.getElementsByTagName("html")[0].classList.contains("mtd-flatpak") &&!document.getElementsByTagName("html")[0].classList.contains("mtd-winstore") && !document.getElementsByTagName("html")[0].classList.contains("mtd-macappstore"),
 				settingsKey:"mtd_updatechannel",
 				default:"latest"
 			},
@@ -760,7 +851,7 @@ export let settingsData = {
 						if (typeof require === "undefined") {
 							return;
 						}
-						const {ipcRenderer} = require("electron");
+						const { ipcRenderer } = require("electron");
 						ipcRenderer.send("enableTray");
 					}
 				},
@@ -769,7 +860,7 @@ export let settingsData = {
 						if (typeof require === "undefined") {
 							return;
 						}
-						const {ipcRenderer} = require("electron");
+						const { ipcRenderer } = require("electron");
 						ipcRenderer.send("disableTray");
 					}
 				},
@@ -784,7 +875,7 @@ export let settingsData = {
 						if (typeof require === "undefined") {
 							return;
 						}
-						const {ipcRenderer} = require("electron");
+						const { ipcRenderer } = require("electron");
 						ipcRenderer.send("enableBackground");
 					}
 				},
@@ -793,7 +884,7 @@ export let settingsData = {
 						if (typeof require === "undefined") {
 							return;
 						}
-						const {ipcRenderer} = require("electron");
+						const { ipcRenderer } = require("electron");
 						ipcRenderer.send("disableBackground");
 					}
 				},
@@ -804,6 +895,7 @@ export let settingsData = {
 				headerBefore:"{{Developer}}",
 				title:"{{Show Inspect Element in context menus}}",
 				type:"checkbox",
+				isDevTool:true,
 				activate:{
 					func: () => {
 						setPref("mtd_inspectElement",true);
@@ -819,18 +911,31 @@ export let settingsData = {
 			},
 			mtdSafeMode: {
 				title:"{{Safe mode}}",
-				label:"{{Is something broken? Enter Safe Mode.}}",
+				label:"{{Safe mode}}",
 				type:"link",
+				isDevTool:true,
 				activate:{
 					func: () => {
 						enterSafeMode();
 					}
 				},
-				enabled:isApp
+				enabled:() => isApp
+			},
+			tdLegacySettings: {
+				title:"{{Legacy settings}}",
+				label:"{{Legacy settings}}",
+				type:"link",
+				isDevTool:true,
+				enabled:() => !html.hasClass("signin-sheet-now-present"),
+				activate:{
+					func: () => {
+						openLegacySettings();
+					}
+				}
 			}
 		}
 	}, system: {
-		tabName:"<i class='material-icon'>storage</i> {{System}}",
+		tabName:"<i class='material-icon' aria-hidden='true'>storage</i> {{System}}",
 		options:{
 			mtdResetSettings:{
 				title:"{{Reset settings}}",
@@ -841,7 +946,7 @@ export let settingsData = {
 						purgePrefs();
 
 						if (isApp) {
-							const {ipcRenderer} = require('electron');
+							const { ipcRenderer } = require("electron");
 							ipcRenderer.send('restartApp');
 						} else {
 							window.location.reload();
@@ -857,14 +962,14 @@ export let settingsData = {
 				activate:{
 					func: () => {
 						if (isApp) {
-							const {ipcRenderer} = require('electron');
+							const { ipcRenderer } = require("electron");
 
 							ipcRenderer.send('destroyEverything');
 						}
 					}
 				},
 				settingsKey:"mtd_resetSettings",
-				enabled:isApp
+				enabled:() => isApp
 			},
 			mtdSaveBackup:{
 				title:"{{Save backup}}",
@@ -872,29 +977,12 @@ export let settingsData = {
 				type:"button",
 				activate:{
 					func: () => {
-						const app = require("electron").remote;
-						const dialog = app.dialog;
-						const fs = require("fs");
-						const {ipcRenderer} = require('electron');
-
-						let preferences = JSON.stringify(store.store);
-
-						dialog.showSaveDialog(
-						{
-							title: I18n("ModernDeck Preferences"),
-							filters: [{ name: I18n("Preferences JSON File"), extensions: ["json"] }]
-						},
-						(file) => {
-							if (file === undefined) {
-								return;
-							}
-							fs.writeFile(file, preferences, (e) => {});
-						}
-					);
+						const { ipcRenderer } = require("electron");
+						ipcRenderer.send("saveSettings", JSON.stringify(store.store));
 					}
 				},
 				settingsKey:"mtd_backupSettings",
-				enabled:isApp
+				enabled:() => isApp
 			},
 			mtdLoadBackup:{
 				title:"{{Load backup}}",
@@ -902,28 +990,12 @@ export let settingsData = {
 				type:"button",
 				activate:{
 					func: () => {
-						const app = require("electron").remote;
-						const dialog = app.dialog;
-						const fs = require("fs");
-						const {ipcRenderer} = require('electron');
-
-						dialog.showOpenDialog(
-							{ filters: [{ name: I18n("Preferences JSON File"), extensions: ["json"] }] },
-							(file) => {
-								if (file === undefined) {
-									return;
-								}
-
-								fs.readFile(file[0],"utf-8",(e, load) => {
-									store.store = JSON.parse(load);
-									ipcRenderer.send("restartApp");
-								});
-							}
-						);
+						const { ipcRenderer } = require("electron");
+						ipcRenderer.send("loadSettingsDialog");
 					}
 				},
 				settingsKey:"mtd_loadSettings",
-				enabled:isApp
+				enabled:() => isApp
 			},
 			mtdTweetenImport:{
 				title:"{{Import Tweeten settings}}",
@@ -931,56 +1003,28 @@ export let settingsData = {
 				type:"button",
 				activate:{
 					func: () => {
-						const app = require("electron").remote;
-						const dialog = app.dialog;
-						const fs = require("fs");
-						const {ipcRenderer} = require('electron');
-
-						dialog.showOpenDialog(
-							{ filters: [{ name: I18n("Tweeten Settings JSON"), extensions: ["json"] }] },
-							(file) => {
-								if (file === undefined) {
-									return;
-								}
-
-								fs.readFile(file[0],"utf-8",(e, load) => {
-									importTweetenSettings(JSON.parse(load));
-									setTimeout(() => {
-										ipcRenderer.send("restartApp");
-									},500); // We wait to make sure that native TweetDeck settings have been propagated
-								});
-							}
-						);
+						const { ipcRenderer } = require("electron");
+						ipcRenderer.send("tweetenImportDialog");
 					}
 				},
 				settingsKey:"mtd_tweetenImportSettings",
-				enabled:isApp
-			},
-			tdLegacySettings: {
-				title:"{{Legacy settings}}",
-				label:"{{Did TweetDeck add a new feature we're missing? Visit legacy settings}}",
-				type:"link",
-				activate:{
-					func: () => {
-						openLegacySettings();
-					}
-				}
+				enabled:() => isApp
 			}
 		}
 	}, language: {
-		tabName:"<i class='material-icon'>language</i> {{Language}}",
+		tabName:"<i class='material-icon' aria-hidden='true'>language</i> {{Language}}",
 		options:{
-			mtdResetSettings:{
+			mtdChangeLanguage:{
+				headerBefore:"{{Language}}",
 				title:"{{Change Language}}",
-				label:"<b>{{Changing your language will restart ModernDeck}}</b>",
+				label:"{{Changing your language will reset formatting customizations and restart ModernDeck}}",
 				type:"button",
 				activate:{
 					func: () => {
 						mtdPrepareWindows();
 						new UILanguagePicker();
 					}
-				},
-				settingsKey:"mtd_resetSettings"
+				}
 			},
 			translationCredits:{
 				label:"{{Some awesome people have helped translate ModernDeck into other languages}}",
@@ -989,10 +1033,61 @@ export let settingsData = {
 					{text:"{{Help Translate}}", func:() => open("http://translate.moderndeck.org/project/tweetdeck/invite") },
 					{text:"{{Translation Credits}}", func:() => new UIAlert({title:I18n("Translation Credits"), message:translationCredits}).alertButton.remove()}
 				]
-			}
+			},
+			timeFormat:{
+				headerBefore:"{{Formatting}}",
+				title:"{{Time format}}",
+				type:"dropdown",
+				activate:{
+					func: (opt) => {
+						window.mtdTimeHandler = opt;
+					}
+				},
+				options:{
+					default:{value:"default",text:"{{Language default}}"},
+					h12:{value:"h12",text:"1:30 {{pm}}"},
+					h24:{value:"h24",text:"13:30"}
+				},
+				settingsKey:"mtd_timeFormat",
+				default:"default"
+			},
+			numberFormat:{
+				title:"{{Number formatting}}",
+				type:"dropdown",
+				activate:{
+					func: (opt) => {
+						window.mtdNeedsResetNumberFormatting = true;
+					}
+				},
+				options:{
+					default:{value:"default",text:"{{Language default}}"},
+					english:{value:"english",text:"1,234,567.89"},
+					european:{value:"european",text:"1.234.567,89"},
+					blank:{value:"blank",text:"1 234 567,89"},
+					indian:{value:"indian",text:"12,34,567.89"}
+				},
+				settingsKey:"mtd_shortDateFormat",
+				default:"default"
+			},
+			abbrevNumbers:{
+				title:"{{Abbreviate large numbers (thousands, millions)}}",
+				type:"checkbox",
+				activate:{
+					func: () => {
+						window.mtdAbbrevNumbers = true
+					}
+				},
+				deactivate:{
+					func: () => {
+						window.mtdAbbrevNumbers = false
+					}
+				},
+				settingsKey:"mtd_abbrevNumbers",
+				default:true
+			},
 		}
 	}, about: {
-		tabName:"<i class='material-icon'>info_outline</i> {{About}}",
+		tabName:"<i class='material-icon' aria-hidden='true'>info_outline</i> {{About}}",
 		tabId:"about",
 		options:{},
 		enum:"aboutpage"
@@ -1027,7 +1122,7 @@ export let settingsData = {
 					}
 				},
 				settingsKey:"mtd_last_version",
-				default:[]
+				default:window.SystemVersion
 			},
 			replaceFavicon:{
 				type:"checkbox",

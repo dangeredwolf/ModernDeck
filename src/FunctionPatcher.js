@@ -1,8 +1,11 @@
 /*
 	FunctionPatcher.js
-	Copyright (c) 2014-2020 dangered wolf, et al
-	Released under the MIT licence
+
+	Copyright (c) 2014-2022 dangered wolf, et al
+	Released under the MIT License
 */
+
+const pretendToBeWrapperApp = true;
 
 export function FunctionPatcher() {
 	if (window.localStorage && typeof require === "undefined") {
@@ -19,7 +22,7 @@ export function FunctionPatcher() {
 			window.localStorage.removeItem("typeaheadUserLastPrefetch", undefined);
 		}
 	}
-	if (window.TD && window.TD.util) {
+	if (window.TD && window.TD.util && pretendToBeWrapperApp) {
 		window.TD.util.isWrapperApp = () => true;
 		window.deck = {
 			osname:() => {

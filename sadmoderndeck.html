@@ -1,0 +1,117 @@
+<html>
+    <head>
+        <!-- <link rel="stylesheet" href="common/resources/csscomponents/icon.css"> -->
+
+        <style>
+            @font-face {
+                font-family:"MD";
+                font-style:"normal";
+                font-weight:400;
+                src:url("common/resources/fonts/Icon/ModernDeckVectors.woff2") format("woff2");
+            }
+
+            @font-face {
+                font-family:"Roboto";
+                font-style:"normal";
+                font-weight:500;
+                src:url("common/resources/fonts/Roboto/500-latin.woff2") format("woff2");
+            }
+
+			i {
+				display:inline-block;
+				vertical-align:middle;
+				font-family:"MD";
+				font-size:96px;
+				height:1em;
+				width:1em
+			}
+
+			.icon-sad-moderndeck:before {
+				font-style:normal;
+				content:"\f00a"
+			}
+
+            html {
+                font-family:Roboto,sans-serif;
+                text-align:center
+            }
+
+            h2 {
+
+            }
+
+			button,a.btn {
+				pointer-events:all;
+				padding:9px 10px;
+				cursor:pointer;
+				font-size:14px;
+				font-weight:500;
+				border:0;
+				border-color:transparent;
+				background:transparent;
+				text-shadow:none;
+				text-transform:uppercase;
+				color:#09e;
+				font-family:Roboto;
+				border-radius:3px;
+				transition:all 0.12s;
+				float:right
+			}
+
+			button[autofocus] {
+				color:#fff;
+				background-color:#09e;
+				box-shadow:0 3px 3px rgba(0,0,0,0.1)
+			}
+
+			button[autofocus]:focus {
+				background-color:#09e!important;
+				box-shadow:0 6px 6px rgba(0,0,0,0.3)!important;
+				color:#fff;
+			}
+
+			button[autofocus]:active {
+				outline:0;
+				background:#5af;
+				color:#fff
+			}
+
+			button:focus:not(:hover),a.btn:focus:not(:hover) {
+				background:rgba(0,0,0,0.1);
+				outline:0
+			}
+			button:focus:hover,a.btn:focus:hover {
+				outline:0
+			}
+
+			button:active,a.btn:active {
+				outline:0;
+				background:rgba(0,0,0,0.1);
+				color:#5af
+			}
+
+			a.btn {
+				float:left
+			}
+        </style>
+
+    </head>
+    <body>
+        <i class="icon icon-sad-moderndeck"></i>
+        <h2 id="code"></h2>
+		<a class="btn" id="twitterStatus" target="_blank" href="https://api.twitterstat.us/"></a>
+		<button autofocus id="retry"></button>
+        <button id="close"></button>
+
+
+		<script>
+			document.getElementById("close").addEventListener("click", function() {
+				require("electron").ipcRenderer.send("quit")
+			});
+
+			document.getElementById("retry").addEventListener("click", function() {
+				require("electron").ipcRenderer.send("errorReload")
+			});
+		</script>
+    </body>
+</html>

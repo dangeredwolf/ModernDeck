@@ -1,11 +1,12 @@
 /*
 	ModernDeckInit.js
-	Copyright (c) 2014-2020 dangered wolf, et al
-	Released under the MIT licence
+
+	Copyright (c) 2014-2022 dangered wolf, et al
+	Released under the MIT License
 */
 
 import { version } from "../package.json";
-window.SystemVersion = version.replace(".0.0",".0"); // remove trailing .0, if present
+window.SystemVersion = version.replace(/\.0$/,""); // remove trailing .0, if present
 
 import { AsciiArtController } from "./AsciiArtController.js";
 import { AutoUpdateController } from "./AutoUpdateController.js";
@@ -13,8 +14,6 @@ import { PWAManifest } from "./PWAManifest.js";
 import { I18n, startI18nEngine } from "./I18n.js";
 import { getPref, setPref } from "./StoragePreferences.js";
 import { make, exists, isApp, mutationObserver, getIpc, handleErrors, formatNumberI18n } from "./Utils.js";
-import { diag } from "./UIDiag.js";
-import { _welcomeData } from "./DataWelcome.js";
 import { debugWelcome, UIWelcome } from "./UIWelcome.js";
 import { initGifPanel, checkGifEligibility } from "./UIGifPicker.js";
 import { openSettings } from "./UISettings.js";
@@ -22,14 +21,16 @@ import { UINavDrawer } from "./UINavDrawer.js";
 import { FunctionPatcher } from "./FunctionPatcher.js";
 import { LanguageFunctionPatcher } from "./LanguageFunctionPatcher.js";
 import { UILanguagePicker } from "./UILanguagePicker.js";
+import { setupAME } from "./AdvancedMuteEngine.js";
 import { loginTextReplacer, checkIfSigninFormIsPresent } from "./UILoginController.js";
-let welcomeData = _welcomeData;
-import { allColumnsVisible, getColumnFromColumnNumber, getColumnNumber, updateColumnVisibility } from "./Column.js";
+import { getColumnNumber, updateColumnTypes } from "./Column.js";
 import i18nData from "./DataI18n.js";
 window.i18nData = i18nData;
 window.AutoUpdateController = AutoUpdateController;
+import modalKeepOpen from "./ModalKeepOpen";
+import NFTActionQueue from "./NFTActionQueue";
 
-import { isStylesheetExtensionEnabled, enableStylesheetExtension, disableStylesheetExtension, enableCustomStylesheetExtension } from "./StylesheetExtensions.js";
+import { enableStylesheetExtension, enableCustomStylesheetExtension } from "./StylesheetExtensions.js";
 
 window.getPref = getPref;
 window.setPref = setPref;
@@ -37,14 +38,12 @@ import { _newLoginPage } from "./DataMustaches.js";
 window.newLoginPage = _newLoginPage;
 
 import { processForceFeatureFlags } from "./ForceFeatureFlags.js";
-import { loadPreferences, parseActions } from "./PrefHandler.js";
+import { loadPreferences, loadPreferencesWindows, parseActions } from "./PrefHandler.js";
 window.parseActions = parseActions;
 
 import { fromCodePoint } from "./EmojiHelper.js";
 import { injectFonts } from "./FontHandler.js";
 
-
-import { contextMenuFunctions } from "./ContextMenuFunctions.js";
 import { clearContextMenu } from "./UIContextMenu.js";
 
 import { keyboardShortcutHandler } from "./KeyboardShortcutHandler.js";
@@ -54,20 +53,22 @@ import { mtdAppFunctions } from "./AppController.js";
 
 import { attachColumnVisibilityEvents } from "./ColumnVisibility.js";
 
+import * as Sentry from "@sentry/browser";
+import { Integrations } from "@sentry/tracing";
+
 window.mtdBaseURL = "https://raw.githubusercontent.com/dangeredwolf/ModernDeck/master/ModernDeck/";
 // Defaults to obtaining assets from GitHub if MTDURLExchange isn't completed properly somehow
 
 let loadEmojiPicker = false;
 
 const forceFeatureFlags = false;
+window.useSentry = true;
 
 let replacedLoadingSpinnerNew = false;
 let sendingFeedback = false;
 window.useNativeContextMenus = false;
 window.isDev = false;
-
 window.useSafeMode = false;
-
 window.isInWelcome = false;
 
 window.loginInterval = undefined;
@@ -149,6 +150,10 @@ function replacePrettyNumber() {
 
 	TD.util.prettyNumber = (e) => {
 		let howPretty = parseInt(e, 10);
+
+		if (!window.mtdAbbrevNumbers) {
+			return formatNumberI18n(howPretty);
+		}
 
 		if (howPretty >= 100000000) {
 			return formatNumberI18n(parseInt(howPretty/1000000)) + I18n("M");
@@ -246,6 +251,30 @@ function fixColumnAnimations() {
 	})
 }
 
+function hookNFTActions() {
+	window.nftActionQueue = new NFTActionQueue;
+
+	setTimeout(() => {
+		console.log("Starting NFT actions module...");
+		TD.services.TwitterUser.prototype.fromJSONObject_original = TD.services.TwitterUser.prototype.fromJSONObject;
+
+		TD.services.TwitterUser.prototype.fromJSONObject = function(blob) {
+			// console.log("fromJSONObject called", blob);
+			const jsonObject = this.fromJSONObject_original(blob);
+
+			jsonObject.hasNftAvatar = blob.ext_has_nft_avatar;
+
+			if (blob.ext_has_nft_avatar === true) {
+				// console.log("WARNING: NFT PERSON " + blob.screen_name);
+				// console.log(blob);
+				nftActionQueue.addUser(blob);
+			}
+			
+			return jsonObject;
+		};
+	}, 0)
+}
+
 // begin moderndeck initialisation
 
 function mtdInit() {
@@ -257,7 +286,40 @@ function mtdInit() {
 	console.log("mtdInit");
 
 	if (typeof require === "undefined" && typeof document.getElementsByClassName("js-signin-ui block")[0] !== "undefined" && !replacedLoadingSpinnerNew && !html.hasClass("mtd-disable-css")) {
-		document.getElementsByClassName("js-signin-ui block")[0].innerHTML = '<div class="preloader-wrapper big active"><div class="spinner-layer"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div>';
+		document.getElementsByClassName("js-signin-ui block")[0].innerHTML =
+		`<img class="mtd-loading-logo" src="${mtdBaseURL + "resources/img/moderndeck.svg"}" style="display: none;">
+		<div class="preloader-wrapper big active">
+			<div class="spinner-layer">
+				<div class="circle-clipper left">
+					<div class="circle"></div>
+				</div>
+				<div class="gap-patch">
+					<div class="circle"></div>
+				</div>
+				<div class="circle-clipper right">
+					<div class="circle"></div>
+				</div>
+			</div>
+		</div>`;
+
+		if (document.getElementsByClassName("spinner-centered")[0]) {
+			document.getElementsByClassName("spinner-centered")[0].remove();
+		}
+
+		document.getElementsByTagName("html")[0].style = "background: #111";
+		document.getElementsByTagName("body")[0].style = "background: #111";
+
+		if (typeof mtdLoadStyleCSS === "undefined") {
+			mtdLoadStyleCSS = `
+				img.spinner-centered {
+					display:none!important
+				}
+			`
+			mtdLoadStyle = document.createElement("style");
+			mtdLoadStyle.appendChild(document.createTextNode(mtdLoadStyleCSS))
+			document.head.appendChild(mtdLoadStyle);
+		}
+
 		replacedLoadingSpinnerNew = true;
 	}
 
@@ -294,17 +356,15 @@ function mtdInit() {
 		beGone.remove();
 	}
 
-	if (forceFeatureFlags) try {
-		processForceFeatureFlags()
-	} catch (e) {
-		console.error("Caught error in processForceFeatureFlags");
-		console.error(e);
-		lastError = e;
-	}
+	if (forceFeatureFlags)
+		handleErrors(processForceFeatureFlags, "Caught error in processForceFeatureFlags");
 
+	handleErrors(AsciiArtController.draw, "Caught error while trying to draw ModernDeck version easter egg");
 	handleErrors(replacePrettyNumber, "Caught error in replacePrettyNumber");
 	handleErrors(overrideFadeOut, "Caught error in overrideFadeOut");
 	handleErrors(processMustaches, "Caught error in processMustaches");
+	handleErrors(hookNFTActions, "Caught error in hookNFTActions");
+	handleErrors(setupAME, "Caught error in Advanced Mute Engine");
 	handleErrors(loginTextReplacer, "Caught error in loginTextReplacer");
 	setTimeout(()=>handleErrors(loginTextReplacer, "Caught error in loginTextReplacer"),200);
 	setTimeout(()=>handleErrors(loginTextReplacer, "Caught error in loginTextReplacer"),500);
@@ -396,10 +456,24 @@ function mtdInit() {
 
 	navigationSetup();
 
+	if (html.hasClass("mtd-mac-rosetta")) {
+		setTimeout(() => {
+			new UIAlert({
+				title:I18n("ModernDeck on Apple Silicon"),
+				message:`${I18n("We detected that ModernDeck is running under Rosetta.")}<br><br>
+							${I18n("While it will still work, ModernDeck will run a lot faster if you download the native Apple Silicon build.")}<br><br>
+							${I18n("Would you like to download the native version?")}<br><br><br><br>`,
+				buttonText:I18n("Yes"),
+				button2Text:I18n("Maybe later"),
+				button1Click:() => { window.open("https://moderndeck.org/download/#macOS"); }
+			})
+		}, 2000)
+	}
+
 }
 
 function useNativeEmojiPicker() {
-	return /*getPref("mtd_nativeEmoji") && */require?.("electron")?.remote?.app?.isEmojiPanelSupported?.();
+	return /*getPref("mtd_nativeEmoji") && */ html.hasClass("mtd-supportsNativeEmojiPicker");
 }
 
 
@@ -413,36 +487,13 @@ function hookComposer() {
 		return;
 	}
 
-	// if (isApp && useNativeEmojiPicker() && loadEmojiPicker) {
-	// 	$(".compose-text").after(
-	// 		make("div").addClass("mtd-emoji").append(
-	// 			make("div").addClass("mtd-emoji-button btn").append(
-	// 				make("div").addClass("mtd-emoji-button-open").click(() => {
-	// 					try {
-	// 						require?.("electron")?.remote?.app?.showEmojiPanel?.();
-	// 					} catch(e) {
-	// 						console.error("Falling back to custom emoji area");
-	// 						handleErrors(makeEmojiPicker, "Emoji Picker failed to initialise");
-	// 					}
-	// 				})
-	// 			)
-	// 		)
-	// 	);
-	// } else if (loadEmojiPicker) {
-	// 	handleErrors(makeEmojiPicker, "Emoji Picker failed to initialise");
-	// }
-
-	// if ($(".compose-text-container .js-add-image-button,.compose-text-container .js-schedule-button,.compose-text-container .mtd-gif-button").length <= 0) {
-	// 	$(".compose-text-container").append($(".js-add-image-button,.mtd-gif-button,.js-schedule-button,.js-dm-button,.js-tweet-button"));
-	//
-	// 	if ($(".inline-reply").length > 0) {
-	// 		setTimeout(()=> {
-	// 			$(".compose-text-container").append($(".drawer .js-send-button-container.spinner-button-container"));
-	// 		},800)
-	// 	} else {
-	// 		$(".compose-text-container").append($(".drawer .js-send-button-container.spinner-button-container"));
-	// 	}
-	// }
+	if (isApp && useNativeEmojiPicker()) {
+		$(".mtd-emoji").click(() => {
+			$(".js-compose-text").focus();
+			require("electron").ipcRenderer.send("showEmojiPanel")
+			$(".js-compose-text").focus();
+		})
+	}
 
 	$(document).on("uiDrawerShowDrawer", () => {
 		setTimeout(hookComposer,0) // initialise one cycle after tweetdeck does its own thing
@@ -481,6 +532,7 @@ function hookComposer() {
 
 
 	initGifPanel();
+	// UIEmojiPanel.attachEvents();
 }
 
 /*
@@ -490,7 +542,9 @@ function hookComposer() {
 window.mtdPrepareWindows = () => {
 	console.info("mtdPrepareWindows called");
 	$("#update-sound,.js-click-trap").click();
-	mtd_nav_drawer_background.click();
+	$("#mtd_nav_drawer_background").click();
+
+	$(".js-modals-container>.ovl.mtd-login-overlay").remove();
 
 	$(".js-modal[style=\"display: block;\"]").click();
 
@@ -509,19 +563,34 @@ function navigationSetup() {
 		return;
 	}
 
+	handleErrors(modalKeepOpen, "Caught error in modalKeepOpen");
+
 	if (getPref("mtd_last_lang") !== navigator.language) {
 		new UILanguagePicker();
 	}
 
-	handleErrors(loadPreferences, "Caught error in loadPreferences");
+	if (typeof process !== "undefined" && process.platform === "win32") {
+		handleErrors(loadPreferencesWindows, "Caught error in loadPreferences");
+	} else {
+		handleErrors(loadPreferences, "Caught error in loadPreferencesWindows");
+	}
+
 	handleErrors(hookComposer, "Caught error in hookComposer");
+
+	handleErrors(() => {
+		$(document).on("dataColumnOrder", () => {
+			updateColumnTypes();
+		});
+
+		updateColumnTypes();
+	}, "Caught error in updateColumnTypes event")
 
 	UINavDrawer();
 
 	window.UIWelcome = UIWelcome;
 
 	if (!getPref("mtd_welcomed") || debugWelcome) {
-		handleErrors(()=>{new UIWelcome()}, "Error in Welcome Screen");
+		handleErrors(() => {new UIWelcome()}, "Error in Welcome Screen");
 	}
 
 	$(".app-navigator>a").off("mouseenter").off("mouseover"); // disable tooltips for common items as they're superfluous (and also break styling)
@@ -572,11 +641,8 @@ function coreInit() {
 		return;
 	}
 
-	handleErrors(PWAManifest.injectManifest, "Error occurred while injecting PWA manifest");
-
-	handleErrors(AsciiArtController.draw, "Error occurred while trying to draw ModernDeck version easter egg")
-
-	handleErrors(AutoUpdateController.initialize, "Error occurred while initialising AutoUpdateController")
+	handleErrors(PWAManifest.injectManifest, "Caught error while injecting PWA manifest");
+	handleErrors(AutoUpdateController.initialize, "Caught error while initialising AutoUpdateController");
 
 	if (typeof $ === "undefined") {
 		try {
@@ -593,12 +659,15 @@ function coreInit() {
 	body = $(document.body);
 	html = $(document.querySelector("html"));
 
+	window.enterpriseConfig = {};
+
 
 
 
 	if (isApp) {
 		try {
 			mtdAppFunctions();
+			getIpc().send("getEnterpriseConfig");
 			window.addEventListener('mousedown', (e) => {
 				clearContextMenu();
 			}, false);
@@ -655,10 +724,39 @@ function coreInit() {
 	.mtd-altsensitive .mdl .chirp-container .media-sensitive p:before,.mtd-altsensitive .is-actionable .is-gif .media-sensitive p:before {
 		content:"${I18n("Open details of this tweet to view this media.")}"
 	}
+	.js-show-this-thread>p:after {
+		content:"${I18n("Thread")}"
+	}
 `)
 
 	FunctionPatcher();
 	LanguageFunctionPatcher();
+
+	// Request access to nft avatar and other Labs features
+
+	$.ajaxPrefilter((ajaxOptions) => {
+		try {
+			const url = new URL(ajaxOptions.url || '');
+	
+			if (!url.searchParams.has('include_entities')) {
+				return;
+			}
+	
+			ajaxOptions.url = ajaxOptions.url + "&ext=mediaStats,highlightedLabel,voiceInfo,superFollowMetadata&include_ext_has_nft_avatar=true"
+		} catch (e) {
+		  console.error(e)
+		}
+	});
+
+	I18n.customTimeHandler = function(timeString) {
+		if (window.mtdTimeHandler === "h12") {
+			return timeString.replace(/\{\{hours24\}\}\:\{\{minutes\}\}/g,"{{hours12}}:{{minutes}} {{amPm}}")
+		} else if (window.mtdTimeHandler === "h24") {
+			return timeString.replace(/\{\{hours12\}\}\:\{\{minutes\}\} ?\{\{amPm\}\}/g,"{{hours24}}:{{minutes}}")
+		} else {
+			return timeString;
+		}
+	}
 
 
 	mtdInit();
@@ -671,6 +769,22 @@ function coreInit() {
 	console.info(`ModernDeck ${SystemVersion}`);
 	console.info("ModernDeckInit.coreInit completed. Good job.");
 
+}
+
+if (window.useSentry) {
+	Sentry.init({
+		dsn: "https://92f593b102fb4c1ca010480faed582ae@o110170.ingest.sentry.io/242524",
+
+		// To set your release version
+		release: "moderndeck@" + version,
+		integrations: [new Integrations.BrowserTracing()],
+
+		// Set tracesSampleRate to 1.0 to capture 100%
+		// of transactions for performance monitoring.
+		// We recommend adjusting this value in production
+		tracesSampleRate: 1.0,
+
+	});
 }
 
 coreInit();

@@ -1,7 +1,8 @@
 /*
 	FontHandler.js
-	Copyright (c) 2014-2020 dangered wolf, et al
-	Released under the MIT licence
+
+	Copyright (c) 2014-2022 dangered wolf, et al
+	Released under the MIT License
 */
 
 import { make } from "./Utils.js";
@@ -30,7 +31,7 @@ export function injectFonts() {
 	window.injectedFonts = true;
 
 	$(document.head).append(make("style").html(
-		fontParseHelper({family:"MD",name:"Icon/mdvectors"}) +
+		fontParseHelper({family:"MD",name:"Icon/ModernDeckVectors"}) +
 		fontParseHelper({family:"Material",name:"Icon/MaterialIcons"}) +
 
 		/* Roboto Family */

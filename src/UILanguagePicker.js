@@ -1,14 +1,13 @@
 /*
 	UILanguagePicker.js
-	Copyright (c) 2014-2020 dangered wolf, et al
-	Released under the MIT licence
+
+	Copyright (c) 2014-2022 dangered wolf, et al
+	Released under the MIT License
 */
 
 import { make } from "./Utils.js";
-import { I18n } from "./I18n.js";
 import DataI18n from "./DataI18n.js";
 import { UIModal } from "./UIModal.js";
-import { getPref, setPref } from "./StoragePreferences.js";
 import { getFullLanguage, getMainLanguage } from "./I18n.js";
 import unsupportedCodeTable from "./DataUnsupportedLanguage.js";
 import inaccuraciesCodeTable from "./DataTranslationsMayBeInaccurate.js";
@@ -33,23 +32,29 @@ export class UILanguagePicker extends UIModal {
 			make("option").val("bg").html("български"),
 			make("option").val("cs").html("čeština"),
 			make("option").val("de").html("Deutsche"),
+			make("option").val("et").html("Eesti"),
 			make("option").val("en_CA").html("English (Canada)"),
-			make("option").val("en_US").html("English (United States)"),
 			make("option").val("en_GB").html("English (United Kingdom)"),
+			make("option").val("en_US").html("English (United States)"),
 			make("option").val("es_ES").html("Español (España)"),
 			make("option").val("es_US").html("Español (Estados Unidos)"),
 			make("option").val("es_419").html("Español (México)"),
 			make("option").val("fr_CA").html("Français (Canada)"),
 			make("option").val("fr_FR").html("Français (France)"),
+			make("option").val("ko").html("한국어"),
 			make("option").val("hr").html("Hrvatski"),
+			make("option").val("it").html("italiano"),
+			make("option").val("zh_CN").html("简体中文"),
+			make("option").val("ja").html("日本語"),
 			make("option").val("no").html("norsk"),
 			make("option").val("pl").html("Polskie"),
 			make("option").val("pt_BR").html("Português (Brasil)"),
-			make("option").val("ja").html("日本語"),
 			make("option").val("ru").html("русский"),
-			make("option").val("zh_CN").html("简体中文")
+			make("option").val("sl").html("Slovenščina"),
+			make("option").val("si").html("සිංහල"),
+			make("option").val("uk").html("Українська")
 		).change(() => {
-			this.alertTitle.html("<i class='material-icon'>language</i> " + (languageData.Language[this.selectLanguage.val()] || languageData.Language[this.selectLanguage.val().substr(0,2)] || "broken"));
+			this.alertTitle.html("<i class='material-icon'>language</i> " + (languageData.Language[this.selectLanguage.val()] || languageData.Language[this.selectLanguage.val().substr(0,2)] || "Language"));
 
 			this.hasMadeChange = true;
 
@@ -96,7 +101,14 @@ export class UILanguagePicker extends UIModal {
 			setPref("mtd_lang", this.selectLanguage.val());
 
 			if (getFullLanguage() !== this.selectLanguage.val() && getMainLanguage() !== this.selectLanguage.val()) {
-				setTimeout(() => location.reload(), 200);
+				setTimeout(() => {
+					if (typeof require !== "undefined") {
+						const { ipcRenderer } = require("electron");
+						ipcRenderer.send("restartApp");
+					} else {
+						location.reload();
+					}
+				}, 200);
 			} else {
 				this.dismiss();
 			}
@@ -108,17 +120,17 @@ export class UILanguagePicker extends UIModal {
 
 		this.element.append(this.alertTitle, this.alertBody, this.alertButtonContainer);
 
-		if (!DataI18n.GIF[navigator.language.substr(0,2)]) {
+		if (!DataI18n.source[navigator.language.substr(0,2)]) {
 			this.element.append(this.unsupportedLang);
 		} else {
 			this.element.append(this.inaccuracy);
 		}
 
-		// if ($("#splash-modal").length < 1) {
-		// 	this.modalRoot = ".login-container";
-		// } else {
+		if ($("#splash-modal").length < 1) {
+			this.modalRoot = ".login-container";
+		} else {
 			this.modalRoot = "#splash-modal";
-		// }
+		}
 
 
 		$(this.modalRoot).attr("style", "display: block;").append(this.element)

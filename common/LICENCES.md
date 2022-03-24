@@ -1,1 +1,0 @@
-For a complete list of other Open Source projects used by ModernDeck, please visit [https://github.com/dangeredwolf/ModernDeck/blob/master/LICENCES.md](https://github.com/dangeredwolf/ModernDeck/blob/master/LICENCES.md)!

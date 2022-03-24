@@ -1,13 +1,12 @@
 /*
 	UIUpdateNotify.js
-	Copyright (c) 2014-2020 dangered wolf, et al
-	Released under the MIT licence
+
+	Copyright (c) 2014-2022 dangered wolf, et al
+	Released under the MIT License
 */
 
 import { make } from "./Utils.js";
 import { I18n } from "./I18n.js";
-import DataI18n from "./DataI18n.js";
-import { getPref, setPref } from "./StoragePreferences.js";
 
 export function UIUpdateNotify() {
 	if (window.mtdHasNotifiedUpdate) {

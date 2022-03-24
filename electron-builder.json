@@ -1,6 +1,6 @@
 {
 	"appId": "com.dangeredwolf.ModernDeck",
-	"afterSign": "./build/notarize.js",
+	"afterSign": "electron-builder-notarize",
 
 	"files": [
 		"**/*",
@@ -11,6 +11,7 @@
 		"!**/*.{iml,o,hprof,orig,pyc,pyo,rbc,swp,csproj,sln,xproj}",
 		"!**/._*",
 		"!dist",
+		"!distEnterprise",
 		"!docs",
 		"!src",
 		"!build",
@@ -28,7 +29,7 @@
 
 	"win": {
 		"icon": "build/icons/icon.ico",
-		"legalTrademarks": "Copyright 2014-2020 dangered wolf, released under the MIT licence",
+		"legalTrademarks": "Copyright 2014-2022 dangered wolf, released under the MIT license",
 		"publish": [
 			"github"
 		],
@@ -39,19 +40,17 @@
 			{
 				"target": "nsis",
 				"arch": [
-					"x64",
-					"arm64"
+					"x64"
 				]
 			}
 		]
 	},
 	"appx": {
 		"publisher": "CN=FEC2801E-B19C-4051-A5E2-465F7B251519",
-		"publisherDisplayName": "dangeredwolf",
+		"publisherDisplayName": "dangered wolf",
 		"identityName": "53434dangeredwolf.ModernDeck",
 		"artifactName": "ModernDeck_${arch}.${ext}",
-		"applicationId": "ModernDeck",
-		"backgroundColor": "#0078D7"
+		"applicationId": "ModernDeck"
 	},
 	"squirrelWindows": {
 		"artifactName": "ModernDeck_${arch}.${ext}"
@@ -61,6 +60,11 @@
 		"artifactName": "ModernDeck_${arch}.${ext}",
 		"uninstallDisplayName": "ModernDeck",
 		"differentialPackage": true
+	},
+	"msi": {
+		"artifactName": "ModernDeck_${arch}.${ext}",
+		"perMachine": true,
+		"runAfterFinish": false
 	},
 	"nsisWeb": {
 		"deleteAppDataOnUninstall": true,
@@ -72,8 +76,8 @@
 		"publish": [
 			"github"
 		],
-		"icon": "build/icons/ModernDeck.icns",
-		"artifactName": "ModernDeck.${ext}",
+		"icon": "build/icons/macOS Big Sur.png",
+		"artifactName": "${productName}-${arch}.${ext}",
 		"minimumSystemVersion": "10.11.0",
 		"darkModeSupport": true,
 		"hardenedRuntime": true,
@@ -85,7 +89,9 @@
 			{
 				"target": "dmg",
 				"arch": [
-					"x64"
+					"x64",
+					"arm64",
+					"universal"
 				]
 			},
 			{
@@ -96,13 +102,21 @@
 			{
 				"target": "zip",
 				"arch": [
-					"x64"
+					"x64",
+					"arm64",
+					"universal"
 				]
 			}
 		]
 	},
 	"dmg": {
-		"background": "build/dmg/background.png",
+		"background": "build/dmg/background@2x.png",
+		"iconSize": 120,
+		"window": {
+			"width": 540,
+			"height": 380
+		},
+		"format": "ULFO",
 		"title": "ModernDeck"
 	},
 	"mas": {
@@ -122,9 +136,7 @@
 				"target": "AppImage",
 				"arch": [
 					"x64",
-					"ia32",
-					"arm64",
-					"armv7l"
+					"arm64"
 				]
 			}
 		]

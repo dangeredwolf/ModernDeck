@@ -1,18 +1,18 @@
 /*
 	main.js
-	Copyright (c) 2014-2020 dangeredwolf
-	Released under the MIT licence
+	Copyright (c) 2014-2022 dangeredwolf
+	Released under the MIT license
 
 	made with love <3
 
 */
 
 const electron = require("electron");
+const I18nData = require("./i18nMain.js").default;
 
 const {
 	app,
 	BrowserWindow,
-	BrowserView,
 	ipcMain,
 	session,
 	systemPreferences,
@@ -21,17 +21,16 @@ const {
 	nativeTheme,
 	nativeImage,
 	protocol,
-	Tray
+	Tray,
+	globalShortcut
 }		= require("electron");
 
 const fs = require("fs");
 const path = require("path");
 const url = require("url");
-const util = require("util");
+const https = require("https");
 
 const separator = process.platform === "win32" ? "\\" : "/";
-
-const packagedUsesDifferentDir = false;
 
 const log = require("electron-log");
 
@@ -43,6 +42,7 @@ const store = new Store({name:"mtdsettings"});
 // const disableCss = false; // use storage.mtd_safemode
 
 const isAppX = !!process.windowsStore;
+const isFlatpak = (process.platform === "linux" && process.env.FLATPAK_HOST === "1")
 
 const isMAS = !!process.mas;
 
@@ -50,17 +50,18 @@ const isDev = false;
 
 let enableTray = true;
 let enableBackground = true;
+let shouldQuitIfErrorClosed = true;
 
 let hidden = false;
 let mainWindow;
+let errorWindow;
 let tray = null;
-let mR;
 
 let isRestarting = false;
 let closeForReal = false;
-let interval;
 
 let mtdAppTag = '';
+let lang = store.get("mtd_lang");
 
 autoUpdater.setFeedURL({
 	"owner": "dangeredwolf",
@@ -68,14 +69,70 @@ autoUpdater.setFeedURL({
 	"provider": "github"
 });
 
+let deviceConfig = {};
+
+if (process.platform === "win32") {
+	try {
+		let configFile = fs.readFileSync("C:\\ProgramData\\ModernDeck\\config.json");
+
+		try {
+			deviceConfig = JSON.parse(configFile);
+		} catch(e) {
+			app.on("ready", () => {
+				dialog.showMessageBoxSync({
+					type:"error",
+					title:"ModernDeck",
+					message:"ModernDeck detected a device config file, but an error occurred while reading it. Please ensure the JSON is free from any errors.\n\n" + e
+				});
+			})
+		}
+	} catch (e) {
+		console.error("Could not read device config file");
+		console.error(e);
+	}
+}
+
+console.log(deviceConfig);
+
 autoUpdater.logger = log;
 autoUpdater.logger.transports.file.level = "info";
+
+switch(deviceConfig.autoUpdatePolicy) {
+	case "disabled":
+	case "manual":
+	case "checkOnly":
+	case "autoDownload":
+		if (deviceConfig.autoUpdateInstallOnQuit === false) {
+			autoUpdater.autoInstallOnAppQuit = false;
+		}
+
+		if (deviceConfig.autoUpdatePolicy !== "autoDownload") {
+			autoUpdater.autoDownload = false;
+		}
+
+		break;
+}
 
 app.setAppUserModelId("com.dangeredwolf.ModernDeck");
 
 let useDir = "common";
 
+const I18n = function(key) {
+	let foundStr = I18nData[key];
+	if (!foundStr) {
+		console.warn("Main process missing translation: " + key);
+		return key;
+	}
+	return foundStr[lang] || key;
+}
+
 const mtdSchemeHandler = async (request, callback) => {
+	if (request.url === "moderndeck://background/") {
+		callback({
+			path: deviceConfig.customLoginImage
+		});
+		return;
+	}
 	let myUrl = new url.URL(request.url);
 	const filePath = path.join(electron.app.getAppPath(), useDir, myUrl.hostname, myUrl.pathname);
 
@@ -89,11 +146,11 @@ const template = [
 		label: "ModernDeck",
 		role: "appMenu",
 		submenu: [
-			{ label: "About ModernDeck", click() { if (!mainWindow){return;}mainWindow.show();mainWindow.webContents.send("aboutMenu"); } },
-			{ label: "Check for Updates...", click(){ if (!mainWindow){return;}mainWindow.show();mainWindow.webContents.send("checkForUpdatesMenu"); } },
+			{ label: I18n("About ModernDeck"), click() { if (!mainWindow){return;}mainWindow.show();mainWindow.webContents.send("aboutMenu"); } },
+			{ label: I18n("Check for Updates..."), click(){ if (!mainWindow){return;}mainWindow.show();mainWindow.webContents.send("checkForUpdatesMenu"); } },
 			{ type: "separator" },
-			{ label: "Preferences...", click(){ if (!mainWindow){return;}mainWindow.show();mainWindow.webContents.send("openSettings"); } },
-			{ label: "Accounts...", click(){ if (!mainWindow){return;}mainWindow.show();mainWindow.webContents.send("accountsMan"); } },
+			{ label: I18n("Preferences..."), click(){ if (!mainWindow){return;}mainWindow.show();mainWindow.webContents.send("openSettings"); } },
+			{ label: I18n("Accounts..."), click(){ if (!mainWindow){return;}mainWindow.show();mainWindow.webContents.send("accountsMan"); } },
 			{ type: "separator" },
 			{ role: "services" },
 			{ type: "separator" },
@@ -107,8 +164,8 @@ const template = [
 	{
 		role: "fileMenu",
 		submenu: [
-			{ label: "New Tweet...", click(){ if (!mainWindow){return;}mainWindow.show();mainWindow.webContents.send("newTweet"); } },
-			{ label: "New Direct Message...", click(){ if (!mainWindow){return;}mainWindow.show();mainWindow.webContents.send("newDM"); } },
+			{ label: I18n("New Tweet..."), click(){ if (!mainWindow){return;}mainWindow.show();mainWindow.webContents.send("newTweet"); } },
+			{ label: I18n("New Direct Message..."), click(){ if (!mainWindow){return;}mainWindow.show();mainWindow.webContents.send("newDM"); } },
 			{ type: "separator" },
 			{ role: "close" }
 		]
@@ -126,7 +183,7 @@ const template = [
 			{ role: "selectAll" },
 			{ type: "separator" },
 			{
-				label: "Speech",
+				label: I18n("Speech"),
 				submenu: [
 					{ role: "startspeaking" },
 					{ role: "stopspeaking" }
@@ -162,8 +219,8 @@ const template = [
 	{
 		role: "help",
 		submenu: [
-			{ label: "Send Feedback", click(){ electron.shell.openExternal("https://github.com/dangeredwolf/ModernDeck/issues");}},
-			{ label: "Message @ModernDeck", click(){ if (!mainWindow){electron.shell.openExternal("https://twitter.com/messages/compose?recipient_id=2927859037");return;}mainWindow.show();mainWindow.webContents.send("msgModernDeck"); } },
+			{ label: I18n("Send Feedback"), click(){ electron.shell.openExternal("https://github.com/dangeredwolf/ModernDeck/issues");}},
+			{ label: I18n("Message @ModernDeck"), click(){ if (!mainWindow){electron.shell.openExternal("https://twitter.com/messages/compose?recipient_id=2927859037");return;}mainWindow.show();mainWindow.webContents.send("msgModernDeck"); } },
 		]
 	}
 ]
@@ -171,15 +228,68 @@ const template = [
 
 const menu = Menu.buildFromTemplate(template);
 
-if (process.platform === "darwin")
-	Menu.setApplicationMenu(menu);
+// if (process.platform === "darwin")
+Menu.setApplicationMenu(menu);
 
-/*try {
-	if (require('electron-squirrel-startup')) return app.quit();
-} catch(e) {
-	console.error(e);
-}*/
+function loadDeviceConfigMain() {
+	if (deviceConfig.disableDevTools) {
+		// https://stackoverflow.com/questions/40304833/how-to-make-the-dev-tools-not-show-up-on-screen-by-default-electron
+		globalShortcut.register("Control+Shift+I", () => {});
+	}if (deviceConfig.disableZoom) {
+		globalShortcut.register("Control+-", () => {});
+		globalShortcut.register("Control+Shift+=", () => {});
+	}
+}
 
+function isRosetta() {
+	let cpu0 = require("os").cpus()[0];
+	if (cpu0 && cpu0.model) {
+		return process.arch === "x64" && process.platform === "darwin" && cpu0.model.indexOf("VirtualApple") > -1
+	} else {
+		return false;
+	}
+}
+
+function makeErrorWindow() {
+
+	const { shell } = electron;
+	shell.beep();
+
+	errorWindow = new BrowserWindow({
+		width: 600,
+		height: 260,
+		webPreferences: {
+			scrollBounce: true,
+			nodeIntegration: true
+		},
+		enableRemoteModule:true,
+		parent:mainWindow || null,
+		autoHideMenuBar:true
+	});
+
+	shouldQuitIfErrorClosed = true;
+
+	errorWindow.webContents.on("new-window", (event, url) => {
+		const { shell } = electron;
+		event.preventDefault();
+		shell.openExternal(url);
+	});
+
+	errorWindow.on("closed", () => {
+		errorWindow = null;
+		if (shouldQuitIfErrorClosed) {
+			app.quit();
+		}
+	});
+
+	errorWindow.loadURL(__dirname + separator + "sadmoderndeck.html");
+
+	errorWindow.webContents.on("did-start-navigation", (event, url) => {
+		event.preventDefault();
+	});
+
+
+}
 
 function makeLoginWindow(url,teams) {
 
@@ -189,20 +299,21 @@ function makeLoginWindow(url,teams) {
 		width: 710,
 		height: 490,
 		webPreferences: {
+			scrollBounce: true,
 			nodeIntegration: false
 		},
 		parent:mainWindow || null,
-		scrollBounce:true,
+		modal:true,
 		autoHideMenuBar:true
 	});
 
-	loginWindow.on('closed', () => {
+	loginWindow.on("closed", () => {
 		loginWindow = null;
 	});
 
 	loginWindow.webContents.on("will-navigate", (event, url) => {
 
-		console.log(url);
+		console.log("will-navigate", url);
 		const { shell } = electron;
 
 		if (url.indexOf("https://tweetdeck.twitter.com") >= 0 && !teams) {
@@ -229,13 +340,17 @@ function makeLoginWindow(url,teams) {
 			return;
 		}
 
-		if (url.indexOf("twitter.com/logout") >= 0 || url.indexOf("twitter.com/login") >= 0 || teams) {
+		if (url.indexOf("twitter.com/logout") >= 0 || url.indexOf("twitter.com/login") >= 0  || url.indexOf("twitter.com/i/flow/login") >= 0 ||url.indexOf("twitter.com/account/login_verification") >= 0 || teams) {
 			return;
 		}
 
-		if (url.indexOf("twitter.com/account") >= 0 || url.indexOf("twitter.com/signup") >= 0) {
-			shell.openExternal(url);
+		if (url.indexOf("twitter.com/account") >= 0 || url.indexOf("twitter.com/signup") >= 0|| url.indexOf("twitter.com/signup") >= 0) {
 			event.preventDefault();
+			shell.openExternal(url);
+			return;
+		}
+
+		if (url.indexOf("twitter.com/sessions") >= 0) {
 			return;
 		}
 
@@ -243,9 +358,7 @@ function makeLoginWindow(url,teams) {
 	});
 
 	loginWindow.webContents.on("did-navigate-in-page", (event, url) => {
-		console.log(url);
-
-
+		console.log("did-navigate-in-page", url);
 
 		if (url.indexOf("https://tweetdeck.twitter.com") >= 0) {
 			console.log("Hello tweetdeck2!");
@@ -259,7 +372,15 @@ function makeLoginWindow(url,teams) {
 			return;
 		}
 
-		if (url.indexOf("twitter.com/logout") >= 0 || url.indexOf("twitter.com/login") >= 0) {
+		if (url.indexOf("/i/flow/signup") >= 0 || url.indexOf("/i/flow/password_reset") >= 0) {
+			event.preventDefault();
+			loginWindow.webContents.goBack();
+			const {shell} = electron;
+			shell.openExternal(url);
+			return;
+		}
+
+		if (url.indexOf("twitter.com/logout") >= 0 || url.indexOf("twitter.com/login") >= 0 || url.indexOf("twitter.com/i/flow/login") >= 0) {
 			return;
 		}
 
@@ -269,7 +390,9 @@ function makeLoginWindow(url,teams) {
 	});
 
 	loginWindow.webContents.on("new-window", (event, url) => {
+		console.log("new-window", url);
 		const {shell} = electron;
+		event.preventDefault();
 		shell.openExternal(url);
 	});
 
@@ -289,26 +412,22 @@ function saveImageAs(url) {
 	let fileType = url.match(/(?<=format=)(\w{3,4})|(?<=\.)(\w{3,4}(?=\?))/g)[0] || "file";
 	let fileName = url.match(/(?<=media\/)[\w\d_\-]+|[\w\d_\-]+(?=\.m)/g)[0] || "jpg";
 
-	console.log("saveImageAs");
+	// console.log("saveImageAs");
 
 	let savePath = dialog.showSaveDialogSync({defaultPath:fileName + "." + fileType});
-	console.log(savePath);
+	// console.log(savePath);
 	if (savePath) {
 		try {
-			const https = require("https");
-			const fs = require("fs");
 
 			const file = fs.createWriteStream(savePath);
 			const request = https.get(url, function(response) {
-				console.log("Piping file...");
+				// console.log("Piping file...");
 				response.pipe(file);
 			});
 		} catch(e) {
 			console.log(e);
 		}
 	}
-
-
 
 };
 
@@ -337,9 +456,7 @@ function saveWindowBounds() {
 	}
 }
 
-
 function makeWindow() {
-
 	const lock = app.requestSingleInstanceLock();
 
 	if (!lock) {
@@ -347,8 +464,6 @@ function makeWindow() {
 		app.quit();
 		return;
 	}
-
-	let display = {};
 
 	if (!store.has("mtd_nativetitlebar")) {
 		store.set("mtd_nativetitlebar",false);
@@ -361,7 +476,7 @@ function makeWindow() {
 	let useFrame = store.get("mtd_nativetitlebar") || store.get("mtd_safemode") || process.platform === "darwin";
 	let titleBarStyle = "hidden";
 
-	if (store.get("mtd_nativetitlebar") && process.platform === "darwin") {
+	if (store.get("mtd_nativetitlebar")) {
 		titleBarStyle = "default";
 	}
 
@@ -384,11 +499,10 @@ function makeWindow() {
 			defaultFontFamily:"Roboto",
 			nodeIntegration: true,
 			contextIsolation: false,
+			enableRemoteModule: true,
 			webgl: false,
 			plugins: false,
 			scrollBounce:true,
-			webviewTag:true,
-			nodeIntegrationInSubFrames:true
 			// preload: __dirname+separator+useDir+separator+"resources"+separator+"moderndeck.js"
 		},
 		autoHideMenuBar:true,
@@ -399,21 +513,19 @@ function makeWindow() {
 		titleBarStyle:titleBarStyle,
 		minWidth:375,
 		show:false,
-		enableRemoteModule:true,
 		backgroundThrottling:true,
-		backgroundColor:"#263238"
+		backgroundColor:"#111"
 	});
 
 	// macOS specific: Don't run from DMG, move to Applications folder.
-
 	if (process.platform === "darwin" && !app.isInApplicationsFolder() && !isDev) {
 		const { dialog } = electron;
 
 		dialog.showMessageBox({
 			type: "warning",
 			title: "ModernDeck",
-			message: "Updates might not work correctly if you aren't running ModernDeck from the Applications folder.\n\nWould you like to move it there?",
-			buttons: ["Not Now", "Yes, Move It"]
+			message: I18n("Updates might not work correctly if you aren't running ModernDeck from the Applications folder.\n\nWould you like to move it there?"),
+			buttons: [I18n("Not Now"), I18n("Yes, Move It")]
 		}, (response) => {
 			if (response == 1) {
 				let moveMe;
@@ -427,8 +539,8 @@ function makeWindow() {
 					dialog.showMessageBox({
 						type: "error",
 						title: "ModernDeck",
-						message: "We couldn't automatically move ModernDeck to the applications folder. You may need to move it yourself.",
-						buttons: ["OK"]
+						message: I18n("We couldn't automatically move ModernDeck to the applications folder. You may need to move it yourself."),
+						buttons: [I18n("OK")]
 					});
 				}
 			}
@@ -437,35 +549,104 @@ function makeWindow() {
 	}
 
 	// Prevent changing the Page Title
-
-	mainWindow.on("page-title-updated", (event,url) => {
+	mainWindow.on("page-title-updated", (event) => {
 		event.preventDefault();
 	});
 
 	// Save window bounds if it's closed, or otherwise occasionally
-
-	mainWindow.on("close",(e) => {
-		setTimeout(saveWindowBounds,0);
+	mainWindow.on("close", (_event) => {
+		setTimeout(saveWindowBounds, 0);
 	});
 
-	setInterval(saveWindowBounds,60 * 1000);
+	setInterval(saveWindowBounds, 60 * 1000);
 
 	mainWindow.show();
 
 	hidden = false;
 
+	require('@electron/remote/main').initialize();
+	require("@electron/remote/main").enable(mainWindow.webContents);
+
 	updateAppTag();
 
 	try {
-		mainWindow.webContents.executeJavaScript(`document.getElementsByClassName("js-signin-ui block")[0].innerHTML = '<div class="preloader-wrapper big active"><div class="spinner-layer"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div>';`)
+		mainWindow.webContents.executeJavaScript(`
+			document.getElementsByClassName("js-signin-ui block")[0].innerHTML =
+			\`<img class="mtd-loading-logo" src="moderndeck://resources/img/moderndeck.png" style="display: none;">
+			<div class="preloader-wrapper active">
+				<div class="spinner-layer">
+					<div class="circle-clipper left">
+						<div class="circle"></div>
+					</div>
+					<div class="gap-patch">
+						<div class="circle"></div>
+					</div>
+					<div class="circle-clipper right">
+						<div class="circle"></div>
+					</div>
+				</div>
+			</div>\`;
+
+			if (typeof mtdLoadStyleCSS === "undefined") {
+				mtdLoadStyleCSS = \`
+					img.spinner-centered {
+						display:none!important
+					}
+				\`
+				mtdLoadStyle = document.createElement("style");
+				mtdLoadStyle.appendChild(document.createTextNode(mtdLoadStyleCSS))
+				document.head.appendChild(mtdLoadStyle);
+			}
+
+			if (document.getElementsByClassName("spinner-centered")[0]) {
+				document.getElementsByClassName("spinner-centered")[0].remove();
+			}
+
+			document.getElementsByTagName("html")[0].style = "background: #111;";
+			document.getElementsByTagName("body")[0].style = "background: #111;";
+		`)
 	} catch(e) {
 
 	}
 
 
-	mainWindow.webContents.on('dom-ready', (event, url) => {
+	mainWindow.webContents.on("dom-ready", () => {
 
-		mainWindow.webContents.executeJavaScript(`document.getElementsByClassName("js-signin-ui block")[0].innerHTML = '<div class="preloader-wrapper big active"><div class="spinner-layer"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div>';`)
+		mainWindow.webContents.executeJavaScript(`
+			document.getElementsByTagName("html")[0].style = "background: #111!important;";
+			document.getElementsByTagName("body")[0].style = "background: #111!important;";
+
+			if (typeof mtdLoadStyleCSS === "undefined") {
+				mtdLoadStyleCSS = \`
+					img.spinner-centered {
+						display:none!important
+					}
+				\`
+				mtdLoadStyle = document.createElement("style");
+				mtdLoadStyle.appendChild(document.createTextNode(mtdLoadStyleCSS))
+				document.head.appendChild(mtdLoadStyle);
+			}
+
+			if (document.getElementsByClassName("spinner-centered")[0]) {
+				document.getElementsByClassName("spinner-centered")[0].remove();
+			}
+
+			document.getElementsByClassName("js-signin-ui block")[0].innerHTML =
+			\`<img class="mtd-loading-logo" src="moderndeck://resources/img/moderndeck.png" style="display: none;">
+			<div class="preloader-wrapper active">
+				<div class="spinner-layer">
+					<div class="circle-clipper left">
+						<div class="circle"></div>
+					</div>
+					<div class="gap-patch">
+						<div class="circle"></div>
+					</div>
+					<div class="circle-clipper right">
+						<div class="circle"></div>
+					</div>
+				</div>
+			</div>\`;
+		`)
 
 		mainWindow.webContents.executeJavaScript(
 			'\
@@ -495,10 +676,9 @@ function makeWindow() {
 
 	});
 
-	mainWindow.webContents.on('did-fail-load', (event, code, desc) => {
-		let msg = "ModernDeck failed to start.\n\n";
+	mainWindow.webContents.on("did-fail-load", (_event, code, desc) => {
+		let msg = "ModernDeck failed to start." + "\n\n";
 
-		console.log(desc);
 
 		// These codes aren't necessarily fatal errors, so we ignore them instead of forcing the user to shut down ModernDeck.
 
@@ -506,102 +686,47 @@ function makeWindow() {
 			return;
 		}
 
-		/*
-			This variable is used to display the chromium error code.
+		makeErrorWindow();
 
-			This isn't necessary for obvious errors, such as ERR_INTERNET_DISCONNECTED,
-			so we don't bother showing it in such cases.
-		*/
+		mainWindow.hide();
 
-		let addChromiumErrorCode = false;
+		errorWindow.webContents.executeJavaScript(`
+			document.getElementById("code").innerHTML = "${desc}";
+			document.getElementById("close").innerHTML = "${I18n("Close")}";
+			document.getElementById("retry").innerHTML = "${I18n("Retry")}";
+			document.getElementById("twitterStatus").innerHTML = "${I18n("Twitter Status")}";
+		`);
 
-		if (code === -13 || code === -12) {
-			msg += "Your PC ran out of memory trying to start ModernDeck. Try closing some programs or restarting your PC and trying again."
-		} else if ((code <= -800 && code >= -900) || code === -137 || code === -105) {
-			msg += "We can't connect to Twitter due to a DNS error.\nPlease check your internet connection.";
-			addChromiumErrorCode = true;
-		} else if (code === -106) {
-			msg += "You are disconnected from the Internet. ModernDeck requires an internet connection.";
-		} else if (code === -201) {
-			msg += "Please check that your PC's date and time are set correctly. Twitter presented us with a security certificate that either expired or not yet valid.\nIf your date and time are correct, check https://api.twitterstat.us to see if there are any problems at Twitter."
-		} else if (code === -130 || code === -131 || code === -111 || code === -127 || code === -115 || code === -336) {
-			msg += "We can't connect to your internet connection's proxy server."
+		console.log(desc);
 
-			if (process.platform === "win32") {
-				msg += "\n\nIf you don't need to connect to a proxy server, you can take the following steps on Windows:\n1. Press Windows Key + R to open the Run dialog.\n2. Enter inetcpl.cpl\n3. Go to the Connections tab\n4. Click the LAN settings button near the bottom\n5. Uncheck \"Use a proxy server for your LAN\""
-			}
-
-			addChromiumErrorCode = true;
-		} else if (code === -22) {
-			msg += "Your domain administrator has blocked access to tweetdeck.twitter.com.\nIf your device is owned by an organization, you might need to ask an administrator to unblock it."
-
-			if (process.platform === "win32") {
-				msg += "\nIf you are not logged in as part of a domain, you may need to configure your Local Group Policy settings."
-			}
-		} else if (code === -7 || code === -118) {
-			msg += "We can't connect to Twitter because the request timed out.\nPlease check your internet connection.\nIf it still doesn't work, check https://api.twitterstat.us to see if there are any problems at Twitter."
-		} else if (code === -29 || code === -107 || (code <= -110 && code >= -117) || code === -123 || (code <= -125 && code >= -129) || code === -134 || code === -135 || code === -141 || (code <= -148 && code >= -153) || code === -156 || code === -159 || code === -164 || code === -167 || code === -172 || code === -175 || (code <= -177 && code >= -181) || (code <= -501 && code >= -504)) {
-			msg += "We can't establish a secure connection to Twitter.\nThis may be caused by network interference or a problem at Twitter.\n\nIf it still doesn't work, but other HTTPS websites appear to load (such as google.com), check https://api.twitterstat.us to see if there are any problems at Twitter.";
-			addChromiumErrorCode = true;
-		} else if (code <= -200 && code >= -220) {
-			msg += "We can't establish a secure connection to Twitter.\nThere is a problem with the digital certificate that was presented to us by Twitter.\n\nPlease try again, or if it persists, check https://api.twitterstat.us to see if there are any problems at Twitter.";
-			addChromiumErrorCode = true;
-		} else if (code <= -1 && code >= -99) {
-			msg += "We can't connect to Twitter due to an unexpected system error. Please refer to the error code below.";
-			addChromiumErrorCode = true;
-		} else if (code <= -100 && code >= -199) {
-			msg += "We can't connect to Twitter due to an unexpected connection error. Please refer to the error code below.";
-			addChromiumErrorCode = true;
-		} else if (code <= -200 && code >= -299) {
-			msg += "We can't connect to Twitter due to an unexpected certificate error. Please refer to the error code below.";
-			addChromiumErrorCode = true;
-		} else if (code <= -300 && code >= -399) {
-			msg += "We can't connect to Twitter due to an unexpected protocol error. Please refer to the error code below.";
-			addChromiumErrorCode = true;
-		} else if (code <= -400 && code >= -499) {
-			msg += "We can't connect to Twitter due to an unexpected caching error. Please refer to the error code below.";
-			addChromiumErrorCode = true;
-		} else {
-			msg += "We can't connect to Twitter due to an unexpected error. Please refer to the error code below.";
-			addChromiumErrorCode = true;
-		}
-
-		if (addChromiumErrorCode) {
-			msg += "\n\n" + desc + " " + code
-		}
-
-
-		console.log(code);
-
-		dialog.showMessageBox(mainWindow,{
-			title:"ModernDeck",
-			message:msg,
-			type:"error",
-			buttons:["Retry","Close"]
-		}, (response) => {
-			if (response === 0) { // Retry
-				mainWindow.reload();
-			} else if (response === 1) { // Close
-				closeForReal = true;
-				mainWindow.close();
-			}
-		});
 		return;
 	});
 
 	/*
-		We need to replace the content security policy in order to load any third-party content, including JS, CSS, fonts
+		The content security policy needs to be replaced to be able to interact with GIF services
 	*/
 
 	mainWindow.webContents.session.webRequest.onHeadersReceived(
-		{urls:["https://tweetdeck.twitter.com/*","https://twitter.com/i/cards/*"]},
+		{urls:["https://tweetdeck.twitter.com/*"]},
 		(details, callback) => {
 			let foo = details.responseHeaders;
 			foo["content-security-policy"] =[
-				"default-src 'self'; connect-src * moderndeck:; font-src https: blob: data: * moderndeck:; frame-src https: moderndeck:; frame-ancestors 'self' https: moderndeck:; img-src https: data: blob: moderndeck:; media-src * moderndeck: blob: https:; object-src 'self' https:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://moderndeck.org https://c6.patreon.com https://sentry.io https://cdn.jsdelivr.net https://ajax.googleapis.com moderndeck: https://cdn.ravenjs.com/ https://*.twitter.com https://*.twimg.com https://api-ssl.bitly.com blob:; style-src 'self' 'unsafe-inline' 'unsafe-eval' https: moderndeck: blob:;"];
+				"default-src 'self'; connect-src * moderndeck:; "+
+				"font-src https: blob: data: * moderndeck:; "+
+				"frame-src https: moderndeck:; "+
+				"frame-ancestors 'self' https: moderndeck:; "+
+				"img-src https: file: data: blob: moderndeck:; "+
+				"media-src * moderndeck: blob: https:; "+
+				"object-src 'self' https:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://moderndeck.org moderndeck: https://*.twitter.com https://*.twimg.com https://api-ssl.bitly.com blob:; "+
+				"style-src 'self' 'unsafe-inline' 'unsafe-eval' https: moderndeck: blob:;"];
 			callback({ responseHeaders: foo});
 		}
 	);
+
+
+	mainWindow.webContents.session.webRequest.onBeforeSendHeaders({urls:["https://twitter.com/i/jot*", "https://tweetdeck.twitter.com/Users*"]}, (details, callback) => {
+		callback({cancel: true})
+	})
 
 	// mainWindow.webContents.session.webRequest.onHeadersReceived(
 	// 	{urls:["https://*.twitter.com/*","https://*.twimg.com/*"]},
@@ -615,26 +740,6 @@ function makeWindow() {
 	// 		callback({ responseHeaders: foo});
 	// 	}
 	// );
-
-	/*
-		Block original tweetdeck css bundle, just in case. Plus, it saves bandwidth.
-		We also replace twitter card CSS to make those look pretty
-	*/
-
-	mainWindow.webContents.session.webRequest.onBeforeRequest({urls:["https://ton.twimg.com/*"]}, (details,callback) => {
-
-		if (details.url.indexOf(".css") > -1 && (details.url.indexOf("bundle") > -1 && details.url.indexOf("dist") > -1) && !store.get("mtd_safemode")) {
-			callback({cancel:true});
-			return;
-		}
-
-		// if (details.url.indexOf(".css") > -1 && details.url.indexOf("tfw") > -1 && details.url.indexOf("css") > -1 && details.url.indexOf("tweetdeck_bundle") > -1) {
-		// 	callback({redirectURL:"moderndeck://resources/cssextensions/twittercard.css"});
-		// 	return;
-		// }
-
-		callback({cancel:false});
-	});
 
 	mainWindow.webContents.loadURL("https://tweetdeck.twitter.com");
 
@@ -657,9 +762,9 @@ function makeWindow() {
 		if (url.indexOf("https://tweetdeck.twitter.com") < 0 && url.indexOf("moderndeck://.") < 0) {
 			event.preventDefault();
 			console.log(url);
-			if (url.indexOf("twitter.com/login") >= 0 || url.indexOf("twitter.com/logout") >= 0) {
+			if (url.indexOf("twitter.com/login") >= 0 || url.indexOf("twitter.com/i/flow/login") >= 0 || url.indexOf("twitter.com/logout") >= 0) {
 				console.log("this is a login window! will-navigate");
-				event.newGuest = makeLoginWindow(url,false);
+				event.newGuest = makeLoginWindow(url, false);
 			} else {
 				shell.openExternal(url);
 			}
@@ -688,11 +793,13 @@ function makeWindow() {
 		if (url.indexOf("https://twitter.com/teams/authorize") >= 0) {
 			console.log("this is a login teams window! new-window");
 			event.newGuest = makeLoginWindow(url,true);
-		} else if (url.indexOf("twitter.com/login") >= 0 || url.indexOf("twitter.com/logout") >= 0) {
+		} else if (url.indexOf("twitter.com/login") >= 0 || url.indexOf("twitter.com/i/flow/login") >= 0 || url.indexOf("twitter.com/logout") >= 0) {
 			console.log("this is a login non-teams window! new-window");
 			event.newGuest = makeLoginWindow(url,false);
 		} else {
-			shell.openExternal(url);
+			shell.openExternal(url).catch(() => {
+				mainWindow.webContents.send("failedOpenUrl");
+			})
 		}
 
 		return event.newGuest;
@@ -701,26 +808,87 @@ function makeWindow() {
 
 	// i actually forget why this is here
 
-	mainWindow.webContents.on("context-menu", (event, params) => {
+	mainWindow.webContents.on("context-menu", (_event, params) => {
 		if (!mainWindow || !mainWindow.webContents) { return }
 
 		mainWindow.webContents.send("context-menu", params);
 	});
 
+	ipcMain.on("getEnterpriseConfig", () => {
+		if (!mainWindow || !mainWindow.webContents) { return }
+
+		mainWindow.webContents.send("enterpriseConfig", deviceConfig);
+	});
+
 	/*
-		If a user uses native context menus, this is mtdInject telling us
+		If a user uses native context menus, this is browser telling us
 		to put up a native context menu with the given commands, instead
 		of it doing it itself.
 	*/
 
-	ipcMain.on("nativeContextMenu", (event, params) => {
+	ipcMain.on("nativeContextMenu", (_event, params) => {
 		console.log(params);
 		let newMenu = Menu.buildFromTemplate(params);
 		console.log(newMenu);
 		newMenu.popup();
 	});
 
-	ipcMain.on("drawerOpen", (event, params) => {
+	ipcMain.on("errorReload", () => {
+		mainWindow.reload();
+		mainWindow.show();
+		shouldQuitIfErrorClosed = false;
+		errorWindow.close();
+	});
+
+	ipcMain.on("loadSettingsDialog", () => {
+		dialog.showOpenDialog(
+			{ filters: [{ name: I18n("Preferences JSON File"), extensions: ["json"] }] }
+		).then((results) => {
+			console.log(results);
+			if (typeof results.filePaths === "undefined") {
+				return;
+			}
+
+			fs.readFile(results.filePaths[0], "utf-8", (_, load) => {
+				mainWindow.webContents.send("settingsReceived", JSON.parse(load));
+			});
+		});
+	});
+
+	ipcMain.on("tweetenImportDialog", () => {
+		dialog.showOpenDialog(
+			{ filters: [{ name: I18n("Tweeten Settings JSON"), extensions: ["json"] }] }
+		).then((results) => {
+			if (typeof results.filePaths === "undefined") {
+				return;
+			}
+
+			fs.readFile(results.filePaths[0], "utf-8", (_, load) => {
+				mainWindow.webContents.send("tweetenSettingsReceived", JSON.parse(load));
+			});
+		});
+	});
+
+	ipcMain.on("saveSettings", (_event, params) => {
+		dialog.showSaveDialog(
+			{
+				title: I18n("ModernDeck Preferences"),
+				defaultPath: "settings.json",
+				filters: [{ name: I18n("Preferences JSON File"), extensions: ["json"] }]
+			}
+		).then((results) => {
+			if (results.filePath === undefined) {
+				return;
+			}
+			fs.writeFile(results.filePath, params, (e) => {});
+		});
+	})
+
+	ipcMain.on("errorQuit", () => {
+		app.quit();
+	});
+
+	ipcMain.on("drawerOpen", () => {
 		console.log("open");
 
 		if (!mainWindow || !mainWindow.webContents) { return }
@@ -728,7 +896,7 @@ function makeWindow() {
 		mainWindow.webContents.executeJavaScript("document.querySelector(\"html\").classList.add(\"mtd-drawer-open\");");
 	});
 
-	ipcMain.on("drawerClose", (event, params) => {
+	ipcMain.on("drawerClose", () => {
 		console.log("close");
 
 		if (!mainWindow || !mainWindow.webContents) { return }
@@ -737,7 +905,7 @@ function makeWindow() {
 	});
 
 
-	ipcMain.on("maximizeButton", (event) => {
+	ipcMain.on("maximizeButton", () => {
 		let window = BrowserWindow.getFocusedWindow();
 
 		if (!window) {
@@ -751,7 +919,7 @@ function makeWindow() {
 		}
 	});
 
-	ipcMain.on("minimize", (event) => {
+	ipcMain.on("minimize", () => {
 		BrowserWindow.getFocusedWindow().minimize();
 	});
 
@@ -759,67 +927,71 @@ function makeWindow() {
 		The options below are for right click menu actions
 	*/
 
-	ipcMain.on("copy", (event) => {
+	ipcMain.on("copy", () => {
 		if (!mainWindow || !mainWindow.webContents) { return }
 
 		mainWindow.webContents.copy();
 	});
 
-	ipcMain.on("cut", (event) => {
+	ipcMain.on("cut", () => {
 		if (!mainWindow || !mainWindow.webContents) { return }
 
 		mainWindow.webContents.cut();
 	});
 
-	ipcMain.on("paste", (event) => {
+	ipcMain.on("paste", () => {
 		if (!mainWindow || !mainWindow.webContents) { return }
 
 		mainWindow.webContents.paste();
 	});
 
-	ipcMain.on("delete", (event) => {
+	ipcMain.on("delete", () => {
 		if (!mainWindow || !mainWindow.webContents) { return }
 
 		mainWindow.webContents.delete();
 	});
 
-	ipcMain.on("selectAll", (event) => {
+	ipcMain.on("selectAll", () => {
 		if (!mainWindow || !mainWindow.webContents) { return }
 
 		mainWindow.webContents.selectAll();
 	});
 
-	ipcMain.on("undo", (event) => {
+	ipcMain.on("undo", () => {
 		if (!mainWindow || !mainWindow.webContents) { return }
 
 		mainWindow.webContents.undo();
 	});
 
-	ipcMain.on("redo", (event) => {
+	ipcMain.on("redo", () => {
 		if (!mainWindow || !mainWindow.webContents) { return }
 
 		mainWindow.webContents.redo();
 	});
 
-	ipcMain.on("copyImage", (event,arg) => {
+	ipcMain.on("copyImage", (_event, arg) => {
 		if (!mainWindow || !mainWindow.webContents) { return }
 
-		mainWindow.webContents.copyImageAt(arg.x,arg.y);
+		mainWindow.webContents.copyImageAt(arg.x, arg.y);
 	});
 
-	ipcMain.on("saveImage", (event,arg) => {
+	ipcMain.on("saveImage", (_event, arg) => {
 		saveImageAs(arg);
 	});
 
-	ipcMain.on("inspectElement", (event,arg) => {
+	ipcMain.on("inspectElement", (_event, arg) => {
 		if (!mainWindow || !mainWindow.webContents) { return }
 
-		mainWindow.webContents.inspectElement(arg.x,arg.y);
+		mainWindow.webContents.inspectElement(arg.x, arg.y);
 	});
 
-	// mtdInject initiated app restart
+	ipcMain.on("showEmojiPanel", () => {
+		app.showEmojiPanel();
+	})
 
-	ipcMain.on("restartApp", (event,arg) => {
+	// browser initiated app restart
+
+	ipcMain.on("restartApp", () => {
 		setTimeout(() => {
 			closeForReal = true;
 			app.relaunch();
@@ -827,16 +999,16 @@ function makeWindow() {
 		},100);
 	});
 
-	// mtdInject initiated app restart, after user clicks to restart to install updates
+	// browser initiated app restart, after user clicks to restart to install updates
 
-	ipcMain.on("restartAndInstallUpdates", (event,arg) => {
+	ipcMain.on("restartAndInstallUpdates", () => {
 		closeForReal = true;
 		autoUpdater.quitAndInstall(false,true);
 	});
 
 	// When user elects to erase all of their settings, we wipe everything clean, including caches
 
-	ipcMain.on("destroyEverything", (event,arg) => {
+	ipcMain.on("destroyEverything", () => {
 		let ses = session.defaultSession;
 		store.clear();
 		ses.flushStorageData();
@@ -854,12 +1026,21 @@ function makeWindow() {
 			},500);
 		});
 
+		// Workaround: If electron doesn't report that data is cleared within 4 seconds, restart anyway.
+		// 4 seconds is plenty of time for it to get it done.
+
+		setTimeout(() => {
+			closeForReal = true;
+			app.relaunch();
+			app.exit();
+		},4000);
+
 
 	});
 
 	// Changing from immersive titlebar to native
 
-	ipcMain.on("setNativeTitlebar", (event,arg) => {
+	ipcMain.on("setNativeTitlebar", (_event, arg) => {
 
 		isRestarting = true;
 
@@ -868,7 +1049,7 @@ function makeWindow() {
 			mainWindow.close();
 		}
 
-		store.set("mtd_nativetitlebar",arg);
+		store.set("mtd_nativetitlebar", arg);
 
 		setTimeout(() => {
 			closeForReal = true;
@@ -892,39 +1073,33 @@ function makeWindow() {
 	})
 
 	// Enable tray icon
-
-	ipcMain.on("enableTray", (event,arg) => {
+	ipcMain.on("enableTray", (event, arg) => {
 		enableTray = true;
 		makeTray();
 	});
 
 	// Disable tray icon
-
-	ipcMain.on("disableTray", (event,arg) => {
+	ipcMain.on("disableTray", (event, arg) => {
 		enableTray = false;
 		destroyTray();
 	});
 
-	// Enable tray icon
-
-	ipcMain.on("enableBackground", (event,arg) => {
+	// Enable background notifications
+	ipcMain.on("enableBackground", (event, arg) => {
 		enableBackground = true;
 	});
 
-	// Disable tray icon
-
-	ipcMain.on("disableBackground", (event,arg) => {
+	// Disable background notifications
+	ipcMain.on("disableBackground", (event, arg) => {
 		enableBackground = false;
 	});
 
 	// Upon closing, set mainWindow to null
-
 	mainWindow.on("closed", () => {
 		mainWindow = null;
 	});
 
 	// Change maximise to restore size window
-
 	mainWindow.on("maximize", () => {
 		if (!mainWindow || !mainWindow.webContents) { return }
 
@@ -934,8 +1109,7 @@ function makeWindow() {
 		');
 	});
 
-	// Change restore size window to maximise
-
+	// Change restore size window to maximize
 	mainWindow.on("unmaximize", () => {
 		if (!mainWindow || !mainWindow.webContents) { return }
 
@@ -956,7 +1130,6 @@ function makeWindow() {
 		as there is less reason for a huge drag bar in full screen,
 		at least in comparison to in windowed. Chrome itself does this too.
 	*/
-
 	mainWindow.on("enter-full-screen", () => {
 		if (!mainWindow || !mainWindow.webContents) { return }
 
@@ -966,7 +1139,6 @@ function makeWindow() {
 			document.querySelector("html").classList.remove("mtd-app-linux");\
 		');
 	});
-
 
 	if (store.get("mtd_fullscreen")) {
 		mainWindow.webContents.executeJavaScript('document.querySelector("html").classList.remove("mtd-app");');
@@ -1002,25 +1174,37 @@ function makeTray() {
 		return;
 	}
 
-	let pathName = __dirname + separator + "common" + separator + "app" + separator + (process.platform === "darwin" ? "macOSTrayTemplate.png" : "Tray.png");
+	let pathName = __dirname + separator + "common" + separator + "resources" + separator + "img" + separator + "app" + separator + (process.platform === "darwin" ? "macOSTrayTemplate.png" : "Tray.png");
 
 	const image = nativeImage.createFromPath(pathName);
 	image.setTemplateImage(true);
 	tray = new Tray(pathName);
 
 	const contextMenu = Menu.buildFromTemplate([
-		{ label: "Open ModernDeck", click(){ showHiddenWindow() } },
-		{ label: (process.platform === "darwin" ? "Preferences..." : "Settings..."), click(){ if (!mainWindow){return;}mainWindow.show();mainWindow.webContents.send("openSettings"); } },
-		{ label: "Check for Updates...", click(){ if (!mainWindow){return;}mainWindow.show();mainWindow.webContents.send("checkForUpdatesMenu"); } },
+		{ label: I18n("Open ModernDeck"), click(){ showHiddenWindow() } },
+		{ label: (process.platform === "darwin" ? I18n("Preferences...") : I18n("Settings...")), click(){ if (!mainWindow){return;}mainWindow.show();mainWindow.webContents.send("openSettings"); } },
+		{ visible: (typeof process.windowStore === "undefined" && deviceConfig.autoUpdatePolicy !== "disabled"), label: (process.platform === "darwin" ? I18n("Check for Updates...") : I18n("Check for updates...")), click(){ if (!mainWindow){return;}mainWindow.show();mainWindow.webContents.send("checkForUpdatesMenu"); } },
 
 		{ type: "separator" },
 
-		{ label: "New Tweet...", click(){ if (!mainWindow){return;}mainWindow.show();mainWindow.webContents.send("newTweet"); } },
-		{ label: "New Direct Message...", click(){ if (!mainWindow){return;}mainWindow.show();mainWindow.webContents.send("newDM"); } },
+		{ label: I18n("New Tweet..."), click(){ if (!mainWindow){return;}mainWindow.show();mainWindow.webContents.send("newTweet"); } },
+		{ label: I18n("New Direct Message..."), click(){ if (!mainWindow){return;}mainWindow.show();mainWindow.webContents.send("newDM"); } },
 
 		{ type: "separator" },
 
-		{ label: (process.platform === "darwin" ? "Quit" : "Exit"), click(){ if (!mainWindow){return;} closeForReal = true; mainWindow.close(); } },
+		{ label: (process.platform === "darwin" ? I18n("Quit") : I18n("Exit")), click(){
+			if (!mainWindow) {
+				return;
+			}
+			closeForReal = true;
+			autoUpdater.quitAndInstall(true,true);
+			
+			setTimeout(() => {
+				/* if auto updater is dumb and does not quit then do it anyway
+				 i think electron-updater changed their behavior because previously quitAndInstall always worked */
+				app.quit();
+			},200)
+		}},
 	]);
 
 	tray.setToolTip("ModernDeck");
@@ -1038,7 +1222,7 @@ function destroyTray() {
 	tray = null;
 }
 
-// Register moderndeck:// protocol for accessing moderndeck resources, like CSS
+// Register moderndeck:// protocol for accessing moderndeck resources, like CSS, images, etc.
 
 electron.protocol.registerSchemesAsPrivileged([{
 	scheme:"moderndeck",
@@ -1052,11 +1236,14 @@ electron.protocol.registerSchemesAsPrivileged([{
 	}
 }]);
 
+app.setAsDefaultProtocolClient("moderndeck");
+
 // Make window when app is ready
 
 app.on("ready", () => {
 	try {
 		makeWindow();
+		loadDeviceConfigMain();
 		if (enableTray) {
 			makeTray();
 		}
@@ -1100,7 +1287,7 @@ app.on("second-instance", () => {
 	}
 })
 
-// Tell mtdInject that there was an update error
+// Tell browser that there was an update error
 
 autoUpdater.on("error", (e,f,g) => {
 	if (!mainWindow || !mainWindow || !mainWindow.webContents) {
@@ -1112,7 +1299,6 @@ autoUpdater.on("error", (e,f,g) => {
 // Let moderndeck.js know that we are...
 
 // ... actively checking for updates
-
 autoUpdater.on("checking-for-update", (e) => {
 	if (!mainWindow || !mainWindow || !mainWindow.webContents) {
 		return;
@@ -1152,10 +1338,18 @@ autoUpdater.on("update-not-available", (e) => {
 	mainWindow.webContents.send("update-not-available",e);
 });
 
-// mtdInject can send manual update check requests
+// moderndeck can send manual update check requests
 ipcMain.on("checkForUpdates", (e) => {
-	if (autoUpdater) {
+	console.log("Client requested update check");
+	if (autoUpdater && deviceConfig.autoUpdatePolicy !== "disabled" && isFlatpak !== true) {
 		autoUpdater.checkForUpdates();
+	}
+});
+
+ipcMain.on("downloadUpdates", (e) => {
+	console.log("Client requested update download");
+	if (autoUpdater && deviceConfig.autoUpdatePolicy !== "disabled") {
+		autoUpdater.downloadUpdate();
 	}
 });
 
@@ -1167,6 +1361,7 @@ ipcMain.on("changeChannel", (e) => {
 	}
 });
 
+// App tags control browser behavior like CSS layouts and sometimes JS
 function updateAppTag() {
 	mainWindow.webContents.executeJavaScript('document.querySelector("html").classList.remove("mtd-app");\
 		document.querySelector("html").classList.remove("mtd-app-win");\
@@ -1182,8 +1377,20 @@ function updateAppTag() {
 		mtdAppTag += 'document.querySelector("html").classList.add("mtd-winstore");\n';
 	}
 
+	if (isFlatpak) {
+		mtdAppTag += 'document.querySelector("html").classList.add("mtd-flatpak");\n';
+	}
+
 	if (isMAS) {
 		mtdAppTag += 'document.querySelector("html").classList.add("mtd-macappstore");\n';
+	}
+
+	if (isRosetta()) {
+		mtdAppTag += 'document.querySelector("html").classList.add("mtd-mac-rosetta");\n';
+	}
+
+	if (app.isEmojiPanelSupported()) {
+		mtdAppTag += 'document.querySelector("html").classList.add("mtd-supportsNativeEmojiPicker");\n';
 	}
 
 	if (!store.get("mtd_nativetitlebar")) {
@@ -1211,13 +1418,9 @@ function updateAppTag() {
 
 // OS inverted colour scheme (high contrast) mode changed. We automatically respond to changes for accessibility
 
-// nativeTheme.on("updated", (e,v) => {
-// 	mainWindow.webContents.send("inverted-color-scheme-changed",nativeTheme.shouldUseInvertedColorScheme);
-// 	mainWindow.webContents.send("color-scheme-changed", nativeTheme.shouldUseDarkColors ? "dark" : "light");
-// });
-
-systemPreferences.on("inverted-color-scheme-changed", (e,v) => {
-	mainWindow.webContents.send("inverted-color-scheme-changed",v);
+nativeTheme.on("updated", (e,v) => {
+	mainWindow.webContents.send("inverted-color-scheme-changed",nativeTheme.shouldUseInvertedColorScheme);
+	// mainWindow.webContents.send("color-scheme-changed", nativeTheme.shouldUseDarkColors ? "dark" : "light");
 });
 
 if (process.platform === "darwin") {
@@ -1226,7 +1429,7 @@ if (process.platform === "darwin") {
 			"AppleInterfaceThemeChangedNotification",
 			() => {
 				if (!mainWindow || !mainWindow.webContents) { return }
-				mainWindow.webContents.send("color-scheme-changed", systemPreferences.isDarkMode() ? "dark" : "light");
+				// mainWindow.webContents.send("color-scheme-changed", systemPreferences.isDarkMode() ? "dark" : "light");
 			}
 		)
 	} catch(e) {
@@ -1234,17 +1437,21 @@ if (process.platform === "darwin") {
 	}
 }
 
-setInterval(() => {
-	try {
-		autoUpdater.checkForUpdates();
-	} catch(e) {
-		console.error(e);
-	}
-},1000*60*15); //check for updates once every 15 minutes
+if (deviceConfig.autoUpdatePolicy !== "disabled" && deviceConfig.autoUpdatePolicy !== "manual" && isFlatpak !== false) {
+	setInterval(() => {
+		try {
+			autoUpdater.checkForUpdates();
+		} catch(e) {
+			console.error(e);
+		}
+	},1000*60*15); //check for updates once every 15 minutes
+}
 
 setTimeout(() => {
 	try {
-		autoUpdater.checkForUpdates();
+		if (deviceConfig.autoUpdatePolicy !== "disabled" &&  deviceConfig.autoUpdatePolicy !== "manual" && isFlatpak !== true) {
+			autoUpdater.checkForUpdates();
+		}
 
 		if (!mainWindow) {
 			return;
@@ -1252,7 +1459,7 @@ setTimeout(() => {
 
 		mainWindow.webContents.send(
 			"inverted-color-scheme-changed",
-			systemPreferences.isInvertedColorScheme()//!!nativeTheme.shouldUseInvertedColorScheme
+			!!nativeTheme.shouldUseInvertedColorScheme
 		);
 	} catch(e) {
 		console.error(e);

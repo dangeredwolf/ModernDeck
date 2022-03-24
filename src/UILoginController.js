@@ -1,16 +1,18 @@
 /*
 	UILoginController.js
-	Copyright (c) 2014-2020 dangered wolf, et al
-	Released under the MIT licence
+
+	Copyright (c) 2014-2022 dangered wolf, et al
+	Released under the MIT License
 */
 
 import { enableStylesheetExtension, disableStylesheetExtension } from "./StylesheetExtensions.js";
 import { I18n } from "./I18n.js";
 import { UILanguagePicker } from "./UILanguagePicker.js";
+import { openSettings } from "./UISettings.js";
 import { getPref } from "./StoragePreferences.js";
 
 let ugltStarted = false;
-let loginIntervalTick = 0;
+window.loginIntervalTick = 0;
 
 // Updates the "Good morning!" / "Good afternoon!" / "Good evening!"
 // text on the login screen every once in a while (10s, ish)
@@ -29,7 +31,15 @@ function startUpdateGoodLoginText() {
 	// we can't do this in the new login mustache because when it's initialised,
 	// MTDURLExchange hasn't completed yet
 
-	$(".startflow-background").attr("style",`background-image:url(${mtdBaseURL}resources/img/bg1.jpg)`)
+	$(".startflow-background").attr("style",`background-image:url(${mtdBaseURL}resources/img/bg1.webp)`)
+
+	if (window.enterpriseConfig.customLoginImage) {
+		if (window.enterpriseConfig.customLoginImage.match(/https:\/\//gm) !== null) {
+			$(".startflow-background").attr("style",`background-image:url(${window.enterpriseConfig.customLoginImage})`)
+		} else {
+			$(".startflow-background").attr("style",`background-image:url(moderndeck://background)`)
+		}
+	}
 
 	setInterval(() => {
 		let text;
@@ -58,13 +68,24 @@ export function checkIfSigninFormIsPresent() {
 	if ($(".app-signin-form").length > 0 || $("body>.js-app-loading.login-container:not([style])").length > 0) {
 		html.addClass("signin-sheet-now-present");
 
-		loginIntervalTick++;
+		window.loginIntervalTick++;
 		enableStylesheetExtension("loginpage");
 
-		if (loginIntervalTick > 5) {
+		if (window.loginIntervalTick > 5) {
 			clearInterval(loginInterval);
 		}
 	} else {
+		if (typeof window.signinSheetPings === "undefined") {
+			window.signinSheetPings = 0;
+		}
+
+		window.signinSheetPings++;
+
+		if (window.signinSheetPings > 6) {
+			console.log("I am no longer asking");
+			clearInterval(loginInterval);
+		}
+		console.log("Not on signin sheet anymore");
 		disableStylesheetExtension("loginpage");
 		html.removeClass("signin-sheet-now-present");
 	}
@@ -83,5 +104,7 @@ export function loginTextReplacer() {
 		$(".app-signin-wrap:not(.mtd-signin-wrap)").remove();
 		$(".login-container .startflow").html(newLoginPage);
 		startUpdateGoodLoginText();
+
+		$(".mtd-login-info-button").click(() => openSettings(undefined, true))
 	}
 }

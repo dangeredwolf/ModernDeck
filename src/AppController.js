@@ -1,16 +1,19 @@
 /*
 	AppController.js
-	Copyright (c) 2014-2020 dangered wolf, et al
-	Released under the MIT licence
+	
+	Copyright (c) 2014-2022 dangered wolf, et al
+	Released under the MIT License
 */
 
 import { make, exists, getIpc } from "./Utils.js";
-import { mtdAlert } from "./UIAlert.js";
+import { UIAlert } from "./UIAlert.js";
 import { UIUpdateNotify } from "./UIUpdateNotify.js";
 import { AutoUpdateController } from "./AutoUpdateController.js";
 import { openSettings } from "./UISettings.js";
 import { buildContextMenu } from "./UIContextMenu.js";
 import { parseActions } from "./PrefHandler.js";
+import { parseConfig } from "./EnterpriseConfigParser.js";
+import { importTweetenSettings } from "./StorageTweetenImport.js";
 import { I18n } from "./I18n.js";
 
 let offlineNotification;
@@ -20,7 +23,7 @@ let offlineNotification;
 */
 
 function notifyUpdate() {
-	if (isDev) {
+	if (isDev || enterpriseConfig.disableUpdateNotification) {
 		return;
 	}
 	UIUpdateNotify();
@@ -88,6 +91,12 @@ export function mtdAppFunctions() {
 	});
 
 
+	ipcRenderer.on("enterpriseConfig", (e, config) => {
+		window.enterpriseConfig = config;
+		parseConfig(config);
+	});
+
+
 	ipcRenderer.on("inverted-color-scheme-changed", (e, enabled) => {
 		if (enabled && getPref("mtd_highcontrast") !== true) {
 			try {
@@ -129,13 +138,13 @@ export function mtdAppFunctions() {
 			}
 		}
 
-		if (!AutoUpdateController.isCheckingForUpdates) {
+		if (!AutoUpdateController.isCheckingForUpdates && window.enterpriseConfig.updatePolicy !== "disabled") {
 			ipcRenderer.send("checkForUpdates");
 		}
 	});
 
 	ipcRenderer.on("update-downloaded", (e,args) => {
-		if ($("#settings-modal[style='display: block;']>.mtd-settings-panel").length <= 0 && !html.hasClass("mtd-winstore") && !html.hasClass("mtd-macappstore")) {
+		if ($("#settings-modal[style='display: block;']>.mtd-settings-panel").length <= 0 && !html.hasClass("mtd-winstore") && !html.hasClass("mtd-flatpak") && !html.hasClass("mtd-macappstore")) {
 			notifyUpdate()
 		}
 	});
@@ -212,11 +221,11 @@ export function mtdAppFunctions() {
 			}
 		}
 
-		minimise.click((data,handler) => {
+		minimise.click(() => {
 			ipcRenderer.send("minimize");
 		});
 
-		maximise.click((data,handler) => {
+		maximise.click(() => {
 			ipcRenderer.send("maximizeButton");
 		});
 
@@ -227,10 +236,8 @@ export function mtdAppFunctions() {
 	}
 
 	ipcRenderer.on("context-menu", (event, p) => {
-		const electron = require("electron")
 		let theMenu = buildContextMenu(p);
-		let menu = electron.remote.menu;
-		let Menu = electron.remote.Menu;
+		let Menu = require("@electron/remote").Menu;
 
 		if (useNativeContextMenus || useSafeMode) {
 			Menu.buildFromTemplate(theMenu).popup();
@@ -242,10 +249,31 @@ export function mtdAppFunctions() {
 
 	})
 
+	ipcRenderer.on("failedOpenUrl", (event, p) => {
+		new UIAlert({
+			title:I18n("Failed to open link in browser"),
+			message:I18n("ModernDeck failed to open a link you clicked in the default browser.\n\n(Sometimes, this can be caused if you have the Twitter for Windows app installed)"),
+			buttonText:I18n("OK")
+		})
+	})
+
+	ipcRenderer.on("settingsReceived", (_, load) => {
+		console.log("settingsReceived");
+		store.store = load;
+		ipcRenderer.send("restartApp");
+	})
+
+	ipcRenderer.on("tweetenSettingsReceived", (_, load) => {
+		importTweetenSettings(load);
+		setTimeout(() => {
+			ipcRenderer.send("restartApp");
+		},500); // We wait to make sure that native TweetDeck settings have been propagated
+	})
+
 	const updateOnlineStatus = () => {
 
 		if (!navigator.onLine) {
-			notifyOffline();
+			// notifyOffline();
 		} else {
 			dismissOfflineNotification();
 		}

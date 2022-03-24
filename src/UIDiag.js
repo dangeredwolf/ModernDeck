@@ -1,15 +1,17 @@
 /*
 	UIDiag.js
-	Copyright (c) 2014-2020 dangered wolf, et al
-	Released under the MIT licence
+
+	Copyright (c) 2014-2022 dangered wolf, et al
+	Released under the MIT License
 */
 
 import buildId from "./buildId.js";
-import { isApp, make } from "./Utils.js";
+import { isApp, make, isEnterprise } from "./Utils.js";
 import { dumpPreferences } from "./StoragePreferences.js";
-import { settingsData } from "./DataSettings.js";
 import { version } from "../package.json";
 import { I18n } from "./I18n.js";
+import { UIAlert } from "./UIAlert.js";
+import { AsciiArtController } from "./AsciiArtController.js";
 
 /*
 	diag makes it easier for developers to narrow down user-reported bugs.
@@ -19,21 +21,33 @@ import { I18n } from "./I18n.js";
 export function diag() {
 	let log = "";
 
-	log += I18n("The following diagnostic report contains information about your version of ModernDeck.\
-	It contains a list of your preferences, but does not contain information related to your Twitter account(s).\
-	A ModernDeck developer may request a copy of this diagnostic report to help diagnose problems.\n\n");
+	log += "\nModernDeck " + version + " (Build "+ buildId +")";
 
-	log += "======= Begin ModernDeck Diagnostic Report =======\n\n";
+	log += "\n\nPlatform: ";
 
-	log += "\nModernDeck Version " + version + " (Build "+ buildId +")";
+	if (isApp) {
+		log += "Electron";
 
-	log += ("\nTD.buildID: " + ((TD && TD.buildID) ? TD.buildID : "[not set]"));
+		if (isEnterprise()) {
+			log += " (Enterprise)";
+		}
+		if (html.hasClass("mtd-winstore")) {
+			log += " (Microsoft Store)";
+		}
+		if (html.hasClass("mtd-flatpak")) {
+			log += " (Flatpak)";
+		}
+		if (html.hasClass("mtd-macappstore")) {
+			log += " (App Store)"
+		}
+		log += "\nOS: " + AsciiArtController.systemName() + "\nArchitecture: " + (process.arch === "x64" ? "amd64" : process.arch);
+	} else {
+		log += AsciiArtController.platformName();
+	}
+
+	log += ("\n\nTD.buildID: " + ((TD && TD.buildID) ? TD.buildID : "[not set]"));
 	log += ("\nTD.version: " + ((TD && TD.version) ? TD.version : "[not set]"));
 
-	log += "\nisDev: " + isDev;
-	log += "\nisApp: " + isApp;
-	log += "\nmtd-winstore: " + html.hasClass("mtd-winstore");
-	log += "\nmtd-macappstore: " + html.hasClass("mtd-macappstore");
 	log += "\nUser agent: " + navigator.userAgent;
 
 
@@ -48,21 +62,7 @@ export function diag() {
 
 	log += loadedExtensions.join(", ");
 
-	log += "\n\nLoaded external components:\n"
-
-
-	let loadedComponents = [];
-
-	$(".mtd-stylesheet-component").each((e) => {
-		loadedComponents[loadedComponents.length] =
-		$(".mtd-stylesheet-component")[e].href.match(/(([A-z0-9_\-])+\w+\.[A-z0-9]+)/g);
-	});
-
-	log += loadedComponents.join(", ");
-
 	log += "\n\nUser preferences: \n" + dumpPreferences();
-
-	log += "\n\n======= End ModernDeck Diagnostic Report =======\n";
 
 	console.log(log);
 
@@ -81,6 +81,8 @@ export function diag() {
 */
 
 export function showDiag(str) {
+
+	return new UIAlert({title:I18n("Diagnostics"), message:str.replace(/\n/g,"<br>")}).alertButton.remove()
 
 	mtdPrepareWindows();
 

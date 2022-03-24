@@ -1,15 +1,15 @@
 /*
 	paper.css
 
-	Copyright (c) 2014-2020 dangered wolf, et al
-	Released under the MIT Licence
+	Copyright (c) 2014-2022 dangered wolf, et al
+	Released under the MIT License
 */
 
 :root {
 	--primaryColor:#eee!important;
 	--secondaryColorBright:#eee!important;
-	--paperColor:#555!important;
-	--rootWhiteColor:#555!important;
+	--paperColor:#333!important;
+	--rootWhiteColor:#333!important;
 	--mdlPrimaryColor:#eee!important;
 	--pureWhite:#fff!important
 }
@@ -103,8 +103,16 @@ a.column-nav-link,.column-nav-item,.js-setting-list .list-link strong {
 	color:rgba(85,85,85,.75) !important
 }
 
+.is-new a.column-nav-link {
+	color:rgba(50,50,50,.75) !important
+}
+
 a .column-title-back .icon:after,.drawer-header:active .drawer-header-title .icon:after,.btn-back:after,.app-search-fake .icon:after,.mtd-drawer-button:active:after {
 	background:rgba(85,85,85,.2)!important
+}
+
+.is-new>.column-nav-updates.icon-dot {
+	background:rgb(50,50,50) !important
 }
 
 .spinner-layer,.spinner-default
@@ -121,9 +129,34 @@ a .column-title-back .icon:after,.drawer-header:active .drawer-header-title .ico
 }
 
 .mtd-settings-button {
-	background:#00CBE5!important
+	background:var(--secondaryColor)!important
 }
 
 .mdl-btn-media,.Notification-inner,.Notification-icon  {
 	color:var(--pureWhite)!important
+}
+
+.btn-options-tray:hover,.btn-options-tray:focus {
+	color:rgba(0,0,0,.8)
+}
+
+
+html:not(.os-osx) .antiscroll-scrollbar {
+	background:rgba(0,0,0,.2);
+}
+
+.windowcontrol.close:hover {
+	color:#fff!important
+}
+
+.btn-primary {
+	color:#fff!important
+}
+
+.pull-right>button.Button--primary:not(.tweet-button):not(.action-text):not(.more-tweets-btn):not(.js-add-column):not(.js-spinner-button)[data-action="retweet"] {
+	color:#fff!important
+}
+
+.column-nav-item .attribution {
+	color:rgba(0,0,0,.3)!important
 }

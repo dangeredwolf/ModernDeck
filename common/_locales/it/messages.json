@@ -4,7 +4,7 @@
 		"description": "Short description for the extension"
 	},
 	"launch": {
-		"message": "Launch ModernDeck",
+		"message": "Apri ModernDeck",
 		"description": "The ModernDeck Launcher button"
 	},
 	"name": {

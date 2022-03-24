@@ -1,8 +1,8 @@
 /*
 	icon.css
 
-	Copyright (c) 2014-2020 dangered wolf, et al
-	Released under the MIT Licence
+	Copyright (c) 2014-2022 dangered wolf, et al
+	Released under the MIT License
 */
 
 i {
@@ -18,6 +18,7 @@ i {
 .Icon:before,
 .search-input-control:before,
 .sprite-gif:before,
+.js-show-this-thread>p:before,
 .material-icon
 {
 	content:" ";
@@ -32,7 +33,12 @@ i {
 	font-feature-settings:"liga"
 }
 
-.icon:before,.Icon:before,.search-input-control:before,.sprite-gif:before {
+.icon:before,
+.Icon:before,
+.search-input-control:before,
+.js-show-this-thread>p:before,
+.sprite-gif:before
+{
 	font-weight:400;
 	font-family:Material
 }
@@ -60,6 +66,7 @@ a[data-action="undo-retweet"]:before,
 .dropdown-menu a[data-action="signOut"]:before,
 .icon-tweetdeck:before,
 .icon-moderndeck:before,
+.icon-sad-moderndeck:before,
 .icon-mtdmini:before,
 .icon-hashtag:before,
 .icon-settings:before,
@@ -156,6 +163,10 @@ a[data-action="undo-retweet"]:before,
 	content:"\f003"
 }
 
+.icon-sad-moderndeck:before {
+	content:"\f00a"
+}
+
 .icon-mtdmini:before {
 	content:"\f004"
 }
@@ -222,7 +233,7 @@ a[data-action="undo-retweet"]:before,
 	content:"\e87d"
 }
 
-.icon-mention:before,.Icon--mention:before {
+.js-show-this-thread>p:before,.icon-mention:before,.Icon--mention:before {
 	content:"\e0c9"
 }
 
@@ -357,7 +368,11 @@ input[type="radio"]:checked:before {
 }
 
 .is-new>.icon-dot:before {
-	content:"\e031"
+	content:"\e3fa"; /* \e031 */
+}
+
+.is-new>.icon-dot:before {
+	content:"";
 }
 
 .icon-user:before,.Icon--user:before {
@@ -794,7 +809,11 @@ span[data-testid="trendMovement"] .icon-pointer-d:before,span[data-testid="trend
 	font-family:MD!important
 }
 
-.dropdown-menu a[data-action="followOrUnfollow"]:before {
+.dropdown-menu a[data-action="unfollow"]:before {
+	content:"\e7f6"
+}
+
+.dropdown-menu a[data-action="followOrUnfollow"]:before, .dropdown-menu a[data-action="follow"]:before {
 	content:"\e7fe"
 }
 
@@ -887,4 +906,8 @@ span[data-testid="trendMovement"] .icon-pointer-d:before,span[data-testid="trend
 
 h2 i {
 	font-weight:400
+}
+
+.btn-options-tray i.icon-share {
+	font-size:20px!important
 }

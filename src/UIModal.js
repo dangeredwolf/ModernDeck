@@ -1,8 +1,11 @@
 /*
 	UIModal.js
-	Copyright (c) 2014-2020 dangered wolf, et al
-	Released under the MIT licence
+
+	Copyright (c) 2014-2022 dangered wolf, et al
+	Released under the MIT License
 */
+
+import { make } from "./Utils.js";
 
 export class UIModal {
 	modalRoot = "#settings-modal";
@@ -13,15 +16,29 @@ export class UIModal {
 	}
 
 	display() {
-		new TD.components.GlobalSettings;
 
-		$(this.modalRoot + ">.mdl").remove();
-		$(this.modalRoot).append(this.element);
+		console.log( $(this.modalRoot)[0])
+
+		if (typeof $(this.modalRoot)[0] !== "undefined") {
+			new TD.components.GlobalSettings;
+
+			$(this.modalRoot + ">.mdl").remove();
+			$(this.modalRoot).append(this.element);
+		} else {
+			mtdPrepareWindows();
+			$(".js-modals-container").append(
+				make("div").addClass("ovl mtd-login-overlay").attr("style","display: block;").append(this.element).click(event => {
+					if (event.currentTarget === event.target) {
+						mtdPrepareWindows();
+					}
+				})
+			);
+		}
 	}
 
 	dismiss() {
 		this.element.remove?.();
-		if (!this.sharedRoot) {
+		if (!this.sharedRoot && this.modalRoot !== ".login-container") {
 			$(this.modalRoot).attr("style","display: none;")
 		}
 	}

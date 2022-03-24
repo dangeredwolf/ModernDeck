@@ -1,7 +1,8 @@
 /*
 	Column.js
-	Copyright (c) 2014-2020 dangered wolf, et al
-	Released under the MIT licence
+
+	Copyright (c) 2014-2022 dangered wolf, et al
+	Released under the MIT License
 */
 
 import { getPref } from "./StoragePreferences.js"
@@ -44,4 +45,12 @@ export function updateColumnVisibility() {
 
 export function allColumnsVisible() {
 	$(".column-content:not(.mtd-example-column)").attr("style","display:block");
+}
+
+export function updateColumnTypes() {
+	TD.controller.columnManager.getAllOrdered().forEach(column => {
+		if (!!column && !!column.ui) {
+			$(`.js-column[data-column="${column.ui.state.columnKey}"]`).attr("data-mtd-column-type", column._feeds[0].state.type);
+		}
+	})
 }
