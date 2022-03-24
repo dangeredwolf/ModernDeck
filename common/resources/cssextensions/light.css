@@ -954,3 +954,7 @@ a.js-show-drawer.js-header-action.link-clean.cf.app-nav-tab.padding-h--10.paddin
 .js-item-launch>a {
 	color:#000!important
 }
+
+.application {
+	background:var(--primaryColor)!important
+}
