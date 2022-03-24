@@ -69,7 +69,7 @@ const userSpecificTypes = [
 const muteTypeAllowlist = [...nonUserSpecificsTypes, ...userSpecificTypes];
 
 function getInitialMuteCatches() {
-  const fromLocalStorage = getPref("mtd_ame_mute_catches", []).filter((c) => RMuteCatch.is(c));
+  const fromLocalStorage = (getPref("mtd_ame_mute_catches", []) || []).filter((c) => RMuteCatch.is(c));
   return new Map(fromLocalStorage);
 }
 
@@ -471,9 +471,9 @@ export const setupAME = () => {
   //);
 
   const filterKey = 'moderndeck_specific_tweet';
-  const filter = AmeFilters[filterKey];
+  const filter = (AmeFilters || [])[filterKey];
 
-  if (filter.options) {
+  if (filter?.options) {
     // TD.mustaches['menus/actions.mustache'] = TD.mustaches['menus/actions.mustache'].replace(
     //   '{{/isOwnChirp}}',
     //   `{{/isOwnChirp}}
