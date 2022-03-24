@@ -5,7 +5,7 @@
 
 ModernDeck is an app/extension running atop TweetDeck that brings a new, Material Design-inspired interface, as well as new customization features.
 
-![ModernDeck Screenshot](https://github.com/dangeredwolf/ModernDeck/raw/master/build/en_screenshot.png)
+![ModernDeck Screenshot](https://raw.githubusercontent.com/dangeredwolf/ModernDeck/master/docs/img/ReadmeScreenshot.png)
 
 ModernDeck is designed by dangeredwolf and released under the MIT License.
 
