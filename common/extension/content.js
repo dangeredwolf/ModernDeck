@@ -14,11 +14,21 @@ console.log("Injecting moderndeck.css");
 
 if (document.querySelector(`[rel="manifest"]`) === null) {
 
+	document.querySelector("link[rel=\"stylesheet\"]").remove();
+
 	var injStyles = document.createElement("link");
 	injStyles.rel = "stylesheet";
 	injStyles.href = browser.extension.getURL("resources/moderndeck.css");
 
 	document.head.appendChild(injStyles);
+
+	// Gross hack for 9.4 because modenrdeck.css is not being loaded
+
+	var injStyles2 = document.createElement("link");
+	injStyles2.rel = "stylesheet";
+	injStyles2.href = browser.extension.getURL("resources/moderndeck.css");
+
+	document.head.appendChild(injStyles2);
 
 	var injectScript2 = document.createElement("script");
 	injectScript2.src = browser.extension.getURL("resources/libraries/moduleraid.min.js");

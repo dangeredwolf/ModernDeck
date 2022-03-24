@@ -10,7 +10,7 @@ import { getPref, setPref } from "./StoragePreferences";
 import { make } from "./Utils";
 
 export default class NFTActionQueue {
-	queue = getPref("mtd_nftActionQueue", []);
+	queue = getPref("mtd_nftActionQueue", []) || [];
 	recentMutes = [];
 	isThreadRunning = false;
 	enableNotifications = getPref("mtd_nftNotify", true);
