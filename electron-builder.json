@@ -77,7 +77,7 @@
 			"github"
 		],
 		"icon": "build/icons/macOS Big Sur.png",
-		"artifactName": "${productName}-${arch}.${ext}",
+		"artifactName": "${productName}-universal.${ext}",
 		"minimumSystemVersion": "10.11.0",
 		"darkModeSupport": true,
 		"hardenedRuntime": true,
@@ -89,8 +89,7 @@
 			{
 				"target": "dmg",
 				"arch": [
-					"x64",
-					"arm64"
+					"universal"
 				]
 			},
 			{
@@ -101,8 +100,7 @@
 			{
 				"target": "zip",
 				"arch": [
-					"x64",
-					"arm64"
+					"universal"
 				]
 			}
 		]
