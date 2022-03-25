@@ -3,7 +3,9 @@
 [![Build Status](https://travis-ci.org/dangeredwolf/ModernDeck.svg?branch=master)](https://travis-ci.org/dangeredwolf/ModernDeck)
 [![Crowdin](https://badges.crowdin.net/tweetdeck/localized.svg)](https://translate.moderndeck.org/project/tweetdeck)
 
-ModernDeck is an app/extension running atop TweetDeck that brings a new, Material Design-inspired interface, as well as new customization features.
+ModernDeck takes TweetDeck to the next level with a Material-inspired theme, customization and performance enhancements, and more. Available as a desktop app or a browser extension.
+
+[![Flathub](https://github.com/dangeredwolf/ModernDeck/raw/master/docs/img/Flathub.png)](https://flathub.org/apps/details/com.dangeredwolf.ModernDeck) [![Chrome Web Store](https://github.com/dangeredwolf/ModernDeck/blob/master/docs/img/ChromeWebStore.png)](https://chrome.google.com/webstore/detail/moderndeck-twitter-client/pbpfgdgddpnbjcbpofmdanfbbigocklj) [![Firefox Addons](https://github.com/dangeredwolf/ModernDeck/raw/master/docs/img/FirefoxAddon.png)](https://addons.mozilla.org/en-US/firefox/addon/moderndeck/)
 
 ![ModernDeck Screenshot](https://raw.githubusercontent.com/dangeredwolf/ModernDeck/master/docs/img/ReadmeScreenshot.png)
 
@@ -15,16 +17,14 @@ ModernDeck is designed by dangeredwolf and released under the MIT License.
 
 ### Dependencies
 
-To build ModernDeck, you need to first install Node.js (which comes with npm) and git if you don't have it installed already
-
-ℹ *ModernDeck is tested against the Node 16. It will probably work fine on Node 12+*
+Building ModernDeck requires Node.js. ModernDeck is currently built on Node 17 but anything Node 14 and later will likely work fine.
 
 
 #### Windows
 
-For Windows, [you can download Node.js here](https://nodejs.org/en/)
+To build on Windows, get [Node.js](https://nodejs.org/en/) and [Git](https://git-scm.com/download/win).
 
-⚠ *On Windows, you will need to download git if you haven't yet already. You can either [download just git itself](https://git-scm.com/download/win), or [download GitHub's Windows client](https://desktop.github.com/), which also includes git and other tools, even if you don't use the GUI portion.*
+
 
 
 #### macOS
@@ -33,35 +33,33 @@ For macOS, you can install the necessary packages using [Homebrew](https://brew.
 
 `brew install git node`
 
-ℹ *Xcode Command Line Tools also include git. If you already have it, you can remove "git" from the command.*
-
-❓ *[Alternatively, you can also install nodejs using the .pkg installer](https://nodejs.org/en/)*
+Alternatively you can get Node from [here](https://nodejs.org/en/) and use Xcode Command Line Tools's built-in Git.
 
 
 
 #### Linux
 
-On Linux, it varies depending on your distribution. If you're using Ubuntu or Debian, you just need to run:
+On Linux, it varies depending on your distribution. Here's some popular examples:
 
-`sudo apt install git nodejs`
+`sudo apt install git nodejs` (Debian / Ubuntu-based)
+
+`sudo pacman -S git nodejs` (Arch-based)
+
+`sudo dnf install nodejs` (Fedora-based)
 
 
 
 ### Checking out
 
-You'll want to use your Terminal (macOS and Linux) or PowerShell (Windows) for this.
+Clone the repository in your terminal of choice.
 
-First, of course, `cd` into a directory where you want to clone the source to.
+`git clone https://github.com/dangeredwolf/ModernDeck.git && cd ModernDeck`
 
-Next, clone the git.
-
-`git clone https://github.com/dangeredwolf/ModernDeck.git`
-
-Finally, install all the necessary NPM dependencies
+Finally, install all the necessary NPM dependencies.
 
 `npm install`
 
-ℹ *This may take several minutes*
+ℹ This'll take a few minutes, especially on slower internet connections.
 
 
 
@@ -95,14 +93,16 @@ If you want to create the proper installers, you can run:
 `npm run buildLinux`
 ...to build for Linux
 
-[Click here for more information about electron-builder](https://www.electron.build/)*
-
 ModernDeck also includes `build.bat` for Windows.
-It requires Windows 10 or Windows Server 2019, with WSL installed (including wsl.exe), with the proper tools (node, npm) installed on both WSL and Windows.
+It requires Windows 10/Windows Server 2019 or later, with WSL installed (including wsl.exe), with the proper tools (node, npm) installed on both WSL and Windows. This makes it very quick to build for every platform, including extension, except macOS, particularly because it doesn't require the electron build server.
 
-This makes it very quick to build for every platform, including extension, except macOS, particularly because it doesn't require the electron build server.
 
-⚠ *Building for macOS requires running under macOS. Under macOS, you can build for Windows, macOS, and Linux. Under both Linux and Windows, you can build for both Linux and Windows. (Windows requires WSL, see above)*
+
+
+⚠ Building for macOS requires running under macOS. Under macOS, you can build for Windows, macOS, and Linux. Under both Linux and Windows, you can build for both Linux and Windows. (Windows requires WSL, see above)
+
+
+
 
 ### Building the browser extension
 
@@ -116,6 +116,8 @@ This will transpile ModernDeck source and dependencies into a single moderndeck.
 
 To test the extension, you'll want to load the unpacked extension. This, of course, varies by browser.
 
+
+### Testing the browser extension
 
 #### Chrome
 
@@ -166,9 +168,10 @@ Select *ModernDeck/common* and click Select Folder
 
 ## Building Extension for Release
 
-Run `npm install && node build/build.js` from the root ModernDeck directory. The corresponding ZIPs will appear in the dist folder
+Run `node build/build.js` from the root ModernDeck directory. The corresponding ZIPs will appear in the dist folder.
 
 ## ❓ Problems or questions?
 
-Don't hesitate to ask!
-[twitter@dangeredwolf](https://twitter.com/dangeredwolf), [twitter@ModernDeck](https://twitter.com/ModernDeck), or [telegram@dangeredwolf](https://t.me/dangeredwolf)
+Don't hesitate to ask: [@dangeredwolf on Twitter](https://twitter.com/dangeredwolf), [@ModernDeck on Twitter](https://twitter.com/ModernDeck)
+
+If you think you found an issue with ModernDeck, please open up an issue on GitHub.
