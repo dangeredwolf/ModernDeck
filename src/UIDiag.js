@@ -81,19 +81,5 @@ export function diag() {
 */
 
 export function showDiag(str) {
-
 	return new UIAlert({title:I18n("Diagnostics"), message:str.replace(/\n/g,"<br>")}).alertButton.remove()
-
-	mtdPrepareWindows();
-
-	let diagText = make("p").addClass('mtd-diag-text').html(str.replace(/\n/g,"<br>"));
-	let container = make("div").addClass("mtd-settings-inner mtd-diag-inner scroll-v").append(diagText);
-	let panel = make("div").addClass("mdl mtd-settings-panel").append(container);
-
-	new TD.components.GlobalSettings;
-
-	$("#settings-modal>.mdl").remove();
-	$("#settings-modal").append(panel);
-
-	return panel;
 }

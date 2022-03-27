@@ -310,12 +310,12 @@ function mtdInit() {
 		document.getElementsByTagName("body")[0].style = "background: #111";
 
 		if (typeof mtdLoadStyleCSS === "undefined") {
-			mtdLoadStyleCSS = `
+			const mtdLoadStyleCSS = `
 				img.spinner-centered {
 					display:none!important
 				}
 			`
-			mtdLoadStyle = document.createElement("style");
+			const mtdLoadStyle = document.createElement("style");
 			mtdLoadStyle.appendChild(document.createTextNode(mtdLoadStyleCSS))
 			document.head.appendChild(mtdLoadStyle);
 		}

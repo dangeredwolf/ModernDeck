@@ -9,7 +9,7 @@ import buildId from "./buildId.js";
 
 // Side effect of the build process: This is loaded first, so to compensate, we put this here
 window.ModernDeck = {
-	version:9.1
+	version:9.5
 };
 
 const isEnterprise = function() {
