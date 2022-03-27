@@ -72,7 +72,7 @@
 		"rollup-plugin-terser": "^7.0.2"
 	},
 	"optionalDependencies": {
-		"electron-builder-notarize": "^1.2.0",
+		"electron-builder-notarize": "^1.4.0",
 		"stylelint": "^14.2.0",
 		"stylelint-config-recommended": "^6.0.0"
 	},
