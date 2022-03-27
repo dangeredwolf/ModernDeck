@@ -14,14 +14,10 @@ import { I18n } from "./I18n.js";
 import { AutoUpdateController } from "./AutoUpdateController.js";
 import { diag } from "./UIDiag.js"; 
 
-let verTextId = 1;
+let verTextId = 2;
 let verText = "";
 
 let productName = "ModernDeck";
-
-// if (isEnterprise()) {
-// 	productName = "ModernDeck for Enterprise"
-// }
 
 function internationaliseSettingString(str) {
 	let matches = str.match(/{{.+?}}/g);

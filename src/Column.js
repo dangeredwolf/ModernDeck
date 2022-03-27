@@ -25,7 +25,7 @@ export function getColumnNumber(col) {
 
 export function updateColumnVisibility() {
 
-	if (getPref("mtd_column_visibility") === false || isInWelcome) {
+	if (getPref("mtd_column_visibility") === false) {
 		return allColumnsVisible()
 	}
 
