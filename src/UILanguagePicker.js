@@ -46,6 +46,7 @@ export class UILanguagePicker extends UIModal {
 			make("option").val("it").html("italiano"),
 			make("option").val("zh_CN").html("简体中文"),
 			make("option").val("ja").html("日本語"),
+			make("option").val("hu").html("Magyar"),
 			make("option").val("no").html("norsk"),
 			make("option").val("pl").html("Polskie"),
 			make("option").val("pt_BR").html("Português (Brasil)"),
