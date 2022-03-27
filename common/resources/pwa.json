@@ -4,6 +4,6 @@
 	"theme_color": "#263238",
 	"background_color": "#263238",
 	"display": "minimal-ui",
-	"scope": "/",
-	"start_url": "/"
+	"scope": "https://tweetdeck.twitter.com/",
+	"start_url": "https://tweetdeck.twitter.com/"
 }

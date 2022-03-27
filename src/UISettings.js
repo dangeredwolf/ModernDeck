@@ -12,6 +12,7 @@ import { hasPref, getPref, setPref } from "./StoragePreferences.js";
 import { parseActions } from "./PrefHandler.js";
 import { I18n } from "./I18n.js";
 import { AutoUpdateController } from "./AutoUpdateController.js";
+import { diag } from "./UIDiag.js"; 
 
 let verTextId = 1;
 let verText = "";
@@ -588,11 +589,11 @@ export function openSettings(openMenu, limitedMenu) {
 				console.log(diagClickNumber);
 				if (diagClickNumber >= 5) {
 					diagClickNumber = 0;
-					window.diag();
+					diag();
 				}
 			});
 
-			let h1 = make("h1").addClass("mtd-about-title").html(productName + `<span>${isEnterprise() ? "" : ""}</span>`);
+			let h1 = make("h1").addClass("mtd-about-title").html(productName);
 			let h2 = make("h2").addClass("mtd-version-title").html(verText + " " + SystemVersion + I18n(" (Build ") + buildId + ")");
 			let logoCont = make("div").addClass("mtd-logo-container");
 
@@ -877,3 +878,5 @@ function updateFilterPanel(filterList) {
 
 	return filterList;
 }
+
+window.renderTab = renderTab;

@@ -24,7 +24,7 @@
 		"description": "A title about granting tabs permission in Firefox"
 	},
 	"needsPermissionParagraph": {
-		"message": "Для создания новых вкладок ModernDeck требуется соответствующее разрешение от Firefox.<br><br>\nЭто необязательно, и требуется только для запуска. Вы все еще можете получить доступ к ModernDeck по <a href=\"https://tweetdeck.twitter.com\" target=\"_blank\">tweetdeck.twitter.com</a> даже без этого разрешения.<br><br>\nЕсли вы нехотите предоставлять эти права, вы можете удалить кнопку в лаунчере, щелкнув правой кнопкой мыши и выбрав <i>Удалить из панели инструментов</i><br><br>\n<b>ModernDeck не следит за вашими открытыми вкладками.</b>",
+		"message": "Для создания новых вкладок ModernDeck требуется соответствующее разрешение от Firefox.<br><br>\nЭто необязательно, и требуется только для запуска. Вы все еще можете получить доступ к ModernDeck на <a href=\"https://tweetdeck.twitter.com\" target=\"_blank\">tweetdeck.twitter.com</a>, даже без этого разрешения.<br><br>\nЕсли вы нехотите предоставлять эти права, вы можете удалить кнопку в лаунчере, щелкнув правой кнопкой мыши и выбрав <i>Удалить из панели инструментов</i><br><br>\n<b>ModernDeck не следит за вашими открытыми вкладками.</b>",
 		"description": "A description about granting tabs permission in Firefox"
 	}
 }

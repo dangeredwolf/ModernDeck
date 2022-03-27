@@ -97,12 +97,12 @@ export let _welcomeData = {
 				${I18n("Paperwhite")}
 			</label>
 			<label class="fixed-width-label radio">
-			<input type="radio" name="theme" id="mtd_welcome_dark" value="dark">
+			<input type="radio" name="theme" id="mtd_welcome_darker" value="darker">
 				${I18n("Dark")}
 			</label>
 			<label class="fixed-width-label radio">
-			<input type="radio" name="theme" id="mtd_welcome_darker" value="darker">
-				${I18n("Darker")}
+			<input type="radio" name="theme" id="mtd_welcome_dark" value="dark">
+				${I18n("Material Dark")}
 			</label>
 			<label class="fixed-width-label radio">
 			<input type="radio" name="theme" id="mtd_welcome_amoled" value="amoled">

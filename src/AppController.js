@@ -75,7 +75,7 @@ export function mtdAppFunctions() {
 	const { remote, ipcRenderer } = require("electron");
 
 	const Store = require("electron-store");
-	store = new Store({name:"mtdsettings"});
+	let store = new Store({name:"mtdsettings"});
 
 
 	// Enable high contrast if system is set to high contrast
