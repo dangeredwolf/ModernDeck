@@ -24,6 +24,7 @@ gledos<br>
 Bandie<br>
 <a href="https://twitter.com/cmdrfletcher" rel="user" target="_blank">cmdrfletcher</a><br>
 <a href="https://twitter.com/EpicLPer" rel="user" target="_blank">EpicLPer</a><br>
+Luke (Iguenth)<br>
 <a href="https://twitter.com/hamburgator" rel="user" target="_blank">Planke</a><br>
 <a href="https://twitter.com/FLUFFSQUEAKER" rel="user" target="_blank">milanmat-fluffsqueaker</a><br>
 <a href="https://twitter.com/ItsJustMirko" rel="user" target="_blank">Mirko</a><br>
@@ -53,6 +54,7 @@ TAKAHASHI Shuuji<br>
 <a href="https://twitter.com/embraser01" rel="user" target="_blank">embraser01</a><br>
 <a href="https://twitter.com/Fenrykos" rel="user" target="_blank">Fenrykos</a><br>
 <a href="https://twitter.com/MuraseEtienne" rel="user" target="_blank">Étienne Murase</a><br>
+Kevin Tissier<br>
 <a href="https://twitter.com/Meylody_" rel="user" target="_blank">Mélodie</a><br>
 <a href="https://twitter.com/Nintenloup_Wolf" rel="user" target="_blank">Nintenloup</a><br>
 <a href="https://twitter.com/robot275" rel="user" target="_blank">Robot275</a><br>
@@ -76,7 +78,11 @@ Lastorder<br>
 <a href="https://twitter.com/jptjohnny" rel="user" target="_blank">JPTJohnny</a><br>
 
 <br><b>italiano</b><br>
+<a href="https://twitter.com/controdestre" rel="user" target="_blank">controdestre</a><br>
 <a href="https://twitter.com/hamburgator" rel="user" target="_blank">Planke</a><br>
+
+<br><b>magyar</b><br>
+<a href="https://twitter.com/miklos_akos" rel="user" target="_blank">Miklós Ákos</a><br>
 
 <br><b>norsk</b><br>
 <a href="https://twitter.com/ShiftTGC" rel="user" target="_blank">ShiftTGC</a><br>
