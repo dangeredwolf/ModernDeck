@@ -74,7 +74,7 @@
 	"optionalDependencies": {
 		"electron-builder-notarize": "^1.2.0",
 		"stylelint": "^14.2.0",
-		"stylelint-config-recommended": "^6.0.0"
+		"stylelint-config-recommended": "^7.0.0"
 	},
 	"stylelint": {
 		"extends": "stylelint-config-recommended"
