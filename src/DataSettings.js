@@ -128,15 +128,15 @@ export let settingsData = {
 					darkThemes:{
 						name:"{{Dark Themes}}",
 						children:{
-							dark:{value:"dark",text:"{{Dark}}"},
-							darker:{value:"darker",text:"{{Darker}}"},
-							amoled:{value:"amoled",text:"{{AMOLED}}"}
+							darker:{value:"darker",text:"{{Dark}}"},
+							dark:{value:"dark",text:"{{Material Dark}}"},
+							amoled:{value:"amoled",text:"{{AMOLED}}"},
 						}
 					},
 					// custom:{value:"custom",text:"{{Custom...}}"}
 				},
 				settingsKey:"mtd_theme",
-				default:() => TD.settings.getTheme()
+				default:() => TD.settings.getTheme() === "dark" ? "darker" : "light"
 			},
 			themeColor:{
 				title:"{{Theme Color}}",
