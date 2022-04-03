@@ -32,7 +32,7 @@ export class UILanguagePicker extends UIModal {
 			make("option").val("bg").html("български"),
 			make("option").val("cs").html("čeština"),
 			make("option").val("de").html("Deutsche"),
-			make("option").val("et").html("Eesti"),
+			make("option").val("et").html("eesti"),
 			make("option").val("en_CA").html("English (Canada)"),
 			make("option").val("en_GB").html("English (United Kingdom)"),
 			make("option").val("en_US").html("English (United States)"),
@@ -42,18 +42,20 @@ export class UILanguagePicker extends UIModal {
 			make("option").val("fr_CA").html("Français (Canada)"),
 			make("option").val("fr_FR").html("Français (France)"),
 			make("option").val("ko").html("한국어"),
-			make("option").val("hr").html("Hrvatski"),
+			// make("option").val("hr").html("hrvatski"), // Language is not complete enough yet
 			make("option").val("it").html("italiano"),
-			make("option").val("zh_CN").html("简体中文"),
+			make("option").val("hu").html("magyar"),
 			make("option").val("ja").html("日本語"),
-			make("option").val("hu").html("Magyar"),
 			make("option").val("no").html("norsk"),
-			make("option").val("pl").html("Polskie"),
+			make("option").val("pl").html("polski"),
+			// make("option").val("pt").html("Português"), // Language is not complete enough yet
 			make("option").val("pt_BR").html("Português (Brasil)"),
 			make("option").val("ru").html("русский"),
 			make("option").val("sl").html("Slovenščina"),
-			make("option").val("si").html("සිංහල"),
-			make("option").val("uk").html("Українська")
+			// make("option").val("si").html("සිංහල"), // Language is not complete enough
+			make("option").val("uk").html("українська"),
+			make("option").val("zh_CN").html("中文（简体）"),
+			make("option").val("zh_TW").html("中文（繁體）"),
 		).change(() => {
 			this.alertTitle.html("<i class='material-icon'>language</i> " + (languageData.Language[this.selectLanguage.val()] || languageData.Language[this.selectLanguage.val().substr(0,2)] || "Language"));
 
