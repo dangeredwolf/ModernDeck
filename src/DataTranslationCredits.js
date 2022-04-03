@@ -18,12 +18,17 @@ vancho1<br>
 gledos<br>
 <a href="https://twitter.com/hugoalhofficial" rel="user" target="_blank">hugoalh</a><br>
 <a href="https://twitter.com/jeff7262" rel="user" target="_blank">JeffW</a><br>
+<a href="https://twitter.com/MapleDeerest" rel="user" target="_blank">Maple</a><br>
 <a href="https://twitter.com/snow370208" rel="user" target="_blank">楊穆承 (snow370208)</a><br>
+
+<br><b>dansk</b><br>
+<a href="https://twitter.com/Flamey_Fox" rel="user" target="_blank">FlameyFox</a><br>
 
 <br><b>Deutsche</b><br>
 Bandie<br>
 <a href="https://twitter.com/cmdrfletcher" rel="user" target="_blank">cmdrfletcher</a><br>
 <a href="https://twitter.com/EpicLPer" rel="user" target="_blank">EpicLPer</a><br>
+<a href="https://twitter.com/__Linx" rel="user" target="_blank">__Linx</a><br>
 Luke (Iguenth)<br>
 <a href="https://twitter.com/hamburgator" rel="user" target="_blank">Planke</a><br>
 <a href="https://twitter.com/FLUFFSQUEAKER" rel="user" target="_blank">milanmat-fluffsqueaker</a><br>
@@ -60,11 +65,12 @@ Kevin Tissier<br>
 <a href="https://twitter.com/robot275" rel="user" target="_blank">Robot275</a><br>
 <a href="https://twitter.com/ShadyFennec" rel="user" target="_blank">ShadyFennec</a><br>
 <a href="https://twitter.com/Siphonay" rel="user" target="_blank">Siphonay</a><br>
+utf<br>
 <a href="https://twitter.com/Yakonche" rel="user" target="_blank">Yakonche</a><br>
 
 <br><b>日本語</b><br>
 <a href="https://twitter.com/hideki_0403" rel="user" target="_blank">ゆきねこ (hideki_0403)</a><br>
-<a href="https://twitter.com/MapleTheDeer" rel="user" target="_blank">Maple</a><br>
+<a href="https://twitter.com/MapleDeerest" rel="user" target="_blank">Maple</a><br>
 NiiG4m3s<br>
 pukutaaang<br>
 <a href="https://twitter.com/strayedwave" rel="user" target="_blank">strayedwave</a><br>
