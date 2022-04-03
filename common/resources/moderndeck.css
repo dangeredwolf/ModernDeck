@@ -2057,7 +2057,7 @@ a .column-title-back .icon:after {
 .media-item {
 	width: 100%;
 	height: auto;
-	min-height: 70px;
+	min-height: 30px;
 	position: relative;
 	display: block;
 	transition: 0.3s all;
@@ -5162,7 +5162,7 @@ input[type="checkbox"]:active {
 }
 
 .media-img {
-	max-width: 100% !important;
+	/* max-width: 100% !important; */
 	/* min-width:100px;
 	min-height:100px */
 }
@@ -9922,3 +9922,8 @@ html:not(.mtd-classic-nav) .js-hide-drawer[data-title="Accounts"]:after {
 .mtd-app-mac .drawer[data-drawer="accountSettings"] {
 	top: 0!important
 }
+
+.med-embeditem>.l-table {
+	height:100%
+}
+
