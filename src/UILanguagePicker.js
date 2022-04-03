@@ -64,9 +64,18 @@ export class UILanguagePicker extends UIModal {
 			this.alertButton.html(languageData.OK[this.selectLanguage.val()] || languageData.OK[this.selectLanguage.val().substr(0,2)] || "OK");
 			this.alertButton.removeClass("hidden");
 
-			this.inaccuracy.html(((DataI18n[this.selectLanguage.val().substr(0,2)] && DataI18n[this.selectLanguage.val().substr(0,2)]["Translations may be incomplete or inaccurate."] ? DataI18n[this.selectLanguage.val().substr(0,2)]["Translations may be incomplete or inaccurate."] : (inaccuraciesCodeTable[this.selectLanguage.val().substr(0,2)] || inaccuraciesCodeTable["en"]) ))+ " <a href='https://translate.moderndeck.org'>translate.moderndeck.org</a>")
-		});
+			let langCode = DataI18n[this.selectLanguage.val()];
+			let langCodeBase = DataI18n[this.selectLanguage.val()].substr(0,2);
+			const footer = " <a href='https://translate.moderndeck.org'>translate.moderndeck.org</a>";
 
+			if (typeof langCode !== "undefined" && langCode["Translations may be incomplete or inaccurate."]) {
+				this.inaccuracy.html(langCode["Translations may be incomplete or inaccurate."] + footer);
+			} else if (typeof langCodeBase !== "undefined" && langCodeBase["Translations may be incomplete or inaccurate."] === false) {
+				this.inaccuracy.html(langCodeBase["Translations may be incomplete or inaccurate."] + footer);
+			} else {
+				this.inaccuracy.html(inaccuraciesCodeTable[this.selectLanguage.val().substr(0,2)] || inaccuraciesCodeTable["en"]["Translations may be incomplete or inaccurate."] + footer);
+			}
+		});
 
 		setTimeout(() => {
 			let mainLang = $("#mtd_language_select>option[value=\"" + navigator.language.substr(0,2) + "\"]");

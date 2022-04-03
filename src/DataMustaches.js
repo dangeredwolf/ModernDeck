@@ -14,7 +14,7 @@ export const _newLoginPage = `<div class="app-signin-wrap mtd-signin-wrap">
 	<div class="js-signin-ui app-signin-form pin-top pin-right txt-weight-normal">
 		<section class="js-login-form form-login startflow-panel-rounded" data-auth-type="twitter">
 			<h2 class="form-legend padding-axl">
-				Good evening!
+				Good evening
 			</h2>
 			<h3 class="form-legend padding-axl">
 				${I18n("Welcome to ModernDeck")}

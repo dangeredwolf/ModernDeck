@@ -14,7 +14,7 @@ import { getPref } from "./StoragePreferences.js";
 let ugltStarted = false;
 window.loginIntervalTick = 0;
 
-// Updates the "Good morning!" / "Good afternoon!" / "Good evening!"
+// Updates the "Good morning" / "Good afternoon" / "Good evening"
 // text on the login screen every once in a while (10s, ish)
 
 function startUpdateGoodLoginText() {

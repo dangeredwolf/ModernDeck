@@ -606,7 +606,7 @@ export let settingsData = {
 				}
 			},
 			nftSubtext: {
-				label: "{{Some things to keep in mind}}<br><br>- {{At the moment, due to Twitter API limits, actions don't work against users on Search columns.}}<br>- {{If you are using the mute or block actions, a queue is used if there are multiple accounts to deal with due to API and website constraints.}}<br>- {{Turning off this feature won't unblock or unmute anyone on the server, but their tweets will no longer be automatically hidden in ModernDeck.}}<br>- {{This setting only applies to NFT users that linked their NFTs directly on Twitter.}}",
+				label: "{{Some things to keep in mind}}<br><br>- {{At the moment, due to Twitter API limits, actions don't work against users on Search columns.}}<br>- {{If you are using the mute or block actions, a queue is used if there are multiple accounts to deal with due to API and website constraints.}}<br>- {{Turning off this feature won't unblock or unmute anyone on Twitter, but in the future actions will no longer be taken.}}<br>- {{This setting only applies to NFT users that linked their NFTs directly on Twitter.}}",
 				type:"subtext"
 			},
 			nftDontBlockFollowing:{

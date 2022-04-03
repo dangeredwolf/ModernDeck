@@ -110,6 +110,6 @@ export default {
 	xh:"Iitolikhi zinokungaphelelanga okanye zichanekile.",
 	yi:"איבערזעצונגען קען זיין דערענדיקט אָדער ומפּינקטלעך.",
 	yo:"Awọn iwe-itumọ le pe tabi aiṣe-deede.",
-	zh:"翻译可能不完整或不准确。",
+	zh:"翻译内容可能不完整或不准确。",
 	zu:"Ukuhumusha kungenzeka kungapheleli noma kungalungile.",
 }
