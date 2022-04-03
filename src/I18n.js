@@ -34,7 +34,18 @@ if (window.ModernDeck) {
 
 export const getFullLanguage = () => langFull;
 export const getMainLanguage = () => langRoot;
-export const getFallbackLanguage = () => "en_US";
+export const getFallbackLanguage = () => {
+	switch(langRoot) {
+		case "zh":
+			return "zh_CN";
+		case "fr":
+			return "fr";
+		case "pt":
+			return "pt_BR";
+		default:
+			return "en_US";
+	}
+};
 
 
 const mustachePatches = {
