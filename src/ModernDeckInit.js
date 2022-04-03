@@ -85,11 +85,11 @@ window.html = undefined;
 let mtdStarted = new Date();
 
 if (mtdStarted.getHours() < 12) { // 12:00 / 12:00pm
-	newLoginPage = newLoginPage.replace("Good evening!",I18n("Good morning!"));
+	newLoginPage = newLoginPage.replace("Good evening",I18n("Good morning"));
 } else if (mtdStarted.getHours() < 18) { // 18:00 / 6:00pm
-	newLoginPage = newLoginPage.replace("Good evening!",I18n("Good afternoon!"));
+	newLoginPage = newLoginPage.replace("Good evening",I18n("Good afternoon"));
 } else {
-	newLoginPage = newLoginPage.replace("Good evening!",I18n("Good evening!"));
+	newLoginPage = newLoginPage.replace("Good evening",I18n("Good evening"));
 }
 
 

@@ -46,11 +46,11 @@ function startUpdateGoodLoginText() {
 		let newDate = new Date();
 
 		if (newDate.getHours() < 12) {
-			text = I18n("Good morning!");
+			text = I18n("Good morning");
 		} else if (newDate.getHours() < 18) {
-			text = I18n("Good afternoon!");
+			text = I18n("Good afternoon");
 		} else {
-			text = I18n("Good evening!");
+			text = I18n("Good evening");
 		}
 
 		$(".form-login h2").html(text);
