@@ -560,7 +560,7 @@ html body .mtd-settings-subpanel button {
 	float:none;
 	margin-top:50px;
 	box-shadow:0 3px 7px var(--composeShadow);
-	padding:11px;
+	padding:8px 14px;
 	border-radius:4px;
 	transition:background 0.2s var(--animationTiming),transform 0.25s var(--animationTiming)!important
 }

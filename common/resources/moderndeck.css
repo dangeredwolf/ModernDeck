@@ -9663,7 +9663,7 @@ a {
 	position: relative;
 	margin: 0 auto !important;
 	text-align: left;
-	border-radius: 2px;
+	border-radius: 5px;
 	min-height: 525px;
 	max-height: 707px;
 	-webkit-app-region: no-drag

@@ -23,10 +23,10 @@
 	--avatarActiveShadow:#506269 !important;
 	--genericDropShadow:#47575f !important;
 	--modalDropShadow:#344248 !important;
-	--genericBlackShadow:rgba(52,66,72,0.25) !important;
-	--genericBlack15Shadow:rgba(52,66,72,.15) !important;
-	--genericDarkBlackShadow:rgba(52,66,72,.5) !important;
-	--genericLightBlackShadow:rgba(52,66,72,.1) !important;
+	--genericBlackShadow:rgb(16 20 22 / 25%) !important;
+	--genericBlack15Shadow:rgb(15 19 20 / 15%) !important;
+	--genericDarkBlackShadow:rgb(20 25 27 / 50%) !important;
+	--genericLightBlackShadow:rgb(22 27 30 / 10%) !important;
 	--settingsTabColor:#000 !important
 }
 
@@ -45,4 +45,14 @@ div.drawer[data-drawer="compose"],.hide-detail-view-inline .tweet-button:not(.js
 .text-like-keyboard-key {
 	background:#333;
 	box-shadow:0 3px 5px rgba(50,50,50,.5)
+}
+
+.mdl,
+.Modal,
+.DrawerModal {
+	box-shadow: 0 3px 5px var(--modalDropShadow);
+}
+
+.mtd-nav-drawer {
+    box-shadow: 0 5px 10px var(--avatarHoverShadow);
 }
