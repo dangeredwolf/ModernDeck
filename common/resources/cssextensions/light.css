@@ -43,7 +43,7 @@
 	--altTweetActionColor:rgba(149,175,191,.52);
 	--deepShadowColor:rgba(0,0,0,.25);
 	--materialSplashColor:rgba(0,0,0,.1);
-	--mdlPrimaryColor:#29B6F6;
+	--mdlPrimaryColor:var(--primaryColor);
 	--columnAlt:rgba(255,255,255,.7);
 	--settingsTabColor:#f0f0f0
 }

@@ -5,11 +5,17 @@
 	Released under the MIT License
 */
 
-.light:root {
-	--primaryColor:#FFC107 !important
+.mtd-light:root {
+	--primaryColor:#dfa700 !important;
+	--secondaryColor:#deb847 !important;
+	--secondaryColorBright:#d6a410 !important;
+	--selectionBackgroundColor:rgba(214,164,16,.57) !important;
+	--secondaryColorAlt:#deb847;
+	--secondaryColorPress:#FFC107;
+	--secondaryColorDeep:#c0981e
 }
 
-.dark:root {
+.mtd-dark:root {
 	--secondaryColor:#d6a410 !important;
 	--secondaryColorBright:#d6a410 !important;
 	--selectionBackgroundColor:rgba(214,164,16,.57) !important;

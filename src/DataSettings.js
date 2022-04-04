@@ -58,6 +58,7 @@ export let settingsData = {
 						if (getPref("mtd_highcontrast") === true) {
 							disableStylesheetExtension("light");
 							disableStylesheetExtension("darker");
+							disableStylesheetExtension("discorddark");
 							disableStylesheetExtension("paper");
 							enableStylesheetExtension("dark");
 							enableStylesheetExtension("amoled");
@@ -69,37 +70,57 @@ export let settingsData = {
 							case "light":
 								disableStylesheetExtension("amoled");
 								disableStylesheetExtension("darker");
+								disableStylesheetExtension("discorddark");
 								disableStylesheetExtension("dark");
 								disableStylesheetExtension("paper");
 								enableStylesheetExtension("light");
+								html.addClass("mtd-light").removeClass("mtd-dark");
 								break;
 							case "paper":
 								disableStylesheetExtension("amoled");
 								disableStylesheetExtension("darker");
+								disableStylesheetExtension("discorddark");
 								disableStylesheetExtension("dark");
 								enableStylesheetExtension("light");
 								enableStylesheetExtension("paper");
+								html.addClass("mtd-light").removeClass("mtd-dark");
 								break;
 							case "dark":
 								disableStylesheetExtension("amoled");
 								disableStylesheetExtension("darker");
+								disableStylesheetExtension("discorddark");
 								disableStylesheetExtension("light");
 								disableStylesheetExtension("paper");
 								enableStylesheetExtension("dark");
+								html.addClass("mtd-dark").removeClass("mtd-light");
 								break;
 							case "darker":
 								disableStylesheetExtension("amoled");
 								disableStylesheetExtension("light");
 								disableStylesheetExtension("paper");
+								disableStylesheetExtension("discorddark");
 								enableStylesheetExtension("dark");
 								enableStylesheetExtension("darker");
+								html.addClass("mtd-dark").removeClass("mtd-light");
+								break;
+								
+							case "discorddark":
+								disableStylesheetExtension("amoled");
+								disableStylesheetExtension("light");
+								disableStylesheetExtension("paper");
+								disableStylesheetExtension("darker");
+								enableStylesheetExtension("discorddark");
+								enableStylesheetExtension("dark");
+								html.addClass("mtd-dark").removeClass("mtd-light");
 								break;
 							case "amoled":
 								disableStylesheetExtension("light");
 								disableStylesheetExtension("darker");
+								disableStylesheetExtension("discorddark");
 								disableStylesheetExtension("paper");
 								enableStylesheetExtension("dark");
 								enableStylesheetExtension("amoled");
+								html.addClass("mtd-dark").removeClass("mtd-light");
 
 								/* Dirty hack to fix amoled theme being reset by the high contrast setting later on upon loading */
 								setTimeout(() => enableStylesheetExtension("amoled"), 0);
@@ -108,6 +129,7 @@ export let settingsData = {
 							case "custom":
 								disableStylesheetExtension("light");
 								disableStylesheetExtension("darker");
+								disableStylesheetExtension("discorddark");
 								disableStylesheetExtension("paper");
 								disableStylesheetExtension("dark");
 								disableStylesheetExtension("amoled");
@@ -129,6 +151,7 @@ export let settingsData = {
 						name:"{{Dark Themes}}",
 						children:{
 							darker:{value:"darker",text:"{{Dark}}"},
+							discorddark:{value:"discorddark",text:"{{Discord Dark}}"},
 							dark:{value:"dark",text:"{{Material Dark}}"},
 							amoled:{value:"amoled",text:"{{AMOLED}}"},
 						}
@@ -721,6 +744,7 @@ export let settingsData = {
 					func: (opt) => {
 						disableStylesheetExtension("light");
 						disableStylesheetExtension("darker");
+						disableStylesheetExtension("discorddark");
 						disableStylesheetExtension("paper");
 						enableStylesheetExtension("dark");
 						enableStylesheetExtension("amoled");

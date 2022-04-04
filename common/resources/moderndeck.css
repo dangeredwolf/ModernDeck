@@ -5161,10 +5161,8 @@ input[type="checkbox"]:active {
 	padding-left: 0
 }
 
-.media-img {
-	/* max-width: 100% !important; */
-	/* min-width:100px;
-	min-height:100px */
+.tweet-detail-wrapper .media-img {
+	max-width: 100%
 }
 
 .compose-content .account-selector-grid-toggle {
