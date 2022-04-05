@@ -501,12 +501,12 @@ function makeWindow() {
 			webgl: false,
 			plugins: false,
 			scrollBounce:true,
-			// preload: __dirname+separator+useDir+separator+"resources"+separator+"moderndeck.js"
+			// preload: __dirname+separator+useDir+separator+"assets"+separator+"moderndeck.js"
 		},
 		autoHideMenuBar:true,
 		nodeIntegrationInSubFrames:false,
 		title:"ModernDeck",
-		// icon:__dirname+useDir+"/resources/favicon.ico",
+		// icon:__dirname+useDir+"/assets/favicon.ico",
 		frame:useFrame,
 		titleBarStyle:titleBarStyle,
 		minWidth:350,
@@ -597,7 +597,7 @@ function makeWindow() {
 	try {
 		mainWindow.webContents.executeJavaScript(`
 			document.getElementsByClassName("js-signin-ui block")[0].innerHTML =
-			\`<img class="mtd-loading-logo" src="moderndeck://resources/img/moderndeck.png" style="display: none;">
+			\`<img class="mtd-loading-logo" src="moderndeck://assets/img/moderndeck.png" style="display: none;">
 			<div class="preloader-wrapper active">
 				<div class="spinner-layer">
 					<div class="circle-clipper left">
@@ -657,7 +657,7 @@ function makeWindow() {
 			}
 
 			document.getElementsByClassName("js-signin-ui block")[0].innerHTML =
-			\`<img class="mtd-loading-logo" src="moderndeck://resources/img/moderndeck.png" style="display: none;">
+			\`<img class="mtd-loading-logo" src="moderndeck://assets/img/moderndeck.png" style="display: none;">
 			<div class="preloader-wrapper active">
 				<div class="spinner-layer">
 					<div class="circle-clipper left">
@@ -681,18 +681,18 @@ function makeWindow() {
 			document.head.appendChild(injurl);\
 			\
 			var InjectScript2 = document.createElement("script");\
-			InjectScript2.src = "moderndeck://resources/libraries/moduleraid.min.js";\
+			InjectScript2.src = "moderndeck://assets/libraries/moduleraid.min.js";\
 			InjectScript2.type = "text/javascript";\
 			document.head.appendChild(InjectScript2);'
 			+
 			(store.get("mtd_safemode") ? 'document.getElementsByTagName("html")[0].classList.add("mtd-disable-css");' :
 			'var injStyles = document.createElement("link");\
 			injStyles.rel = "stylesheet";\
-			injStyles.href = "moderndeck://resources/moderndeck.css";\
+			injStyles.href = "moderndeck://assets/moderndeck.css";\
 			document.head.appendChild(injStyles);')
 			+
 			'var InjectScript = document.createElement("script");\
-			InjectScript.src = "moderndeck://resources/moderndeck.js";\
+			InjectScript.src = "moderndeck://assets/moderndeck.js";\
 			InjectScript.type = "text/javascript";\
 			document.head.appendChild(InjectScript);\
 		');
@@ -1199,7 +1199,7 @@ function makeTray() {
 		return;
 	}
 
-	let pathName = __dirname + separator + "common" + separator + "resources" + separator + "img" + separator + "app" + separator + (process.platform === "darwin" ? "macOSTrayTemplate.png" : "Tray.png");
+	let pathName = __dirname + separator + "common" + separator + "assets" + separator + "img" + separator + "app" + separator + (process.platform === "darwin" ? "macOSTrayTemplate.png" : "Tray.png");
 
 	const image = nativeImage.createFromPath(pathName);
 	image.setTemplateImage(true);
@@ -1247,7 +1247,7 @@ function destroyTray() {
 	tray = null;
 }
 
-// Register moderndeck:// protocol for accessing moderndeck resources, like CSS, images, etc.
+// Register moderndeck:// protocol for accessing moderndeck assets, like CSS, images, etc.
 
 electron.protocol.registerSchemesAsPrivileged([{
 	scheme:"moderndeck",

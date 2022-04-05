@@ -453,7 +453,7 @@
 }
 
 .mtd-app-mac .mtd-settings-panel .mtd-logo {
-	background-image:url(moderndeck://resources/img/macOS.png);
+	background-image:url(moderndeck://assets/img/macOS.png);
 	background-size:80px;
 	margin-right:-10px;
 	background-repeat:no-repeat

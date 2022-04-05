@@ -31,7 +31,7 @@ function startUpdateGoodLoginText() {
 	// we can't do this in the new login mustache because when it's initialised,
 	// MTDURLExchange hasn't completed yet
 
-	$(".startflow-background").attr("style",`background-image:url(${mtdBaseURL}resources/img/bg1.webp)`)
+	$(".startflow-background").attr("style",`background-image:url(${mtdBaseURL}assets/img/bg1.webp)`)
 
 	if (window.desktopConfig.customLoginImage) {
 		if (window.desktopConfig.customLoginImage.match(/https:\/\//gm) !== null) {

@@ -96,9 +96,9 @@ function createGifPanel() {
 			make("div").addClass("mtd-gif-column mtd-gif-column-2"),
 			make("div").addClass("mtd-gif-info dropdown-menu hidden").append(
 				make("p").html(I18n("ModernDeck GIF Search uses the following sources:")),
-				make("img").attr("src",mtdBaseURL + "resources/img/giphy.png").addClass("mtd-giphy-logo"),
-				make("img").attr("src",mtdBaseURL + "resources/img/tenor.svg").addClass("mtd-giphy-logo"),
-				make("img").attr("src",mtdBaseURL + "resources/img/gfycat.svg").addClass("mtd-giphy-logo")
+				make("img").attr("src",mtdBaseURL + "assets/img/giphy.png").addClass("mtd-giphy-logo"),
+				make("img").attr("src",mtdBaseURL + "assets/img/tenor.svg").addClass("mtd-giphy-logo"),
+				make("img").attr("src",mtdBaseURL + "assets/img/gfycat.svg").addClass("mtd-giphy-logo")
 			)
 		)
 	)

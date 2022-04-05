@@ -14,14 +14,15 @@ module.exports = {
 	},
 	output: {
 		filename: "[name].js",
-		path: path.resolve(__dirname, "common/resources"),
+		path: path.resolve(__dirname, "common/assets"),
 		// publicPath: "//dangeredwolf.com/",
 		publicPath: '/',
 		environment: {
 			arrowFunction: true
 		},
-		assetModuleFilename: "common/resources/[name].[ext][query]"
+		assetModuleFilename: "common/assets/[name].[ext][query]"
 	},
+	devtool: "source-map",
     resolve: {
         extensions: [".js", ".jsx", ".ts", ".tsx", ".png", ".jpg", ".mp3", ".mp4", ".aac", ".webp"],
     },
@@ -84,7 +85,7 @@ Made with <3
 	optimization: {
 		minimizer: [
 			new TerserPlugin({
-				extractComments: true,
+				extractComments: false,
 				terserOptions: {
 					mangle: false
 				}

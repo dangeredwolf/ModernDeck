@@ -95,7 +95,7 @@ html:not(.signin-sheet-now-present) body {
 }
 
 .startflow-background {
-	background-image:url("moderndeck://resources/img/bg1.webp");
+	background-image:url("moderndeck://assets/img/bg1.webp");
 	background-size:cover;
 	background-position:center;
 	opacity:0.01;
