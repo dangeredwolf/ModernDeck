@@ -56,9 +56,5 @@ export const contextMenuFunctions = {
 	},
 	restartApp: (e) => {
 		getIpc().send("restartApp",e);
-	},
-	newSettings: (e) => {
-		openSettings();
 	}
-
 };
