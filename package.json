@@ -46,8 +46,8 @@
 	],
 	"dependencies": {
 		"@electron/remote": "^2.0.8",
-		"@sentry/browser": "^6.19.3",
-		"@sentry/tracing": "^6.19.3",
+		"@sentry/browser": "^6.19.4",
+		"@sentry/tracing": "^6.19.4",
 		"asar": "^3.1.0",
 		"electron-log": "^4.4.6",
 		"electron-store": "^8.0.1",
