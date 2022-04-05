@@ -72,7 +72,7 @@ export function mtdAppFunctions() {
 
 	if (typeof require === "undefined") {return;}
 
-	const { remote, ipcRenderer } = require("electron");
+	const { ipcRenderer } = require("electron");
 
 	const Store = require("electron-store");
 	let store = new Store({name:"mtdsettings"});
@@ -246,8 +246,7 @@ export function mtdAppFunctions() {
 			if (exists(theMenu))
 				body.append(theMenu);
 		}
-
-	})
+	});
 
 	ipcRenderer.on("failedOpenUrl", (event, p) => {
 		new UIAlert({
@@ -255,20 +254,20 @@ export function mtdAppFunctions() {
 			message:I18n("ModernDeck failed to open a link you clicked in the default browser.\n\n(Sometimes, this can be caused if you have the Twitter for Windows app installed)"),
 			buttonText:I18n("OK")
 		})
-	})
+	});
 
 	ipcRenderer.on("settingsReceived", (_, load) => {
 		console.log("settingsReceived");
 		store.store = load;
 		ipcRenderer.send("restartApp");
-	})
+	});
 
 	ipcRenderer.on("tweetenSettingsReceived", (_, load) => {
 		importTweetenSettings(load);
 		setTimeout(() => {
 			ipcRenderer.send("restartApp");
 		},500); // We wait to make sure that native TweetDeck settings have been propagated
-	})
+	});
 
 	const updateOnlineStatus = () => {
 
