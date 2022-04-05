@@ -9925,3 +9925,6 @@ html:not(.mtd-classic-nav) .js-hide-drawer[data-title="Accounts"]:after {
 	height:100%
 }
 
+.is-grid .compose-account {
+	margin-right: 19px;
+}
