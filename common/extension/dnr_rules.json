@@ -1,0 +1,13 @@
+[
+	{
+		"id": 1,
+		"priority": 2,
+		"action": {
+			"type": "modifyHeaders",
+			"responseHeaders": [
+				{ "header": "content-security-policy", "operation": "set", "value": "default-src 'self'; connect-src * moderndeck:; font-src https: blob: data: * moderndeck:; frame-src https: moderndeck:; frame-ancestors 'self' https: moderndeck:; img-src https: data: blob: moderndeck:; media-src * moderndeck: blob: https:; object-src 'self' https:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://moderndeck.org moderndeck: https://*.twitter.com https://*.twimg.com https://api-ssl.bitly.com blob:; style-src 'self' 'unsafe-inline' 'unsafe-eval' https: moderndeck: blob:;" }
+			]
+		},
+		"condition": { "urlFilter": "https://tweetdeck.twitter.com/*", "resourceTypes": ["main_frame"] }
+	}
+]
