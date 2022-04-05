@@ -111,5 +111,6 @@ export default {
 	yi:"איבערזעצונגען קען זיין דערענדיקט אָדער ומפּינקטלעך.",
 	yo:"Awọn iwe-itumọ le pe tabi aiṣe-deede.",
 	zh:"翻译内容可能不完整或不准确。",
+	zh_TW:"翻譯內容可能不完整或不准確。",
 	zu:"Ukuhumusha kungenzeka kungapheleli noma kungalungile.",
 }
