@@ -52,6 +52,7 @@ Made with <3
 		},
 		{
 			test: /\.m?js$/,
+			// ModernDeck only uses ES6 imports, `require` is only used to interface with Node in the Electron version
 			parser: {
 				amd: false, // disable AMD
 				commonjs: false, // disable CommonJS
@@ -68,7 +69,7 @@ Made with <3
 				loader: "babel-loader",
 				options: {
 					presets: [
-						["@babel/preset-env", { targets: "ie 11" }]
+						["@babel/preset-env", { targets: "firefox 52" }]
 					],
 					plugins: [
 						"@babel/plugin-proposal-optional-chaining",
