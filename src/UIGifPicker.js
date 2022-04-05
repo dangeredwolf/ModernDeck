@@ -288,7 +288,7 @@ function checkIfAllDataIsThere() {
 	}
 	isLoadingMoreGifs = false;
 	console.log("GIF LOADING COMPLETE.");
-	aggregateData = combineArrays(giphyData.data, tenorData.results, gfycatData.gfycats)
+	const aggregateData = combineArrays(giphyData.data, tenorData.results, gfycatData.gfycats)
 	lastTenorPos = tenorData.next;
 	lastGfycatPos = gfycatData.cursor;
 
