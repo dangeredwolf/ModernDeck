@@ -30,6 +30,7 @@ Bandie<br>
 <a href="https://twitter.com/EpicLPer" rel="user" target="_blank">EpicLPer</a><br>
 <a href="https://twitter.com/__Linx" rel="user" target="_blank">__Linx</a><br>
 Luke (Iguenth)<br>
+<a href="https://twitter.com/Mondanzo" rel="user" target="_blank">Mondanzo</a><br>
 <a href="https://twitter.com/hamburgator" rel="user" target="_blank">Planke</a><br>
 <a href="https://twitter.com/FLUFFSQUEAKER" rel="user" target="_blank">milanmat-fluffsqueaker</a><br>
 <a href="https://twitter.com/ItsJustMirko" rel="user" target="_blank">Mirko</a><br>
@@ -79,6 +80,7 @@ TAKAHASHI Shuuji<br>
 <br><b>한국어</b><br>
 kemoshota<br>
 Lastorder<br>
+wmoon999<br>
 
 <br><b>Hrvatski</b><br>
 <a href="https://twitter.com/jptjohnny" rel="user" target="_blank">JPTJohnny</a><br>
@@ -124,6 +126,7 @@ Chef! / chefwireframe<br>
 <a href="https://twitter.com/LeoTheFolf" rel="user" target="_blank">Leo</a><br>
 
 <br><b>Українська</b><br>
+<a href="https://twitter.com/Sominemo" rel="user" target="_blank">Sominemo</a><br>
 <a href="https://twitter.com/caramelizedunic" rel="user" target="_blank">Yehor P.</a><br>
 
 <br>
