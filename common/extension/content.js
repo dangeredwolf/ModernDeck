@@ -18,7 +18,7 @@ if (document.querySelector(`[rel="manifest"]`) === null) {
 
 	var injStyles = document.createElement("link");
 	injStyles.rel = "stylesheet";
-	injStyles.href = browser.extension.getURL("resources/moderndeck.css");
+	injStyles.href = browser.runtime.getURL("resources/moderndeck.css");
 
 	document.head.appendChild(injStyles);
 
@@ -26,12 +26,12 @@ if (document.querySelector(`[rel="manifest"]`) === null) {
 
 	var injStyles2 = document.createElement("link");
 	injStyles2.rel = "stylesheet";
-	injStyles2.href = browser.extension.getURL("resources/moderndeck.css");
+	injStyles2.href = browser.runtime.getURL("resources/moderndeck.css");
 
 	document.head.appendChild(injStyles2);
 
 	var injectScript2 = document.createElement("script");
-	injectScript2.src = browser.extension.getURL("resources/libraries/moduleraid.min.js");
+	injectScript2.src = browser.runtime.getURL("resources/libraries/moduleraid.min.js");
 	injectScript2.type = "text/javascript";
 	document.head.appendChild(injectScript2);
 
@@ -40,15 +40,15 @@ if (document.querySelector(`[rel="manifest"]`) === null) {
 	var injectScript = document.createElement("script");
 
 	var injectURL = document.createElement("div");
-	injectURL.setAttribute("type", browser.extension.getURL("/"));
+	injectURL.setAttribute("type", browser.runtime.getURL("/"));
 	injectURL.id = "MTDURLExchange";
 	document.head.appendChild(injectURL);
 	console.log("injected url exchange with id " + injectURL.id);
 
-	injectScript.src = browser.extension.getURL("resources/moderndeck.js");
+	injectScript.src = browser.runtime.getURL("resources/moderndeck.js");
 
 	document.getElementsByClassName("js-signin-ui block")[0].innerHTML =
-	`<img class="mtd-loading-logo" src="${browser.extension.getURL("/resources/img/moderndeck.svg")}" style="display: none;">
+	`<img class="mtd-loading-logo" src="${browser.runtime.getURL("/resources/img/moderndeck.svg")}" style="display: none;">
 	<div class="preloader-wrapper active">
 		<div class="spinner-layer">
 			<div class="circle-clipper left">
