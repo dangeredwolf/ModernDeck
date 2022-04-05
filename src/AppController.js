@@ -23,7 +23,7 @@ let offlineNotification;
 */
 
 function notifyUpdate() {
-	if (isDev || enterpriseConfig.disableUpdateNotification) {
+	if (isDev || desktopConfig.disableUpdateNotification) {
 		return;
 	}
 	UIUpdateNotify();
@@ -91,8 +91,8 @@ export function mtdAppFunctions() {
 	});
 
 
-	ipcRenderer.on("enterpriseConfig", (e, config) => {
-		window.enterpriseConfig = config;
+	ipcRenderer.on("desktopConfig", (e, config) => {
+		window.desktopConfig = config;
 		parseConfig(config);
 	});
 
@@ -138,7 +138,7 @@ export function mtdAppFunctions() {
 			}
 		}
 
-		if (!AutoUpdateController.isCheckingForUpdates && window.enterpriseConfig.updatePolicy !== "disabled") {
+		if (!AutoUpdateController.isCheckingForUpdates && window.desktopConfig.updatePolicy !== "disabled") {
 			ipcRenderer.send("checkForUpdates");
 		}
 	});

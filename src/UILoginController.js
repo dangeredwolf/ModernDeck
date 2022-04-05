@@ -33,9 +33,9 @@ function startUpdateGoodLoginText() {
 
 	$(".startflow-background").attr("style",`background-image:url(${mtdBaseURL}resources/img/bg1.webp)`)
 
-	if (window.enterpriseConfig.customLoginImage) {
-		if (window.enterpriseConfig.customLoginImage.match(/https:\/\//gm) !== null) {
-			$(".startflow-background").attr("style",`background-image:url(${window.enterpriseConfig.customLoginImage})`)
+	if (window.desktopConfig.customLoginImage) {
+		if (window.desktopConfig.customLoginImage.match(/https:\/\//gm) !== null) {
+			$(".startflow-background").attr("style",`background-image:url(${window.desktopConfig.customLoginImage})`)
 		} else {
 			$(".startflow-background").attr("style",`background-image:url(moderndeck://background)`)
 		}

@@ -1,5 +1,5 @@
 /*
-	EnterpriseConfigParser.js
+	DesktopConfigParser.js
 
 	Copyright (c) 2014-2022 dangered wolf, et al
 	Released under the MIT License
@@ -9,7 +9,7 @@ import { setPref } from "./StoragePreferences.js";
 import { settingsData } from "./DataSettings.js"
 
 export function parseConfig(config) {
-	console.log("Parsing enterprise config...");
+	console.log("Parsing desktop config...");
 	for (let option in config) {
 		console.log(option);
 		let value = config[option];

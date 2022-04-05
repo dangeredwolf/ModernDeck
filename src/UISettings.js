@@ -6,7 +6,7 @@
 */
 
 import buildId from "./buildId.js";
-import { make, exists, isApp,  isEnterprise } from "./Utils.js";
+import { make, exists, isApp } from "./Utils.js";
 import { settingsData } from "./DataSettings.js";
 import { hasPref, getPref, setPref } from "./StoragePreferences.js";
 import { parseActions } from "./PrefHandler.js";
@@ -81,15 +81,15 @@ export function renderTab(key, subPanel) {
 			continue;
 		}
 
-		if (typeof window.enterpriseConfig !== undefined && window.enterpriseConfig[key] && window.enterpriseConfig[key][prefKey]) {
-			console.log(window.enterpriseConfig[key][prefKey]);
+		if (typeof window.desktopConfig !== undefined && window.desktopConfig[key] && window.desktopConfig[key][prefKey]) {
+			console.log(window.desktopConfig[key][prefKey]);
 			console.log("Setting disabled: " + prefKey)
 			settingsDisabled = true;
 			disableSetting = true;
-			overrideSetting = window.enterpriseConfig[key][prefKey];
+			overrideSetting = window.desktopConfig[key][prefKey];
 		}
 
-		if (pref.isDevTool && typeof window.enterpriseConfig !== undefined && window.enterpriseConfig.disableDevTools) {
+		if (pref.isDevTool && typeof window.desktopConfig !== undefined && window.desktopConfig.disableDevTools) {
 			settingsHidden = true;
 			continue;
 		}
@@ -483,14 +483,6 @@ export function renderTab(key, subPanel) {
 
 		subPanel.append(option);
 	}
-
-	if (settingsHidden) {
-		subPanel.prepend(make("p").addClass("mtd-enterprise-management-text").text(I18n("Some settings are hidden by your organization")));
-	}
-
-	if (settingsDisabled) {
-		subPanel.prepend(make("p").addClass("mtd-enterprise-management-text").text(I18n("Some settings are managed by your organization")));
-	}
 }
 
 export function openSettings(openMenu, limitedMenu) {
@@ -517,7 +509,7 @@ export function openSettings(openMenu, limitedMenu) {
 			continue;
 		}
 
-		if (key === "system" && typeof window.enterpriseConfig !== undefined && window.enterpriseConfig.disableSystemTab) {
+		if (key === "system" && typeof window.desktopConfig !== undefined && window.desktopConfig.disableSystemTab) {
 			continue;
 		}
 
@@ -594,10 +586,10 @@ export function openSettings(openMenu, limitedMenu) {
 			let logoCont = make("div").addClass("mtd-logo-container");
 
 			if (!isApp) {
-				// logoCont.append(
-				// 	make("p").addClass("mtd-check-out-app").html(I18n("Get background notifications, enterprise features, and more with the free <a href='https://moderndeck.org/'>ModernDeck App</a>!"))
-				// )
-			} else if (window.enterpriseConfig && window.enterpriseConfig.autoUpdatePolicy === "never") {
+				logoCont.append(
+					make("p").addClass("mtd-check-out-app").html(I18n("Get background notifications and more features with the free <a href='https://moderndeck.org'>ModernDeck App</a>!"))
+				)
+			} else if (window.desktopConfig && window.desktopConfig.autoUpdatePolicy === "never") {
 				logoCont.append(
 					make("p").addClass("mtd-check-out-app").html(I18n("Updates are disabled by your organization"))
 				)
@@ -612,7 +604,7 @@ export function openSettings(openMenu, limitedMenu) {
 
 			let updateCont = makeUpdateCont();
 
-			if (isApp && !html.hasClass("mtd-winstore") && !html.hasClass("mtd-flatpak") && !html.hasClass("mtd-macappstore") && (window.enterpriseConfig && window.enterpriseConfig.autoUpdatePolicy !== "never")) {
+			if (isApp && !html.hasClass("mtd-winstore") && !html.hasClass("mtd-flatpak") && !html.hasClass("mtd-macappstore") && (window.desktopConfig && window.desktopConfig.autoUpdatePolicy !== "never")) {
 				subPanel.append(updateCont);
 			}
 
@@ -806,7 +798,7 @@ function mtdAppUpdatePage() {
 			ipcRenderer.send("restartAndInstallUpdates");
 		});
 
-		if (!AutoUpdateController.isCheckingForUpdates && window.enterpriseConfig.autoUpdatePolicy !== "disabled" && window.enterpriseConfig.autoUpdatePolicy !== "manual") {
+		if (!AutoUpdateController.isCheckingForUpdates && window.desktopConfig.autoUpdatePolicy !== "disabled" && window.desktopConfig.autoUpdatePolicy !== "manual") {
 			console.log("heck");
 			ipcRenderer.send("checkForUpdates");
 		}
@@ -830,10 +822,6 @@ export function makeUpdateCont() {
 
 	let restartNow = make("button").addClass("btn hidden").attr("id","restartNow");
 	let restartNowHtml = I18n("Restart Now");
-
-	if (isEnterprise()) {
-		restartNowHtml = `<img src="moderndeck://resources/img/uac.png">${restartNowHtml}`;
-	}
 
 	restartNow.html(restartNowHtml);
 

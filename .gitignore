@@ -5,7 +5,6 @@
 *.dmg
 *.AppImage
 dist
-distEnterprise
 ModernDeck_app_tmp
 ModernDeck_ext_tmp
 node_modules

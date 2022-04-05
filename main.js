@@ -69,14 +69,14 @@ autoUpdater.setFeedURL({
 	"provider": "github"
 });
 
-let deviceConfig = {};
+let desktopConfig = {};
 
 if (process.platform === "win32") {
 	try {
 		let configFile = fs.readFileSync("C:\\ProgramData\\ModernDeck\\config.json");
 
 		try {
-			deviceConfig = JSON.parse(configFile);
+			desktopConfig = JSON.parse(configFile);
 		} catch(e) {
 			app.on("ready", () => {
 				dialog.showMessageBoxSync({
@@ -92,21 +92,21 @@ if (process.platform === "win32") {
 	}
 }
 
-console.log(deviceConfig);
+console.log(desktopConfig);
 
 autoUpdater.logger = log;
 autoUpdater.logger.transports.file.level = "info";
 
-switch(deviceConfig.autoUpdatePolicy) {
+switch(desktopConfig.autoUpdatePolicy) {
 	case "disabled":
 	case "manual":
 	case "checkOnly":
 	case "autoDownload":
-		if (deviceConfig.autoUpdateInstallOnQuit === false) {
+		if (desktopConfig.autoUpdateInstallOnQuit === false) {
 			autoUpdater.autoInstallOnAppQuit = false;
 		}
 
-		if (deviceConfig.autoUpdatePolicy !== "autoDownload") {
+		if (desktopConfig.autoUpdatePolicy !== "autoDownload") {
 			autoUpdater.autoDownload = false;
 		}
 
@@ -129,7 +129,7 @@ const I18n = function(key) {
 const mtdSchemeHandler = async (request, callback) => {
 	if (request.url === "moderndeck://background/") {
 		callback({
-			path: deviceConfig.customLoginImage
+			path: desktopConfig.customLoginImage
 		});
 		return;
 	}
@@ -231,11 +231,11 @@ const menu = Menu.buildFromTemplate(template);
 // if (process.platform === "darwin")
 Menu.setApplicationMenu(menu);
 
-function loadDeviceConfigMain() {
-	if (deviceConfig.disableDevTools) {
+function loadDesktopConfigMain() {
+	if (desktopConfig.disableDevTools) {
 		// https://stackoverflow.com/questions/40304833/how-to-make-the-dev-tools-not-show-up-on-screen-by-default-electron
 		globalShortcut.register("Control+Shift+I", () => {});
-	}if (deviceConfig.disableZoom) {
+	}if (desktopConfig.disableZoom) {
 		globalShortcut.register("Control+-", () => {});
 		globalShortcut.register("Control+Shift+=", () => {});
 	}
@@ -839,10 +839,10 @@ function makeWindow() {
 		mainWindow.webContents.send("context-menu", params);
 	});
 
-	ipcMain.on("getEnterpriseConfig", () => {
+	ipcMain.on("getDesktopConfig", () => {
 		if (!mainWindow || !mainWindow.webContents) { return }
 
-		mainWindow.webContents.send("enterpriseConfig", deviceConfig);
+		mainWindow.webContents.send("desktopConfig", desktopConfig);
 	});
 
 	/*
@@ -1208,7 +1208,7 @@ function makeTray() {
 	const contextMenu = Menu.buildFromTemplate([
 		{ label: I18n("Open ModernDeck"), click(){ showHiddenWindow() } },
 		{ label: (process.platform === "darwin" ? I18n("Preferences...") : I18n("Settings...")), click(){ if (!mainWindow){return;}mainWindow.show();mainWindow.webContents.send("openSettings"); } },
-		{ visible: (typeof process.windowStore === "undefined" && deviceConfig.autoUpdatePolicy !== "disabled"), label: (process.platform === "darwin" ? I18n("Check for Updates...") : I18n("Check for updates...")), click(){ if (!mainWindow){return;}mainWindow.show();mainWindow.webContents.send("checkForUpdatesMenu"); } },
+		{ visible: (typeof process.windowStore === "undefined" && desktopConfig.autoUpdatePolicy !== "disabled"), label: (process.platform === "darwin" ? I18n("Check for Updates...") : I18n("Check for updates...")), click(){ if (!mainWindow){return;}mainWindow.show();mainWindow.webContents.send("checkForUpdatesMenu"); } },
 
 		{ type: "separator" },
 
@@ -1268,7 +1268,7 @@ app.setAsDefaultProtocolClient("moderndeck");
 app.on("ready", () => {
 	try {
 		makeWindow();
-		loadDeviceConfigMain();
+		loadDesktopConfigMain();
 		if (enableTray) {
 			makeTray();
 		}
@@ -1366,14 +1366,14 @@ autoUpdater.on("update-not-available", (e) => {
 // moderndeck can send manual update check requests
 ipcMain.on("checkForUpdates", (e) => {
 	console.log("Client requested update check");
-	if (autoUpdater && deviceConfig.autoUpdatePolicy !== "disabled" && isFlatpak !== true) {
+	if (autoUpdater && desktopConfig.autoUpdatePolicy !== "disabled" && isFlatpak !== true) {
 		autoUpdater.checkForUpdates();
 	}
 });
 
 ipcMain.on("downloadUpdates", (e) => {
 	console.log("Client requested update download");
-	if (autoUpdater && deviceConfig.autoUpdatePolicy !== "disabled") {
+	if (autoUpdater && desktopConfig.autoUpdatePolicy !== "disabled") {
 		autoUpdater.downloadUpdate();
 	}
 });
@@ -1462,7 +1462,7 @@ if (process.platform === "darwin") {
 	}
 }
 
-if (deviceConfig.autoUpdatePolicy !== "disabled" && deviceConfig.autoUpdatePolicy !== "manual" && isFlatpak !== false) {
+if (desktopConfig.autoUpdatePolicy !== "disabled" && desktopConfig.autoUpdatePolicy !== "manual" && isFlatpak !== false) {
 	setInterval(() => {
 		try {
 			autoUpdater.checkForUpdates();
@@ -1474,7 +1474,7 @@ if (deviceConfig.autoUpdatePolicy !== "disabled" && deviceConfig.autoUpdatePolic
 
 setTimeout(() => {
 	try {
-		if (deviceConfig.autoUpdatePolicy !== "disabled" &&  deviceConfig.autoUpdatePolicy !== "manual" && isFlatpak !== true) {
+		if (desktopConfig.autoUpdatePolicy !== "disabled" &&  desktopConfig.autoUpdatePolicy !== "manual" && isFlatpak !== true) {
 			autoUpdater.checkForUpdates();
 		}
 

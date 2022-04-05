@@ -26,7 +26,7 @@ export class UIWelcome extends UIModal {
 	constructor() {
 		super();
 
-		if (enterpriseConfig && enterpriseConfig.disableOOBE) {
+		if (desktopConfig && desktopConfig.disableOOBE) {
 			return;
 		}
 

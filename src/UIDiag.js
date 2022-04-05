@@ -6,7 +6,7 @@
 */
 
 import buildId from "./buildId.js";
-import { isApp, make, isEnterprise } from "./Utils.js";
+import { isApp, make } from "./Utils.js";
 import { dumpPreferences } from "./StoragePreferences.js";
 import { version } from "../package.json";
 import { I18n } from "./I18n.js";
@@ -28,9 +28,6 @@ export function diag() {
 	if (isApp) {
 		log += "Electron";
 
-		if (isEnterprise()) {
-			log += " (Enterprise)";
-		}
 		if (html.hasClass("mtd-winstore")) {
 			log += " (Microsoft Store)";
 		}

@@ -252,7 +252,7 @@ export let settingsData = {
 					}
 				},
 				settingsKey:"mtd_customcss",
-				enabled:() => window.enterpriseConfig === undefined ? true : !window.enterpriseConfig.disableCustomCSS,
+				enabled:() => window.desktopConfig === undefined ? true : !window.desktopConfig.disableCustomCSS,
 				default:""
 			}
 		}
@@ -851,7 +851,7 @@ export let settingsData = {
 							if (!!ipcRenderer) {
 								ipcRenderer.send("changeChannel", opt);
 
-								if (window.enterpriseConfig.updatePolicy !== "disabled" && window.enterpriseConfig.updatePolicy !== "manual") {
+								if (window.desktopConfig.updatePolicy !== "disabled" && window.desktopConfig.updatePolicy !== "manual") {
 									ipcRenderer.send("checkForUpdates");
 								}
 							}

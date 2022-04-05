@@ -659,7 +659,7 @@ function coreInit() {
 	body = $(document.body);
 	html = $(document.querySelector("html"));
 
-	window.enterpriseConfig = {};
+	window.desktopConfig = {};
 
 
 
@@ -667,7 +667,7 @@ function coreInit() {
 	if (isApp) {
 		try {
 			mtdAppFunctions();
-			getIpc().send("getEnterpriseConfig");
+			getIpc().send("getDesktopConfig");
 			window.addEventListener('mousedown', (e) => {
 				clearContextMenu();
 			}, false);

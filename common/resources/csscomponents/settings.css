@@ -715,10 +715,6 @@ html body .mtd-settings-subpanel button {
 	padding-right:5px
 }
 
-.mtd-enterprise-management-text {
-	padding:20px 0 5px 0!important
-}
-
 #global_filter_settings select,#global_filter_settings .controls input {
 	width:250px!important;
 	float:left

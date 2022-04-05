@@ -73,7 +73,7 @@ export class AutoUpdateController {
 		});
 
 		ipcRenderer.on("update-available", (e,args) => {
-			if (typeof window.enterpriseConfig !== "undefined" && (window.enterpriseConfig.autoUpdatePolicy === "checkOnly" || window.enterpriseConfig.autoUpdatePolicy === "manual")) {
+			if (typeof window.desktopConfig !== "undefined" && (window.desktopConfig.autoUpdatePolicy === "checkOnly" || window.desktopConfig.autoUpdatePolicy === "manual")) {
 				AutoUpdateController.h2 = I18n("An update for ModernDeck is available");
 				AutoUpdateController.h3 = I18n("ModernDeck updates help keep you secure and add new features.");
 				AutoUpdateController.spinner = false;

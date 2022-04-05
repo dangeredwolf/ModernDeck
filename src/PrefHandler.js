@@ -46,10 +46,10 @@ export function loadPreferences() {
 						setting = getPref(prefKey);
 					}
 
-					if (window.enterpriseConfig && window.enterpriseConfig[key] && window.enterpriseConfig[key][i]) {
-						console.log(window.enterpriseConfig[key]);
-						console.log(window.enterpriseConfig[key][i]);
-						setting = window.enterpriseConfig[key][i];
+					if (window.desktopConfig && window.desktopConfig[key] && window.desktopConfig[key][i]) {
+						console.log(window.desktopConfig[key]);
+						console.log(window.desktopConfig[key][i]);
+						setting = window.desktopConfig[key][i];
 					}
 
 					switch(pref.type) {
@@ -81,7 +81,6 @@ export function loadPreferences() {
 }
 
 export function loadPreferencesWindows() {
-	// console.log("Sending get enterprise config");
 	loadPreferences();
 }
 

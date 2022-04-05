@@ -12,10 +12,6 @@ window.ModernDeck = {
 	version:9.5
 };
 
-const isEnterprise = function() {
-	return typeof process !== "undefined" && process.execPath.match(/:\\Program Files/g) !== null;
-}
-
 export class AsciiArtController {
 
 	static systemName() {
@@ -39,9 +35,6 @@ export class AsciiArtController {
 
 			browserName += ` (${(process.arch === "x64" ? "amd64" : process.arch)})`;
 
-			if (isEnterprise()) {
-				browserName += " Enterprise";
-			}
 			if (typeof process.windowsStore !== "undefined") {
 				browserName += " Microsoft Store";
 			}
