@@ -22,6 +22,7 @@ module.exports = {
 		},
 		assetModuleFilename: "common/assets/[name].[ext][query]"
 	},
+	devtool: "source-map",
     resolve: {
         extensions: [".js", ".jsx", ".ts", ".tsx", ".png", ".jpg", ".mp3", ".mp4", ".aac", ".webp"],
     },
@@ -84,7 +85,7 @@ Made with <3
 	optimization: {
 		minimizer: [
 			new TerserPlugin({
-				extractComments: true,
+				extractComments: false,
 				terserOptions: {
 					mangle: false
 				}
