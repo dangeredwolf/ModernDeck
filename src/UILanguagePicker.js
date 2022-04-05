@@ -64,16 +64,16 @@ export class UILanguagePicker extends UIModal {
 			this.alertButton.html(languageData.OK[this.selectLanguage.val()] || languageData.OK[this.selectLanguage.val().substr(0,2)] || "OK");
 			this.alertButton.removeClass("hidden");
 
-			let langCode = DataI18n[this.selectLanguage.val()];
-			let langCodeBase = DataI18n[this.selectLanguage.val()].substr(0,2);
+			let langCode = DataI18n["Translations may be incomplete or inaccurate."][this.selectLanguage.val()];
+			let langCodeBase = DataI18n["Translations may be incomplete or inaccurate."][this.selectLanguage.val().substr(0,2)];
 			const footer = " <a href='https://translate.moderndeck.org'>translate.moderndeck.org</a>";
 
-			if (typeof langCode !== "undefined" && langCode["Translations may be incomplete or inaccurate."]) {
-				this.inaccuracy.html(langCode["Translations may be incomplete or inaccurate."] + footer);
-			} else if (typeof langCodeBase !== "undefined" && langCodeBase["Translations may be incomplete or inaccurate."] === false) {
-				this.inaccuracy.html(langCodeBase["Translations may be incomplete or inaccurate."] + footer);
+			if (typeof langCode !== "undefined") {
+				this.inaccuracy.html(langCode + footer);
+			} else if (typeof langCodeBase !== "undefined" && langCodeBase === false) {
+				this.inaccuracy.html(langCodeBase + footer);
 			} else {
-				this.inaccuracy.html(inaccuraciesCodeTable[this.selectLanguage.val().substr(0,2)] || inaccuraciesCodeTable["en"]["Translations may be incomplete or inaccurate."] + footer);
+				this.inaccuracy.html(inaccuraciesCodeTable[this.selectLanguage.val()] || inaccuraciesCodeTable[this.selectLanguage.val().substr(0,2)] || inaccuraciesCodeTable["en"]["Translations may be incomplete or inaccurate."] + footer);
 			}
 		});
 
