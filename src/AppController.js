@@ -12,7 +12,7 @@ import { AutoUpdateController } from "./AutoUpdateController.js";
 import { openSettings } from "./UISettings.js";
 import { buildContextMenu } from "./UIContextMenu.js";
 import { parseActions } from "./PrefHandler.js";
-import { parseConfig } from "./EnterpriseConfigParser.js";
+import { parseConfig } from "./DesktopConfigParser.js";
 import { importTweetenSettings } from "./StorageTweetenImport.js";
 import { I18n } from "./I18n.js";
 
