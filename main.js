@@ -262,7 +262,6 @@ function makeErrorWindow() {
 			scrollBounce: true,
 			nodeIntegration: true
 		},
-		enableRemoteModule:true,
 		parent:mainWindow || null,
 		autoHideMenuBar:true
 	});
@@ -499,7 +498,6 @@ function makeWindow() {
 			defaultFontFamily:"Roboto",
 			nodeIntegration: true,
 			contextIsolation: false,
-			enableRemoteModule: true,
 			webgl: false,
 			plugins: false,
 			scrollBounce:true,
@@ -511,7 +509,7 @@ function makeWindow() {
 		// icon:__dirname+useDir+"/resources/favicon.ico",
 		frame:useFrame,
 		titleBarStyle:titleBarStyle,
-		minWidth:375,
+		minWidth:350,
 		show:false,
 		backgroundThrottling:true,
 		backgroundColor:"#111"
@@ -564,8 +562,35 @@ function makeWindow() {
 
 	hidden = false;
 
+	// Initialize @electron/remote and limit its scope to only electron.Menu
+	// ModernDeck doesn't need @electron/remote for anything else
+
 	require('@electron/remote/main').initialize();
 	require("@electron/remote/main").enable(mainWindow.webContents);
+
+	app.on("remote-require", (event, _moduleName) => {
+		event.preventDefault();
+	});
+
+	app.on("remote-get-global", (event, _moduleName) => {
+		event.preventDefault();
+	});
+
+	app.on("remote-get-builtin", (_, event, moduleName) => {
+		if (moduleName !== "Menu") {
+			event.preventDefault();
+		}
+	});
+
+	app.on("remote-get-current-window", (event, _moduleName) => {
+		event.preventDefault();
+	});
+
+	app.on("remote-get-current-web-contents", (event, _moduleName) => {
+		event.preventDefault();
+	});
+	
+	
 
 	updateAppTag();
 
@@ -1073,24 +1098,24 @@ function makeWindow() {
 	})
 
 	// Enable tray icon
-	ipcMain.on("enableTray", (event, arg) => {
+	ipcMain.on("enableTray", (_event, _arg) => {
 		enableTray = true;
 		makeTray();
 	});
 
 	// Disable tray icon
-	ipcMain.on("disableTray", (event, arg) => {
+	ipcMain.on("disableTray", (_event, _arg) => {
 		enableTray = false;
 		destroyTray();
 	});
 
 	// Enable background notifications
-	ipcMain.on("enableBackground", (event, arg) => {
+	ipcMain.on("enableBackground", (_event, _arg) => {
 		enableBackground = true;
 	});
 
 	// Disable background notifications
-	ipcMain.on("disableBackground", (event, arg) => {
+	ipcMain.on("disableBackground", (_event, _arg) => {
 		enableBackground = false;
 	});
 
