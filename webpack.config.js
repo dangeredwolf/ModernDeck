@@ -84,6 +84,7 @@ Made with <3
 		minimizer: [
 			new TerserPlugin({
 				terserOptions: {
+					extractComments: false,
 					mangle: false
 				}
 			})
