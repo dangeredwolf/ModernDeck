@@ -137,3 +137,7 @@ export function getIpc() {
 	if (!require) {return null;}
 	return require('electron').ipcRenderer;
 }
+
+// Use standard macOS symbols instead of writing it out like on Windows
+
+export const ctrlShiftText = (navigator.userAgent.indexOf("Mac OS X") > -1) ? "⌃⇧" : "{{Ctrl+Shift+}}";
