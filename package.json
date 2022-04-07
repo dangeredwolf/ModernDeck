@@ -64,7 +64,7 @@
 		"@babel/preset-env": "7.16.11",
 		"adm-zip": "^0.5.9",
 		"babel-loader": "^8.2.4",
-		"electron": "^18.0.2",
+		"electron": "^18.0.3",
 		"electron-builder": "^22.14.13",
 		"fs-extra": "^10.0.1",
 		"terser-webpack-plugin": "^5.3.1",
