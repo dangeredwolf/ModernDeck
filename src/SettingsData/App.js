@@ -5,10 +5,10 @@
 	Released under the MIT License
 */
 
-import { setPref } from "./StoragePreferences.js";
-import { exists, isApp } from "./Utils.js";
-import { openLegacySettings } from "./UISettings.js";
-import { enterSafeMode } from "./SafeMode.js";
+import { setPref } from "./../StoragePreferences.js";
+import { exists, isApp } from "./../Utils.js";
+import { openLegacySettings } from "./../UISettings.js";
+import { enterSafeMode } from "./../SafeMode.js";
 
 export default {
     tabName:"<i class='icon icon-moderndeck'></i> {{App}}",

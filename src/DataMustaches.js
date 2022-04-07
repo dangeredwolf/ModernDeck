@@ -6,9 +6,6 @@
 */
 
 import { I18n } from "./I18n.js";
-import buildId from "./buildId.js";
-import { version } from "../package.json";
-const shortVer = version.replace(/\.0$/,""); // remove trailing .0, if present
 
 export const _newLoginPage = `<div class="app-signin-wrap mtd-signin-wrap">
 	<div class="js-signin-ui app-signin-form pin-top pin-right txt-weight-normal">
@@ -38,7 +35,7 @@ export const _newLoginPage = `<div class="app-signin-wrap mtd-signin-wrap">
 	<button class="mtd-login-info-button">
 		<i class="material-icon">info_outline</i>
 	</button>
-	<p class="mtd-login-info-version">${shortVer} - ${buildId}</p>
+	<p class="mtd-login-info-version">${window.ModernDeck.versionFriendlyString} - ${window.ModernDeck.buildNumber}</p>
 </div>`;
 
 

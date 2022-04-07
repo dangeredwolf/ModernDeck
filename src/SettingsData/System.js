@@ -5,8 +5,8 @@
 	Released under the MIT License
 */
 
-import { purgePrefs } from "./StoragePreferences.js";
-import { isApp } from "./Utils.js";
+import { purgePrefs } from "./../StoragePreferences.js";
+import { isApp } from "./../Utils.js";
 
 export default {
     tabName:"<i class='material-icon' aria-hidden='true'>storage</i> {{System}}",

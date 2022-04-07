@@ -5,8 +5,8 @@
 	Released under the MIT License
 */
 
-import { enableStylesheetExtension, disableStylesheetExtension } from "./StylesheetExtensions.js";
-import { ctrlShiftText } from "./Utils.js";
+import { enableStylesheetExtension, disableStylesheetExtension } from "./../StylesheetExtensions.js";
+import { ctrlShiftText } from "./../Utils.js";
 
 export default {
     tabName:"<i class='material-icon' aria-hidden='true'>accessibility</i> {{Accessibility}}",

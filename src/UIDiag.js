@@ -5,7 +5,6 @@
 	Released under the MIT License
 */
 
-import buildId from "./buildId.js";
 import { isApp, make } from "./Utils.js";
 import { dumpPreferences } from "./StoragePreferences.js";
 import { version } from "../package.json";
@@ -21,7 +20,7 @@ import { AsciiArtController } from "./AsciiArtController.js";
 export function diag() {
 	let log = "";
 
-	log += "\nModernDeck " + version + " (Build "+ buildId +")";
+	log += "\nModernDeck " + version + " (Build "+ window.ModernDeck.buildNumber +")";
 
 	log += "\n\nPlatform: ";
 

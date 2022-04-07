@@ -5,9 +5,9 @@
 	Released under the MIT License
 */
 
-import { enableStylesheetExtension, disableStylesheetExtension, enableCustomStylesheetExtension } from "./StylesheetExtensions.js";
-import { getPref, setPref } from "./StoragePreferences.js";
-import { ctrlShiftText } from "./Utils.js";
+import { enableStylesheetExtension, disableStylesheetExtension, enableCustomStylesheetExtension } from "./../StylesheetExtensions.js";
+import { getPref, setPref } from "./../StoragePreferences.js";
+import { ctrlShiftText } from "./../Utils.js";
 
 export default {
     tabName:"<i class='material-icon' aria-hidden='true'>format_paint</i> {{Themes}}",

@@ -13,7 +13,6 @@
 */
 
 import { exists, isApp } from "./Utils.js";
-import { settingsData } from "./DataSettings.js";
 export const debugStorageSys = false;
 let store;
 
@@ -23,11 +22,11 @@ if (isApp) {
 }
 
 export function resetPref(id) {
-	for (let key in settingsData) {
-		if (settingsData[key].options) {
-			for (let i in settingsData[key].options) {
-				let prefKey = settingsData[key].options[i].settingsKey;
-				let pref = settingsData[key].options[i];
+	for (let key in window.ModernDeck.settingsData) {
+		if (window.ModernDeck.settingsData[key].options) {
+			for (let i in window.ModernDeck.settingsData[key].options) {
+				let prefKey = window.ModernDeck.settingsData[key].options[i].settingsKey;
+				let pref = window.ModernDeck.settingsData[key].options[i];
 
 				let def;
 
@@ -166,16 +165,14 @@ export function dumpPreferences() {
 
 	let prefs = "";
 
-	for (let key in settingsData) {
+	for (let key in window.ModernDeck.settingsData) {
 
-		if (!settingsData[key].enum) {
-			for (let i in settingsData[key].options) {
-				let prefKey = settingsData[key].options[i].settingsKey;
-				let pref = settingsData[key].options[i];
+		if (!window.ModernDeck.settingsData[key].enum) {
+			for (let i in window.ModernDeck.settingsData[key].options) {
+				let prefKey = window.ModernDeck.settingsData[key].options[i].settingsKey;
+				let pref = window.ModernDeck.settingsData[key].options[i];
 
 				if (exists(prefKey) && pref.type !== "button" && pref.type !== "link") {
-					let setting;
-
 					prefs += prefKey + ": " + (getPref(prefKey) || "[not set]") + "\n"
 				}
 			}

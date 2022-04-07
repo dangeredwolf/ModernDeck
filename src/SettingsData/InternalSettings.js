@@ -5,8 +5,8 @@
 	Released under the MIT License
 */
 
-import { getPref } from "./StoragePreferences.js";
-import { getColumnFromColumnNumber } from "./Column.js";
+import { getPref } from "./../StoragePreferences.js";
+import { getColumnFromColumnNumber } from "./../Column.js";
 
 export default {
     enabled: false,
@@ -33,13 +33,13 @@ export default {
             type:"textbox",
             activate:{
                 func: (e) => {
-                    if (window.SystemVersion !== getPref("mtd_last_version")) {
+                    if (window.ModernDeck.versionString !== getPref("mtd_last_version")) {
                         // todo: something
                     }
                 }
             },
             settingsKey:"mtd_last_version",
-            default:window.SystemVersion
+            default:() => window.ModernDeck.versionString
         },
         replaceFavicon:{
             type:"checkbox",

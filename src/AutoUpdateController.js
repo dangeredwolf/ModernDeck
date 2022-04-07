@@ -129,7 +129,7 @@ export class AutoUpdateController {
 			AutoUpdateController.spinner = false;
 			AutoUpdateController.h2 = I18n("You're up to date");
 			AutoUpdateController.icon = "check_circle";
-			AutoUpdateController.h3 = SystemVersion + I18n(" is the latest version.");
+			AutoUpdateController.h3 = window.ModernDeck.versionFriendlyString + I18n(" is the latest version.");
 
 			AutoUpdateController.tryAgain = I18n("Check Again");
 			AutoUpdateController.installButton = undefined;

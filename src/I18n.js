@@ -18,19 +18,11 @@ import languageData from "./DataI18n.js";
 let langFull;
 let langRoot;
 
-// ModernDeck specific code, safe to ignore within tweetdeck-i18n
-if (window.ModernDeck) {
-	console.log("I18n: Detected ModernDeck");
-	langFull = getPref("mtd_lang");
-	if (!langFull) {
-		langFull = navigator.language.replace("-","_");
-	}
-	langRoot = langFull.substring(0,2);
-} else {
-	console.log("I18n: Detected TweetDeck i18n");
-	langFull = "ja_JP";//navigator.language.replace("-","_");
-	langRoot = "ja";//navigator.language.substring(0,2);
+langFull = getPref("mtd_lang");
+if (!langFull) {
+	langFull = navigator.language.replace("-","_");
 }
+langRoot = langFull.substring(0,2);
 
 export const getFullLanguage = () => langFull;
 export const getMainLanguage = () => langRoot;

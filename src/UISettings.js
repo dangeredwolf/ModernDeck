@@ -5,7 +5,6 @@
 	Released under the MIT License
 */
 
-import buildId from "./buildId.js";
 import { make, exists, isApp } from "./Utils.js";
 import { settingsData } from "./DataSettings.js";
 import { hasPref, getPref, setPref } from "./StoragePreferences.js";
@@ -16,8 +15,6 @@ import { diag } from "./UIDiag.js";
 
 let verTextId = 2;
 let verText = "";
-
-let productName = "ModernDeck";
 
 function internationaliseSettingString(str) {
 	let matches = str.match(/{{.+?}}/g);
@@ -50,9 +47,6 @@ export function renderTab(key, subPanel) {
 	}
 
 	subPanel.empty();
-
-	let settingsHidden = false;
-	let settingsDisabled = false;
 
 	for (let prefKey in settingsData[key].options) {
 
@@ -581,8 +575,8 @@ export function openSettings(openMenu, limitedMenu) {
 				}
 			});
 
-			let h1 = make("h1").addClass("mtd-about-title").html(productName);
-			let h2 = make("h2").addClass("mtd-version-title").html(verText + " " + SystemVersion + I18n(" (Build ") + buildId + ")");
+			let h1 = make("h1").addClass("mtd-about-title").html(window.ModernDeck.productName);
+			let h2 = make("h2").addClass("mtd-version-title").html(verText + " " + window.ModernDeck.versionFriendlyString + I18n(" (Build ") + window.ModernDeck.buildNumber + ")");
 			let logoCont = make("div").addClass("mtd-logo-container");
 
 			if (!isApp) {

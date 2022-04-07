@@ -7,7 +7,6 @@
 
 import { I18n, getFullLanguage } from "./I18n.js";
 import * as Sentry from "@sentry/browser";
-import { Integrations } from "@sentry/tracing";
 
 /*
 	Shorthand function to create a new element, which is helpful for concise UI building.

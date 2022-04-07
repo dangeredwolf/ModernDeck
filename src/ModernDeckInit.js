@@ -5,9 +5,6 @@
 	Released under the MIT License
 */
 
-import { version } from "../package.json";
-window.SystemVersion = version.replace(/\.0$/,""); // remove trailing .0, if present
-
 import { AsciiArtController } from "./AsciiArtController.js";
 import { AutoUpdateController } from "./AutoUpdateController.js";
 import { PWAManifest } from "./PWAManifest.js";
@@ -65,7 +62,6 @@ const forceFeatureFlags = false;
 window.useSentry = true;
 
 let replacedLoadingSpinnerNew = false;
-let sendingFeedback = false;
 window.useNativeContextMenus = false;
 window.isDev = false;
 window.useSafeMode = false;
@@ -766,7 +762,7 @@ function coreInit() {
 
 	checkIfSigninFormIsPresent();
 	loginInterval = setInterval(checkIfSigninFormIsPresent, 500);
-	console.info(`ModernDeck ${SystemVersion}`);
+	console.info(`ModernDeck ${window.ModernDeck.versionFriendlyString}`);
 	console.info("ModernDeckInit.coreInit completed. Good job.");
 
 }
@@ -776,7 +772,7 @@ if (window.useSentry) {
 		dsn: "https://92f593b102fb4c1ca010480faed582ae@o110170.ingest.sentry.io/242524",
 
 		// To set your release version
-		release: "moderndeck@" + version,
+		release: "moderndeck@" + window.ModernDeck.versionString,
 		integrations: [new Integrations.BrowserTracing()],
 
 		// Set tracesSampleRate to 1.0 to capture 100%
