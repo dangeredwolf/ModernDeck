@@ -56,5 +56,5 @@ export function getPlatformName() {
 }
 
 export function getProductName() {
-	return "ModernDeck";
+	return "ModernDeck 10";
 }

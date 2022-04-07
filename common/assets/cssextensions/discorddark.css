@@ -30,14 +30,15 @@
 	--placeholderTextColor:#72767D;
 	--selectionBackgroundColor:rgba(106,152,152,0.57);
 	--selectionTextColor:#666;
-	--tweetDetailWrapperColor:rgba(0,0,0,0.1);
+	--tweetDetailWrapperColor:rgba(4,4,5,0.07);
 	--contextMenuDividerColor:rgba(79,84,92,0.48);
 	--backdropColor:#36393f;
 	--modalWindowColor:#36393f;
 	--overlayBackgroundColor:rgba(56,66,72,0.4);
 	--navDrawerBackground:rgba(56,66,72,0.4);
 	--defaultShadowColor:rgba(56,66,72,0.4);
-	--settingsTabColor:#2f3136
+	--settingsTabColor:#2f3136;
+	--interactiveMuted:#4f545c;
 }
 
 /* Always overwrite this from color themes */
@@ -158,4 +159,18 @@
 	background:var(--secondaryColor)!important;
 	width:100%;
 	margin-top:-40px
+}
+
+.stream-item.is-actionable .quoted-tweet {
+	background:var(--settingsTabColor);
+	border-radius:6px;
+	box-shadow:none
+}
+
+.media-item, .media-item:hover {
+	box-shadow:none
+}
+
+.thread {
+	background-color: var(--interactiveMuted)
 }
