@@ -5,6 +5,13 @@
 	Released under the MIT License
 */
 
-.light:root {
+.mtd-light:root {
 	--primaryColor:#263238 !important;
+	--secondaryColorAlt:#3f4a50 !important;
+	--secondaryColor:#3f4a50 !important;
+	--secondaryColorBright:#3A4B54 !important;
+	--selectionBackgroundColor:rgba(119,145,158,.57);
+	--secondaryColorAlt:#6c808a;
+	--secondaryColorPress:#7a8e98;
+	--secondaryColorDeep:#283135;
 }

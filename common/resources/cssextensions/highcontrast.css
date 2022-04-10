@@ -152,7 +152,7 @@ html .is-new .column-header, html .is-new .column-header-temp
 	box-shadow:none!important
 }
 
-.mtd-nd-header-image,html.dark div.drawer[data-drawer="compose"], html.dark .lst-group .selected, html.dark #calcurrent, html.dark .btn-compose:not(.js-hide-drawer), html.dark .compose, html.dark .drawer, html.dark .column-options .button-tray, html.dark .column-options, html.dark .facet-type, html.dark .is-options-open .column-settings-link, html.dark .is-favorite.is-retweet .tweet-dogear, html.dark .is-unread, html.dark .js-add-column, html.dark .mdl .js-add-column, html.dark .list-item.is-selected, html.dark .more-tweets-btn, html.dark .more-tweets-btn:hover, html.dark .tweet-button:not(.js-hide-drawer), html.dark .PillGroup .Pill.is-selected, html.dark .DatePicker-calendarDay.is-withinRange, html.dark button.try-query {
+.mtd-nd-header-image,html.mtd-dark div.drawer[data-drawer="compose"], html.mtd-dark .lst-group .selected, html.mtd-dark #calcurrent, html.mtd-dark .btn-compose:not(.js-hide-drawer), html.mtd-dark .compose, html.mtd-dark .drawer, html.mtd-dark .column-options .button-tray, html.mtd-dark .column-options, html.mtd-dark .facet-type, html.mtd-dark .is-options-open .column-settings-link, html.mtd-dark .is-favorite.is-retweet .tweet-dogear, html.mtd-dark .is-unread, html.mtd-dark .js-add-column, html.mtd-dark .mdl .js-add-column, html.mtd-dark .list-item.is-selected, html.mtd-dark .more-tweets-btn, html.mtd-dark .more-tweets-btn:hover, html.mtd-dark .tweet-button:not(.js-hide-drawer), html.mtd-dark .PillGroup .Pill.is-selected, html.mtd-dark .DatePicker-calendarDay.is-withinRange, html.mtd-dark button.try-query {
 	background:#000
 }
 
