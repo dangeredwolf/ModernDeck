@@ -37,11 +37,8 @@ export function FunctionPatcher() {
 			inApp:() => true,
 			tearDown:() => {},
 			doGrowl:(title, text, icon, tweet, column)=>{
-				console.warn("doGrowl: ", title, text, icon, tweet, column);
 				let col = TD.controller.columnManager.get(column);
 				let tweetObj;
-
-
 
 				let notif = new Notification(title,{body:text,icon:icon,silent:true});
 				notif.onclick = () => {
