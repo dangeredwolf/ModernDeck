@@ -1,12 +1,14 @@
 /*
-	Utils.js
+	Utils.ts
 
 	Copyright (c) 2014-2022 dangered wolf, et al
 	Released under the MIT License
 */
 
-import { I18n, getFullLanguage } from "./I18n.js";
+import { I18n, getFullLanguage } from "./I18n";
 import * as Sentry from "@sentry/browser";
+import { getPref } from "./StoragePreferences";
+import _windowTypes from "./WindowTypes";
 
 /*
 	Shorthand function to create a new element, which is helpful for concise UI building.
@@ -14,7 +16,7 @@ import * as Sentry from "@sentry/browser";
 	We could just make jQuery directly do it, but it's slower than calling native JS api and wrapped jQuery around it
 */
 
-export const handleErrors = (func, text) => {
+export const handleErrors = (func: Function, text: string): void => {
 	try {
 		func();
 	} catch(e) {
@@ -29,19 +31,13 @@ export const handleErrors = (func, text) => {
 
 // Creates a new element in jQuery
 
-export const make = function(a) {
-	return $(document.createElement(a));
-}
-
-// Creates a new element in nQuery
-
-export const makeN = function(a) {
-	return nQuery(document.createElement(a));
+export const make = function(elementType: string): JQuery {
+	return $(document.createElement(elementType));
 }
 
 // shorthand function to return true if something exists and false otherwise
 
-export const exists = function(thing) {
+export const exists = function(thing: any): boolean {
 	return (
 		(typeof thing === "object" && thing !== null && thing.length > 0) || // Object can't be empty or null
 		(!!thing === true) ||
@@ -54,7 +50,7 @@ export const exists = function(thing) {
 	Formats a number for a given locale
 */
 
-export function formatNumberI18n(number) {
+export function formatNumberI18n(number: number): string {
 	if (!window.mtdNumberFormat || window.mtdNeedsResetNumberFormatting) {
 		let format;
 		switch(getPref("mtd_shortDateFormat")) {
@@ -83,7 +79,7 @@ export function formatNumberI18n(number) {
 	Helper function that rounds a number to the nearest hundredth (2nd decimal)
 */
 
-export function roundMe(val) {
+export function roundMe(val: number): number {
 	return Math.floor(val * 100)/100;
 }
 
@@ -95,7 +91,7 @@ export function roundMe(val) {
 	i.e. formatBytes(1000) -> "1 KB"
 */
 
-export function formatBytes(val) {
+export function formatBytes(val: number): string {
 	if (val < 10**3) {
 		return formatNumberI18n(val) + I18n(" bytes")
 	} else if (val < 10**6) {
@@ -109,30 +105,21 @@ export function formatBytes(val) {
 	}
 }
 
-
-/*
-	Sanitises a string so we don't get silly XSS exploits (i sure as hell hope)
-*/
-
-export function sanitiseString(str) {
-	return str.replace(/\</g,"&lt;").replace(/\&/g,"&amp;").replace(/\>/g,"&gt;").replace(/\"/g,"&quot;")
-}
-
-export const isApp = typeof require !== "undefined";
+export const isApp: boolean = typeof require !== "undefined";
 
 /*
 	Shorthand for creating a mutation observer and observing
 */
 
-export function mutationObserver(obj,func,parms) {
-	return (new MutationObserver(func)).observe(obj,parms);
+export const mutationObserver = (object: Node, func: MutationCallback, parms: Object): void => {
+	return (new MutationObserver(func)).observe(object, parms);
 }
 
 /*
 	Returns ipcRenderer for electron app
 */
 
-export function getIpc() {
+export const getIpc = () => {
 	if (!require) {return null;}
 	return require('electron').ipcRenderer;
 }
