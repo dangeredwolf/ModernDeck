@@ -5,7 +5,7 @@
 	Released under the MIT License
 */
 
-import { I18n } from "./I18n.js";
+import { I18n } from "./I18n";
 
 export const _newLoginPage = `<div class="app-signin-wrap mtd-signin-wrap">
 	<div class="js-signin-ui app-signin-form pin-top pin-right txt-weight-normal">

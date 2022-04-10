@@ -5,11 +5,11 @@
 	Released under the MIT License
 */
 
-import { settingsData } from "./DataSettings.js";
-import { exists, getIpc } from "./Utils.js";
-import { ModernDeckPrefMigration } from "./ModernDeckPrefMigration.js";
-import { disableStylesheetExtension, enableStylesheetExtension } from "./StylesheetExtensions.js";
-import { getPref, setPref, hasPref, debugStorageSys } from "./StoragePreferences.js";
+import { settingsData } from "./DataSettings";
+import { exists, getIpc } from "./Utils";
+import { ModernDeckPrefMigration } from "./ModernDeckPrefMigration";
+import { disableStylesheetExtension, enableStylesheetExtension } from "./StylesheetExtensions";
+import { getPref, setPref, hasPref, debugStorageSys } from "./StoragePreferences";
 /*
 	function loadPreferences()
 
@@ -113,7 +113,7 @@ export function parseActions(a,opt,load) {
 					} catch (e) {
 						console.error("Error occurred processing action function.");
 						console.error(e);
-						lastError = e;
+						window.lastError = e;
 						console.error("Dump of naughty function attached below");
 						console.log(a[key])
 					}

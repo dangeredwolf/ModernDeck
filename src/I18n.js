@@ -11,9 +11,9 @@ let tweetDeckTranslateInitial;
 let debugI18n = false;
 
 // ModernDeck specific import, dummy function in tweetdeck-i18n
-import { getPref } from "./StoragePreferences.js";
+import { getPref } from "./StoragePreferences";
 // Import the language data (common to tweetdeck-i18n and ModernDeck)
-import languageData from "./DataI18n.js";
+import languageData from "./DataI18n";
 
 let langFull;
 let langRoot;

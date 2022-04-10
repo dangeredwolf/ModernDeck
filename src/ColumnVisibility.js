@@ -5,7 +5,7 @@
 	Released under the MIT License
 */
 
-import { updateColumnVisibility } from "./Column.js";
+import { updateColumnVisibility } from "./Column";
 
 let lastScrollAt = Date.now();
 let timeout = Date.now();

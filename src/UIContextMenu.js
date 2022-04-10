@@ -5,10 +5,10 @@
 	Released under the MIT License
 */
 
-import { make, exists } from "./Utils.js";
-import { contextMenuFunctions } from "./ContextMenuFunctions.js";
-import { getPref } from "./StoragePreferences.js";
-import { I18n } from "./I18n.js";
+import { make, exists } from "./Utils";
+import { contextMenuFunctions } from "./ContextMenuFunctions";
+import { getPref } from "./StoragePreferences";
+import { I18n } from "./I18n";
 
 let debugSettings = false;
 

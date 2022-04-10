@@ -6,7 +6,7 @@
 		"module": "esnext",
 		"target": "es5",
 		"allowJs": true,
-		"moduleResolution": "nodenext",
+		"moduleResolution": "node",
 		"resolveJsonModule": true,
 	}
 }

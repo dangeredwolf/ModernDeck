@@ -5,50 +5,50 @@
 	Released under the MIT License
 */
 
-import { AsciiArtController } from "./AsciiArtController.js";
-import { AutoUpdateController } from "./AutoUpdateController.js";
-import { PWAManifest } from "./PWAManifest.js";
-import { I18n, startI18nEngine } from "./I18n.js";
-import { getPref, setPref } from "./StoragePreferences.js";
-import { make, exists, isApp, mutationObserver, getIpc, handleErrors, formatNumberI18n } from "./Utils.js";
-import { debugWelcome, UIWelcome } from "./UIWelcome.js";
-import { initGifPanel, checkGifEligibility } from "./UIGifPicker.js";
-import { openSettings } from "./UISettings.js";
-import { UINavDrawer } from "./UINavDrawer.js";
-import { FunctionPatcher } from "./FunctionPatcher.js";
-import { LanguageFunctionPatcher } from "./LanguageFunctionPatcher.js";
-import { UILanguagePicker } from "./UILanguagePicker.js";
-import { setupAME } from "./AdvancedMuteEngine.js";
-import { loginTextReplacer, checkIfSigninFormIsPresent } from "./UILoginController.js";
-import { getColumnNumber, updateColumnTypes } from "./Column.js";
-import i18nData from "./DataI18n.js";
+import { AsciiArtController } from "./AsciiArtController";
+import { AutoUpdateController } from "./AutoUpdateController";
+import { PWAManifest } from "./PWAManifest";
+import { I18n, startI18nEngine } from "./I18n";
+import { getPref, setPref } from "./StoragePreferences";
+import { make, exists, isApp, mutationObserver, getIpc, handleErrors, formatNumberI18n } from "./Utils";
+import { debugWelcome, UIWelcome } from "./UIWelcome";
+import { initGifPanel, checkGifEligibility } from "./UIGifPicker";
+import { openSettings } from "./UISettings";
+import { UINavDrawer } from "./UINavDrawer";
+import { FunctionPatcher } from "./FunctionPatcher";
+import { LanguageFunctionPatcher } from "./LanguageFunctionPatcher";
+import { UILanguagePicker } from "./UILanguagePicker";
+import { setupAME } from "./AdvancedMuteEngine";
+import { loginTextReplacer, checkIfSigninFormIsPresent } from "./UILoginController";
+import { getColumnNumber, updateColumnTypes } from "./Column";
+import i18nData from "./DataI18n";
 window.i18nData = i18nData;
 window.AutoUpdateController = AutoUpdateController;
 import modalKeepOpen from "./ModalKeepOpen";
 import NFTActionQueue from "./NFTActionQueue";
 
-import { enableStylesheetExtension, enableCustomStylesheetExtension } from "./StylesheetExtensions.js";
+import { enableStylesheetExtension, enableCustomStylesheetExtension } from "./StylesheetExtensions";
 
 window.getPref = getPref;
 window.setPref = setPref;
-import { _newLoginPage } from "./DataMustaches.js";
+import { _newLoginPage } from "./DataMustaches";
 window.newLoginPage = _newLoginPage;
 
-import { processForceFeatureFlags } from "./ForceFeatureFlags.js";
-import { loadPreferences, loadPreferencesWindows, parseActions } from "./PrefHandler.js";
+import { processForceFeatureFlags } from "./ForceFeatureFlags";
+import { loadPreferences, loadPreferencesWindows, parseActions } from "./PrefHandler";
 window.parseActions = parseActions;
 
-import { fromCodePoint } from "./EmojiHelper.js";
-import { injectFonts } from "./FontHandler.js";
+import { fromCodePoint } from "./EmojiHelper";
+import { injectFonts } from "./FontHandler";
 
-import { clearContextMenu } from "./UIContextMenu.js";
+import { clearContextMenu } from "./UIContextMenu";
 
-import { keyboardShortcutHandler } from "./KeyboardShortcutHandler.js";
-import { UIAlert } from "./UIAlert.js";
-import { processMustaches } from "./MustachePatcher.js";
-import { mtdAppFunctions } from "./AppController.js";
+import { keyboardShortcutHandler } from "./KeyboardShortcutHandler";
+import { UIAlert } from "./UIAlert";
+import { processMustaches } from "./MustachePatcher";
+import { mtdAppFunctions } from "./AppController";
 
-import { attachColumnVisibilityEvents } from "./ColumnVisibility.js";
+import { attachColumnVisibilityEvents } from "./ColumnVisibility";
 
 import * as Sentry from "@sentry/browser";
 import { Integrations } from "@sentry/tracing";
@@ -670,7 +670,7 @@ function coreInit() {
 		} catch(e) {
 			console.error("An error occurred while running mtdAppFunctions");
 			console.error(e);
-			lastError = e;
+			window.lastError = e;
 		}
 	}
 	// append extra scripts

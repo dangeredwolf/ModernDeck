@@ -6,8 +6,8 @@
 */
 
 
-import { enableStylesheetExtension, disableStylesheetExtension, enableCustomStylesheetExtension } from "./../StylesheetExtensions.js";
-import { setPref } from "./../StoragePreferences.js";
+import { enableStylesheetExtension, disableStylesheetExtension, enableCustomStylesheetExtension } from "./../StylesheetExtensions";
+import { setPref } from "./../StoragePreferences";
 
 export default {
     tabName:"<i class='material-icon' aria-hidden='true'>rounded_corner</i> {{Appearance}}",

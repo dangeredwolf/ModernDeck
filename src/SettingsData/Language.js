@@ -5,10 +5,10 @@
 	Released under the MIT License
 */
 
-import { I18n } from "./../I18n.js";
-import { UIAlert } from "./../UIAlert.js";
-import { UILanguagePicker } from "./../UILanguagePicker.js";
-import { translationCredits } from "./../DataTranslationCredits.js";
+import { I18n } from "./../I18n";
+import { UIAlert } from "./../UIAlert";
+import { UILanguagePicker } from "./../UILanguagePicker";
+import { translationCredits } from "./../DataTranslationCredits";
 
 export default {
     tabName:"<i class='material-icon' aria-hidden='true'>language</i> {{Language}}",

@@ -5,8 +5,8 @@
 	Released under the MIT License
 */
 
-import { setPref } from "./StoragePreferences.js";
-import { settingsData } from "./DataSettings.js"
+import { setPref } from "./StoragePreferences";
+import { settingsData } from "./DataSettings"
 
 export function parseConfig(config) {
 	console.log("Parsing desktop config...");

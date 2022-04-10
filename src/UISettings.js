@@ -5,13 +5,13 @@
 	Released under the MIT License
 */
 
-import { make, exists, isApp } from "./Utils.js";
-import { settingsData } from "./DataSettings.js";
-import { hasPref, getPref, setPref } from "./StoragePreferences.js";
-import { parseActions } from "./PrefHandler.js";
-import { I18n } from "./I18n.js";
-import { AutoUpdateController } from "./AutoUpdateController.js";
-import { diag } from "./UIDiag.js"; 
+import { make, exists, isApp } from "./Utils";
+import { settingsData } from "./DataSettings";
+import { hasPref, getPref, setPref } from "./StoragePreferences";
+import { parseActions } from "./PrefHandler";
+import { I18n } from "./I18n";
+import { AutoUpdateController } from "./AutoUpdateController";
+import { diag } from "./UIDiag"; 
 
 let verTextId = 2;
 let verText = "";

@@ -5,15 +5,15 @@
 	Released under the MIT License
 */
 
-import { make } from "./Utils.js";
-import DataI18n from "./DataI18n.js";
-import { UIModal } from "./UIModal.js";
-import { getFullLanguage, getMainLanguage } from "./I18n.js";
-import unsupportedCodeTable from "./DataUnsupportedLanguage.js";
-import inaccuraciesCodeTable from "./DataTranslationsMayBeInaccurate.js";
-import languageText from "./DataTextThatSaysLanguage.js";
+import { make } from "./Utils";
+import DataI18n from "./DataI18n";
+import { UIModal } from "./UIModal";
+import { getFullLanguage, getMainLanguage } from "./I18n";
+import unsupportedCodeTable from "./DataUnsupportedLanguage";
+import inaccuraciesCodeTable from "./DataTranslationsMayBeInaccurate";
+import languageText from "./DataTextThatSaysLanguage";
 
-import languageData from "./DataI18n.js";
+import languageData from "./DataI18n";
 
 export class UILanguagePicker extends UIModal {
 	constructor() {

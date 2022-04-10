@@ -5,7 +5,7 @@
 	Released under the MIT License
 */
 
-import { getPref } from "./StoragePreferences.js"
+import { getPref } from "./StoragePreferences"
 
 export function getColumnFromColumnNumber(num) {
 	let result;

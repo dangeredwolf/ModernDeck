@@ -5,16 +5,16 @@
 	Released under the MIT License
 */
 
-import { make, exists, getIpc } from "./Utils.js";
-import { UIAlert } from "./UIAlert.js";
-import { UIUpdateNotify } from "./UIUpdateNotify.js";
-import { AutoUpdateController } from "./AutoUpdateController.js";
-import { openSettings } from "./UISettings.js";
-import { buildContextMenu } from "./UIContextMenu.js";
-import { parseActions } from "./PrefHandler.js";
-import { parseConfig } from "./DesktopConfigParser.js";
-import { importTweetenSettings } from "./StorageTweetenImport.js";
-import { I18n } from "./I18n.js";
+import { make, exists, getIpc } from "./Utils";
+import { UIAlert } from "./UIAlert";
+import { UIUpdateNotify } from "./UIUpdateNotify";
+import { AutoUpdateController } from "./AutoUpdateController";
+import { openSettings } from "./UISettings";
+import { buildContextMenu } from "./UIContextMenu";
+import { parseActions } from "./PrefHandler";
+import { parseConfig } from "./DesktopConfigParser";
+import { importTweetenSettings } from "./StorageTweetenImport";
+import { I18n } from "./I18n";
 
 let offlineNotification;
 

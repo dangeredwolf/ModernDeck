@@ -5,8 +5,8 @@
 	Released under the MIT License
 */
 
-import { getPref, setPref } from "./StoragePreferences.js";
-import { exists } from "./Utils.js"
+import { getPref, setPref } from "./StoragePreferences";
+import { exists } from "./Utils";
 
 /*
 	Processes Tweeten Settings import
