@@ -120,8 +120,8 @@ export const mutationObserver = (object: Node, func: MutationCallback, parms: Ob
 */
 
 export const getIpc = () => {
-	if (!require) {return null;}
-	return require('electron').ipcRenderer;
+	if (!window.require) {return null;}
+	return window.require('electron').ipcRenderer;
 }
 
 // Use standard macOS symbols instead of writing it out like on Windows
