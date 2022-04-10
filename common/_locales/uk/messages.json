@@ -1,30 +1,30 @@
 {
 	"description": {
-		"message": "The most powerful Twitter client for desktop.",
+		"message": "Найпотужніший Twitter-клієнт для комп'ютера.",
 		"description": "Short description for the extension"
 	},
 	"launch": {
-		"message": "Launch ModernDeck",
+		"message": "Відкрити ModernDeck",
 		"description": "The ModernDeck Launcher button"
 	},
 	"name": {
-		"message": "ModernDeck - Twitter Client for Desktop",
+		"message": "ModernDeck - Twitter клієнт для комп'ютера",
 		"description": "The name of the extension that appears on the Chrome Web Store"
 	},
 	"webstoreDescription": {
-		"message": "ModernDeck is a TweetDeck-based Twitter client with a beautiful, Material Design-inspired interface. It combines the power of TweetDeck with the ease-of-use you expect from a Twitter client.\n\nYou can customize how ModernDeck looks and acts to make it your own, including:\n-Size of columns and text\n-Fonts\n-Themes, including alternate color schemes\n-Size and shape of profile pictures\nAnd much more\n\nModernDeck is available in several languages, and is also available for other platforms at https://moderndeck.org/download",
+		"message": "ModernDeck — це Twitter-клієнт, що використовує засади Material Design. Він поєднує у собі міць TweetDeck та легкість у використанні, яку ви очікуєте від Twitter-клієнта.\n\nВи можете налаштувати ModernDeck для себе:\n— Розмір стовпчиків та тексту\n— Шрифти\n— Теми та, зокрема, альтернативні палітри кольорів\n— Розмір та форма аватарів\nТа багато чого іншого\n\nModernDeck наявний на декількох мовах та багатьох платформах на https://moderndeck.org/download",
 		"description": "The description of the extension that appears on the Chrome Web Store"
 	},
 	"grantButton": {
-		"message": "Grant Permission",
+		"message": "Надати дозвіл",
 		"description": "A button to grant tabs permission in Firefox"
 	},
 	"needsPermission": {
-		"message": "Sorry to interrupt &mdash; We need permission to open tabs",
+		"message": "Пробачте, що відриваємо від роботи &mdash; нам необхідний дозвіл, щоб відкривати вкладки",
 		"description": "A title about granting tabs permission in Firefox"
 	},
 	"needsPermissionParagraph": {
-		"message": "ModernDeck requires the tab permission from Firefox in order to create new tabs.<br><br>\nThis is optional, and only required for the launcher feature. You can still access ModernDeck at <a href=\"https://tweetdeck.twitter.com\" target=\"_blank\">tweetdeck.twitter.com</a> even without this permission.<br><br>\nIf you don't accept these permissions, you can remove the launcher button by right clicking it and selecting <i>Remove from Toolbar</i><br><br>\n<b>ModernDeck does not read your open tabs.</b>",
+		"message": "Для відкриття нових вкладок, ModernDeck потребує відповідного дозволу від Firefox.<br><br>Цей дозвіл є необов'язковим — він необхідний лише для можливості швидкого запуску з піктограми. Ви все ще можете використовувати ModernDeck за адресою <a href=\"https://tweetdeck.twitter.com\" target=\"_blank\">tweetdeck.twitter.com</a> навіть без цього дозволу.<br><br> Якщо ви не бажаєте надавати цей дозвіл, ви можете прибрати піктограму для запуску, натиснувши на неї правою кнопкою миші та обравши пункт <i>Прибрати з панелі інструментів</i><br><br>\n<b>ModernDeck не слідкує за вашими відкритими вкладками</b>",
 		"description": "A description about granting tabs permission in Firefox"
 	}
 }
