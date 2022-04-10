@@ -159,7 +159,7 @@ export let settingsData = {
 							return;
 						}
 
-						for (let i in window.settingsData.themes.options.theme.options) {
+						for (let i in window.settingsData.themes.options.themeColor.options) {
 							if (opt !== i)
 								disableStylesheetExtension(i);
 						}
