@@ -5,11 +5,11 @@
 	Released under the MIT License
 */
 
-import { enableStylesheetExtension, disableStylesheetExtension } from "./StylesheetExtensions.js";
-import { I18n } from "./I18n.js";
-import { UILanguagePicker } from "./UILanguagePicker.js";
-import { openSettings } from "./UISettings.js";
-import { getPref } from "./StoragePreferences.js";
+import { enableStylesheetExtension, disableStylesheetExtension } from "./StylesheetExtensions";
+import { I18n } from "./I18n";
+import { UILanguagePicker } from "./UILanguagePicker";
+import { openSettings } from "./UISettings";
+import { getPref } from "./StoragePreferences";
 
 let ugltStarted = false;
 window.loginIntervalTick = 0;

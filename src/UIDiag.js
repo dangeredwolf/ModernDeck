@@ -5,12 +5,12 @@
 	Released under the MIT License
 */
 
-import { isApp, make } from "./Utils.js";
-import { dumpPreferences } from "./StoragePreferences.js";
+import { isApp, make } from "./Utils";
+import { dumpPreferences } from "./StoragePreferences";
 import { version } from "../package.json";
-import { I18n } from "./I18n.js";
-import { UIAlert } from "./UIAlert.js";
-import { AsciiArtController } from "./AsciiArtController.js";
+import { I18n } from "./I18n";
+import { UIAlert } from "./UIAlert";
+import { AsciiArtController } from "./AsciiArtController";
 
 /*
 	diag makes it easier for developers to narrow down user-reported bugs.
@@ -67,7 +67,7 @@ export function diag() {
 	} catch (e) {
 		console.error("An error occurred trying to show the diagnostic menu");
 		console.error(e);
-		lastError = e;
+		window.lastError = e;
 	}
 }
 

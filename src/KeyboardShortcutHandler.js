@@ -14,11 +14,11 @@
 	Q -> Toggle navigation drawer (for Simplified view)
 */
 
-import { settingsData } from "./DataSettings.js";
-import { getPref } from "./StoragePreferences.js";
-import { make, handleErrors } from "./Utils.js";
-import { disableStylesheetExtension } from "./StylesheetExtensions.js";
-import { diag } from "./UIDiag.js";
+import { settingsData } from "./DataSettings";
+import { getPref } from "./StoragePreferences";
+import { make, handleErrors } from "./Utils";
+import { disableStylesheetExtension } from "./StylesheetExtensions";
+import { diag } from "./UIDiag";
 
 export function keyboardShortcutHandler(e) {
 

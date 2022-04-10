@@ -5,7 +5,7 @@
 	Released under the MIT License
 */
 
-import ModernDeck from "./Init/ModernDeckConst.js";
+import _ModernDeck from "./Init/ModernDeckConst";
 
 export class AsciiArtController {
 

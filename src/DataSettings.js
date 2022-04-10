@@ -5,16 +5,16 @@
 	Released under the MIT License
 */
 
-import themes from "./SettingsData/Themes.js";
-import appearance from "./SettingsData/Appearance.js";
-import tweets from "./SettingsData/Tweets.js";
-import mutes from "./SettingsData/Mutes.js";
-import accessibility from "./SettingsData/Accessibility.js";
-import app from "./SettingsData/App.js";
-import system from "./SettingsData/System.js";
-import language from "./SettingsData/Language.js";
-import about from "./SettingsData/About.js";
-import internalSettings from "./SettingsData/InternalSettings.js";
+import themes from "./SettingsData/Themes";
+import appearance from "./SettingsData/Appearance";
+import tweets from "./SettingsData/Tweets";
+import mutes from "./SettingsData/Mutes";
+import accessibility from "./SettingsData/Accessibility";
+import app from "./SettingsData/App";
+import system from "./SettingsData/System";
+import language from "./SettingsData/Language";
+import about from "./SettingsData/About";
+import internalSettings from "./SettingsData/InternalSettings";
 
 /*
 	Settings manager data.

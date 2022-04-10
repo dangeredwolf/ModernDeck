@@ -5,9 +5,9 @@
 	Released under the MIT License
 */
 
-import { make, exists } from "./Utils.js";
-import { I18n } from "./I18n.js";
-import { UIModal } from "./UIModal.js";
+import { make, exists } from "./Utils";
+import { I18n } from "./I18n";
+import { UIModal } from "./UIModal";
 
 /*
 	UIAlert(Object alertProps)

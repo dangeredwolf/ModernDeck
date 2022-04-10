@@ -9,7 +9,7 @@
 	https://github.com/chylex/TweetDuck/blob/master/LICENSE.md
 */
 
-import { getPref } from "./StoragePreferences.js";
+import { getPref } from "./StoragePreferences";
 
 export default function() {
 	const prevSetTimeout = window.setTimeout;

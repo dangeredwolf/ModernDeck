@@ -5,8 +5,8 @@
 	Released under the MIT License
 */
 
-import { make } from "./Utils.js";
-import { I18n } from "./I18n.js";
+import { make } from "./Utils";
+import { I18n } from "./I18n";
 
 export function UIUpdateNotify() {
 	if (window.mtdHasNotifiedUpdate) {

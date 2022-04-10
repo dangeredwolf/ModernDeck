@@ -12,7 +12,7 @@
 	https://github.com/dangeredwolf/ModernDeck/wiki/Preference-Management-Functions
 */
 
-import { exists, isApp } from "./Utils.js";
+import { exists, isApp } from "./Utils";
 export const debugStorageSys = false;
 let store;
 

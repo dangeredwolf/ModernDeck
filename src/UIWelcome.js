@@ -7,13 +7,13 @@
 
 /* Main thread for welcome screen */
 
-import { _welcomeData } from "./DataWelcome.js";
-import { makeUpdateCont } from "./UISettings.js";
-import { isApp, make } from "./Utils.js";
-import { enableStylesheetExtension, disableStylesheetExtension } from "./StylesheetExtensions.js";
-import { setPref } from "./StoragePreferences.js";
-import { I18n } from "./I18n.js";
-import { UIModal } from "./UIModal.js";
+import { _welcomeData } from "./DataWelcome";
+import { makeUpdateCont } from "./UISettings";
+import { isApp, make } from "./Utils";
+import { enableStylesheetExtension, disableStylesheetExtension } from "./StylesheetExtensions";
+import { setPref } from "./StoragePreferences";
+import { I18n } from "./I18n";
+import { UIModal } from "./UIModal";
 let welcomeData = _welcomeData;
 
 export const debugWelcome = false;

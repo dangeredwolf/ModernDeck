@@ -52,6 +52,11 @@ Made with <3
 			use: ["csv-loader"],
 		},
 		{
+			test: /\.tsx?$/,
+			use: 'ts-loader',
+			exclude: /node_modules/,
+		},
+		{
 			test: /\.m?js$/,
 			// ModernDeck only uses ES6 imports, `require` is only used to interface with Node in the Electron version
 			parser: {

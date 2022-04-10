@@ -5,7 +5,7 @@
 	Released under the MIT License
 */
 
-import { spinnerSmall, spinnerLarge, spinnerTiny, buttonSpinner } from "./DataMustaches.js";
+import { spinnerSmall, spinnerLarge, spinnerTiny, buttonSpinner } from "./DataMustaches";
 
 /* modifies tweetdeck mustaches, replacing spinners, etc */
 

@@ -5,9 +5,9 @@
 	Released under the MIT License
 */
 
-import {spinnerLarge} from "./DataMustaches.js";
-import {make} from "./Utils.js";
-import { I18n } from "./I18n.js";
+import {spinnerLarge} from "./DataMustaches";
+import {make} from "./Utils";
+import { I18n } from "./I18n";
 
 const giphyKey = "Vb45700bexRDqCkbMdUmBwDvtkWT9Vj2";
 const tenorKey = "OPS2J07J0KWA";
@@ -309,7 +309,7 @@ function fetchGiphy() {
 	.error((e) => {
 		console.error("Error trying to fetch Giphy GIFs");
 		console.error(e);
-		lastError = e;
+		window.lastError = e;
 	})
 	.always(() => {
 		isWaitingOnGiphy = false;
@@ -331,7 +331,7 @@ function fetchGfycat() {
 	.error((e) => {
 		console.error("Error trying to fetch Gfycat GIFs");
 		console.error(e);
-		lastError = e;
+		window.lastError = e;
 	})
 	.always(() => {
 		isWaitingOnGfycat = false;
@@ -353,7 +353,7 @@ function fetchTenor() {
 	.error((e) => {
 		console.error("Error trying to fetch Tenor GIFs");
 		console.error(e);
-		lastError = e;
+		window.lastError = e;
 	})
 	.always(() => {
 		isWaitingOnTenor = false;

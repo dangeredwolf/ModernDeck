@@ -5,7 +5,7 @@
 	Released under the MIT License
 */
 
-import { make } from "./Utils.js";
+import { make } from "./Utils";
 
 export class UIModal {
 	modalRoot = "#settings-modal";

@@ -5,8 +5,8 @@
 	Released under the MIT License
 */
 
-import { setPref } from "./StoragePreferences.js";
-import { getIpc } from "./Utils.js";
+import { setPref } from "./StoragePreferences";
+import { getIpc } from "./Utils";
 
 /*
 	Enters safe mode, disabling most ModernDeck custom CSS. App-only right now.

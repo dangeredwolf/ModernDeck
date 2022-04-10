@@ -5,7 +5,7 @@
 	Released under the MIT License
 */
 
-import { allColumnsVisible, updateColumnVisibility } from "./../Column.js";
+import { allColumnsVisible, updateColumnVisibility } from "./../Column";
 
 export default {
     tabName:"<i class='Icon icon-twitter-bird'></i> {{Tweets}}",

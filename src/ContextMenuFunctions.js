@@ -7,7 +7,7 @@
 
 // These functions allow the app's context menus to perform contextual options
 
-import { getIpc } from "./Utils.js";
+import { getIpc } from "./Utils";
 
 export const contextMenuFunctions = {
 	cut: () => {

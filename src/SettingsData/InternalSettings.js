@@ -5,8 +5,8 @@
 	Released under the MIT License
 */
 
-import { getPref } from "./../StoragePreferences.js";
-import { getColumnFromColumnNumber } from "./../Column.js";
+import { getPref } from "./../StoragePreferences";
+import { getColumnFromColumnNumber } from "./../Column";
 
 export default {
     enabled: false,

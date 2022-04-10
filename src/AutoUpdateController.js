@@ -5,8 +5,8 @@
 	Released under the MIT License
 */
 
-import { I18n } from "./I18n.js";
-import { formatBytes } from "./Utils.js";
+import { I18n } from "./I18n";
+import { formatBytes } from "./Utils";
 
 export class AutoUpdateController {
 	h3;

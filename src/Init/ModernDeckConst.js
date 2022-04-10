@@ -6,7 +6,7 @@
 */
 
 import { version } from "../../package.json";
-import buildId from "./../buildId.js";
+import buildId from "./../buildId";
 import { getPlatformName, getProductName, getSystemName } from "./VersionController";
 export let ModernDeck = {
 	version: 10.0,

@@ -5,8 +5,8 @@
 	Released under the MIT License
 */
 
-import { make } from "./Utils.js";
-import { CustomThemes } from "./CustomThemes.js";
+import { make } from "./Utils";
+import { CustomThemes } from "./CustomThemes";
 // import AColorPicker from "a-color-picker";
 
 export class UIThemeEditor {

@@ -5,9 +5,9 @@
 	Released under the MIT License
 */
 
-import { make, exists } from "./Utils.js";
-import { openSettings } from "./UISettings.js";
-import { I18n } from "./I18n.js";
+import { make, exists } from "./Utils";
+import { openSettings } from "./UISettings";
+import { I18n } from "./I18n";
 
 
 /*
@@ -143,7 +143,7 @@ export function UINavDrawer() {
 	} catch(e) {
 		console.error("An error occurred in navigationSetup while trying to verify if dev/dogfood features are enabled or not");
 		console.error(e);
-		lastError = e;
+		window.lastError = e;
 	}
 	$(".mtd-nav-group-expanded").attr("style","height:"+$(".mtd-nav-group-expanded").height()+"px");
 
