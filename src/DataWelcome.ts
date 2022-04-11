@@ -19,35 +19,35 @@ export let _welcomeData: WelcomeData = {
 	welcome: {
 		title: "<i class='icon icon-moderndeck icon-xxlarge mtd-welcome-head-icon' style='color:var(--secondaryColor)'></i>" + I18n("Welcome to ModernDeck!"),
 		body: I18n("We're glad to have you here. Click Next to continue."),
-		nextFunc: () => {
+		nextFunc: (): void => {
 
 			let currentTheme = getPref("mtd_theme");
 
-			$(window.mtd_welcome_dark).click(()=>{
+			$(window.mtd_welcome_dark).click((): void => {
 				parseActions(settingsData.themes.options.theme.activate,"dark");
 				setPref("mtd_theme", "dark");
 				$(".mtd-welcome-inner .tweet-text").html(I18n("This tweet is quite dark!"))
 			})
 
-			$(window.mtd_welcome_darker).click(()=>{
+			$(window.mtd_welcome_darker).click((): void => {
 				parseActions(settingsData.themes.options.theme.activate,"darker");
 				setPref("mtd_theme", "darker");
 				$(".mtd-welcome-inner .tweet-text").html(I18n("This tweet is quite dark!"))
 			})
 
-			$(window.mtd_welcome_amoled).click(()=>{
+			$(window.mtd_welcome_amoled).click((): void => {
 				parseActions(settingsData.themes.options.theme.activate,"amoled");
 				setPref("mtd_theme", "amoled");
 				$(".mtd-welcome-inner .tweet-text").html(I18n("This tweet is quite dark!"))
 			})
 
-			$(window.mtd_welcome_light).click(()=>{
+			$(window.mtd_welcome_light).click((): void => {
 				parseActions(settingsData.themes.options.theme.activate,"light");
 				setPref("mtd_theme", "light");
 				$(".mtd-welcome-inner .tweet-text").html(I18n("This tweet is quite light!"))
 			})
 
-			$(window.mtd_welcome_paper).click(()=>{
+			$(window.mtd_welcome_paper).click((): void => {
 				parseActions(settingsData.themes.options.theme.activate,"paper");
 				setPref("mtd_theme", "paper");
 				$(".mtd-welcome-inner .tweet-text").html(I18n("This tweet is quite light!"))
@@ -75,7 +75,7 @@ export let _welcomeData: WelcomeData = {
 				return;
 			}
 
-			const {ipcRenderer} = window.require("electron");
+			const { ipcRenderer } = window.require("electron");
 			ipcRenderer.send("checkForUpdates");
 		}
 	},
