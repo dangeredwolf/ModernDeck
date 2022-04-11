@@ -187,7 +187,7 @@ let tab: ModernDeckSettingsTab = {
         mtdSafeMode: {
             title: "{{Safe mode}}",
             label: "{{Safe mode}}",
-            type: ModernDeckSettingsType.CHECKBOX,
+            type: ModernDeckSettingsType.LINK,
             isDevTool:true,
             activate: {
                 func: () => {
@@ -199,7 +199,7 @@ let tab: ModernDeckSettingsTab = {
         tdLegacySettings: {
             title: "{{Legacy settings}}",
             label: "{{Legacy settings}}",
-            type: ModernDeckSettingsType.CHECKBOX,
+            type: ModernDeckSettingsType.LINK,
             isDevTool:true,
             enabled:() : boolean => !window.html.hasClass("signin-sheet-now-present"),
             activate: {
