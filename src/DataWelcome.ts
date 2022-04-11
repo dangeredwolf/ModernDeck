@@ -1,5 +1,5 @@
 /*
-	DataWelcome.js
+	DataWelcome.ts
 
 	Copyright (c) 2014-2022 dangered wolf, et al
 	Released under the MIT License
@@ -9,11 +9,13 @@ import { isApp } from "./Utils";
 import { I18n } from "./I18n";
 import { getPref, setPref } from "./StoragePreferences";
 import { settingsData } from "./DataSettings";
+import { WelcomeData } from "./Types/WelcomeData";
+import { parseActions } from "./PrefHandler";
 
 export const demoColumn = `<section class="column js-column will-animate"><div class="column-holder js-column-holder"><div class="flex flex-column height-p--100 column-panel"><header class="flex-shrink--0 column-header"><i class="pull-left icon column-type-icon icon-home"></i><div class="flex column-title flex-justify-content--space-between"><div class="flex column-header-title flex-align--center flex-grow--2 flex-wrap--wrap"><span class=column-heading>${I18n("Home")}</span> <span class="txt-ellipsis attribution txt-mute txt-sub-antialiased vertical-align--baseline">@dangeredwolf</span></div></div></header><div class="flex flex-column height-p--100 mtd-example-column column-content flex-auto position-rel"><div class="position-rel column-scroller scroll-v"><div class="chirp-container js-chirp-container"><article class="is-actionable stream-item"><div class="item-box js-show-detail js-stream-item-content"><div class="js-tweet tweet"><header class="flex flex-align--baseline flex-row js-tweet-header tweet-header"><a class="account-link block flex-auto link-complex"><div class="position-rel item-img obj-left tweet-img"><img class="avatar pin-top-full-width tweet-avatar"src=https://pbs.twimg.com/profile_images/1419364036383330307/Cqxin1SB_400x400.jpg></div><div class=nbfc><span class="txt-ellipsis account-inline"><b class="fullname link-complex-target">ModernDeck</b> <span class="txt-mute username">@ModernDeck</span></span></div></a><time class="txt-mute flex-shrink--0 tweet-timestamp"><a class="no-wrap txt-size-variable--12">${I18n("now")}</a></time></header><div class="js-tweet-body tweet-body"><div class="txt-ellipsis nbfc txt-size-variable--12"></div><p class="js-tweet-text tweet-text with-linebreaks"style=padding-bottom:0>This tweet is quite light!</div></div><footer class="cf tweet-footer"><ul class="full-width js-tweet-actions tweet-actions"><li class="pull-left margin-r--10 tweet-action-item"><a class="position-rel tweet-action js-reply-action"href=# rel=reply><i class="pull-left icon txt-center icon-reply"></i> <span class="margin-t--1 pull-right txt-size--12 margin-l--2 icon-reply-toggle js-reply-count reply-count">1</span> <span class=is-vishidden>${I18n("Reply")}</span> <span class=reply-triangle></span></a><li class="pull-left margin-r--10 tweet-action-item"><a class=tweet-action href=# rel=retweet><i class="pull-left icon txt-center icon-retweet icon-retweet-toggle js-icon-retweet"></i> <span class="margin-t--1 pull-right txt-size--12 icon-retweet-toggle js-retweet-count margin-l--3 retweet-count">4</span></a><li class="pull-left margin-r--10 tweet-action-item"><a class="position-rel tweet-action js-show-tip"href=# rel=favorite data-original-title=""><i class="pull-left icon txt-center icon-favorite icon-favorite-toggle js-icon-favorite"></i> <span class="margin-t--1 pull-right txt-size--12 margin-l--2 icon-favorite-toggle js-like-count like-count">20</span></a><li class="pull-left margin-r--10 tweet-action-item position-rel"><a class=tweet-action href=# rel=actionsMenu><i class="icon icon-more txt-right"></i></a></ul></footer><div class=js-show-this-thread></div></div></article></div></div></div></div><div class="flex flex-column height-p--100 column-panel column-detail js-column-detail"></div><div class="flex flex-column height-p--100 column-panel column-detail-level-2 js-column-social-proof"></div></div></section>`
 
 
-export let _welcomeData = {
+export let _welcomeData: WelcomeData = {
 	welcome: {
 		title: "<i class='icon icon-moderndeck icon-xxlarge mtd-welcome-head-icon' style='color:var(--secondaryColor)'></i>" + I18n("Welcome to ModernDeck!"),
 		body: I18n("We're glad to have you here. Click Next to continue."),
@@ -53,27 +55,27 @@ export let _welcomeData = {
 
 			switch(currentTheme) {
 				case "dark":
-					mtd_welcome_dark.click();
+					window.mtd_welcome_dark.click();
 					break;
 				case "darker":
-					mtd_welcome_darker.click();
+					window.mtd_welcome_darker.click();
 					break;
 				case "amoled":
-					mtd_welcome_amoled.click();
+					window.mtd_welcome_amoled.click();
 					break;
 				case "light":
-					mtd_welcome_light.click();
+					window.mtd_welcome_light.click();
 					break;
 				case "paper":
-					mtd_welcome_paper.click();
+					window.mtd_welcome_paper.click();
 					break;
 			}
 
-			if (typeof require === "undefined" || !isApp || html.hasClass("mtd-winstore") || html.hasClass("mtd-macappstore")) {
+			if (typeof window.require === "undefined" || !isApp || window.html.hasClass("mtd-winstore") || window.html.hasClass("mtd-macappstore")) {
 				return;
 			}
 
-			const {ipcRenderer} = require("electron");
+			const {ipcRenderer} = window.require("electron");
 			ipcRenderer.send("checkForUpdates");
 		}
 	},
@@ -111,10 +113,10 @@ export let _welcomeData = {
 
 		</div>` + demoColumn,
 		prevFunc: () => {
-			if (!isApp || html.hasClass("mtd-winstore") || html.hasClass("mtd-flatpak") || html.hasClass("mtd-macappstore")) {
+			if (!isApp || window.html.hasClass("mtd-winstore") || window.html.hasClass("mtd-flatpak") || window.html.hasClass("mtd-macappstore")) {
 				return;
 			}
-			const {ipcRenderer} = require("electron");
+			const {ipcRenderer} = window.require("electron");
 			ipcRenderer.send("checkForUpdates");
 		},
 		nextFunc: () => {

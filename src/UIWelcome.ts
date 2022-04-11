@@ -1,5 +1,5 @@
 /*
-	UIWelcome.js
+	UIWelcome.ts
 
 	Copyright (c) 2014-2022 dangered wolf, et al
 	Released under the MIT License
@@ -16,6 +16,9 @@ import { I18n } from "./I18n";
 import { UIModal } from "./UIModal";
 let welcomeData = _welcomeData;
 
+import { TweetDeckObject } from "./Types/TweetDeck";
+declare let TD: TweetDeckObject;
+
 export const debugWelcome = false;
 
 export function welcomeScreen() {
@@ -23,23 +26,20 @@ export function welcomeScreen() {
 }
 
 export class UIWelcome extends UIModal {
+	container: JQuery<HTMLElement>;
 	constructor() {
 		super();
 
-		if (desktopConfig && desktopConfig.disableOOBE) {
+		if (window.desktopConfig && window.desktopConfig.disableOOBE) {
 			return;
 		}
 
 		window.isInWelcome = true;
 
-		try {
-			allColumnsVisible();
-		} catch(e) {}
-
-		welcomeData.update.enabled = isApp && !html.hasClass("mtd-winstore") && !html.hasClass("mtd-macappstore") && !html.hasClass("mtd-flatpak");
+		welcomeData.update.enabled = isApp && !window.html.hasClass("mtd-winstore") && !window.html.hasClass("mtd-macappstore") && !window.html.hasClass("mtd-flatpak");
 		welcomeData.update.html = makeUpdateCont();
 
-		mtdPrepareWindows();
+		window.mtdPrepareWindows();
 
 		disableStylesheetExtension("light");
 		enableStylesheetExtension("dark");
