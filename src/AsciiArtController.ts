@@ -1,11 +1,11 @@
 /*
-	AsciiArtController.js
+	AsciiArtController.ts
 
 	Copyright (c) 2014-2022 dangered wolf, et al
 	Released under the MIT License
 */
 
-import _ModernDeck from "./Init/ModernDeckConst";
+import { ModernDeck } from "./Init/ModernDeckConst";
 
 export class AsciiArtController {
 
@@ -18,12 +18,12 @@ export class AsciiArtController {
   █████████████     ████████      ▐████████████
   ███████████▌     ███████         ▐███████████
   ██████████      ███████     ██    ▐██████████
-  ████████▌     ████████     ████    ▐█████████ 	ModernDeck ${window.ModernDeck.versionFriendlyString}
-  ███████▌     ███████     ███████     ████████ 	Build ${window.ModernDeck.buildNumber}
-  ████████     ██████     ███████     ▐████████ 	${window.ModernDeck.platformName}
+  ████████▌     ████████     ████    ▐█████████   ModernDeck ${ModernDeck.versionFriendlyString}
+  ███████▌     ███████     ███████     ████████   Build ${ModernDeck.buildNumber}
+  ████████     ██████     ███████     ▐████████   ${ModernDeck.platformName}
   █████████▌     ███     ███████     ▐█████████
-  ███████████           ███████     ███████████ 	Made with love
-  ████████████        ███████     ▐████████████ 	by dangered wolf
+  ███████████           ███████     ███████████   Made with love
+  ████████████        ███████     ▐████████████   by dangered wolf
   █████████████████████████████████████████████
   ████████████████████████████████████████████▌
    ██████████████████████████████████████████▌

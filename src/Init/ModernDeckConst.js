@@ -12,7 +12,7 @@ export let ModernDeck = {
 	version: 10.0,
     versionString: version,
 	versionFriendlyString: version.replace(/\.0$/,""), // remove trailing .0, if present
-    platform: getPlatformName(),
+    platformName: getPlatformName(),
     productName: getProductName(),
     systemName: getSystemName(),
     buildNumber: buildId,
