@@ -1,11 +1,11 @@
 /*
-	DataTranslationCredits.js
+	DataTranslationCredits.ts
 
 	Copyright (c) 2014-2022 dangered wolf, et al
 	Released under the MIT License
 */
 
-export const translationCredits = `
+export const translationCredits: string = `
 <b>български</b><br>
 vancho1<br>
 <a href="https://twitter.com/Khar0s" rel="user" target="_blank">Kharos</a><br>

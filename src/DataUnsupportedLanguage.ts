@@ -1,5 +1,5 @@
 /*
-	DataUnsupportedLanguage.js
+	DataUnsupportedLanguage.ts
 
 	Copyright (c) 2014-2022 dangered wolf, et al
 	Released under the MIT License
@@ -35,7 +35,6 @@ export default {
 	gd:"Chan eil cànan an t-siostaim agad a ’faighinn taic dhùthchasach bho ModernDeck fhathast. Cuidich le eadar-theangachadh:",
 	gl:"ModernDeck aínda non é compatible co seu idioma do sistema. Axuda a traducir:",
 	gu:"તમારી સિસ્ટમ ભાષા મૂળરૂપે હજી મોડર્નડેક દ્વારા સપોર્ટેડ નથી. ભાષાંતરમાં સહાય કરો:",
-	ka:"თქვენი სისტემის ენა ჯერ არ არის მხარდაჭერილი ModernDeck– ით. დახმარება თარგმნეთ:",
 	ha:"ModernDeck ba shi da tallafi na asali. Taimaka fassara:",
 	he:"שפת המערכת שלך עדיין לא נתמכת על ידי ModernDeck. עזרה בתרגום:",
 	hi:"आपकी सिस्टम भाषा अभी तक ModernDeck द्वारा मूल रूप से समर्थित नहीं है। अनुवाद में मदद करें:",
