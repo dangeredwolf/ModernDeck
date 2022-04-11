@@ -1,6 +1,11 @@
 /*
 	Types/TweetDeck.ts
 
+	Copyright (c) 2022 dangered wolf, et al
+	Released under the MIT License
+
+	Based on the type definitions used by Better TweetDeck
+
 	Copyright (c) Damien Erambert
 	Released under the MIT License
 */

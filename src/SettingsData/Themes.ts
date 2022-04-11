@@ -1,24 +1,29 @@
 /*
-	SettingsData/Themes.js
+	SettingsData/Themes.ts
 
 	Copyright (c) 2014-2022 dangered wolf, et al
 	Released under the MIT License
 */
 
-import { enableStylesheetExtension, disableStylesheetExtension, enableCustomStylesheetExtension } from "./../StylesheetExtensions";
-import { getPref, setPref } from "./../StoragePreferences";
-import { ctrlShiftText } from "./../Utils";
+import { enableStylesheetExtension, disableStylesheetExtension, enableCustomStylesheetExtension } from "../StylesheetExtensions";
+import { getPref, setPref } from "../StoragePreferences";
+import { ctrlShiftText } from "../Utils";
 
-export default {
+import { ModernDeckSettingsTab, ModernDeckSettingsType } from "../Types/ModernDeckSettings";
+
+import { TweetDeckObject } from "../Types/TweetDeck";
+declare let TD: TweetDeckObject;
+
+let tab: ModernDeckSettingsTab = {
     tabName:"<i class='material-icon' aria-hidden='true'>format_paint</i> {{Themes}}",
     options:{
         theme:{
             headerBefore:"{{Themes}}",
             title:"{{Theme}}",
-            type:"dropdown",
+            type:ModernDeckSettingsType.DROPDOWN,
             activate:{
-                func: (opt) => {
-                    if (useSafeMode) {
+                func: (opt: string): void => {
+                    if (window.useSafeMode) {
                         return;
                     }
 
@@ -48,7 +53,7 @@ export default {
                             disableStylesheetExtension("dark");
                             disableStylesheetExtension("paper");
                             enableStylesheetExtension("light");
-                            html.addClass("mtd-light").removeClass("mtd-dark");
+                            window.html.addClass("mtd-light").removeClass("mtd-dark");
                             break;
                         case "paper":
                             disableStylesheetExtension("amoled");
@@ -57,7 +62,7 @@ export default {
                             disableStylesheetExtension("dark");
                             enableStylesheetExtension("light");
                             enableStylesheetExtension("paper");
-                            html.addClass("mtd-light").removeClass("mtd-dark");
+                            window.html.addClass("mtd-light").removeClass("mtd-dark");
                             break;
                         case "dark":
                             disableStylesheetExtension("amoled");
@@ -66,7 +71,7 @@ export default {
                             disableStylesheetExtension("light");
                             disableStylesheetExtension("paper");
                             enableStylesheetExtension("dark");
-                            html.addClass("mtd-dark").removeClass("mtd-light");
+                            window.html.addClass("mtd-dark").removeClass("mtd-light");
                             break;
                         case "darker":
                             disableStylesheetExtension("amoled");
@@ -75,7 +80,7 @@ export default {
                             disableStylesheetExtension("discorddark");
                             enableStylesheetExtension("dark");
                             enableStylesheetExtension("darker");
-                            html.addClass("mtd-dark").removeClass("mtd-light");
+                            window.html.addClass("mtd-dark").removeClass("mtd-light");
                             break;
                             
                         case "discorddark":
@@ -85,7 +90,7 @@ export default {
                             disableStylesheetExtension("darker");
                             enableStylesheetExtension("discorddark");
                             enableStylesheetExtension("dark");
-                            html.addClass("mtd-dark").removeClass("mtd-light");
+                            window.html.addClass("mtd-dark").removeClass("mtd-light");
                             break;
                         case "amoled":
                             disableStylesheetExtension("light");
@@ -94,7 +99,7 @@ export default {
                             disableStylesheetExtension("paper");
                             enableStylesheetExtension("dark");
                             enableStylesheetExtension("amoled");
-                            html.addClass("mtd-dark").removeClass("mtd-light");
+                            window.html.addClass("mtd-dark").removeClass("mtd-light");
 
                             /* Dirty hack to fix amoled theme being reset by the high contrast setting later on upon loading */
                             setTimeout(() => enableStylesheetExtension("amoled"), 0);
@@ -137,11 +142,11 @@ export default {
         },
         themeColor:{
             title:"{{Theme Color}}",
-            type:"dropdown",
+            type: ModernDeckSettingsType.DROPDOWN,
             activate:{
-                func: (opt) => {
+                func: (opt: string) => {
 
-                    if (useSafeMode) {
+                    if (window.useSafeMode) {
                         return;
                     }
 
@@ -172,7 +177,7 @@ export default {
             default:"default"
         }, selectedFont:{
             title:"{{Preferred Font}}",
-            type:"dropdown",
+            type: ModernDeckSettingsType.DROPDOWN,
             options:{
                 Roboto:{value:"Roboto",text:"Roboto"},
                 RobotoCondensed:{value:"RobotoCondensed",text:"Roboto Condensed"},
@@ -184,8 +189,8 @@ export default {
                 SystemUI:{value:"SystemUI", text:"{{System UI}}"}
             },
             activate:{
-                func: (opt) => {
-                    html.removeClass("mtd-linux-system-font");
+                func: (opt: string): void => {
+                    window.html.removeClass("mtd-linux-system-font");
 
                     if (opt === "RobotoMono") {
                         setPref("mtd_selectedfont", "Roboto")
@@ -199,7 +204,7 @@ export default {
                             enableCustomStylesheetExtension("selectedFont",":root{--selectedFont:San Francisco,Helvetica Neue,Lucida Grande!important}");
                         } else {
                             disableStylesheetExtension("selectedFont");
-                            html.addClass("mtd-linux-system-font");
+                            window.html.addClass("mtd-linux-system-font");
                         }
                     } else {
                         enableCustomStylesheetExtension("selectedFont",":root{--selectedFont:"+ opt +"!important}");
@@ -210,7 +215,7 @@ export default {
             default:"Roboto"
         }, customCss:{
             title:"{{Custom CSS (}}" + ctrlShiftText + "{{C disables it in case something went wrong)}}",
-            type:"textarea",
+            type: ModernDeckSettingsType.TEXTAREA,
             placeholder:":root {\n"+
             "	--retweetColor:red;\n"+
             "	--primaryColor:#00ff00!important;\n"+
@@ -220,14 +225,16 @@ export default {
             "	text-decoration:underline\n"+
             "}",
             activate:{
-                func: (opt) => {
+                func: (opt: string): void => {
                     setPref("mtd_customcss",opt);
                     enableCustomStylesheetExtension("customcss",opt);
                 }
             },
             settingsKey:"mtd_customcss",
-            enabled:() => window.desktopConfig === undefined ? true : !window.desktopConfig.disableCustomCSS,
+            enabled:(): boolean => window.desktopConfig === undefined ? true : !window.desktopConfig.disableCustomCSS,
             default:""
         }
     }
 }
+
+export default tab;

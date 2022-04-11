@@ -1,13 +1,18 @@
 /*
-	ModernDeckPrefMigration.js
+	ModernDeckPrefMigration.ts
 
 	Copyright (c) 2014-2022 dangered wolf, et al
 	Released under the MIT License
 */
 
+import { getPref, setPref } from "./StoragePreferences";
+
+import { TweetDeckObject } from "./Types/TweetDeck";
+declare let TD: TweetDeckObject;
+
 export class ModernDeckPrefMigration {
-	static migrate() {
-		let theme = getPref("mtd_theme");
+	static migrate() : void {
+		let theme : string = getPref("mtd_theme");
 
 		switch (theme) {
 			case "grey":
@@ -27,7 +32,7 @@ export class ModernDeckPrefMigration {
 			case "black":
 		}
 
-		let headPosition = getPref("mtd_headposition");
+		let headPosition: string = getPref("mtd_headposition");
 
 		switch(headPosition) {
 			case "top":

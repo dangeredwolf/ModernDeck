@@ -1,33 +1,35 @@
 /*
-	SettingsData/Accessibility.js
+	SettingsData/Accessibility.ts
 
 	Copyright (c) 2014-2022 dangered wolf, et al
 	Released under the MIT License
 */
 
-import { enableStylesheetExtension, disableStylesheetExtension } from "./../StylesheetExtensions";
-import { ctrlShiftText } from "./../Utils";
+import { ModernDeckSettingsTab, ModernDeckSettingsType } from "./../Types/ModernDeckSettings";
 
-export default {
+import { enableStylesheetExtension, disableStylesheetExtension } from "../StylesheetExtensions";
+import { ctrlShiftText } from "../Utils";
+
+let tab: ModernDeckSettingsTab = {
     tabName:"<i class='material-icon' aria-hidden='true'>accessibility</i> {{Accessibility}}",
-    options:{
-        focusOutline:{
-            headerBefore:"{{Accessibility}}",
+    options: {
+        focusOutline: {
+            headerBefore: "{{Accessibility}}",
             title:"{{Always show outlines around focused items (}}" + ctrlShiftText + "A {{to toggle)}}",
-            type:"checkbox",
-            activate:{
+            type: ModernDeckSettingsType.CHECKBOX,
+            activate: {
                 htmlAddClass:"mtd-acc-focus-ring"
             },
-            deactivate:{
+            deactivate: {
                 htmlRemoveClass:"mtd-acc-focus-ring"
             },
             settingsKey:"mtd_outlines",
             default:false
         },
-        highContrast:{
+        highContrast: {
             title:"{{Enable High Contrast theme (}}" + ctrlShiftText + "H {{to toggle)}}",
-            type:"checkbox",
-            activate:{
+            type: ModernDeckSettingsType.CHECKBOX,
+            activate: {
                 func: () => {
                     disableStylesheetExtension("light");
                     disableStylesheetExtension("darker");
@@ -38,7 +40,7 @@ export default {
                     enableStylesheetExtension("highcontrast");
                 }
             },
-            deactivate:{
+            deactivate: {
                 func: () => {
                     disableStylesheetExtension("highcontrast");
                     disableStylesheetExtension("amoled");
@@ -49,3 +51,5 @@ export default {
         }
     }
 }
+
+export default tab;

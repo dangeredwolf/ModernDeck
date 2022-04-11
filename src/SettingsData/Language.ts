@@ -1,44 +1,46 @@
 /*
-	SettingsData/Language.js
+	SettingsData/Language.ts
 
 	Copyright (c) 2014-2022 dangered wolf, et al
 	Released under the MIT License
 */
 
-import { I18n } from "./../I18n";
-import { UIAlert } from "./../UIAlert";
-import { UILanguagePicker } from "./../UILanguagePicker";
-import { translationCredits } from "./../DataTranslationCredits";
+import { I18n } from "../I18n";
+import { UIAlert } from "../UIAlert";
+import { UILanguagePicker } from "../UILanguagePicker";
+import { translationCredits } from "../DataTranslationCredits";
 
-export default {
+import { ModernDeckSettingsTab, ModernDeckSettingsType } from "../Types/ModernDeckSettings";
+
+let tab: ModernDeckSettingsTab = {
     tabName:"<i class='material-icon' aria-hidden='true'>language</i> {{Language}}",
     options:{
         mtdChangeLanguage:{
             headerBefore:"{{Language}}",
             title:"{{Change Language}}",
             label:"{{Changing your language will reset formatting customizations and restart ModernDeck}}",
-            type:"button",
+            type:ModernDeckSettingsType.BUTTON,
             activate:{
-                func: () => {
-                    mtdPrepareWindows();
+                func: (): void => {
+                    window.mtdPrepareWindows();
                     new UILanguagePicker();
                 }
             }
         },
         translationCredits:{
             label:"{{Some awesome people have helped translate ModernDeck into other languages}}",
-            type:"buttons",
+            type:ModernDeckSettingsType.BUTTONS,
             buttons:[
-                {text:"{{Help Translate}}", func:() => open("http://translate.moderndeck.org/project/tweetdeck/invite") },
-                {text:"{{Translation Credits}}", func:() => new UIAlert({title:I18n("Translation Credits"), message:translationCredits}).alertButton.remove()}
+                {text:"{{Help Translate}}", func: (): Window => open("http://translate.moderndeck.org/project/tweetdeck/invite") },
+                {text:"{{Translation Credits}}", func: (): JQuery => new UIAlert({title:I18n("Translation Credits"), message:translationCredits}).alertButton.remove()}
             ]
         },
         timeFormat:{
             headerBefore:"{{Formatting}}",
             title:"{{Time format}}",
-            type:"dropdown",
+            type:ModernDeckSettingsType.DROPDOWN,
             activate:{
-                func: (opt) => {
+                func: (opt: string): void => {
                     window.mtdTimeHandler = opt;
                 }
             },
@@ -52,9 +54,9 @@ export default {
         },
         numberFormat:{
             title:"{{Number formatting}}",
-            type:"dropdown",
+            type:ModernDeckSettingsType.DROPDOWN,
             activate:{
-                func: (opt) => {
+                func: (): void => {
                     window.mtdNeedsResetNumberFormatting = true;
                 }
             },
@@ -70,14 +72,14 @@ export default {
         },
         abbrevNumbers:{
             title:"{{Abbreviate large numbers (thousands, millions)}}",
-            type:"checkbox",
+            type:ModernDeckSettingsType.CHECKBOX,
             activate:{
-                func: () => {
+                func: (): void => {
                     window.mtdAbbrevNumbers = true
                 }
             },
             deactivate:{
-                func: () => {
+                func: (): void => {
                     window.mtdAbbrevNumbers = false
                 }
             },
@@ -86,3 +88,5 @@ export default {
         },
     }
 }
+
+export default tab;
