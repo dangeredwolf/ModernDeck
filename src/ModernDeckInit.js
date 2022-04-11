@@ -635,15 +635,6 @@ function onElementAddedToDOM(e) {
 */
 
 function coreInit() {
-
-	if (typeof mR === "undefined") {
-		setTimeout(coreInit,10);
-		console.info("waiting on moduleRaid...");
-		return;
-	} else {
-		console.log("ModuleRaid is ready!", mR);
-	}
-
 	handleErrors(PWAManifest.injectManifest, "Caught error while injecting PWA manifest");
 	handleErrors(AutoUpdateController.initialize, "Caught error while initialising AutoUpdateController");
 
