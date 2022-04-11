@@ -1,7 +1,7 @@
 export interface WelcomePage {
     title: any;
     body: any;
-    html?: string | HTMLElement | JQuery;
+    html?: string | JQuery<HTMLElement>;
     enabled?: boolean;
     prevFunc?: () => void;
     nextFunc?: () => void;

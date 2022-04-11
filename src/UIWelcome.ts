@@ -71,6 +71,7 @@ export class UIWelcome extends UIModal {
 
 			if (welc.html) {
 				subPanel.append(
+					// @ts-expect-error TS jQuery definitions don't account for passing jQuery objects to set as body html
 					make("div").addClass("mtd-welcome-html").html(welc.html)
 				)
 			}
