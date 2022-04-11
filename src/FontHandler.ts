@@ -1,5 +1,5 @@
 /*
-	FontHandler.js
+	FontHandler.ts
 
 	Copyright (c) 2014-2022 dangered wolf, et al
 	Released under the MIT License
@@ -7,11 +7,26 @@
 
 import { make } from "./Utils";
 
-function fontParseHelper(a) {
-	if (typeof a !== "object" || a === null)
+interface FontConfig {
+	family?: string;
+	style?: string;
+	weight?: string;
+	name: string;
+	extension?: string;
+	format?: string;
+	range?: string;
+}
+
+function fontParseHelper(fontObject: FontConfig): string {
+	if (typeof fontObject !== "object" || fontObject === null)
 		throw "you forgot to pass the object";
 
-	return "@font-face{font-family:'"+(a.family||"Roboto")+"';font-style:"+(a.style||"normal")+";font-weight:"+(a.weight || "400")+";src:url("+mtdBaseURL+"assets/fonts/"+a.name+"."+(a.extension || "woff2")+") format('"+(a.format || "woff2")+"');"+"unicode-range:"+(a.range||"U+0000-FFFF")+"}\n";
+	return `@font-face{font-family:'${(fontObject.family||"Roboto")}';` +
+			`font-style:${fontObject.style||"normal"};` +
+			`font-weight:${fontObject.weight || "400"};` +
+			`src:url(${window.mtdBaseURL}assets/fonts/${fontObject.name}.${fontObject.extension || "woff2"} ` +
+			`format('${fontObject.format || "woff2"}');` +
+			`unicode-range:${fontObject.range||"U+0000-FFFF"}}\n`;
 }
 
 /*
@@ -20,7 +35,7 @@ function fontParseHelper(a) {
 	ModernDeck uses Roboto as its general font for Latin (and Cyrillic?) scripts
 	Noto Sans is used for whatever scripts Roboto doesn't cover
 
-	font family Material is short for Material icons
+	font family Material are material design icons
 	font family MD is short for ModernDeck. It contains ModernDeck supplemental icons
 */
 
@@ -134,9 +149,9 @@ export function injectFonts() {
 		fontParseHelper({family:"Noto Sans",weight:"500",name:"NotoSans/NotoSansHI-Medium",range:"U+0900-097F"}) +
 		fontParseHelper({family:"Noto Sans",name:"NotoSans/NotoSansHI-Regular",range:"U+0900-097F"}) +
 		fontParseHelper({family:"Noto Sans",weight:"500",name:"NotoSans/NotoSansArabic-Medium",
-			range:"U+0600-06FF,U+0750–077F,U+08A0–08FF,U+FB50–FDFF,U+FE70–FEFF,U+10E60–10E7F,U+1EE00—1EEFF"}) +
+			range:"U+0600-06FF,U+0750-077F,U+08A0-08FF,U+FB50-FDFF,U+FE70-FEFF,U+10E60-10E7F,U+1EE00-1EEFF"}) +
 		fontParseHelper({family:"Noto Sans",name:"NotoSans/NotoSansArabic-Regular",
-			range:"U+0600-06FF,U+0750–077F,U+08A0–08FF,U+FB50–FDFF,U+FE70–FEFF,U+10E60–10E7F,U+1EE00—1EEFF"}) +
+			range:"U+0600-06FF,U+0750-077F,U+08A0-08FF,U+FB50-FDFF,U+FE70-FEFF,U+10E60-10E7F,U+1EE00-1EEFF"}) +
 		fontParseHelper({family:"Noto Sans",weight:"500",name:"NotoSans/NotoSansArmenian-Medium",range:"U+0530-0580"}) +
 		fontParseHelper({family:"Noto Sans",name:"NotoSans/NotoSansArmenian-Regular",range:"U+0530-0580"}) +
 		fontParseHelper({family:"Noto Sans",weight:"500",name:"NotoSans/NotoSansBengali-Medium",range:"U+0980-09FF"}) +
@@ -185,7 +200,7 @@ export function injectFonts() {
 		fontParseHelper({family:"Noto Sans",name:"NotoSans/NotoSansPhagsPa",range:"U+A840-A87F"}) +
 		fontParseHelper({family:"Noto Sans",name:"NotoSans/NotoSansNewTaiLue-Regular",range:"U+1980-19DF"}) +
 		fontParseHelper({family:"Noto Sans",name:"NotoSans/NotoSansNKo-Regular",range:"U+07C0-07FF"}) +
-		fontParseHelper({family:"Noto Sans",name:"NotoSans/NotoSansOlChiki-Regular",range:"U+1C50–1C7F"}) +
+		fontParseHelper({family:"Noto Sans",name:"NotoSans/NotoSansOlChiki-Regular",range:"U+1C50-1C7F"}) +
 		fontParseHelper({family:"Noto Sans",name:"NotoSans/NotoSansRunic-Regular",range:"U+16A0-16FF"}) +
 		fontParseHelper({family:"Noto Sans",name:"NotoSans/NotoSansShavian-Regular",range:"U+16A0-16FF"}) +
 		fontParseHelper({family:"Noto Sans",name:"NotoSans/NotoSansSinhalaUI-Regular",range:"U+0D80-0DFF"}) +
