@@ -43,7 +43,6 @@ import { processForceFeatureFlags } from "./ForceFeatureFlags";
 import { loadPreferences, loadPreferencesWindows, parseActions } from "./PrefHandler";
 window.parseActions = parseActions;
 
-import { fromCodePoint } from "./EmojiHelper";
 import { injectFonts } from "./FontHandler";
 
 import { clearContextMenu } from "./UIContextMenu";
@@ -431,27 +430,6 @@ function mtdInit() {
 			}
 		} catch (e) {
 
-		}
-		if ($(e.target).hasClass("mtd-emoji-code")) {
-			let emojibtn = $(e.target.parentElement)
-			let theEmoji = fromCodePoint(emojibtn.attr("data-code"));//twemoji.convert.fromCodePoint(emoji);
-			let theInput = $(".compose-text")[0];
-			let oS = theInput.scrollTop;
-
-			if (!emojibtn.is(`.mtd-emoji-category[name="recent"]>.emojibtn`))
-				pushRecentEmoji(theEmoji);
-
-			if (theInput.setSelectionRange) {
-				let sS = theInput.selectionStart;
-				let sE = theInput.selectionEnd;
-				theInput.value = theInput.value.substr(0, sS) + theEmoji + theInput.value.substr(sE);
-				theInput.setSelectionRange(sS + theEmoji.length, sS + theEmoji.length);
-			} else if (theInput.createTextRange) {
-				document.selection.createRange().text = theEmoji;
-			}
-
-			theInput.focus();
-			theInput.scrollTop = oS;
 		}
 	});
 

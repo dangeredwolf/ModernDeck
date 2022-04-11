@@ -28,7 +28,7 @@ let tab: ModernDeckSettingsTab = {
 
                     setPref("mtd_nativetitlebar",true);
 
-                    const {ipcRenderer, ipcMain} = window.require("electron");
+                    const { ipcRenderer } = window.require("electron");
                     if (!!ipcRenderer)
                         ipcRenderer.send("setNativeTitlebar", true);
                 }

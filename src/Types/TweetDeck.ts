@@ -65,13 +65,57 @@ export declare class TweetDeckFilter {
 	prototype: this;
 }
 
+// Components are defined as "any" for now because despite being a constructible object they are marked as unconstructible.
+
 export interface TweetDeckObject {
 	storage: Storage;
 	core: Core;
 	net: Net;
 	mustaches: {[key: string]: string};
 	templates: unknown;
-	components: unknown;
+	components: {
+		AccountSelector: any,
+		ActionDialog: any,
+		AddToCustomTimelineDialog: any,
+		AddToListsDialog: any,
+		Autocomplete: any,
+		Base: any,
+		BaseModal: any,
+		ConversationDetailView: any,
+		CustomTimelines: any,
+		Dataminr: any,
+		DataminrDetailView: any,
+		DetailView: any,
+		GlobalSettings: any,
+		InReplyTo: any,
+		ListMember: any,
+		ListMemberList: any,
+		ListMembers: any,
+		LiveVideos: any,
+		MediaGallery: any,
+		MenuItem: any,
+		MenuItemBase: any,
+		NewFeaturesSplash: any,
+		OpenColumn: any,
+		OpenColumnHome: any,
+		OpenColumnPlaceholder: any,
+		OpenCustomTimelines: any,
+		OpenDataminr: any,
+		OpenLiveVideo: any,
+		OpenSplitMenu: any,
+		OpenTwitterGeneric: any,
+		ProfileAccount: any,
+		RepliesTo: any,
+		ReplyBar: any,
+		ScheduledDatePicker: any,
+		SearchInput: any,
+		SelfAccounts: any,
+		SplitMenu: any,
+		SuggestedUsers: any,
+		TemporaryColumn: any,
+		TweetDetailView: any,
+		TwitterUserSearch: any,
+	};
 	services: Services;
 	controller: TweetDeckController;
 	vo: {
