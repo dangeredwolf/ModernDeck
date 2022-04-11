@@ -1,5 +1,5 @@
 /*
-	ColumnVisibility.js
+	ColumnVisibility.ts
 
 	Copyright (c) 2014-2022 dangered wolf, et al
 	Released under the MIT License
@@ -7,13 +7,13 @@
 
 import { updateColumnVisibility } from "./Column";
 
-let lastScrollAt = Date.now();
-let timeout = Date.now();
+let lastScrollAt: number = Date.now();
+let timeout: number = Date.now();
 
 // https://gist.github.com/timhudson/5484248#file-jquery-scrollstartstop-js
 
-function scrollStartStop() {
-	var $this = $(this)
+const scrollStartStop = function() : void {
+	var $this: JQuery = $(this)
 
 	if (Date.now() - lastScrollAt > 150)
 		$this.trigger('scrollstart')
@@ -22,19 +22,19 @@ function scrollStartStop() {
 
 	clearTimeout(timeout)
 
-	timeout = setTimeout(function() {
+	timeout = window.setTimeout(function() {
 
 	if (Date.now() - lastScrollAt > 149)
 		$this.trigger('scrollend')
 	}, 150)
 }
 
-export function attachColumnVisibilityEvents() {
+export const attachColumnVisibilityEvents = () : void => {
 
-	$(window).on("resize",updateColumnVisibility);
+	$(window).on("resize", updateColumnVisibility);
 
-	$(".app-columns-container").on("scroll",scrollStartStop);
-	$(".app-columns-container").on("scrollend",updateColumnVisibility);
+	$(".app-columns-container").on("scroll", scrollStartStop);
+	$(".app-columns-container").on("scrollend", updateColumnVisibility);
 
 	$(document).on(
 		"uiInlineComposeTweet " +
