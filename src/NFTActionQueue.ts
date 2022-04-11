@@ -9,15 +9,31 @@ import { I18n } from "./I18n";
 import { getPref, setPref } from "./StoragePreferences";
 import { make } from "./Utils";
 
+import { TweetDeckObject, TwitterUserInternal } from "./Types/TweetDeck";
+declare let TD: TweetDeckObject;
+
+interface Notification {
+	_id: number;
+}
+
 export default class NFTActionQueue {
-	queue = getPref("mtd_nftActionQueue", []) || [];
-	recentMutes = [];
-	isThreadRunning = false;
-	enableNotifications = getPref("mtd_nftNotify", true);
-	lastAction = 0;
-	notif = null;
-	clearNotificationTimeout;
-	actionToTake = getPref("mtd_nftAvatarAction");
+	queue: TwitterUserInternal[] = getPref("mtd_nftActionQueue", []) || [];
+	recentMutes: TwitterUserInternal[] = [];
+	isThreadRunning: boolean = false;
+	enableNotifications: boolean = getPref("mtd_nftNotify", true);
+	lastAction: number = null;
+	notif: JQuery = null;
+	notifId: number = null;
+	notifRoot: Notification = null;
+	notifContent: JQuery = null;
+	notifTitle: JQuery = null;
+	notifIcon: JQuery = null;
+	notifClose: JQuery = null;
+	notifText: JQuery = null;
+	notifButton: JQuery = null;
+	notifLoading: JQuery = null;
+	clearNotificationTimeout: NodeJS.Timeout = null;
+	actionToTake: string = getPref("mtd_nftAvatarAction");
 
 	constructor () {
 		if (this.queue.length > 0 && this.isThreadRunning === false) {
@@ -28,12 +44,12 @@ export default class NFTActionQueue {
 		}
 	}
 
-	_createNewNotification() {
+	_createNewNotification() : void {
 		if (!this.enableNotifications) {
 			return;
 		}
 		console.log("Creating new notification");
-		this.notifRoot = mR.findConstructor("showErrorNotification")[0][1].showNotification({title:I18n("NFT Actions"), timeoutDelayMs:9999999999999});
+		this.notifRoot = window.mR.findConstructor("showErrorNotification")[0][1].showNotification({title:I18n("NFT Actions"), timeoutDelayMs:9999999999999});
 		this.notifId = this.notifRoot._id;
 		this.notif = $("li.Notification[data-id=\""+this.notifId+"\"]").attr("style", "display: none");
 		this.notifContent = $("li.Notification[data-id=\""+this.notifId+"\"] .Notification-content");
@@ -58,11 +74,11 @@ export default class NFTActionQueue {
 		}
 	}
 
-	_randomTime() {
+	_randomTime() : number {
 		return 10000 + (Math.random() * 5000);
 	}
 
-	_uiDismissNotification() {
+	_uiDismissNotification() : void {
 		if (!this.enableNotifications) {
 			return;
 		}
@@ -83,7 +99,7 @@ export default class NFTActionQueue {
 		},50)
 	}
 
-	_uiUpdateBlockQueue(timeOut) {
+	_uiUpdateBlockQueue(timeOut?: number) : void {
 
 		if (!this.enableNotifications) {
 			return;
@@ -114,10 +130,10 @@ export default class NFTActionQueue {
 		}
 	}
 
-	addUser(user) {
+	addUser(user: TwitterUserInternal) : void {
 		console.log(`NFTActionQueue: Checking if user ${user.screen_name} is already dealt with`);
 
-		let dealtWith = false;
+		let dealtWith: boolean = false;
 		this.actionToTake = getPref("mtd_nftAvatarAction");
 
 		// Check if we've already dealt with this user
@@ -143,7 +159,7 @@ export default class NFTActionQueue {
 			this.queue.push(user);
 			this.recentMutes.push(user);
 			
-			if (new Date() - this.lastAction > 18000 && !this.isThreadRunning) {
+			if (new Date().getTime() - this.lastAction > 18000 && !this.isThreadRunning) {
 				this.isThreadRunning = true;
 				
 				// It's already been a while, so should be fairly safe to start running through
@@ -153,15 +169,15 @@ export default class NFTActionQueue {
 
 				this.queueNewUserAction();
 			} else {
-				this._uiUpdateBlockQueue(false);
+				this._uiUpdateBlockQueue();
 			}
 		} else {
 			// console.log(`NFTActionQueue: Ignoring repeat request to add ${user.screen_name} to queue`);
 		}
 	}
 
-	queueNewUserAction() {
-		let timeOut = this._randomTime();
+	queueNewUserAction() : void {
+		let timeOut: number = this._randomTime();
 
 		this._uiUpdateBlockQueue(timeOut);
 
@@ -186,7 +202,7 @@ export default class NFTActionQueue {
 		}
 	}
 
-	undoUserAction(user) {
+	undoUserAction(user: TwitterUserInternal): void {
 		if (typeof user !== "undefined") {
 			switch(getPref("mtd_nftAvatarAction")) {
 				case "nothing":
@@ -204,8 +220,8 @@ export default class NFTActionQueue {
 		}
 	}
 
-	takeUserAction(user) {
-		this.lastAction = new Date();
+	takeUserAction(user: TwitterUserInternal) : void {
+		this.lastAction = new Date().getTime();
 
 		if (typeof user !== "undefined") {
 			switch(getPref("mtd_nftAvatarAction")) {
@@ -260,8 +276,7 @@ export default class NFTActionQueue {
 					this._uiDismissNotification();
 				});
 			
-				let clearNotificationTimeout = setTimeout(() => this._uiDismissNotification(), 5000);
-				this.clearNotificationTimeout = clearNotificationTimeout;
+				this.clearNotificationTimeout = setTimeout(() => this._uiDismissNotification(), 5000);
 
 			}
 		}
