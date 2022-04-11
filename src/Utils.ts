@@ -54,7 +54,7 @@ export const exists = function(thing: any): boolean {
 
 export function formatNumberI18n(number: number): string {
 	if (!window.mtdNumberFormat || window.mtdNeedsResetNumberFormatting) {
-		let format;
+		let format: string;
 		switch(getPref("mtd_shortDateFormat")) {
 			case "default":
 				format = getFullLanguage().replace(/\_/g,"-");
@@ -107,7 +107,7 @@ export function formatBytes(val: number): string {
 	}
 }
 
-export const isApp: boolean = typeof require !== "undefined";
+export const isApp: boolean = typeof window.require !== "undefined";
 
 /*
 	Shorthand for creating a mutation observer and observing
@@ -128,4 +128,4 @@ export const getIpc = () => {
 
 // Use standard macOS symbols instead of writing it out like on Windows
 
-export const ctrlShiftText = (navigator.userAgent.indexOf("Mac OS X") > -1) ? "⌃⇧" : "{{Ctrl+Shift+}}";
+export const ctrlShiftText: string = (navigator.userAgent.indexOf("Mac OS X") > -1) ? "⌃⇧" : "{{Ctrl+Shift+}}";

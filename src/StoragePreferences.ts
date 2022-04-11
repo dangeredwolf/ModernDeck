@@ -13,7 +13,7 @@
 */
 
 import { exists, isApp } from "./Utils";
-export const debugStorageSys = false;
+export const debugStorageSys: boolean = false;
 
 import { TweetDeckObject } from "./Types/TweetDeck";
 declare let TD: TweetDeckObject;
@@ -53,7 +53,7 @@ export const getPref = (id: string, defaultPreference?: any) : any => {
 		return TD.settings.getTheme();
 	}
 
-	let val;
+	let val: any;
 
 	if (window.ModernDeck.store) {
 		if (window.ModernDeck.store.has(id))
@@ -137,7 +137,7 @@ export const setPref = (id: string, pref: any) : void => {
 */
 
 export const hasPref = (id: string) : boolean => {
-	let hasIt;
+	let hasIt : boolean;
 
 	if (typeof id === "undefined") {
 		throw "id not specified for hasPref";
@@ -167,14 +167,14 @@ export const hasPref = (id: string) : boolean => {
 
 export const dumpPreferences = () : string => {
 
-	let prefs = "";
+	let prefs: string = "";
 
 	for (let key in window.ModernDeck.settingsData) {
 
 		if (!window.ModernDeck.settingsData[key].enum) {
 			for (let i in window.ModernDeck.settingsData[key].options) {
-				let prefKey = window.ModernDeck.settingsData[key].options[i].settingsKey;
-				let pref = window.ModernDeck.settingsData[key].options[i];
+				let prefKey: string = window.ModernDeck.settingsData[key].options[i].settingsKey;
+				let pref: any = window.ModernDeck.settingsData[key].options[i];
 
 				if (exists(prefKey) && pref.type !== "button" && pref.type !== "link") {
 					prefs += prefKey + ": " + (getPref(prefKey) || "[not set]") + "\n"

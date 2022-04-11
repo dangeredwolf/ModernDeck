@@ -206,7 +206,26 @@ export interface TweetDeckControllerRelationshipResult {
 	};
 }
 
+export interface TwitterUserInternal {
+	id_str: string;
+	screen_name: string;
+}
+
 export interface TweetDeckControllerClient {
+	blocks: {
+		[key: string]: TwitterUserInternal
+	};
+	mutes: {
+		[key: string]: TwitterUserInternal
+	};
+	muteUser(id: string): void;
+	unmuteUser(id: string): void;
+	addIdToMuteList(id: string): void;
+	removeIdFromMuteList(id: string): void;
+	blockUser(id: string): void;
+	unblockUser(id: string): void;
+	addIdToBlockList(id: string): void;
+	removeIdFromBlockList(id: string): void;
 	showFriendship(
 		userId: string,
 		targetUserId: string | null,
@@ -233,6 +252,7 @@ interface TweetDeckController {
 	stats: Stats;
 	clients: {
 		getClientsByService(service: 'twitter'): TweetDeckControllerClient[];
+		getPreferredClient(): TweetDeckControllerClient;
 		getClient: TweetDeckClientGetter;
 	};
 	scheduler: Scheduler;

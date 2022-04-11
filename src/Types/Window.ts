@@ -5,6 +5,8 @@
 	Released under the MIT License
 */
 
+import ModuleRaid from 'moduleraid';
+
 declare global {
     interface Window {
         lastError: Error;
@@ -15,7 +17,8 @@ declare global {
             settingsData: any,
             store: any
         },
-        store: any // This is any only because Electron-Store does not exist on browser
+        store: any, // This is any only because Electron-Store does not exist on browser,
+        mR: ModuleRaid
     }
 }
 
