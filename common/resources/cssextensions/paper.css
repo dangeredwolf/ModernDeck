@@ -5,7 +5,7 @@
 	Released under the MIT License
 */
 
-:root {
+html.mtd-light body {
 	--primaryColor:#eee!important;
 	--secondaryColorBright:#eee!important;
 	--paperColor:#333!important;
