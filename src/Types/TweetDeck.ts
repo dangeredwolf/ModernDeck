@@ -116,6 +116,7 @@ interface CacheClass {
 }
 
 interface Config {
+	config_overlay: FeatureFlag;
 	minimum_version: string;
 	web_root: string;
 	api_root: string;
@@ -130,7 +131,24 @@ interface Config {
 	client_name: string;
 	sync_name: string;
 	touchdeck: boolean;
+	scribe_debug_level: number;
+	debug_level: number;
+	debug_menu: boolean;
+	debug_trace: boolean;
+	debug_checks: boolean;
+	flight_debug: boolean;
+	debug_highlight_streamed_chirps: boolean;
+	debug_highlight_visible_chirps: boolean;
+	sync_period: number;
+	force_touchdeck: boolean;
+	internal_build: boolean;
+	help_configuration_overlay: boolean;
+	disable_metrics_error: boolean;
+	disable_metrics_event: boolean;
 }
+
+
+
 
 interface Constants {
 	keyCodes: KeyCodes;
@@ -1131,33 +1149,34 @@ interface GlobalRenderOptions {
 }
 
 interface FeatureFlag {
-	tweetdeck_activity_streaming: boolean;
-	tweetdeck_activity_value_polling: number;
-	tweetdeck_alt_text_max_length: number;
-	tweetdeck_content_search_darkmode: boolean;
-	tweetdeck_content_render_search_tweets: boolean;
-	tweetdeck_content_usertweets_darkmode: boolean;
-	tweetdeck_content_usertweets_render: boolean;
-	tweetdeck_content_usertweets_rest_polling_interval: number;
-	tweetdeck_create_moment_pro: boolean;
-	tweetdeck_devel: boolean;
-	tweetdeck_dogfood: boolean;
-	tweetdeck_error_collection: boolean;
-	tweetdeck_gdpr_consent: boolean;
-	tweetdeck_gdpr_updates: boolean;
-	tweetdeck_graphql_login: boolean;
-	tweetdeck_horizon_web_cards_enabled: any[];
-	tweetdeck_horizon_web_cards_static: any[];
-	tweetdeck_insights: boolean;
-	tweetdeck_live_engagements: boolean;
-	tweetdeck_native_video_player: boolean;
-	tweetdeck_rweb_composer: boolean;
-	tweetdeck_searches_with_negation: boolean;
-	tweetdeck_scheduled_new_api: boolean;
-	tweetdeck_scheduled_tweet_ephemeral: boolean;
-	tweetdeck_show_release_notes_link: boolean;
-	tweetdeck_trends_column: boolean;
-	tweetdeck_uiv: boolean;
+	tweetdeck_devel: { value: boolean },
+	tweetdeck_dogfood: { value: boolean },
+	tweetdeck_insights: { value: boolean },
+	tweetdeck_content_user_darkmode: { value: boolean },
+	tweetdeck_subscriptions_debug: { value: boolean },
+	tweetdeck_live_engagements: { value: boolean },
+	tweetdeck_content_search_darkmode: { value: boolean },
+	tweetdeck_content_render_search_tweets: { value: boolean },
+	tweetdeck_content_render_user_tweets: { value: boolean },
+	tweetdeck_uiv: { value: boolean },
+	tweetdeck_premium_trends: { value: boolean },
+	tweetdeck_create_moment_pro: { value: boolean },
+	tweetdeck_gdpr_consent: { value: boolean },
+	tweetdeck_gdpr_updates: { value: boolean },
+	tweetdeck_premium_analytics: { value: boolean },
+	tweetdeck_whats_happening: { value: boolean },
+	tweetdeck_activity_polling: { value: boolean },
+	tweetdeck_beta: { value: boolean },
+	tweetdeck_system_font_stack: { value: boolean },
+	tweetdeck_show_release_notes_link: { value: boolean },
+	tweetdeck_searches_with_negation: { value: boolean },
+	twitter_text_emoji_counting_enabled: { value: boolean },
+	tweetdeck_trends_column: { value: boolean },
+	tweetdeck_scheduled_tweet_ephemeral: { value: boolean },
+	twitter_weak_maps: { value: boolean },
+	tweetdeck_activity_streaming: { value: boolean },
+	tweetdeck_rweb_composer: { value: boolean },
+	tweetdeck_gryphon_beta_bypass_enabled: { value: boolean }
 }
 
 interface Languages {

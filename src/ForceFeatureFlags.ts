@@ -5,6 +5,9 @@
 	Code updated by @pixeldesu, DeckHackers, et al
 */
 
+import { TweetDeckObject } from "./Types/TweetDeck";
+declare let TD: TweetDeckObject;
+
 export function processForceFeatureFlags() {
 	TD.config.config_overlay = {
 		tweetdeck_devel: { value: true },
@@ -12,10 +15,8 @@ export function processForceFeatureFlags() {
 		tweetdeck_insights: { value: true },
 		tweetdeck_content_user_darkmode: { value: true },
 		tweetdeck_subscriptions_debug: { value: true },
-		tweetdeck_locale: { value: true },
 		tweetdeck_live_engagements: { value: true },
 		tweetdeck_content_search_darkmode: { value: true },
-		tweetdeck_content_user_darkmode: { value: true },
 		tweetdeck_content_render_search_tweets: { value: true },
 		tweetdeck_content_render_user_tweets: { value: true },
 		tweetdeck_uiv: { value: true },
@@ -34,9 +35,9 @@ export function processForceFeatureFlags() {
 		tweetdeck_trends_column: { value: true },
 		tweetdeck_scheduled_tweet_ephemeral: { value: true },
 		twitter_weak_maps: { value: true },
-		tweetdeck_activity_value_polling: { value: true },
 		tweetdeck_activity_streaming: { value: true },
-		tweetdeck_rweb_composer: { value: true }
+		tweetdeck_rweb_composer: { value: true },
+		tweetdeck_gryphon_beta_bypass_enabled: { value: true }
 	}
 
 	TD.config.scribe_debug_level = 4
