@@ -8,13 +8,15 @@
 import { I18n, getFullLanguage } from "./I18n";
 import * as Sentry from "@sentry/browser";
 import { getPref } from "./StoragePreferences";
-import _windowTypes from "./WindowTypes";
+import _windowTypes from "./Types/Window";
 
 /*
 	Shorthand function to create a new element, which is helpful for concise UI building.
 
 	We could just make jQuery directly do it, but it's slower than calling native JS api and wrapped jQuery around it
 */
+
+export default {};
 
 export const handleErrors = (func: Function, text: string): void => {
 	try {
