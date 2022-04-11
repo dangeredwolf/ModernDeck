@@ -115,7 +115,7 @@ export class UILanguagePicker extends UIModal {
 			if (getFullLanguage() !== this.selectLanguage.val() && getMainLanguage() !== this.selectLanguage.val()) {
 				setTimeout(() => {
 					if (typeof require !== "undefined") {
-						const { ipcRenderer } = require("electron");
+						const { ipcRenderer } = window.require("electron");
 						ipcRenderer.send("restartApp");
 					} else {
 						location.reload();

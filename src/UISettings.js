@@ -777,7 +777,7 @@ function mtdAppUpdatePage() {
 
 	$(document).on("mtdUpdateUIChanged", updateUIChanged);
 
-	const { ipcRenderer } = require("electron");
+	const { ipcRenderer } = window.require("electron");
 
 	setTimeout(() => {
 		$(window.tryAgain).click(() => {

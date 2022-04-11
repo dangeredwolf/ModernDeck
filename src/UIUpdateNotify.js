@@ -30,7 +30,7 @@ export function UIUpdateNotify() {
 			make("p").html(I18n("An update is available for ModernDeck")),
 			make("button").addClass("btn mtd-notification-button").html(I18n("Relaunch")).click(() => {
 				mtdPrepareWindows();
-				require("electron").ipcRenderer.send("restartAndInstallUpdates")
+				window.require("electron").ipcRenderer.send("restartAndInstallUpdates")
 			})
 		)
 	}
