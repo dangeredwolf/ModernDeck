@@ -1,37 +1,83 @@
 /*
-	StorageTweetenImport.js
+	StorageTweetenImport.ts
 
 	Copyright (c) 2014-2022 dangered wolf, et al
 	Released under the MIT License
 */
 
 import { getPref, setPref } from "./StoragePreferences";
-import { exists } from "./Utils";
+
+import { TweetDeckObject } from "./Types/TweetDeck";
+declare let TD: TweetDeckObject;
+
+enum TweetDeckTheme {
+	light = "light",
+	dark = "dark"
+}
+
+enum TweetenFontSize {
+	smallest = "smallest",
+	smaller = "smaller",
+	small = "small",
+	large = "large",
+	largest = "largest",
+}
+
+interface TweetenSettingsJSON {
+	dev: {
+		mode: boolean;
+		customCSS: string;
+	};
+
+	customTitlebar: boolean;
+
+	TDSettings: {
+		gifAutoplay: boolean;
+		sensitiveData: boolean;
+		tweetStream: boolean;
+		linkShortener: {
+			toggle: boolean;
+			bitlyApiKey: string;
+			bitlyUsername: string;
+		};
+	};
+	
+	customization: {
+		completeBlack: boolean;
+		columnWidth: number;
+		thinSB: boolean;
+		roundAvi: boolean;
+		font: TweetenFontSize;
+		theme: TweetDeckTheme;
+		emojis: boolean;
+		charCount: boolean;
+	}
+}
 
 /*
 	Processes Tweeten Settings import
 	obj = object converted from the raw JSON
 */
-export function importTweetenSettings(obj) {
+export function importTweetenSettings(obj: TweetenSettingsJSON) {
 
 	setPref("mtd_customcss",(!!obj.dev ? obj.dev.customCSS || "" : ""))
 
-	if (exists(obj.dev)) {
+	if (typeof obj.dev !== "undefined") {
 		setPref("mtd_inspectElement",obj.dev.mode);
 	}
 
-	if (exists(obj.TDSettings)) {
+	if (typeof obj.TDSettings !== "undefined") {
 		TD.settings.setAutoPlayGifs(obj.TDSettings.gifAutoplay);
-		if (exists(obj.TDSettings.gifAutoplay)) {
+		if (typeof obj.TDSettings.gifAutoplay !== "undefined") {
 			TD.settings.setAutoPlayGifs(obj.TDSettings.gifAutoplay);
 		}
-		if (exists(obj.TDSettings.sensitiveData)) {
+		if (typeof obj.TDSettings.sensitiveData !== "undefined") {
 			TD.settings.setDisplaySensitiveMedia(obj.TDSettings.sensitiveData);
 		}
-		if (exists(obj.TDSettings.tweetStream)) {
+		if (typeof obj.TDSettings.tweetStream !== "undefined") {
 			TD.settings.setUseStream(obj.TDSettings.tweetStream);
 		}
-		if (exists(obj.TDSettings.linkShortener)) {
+		if (typeof obj.TDSettings.linkShortener !== "undefined") {
 			TD.settings.setLinkShortener(obj.TDSettings.linkShortener ? "bitly" : "twitter");
 			if (obj.TDSettings.linkShortener.toggle === true && !!obj.TDSettings.linkShortener.bitlyApiKey && !!obj.TDSettings.linkShortener.bitlyUsername) {
 				TD.settings.setBitlyAccount({
@@ -42,28 +88,28 @@ export function importTweetenSettings(obj) {
 		}
 	}
 
-	if (exists(obj.customTitlebar)) {
+	if (typeof obj.customTitlebar !== "undefined") {
 		setPref("mtd_nativetitlebar",!obj.customTitlebar);
 	}
 
-	if (exists(obj.customization)) {
+	if (typeof obj.customization !== "undefined") {
 		setPref("mtd_columnwidth",obj.customization.columnWidth || getPref("mtd_columnwidth"));
 
 		if (obj.customization.completeBlack === true) {
 			setPref("mtd_theme","amoled");
 		}
 
-		setPref("mtd_noemojipicker",exists(obj.customization.emojis) ? obj.customization.emojis : false);
-		setPref("mtd_newcharindicator",exists(obj.customization.charCount) ? !obj.customization.charCount : true);
+		setPref("mtd_noemojipicker",typeof obj.customization.emojis !== "undefined" ? obj.customization.emojis : false);
+		setPref("mtd_newcharindicator",typeof obj.customization.charCount !== "undefined" ? !obj.customization.charCount : true);
 		TD.settings.setTheme(obj.customization.theme || TD.settings.getTheme());
 
-		if (exists(obj.customization.thinSB)) {
+		if (typeof obj.customization.thinSB !== "undefined") {
 			setPref("mtd_scrollbar_style", (obj.customization.thinSB ? "scrollbarsnarrow" : "scrollbarsdefault"));
 		}
 
-		setPref("mtd_round_avatars",exists(obj.customization.roundAvi) ? obj.customization.roundAvi : true);
+		setPref("mtd_round_avatars",typeof obj.customization.roundAvi !== "undefined" ? obj.customization.roundAvi : true);
 
-		if (exists(obj.customization.font)) {
+		if (typeof obj.customization.font !== "undefined") {
 			let percentage = 100;
 
 			switch(obj.customization.font) {
