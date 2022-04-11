@@ -6,9 +6,8 @@
 */
 
 import { getPref } from "./StoragePreferences"
-import { TweetDeckObject } from "./Types/TweetDeck";
 
-// Declare TD as TweetDeckObject
+import { TweetDeckObject } from "./Types/TweetDeck";
 declare let TD: TweetDeckObject;
 
 export const getColumnFromColumnNumber = (num: number) : JQuery => {

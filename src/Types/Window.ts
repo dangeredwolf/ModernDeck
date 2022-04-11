@@ -11,6 +11,11 @@ declare global {
         useSentry: boolean;
         mtdNumberFormat: Intl.NumberFormat;
         mtdNeedsResetNumberFormatting: boolean;
+        ModernDeck: {
+            settingsData: any,
+            store: any
+        },
+        store: any // This is any only because Electron-Store does not exist on browser
     }
 }
 

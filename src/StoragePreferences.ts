@@ -1,5 +1,5 @@
 /*
-	StoragePreferences.js
+	StoragePreferences.ts
 
 	Copyright (c) 2014-2022 dangered wolf, et al
 	Released under the MIT License
@@ -14,14 +14,18 @@
 
 import { exists, isApp } from "./Utils";
 export const debugStorageSys = false;
-let store;
+
+import { TweetDeckObject } from "./Types/TweetDeck";
+declare let TD: TweetDeckObject;
 
 if (isApp) {
-	const Store = require('electron-store');
-	store = new Store({name:"mtdsettings"});
+	const Store = window.require('electron-store');
+	window.ModernDeck.store = new Store({name:"mtdsettings"});
+} else {
+	window.ModernDeck.store = null;
 }
 
-export function resetPref(id) {
+export const resetPref = (id: string) : void => {
 	for (let key in window.ModernDeck.settingsData) {
 		if (window.ModernDeck.settingsData[key].options) {
 			for (let i in window.ModernDeck.settingsData[key].options) {
@@ -44,16 +48,16 @@ export function resetPref(id) {
 	}
 }
 
-export function getPref(id, defaul) {
+export const getPref = (id: string, defaultPreference?: any) : any => {
 	if (id === "mtd_core_theme") {
 		return TD.settings.getTheme();
 	}
 
 	let val;
 
-	if (store) {
-		if (store.has(id))
-			val = store.get(id);
+	if (window.ModernDeck.store) {
+		if (window.ModernDeck.store.has(id))
+			val = window.ModernDeck.store.get(id);
 		else
 			val = undefined;
 	} else {
@@ -64,7 +68,7 @@ export function getPref(id, defaul) {
 		console.log("getPref "+id+"? "+val);
 
 	if (typeof val === "undefined")
-		return defaul;
+		return defaultPreference;
 
 	if (val === "true")
 		return true;
@@ -82,7 +86,7 @@ export function getPref(id, defaul) {
 	https://github.com/dangeredwolf/ModernDeck/wiki/Preference-Management-Functions
 */
 
-export function purgePrefs() {
+export const purgePrefs = () : void => {
 
 	for (let key in localStorage) {
 		if (key.indexOf("mtd_") >= 0) {
@@ -90,7 +94,7 @@ export function purgePrefs() {
 		}
 	}
 	if (isApp) {
-		store.clear();
+		window.ModernDeck.store.clear();
 	}
 
 }
@@ -102,27 +106,27 @@ export function purgePrefs() {
 	https://github.com/dangeredwolf/ModernDeck/wiki/Preference-Management-Functions
 */
 
-export function setPref(id,p) {
+export const setPref = (id: string, pref: any) : void => {
 
 	if (id === "mtd_core_theme") {
 		return;
 	}
 
-	if (exists(store)) {
+	if (exists(window.ModernDeck.store)) {
 
 		// Newer versions of electron-store are more strict about using delete vs. set undefined
 
-		if (typeof p !== "undefined") {
-			store.set(id,p);
+		if (typeof pref !== "undefined") {
+			window.ModernDeck.store.set(id, pref);
 		} else {
-			store.delete(id);
+			window.ModernDeck.store.delete(id);
 		}
 	} else {
-		localStorage.setItem(id,p);
+		localStorage.setItem(id, pref);
 	}
 
 	if (debugStorageSys)
-		console.log(`setPref ${id} to ${p}`);
+		console.log(`setPref ${id} to ${pref}`);
 }
 
 /*
@@ -132,7 +136,7 @@ export function setPref(id,p) {
 	https://github.com/dangeredwolf/ModernDeck/wiki/Preference-Management-Functions
 */
 
-export function hasPref(id) {
+export const hasPref = (id: string) : boolean => {
 	let hasIt;
 
 	if (typeof id === "undefined") {
@@ -143,8 +147,8 @@ export function hasPref(id) {
 		return true;
 	}
 
-	if (exists(store)) {
-		hasIt = store.has(id);
+	if (exists(window.ModernDeck.store)) {
+		hasIt = window.ModernDeck.store.has(id);
 	} else {
 		hasIt = localStorage.getItem(id) !== null && typeof localStorage.getItem(id) !== "undefined" && localStorage.getItem(id) !== undefined;
 	}
@@ -161,7 +165,7 @@ export function hasPref(id) {
 	returns string: dump of user preferences, for diag function
 */
 
-export function dumpPreferences() {
+export const dumpPreferences = () : string => {
 
 	let prefs = "";
 
