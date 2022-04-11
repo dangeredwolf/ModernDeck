@@ -1,5 +1,5 @@
 /*
-	AutoUpdateController.js
+	AutoUpdateController.ts
 
 	Copyright (c) 2014-2022 dangered wolf, et al
 	Released under the MIT License
@@ -8,24 +8,42 @@
 import { I18n } from "./I18n";
 import { formatBytes } from "./Utils";
 
+interface UpdateFailure {
+	code?: number;
+	domain?: string;
+	errno?: string;
+	syscall?: string;
+	path?: string;
+}
+
+interface UpdateProgress {
+	percent: number;
+	total: number;
+	bytesPerSecond: number;
+	receivedBytes: number;
+	transferred: number;
+}
+
 export class AutoUpdateController {
-	h3;
-	h2;
-	tryAgain;
-	restartNow;
-	installButton;
-	spinner;
-	icon;
+	static h3: string;
+	static updateh3: string;
+	static h2: string;
+	static tryAgain: string;
+	static installButton: string;
+	static spinner: boolean;
+	static restartNow: boolean;
+	static isCheckingForUpdates: boolean;
+	static icon: string;
 
-	isCheckingForUpdates;
+	isCheckingForUpdates: boolean;
 
-	static initialize() {
+	static initialize(): void {
 
-		if (typeof require === "undefined") {
+		if (typeof window.require === "undefined") {
 			return;
 		}
 
-		const { ipcRenderer } = require("electron");
+		const { ipcRenderer } = window.require("electron");
 
 		AutoUpdateController.h2 = I18n("Check for updates");
 		AutoUpdateController.spinner = false;
@@ -36,14 +54,14 @@ export class AutoUpdateController {
 		AutoUpdateController.installButton = undefined;
 		AutoUpdateController.isCheckingForUpdates = false;
 
-		ipcRenderer.on("error",(e, args, f, g) => {
+		ipcRenderer.on("error",(_event: Event, args: UpdateFailure, error): void => {
 			AutoUpdateController.h2 = I18n("There was a problem checking for updates.");
 			AutoUpdateController.spinner = false;
 
 			if (args?.code) {
 				AutoUpdateController.h3 = `${args.domain || ""} ${args.code || ""} ${args.errno || ""} ${args.syscall || ""} ${args.path || ""}`;
-			} else if (f) {
-				AutoUpdateController.h3 = f.match(/^(Cannot check for updates: )(.)+\n/g)
+			} else if (error) {
+				AutoUpdateController.h3 = error.match(/^(Cannot check for updates: )(.)+\n/g)
 			} else {
 				AutoUpdateController.h3 = I18n("An unknown error occurred. Please try again shortly.");
 			}
@@ -57,7 +75,7 @@ export class AutoUpdateController {
 
 		});
 
-		ipcRenderer.on("checking-for-update", (e,args) => {
+		ipcRenderer.on("checking-for-update", (): void => {
 			AutoUpdateController.icon = undefined;
 			AutoUpdateController.spinner = true;
 			AutoUpdateController.h2 = I18n("Checking for updates...");
@@ -72,7 +90,7 @@ export class AutoUpdateController {
 			$(document).trigger("mtdUpdateUIChanged");
 		});
 
-		ipcRenderer.on("update-available", (e,args) => {
+		ipcRenderer.on("update-available", (): void => {
 			if (typeof window.desktopConfig !== "undefined" && (window.desktopConfig.autoUpdatePolicy === "checkOnly" || window.desktopConfig.autoUpdatePolicy === "manual")) {
 				AutoUpdateController.h2 = I18n("An update for ModernDeck is available");
 				AutoUpdateController.h3 = I18n("ModernDeck updates help keep you secure and add new features.");
@@ -93,7 +111,7 @@ export class AutoUpdateController {
 			$(document).trigger("mtdUpdateUIChanged");
 		});
 
-		ipcRenderer.on("download-progress", (e,args) => {
+		ipcRenderer.on("download-progress", (_event: Event, args: UpdateProgress): void => {
 			AutoUpdateController.icon = undefined;
 			AutoUpdateController.spinner = true;
 			AutoUpdateController.h2 = I18n("Downloading update...");
@@ -110,7 +128,7 @@ export class AutoUpdateController {
 		});
 
 
-		ipcRenderer.on("update-downloaded", (e,args) => {
+		ipcRenderer.on("update-downloaded", (): void => {
 			AutoUpdateController.spinner = false;
 			AutoUpdateController.icon = "update";
 			AutoUpdateController.h2 = I18n("Update downloaded");
@@ -125,7 +143,7 @@ export class AutoUpdateController {
 		});
 
 
-		ipcRenderer.on("update-not-available", (e,args) => {
+		ipcRenderer.on("update-not-available", (): void => {
 			AutoUpdateController.spinner = false;
 			AutoUpdateController.h2 = I18n("You're up to date");
 			AutoUpdateController.icon = "check_circle";

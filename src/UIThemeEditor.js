@@ -7,7 +7,6 @@
 
 import { make } from "./Utils";
 import { CustomThemes } from "./CustomThemes";
-// import AColorPicker from "a-color-picker";
 
 export class UIThemeEditor {
 	panel;

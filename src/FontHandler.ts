@@ -21,10 +21,10 @@ function fontParseHelper(fontObject: FontConfig): string {
 	if (typeof fontObject !== "object" || fontObject === null)
 		throw "you forgot to pass the object";
 
-	return `@font-face{font-family:'${(fontObject.family||"Roboto")}';` +
-			`font-style:${fontObject.style||"normal"};` +
+	return `@font-face{font-family:'${(fontObject.family || "Roboto")}';` +
+			`font-style:${fontObject.style || "normal"};` +
 			`font-weight:${fontObject.weight || "400"};` +
-			`src:url(${window.mtdBaseURL}assets/fonts/${fontObject.name}.${fontObject.extension || "woff2"} ` +
+			`src:url(${window.mtdBaseURL}assets/fonts/${fontObject.name}.${fontObject.extension || "woff2"})` +
 			`format('${fontObject.format || "woff2"}');` +
 			`unicode-range:${fontObject.range||"U+0000-FFFF"}}\n`;
 }

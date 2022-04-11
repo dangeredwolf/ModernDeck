@@ -1,5 +1,5 @@
 /*
-	UIUpdateNotify.js
+	UIUpdateNotify.ts
 
 	Copyright (c) 2014-2022 dangered wolf, et al
 	Released under the MIT License
@@ -8,17 +8,17 @@
 import { make } from "./Utils";
 import { I18n } from "./I18n";
 
-export function UIUpdateNotify() {
+export const UIUpdateNotify = (): void => {
 	if (window.mtdHasNotifiedUpdate) {
 		return;
 	}
 	window.mtdHasNotifiedUpdate = true;
 
-	let notifRoot = mR.findConstructor("showErrorNotification")[0][1].showNotification({title:I18n("Update ModernDeck"),timeoutDelayMs:9999999999});
+	let notifRoot = window.mR.findConstructor("showErrorNotification")[0][1].showNotification({ title: I18n("Update ModernDeck"), timeoutDelayMs: 9999999999 });
 	let notifId = notifRoot._id;
-	let notif = $("li.Notification[data-id=\""+notifId+"\"]");
-	let notifContent = $("li.Notification[data-id=\""+notifId+"\"] .Notification-content");
-	let notifIcon = $("li.Notification[data-id=\""+notifId+"\"] .Notification-icon .Icon");
+	let notif = $(`li.Notification[data-id="${notifId}"]`);
+	let notifContent = $(`li.Notification[data-id="${notifId}"] .Notification-content`);
+	let notifIcon = $(`li.Notification[data-id="${notifId}"] .Notification-icon .Icon`);
 
 	window.updateNotifyID = notifRoot._id;
 
@@ -28,8 +28,8 @@ export function UIUpdateNotify() {
 
 		notifContent.append(
 			make("p").html(I18n("An update is available for ModernDeck")),
-			make("button").addClass("btn mtd-notification-button").html(I18n("Relaunch")).click(() => {
-				mtdPrepareWindows();
+			make("button").addClass("btn mtd-notification-button").html(I18n("Relaunch")).click((): void => {
+				window.mtdPrepareWindows();
 				window.require("electron").ipcRenderer.send("restartAndInstallUpdates")
 			})
 		)

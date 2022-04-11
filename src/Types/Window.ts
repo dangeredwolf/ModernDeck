@@ -10,26 +10,37 @@ import NFTActionQueue from '../NFTActionQueue';
 import { ModernDeckSettingsTab } from './ModernDeckSettings';
 
 declare global {
+    interface DesktopConfig {
+        [key: string]: boolean | string,
+        updatePolicy?: string,
+        disableCustomCSS?: boolean,
+        disableOOBE?: boolean,
+        autoUpdatePolicy?: string,
+        customLoginImage?: string,
+    }
+
     interface Window {
         lastError: Error;
         useSentry: boolean;
         mtdNumberFormat: Intl.NumberFormat;
         mtdNeedsResetNumberFormatting: boolean;
         ModernDeck: {
-            settingsData: any;
-            store: any;
+            version: number;
             versionString: string;
+            versionFriendlyString: string; // remove trailing .0, if present
+            platformName: string;
+            productName: string;
+            systemName: string;
+            buildNumber: number;
+            settingsData?: any;
+            store?: any;
         };
         store: any; // This is any only because Electron-Store does not exist on browser;
         mR: ModuleRaid;
         html: JQuery;
         body: JQuery;
         useNativeContextMenus: boolean;
-        desktopConfig: {
-            updatePolicy: string,
-            disableCustomCSS: boolean,
-            disableOOBE: boolean,
-        };
+        desktopConfig: DesktopConfig;
         mtdPrepareWindows: () => void;
         renderTab (tab: string): void;
         mtdBaseURL: string;
@@ -47,6 +58,8 @@ declare global {
         mtd_welcome_simplified: HTMLElement;
         mtd_welcome_classic: HTMLElement;
         injectedFonts: boolean;
+        mtdHasNotifiedUpdate: boolean;
+        updateNotifyID: number;
     }
 }
 

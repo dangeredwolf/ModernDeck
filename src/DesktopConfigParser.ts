@@ -6,13 +6,13 @@
 */
 
 import { setPref } from "./StoragePreferences";
-import { settingsData } from "./DataSettings"
+import { settingsData } from "./DataSettings";
 
-export function parseConfig(config) {
+export const parseConfig = (config: DesktopConfig): void => {
 	console.log("Parsing desktop config...");
 	for (let option in config) {
 		console.log(option);
-		let value = config[option];
+		let value: any = config[option];
 
 		if (option === "disableDevTools" && value === true) {
 			setPref("mtd_inspectElement", false);
@@ -23,7 +23,6 @@ export function parseConfig(config) {
 				console.log(val, val[option]);
 				console.log(settingsData[option]);
 				console.log(settingsData[option][val]);
-				// setPref(val, val[option]);
 			}
 		}
 	}
