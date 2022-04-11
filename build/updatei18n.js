@@ -23,7 +23,7 @@ let i18nMain = path.format({
 
 let results = path.format({
 	dir:__dirname +  path.sep + ".." + path.sep + "src",
-	base:"DataI18n.js"
+	base:"DataI18n.ts"
 });
 
 let resultsMain = path.format({
