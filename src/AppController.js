@@ -60,7 +60,7 @@ function notifyOffline() {
 
 function dismissOfflineNotification() {
 	if (!exists(window.offlineNotification)) {return;}
-	mR.findFunction("showErrorNotification")[0].removeNotification({notification:offlineNotification});
+	mR.findConstructor("showErrorNotification")[0][1].removeNotification({notification:offlineNotification});
 }
 
 /*
