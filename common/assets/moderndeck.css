@@ -127,15 +127,17 @@ body.signin-sheet-present {
 	}
 }
 
-@keyframes windowSlider {
+@keyframes windowDownHarmony {
 	0% {
-		opacity: 0.5;
-		margin-left: -700px
+		opacity:0;
+		transform:scale(0.75) translateY(-10px)
 	}
-
+	60% {
+		opacity:1;
+	}
 	100% {
-		opacity: 1;
-		margin-left: 0
+		opacity:1;
+		transform:scale(1)
 	}
 }
 
@@ -3189,7 +3191,6 @@ html:not(.mtd-classic-nav) .attach-compose-buttons .tweet-button {
 	position: absolute;
 	margin: 0;
 	max-height: 100%;
-	animation: windowSlider 0.3s var(--animationTiming)
 }
 
 .Modal {
@@ -9653,7 +9654,7 @@ a {
 }
 
 .mdl:not(.med-fullpanel) {
-	animation: windowDown .3s cubic-bezier(.19, 1, .22, 1);
+	animation: windowDownHarmony .3s cubic-bezier(.19, 1, .22, 1);
 	width: calc(var(--columnSize) + 252px);
 	bottom: auto;
 	top: auto;

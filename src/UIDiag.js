@@ -10,7 +10,7 @@ import { dumpPreferences } from "./StoragePreferences";
 import { version } from "../package.json";
 import { I18n } from "./I18n";
 import { UIAlert } from "./UIAlert";
-import { AsciiArtController } from "./AsciiArtController";
+import { getSystemName, getPlatformName } from "./Init/VersionController";
 
 /*
 	diag makes it easier for developers to narrow down user-reported bugs.
@@ -36,9 +36,9 @@ export function diag() {
 		if (html.hasClass("mtd-macappstore")) {
 			log += " (App Store)"
 		}
-		log += "\nOS: " + AsciiArtController.systemName() + "\nArchitecture: " + (process.arch === "x64" ? "amd64" : process.arch);
+		log += "\nOS: " + getSystemName() + "\nArchitecture: " + (process.arch === "x64" ? "amd64" : process.arch);
 	} else {
-		log += AsciiArtController.platformName();
+		log += getPlatformName();
 	}
 
 	log += ("\n\nTD.buildID: " + ((TD && TD.buildID) ? TD.buildID : "[not set]"));
