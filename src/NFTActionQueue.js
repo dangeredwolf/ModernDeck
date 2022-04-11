@@ -33,7 +33,7 @@ export default class NFTActionQueue {
 			return;
 		}
 		console.log("Creating new notification");
-		this.notifRoot = mR.findFunction("showErrorNotification")[0].showNotification({title:I18n("NFT Actions"), timeoutDelayMs:9999999999999});
+		this.notifRoot = mR.findConstructor("showErrorNotification")[0][1].showNotification({title:I18n("NFT Actions"), timeoutDelayMs:9999999999999});
 		this.notifId = this.notifRoot._id;
 		this.notif = $("li.Notification[data-id=\""+this.notifId+"\"]").attr("style", "display: none");
 		this.notifContent = $("li.Notification[data-id=\""+this.notifId+"\"] .Notification-content");

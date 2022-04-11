@@ -6,6 +6,11 @@
 */
 
 import { AsciiArtController } from "./AsciiArtController";
+
+import ModuleRaid from "moduleraid";
+const mR = new ModuleRaid();
+window.mR = mR;
+
 import { AutoUpdateController } from "./AutoUpdateController";
 import { PWAManifest } from "./PWAManifest";
 import { I18n, startI18nEngine } from "./I18n";
@@ -635,20 +640,20 @@ function coreInit() {
 		setTimeout(coreInit,10);
 		console.info("waiting on moduleRaid...");
 		return;
+	} else {
+		console.log("ModuleRaid is ready!", mR);
 	}
 
 	handleErrors(PWAManifest.injectManifest, "Caught error while injecting PWA manifest");
 	handleErrors(AutoUpdateController.initialize, "Caught error while initialising AutoUpdateController");
 
-	if (typeof $ === "undefined") {
-		try {
-			let jQuery = mR.findFunction('jQuery')[0];
+	try {
+		let jQuery = mR.findConstructor("jQuery")[0][1];
 
-			window.$ = jQuery;
-			window.jQuery = jQuery;
-		} catch (e) {
-			console.error("jQuery failed. This will break approximately... everything.");
-		}
+		window.$ = jQuery;
+		window.jQuery = jQuery;
+	} catch (e) {
+		console.error("jQuery failed. This will break approximately... everything.");
 	}
 
 	head = $(document.head);
@@ -673,12 +678,6 @@ function coreInit() {
 			window.lastError = e;
 		}
 	}
-	// append extra scripts
-	head.append(
-		make("script").attr("type", "text/javascript").attr("src", mtdBaseURL + "assets/libraries/emojidata.js"),
-		make("script").attr("type", "text/javascript").attr("src", mtdBaseURL + "assets/libraries/twemoji.min.js"),
-		make("script").attr("type", "text/javascript").attr("src", mtdBaseURL + "assets/libraries/jquery.visible.js")
-	);
 
 	enableCustomStylesheetExtension("i18nCSS",`
 	.recent-search-clear.list-item-last span:after {

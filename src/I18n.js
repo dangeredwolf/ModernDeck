@@ -156,7 +156,7 @@ export const I18n = function(a, b, c, d, e, f) {
 
 function patchColumnTitle() {
 	if (window.TD && window.mR) {
-		var columnData = mR.findFunction("getColumnTitleArgs")[0].columnMetaTypeToTitleTemplateData;
+		var columnData = mR.findConstructor("getColumnTitleArgs")[0][1].columnMetaTypeToTitleTemplateData;
 		for (var key in columnData) {
 			columnData[key].title = I18n(columnData[key].title);
 		}
@@ -169,7 +169,7 @@ function patchColumnTitle() {
 
 function patchButtonText() {
 	if (window.TD && window.mR) {
-		let buttonData = mR.findFunction("tooltipText");
+		let buttonData = mR.findModule("tooltipText");
 
 		for (let i = 0; i < buttonData.length; i++) {
 			if (buttonData[i]) {
@@ -265,7 +265,7 @@ function patchMiscStrings() {
 				I18n(TD.controller.columnManager.MODAL_TITLE[key2]);
 			}
 		}
-		// let apiErrors = findFunction("This user has been");
+		// let apiErrors = mR.findConstructor("This user has been")[0][1];
 		// if (apiErrors[0]) {
 		// 	for (const key2 in apiErrors[0]) {
 		// 		console.log(key2);
@@ -288,9 +288,9 @@ function patchMiscStrings() {
 }
 
 function patchTDFunctions() {
-	if (typeof mR !== "undefined" && mR.findFunction && mR.findFunction("en-x-psaccent")[0]) {
-		tweetDeckTranslateInitial = mR.findFunction("en-x-psaccent")[0].default;
-		mR.findFunction("en-x-psaccent")[0].default = I18n;
+	if (typeof mR !== "undefined" && mR.findConstructor && mR.findConstructor("en-x-psaccent")[0] && mR.findConstructor("en-x-psaccent")[0][1]) {
+		tweetDeckTranslateInitial = mR.findConstructor("en-x-psaccent")[0][1].default;
+		mR.findConstructor("en-x-psaccent")[0].default = I18n;
 
 		const months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
 		let newMonths = [];
@@ -325,7 +325,7 @@ function patchTDFunctions() {
 			 newShortDays.push(translatedDay);
 		});
 
-		mR.findFunction("jQuery")[0].tools.dateinput.localize("en",{
+		mR.findConstructor("jQuery")[0][1].tools.dateinput.localize("en",{
 			months: newMonths.join(","),
 			shortMonths: newShortMonths.join(","),
 			days: newDays.join(","),
@@ -337,7 +337,7 @@ function patchTDFunctions() {
 			firstDay = 0;
 		}
 
-		mR.findFunction("jQuery")[0].tools.dateinput.conf.firstDay = firstDay;
+		mR.findConstructor("jQuery")[0][1].tools.dateinput.conf.firstDay = firstDay;
 	} else {
 		setTimeout(patchTDFunctions,10);
 	}

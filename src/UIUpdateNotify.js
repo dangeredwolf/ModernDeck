@@ -14,7 +14,7 @@ export function UIUpdateNotify() {
 	}
 	window.mtdHasNotifiedUpdate = true;
 
-	let notifRoot = mR.findFunction("showErrorNotification")[0].showNotification({title:I18n("Update ModernDeck"),timeoutDelayMs:9999999999});
+	let notifRoot = mR.findConstructor("showErrorNotification")[0][1].showNotification({title:I18n("Update ModernDeck"),timeoutDelayMs:9999999999});
 	let notifId = notifRoot._id;
 	let notif = $("li.Notification[data-id=\""+notifId+"\"]");
 	let notifContent = $("li.Notification[data-id=\""+notifId+"\"] .Notification-content");
