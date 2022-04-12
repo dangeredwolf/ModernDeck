@@ -466,9 +466,9 @@
 .mtd-app-mac .mtd-settings-panel .mtd-logo {
 	--logoSize: 64px;
 	margin-left: 5px;
-	margin-right: 0;
+	margin-right: 5px;
 	background-image: url(moderndeck://assets/img/macOS.svg);
-}
+margin-top: 0px;}
 
 .mtd-settings-panel .mtd-logo:before {
 	content:""
@@ -484,6 +484,10 @@
 	margin-top: 9px;
 	text-align:left;
 	width:auto
+}
+
+.mtd-app-mac .mtd-about-title {
+	padding-left:10px
 }
 
 .mtd-about-title>span {
@@ -503,7 +507,7 @@
 }
 
 .mtd-app-mac .mtd-version-title {
-	margin-left:80px;
+	margin-left: 84px;
 }
 
 .mtd-patron-info {

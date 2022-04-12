@@ -575,8 +575,8 @@ export function openSettings(openMenu, limitedMenu) {
 				}
 			});
 
-			let h1 = make("h1").addClass("mtd-about-title").html(window.ModernDeck.productName);
-			let h2 = make("h2").addClass("mtd-version-title").html(verText + " " + window.ModernDeck.versionFriendlyString + I18n(" (Build ") + window.ModernDeck.buildNumber + ")");
+			let h1 = make("h1").addClass("mtd-about-title").html(`${window.ModernDeck.productName}<span>${verText}</span>`);
+			let h2 = make("h2").addClass("mtd-version-title").html("Version " + window.ModernDeck.versionFriendlyString + I18n(" (Build ") + window.ModernDeck.buildNumber + ")");
 			let logoCont = make("div").addClass("mtd-logo-container");
 
 			if (!isApp) {

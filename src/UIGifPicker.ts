@@ -5,35 +5,95 @@
 	Released under the MIT License
 */
 
-import {spinnerLarge} from "./DataMustaches";
-import {make} from "./Utils";
+import { make } from "./Utils";
 import { I18n } from "./I18n";
 
-const giphyKey = "Vb45700bexRDqCkbMdUmBwDvtkWT9Vj2";
-const tenorKey = "OPS2J07J0KWA";
+const giphyKey: string = "Vb45700bexRDqCkbMdUmBwDvtkWT9Vj2";
+const tenorKey: string = "OPS2J07J0KWA";
 
-let lastTenorPos = "";
-let lastGfycatPos = "";
+let lastTenorPos: string = "";
+let lastGfycatPos: string = "";
 
-let lastGiphyURL = "";
-let lastGfycatURL = "";
-let lastTenorURL = "";
+let lastGiphyURL: string = "";
+let lastGfycatURL: string = "";
+let lastTenorURL: string = "";
 
-let giphyData = {};
-let gfycatData = {};
-let tenorData = {};
+let giphyData: GiphyData = { data: null };
+let gfycatData: GfycatData = { gfycats: null, cursor: null };
+let tenorData: TenorData = { results: null, next: null };
 
-let lastQuery = "";
-let isLoadingMoreGifs = false;
+let lastQuery: string = "";
+let isLoadingMoreGifs: boolean = false;
 
-let isWaitingOnGiphy = false;
-let isWaitingOnGfycat = false;
-let isWaitingOnTenor = false;
+let isWaitingOnGiphy: boolean = false;
+let isWaitingOnGfycat: boolean = false;
+let isWaitingOnTenor: boolean = false;
 
 // let isHoveringOver = false;
-let hoverTimeout = null;
+let hoverTimeout: number | NodeJS.Timeout = null;
 
-export function initGifPanel() {
+enum GifProvider {
+	GIPHY,
+	GFYCAT,
+	TENOR,
+	UNKNOWN
+}
+
+interface GiphyData {
+	data: Gif[];
+}
+
+interface TenorData {
+	next: string;
+	results: Gif[];
+}
+
+interface GfycatData {
+	cursor: string;
+	gfycats: Gif[];
+}
+
+type GifTenor = {
+	nanogif: {
+		url: string
+	};
+	gif: {
+		url: string
+	};
+}
+
+type GifGiphy = {
+	preview_gif: {
+		url: string;
+	};
+	original: {
+		url: string;
+	};
+}
+
+interface Gif {
+	gifUrl: string;
+	// gfycat
+	gfyId?: string;
+	max1mbGif?: string;
+	max2mbGif?: string;
+	max5mbGif?: string;
+	gif100px?: string;
+
+	// Tenor
+	media?: GifTenor[];
+
+	// Giphy
+	images?: GifGiphy;
+
+	provider: GifProvider;
+
+	hasAudio?: boolean;
+	hasaudio?: boolean;
+}
+
+
+export const initGifPanel = (): void => {
 	$(".mtd-gif-button").off("click").click(() => {
 
 		checkGifEligibility();
@@ -60,7 +120,7 @@ export function initGifPanel() {
 	Creates the GIF panel, also handles scroll events to load more GIFs
 */
 
-function createGifPanel() {
+const createGifPanel = (): void => {
 
 	if ($(".mtd-gif-container").length > 0) {
 		return;
@@ -72,7 +132,7 @@ function createGifPanel() {
 			make("div").addClass("mtd-gif-header").append(
 				//make("h1").addClass("mtd-gif-header-text").html(I18n("Trending")),
 				make("input").addClass("mtd-gif-search").attr("placeholder",I18n("Search GIFs...")).change(() => {
-					searchGifPanel($(".mtd-gif-search").val())
+					searchGifPanel(String($(".mtd-gif-search").val()))
 				}),
 				make("button").addClass("mtd-gif-info-button").append(make("i").addClass("icon icon-info")).mouseover(() => {
 					hoverTimeout = setTimeout(() => {
@@ -81,7 +141,7 @@ function createGifPanel() {
 				}).mouseout(() => {
 					$(".mtd-gif-info").addClass("hidden");
 					if (hoverTimeout) {
-						clearTimeout(hoverTimeout);
+						clearTimeout(Number(hoverTimeout));
 						hoverTimeout = undefined;
 					}
 				}),
@@ -96,9 +156,9 @@ function createGifPanel() {
 			make("div").addClass("mtd-gif-column mtd-gif-column-2"),
 			make("div").addClass("mtd-gif-info dropdown-menu hidden").append(
 				make("p").html(I18n("ModernDeck GIF Search uses the following sources:")),
-				make("img").attr("src",mtdBaseURL + "assets/img/giphy.png").addClass("mtd-giphy-logo"),
-				make("img").attr("src",mtdBaseURL + "assets/img/tenor.svg").addClass("mtd-giphy-logo"),
-				make("img").attr("src",mtdBaseURL + "assets/img/gfycat.svg").addClass("mtd-giphy-logo")
+				make("img").attr("src",`${window.mtdBaseURL}/assets/img/giphy.png`).addClass("mtd-giphy-logo"),
+				make("img").attr("src",`${window.mtdBaseURL}/assets/img/tenor.svg`).addClass("mtd-giphy-logo"),
+				make("img").attr("src",`${window.mtdBaseURL}/assets/img/gfycat.svg`).addClass("mtd-giphy-logo")
 			)
 		)
 	)
@@ -119,8 +179,8 @@ function createGifPanel() {
 	})
 }
 
-function combinedLength(arr1, arr2, arr3) {
-	let len = 0;
+const combinedLength = (arr1: Gif[], arr2: Gif[], arr3: Gif[]) => {
+	let len: number = 0;
 	if (arr1) {
 		len += arr1.length;
 	}
@@ -133,8 +193,8 @@ function combinedLength(arr1, arr2, arr3) {
 	return len;
 }
 
-function combineArrays(arr1, arr2, arr3) {
-	let newArr = [];
+const combineArrays = (arr1?: Gif[], arr2?: Gif[], arr3?: Gif[]) => {
+	let newArr: Gif[] = [];
 	if (arr1)
 		arr1.reverse()
 	if (arr2)
@@ -160,11 +220,11 @@ function combineArrays(arr1, arr2, arr3) {
 
 // https://staxmanade.com/2017/02/how-to-download-and-convert-an-image-to-base64-data-url/
 
-async function getBlobFromUrl(imageUrl) {
+const getBlobFromUrl = async (imageUrl: string): Promise<Blob> => {
 	let res = await fetch(imageUrl);
 	let blob = await res.blob();
 
-	return new Promise((resolve, reject) => {
+	return new Promise((resolve) => {
 		resolve(blob);
 		return blob;
 	})
@@ -174,16 +234,13 @@ async function getBlobFromUrl(imageUrl) {
 	Renders a specific GIF, handles click function
 */
 
-function renderGif(preview, mainOg, provider, audio) {
+const renderGif = (preview: string, mainOg: string, provider: GifProvider): JQuery<HTMLElement> => {
 	let main = mainOg;
 
-
-	return make("img").attr("src", preview).attr("data-provider", provider).click(function() {
-		let img;
-
+	return make("img").attr("src", preview).attr("data-provider", provider).click((): void => {
 		$(".mtd-gif-container").removeClass("mtd-gif-container-open");
 
-		getBlobFromUrl(main).then((img) => {
+		getBlobFromUrl(main).then((img): void => {
 
 			let eventThing = {
 				originalEvent:{
@@ -195,8 +252,8 @@ function renderGif(preview, mainOg, provider, audio) {
 				}
 			};
 
-			let buildEvent = jQuery.Event("dragenter", eventThing);
-			let buildEvent2 = jQuery.Event("drop", eventThing);
+			let buildEvent: JQuery.Event = jQuery.Event("dragenter", eventThing);
+			let buildEvent2: JQuery.Event = jQuery.Event("drop", eventThing);
 
 			console.info("alright so these are the events we're gonna be triggering:");
 			console.info(buildEvent);
@@ -214,7 +271,7 @@ function renderGif(preview, mainOg, provider, audio) {
 	Renders GIF results page
 */
 
-function renderGifResults(data, error) {
+const renderGifResults = (data: Gif[], error?: string): void => {
 	$(".mtd-gif-container .preloader-wrapper").remove();
 
 	let col1 = $(".mtd-gif-column-1");
@@ -222,13 +279,13 @@ function renderGifResults(data, error) {
 
 	$(".mtd-gif-no-results").addClass("hidden");
 
-	if (data.length === 0 || data === "error") {
+	if (data.length === 0 || typeof error !== "undefined") {
 		col1.empty();
 		col2.empty();
 
 		$(".mtd-gif-no-results").removeClass("hidden");
 
-		if (data === "error") {
+		if (typeof error !== "undefined") {
 			$(".mtd-gif-no-results").html(I18n("An error occurred while trying to fetch results.") + (error || ""))
 		} else {
 			$(".mtd-gif-no-results").html(I18n("We couldn't find anything matching what you searched. Give it another shot."))
@@ -236,22 +293,22 @@ function renderGifResults(data, error) {
 	}
 
 	for (let i = 0; i < data.length; i++) {
-		let obj = data[i];
-		let provider = "unknown";
+		let obj: Gif = data[i];
+		let provider: GifProvider = GifProvider.UNKNOWN;
 
-		let previewURL = "";
-		let originalURL = "";
+		let previewURL: string = "";
+		let originalURL: string = "";
 
 		if (obj.gfyId) {
-			provider = "gfycat";
+			provider = GifProvider.GFYCAT;
 			previewURL = obj.max1mbGif || obj.max2mbGif || obj.max5mbGif || obj.gif100px;
 			originalURL = obj.gifUrl
 		} else if (obj.media) {
-			provider = "tenor";
+			provider = GifProvider.TENOR;
 			previewURL = obj.media[0].nanogif.url;
 			originalURL = obj.media[0].gif.url;
 		} else if (obj.images) {
-			provider = "giphy";
+			provider = GifProvider.GIPHY;
 			previewURL = obj.images.preview_gif.url;
 			originalURL = obj.images.original.url;
 		}
@@ -260,7 +317,7 @@ function renderGifResults(data, error) {
 
 		console.log(obj);
 
-		let renderedGif = renderGif(previewURL, originalURL, provider, obj.hasAudio || obj.hasaudio);
+		let renderedGif = renderGif(previewURL, originalURL, provider);
 
 		if (i % 2 === 0) {
 			col1.append(renderedGif);
@@ -272,17 +329,7 @@ function renderGifResults(data, error) {
 	}
 }
 
-/*
-	Simple function that appends a loading spinner to the gif container
-*/
-
-function gifPanelSpinner() {
-	$(".mtd-gif-container").append(
-		spinnerLarge
-	)
-}
-
-function checkIfAllDataIsThere() {
+const checkIfAllDataIsThere = (): void => {
 	if (isWaitingOnGiphy || isWaitingOnTenor || isWaitingOnGfycat) {
 		return;
 	}
@@ -295,40 +342,40 @@ function checkIfAllDataIsThere() {
 	renderGifResults(aggregateData)
 }
 
-function fetchGiphy() {
+const fetchGiphy = (): void => {
 	isWaitingOnGiphy = true;
 
 	$.ajax(
 		{
 			url:lastGiphyURL
 		}
-	).done((e) => {
-		giphyData = e;
-		console.log(e);
+	).done((results: GiphyData): void => {
+		giphyData = results;
 	})
-	.error((e) => {
+	// @ts-ignore - jQuery types appear to be missing error function in Ajax even tho it's real and on jQuery docs
+	.error((err: Error): void => {
 		console.error("Error trying to fetch Giphy GIFs");
-		console.error(e);
-		window.lastError = e;
+		console.error(err);
+		window.lastError = err;
 	})
-	.always(() => {
+	.always((): void => {
 		isWaitingOnGiphy = false;
 		checkIfAllDataIsThere();
 	});
 }
 
-function fetchGfycat() {
+const fetchGfycat = (): void => {
 	isWaitingOnGfycat = true;
 
 	$.ajax(
 		{
 			url:lastGfycatURL
 		}
-	).done((e) => {
-		gfycatData = e;
-		console.log(e);
+	).done((results: GfycatData) => {
+		gfycatData = results;
 	})
-	.error((e) => {
+	// @ts-ignore - jQuery types appear to be missing error function in Ajax even tho it's real and on jQuery docs
+	.error((e: Error) => {
 		console.error("Error trying to fetch Gfycat GIFs");
 		console.error(e);
 		window.lastError = e;
@@ -339,18 +386,18 @@ function fetchGfycat() {
 	});
 }
 
-function fetchTenor() {
+const fetchTenor = (): void => {
 	isWaitingOnTenor = true;
 
 	$.ajax(
 		{
 			url:lastTenorURL
 		}
-	).done((e) => {
-		tenorData = e;
-		console.log(e);
+	).done((results: TenorData) => {
+		tenorData = results;
 	})
-	.error((e) => {
+	// @ts-ignore - jQuery types appear to be missing error function in Ajax even tho it's real and on jQuery docs
+	.error((e: Error) => {
 		console.error("Error trying to fetch Tenor GIFs");
 		console.error(e);
 		window.lastError = e;
@@ -365,7 +412,7 @@ function fetchTenor() {
 	Main thread for a gif panel search
 */
 
-function searchGifPanel(query) {
+const searchGifPanel = (query: string): void => {
 	$(".mtd-gif-column-1").empty();
 	$(".mtd-gif-column-2").empty();
 
@@ -373,13 +420,13 @@ function searchGifPanel(query) {
 
 	isLoadingMoreGifs = true;
 
-	let sanitiseQuery = query.replace(/\s/g,"+").replace(/\&/g,"&amp;").replace(/\?/g,"").replace(/\//g," OR ");
+	let sanitiseQuery: string = query.replace(/\s/g,"+").replace(/\&/g,"&amp;").replace(/\?/g,"").replace(/\//g," OR ");
 	lastQuery = sanitiseQuery;
 
 	fetchAllSearch(query);
 }
 
-function fetchAllTrending() {
+const fetchAllTrending = (): void => {
 	if ($("[data-provider=tenor]").length <= 0) {
 		lastTenorPos = "";
 	}
@@ -387,9 +434,9 @@ function fetchAllTrending() {
 		lastGfycatPos = "";
 	}
 
-	lastGiphyURL = "https://api.giphy.com/v1/gifs/trending?api_key="+giphyKey+"&limit=20&offset="+$("[data-provider=giphy]").length;
-	lastTenorURL = "https://api.tenor.com/v1/trending?key="+tenorKey+"&locale="+window.I18n.getFullLanguage()+"&limit=20&pos="+lastTenorPos;
-	lastGfycatURL = "https://api.gfycat.com/v1/gfycats/trending?count=20&lang="+window.I18n.getMainLanguage()+"&cursor="+lastGfycatPos;
+	lastGiphyURL = `https://api.giphy.com/v1/gifs/trending?api_key=${giphyKey}&limit=20&offset=${$("[data-provider=giphy]").length}`;
+	lastTenorURL = `https://api.tenor.com/v1/trending?key=${tenorKey}&locale=${I18n.getFullLanguage()}&limit=20&pos=${lastTenorPos}`;
+	lastGfycatURL = `https://api.gfycat.com/v1/gfycats/trending?count=20&lang=${I18n.getMainLanguage()}&cursor=${lastGfycatPos}`;
 
 	console.log(lastGiphyURL);
 	console.log(lastTenorURL);
@@ -400,7 +447,7 @@ function fetchAllTrending() {
 	fetchTenor();
 }
 
-function fetchAllSearch(query) {
+const fetchAllSearch = (query: string): void => {
 	if ($("[data-provider=tenor]").length <= 0) {
 		lastTenorPos = "";
 	}
@@ -408,9 +455,9 @@ function fetchAllSearch(query) {
 		lastGfycatPos = "";
 	}
 
-	lastGiphyURL = "https://api.giphy.com/v1/gifs/search?q="+query+"&api_key="+giphyKey+"&limit=20&offset="+$("[data-provider=giphy]").length;
-	lastTenorURL = "https://api.tenor.com/v1/search?q="+query+"&key="+tenorKey+"&limit=20&locale="+window.I18n.getFullLanguage()+"&pos="+lastTenorPos;
-	lastGfycatURL = "https://api.gfycat.com/v1/gfycats/search?search_text="+query+"&count=20&lang="+window.I18n.getMainLanguage()+"&cursor="+lastGfycatPos;
+	lastGiphyURL = `https://api.giphy.com/v1/gifs/search?q=${query}&api_key=${giphyKey}&limit=20&offset=${$("[data-provider=giphy]").length}`;
+	lastTenorURL = `https://api.tenor.com/v1/search?q=${query}&key=${tenorKey}&limit=20&locale=${I18n.getFullLanguage()}&pos=${lastTenorPos}`;
+	lastGfycatURL = `https://api.gfycat.com/v1/gfycats/search?search_text=${query}&count=20&lang=${I18n.getMainLanguage()}&cursor=${lastGfycatPos}`;
 
 	console.log(lastGiphyURL);
 	console.log(lastTenorURL);
@@ -425,7 +472,7 @@ function fetchAllSearch(query) {
 	GIF panel when you first open it up, showing trending GIFs
 */
 
-function trendingGifPanel() {
+const trendingGifPanel = (): void => {
 	$(".mtd-gif-column-1").empty();
 	$(".mtd-gif-column-2").empty();
 
@@ -442,7 +489,7 @@ function trendingGifPanel() {
 	Let's load some more gifs from Giphy, triggered by scrolling
 */
 
-function loadMoreGifs() {
+const loadMoreGifs = (): void => {
 	if (lastQuery) {
 		fetchAllSearch(lastQuery)
 	} else {
@@ -456,7 +503,7 @@ function loadMoreGifs() {
 	You can only send 1 GIF per tweet after all.
 */
 
-export function checkGifEligibility() {
+export const checkGifEligibility = (): void => {
 	let disabledText = "";
 
 	// has added images
