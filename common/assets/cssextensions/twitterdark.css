@@ -1,0 +1,109 @@
+/*
+	twitterdark.css
+
+	Copyright (c) 2014-2022 dangered wolf, et al
+	Released under the MIT License
+*/
+
+:root {
+	--primaryColor:#15202B;
+	--secondaryColor:rgb(29, 155, 240);
+	--secondaryColorPress:rgb(29, 155, 240);
+	--secondaryColorAlt: rgb(29, 155, 240);
+	--secondaryColorDeep:rgba(29, 155, 240,0.2);
+	--secondaryColorDeepTrans:rgba(54, 58, 104, 0.5);
+	--secondaryColorBright:#8498A5;
+	--redDefault:#c35252;
+	--redHover:#d43737;
+	--redActive:#7b0d0d;
+	--redDisabled:rgba(197,84,84,0.45);
+	--txtMuteLink:rgb(139, 152, 165);
+	--disabledColor:rgb(139, 152, 165);
+	--linkPressColor:rgba(0,0,0,.05);
+	--buttonPressColor:rgba(255,255,255,.1);
+	--scrollbarDefaultColor:rgb(56, 68, 77);
+	--scrollbarHoverColor:#b9bbbe;
+	--bodyTextColor:#eee;
+	--bodyTextHoverColor:#eee;
+	--typeaheadColor:#DFDFDF;
+	--typeaheadBackgroundColor:#18191c;
+	--primaryTextColor:#fff;
+	--placeholderTextColor:rgb(139, 152, 165);
+	--selectionBackgroundColor:var(--secondaryColor);
+	--selectionTextColor:#666;
+	--tweetDetailWrapperColor:rgba(255,255,255,0.03);
+	--contextMenuDividerColor:rgba(79,84,92,0.48);
+	--backdropColor:#15202B;
+	--modalWindowColor:var(--primaryColor);
+	--overlayBackgroundColor:rgba(91, 112, 131, 0.4);
+	--navDrawerBackground:rgba(91, 112, 131, 0.4);
+	--defaultShadowColor:rgba(91, 112, 131, 0.4);
+	--settingsTabColor:var(--primaryColor);
+	--twitterBorderColor: rgb(56, 68, 77);
+}
+
+.column-header, .column-header-temp {
+	box-shadow:none!important;
+	border-bottom: inset 1px var(--twitterBorderColor);
+}
+
+ .mtd-settings-tab-container {
+	border-right: inset 2px var(--twitterBorderColor);
+	box-shadow:none;
+ }
+
+.column-content {
+	border-right: inset 1px var(--twitterBorderColor);
+	border-bottom: inset 1px var(--twitterBorderColor);
+}
+
+.tweet-button.js-show-drawer.is-hidden, div.drawer[data-drawer="compose"] {
+	--secondaryColorAlt:var(--primaryColor);
+}
+
+.tweet-action, .tweet-detail-action {
+	color:var(--placeholderTextColor)!important
+}
+
+input[type="text"], select, .uneditable-input {
+	border: 1px solid var(--twitterBorderColor)!important;
+	border-radius:4px
+}
+
+.column-title-edit-box {
+	border-color: var(--twitterBorderColor)
+}
+
+.mtd-nav-divider {
+	background: var(--twitterBorderColor)	 
+}
+
+.stream-item:hover {
+	box-shadow:none!important
+}
+
+.tweet-detail-wrapper {
+	background:var(--primaryColor);
+	border-top: 1px solid var(--twitterBorderColor);
+	border-bottom: 1px solid var(--twitterBorderColor);
+	box-shadow:none
+}
+
+.mdl-column.l-column .search-input {
+	box-shadow:none;
+	width:82%;
+	margin-left:0;
+	background:none
+}
+
+textarea {
+	border-color: var(--twitterBorderColor)
+}
+
+.dropdown-menu {
+	box-shadow: rgb(136 153 166 / 20%) 0px 0px 15px, rgb(136 153 166 / 15%) 0px 0px 3px 1px
+}
+
+.dropdown-menu a[data-action]:before {
+	color:rgb(139, 152, 165)
+}

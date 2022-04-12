@@ -1,5 +1,5 @@
 /*
-	darker.css
+	discorddark.css
 
 	Copyright (c) 2014-2022 dangered wolf, et al
 	Released under the MIT License
@@ -33,10 +33,10 @@
 	--tweetDetailWrapperColor:rgba(4,4,5,0.07);
 	--contextMenuDividerColor:rgba(79,84,92,0.48);
 	--backdropColor:#36393f;
-	--modalWindowColor:#36393f;
-	--overlayBackgroundColor:rgba(56,66,72,0.4);
+	--modalWindowColor:rgb(24, 25, 28);
+	--overlayBackgroundColor:rgba(0,0,0,0.85);
 	--navDrawerBackground:rgba(56,66,72,0.4);
-	--defaultShadowColor:rgba(56,66,72,0.4);
+	--defaultShadowColor:rgba(0,0,0,0.85);
 	--settingsTabColor:#2f3136;
 	--interactiveMuted:#4f545c;
 }
@@ -173,4 +173,9 @@
 
 .thread {
 	background-color: var(--interactiveMuted)
+}
+
+.mdl, .med-tray {
+	animation-timing-function: cubic-bezier(0,0.2,.2,1.25)!important;
+	animation-name: windowDownHarmony
 }

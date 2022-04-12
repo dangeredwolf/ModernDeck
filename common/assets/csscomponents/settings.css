@@ -175,12 +175,11 @@
 	pointer-events:all;
 	margin-bottom:0;
 	min-height:2px;
-	padding-left:39px;
+	margin-left: 39px;
 	vertical-align:text-top!important;
 	padding-top:4px;
-	height:20px;
-	width:95%
-}
+	/* height:20px; */
+	/* width:95%; */}
 
 .mtd-settings-tab {
 	padding:14px 0 14px 18px!important;
@@ -240,9 +239,11 @@
 }
 
 .mtd-settings-subpanel label {
-	display: inline-block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 	margin-bottom:0;
-	padding-top:14px;
+	padding-top:8px;
 	padding-left:0;
 	/* position: absolute; */
 }
@@ -261,10 +262,9 @@
 }
 
 .mtd-settings-option-checkbox {
-	height:28px;
-	margin-bottom:8px;
-	margin-top:8px
-}
+	height: auto;
+	/* margin-bottom:8px; */
+	/* margin-top:8px; */}
 
 .mtd-settings-option-subtext {
 	margin-top:-10px;
@@ -286,8 +286,7 @@
 .mtd-settings-option input[type="checkbox"], .mtd-settings-option input[type="radio"] {
 	position:relative;
 	/* height:40px; */
-	margin-left:-40px
-}
+	margin-left:-40px;line-height: 0;margin-top: -8px;}
 
 .mtd-update-container,.mtd-update-container>* {
 	float:left
@@ -666,7 +665,6 @@ html body .mtd-settings-subpanel button {
 }
 
 .checkbox input[type="checkbox"],.radio input[type="radio"] {
-	float:left
 }
 
 .checkbox-reversed input[type="checkbox"] {

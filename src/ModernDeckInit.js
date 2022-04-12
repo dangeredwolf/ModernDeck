@@ -648,6 +648,12 @@ function coreInit() {
 		}
 	}
 
+	enableCustomStylesheetExtension("moderndeckLogo", `
+		.mtd-settings-panel .mtd-logo {
+			background-image: url(${mtdBaseURL}assets/img/moderndeck.svg);
+		}
+	`)
+
 	enableCustomStylesheetExtension("i18nCSS",`
 	.recent-search-clear.list-item-last span:after {
 		content:"${I18n("Clear")}";

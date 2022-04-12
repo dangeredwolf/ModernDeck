@@ -148,7 +148,7 @@ export function renderTab(key, subPanel) {
 					}
 				}
 
-				label = make("label").addClass("checkbox").html(internationaliseSettingString(pref.title)).append(input);
+				label = make("label").addClass("checkbox").html(make("span").html(internationaliseSettingString(pref.title))).append(input);
 
 				option.append(label);
 
