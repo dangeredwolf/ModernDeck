@@ -157,8 +157,18 @@
 
 .more-tweets-btn {
 	background:var(--secondaryColor)!important;
-	width:100%;
-	margin-top:-40px
+	width: calc(100% - 20px);
+	margin-top:-40px;
+	border-radius: 0 0 10px 10px;
+}
+
+.more-tweets-btn .icon {
+	display:none
+}
+
+.more-tweets-btn>div {
+	text-align:left;
+	text-transform:none
 }
 
 .stream-item.is-actionable .quoted-tweet {
