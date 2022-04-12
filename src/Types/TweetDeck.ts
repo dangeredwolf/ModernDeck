@@ -591,7 +591,7 @@ interface Subscriptions {
 	[k: string]: Array<null | string>;
 }
 
-interface ColumnChirp {
+export interface ColumnChirp {
 	account: ChirpAccount;
 	targetTweet: TweetDeckChirp;
 	sourceUser: User;
@@ -1481,6 +1481,7 @@ interface Columns {
 
 interface Updates {
 	allowRetweetsAndReplies: boolean;
+	showDetailView: (column: TweetDeckColumn, chirp: ColumnChirp) => void;
 }
 
 interface TweetDeckUtil {
@@ -1493,6 +1494,7 @@ interface TweetDeckUtil {
 	timesCached: TimesCached;
 	datesCached: DatesCached;
 	poller: unknown;
+	isWrapperApp: () => boolean;
 	createUrlAnchor(e: TweetDeckUrlEntity): string;
 	pluck(method: string): (a: any) => any;
 	truncateNumber(n: number): string;

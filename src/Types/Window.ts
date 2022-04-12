@@ -35,6 +35,16 @@ declare global {
             settingsData?: any;
             store?: any;
         };
+        deck: {
+			osname:() => string;
+			getWrapperVersion:() => string;
+			inApp:() => boolean;
+			tearDown:() => void;
+			doGrowl:(title: string, text: string, icon: string, tweet: string, column: string) => void;
+			setTheme:(theme: string) => void;
+			authenticateOn:() => {hide:() => void, deleteLater:() => void};
+			closeLoadingScreen:() => void;
+		};
         store: any; // This is any only because Electron-Store does not exist on browser;
         mR: ModuleRaid;
         html: JQuery;

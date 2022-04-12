@@ -20,10 +20,10 @@ import { make, handleErrors } from "./Utils";
 import { disableStylesheetExtension } from "./StylesheetExtensions";
 import { diag } from "./UIDiag";
 
-export function keyboardShortcutHandler(e) {
+export const keyboardShortcutHandler = (event: KeyboardEvent): void => {
 
-	if (e.ctrlKey && e.shiftKey) {
-		switch(e.code) {
+	if (event.ctrlKey && event.shiftKey) {
+		switch(event.code) {
 			case "KeyA": // A
 				if ($("#accoutline").length > 0) {
 					$("#accoutline").click();
@@ -50,15 +50,14 @@ export function keyboardShortcutHandler(e) {
 				}
 				break;
 			case "KeyP": // P
-				body.append(make("iframe").attr("src","https://www.youtube.com/embed/TXYVHOxhuYc?autoplay=true").attr("style","display:none"));
+				window.body.append(make("iframe").attr("src","https://www.youtube-nocookie.com/embed/y9Ln-qyvX_I?autoplay=true").attr("style","display:none"));
 				break;
 
 		}
 	}
 
-	if (e.key === "ð" || (e.code === "KeyD" && (e.ctrlKey) && e.altKey)) {
+	if (event.key === "ð" || (event.code === "KeyD" && (event.ctrlKey) && event.altKey) || (event.code === "KeyD" && (event.ctrlKey) && event.shiftKey)) {
 		console.info("Triggering diag!");
-
 
 		handleErrors(diag, "An error occurred while creating the diagnostic report");
 
@@ -66,7 +65,7 @@ export function keyboardShortcutHandler(e) {
 
 	// Q opens nav drawer
 
-	if (e.key === "KeyQ" && document.querySelector("input:focus,textarea:focus") === null) {
+	if (event.key === "KeyQ" && document.querySelector("input:focus,textarea:focus") === null) {
 		if (getPref("mtd_headposition") !== "classic") {
 			if ($("#mtd_nav_drawer").hasClass("hidden")) {
 				$("#mtd-navigation-drawer-button").click();
