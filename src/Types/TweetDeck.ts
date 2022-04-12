@@ -143,7 +143,9 @@ export interface TweetDeckObject {
 }
 
 interface TweetDeckCache {
-	twitterUsers: unknown;
+	twitterUsers: {
+		getByScreenName: (screen_name: string) => {results: TwitterUserInternal[]}
+	};
 	lists: unknown;
 	names: Names;
 }
@@ -276,6 +278,13 @@ export interface TweetDeckControllerRelationshipResult {
 export interface TwitterUserInternal {
 	id_str: string;
 	screen_name: string;
+	profileBannerURL: string;
+	_profileBannerURL: string;
+	profileImageURL: string;
+	name: string;
+	screenName: string;
+	results: {
+	};
 }
 
 export interface TweetDeckControllerClient {
@@ -1074,6 +1083,7 @@ interface Feeds {
 }
 
 interface Init {
+	signOut: () => void;
 	initTimer: InitTimer;
 }
 
@@ -1338,6 +1348,12 @@ type TweetDeckAccount = {
 	generateKeyFor(service: string, userID: string): string;
 };
 
+type TwitterAccount = {
+	state: {
+		username: string;
+	}
+}
+
 interface Storage {
 	store: Store;
 	Account: TweetDeckAccount;
@@ -1356,6 +1372,7 @@ interface AccountController {
 	_cookieAccountPromise: unknown;
 	_unverified: unknown;
 	subscription: Array<null | string>;
+	getPreferredAccount: (platform?: string) => TwitterAccount;
 }
 
 interface AcceptedAccountTypes {
@@ -1470,7 +1487,9 @@ interface TweetDeckUI {
 		render: (templateName: string, context: object) => string;
 	};
 	main: unknown;
-	openColumn: unknown;
+	openColumn: {
+		showOpenColumn: () => void;
+	};
 	updates: Updates;
 	columns: Columns;
 }

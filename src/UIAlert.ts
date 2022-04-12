@@ -27,8 +27,23 @@ import { UIModal } from "./UIModal";
 	String type: supported types are "confirm", "alert"
 */
 
+export interface AlertOptions {
+	title?: string;
+	message?: string;
+	buttonText?: string;
+	button2Text?: string;
+	button1Click?: () => void;
+	button2Click?: () => void;
+	type?: "confirm" | "alert";
+}
+
 export class UIAlert extends UIModal {
-	constructor(obj) {
+	alertTitle: JQuery;
+	alertBody: JQuery;
+	alertButtonContainer: JQuery;
+	alertButton: JQuery;
+	alertButton2: JQuery;
+	constructor(obj: AlertOptions) {
 		super();
 
 		obj = obj || {};
@@ -45,10 +60,10 @@ export class UIAlert extends UIModal {
 		if (exists(obj.button2Text) || obj.type === "confirm") {
 			this.alertButton2 = make("button").addClass("btn-primary btn mtd-alert-button mtd-alert-button-secondary").html(obj.button2Text || I18n("Cancel"));
 			this.alertButtonContainer.append(this.alertButton2);
-			this.alertButton2.click(obj.button2Click || mtdPrepareWindows);
+			this.alertButton2.click(obj.button2Click || window.mtdPrepareWindows);
 		}
 
-		this.alertButton.click(obj.button1Click || mtdPrepareWindows);
+		this.alertButton.click(obj.button1Click || window.mtdPrepareWindows);
 
 		this.element.append(this.alertTitle, this.alertBody, this.alertButtonContainer);
 
@@ -57,6 +72,6 @@ export class UIAlert extends UIModal {
 }
 
 window.originalAlert = window.alert;
-window.alert = text => {
+window.alert = (text): UIAlert => {
 	return new UIAlert({message:text})
 }

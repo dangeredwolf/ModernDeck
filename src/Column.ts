@@ -5,7 +5,7 @@
 	Released under the MIT License
 */
 
-import { getPref } from "./StoragePreferences"
+import { getPref } from "./StoragePreferences";
 
 import { TweetDeckObject } from "./Types/TweetDeck";
 declare let TD: TweetDeckObject;

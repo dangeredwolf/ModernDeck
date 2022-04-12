@@ -70,6 +70,13 @@ declare global {
         injectedFonts: boolean;
         mtdHasNotifiedUpdate: boolean;
         updateNotifyID: number;
+        originalAlert: () => void;
+        mtd_nd_header_image: HTMLElement;
+        mtd_nd_header_photo: HTMLElement;
+        mtd_nd_header_atname: HTMLElement;
+        mtd_nd_header_username: HTMLElement;
+        mtd_nav_drawer_background: HTMLElement;
+        mtd_nav_drawer: HTMLElement;
     }
 }
 
