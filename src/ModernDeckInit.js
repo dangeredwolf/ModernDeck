@@ -40,7 +40,7 @@ import { _newLoginPage } from "./DataMustaches";
 window.newLoginPage = _newLoginPage;
 
 import { processForceFeatureFlags } from "./ForceFeatureFlags";
-import { loadPreferences, loadPreferencesWindows, parseActions } from "./PrefHandler";
+import { loadPreferences, parseActions } from "./Settings/SettingsInit";
 window.parseActions = parseActions;
 
 import { injectFonts } from "./FontHandler";
@@ -548,11 +548,7 @@ function navigationSetup() {
 		new UILanguagePicker();
 	}
 
-	if (typeof process !== "undefined" && process.platform === "win32") {
-		handleErrors(loadPreferencesWindows, "Caught error in loadPreferences");
-	} else {
-		handleErrors(loadPreferences, "Caught error in loadPreferencesWindows");
-	}
+	handleErrors(loadPreferences, "Caught error in loadPreferences");
 
 	handleErrors(hookComposer, "Caught error in hookComposer");
 
