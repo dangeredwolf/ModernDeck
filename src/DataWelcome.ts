@@ -8,7 +8,7 @@
 import { isApp } from "./Utils";
 import { I18n } from "./I18n";
 import { getPref, setPref } from "./StoragePreferences";
-import { settingsData } from "./DataSettings";
+import { settingsData } from "./Settings/SettingsData";
 import { WelcomeData } from "./Types/WelcomeData";
 import { parseActions } from "./PrefHandler";
 
