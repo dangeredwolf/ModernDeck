@@ -5,7 +5,7 @@
 	Released under the MIT License
 */
 
-import { make, exists, getIpc } from "./Utils";
+import { make, getIpc } from "./Utils";
 import { UIAlert } from "./UIAlert";
 import { UIUpdateNotify } from "./UIUpdateNotify";
 import { AutoUpdateController } from "./AutoUpdateController";
@@ -13,54 +13,21 @@ import { openSettings } from "./UISettings";
 import { buildContextMenu } from "./UIContextMenu";
 import { parseActions } from "./PrefHandler";
 import { parseConfig } from "./DesktopConfigParser";
-import { importTweetenSettings } from "./StorageTweetenImport";
+import { importTweetenSettings, TweetenSettingsJSON } from "./StorageTweetenImport";
 import { I18n } from "./I18n";
-
-let offlineNotification;
+import { settingsData } from "./DataSettings";
+import { getPref } from "./StoragePreferences";
+import * as ElectronStore from "electron-store";
 
 /*
 	Notifies users of an app update
 */
 
-function notifyUpdate() {
-	if (isDev || desktopConfig.disableUpdateNotification) {
+const notifyUpdate = (): void => {
+	if (window.desktopConfig.disableUpdateNotification) {
 		return;
 	}
 	UIUpdateNotify();
-}
-
-/*
-	Create offline notification (probably because we're offline)
-*/
-
-function notifyOffline() {
-
-	if (exists(offlineNotification)) {
-		return;
-	}
-
-	let notifRoot = mR.findConstructor("showErrorNotification")[0][1].showNotification({title:I18n("Internet Disconnected"),timeoutDelayMs:9999999999});
-	let notifId = notifRoot._id;
-	offlineNotification = $("li.Notification[data-id=\""+notifId+"\"]");
-	let notifContent = $("li.Notification[data-id=\""+notifId+"\"] .Notification-content");
-	let notifIcon = $("li.Notification[data-id=\""+notifId+"\"] .Notification-icon .Icon");
-
-	if (offlineNotification.length > 0) {
-		notifIcon.removeClass("Icon--notifications").addClass("mtd-icon-disconnected");
-
-		notifContent.append(
-			make("p").attr("style","max-width:initial!important").html(I18n("We detected that you are disconnected from the internet. Many actions are unavailable without an internet connection."))
-		)
-	}
-}
-
-/*
-	Dismiss offline notification (probably because we're online again)
-*/
-
-function dismissOfflineNotification() {
-	if (!exists(window.offlineNotification)) {return;}
-	mR.findConstructor("showErrorNotification")[0][1].removeNotification({notification:offlineNotification});
 }
 
 /*
@@ -68,36 +35,36 @@ function dismissOfflineNotification() {
 	from here (the renderer process) to the main process
 */
 
-export function mtdAppFunctions() {
+export const mtdAppFunctions = (): void => {
 
-	if (typeof require === "undefined") {return;}
+	if (typeof window.require === "undefined") {return;}
 
-	const { ipcRenderer } = require("electron");
+	const { ipcRenderer } = window.require("electron");
 
-	const Store = require("electron-store");
+	const Store = window.require("electron-store");
 	let store = new Store({name:"mtdsettings"});
 
 
 	// Enable high contrast if system is set to high contrast
 
 
-	$(document).on("uiDrawerHideDrawer",(e) => {
+	$(document).on("uiDrawerHideDrawer", (): void => {
 		getIpc().send("drawerClose");
 	});
 
-	$(document).on("uiDrawerActive",(e) => {
+	$(document).on("uiDrawerActive", (): void => {
 		if (!$(".application").hasClass("hide-detail-view-inline"))
 			getIpc().send("drawerOpen");
 	});
 
 
-	ipcRenderer.on("desktopConfig", (e, config) => {
+	ipcRenderer.on("desktopConfig", (_event: Event, config: DesktopConfig): void => {
 		window.desktopConfig = config;
 		parseConfig(config);
 	});
 
 
-	ipcRenderer.on("inverted-color-scheme-changed", (e, enabled) => {
+	ipcRenderer.on("inverted-color-scheme-changed", (_event: Event, enabled: boolean): void => {
 		if (enabled && getPref("mtd_highcontrast") !== true) {
 			try {
 				settingsData.accessibility.options.highcont.activate.func();
@@ -105,19 +72,19 @@ export function mtdAppFunctions() {
 		}
 	});
 
-	ipcRenderer.on("color-scheme-changed", (e, theme) => {
+	ipcRenderer.on("color-scheme-changed", (_event: Event, theme: string): void => {
 		parseActions(settingsData.themes.options.coretheme.activate, theme);
 
 	});
 
-	ipcRenderer.on("disable-high-contrast", (e) => {
+	ipcRenderer.on("disable-high-contrast", (): void => {
 		console.info("DISABLING HIGH CONTRAST ");
 		try {
 			settingsData.accessibility.options.highcont.deactivate.func();
 		} catch(e){}
 	});
 
-	ipcRenderer.on("aboutMenu", (e,args) => {
+	ipcRenderer.on("aboutMenu", (): void => {
 		if ($(".mtd-settings-tab[data-action=\"about\"]").length > 0 && $("#settings-modal").attr("style") === "display: block;"){
 			$(".mtd-settings-tab[data-action=\"about\"]").click();
 		} else {
@@ -128,7 +95,7 @@ export function mtdAppFunctions() {
 		}
 	});
 
-	ipcRenderer.on("checkForUpdatesMenu", (e,args) => {
+	ipcRenderer.on("checkForUpdatesMenu", (): void => {
 		if ($(".mtd-settings-tab[data-action=\"about\"]").length > 0 && $("#settings-modal").attr("style") === "display: block;"){
 			$(".mtd-settings-tab[data-action=\"about\"]").click();
 		} else {
@@ -143,25 +110,25 @@ export function mtdAppFunctions() {
 		}
 	});
 
-	ipcRenderer.on("update-downloaded", (e,args) => {
-		if ($("#settings-modal[style='display: block;']>.mtd-settings-panel").length <= 0 && !html.hasClass("mtd-winstore") && !html.hasClass("mtd-flatpak") && !html.hasClass("mtd-macappstore")) {
+	ipcRenderer.on("update-downloaded", (): void => {
+		if ($("#settings-modal[style='display: block;']>.mtd-settings-panel").length <= 0 && !window.html.hasClass("mtd-winstore") && !window.html.hasClass("mtd-flatpak") && !window.html.hasClass("mtd-macappstore")) {
 			notifyUpdate()
 		}
 	});
 
-	ipcRenderer.on("openSettings", (e,args) => {
+	ipcRenderer.on("openSettings", (): void => {
 		openSettings();
 	});
 
-	ipcRenderer.on("accountsMan", (e,args) => {
+	ipcRenderer.on("accountsMan", (): void => {
 		$(".js-show-drawer.js-header-action").click();
 	});
 
-	ipcRenderer.on("sendFeedback", (e,args) => {
+	ipcRenderer.on("sendFeedback", (): void => {
 		window.open("https://github.com/dangeredwolf/ModernDeck/issues");
 	});
 
-	ipcRenderer.on("msgModernDeck", (e,args) => {
+	ipcRenderer.on("msgModernDeck", (): void => {
 		$(document).trigger("uiComposeTweet", {
 			type: "message",
 			messageRecipients: [{
@@ -170,32 +137,31 @@ export function mtdAppFunctions() {
 		})
 	});
 
-	ipcRenderer.on("newTweet", (e,args) => {
-		mtdPrepareWindows();
+	ipcRenderer.on("newTweet", (): void => {
+		window.mtdPrepareWindows();
 		$(document).trigger("uiComposeTweet");
 	});
 
-	ipcRenderer.on("newDM", (e,args) => {
-		mtdPrepareWindows();
+	ipcRenderer.on("newDM", (): void => {
+		window.mtdPrepareWindows();
 		$(document).trigger("uiComposeTweet");
 		$(".js-dm-button").click();
 	});
 
-	let minimise, maximise, closeButton;
+	let minimize, maximize, closeButton: JQuery<HTMLElement>;
 
-	if (html.hasClass("mtd-js-app")) {
+	if (window.html.hasClass("mtd-js-app")) {
 		if ($(".windowcontrols").length <= 0) {
-			minimise = make("button")
+			minimize = make("button")
 			.addClass("windowcontrol min")
 			.html("&#xE15B")
 
-
-			maximise = make("button")
+			maximize = make("button")
 			.addClass("windowcontrol max")
 			.html("&#xE3C6")
 
-			if (html.hasClass("mtd-maximized")) {
-				maximise.html("&#xE3E0")
+			if (window.html.hasClass("mtd-maximized")) {
+				maximize.html("&#xE3E0")
 			}
 
 			closeButton = make("button")
@@ -204,51 +170,52 @@ export function mtdAppFunctions() {
 
 			let windowcontrols = make("div")
 			.addClass("windowcontrols")
-			.append(minimise)
-			.append(maximise)
+			.append(minimize)
+			.append(maximize)
 			.append(closeButton);
 
-			body.append(windowcontrols,
+			window.body.append(windowcontrols,
 				make("div").addClass("mtd-app-drag-handle")
 			);
 		} else {
-			minimise = $(".windowcontrol.min");
-			maximise = $(".windowcontrol.max");
+			minimize = $(".windowcontrol.min");
+			maximize = $(".windowcontrol.max");
 			closeButton = $(".windowcontrol.close");
 
-			if (html.hasClass("mtd-maximized")) {
-				maximise.html("&#xE3E0")
+			if (window.html.hasClass("mtd-maximized")) {
+				maximize.html("&#xE3E0")
 			}
 		}
 
-		minimise.click(() => {
+		minimize.click((): void => {
 			ipcRenderer.send("minimize");
 		});
 
-		maximise.click(() => {
+		maximize.click((): void => {
 			ipcRenderer.send("maximizeButton");
 		});
 
-		closeButton.click(() => {
+		closeButton.click((): void => {
 			window.close();
 		});
 
 	}
 
-	ipcRenderer.on("context-menu", (event, p) => {
-		let theMenu = buildContextMenu(p);
-		let Menu = require("@electron/remote").Menu;
+	ipcRenderer.on("context-menu", (_event: Event, menuContents) => {
+		let theMenu = buildContextMenu(menuContents);
+		let Menu = window.require("@electron/remote").Menu;
 
-		if (useNativeContextMenus || useSafeMode) {
+		if (window.useNativeContextMenus || window.useSafeMode) {
 			Menu.buildFromTemplate(theMenu).popup();
 			return;
 		} else {
-			if (exists(theMenu))
-				body.append(theMenu);
+			if (typeof (theMenu) !== "undefined")
+				// @ts-ignore - Always an instance of jQuery<HTMLElement> in this case
+				window.body.append(theMenu);
 		}
 	});
 
-	ipcRenderer.on("failedOpenUrl", (event, p) => {
+	ipcRenderer.on("failedOpenUrl", (): void => {
 		new UIAlert({
 			title:I18n("Failed to open link in browser"),
 			message:I18n("ModernDeck failed to open a link you clicked in the default browser.\n\n(Sometimes, this can be caused if you have the Twitter for Windows app installed)"),
@@ -256,31 +223,17 @@ export function mtdAppFunctions() {
 		})
 	});
 
-	ipcRenderer.on("settingsReceived", (_, load) => {
+	ipcRenderer.on("settingsReceived", (_event: Event, load: ElectronStore): void => {
 		console.log("settingsReceived");
 		store.store = load;
 		ipcRenderer.send("restartApp");
 	});
 
-	ipcRenderer.on("tweetenSettingsReceived", (_, load) => {
+	ipcRenderer.on("tweetenSettingsReceived", (_event: Event, load: TweetenSettingsJSON): void => {
 		importTweetenSettings(load);
-		setTimeout(() => {
+		setTimeout((): void => {
 			ipcRenderer.send("restartApp");
 		},500); // We wait to make sure that native TweetDeck settings have been propagated
 	});
 
-	const updateOnlineStatus = () => {
-
-		if (!navigator.onLine) {
-			// notifyOffline();
-		} else {
-			dismissOfflineNotification();
-		}
-
-	}
-
-	window.addEventListener("online", updateOnlineStatus);
-	window.addEventListener("offline", updateOnlineStatus);
-
-	updateOnlineStatus();
 }

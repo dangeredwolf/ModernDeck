@@ -390,9 +390,8 @@ function makeLoginWindow(url,teams) {
 
 	loginWindow.webContents.on("new-window", (event, url) => {
 		console.log("new-window", url);
-		const {shell} = electron;
 		event.preventDefault();
-		shell.openExternal(url);
+		electron.shell.openExternal(url);
 	});
 
 	loginWindow.loadURL(url);
@@ -405,7 +404,6 @@ function makeLoginWindow(url,teams) {
 function saveImageAs(url) {
 	if (!url) {
 		throw "saveImageAs requires \"URL\" as an argument";
-		return;
 	}
 
 	let fileType = url.match(/(?<=format=)(\w{3,4})|(?<=\.)(\w{3,4}(?=\?))/g)[0] || "file";

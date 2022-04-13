@@ -23,7 +23,7 @@ enum TweetenFontSize {
 	largest = "largest",
 }
 
-interface TweetenSettingsJSON {
+export interface TweetenSettingsJSON {
 	dev: {
 		mode: boolean;
 		customCSS: string;

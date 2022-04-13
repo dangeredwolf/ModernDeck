@@ -9,52 +9,70 @@
 
 import { getIpc } from "./Utils";
 
+export enum ContextMenuAction {
+	cut = "cut",
+	copy = "copy",
+	paste = "paste",
+	undo = "undo",
+	redo = "redo",
+	selectAll = "selectAll",
+	delete = "delete",
+	openLink = "openLink",
+	copyLink = "copyLink",
+	openImage = "openImage",
+	copyImageURL = "copyImageURL",
+	copyImage = "copyImage",
+	saveImage = "saveImage",
+	inspectElement = "inspectElement",
+	restartApp = "restartApp",
+}
+
 export const contextMenuFunctions = {
-	cut: () => {
+	[ContextMenuAction.cut]: () => {
 		getIpc().send("cut");
 	},
-	copy: () => {
+	[ContextMenuAction.copy]: () => {
 		getIpc().send("copy");
 	},
-	paste: () => {
+	[ContextMenuAction.paste]: () => {
 		getIpc().send("paste");
 	},
-	undo: () => {
+	[ContextMenuAction.undo]: () => {
 		getIpc().send("undo");
 	},
-	redo: () => {
+	[ContextMenuAction.redo]: () => {
 		getIpc().send("redo");
 	},
-	selectAll: () => {
+	[ContextMenuAction.selectAll]: () => {
 		getIpc().send("selectAll");
 	},
-	delete: () => {
+	[ContextMenuAction.delete]: () => {
 		getIpc().send("delete");
 	},
-	openLink: (link: string) => {
+	[ContextMenuAction.openLink]: (link: string) => {
 		window.open(link);
 	},
-	copyLink: (link: string) => {
+	[ContextMenuAction.copyLink]: (link: string) => {
 		const { clipboard } = window.require("electron");
 		clipboard.writeText(link);
 	},
-	openImage: (link: string) => {
+	[ContextMenuAction.openImage]: (link: string) => {
 		window.open(link);
 	},
-	copyImageURL: (link: string) => {
+	[ContextMenuAction.copyImageURL]: (link: string) => {
 		const { clipboard } = window.require("electron");
 		clipboard.writeText(link);
 	},
-	copyImage: (imageURL: string) => {
+	[ContextMenuAction.copyImage]: (imageURL: string) => {
 		getIpc().send("copyImage", imageURL);
 	},
-	saveImage: (imageURL: string) => {
+	[ContextMenuAction.saveImage]: (imageURL: string) => {
 		getIpc().send("saveImage", imageURL);
 	},
-	inspectElement: (coordinates: {x: number, y: number}) => {
+	[ContextMenuAction.inspectElement]: (coordinates: {x: number, y: number}) => {
 		getIpc().send("inspectElement", coordinates);
 	},
-	restartApp: () => {
+	[ContextMenuAction.restartApp]: () => {
 		getIpc().send("restartApp");
 	}
 };

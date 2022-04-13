@@ -77,6 +77,7 @@ declare global {
         mtd_nd_header_username: HTMLElement;
         mtd_nav_drawer_background: HTMLElement;
         mtd_nav_drawer: HTMLElement;
+        languageData: {};
     }
 }
 
