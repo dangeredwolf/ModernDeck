@@ -5,16 +5,16 @@
 	Released under the MIT License
 */
 
-import themes from "./SettingsData/Themes";
-import appearance from "./SettingsData/Appearance";
-import tweets from "./SettingsData/Tweets";
-import mutes from "./SettingsData/Mutes";
-import accessibility from "./SettingsData/Accessibility";
-import app from "./SettingsData/App";
-import system from "./SettingsData/System";
-import language from "./SettingsData/Language";
-import about from "./SettingsData/About";
-import internalSettings from "./SettingsData/InternalSettings";
+import themes from "./Settings/Data/Themes";
+import appearance from "./Settings/Data/Appearance";
+import tweets from "./Settings/Data/Tweets";
+import mutes from "./Settings/Data/Mutes";
+import accessibility from "./Settings/Data/Accessibility";
+import app from "./Settings/Data/App";
+import system from "./Settings/Data/System";
+import language from "./Settings/Data/Language";
+import about from "./Settings/Data/About";
+import internalSettings from "./Settings/Data/InternalSettings";
 
 /*
 	Settings manager data.
@@ -27,15 +27,28 @@ import internalSettings from "./SettingsData/InternalSettings";
 	https://github.com/dangeredwolf/ModernDeck/wiki/settingsData
 */
 
+enum SettingsTabs {
+	themes = "themes",
+	appearance = "appearance",
+	tweets = "tweets",
+	mutes = "mutes",
+	accessibility = "accessibility",
+	app = "app",
+	system = "system",
+	language = "language",
+	about = "about",
+	internalSettings = "internalSettings"
+}
+
 export let settingsData = {
-	themes: themes,
-	appearance: appearance,
-	tweets: tweets,
-	mutes: mutes,
-	accessibility: accessibility,
-	app: app,
-	system: system,
-	language: language,
-	about: about,
-	internalSettings: internalSettings
+	[SettingsTabs.themes]: themes,
+	[SettingsTabs.appearance]: appearance,
+	[SettingsTabs.tweets]: tweets,
+	[SettingsTabs.mutes]: mutes,
+	[SettingsTabs.accessibility]: accessibility,
+	[SettingsTabs.app]: app,
+	[SettingsTabs.system]: system,
+	[SettingsTabs.language]: language,
+	[SettingsTabs.about]: about,
+	[SettingsTabs.internalSettings]: internalSettings
 }

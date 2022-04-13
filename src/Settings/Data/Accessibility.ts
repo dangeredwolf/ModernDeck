@@ -5,10 +5,10 @@
 	Released under the MIT License
 */
 
-import { ModernDeckSettingsTab, ModernDeckSettingsType } from "./../Types/ModernDeckSettings";
+import { ModernDeckSettingsTab, ModernDeckSettingsType } from "../../Types/ModernDeckSettings";
 
-import { enableStylesheetExtension, disableStylesheetExtension } from "../StylesheetExtensions";
-import { ctrlShiftText } from "../Utils";
+import { enableStylesheetExtension, disableStylesheetExtension } from "../../StylesheetExtensions";
+import { ctrlShiftText } from "../../Utils";
 
 let tab: ModernDeckSettingsTab = {
     tabName:"<i class='material-icon' aria-hidden='true'>accessibility</i> {{Accessibility}}",

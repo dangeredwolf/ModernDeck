@@ -5,10 +5,10 @@
 	Released under the MIT License
 */
 
-import { getPref } from "../StoragePreferences";
-import { getColumnFromColumnNumber } from "../Column";
+import { getPref } from "../../StoragePreferences";
+import { getColumnFromColumnNumber } from "../../Column";
 
-import { ModernDeckSettingsTab, ModernDeckSettingsType } from "../Types/ModernDeckSettings";
+import { ModernDeckSettingsTab, ModernDeckSettingsType } from "../../Types/ModernDeckSettings";
 
 let tab: ModernDeckSettingsTab = {
     enabled: false,

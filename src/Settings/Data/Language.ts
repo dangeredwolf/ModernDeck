@@ -5,12 +5,12 @@
 	Released under the MIT License
 */
 
-import { I18n } from "../I18n";
-import { UIAlert } from "../UIAlert";
-import { UILanguagePicker } from "../UILanguagePicker";
-import { translationCredits } from "../DataTranslationCredits";
+import { I18n } from "../../I18n";
+import { UIAlert } from "../../UIAlert";
+import { UILanguagePicker } from "../../UILanguagePicker";
+import { translationCredits } from "../../DataTranslationCredits";
 
-import { ModernDeckSettingsTab, ModernDeckSettingsType } from "../Types/ModernDeckSettings";
+import { ModernDeckSettingsTab, ModernDeckSettingsType } from "../../Types/ModernDeckSettings";
 
 let tab: ModernDeckSettingsTab = {
     tabName:"<i class='material-icon' aria-hidden='true'>language</i> {{Language}}",

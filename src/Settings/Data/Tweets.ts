@@ -5,12 +5,12 @@
 	Released under the MIT License
 */
 
-import { ModernDeckSettingsTab, ModernDeckSettingsType } from "../Types/ModernDeckSettings";
+import { ModernDeckSettingsTab, ModernDeckSettingsType } from "../../Types/ModernDeckSettings";
 
-import { TweetDeckLinkShortener, TweetDeckObject } from "../Types/TweetDeck";
+import { TweetDeckLinkShortener, TweetDeckObject } from "../../Types/TweetDeck";
 declare let TD: TweetDeckObject;
 
-import { allColumnsVisible, updateColumnVisibility } from "../Column";
+import { allColumnsVisible, updateColumnVisibility } from "../../Column";
 
 let tab: ModernDeckSettingsTab = {
 	tabName:"<i class='Icon icon-twitter-bird'></i> {{Tweets}}",

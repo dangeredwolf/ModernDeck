@@ -5,12 +5,12 @@
 	Released under the MIT License
 */
 
-import { setPref } from "../StoragePreferences";
-import { exists, isApp } from "../Utils";
-import { openLegacySettings } from "../UISettings";
-import { enterSafeMode } from "../SafeMode";
+import { setPref } from "../../StoragePreferences";
+import { exists, isApp } from "../../Utils";
+import { openLegacySettings } from "../../UISettings";
+import { enterSafeMode } from "../../SafeMode";
 
-import { ModernDeckSettingsTab, ModernDeckSettingsType } from "../Types/ModernDeckSettings";
+import { ModernDeckSettingsTab, ModernDeckSettingsType } from "../../Types/ModernDeckSettings";
 
 let tab: ModernDeckSettingsTab = {
     tabName: "<i class='icon icon-moderndeck'></i> {{App}}",

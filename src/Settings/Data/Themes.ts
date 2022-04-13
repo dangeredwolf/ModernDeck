@@ -5,13 +5,13 @@
 	Released under the MIT License
 */
 
-import { enableStylesheetExtension, disableStylesheetExtension, enableCustomStylesheetExtension } from "../StylesheetExtensions";
-import { getPref, setPref } from "../StoragePreferences";
-import { ctrlShiftText } from "../Utils";
+import { enableStylesheetExtension, disableStylesheetExtension, enableCustomStylesheetExtension } from "../../StylesheetExtensions";
+import { getPref, setPref } from "../../StoragePreferences";
+import { ctrlShiftText } from "../../Utils";
 
-import { ModernDeckSettingsTab, ModernDeckSettingsType } from "../Types/ModernDeckSettings";
+import { ModernDeckSettingsTab, ModernDeckSettingsType } from "../../Types/ModernDeckSettings";
 
-import { TweetDeckObject } from "../Types/TweetDeck";
+import { TweetDeckObject } from "../../Types/TweetDeck";
 declare let TD: TweetDeckObject;
 
 let tab: ModernDeckSettingsTab = {

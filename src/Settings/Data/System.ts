@@ -5,10 +5,10 @@
 	Released under the MIT License
 */
 
-import { purgePrefs } from "../StoragePreferences";
-import { isApp } from "../Utils";
+import { purgePrefs } from "../../StoragePreferences";
+import { isApp } from "../../Utils";
 
-import { ModernDeckSettingsTab, ModernDeckSettingsType } from "../Types/ModernDeckSettings";
+import { ModernDeckSettingsTab, ModernDeckSettingsType } from "../../Types/ModernDeckSettings";
 
 let tab: ModernDeckSettingsTab = {
     tabName:"<i class='material-icon' aria-hidden='true'>storage</i> {{System}}",

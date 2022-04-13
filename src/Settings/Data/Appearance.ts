@@ -6,12 +6,12 @@
 */
 
 
-import { enableStylesheetExtension, disableStylesheetExtension, enableCustomStylesheetExtension } from "../StylesheetExtensions";
-import { setPref } from "../StoragePreferences";
+import { enableStylesheetExtension, disableStylesheetExtension, enableCustomStylesheetExtension } from "../../StylesheetExtensions";
+import { setPref } from "../../StoragePreferences";
 
-import { ModernDeckSettingsTab, ModernDeckSettingsType } from "../Types/ModernDeckSettings";
+import { ModernDeckSettingsTab, ModernDeckSettingsType } from "../../Types/ModernDeckSettings";
 
-import { TweetDeckObject } from "../Types/TweetDeck";
+import { TweetDeckObject } from "../../Types/TweetDeck";
 declare let TD: TweetDeckObject;
 
 let tab: ModernDeckSettingsTab = {
