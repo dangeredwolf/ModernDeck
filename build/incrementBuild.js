@@ -3,7 +3,7 @@ const path = require("path");
 
 let thePath = path.format({
 	dir:__dirname + path.sep + ".." + path.sep + "src",
-	base:"buildId.js"
+	base:"buildId.ts"
 });
 
 let buildFile = fs.readFileSync(thePath) + "";
