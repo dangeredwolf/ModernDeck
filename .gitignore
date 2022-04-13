@@ -16,3 +16,5 @@ node_modules
 *.log
 *.appx
 default.*
+common/assets/moderndeck.js.map
+common/assets/moderndeck.js
