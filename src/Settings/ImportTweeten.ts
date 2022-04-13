@@ -5,9 +5,9 @@
 	Released under the MIT License
 */
 
-import { getPref, setPref } from "./StoragePreferences";
+import { getPref, setPref } from "../StoragePreferences";
 
-import { TweetDeckObject } from "./Types/TweetDeck";
+import { TweetDeckObject } from "../Types/TweetDeck";
 declare let TD: TweetDeckObject;
 
 enum TweetDeckTheme {

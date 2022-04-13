@@ -6,9 +6,9 @@
 */
 
 import { make, exists, isApp } from "./Utils";
-import { settingsData } from "./DataSettings";
+import { settingsData } from "./Settings/SettingsData";
 import { hasPref, getPref, setPref } from "./StoragePreferences";
-import { parseActions } from "./PrefHandler";
+import { parseActions } from "./Settings/SettingsInit";
 import { I18n } from "./I18n";
 import { AutoUpdateController } from "./AutoUpdateController";
 import { diag } from "./UIDiag"; 

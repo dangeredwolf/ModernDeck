@@ -6,7 +6,7 @@
 */
 
 import { setPref } from "./StoragePreferences";
-import { settingsData } from "./DataSettings";
+import { settingsData } from "./Settings/SettingsData";
 
 export const parseConfig = (config: DesktopConfig): void => {
 	console.log("Parsing desktop config...");

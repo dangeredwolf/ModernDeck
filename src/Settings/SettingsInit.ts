@@ -1,34 +1,37 @@
 /*
-	PrefHandler.js
+	SettingsInit.ts
 
 	Copyright (c) 2014-2022 dangered wolf, et al
 	Released under the MIT License
 */
 
-import { settingsData } from "./DataSettings";
-import { exists, getIpc } from "./Utils";
-import { ModernDeckPrefMigration } from "./ModernDeckPrefMigration";
-import { disableStylesheetExtension, enableStylesheetExtension } from "./StylesheetExtensions";
-import { getPref, setPref, hasPref, debugStorageSys } from "./StoragePreferences";
+import { settingsData } from "./SettingsData";
+import { ModernDeckPrefMigration } from "../ModernDeckPrefMigration";
+import { disableStylesheetExtension, enableStylesheetExtension } from "../StylesheetExtensions";
+import { getPref, setPref, hasPref, debugStorageSys } from "../StoragePreferences";
+import { SettingsTab } from "./SettingsData";
+
 /*
 	function loadPreferences()
 
 	Loads preferences from storage and activates them
 */
 
-export function loadPreferences() {
+export const loadPreferences = (): void => {
 	window.settingsData = settingsData;
 
 	ModernDeckPrefMigration.migrate();
 
-	for (let key in settingsData) {
+	let key: keyof typeof SettingsTab;
+
+	for (key in settingsData) {
 
 		if (!settingsData[key].enum) {
 			for (let i in settingsData[key].options) {
 				let prefKey = settingsData[key].options[i].settingsKey;
 				let pref = settingsData[key].options[i];
 
-				if (exists(prefKey)) {
+				if (typeof(prefKey) !== "undefined") {
 					let setting;
 					if (!hasPref(prefKey)) {
 						if (debugStorageSys)
@@ -80,8 +83,12 @@ export function loadPreferences() {
 	}
 }
 
-export function loadPreferencesWindows() {
-	loadPreferences();
+interface SettingsActions {
+	enableStylesheet?: string;
+	disableStylesheet?: string;
+	htmlAddClass?: string;
+	htmlRemoveClass?: string;
+	func?: Function;
 }
 
 /*
@@ -90,32 +97,32 @@ export function loadPreferencesWindows() {
 	This allows for many simple preferences to be done completely in object notation with no extra JS
 */
 
-export function parseActions(a,opt,load) {
-	for (let key in a) {
+export const parseActions = (actions: SettingsActions, option: any, firstLoad?: boolean): void => {
+	for (let key in actions) {
 		switch(key) {
 			case "enableStylesheet":
-				enableStylesheetExtension(a[key]);
+				enableStylesheetExtension(actions[key]);
 				break;
 			case "disableStylesheet":
-				disableStylesheetExtension(a[key]);
+				disableStylesheetExtension(actions[key]);
 				break;
 			case "htmlAddClass":
-				if (!html.hasClass(a[key]))
-					html.addClass(a[key]);
+				if (!window.html.hasClass(actions[key]))
+				window.html.addClass(actions[key]);
 				break;
 			case "htmlRemoveClass":
-				html.removeClass(a[key]);
+				window.html.removeClass(actions[key]);
 				break;
 			case "func":
-				if (typeof a[key] === "function") {
+				if (typeof actions[key] === "function") {
 					try {
-						a[key](opt, load);
+						actions[key](option, firstLoad);
 					} catch (e) {
 						console.error("Error occurred processing action function.");
 						console.error(e);
 						window.lastError = e;
 						console.error("Dump of naughty function attached below");
-						console.log(a[key])
+						console.log(actions[key])
 					}
 				} else {
 					throw "There's a func action, but it isn't a function? :thinking:";

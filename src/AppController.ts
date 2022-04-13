@@ -11,11 +11,11 @@ import { UIUpdateNotify } from "./UIUpdateNotify";
 import { AutoUpdateController } from "./AutoUpdateController";
 import { openSettings } from "./UISettings";
 import { buildContextMenu } from "./UIContextMenu";
-import { parseActions } from "./PrefHandler";
+import { parseActions } from "./Settings/SettingsInit";
 import { parseConfig } from "./DesktopConfigParser";
-import { importTweetenSettings, TweetenSettingsJSON } from "./StorageTweetenImport";
+import { importTweetenSettings, TweetenSettingsJSON } from "./Settings/ImportTweeten";
 import { I18n } from "./I18n";
-import { settingsData } from "./DataSettings";
+import { settingsData } from "./Settings/SettingsData";
 import { getPref } from "./StoragePreferences";
 import * as ElectronStore from "electron-store";
 

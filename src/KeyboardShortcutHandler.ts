@@ -14,7 +14,7 @@
 	Q -> Toggle navigation drawer (for Simplified view)
 */
 
-import { settingsData } from "./DataSettings";
+import { settingsData } from "./Settings/SettingsData";
 import { getPref } from "./StoragePreferences";
 import { make, handleErrors } from "./Utils";
 import { disableStylesheetExtension } from "./StylesheetExtensions";

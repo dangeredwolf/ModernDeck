@@ -11,12 +11,13 @@ import { ModernDeckSettingsTab } from './ModernDeckSettings';
 
 declare global {
     interface DesktopConfig {
-        [key: string]: boolean | string,
         updatePolicy?: string,
         disableCustomCSS?: boolean,
         disableOOBE?: boolean,
         autoUpdatePolicy?: string,
         customLoginImage?: string,
+        disableUpdateNotification?: boolean,
+        [key: string]: any,
     }
 
     interface Window {
