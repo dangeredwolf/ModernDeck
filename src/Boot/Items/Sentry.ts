@@ -1,3 +1,10 @@
+/*
+	Boot/Items/Sentry.ts
+
+	Copyright (c) 2014-2022 dangered wolf, et al
+	Released under the MIT License
+*/
+
 import * as Sentry from "@sentry/browser";
 import { Integrations } from "@sentry/tracing";
 import { buildVersion } from "../../BuildProps.json";

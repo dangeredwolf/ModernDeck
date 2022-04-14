@@ -5,9 +5,7 @@
 	Released under the MIT License
 */
 
-import { TweetDeckObject } from "./Types/TweetDeck";
 import { getPref } from "./StoragePreferences";
-declare let TD: TweetDeckObject;
 
 export const LanguageFunctionPatcher = (): void => {
 	if (typeof TD !== "undefined" && typeof TD.languages !== "undefined") {

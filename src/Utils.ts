@@ -113,8 +113,10 @@ export const isApp: boolean = typeof window.require !== "undefined";
 	Shorthand for creating a mutation observer and observing
 */
 
-export const mutationObserver = (object: Node, func: MutationCallback, parms: Object): void => {
-	return (new MutationObserver(func)).observe(object, parms);
+export const mutationObserver = (object: Node, func: MutationCallback, parms: Object): MutationObserver => {
+	const observer = (new MutationObserver(func));
+	observer.observe(object, parms);
+	return observer;
 }
 
 /*

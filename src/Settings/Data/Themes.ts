@@ -1,5 +1,5 @@
 /*
-	SettingsData/Themes.ts
+	Settings/Data/Themes.ts
 
 	Copyright (c) 2014-2022 dangered wolf, et al
 	Released under the MIT License
@@ -10,9 +10,6 @@ import { getPref, setPref } from "../../StoragePreferences";
 import { ctrlShiftText } from "../../Utils";
 
 import { ModernDeckSettingsTab, ModernDeckSettingsType } from "../../Types/ModernDeckSettings";
-
-import { TweetDeckObject } from "../../Types/TweetDeck";
-declare let TD: TweetDeckObject;
 
 let tab: ModernDeckSettingsTab = {
 	tabName:"<i class='material-icon' aria-hidden='true'>format_paint</i> {{Themes}}",

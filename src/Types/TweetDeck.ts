@@ -276,6 +276,7 @@ export interface TweetDeckControllerRelationshipResult {
 }
 
 export interface TwitterUserInternal {
+    ext_has_nft_avatar: any;
 	id_str: string;
 	screen_name: string;
 	profileBannerURL: string;
@@ -1504,6 +1505,7 @@ interface Updates {
 }
 
 interface TweetDeckUtil {
+    prettyNumber: (numberStr: string) => string;
 	ANCHOR_TAG_REGEXP: unknown;
 	LT_REGEXP: unknown;
 	GT_REGEXP: unknown;

@@ -8,8 +8,12 @@
 import ModuleRaid, { WebpackModule } from 'moduleraid';
 import NFTActionQueue from '../NFTActionQueue';
 import { ModernDeckSettingsTab } from './ModernDeckSettings';
+import { TweetDeckObject } from './TweetDeck';
 
 declare global {
+    
+    let TD: TweetDeckObject;
+
     interface DesktopConfig {
         updatePolicy?: string,
         disableCustomCSS?: boolean,
@@ -27,6 +31,7 @@ declare global {
         mtdNeedsResetNumberFormatting: boolean;
         $: WebpackModule;
         jQuery: WebpackModule;
+        MTDURLExchange: Element;
         ModernDeck: {
             version: number;
             versionString: string;
@@ -71,6 +76,8 @@ declare global {
         mtd_welcome_amoled: HTMLElement;
         mtd_welcome_simplified: HTMLElement;
         mtd_welcome_classic: HTMLElement;
+        nftActionQueue: NFTActionQueue;
+        moderndeckBootErrorCount: number;
         injectedFonts: boolean;
         mtdHasNotifiedUpdate: boolean;
         updateNotifyID: number;

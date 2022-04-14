@@ -7,9 +7,6 @@
 
 import { make } from "./Utils";
 
-import { TweetDeckObject } from "./Types/TweetDeck";
-declare let TD: TweetDeckObject;
-
 export class UIModal {
 	modalRoot: string = "#settings-modal";
 	sharedRoot: boolean = false;

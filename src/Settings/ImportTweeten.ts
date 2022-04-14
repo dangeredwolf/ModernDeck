@@ -7,9 +7,6 @@
 
 import { getPref, setPref } from "../StoragePreferences";
 
-import { TweetDeckObject } from "../Types/TweetDeck";
-declare let TD: TweetDeckObject;
-
 enum TweetDeckTheme {
 	light = "light",
 	dark = "dark"

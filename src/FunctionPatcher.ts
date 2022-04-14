@@ -5,10 +5,9 @@
 	Released under the MIT License
 */
 
-const pretendToBeWrapperApp = true;
+import { ColumnChirp } from "./Types/TweetDeck";
 
-import { TweetDeckObject, ColumnChirp } from "./Types/TweetDeck";
-declare let TD: TweetDeckObject;
+const pretendToBeWrapperApp = true;
 
 export const FunctionPatcher = (): void => {
 	if (window.localStorage && typeof window.require === "undefined") {
