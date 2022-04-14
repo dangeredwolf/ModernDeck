@@ -23,7 +23,7 @@ import { UINavDrawer } from "./UINavDrawer";
 import { FunctionPatcher } from "./FunctionPatcher";
 import { LanguageFunctionPatcher } from "./LanguageFunctionPatcher";
 import { UILanguagePicker } from "./UILanguagePicker";
-import { setupAME } from "./AdvancedMuteEngine";
+import { setupAME } from "./AME/AdvancedMuteEngine";
 import { loginTextReplacer, checkIfSigninFormIsPresent } from "./UILoginController";
 import { getColumnNumber, updateColumnTypes } from "./Column";
 import i18nData from "./DataI18n";
