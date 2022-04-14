@@ -21,12 +21,12 @@ export default {};
 export const handleErrors = (func: Function, text: string): void => {
 	try {
 		func();
-	} catch(e) {
+	} catch(error: any) {
 		console.error(text || "Caught an unexpected internal error");
-		console.error(e);
-		window.lastError = e;
+		console.error(error);
+		window.lastError = error;
 		if (window.useSentry) {
-			Sentry.captureException(e);
+			Sentry.captureException(error);
 		}
 	}
 }

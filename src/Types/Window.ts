@@ -50,6 +50,7 @@ declare global {
         mR: ModuleRaid;
         html: JQuery;
         body: JQuery;
+        head: JQuery;
         useNativeContextMenus: boolean;
         desktopConfig: DesktopConfig;
         mtdPrepareWindows: () => void;

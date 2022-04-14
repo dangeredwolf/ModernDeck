@@ -150,7 +150,7 @@ let tab: ModernDeckSettingsTab = {
 			title:"{{Scrollbar Style}}",
 			type: ModernDeckSettingsType.DROPDOWN,
 			activate:{
-				func: (opt: boolean): void => {
+				func: (opt: string): void => {
 					disableStylesheetExtension("scrollbarsnarrow");
 					disableStylesheetExtension("scrollbarsnone");
 					enableStylesheetExtension(opt || "scrollbarsdefault");
