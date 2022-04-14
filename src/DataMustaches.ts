@@ -7,7 +7,7 @@
 
 import { I18n } from "./I18n";
 
-export const _newLoginPage = `<div class="app-signin-wrap mtd-signin-wrap">
+export const _newLoginPage: string = `<div class="app-signin-wrap mtd-signin-wrap">
 	<div class="js-signin-ui app-signin-form pin-top pin-right txt-weight-normal">
 		<section class="js-login-form form-login startflow-panel-rounded" data-auth-type="twitter">
 			<h2 class="form-legend padding-axl">
@@ -39,7 +39,7 @@ export const _newLoginPage = `<div class="app-signin-wrap mtd-signin-wrap">
 </div>`;
 
 
-export const spinnerSmall =
+export const spinnerSmall: string =
 '<div class="preloader-wrapper active">\
 	<div class="spinner-layer small">\
 		<div class="circle-clipper left">\
@@ -54,7 +54,7 @@ export const spinnerSmall =
 	</div>\
 </div>';
 
-export const spinnerLarge =
+export const spinnerLarge: string =
 '<div class="preloader-wrapper active">\
 	<div class="spinner-layer">\
 		<div class="circle-clipper left">\
@@ -69,7 +69,7 @@ export const spinnerLarge =
 	</div>\
 </div>';
 
-export const spinnerTiny =
+export const spinnerTiny: string =
 '<div class="preloader-wrapper active">\
 	<div class="spinner-layer tiny">\
 		<div class="circle-clipper left">\
