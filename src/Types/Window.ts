@@ -8,8 +8,12 @@
 import ModuleRaid, { WebpackModule } from 'moduleraid';
 import NFTActionQueue from '../NFTActionQueue';
 import { ModernDeckSettingsTab } from './ModernDeckSettings';
+import { TweetDeckObject } from './TweetDeck';
 
 declare global {
+    
+    let TD: TweetDeckObject;
+
     interface DesktopConfig {
         updatePolicy?: string,
         disableCustomCSS?: boolean,
@@ -27,6 +31,7 @@ declare global {
         mtdNeedsResetNumberFormatting: boolean;
         $: WebpackModule;
         jQuery: WebpackModule;
+        MTDURLExchange: Element;
         ModernDeck: {
             version: number;
             versionString: string;

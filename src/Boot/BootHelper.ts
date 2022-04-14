@@ -1,9 +1,12 @@
 
 import * as Sentry from "@sentry/browser";
 
-export const defineBootComponent = async (func: Function): Promise<any> => {
+export const defineBootComponent = async (func: Function, condition?: boolean): Promise<any> => {
 	return new Promise((resolve) => {
 		try {
+			if (condition === false) {
+				resolve(null);
+			}
 			const functionResult: any = func();
 			console.log(`Boot: Done ${func.name}`);
 			resolve(functionResult);

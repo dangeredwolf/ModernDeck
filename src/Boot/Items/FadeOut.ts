@@ -3,7 +3,7 @@
 	Overrides removeChild functions of modals, tooltips, and dropdown menus to have a fade out effect
 */
 
-function overrideFadeOut() {
+export function overrideFadeOut() {
 
 	// here we add event listeners to add a fading out animation when a modal dialog is closed
 	

@@ -1504,6 +1504,7 @@ interface Updates {
 }
 
 interface TweetDeckUtil {
+    prettyNumber: (numberStr: string) => string;
 	ANCHOR_TAG_REGEXP: unknown;
 	LT_REGEXP: unknown;
 	GT_REGEXP: unknown;

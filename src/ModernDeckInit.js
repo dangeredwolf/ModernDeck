@@ -30,8 +30,8 @@ window.i18nData = i18nData;
 window.AutoUpdateController = AutoUpdateController;
 import modalKeepOpen from "./ModalKeepOpen";
 import NFTActionQueue from "./NFTActionQueue";
-import { hookComposer } from "./Functions/Composer";
-import { overrideFadeOut } from "./Functions/FadeOut"; 
+import { hookComposer } from "./Boot/Items/Composer";
+import { overrideFadeOut } from "./Boot/Items/FadeOut"; 
 
 import { enableStylesheetExtension, enableCustomStylesheetExtension } from "./StylesheetExtensions";
 
@@ -93,82 +93,7 @@ if (mtdStarted.getHours() < 12) { // 12:00 / 12:00pm
 }
 
 
-/*
-	Allows copying image to the clipboard from pasting, via context menu or Ctrl/Cmd + V
-*/
 
-function retrieveImageFromClipboardAsBlob(pasteEvent, callback) {
-
-	let items = pasteEvent.clipboardData.items;
-
-	if(items == undefined || pasteEvent.clipboardData == false){
-		return;
-	};
-
-	for (let i = 0; i < items.length; i++) {
-
-		// Skip content if not image
-		if (items[i].type.indexOf("image") == -1) continue;
-
-		let blob = items[i].getAsFile();
-
-		if (typeof(callback) == "function"){
-			callback(blob);
-		}
-	}
-}
-
-/*
-	Paste event to allow for pasting images in TweetDeck
-*/
-
-window.addEventListener("paste", (e) => {
-
-	retrieveImageFromClipboardAsBlob(e, imageBlob => {
-
-		if (imageBlob) {
-
-			let buildEvent = jQuery.Event("dragenter",{originalEvent:{dataTransfer:{files:[imageBlob]}}});
-			let buildEvent2 = jQuery.Event("drop",{originalEvent:{dataTransfer:{files:[imageBlob]}}});
-
-			$(document).trigger(buildEvent);
-			$(document).trigger(buildEvent2);
-		}
-
-	});
-
-}, false);
-
-if (typeof MTDURLExchange === "object" && typeof MTDURLExchange.getAttribute === "function") {
-	mtdBaseURL = MTDURLExchange.getAttribute("type");
-	console.info("MTDURLExchange completed with URL " + mtdBaseURL);
-}
-
-// This makes numbers appear nicer by overriding tweetdeck's original function which did basically nothing
-
-function replacePrettyNumber() {
-
-	TD.util.prettyNumber = (e) => {
-		let howPretty = parseInt(e, 10);
-
-		if (!window.mtdAbbrevNumbers) {
-			return formatNumberI18n(howPretty);
-		}
-
-		if (howPretty >= 100000000) {
-			return formatNumberI18n(parseInt(howPretty/1000000)) + I18n("M");
-		} else if (howPretty >= 10000000) {
-			return formatNumberI18n(parseInt(howPretty/100000)/10) + I18n("M");
-		} else if (howPretty >= 1000000) {
-			return formatNumberI18n(parseInt(howPretty/10000)/100) + I18n("M");
-		} else if (howPretty >= 100000) {
-			return formatNumberI18n(parseInt(howPretty/1000)) + I18n("K");
-		} else if (howPretty >= 10000) {
-			return formatNumberI18n(parseInt(howPretty/100)/10) + I18n("K");
-		}
-		return formatNumberI18n(howPretty);
-	}
-}
 
 
 // Fixes a bug (or oversight) in TweetDeck's JS caused by ModernDeck having different animations in column settings
@@ -225,43 +150,7 @@ function mtdInit() {
 
 	console.log("mtdInit");
 
-	if (typeof require === "undefined" && typeof document.getElementsByClassName("js-signin-ui block")[0] !== "undefined" && !replacedLoadingSpinnerNew && !html.hasClass("mtd-disable-css")) {
-		document.getElementsByClassName("js-signin-ui block")[0].innerHTML =
-		`<img class="mtd-loading-logo" src="${mtdBaseURL + "assets/img/moderndeck.svg"}" style="display: none;">
-		<div class="preloader-wrapper big active">
-			<div class="spinner-layer">
-				<div class="circle-clipper left">
-					<div class="circle"></div>
-				</div>
-				<div class="gap-patch">
-					<div class="circle"></div>
-				</div>
-				<div class="circle-clipper right">
-					<div class="circle"></div>
-				</div>
-			</div>
-		</div>`;
-
-		if (document.getElementsByClassName("spinner-centered")[0]) {
-			document.getElementsByClassName("spinner-centered")[0].remove();
-		}
-
-		document.getElementsByTagName("html")[0].style = "background: #111";
-		document.getElementsByTagName("body")[0].style = "background: #111";
-
-		if (typeof mtdLoadStyleCSS === "undefined") {
-			const mtdLoadStyleCSS = `
-				img.spinner-centered {
-					display:none!important
-				}
-			`
-			const mtdLoadStyle = document.createElement("style");
-			mtdLoadStyle.appendChild(document.createTextNode(mtdLoadStyleCSS))
-			document.head.appendChild(mtdLoadStyle);
-		}
-
-		replacedLoadingSpinnerNew = true;
-	}
+	
 
 	// The default is dark for the loading screen, once the TD settings load it can use the user preference
 
@@ -271,8 +160,6 @@ function mtdInit() {
 		enableStylesheetExtension("dark");
 	}
 	html.addClass("dark");
-
-	handleErrors(injectFonts, "Caught error in injectFonts");
 
 
 	// These check to see if critical TD variables are in place before proceeding
@@ -299,9 +186,6 @@ function mtdInit() {
 	if (forceFeatureFlags)
 		handleErrors(processForceFeatureFlags, "Caught error in processForceFeatureFlags");
 
-	handleErrors(AsciiArtController.draw, "Caught error while trying to draw ModernDeck version easter egg");
-	handleErrors(replacePrettyNumber, "Caught error in replacePrettyNumber");
-	handleErrors(overrideFadeOut, "Caught error in overrideFadeOut");
 	handleErrors(processMustaches, "Caught error in processMustaches");
 	handleErrors(hookNFTActions, "Caught error in hookNFTActions");
 	handleErrors(setupAME, "Caught error in Advanced Mute Engine");
@@ -508,75 +392,8 @@ function coreInit() {
 		}
 	}
 
-	enableCustomStylesheetExtension("moderndeckLogo", `
-		.mtd-settings-panel .mtd-logo {
-			background-image: url(${mtdBaseURL}assets/img/moderndeck.svg);
-		}
-	`)
-
-	enableCustomStylesheetExtension("i18nCSS",`
-	.recent-search-clear.list-item-last span:after {
-		content:"${I18n("Clear")}";
-	}
-	.js-column-detail .column-title-back:before,.js-column-detail .column-title-back:after,.js-tweet-results .column-title-back:after,.js-tweet-social-proof-back:after {
-		content:"${I18n("Tweet")}";
-	}
-	.js-tweet-social-proof-back:after {
-		content:"${I18n("Interactions")}";
-	}
-	.js-hide-drawer.app-nav-tab:after {
-		content:"${I18n("Close Account List")}";
-	}
-	.js-dm-participants-back:after {
-		content:"${I18n("People")}";
-	}
-	.js-display-sensitive-media span:after {
-		content:"${I18n("Show potentially sensitive media")}"
-	}
-	.contributor-detail>a:before {
-		content:"${I18n("Change")}";
-	}
-	.microsoft-logo:after {
-		content:"${I18n("Microsoft")}";
-	}
-	.pull-right>button[data-action="quote"]:after {
-		content:"${I18n("Quote Tweet")}";
-	}
-	.mtd-mute-text-:before {
-		content:"${I18n("Text ")}"
-	}
-	.mtd-mute-text-source:before {
-		content:"${I18n("Source ")}"
-	}
-	.mtd-altsensitive .media-sensitive p:before {
-		content:"${I18n("Click here to open this media anyway")}"
-	}
-	.mtd-altsensitive .mdl .chirp-container .media-sensitive p:before,.mtd-altsensitive .is-actionable .is-gif .media-sensitive p:before {
-		content:"${I18n("Open details of this tweet to view this media.")}"
-	}
-	.js-show-this-thread>p:after {
-		content:"${I18n("Thread")}"
-	}
-`)
-
 	FunctionPatcher();
 	LanguageFunctionPatcher();
-
-	// Request access to nft avatar and other Labs features
-
-	$.ajaxPrefilter((ajaxOptions) => {
-		try {
-			const url = new URL(ajaxOptions.url || '');
-	
-			if (!url.searchParams.has('include_entities')) {
-				return;
-			}
-	
-			ajaxOptions.url = ajaxOptions.url + "&ext=mediaStats,highlightedLabel,voiceInfo,superFollowMetadata&include_ext_has_nft_avatar=true"
-		} catch (e) {
-		  console.error(e)
-		}
-	});
 
 	I18n.customTimeHandler = function(timeString) {
 		if (window.mtdTimeHandler === "h12") {
@@ -599,22 +416,6 @@ function coreInit() {
 	console.info(`ModernDeck ${window.ModernDeck.versionFriendlyString}`);
 	console.info("ModernDeckInit.coreInit completed. Good job.");
 
-}
-
-if (window.useSentry) {
-	Sentry.init({
-		dsn: "https://92f593b102fb4c1ca010480faed582ae@o110170.ingest.sentry.io/242524",
-
-		// To set your release version
-		release: "moderndeck@" + window.ModernDeck.versionString,
-		integrations: [new Integrations.BrowserTracing()],
-
-		// Set tracesSampleRate to 1.0 to capture 100%
-		// of transactions for performance monitoring.
-		// We recommend adjusting this value in production
-		tracesSampleRate: 1.0,
-
-	});
 }
 
 coreInit();

@@ -8,6 +8,11 @@ export const extractJQuery = () => {
 
 		window.$ = jQuery;
 		window.jQuery = jQuery;
+        
+        window.head = $(document.head);
+        window.body = $(document.body);
+        window.html = $(document.querySelector("html"));
+
 	} catch (e) {
 		throw "jQuery failed. This will break approximately... everything.";
 	}

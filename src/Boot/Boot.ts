@@ -5,18 +5,19 @@
 	Released under the MIT License
 */
 
-
-import { buildId, buildVersion, buildDate } from "../BuildProps.json";
+import { ModernDeck } from "../Functions/ModernDeckConst";
 import { coreStage } from "./Stages/Core";
 import { lowlevelStage } from "./Stages/LowLevel";
+import { mainStage } from "./Stages/Main";
 
 const startBoot = async () => {
 	console.log("Welcome to ModernDeck!");
-	console.log(`ModernDeck ${buildVersion}, build ${buildId}, ${buildDate}`);
+	console.log(`ModernDeck ${ModernDeck.version}, build ${ModernDeck.buildNumber}, ${ModernDeck.buildDate}`);
 	console.log("ModernDeck Boot is getting started...");
 
 	await coreStage();
 	await lowlevelStage();
+	await mainStage();
 }
 
 startBoot();

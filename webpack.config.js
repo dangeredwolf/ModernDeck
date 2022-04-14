@@ -10,7 +10,7 @@ const TerserPlugin = require('terser-webpack-plugin');
 
 module.exports = {
 	entry: {
-        "moderndeck": "./src/ModernDeckInit.js",
+        "moderndeck": "./src/Boot/Boot.ts",
 	},
 	output: {
 		filename: "[name].js",
