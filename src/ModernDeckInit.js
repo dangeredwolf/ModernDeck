@@ -17,7 +17,6 @@ import { I18n, startI18nEngine } from "./I18n";
 import { getPref, setPref } from "./StoragePreferences";
 import { make, exists, isApp, mutationObserver, getIpc, handleErrors, formatNumberI18n } from "./Utils";
 import { debugWelcome, UIWelcome } from "./UIWelcome";
-import { initGifPanel, checkGifEligibility } from "./UIGifPicker";
 import { openSettings } from "./UISettings";
 import { UINavDrawer } from "./UINavDrawer";
 import { FunctionPatcher } from "./FunctionPatcher";
@@ -31,6 +30,8 @@ window.i18nData = i18nData;
 window.AutoUpdateController = AutoUpdateController;
 import modalKeepOpen from "./ModalKeepOpen";
 import NFTActionQueue from "./NFTActionQueue";
+import { hookComposer } from "./Functions/Composer";
+import { overrideFadeOut } from "./Functions/FadeOut"; 
 
 import { enableStylesheetExtension, enableCustomStylesheetExtension } from "./StylesheetExtensions";
 
@@ -57,8 +58,7 @@ import { attachColumnVisibilityEvents } from "./ColumnVisibility";
 import * as Sentry from "@sentry/browser";
 import { Integrations } from "@sentry/tracing";
 
-window.mtdBaseURL = "https://raw.githubusercontent.com/dangeredwolf/ModernDeck/master/ModernDeck/";
-// Defaults to obtaining assets from GitHub if MTDURLExchange isn't completed properly somehow
+window.mtdBaseURL = null;
 
 let loadEmojiPicker = false;
 
@@ -76,9 +76,9 @@ let store;
 
 // We define these later. FYI these are jQuery objects.
 
-window.head = undefined;
-window.body = undefined;
-window.html = undefined;
+window.head = null;
+window.body = null;
+window.html = null;
 
 // This code changes the text to respond to the time of day, naturally
 
@@ -170,66 +170,6 @@ function replacePrettyNumber() {
 	}
 }
 
-/*
-	Overrides removeChild functions of modals, tooltips, and dropdown menus to have a fade out effect
-*/
-
-function overrideFadeOut() {
-
-	// here we add event listeners to add a fading out animation when a modal dialog is closed
-
-	document.querySelectorAll(".js-modals-container")[0].removeChild = (rmnode) => {
-		$(rmnode).addClass("mtd-fade-out");
-		setTimeout(() => {
-			rmnode.remove();
-		},200);
-	};
-
-	// let's make sure we get any that might have initialised before mtdInit began
-
-	$(document.querySelector(".application").childNodes).each((obj) => {
-		($(document.querySelector(".application").childNodes)[obj] || obj).removeChild = (rmnode) => {
-			$(rmnode).addClass("mtd-fade-out");
-			setTimeout(() => {
-				rmnode.remove();
-			},200);
-		};
-	})
-
-	$(".js-modal").on("removeChild", (rmnode) => {
-		$(rmnode).addClass("mtd-fade-out");
-		setTimeout(() => {
-			rmnode.remove();
-		},200);
-	});
-
-	// body's removeChild function is overriden to give tooltips their fade out animation
-
-	// body[0].removeChild = (i) => {
-	// 	if ($(i).hasClass("tooltip")) {
-	// 		setTimeout(() => {
-	// 			i.remove(); // Tooltips automagically animate themselves out. But here we clean them up as well ourselves.
-	// 		},300);
-	// 	} else {
-	// 		i.remove();
-	// 	}
-	// };
-	setTimeout(() => {
-		if (exists($(".app-navigator")[0])) {
-			$(".app-navigator")[0].removeChild = (i) => {
-				if ($(i).hasClass("dropdown-menu")) {
-					$(i).addClass("mtd-fade-out");
-					setTimeout(() => {
-						i.remove(); // Tooltips automagically animate themselves out. But here we clean them up as well ourselves.
-					},200);
-				} else {
-					i.remove();
-				}
-			};
-		}
-	},1000)
-
-}
 
 // Fixes a bug (or oversight) in TweetDeck's JS caused by ModernDeck having different animations in column settings
 
@@ -341,7 +281,7 @@ function mtdInit() {
 
 	/*
 		In ModernDeck 8.0+ for extensions, we need to remove the TweetDeck
-		stylesheet as it is no longer blocked with webRequest anymore
+		stylesheet as it is no longer blocked with webRequest 
 	*/
 
 	let beGone = document.querySelector("link[rel='apple-touch-icon']+link[rel='stylesheet']");
@@ -437,68 +377,6 @@ function mtdInit() {
 
 }
 
-function useNativeEmojiPicker() {
-	return /*getPref("mtd_nativeEmoji") && */ html.hasClass("mtd-supportsNativeEmojiPicker");
-}
-
-
-/*
-	Hooks the composer every time it resets to add the GIF and Emoji buttons, as well as fix the layout
-*/
-
-function hookComposer() {
-
-	if (html.hasClass("mtd-disable-css")) {
-		return;
-	}
-
-	if (isApp && useNativeEmojiPicker()) {
-		$(".mtd-emoji").click(() => {
-			$(".js-compose-text").focus();
-			window.require("electron").ipcRenderer.send("showEmojiPanel")
-			$(".js-compose-text").focus();
-		})
-	}
-
-	$(document).on("uiDrawerShowDrawer", () => {
-		setTimeout(hookComposer,0) // initialise one cycle after tweetdeck does its own thing
-	});
-
-	$(".drawer[data-drawer=\"compose\"]>div>div").on("uiComposeImageAdded", () => {
-		setTimeout(checkGifEligibility,0) // initialise one cycle after tweetdeck does its own thing
-
-	}).on("uiComposeTweetSent",(e) => {
-		$(".mtd-emoji-picker").addClass("hidden");
-		setTimeout(checkGifEligibility,0);
-		setTimeout(checkGifEligibility,510);
-	}).on("uiComposeSendTweet",() => {
-	});
-
-	$(document).on("uiSendDm uiResetImageUpload uiComposeTweet", () => {
-		setTimeout(checkGifEligibility,0)
-	});
-
-	$(document).off("uiShowConfirmationDialog");
-
-	$(document).on("uiShowConfirmationDialog", (a,b,c) => new UIAlert({
-		title:b.title,
-		message:b.message,
-		buttonText:b.okLabel,
-		button2Text:b.cancelLabel,
-		button1Click:() => {
-			$(document).trigger("uiConfirmationAction", {id:b.id, result:true});
-			mtdPrepareWindows();
-		},
-		button2Click:() => {
-			$(document).trigger("uiConfirmationAction", {id:b.id, result:false});
-			mtdPrepareWindows();
-		}
-	}));
-
-
-	initGifPanel();
-	// UIEmojiPanel.attachEvents();
-}
 
 /*
 	Prepares modal dialogs, context menus, etc for a new modal popup, so we clear those things out.

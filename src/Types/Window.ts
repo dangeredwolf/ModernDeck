@@ -5,7 +5,7 @@
 	Released under the MIT License
 */
 
-import ModuleRaid from 'moduleraid';
+import ModuleRaid, { WebpackModule } from 'moduleraid';
 import NFTActionQueue from '../NFTActionQueue';
 import { ModernDeckSettingsTab } from './ModernDeckSettings';
 
@@ -25,6 +25,8 @@ declare global {
         useSentry: boolean;
         mtdNumberFormat: Intl.NumberFormat;
         mtdNeedsResetNumberFormatting: boolean;
+        $: WebpackModule;
+        jQuery: WebpackModule;
         ModernDeck: {
             version: number;
             versionString: string;

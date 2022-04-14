@@ -10,7 +10,7 @@ import { dumpPreferences } from "./StoragePreferences";
 import { version } from "../package.json";
 import { I18n } from "./I18n";
 import { UIAlert } from "./UIAlert";
-import { getSystemName, getPlatformName } from "./Init/VersionController";
+import { getSystemName, getPlatformName } from "./Functions/VersionController";
 
 import { TweetDeckObject } from "./Types/TweetDeck";
 declare let TD: TweetDeckObject;
