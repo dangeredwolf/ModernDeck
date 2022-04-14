@@ -49,7 +49,7 @@ export const loadPreferences = (): void => {
 						setting = getPref(prefKey);
 					}
 
-					if (window.desktopConfig && window.desktopConfig[key] && window.desktopConfig[key][i]) {
+					if (typeof window.desktopConfig !== "undefined" && typeof window.desktopConfig[key] !== "undefined" && typeof window.desktopConfig[key][i] !== "undefined") {
 						console.log(window.desktopConfig[key]);
 						console.log(window.desktopConfig[key][i]);
 						setting = window.desktopConfig[key][i];

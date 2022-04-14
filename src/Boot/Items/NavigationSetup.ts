@@ -7,7 +7,6 @@
 
 import { updateColumnTypes } from "../../Column";
 import { attachColumnVisibilityEvents } from "../../ColumnVisibility";
-import { loadPreferences } from "../../Settings/SettingsInit";
 import { getPref } from "../../StoragePreferences";
 import { UILanguagePicker } from "../../UILanguagePicker";
 import { UINavDrawer } from "../../UINavDrawer";
@@ -28,8 +27,6 @@ export function navigationSetup() {
 	if (getPref("mtd_last_lang") !== navigator.language) {
 		new UILanguagePicker();
 	}
-
-	handleErrors(loadPreferences, "Caught error in loadPreferences");
 
 	handleErrors(hookComposer, "Caught error in hookComposer");
 

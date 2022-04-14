@@ -75,7 +75,7 @@ export function renderTab(key, subPanel) {
 			continue;
 		}
 
-		if (typeof window.desktopConfig !== undefined && window.desktopConfig[key] && window.desktopConfig[key][prefKey]) {
+		if (typeof window.desktopConfig !== "undefined" && typeof window.desktopConfig[key] !== "undefined" && typeof window.desktopConfig[key][prefKey] !== "undefined") {
 			console.log(window.desktopConfig[key][prefKey]);
 			console.log("Setting disabled: " + prefKey)
 			settingsDisabled = true;
@@ -83,7 +83,7 @@ export function renderTab(key, subPanel) {
 			overrideSetting = window.desktopConfig[key][prefKey];
 		}
 
-		if (pref.isDevTool && typeof window.desktopConfig !== undefined && window.desktopConfig.disableDevTools) {
+		if (pref.isDevTool && typeof window.desktopConfig !== "undefined" && window.desktopConfig.disableDevTools) {
 			settingsHidden = true;
 			continue;
 		}
