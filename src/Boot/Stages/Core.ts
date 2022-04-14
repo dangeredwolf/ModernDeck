@@ -14,7 +14,7 @@ import { urlExchange } from "../Items/URLExchange";
 import { drawAsciiArt } from "../Items/AsciiArt";
 
 export const coreStage = async () => {
-	console.log("Beginning Core stage...");
+	console.log("Boot: Beginning Core stage...");
     await defineBootComponent(drawAsciiArt);
 	await defineBootComponent(initSentry);
 	await defineBootComponent(urlExchange);

@@ -46,7 +46,7 @@ export const hookComposer = (): void => {
 	});
 
 	$(document).on("uiSendDm uiResetImageUpload uiComposeTweet", () => {
-		setTimeout(checkGifEligibility,0)
+		setTimeout(checkGifEligibility, 0)
 	});
 
 	$(document).off("uiShowConfirmationDialog");

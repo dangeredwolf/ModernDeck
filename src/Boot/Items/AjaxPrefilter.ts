@@ -6,16 +6,16 @@
 */
 
 export const initAjaxPrefilter = () => {
-	$.ajaxPrefilter((ajaxOptions) => {
+	$.ajaxPrefilter((ajaxOptions: JQuery.AjaxSettings) => {
 		try {
-			const url = new URL(ajaxOptions.url || '');
+			const url: URL = new URL(ajaxOptions.url || '');
 	
 			if (!url.searchParams.has('include_entities')) {
 				return;
 			}
 	
 			ajaxOptions.url = ajaxOptions.url + "&ext=mediaStats,highlightedLabel,voiceInfo,superFollowMetadata&include_ext_has_nft_avatar=true"
-		} catch (e) {
+		} catch (e: unknown) {
 		  console.error(e)
 		}
 	});

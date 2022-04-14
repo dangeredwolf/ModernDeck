@@ -17,7 +17,7 @@ import { initSettingsHook } from "../Items/SettingsHook";
 import { initTweetDeckImagePaste } from "../Items/TweetDeckImagePaste";
 
 export const mainStage = async () => {
-	console.log("Beginning Main stage...");
+	console.log("Boot: Beginning Main stage...");
     await defineBootComponent(initTweetDeckImagePaste);
     await defineBootComponent(initAME);
 	await defineBootComponent(initLateAppFunctions, typeof window.require !== "undefined");

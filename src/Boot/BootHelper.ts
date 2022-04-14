@@ -17,7 +17,7 @@ export const defineBootComponent = async (func: Function, condition?: boolean): 
 			}
 			const timeBefore: number = performance.now();
 			const functionResult: any = func();
-			const elapsedTime: number = performance.now() - timeBefore;
+			const elapsedTime: number = ((performance.now() - timeBefore) * 1000) / 1000;
 			console.log(`Boot: Done ${func.name} (${elapsedTime} ms)`);
 			resolve(functionResult);
 		} catch(error: any) {
