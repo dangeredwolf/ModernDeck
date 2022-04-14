@@ -9,7 +9,7 @@ import { ModernDeck } from "./Init/ModernDeckConst";
 
 export class AsciiArtController {
 
-	static draw() {
+	static draw(): void {
 
 		let text = `
     █████████████████████████████████████████
@@ -35,7 +35,12 @@ export class AsciiArtController {
 
 		// https://twitter.com/dangeredwolf/status/1263968859637395466
 		if (navigator.userAgent.indexOf("Chrome/") > 0) {
-			document.getElementsByTagName("html")[0].prepend(document.createComment(text))
+			document.getElementsByTagName("html")[0].prepend(document.createComment(text));
+      console.log(text);
 		}
+
+    if (navigator.userAgent.indexOf("Firefox/") > 0) {
+      console.log(text);
+    }
 	}
 }
