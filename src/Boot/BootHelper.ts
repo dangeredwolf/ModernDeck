@@ -15,8 +15,10 @@ export const defineBootComponent = async (func: Function, condition?: boolean): 
 			if (condition === false) {
 				resolve(null);
 			}
+			const timeBefore: number = performance.now();
 			const functionResult: any = func();
-			console.log(`Boot: Done ${func.name}`);
+			const elapsedTime: number = performance.now() - timeBefore;
+			console.log(`Boot: Done ${func.name} (${elapsedTime} ms)`);
 			resolve(functionResult);
 		} catch(error: any) {
 			console.error(`Error in boot component ${func.name}`);
