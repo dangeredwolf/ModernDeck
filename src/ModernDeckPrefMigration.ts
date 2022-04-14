@@ -7,9 +7,6 @@
 
 import { getPref, setPref } from "./StoragePreferences";
 
-import { TweetDeckObject } from "./Types/TweetDeck";
-declare let TD: TweetDeckObject;
-
 export class ModernDeckPrefMigration {
 	static migrate() : void {
 		let theme : string = getPref("mtd_theme");

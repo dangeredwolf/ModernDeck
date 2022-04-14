@@ -368,6 +368,16 @@ export function startI18nEngine() {
 	patchMustaches();
 }
 
+I18n.customTimeHandler = function(timeString) {
+	if (window.mtdTimeHandler === "h12") {
+		return timeString.replace(/\{\{hours24\}\}\:\{\{minutes\}\}/g,"{{hours12}}:{{minutes}} {{amPm}}")
+	} else if (window.mtdTimeHandler === "h24") {
+		return timeString.replace(/\{\{hours12\}\}\:\{\{minutes\}\} ?\{\{amPm\}\}/g,"{{hours24}}:{{minutes}}")
+	} else {
+		return timeString;
+	}
+}
+
 I18n.getFullLanguage = getFullLanguage;
 I18n.getMainLanguage = getMainLanguage;
 

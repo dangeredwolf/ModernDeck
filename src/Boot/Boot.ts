@@ -1,5 +1,5 @@
 /*
-	Init/Boot.ts
+	Boot/Boot.ts
 
 	Copyright (c) 2014-2022 dangered wolf, et al
 	Released under the MIT License
@@ -15,9 +15,15 @@ const startBoot = async () => {
 	console.log(`ModernDeck ${ModernDeck.version}, build ${ModernDeck.buildNumber}, ${ModernDeck.buildDate}`);
 	console.log("ModernDeck Boot is getting started...");
 
+	const startTime = new Date().getTime();
+
 	await coreStage();
 	await lowlevelStage();
 	await mainStage();
+
+	const endTime = (new Date().getTime() - startTime);
+
+	console.log(`ModernDeck Boot is complete after ${endTime} ms with ${window.moderndeckBootErrorCount} errors, have a nice day!`);
 }
 
 startBoot();

@@ -276,6 +276,7 @@ export interface TweetDeckControllerRelationshipResult {
 }
 
 export interface TwitterUserInternal {
+    ext_has_nft_avatar: any;
 	id_str: string;
 	screen_name: string;
 	profileBannerURL: string;

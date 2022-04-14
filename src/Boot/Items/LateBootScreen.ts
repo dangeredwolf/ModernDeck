@@ -1,3 +1,10 @@
+/*
+	Boot/Items/LateBootScreen.ts
+
+	Copyright (c) 2014-2022 dangered wolf, et al
+	Released under the MIT License
+*/
+
 export const initLateBootScreen = () => {
     if (typeof require === "undefined" && typeof document.getElementsByClassName("js-signin-ui block")[0] !== "undefined" && !window.html.hasClass("mtd-disable-css")) {
 		document.getElementsByClassName("js-signin-ui block")[0].innerHTML =
@@ -33,5 +40,6 @@ export const initLateBootScreen = () => {
 			mtdLoadStyle.appendChild(document.createTextNode(mtdLoadStyleCSS))
 			document.head.appendChild(mtdLoadStyle);
 		}
+		
 	}
 }

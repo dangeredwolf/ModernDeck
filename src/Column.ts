@@ -7,9 +7,6 @@
 
 import { getPref } from "./StoragePreferences";
 
-import { TweetDeckObject } from "./Types/TweetDeck";
-declare let TD: TweetDeckObject;
-
 export const getColumnFromColumnNumber = (num: number) : JQuery => {
 	let result;
 	$(".column").each((_i: number, col: HTMLElement) => {

@@ -9,8 +9,7 @@ import { I18n } from "./I18n";
 import { getPref, setPref } from "./StoragePreferences";
 import { make } from "./Utils";
 
-import { TweetDeckObject, TwitterUserInternal } from "./Types/TweetDeck";
-declare let TD: TweetDeckObject;
+import { TwitterUserInternal } from "./Types/TweetDeck";
 
 interface Notification {
 	_id: number;

@@ -15,9 +15,6 @@
 import { exists, isApp } from "./Utils";
 export const debugStorageSys: boolean = false;
 
-import { TweetDeckObject } from "./Types/TweetDeck";
-declare let TD: TweetDeckObject;
-
 if (isApp) {
 	const Store = window.require('electron-store');
 	window.ModernDeck.store = new Store({name:"mtdsettings"});

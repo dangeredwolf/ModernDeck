@@ -16,9 +16,6 @@ import { I18n } from "./I18n";
 import { UIModal } from "./UIModal";
 let welcomeData = _welcomeData;
 
-import { TweetDeckObject } from "./Types/TweetDeck";
-declare let TD: TweetDeckObject;
-
 export const debugWelcome = false;
 
 export function welcomeScreen() {

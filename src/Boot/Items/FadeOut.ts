@@ -1,3 +1,43 @@
+/*
+	Boot/Items/FadeOut.ts
+
+	Copyright (c) 2014-2022 dangered wolf, et al
+	Released under the MIT License
+*/
+
+/*
+	Controls certain things after they're added to the DOM
+	Example: Dismissing dropdown menus, sentry error notification
+*/
+
+import { mutationObserver } from "../../Utils";
+
+function onElementAddedToDOM(e?: { target?: Node; }) {
+	let tar = $(e.target);
+
+	if (tar.hasClass("dropdown")) {
+		// @ts-ignore
+		e.target.parentNode.removeChild = (dropdown) => {
+			$(dropdown).addClass("mtd-fade-out");
+			setTimeout(() => {
+				// @ts-ignore
+				dropdown.remove();
+			},200);
+		}
+	} else if (tar.hasClass("overlay")) {
+		if (!tar.hasClass("is-hidden")) {
+			let observer = mutationObserver(e.target, () => {
+				if (tar.hasClass("is-hidden")) {
+					tar.addClass("mtd-fade-out");
+					setTimeout(() => {
+						tar.remove();
+						observer.disconnect();
+					},300);
+				}
+			},{ attributes: true, childList: false, characterData: false });
+		}
+	}
+}
 
 /*
 	Overrides removeChild functions of modals, tooltips, and dropdown menus to have a fade out effect
@@ -63,6 +103,8 @@ export function overrideFadeOut() {
 				}
 			};
 		}
-	},1000)
+	},1000);
+
+	mutationObserver(window.html[0], onElementAddedToDOM as MutationCallback, {attributes: false, subtree: true, childList: true})
 
 }

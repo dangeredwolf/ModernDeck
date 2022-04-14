@@ -5,9 +5,6 @@
 	Code updated by @pixeldesu, DeckHackers, et al
 */
 
-import { TweetDeckObject } from "./Types/TweetDeck";
-declare let TD: TweetDeckObject;
-
 export function processForceFeatureFlags() {
 	TD.config.config_overlay = {
 		tweetdeck_devel: { value: true },

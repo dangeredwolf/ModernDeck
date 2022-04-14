@@ -1,11 +1,15 @@
+/*
+	Boot/Items/PrettyNumber.ts
+
+	Copyright (c) 2014-2022 dangered wolf, et al
+	Released under the MIT License
+*/
 
 // This makes numbers appear nicer by overriding tweetdeck's original function which did basically nothing
 
 import { formatNumberI18n } from "../../Utils";
 
-import { TweetDeckObject } from "../../Types/TweetDeck";
 import { I18n } from "../../I18n";
-declare let TD: TweetDeckObject;
 
 export const replacePrettyNumber = () => {
 

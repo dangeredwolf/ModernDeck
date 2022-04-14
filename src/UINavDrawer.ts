@@ -8,9 +8,7 @@
 import { make } from "./Utils";
 import { openSettings } from "./UISettings";
 import { I18n } from "./I18n";
-
-import { TweetDeckObject, TwitterUserInternal } from "./Types/TweetDeck";
-declare let TD: TweetDeckObject;
+import { TwitterUserInternal } from "./Types/TweetDeck";
 
 
 /*

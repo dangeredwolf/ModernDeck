@@ -76,6 +76,8 @@ declare global {
         mtd_welcome_amoled: HTMLElement;
         mtd_welcome_simplified: HTMLElement;
         mtd_welcome_classic: HTMLElement;
+        nftActionQueue: NFTActionQueue;
+        moderndeckBootErrorCount: number;
         injectedFonts: boolean;
         mtdHasNotifiedUpdate: boolean;
         updateNotifyID: number;

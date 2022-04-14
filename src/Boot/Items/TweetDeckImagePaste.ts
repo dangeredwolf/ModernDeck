@@ -1,3 +1,9 @@
+/*
+	Boot/Items/TweetDeckImagePaste.ts
+
+	Copyright (c) 2014-2022 dangered wolf, et al
+	Released under the MIT License
+*/
 
 /*
 	Allows copying image to the clipboard from pasting, via context menu or Ctrl/Cmd + V

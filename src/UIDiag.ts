@@ -12,9 +12,6 @@ import { I18n } from "./I18n";
 import { UIAlert } from "./UIAlert";
 import { getSystemName, getPlatformName } from "./Functions/VersionController";
 
-import { TweetDeckObject } from "./Types/TweetDeck";
-declare let TD: TweetDeckObject;
-
 /*
 	diag makes it easier for developers to narrow down user-reported bugs.
 	You can call this via command line, or by pressing Ctrl+Alt+D

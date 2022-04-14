@@ -1,12 +1,17 @@
+/*
+	Boot/Items/Composer.ts
 
+	Copyright (c) 2014-2022 dangered wolf, et al
+	Released under the MIT License
+*/
 
 /*
 	Hooks the composer every time it resets to add the GIF and Emoji buttons, as well as fix the layout
 */
 
-import { UIAlert } from "../UIAlert";
-import { isApp } from "../Utils";
-import { initGifPanel, checkGifEligibility } from "../UIGifPicker";
+import { UIAlert } from "../../UIAlert";
+import { isApp } from "../../Utils";
+import { initGifPanel, checkGifEligibility } from "../../UIGifPicker";
 
 const useNativeEmojiPicker = (): boolean => {
 	return /*getPref("mtd_nativeEmoji") && */ window.html.hasClass("mtd-supportsNativeEmojiPicker");
