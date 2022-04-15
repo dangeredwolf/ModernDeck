@@ -67,7 +67,7 @@
 		"adm-zip": "^0.5.9",
 		"babel-loader": "^8.2.4",
 		"electron": "^18.0.4",
-		"electron-builder": "^22.5.1",
+		"electron-builder": "^23.0.3",
 		"fs-extra": "^10.0.1",
 		"io-ts": "^2.2.16",
 		"moduleraid": "^6.0.0",
