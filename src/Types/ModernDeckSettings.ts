@@ -6,6 +6,7 @@
 */
 
 export interface ModernDeckSettingsTab {
+    visible?: boolean | (() => boolean);
 	tabName: string;
 	tabId?: string;
 	options: {[key: string]: ModernDeckSettingsOption};

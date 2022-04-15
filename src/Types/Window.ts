@@ -53,6 +53,7 @@ declare global {
 			authenticateOn:() => {hide:() => void, deleteLater:() => void};
 			closeLoadingScreen:() => void;
 		};
+        settingsUIRefactorTest: any;
         store: any; // This is any only because Electron-Store does not exist on browser;
         mR: ModuleRaid;
         html: JQuery;

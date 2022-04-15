@@ -19,7 +19,6 @@ import { initI18nEngine } from "../Items/StartI18nEngine";
 export const lowlevelStage = async () => {
 	console.log("Boot: Beginning LowLevel stage...");
 	await defineBootComponent(initLateBootScreen);
-    await defineBootComponent(initPreferences);
     await defineBootComponent(initInjectFonts);
     await defineBootComponent(initCoreStylesheet);
     await defineBootComponent(initFeatureFlags);
@@ -27,4 +26,5 @@ export const lowlevelStage = async () => {
     await defineBootComponent(runtimeStylesheetExtensions);
     await defineBootComponent(initProcessMustaches);
     await defineBootComponent(initI18nEngine);
+    await defineBootComponent(initPreferences);
 }

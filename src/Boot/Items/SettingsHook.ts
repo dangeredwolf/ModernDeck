@@ -6,10 +6,13 @@
 */
 
 import { openSettings } from "../../UISettings";
+import { UISettings } from "../../Settings/UISettings";
 
 export const initSettingsHook = () => {
 	$(document).off("uiShowGlobalSettings");
 	$(document).on("uiShowGlobalSettings", () => {
 		openSettings();
 	});
+
+    UISettings;
 }

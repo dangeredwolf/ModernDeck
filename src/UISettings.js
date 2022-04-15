@@ -16,7 +16,7 @@ import { diag } from "./UIDiag";
 let verTextId = 2;
 let verText = "";
 
-function internationaliseSettingString(str) {
+function internationalizeSettingString(str) {
 	let matches = str.match(/{{.+?}}/g);
 	(matches || []).forEach((i) => {
 		let translatedString = I18n(i.substr(2, i.length - 4));
@@ -90,7 +90,7 @@ export function renderTab(key, subPanel) {
 
 		if (exists(pref.headerBefore)) {
 			subPanel.append(
-				make("h3").addClass("mtd-settings-panel-subheader").html(internationaliseSettingString(pref.headerBefore))
+				make("h3").addClass("mtd-settings-panel-subheader").html(internationalizeSettingString(pref.headerBefore))
 			);
 		}
 
@@ -148,7 +148,7 @@ export function renderTab(key, subPanel) {
 					}
 				}
 
-				label = make("label").addClass("checkbox").html(make("span").html(internationaliseSettingString(pref.title))).append(input);
+				label = make("label").addClass("checkbox").html(make("span").html(internationalizeSettingString(pref.title))).append(input);
 
 				option.append(label);
 
@@ -159,7 +159,7 @@ export function renderTab(key, subPanel) {
 				break;
 
 			case "dropdown":
-				select = make("select").attr("type","select").attr("id",prefKey).change(function() {
+				select = make("select").attr("type", "select").attr("id", prefKey).change(function() {
 					parseActions(pref.activate, $(this).val());
 					if (pref.savePreference !== false) {
 						setPref(pref.settingsKey,$(this).val());
@@ -167,22 +167,22 @@ export function renderTab(key, subPanel) {
 				});
 
 				if (disableSetting) {
-					select.attr("disabled","disabled")
+					select.attr("disabled", "disabled")
 				}
 
 				for (let prefKey in pref.options) {
 					if (!!(pref.options[prefKey].value)) {
 						let newPrefSel = pref.options[prefKey];
-						let newoption = make("option").attr("value",newPrefSel.value).html(internationaliseSettingString(newPrefSel.text));
+						let newoption = make("option").attr("value",newPrefSel.value).html(internationalizeSettingString(newPrefSel.text));
 
 						select.append(newoption);
 					} else {
 
-						let group = make("optgroup").attr("label",internationaliseSettingString(pref.options[prefKey].name))
+						let group = make("optgroup").attr("label",internationalizeSettingString(pref.options[prefKey].name))
 
 						for (let subkey in pref.options[prefKey].children) {
 							let newSubPrefSel = pref.options[prefKey].children[subkey];
-							let newsuboption = make("option").attr("value",newSubPrefSel.value).html(internationaliseSettingString(newSubPrefSel.text));
+							let newsuboption = make("option").attr("value",newSubPrefSel.value).html(internationalizeSettingString(newSubPrefSel.text));
 
 							group.append(newsuboption);
 						}
@@ -210,7 +210,7 @@ export function renderTab(key, subPanel) {
 					select.val(overrideSetting);
 				}
 
-				label = make("label").addClass("control-label").html(internationaliseSettingString(pref.title));
+				label = make("label").addClass("control-label").html(internationalizeSettingString(pref.title));
 
 				option.append(label,select);
 
@@ -262,7 +262,7 @@ export function renderTab(key, subPanel) {
 					input.val(overrideSetting);
 				}
 
-				label = make("label").addClass("control-label").html(internationaliseSettingString(pref.title));
+				label = make("label").addClass("control-label").html(internationalizeSettingString(pref.title));
 
 				if (exists(pref.initFunc)) {
 					pref.initFunc(input);
@@ -341,7 +341,7 @@ export function renderTab(key, subPanel) {
 					input.val(overrideSetting);
 				}
 
-				label = make("label").addClass("control-label").html(internationaliseSettingString(pref.title));
+				label = make("label").addClass("control-label").html(internationalizeSettingString(pref.title));
 
 				if (exists(pref.initFunc)) {
 					pref.initFunc(input);
@@ -363,7 +363,7 @@ export function renderTab(key, subPanel) {
 						setPref(pref.settingsKey, $(this).val());
 					}
 				}).on("input",function() {
-					label.html(`${internationaliseSettingString(pref.title)} <b> ${$(this).val()} ${(internationaliseSettingString(pref.displayUnit || ""))} </b>`);
+					label.html(`${internationalizeSettingString(pref.title)} <b> ${$(this).val()} ${(internationalizeSettingString(pref.displayUnit || ""))} </b>`);
 				});
 
 				defaultButton = make("button").addClass("btn btn-positive mtd-settings-button mtd-default-button").text(I18n("Restore default")).click(() => {
@@ -399,10 +399,10 @@ export function renderTab(key, subPanel) {
 					input.val(overrideSetting);
 				}
 
-				label.html(internationaliseSettingString(pref.title) + " <b> "+ input.val() + " " + (internationaliseSettingString(pref.displayUnit) || "") + "</b>");
+				label.html(internationalizeSettingString(pref.title) + " <b> "+ input.val() + " " + (internationalizeSettingString(pref.displayUnit) || "") + "</b>");
 
-				maximum = make("label").addClass("control-label mtd-slider-maximum").html(pref.maximum + (internationaliseSettingString(pref.displayUnit) || ""));
-				minimum = make("label").addClass("control-label mtd-slider-minimum").html(pref.minimum + (internationaliseSettingString(pref.displayUnit) || ""));
+				maximum = make("label").addClass("control-label mtd-slider-maximum").html(pref.maximum + (internationalizeSettingString(pref.displayUnit) || ""));
+				minimum = make("label").addClass("control-label mtd-slider-minimum").html(pref.minimum + (internationalizeSettingString(pref.displayUnit) || ""));
 
 				if (exists(pref.initFunc)) {
 					pref.initFunc(input);
@@ -415,9 +415,9 @@ export function renderTab(key, subPanel) {
 				break;
 
 			case "button":
-				label = make("label").addClass("control-label").html(internationaliseSettingString(pref.label) || "");
+				label = make("label").addClass("control-label").html(internationalizeSettingString(pref.label) || "");
 
-				button = make("button").html(internationaliseSettingString(pref.title)).addClass("btn btn-positive mtd-settings-button")
+				button = make("button").html(internationalizeSettingString(pref.title)).addClass("btn btn-positive mtd-settings-button")
 				.click(() => {
 					parseActions(pref.activate,true);
 				});
@@ -435,12 +435,12 @@ export function renderTab(key, subPanel) {
 				break;
 
 			case "buttons":
-				label = make("label").addClass("control-label").html(internationaliseSettingString(pref.label) || "");
+				label = make("label").addClass("control-label").html(internationalizeSettingString(pref.label) || "");
 
 				option.append(label);
 
 				pref.buttons.forEach(btn => {
-					option.append(make("button").html(internationaliseSettingString(btn.text)).addClass("btn btn-positive mtd-settings-button").click(() => btn.func()))
+					option.append(make("button").html(internationalizeSettingString(btn.text)).addClass("btn btn-positive mtd-settings-button").click(() => btn.func()))
 				})
 
 				if (exists(pref.initFunc)) {
@@ -450,7 +450,7 @@ export function renderTab(key, subPanel) {
 				break;
 
 			case "link":
-				link = make("a").html(internationaliseSettingString(pref.label)).addClass("mtd-settings-link")
+				link = make("a").html(internationalizeSettingString(pref.label)).addClass("mtd-settings-link")
 				.click(() => {
 					parseActions(pref.activate,true);
 				});
@@ -468,7 +468,7 @@ export function renderTab(key, subPanel) {
 				break;
 			
 			case "subtext":
-				label = make("label").addClass("control-label txt-mute mtd-settings-subtext").html(internationaliseSettingString(pref.label) || "");
+				label = make("label").addClass("control-label txt-mute mtd-settings-subtext").html(internationalizeSettingString(pref.label) || "");
 				option.append(label);
 
 				break;
@@ -503,7 +503,7 @@ export function openSettings(openMenu, limitedMenu) {
 			continue;
 		}
 
-		if (key === "system" && typeof window.desktopConfig !== undefined && window.desktopConfig.disableSystemTab) {
+		if (key === "system" && typeof window.desktopConfig !== "undefined" && window.desktopConfig.disableSystemTab) {
 			continue;
 		}
 
@@ -518,7 +518,7 @@ export function openSettings(openMenu, limitedMenu) {
 				break;
 		}
 
-		var tab = make("button").addClass("mtd-settings-tab").attr("data-action",key).html(internationaliseSettingString(settingsData[key].tabName)).click(function() {
+		var tab = make("button").addClass("mtd-settings-tab").attr("data-action",key).html(internationalizeSettingString(settingsData[key].tabName)).click(function() {
 			$(".mtd-settings-tab-selected").removeClass("mtd-settings-tab-selected").attr("aria-selected","false");
 			$(this).addClass("mtd-settings-tab-selected");
 			$(this).attr("aria-selected","true");

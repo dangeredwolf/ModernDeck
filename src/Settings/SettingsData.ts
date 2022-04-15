@@ -28,27 +28,27 @@ import internalSettings from "./Data/InternalSettings";
 */
 
 export enum SettingsTab {
-	themes = "themes",
-	appearance = "appearance",
-	tweets = "tweets",
-	mutes = "mutes",
-	accessibility = "accessibility",
-	app = "app",
-	system = "system",
-	language = "language",
-	about = "about",
-	internalSettings = "internalSettings"
+	THEMES = "themes",
+	APPEARANCE = "appearance",
+	TWEETS = "tweets",
+	MUTES = "mutes",
+	ACCESSIBILITY = "accessibility",
+	APP = "app",
+	SYSTEM = "system",
+	LANGUAGE = "language",
+	ABOUT = "about",
+	INTERNAL_SETTINGS = "internalSettings"
 }
 
 export let settingsData = {
-	[SettingsTab.themes]: themes,
-	[SettingsTab.appearance]: appearance,
-	[SettingsTab.tweets]: tweets,
-	[SettingsTab.mutes]: mutes,
-	[SettingsTab.accessibility]: accessibility,
-	[SettingsTab.app]: app,
-	[SettingsTab.system]: system,
-	[SettingsTab.language]: language,
-	[SettingsTab.about]: about,
-	[SettingsTab.internalSettings]: internalSettings
+	[SettingsTab.THEMES]: themes,
+	[SettingsTab.APPEARANCE]: appearance,
+	[SettingsTab.TWEETS]: tweets,
+	[SettingsTab.MUTES]: mutes,
+	[SettingsTab.ACCESSIBILITY]: accessibility,
+	[SettingsTab.APP]: app,
+	[SettingsTab.SYSTEM]: system,
+	[SettingsTab.LANGUAGE]: language,
+	[SettingsTab.ABOUT]: about,
+	[SettingsTab.INTERNAL_SETTINGS]: internalSettings
 }

@@ -22,9 +22,7 @@ export const loadPreferences = (): void => {
 
 	ModernDeckPrefMigration.migrate();
 
-	let key: keyof typeof SettingsTab;
-
-	for (key in settingsData) {
+	Object.keys(settingsData).map((key: SettingsTab): void => {
 
 		if (!settingsData[key].enum) {
 			for (let i in settingsData[key].options) {
@@ -80,7 +78,7 @@ export const loadPreferences = (): void => {
 				}
 			}
 		}
-	}
+	});
 }
 
 interface SettingsActions {
