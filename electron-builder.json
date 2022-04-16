@@ -48,26 +48,26 @@
 		"publisher": "CN=FEC2801E-B19C-4051-A5E2-465F7B251519",
 		"publisherDisplayName": "dangered wolf",
 		"identityName": "53434dangeredwolf.ModernDeck",
-		"artifactName": "ModernDeck_${arch}.${ext}",
+		"artifactName": "ModernDeck-${arch}.${ext}",
 		"applicationId": "ModernDeck"
 	},
 	"squirrelWindows": {
-		"artifactName": "ModernDeck_${arch}.${ext}"
+		"artifactName": "ModernDeck-${arch}.${ext}"
 	},
 	"nsis": {
 		"deleteAppDataOnUninstall": true,
-		"artifactName": "ModernDeck_${arch}.${ext}",
+		"artifactName": "ModernDeck-${arch}.${ext}",
 		"uninstallDisplayName": "ModernDeck",
 		"differentialPackage": true
 	},
 	"msi": {
-		"artifactName": "ModernDeck_${arch}.${ext}",
+		"artifactName": "ModernDeck-${arch}.${ext}",
 		"perMachine": true,
 		"runAfterFinish": false
 	},
 	"nsisWeb": {
 		"deleteAppDataOnUninstall": true,
-		"artifactName": "ModernDeck_${arch}.${ext}",
+		"artifactName": "ModernDeck-${arch}.${ext}",
 		"uninstallDisplayName": "ModernDeck",
 		"differentialPackage": true
 	},
@@ -125,7 +125,7 @@
 		],
 		"icon": "build/icons/512x512.png",
 		"maintainer": "dangeredwolf",
-		"artifactName": "ModernDeck_${arch}.${ext}",
+		"artifactName": "ModernDeck-${arch}.${ext}",
 		"target": [
 			{
 				"target": "AppImage",

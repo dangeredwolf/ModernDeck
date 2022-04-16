@@ -26,12 +26,12 @@ jobs:
       - run: npm run buildLinux
       - uses: actions/upload-artifact@v3
         with:
-          name: ModernDeck_x86_64.AppImage
-          path: dist/ModernDeck_x86_64.AppImage
+          name: ModernDeck-x86_64.AppImage
+          path: dist/ModernDeck-x86_64.AppImage
       - uses: actions/upload-artifact@v3
         with:
-          name: ModernDeck_arm64.AppImage
-          path: dist/ModernDeck_arm64.AppImage
+          name: ModernDeck-arm64.AppImage
+          path: dist/ModernDeck-arm64.AppImage
       - run: npm run buildMac
       - uses: actions/upload-artifact@v3
         with:
