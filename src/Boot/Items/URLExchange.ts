@@ -6,7 +6,7 @@
 */
 
 export const urlExchange = () => {
-    if (typeof window.MTDURLExchange === "object" && typeof window.MTDURLExchange.getAttribute === "function") {
+    if (window.MTDURLExchange instanceof HTMLElement) {
         window.mtdBaseURL = window.MTDURLExchange.getAttribute("type");
         console.info("MTDURLExchange completed with URL " + window.mtdBaseURL);
     }
