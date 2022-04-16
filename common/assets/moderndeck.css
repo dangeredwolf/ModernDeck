@@ -705,9 +705,11 @@ html.mtd-linux-system-font {
 }
 
 .med-embeditem>.preloader-wrapper {
-	top: 50%;
 	position: absolute;
-	margin-top: -20px
+	top: 50%;
+	left: 50%;
+	margin-left: -24px;
+	margin-top: -24px;
 }
 
 .column-loading-placeholder>.preloader-wrapper {
@@ -2331,7 +2333,7 @@ a .column-title-back .icon:after {
 }
 
 .emoji[src^="https://"] {
-    display: inline
+	display: inline
 }
 
 .tweet:hover .tweet-actions,
