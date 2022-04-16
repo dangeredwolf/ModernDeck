@@ -16,15 +16,20 @@
 
 ![Logo]
 
-
-
-ModernDeck takes TweetDeck to the next level with a Material-inspired theme, customization and performance enhancements, and more. Available as a desktop app or a browser extension.
-
-<br>
 <br>
 
-[![Badge Flathub]][Flathub] 
-[![Badge Chrome]][Chrome] 
+**ModernDeck** takes **TweetDeck** to the next level with a *Material-inspired<br>
+ theme*, *customization* and *performance enhancements* and more.
+
+
+<br>
+
+*Available as a desktop app or a browser extension.*
+
+<br>
+
+[![Badge Flathub]][Flathub]  
+[![Badge Chrome]][Chrome]  
 [![Badge Firefox]][Firefox]
 
 <br>
@@ -32,9 +37,22 @@ ModernDeck takes TweetDeck to the next level with a Material-inspired theme, cus
 
 ![Showcase]
 
+<br>
+
+---
+
+<br>
+
+
 ### [Build Instructions][Building]
 
-ModernDeck is designed by **[Dangered Wolf]** and released under the MIT License.
+<br>
+
+---
+
+<br>
+
+**ModernDeck** is designed by **[Dangered Wolf]**.
 
 </div>
 
