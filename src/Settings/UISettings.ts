@@ -1,60 +1,9 @@
 import { I18n } from "../I18n";
-import { ModernDeckSettingsOption } from "../Types/ModernDeckSettings";
+import { ModernDeckSettingsTab } from "../Types/ModernDeckSettings";
 import { UIModal } from "../UIModal";
 import { make } from "../Utils";
 import { settingsData, SettingsTab } from "./SettingsData";
-
-class UISettingsTab {
-	tab: JQuery;
-	subpanel: JQuery;
-	tabType: SettingsTab;
-	parentSettings: UISettings;
-
-	get index(): number {
-		return Object.keys(settingsData).indexOf(this.tabType);
-	}
-
-	constructor(tabType: SettingsTab, parentSettings: UISettings) {
-		this.tab = make("div").addClass("mtd-settings-tab");
-		this.subpanel = make("div").addClass("mtd-settings-subpanel mtd-col scroll-v").attr("id", String(tabType));
-		this.tabType = tabType;
-		this.parentSettings = parentSettings;
-
-		this.constructTab();
-	}
-
-	constructTab() {
-		this.tab = make("button").addClass("mtd-settings-tab").attr("data-action", this.tabType).html(UISettings.internationalizeSettingString(settingsData[this.tabType as SettingsTab].tabName)).click(() => {
-			$(".mtd-settings-tab-selected").removeClass("mtd-settings-tab-selected").attr("aria-selected","false");
-			$(this).addClass("mtd-settings-tab-selected");
-			$(this).attr("aria-selected","true");
-
-			/*
-				calculates how far to move over the settings menu
-				good thing arrays start at 0, as 0 would be 0px, it's the first one
-			*/
-
-			this.parentSettings.container.attr("data-page-selected", $(this).attr("data-action"));
-			this.parentSettings.tabSelection.css("top",(this.index*50)+"px");
-			this.parentSettings.container.css("margin-top","-"+(this.index*545)+"px");
-		});
-
-		this.parentSettings.tabsElement.append(this.tab);
-
-		return this.tab;
-	}
-
-	tabBuildout() {
-		this.subpanel.empty();
-
-		for (let optionKey in settingsData[this.tabType].options) {
-
-			let settingsOption: ModernDeckSettingsOption = settingsData[this.tabType].options[optionKey];
-			let option = make("div").addClass("mtd-settings-option").addClass("mtd-settings-option-" + settingsOption.type);
-			option;
-		}
-	}
-}
+import { UISettingsTab } from "./UISettingsTab";
 
 export class UISettings extends UIModal {
 	tabSelection: JQuery;
@@ -66,7 +15,7 @@ export class UISettings extends UIModal {
 	selectedTab: UISettingsTab;
 	tabs: UISettingsTab[] = [];
 
-	static internationalizeSettingString(str: string) {
+	static internationalizeSettingString(str: string): string {
 		let matches: RegExpMatchArray = str.match(/{{.+?}}/g) || [];
 		matches.forEach((i: string) => {
 			let translatedString: string = I18n(i.substring(2, i.length - 2));
@@ -94,7 +43,7 @@ export class UISettings extends UIModal {
 	initializeTabs() {
 		Object.keys(settingsData).map((key: SettingsTab): void => {
 
-			const tab = settingsData[key];
+			const tab: ModernDeckSettingsTab = settingsData[key];
 
 			if (typeof tab.enabled === "function") {
 				if (tab.enabled() === false) {

@@ -87,8 +87,8 @@ if (process.platform === "win32") {
 			})
 		}
 	} catch (e) {
-		console.error("Could not read device config file");
-		console.error(e);
+		// console.error("Could not read device config file");
+		// console.error(e);
 	}
 }
 
