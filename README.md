@@ -2,6 +2,7 @@
 <div align = left>
 
 [<img src = 'https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge' align = right>][License]
+[<img src = 'https://img.shields.io/badge/Author-Dangered_Wolfy-176baf?style=for-the-badge' align = right>][Author]
 
 [![Badge Webpack]][Webpack] <br>
 [![Badge Electron]][Electron]<br>
@@ -45,9 +46,6 @@
 
 ### [Build Instructions][Building]
 
-<br>
-
-**ModernDeck** is designed by **[Dangered Wolf]**.
 
 <br>
 
