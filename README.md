@@ -1,15 +1,48 @@
-# ![ModernDeck Logo](https://github.com/dangeredwolf/ModernDeck/raw/master/docs/img/ReadmeLogo.png)
+![Logo]
 
-[![Webpack](https://github.com/dangeredwolf/ModernDeck/actions/workflows/webpack.yml/badge.svg)](https://github.com/dangeredwolf/ModernDeck/actions/workflows/webpack.yml)
-[![Electron](https://github.com/dangeredwolf/ModernDeck/actions/workflows/electron.yml/badge.svg)](https://github.com/dangeredwolf/ModernDeck/actions/workflows/electron.yml)
-[![Crowdin](https://badges.crowdin.net/tweetdeck/localized.svg)](https://translate.moderndeck.org/project/tweetdeck)
+[![Badge Webpack]][Webpack]
+[![Badge Electron]][Electron]
+[![Badge Crowdin]][Crowdin]
 
 ModernDeck takes TweetDeck to the next level with a Material-inspired theme, customization and performance enhancements, and more. Available as a desktop app or a browser extension.
 
-[![Flathub](https://github.com/dangeredwolf/ModernDeck/raw/master/docs/img/Flathub.png)](https://flathub.org/apps/details/com.dangeredwolf.ModernDeck) [![Chrome Web Store](https://github.com/dangeredwolf/ModernDeck/blob/master/docs/img/ChromeWebStore.png)](https://chrome.google.com/webstore/detail/moderndeck-twitter-client/pbpfgdgddpnbjcbpofmdanfbbigocklj) [![Firefox Addons](https://github.com/dangeredwolf/ModernDeck/raw/master/docs/img/FirefoxAddon.png)](https://addons.mozilla.org/en-US/firefox/addon/moderndeck/)
+[![Badge Flathub]][Flathub]
+[![Badge Chrome]][Chrome]
+[![Badge Firefox]][Firefox]
 
-![ModernDeck Screenshot](https://raw.githubusercontent.com/dangeredwolf/ModernDeck/master/docs/img/ReadmeScreenshot.png)
+![Showcase]
 
-### [Build Instructions](https://github.com/dangeredwolf/ModernDeck/wiki/Building-ModernDeck)
+### [Build Instructions][Building]
 
 ModernDeck is designed by dangered wolf and released under the MIT License.
+
+
+<!----------------------------------------------------------------------------->
+
+[Building]: https://github.com/dangeredwolf/ModernDeck/wiki/Building-ModernDeck
+
+
+<!----------------------------------{ Images }--------------------------------->
+
+[Showcase]: https://raw.githubusercontent.com/dangeredwolf/ModernDeck/master/docs/img/ReadmeScreenshot.png
+[Logo]: https://github.com/dangeredwolf/ModernDeck/raw/master/docs/img/ReadmeLogo.png
+
+
+<!--------------------------------{ Badge Links }------------------------------>
+
+[Electron]: https://github.com/dangeredwolf/ModernDeck/actions/workflows/electron.yml
+[Webpack]: https://github.com/dangeredwolf/ModernDeck/actions/workflows/webpack.yml
+[Flathub]: https://flathub.org/apps/details/com.dangeredwolf.ModernDeck
+[Crowdin]: https://translate.moderndeck.org/project/tweetdeck
+[Chrome]: https://chrome.google.com/webstore/detail/moderndeck-twitter-client/pbpfgdgddpnbjcbpofmdanfbbigocklj
+[Firefox]: https://addons.mozilla.org/en-US/firefox/addon/moderndeck/
+
+
+<!----------------------------------{ Badges }--------------------------------->
+
+[Badge Electron]: https://github.com/dangeredwolf/ModernDeck/actions/workflows/electron.yml/badge.svg
+[Badge Firefox]: docs/img/FirefoxAddon.png
+[Badge Webpack]: https://github.com/dangeredwolf/ModernDeck/actions/workflows/webpack.yml/badge.svg
+[Badge Crowdin]: https://badges.crowdin.net/tweetdeck/localized.svg
+[Badge Flathub]: docs/img/Flathub.png
+[Badge Chrome]: docs/img/ChromeWebStore.png
