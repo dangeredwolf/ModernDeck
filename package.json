@@ -11,6 +11,9 @@
 	"author": "dangeredwolf",
 	"license": "MIT",
 	"main": "main.js",
+	"resolutions": {
+		"@electron/universal": "1.2.1"
+	},
 	"scripts": {
 		"incBuild": "node build/incrementBuild.js",
 		"pack": "electron-builder --dir",
