@@ -30,6 +30,10 @@
 [![Badge Flathub]][Flathub]  
 [![Badge Chrome]][Chrome]  
 [![Badge Firefox]][Firefox]
+ 
+<br>
+ 
+***[Or Build It Yourself.][Build]***
 
 <br>
 <br>
@@ -39,19 +43,11 @@
 <br>
 
 </div>
- 
----
 
-<br>
-
-### [Build Instructions][Building]
-
-
-<br>
 
 <!----------------------------------------------------------------------------->
 
-[Building]: https://github.com/dangeredwolf/ModernDeck/wiki/Building-ModernDeck
+[Build]: https://github.com/dangeredwolf/ModernDeck/wiki/Building-ModernDeck
 
 [Author]: https://github.com/dangeredwolf
 
