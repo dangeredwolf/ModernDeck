@@ -10,9 +10,11 @@ import { I18n } from "./I18n";
 import { UILanguagePicker } from "./UILanguagePicker";
 import { openSettings } from "./UISettings";
 import { getPref } from "./StoragePreferences";
+import { newLoginPage } from "./DataMustaches";
 
 let ugltStarted = false;
 window.loginIntervalTick = 0;
+let loginInterval;
 
 // Updates the "Good morning" / "Good afternoon" / "Good evening"
 // text on the login screen every once in a while (10s, ish)
@@ -72,7 +74,7 @@ export function checkIfSigninFormIsPresent() {
 		enableStylesheetExtension("loginpage");
 
 		if (window.loginIntervalTick > 5) {
-			clearInterval(loginInterval);
+			clearInterval(window.loginInterval);
 		}
 	} else {
 		if (typeof window.signinSheetPings === "undefined") {
@@ -83,7 +85,7 @@ export function checkIfSigninFormIsPresent() {
 
 		if (window.signinSheetPings > 6) {
 			console.log("I am no longer asking");
-			clearInterval(loginInterval);
+			clearInterval(window.loginInterval);
 		}
 		console.log("Not on signin sheet anymore");
 		disableStylesheetExtension("loginpage");
@@ -94,7 +96,7 @@ export function checkIfSigninFormIsPresent() {
 // replaces login page with moderndeck one
 
 export function loginTextReplacer() {
-	if ($(".app-signin-wrap:not(.mtd-signin-wrap)").length > 0) {
+	if ($(".mtd-signin-form").length <= 0) {
 		console.info("oh no, we're too late!");
 		window.UILanguagePicker = UILanguagePicker;
 

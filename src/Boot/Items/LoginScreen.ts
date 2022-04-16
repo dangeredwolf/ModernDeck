@@ -26,7 +26,10 @@ if (mtdStarted.getHours() < 12) { // 12:00 / 12:00pm
 
 export const initLoginScreen = () => {
 	checkIfSigninFormIsPresent();
-	setInterval(checkIfSigninFormIsPresent, 500);
+	window.loginInterval = setInterval(checkIfSigninFormIsPresent, 500);
+
+	// @ts-ignore
+	window.loginTextReplacer = loginTextReplacer;
 
 	handleErrors(loginTextReplacer, "Caught error in loginTextReplacer");
 	setTimeout(()=>handleErrors(loginTextReplacer, "Caught error in loginTextReplacer"),200);

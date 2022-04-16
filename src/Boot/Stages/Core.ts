@@ -12,6 +12,7 @@ import { initAutoUpdater } from "../Items/AutoUpdater";
 import { initAppFunctions } from "../Items/AppFunctions";
 import { urlExchange } from "../Items/URLExchange";
 import { drawAsciiArt } from "../Items/AsciiArt";
+import { initLoginScreen } from "../Items/LoginScreen";
 
 export const coreStage = async () => {
 	console.log("Boot: Beginning Core stage...");
@@ -19,6 +20,7 @@ export const coreStage = async () => {
 	await defineBootComponent(initSentry);
 	await defineBootComponent(urlExchange);
 	await defineBootComponent(extractJQuery);
+    await defineBootComponent(initLoginScreen);
 	await defineBootComponent(initAutoUpdater, typeof window.require !== "undefined");
 	await defineBootComponent(initAppFunctions, typeof window.require !== "undefined");
 }

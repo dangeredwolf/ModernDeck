@@ -90,6 +90,7 @@ declare global {
         mtd_nav_drawer_background: HTMLElement;
         mtd_nav_drawer: HTMLElement;
         languageData: {};
+        loginInterval: any;
     }
 }
 

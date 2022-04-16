@@ -9,7 +9,7 @@ import { I18n } from "./I18n";
 
 export const _newLoginPage: string = `<div class="app-signin-wrap mtd-signin-wrap">
 	<div class="js-signin-ui app-signin-form pin-top pin-right txt-weight-normal">
-		<section class="js-login-form form-login startflow-panel-rounded" data-auth-type="twitter">
+		<section class="js-login-form form-login startflow-panel-rounded mtd-signin-form" data-auth-type="twitter">
 			<h2 class="form-legend padding-axl">
 				Good evening
 			</h2>
