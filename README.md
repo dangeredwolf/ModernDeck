@@ -8,19 +8,19 @@
 [![Badge Crowdin]][Crowdin]
 
 </div>
-<div align = center>
 
-<br>
 <br>
 <br>
 
 ![Logo]
 
-**ModernDeck** takes **TweetDeck** to the next level with a *Material-inspired<br>
- theme*, *customization* and *performance enhancements* and more.
+**ModernDeck** takes **TweetDeck** to the next level with a *Material* <br>
+*inspired theme*, *customizations* & *performance enhancements*.
 
 <br>
 <br>
+
+<div align = center>
 
 *Available as a desktop app or a browser extension.*
 
@@ -37,19 +37,19 @@
 
 <br>
 
----
-
-### [Build Instructions][Building]
-
+</div>
+ 
 ---
 
 <br>
+
+### [Build Instructions][Building]
+
 <br>
 
 **ModernDeck** is designed by **[Dangered Wolf]**.
 
 <br>
-</div>
 
 <!----------------------------------------------------------------------------->
 
