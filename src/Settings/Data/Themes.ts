@@ -154,7 +154,7 @@ let tab: ModernDeckSettingsTab = {
 				// custom:{value:"custom",text:"{{Custom...}}"}
 			},
 			settingsKey:"mtd_theme",
-			default:() => TD.settings.getTheme() === "dark" ? "darker" : "light"
+			default:"darker"
 		},
 		themeColor:{
 			title:"{{Theme Color}}",
