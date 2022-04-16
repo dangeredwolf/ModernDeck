@@ -1,11 +1,11 @@
 
-<div align = right>
+<div align = left>
 
-[<img src = 'https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge' align = left>][License]
+[<img src = 'https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge' align = right>][License]
 
-[![Badge Crowdin]][Crowdin] 
-[![Badge Electron]][Electron] 
-[![Badge Webpack]][Webpack]
+[![Badge Webpack]][Webpack] <br>
+[![Badge Electron]][Electron]<br>
+[![Badge Crowdin]][Crowdin]
 
 </div>
 <div align = center>
