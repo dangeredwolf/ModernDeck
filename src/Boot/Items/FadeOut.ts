@@ -48,7 +48,7 @@ export function overrideFadeOut() {
 	// here we add event listeners to add a fading out animation when a modal dialog is closed
 	
     // @ts-ignore
-    document.querySelectorAll(".js-modals-container")[0].removeChild = (rmnode: HTMLElement) => {
+    document.querySelector(".js-modals-container").removeChild = (rmnode: HTMLElement) => {
 		$(rmnode).addClass("mtd-fade-out");
 		setTimeout(() => {
 			rmnode.remove();
