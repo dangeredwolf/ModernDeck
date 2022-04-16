@@ -16,12 +16,10 @@
 
 ![Logo]
 
-<br>
-
 **ModernDeck** takes **TweetDeck** to the next level with a *Material-inspired<br>
  theme*, *customization* and *performance enhancements* and more.
 
-
+<br>
 <br>
 
 *Available as a desktop app or a browser extension.*
@@ -41,19 +39,16 @@
 
 ---
 
-<br>
-
-
 ### [Build Instructions][Building]
-
-<br>
 
 ---
 
 <br>
+<br>
 
 **ModernDeck** is designed by **[Dangered Wolf]**.
 
+<br>
 </div>
 
 <!----------------------------------------------------------------------------->
