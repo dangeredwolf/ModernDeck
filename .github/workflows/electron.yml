@@ -1,4 +1,4 @@
-name: Make (unsigned) Electron builds 
+name: Electron builds (unsigned)
 
 on:
   push:
