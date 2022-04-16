@@ -1,6 +1,7 @@
 # ![ModernDeck Logo](https://github.com/dangeredwolf/ModernDeck/raw/master/docs/img/ReadmeLogo.png)
 
-[![Build Status](https://travis-ci.org/dangeredwolf/ModernDeck.svg?branch=master)](https://travis-ci.org/dangeredwolf/ModernDeck)
+[![Webpack](https://github.com/dangeredwolf/ModernDeck/actions/workflows/webpack.yml/badge.svg)](https://github.com/dangeredwolf/ModernDeck/actions/workflows/webpack.yml)
+[![Electron](https://github.com/dangeredwolf/ModernDeck/actions/workflows/electron.yml/badge.svg)](https://github.com/dangeredwolf/ModernDeck/actions/workflows/electron.yml)
 [![Crowdin](https://badges.crowdin.net/tweetdeck/localized.svg)](https://translate.moderndeck.org/project/tweetdeck)
 
 ModernDeck takes TweetDeck to the next level with a Material-inspired theme, customization and performance enhancements, and more. Available as a desktop app or a browser extension.
