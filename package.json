@@ -71,7 +71,7 @@
 		"babel-loader": "^8.2.4",
 		"electron": "^18.0.4",
 		"electron-builder": "^23.0.6",
-		"fs-extra": "^10.0.1",
+		"fs-extra": "^10.1.0",
 		"io-ts": "^2.2.16",
 		"moduleraid": "^6.0.0",
 		"terser-webpack-plugin": "^5.3.1",
