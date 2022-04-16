@@ -1,31 +1,36 @@
+
+<div align = center>
+
 ![Logo]
 
-[![Badge Webpack]][Webpack]
-[![Badge Electron]][Electron]
+[![Badge Webpack]][Webpack] 
+[![Badge Electron]][Electron] 
 [![Badge Crowdin]][Crowdin]
 
 ModernDeck takes TweetDeck to the next level with a Material-inspired theme, customization and performance enhancements, and more. Available as a desktop app or a browser extension.
 
-[![Badge Flathub]][Flathub]
-[![Badge Chrome]][Chrome]
+[![Badge Flathub]][Flathub] 
+[![Badge Chrome]][Chrome] 
 [![Badge Firefox]][Firefox]
 
 ![Showcase]
 
 ### [Build Instructions][Building]
 
-ModernDeck is designed by dangered wolf and released under the MIT License.
+ModernDeck is designed by **[Dangered Wolf]** and released under the MIT License.
 
+</div>
 
 <!----------------------------------------------------------------------------->
 
 [Building]: https://github.com/dangeredwolf/ModernDeck/wiki/Building-ModernDeck
 
+[Dangered Wolf]: https://github.com/dangeredwolf
 
 <!----------------------------------{ Images }--------------------------------->
 
-[Showcase]: https://raw.githubusercontent.com/dangeredwolf/ModernDeck/master/docs/img/ReadmeScreenshot.png
-[Logo]: https://github.com/dangeredwolf/ModernDeck/raw/master/docs/img/ReadmeLogo.png
+[Showcase]: docs/img/ReadmeScreenshot.png
+[Logo]: docs/img/ReadmeLogo.png
 
 
 <!--------------------------------{ Badge Links }------------------------------>
