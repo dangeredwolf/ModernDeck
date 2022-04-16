@@ -12,6 +12,8 @@ import { getFullLanguage, getMainLanguage } from "./I18n";
 import unsupportedCodeTable from "./DataUnsupportedLanguage";
 import inaccuraciesCodeTable from "./DataTranslationsMayBeInaccurate";
 import languageText from "./DataTextThatSaysLanguage";
+import { setPref } from "./StoragePreferences";
+import { UIWelcome } from "./UIWelcome";
 
 import languageData from "./DataI18n";
 
@@ -126,7 +128,7 @@ export class UILanguagePicker extends UIModal {
 			}
 
 			if (window.isInWelcome) {
-				setTimeout(() => new window.UIWelcome, 100)
+				setTimeout(() => new UIWelcome, 100)
 			}
 		});
 
