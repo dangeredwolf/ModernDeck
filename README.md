@@ -53,7 +53,7 @@
 
 [Building]: https://github.com/dangeredwolf/ModernDeck/wiki/Building-ModernDeck
 
-[Dangered Wolf]: https://github.com/dangeredwolf
+[Author]: https://github.com/dangeredwolf
 
 <!----------------------------------{ Images }--------------------------------->
 
