@@ -1,5 +1,9 @@
 
+[![Badge License]][License]
+
 <div align = center>
+
+<br>
 
 ![Logo]
 
@@ -9,9 +13,13 @@
 
 ModernDeck takes TweetDeck to the next level with a Material-inspired theme, customization and performance enhancements, and more. Available as a desktop app or a browser extension.
 
+<br>
+
 [![Badge Flathub]][Flathub] 
 [![Badge Chrome]][Chrome] 
 [![Badge Firefox]][Firefox]
+
+<br>
 
 ![Showcase]
 
@@ -42,12 +50,14 @@ ModernDeck is designed by **[Dangered Wolf]** and released under the MIT License
 [Chrome]: https://chrome.google.com/webstore/detail/moderndeck-twitter-client/pbpfgdgddpnbjcbpofmdanfbbigocklj
 [Firefox]: https://addons.mozilla.org/en-US/firefox/addon/moderndeck/
 
+[License]: LICENSE
 
 <!----------------------------------{ Badges }--------------------------------->
 
 [Badge Electron]: https://github.com/dangeredwolf/ModernDeck/actions/workflows/electron.yml/badge.svg
-[Badge Firefox]: docs/img/FirefoxAddon.png
 [Badge Webpack]: https://github.com/dangeredwolf/ModernDeck/actions/workflows/webpack.yml/badge.svg
+[Badge License]: https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge
 [Badge Crowdin]: https://badges.crowdin.net/tweetdeck/localized.svg
+[Badge Firefox]: docs/img/FirefoxAddon.png
 [Badge Flathub]: docs/img/Flathub.png
 [Badge Chrome]: docs/img/ChromeWebStore.png
