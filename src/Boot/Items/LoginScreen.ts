@@ -7,20 +7,22 @@
 
 import { checkIfSigninFormIsPresent, loginTextReplacer } from "../../UILoginController";
 
-import { newLoginPage } from "../../DataMustaches";
+import { loginPage } from "../../DataMustaches";
 import { I18n } from "../../I18n";
 import { handleErrors } from "../../Utils";
+
+let newLoginPage = loginPage;
 
 // This code changes the text to respond to the time of day, naturally
 
 let mtdStarted = new Date();
 
 if (mtdStarted.getHours() < 12) { // 12:00 / 12:00pm
-	newLoginPage = newLoginPage.replace("Good evening",I18n("Good morning"));
+	newLoginPage = loginPage.replace("Good evening",I18n("Good morning"));
 } else if (mtdStarted.getHours() < 18) { // 18:00 / 6:00pm
-	newLoginPage = newLoginPage.replace("Good evening",I18n("Good afternoon"));
+	newLoginPage = loginPage.replace("Good evening",I18n("Good afternoon"));
 } else {
-	newLoginPage = newLoginPage.replace("Good evening",I18n("Good evening"));
+	newLoginPage = loginPage.replace("Good evening",I18n("Good evening"));
 }
 
 export const initLoginScreen = () => {

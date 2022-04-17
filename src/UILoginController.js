@@ -10,7 +10,7 @@ import { I18n } from "./I18n";
 import { UILanguagePicker } from "./UILanguagePicker";
 import { openSettings } from "./UISettings";
 import { getPref } from "./StoragePreferences";
-import { newLoginPage } from "./DataMustaches";
+import { loginPage } from "./DataMustaches";
 
 let ugltStarted = false;
 window.loginIntervalTick = 0;
@@ -104,7 +104,7 @@ export function loginTextReplacer() {
 			new UILanguagePicker();
 		}
 		$(".app-signin-wrap:not(.mtd-signin-wrap)").remove();
-		$(".login-container .startflow").html(newLoginPage);
+		$(".login-container .startflow").html(loginPage);
 		startUpdateGoodLoginText();
 
 		$(".mtd-login-info-button").click(() => openSettings(undefined, true))
