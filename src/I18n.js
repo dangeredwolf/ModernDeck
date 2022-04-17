@@ -21,9 +21,14 @@ let langRoot;
 langFull = getPref("mtd_lang");
 if (!langFull) {
 	langFull = navigator.language.replace("-","_");
+
+	// Some generic languages only have local versions in ModernDeck so we use these as fallbacks
 	switch(langFull) {
 		case "en":
 			langFull = "en_US";
+			break;
+		case "es":
+			langFull = "es_ES";
 			break;
 		case "zh":
 			langFull = "zh_CN";

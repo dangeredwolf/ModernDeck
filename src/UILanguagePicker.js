@@ -85,6 +85,9 @@ export class UILanguagePicker extends UIModal {
 				case "en":
 					mainLang = "en_US";
 					break;
+				case "es":
+					mainLang = "es_ES";
+					break;
 				case "zh":
 					mainLang = "zh_CN";
 					break;
