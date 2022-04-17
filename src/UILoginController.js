@@ -98,11 +98,7 @@ export function checkIfSigninFormIsPresent() {
 export function loginTextReplacer() {
 	if ($(".mtd-signin-form").length <= 0) {
 		console.info("oh no, we're too late!");
-		window.UILanguagePicker = UILanguagePicker;
 
-		if (getPref("mtd_last_lang") !== navigator.language) {
-			new UILanguagePicker();
-		}
 		$(".app-signin-wrap:not(.mtd-signin-wrap)").remove();
 		$(".login-container .startflow").html(loginPage);
 		startUpdateGoodLoginText();

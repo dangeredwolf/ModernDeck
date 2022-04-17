@@ -80,9 +80,25 @@ export class UILanguagePicker extends UIModal {
 		});
 
 		setTimeout(() => {
-			let mainLang = $("#mtd_language_select>option[value=\"" + navigator.language.substr(0,2) + "\"]");
-			if (mainLang.length > 0) {
-				mainLang.attr("selected","true");
+			let mainLang = navigator.language.substr(0,2);
+			switch(mainLang) {
+				case "en":
+					mainLang = "en_US";
+					break;
+				case "zh":
+					mainLang = "zh_CN";
+					break;
+				case "fr":
+					mainLang = "fr_FR";
+					break;
+			}
+			
+			console.log(mainLang);
+
+			let mainLangElement = $("#mtd_language_select>option[value=\"" + mainLang + "\"]");
+			console.log(`mainLangElement.length ${mainLangElement.length}`)
+			if (mainLangElement.length > 0) {
+				mainLangElement.attr("selected","true");
 				this.selectLanguage.trigger("change");
 			}
 

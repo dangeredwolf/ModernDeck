@@ -21,6 +21,17 @@ let langRoot;
 langFull = getPref("mtd_lang");
 if (!langFull) {
 	langFull = navigator.language.replace("-","_");
+	switch(langFull) {
+		case "en":
+			langFull = "en_US";
+			break;
+		case "zh":
+			langFull = "zh_CN";
+			break;
+		case "fr":
+			langFull = "fr_FR";
+			break;
+	}
 }
 langRoot = langFull.substring(0,2);
 
