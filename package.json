@@ -27,7 +27,7 @@
 		"buildMac": "electron-builder -m --config electron-builder.json --publish=never",
 		"buildLinux": "electron-builder -l --config electron-builder.json --publish=never",
 		"buildAndMinify": "npm run webpack && npm run minify",
-		"rollup": "echo ==== ModernDeck now builds using webpack instead of rollup since version 9.5 ==== && npm run webpack",
+		"rollup": "echo ==== ModernDeck 10 and later now build using webpack instead of rollup ==== && npm run webpack",
 		"webpack": "npm run incBuild && webpack",
 		"watch": "webpack --watch",
 		"start": "npm run webpack && electron .",
