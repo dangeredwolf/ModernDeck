@@ -7,10 +7,9 @@
 
 import { checkIfSigninFormIsPresent, loginTextReplacer } from "../../UILoginController";
 
-import { _newLoginPage } from "../../DataMustaches";
+import { newLoginPage } from "../../DataMustaches";
 import { I18n } from "../../I18n";
 import { handleErrors } from "../../Utils";
-let newLoginPage = _newLoginPage;
 
 // This code changes the text to respond to the time of day, naturally
 

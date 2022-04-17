@@ -35,7 +35,7 @@ function startUpdateGoodLoginText() {
 
 	$(".startflow-background").attr("style",`background-image:url(${mtdBaseURL}assets/img/bg1.webp)`)
 
-	if (window.desktopConfig.customLoginImage) {
+	if (window?.desktopConfig?.customLoginImage) {
 		if (window.desktopConfig.customLoginImage.match(/https:\/\//gm) !== null) {
 			$(".startflow-background").attr("style",`background-image:url(${window.desktopConfig.customLoginImage})`)
 		} else {

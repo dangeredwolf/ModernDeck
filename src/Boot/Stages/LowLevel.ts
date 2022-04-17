@@ -10,7 +10,6 @@ import { initCoreStylesheet } from "../Items/CoreStylesheet";
 import { initFeatureFlags } from "../Items/FeatureFlags";
 import { initInjectFonts } from "../Items/InjectFonts";
 import { initLateBootScreen } from "../Items/LateBootScreen";
-import { initPreferences } from "../Items/LoadPreferences";
 import { initProcessMustaches } from "../Items/MustachePatcher";
 import { replacePrettyNumber } from "../Items/PrettyNumber";
 import { runtimeStylesheetExtensions } from "../Items/RuntimeStylesheetExtensions";
@@ -26,5 +25,4 @@ export const lowlevelStage = async () => {
     await defineBootComponent(runtimeStylesheetExtensions);
     await defineBootComponent(initProcessMustaches);
     await defineBootComponent(initI18nEngine);
-    await defineBootComponent(initPreferences);
 }
