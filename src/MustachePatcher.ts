@@ -17,6 +17,7 @@ const patchMustache = (mustache: string, find: string | RegExp, replace: string)
 			TD_mustaches[mustache + ".mustache"] = TD_mustaches[mustache + ".mustache"].replace(find, replace);
 		} else {
 			console.warn(`Could not apply patch to ${mustache}.mustache because it doesn't contain ${find}`);
+			console.warn(`Mustache contents: ${TD_mustaches[mustache + ".mustache"]}`);
 		}
 	} else {
 		console.warn(`Could not apply patch to ${mustache}.mustache because it doesn't exist`);
@@ -46,29 +47,6 @@ export const processMustaches = (): void => {
 
 	if (!window.html.hasClass("mtd-disable-css")) {
 
-		patchMustache("column/column_options",
-			// Note, be careful with replacing the find, because it is supposed to only be on one line. We broke it up for clarity.
-			`<div class="button-group"> ` + 
-				`<button type="button" class="Button--link btn-options-tray padding-hn {{^isClearable}}is-invisible{{/isClearable}}" data-action="clear"> ` +
-					`<i class="icon icon-clear-timeline"></i> ` + 
-					`<span class="label">{{_i}}Clear{{/i}}</span> ` + 
-				`</button> ` + 
-			`</div>`,
-
-			`<div class="button-group">
-				<button type="button" class="Button--link btn-options-tray padding-hn" data-action="mtd_collapse">
-					<i class='icon material-icon'>first_page</i>
-					<span class="label">{{_i}}Collapse{{/i}}</span>
-				</button>
-			</div>
-			<div class="button-group">
-				<button type="button" class="Button--link btn-options-tray padding-hn {{^isClearable}}is-invisible{{/isClearable}}" data-action="clear">
-					<i class="icon icon-clear-timeline"></i>
-					<span class="label">{{_i}}Clear{{/i}}</span>
-				</button>
-			</div>`
-		)
-
 		replaceMustache("spinner_large", spinnerLarge);
 		replaceMustache("spinner_large_white", spinnerLarge);
 		replaceMustache("spinner", spinnerSmall);
@@ -94,7 +72,20 @@ export const processMustaches = (): void => {
 			`<kbd class="text-like-keyboard-key">X</kbd>  Expand/Collapse navigation</dd>`,
 			`<kbd class="text-like-keyboard-key">Q</kbd> Open Navigation Drawer/Menu</dd>`
 		);
-
+	
+		patchMustache("column/column_options",
+			// Note, be careful with replacing the find, because it is supposed to only be on one line. We broke it up for clarity.
+			`<div class="button-group"> <button type="button" class="Button--link btn-options-tray padding-hn {{`,
+	
+			`<div class="button-group">
+				<button type="button" class="Button--link btn-options-tray padding-hn" data-action="mtd_collapse">
+					<i class='icon material-icon'>first_page</i>
+					<span class="label">{{_i}}Collapse{{/i}}</span>
+				</button>
+			</div>
+			<div class="button-group">
+				<button type="button" class="Button--link btn-options-tray padding-hn {{`
+		)
 
 	}
 
@@ -169,10 +160,10 @@ export const processMustaches = (): void => {
 	patchMustache("menus/actions", "Send a Direct Message", "Send message");
 	patchMustache("menus/actions", "Add or remove from Lists…", "Add/remove from list...");
 	patchMustache("menus/actions", "See who quoted this Tweet", "View quotes");
-	patchMustache("menus/actions", "Flagged (learn more)", "Flagged");
 	patchMustache("menus/actions", "Mute this conversation", "Mute conversation");
 	patchMustache("menus/actions", "Unmute this conversation", "Unmute conversation");
 	patchMustache("menus/actions", "Translate this Tweet", "Translate Tweet");
 	patchMustache("menus/actions", "{{_i}}Delete{{/i}}", "{{_i}}Delete Tweet{{/i}}");
 	patchMustache("menus/actions", /\…/g, "...");
+	patchMustache("menus/actions", /Flagged \(learn more\)/g, "Flagged");
 }
