@@ -29,7 +29,7 @@ export enum VersionStrings {
 	DEVELOPER_VERSION = "Developer Version"
 }
 
-export const versionString = VersionStrings.DEVELOPER_VERSION;
+export const versionString = VersionStrings.BETA;
 
 export const getSystemName = (): SystemName => {
 
