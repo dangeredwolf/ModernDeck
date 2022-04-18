@@ -26,7 +26,6 @@ let tab: ModernDeckSettingsTab = {
 					if (opt === "simplified") {
 						window.html.addClass("mtd-head-left");
 						window.html.removeClass("mtd-classic-nav");
-						$(document).trigger("uiNavbarWidthChangeAction",{navbarWidth:"condensed"})
 					} else if (opt === "classic") {
 						window.html.addClass("mtd-head-left");
 						window.html.addClass("mtd-classic-nav");
