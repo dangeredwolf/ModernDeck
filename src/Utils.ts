@@ -53,6 +53,7 @@ export const exists = function(thing: any): boolean {
 */
 
 export function formatNumberI18n(number: number): string {
+	number = Math.round(number * 100) / 100;
 	if (!window.mtdNumberFormat || window.mtdNeedsResetNumberFormatting) {
 		let format: string;
 		switch(getPref("mtd_shortDateFormat")) {
