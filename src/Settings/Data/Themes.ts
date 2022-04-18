@@ -84,15 +84,14 @@ let tab: ModernDeckSettingsTab = {
 							enableStylesheetExtension("darker");
 							window.html.addClass("mtd-dark").removeClass("mtd-light");
 							break;
-							
 						case "discorddark":
 							disableStylesheetExtension("amoled");
 							disableStylesheetExtension("light");
 							disableStylesheetExtension("paper");
-							disableStylesheetExtension("darker");
 							disableStylesheetExtension("twitterdark");
-							enableStylesheetExtension("discorddark");
 							enableStylesheetExtension("dark");
+							enableStylesheetExtension("darker");
+							enableStylesheetExtension("discorddark");
 							window.html.addClass("mtd-dark").removeClass("mtd-light");
 							break;
 						case "twitterdark":
