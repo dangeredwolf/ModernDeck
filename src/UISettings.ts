@@ -18,6 +18,3 @@ export function openLegacySettings(): void {
 	$(".mtd-settings-panel").remove();
 	new TD.components.GlobalSettings;
 }
-
-// @ts-ignore
-window.openSettings = openSettings;
