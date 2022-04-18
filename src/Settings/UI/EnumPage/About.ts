@@ -14,6 +14,15 @@ import { AutoUpdateController } from "../../../AutoUpdateController";
 
 export class AboutEnumPage extends SettingsEnumPage {
 	diagClickNumber: number = 0;
+
+	logo: JQuery<HTMLElement>;
+	logoContainer: JQuery<HTMLElement>;
+	h1: JQuery<HTMLElement>;
+	h2: JQuery<HTMLElement>;
+
+	info: JQuery<HTMLElement>;
+	infoContainer: JQuery<HTMLElement>;
+
 	updateContainer: JQuery<HTMLElement>;
 	updateIcon: JQuery<HTMLElement>;
 	updateh2: JQuery<HTMLElement>;
@@ -22,12 +31,13 @@ export class AboutEnumPage extends SettingsEnumPage {
 	installButton: JQuery<HTMLElement>;
 	restartNow: JQuery<HTMLElement>;
 	updateSpinner: JQuery<HTMLElement>;
+
 	restartNowHtml: string;
 
 	constructor(projection: JQuery<HTMLElement>) {
-		super();
+		super(projection);
 
-		let logo = make("i").addClass("mtd-logo icon-moderndeck icon").click(() => {
+		this.logo = make("i").addClass("mtd-logo icon-moderndeck icon").click(() => {
 			this.diagClickNumber++;
 			console.log(this.diagClickNumber);
 			if (this.diagClickNumber >= 5) {
@@ -36,31 +46,31 @@ export class AboutEnumPage extends SettingsEnumPage {
 			}
 		});
 
-		let h1 = make("h1").addClass("mtd-about-title").html(`${window.ModernDeck.productName}<span>${I18n(versionString)}</span>`);
-		let h2 = make("h2").addClass("mtd-version-title").html("Version " + window.ModernDeck.versionFriendlyString + I18n(" (Build ") + window.ModernDeck.buildNumber + ")");
-		let logoCont = make("div").addClass("mtd-logo-container");
+		this.h1 = make("h1").addClass("mtd-about-title").html(`${window.ModernDeck.productName}<span>${I18n(versionString)}</span>`);
+		this.h2 = make("h2").addClass("mtd-version-title").html("Version " + window.ModernDeck.versionFriendlyString + I18n(" (Build ") + window.ModernDeck.buildNumber + ")");
+		this.logoContainer = make("div").addClass("mtd-logo-container");
 
 		if (!isApp) {
-			logoCont.append(
-				make("p").addClass("mtd-check-out-app").html(I18n("Get background notifications and more features with the free <a href='https://moderndeck.org'>ModernDeck App</a>!"))
+			this.logoContainer.append(
+				make("p").addClass("mtd-check-out-app").html(I18n(`Get background notifications and more features with the free <a href='https://moderndeck.org'>ModernDeck App</a>!`))
 			)
 		} else if (window.desktopConfig && window.desktopConfig.autoUpdatePolicy === "never") {
-			logoCont.append(
-				make("p").addClass("mtd-check-out-app").html(I18n("Updates are disabled by your organization"))
+			this.logoContainer.append(
+				make("p").addClass("mtd-check-out-app").html(I18n(`Updates are disabled by your organization`))
 			)
 		}
 
-		let info = make("p").html(I18n("Made with <i class=\"icon icon-heart mtd-about-heart\"></i> by <a href=\"https://twitter.com/dangeredwolf\" rel=\"user\" target=\"_blank\">dangered wolf</a> since 2014<br>ModernDeck is <a href=\"https://github.com/dangeredwolf/ModernDeck/\" target=\"_blank\">an open source project</a> released under the MIT license."));
-		let infoCont = make("div").addClass("mtd-about-info").append(info);
+		this.info = make("p").html(I18n(`Made with <i class="icon icon-heart mtd-about-heart"></i> by <a href="https://twitter.com/dangeredwolf" rel="user" target="_blank">dangered wolf</a> since 2014<br>ModernDeck is <a href="https://github.com/dangeredwolf/ModernDeck/" target="_blank">an open source project</a> released under the MIT license.`));
+		this.infoContainer = make("div").addClass("mtd-about-info").append(this.info);
 
-		logoCont.append(logo, h1, h2);
+		this.logoContainer.append(this.logo, this.h1, this.h2);
 
-		projection.append(logoCont);
+		projection.append(this.logoContainer);
 
-		let updateCont = this.makeUpdateCont();
+		this.updateContainer = this.makeUpdateCont();
 
 		if (isApp && !window.html.hasClass("mtd-winstore") && !window.html.hasClass("mtd-flatpak") && !window.html.hasClass("mtd-macappstore") && (window.desktopConfig && window.desktopConfig.autoUpdatePolicy !== "never")) {
-			projection.append(updateCont);
+			projection.append(this.updateContainer);
 		}
 
 		if (window.html.hasClass("mtd-winstore")) {
@@ -81,7 +91,9 @@ export class AboutEnumPage extends SettingsEnumPage {
 			);
 		}
 
-		projection.append(infoCont);
+		projection.append(this.infoContainer);
+
+		console.log(this);
 	}
 
 	makeUpdateCont() {

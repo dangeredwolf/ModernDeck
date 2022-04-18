@@ -31,7 +31,7 @@ export class UISettings extends UIModal {
 		return str;
 	}
 
-	constructor() {
+	constructor(openMenu?: SettingsTab, limitedMenu?: boolean) {
 		super();
 
 		this.element = make("div").addClass("mdl mtd-settings-panel");
@@ -41,13 +41,15 @@ export class UISettings extends UIModal {
 		this.panel = make("div").addClass("mdl mtd-settings-panel").append(this.tabsElement).append(make("div").addClass("mtd-settings-inner-container").append(this.container));
 		
 		this.element.append(this.panel);
+		
+		this.limitedMenu = limitedMenu;
 
-		this.initializeTabs();
+		this.initializeTabs(openMenu);
 
 		return this;
 	}
 
-	initializeTabs() {
+	initializeTabs(openMenu?: SettingsTab) {
 		Object.keys(settingsData).map((key: SettingsTab): void => {
 
 			const tab: ModernDeckSettingsTab = settingsData[key];
@@ -67,7 +69,6 @@ export class UISettings extends UIModal {
 			}
 
 			switch(key) {
-				case SettingsTab.THEMES:
 				case SettingsTab.APPEARANCE:
 				case SettingsTab.TWEETS:
 				case SettingsTab.MUTES:
@@ -79,7 +80,15 @@ export class UISettings extends UIModal {
 
 			console.log(`Adding tab ${key}`);
 
-			this.tabs.push(new UISettingsTab(key, this));
+			let tabUI = new UISettingsTab(key, this);
+
+			if (typeof openMenu !== "undefined" && openMenu === key) {
+				tabUI.tab.addClass("mtd-settings-tab-selected");
+				tabUI.tab.attr("aria-selected","true");
+				tabUI.tab.click();
+			}
+
+			this.tabs.push();
 		});
 	}
 		

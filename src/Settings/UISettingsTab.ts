@@ -5,8 +5,7 @@
 	Released under the MIT License
 */
 
-import { getPref } from "../StoragePreferences";
-import { ModernDeckSettingsOption, ModernDeckSettingsType } from "../Types/ModernDeckSettings";
+import { ModernDeckSettingsEnumPage, ModernDeckSettingsOption, ModernDeckSettingsType } from "../Types/ModernDeckSettings";
 import { make } from "../Utils";
 import { settingsData, SettingsTab } from "./SettingsData";
 import { SettingsButton } from "./UI/Components/Button";
@@ -19,6 +18,7 @@ import { SettingsSubtext } from "./UI/Components/Subtext";
 import { SettingsTextarea } from "./UI/Components/Textarea";
 import { SettingsTextbox } from "./UI/Components/Textbox";
 import { AboutEnumPage } from "./UI/EnumPage/About";
+import { MuteEnumPage } from "./UI/EnumPage/Mutes";
 import { UISettings } from "./UISettings";
 
 export class UISettingsTab {
@@ -28,7 +28,22 @@ export class UISettingsTab {
 	parentSettings: UISettings;
 
 	get index(): number {
-		return Object.keys(settingsData).indexOf(this.tabType);
+		let keys = Object.keys(settingsData);
+		
+		if (this.parentSettings.limitedMenu) {
+			keys = keys.filter(key => {
+				switch(key) {
+					case SettingsTab.APPEARANCE:
+					case SettingsTab.TWEETS:
+					case SettingsTab.MUTES:
+						return false;
+				}
+
+				return true;
+			})
+		}
+
+		return keys.indexOf(this.tabType);
 	}
 
 	constructor(tabType: SettingsTab, parentSettings: UISettings) {
@@ -64,65 +79,28 @@ export class UISettingsTab {
 		return this.tab;
 	}
 
-	static getFallbackForType(type: string): any {
-		switch(type) {
-			case "string":
-				return "";
-			case "boolean":
-				return false;
-			case "number":
-				return 0;
-			case "object":
-				return {};
-			case "undefined":
-				return undefined;
-			default:
-				return null;
-		}
-	}
-
-	static getInitialSetting(setting: ModernDeckSettingsOption): any {
-		let result = null;
-		
-		if (setting?.settingsKey && typeof setting.queryFunction === "undefined") {
-			let storedPref = getPref(setting?.settingsKey);
-
-			switch(typeof storedPref) {
-				case "boolean":
-				case "string":
-				case "number":
-					result = storedPref;
-			}
-		} else {
-			if (setting?.queryFunction) {
-				try {
-					result = setting.queryFunction();
-				} catch(e) {
-					console.error("Failed to execute queryFunction");
-					console.error(e);
-					result = setting.default || null;
-				}
-	
-			}
-		}
-
-		return result;
-	}
-
 	tabBuildout() {
 		this.subpanel.empty();
 
 		let settingTab = settingsData[this.tabType];
 
 		if (settingTab.enum) {
-			console.log(`Processing enum settings pane for ${this.tabType}`);
+			try {
+				console.log(`Processing enum settings pane for ${this.tabType}`);
 
-			switch(settingTab.enum) {
-				case "about":
-					new AboutEnumPage(this.subpanel);
-					break;
+				switch(settingTab.enum) {
+					case ModernDeckSettingsEnumPage.ABOUT:
+						new AboutEnumPage(this.subpanel);
+						break;
+					case ModernDeckSettingsEnumPage.MUTES:
+						new MuteEnumPage(this.subpanel);
+						break;
+					default:
+						throw "Unknown Settings tab enum";
+				}
+			} catch(error: unknown) {
+
 			}
-
 			return;
 		}
 

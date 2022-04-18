@@ -8,7 +8,7 @@
 /* Main thread for welcome screen */
 
 import { _welcomeData } from "./DataWelcome";
-import { makeUpdateCont } from "./UISettings";
+import { makeUpdateContTodoGetRidOfThisLegacyThing } from "./UISettingsOld";
 import { isApp, make } from "./Utils";
 import { enableStylesheetExtension, disableStylesheetExtension } from "./StylesheetExtensions";
 import { setPref } from "./StoragePreferences";
@@ -34,7 +34,7 @@ export class UIWelcome extends UIModal {
 		window.isInWelcome = true;
 
 		welcomeData.update.enabled = isApp && !window.html.hasClass("mtd-winstore") && !window.html.hasClass("mtd-macappstore") && !window.html.hasClass("mtd-flatpak");
-		welcomeData.update.html = makeUpdateCont();
+		welcomeData.update.html = makeUpdateContTodoGetRidOfThisLegacyThing();
 
 		window.mtdPrepareWindows();
 

@@ -27,6 +27,11 @@ export enum ModernDeckSettingsType {
 	SUBTEXT = "subtext",
 }
 
+export enum ModernDeckSettingsEnumPage {
+	ABOUT = "about",
+	MUTES = "mutes"
+}
+
 export interface ModernDeckSettingsActions {
 	enableStylesheet?: string,
 	disableStylesheet?: string,

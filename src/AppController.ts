@@ -9,7 +9,7 @@ import { make, getIpc } from "./Utils";
 import { UIAlert } from "./UIAlert";
 import { UIUpdateNotify } from "./UIUpdateNotify";
 import { AutoUpdateController } from "./AutoUpdateController";
-import { openSettings } from "./UISettings";
+import { openSettings } from "./UISettingsOld";
 import { buildContextMenu } from "./UIContextMenu";
 import { parseActions } from "./Settings/SettingsInit";
 import { parseConfig } from "./DesktopConfigParser";
@@ -201,7 +201,7 @@ export const mtdAppFunctions = (): void => {
 
 	}
 
-	ipcRenderer.on("context-menu", (_event: Event, menuContents) => {
+	ipcRenderer.on("context-menu", (_event: Event, menuContents: any) => {
 		let theMenu = buildContextMenu(menuContents);
 		let Menu = window.require("@electron/remote").Menu;
 

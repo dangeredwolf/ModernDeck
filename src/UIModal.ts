@@ -21,6 +21,7 @@ export class UIModal {
 		console.log( $(this.modalRoot)[0])
 
 		if (typeof $(this.modalRoot)[0] !== "undefined") {
+			window.mtdPrepareWindows();
 			new TD.components.GlobalSettings;
 
 			$(this.modalRoot + ">.mdl").remove();

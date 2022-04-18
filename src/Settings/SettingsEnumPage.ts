@@ -6,7 +6,7 @@
 */
 
 export class SettingsEnumPage {
-    constructor() {
+    constructor(_projection: JQuery<HTMLElement>) {
 
     }
 }
