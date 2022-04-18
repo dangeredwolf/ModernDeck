@@ -6,7 +6,11 @@
 */
 
 export const urlExchange = () => {
-    if (window.MTDURLExchange instanceof HTMLElement) {
+    const baseUrlElement = document.querySelector(`meta[name="moderndeck-base-url"]`);
+    if (baseUrlElement && typeof baseUrlElement.getAttribute("content") === "string") {
+        window.mtdBaseURL = baseUrlElement.getAttribute("content");
+        console.info("Got base URL " + window.mtdBaseURL);
+    } else if (window.MTDURLExchange instanceof HTMLElement) {
         window.mtdBaseURL = window.MTDURLExchange.getAttribute("type");
         console.info("MTDURLExchange completed with URL " + window.mtdBaseURL);
     }

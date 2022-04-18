@@ -672,28 +672,29 @@ function makeWindow() {
 		`)
 
 		mainWindow.webContents.executeJavaScript(
-			'\
-			var injurl = document.createElement("div");\
-			injurl.setAttribute("type","moderndeck://");\
-			injurl.id = "MTDURLExchange";\
-			document.head.appendChild(injurl);\
-			\
-			var InjectScript2 = document.createElement("script");\
-			InjectScript2.src = "moderndeck://assets/libraries/moduleraid.min.js";\
-			InjectScript2.type = "text/javascript";\
-			document.head.appendChild(InjectScript2);'
+			`
+			const baseUrl = document.createElement("meta");
+			baseUrl.setAttribute("name", "moderndeck-base-url");
+			baseUrl.setAttribute("content", "moderndeck://");
+			document.head.appendChild(baseUrl);
+			console.log("Injected baseUrl " + baseUrl.getAttribute("content"));
+			
+			const InjectScript2 = document.createElement("script");
+			InjectScript2.src = "moderndeck://assets/libraries/moduleraid.min.js";
+			InjectScript2.type = "text/javascript";
+			document.head.appendChild(InjectScript2);`
 			+
-			(store.get("mtd_safemode") ? 'document.getElementsByTagName("html")[0].classList.add("mtd-disable-css");' :
-			'var injStyles = document.createElement("link");\
-			injStyles.rel = "stylesheet";\
-			injStyles.href = "moderndeck://assets/moderndeck.css";\
-			document.head.appendChild(injStyles);')
+			(store.get("mtd_safemode") ? `document.getElementsByTagName("html")[0].classList.add("mtd-disable-css");` :
+			`const injStyles = document.createElement("link");
+			injStyles.rel = "stylesheet";
+			injStyles.href = "moderndeck://assets/moderndeck.css";
+			document.head.appendChild(injStyles);`)
 			+
-			'var InjectScript = document.createElement("script");\
-			InjectScript.src = "moderndeck://assets/moderndeck.js";\
-			InjectScript.type = "text/javascript";\
-			document.head.appendChild(InjectScript);\
-		');
+			`const InjectScript = document.createElement("script");
+			InjectScript.src = "moderndeck://assets/moderndeck.js";
+			InjectScript.type = "text/javascript";
+			document.head.appendChild(InjectScript);
+		`);
 
 		updateAppTag();
 
