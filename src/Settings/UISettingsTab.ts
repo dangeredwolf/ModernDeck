@@ -137,6 +137,14 @@ export class UISettingsTab {
 
 			if (settingsOption.enabled === false) {
 				continue;
+			} else if (typeof settingsOption.enabled === "function") {
+				try {
+					if (!settingsOption.enabled()) {
+						continue;
+					}
+				} catch(error: unknown) {
+					console.error("Caught error while processing enabled on settingsOption", error);
+				}
 			}
 
 			switch(settingsOption.type) {

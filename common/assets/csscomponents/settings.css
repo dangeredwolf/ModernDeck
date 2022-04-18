@@ -34,6 +34,16 @@
 	color:#fff!important
 }
 
+.mtd-settings-option option[value="discorddark"] {
+	background:hsl(235,85.6%,64.7%);
+	color:#fff!important
+}
+
+.mtd-settings-option option[value="twitterdark"] {
+	background:#15202B;
+	color:#fff!important
+}
+
 .mtd-settings-option option[value="red"] {
 	background:#F44336;
 	color:#fff!important

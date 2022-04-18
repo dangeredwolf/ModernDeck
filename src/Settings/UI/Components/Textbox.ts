@@ -19,7 +19,7 @@ export class SettingsTextbox extends UISettingsComponent {
 
 	constructor(setting: ModernDeckSettingsOption, projection: JQuery<HTMLElement>) {
 		super();
-		this.textbox = make("select").attr("type", "select");
+		this.textbox = make("input").attr("type","text");
 		
 		this.populateDefaultValue(setting);
 

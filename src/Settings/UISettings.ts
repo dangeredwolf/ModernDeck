@@ -98,3 +98,6 @@ export class UISettings extends UIModal {
 	}
 		
 }
+
+// Dummy function just so if anything calls this it doesn't affect anything
+window.renderTab = (_tab: SettingsTab) => {}
