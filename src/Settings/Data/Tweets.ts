@@ -95,7 +95,8 @@ let tab: ModernDeckSettingsTab = {
 			type:ModernDeckSettingsType.CHECKBOX,
 			activate:{
 				func: (): void => {
-					$(document.querySelector("audio")).attr("src", window.mtdBaseURL + "assets/alert_3.mp3");
+					// $(document.querySelector("audio")).attr("src", window.mtdBaseURL + "assets/audio/alert_3.mp3");
+					$(document.querySelector("audio")).attr("src", window.mtdBaseURL + "assets/audio/notify.aac");
 				}
 			},
 			deactivate:{
