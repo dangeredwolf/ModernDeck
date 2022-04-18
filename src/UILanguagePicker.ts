@@ -119,7 +119,7 @@ export class UILanguagePicker extends UIModal {
 			
 			console.log(mainLang);
 
-			let mainLangElement = $(`#mtd_language_select>option[value=${mainLang}"]`);
+			let mainLangElement = $(`#mtd_language_select>option[value="${mainLang}"]`);
 			console.log(`mainLangElement.length ${mainLangElement.length}`)
 			if (mainLangElement.length > 0) {
 				mainLangElement.attr("selected","true");
