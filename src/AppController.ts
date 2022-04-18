@@ -9,7 +9,7 @@ import { make, getIpc } from "./Utils";
 import { UIAlert } from "./UIAlert";
 import { UIUpdateNotify } from "./UIUpdateNotify";
 import { AutoUpdateController } from "./AutoUpdateController";
-import { openSettings } from "./UISettingsOld";
+import { openSettings } from "./UISettings";
 import { buildContextMenu } from "./UIContextMenu";
 import { parseActions } from "./Settings/SettingsInit";
 import { parseConfig } from "./DesktopConfigParser";

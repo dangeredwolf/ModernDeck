@@ -19,7 +19,6 @@ export interface WelcomePage {
 export interface WelcomeData {
     [key: string]: WelcomePage;
     welcome: WelcomePage;
-    update: WelcomePage;
     theme: WelcomePage;
     layout: WelcomePage;
     done: WelcomePage;

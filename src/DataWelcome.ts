@@ -79,13 +79,6 @@ export let _welcomeData: WelcomeData = {
 			ipcRenderer.send("checkForUpdates");
 		}
 	},
-	update: {
-		title: I18n("Checking for updates..."),
-		body: I18n("This should only take a few seconds."),
-		html: "",
-		enabled: false,
-		nextText: I18n("Skip")
-	},
 	theme: {
 		title: I18n("Pick a theme"),
 		body: I18n("You can customize the theme colors in <i class='icon icon-settings'></i> <b>Settings</b>"),

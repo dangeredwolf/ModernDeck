@@ -8,8 +8,7 @@
 /* Main thread for welcome screen */
 
 import { _welcomeData } from "./DataWelcome";
-import { makeUpdateContTodoGetRidOfThisLegacyThing } from "./UISettingsOld";
-import { isApp, make } from "./Utils";
+import { make } from "./Utils";
 import { enableStylesheetExtension, disableStylesheetExtension } from "./StylesheetExtensions";
 import { setPref } from "./StoragePreferences";
 import { I18n } from "./I18n";
@@ -32,9 +31,6 @@ export class UIWelcome extends UIModal {
 		}
 
 		window.isInWelcome = true;
-
-		welcomeData.update.enabled = isApp && !window.html.hasClass("mtd-winstore") && !window.html.hasClass("mtd-macappstore") && !window.html.hasClass("mtd-flatpak");
-		welcomeData.update.html = makeUpdateContTodoGetRidOfThisLegacyThing();
 
 		window.mtdPrepareWindows();
 
@@ -60,7 +56,6 @@ export class UIWelcome extends UIModal {
 
 			let subPanel = make("div").addClass("mtd-settings-subpanel mtd-col scroll-v").attr("id",key);
 
-
 			subPanel.append(
 				make("h1").addClass("mtd-welcome-head").html(welc.title),
 				make("p").addClass("mtd-welcome-body").html(welc.body)
@@ -81,7 +76,7 @@ export class UIWelcome extends UIModal {
 				}
 			});
 
-			let button2 = make("button").html((key === "update" ? I18n("Skip") : I18n("Next")) + "<i class='icon icon-arrow-r'></i>").addClass("btn btn-positive mtd-settings-button mtd-welcome-next-button")
+			let button2 = make("button").html(I18n("Next") + "<i class='icon icon-arrow-r'></i>").addClass("btn btn-positive mtd-settings-button mtd-welcome-next-button")
 			.click(function() {
 				$(".mtd-settings-inner").css("margin-left",((subPanel.index()+1) * -700)+"px");
 				if (typeof welc.nextFunc === "function") {
