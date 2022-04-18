@@ -6,7 +6,7 @@
 */
 
 import { settingsData } from "./SettingsData";
-import { ModernDeckPrefMigration } from "../ModernDeckPrefMigration";
+import { SettingsMigration } from "./SettingsMigration";
 import { disableStylesheetExtension, enableStylesheetExtension } from "../StylesheetExtensions";
 import { getPref, setPref, hasPref, debugStorageSys } from "../StoragePreferences";
 import { SettingsTab } from "./SettingsData";
@@ -20,7 +20,7 @@ import { SettingsTab } from "./SettingsData";
 export const loadPreferences = (): void => {
 	window.settingsData = settingsData;
 
-	ModernDeckPrefMigration.migrate();
+	SettingsMigration.migrate();
 
 	Object.keys(settingsData).map((key: SettingsTab): void => {
 

@@ -1,13 +1,13 @@
 /*
-	ModernDeckPrefMigration.ts
+	SettingsMigration.ts
 
 	Copyright (c) 2014-2022 dangered wolf, et al
 	Released under the MIT License
 */
 
-import { getPref, setPref } from "./StoragePreferences";
+import { getPref, setPref } from "../StoragePreferences";
 
-export class ModernDeckPrefMigration {
+export class SettingsMigration {
 	static migrate() : void {
 		let theme : string = getPref("mtd_theme");
 
