@@ -97,7 +97,7 @@ export class AboutEnumPage extends SettingsEnumPage {
 	}
 
 	makeUpdateCont() {
-		this.updateSpinner = make("div").addClass("mtd-update-spinner").html(
+		this.updateSpinner = make("div").addClass("mtd-update-spinner preloader-wrapper small active").html(
 			'<div class="spinner-layer"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div>'
 		)
 		this.updateContainer = make("div").addClass("mtd-update-container").append(this.updateSpinner);
@@ -130,7 +130,10 @@ export class AboutEnumPage extends SettingsEnumPage {
 
 	mtdAppUpdatePage() {
 
-		$(document).on("mtdUpdateUIChanged", this.updateUIChanged);
+		$(document).on("mtdUpdateUIChanged", () => {
+			console.log("Update UI changed, I wonder what's new!");
+			this.updateUIChanged();
+		});
 	
 		const { ipcRenderer } = window.require("electron");
 	
