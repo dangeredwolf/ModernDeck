@@ -54,14 +54,14 @@ export class AutoUpdateController {
 		AutoUpdateController.installButton = undefined;
 		AutoUpdateController.isCheckingForUpdates = false;
 
-		ipcRenderer.on("error",(_event: Event, args: UpdateFailure, error): void => {
+		ipcRenderer.on("error",(_event: Event, args: UpdateFailure, error: string): void => {
 			AutoUpdateController.h2 = I18n("There was a problem checking for updates.");
 			AutoUpdateController.spinner = false;
 
 			if (args?.code) {
 				AutoUpdateController.h3 = `${args.domain || ""} ${args.code || ""} ${args.errno || ""} ${args.syscall || ""} ${args.path || ""}`;
 			} else if (error) {
-				AutoUpdateController.h3 = error.match(/^(Cannot check for updates: )(.)+\n/g)
+				AutoUpdateController.h3 = error.match(/^(Cannot check for updates: )(.)+\n/g)[0]
 			} else {
 				AutoUpdateController.h3 = I18n("An unknown error occurred. Please try again shortly.");
 			}
@@ -84,7 +84,6 @@ export class AutoUpdateController {
 			AutoUpdateController.tryAgain = undefined;
 			AutoUpdateController.installButton = undefined;
 			AutoUpdateController.restartNow = false;
-			$("[id='update'] .mtd-welcome-next-button").html(I18n("Skip") + "<i class='icon icon-arrow-r'></i>");
 
 			AutoUpdateController.isCheckingForUpdates = true;
 			$(document).trigger("mtdUpdateUIChanged");
@@ -152,7 +151,6 @@ export class AutoUpdateController {
 			AutoUpdateController.tryAgain = I18n("Check Again");
 			AutoUpdateController.installButton = undefined;
 			AutoUpdateController.restartNow = false;
-			$("[id='update'] .mtd-welcome-next-button").html(I18n("Next") + "<i class='icon icon-arrow-r'></i>");
 
 			AutoUpdateController.isCheckingForUpdates = false;
 			$(document).trigger("mtdUpdateUIChanged");

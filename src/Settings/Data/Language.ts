@@ -29,7 +29,7 @@ let tab: ModernDeckSettingsTab = {
         },
         translationCredits:{
             label:"{{Some awesome people have helped translate ModernDeck into other languages}}",
-            type:ModernDeckSettingsType.BUTTONS,
+            type:ModernDeckSettingsType.BUTTONGROUP,
             buttons:[
                 {text:"{{Help Translate}}", func: (): Window => open("http://translate.moderndeck.org/project/tweetdeck/invite") },
                 {text:"{{Translation Credits}}", func: (): JQuery => new UIAlert({title:I18n("Translation Credits"), message:translationCredits}).alertButton.remove()}

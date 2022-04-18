@@ -422,7 +422,7 @@
 	padding:10px
 }
 
-.mtd-settings-option-buttons {
+.mtd-settings-option-buttongroup {
 	height:auto
 }
 
@@ -430,7 +430,7 @@
 	height:240px!important;
 	font-family:RobotoMono!important;
 	tab-size:43px;
-	-moz-tab-size:43px /* https://bugzilla.mozilla.org/show_bug.cgi?id=737785 */
+	-moz-tab-size:43px /* Firefox 90 and below*/
 }
 
 .settings-modal .mtd-settings:after {
@@ -619,13 +619,13 @@ html body .mtd-settings-subpanel button {
 	pointer-events:none
 }
 
-.mtd-settings-option-buttons .mtd-settings-button {
+.mtd-settings-option-buttongroup .mtd-settings-button {
 	pointer-events:all;
 	margin-top:17px;
 	margin-left:10px
 }
 
-.mtd-settings-option-buttons .control-label {
+.mtd-settings-option-buttongroup .control-label {
 	font-size:16px;
 	padding-left:10px;
 	margin-bottom:10px

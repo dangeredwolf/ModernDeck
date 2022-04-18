@@ -168,26 +168,7 @@ export function renderTab(key, subPanel) {
 					select.attr("disabled", "disabled")
 				}
 
-				for (let prefKey in pref.options) {
-					if (!!(pref.options[prefKey].value)) {
-						let newPrefSel = pref.options[prefKey];
-						let newoption = make("option").attr("value",newPrefSel.value).html(internationalizeSettingString(newPrefSel.text));
-
-						select.append(newoption);
-					} else {
-
-						let group = make("optgroup").attr("label",internationalizeSettingString(pref.options[prefKey].name))
-
-						for (let subkey in pref.options[prefKey].children) {
-							let newSubPrefSel = pref.options[prefKey].children[subkey];
-							let newsuboption = make("option").attr("value",newSubPrefSel.value).html(internationalizeSettingString(newSubPrefSel.text));
-
-							group.append(newsuboption);
-						}
-
-						select.append(group);
-					}
-				}
+				
 
 				if (exists(pref.settingsKey)) {
 					select.val(getPref(pref.settingsKey));
@@ -550,61 +531,7 @@ export function openSettings(openMenu, limitedMenu) {
 
 		} else if (settingsData[key].enum === "aboutpage") {
 
-			let logo = make("i").addClass("mtd-logo icon-moderndeck icon").click(() => {
-				diagClickNumber++;
-				console.log(diagClickNumber);
-				if (diagClickNumber >= 5) {
-					diagClickNumber = 0;
-					diag();
-				}
-			});
-
-			let h1 = make("h1").addClass("mtd-about-title").html(`${window.ModernDeck.productName}<span>${I18n(versionString)}</span>`);
-			let h2 = make("h2").addClass("mtd-version-title").html("Version " + window.ModernDeck.versionFriendlyString + I18n(" (Build ") + window.ModernDeck.buildNumber + ")");
-			let logoCont = make("div").addClass("mtd-logo-container");
-
-			if (!isApp) {
-				logoCont.append(
-					make("p").addClass("mtd-check-out-app").html(I18n("Get background notifications and more features with the free <a href='https://moderndeck.org'>ModernDeck App</a>!"))
-				)
-			} else if (window.desktopConfig && window.desktopConfig.autoUpdatePolicy === "never") {
-				logoCont.append(
-					make("p").addClass("mtd-check-out-app").html(I18n("Updates are disabled by your organization"))
-				)
-			}
-
-			let info = make("p").html(I18n("Made with <i class=\"icon icon-heart mtd-about-heart\"></i> by <a href=\"https://twitter.com/dangeredwolf\" rel=\"user\" target=\"_blank\">dangered wolf</a> since 2014<br>ModernDeck is <a href=\"https://github.com/dangeredwolf/ModernDeck/\" target=\"_blank\">an open source project</a> released under the MIT license."));
-			let infoCont = make("div").addClass("mtd-about-info").append(info);
-
-			logoCont.append(logo, h1, h2);
-
-			subPanel.append(logoCont);
-
-			let updateCont = makeUpdateCont();
-
-			if (isApp && !html.hasClass("mtd-winstore") && !html.hasClass("mtd-flatpak") && !html.hasClass("mtd-macappstore") && (window.desktopConfig && window.desktopConfig.autoUpdatePolicy !== "never")) {
-				subPanel.append(updateCont);
-			}
-
-			if (html.hasClass("mtd-winstore")) {
-				subPanel.append(
-					make("div").append(
-						make("h2").addClass("mtd-update-h3 mtd-update-managed").html(I18n("Updates for this version of ModernDeck are managed by the Microsoft Store.")),
-						make("button").addClass("btn mtd-settings-button").html(I18n("Check for Updates")).click(() => open("ms-windows-store://updates"))
-					)
-				);
-			} else if (html.hasClass("mtd-macappstore")) {
-				subPanel.append(
-					make("div").append(
-						make("h2").addClass("mtd-update-h3 mtd-update-managed").html(I18n("Thank you for purchasing ModernDeck from the App Store!")),
-						make("button").addClass("btn mtd-settings-button").html(I18n("Check for Updates")).click(() => {
-							open("macappstore://showUpdatesPage");
-						})
-					)
-				);
-			}
-
-			subPanel.append(infoCont);
+			
 
 		} else if (settingsData[key].enum === "mutepage") {
 

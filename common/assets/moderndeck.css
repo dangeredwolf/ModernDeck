@@ -9938,5 +9938,5 @@ html:not(.mtd-classic-nav) .js-hide-drawer[data-title="Accounts"]:after {
 }
 
 html:not(.mtd-app) .js-account-list {
-	margin-top:32px
+	margin-top:12px
 }

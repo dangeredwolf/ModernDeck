@@ -1,3 +1,10 @@
+/*
+	Settings/UISettings.ts
+
+	Copyright (c) 2014-2022 dangered wolf, et al
+	Released under the MIT License
+*/
+
 import { I18n } from "../I18n";
 import { ModernDeckSettingsTab } from "../Types/ModernDeckSettings";
 import { UIModal } from "../UIModal";
@@ -15,7 +22,7 @@ export class UISettings extends UIModal {
 	selectedTab: UISettingsTab;
 	tabs: UISettingsTab[] = [];
 
-	static internationalizeSettingString(str: string): string {
+	static i18nString(str: string): string {
 		let matches: RegExpMatchArray = str.match(/{{.+?}}/g) || [];
 		matches.forEach((i: string) => {
 			let translatedString: string = I18n(i.substring(2, i.length - 2));
