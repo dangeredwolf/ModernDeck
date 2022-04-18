@@ -46,6 +46,11 @@ export class UISettings extends UIModal {
 
 		this.initializeTabs(openMenu);
 
+		// Overwrite this global when a new settings modal is created
+		window.renderTab = (tab: SettingsTab) => {
+			new UISettingsTab(tab, this, true);
+		}
+
 		return this;
 	}
 
@@ -93,5 +98,3 @@ export class UISettings extends UIModal {
 	}
 		
 }
-
-window.settingsUIRefactorTest = UISettings;

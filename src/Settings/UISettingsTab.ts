@@ -57,33 +57,42 @@ export class UISettingsTab {
 		return keys.indexOf(this.tabType);
 	}
 
-	constructor(tabType: SettingsTab, parentSettings: UISettings) {
-		this.tab = make("div").addClass("mtd-settings-tab");
-		this.subpanel = make("div").addClass("mtd-settings-subpanel mtd-col scroll-v").attr("id", String(tabType));
+	constructor(tabType: SettingsTab, parentSettings: UISettings, rerender?: boolean) {
 		this.tabType = tabType;
 		this.parentSettings = parentSettings;
 
-		this.constructTab();
+		if (rerender) {
+			this.tab = $(`.mtd-settings-tab[data-action="${tabType}"]`);
+			this.subpanel = $(`.mtd-settings-subpanel#${tabType}`);
+		} else {
+			this.tab = make("div").addClass("mtd-settings-tab");
+			this.subpanel = make("div").addClass("mtd-settings-subpanel mtd-col scroll-v").attr("id", tabType);
+			this.constructTab();
+			this.parentSettings.container.append(this.subpanel);
+		}
+
         this.tabBuildout();
-		this.parentSettings.container.append(this.subpanel);
 	}
 
 	constructTab(): JQuery {
 
-		this.tab = make("button").addClass("mtd-settings-tab").attr("data-action", this.tabType).html(UISettings.i18nString(settingsData[this.tabType as SettingsTab].tabName)).click(() => {
-			$(".mtd-settings-tab-selected").removeClass("mtd-settings-tab-selected").attr("aria-selected","false");
-			$(this).addClass("mtd-settings-tab-selected");
-			$(this).attr("aria-selected","true");
+		this.tab = make("button")
+			.addClass("mtd-settings-tab")
+			.attr("data-action", this.tabType)
+			.html(UISettings.i18nString(settingsData[this.tabType as SettingsTab].tabName)).click(() => {
+				$(".mtd-settings-tab-selected").removeClass("mtd-settings-tab-selected").attr("aria-selected","false");
+				$(this).addClass("mtd-settings-tab-selected");
+				$(this).attr("aria-selected","true");
 
-			/*
-				calculates how far to move over the settings menu
-				good thing arrays start at 0, as 0 would be 0px, it's the first one
-			*/
+				/*
+					calculates how far to move over the settings menu
+					good thing arrays start at 0, as 0 would be 0px, it's the first one
+				*/
 
-			this.parentSettings.container.data("page-selected", $(this.tab).attr("data-action"));
-			this.parentSettings.tabSelection.css("top",(this.index*50)+"px");
-			this.parentSettings.container.css("margin-top","-"+(this.index*545)+"px");
-		});
+				this.parentSettings.container.data("page-selected", $(this.tab).attr("data-action"));
+				this.parentSettings.tabSelection.css("top",(this.index*50)+"px");
+				this.parentSettings.container.css("margin-top","-"+(this.index*545)+"px");
+			});
 
 		this.parentSettings.tabsElement.append(this.tab);
 
