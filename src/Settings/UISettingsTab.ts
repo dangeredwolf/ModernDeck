@@ -6,7 +6,7 @@
 */
 
 import { ModernDeckSettingsEnumPage, ModernDeckSettingsOption, ModernDeckSettingsType } from "../Types/ModernDeckSettings";
-import { make } from "../Utils";
+import { isApp, make } from "../Utils";
 import { settingsData, SettingsTab } from "./SettingsData";
 import { SettingsButton } from "./UI/Components/Button";
 import { SettingsButtonGroup } from "./UI/Components/ButtonGroup";
@@ -36,6 +36,17 @@ export class UISettingsTab {
 					case SettingsTab.APPEARANCE:
 					case SettingsTab.TWEETS:
 					case SettingsTab.MUTES:
+						return false;
+				}
+
+				return true;
+			})
+		}
+
+		if (!isApp) {
+			keys = keys.filter(key => {
+				switch(key) {
+					case SettingsTab.APP:
 						return false;
 				}
 
