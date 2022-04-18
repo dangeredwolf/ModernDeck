@@ -38,7 +38,7 @@ export class UISettings extends UIModal {
 		this.tabSelection = make("button").addClass("mtd-settings-tab mtd-settings-tab-selection").css("top","0px");
 		this.container = make("div").addClass("mtd-settings-inner");
 		this.tabsElement = make("div").addClass("mtd-settings-tab-container mtd-tabs").append(this.tabSelection);
-		this.panel = make("div").addClass("mdl mtd-settings-panel").append(this.tabsElement).append(make("div").addClass("mtd-settings-inner-container").append(this.container));
+		this.panel = this.element.append(this.tabsElement).append(make("div").addClass("mtd-settings-inner-container").append(this.container));
 		
 		this.element.append(this.panel);
 		
