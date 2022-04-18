@@ -11,7 +11,6 @@ import { UIModal } from "./UIModal";
 import { getFullLanguage, getMainLanguage } from "./I18n";
 import unsupportedCodeTable from "./DataUnsupportedLanguage";
 import inaccuraciesCodeTable from "./DataTranslationsMayBeInaccurate";
-import languageText from "./DataTextThatSaysLanguage";
 import { setPref } from "./StoragePreferences";
 import { UIWelcome } from "./UIWelcome";
 
@@ -33,8 +32,22 @@ export class UILanguagePicker extends UIModal {
 		this.hasMadeChange = false;
 
 		this.element = make("div").addClass("mdl mtd-alert mtd-language-picker");
+
+		this.element.append(
+			make("span").addClass("mtd-language-hello").text("Hello"),
+			make("span").addClass("mtd-language-hello").text("你好"),
+			make("span").addClass("mtd-language-hello").text("こんにちは"),
+			make("span").addClass("mtd-language-hello").text("Hola"),
+			make("span").addClass("mtd-language-hello").text("Bonjour"),
+			make("span").addClass("mtd-language-hello").text("Hallo"),
+			make("span").addClass("mtd-language-hello").text("Привет"),
+			make("span").addClass("mtd-language-hello").text("Привіт"),
+			make("span").addClass("mtd-language-hello").text("Olá"),
+			make("span").addClass("mtd-language-hello").text("Ciao"),
+			make("span").addClass("mtd-language-hello").text("안녕하세요"),
+			make("span").addClass("mtd-language-hello").text("Witam"),
+		)
 		// @ts-ignore TypeScript does not understand current format i18ndata
-		this.alertTitle = make("h2").addClass("mtd-alert-title").html(`<i class='material-icon'>language</i>${languageText[navigator.language.substr(0,2)] || languageText["en"]}`);
 		this.alertButton = make("button").addClass("btn-primary btn mtd-alert-button hidden").html("OK");
 		this.inaccuracy = make("div").addClass("mtd-unsupported-lang mtd-lang-inaccuracies").html((
 			// @ts-ignore TypeScript does not understand current format i18ndata
@@ -75,9 +88,6 @@ export class UILanguagePicker extends UIModal {
 			make("option").val("zh_CN").html("简体中文"),
 			make("option").val("zh_TW").html("繁體中文"),
 		).change(() => {
-			// @ts-ignore TypeScript does not understand current format i18ndata
-			this.alertTitle.html("<i class='material-icon'>language</i> " + (languageData.Language[this.selectLanguage.val()] || languageData.Language[this.selectLanguage.val().substr(0,2)] || "Language"));
-
 			this.hasMadeChange = true;
 
 			// @ts-ignore TypeScript does not understand current format i18ndata
@@ -96,7 +106,7 @@ export class UILanguagePicker extends UIModal {
 				this.inaccuracy.html(langCodeBase + footer);
 			} else {
 				// @ts-ignore TypeScript does not understand current format i18ndata
-				this.inaccuracy.html(inaccuraciesCodeTable[this.selectLanguage.val()] || inaccuraciesCodeTable[this.selectLanguage.val().substr(0,2)] || inaccuraciesCodeTable["en"]["Translations may be incomplete or inaccurate."] + footer);
+				this.inaccuracy.html((inaccuraciesCodeTable[this.selectLanguage.val()] || inaccuraciesCodeTable[this.selectLanguage.val().substr(0,2)] || inaccuraciesCodeTable["en"]["Translations may be incomplete or inaccurate."]) + footer);
 			}
 		});
 
