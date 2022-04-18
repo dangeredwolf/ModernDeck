@@ -59,6 +59,7 @@ declare global {
         html: JQuery;
         body: JQuery;
         head: JQuery;
+        mtdLoadStyleCSS: string;
         useNativeContextMenus: boolean;
         desktopConfig: DesktopConfig;
         mtdPrepareWindows: () => void;

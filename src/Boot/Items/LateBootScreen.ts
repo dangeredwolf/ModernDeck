@@ -30,7 +30,7 @@ export const initLateBootScreen = () => {
 		document.getElementsByTagName("html")[0].setAttribute("style", "background: #111");
 		document.getElementsByTagName("body")[0].setAttribute("style", "background: #111");
 
-		if (typeof mtdLoadStyleCSS === "undefined") {
+		if (typeof window.mtdLoadStyleCSS === "undefined") {
 			const mtdLoadStyleCSS = `
 				img.spinner-centered {
 					display:none!important
