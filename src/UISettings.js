@@ -12,9 +12,7 @@ import { parseActions } from "./Settings/SettingsInit";
 import { I18n } from "./I18n";
 import { AutoUpdateController } from "./AutoUpdateController";
 import { diag } from "./UIDiag"; 
-
-let verTextId = 2;
-let verText = "";
+import { versionString } from "./Functions/VersionController";
 
 function internationalizeSettingString(str) {
 	let matches = str.match(/{{.+?}}/g);
@@ -551,20 +549,6 @@ export function openSettings(openMenu, limitedMenu) {
 			renderTab(key, subPanel);
 
 		} else if (settingsData[key].enum === "aboutpage") {
-			switch(verTextId) {
-				case 0:
-					verText = "";
-					break;
-				case 1:
-					verText = I18n("Version");
-					break;
-				case 2:
-					verText = I18n("Beta");
-					break;
-				case 3:
-					verText = I18n("Developer Version");
-					break;
-			}
 
 			let logo = make("i").addClass("mtd-logo icon-moderndeck icon").click(() => {
 				diagClickNumber++;
@@ -575,7 +559,7 @@ export function openSettings(openMenu, limitedMenu) {
 				}
 			});
 
-			let h1 = make("h1").addClass("mtd-about-title").html(`${window.ModernDeck.productName}<span>${verText}</span>`);
+			let h1 = make("h1").addClass("mtd-about-title").html(`${window.ModernDeck.productName}<span>${I18n(versionString)}</span>`);
 			let h2 = make("h2").addClass("mtd-version-title").html("Version " + window.ModernDeck.versionFriendlyString + I18n(" (Build ") + window.ModernDeck.buildNumber + ")");
 			let logoCont = make("div").addClass("mtd-logo-container");
 

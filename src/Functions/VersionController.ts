@@ -23,6 +23,14 @@ export enum BrowserName {
 	UNKNOWN = "Unknown Browser"
 }
 
+export enum VersionStrings {
+	VERSION = "Version",
+	BETA = "Beta",
+	DEVELOPER_VERSION = "Developer Version"
+}
+
+export const versionString = VersionStrings.DEVELOPER_VERSION;
+
 export const getSystemName = (): SystemName => {
 
 	if (navigator.userAgent.indexOf("Windows NT") > 0) {
