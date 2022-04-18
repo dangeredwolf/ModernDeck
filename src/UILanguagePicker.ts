@@ -18,6 +18,14 @@ import { UIWelcome } from "./UIWelcome";
 import languageData from "./DataI18n";
 
 export class UILanguagePicker extends UIModal {
+	hasMadeChange: boolean;
+	alertTitle: JQuery<HTMLElement>;
+	alertButton: JQuery<HTMLElement>;
+	inaccuracy: JQuery<HTMLElement>;
+	selectLanguage: JQuery<HTMLElement>;
+	alertBody: JQuery<HTMLElement>;
+	alertButtonContainer: JQuery<HTMLElement>;
+	unsupportedLang: JQuery<HTMLElement>;
 	constructor() {
 		super();
 		window.languageData = languageData;
@@ -25,9 +33,17 @@ export class UILanguagePicker extends UIModal {
 		this.hasMadeChange = false;
 
 		this.element = make("div").addClass("mdl mtd-alert mtd-language-picker");
-		this.alertTitle = make("h2").addClass("mtd-alert-title").html("<i class='material-icon'>language</i>" + (languageText[navigator.language.substr(0,2)] || languageText["en"]));
+		// @ts-ignore TypeScript does not understand current format i18ndata
+		this.alertTitle = make("h2").addClass("mtd-alert-title").html(`<i class='material-icon'>language</i>${languageText[navigator.language.substr(0,2)] || languageText["en"]}`);
 		this.alertButton = make("button").addClass("btn-primary btn mtd-alert-button hidden").html("OK");
-		this.inaccuracy = make("div").addClass("mtd-unsupported-lang mtd-lang-inaccuracies").html(((DataI18n[navigator.language.substr(0,2)] && DataI18n[navigator.language.substr(0,2)]["Translations may be incomplete or inaccurate."] ? DataI18n[navigator.language.substr(0,2)]["Translations may be incomplete or inaccurate."] : (inaccuraciesCodeTable[navigator.language.substr(0,2)] || inaccuraciesCodeTable["en"]) ))+ " <a href='https://translate.moderndeck.org'>translate.moderndeck.org</a>")
+		this.inaccuracy = make("div").addClass("mtd-unsupported-lang mtd-lang-inaccuracies").html((
+			// @ts-ignore TypeScript does not understand current format i18ndata
+			(DataI18n[navigator.language.substr(0,2)] && DataI18n[navigator.language.substr(0,2)]["Translations may be incomplete or inaccurate."] ?
+			// @ts-ignore TypeScript does not understand current format i18ndata
+			DataI18n[navigator.language.substr(0,2)]["Translations may be incomplete or inaccurate."] :
+			// @ts-ignore TypeScript does not understand current format i18ndata
+			(inaccuraciesCodeTable[navigator.language.substr(0,2)] || inaccuraciesCodeTable["en"]))) +
+			" <a href='https://translate.moderndeck.org'>translate.moderndeck.org</a>")
 
 		this.selectLanguage = make("select").attr("id","mtd_language_select").append(
 			make("option").val("default").html("-").attr("selected","true").attr("disabled","true"),
@@ -59,14 +75,18 @@ export class UILanguagePicker extends UIModal {
 			make("option").val("zh_CN").html("简体中文"),
 			make("option").val("zh_TW").html("繁體中文"),
 		).change(() => {
+			// @ts-ignore TypeScript does not understand current format i18ndata
 			this.alertTitle.html("<i class='material-icon'>language</i> " + (languageData.Language[this.selectLanguage.val()] || languageData.Language[this.selectLanguage.val().substr(0,2)] || "Language"));
 
 			this.hasMadeChange = true;
 
+			// @ts-ignore TypeScript does not understand current format i18ndata
 			this.alertButton.html(languageData.OK[this.selectLanguage.val()] || languageData.OK[this.selectLanguage.val().substr(0,2)] || "OK");
 			this.alertButton.removeClass("hidden");
 
+			// @ts-ignore TypeScript does not understand current format i18ndata
 			let langCode = DataI18n["Translations may be incomplete or inaccurate."][this.selectLanguage.val()];
+			// @ts-ignore TypeScript does not understand current format i18ndata
 			let langCodeBase = DataI18n["Translations may be incomplete or inaccurate."][this.selectLanguage.val().substr(0,2)];
 			const footer = " <a href='https://translate.moderndeck.org'>translate.moderndeck.org</a>";
 
@@ -75,12 +95,13 @@ export class UILanguagePicker extends UIModal {
 			} else if (typeof langCodeBase !== "undefined" && langCodeBase === false) {
 				this.inaccuracy.html(langCodeBase + footer);
 			} else {
+				// @ts-ignore TypeScript does not understand current format i18ndata
 				this.inaccuracy.html(inaccuraciesCodeTable[this.selectLanguage.val()] || inaccuraciesCodeTable[this.selectLanguage.val().substr(0,2)] || inaccuraciesCodeTable["en"]["Translations may be incomplete or inaccurate."] + footer);
 			}
 		});
 
 		setTimeout(() => {
-			let mainLang = navigator.language.substr(0,2);
+			let mainLang: string = navigator.language.substr(0,2);
 			switch(mainLang) {
 				case "en":
 					mainLang = "en_US";
@@ -98,14 +119,14 @@ export class UILanguagePicker extends UIModal {
 			
 			console.log(mainLang);
 
-			let mainLangElement = $("#mtd_language_select>option[value=\"" + mainLang + "\"]");
+			let mainLangElement = $(`#mtd_language_select>option[value=${mainLang}"]`);
 			console.log(`mainLangElement.length ${mainLangElement.length}`)
 			if (mainLangElement.length > 0) {
 				mainLangElement.attr("selected","true");
 				this.selectLanguage.trigger("change");
 			}
 
-			let localLang = $("#mtd_language_select>option[value=\"" + navigator.language.replace(/\-/g,"_") + "\"]");
+			let localLang = $(`#mtd_language_select>option[value="${navigator.language.replace(/\-/g,"_")}"]`);
 
 			if (localLang.length > 0) {
 				localLang.attr("selected","true");
@@ -120,9 +141,9 @@ export class UILanguagePicker extends UIModal {
 		})
 
 
-		window.inaccuraciesCodeTable = inaccuraciesCodeTable;
 		this.alertBody = make("p").addClass("mtd-alert-body").append(this.selectLanguage);
 		this.alertButtonContainer = make("div").addClass("mtd-alert-button-container");
+		// @ts-ignore TypeScript does not understand current format i18ndata
 		this.unsupportedLang = make("div").addClass("mtd-unsupported-lang").html((unsupportedCodeTable[navigator.language.substr(0,2)] || unsupportedCodeTable["en"]) + " <a href='https://translate.moderndeck.org'>translate.moderndeck.org</a>")
 
 
@@ -153,6 +174,7 @@ export class UILanguagePicker extends UIModal {
 
 		this.element.append(this.alertTitle, this.alertBody, this.alertButtonContainer);
 
+		// @ts-ignore TypeScript does not understand current format i18ndata
 		if (!DataI18n.source[navigator.language.substr(0,2)]) {
 			this.element.append(this.unsupportedLang);
 		} else {
