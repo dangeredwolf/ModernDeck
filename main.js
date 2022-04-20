@@ -146,11 +146,11 @@ const template = [
 		label: "ModernDeck",
 		role: "appMenu",
 		submenu: [
-			{ label: I18n("About ModernDeck"), click() { if (!mainWindow){return;}mainWindow.show();mainWindow.webContents.send("aboutMenu"); } },
-			{ label: I18n("Check for Updates..."), click(){ if (!mainWindow){return;}mainWindow.show();mainWindow.webContents.send("checkForUpdatesMenu"); } },
+			{ label: I18n("About ModernDeck"), click() { if (!mainWindow){return;}mainWindow.show();mainWindow?.webContents?.send("aboutMenu"); } },
+			{ label: I18n("Check for Updates..."), click(){ if (!mainWindow){return;}mainWindow.show();mainWindow?.webContents?.send("checkForUpdatesMenu"); } },
 			{ type: "separator" },
-			{ label: I18n("Preferences..."), click(){ if (!mainWindow){return;}mainWindow.show();mainWindow.webContents.send("openSettings"); } },
-			{ label: I18n("Accounts..."), click(){ if (!mainWindow){return;}mainWindow.show();mainWindow.webContents.send("accountsMan"); } },
+			{ label: I18n("Preferences..."), click(){ if (!mainWindow){return;}mainWindow.show();mainWindow?.webContents?.send("openSettings"); } },
+			{ label: I18n("Accounts..."), click(){ if (!mainWindow){return;}mainWindow.show();mainWindow?.webContents?.send("accountsMan"); } },
 			{ type: "separator" },
 			{ role: "services" },
 			{ type: "separator" },
@@ -164,8 +164,8 @@ const template = [
 	{
 		role: "fileMenu",
 		submenu: [
-			{ label: I18n("New Tweet..."), click(){ if (!mainWindow){return;}mainWindow.show();mainWindow.webContents.send("newTweet"); } },
-			{ label: I18n("New Direct Message..."), click(){ if (!mainWindow){return;}mainWindow.show();mainWindow.webContents.send("newDM"); } },
+			{ label: I18n("New Tweet..."), click(){ if (!mainWindow){return;}mainWindow.show();mainWindow?.webContents?.send("newTweet"); } },
+			{ label: I18n("New Direct Message..."), click(){ if (!mainWindow){return;}mainWindow.show();mainWindow?.webContents?.send("newDM"); } },
 			{ type: "separator" },
 			{ role: "close" }
 		]
@@ -220,7 +220,7 @@ const template = [
 		role: "help",
 		submenu: [
 			{ label: I18n("Send Feedback"), click(){ electron.shell.openExternal("https://github.com/dangeredwolf/ModernDeck/issues");}},
-			{ label: I18n("Message @ModernDeck"), click(){ if (!mainWindow){electron.shell.openExternal("https://twitter.com/messages/compose?recipient_id=2927859037");return;}mainWindow.show();mainWindow.webContents.send("msgModernDeck"); } },
+			{ label: I18n("Message @ModernDeck"), click(){ if (!mainWindow){electron.shell.openExternal("https://twitter.com/messages/compose?recipient_id=2927859037");return;}mainWindow.show();mainWindow?.webContents?.send("msgModernDeck"); } },
 		]
 	}
 ]
@@ -317,24 +317,16 @@ function makeLoginWindow(url,teams) {
 
 		if (url.indexOf("https://tweetdeck.twitter.com") >= 0 && !teams) {
 			console.log("Hello tweetdeck!");
-			if (loginWindow) {
-				loginWindow.close();
-			}
-			if (mainWindow) {
-				mainWindow.reload();
-			}
+			loginWindow?.close?.();
+			mainWindow?.reload?.();
 			event.preventDefault();
 			return;
 		}
 
 		if (url.indexOf("twitter.com/logout") >= 0) {
 			console.log("Hello logout!");
-			if (mainWindow) {
-				mainWindow.reload();
-			}
-			if (loginWindow) {
-				loginWindow.close();
-			}
+			loginWindow?.close?.();
+			mainWindow?.reload?.();
 			event.preventDefault();
 			return;
 		}
@@ -359,14 +351,16 @@ function makeLoginWindow(url,teams) {
 	loginWindow.webContents.on("did-navigate-in-page", (event, url) => {
 		console.log("did-navigate-in-page", url);
 
+		if (url === "https://mobile.twitter.com/") {
+			event.preventDefault();
+			loginWindow?.close?.();
+			return;
+		}
+
 		if (url.indexOf("https://tweetdeck.twitter.com") >= 0) {
 			console.log("Hello tweetdeck2!");
-			if (mainWindow) {
-				mainWindow.loadURL(url);
-			}
-			if (loginWindow) {
-				loginWindow.close();
-			}
+			mainWindow?.loadURL?.(url);
+			loginWindow?.close?.();
 			event.preventDefault();
 			return;
 		}
@@ -593,7 +587,7 @@ function makeWindow() {
 	updateAppTag();
 
 	try {
-		mainWindow.webContents.executeJavaScript(`
+		mainWindow?.webContents?.executeJavaScript(`
 			document.getElementsByClassName("js-signin-ui block")[0].innerHTML =
 			\`<img class="mtd-loading-logo" src="moderndeck://assets/img/moderndeck.png" style="display: none;">
 			<div class="preloader-wrapper active">
@@ -633,9 +627,9 @@ function makeWindow() {
 	}
 
 
-	mainWindow.webContents.on("dom-ready", () => {
+	mainWindow?.webContents?.on("dom-ready", () => {
 
-		mainWindow.webContents.executeJavaScript(`
+		mainWindow?.webContents?.executeJavaScript(`
 			document.getElementsByTagName("html")[0].style = "background: #111!important;";
 			document.getElementsByTagName("body")[0].style = "background: #111!important;";
 
@@ -671,7 +665,7 @@ function makeWindow() {
 			</div>\`;
 		`)
 
-		mainWindow.webContents.executeJavaScript(
+		mainWindow?.webContents?.executeJavaScript(
 			`
 			const baseUrl = document.createElement("meta");
 			baseUrl.setAttribute("name", "moderndeck-base-url");
@@ -700,7 +694,7 @@ function makeWindow() {
 
 	});
 
-	mainWindow.webContents.on("did-fail-load", (_event, code, desc) => {
+	mainWindow?.webContents?.on("did-fail-load", (_event, code, desc) => {
 		let msg = "ModernDeck failed to start." + "\n\n";
 
 
@@ -730,7 +724,7 @@ function makeWindow() {
 		The content security policy needs to be replaced to be able to interact with GIF services
 	*/
 
-	mainWindow.webContents.session.webRequest.onHeadersReceived(
+	mainWindow?.webContents?.session.webRequest.onHeadersReceived(
 		{urls:["https://tweetdeck.twitter.com/*"]},
 		(details, callback) => {
 			let foo = details.responseHeaders;
@@ -748,11 +742,11 @@ function makeWindow() {
 	);
 
 
-	mainWindow.webContents.session.webRequest.onBeforeSendHeaders({urls:["https://twitter.com/i/jot*", "https://tweetdeck.twitter.com/Users*"]}, (details, callback) => {
+	mainWindow?.webContents?.session.webRequest.onBeforeSendHeaders({urls:["https://twitter.com/i/jot*", "https://tweetdeck.twitter.com/Users*"]}, (details, callback) => {
 		callback({cancel: true})
 	})
 
-	// mainWindow.webContents.session.webRequest.onHeadersReceived(
+	// mainWindow?.webContents?.session.webRequest.onHeadersReceived(
 	// 	{urls:["https://*.twitter.com/*","https://*.twimg.com/*"]},
 	// 	(details, callback) => {
 	// 		let foo = details.responseHeaders;
@@ -765,7 +759,7 @@ function makeWindow() {
 	// 	}
 	// );
 
-	mainWindow.webContents.loadURL("https://tweetdeck.twitter.com");
+	mainWindow?.webContents?.loadURL("https://tweetdeck.twitter.com");
 
 	/*
 
@@ -778,14 +772,13 @@ function makeWindow() {
 
 	*/
 
-	mainWindow.webContents.on("will-navigate", (event, url) => {
+	mainWindow?.webContents?.on("will-navigate", (event, url) => {
 
 		const { shell } = electron;
 		console.log(url);
 
 		if (url.indexOf("https://tweetdeck.twitter.com") < 0 && url.indexOf("moderndeck://.") < 0) {
 			event.preventDefault();
-			console.log(url);
 			if (url.indexOf("twitter.com/login") >= 0 || url.indexOf("twitter.com/i/flow/login") >= 0 || url.indexOf("twitter.com/logout") >= 0) {
 				console.log("this is a login window! will-navigate");
 				event.newGuest = makeLoginWindow(url, false);
@@ -809,7 +802,7 @@ function makeWindow() {
 
 	*/
 
-	mainWindow.webContents.on("new-window", (event, url) => {
+	mainWindow?.webContents?.on("new-window", (event, url) => {
 		const { shell } = electron;
 		event.preventDefault();
 		console.log(url);
@@ -822,7 +815,7 @@ function makeWindow() {
 			event.newGuest = makeLoginWindow(url,false);
 		} else {
 			shell.openExternal(url).catch(() => {
-				mainWindow.webContents.send("failedOpenUrl");
+				mainWindow?.webContents?.send("failedOpenUrl");
 			})
 		}
 
@@ -832,16 +825,12 @@ function makeWindow() {
 
 	// i actually forget why this is here
 
-	mainWindow.webContents.on("context-menu", (_event, params) => {
-		if (!mainWindow || !mainWindow.webContents) { return }
-
-		mainWindow.webContents.send("context-menu", params);
+	mainWindow?.webContents?.on("context-menu", (_event, params) => {
+		mainWindow?.webContents?.send("context-menu", params);
 	});
 
 	ipcMain.on("getDesktopConfig", () => {
-		if (!mainWindow || !mainWindow.webContents) { return }
-
-		mainWindow.webContents.send("desktopConfig", desktopConfig);
+		mainWindow?.webContents?.send("desktopConfig", desktopConfig);
 	});
 
 	/*
@@ -874,7 +863,7 @@ function makeWindow() {
 			}
 
 			fs.readFile(results.filePaths[0], "utf-8", (_, load) => {
-				mainWindow.webContents.send("settingsReceived", JSON.parse(load));
+				mainWindow?.webContents?.send("settingsReceived", JSON.parse(load));
 			});
 		});
 	});
@@ -888,7 +877,7 @@ function makeWindow() {
 			}
 
 			fs.readFile(results.filePaths[0], "utf-8", (_, load) => {
-				mainWindow.webContents.send("tweetenSettingsReceived", JSON.parse(load));
+				mainWindow?.webContents?.send("tweetenSettingsReceived", JSON.parse(load));
 			});
 		});
 	});
@@ -915,17 +904,13 @@ function makeWindow() {
 	ipcMain.on("drawerOpen", () => {
 		console.log("open");
 
-		if (!mainWindow || !mainWindow.webContents) { return }
-
-		mainWindow.webContents.executeJavaScript("document.querySelector(\"html\").classList.add(\"mtd-drawer-open\");");
+		mainWindow?.webContents?.executeJavaScript("document.querySelector(\"html\").classList.add(\"mtd-drawer-open\");");
 	});
 
 	ipcMain.on("drawerClose", () => {
 		console.log("close");
 
-		if (!mainWindow || !mainWindow.webContents) { return }
-
-		mainWindow.webContents.executeJavaScript("document.querySelector(\"html\").classList.remove(\"mtd-drawer-open\");");
+		mainWindow?.webContents?.executeJavaScript("document.querySelector(\"html\").classList.remove(\"mtd-drawer-open\");");
 	});
 
 
@@ -952,51 +937,35 @@ function makeWindow() {
 	*/
 
 	ipcMain.on("copy", () => {
-		if (!mainWindow || !mainWindow.webContents) { return }
-
-		mainWindow.webContents.copy();
+		mainWindow?.webContents?.copy();
 	});
 
 	ipcMain.on("cut", () => {
-		if (!mainWindow || !mainWindow.webContents) { return }
-
-		mainWindow.webContents.cut();
+		mainWindow?.webContents?.cut();
 	});
 
 	ipcMain.on("paste", () => {
-		if (!mainWindow || !mainWindow.webContents) { return }
-
-		mainWindow.webContents.paste();
+		mainWindow?.webContents?.paste();
 	});
 
 	ipcMain.on("delete", () => {
-		if (!mainWindow || !mainWindow.webContents) { return }
-
-		mainWindow.webContents.delete();
+		mainWindow?.webContents?.delete();
 	});
 
 	ipcMain.on("selectAll", () => {
-		if (!mainWindow || !mainWindow.webContents) { return }
-
-		mainWindow.webContents.selectAll();
+		mainWindow?.webContents?.selectAll();
 	});
 
 	ipcMain.on("undo", () => {
-		if (!mainWindow || !mainWindow.webContents) { return }
-
-		mainWindow.webContents.undo();
+		mainWindow?.webContents?.undo();
 	});
 
 	ipcMain.on("redo", () => {
-		if (!mainWindow || !mainWindow.webContents) { return }
-
-		mainWindow.webContents.redo();
+		mainWindow?.webContents?.redo();
 	});
 
 	ipcMain.on("copyImage", (_event, arg) => {
-		if (!mainWindow || !mainWindow.webContents) { return }
-
-		mainWindow.webContents.copyImageAt(arg.x, arg.y);
+		mainWindow?.webContents?.copyImageAt(arg.x, arg.y);
 	});
 
 	ipcMain.on("saveImage", (_event, arg) => {
@@ -1004,9 +973,7 @@ function makeWindow() {
 	});
 
 	ipcMain.on("inspectElement", (_event, arg) => {
-		if (!mainWindow || !mainWindow.webContents) { return }
-
-		mainWindow.webContents.inspectElement(arg.x, arg.y);
+		mainWindow?.webContents?.inspectElement(arg.x, arg.y);
 	});
 
 	ipcMain.on("showEmojiPanel", () => {
@@ -1125,9 +1092,7 @@ function makeWindow() {
 
 	// Change maximise to restore size window
 	mainWindow.on("maximize", () => {
-		if (!mainWindow || !mainWindow.webContents) { return }
-
-		mainWindow.webContents.executeJavaScript('\
+		mainWindow?.webContents?.executeJavaScript('\
 			document.querySelector("html").classList.add("mtd-maximized");\
 			document.querySelector(".windowcontrol.max").innerHTML = "&#xE3E0";\
 		');
@@ -1135,9 +1100,7 @@ function makeWindow() {
 
 	// Change restore size window to maximize
 	mainWindow.on("unmaximize", () => {
-		if (!mainWindow || !mainWindow.webContents) { return }
-
-		mainWindow.webContents.executeJavaScript('\
+		mainWindow?.webContents?.executeJavaScript('\
 			document.querySelector("html").classList.remove("mtd-maximized");\
 			document.querySelector(".windowcontrol.max").innerHTML = "&#xE3C6";\
 		');
@@ -1155,9 +1118,7 @@ function makeWindow() {
 		at least in comparison to in windowed. Chrome itself does this too.
 	*/
 	mainWindow.on("enter-full-screen", () => {
-		if (!mainWindow || !mainWindow.webContents) { return }
-
-		mainWindow.webContents.executeJavaScript('document.querySelector("html").classList.remove("mtd-app");\
+		mainWindow?.webContents?.executeJavaScript('document.querySelector("html").classList.remove("mtd-app");\
 			document.querySelector("html").classList.remove("mtd-app-win");\
 			document.querySelector("html").classList.remove("mtd-app-mac");\
 			document.querySelector("html").classList.remove("mtd-app-linux");\
@@ -1165,13 +1126,11 @@ function makeWindow() {
 	});
 
 	if (store.get("mtd_fullscreen")) {
-		mainWindow.webContents.executeJavaScript('document.querySelector("html").classList.remove("mtd-app");');
+		mainWindow?.webContents?.executeJavaScript('document.querySelector("html").classList.remove("mtd-app");');
 		mainWindow.setFullScreen(true)
 	}
 
 	mainWindow.on("leave-full-screen", () => {
-		if (!mainWindow || !mainWindow.webContents) { return }
-
 		store.set("mtd_fullscreen", false);
 
 		updateAppTag();
@@ -1206,13 +1165,13 @@ function makeTray() {
 
 	const contextMenu = Menu.buildFromTemplate([
 		{ label: I18n("Open ModernDeck"), click(){ showHiddenWindow() } },
-		{ label: (process.platform === "darwin" ? I18n("Preferences...") : I18n("Settings...")), click(){ if (!mainWindow){return;}mainWindow.show();mainWindow.webContents.send("openSettings"); } },
-		{ visible: (typeof process.windowStore === "undefined" && desktopConfig.autoUpdatePolicy !== "disabled"), label: (process.platform === "darwin" ? I18n("Check for Updates...") : I18n("Check for updates...")), click(){ if (!mainWindow){return;}mainWindow.show();mainWindow.webContents.send("checkForUpdatesMenu"); } },
+		{ label: (process.platform === "darwin" ? I18n("Preferences...") : I18n("Settings...")), click(){ if (!mainWindow){return;}mainWindow.show();mainWindow?.webContents?.send("openSettings"); } },
+		{ visible: (typeof process.windowStore === "undefined" && desktopConfig.autoUpdatePolicy !== "disabled"), label: (process.platform === "darwin" ? I18n("Check for Updates...") : I18n("Check for updates...")), click(){ if (!mainWindow){return;}mainWindow.show();mainWindow?.webContents?.send("checkForUpdatesMenu"); } },
 
 		{ type: "separator" },
 
-		{ label: I18n("New Tweet..."), click(){ if (!mainWindow){return;}mainWindow.show();mainWindow.webContents.send("newTweet"); } },
-		{ label: I18n("New Direct Message..."), click(){ if (!mainWindow){return;}mainWindow.show();mainWindow.webContents.send("newDM"); } },
+		{ label: I18n("New Tweet..."), click(){ if (!mainWindow){return;}mainWindow.show();mainWindow?.webContents?.send("newTweet"); } },
+		{ label: I18n("New Direct Message..."), click(){ if (!mainWindow){return;}mainWindow.show();mainWindow?.webContents?.send("newDM"); } },
 
 		{ type: "separator" },
 
@@ -1317,7 +1276,7 @@ autoUpdater.on("error", (e,f,g) => {
 	if (!mainWindow || !mainWindow || !mainWindow.webContents) {
 		return;
 	}
-	mainWindow.webContents.send("error",e,f,g);
+	mainWindow?.webContents?.send("error",e,f,g);
 });
 
 // Let moderndeck.js know that we are...
@@ -1327,7 +1286,7 @@ autoUpdater.on("checking-for-update", (e) => {
 	if (!mainWindow || !mainWindow || !mainWindow.webContents) {
 		return;
 	}
-	mainWindow.webContents.send("checking-for-update",e);
+	mainWindow?.webContents?.send("checking-for-update",e);
 });
 
 // ...currently downloading updates
@@ -1335,7 +1294,7 @@ autoUpdater.on("download-progress", (e) => {
 	if (!mainWindow || !mainWindow || !mainWindow.webContents) {
 		return;
 	}
-	mainWindow.webContents.send("download-progress",e);
+	mainWindow?.webContents?.send("download-progress",e);
 });
 
 // ...have found an update
@@ -1343,7 +1302,7 @@ autoUpdater.on("update-available", (e) => {
 	if (!mainWindow || !mainWindow || !mainWindow.webContents) {
 		return;
 	}
-	mainWindow.webContents.send("update-available",e);
+	mainWindow?.webContents?.send("update-available",e);
 });
 
 // ...have already downloaded updates
@@ -1351,7 +1310,7 @@ autoUpdater.on("update-downloaded", (e) => {
 	if (!mainWindow || !mainWindow || !mainWindow.webContents) {
 		return;
 	}
-	mainWindow.webContents.send("update-downloaded",e);
+	mainWindow?.webContents?.send("update-downloaded",e);
 });
 
 // ...haven't found any updates
@@ -1359,7 +1318,7 @@ autoUpdater.on("update-not-available", (e) => {
 	if (!mainWindow || !mainWindow || !mainWindow.webContents) {
 		return;
 	}
-	mainWindow.webContents.send("update-not-available",e);
+	mainWindow?.webContents?.send("update-not-available",e);
 });
 
 // moderndeck can send manual update check requests
@@ -1372,22 +1331,20 @@ ipcMain.on("checkForUpdates", (e) => {
 
 ipcMain.on("downloadUpdates", (e) => {
 	console.log("Client requested update download");
-	if (autoUpdater && desktopConfig.autoUpdatePolicy !== "disabled") {
+	if (autoUpdater && desktopConfig?.autoUpdatePolicy !== "disabled") {
 		autoUpdater.downloadUpdate();
 	}
 });
 
 // Main -> Beta and vice versa
 ipcMain.on("changeChannel", (e) => {
-	if (autoUpdater) {
-		autoUpdater.allowPrerelease = store.get("mtd_updatechannel") === "beta";
-		autoUpdater.channel = store.get("mtd_updatechannel");
-	}
+	autoUpdater.allowPrerelease = store.get("mtd_updatechannel") === "beta";
+	autoUpdater.channel = store.get("mtd_updatechannel");
 });
 
 // App tags control browser behavior like CSS layouts and sometimes JS
 function updateAppTag() {
-	mainWindow.webContents.executeJavaScript('document.querySelector("html").classList.remove("mtd-app");\
+	mainWindow?.webContents?.executeJavaScript('document.querySelector("html").classList.remove("mtd-app");\
 		document.querySelector("html").classList.remove("mtd-app-win");\
 		document.querySelector("html").classList.remove("mtd-app-mac");\
 		document.querySelector("html").classList.remove("mtd-app-linux");\
@@ -1435,7 +1392,7 @@ function updateAppTag() {
 
 	}
 
-	mainWindow.webContents.executeJavaScript(
+	mainWindow?.webContents?.executeJavaScript(
 		(store.get("mtd_fullscreen") ? 'document.querySelector("html").classList.add("mtd-js-app");' : mtdAppTag)
 	)
 }
@@ -1443,8 +1400,8 @@ function updateAppTag() {
 // OS inverted colour scheme (high contrast) mode changed. We automatically respond to changes for accessibility
 
 nativeTheme.on("updated", (e,v) => {
-	mainWindow.webContents.send("inverted-color-scheme-changed",nativeTheme.shouldUseInvertedColorScheme);
-	// mainWindow.webContents.send("color-scheme-changed", nativeTheme.shouldUseDarkColors ? "dark" : "light");
+	mainWindow?.webContents?.send("inverted-color-scheme-changed",nativeTheme.shouldUseInvertedColorScheme);
+	// mainWindow?.webContents?.send("color-scheme-changed", nativeTheme.shouldUseDarkColors ? "dark" : "light");
 });
 
 if (process.platform === "darwin") {
@@ -1453,7 +1410,7 @@ if (process.platform === "darwin") {
 			"AppleInterfaceThemeChangedNotification",
 			() => {
 				if (!mainWindow || !mainWindow.webContents) { return }
-				// mainWindow.webContents.send("color-scheme-changed", systemPreferences.isDarkMode() ? "dark" : "light");
+				// mainWindow?.webContents?.send("color-scheme-changed", systemPreferences.isDarkMode() ? "dark" : "light");
 			}
 		)
 	} catch(e) {
@@ -1481,7 +1438,7 @@ setTimeout(() => {
 			return;
 		}
 
-		mainWindow.webContents.send(
+		mainWindow?.webContents?.send(
 			"inverted-color-scheme-changed",
 			!!nativeTheme.shouldUseInvertedColorScheme
 		);
