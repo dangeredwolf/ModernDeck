@@ -6,6 +6,7 @@
 */
 
 import { ColumnChirp } from "./Types/TweetDeck";
+import { getIpc } from "./Utils";
 
 const pretendToBeWrapperApp = true;
 
@@ -50,6 +51,7 @@ export const FunctionPatcher = (): void => {
 						}
 					})
 					TD.ui.updates.showDetailView(col, tweetObj);
+					getIpc().send("focus");
 				}
 			},
 			setTheme:(str): void => {console.log("Theme: "+str)},

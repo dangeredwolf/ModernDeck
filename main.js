@@ -250,6 +250,12 @@ function isRosetta() {
 	}
 }
 
+function exitFully() {
+	closeForReal = true;
+	app.relaunch();
+	app.exit();
+}
+
 function makeErrorWindow() {
 
 	const { shell } = electron;
@@ -367,7 +373,7 @@ function makeLoginWindow(url,teams) {
 
 		if (url.indexOf("/i/flow/signup") >= 0 || url.indexOf("/i/flow/password_reset") >= 0) {
 			event.preventDefault();
-			loginWindow.webContents.goBack();
+			loginWindow?.webContents?.goBack?.();
 			const {shell} = electron;
 			shell.openExternal(url);
 			return;
@@ -742,7 +748,7 @@ function makeWindow() {
 	);
 
 
-	mainWindow?.webContents?.session.webRequest.onBeforeSendHeaders({urls:["https://twitter.com/i/jot*", "https://tweetdeck.twitter.com/Users*"]}, (details, callback) => {
+	mainWindow?.webContents?.session?.webRequest?.onBeforeSendHeaders?.({urls:["https://twitter.com/i/jot*", "https://tweetdeck.twitter.com/Users*"]}, (_details, callback) => {
 		callback({cancel: true})
 	})
 
@@ -759,7 +765,7 @@ function makeWindow() {
 	// 	}
 	// );
 
-	mainWindow?.webContents?.loadURL("https://tweetdeck.twitter.com");
+	mainWindow?.webContents?.loadURL?.("https://tweetdeck.twitter.com");
 
 	/*
 
@@ -772,7 +778,7 @@ function makeWindow() {
 
 	*/
 
-	mainWindow?.webContents?.on("will-navigate", (event, url) => {
+	mainWindow?.webContents?.on?.("will-navigate", (event, url) => {
 
 		const { shell } = electron;
 		console.log(url);
@@ -802,7 +808,7 @@ function makeWindow() {
 
 	*/
 
-	mainWindow?.webContents?.on("new-window", (event, url) => {
+	mainWindow?.webContents?.on?.("new-window", (event, url) => {
 		const { shell } = electron;
 		event.preventDefault();
 		console.log(url);
@@ -825,12 +831,17 @@ function makeWindow() {
 
 	// i actually forget why this is here
 
-	mainWindow?.webContents?.on("context-menu", (_event, params) => {
+	mainWindow?.webContents?.on?.("context-menu", (_event, params) => {
 		mainWindow?.webContents?.send("context-menu", params);
 	});
 
 	ipcMain.on("getDesktopConfig", () => {
 		mainWindow?.webContents?.send("desktopConfig", desktopConfig);
+	});
+
+	ipcMain.on("focus", () => {
+		console.log("Focus!");
+		mainWindow?.focus?.();
 	});
 
 	/*
@@ -937,35 +948,35 @@ function makeWindow() {
 	*/
 
 	ipcMain.on("copy", () => {
-		mainWindow?.webContents?.copy();
+		mainWindow?.webContents?.copy?.();
 	});
 
 	ipcMain.on("cut", () => {
-		mainWindow?.webContents?.cut();
+		mainWindow?.webContents?.cut?.();
 	});
 
 	ipcMain.on("paste", () => {
-		mainWindow?.webContents?.paste();
+		mainWindow?.webContents?.paste?.();
 	});
 
 	ipcMain.on("delete", () => {
-		mainWindow?.webContents?.delete();
+		mainWindow?.webContents?.delete?.();
 	});
 
 	ipcMain.on("selectAll", () => {
-		mainWindow?.webContents?.selectAll();
+		mainWindow?.webContents?.selectAll?.();
 	});
 
 	ipcMain.on("undo", () => {
-		mainWindow?.webContents?.undo();
+		mainWindow?.webContents?.undo?.();
 	});
 
 	ipcMain.on("redo", () => {
-		mainWindow?.webContents?.redo();
+		mainWindow?.webContents?.redo?.();
 	});
 
 	ipcMain.on("copyImage", (_event, arg) => {
-		mainWindow?.webContents?.copyImageAt(arg.x, arg.y);
+		mainWindow?.webContents?.copyImageAt?.(arg.x, arg.y);
 	});
 
 	ipcMain.on("saveImage", (_event, arg) => {
@@ -973,7 +984,7 @@ function makeWindow() {
 	});
 
 	ipcMain.on("inspectElement", (_event, arg) => {
-		mainWindow?.webContents?.inspectElement(arg.x, arg.y);
+		mainWindow?.webContents?.inspectElement?.(arg.x, arg.y);
 	});
 
 	ipcMain.on("showEmojiPanel", () => {
@@ -983,18 +994,14 @@ function makeWindow() {
 	// browser initiated app restart
 
 	ipcMain.on("restartApp", () => {
-		setTimeout(() => {
-			closeForReal = true;
-			app.relaunch();
-			app.exit();
-		},100);
+		setTimeout(exitFully, 100);
 	});
 
 	// browser initiated app restart, after user clicks to restart to install updates
 
 	ipcMain.on("restartAndInstallUpdates", () => {
 		closeForReal = true;
-		autoUpdater.quitAndInstall(false,true);
+		autoUpdater.quitAndInstall(false, true);
 	});
 
 	// When user elects to erase all of their settings, we wipe everything clean, including caches
@@ -1007,24 +1014,16 @@ function makeWindow() {
 		ses.clearHostResolverCache();
 		ses.cookies.flushStore(() => {});
 		ses.clearStorageData({
-			storages:['appcache','cookies','filesystem','indexdb','localstorage','shadercache','websql','serviceworkers'],
-			quotas: ['temporary','persistent','syncable']
+			storages:["appcache", "cookies", "filesystem", "indexdb", "localstorage", "shadercache", "websql", "serviceworkers"],
+			quotas: ["temporary", "persistent", "syncable"]
 		},() => {
-			setTimeout(() => {
-				closeForReal = true;
-				app.relaunch();
-				app.exit();
-			},500);
+			setTimeout(exitFully, 500);
 		});
 
 		// Workaround: If electron doesn't report that data is cleared within 4 seconds, restart anyway.
 		// 4 seconds is plenty of time for it to get it done.
 
-		setTimeout(() => {
-			closeForReal = true;
-			app.relaunch();
-			app.exit();
-		},4000);
+		setTimeout(exitFully, 4000);
 
 
 	});
@@ -1032,7 +1031,6 @@ function makeWindow() {
 	// Changing from immersive titlebar to native
 
 	ipcMain.on("setNativeTitlebar", (_event, arg) => {
-
 		isRestarting = true;
 
 		if (mainWindow) {
@@ -1042,11 +1040,7 @@ function makeWindow() {
 
 		store.set("mtd_nativetitlebar", arg);
 
-		setTimeout(() => {
-			closeForReal = true;
-			app.relaunch();
-			app.exit();
-		},100);
+		setTimeout(exitFully, 100);
 
 	});
 
@@ -1092,7 +1086,7 @@ function makeWindow() {
 
 	// Change maximise to restore size window
 	mainWindow.on("maximize", () => {
-		mainWindow?.webContents?.executeJavaScript('\
+		mainWindow?.webContents?.executeJavaScript?.('\
 			document.querySelector("html").classList.add("mtd-maximized");\
 			document.querySelector(".windowcontrol.max").innerHTML = "&#xE3E0";\
 		');
@@ -1100,16 +1094,14 @@ function makeWindow() {
 
 	// Change restore size window to maximize
 	mainWindow.on("unmaximize", () => {
-		mainWindow?.webContents?.executeJavaScript('\
+		mainWindow?.webContents?.executeJavaScript?.('\
 			document.querySelector("html").classList.remove("mtd-maximized");\
 			document.querySelector(".windowcontrol.max").innerHTML = "&#xE3C6";\
 		');
 	});
 
 	if (store.get("mtd_maximised")) {
-		if (!mainWindow) { return }
-
-		mainWindow.maximize();
+		mainWindow?.maximize?.();
 	}
 
 	/*
@@ -1118,7 +1110,7 @@ function makeWindow() {
 		at least in comparison to in windowed. Chrome itself does this too.
 	*/
 	mainWindow.on("enter-full-screen", () => {
-		mainWindow?.webContents?.executeJavaScript('document.querySelector("html").classList.remove("mtd-app");\
+		mainWindow?.webContents?.executeJavaScript?.('document.querySelector("html").classList.remove("mtd-app");\
 			document.querySelector("html").classList.remove("mtd-app-win");\
 			document.querySelector("html").classList.remove("mtd-app-mac");\
 			document.querySelector("html").classList.remove("mtd-app-linux");\
@@ -1126,13 +1118,12 @@ function makeWindow() {
 	});
 
 	if (store.get("mtd_fullscreen")) {
-		mainWindow?.webContents?.executeJavaScript('document.querySelector("html").classList.remove("mtd-app");');
-		mainWindow.setFullScreen(true)
+		mainWindow?.webContents?.executeJavaScript?.('document.querySelector("html").classList.remove("mtd-app");');
+		mainWindow?.setFullScreen?.(true)
 	}
 
 	mainWindow.on("leave-full-screen", () => {
 		store.set("mtd_fullscreen", false);
-
 		updateAppTag();
 	});
 
@@ -1157,7 +1148,8 @@ function makeTray() {
 		return;
 	}
 
-	let pathName = __dirname + separator + "common" + separator + "assets" + separator + "img" + separator + "app" + separator + (process.platform === "darwin" ? "macOSTrayTemplate.png" : "Tray.png");
+	let pathName = `${__dirname}${separator}common${separator}assets${separator}` +
+					`img${separator}app${separator}${(process.platform === "darwin" ? "macOSTrayTemplate.png" : "Tray.png")}`;
 
 	const image = nativeImage.createFromPath(pathName);
 	image.setTemplateImage(true);
@@ -1192,16 +1184,11 @@ function makeTray() {
 
 	tray.setToolTip("ModernDeck");
 	tray.setContextMenu(contextMenu);
-
-	tray.on("click", () => {
-		showHiddenWindow();
-	});
+	tray.on("click", showHiddenWindow);
 }
 
 function destroyTray() {
-	if (tray) {
-		tray.destroy();
-	}
+	tray?.destroy?.();
 	tray = null;
 }
 
@@ -1239,10 +1226,9 @@ app.on("ready", () => {
 // After all windows are closed, we can quit, unless restarting for update
 
 app.on("window-all-closed", () => {
-	if (isRestarting) {
-		return;
+	if (!isRestarting) {
+		app.quit();
 	}
-	app.quit();
 });
 
 app.on("before-quit", () => {
@@ -1252,8 +1238,9 @@ app.on("before-quit", () => {
 // Make window if it doesn't exist, if user clicks app icon
 
 app.on("activate", () => {
-	if (mainWindow === null)
+	if (mainWindow === null) {
 		makeWindow();
+	}
 	if (hidden && mainWindow && mainWindow.show) {
 		mainWindow.show();
 		hidden = false;
