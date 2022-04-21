@@ -68,7 +68,7 @@
 		"@types/jquery": "^3.5.14",
 		"@types/twit": "^2.2.30",
 		"adm-zip": "^0.5.9",
-		"babel-loader": "^8.2.4",
+		"babel-loader": "^8.2.5",
 		"electron": "^18.0.4",
 		"electron-builder": "^23.0.7",
 		"fs-extra": "^10.1.0",
