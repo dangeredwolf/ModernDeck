@@ -78,9 +78,6 @@ export function formatNumberI18n(number: number): string {
 	return window.mtdNumberFormat.format(number);
 }
 
-// @ts-ignore
-window.formatNumberI18n = formatNumberI18n;
-
 /*
 	Helper function that rounds a number to the nearest hundredth (2nd decimal)
 */

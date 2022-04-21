@@ -210,8 +210,7 @@ export const mtdAppFunctions = (): void => {
 			return;
 		} else {
 			if (typeof (theMenu) !== "undefined")
-				// @ts-ignore - Always an instance of jQuery<HTMLElement> in this case
-				window.body.append(theMenu);
+				window.body.append(theMenu as JQuery<HTMLElement>);
 		}
 	});
 

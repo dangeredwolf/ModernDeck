@@ -155,8 +155,7 @@ export const buildContextMenu = (menuEvent: Electron.ContextMenuParams): JQuery<
 		let ul = make("ul");
 
 		for(let i = 0; i < items.length; i++){
-			// @ts-ignore - we know this is a JQuery object
-			ul.append(items[i]);
+			ul.append(items[i] as JQuery);
 		}
 
 		let menu = make("menu")

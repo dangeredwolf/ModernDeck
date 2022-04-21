@@ -16,11 +16,10 @@ function onElementAddedToDOM(e?: { target?: Node; }) {
 	let tar = $(e.target);
 
 	if (tar.hasClass("dropdown")) {
-		// @ts-ignore
-		e.target.parentNode.removeChild = (dropdown) => {
+		// @ts-ignore TypeScript does not like it when I override removeChild
+		e.target.parentNode.removeChild = (dropdown: HTMLElement) => {
 			$(dropdown).addClass("mtd-fade-out");
 			setTimeout(() => {
-				// @ts-ignore
 				dropdown.remove();
 			},200);
 		}
@@ -47,7 +46,7 @@ export function overrideFadeOut() {
 
 	// here we add event listeners to add a fading out animation when a modal dialog is closed
 	
-    // @ts-ignore
+    // @ts-ignore TypeScript does not like it when I override removeChild
     document.querySelector(".js-modals-container").removeChild = (rmnode: HTMLElement) => {
 		$(rmnode).addClass("mtd-fade-out");
 		setTimeout(() => {
@@ -58,7 +57,7 @@ export function overrideFadeOut() {
 	// let's make sure we get any that might have initialised before mtdInit began
 
 	$(document.querySelector(".application").childNodes).each((obj: number) => {
-        // @ts-ignore
+        // @ts-ignore TypeScript does not like it when I override removeChild
 		document.querySelector(".application").childNodes[obj].removeChild = (rmnode: HTMLElement): void => {
 			$(rmnode).addClass("mtd-fade-out");
 			setTimeout(() => {
@@ -88,7 +87,7 @@ export function overrideFadeOut() {
 	// };
 	setTimeout(() => {
 		if (typeof ($(".app-navigator")[0]) !== "undefined") {
-            // @ts-ignore
+            // @ts-ignoreTypeScript does not like it when I override removeChild
 			$(".app-navigator")[0].removeChild = (i: HTMLElement) => {
 				if ($(i).hasClass("dropdown-menu")) {
 					$(i).addClass("mtd-fade-out");

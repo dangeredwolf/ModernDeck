@@ -14,8 +14,7 @@ export const fixColumnAnimations = () => {
 		let c: JQuery<HTMLElement> = $(b);
 		mutationObserver(b,() => {
 			if (typeof c.attr("style") !== "undefined") {
-                // @ts-ignore
-				let num = parseInt(c.attr("style").match(/[\-\d]+/g));
+				let num = parseInt(c.attr("style").match(/[\-\d]+/g)[0]);
 				let hasFilterOptionsVisible = false;
 				try {
 					hasFilterOptionsVisible = parseInt(c.parent().children(".column-options").children('.js-column-message[style]')[0].style.height.replace("px","")) > 0;
