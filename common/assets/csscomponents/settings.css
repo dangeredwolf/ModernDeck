@@ -569,7 +569,7 @@ html body .mtd-settings-subpanel button {
 	background-color:transparent
 }
 
-.mtd-mute-text:before {
+.mtd-mute-text {
 	font-size:16px;
 	font-weight:600;
 	padding-right:10px
@@ -763,4 +763,12 @@ html body .mtd-settings-subpanel button {
 
 .mtd-settings-subtext {
 	height:auto!important
+}
+
+.mtd-input-monospace {
+	font-family:RobotoMono
+}
+
+.mtd-input-monospace::placeholder {
+	font-family: var(--defaultFontOrder);
 }

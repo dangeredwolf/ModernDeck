@@ -54,8 +54,6 @@ export enum AMEFilters {
 import * as t from 'io-ts';
 import { getPref } from '../StoragePreferences';
 
-declare let TD: TweetDeckObject;
-
 interface AMEFilter {
   name: string;
   descriptor: string;
@@ -93,22 +91,21 @@ export interface MuteCatch extends t.TypeOf<typeof RMuteCatch> {
 
 const nonUserSpecificsTypes = [
 	TweetDeckFilterTypes.SOURCE,
-	TweetDeckFilterTypes.PHRASE,
-	AMEFilters.REGEX,
+	TweetDeckFilterTypes.PHRASE
 ];
 
 const userSpecificTypes = [
-	AMEFilters.DEFAULT_AVATARS,
-	AMEFilters.FOLLOWER_COUNT_GREATER_THAN,
-	AMEFilters.FOLLOWER_COUNT_LESS_THAN,
-	AMEFilters.MUTE_USER_KEYWORD,
-	AMEFilters.NFT_AVATAR,
-	AMEFilters.REGEX_DISPLAYNAME,
-	AMEFilters.USER_BIOGRAPHIES,
-	AMEFilters.USER_REGEX,
+  AMEFilters.HASHTAGS_NUMBER,
+  AMEFilters.REGEX_DISPLAYNAME,
+  AMEFilters.REGEX,
+  AMEFilters.USER_REGEX,
+  AMEFilters.USER_BIOGRAPHIES,
+  AMEFilters.DEFAULT_AVATARS,
+  AMEFilters.FOLLOWER_COUNT_LESS_THAN,
+  AMEFilters.FOLLOWER_COUNT_GREATER_THAN,
 ];
 
-const muteTypeAllowlist = [...nonUserSpecificsTypes, ...userSpecificTypes] as const;
+export const muteTypeAllowlist = [...nonUserSpecificsTypes, ...userSpecificTypes] as const;
 type AllowedMuteTypes = typeof muteTypeAllowlist[number];
 
 function getInitialMuteCatches() {
@@ -387,7 +384,7 @@ export const setupAME = () => {
       },
       name: 'Default Profile Pictures',
       descriptor: 'users having a default profile picture',
-      placeholder: 'Write something random here',
+      placeholder: '',
       function(t, e) {
         if (!e.user) return true;
 
@@ -485,16 +482,16 @@ export const setupAME = () => {
     return this._getDisplayType();
   };
 
-  $(document).on('change', '.js-filter-types', (e) => {
-    e.preventDefault();
+  // $(document).on('change', '.js-filter-types', (e) => {
+  //   e.preventDefault();
 
-    const options = e.target.options;
-    const filter = e.target.options[options.selectedIndex].value;
+  //   const options = e.target.options;
+  //   const filter = e.target.options[options.selectedIndex].value;
 
-    if (RAMEFilters.is(filter)) {
-      $('.js-filter-input').attr('placeholder', AmeFilters[filter].placeholder);
-    }
-  });
+  //   if (RAMEFilters.is(filter)) {
+  //     $('.js-filter-input').attr('placeholder', AmeFilters[filter].placeholder);
+  //   }
+  // });
 
   $('body').on('click', '[data-mtd-filter]', (ev) => {
     ev.preventDefault();
