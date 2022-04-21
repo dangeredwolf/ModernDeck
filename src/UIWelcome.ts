@@ -7,13 +7,10 @@
 
 /* Main thread for welcome screen */
 
-import { _welcomeData } from "./DataWelcome";
 import { make } from "./Utils";
-import { enableStylesheetExtension, disableStylesheetExtension } from "./StylesheetExtensions";
-import { setPref } from "./StoragePreferences";
-import { I18n } from "./I18n";
 import { UIModal } from "./UIModal";
-let welcomeData = _welcomeData;
+import { I18n } from "./I18n";
+import { setPref } from "./StoragePreferences";
 
 export const debugWelcome = false;
 
@@ -23,6 +20,9 @@ export function welcomeScreen() {
 
 export class UIWelcome extends UIModal {
 	container: JQuery<HTMLElement>;
+	leftPane: JQuery<HTMLElement>;
+	rightPane: JQuery<HTMLElement>;
+
 	constructor() {
 		super();
 
@@ -34,76 +34,28 @@ export class UIWelcome extends UIModal {
 
 		window.mtdPrepareWindows();
 
-		disableStylesheetExtension("light");
-		enableStylesheetExtension("dark");
-
-		$(".message-banner").attr("style","display: none;");
-
 		if ($(".mtd-language-picker").length > 0) { //language > welcome
 			return;
 		}
 
-		this.container = make("div").addClass("mtd-settings-inner mtd-welcome-inner");
-		this.element = make("div").addClass("mdl mtd-settings-panel").append(this.container);
+		$(".message-banner").attr("style","display: none;");
 
-		for (var key in welcomeData) {
+		this.container = make("div").addClass("mtd-welcome-inner");
+		this.element = make("div").addClass("mdl mtd-welcome-panel").append(this.container);
 
-			let welc = welcomeData[key];
+		this.container.append(
+			make("h1").text(I18n(`Welcome to {productName}`).replace("{productName}", window.ModernDeck.productName)),
+			make("p").text(I18n(`Welcome to {productName}, a free and open-source Twitter client, built on the power of TweetDeck but enhanced with a modern UI and more customization.`).replace("{productName}", window.ModernDeck.productName))
+		)
 
-			if (welc.enabled === false) {
-				continue;
-			}
+		this.leftPane = make("div").addClass("mtd-welcome-pane mtd-welcome-pane-left");
+		this.rightPane = make("div").addClass("mtd-welcome-pane mtd-welcome-pane-right");
 
-			let subPanel = make("div").addClass("mtd-settings-subpanel mtd-col scroll-v").attr("id",key);
-
-			subPanel.append(
-				make("h1").addClass("mtd-welcome-head").html(welc.title),
-				make("p").addClass("mtd-welcome-body").html(welc.body)
-			);
-
-			if (welc.html) {
-				subPanel.append(
-					// @ts-expect-error TS jQuery definitions don't account for passing jQuery objects to set as body html
-					make("div").addClass("mtd-welcome-html").html(welc.html)
-				)
-			}
-
-			let button = make("button").html("<i class='icon icon-arrow-l'></i>" + I18n("Previous")).addClass("btn btn-positive mtd-settings-button mtd-welcome-prev-button")
-			.click(function() {
-				$(".mtd-settings-inner").css("margin-left",((subPanel.index()-1) * -700)+"px")
-				if (typeof welc.prevFunc === "function") {
-					welc.prevFunc();
-				}
-			});
-
-			let button2 = make("button").html(I18n("Next") + "<i class='icon icon-arrow-r'></i>").addClass("btn btn-positive mtd-settings-button mtd-welcome-next-button")
-			.click(function() {
-				$(".mtd-settings-inner").css("margin-left",((subPanel.index()+1) * -700)+"px");
-				if (typeof welc.nextFunc === "function") {
-					welc.nextFunc();
-				}
-			});
-
-			if (key === "done") {
-				button2.html(I18n("Done")).off("click").click(() => {
-					setPref("mtd_welcomed",true);
-					$(document).trigger("uiCloseModal");
-				});
-			}
-
-			subPanel.append(button,button2);
-
-			this.container.append(subPanel);
-		}
+		$("#settings-modal").click(() => {
+			setPref("mtd_welcomed", true);
+		})
 
 		this.display();
-
-		let theme = TD.settings.getTheme();
-		if (theme === "dark") {
-			$("input[value='dark']").click();
-		} else if (theme === "light") {
-			$("input[value='light']").click();
-		}
 
 		return this;
 	}
