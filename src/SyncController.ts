@@ -70,7 +70,7 @@ export class SyncController {
 
         for (let key in remoteSettings) {
             if (getPref(key) !== remoteSettings[key]) {
-                console.log(`Local setting ${key} differs from remote.`);
+                console.log(`Local setting ${key} differs from remote. ${getPref(key)} local ${remoteSettings[key]} remote`);
                 setPref(key, remoteSettings[key]);
 
                 let setting = findSettingForKey(key);
