@@ -113,6 +113,8 @@ export const setPref = (id: string, pref: any) : void => {
 		return;
 	}
 
+	let oldPref = getPref(id);
+
 	if (exists(window.ModernDeck.store)) {
 
 		// Newer versions of electron-store are more strict about using delete vs. set undefined
@@ -130,7 +132,7 @@ export const setPref = (id: string, pref: any) : void => {
 		validSyncPrefs = getValidSyncPreferences();
 	}
 
-	if (validSyncPrefs.indexOf(id) >= 0) {
+	if (validSyncPrefs.indexOf(id) >= 0 && pref !== oldPref) {
 		window?.ModernDeck?.SyncController?.forceUpdate?.();
 	}
 
