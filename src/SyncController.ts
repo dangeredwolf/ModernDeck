@@ -13,7 +13,7 @@ export class SyncController {
 
     static initialize(): void {
         setTimeout(this.updateSync, 5000);
-        setInterval(this.updateSync, 20000);
+        setInterval(this.updateSync, 10000);
     }
 
     static getRemoteSettings(): any {
