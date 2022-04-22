@@ -97,3 +97,8 @@
 .mtd-welcome-panel i {
 	display:inline
 }
+
+.mtd-welcome-panel .avatar {
+	width:48px;
+	height:48px;
+}
