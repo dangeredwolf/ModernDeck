@@ -241,7 +241,6 @@ let tab: ModernDeckSettingsTab = {
 			"}",
 			activate:{
 				func: (opt: string): void => {
-					setPref("mtd_customcss",opt);
 					enableCustomStylesheetExtension("customcss",opt);
 				}
 			},

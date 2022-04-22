@@ -85,6 +85,7 @@ export class SyncController {
     }
     
     static forceUpdate(): void {
+        console.log("FORCE UPDATE!!!");
         setPref("mtd_sync_last_updated", new Date().getTime());
         this.updateSync();
     }
