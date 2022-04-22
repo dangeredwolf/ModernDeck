@@ -18,3 +18,4 @@ node_modules
 default.*
 common/assets/moderndeck.js.map
 common/assets/moderndeck.js
+src/BuildProps.json
