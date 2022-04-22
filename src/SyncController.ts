@@ -53,11 +53,11 @@ export class SyncController {
     }
 
     static updateRemoteSettings(): void {
-        const time = new Date().getTime();
-        setPref("mtd_sync_last_updated", time);
+        // const time = new Date().getTime();
+        // setPref("mtd_sync_last_updated", time);
 
         let prefs = this.dumpPrefs();
-        prefs["mtd_sync_last_updated"] = time;
+        prefs["mtd_sync_last_updated"] = getPref("mtd_sync_last_updated");//time;
         
         this.setRemoteSettings(prefs);
     }
