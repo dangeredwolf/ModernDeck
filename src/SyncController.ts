@@ -92,7 +92,7 @@ export class SyncController {
     static updateSync(): void {
         console.log("updateSync");
         if (getPref("mtd_sync_enabled")) {
-            let localLastUpdated = getPref("mtd_sync_last_updated");
+            let localLastUpdated = getPref("mtd_sync_last_updated") || 0;
             const remoteSettings = SyncController.getRemoteSettings();
 
             if (remoteSettings === null || remoteSettings["mtd_sync_last_updated"] < localLastUpdated) {
