@@ -15,6 +15,8 @@
 import { exists, isApp } from "./Utils";
 export const debugStorageSys: boolean = false;
 
+let validSyncPrefs: string[] = null;
+
 if (isApp) {
 	const Store = window.require('electron-store');
 	window.ModernDeck.store = new Store({name:"mtdsettings"});
@@ -105,6 +107,8 @@ export const purgePrefs = () : void => {
 
 export const setPref = (id: string, pref: any) : void => {
 
+	console.log(`setPref ${id} ${pref}`);
+
 	if (id === "mtd_core_theme") {
 		return;
 	}
@@ -120,6 +124,14 @@ export const setPref = (id: string, pref: any) : void => {
 		}
 	} else {
 		localStorage.setItem(id, pref);
+	}
+
+	if (validSyncPrefs === null) {
+		validSyncPrefs = getValidSyncPreferences();
+	}
+
+	if (validSyncPrefs.indexOf(id) >= 0) {
+		window?.ModernDeck?.SyncController?.forceUpdate?.();
 	}
 
 	if (debugStorageSys)
@@ -157,12 +169,12 @@ export const hasPref = (id: string) : boolean => {
 }
 
 /*
-	dumpPreferences()
+	dumpPreferencesString()
 
 	returns string: dump of user preferences, for diag function
 */
 
-export const dumpPreferences = () : string => {
+export const dumpPreferencesString = () : string => {
 
 	let prefs: string = "";
 
@@ -181,4 +193,74 @@ export const dumpPreferences = () : string => {
 	}
 
 	return prefs;
+}
+
+
+/*
+	dumpPreferences()
+
+	returns object dump of user preferences
+*/
+
+export const dumpPreferences = () : any => {
+
+	var prefBundle: { [key: string]: any } = {};
+
+	for (let key in window.ModernDeck.settingsData) {
+		if (!window.ModernDeck.settingsData[key].enum) {
+			for (const i in window.ModernDeck.settingsData[key].options) {
+				const prefKey: string = window.ModernDeck.settingsData[key].options[i].settingsKey;
+				const pref: any = window.ModernDeck.settingsData[key].options[i];
+
+				if (typeof prefKey === "string" && pref.type !== "button" && pref.type !== "link" && typeof pref.queryFunction !== "function") {
+					prefBundle[prefKey] = getPref(prefKey);
+				}
+			}
+		}
+	}
+
+	console.log(prefBundle);
+
+	return prefBundle;
+}
+
+/*
+	dumpPreferences()
+
+	returns object dump of user preferences
+*/
+
+export const getValidSyncPreferences = () : string[] => {
+
+	let syncPrefs = [];
+
+	for (let key in window.ModernDeck.settingsData) {
+		if (!window.ModernDeck.settingsData[key].enum) {
+			for (const i in window.ModernDeck.settingsData[key].options) {
+				const prefKey: string = window.ModernDeck.settingsData[key].options[i].settingsKey;
+				const pref: any = window.ModernDeck.settingsData[key].options[i];
+
+				if (typeof prefKey === "string" && pref.type !== "button" && pref.type !== "link" && typeof pref.queryFunction !== "function") {
+					syncPrefs.push(prefKey);
+				}
+			}
+		}
+	}
+
+	return syncPrefs;
+}
+
+export const findSettingForKey = (queryKey: string) : any => {
+	for (let key in window.ModernDeck.settingsData) {
+		if (!window.ModernDeck.settingsData[key].enum) {
+			for (const i in window.ModernDeck.settingsData[key].options) {
+				const prefKey: string = window.ModernDeck.settingsData[key].options[i].settingsKey;
+				const pref: any = window.ModernDeck.settingsData[key].options[i];
+
+				if (prefKey === queryKey) {
+					return pref;
+				}
+			}
+		}
+	}
 }

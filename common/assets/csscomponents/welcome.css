@@ -39,10 +39,6 @@
 	height:60px;
 }
 
-.mtd-welcome-developer-profile tweet-img {
-	margin-top: -10px;
-}
-
 .mtd-welcome-profile-text {
 	padding:8px 58px
 }
@@ -57,7 +53,7 @@
 }
 
 .mtd-welcome-panel {
-	width:800px!important;
+	width: 800px!important;
 	height: 600px!important;
 }
 
