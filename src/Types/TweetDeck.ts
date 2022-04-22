@@ -144,7 +144,8 @@ export interface TweetDeckObject {
 
 interface TweetDeckCache {
 	twitterUsers: {
-		getByScreenName: (screen_name: string) => {results: TwitterUserInternal[]}
+		getByScreenName: (screen_name: string) => JQuery.Deferred<TwitterUserInternal>;
+		getById: (id: string | number) => JQuery.Deferred<TwitterUserInternal>;
 	};
 	lists: unknown;
 	names: Names;
@@ -276,7 +277,9 @@ export interface TweetDeckControllerRelationshipResult {
 }
 
 export interface TwitterUserInternal {
-    ext_has_nft_avatar: any;
+	emojifiedName: string;
+	profileURL: string;
+    ext_has_nft_avatar: boolean;
 	id_str: string;
 	screen_name: string;
 	profileBannerURL: string;
@@ -284,8 +287,7 @@ export interface TwitterUserInternal {
 	profileImageURL: string;
 	name: string;
 	screenName: string;
-	results: {
-	};
+	results: {};
 }
 
 export interface TweetDeckControllerClient {

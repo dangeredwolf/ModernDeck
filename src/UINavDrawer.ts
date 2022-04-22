@@ -18,6 +18,7 @@ import { TwitterUserInternal } from "./Types/TweetDeck";
 */
 
 const getProfileInfo = (): TwitterUserInternal => {
+	// @ts-ignore *shrug*
 	return TD?.cache?.twitterUsers?.getByScreenName?.(TD.storage?.accountController?.getPreferredAccount("twitter")?.state?.username).results[0] || null
 }
 

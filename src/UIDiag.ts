@@ -6,7 +6,7 @@
 */
 
 import { isApp } from "./Utils";
-import { dumpPreferences } from "./StoragePreferences";
+import { dumpPreferencesString } from "./StoragePreferences";
 import { version } from "../package.json";
 import { I18n } from "./I18n";
 import { UIAlert } from "./UIAlert";
@@ -57,7 +57,7 @@ export const diag = (): void => {
 
 	log += loadedExtensions.join(", ");
 
-	log += `\n\nUser preferences: \n${dumpPreferences()}`;
+	log += `\n\nUser preferences: \n${dumpPreferencesString()}`;
 
 	console.log(log);
 

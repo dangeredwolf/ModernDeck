@@ -5,120 +5,95 @@
 	Released under the MIT License
 */
 
-
-.mtd-welcome-next-button,.mtd-welcome-prev-button {
-	position:absolute;
-	bottom:50px
+.mtd-welcome-inner {
+	padding: 10px 20px
 }
 
-.mtd-welcome-next-button {
-	right:30px
+.mtd-welcome-inner h1 {
+	font-size: 32px;
+	padding-top: 10px;
 }
 
-.mtd-welcome-prev-button {
-	left:30px
-}
-
-.mtd-welcome-body,.mtd-welcome-head,.mtd-welcome-html {
-	padding-left:5px!important
-}
-
-.mtd-settings-inner.mtd-welcome-inner {
-	top:30px;
-	-webkit-app-region:no-drag;
-	left:0
-}
-
-.mtd-welcome-inner .mtd-settings-subpanel {
-	height:100%
-}
-
-.mtd-welcome-inner>.mtd-settings-subpanel {
-	width:660px;
-}
-
-.mtd-welcome-head-icon {
-	padding-right:10px;
-	line-height:70px
-}
-
-.mtd-welcome-head .icon-moderndeck {
-	font-size:96px;
-	height:96px;
-	width:96px;
-	line-height:110px
-}
-
-.mtd-welcome-html .column {
-	height:170px;
-	width:300px;
-	float:right
-}
-
-.mtd-welcome-theme-picker {
-	margin-left:50px;
-	width:100px
-}
-
-.mtd-enable-update-next .mtd-settings-subpanel[id="update"] .mtd-welcome-head,
-.mtd-enable-update-next .mtd-settings-subpanel[id="update"] .mtd-welcome-body
-/*,.mtd-welcome-inner:not(.mtd-enable-update-next) .mtd-settings-subpanel[id="update"] .mtd-welcome-next-button */{
-	display:none
-}
-
-.mtd-welcome-body {
+.mtd-welcome-inner p {
 	line-height:1.5
 }
 
-.mtd-welcome-body i {
-	line-height:.8
+.mtd-welcome-pane {
+	position:absolute;
+	width:50%;
+	bottom:0;
+	height: 460px;
+	padding: 20px;
+	box-sizing: border-box;
 }
 
-.mtd-welcome-body .mtd-nav-activator {
-	margin:0!important
+.mtd-welcome-pane-left {
+	left:0;
 }
 
-
-.mtd-welcome-inner .mtd-settings-subpanel:nth-child(1) {
-	margin-left:0;
-	margin-top:0
+.mtd-welcome-pane-right {
+	right:0
 }
 
-.mtd-welcome-inner .mtd-settings-subpanel:nth-child(2) {
-	margin-left:700px;
-	margin-top:0
+.mtd-welcome-developer-profile {
+	height:60px;
 }
 
-.mtd-welcome-inner .mtd-settings-subpanel:nth-child(3) {
-	margin-left:1400px;
-	margin-top:0
+.mtd-welcome-profile-text {
+	padding:8px 58px
 }
 
-.mtd-welcome-inner .mtd-settings-subpanel:nth-child(4) {
-	margin-left:2100px;
-	margin-top:0
+.mtd-welcome-profile-text > b, .mtd-welcome-profile-text > span {
+	display:block;
+	position:relative
 }
 
-.mtd-welcome-inner .mtd-settings-subpanel:nth-child(5) {
-	margin-left:2800px;
-	margin-top:0
+.mtd-welcome-profile-text > span {
+	margin-top:3px
 }
 
-.mtd-welcome-inner .mtd-settings-subpanel:nth-child(6) {
-	margin-left:3500px;
-	margin-top:0
+.mtd-welcome-panel {
+	width: 800px!important;
+	height: 600px!important;
 }
 
-.mtd-welcome-inner .mtd-settings-subpanel:nth-child(7) {
-	margin-left:4200px;
-	margin-top:0
+.mtd-welcome-panel i {
+	display:inline
 }
 
-.mtd-welcome-inner .mtd-settings-subpanel:nth-child(8) {
-	margin-left:4900px;
-	margin-top:0
+.mtd-welcome-pane p {
+	font-size:13px
 }
 
-.mtd-welcome-inner .js-tweet .tweet-text {
-	padding-top:4px
+.mtd-welcome-follow-header {
+	margin-bottom:10px
+}
+
+.mtd-welcome-donation-header {
+	margin-top:20px;
+	margin-bottom:10px
+}
+
+.mtd-kofi-button {
+	height: 40px;
+	display: inline-block;
+}
+
+.mtd-kofi-button img {
+	width: 64px
+}
+
+.mtd-sponsor-button {
+	vertical-align: top;
+	display: inline-block;
+	color:var(--likeColor);
+	margin-top: 6px;
+}
+
+.mtd-welcome-pane h2 {
+	font-size:16px
+}
+
+.mtd-welcome-panel i {
+	display:inline
 }

@@ -41,6 +41,7 @@ declare global {
             systemName: string;
             buildNumber: number;
             settingsData?: any;
+            SyncController?: any;
             store?: any;
         };
         deck: {

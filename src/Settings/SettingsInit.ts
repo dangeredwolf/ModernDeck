@@ -19,6 +19,7 @@ import { SettingsTab } from "./SettingsData";
 
 export const loadPreferences = (): void => {
 	window.settingsData = settingsData;
+	window.ModernDeck.settingsData = settingsData;
 
 	SettingsMigration.migrate();
 

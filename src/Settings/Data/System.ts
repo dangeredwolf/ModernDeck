@@ -54,7 +54,7 @@ let tab: ModernDeckSettingsTab = {
             activate:{
                 func: (): void => {
                     const { ipcRenderer } = window.require("electron");
-                    ipcRenderer.send("saveSettings", JSON.stringify(window.store.store));
+                    ipcRenderer.send("saveSettings", JSON.stringify(window.ModernDeck.store.store));
                 }
             },
             settingsKey:"mtd_backupSettings",

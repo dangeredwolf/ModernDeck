@@ -25,7 +25,7 @@ export const FunctionPatcher = (): void => {
 			window.localStorage.removeItem("typeaheadUserLastPrefetch");
 		}
 	}
-	if (TD && TD.util && pretendToBeWrapperApp) {
+	if (typeof TD?.util !== "undefined" && pretendToBeWrapperApp) {
 		TD.util.isWrapperApp = () => true;
 		window.deck = {
 			osname:() => {

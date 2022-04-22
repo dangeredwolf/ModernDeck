@@ -45,7 +45,7 @@ function startUpdateGoodLoginText() {
 
 	setInterval(() => {
 		let text;
-		let newDate = new Date();
+		const newDate = new Date();
 
 		if (newDate.getHours() < 12) {
 			text = I18n("Good morning");
