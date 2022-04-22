@@ -65,6 +65,8 @@ export class SyncController {
     static updateLocalSettings(): void {
         const remoteSettings = SyncController.getRemoteSettings();
         console.log("Checking for differences between local and remote settings...");
+        
+        setPref("mtd_sync_last_updated", remoteSettings["mtd_sync_last_updated"]); // Just in case...
 
         for (let key in remoteSettings) {
             if (getPref(key) !== remoteSettings[key]) {
