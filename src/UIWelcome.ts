@@ -38,7 +38,16 @@ export class UIWelcome extends UIModal {
 					<span class="username txt-mute">@${profile.screenName}</span>
 				</div>
 			</a>
-		</header>`
+		</header>
+		<div id="mtd_follow_btn_${profile.id_str}" class="js-follow-button pull-left js-show-tip follow-btn margin-r--4 Button--tertiary" title="" data-original-title="${profile.screenName}">
+			<button class="action-text follow-text btn-on-dark">
+				<i class="Icon icon-follow"></i>
+				<span class="label">${I18n("Follow")}</span>
+			</button>
+			<button class="action-text Button--primary following-text">
+				${I18n("Following")}
+			</button>
+		</div>`
 	}
 
 	renderDeveloperInfo() {
@@ -50,9 +59,7 @@ export class UIWelcome extends UIModal {
 		// @ts-ignore types/jquery don't have addCallback under Deferred for some reason
 		TD.cache.twitterUsers.getById("3784131322").addCallback((profile: TwitterUserInternal) => { // @dangeredwolf
 			console.log("Got details for dangeredwolf", profile);
-			console.log("bout to drop this", this.developerInfoHTML(profile));
-			$("#dangeredwolf-profile")[0].innerHTML = this.developerInfoHTML(profile);
-			console.log("dropped this", $("#dangeredwolf-profile").html());
+			$("#dangeredwolf-profile").html(this.developerInfoHTML(profile));
 		});
 	}
 
