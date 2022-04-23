@@ -56,7 +56,7 @@ export class MuteEnumPage extends SettingsEnumPage {
 	muteText = {
 		[TweetDeckFilterTypes.SOURCE]: I18n("Source"),
 		[TweetDeckFilterTypes.PHRASE]: I18n("Text"),
-		[AMEFilters.MUTE_USER_KEYWORD]: I18n("User Keyword"),
+		[AMEFilters.MUTE_USER_KEYWORD]: I18n("Keyword from User"),
 		[AMEFilters.HASHTAGS_NUMBER]: I18n("Number of Hashtags"),
 		[AMEFilters.REGEX_DISPLAYNAME]: I18n("Display Name (RegEx)"),
 		[AMEFilters.REGEX]: I18n("Text (RegEx)"),
