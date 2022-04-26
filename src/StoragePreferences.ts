@@ -132,7 +132,7 @@ export const setPref = (id: string, pref: any) : void => {
 		validSyncPrefs = getValidSyncPreferences();
 	}
 
-	if (validSyncPrefs.indexOf(id) >= 0 && pref !== oldPref) {
+	if (validSyncPrefs.indexOf(id) >= 0 && pref !== oldPref && id !== "mtd_collapsed_columns") {
 		window?.ModernDeck?.SyncController?.forceUpdate?.();
 	}
 
