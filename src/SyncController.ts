@@ -99,7 +99,7 @@ export class SyncController {
             const remoteSettings = SyncController.getRemoteSettings();
 
             if (remoteSettings === null || remoteSettings["mtd_sync_last_updated"] < localLastUpdated) {
-                console.log(`Local is more up to date (${remoteSettings["mtd_sync_last_updated"]} remote ${localLastUpdated} local), let's update remote!`);
+                console.log(`Local is more up to date (${(remoteSettings || {})["mtd_sync_last_updated"]} remote ${localLastUpdated} local), let's update remote!`);
                 SyncController.updateRemoteSettings();
             } else if (typeof localLastUpdated === "undefined" || remoteSettings["mtd_sync_last_updated"] > localLastUpdated) {
                 console.log(`Remote is more up to date (${remoteSettings["mtd_sync_last_updated"]} remote ${localLastUpdated} local), let's update local!`);
