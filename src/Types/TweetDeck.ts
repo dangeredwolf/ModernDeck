@@ -278,13 +278,14 @@ export interface TweetDeckControllerRelationshipResult {
 
 export interface TwitterUserInternal {
 	emojifiedName: string;
-	profileURL: string;
     ext_has_nft_avatar: boolean;
+	following?: boolean;
 	id_str: string;
 	screen_name: string;
 	profileBannerURL: string;
 	_profileBannerURL: string;
 	profileImageURL: string;
+	profileURL: string;
 	name: string;
 	screenName: string;
 	results: {};
@@ -305,6 +306,7 @@ export interface TweetDeckControllerClient {
 	unblockUser(id: string): void;
 	addIdToBlockList(id: string): void;
 	removeIdFromBlockList(id: string): void;
+	followUser(screenName: string): void;
 	showFriendship(
 		userId: string,
 		targetUserId: string | null,
