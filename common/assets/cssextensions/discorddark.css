@@ -189,3 +189,7 @@
 	animation-timing-function: cubic-bezier(0,0.2,.2,1.25)!important;
 	animation-name: windowDownHarmony
 }
+
+button, a.btn, a.js-create-list, input[type="button"], .Button--primary, .Button {
+	text-transform:none
+}

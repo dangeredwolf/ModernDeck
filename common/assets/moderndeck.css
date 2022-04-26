@@ -57,7 +57,8 @@
 	--composeWidth: 300px;
 	--scrollbarWidth: 10px;
 	--verticalHeadWidth: 50px;
-	--inlineComposeHeight: 200px
+	--inlineComposeHeight: 200px;
+	--modalBorderRadius: 8px
 }
 
 img.spinner-centered {
@@ -3070,7 +3071,7 @@ html:not(.mtd-classic-nav) .attach-compose-buttons .tweet-button {
 	max-width: 200px;
 	padding: 5px 8px 4px;
 	text-align: center;
-	border-radius: 2px;
+	border-radius: 5px;
 	animation: windowDown 0.3s var(--animationTiming)
 }
 
@@ -3334,8 +3335,8 @@ html:not(.mtd-classic-nav) .attach-compose-buttons .tweet-button {
 }
 
 .mdl-column-med {
-	width: 260px;
-	border-radius: 0;
+	width: 253px;
+	border-radius: var(--modalBorderRadius);
 	z-index: 4
 }
 
@@ -3345,8 +3346,9 @@ html:not(.mtd-classic-nav) .attach-compose-buttons .tweet-button {
 	top: -70px;
 	position: absolute;
 	height: auto;
-	z-index: 5
-}
+	z-index: 5;
+	border-radius: var(--modalBorderRadius)
+;overflow: hidden;}
 
 .s-fluid .mdl-inner,
 .s-fluid-height .mdl-inner {
@@ -4355,9 +4357,9 @@ input[type="checkbox"]:active {
 }
 
 .mdl-column.l-column .search-input {
-	width: 70%;
+	width: 80%;
 	border-bottom: 0;
-	margin-left: 10px;
+	/* margin-left: 10px; */
 	box-shadow: 0 3px 8px rgba(0, 0, 0, .3);
 	border-radius: 4px
 }
@@ -6280,9 +6282,9 @@ button.mtd-no-transform-case {
 }
 
 #lists-modal .mdl-buttonbar {
-	margin-top: -60px;
 	position: absolute;
-	bottom: -30px;
+	bottom: -37px;
+	left:5px;
 	z-index: 10
 }
 
@@ -7928,7 +7930,7 @@ span[data-testid="trendDescription"] {
 	float: right;
 	position: absolute;
 	margin-left: 200px
-}
+;margin-top: 9px;}
 
 #lists-modal .mdl-inner {
 	bottom: 40px
@@ -9685,7 +9687,7 @@ a {
 	position: relative;
 	margin: 0 auto !important;
 	text-align: left;
-	border-radius: 5px;
+	border-radius: var(--modalBorderRadius);
 	min-height: 525px;
 	max-height: 707px;
 	-webkit-app-region: no-drag
@@ -9953,4 +9955,20 @@ html:not(.mtd-classic-nav) .js-hide-drawer[data-title="Accounts"]:after {
 
 html:not(.mtd-app) .js-account-list {
 	margin-top:12px
+}
+
+.js-modal-panel.mdl.s-fluid.s-narrow.cmp.s-minimal {
+	min-height:0
+}
+
+.s-tall-fixed button.js-delete.Button--danger {
+	margin-top:5px
+}
+
+.js-modal-inner.mdl.margin-v--20.s-fluid.s-narrow {
+	min-height:500px
+}
+
+.l-column-scrollv.scroll-v.scroll-styled-v.scroll-alt.js-left-column.s-with-pinned {
+	bottom:20px
 }

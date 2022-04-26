@@ -40,8 +40,7 @@
 }
 
 .mtd-welcome-profile-text {
-	padding:8px 58px
-}
+	padding: 8px 0 8px 58px;}
 
 .mtd-welcome-profile-text > b, .mtd-welcome-profile-text > span {
 	display:block;
@@ -90,6 +89,10 @@
 	margin-top: 6px;
 }
 
+.mtd-sponsor-button i {
+	padding-right: 6px;
+}
+
 .mtd-welcome-pane h2 {
 	font-size:16px
 }
@@ -101,4 +104,8 @@
 .mtd-welcome-panel .avatar {
 	width:48px;
 	height:48px;
+}
+
+.mtd-welcome-panel .follow-btn {
+	margin-top:-24px;
 }

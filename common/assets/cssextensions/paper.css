@@ -160,3 +160,11 @@ html:not(.os-osx) .antiscroll-scrollbar {
 .column-nav-item .attribution {
 	color:rgba(0,0,0,.3)!important
 }
+
+.column-nav-link:hover {
+	color:#111!important
+}
+
+.mdl .prf-follow-state .js-user-actions-menu {
+	color:#fff!important
+}
