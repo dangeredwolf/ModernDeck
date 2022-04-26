@@ -92,16 +92,11 @@ export const UINavDrawer = (): void => {
 				$("#mtd_nav_drawer").toggleClass("mtd-nav-drawer-group-open");
 			}).append(I18n("More...")),
 			make("div").addClass("mtd-nav-group mtd-nav-group-expanded").attr("id","mtd_nav_group").append(
-				// make("button").addClass("btn mtd-nav-button").append(make("i").addClass("icon mtd-icon-changelog")).click(() => {
-				// 	window.mtdPrepareWindows();
-				// 	window.open("https://twitter.com/i/tweetdeck_release_notes");
-				// }).append(I18n("TweetDeck Release Notes")),
 				make("button").addClass("btn mtd-nav-button").append(make("i").addClass("icon icon-search")).click(() => {
 					window.mtdPrepareWindows();
 					setTimeout(() => {$(".js-app-settings").click()},10);
 					setTimeout(() => {$("a[data-action=\"searchOperatorList\"]").click()},20);
 				}).append(I18n("Search tips")),
-				// make("div").addClass("mtd-nav-divider"),
 				make("button").addClass("btn mtd-nav-button").attr("id","mtd_signout").append(make("i").addClass("icon icon-logout")).click(() => {
 					TD.controller.init.signOut();
 				}).append(I18n("Sign out")),
