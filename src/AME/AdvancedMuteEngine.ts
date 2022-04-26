@@ -95,6 +95,7 @@ const nonUserSpecificsTypes = [
 ];
 
 const userSpecificTypes = [
+  AMEFilters.MUTE_USER_KEYWORD,
   AMEFilters.HASHTAGS_NUMBER,
   AMEFilters.REGEX_DISPLAYNAME,
   AMEFilters.REGEX,
