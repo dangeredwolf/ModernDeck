@@ -39,6 +39,7 @@ declare global {
             platformName: string;
             productName: string;
             systemName: string;
+            buildDate?: string;
             buildNumber: number;
             settingsData?: any;
             SyncController?: any;
