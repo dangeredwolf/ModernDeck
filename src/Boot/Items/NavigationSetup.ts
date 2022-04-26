@@ -15,7 +15,7 @@ import { handleErrors } from "../../Utils";
 import { hookComposer } from "./Composer";
 import modalKeepOpen from "../../ModalKeepOpen";
 
-export function navigationSetup() {
+export function navigationSetup(): void {
 
 	if ($(".app-header-inner").length < 1) {
 		setTimeout(navigationSetup,100);
@@ -30,7 +30,7 @@ export function navigationSetup() {
 
 	handleErrors(hookComposer, "Caught error in hookComposer");
 
-	handleErrors(() => {
+	handleErrors((): void => {
 		$(document).on("dataColumnOrder", () => {
 			updateColumnTypes();
 		});
@@ -40,7 +40,7 @@ export function navigationSetup() {
 
 	UINavDrawer();
 
-	if (!getPref("mtd_welcomed") || debugWelcome) {
+	if (!getPref("mtd_welcomed10") || debugWelcome) {
 		handleErrors(() => {new UIWelcome()}, "Error in Welcome Screen");
 	}
 
@@ -48,7 +48,7 @@ export function navigationSetup() {
 
 	attachColumnVisibilityEvents();
 
-	setInterval(() => {
+	setInterval((): void => {
 		if ($(".mtd-emoji").length <= 0) {
 			handleErrors(hookComposer, "Caught error in hookComposer");
 		}
