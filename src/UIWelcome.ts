@@ -39,7 +39,7 @@ export class UIWelcome extends UIModal {
 				</div>
 			</a>
 		</header>
-		<div id="mtd_follow_btn_${profile.id_str}" class="js-follow-button pull-left js-show-tip follow-btn margin-r--4 Button--tertiary" title="" data-original-title="${profile.screenName}">
+		<div id="mtd_follow_btn_${profile.screenName}" class="js-follow-button pull-right js-show-tip follow-btn margin-r--4 Button--tertiary ${profile.following ? "s-following" : "s-not-following"}" title="" data-original-title="${I18n("Follow")}">
 			<button class="action-text follow-text btn-on-dark">
 				<i class="Icon icon-follow"></i>
 				<span class="label">${I18n("Follow")}</span>
@@ -50,17 +50,21 @@ export class UIWelcome extends UIModal {
 		</div>`
 	}
 
+	renderDeveloper(id: string, name: string) {
+		// @ts-ignore types/jquery don't have addCallback under Deferred for some reason
+		TD.cache.twitterUsers.getById(id).addCallback((profile: TwitterUserInternal) => { 
+			console.log(`Got details for ${name}`, profile);
+			$(`#${name}-profile`).html(this.developerInfoHTML(profile));
+			$(`#mtd_follow_btn_${profile.screenName}`).click(() => {
+				TD.controller.clients.getPreferredClient().followUser(profile.screenName);
+				$(`#mtd_follow_btn_${profile.screenName}`).removeClass("s-not-following").addClass("s-following");
+			});
+		});
+	}
+
 	renderDeveloperInfo() {
-		// @ts-ignore types/jquery don't have addCallback under Deferred for some reason
-		TD.cache.twitterUsers.getById("2927859037").addCallback((profile: TwitterUserInternal) => { // @ModernDeck
-			console.log("Got details for ModernDeck", profile);
-			$("#moderndeck-profile").html(this.developerInfoHTML(profile));
-		});
-		// @ts-ignore types/jquery don't have addCallback under Deferred for some reason
-		TD.cache.twitterUsers.getById("3784131322").addCallback((profile: TwitterUserInternal) => { // @dangeredwolf
-			console.log("Got details for dangeredwolf", profile);
-			$("#dangeredwolf-profile").html(this.developerInfoHTML(profile));
-		});
+		this.renderDeveloper("2927859037", "moderndeck");
+		this.renderDeveloper("3784131322", "dangeredwolf");
 	}
 
 	constructor() {
@@ -91,11 +95,12 @@ export class UIWelcome extends UIModal {
 		this.leftPane = make("div").addClass("mtd-welcome-pane mtd-welcome-pane-left").appendTo(this.container);
 		this.rightPane = make("div").addClass("mtd-welcome-pane mtd-welcome-pane-right").appendTo(this.container);
 
-		$("#settings-modal").click(() => {
-			setPref("mtd_welcomed", true);
+		$("#settings-modal").mouseup(() => {
+			setPref("mtd_welcomed10", true);
+			$("#settings-modal").off("mouseup");
 		})
 
-		if (true || getPref("mtd_welcomed") === false) {
+		if (getPref("mtd_welcomed") !== true) {
 
 			this.leftPane.append(
 				make("h2").text(I18n("New to ModernDeck?")),
@@ -129,7 +134,7 @@ export class UIWelcome extends UIModal {
 			make("h2").text(I18n("Help support ModernDeck")),
 			make("p").addClass("mtd-welcome-donation-header").text(I18n("ModernDeck has been developed since 2014 over countless hours of work and released for free. If you'd like to help continue its development, consider leaving a donation or becoming a sponsor.")),
 			make("a").addClass("mtd-kofi-button").append(
-				make("img").attr("src", window.mtdBaseURL + "assets/img/kofi.webp"),
+				make("img").attr("src", window.mtdBaseURL + "assets/img/kofi.webp").attr("alt", I18n("Buy me a coffee on Ko-Fi")),
 			).attr("href", "https://ko-fi.com/dangeredwolf").attr("target","_blank"),
 			make("button").addClass("mtd-sponsor-button").append(
 				make("i").addClass("Icon icon-favorite"),
