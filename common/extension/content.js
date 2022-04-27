@@ -45,7 +45,7 @@ if (document.querySelector(`[rel="manifest"]`) === null) {
 	document.head.appendChild(baseUrl);
 	console.log(`Injected baseUrl ${baseUrl.getAttribute("content")}`);
 
-	injectScript.src = browser.runtime.getURL("assets/moderndeck.js");
+	injectScript.src = browser.runtime.getURL("assets/js/moderndeck.js");
 
 	document.getElementsByClassName("js-signin-ui block")[0].innerHTML =
 	`<img class="mtd-loading-logo" src="${browser.runtime.getURL("/assets/img/moderndeck.svg")}" style="display: none;">

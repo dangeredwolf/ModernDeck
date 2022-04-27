@@ -499,7 +499,7 @@ function makeWindow() {
 			webgl: false,
 			plugins: false,
 			scrollBounce:true,
-			// preload: __dirname+separator+useDir+separator+"assets"+separator+"moderndeck.js"
+			// preload: __dirname+separator+useDir+separator+"assets"+separator+"js"+separator+"moderndeck.js"
 		},
 		autoHideMenuBar:true,
 		nodeIntegrationInSubFrames:false,
@@ -691,7 +691,7 @@ function makeWindow() {
 			document.head.appendChild(injStyles);`)
 			+
 			`const InjectScript = document.createElement("script");
-			InjectScript.src = "moderndeck://assets/moderndeck.js";
+			InjectScript.src = "moderndeck://assets/js/moderndeck.js";
 			InjectScript.type = "text/javascript";
 			document.head.appendChild(InjectScript);
 		`);

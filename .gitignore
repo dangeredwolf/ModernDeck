@@ -7,8 +7,6 @@
 dist
 ModernDeck_app_tmp
 ModernDeck_ext_tmp
-common/assets/moderndeck.js
-common/assets/moderndeck.js.map
 node_modules
 .DS_Store
 */.DS_Store
@@ -16,5 +14,5 @@ node_modules
 *.log
 *.appx
 default.*
-common/assets/moderndeck.js.map
-common/assets/moderndeck.js
+common/assets/js/moderndeck.js.map
+common/assets/js/moderndeck.js

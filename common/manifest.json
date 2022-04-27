@@ -36,9 +36,10 @@
 	"web_accessible_resources": [
 		"assets",
 		"assets/*",
-		"assets/moderndeck.js.map",
+		"assets/js/moderndeck.js.map",
 		"assets/cssextensions/*",
 		"assets/fonts/*",
+		"assets/js/*",
 		"assets/libraries/*",
 		"assets/img/*"
 	],
