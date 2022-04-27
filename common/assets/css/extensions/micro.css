@@ -5,11 +5,11 @@
 	Released under the MIT License
 */
 
-@import "../csscomponents/settings.css";
-@import "../csscomponents/contextmenu.css";
-@import "../csscomponents/windowcontrol.css";
-@import "../csscomponents/spinner.css";
-@import "../csscomponents/alert.css";
+@import "../components/settings.css";
+@import "../components/contextmenu.css";
+@import "../components/windowcontrol.css";
+@import "../components/spinner.css";
+@import "../components/alert.css";
 
 /* Variables, same as moderndeck.css */
 

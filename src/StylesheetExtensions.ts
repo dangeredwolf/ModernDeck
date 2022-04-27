@@ -16,12 +16,12 @@ export const isStylesheetExtensionEnabled = (name: string): boolean => {
 	if ($(`#mtd_custom_css_${name}`).length > 0) {
 		return true;
 	}
-	return !!document.querySelector(`link.mtd-stylesheet-extension[href="${window.mtdBaseURL}assets/cssextensions/${name}.css"]`);
+	return !!document.querySelector(`link.mtd-stylesheet-extension[href="${window.mtdBaseURL}assets/css/extensions/${name}.css"]`);
 }
 
 /*
 	Enables a certain stylesheet extension.
-	Stylesheet extensions are loaded from assets/cssextensions/[name].css
+	Stylesheet extensions are loaded from assets/css/extensions/[name].css
 
 	These are the predefined ModernDeck ones including colour themes, default light and dark themes, and various preferences
 
@@ -33,7 +33,7 @@ export const enableStylesheetExtension = (name: string): void => {
 		return;
 
 	// This is where components are located
-	let url = `${window.mtdBaseURL}assets/cssextensions/${name}.css`;
+	let url = `${window.mtdBaseURL}assets/css/extensions/${name}.css`;
 
 	if (!isStylesheetExtensionEnabled(name)) {
 		window.head.append(
@@ -55,7 +55,7 @@ export const disableStylesheetExtension = (name: string): void => {
 	if (!isStylesheetExtensionEnabled(name))
 		return;
 
-	$(`head>link[href="${window.mtdBaseURL}assets/cssextensions/${name}.css"]`).remove();
+	$(`head>link[href="${window.mtdBaseURL}assets/css/extensions/${name}.css"]`).remove();
 
 	if ($(`#mtd_custom_css_${name}`).length > 0) {
 		$(`#mtd_custom_css_${name}`).remove();

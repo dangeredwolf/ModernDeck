@@ -10,25 +10,25 @@
  */
 
 /* stylelint-disable */
-@import "csscomponents/alert.css";
-@import "csscomponents/calendarDropdown.css";
-@import "csscomponents/contextmenu.css";
-@import "csscomponents/coredefinitions.css";
-@import "csscomponents/windowcontrol.css";
-@import "csscomponents/icon.css";
-@import "csscomponents/superclasses.css";
-@import "csscomponents/marginclasses.css";
-@import "csscomponents/emojipicker.css";
-@import "csscomponents/gifpicker.css";
-@import "csscomponents/emoji.css";
-@import "csscomponents/settings.css";
-@import "csscomponents/navigationdrawer.css";
-@import "csscomponents/welcome.css";
-@import "csscomponents/collapsed.css";
-@import "csscomponents/notifications.css";
-@import "csscomponents/classicnav.css";
-@import "csscomponents/themeeditor.css";
-@import "csscomponents/accessibilityHelper.css";
+@import "components/alert.css";
+@import "components/calendarDropdown.css";
+@import "components/contextmenu.css";
+@import "components/coredefinitions.css";
+@import "components/windowcontrol.css";
+@import "components/icon.css";
+@import "components/superclasses.css";
+@import "components/marginclasses.css";
+@import "components/emojipicker.css";
+@import "components/gifpicker.css";
+@import "components/emoji.css";
+@import "components/settings.css";
+@import "components/navigationdrawer.css";
+@import "components/welcome.css";
+@import "components/collapsed.css";
+@import "components/notifications.css";
+@import "components/classicnav.css";
+@import "components/themeeditor.css";
+@import "components/accessibilityHelper.css";
 /* stylelint-enable */
 
 :root {

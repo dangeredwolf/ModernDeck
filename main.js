@@ -687,7 +687,7 @@ function makeWindow() {
 			(store.get("mtd_safemode") ? `document.getElementsByTagName("html")[0].classList.add("mtd-disable-css");` :
 			`const injStyles = document.createElement("link");
 			injStyles.rel = "stylesheet";
-			injStyles.href = "moderndeck://assets/moderndeck.css";
+			injStyles.href = "moderndeck://assets/css/moderndeck.css";
 			document.head.appendChild(injStyles);`)
 			+
 			`const InjectScript = document.createElement("script");

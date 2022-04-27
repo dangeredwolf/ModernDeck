@@ -5,14 +5,14 @@
 	Released under the MIT License
 */
 
-@import "../csscomponents/coredefinitions.css";
-@import "../csscomponents/dark.css";
+@import "coredefinitions.css";
+@import "../extensions/dark.css";
 
 @font-face {
 	font-family:Material;
 	font-style:normal;
 	font-weight:400;
-	src:url("https://fonts.gstatic.com/s/materialicons/v47/flUhRq6tzZclQEJ-Vdg-IuiaDsNc.woff2") format("woff2")
+	src:url("https://fonts.gstatic.com/s/materialicons/v47/flUhRq6tzZclQEJ-Vdg-IuiaDsNc.woff2") format("woff2");
 }
 
 .material-icons {
@@ -28,7 +28,8 @@
 	word-wrap:normal;
 	direction:ltr;
 	-webkit-font-feature-settings:"liga";
-	-webkit-font-smoothing:antialiased
+	font-feature-settings:"liga";
+	-webkit-font-smoothing:antialiased;
 }
 
 /* cyrillic-ext */
@@ -37,7 +38,7 @@
 	font-style:normal;
 	font-weight:400;
 	src:local("Roboto"), local("Roboto-Regular"), url("https://fonts.gstatic.com/s/roboto/v19/KFOmCnqEu92Fr1Mu72xKOzY.woff2") format("woff2");
-	unicode-range:U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F
+	unicode-range:U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
 }
 
 /* cyrillic */
@@ -46,7 +47,7 @@
 	font-style:normal;
 	font-weight:400;
 	src:local("Roboto"), local("Roboto-Regular"), url("https://fonts.gstatic.com/s/roboto/v19/KFOmCnqEu92Fr1Mu5mxKOzY.woff2") format("woff2");
-	unicode-range:U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116
+	unicode-range:U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
 }
 
 /* greek-ext */
@@ -55,7 +56,7 @@
 	font-style:normal;
 	font-weight:400;
 	src:local("Roboto"), local("Roboto-Regular"), url("https://fonts.gstatic.com/s/roboto/v19/KFOmCnqEu92Fr1Mu7mxKOzY.woff2") format("woff2");
-	unicode-range:U+1F00-1FFF
+	unicode-range:U+1F00-1FFF;
 }
 
 /* greek */
@@ -64,7 +65,7 @@
 	font-style:normal;
 	font-weight:400;
 	src:local("Roboto"), local("Roboto-Regular"), url("https://fonts.gstatic.com/s/roboto/v19/KFOmCnqEu92Fr1Mu4WxKOzY.woff2") format("woff2");
-	unicode-range:U+0370-03FF
+	unicode-range:U+0370-03FF;
 }
 
 /* vietnamese */
@@ -73,7 +74,7 @@
 	font-style:normal;
 	font-weight:400;
 	src:local("Roboto"), local("Roboto-Regular"), url("https://fonts.gstatic.com/s/roboto/v19/KFOmCnqEu92Fr1Mu7WxKOzY.woff2") format("woff2");
-	unicode-range:U+0102-0103, U+0110-0111, U+1EA0-1EF9, U+20AB
+	unicode-range:U+0102-0103, U+0110-0111, U+1EA0-1EF9, U+20AB;
 }
 
 /* latin-ext */
@@ -82,7 +83,7 @@
 	font-style:normal;
 	font-weight:400;
 	src:local("Roboto"), local("Roboto-Regular"), url("https://fonts.gstatic.com/s/roboto/v19/KFOmCnqEu92Fr1Mu7GxKOzY.woff2") format("woff2");
-	unicode-range:U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF
+	unicode-range:U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
 
 /* latin */
@@ -91,7 +92,7 @@
 	font-style:normal;
 	font-weight:400;
 	src:local("Roboto"), local("Roboto-Regular"), url("https://fonts.gstatic.com/s/roboto/v19/KFOmCnqEu92Fr1Mu4mxK.woff2") format("woff2");
-	unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD
+	unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
 /* cyrillic-ext */
@@ -100,7 +101,7 @@
 	font-style:normal;
 	font-weight:500;
 	src:local("Roboto Medium"), local("Roboto-Medium"), url("https://fonts.gstatic.com/s/roboto/v19/KFOlCnqEu92Fr1MmEU9fCRc4EsA.woff2") format("woff2");
-	unicode-range:U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F
+	unicode-range:U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
 }
 
 /* cyrillic */
@@ -109,7 +110,7 @@
 	font-style:normal;
 	font-weight:500;
 	src:local("Roboto Medium"), local("Roboto-Medium"), url("https://fonts.gstatic.com/s/roboto/v19/KFOlCnqEu92Fr1MmEU9fABc4EsA.woff2") format("woff2");
-	unicode-range:U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116
+	unicode-range:U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
 }
 
 /* greek-ext */
@@ -118,7 +119,7 @@
 	font-style:normal;
 	font-weight:500;
 	src:local("Roboto Medium"), local("Roboto-Medium"), url("https://fonts.gstatic.com/s/roboto/v19/KFOlCnqEu92Fr1MmEU9fCBc4EsA.woff2") format("woff2");
-	unicode-range:U+1F00-1FFF
+	unicode-range:U+1F00-1FFF;
 }
 
 /* greek */
@@ -127,7 +128,7 @@
 	font-style:normal;
 	font-weight:500;
 	src:local("Roboto Medium"), local("Roboto-Medium"), url("https://fonts.gstatic.com/s/roboto/v19/KFOlCnqEu92Fr1MmEU9fBxc4EsA.woff2") format("woff2");
-	unicode-range:U+0370-03FF
+	unicode-range:U+0370-03FF;
 }
 
 /* vietnamese */
@@ -136,7 +137,7 @@
 	font-style:normal;
 	font-weight:500;
 	src:local("Roboto Medium"), local("Roboto-Medium"), url("https://fonts.gstatic.com/s/roboto/v19/KFOlCnqEu92Fr1MmEU9fCxc4EsA.woff2") format("woff2");
-	unicode-range:U+0102-0103, U+0110-0111, U+1EA0-1EF9, U+20AB
+	unicode-range:U+0102-0103, U+0110-0111, U+1EA0-1EF9, U+20AB;
 }
 
 /* latin-ext */
@@ -145,7 +146,7 @@
 	font-style:normal;
 	font-weight:500;
 	src:local("Roboto Medium"), local("Roboto-Medium"), url("https://fonts.gstatic.com/s/roboto/v19/KFOlCnqEu92Fr1MmEU9fChc4EsA.woff2") format("woff2");
-	unicode-range:U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF
+	unicode-range:U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
 
 /* latin */
@@ -154,13 +155,13 @@
 	font-style:normal;
 	font-weight:500;
 	src:local("Roboto Medium"), local("Roboto-Medium"), url("https://fonts.gstatic.com/s/roboto/v19/KFOlCnqEu92Fr1MmEU9fBBc4.woff2") format("woff2");
-	unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD
+	unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
 html {
 	background-color:transparent;
 	font-family:Roboto,"Noto Sans Alphabet","Noto Sans","Noto Sans CJK","Noto Sans CJK JP","Noto Sans CJK KR","Noto Sans CJK SC","Noto Sans CJK TC","Noto Sans JP","Noto Sans KR","Noto Sans SC","Noto Sans TC";
-	height:200px
+	height:200px;
 }
 
 body {
@@ -192,7 +193,7 @@ body {
 
 .TwitterCard-title {
 	font-size:1em;
-	color:#fff
+	color:#fff;
 }
 
 
@@ -225,7 +226,7 @@ body {
 }
 
 .tcu-imageAspect--16to9:before {
-	padding-top:56.25%
+	padding-top:56.25%;
 }
 
 .tcu-imageAspect--4to1:before {
@@ -236,12 +237,12 @@ body {
 	position:relative;
 	width:100%;
 	overflow:hidden;
-	max-height:170px
+	max-height:170px;
 }
 
 .tcu-imageContainer:before {
 	content:"";
-	display:block
+	display:block;
 }
 
 .tcu-imageWrapper {
@@ -253,14 +254,14 @@ body {
 	background-size:cover;
 	background-position:center;
 	background-repeat:no-repeat;
-	max-height:200px
+	max-height:200px;
 }
 
 .tcu-imageWrapper img {
 	width:100%;
 	height:100%;
 	opacity:0;
-	max-height:200px
+	max-height:200px;
 }
 
 .TwitterCardsGrid-rtl.TwitterCardsGrid-noColSpacing .TwitterCardsGrid-col--1,.TwitterCardsGrid-rtl .TwitterCardsGrid-noColSpacing .TwitterCardsGrid-col--1 {
@@ -281,7 +282,7 @@ body {
 
 .TwitterCardsGrid .TwitterCardsGrid-col--spacerNext,.TwitterCardsGrid-rtl .TwitterCardsGrid-col--spacerPrev {
 	margin-right:0;
-	margin-left:.5em
+	margin-left:.5em;
 }
 
 .TwitterCard .EdgeButton--smallTransparent>b.u-linkComplex-target {
@@ -357,7 +358,7 @@ body {
 	border-style:solid;
 	border-width:0;
 	/* border-bottom-width:1px */
-	padding-bottom:8px
+	padding-bottom:8px;
 }
 
 .TwitterCard .LiveEventCard-contentContainer .SummaryCard-content {
@@ -666,7 +667,7 @@ body {
 
 .TwitterCard .PollXChoice-optionContainer {
 	margin-bottom:.57143em;
-	position:relative
+	position:relative;
 }
 
 .TwitterCard .PollXChoice-optionContainer .PollXChoice-progress {
@@ -693,7 +694,7 @@ body {
 .TwitterCard .PollXChoice-optionContainer .PollXChoice-choice {
 	height:45px!important;
 	margin:0;
-	padding:0
+	padding:0;
 }
 
 .TwitterCard .PollXChoice-optionContainer .PollXChoice-choice--chart {
@@ -706,11 +707,11 @@ body {
 	transition:all .3s cubic-bezier(.19,1,.22,1);
 	opacity:1;
 	padding-bottom:2px;
-	border-radius:4px
+	border-radius:4px;
 }
 
 .TwitterCard[data-theme="tweetdeck-dark"] .PollXChoice-optionContainer .PollXChoice-choice--chart {
-	background:var(--txtMuteLink)
+	background:var(--txtMuteLink);
 }
 
 .TwitterCard [data-poll-state="opened"] .PollXChoice-optionContainer .PollXChoice-choice--chart {
@@ -771,7 +772,7 @@ input[type="radio"]:checked:before {
 	display:inline-block;
 	padding-top:0.85em;
 	/* padding-bottom:.28571em; */
-	float:left
+	float:left;
 }
 
 

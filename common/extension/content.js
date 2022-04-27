@@ -18,7 +18,7 @@ if (document.querySelector(`[rel="manifest"]`) === null) {
 
 	const injStyles = document.createElement("link");
 	injStyles.rel = "stylesheet";
-	injStyles.href = browser.runtime.getURL("assets/moderndeck.css");
+	injStyles.href = browser.runtime.getURL("assets/css/moderndeck.css");
 
 	document.head.appendChild(injStyles);
 
@@ -26,7 +26,7 @@ if (document.querySelector(`[rel="manifest"]`) === null) {
 
 	const injStyles2 = document.createElement("link");
 	injStyles2.rel = "stylesheet";
-	injStyles2.href = browser.runtime.getURL("assets/moderndeck.css");
+	injStyles2.href = browser.runtime.getURL("assets/css/moderndeck.css");
 
 	document.head.appendChild(injStyles2);
 
