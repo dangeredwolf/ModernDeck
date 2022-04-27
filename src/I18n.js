@@ -1,7 +1,8 @@
 /*
-	TweetDeck i18n v2
-	Copyright (c) 2018-2022 dangered wolf, et al.
-	Released under the MIT license
+	I18n.js
+
+	Copyright (c) 2014-2022 dangered wolf, et al
+	Released under the MIT License
 */
 
 "use strict";
