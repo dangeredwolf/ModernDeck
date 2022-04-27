@@ -15,7 +15,7 @@ import { TwitterUserInternal } from "./Types/TweetDeck";
 import { SettingsDropdown } from "./Settings/UI/Components/Dropdown";
 import themeSettings from "./Settings/Data/Themes";
 
-export const debugWelcome = true;
+export const debugWelcome = false;
 
 export function welcomeScreen() {
 	return new UIWelcome();
