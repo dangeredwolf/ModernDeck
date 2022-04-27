@@ -187,8 +187,6 @@ body {
 	letter-spacing:1.1em;
 	line-height:1.25em;
 	padding-top:.15em;
-	-moz-user-select:none;
-	-ms-user-select:none
 }
 
 .TwitterCard-title {
@@ -771,8 +769,6 @@ input[type="radio"]:checked:before {
 	position:relative;
 	display:inline-block;
 	padding-top:0.85em;
-	/* padding-bottom:.28571em; */
-	float:left;
 }
 
 
