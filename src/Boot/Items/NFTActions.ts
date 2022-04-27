@@ -16,14 +16,14 @@ export function hookNFTActions() {
 		TD.services.TwitterUser.prototype.fromJSONObject_original = TD.services.TwitterUser.prototype.fromJSONObject;
 
 		TD.services.TwitterUser.prototype.fromJSONObject = function(blob: TwitterUserInternal) {
-			// console.log("fromJSONObject called", blob);
+			console.log("fromJSONObject called", blob);
 			const jsonObject = this.fromJSONObject_original(blob);
 
 			jsonObject.hasNftAvatar = blob.ext_has_nft_avatar;
 
 			if (blob.ext_has_nft_avatar === true) {
-				// console.log("WARNING: NFT PERSON " + blob.screen_name);
-				// console.log(blob);
+				console.log("WARNING: NFT PERSON " + blob.screen_name);
+				console.log(blob);
 				window.nftActionQueue.addUser(blob);
 			}
 			

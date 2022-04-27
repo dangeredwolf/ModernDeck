@@ -73,3 +73,7 @@ export const enableCustomStylesheetExtension = (name: string, styles: string): v
 
 	window.head.append(make("style").html(styles).attr("id", `mtd_custom_css_${name}`))
 }
+
+
+window.ModernDeck.enableStylesheetExtension = enableStylesheetExtension;
+window.ModernDeck.disableStylesheetExtension = disableStylesheetExtension;

@@ -12,10 +12,12 @@ import { initAutoUpdater } from "../Items/AutoUpdater";
 import { initAppFunctions } from "../Items/AppFunctions";
 import { drawAsciiArt } from "../Items/AsciiArt";
 import { initLoginScreen } from "../Items/LoginScreen";
+import { initialTheme } from "../Items/InitialTheme";
 
 export const coreStage = async () => {
 	console.log("Boot: Beginning Core stage...");
     await defineBootComponent(drawAsciiArt);
+	await defineBootComponent(initialTheme);
 	await defineBootComponent(initSentry);
 	await defineBootComponent(extractJQuery);
     await defineBootComponent(initLoginScreen);
