@@ -21,7 +21,7 @@ export const diag = (): void => {
 	let log = "";
 
 	log += `\nModernDeck ${version} (Build ${window.ModernDeck.buildNumber})`;
-	log += `\nBuilt ${window.ModernDeck.buildDate}}`;
+	log += `\nBuilt ${window.ModernDeck.buildDate}`;
 
 	log += `\n\nPlatform: `;
 
