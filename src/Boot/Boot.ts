@@ -5,6 +5,12 @@
 	Released under the MIT License
 */
 
+
+const baseUrlElement = document.querySelector(`meta[name="moderndeck-base-url"]`);
+window.mtdBaseURL = baseUrlElement.getAttribute("content");
+// @ts-ignore - Set webpack public path
+__webpack_public_path__ = window.mtdBaseURL + "/";
+
 import { ModernDeck } from "../Functions/ModernDeckConst";
 import { coreStage } from "./Stages/Core";
 import { lowlevelStage } from "./Stages/LowLevel";
