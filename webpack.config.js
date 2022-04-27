@@ -14,9 +14,7 @@ module.exports = {
 	},
 	output: {
 		filename: "[name].js",
-		path: path.resolve(__dirname, "common/assets"),
-		// publicPath: "//dangeredwolf.com/",
-		publicPath: '/',
+		path: path.resolve(__dirname, "common/assets/js"),
 		environment: {
 			arrowFunction: true
 		},
@@ -26,6 +24,9 @@ module.exports = {
     resolve: {
         extensions: [".js", ".jsx", ".ts", ".tsx", ".png", ".jpg", ".mp3", ".mp4", ".aac", ".webp"],
     },
+	experiments: {
+		topLevelAwait: true
+	},
 	plugins: [
 		// new webpack.DefinePlugin({
 		// 	__BUILD_ID__: JSON.stringify(buildId)
