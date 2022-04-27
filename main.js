@@ -595,7 +595,7 @@ function makeWindow() {
 	try {
 		mainWindow?.webContents?.executeJavaScript(`
 			document.getElementsByClassName("js-signin-ui block")[0].innerHTML =
-			\`<img class="mtd-loading-logo" src="moderndeck://assets/img/moderndeck.png" style="display: none;">
+			\`<img class="mtd-loading-logo" src="moderndeck://assets/img/moderndeck.svg" style="display: none;">
 			<div class="preloader-wrapper active">
 				<div class="spinner-layer">
 					<div class="circle-clipper left">
@@ -655,7 +655,7 @@ function makeWindow() {
 			}
 
 			document.getElementsByClassName("js-signin-ui block")[0].innerHTML =
-			\`<img class="mtd-loading-logo" src="moderndeck://assets/img/moderndeck.png" style="display: none;">
+			\`<img class="mtd-loading-logo" src="moderndeck://assets/img/moderndeck.svg" style="display: none;">
 			<div class="preloader-wrapper active">
 				<div class="spinner-layer">
 					<div class="circle-clipper left">
