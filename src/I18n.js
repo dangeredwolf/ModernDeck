@@ -55,6 +55,7 @@ export const getFallbackLanguage = () => {
 	}
 };
 
+window.test = await import("./I18n/Data/" + langFull + ".json");
 
 const mustachePatches = {
 	"keyboard_shortcut_list.mustache": {

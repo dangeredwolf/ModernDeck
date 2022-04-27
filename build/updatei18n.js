@@ -35,8 +35,15 @@ let buildFile = fs.readFileSync(i18n) + "\n" + fs.readFileSync(i18nMD) + "";
 let buildFileMain = fs.readFileSync(i18nMain) + "";
 
 let langMap = ["src","af","bg","ca","zh_CN","zh_TW","hr","cs","da","nl","en","en_CA","en_GB","en_US","et","fi","fr","fr_CA","de","el","hi","hu","it","ja","ko","mi","no","pl","pt","pt_BR","ro","ru","sr","es","es_AR","es_419","es_US","sv","tr","uk","vi","eo","gd","si","sl","lv","id"];
+let newFormatMap = {};
 
-function processFile(file) {
+langMap.forEach(lang => {
+	if (lang !== "src") {
+		newFormatMap[lang] = {};
+	}
+})
+
+function processFile(file, newFormat) {
 	let newObj = {};
 
 	file.split("\n").forEach((a, j) => {
@@ -46,7 +53,9 @@ function processFile(file) {
 		let arr = a.replace(/\"\,\"/g,"\"=,=\"").replace(/\\n/g,"\n").replace(/\=\"\"/g,"=\"").replace(/\"\" /g,"\" ").replace(/\"\"\>/g,"\">").replace(/ \"\"/g," \"").replace(/\"\" /g,"\" ").split("=,=");
 		if (arr[0]) {
 			let key = arr[0].substr(1, arr[0].length-2);
-			newObj[key] = {};
+			if (!newFormat) {
+				newObj[key] = {};
+			}
 			for (let i = 1; i < langMap.length; i++) {
 				if (arr[i]) {
 
@@ -55,7 +64,12 @@ function processFile(file) {
 					}
 
 					if (arr[i].length > 1) {
-						newObj[key][langMap[i]] = arr[i].substr(1, arr[i].length-2).replace(/\"\"/g,"\"");
+						if (newFormat) {
+							newFormatMap[langMap[i]][key] = arr[i].substr(1, arr[i].length-2).replace(/\"\"/g,"\"");
+						} else {
+							newObj[key][langMap[i]] = arr[i].substr(1, arr[i].length-2).replace(/\"\"/g,"\"");
+						}
+
 					}
 				} else {
 					console.log("Language array missing items: Line " + j + " Column " + i + "\nSource string: " + arr[0] + "\nThe language data may be corrupted. This can be caused by unescaped newlines.")
@@ -69,6 +83,20 @@ function processFile(file) {
 
 fs.writeFileSync(results,"export default " + JSON.stringify(processFile(buildFile)));
 fs.writeFileSync(resultsMain,"exports.default = " + JSON.stringify(processFile(buildFileMain)));
+
+processFile(buildFile, true);
+
+langMap.forEach(lang => {
+	if (lang !== "src") {
+		let thePath = path.format({
+			dir:__dirname + path.sep + ".." + path.sep + "src" + path.sep + "I18n" + path.sep + "Data",
+			base:lang + ".json"
+		});
+
+		fs.writeFileSync(thePath, JSON.stringify(newFormatMap[lang]));
+
+	}
+})
 
 // Crowdin is stupid and doesn't export the correct folders
 
