@@ -10,9 +10,13 @@ i {
 	vertical-align:middle;
 	font-size:20px;
 	height:1em;
-	width:1em
+	width:1em;
+  font-variation-settings:
+  'FILL' 1,
+  'wght' 500,
+  'GRAD' 200,
+  'opsz' 48
 }
-
 .dropdown-menu a[data-action]:before,
 .icon:before,
 .Icon:before,
@@ -258,8 +262,7 @@ a[data-action="undo-retweet"]:before,
 
 input[type="checkbox"]:before,.icon-toggle-off:before,.Icon--toggle-off:before {
 	content:"\e835";
-	font-family:Material
-}
+	font-family:Material;}
 
 input[type="checkbox"]:checked:before,.icon-toggle-on:before,.Icon--toggle-on:before {
 	content:"\e834"
