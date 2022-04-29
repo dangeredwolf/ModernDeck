@@ -58,13 +58,13 @@
 		"through2": "^4.0.2"
 	},
 	"devDependencies": {
-		"@babel/cli": "^7.17.6",
-		"@babel/core": "^7.17.9",
+		"@babel/cli": "^7.17.10",
+		"@babel/core": "^7.17.10",
 		"@babel/plugin-proposal-class-properties": "^7.16.7",
 		"@babel/plugin-proposal-export-default-from": "^7.16.7",
 		"@babel/plugin-proposal-optional-chaining": "^7.16.7",
 		"@babel/plugin-transform-exponentiation-operator": "^7.16.7",
-		"@babel/preset-env": "7.16.11",
+		"@babel/preset-env": "7.17.10",
 		"@types/jquery": "^3.5.14",
 		"@types/twit": "^2.2.30",
 		"adm-zip": "^0.5.9",
