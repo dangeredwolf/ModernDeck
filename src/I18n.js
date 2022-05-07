@@ -1,7 +1,8 @@
 /*
-	TweetDeck i18n v2
-	Copyright (c) 2018-2022 dangered wolf, et al.
-	Released under the MIT license
+	I18n.js
+
+	Copyright (c) 2014-2022 dangered wolf, et al
+	Released under the MIT License
 */
 
 "use strict";
@@ -11,26 +12,34 @@ let tweetDeckTranslateInitial;
 let debugI18n = false;
 
 // ModernDeck specific import, dummy function in tweetdeck-i18n
-import { getPref } from "./StoragePreferences.js";
+import { getPref } from "./StoragePreferences";
 // Import the language data (common to tweetdeck-i18n and ModernDeck)
-import languageData from "./DataI18n.js";
+import languageData from "./DataI18n";
 
 let langFull;
 let langRoot;
 
-// ModernDeck specific code, safe to ignore within tweetdeck-i18n
-if (window.ModernDeck) {
-	console.log("I18n: Detected ModernDeck");
-	langFull = getPref("mtd_lang");
-	if (!langFull) {
-		langFull = navigator.language.replace("-","_");
+langFull = getPref("mtd_lang");
+if (!langFull) {
+	langFull = navigator.language.replace("-","_");
+
+	// Some generic languages only have local versions in ModernDeck so we use these as fallbacks
+	switch(langFull) {
+		case "en":
+			langFull = "en_US";
+			break;
+		case "es":
+			langFull = "es_ES";
+			break;
+		case "zh":
+			langFull = "zh_CN";
+			break;
+		case "fr":
+			langFull = "fr_FR";
+			break;
 	}
-	langRoot = langFull.substring(0,2);
-} else {
-	console.log("I18n: Detected TweetDeck i18n");
-	langFull = "ja_JP";//navigator.language.replace("-","_");
-	langRoot = "ja";//navigator.language.substring(0,2);
 }
+langRoot = langFull.substring(0,2);
 
 export const getFullLanguage = () => langFull;
 export const getMainLanguage = () => langRoot;
@@ -46,7 +55,6 @@ export const getFallbackLanguage = () => {
 			return "en_US";
 	}
 };
-
 
 const mustachePatches = {
 	"keyboard_shortcut_list.mustache": {
@@ -164,7 +172,7 @@ export const I18n = function(a, b, c, d, e, f) {
 
 function patchColumnTitle() {
 	if (window.TD && window.mR) {
-		var columnData = mR.findFunction("getColumnTitleArgs")[0].columnMetaTypeToTitleTemplateData;
+		var columnData = mR.findConstructor("getColumnTitleArgs")[0][1].columnMetaTypeToTitleTemplateData;
 		for (var key in columnData) {
 			columnData[key].title = I18n(columnData[key].title);
 		}
@@ -177,7 +185,7 @@ function patchColumnTitle() {
 
 function patchButtonText() {
 	if (window.TD && window.mR) {
-		let buttonData = mR.findFunction("tooltipText");
+		let buttonData = mR.findModule("tooltipText");
 
 		for (let i = 0; i < buttonData.length; i++) {
 			if (buttonData[i]) {
@@ -273,7 +281,7 @@ function patchMiscStrings() {
 				I18n(TD.controller.columnManager.MODAL_TITLE[key2]);
 			}
 		}
-		// let apiErrors = findFunction("This user has been");
+		// let apiErrors = mR.findConstructor("This user has been")[0][1];
 		// if (apiErrors[0]) {
 		// 	for (const key2 in apiErrors[0]) {
 		// 		console.log(key2);
@@ -296,9 +304,9 @@ function patchMiscStrings() {
 }
 
 function patchTDFunctions() {
-	if (typeof mR !== "undefined" && mR.findFunction && mR.findFunction("en-x-psaccent")[0]) {
-		tweetDeckTranslateInitial = mR.findFunction("en-x-psaccent")[0].default;
-		mR.findFunction("en-x-psaccent")[0].default = I18n;
+	if (typeof mR !== "undefined" && mR.findConstructor && mR.findConstructor("en-x-psaccent")[0] && mR.findConstructor("en-x-psaccent")[0][1]) {
+		tweetDeckTranslateInitial = mR.findConstructor("en-x-psaccent")[0][1].default;
+		mR.findConstructor("en-x-psaccent")[0].default = I18n;
 
 		const months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
 		let newMonths = [];
@@ -333,7 +341,7 @@ function patchTDFunctions() {
 			 newShortDays.push(translatedDay);
 		});
 
-		mR.findFunction("jQuery")[0].tools.dateinput.localize("en",{
+		mR.findConstructor("jQuery")[0][1].tools.dateinput.localize("en",{
 			months: newMonths.join(","),
 			shortMonths: newShortMonths.join(","),
 			days: newDays.join(","),
@@ -345,7 +353,7 @@ function patchTDFunctions() {
 			firstDay = 0;
 		}
 
-		mR.findFunction("jQuery")[0].tools.dateinput.conf.firstDay = firstDay;
+		mR.findConstructor("jQuery")[0][1].tools.dateinput.conf.firstDay = firstDay;
 	} else {
 		setTimeout(patchTDFunctions,10);
 	}
@@ -376,8 +384,19 @@ export function startI18nEngine() {
 	patchMustaches();
 }
 
+I18n.customTimeHandler = function(timeString) {
+	if (window.mtdTimeHandler === "h12") {
+		return timeString.replace(/\{\{hours24\}\}\:\{\{minutes\}\}/g,"{{hours12}}:{{minutes}} {{amPm}}")
+	} else if (window.mtdTimeHandler === "h24") {
+		return timeString.replace(/\{\{hours12\}\}\:\{\{minutes\}\} ?\{\{amPm\}\}/g,"{{hours24}}:{{minutes}}")
+	} else {
+		return timeString;
+	}
+}
+
+I18n.getFullLanguage = getFullLanguage;
+I18n.getMainLanguage = getMainLanguage;
+
 window.I18n = I18n;
-window.I18n.getFullLanguage = getFullLanguage;
-window.I18n.getMainLanguage = getMainLanguage;
 
 startI18nEngine();

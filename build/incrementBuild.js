@@ -1,12 +1,18 @@
 const fs = require("fs");
 const path = require("path");
 
+let ver = require("../src/BuildProps.json").buildId;
+ver++;
+
 let thePath = path.format({
-	dir:__dirname + path.sep + ".." + path.sep + "src",
-	base:"buildId.js"
+	dir: __dirname + path.sep + ".." + path.sep + "src",
+	base: "BuildProps.json"
 });
 
-let buildFile = fs.readFileSync(thePath) + "";
-let ver = parseInt(buildFile.match(/\d+/g)[0]);
-ver++;
-fs.writeFileSync(thePath,"export default " + ver++ + ";")
+const buildProps = {
+	buildId: ver,
+	buildDate: new Date().toISOString(),
+	buildVersion: require("../package.json").version
+}
+
+fs.writeFileSync(thePath, JSON.stringify(buildProps))

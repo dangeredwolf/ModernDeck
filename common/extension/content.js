@@ -16,36 +16,36 @@ if (document.querySelector(`[rel="manifest"]`) === null) {
 
 	document.querySelector("link[rel=\"stylesheet\"]").remove();
 
-	var injStyles = document.createElement("link");
+	const injStyles = document.createElement("link");
 	injStyles.rel = "stylesheet";
-	injStyles.href = browser.runtime.getURL("assets/moderndeck.css");
+	injStyles.href = browser.runtime.getURL("assets/css/moderndeck.css");
 
 	document.head.appendChild(injStyles);
 
 	// Gross hack for 9.4 because modenrdeck.css is not being loaded
 
-	var injStyles2 = document.createElement("link");
+	const injStyles2 = document.createElement("link");
 	injStyles2.rel = "stylesheet";
-	injStyles2.href = browser.runtime.getURL("assets/moderndeck.css");
+	injStyles2.href = browser.runtime.getURL("assets/css/moderndeck.css");
 
 	document.head.appendChild(injStyles2);
 
-	var injectScript2 = document.createElement("script");
+	const injectScript2 = document.createElement("script");
 	injectScript2.src = browser.runtime.getURL("assets/libraries/moduleraid.min.js");
 	injectScript2.type = "text/javascript";
 	document.head.appendChild(injectScript2);
 
 	console.log("Injecting moderndeck.js");
 
-	var injectScript = document.createElement("script");
+	const injectScript = document.createElement("script");
 
-	var injectURL = document.createElement("div");
-	injectURL.setAttribute("type", browser.runtime.getURL("/"));
-	injectURL.id = "MTDURLExchange";
-	document.head.appendChild(injectURL);
-	console.log("injected url exchange with id " + injectURL.id);
+	const baseUrl = document.createElement("meta");
+	baseUrl.setAttribute("name", "moderndeck-base-url");
+	baseUrl.setAttribute("content", browser.runtime.getURL("/"));
+	document.head.appendChild(baseUrl);
+	console.log(`Injected baseUrl ${baseUrl.getAttribute("content")}`);
 
-	injectScript.src = browser.runtime.getURL("assets/moderndeck.js");
+	injectScript.src = browser.runtime.getURL("assets/js/moderndeck.js");
 
 	document.getElementsByClassName("js-signin-ui block")[0].innerHTML =
 	`<img class="mtd-loading-logo" src="${browser.runtime.getURL("/assets/img/moderndeck.svg")}" style="display: none;">
@@ -64,12 +64,12 @@ if (document.querySelector(`[rel="manifest"]`) === null) {
 	</div>`
 
 	if (typeof mtdLoadStyleCSS === "undefined") {
-		var mtdLoadStyleCSS = `
+		const mtdLoadStyleCSS = `
 			img.spinner-centered {
 				display:none!important
 			}
 		`
-		var mtdLoadStyle = document.createElement("style");
+		const mtdLoadStyle = document.createElement("style");
 		mtdLoadStyle.appendChild(document.createTextNode(mtdLoadStyleCSS))
 		document.head.appendChild(mtdLoadStyle);
 	}

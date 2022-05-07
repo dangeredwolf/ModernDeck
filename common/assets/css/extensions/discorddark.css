@@ -1,0 +1,195 @@
+/*
+	discorddark.css
+
+	Copyright (c) 2014-2022 dangered wolf, et al
+	Released under the MIT License
+*/
+
+:root {
+	--primaryColor:#202225;
+	--secondaryColor:hsl(235,85.6%,64.7%);
+	--secondaryColorPress:hsl(235,51.4%,52.4%);
+	--secondaryColorDeep:#363a68;
+	--secondaryColorDeepTrans:rgba(54, 58, 104, 0.5);
+	--secondaryColorBright:#8498A5;
+	--redDefault:#c35252;
+	--redHover:#d43737;
+	--redActive:#7b0d0d;
+	--redDisabled:rgba(197,84,84,0.45);
+	--txtMuteLink:#a3a6aa;
+	--disabledColor:#72767D;
+	--linkPressColor:rgba(0,0,0,.05);
+	--buttonPressColor:rgba(255,255,255,.1);
+	--scrollbarDefaultColor:#a3a6aa;
+	--scrollbarHoverColor:#b9bbbe;
+	--bodyTextColor:#eee;
+	--bodyTextHoverColor:#eee;
+	--typeaheadColor:#DFDFDF;
+	--typeaheadBackgroundColor:#18191c;
+	--primaryTextColor:#fff;
+	--placeholderTextColor:#72767D;
+	--selectionBackgroundColor:rgba(106,152,152,0.57);
+	--selectionTextColor:#666;
+	--tweetDetailWrapperColor:rgba(4,4,5,0.07);
+	--contextMenuDividerColor:rgba(79,84,92,0.48);
+	--backdropColor:#36393f;
+	--modalWindowColor:rgb(24, 25, 28);
+	--overlayBackgroundColor:rgba(0,0,0,0.85);
+	--navDrawerBackground:rgba(56,66,72,0.4);
+	--defaultShadowColor:rgba(0,0,0,0.85);
+	--settingsTabColor:#2f3136;
+	--interactiveMuted:#4f545c;
+}
+
+/* Always overwrite this from color themes */
+
+.mtd-light {
+	--secondaryColorAlt:#2f3136!important;
+}
+
+.mtd-dark {
+	--secondaryColorAlt:#2f3136!important;
+}
+
+::selection
+{
+	background:var(--selectionBackgroundColor)
+}
+
+.js-reply-checkbox:not([disabled]):before {
+	color:var(--secondaryColorBright)!important
+}
+
+.js-reply-checkbox[disabled] {
+	opacity:0.8
+}
+
+.column-header .txt-mute, .column-header-title>.attribution {
+	color:var(--scrollbarHoverColor)
+}
+
+.more-tweets-btn, .tweet-button:not(.js-hide-drawer), .stream-item.is-actionable:hover, .stream-item.is-actionable.is-selected-tweet, button.try-query, .Notification-inner {
+	box-shadow:none
+}
+
+.link-complex[data-user-name]:not(.account-link) {
+	background:hsla(235,85.6%,64.7%,0.3);
+	color:hsl(236,83.3%,92.9%)!important;
+	transition:background 0.05s ease-out;
+	padding:2px 3px;
+	border-radius:6px;
+}
+
+.link-complex[data-user-name]:not(.account-link):hover {
+	transition:background 0.05s ease-out;
+	background:var(--secondaryColor)
+}
+
+.detail-view-inline-text {
+	
+}
+
+.mdl::-webkit-scrollbar-thumb,
+.mdl.s-profile::-webkit-scrollbar-thumb,
+.mtd-nav-drawer::-webkit-scrollbar-thumb,
+.lst-launcher::-webkit-scrollbar-thumb,
+.scroll-styled-v::-webkit-scrollbar-thumb,
+.scroll-v::-webkit-scrollbar-thumb,
+.emoji-picker__emojis::-webkit-scrollbar-thumb,
+.scroll-styled-h::-webkit-scrollbar-thumb,
+.s-tall-fixed::-webkit-scrollbar-thumb,
+#lists-modal .mdl-content::-webkit-scrollbar-thumb,
+.keyboard-shortcut-list-modal::-webkit-scrollbar-thumb,
+.Dropdown::-webkit-scrollbar-thumb
+{
+	background: #202225!important
+}
+
+.mdl::-webkit-scrollbar-thumb:hover,
+.mdl.s-profile::-webkit-scrollbar-thumb:hover,
+.mtd-nav-drawer::-webkit-scrollbar-thumb:hover,
+.lst-launcher::-webkit-scrollbar-thumb:hover,
+.scroll-styled-v::-webkit-scrollbar-thumb:hover,
+.scroll-v::-webkit-scrollbar-thumb:hover,
+.emoji-picker__emojis::-webkit-scrollbar-thumb:hover,
+.scroll-styled-h::-webkit-scrollbar-thumb:hover,
+#lists-modal .mdl-content::-webkit-scrollbar-thumb:hover,
+.keyboard-shortcut-list-modal::-webkit-scrollbar-thumb:hover,
+.Dropdown::-webkit-scrollbar-thumb:hover
+{
+	background: #2f3136!important
+}
+
+.mdl,
+.mdl.s-profile,
+.mtd-nav-drawer,
+.lst-launcher,
+.scroll-styled-v,
+.scroll-v,
+.emoji-picker__emojis,
+.scroll-styled-h,
+#lists-modal .mdl-content,
+.keyboard-shortcut-list-modal,
+.Dropdown {
+	scrollbar-color:#202225 #2f3136!important
+}
+
+.app-content,.app-columns-container {
+	background:var(--backdropColor)
+}
+
+.mtd-settings-tab-selection {
+	background:rgba(79,84,92,0.6)!important
+}
+
+.mtd-settings-button,.btn-primary, .Button--primary:not(.tweet-button):not(.action-text):not(.more-tweets-btn):not(.btn-fav-faved-text):not(.js-add-column):not(.js-spinner-button) {
+	box-shadow:none;
+	font-size:13px!important;
+	border-radius:3px!important;
+	padding:2px 14px!important;
+	text-transform:none;
+	font-weight:400!important
+}
+
+.mtd-settings-button:hover,.btn-primary:hover, .Button--primary:not(.tweet-button):not(.action-text):not(.more-tweets-btn):not(.btn-fav-faved-text):not(.js-add-column):not(.js-spinner-button):hover {
+	background:hsl(235,51.4%,52.4%)!important
+}
+
+.more-tweets-btn {
+	background:var(--secondaryColor)!important;
+	width: calc(100% - 20px);
+	margin-top:-40px;
+	border-radius: 0 0 10px 10px;
+}
+
+.more-tweets-btn .icon {
+	display:none
+}
+
+.more-tweets-btn>div {
+	text-align:left;
+	text-transform:none
+}
+
+.stream-item.is-actionable .quoted-tweet {
+	background:var(--settingsTabColor);
+	border-radius:6px;
+	box-shadow:none
+}
+
+.media-item, .media-item:hover {
+	box-shadow:none
+}
+
+.thread {
+	background-color: var(--interactiveMuted)
+}
+
+.mdl, .med-tray {
+	animation-timing-function: cubic-bezier(0,0.2,.2,1.25)!important;
+	animation-name: windowDownHarmony
+}
+
+button, a.btn, a.js-create-list, input[type="button"], .Button--primary, .Button {
+	text-transform:none
+}

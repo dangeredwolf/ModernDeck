@@ -1,0 +1,774 @@
+/*
+	settings.css
+
+	Copyright (c) 2014-2022 dangered wolf, et al
+	Released under the MIT License
+*/
+
+:root {
+	--settingsTabWidth:170px
+}
+
+.mtd-settings-option option[value="paper"] {
+	background:#eee;
+	color:#333!important
+}
+
+.mtd-settings-option option[value="grey"] {
+	background:#555;
+	color:#fff!important
+}
+
+.mtd-settings-option option[value="light"] {
+	background:#fff;
+	color:#000!important
+}
+
+.mtd-settings-option option[value="dark"] {
+	background:#444;
+	color:#fff!important
+}
+
+.mtd-settings-option option[value="darker"] {
+	background:#333;
+	color:#fff!important
+}
+
+.mtd-settings-option option[value="discorddark"] {
+	background:hsl(235,85.6%,64.7%);
+	color:#fff!important
+}
+
+.mtd-settings-option option[value="twitterdark"] {
+	background:#15202B;
+	color:#fff!important
+}
+
+.mtd-settings-option option[value="red"] {
+	background:#F44336;
+	color:#fff!important
+}
+
+.mtd-settings-option option[value="pink"] {
+	background:#E91E63;
+	color:#fff!important
+}
+
+.mtd-settings-option option[value="orange"] {
+	background:#FF5722;
+	color:#fff!important
+}
+
+.mtd-settings-option option[value="violet"] {
+	background:#673AB7;
+	color:#fff!important
+}
+
+.mtd-settings-option option[value="teal"] {
+	background:#009688;
+	color:#fff!important
+}
+
+.mtd-settings-option option[value="green"] {
+	background:#4CAF50;
+	color:#fff!important
+}
+
+.mtd-settings-option option[value="yellow"] {
+	background:#FFC107
+}
+
+.mtd-settings-option option[value="cyan"] {
+	background:#00BCD4;
+	color:#fff!important
+}
+
+.mtd-settings-option option[value="black"],.mtd-settings-option option[value="amoled"] {
+	background:#000;
+	color:#fff!important
+}
+
+.mtd-settings-option option[value="blue"] {
+	background:#2196F3;
+	color:#fff!important
+}
+
+.mtd-settings-subpanel-hidden {
+	display:none
+}
+
+.mtd-settings-panel {
+	display:block;
+	position:absolute;
+	left:0;
+	right:0;
+	top:0;
+	bottom:0;
+	width:700px!important;
+	height:500px!important;
+	overflow:hidden
+}
+
+.mtd-settings-subpanel {
+	height:525px;
+	width:calc(659px - var(--settingsTabWidth));
+	display:block;
+	position:absolute;
+	overflow-y:auto;
+	overflow-x:hidden;
+	padding:20px;
+	padding-top:0;
+	pointer-events:all
+}
+
+.mtd-settings-subpanel:first-child .mtd-welcome-prev-button {
+	display:none
+}
+
+.mtd-settings-subpanel:nth-child(1) {
+	margin-top:0
+}
+
+.mtd-settings-subpanel:nth-child(2) {
+	margin-top:545px
+}
+
+.mtd-settings-subpanel:nth-child(3) {
+	margin-top:1090px
+}
+
+.mtd-settings-subpanel:nth-child(4) {
+	margin-top:1635px
+}
+
+.mtd-settings-subpanel:nth-child(5) {
+	margin-top:2180px
+}
+
+.mtd-settings-subpanel:nth-child(6) {
+	margin-top:2725px
+}
+
+.mtd-settings-subpanel:nth-child(7) {
+	margin-top:3270px
+}
+
+.mtd-settings-subpanel:nth-child(8) {
+	margin-top:3815px
+}
+
+.mtd-settings-subpanel:nth-child(9) {
+	margin-top:4360px
+}
+
+.mtd-settings-inner {
+	min-height:300px;
+	transition:margin-top 0.3s var(--animationTiming),margin-left 0.3s var(--animationTiming);
+	bottom:0;
+	top:0;
+	left:0;
+	right:0;
+	position:absolute;
+	-webkit-app-region:no-drag;
+	pointer-events:none;
+	z-index:5;
+	width:540px
+}
+
+.mtd-settings-panel-subheader {
+	margin-top:0;
+	padding-top:20px
+}
+
+.mtd-settings-option .checkbox,.mtd-settings-option .radio {
+	display:block;
+	pointer-events:all;
+	margin-bottom:0;
+	min-height:2px;
+	margin-left: 39px;
+	vertical-align:text-top!important;
+	padding-top:4px;
+	/* height:20px; */
+	/* width:95%; */}
+
+.mtd-settings-tab {
+	padding:14px 0 14px 18px!important;
+	color:var(--bodyTextColor);
+	-webkit-app-region:no-drag!important;
+	transition:color 0.3s var(--animationTiming), border-bottom 0.3s var(--animationTiming)!important;
+	background:transparent!important;
+	box-shadow:none!important;
+	border-top:none!important;
+	border-left:none!important;
+	border-bottom:none!important;
+	border-radius:0!important;
+	width:100%;
+	text-align:left;
+	text-transform:none;
+	font-size:16px!important;
+	height:50px;
+	z-index:2
+}
+
+.mtd-settings-tab:not(.mtd-settings-tab-selected) {
+	border-right:0 solid rgba(0,0,0,0)!important
+}
+
+.mtd-settings-tab-selection {
+	height:52px;
+	position:absolute;
+	background:var(--selectionBackgroundColor)!important;
+	z-index:1;
+	left:0;
+	width:var(--settingsTabWidth);
+	transition:top 0.3s var(--animationTiming)!important;
+	pointer-events:none
+}
+
+.mtd-settings-tab-container {
+	width:var(--settingsTabWidth);
+	height:100%;
+	z-index:20;
+	background:var(--settingsTabColor);
+	box-shadow:0 2px 13px var(--genericDropShadow)
+}
+
+.mtd-logo-container {
+	padding:12px;
+	margin-top:20px
+}
+
+.mtd-settings-subpanel select, .mtd-settings-subpanel input[type="text"] {
+	width:200px!important;
+	display:inline-block;
+	float:right
+}
+
+.mtd-settings-subpanel select[disabled], .mtd-settings-subpanel input[disabled] {
+	opacity:0.5
+}
+
+.mtd-settings-subpanel label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+	margin-bottom:0;
+	padding-top:8px;
+	padding-left:0;
+	/* position: absolute; */
+}
+
+.mtd-settings-subpanel label.control-label {
+	width:auto
+}
+
+.mtd-settings-option {
+	width:100%;
+	height:53px
+}
+
+.mtd-settings-option-slider {
+	height:100px
+}
+
+.mtd-settings-option-checkbox {
+	height: auto;
+	/* margin-bottom:8px; */
+	/* margin-top:8px; */}
+
+.mtd-settings-option-subtext {
+	margin-top:-10px;
+	height:auto!important;
+    display:inline-block
+}
+
+.mtd-settings-option-link {
+	padding-bottom:16px;
+	cursor:pointer;
+	height:20px
+}
+
+.mtd-settings-subpanel p {
+	font-size:16px;
+	padding:30px
+}
+
+.mtd-settings-option input[type="checkbox"], .mtd-settings-option input[type="radio"] {
+	position:relative;
+	/* height:40px; */
+	margin-left:-40px;line-height: 0;margin-top: -8px;}
+
+.mtd-update-container,.mtd-update-container>* {
+	float:left
+}
+
+.mtd-update-container {
+	margin-top:30px;
+	display:inline-block;
+	position:absolute;
+	left:60px
+}
+
+.mtd-update-container h2 {
+	font-size:16px!important;
+	padding-left:20px;
+	font-weight:500;
+	margin-bottom:0!important;
+	margin-block-start:0;
+	margin-block-end:0;
+	max-width:380px
+}
+
+.mtd-update-container h3 {
+	font-size:14px!important;
+	padding-left:55px;
+	font-weight:400;
+	margin-block-start:0;
+	margin-block-end:0;
+	margin-top:24px!important;
+	position:absolute;
+	width:375px
+}
+
+.mtd-update-container button {
+	margin-top:-6px;
+	z-index:10
+}
+
+.mtd-update-container i {
+	font-size:36px
+}
+
+.hidden {
+	display:none!important
+}
+
+.mtd-about-info {
+	bottom:20px;
+	position:absolute
+}
+
+.mtd-about-info p {
+	font-size:14px;
+	line-height:2
+}
+
+
+.mtd-about-info i {
+	line-height:1
+}
+
+.mtd-big-text-box>input[type="text"] {
+	width:300px
+}
+
+.mtd-settings-option-slider .mtd-slider-minimum,.mtd-settings-option-slider .mtd-slider-maximum {
+	float:right!important;
+	margin-left: 8px!important;
+	padding-top:17px!important;
+	display: block;
+	position: absolute;
+}
+
+.mtd-settings-option-slider .mtd-slider-minimum {
+	margin-top:48px
+}
+
+.mtd-settings-option-slider .mtd-slider-maximum  {
+	margin-top:48px;
+	margin-left:440px!important
+}
+
+.mtd-settings-option-slider input[type="range"] {
+	-webkit-appearance:none;
+	width:370px;
+	float: left;
+	border-radius:2px;
+	padding:0;
+	padding-top:24px;
+	height:1px;
+	margin-left: 60px;
+}
+
+.mtd-settings-option-slider input[type="range"]::-webkit-slider-thumb {
+	background:var(--secondaryColor);
+	-webkit-appearance:none;
+	appearance:none;
+	width:16px;
+	height:16px;
+	border-radius:50%;
+	cursor:pointer
+}
+
+.mtd-settings-option-slider input[type="range"]::-moz-range-thumb {
+	background:var(--secondaryColor);
+	width:16px;
+	height:16px;
+	border-radius:50%;
+	margin-top:10px;
+	cursor:pointer
+}
+
+.mtd-settings-option-slider b {
+	font-size:18px;
+	padding-left:20px
+}
+
+.mtd-settings-option-button .control-label {
+	display:block;
+	width:100%!important;
+	float:none
+}
+
+.mtd-settings-option-button .control-label b {
+	font-size:16px;
+	width:300px;
+	margin-left:10px;
+}
+
+.mtd-settings-option-button {
+	height:auto;
+	width:95%;
+	padding:10px
+}
+
+.mtd-settings-option-buttongroup {
+	height:auto
+}
+
+.mtd-textarea {
+	height:240px!important;
+	font-family:RobotoMono!important;
+	tab-size:43px;
+	-moz-tab-size:43px /* Firefox 90 and below*/
+}
+
+.settings-modal .mtd-settings:after {
+	content:""!important
+}
+
+.mtd-logo {
+	--logoSize: 76.5px;
+	width:var(--logoSize);
+	height:var(--logoSize);
+	line-height:1;
+	display:inline;
+	float:left;
+	pointer-events:all;
+	margin-right: 11px;
+	margin-left: 0px;
+	margin-top:-3px;
+}
+
+.mtd-settings-panel .mtd-logo {
+	background-size: var(--logoSize);
+	background-repeat:no-repeat
+}
+
+:not(.mtd-app-mac) .mtd-version-title {
+	margin-left: 82px;
+}
+
+.mtd-settings-panel .mtd-logo {
+	background-image: url(moderndeck://assets/img/moderndeck.svg);
+}
+
+.mtd-app-mac .mtd-settings-panel .mtd-logo {
+	--logoSize: 64px;
+	margin-left: 5px;
+	margin-right: 5px;
+	background-image: url(moderndeck://assets/img/macOS.svg);
+margin-top: 0px;}
+
+.mtd-settings-panel .mtd-logo:before {
+	content:""
+}
+
+.mtd-about-title {
+	display:inline-block;
+	position:relative;
+	padding:0;
+	vertical-align:middle;
+	float:left;
+	font-size: 20px;
+	margin-top: 9px;
+	text-align:left;
+	width:auto
+}
+
+.mtd-app-mac .mtd-about-title {
+	padding-left:10px
+}
+
+.mtd-about-title>span {
+	padding-left:8px;
+	font-size:14px
+}
+
+.mtd-version-title {
+	font-weight:400;
+	font-size:14px;
+	text-align:left;
+	display:block;
+	position:relative;
+	padding-top: 38px;
+	width:305px;
+	margin-left:96px
+}
+
+.mtd-app-mac .mtd-version-title {
+	margin-left: 84px;
+}
+
+.mtd-patron-info {
+	position:absolute;
+	right:0;
+	bottom:100px;
+	float:right;
+	width:100%;
+	height:100px
+}
+
+.mtd-patron-list {
+	width:100%;
+	float:right
+}
+
+
+.mtd-patron-render {
+	width:100%
+}
+
+.mtd-patron-render h3 {
+	width:100%
+}
+
+p.mtd-patron-level {
+	line-height:1.3;
+	padding:0;
+	font-size:12px
+}
+
+.mtd-patron-list-inline .mtd-patron-level {
+	display:inline;
+	padding-right:3px
+}
+
+.mtd-patron-level.mtd-patron-level-1 {
+	font-weight:500;
+	font-size:14px
+}
+
+.mtd-patreon-button {
+	height:36px;
+	position:absolute;
+	bottom:0
+}
+
+html body .mtd-settings-subpanel button {
+	background-color:transparent
+}
+
+.mtd-mute-text {
+	font-size:16px;
+	font-weight:600;
+	padding-right:10px
+}
+
+.mtd-mute-text-:before {
+	content:"Text "
+}
+
+.mtd-mute-text-source:before {
+	content:"Source "
+}
+
+.mtd-settings-button {
+	background:var(--secondaryColor)!important;
+	color:var(--rootWhiteColor)!important;
+	float:none;
+	margin-top:50px;
+	box-shadow:0 3px 7px var(--composeShadow);
+	padding:8px 14px;
+	border-radius:4px;
+	transition:background 0.2s var(--animationTiming),transform 0.25s var(--animationTiming)!important
+}
+
+.mtd-settings-button:focus {
+	background:var(--secondaryColorBright)!important
+}
+
+.mtd-auto-scroll {
+	position:absolute;
+	top:80px;
+	bottom:60px;
+	left:0;
+	right:0
+}
+
+.mtd-check-out-app {
+	position:absolute;
+	top:100px;
+	font-size:14px!important
+}
+
+.mtd-update-managed {
+	margin-left:40px;
+	margin-top:50px;
+	line-height:2;
+	font-weight:400;
+	width:88%
+}
+
+.mtd-update-managed+.mtd-settings-button {
+	margin-left:38px;
+	margin-top:10px
+}
+
+.mtd-settings-subpanel.hidden {
+	pointer-events:none
+}
+
+.mtd-settings-option-buttongroup .mtd-settings-button {
+	pointer-events:all;
+	margin-top:17px;
+	margin-left:10px
+}
+
+.mtd-settings-option-buttongroup .control-label {
+	font-size:16px;
+	padding-left:10px;
+	margin-bottom:10px
+}
+
+.mtd-unsupported-lang {
+	margin-top:10px
+}
+
+.mtd-settings-inner-container {
+	left:var(--settingsTabWidth);
+	top:0;
+	right:0;
+	bottom:0;
+	position:absolute;
+	overflow:hidden
+}
+
+.mtd-settings-tab>i {
+	margin-right:10px;
+	margin-top:-2px
+}
+
+.control-group {
+	margin-bottom:20px;
+	min-height:40px;
+	pointer-events:none
+}
+
+.controls-space-58 {
+	margin-left:58px
+}
+
+.control-group>div:not([class]) {
+	pointer-events:all;
+	padding:15px
+}
+
+.checkbox,.radio {
+	min-height:18px
+}
+
+.checkbox input[type="checkbox"],.radio input[type="radio"] {
+}
+
+.checkbox-reversed input[type="checkbox"] {
+	float:right;
+	height:22px;
+	font-size:24px;
+	margin-bottom:18px
+}
+
+.checkbox span {
+	margin-right:20px;
+	display:block
+}
+
+.control-label {
+	float:left;
+	width:auto;
+	text-align:left;
+	display:inline-block
+}
+
+.mtd-settings-tab>i.icon-twitter-bird,.mtd-settings-tab>i.icon-moderndeck {
+	margin-top:-6px;
+	font-size:24px
+}
+
+#language .mtd-settings-button {
+	margin-top:10px
+}
+
+#language b {
+	margin-left:0;
+}
+
+#global_filter_settings .control-group {
+	width:67%
+}
+
+.js-filter-list {
+	position:absolute;
+	top:150px;
+	width:85%;
+	max-height:400px;
+	overflow-y:auto;
+	overflow-x:hidden;
+	bottom:15px
+}
+
+#global_filter_settings .txt-size--12 {
+	position:absolute;
+	bottom:40px
+}
+
+.js-add-filter-container {
+	position:absolute;
+	left:365px;
+	top:85px
+}
+
+.mtd-update-container img {
+	vertical-align:middle;
+	padding-right:5px
+}
+
+#global_filter_settings select,#global_filter_settings .controls input {
+	width:250px!important;
+	float:left
+}
+
+.mtd-settings-button.mtd-default-button {
+	display:block;
+	position:absolute;
+	right:20px;
+	text-align:right;
+	margin-top:12px;
+	padding:7px
+}
+
+.mtd-settings-option-dropdown label.control-label {
+	max-width: 260px;
+}
+
+.mtd-settings-subtext {
+	height:auto!important
+}
+
+.mtd-input-monospace {
+	font-family:RobotoMono
+}
+
+.mtd-input-monospace::placeholder {
+	font-family: var(--defaultFontOrder);
+}

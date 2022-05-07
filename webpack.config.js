@@ -10,13 +10,11 @@ const TerserPlugin = require('terser-webpack-plugin');
 
 module.exports = {
 	entry: {
-        "moderndeck": "./src/ModernDeckInit.js",
+        "moderndeck": "./src/Boot/Boot.ts",
 	},
 	output: {
 		filename: "[name].js",
-		path: path.resolve(__dirname, "common/assets"),
-		// publicPath: "//dangeredwolf.com/",
-		publicPath: '/',
+		path: path.resolve(__dirname, "common/assets/js"),
 		environment: {
 			arrowFunction: true
 		},
@@ -26,6 +24,9 @@ module.exports = {
     resolve: {
         extensions: [".js", ".jsx", ".ts", ".tsx", ".png", ".jpg", ".mp3", ".mp4", ".aac", ".webp"],
     },
+	experiments: {
+		topLevelAwait: true
+	},
 	plugins: [
 		// new webpack.DefinePlugin({
 		// 	__BUILD_ID__: JSON.stringify(buildId)
@@ -50,6 +51,11 @@ Made with <3
 		{
 			test: /\.(csv|tsv)$/i,
 			use: ["csv-loader"],
+		},
+		{
+			test: /\.tsx?$/,
+			use: 'ts-loader',
+			exclude: /node_modules/,
 		},
 		{
 			test: /\.m?js$/,

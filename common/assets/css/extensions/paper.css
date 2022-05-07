@@ -1,0 +1,170 @@
+/*
+	paper.css
+
+	Copyright (c) 2014-2022 dangered wolf, et al
+	Released under the MIT License
+*/
+
+:root {
+	--primaryColor:#eee!important;
+	--secondaryColorBright:#eee!important;
+	--paperColor:#333!important;
+	--rootWhiteColor:#333!important;
+	--mdlPrimaryColor:#eee!important;
+	--pureWhite:#fff!important
+}
+
+.prf-header .prf-bio a,.is-options-open .column-settings-link,.prf-header .prf-siteurl,.prf .fullname,.prf-actions .action-text:after,.prf-header,.prf-header .username,.prf-header .link-clean {
+	color:var(--pureWhite)!important
+}
+
+.is-new .column-message, .btn-login[type="submit"], .login-container .btn-positive, .more-tweets-btn, .is-unread, .compose, .drawer, .tweet-button:not(.js-hide-drawer), .PillGroup .Pill.is-selected, .DatePicker-calendarDay.is-withinRange, .lst-group .selected, button.try-query {
+	background:var(--primaryColor)!important
+}
+
+/* stylelint-disable */
+html body .js-column-message .dark-only--color-twitter-gray,
+.selected .list-link strong,
+.js-submittable-input.js-compose-text,
+.popover input.txt-mute,
+.popover textarea.txt-mute,
+.toggle-item-text,
+.accordion-panel .txt-bold,
+.facet-title,
+.facet-type,
+.windowcontrol,
+.mtd-settings-tab,
+.lst-launcher a,
+.lst-launcher a:hover,
+.lst-launcher a:focus,
+.lst-launcher a:active,
+.lst-launcher span,
+.message-text>.btn,
+.message-banner,
+.js-compose-stay-open,
+.js-compose-stay-open:before,
+.mdl-header-title a,
+.title-content .txt-mute,
+.column-title .attribution,
+.compose-remember-state,
+.more-tweets-btn,
+.selected .list-link strong,
+.account-selector-grid-mode,
+.account-selector-grid-mode:hover,
+.account-selector-grid-mode:active,
+.account-selector-grid-mode.is-selected,
+.js-dm-participants-back:after,
+.conversation-title .title-content b,
+.js-tweet-social-proof-back:after,
+.js-column-detail .column-title-back:before,
+.js-hide-drawer.app-nav-tab:after,
+.app-nav-tab,
+.drawer-header-title.drawer-column-header-title,
+.btn-back:before,
+.mdl-header-title,
+.column-header-temp,
+.mdl-column.l-column .search-input,
+.numbered-badge,
+.app-search .app-search-fake,
+.column-message,
+.app-nav-link,
+.column-title,
+.column-header .icon,
+.btn-compose.tweet-button>.icon-compose,
+.js-add-image-button,
+.js-tweet-button,
+.js-dm-button,
+.js-schedule-button,
+.mtd-gif-button
+{
+	color:var(--rootWhiteColor)!important
+}
+/* stylelint-enable */
+
+.mtd-nd-header-username,
+.mtd-nd-header-atname,
+.btn.mtd-notification-button,
+.Notification-closeButton
+{
+	color:var(--pureWhite)!important
+}
+
+.is-new .column-header,
+.is-new .column-header-temp
+{
+	background:linear-gradient(var(--primaryColor),rgba(199,199,199,0.75))!important
+}
+
+.is-new .column-message {
+	background:rgba(199,199,199,0.75)!important
+}
+
+a.column-nav-link,.column-nav-item,.js-setting-list .list-link strong {
+	color:rgba(85,85,85,.75) !important
+}
+
+.is-new a.column-nav-link {
+	color:rgba(50,50,50,.75) !important
+}
+
+a .column-title-back .icon:after,.drawer-header:active .drawer-header-title .icon:after,.btn-back:after,.app-search-fake .icon:after,.mtd-drawer-button:active:after {
+	background:rgba(85,85,85,.2)!important
+}
+
+.is-new>.column-nav-updates.icon-dot {
+	background:rgb(50,50,50) !important
+}
+
+.spinner-layer,.spinner-default
+{
+	border-color:#555!important
+}
+
+.js-send-button.is-disabled {
+	color:#ccc!important;
+}
+
+.dropdown-menu a {
+	opacity:1!important
+}
+
+.mtd-settings-button {
+	background:var(--secondaryColor)!important
+}
+
+.mdl-btn-media,.Notification-inner,.Notification-icon  {
+	color:var(--pureWhite)!important
+}
+
+.btn-options-tray:hover,.btn-options-tray:focus {
+	color:rgba(0,0,0,.8)
+}
+
+
+html:not(.os-osx) .antiscroll-scrollbar {
+	background:rgba(0,0,0,.2);
+}
+
+.windowcontrol.close:hover {
+	color:#fff!important
+}
+
+.btn-primary {
+	color:#fff!important
+}
+
+.pull-right>button.Button--primary:not(.tweet-button):not(.action-text):not(.more-tweets-btn):not(.js-add-column):not(.js-spinner-button)[data-action="retweet"] {
+	color:#fff!important
+}
+
+.column-nav-item .attribution {
+	color:rgba(0,0,0,.3)!important
+}
+
+.column-nav-link:hover {
+	color:#111!important
+}
+
+.mdl .prf-follow-state .js-user-actions-menu {
+	color:#fff!important
+}

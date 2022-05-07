@@ -1,0 +1,111 @@
+/*
+	welcome.css
+
+	Copyright (c) 2014-2022 dangered wolf, et al
+	Released under the MIT License
+*/
+
+.mtd-welcome-inner {
+	padding: 10px 20px
+}
+
+.mtd-welcome-inner h1 {
+	font-size: 32px;
+	padding-top: 10px;
+}
+
+.mtd-welcome-inner p {
+	line-height:1.5
+}
+
+.mtd-welcome-pane {
+	position:absolute;
+	width:50%;
+	bottom:0;
+	height: 460px;
+	padding: 20px;
+	box-sizing: border-box;
+}
+
+.mtd-welcome-pane-left {
+	left:0;
+}
+
+.mtd-welcome-pane-right {
+	right:0
+}
+
+.mtd-welcome-developer-profile {
+	height:60px;
+}
+
+.mtd-welcome-profile-text {
+	padding: 8px 0 8px 58px;}
+
+.mtd-welcome-profile-text > b, .mtd-welcome-profile-text > span {
+	display:block;
+	position:relative
+}
+
+.mtd-welcome-profile-text > span {
+	margin-top:3px
+}
+
+.mtd-welcome-panel {
+	width: 800px!important;
+	height: 600px!important;
+}
+
+.mtd-welcome-panel i {
+	display:inline
+}
+
+.mtd-welcome-pane p {
+	font-size:13px
+}
+
+.mtd-welcome-follow-header {
+	margin-bottom:10px
+}
+
+.mtd-welcome-donation-header {
+	margin-top:20px;
+	margin-bottom:10px
+}
+
+.mtd-kofi-button {
+	height: 40px;
+	display: inline-block;
+}
+
+.mtd-kofi-button img {
+	width: 64px
+}
+
+.mtd-sponsor-button {
+	vertical-align: top;
+	display: inline-block;
+	color:var(--likeColor);
+	margin-top: 6px;
+}
+
+.mtd-sponsor-button i {
+	padding-right: 6px;
+}
+
+.mtd-welcome-pane h2 {
+	font-size:16px
+}
+
+.mtd-welcome-panel i {
+	display:inline
+}
+
+.mtd-welcome-panel .avatar {
+	width:48px;
+	height:48px;
+}
+
+.mtd-welcome-panel .follow-btn {
+	margin-top:-24px;
+}

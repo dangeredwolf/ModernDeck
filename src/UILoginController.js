@@ -5,14 +5,16 @@
 	Released under the MIT License
 */
 
-import { enableStylesheetExtension, disableStylesheetExtension } from "./StylesheetExtensions.js";
-import { I18n } from "./I18n.js";
-import { UILanguagePicker } from "./UILanguagePicker.js";
-import { openSettings } from "./UISettings.js";
-import { getPref } from "./StoragePreferences.js";
+import { enableStylesheetExtension, disableStylesheetExtension } from "./StylesheetExtensions";
+import { I18n } from "./I18n";
+import { UILanguagePicker } from "./UILanguagePicker";
+import { openSettings } from "./UISettings";
+import { getPref } from "./StoragePreferences";
+import { loginPage } from "./DataMustaches";
 
 let ugltStarted = false;
 window.loginIntervalTick = 0;
+let loginInterval;
 
 // Updates the "Good morning" / "Good afternoon" / "Good evening"
 // text on the login screen every once in a while (10s, ish)
@@ -33,7 +35,7 @@ function startUpdateGoodLoginText() {
 
 	$(".startflow-background").attr("style",`background-image:url(${mtdBaseURL}assets/img/bg1.webp)`)
 
-	if (window.desktopConfig.customLoginImage) {
+	if (window?.desktopConfig?.customLoginImage) {
 		if (window.desktopConfig.customLoginImage.match(/https:\/\//gm) !== null) {
 			$(".startflow-background").attr("style",`background-image:url(${window.desktopConfig.customLoginImage})`)
 		} else {
@@ -43,7 +45,7 @@ function startUpdateGoodLoginText() {
 
 	setInterval(() => {
 		let text;
-		let newDate = new Date();
+		const newDate = new Date();
 
 		if (newDate.getHours() < 12) {
 			text = I18n("Good morning");
@@ -72,7 +74,7 @@ export function checkIfSigninFormIsPresent() {
 		enableStylesheetExtension("loginpage");
 
 		if (window.loginIntervalTick > 5) {
-			clearInterval(loginInterval);
+			clearInterval(window.loginInterval);
 		}
 	} else {
 		if (typeof window.signinSheetPings === "undefined") {
@@ -83,7 +85,7 @@ export function checkIfSigninFormIsPresent() {
 
 		if (window.signinSheetPings > 6) {
 			console.log("I am no longer asking");
-			clearInterval(loginInterval);
+			clearInterval(window.loginInterval);
 		}
 		console.log("Not on signin sheet anymore");
 		disableStylesheetExtension("loginpage");
@@ -94,15 +96,11 @@ export function checkIfSigninFormIsPresent() {
 // replaces login page with moderndeck one
 
 export function loginTextReplacer() {
-	if ($(".app-signin-wrap:not(.mtd-signin-wrap)").length > 0) {
+	if ($(".mtd-signin-form").length <= 0) {
 		console.info("oh no, we're too late!");
-		window.UILanguagePicker = UILanguagePicker;
 
-		if (getPref("mtd_last_lang") !== navigator.language) {
-			new UILanguagePicker();
-		}
 		$(".app-signin-wrap:not(.mtd-signin-wrap)").remove();
-		$(".login-container .startflow").html(newLoginPage);
+		$(".login-container .startflow").html(loginPage);
 		startUpdateGoodLoginText();
 
 		$(".mtd-login-info-button").click(() => openSettings(undefined, true))

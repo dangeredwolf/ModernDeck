@@ -114,9 +114,6 @@ function minifyExt() {
 	.on('data', item => minifyItem(item.path))
 	.on('end', () => {
 		console.info("Searched for files to minify");
-		//console.info("Removing csscomponents...");
-
-		//fs.removeSync(tmpDirExt + "/sources/csscomponents");
 
 		makeChromeExt();
 	})

@@ -1,12 +1,11 @@
 {
 	"name": "__MSG_name__",
 	"short_name": "ModernDeck",
+	"description": "__MSG_description__",
 
 	"author":"dangered wolf",
 
-	"description": "__MSG_description__",
-
-	"version": "9.5",
+	"version": "10.0",
 
 	"default_locale":"en",
 
@@ -49,8 +48,8 @@
 			"resources": [
 				"assets",
 				"assets/*",
-				"assets/moderndeck.js.map",
-				"assets/cssextensions/*",
+				"assets/css/*",
+				"assets/js/*",
 				"assets/fonts/*",
 				"assets/libraries/*",
 				"assets/img/*"

@@ -1,0 +1,41 @@
+name: Electron
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+          cache: 'npm'
+          cache-dependency-path: package-lock.json
+      - run: npm install
+      - run: npx webpack
+      - run: npm run buildWindows
+      - uses: actions/upload-artifact@v3
+        with:
+          name: ModernDeck-x64.exe
+          path: dist/ModernDeck-x64.exe
+      - run: npm run buildLinux
+      - uses: actions/upload-artifact@v3
+        with:
+          name: ModernDeck-x86_64.AppImage
+          path: dist/ModernDeck-x86_64.AppImage
+      - uses: actions/upload-artifact@v3
+        with:
+          name: ModernDeck-arm64.AppImage
+          path: dist/ModernDeck-arm64.AppImage
+      - run: npm run buildMac
+      - uses: actions/upload-artifact@v3
+        with:
+          name: ModernDeck-universal.dmg
+          path: dist/ModernDeck-universal.dmg
+      
+
