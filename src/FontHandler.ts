@@ -229,9 +229,9 @@ export function injectFonts() {
 		fontParseHelper({family:"Noto Sans",weight:"500",name:"NotoSans/NotoSansYi-Regular",range:"U+A000-A48F"}) +
 
 		// Inter
-		fontParseHelper({family:"Inter",name:"Inter/Inter-Regular",range:"U+0000-FFFD"}) +
-		fontParseHelper({family:"Inter",weight:"500",name:"Inter/Inter-Medium",range:"U+0000-FFFD"}) +
-		fontParseHelper({family:"Inter",weight:"600",name:"Inter/Inter-SemiBold",range:"U+0000-FFFD"}) +
-		fontParseHelper({family:"Inter",weight:"700",name:"Inter/Inter-Bold",range:"U+0000-FFFD"})
+		fontParseHelper({family:"Inter",name:"Inter/Inter-Regular",range:"U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD"}) +
+		fontParseHelper({family:"Inter",weight:"500",name:"Inter/Inter-Medium",range:"U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD"}) +
+		fontParseHelper({family:"Inter",weight:"600",name:"Inter/Inter-SemiBold",range:"U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD"}) +
+		fontParseHelper({family:"Inter",weight:"700",name:"Inter/Inter-Bold",range:"U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD"})
 	));
 }
