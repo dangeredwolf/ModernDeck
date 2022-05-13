@@ -201,6 +201,7 @@ let tab: ModernDeckSettingsTab = {
 				OpenSans:{value:"OpenSans",text:"Open Sans"},
 				Lato:{value:"Lato",text:"Lato"},
 				Jost:{value:"Jost",text:"Jost"},
+				Inter:{value:"Inter",text:"Inter"},
 				SystemUI:{value:"SystemUI", text:"{{System UI}}"}
 			},
 			activate:{
