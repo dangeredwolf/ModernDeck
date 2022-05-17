@@ -171,14 +171,6 @@ input[type="checkbox"][disabled]:before
 	opacity:1
 }
 
-input::-webkit-input-placeholder,textarea::-webkit-input-placeholder {
-	color:var(--placeholderTextColor)
-}
-
-input::-moz-placeholder,textarea::-moz-placeholder {
-	color:var(--placeholderTextColor)
-}
-
 input::placeholder,textarea::placeholder {
 	color:var(--placeholderTextColor)
 }
@@ -336,12 +328,6 @@ button.is-disabled:active,
 {
 	color:var(--disabledColor)!important;
 	transition:.2s all
-}
-
-::-moz-selection
-{
-	background:var(--secondaryColorAlt);
-	color:var(--bodyTextColor)
 }
 
 ::selection

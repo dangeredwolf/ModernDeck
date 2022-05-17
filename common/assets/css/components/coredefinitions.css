@@ -97,13 +97,13 @@ fieldset
 select
 {
 	-webkit-appearance:menulist;
-	-moz-appearance:menulist
+	appearance:menulist
 }
 
 input:before,textarea:before,select:before
 {
 	-webkit-appearance:initial;
-	-moz-appearance:initial;
+	appearance:initial;
 	color:#ddd
 }
 
@@ -118,9 +118,9 @@ dir
 {
 	margin:0;
 	padding-left:0;
-	-webkit-padding-start:0;
+	padding-left:0;
 	-webkit-appearance:none;
-	-moz-appearance:none
+	appearance:none
 }
 
 ol ul,
@@ -128,9 +128,9 @@ ul ol,
 ul ul,
 ol ol
 {
-	-webkit-margin-before:0;
-	-webkit-margin-after:0;
-	-webkit-padding-start:40px
+	margin-top:0;
+	margin-bottom:0;
+	padding-left:40px
 }
 
 body,

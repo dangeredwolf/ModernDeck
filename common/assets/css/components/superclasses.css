@@ -535,8 +535,7 @@ button,
 a.btn,
 .column-header
 {
-	-webkit-user-select:none;
-	-moz-user-select:none
+	user-select:none
 }
 
 .antiscroll-scrollbar-shown,
@@ -588,16 +587,9 @@ a.btn,
 	position:fixed
 }
 
-.js-submittable-input.js-compose-text::-webkit-input-placeholder,
-.facet-type .control-group select::-webkit-input-placeholder,
-.facet-type .control-group input::-webkit-input-placeholder
-{
-	color:var(--rootWhiteColor)
-}
-
-.js-submittable-input.js-compose-text::-moz-placeholder,
-.facet-type .control-group select::-moz-placeholder,
-.facet-type .control-group input::-moz-placeholder
+.js-submittable-input.js-compose-text::placeholder,
+.facet-type .control-group select::placeholder,
+.facet-type .control-group input::placeholder
 {
 	color:var(--rootWhiteColor)
 }
@@ -725,8 +717,8 @@ a.btn,
 .s-following .follow-btn:hover .following-text,
 .s-following .follow-btn:not(:hover) .unfollow-text,
 .accordion .is-active .facet-subtitle,
-.js-modal[style="display:none;"],
-.typeahead[style="display:none;"],
+.js-modal[style="display: none;"],
+.typeahead[style="display: none;"],
 .contributor-row[data-state="initial"],
 .spinner-button-is-active,
 .text-hidden.btn-positive,

@@ -908,11 +908,6 @@ html:not(.os-osx) .antiscroll-inner::-webkit-scrollbar {
 	height: 0
 }
 
-html:not(.os-osx) .antiscroll-inner::-moz-scrollbar {
-	width: 0;
-	height: 0
-}
-
 .antiscroll-inner {
 	overflow-y: scroll;
 	overflow-x: hidden
@@ -3535,8 +3530,6 @@ html:not(.mtd-classic-nav) .attach-compose-buttons .tweet-button {
 	pointer-events: all;
 	cursor: pointer;
 	background: transparent;
-	-webkit-filter: grayscale(100%) brightness(100%);
-	-moz-filter: grayscale(100%) brightness(100%);
 	filter: grayscale(100%) brightness(100%);
 	opacity: 0.5;
 	border-radius: 57px
@@ -3549,8 +3542,6 @@ html:not(.mtd-classic-nav) .attach-compose-buttons .tweet-button {
 }
 
 .accs .acc-selected {
-	-webkit-filter: grayscale(0%);
-	-moz-filter: grayscale(0%);
 	filter: grayscale(0%);
 	opacity: 1
 }
@@ -4286,7 +4277,7 @@ textarea,
 input[type="checkbox"],
 input[type="radio"] {
 	-webkit-appearance: none;
-	-moz-appearance: none;
+	appearance: none;
 	font-size: 24px;
 	padding: 0;
 	margin-right: 11px;
@@ -6718,7 +6709,7 @@ body>.message-banner[style="color:rgb(85, 85, 85); background-color:rgb(178, 213
 
 .js-compose-stay-open {
 	-webkit-appearance: none;
-	-moz-appearance: none;
+	appearance: none;
 	color: var(--rootWhiteColor) !important;
 	position: absolute;
 	font-size: 24px;
@@ -6751,7 +6742,7 @@ label[for="account-safeguard-checkbox"] {
 
 #account-safeguard-checkbox {
 	-webkit-appearance: none;
-	-moz-appearance: none;
+	appearance: none;
 	color: var(--rootWhiteColor);
 	position: absolute;
 	font-size: 24px;
@@ -7675,7 +7666,7 @@ div[data-testid="trend"]>.txt-bold {
 .ProgressBar {
 	position: relative;
 	-webkit-appearance: none;
-	-moz-appearance: none;
+	appearance: none;
 	appearance: none;
 	border: none;
 	overflow: hidden;

@@ -83,9 +83,7 @@
 {
 	content:" ";
 	font-style:normal;
-	-webkit-font-smoothing:antialiased;
 	text-rendering:optimizeLegibility;
-	-moz-osx-font-smoothing:grayscale;
 	letter-spacing:normal;
 	word-wrap:normal;
 	direction:ltr;

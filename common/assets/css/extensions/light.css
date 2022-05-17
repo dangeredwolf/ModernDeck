@@ -876,12 +876,6 @@ textarea::placeholder
 	color:var(--selectionTextColor)
 }
 
-::-moz-selection
-{
-	background:var(--selectionBackgroundColor);
-	color:var(--selectionTextColor)
-}
-
 .tooltip-inner,
 .Tooltip-inner
 {

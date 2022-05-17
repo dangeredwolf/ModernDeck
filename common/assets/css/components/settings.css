@@ -439,8 +439,7 @@
 .mtd-textarea {
 	height:240px!important;
 	font-family:RobotoMono!important;
-	tab-size:43px;
-	-moz-tab-size:43px /* Firefox 90 and below*/
+	tab-size:43px
 }
 
 .settings-modal .mtd-settings:after {

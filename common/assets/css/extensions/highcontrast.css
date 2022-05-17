@@ -58,20 +58,6 @@ input, textarea, select, .uneditable-input {
 	border-radius:5px;
 	background:#fff
 }
-
-.mdl.s-profile::-moz-scrollbar-thumb,
-.mtd-nav-drawer::-moz-scrollbar-thumb,
-.lst-launcher::-moz-scrollbar-thumb,
-.scroll-styled-v::-moz-scrollbar-thumb,
-.scroll-v::-moz-scrollbar-thumb,
-.scroll-styled-h::-moz-scrollbar-thumb,
-.s-tall-fixed::-moz-scrollbar-thumb,
-#lists-modal .mdl-content::-moz-scrollbar-thumb
-{
-	border-radius:5px;
-	background:#fff
-}
-
 .mdl.s-profile::-webkit-scrollbar-thumb:hover,
 .mtd-nav-drawer::-webkit-scrollbar-thumb:hover,
 .lst-launcher::-webkit-scrollbar-thumb:hover,
@@ -82,18 +68,6 @@ input, textarea, select, .uneditable-input {
 {
 	background:#fff
 }
-
-.mdl.s-profile::-moz-scrollbar-thumb:hover,
-.mtd-nav-drawer::-moz-scrollbar-thumb:hover,
-.lst-launcher::-moz-scrollbar-thumb:hover,
-.scroll-styled-v::-moz-scrollbar-thumb:hover,
-.scroll-v::-moz-scrollbar-thumb:hover,
-.scroll-styled-h::-moz-scrollbar-thumb:hover,
-#lists-modal .mdl-content::-moz-scrollbar-thumb:hover
-{
-	background:#fff
-}
-
 
 .mtd-notification-button,.btn-primary,.txt-mute a:not(:focus):not(.tweet-action):not([data-action]) {
 	color:#fff!important;

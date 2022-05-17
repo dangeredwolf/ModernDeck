@@ -23,9 +23,7 @@ a[data-user-name="ModernDeck"] .fullname:after,
 	content:"\f003";
 	font-size:20px;
 	font-style:normal;
-	-webkit-font-smoothing:antialiased;
 	text-rendering:optimizeLegibility;
-	-moz-osx-font-smoothing:grayscale;
 	vertical-align:middle;
 	padding-left:3px;
 	font-family:MD!important
