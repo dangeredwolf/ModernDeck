@@ -175,8 +175,11 @@ html:not(.signin-sheet-now-present) body {
 .form-login h3 {
 	display:inline;
 	padding-bottom:36px;
-	font-weight:700!important;
 	white-space:nowrap
+}
+
+.form-login h2 {
+	font-weight:700!important;
 }
 
 .mtd-app .login-container:before {
