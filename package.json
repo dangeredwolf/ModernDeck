@@ -69,7 +69,7 @@
 		"@types/twit": "^2.2.30",
 		"adm-zip": "^0.5.9",
 		"babel-loader": "^8.2.5",
-		"electron": "^18.2.3",
+		"electron": "^18.3.2",
 		"electron-builder": "^23.0.9",
 		"fs-extra": "^10.1.0",
 		"io-ts": "^2.2.16",
