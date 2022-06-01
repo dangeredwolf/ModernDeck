@@ -14,4 +14,3 @@ node_modules
 *.log
 *.appx
 default.*
-common/assets/js/*
