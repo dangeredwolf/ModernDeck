@@ -5,7 +5,7 @@
 	Released under the MIT License
 */
 
-const pretendToBeWrapperApp = true;
+const pretendToBeWrapperApp = false;
 
 export function FunctionPatcher() {
 	if (window.localStorage && typeof require === "undefined") {
@@ -40,8 +40,6 @@ export function FunctionPatcher() {
 				console.warn("doGrowl: ", title, text, icon, tweet, column);
 				let col = TD.controller.columnManager.get(column);
 				let tweetObj;
-
-
 
 				let notif = new Notification(title,{body:text,icon:icon,silent:true});
 				notif.onclick = () => {
