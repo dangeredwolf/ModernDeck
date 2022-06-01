@@ -8,7 +8,7 @@
 import { ColumnChirp } from "./Types/TweetDeck";
 import { getIpc } from "./Utils";
 
-const pretendToBeWrapperApp = true;
+const pretendToBeWrapperApp = false;
 
 export const FunctionPatcher = (): void => {
 	if (window.localStorage && typeof window.require === "undefined") {
