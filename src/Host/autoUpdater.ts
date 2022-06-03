@@ -1,8 +1,10 @@
 // import { log } from 'electron-log';
 const { ipcMain } = require('electron');
 const autoUpdater = require('electron-updater').autoUpdater;
-import { desktopConfig, getWebContents, isFlatpak } from './main';
+import { desktopConfig} from './main';
+import { getWebContents } from './mainWindow';
 import { store } from './store';
+import { isFlatpak } from './utils';
 
 export const initAutoUpdater = (): typeof autoUpdater => {
     autoUpdater.setFeedURL({
