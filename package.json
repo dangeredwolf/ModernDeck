@@ -10,7 +10,7 @@
 	},
 	"author": "dangeredwolf",
 	"license": "MIT",
-	"main": "main.js",
+	"main": "host/main.js",
 	"resolutions": {
 		"@electron/universal": "1.3.0"
 	},

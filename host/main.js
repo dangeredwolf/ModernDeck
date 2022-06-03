@@ -8,7 +8,7 @@
 */
 
 const electron = require("electron");
-const I18nData = require("./i18nMain.js").default;
+const I18nData = require("../i18nMain.js").default;
 
 const {
 	app,
