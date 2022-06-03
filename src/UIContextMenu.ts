@@ -80,12 +80,32 @@ export const clearContextMenu = (): void => {
 	});
 }
 
+// TODO: Figure out what's causing TS2503: Cannot find namespace 'Electron'. This is a hack in the meantime.
+declare namespace _Electron {
+	interface ContextMenuParams {
+		x: number;
+		y: number;
+		items: ContextMenuItem[];
+		isEditable: boolean;
+		selectionText: string;
+		editFlags: {
+			canUndo: boolean;
+			canRedo: boolean;
+			canCut: boolean;
+			canCopy: boolean;
+			canPaste: boolean;
+			canSelectAll: boolean;
+		};
+		linkURL: string;
+		srcURL: string;
+		mediaType: string;
+	}
+}
+
 /*
 	Helper function for the app to construct context menus that will be displayed
 */
-
-
-export const buildContextMenu = (menuEvent: Electron.ContextMenuParams): JQuery<HTMLElement> | NativeContextMenu[] => {
+export const buildContextMenu = (menuEvent: _Electron.ContextMenuParams): JQuery<HTMLElement> | NativeContextMenu[] => {
 	let items: (JQuery<HTMLElement> | NativeContextMenu)[] = [];
 	let x = menuEvent.x;
 	let y = menuEvent.y;

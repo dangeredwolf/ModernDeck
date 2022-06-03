@@ -206,6 +206,7 @@ interface Constants {
 }
 
 interface TDAPI {
+	[key: string]: string;
 	ERROR_ACCOUNT_DOESNT_EXIST: string;
 	ERROR_BAD_PASSWORD: string;
 	ERROR_SESSION_EXPIRED: string;
@@ -460,11 +461,13 @@ interface HelpText {
 }
 
 interface MenuAttribution {
+	[key: string]: string;
 	me: string;
 	privateMe: string;
 }
 
 interface MenuTitle {
+	[key: string]: string;
 	timeline: string;
 	mentions: string;
 	search: string;

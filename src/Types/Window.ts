@@ -59,6 +59,8 @@ declare global {
 		};
         store: any; // This is any only because Electron-Store does not exist on browser;
         mR: ModuleRaid;
+        TD: TweetDeckObject;
+        TD_mustaches: { [key: string]: string };
         html: JQuery;
         body: JQuery;
         head: JQuery;
@@ -95,6 +97,9 @@ declare global {
         mtd_nav_drawer: HTMLElement;
         languageData: {};
         loginInterval: any;
+        TweetDecki18nStarted: boolean;
+        findMustaches: (str: string) => any;
+        I18n: Function;
     }
 }
 

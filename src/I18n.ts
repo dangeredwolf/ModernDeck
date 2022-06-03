@@ -8,16 +8,17 @@
 "use strict";
 
 let displayWarning = false;
-let tweetDeckTranslateInitial;
+let tweetDeckTranslateInitial: Function;
 let debugI18n = false;
 
 // ModernDeck specific import, dummy function in tweetdeck-i18n
 import { getPref } from "./StoragePreferences";
 // Import the language data (common to tweetdeck-i18n and ModernDeck)
-import languageData from "./DataI18n";
+import _languageData from "./DataI18n";
+let languageData = _languageData as any;
 
-let langFull;
-let langRoot;
+let langFull: string;
+let langRoot: string;
 
 langFull = getPref("mtd_lang");
 if (!langFull) {
@@ -56,7 +57,7 @@ export const getFallbackLanguage = () => {
 	}
 };
 
-const mustachePatches = {
+const mustachePatches: { [key: string]: { [value: string]: 1 } } = {
 	"keyboard_shortcut_list.mustache": {
 		"Open Navigation Drawer/Menu":1,
 		"Command palette — <b>NEW!</b>":1,
@@ -108,22 +109,22 @@ const mustachePatches = {
 	}
 }
 
-export const I18n = function(a, b, c, d, e, f) {
+export const I18n = (translateString: string, mustacheSubstitutions?: {[str: string]: string}, c?: string, d?: string, e?: string, f?: number): string => {
 
-	if (!a) {
+	if (!translateString) {
 		// console.warn("The I18n function was supposed to receive data but didn't. Here's some other information, if they aren't undefined: ", a, b, c, d, e);
 		return "";
 	}
 
-	a = String(a);
+	translateString = String(translateString);
 
 	if (debugI18n) {
-		console.log(a, b, c, d, e, f)
+		console.log(translateString, mustacheSubstitutions, c, d, e, f)
 	}
 
-	if ((a.includes("{{{") || a.includes("{{")) && !f){
-		let hmm = I18n(a, b, c, d, e, 1);
-		let no = I18n(hmm, b, c, d, e, 2);
+	if ((translateString.includes("{{{") || translateString.includes("{{")) && !f){
+		let hmm = I18n(translateString, mustacheSubstitutions, c, d, e, 1);
+		let no = I18n(hmm, mustacheSubstitutions, c, d, e, 2);
 		return no;
 	}
 
@@ -136,20 +137,20 @@ export const I18n = function(a, b, c, d, e, f) {
 	// 	return a;
 	// }
 
-	if (a.includes("{{") && f === 2) {
-		return tweetDeckTranslateInitial(a, b, c, d, e);
+	if (translateString.includes("{{") && f === 2) {
+		return tweetDeckTranslateInitial(translateString, mustacheSubstitutions, c, d, e);
 	}
 
-	if (a.substr(0,6) === "From @") { // 2020-05-04: I don't remember if this edge case is still necessary
-		return I18n(a.substr(0,4)) + " @" + a.substr(6);
+	if (translateString.substr(0,6) === "From @") { // 2020-05-04: I don't remember if this edge case is still necessary
+		return I18n(translateString.substr(0,4)) + " @" + translateString.substr(6);
 	}
 
-	if (!b || f === 1) {
-		if (languageData[a]) {
-			let result = languageData[a][getFullLanguage()]||languageData[a][getMainLanguage()]||languageData[a][getFallbackLanguage()];
+	if (!mustacheSubstitutions || f === 1) {
+		if (languageData[translateString]) {
+			let result = languageData[translateString][getFullLanguage()]||languageData[translateString][getMainLanguage()]||languageData[translateString][getFallbackLanguage()];
 			if (typeof result === "undefined") {
-				console.error("Can't find English US translation of this string? " + a);
-				return a;
+				console.error("Can't find English US translation of this string? " + translateString);
+				return translateString;
 			}
 			if (result.indexOf("hours12") > -1 || result.indexOf("hours24") > -1) {
 				if (I18n.customTimeHandler) {
@@ -158,21 +159,21 @@ export const I18n = function(a, b, c, d, e, f) {
 			}
 			return result;
 		} else {
-			console.warn("Missing string translation: " + a);
-			return (displayWarning ? "⚠" : "") + a;
+			console.warn("Missing string translation: " + translateString);
+			return (displayWarning ? "⚠" : "") + translateString;
 		}
 	} else {
-		for (const key in b) {
-			a = a.replace("{{" + key + "}}", b[key]);
+		for (const key in mustacheSubstitutions) {
+			translateString = translateString.replace("{{" + key + "}}", mustacheSubstitutions[key]);
 		}
-		return a;
+		return translateString;
 	}
 
 }
 
-function patchColumnTitle() {
+const patchColumnTitle = () => {
 	if (window.TD && window.mR) {
-		var columnData = mR.findConstructor("getColumnTitleArgs")[0][1].columnMetaTypeToTitleTemplateData;
+		var columnData = window.mR.findConstructor("getColumnTitleArgs")[0][1].columnMetaTypeToTitleTemplateData;
 		for (var key in columnData) {
 			columnData[key].title = I18n(columnData[key].title);
 		}
@@ -183,9 +184,9 @@ function patchColumnTitle() {
 	}
 }
 
-function patchButtonText() {
+const patchButtonText = () => {
 	if (window.TD && window.mR) {
-		let buttonData = mR.findModule("tooltipText");
+		let buttonData = window.mR.findModule("tooltipText");
 
 		for (let i = 0; i < buttonData.length; i++) {
 			if (buttonData[i]) {
@@ -208,7 +209,7 @@ function patchButtonText() {
 	}
 }
 
-function patchColumnTitleAddColumn() {
+const patchColumnTitleAddColumn = () => {
 	if (window.TD && TD.controller && TD.controller.columnManager && TD.controller.columnManager.DISPLAY_ORDER) {
 		let columnData = TD.controller.columnManager.DISPLAY_ORDER;
 
@@ -225,13 +226,13 @@ function patchColumnTitleAddColumn() {
 	}
 }
 
-function patchMustaches() {
-	if (TD_mustaches) {
+const patchMustaches = () => {
+	if (window.TD_mustaches) {
 		for (const key in mustachePatches) {
-			if (TD_mustaches[key]) {
+			if (window.TD_mustaches[key]) {
 				for (const key2 in mustachePatches[key]) {
 					try {
-						TD_mustaches[key] = TD_mustaches[key].replace(new RegExp(key2, "g"), I18n(key2))
+						window.TD_mustaches[key] = window.TD_mustaches[key].replace(new RegExp(key2, "g"), I18n(key2))
 					} catch(e) {
 						console.error("An error occurred while replacing mustache " + key2 + " in " + key);
 						console.error(e);
@@ -248,7 +249,7 @@ function patchMustaches() {
 	}
 }
 
-function patchMiscStrings() {
+const patchMiscStrings = () => {
 	if (TD && TD.constants && TD.constants.TDApi) {
 		for (const key2 in TD.constants.TDApi) {
 			TD.constants.TDApi[key2] = I18n(key2);
@@ -303,21 +304,22 @@ function patchMiscStrings() {
 	}
 }
 
-function patchTDFunctions() {
-	if (typeof mR !== "undefined" && mR.findConstructor && mR.findConstructor("en-x-psaccent")[0] && mR.findConstructor("en-x-psaccent")[0][1]) {
-		tweetDeckTranslateInitial = mR.findConstructor("en-x-psaccent")[0][1].default;
-		mR.findConstructor("en-x-psaccent")[0].default = I18n;
+const patchTDFunctions = () => {
+	if (typeof window.mR !== "undefined" && window.mR.findConstructor && window.mR.findConstructor("en-x-psaccent")[0] && window.mR.findConstructor("en-x-psaccent")[0][1]) {
+		tweetDeckTranslateInitial = window.mR.findConstructor("en-x-psaccent")[0][1].default;
+		// @ts-ignore Seems to work? TODO: Check if this is still necessary
+		window.mR.findConstructor("en-x-psaccent")[0].default = I18n;
 
 		const months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
-		let newMonths = [];
+		let newMonths: string[] = [];
 		months.forEach(month => newMonths.push(I18n(month)));
 
 		const shortMonths = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
-		let newShortMonths = [];
+		let newShortMonths: string[] = [];
 		shortMonths.forEach(month => newShortMonths.push(I18n(month)));
 
 		const days = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
-		let newDays = [];
+		let newDays: string[] = [];
 		days.forEach(day => newDays.push(I18n(day)));
 
 		const shortDays = [
@@ -332,7 +334,7 @@ function patchTDFunctions() {
 
 		const englishShortDays = ["S","M","T","W","T","F","S"];
 
-		let newShortDays = [];
+		let newShortDays: string[] = [];
 		shortDays.forEach((day, i) => {
 			let translatedDay = I18n(day);
 			if (translatedDay.match("ABBREV") !== null) {
@@ -341,7 +343,7 @@ function patchTDFunctions() {
 			 newShortDays.push(translatedDay);
 		});
 
-		mR.findConstructor("jQuery")[0][1].tools.dateinput.localize("en",{
+		window.mR.findConstructor("jQuery")[0][1].tools.dateinput.localize("en",{
 			months: newMonths.join(","),
 			shortMonths: newShortMonths.join(","),
 			days: newDays.join(","),
@@ -353,24 +355,26 @@ function patchTDFunctions() {
 			firstDay = 0;
 		}
 
-		mR.findConstructor("jQuery")[0][1].tools.dateinput.conf.firstDay = firstDay;
+		window.mR.findConstructor("jQuery")[0][1].tools.dateinput.conf.firstDay = firstDay;
 	} else {
 		setTimeout(patchTDFunctions,10);
 	}
 }
 
-export function startI18nEngine() {
+export const startI18nEngine = () => {
 	if (window.TweetDecki18nStarted) {
 		return;
 	}
 
 	window.TweetDecki18nStarted = true;
 	// Developer helper function to find strings within the mustache cluster
-	window.findMustaches = (str) => {
-		let results = {};
-		for (let mustache in TD_mustaches) {
-			if (TD_mustaches[mustache].match(str)) {
-				results[mustache] = TD_mustaches[mustache];
+	window.findMustaches = (str: string) => {
+		let results: { [key: string]: string } = {
+			
+		};
+		for (let mustache in window.TD_mustaches) {
+			if (window.TD_mustaches[mustache].match(str)) {
+				results[mustache] = window.TD_mustaches[mustache];
 			}
 		}
 		return results;
@@ -384,7 +388,7 @@ export function startI18nEngine() {
 	patchMustaches();
 }
 
-I18n.customTimeHandler = function(timeString) {
+I18n.customTimeHandler = function(timeString: string) {
 	if (window.mtdTimeHandler === "h12") {
 		return timeString.replace(/\{\{hours24\}\}\:\{\{minutes\}\}/g,"{{hours12}}:{{minutes}} {{amPm}}")
 	} else if (window.mtdTimeHandler === "h24") {
