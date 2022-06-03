@@ -10,7 +10,7 @@
 	},
 	"author": "dangeredwolf",
 	"license": "MIT",
-	"main": "host/main.js",
+	"main": "common/assets/js/moderndeck-electronhost.js",
 	"resolutions": {
 		"@electron/universal": "1.3.0"
 	},
@@ -31,7 +31,7 @@
 		"webpack": "npm run incBuild && webpack",
 		"tscMain": "./node_modules/.bin/tsc",
 		"watch": "webpack --watch",
-		"start": "tsc host/main.ts && npm run webpack && electron .",
+		"start": "npm run webpack && electron .",
 		"startNoBuild": "electron .",
 		"inspect": "electron . --inspect",
 		"updatei18n": "node build/updatei18n.js",

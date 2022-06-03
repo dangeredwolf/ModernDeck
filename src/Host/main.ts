@@ -8,14 +8,12 @@
 */
 
 const electron = require("electron");
-const I18nData = require("./i18nMain").default;
 
-import {
+const {
 	app,
 	BrowserWindow,
 	ipcMain,
 	session,
-	systemPreferences,
 	Menu,
 	dialog,
 	nativeTheme,
@@ -23,23 +21,29 @@ import {
 	protocol,
 	Tray,
 	globalShortcut
-} from "electron";
+} = electron;
 
-import * as fs from "fs";
-import * as path from "path";
-import * as url from "url";
-import * as https from "https";
+const fs = require("fs");
+const path = require("path");
+const url = require("url");
+const https = require("https");
+
+import { I18n } from "./i18n";
+import { store } from "./store";
+
+const remote = require('@electron/remote/main');
+
+import { initAutoUpdater } from "./autoUpdater";
 
 const separator = process.platform === "win32" ? "\\" : "/";
 
-const Store = require("electron-store");
-const { tryConfig } = require("./config");
-const store = new Store({name:"mtdsettings"});
+import{ tryConfig, DesktopConfig } from "./config";
+
 
 // const disableCss = false; // use storage.mtd_safemode
 
 const isAppX = !!process.windowsStore;
-const isFlatpak = (process.platform === "linux" && process.env.FLATPAK_HOST === "1")
+export const isFlatpak = (process.platform === "linux" && process.env.FLATPAK_HOST === "1")
 
 const isMAS = !!process.mas;
 
@@ -50,18 +54,17 @@ let enableBackground = true;
 let shouldQuitIfErrorClosed = true;
 
 let hidden = false;
-let mainWindow: BrowserWindow;
-let errorWindow: BrowserWindow;
-let tray: Tray = null;
+let mainWindow: Electron.BrowserWindow;
+let errorWindow: Electron.BrowserWindow;
+let tray: Electron.Tray = null;
 
 let isRestarting = false;
 let closeForReal = false;
 
 let mtdAppTag = '';
-let lang = store.get("mtd_lang");
 
-let desktopConfig: DesktopConfig = {};
-desktopConfig = tryConfig();
+export let desktopConfig: DesktopConfig = tryConfig();
+let autoUpdater = initAutoUpdater();
 
 app.setAppUserModelId("com.dangeredwolf.ModernDeck");
 
@@ -81,6 +84,13 @@ const mtdSchemeHandler = async (request: Electron.ProtocolRequest, callback: (re
 		path: filePath
 	});
 };
+
+export const getWebContents = () => {
+	if (mainWindow) {
+		return mainWindow.webContents;
+	}
+	return null;
+}
 
 const template = [
 	{
@@ -182,15 +192,6 @@ function loadDesktopConfigMain() {
 	}
 }
 
-function isRosetta() {
-	let cpu0 = require("os").cpus()[0];
-	if (cpu0 && cpu0.model) {
-		return process.arch === "x64" && process.platform === "darwin" && cpu0.model.indexOf("VirtualApple") > -1
-	} else {
-		return false;
-	}
-}
-
 function exitFully() {
 	closeForReal = true;
 	app.relaunch();
@@ -237,7 +238,7 @@ function makeErrorWindow() {
 
 }
 
-function makeLoginWindow(url,teams) {
+function makeLoginWindow(url: string, teams: boolean) {
 
 	let originalUrl = url;
 
@@ -342,7 +343,7 @@ function makeLoginWindow(url,teams) {
 }
 
 
-function saveImageAs(url) {
+function saveImageAs(url: string) {
 	if (!url) {
 		throw "saveImageAs requires \"URL\" as an argument";
 	}
@@ -358,7 +359,8 @@ function saveImageAs(url) {
 		try {
 
 			const file = fs.createWriteStream(savePath);
-			const request = https.get(url, function(response) {
+
+			https.get(url, (response: any) => {
 				// console.log("Piping file...");
 				response.pipe(file);
 			});
@@ -394,6 +396,18 @@ function saveWindowBounds() {
 	}
 }
 
+enum TitleBarStyle {
+	DEFAULT = "default",
+	HIDDEN = "hidden",
+}
+
+interface WindowBounds {
+	x: number;
+	y: number;
+	width: number;
+	height: number;
+}
+
 function makeWindow() {
 	const lock = app.requestSingleInstanceLock();
 
@@ -411,11 +425,11 @@ function makeWindow() {
 
 	isRestarting = false;
 
-	let useFrame = store.get("mtd_nativetitlebar") || store.get("mtd_safemode") || process.platform === "darwin";
-	let titleBarStyle = "hidden";
+	let useFrame: boolean = (store.get("mtd_nativetitlebar") || store.get("mtd_safemode") || process.platform === "darwin") as boolean;
+	let titleBarStyle: TitleBarStyle = TitleBarStyle.HIDDEN;
 
 	if (store.get("mtd_nativetitlebar")) {
-		titleBarStyle = "default";
+		titleBarStyle = TitleBarStyle.DEFAULT;
 	}
 
 	if (store.has("mtd_updatechannel")) {
@@ -425,7 +439,7 @@ function makeWindow() {
 		autoUpdater.channel = store.get("mtd_updatechannel");
 	}
 
-	let bounds = store.get("mtd_windowBounds") || {};
+	let bounds = (store.get("mtd_windowBounds") || {}) as WindowBounds;
 	let useXY = !!bounds.x && !!bounds.y
 
 	mainWindow = new BrowserWindow({
@@ -434,37 +448,41 @@ function makeWindow() {
 		x: useXY ? bounds.x : undefined,
 		y: useXY ? bounds.y : undefined,
 		webPreferences: {
-			defaultFontFamily:"Roboto",
+			defaultFontFamily: {
+				standard: "Roboto",
+				serif: "Roboto",
+				sansSerif: "Roboto",
+				monospace: "RobotoMono"
+			},
+			backgroundThrottling:true,
 			nodeIntegration: true,
 			contextIsolation: false,
+			nodeIntegrationInSubFrames: false,
 			webgl: false,
 			plugins: false,
-			scrollBounce:true,
+			scrollBounce: true,
 			// preload: __dirname+separator+useDir+separator+"assets"+separator+"js"+separator+"moderndeck.js"
 		},
-		autoHideMenuBar:true,
-		nodeIntegrationInSubFrames:false,
-		title:"ModernDeck",
+		autoHideMenuBar: true,
+		title: "ModernDeck",
 		// icon:__dirname+useDir+"/assets/favicon.ico",
-		frame:useFrame,
-		titleBarStyle:titleBarStyle,
-		minWidth:350,
-		show:false,
-		backgroundThrottling:true,
-		backgroundColor:"#111"
+		frame: useFrame,
+		titleBarStyle: titleBarStyle,
+		minWidth: 350,
+		show: false,
+		backgroundColor: "#111"
 	});
 
 	// macOS specific: Don't run from DMG, move to Applications folder.
 	if (process.platform === "darwin" && !app.isInApplicationsFolder() && !isDev) {
 		const { dialog } = electron;
-
 		dialog.showMessageBox({
 			type: "warning",
 			title: "ModernDeck",
 			message: I18n("Updates might not work correctly if you aren't running ModernDeck from the Applications folder.\n\nWould you like to move it there?"),
 			buttons: [I18n("Not Now"), I18n("Yes, Move It")]
-		}, (response) => {
-			if (response == 1) {
+		}).then((event: Electron.MessageBoxReturnValue) => {
+			if (event.response == 1) {
 				let moveMe;
 				try {
 					moveMe = app.moveToApplicationsFolder();
@@ -486,12 +504,12 @@ function makeWindow() {
 	}
 
 	// Prevent changing the Page Title
-	mainWindow.on("page-title-updated", (event) => {
+	mainWindow.on("page-title-updated", (event: Event) => {
 		event.preventDefault();
 	});
 
 	// Save window bounds if it's closed, or otherwise occasionally
-	mainWindow.on("close", (_event) => {
+	mainWindow.on("close", (_event: Event) => {
 		setTimeout(saveWindowBounds, 0);
 	});
 
@@ -504,33 +522,34 @@ function makeWindow() {
 	// Initialize @electron/remote and limit its scope to only electron.Menu
 	// ModernDeck doesn't need @electron/remote for anything else
 
-	require('@electron/remote/main').initialize();
-	require("@electron/remote/main").enable(mainWindow.webContents);
+	remote.initialize();
+	remote.enable(mainWindow.webContents);
 
-	app.on("remote-require", (event, _moduleName) => {
+	// @electron/remote doesn't seem to have typing. So we use "as any" for them.
+
+	app.on("remote-require" as any, (event: Event, _moduleName: string) => {
 		event.preventDefault();
 	});
 
-	app.on("remote-get-global", (event, _moduleName) => {
+	app.on("remote-get-global" as any, (event: Event, _moduleName: string) => {
 		event.preventDefault();
 	});
 
-	app.on("remote-get-builtin", (_, event, moduleName) => {
+	app.on("remote-get-builtin" as any, (_: any, event: Event, moduleName: string) => {
 		if (moduleName !== "Menu") {
 			event.preventDefault();
 		}
 	});
 
-	app.on("remote-get-current-window", (event, _moduleName) => {
+	app.on("remote-get-current-window" as any, (event: Event, _moduleName: string) => {
 		event.preventDefault();
 	});
 
-	app.on("remote-get-current-web-contents", (event, _moduleName) => {
+	app.on("remote-get-current-web-contents" as any, (event: Event, _moduleName: string) => {
 		event.preventDefault();
 	});
 	
 	
-
 	updateAppTag();
 
 	try {
@@ -641,10 +660,7 @@ function makeWindow() {
 
 	});
 
-	mainWindow?.webContents?.on("did-fail-load", (_event, code, desc) => {
-		let msg = "ModernDeck failed to start." + "\n\n";
-
-
+	mainWindow?.webContents?.on("did-fail-load", (_event: Event, code: number, desc: string) => {
 		// These codes aren't necessarily fatal errors, so we ignore them instead of forcing the user to shut down ModernDeck.
 
 		if (code === -3 || code === -11 || code === -2 || code === -1) {
@@ -673,7 +689,7 @@ function makeWindow() {
 
 	mainWindow?.webContents?.session.webRequest.onHeadersReceived(
 		{urls:["https://tweetdeck.twitter.com/*"]},
-		(details, callback) => {
+		(details: Electron.OnHeadersReceivedListenerDetails, callback: any) => {
 			let foo = details.responseHeaders;
 			foo["content-security-policy"] =[
 				"default-src 'self'; connect-src * moderndeck:; "+
@@ -689,7 +705,7 @@ function makeWindow() {
 	);
 
 
-	mainWindow?.webContents?.session?.webRequest?.onBeforeSendHeaders?.({urls:["https://twitter.com/i/jot*", "https://tweetdeck.twitter.com/Users*"]}, (_details, callback) => {
+	mainWindow?.webContents?.session?.webRequest?.onBeforeSendHeaders?.({urls:["https://twitter.com/i/jot*", "https://tweetdeck.twitter.com/Users*"]}, (_details: Electron.OnBeforeSendHeadersListenerDetails, callback: (beforeSendResponse: Electron.BeforeSendResponse) => void) => {
 		callback({cancel: true})
 	})
 
@@ -719,7 +735,7 @@ function makeWindow() {
 
 	*/
 
-	mainWindow?.webContents?.on?.("will-navigate", (event, url) => {
+	mainWindow?.webContents?.on?.("will-navigate", (event: Electron.Event, url: string) => {
 
 		const { shell } = electron;
 		console.log(url);
@@ -728,7 +744,7 @@ function makeWindow() {
 			event.preventDefault();
 			if (url.indexOf("twitter.com/login") >= 0 || url.indexOf("twitter.com/i/flow/login") >= 0 || url.indexOf("twitter.com/logout") >= 0) {
 				console.log("this is a login window! will-navigate");
-				event.newGuest = makeLoginWindow(url, false);
+				makeLoginWindow(url, false);
 			} else {
 				shell.openExternal(url);
 			}
@@ -749,7 +765,7 @@ function makeWindow() {
 
 	*/
 
-	mainWindow?.webContents?.on?.("new-window", (event, url) => {
+	mainWindow?.webContents?.on?.("new-window", (event: Electron.NewWindowWebContentsEvent, url: string) => {
 		const { shell } = electron;
 		event.preventDefault();
 		console.log(url);
@@ -772,7 +788,7 @@ function makeWindow() {
 
 	// i actually forget why this is here
 
-	mainWindow?.webContents?.on?.("context-menu", (_event, params) => {
+	mainWindow?.webContents?.on?.("context-menu", (_event: Electron.Event, params: Electron.ContextMenuParams) => {
 		mainWindow?.webContents?.send("context-menu", params);
 	});
 
@@ -791,7 +807,7 @@ function makeWindow() {
 		of it doing it itself.
 	*/
 
-	ipcMain.on("nativeContextMenu", (_event, params) => {
+	ipcMain.on("nativeContextMenu", (_event: Electron.IpcMainEvent, params: any) => {
 		console.log(params);
 		let newMenu = Menu.buildFromTemplate(params);
 		console.log(newMenu);
@@ -814,7 +830,7 @@ function makeWindow() {
 				return;
 			}
 
-			fs.readFile(results.filePaths[0], "utf-8", (_, load) => {
+			fs.readFile(results.filePaths[0], "utf-8", (_: any, load: string) => {
 				mainWindow?.webContents?.send("settingsReceived", JSON.parse(load));
 			});
 		});
@@ -828,13 +844,13 @@ function makeWindow() {
 				return;
 			}
 
-			fs.readFile(results.filePaths[0], "utf-8", (_, load) => {
+			fs.readFile(results.filePaths[0], "utf-8", (_: any, load: string) => {
 				mainWindow?.webContents?.send("tweetenSettingsReceived", JSON.parse(load));
 			});
 		});
 	});
 
-	ipcMain.on("saveSettings", (_event, params) => {
+	ipcMain.on("saveSettings", (_event: Electron.IpcMainEvent, params: any) => {
 		dialog.showSaveDialog(
 			{
 				title: I18n("ModernDeck Preferences"),
@@ -845,7 +861,7 @@ function makeWindow() {
 			if (results.filePath === undefined) {
 				return;
 			}
-			fs.writeFile(results.filePath, params, (e) => {});
+			fs.writeFile(results.filePath, params, (_: any) => {});
 		});
 	})
 
@@ -916,15 +932,15 @@ function makeWindow() {
 		mainWindow?.webContents?.redo?.();
 	});
 
-	ipcMain.on("copyImage", (_event, arg) => {
+	ipcMain.on("copyImage", (_event: Electron.IpcMainEvent, arg: { x: number, y: number}) => {
 		mainWindow?.webContents?.copyImageAt?.(arg.x, arg.y);
 	});
 
-	ipcMain.on("saveImage", (_event, arg) => {
+	ipcMain.on("saveImage", (_event: Electron.IpcMainEvent, arg: string) => {
 		saveImageAs(arg);
 	});
 
-	ipcMain.on("inspectElement", (_event, arg) => {
+	ipcMain.on("inspectElement", (_event: Electron.IpcMainEvent, arg: { x: number, y: number}) => {
 		mainWindow?.webContents?.inspectElement?.(arg.x, arg.y);
 	});
 
@@ -947,31 +963,24 @@ function makeWindow() {
 
 	// When user elects to erase all of their settings, we wipe everything clean, including caches
 
-	ipcMain.on("destroyEverything", () => {
+	ipcMain.on("destroyEverything", async() => {
 		let ses = session.defaultSession;
 		store.clear();
 		ses.flushStorageData();
-		ses.clearCache(() => {});
+		await ses.clearCache();
 		ses.clearHostResolverCache();
-		ses.cookies.flushStore(() => {});
+		await ses.cookies.flushStore();
 		ses.clearStorageData({
 			storages:["appcache", "cookies", "filesystem", "indexdb", "localstorage", "shadercache", "websql", "serviceworkers"],
 			quotas: ["temporary", "persistent", "syncable"]
-		},() => {
-			setTimeout(exitFully, 500);
-		});
+		})
 
-		// Workaround: If electron doesn't report that data is cleared within 4 seconds, restart anyway.
-		// 4 seconds is plenty of time for it to get it done.
-
-		setTimeout(exitFully, 4000);
-
-
+		setTimeout(exitFully, 500);
 	});
 
 	// Changing from immersive titlebar to native
 
-	ipcMain.on("setNativeTitlebar", (_event, arg) => {
+	ipcMain.on("setNativeTitlebar", (_event: Electron.IpcMainEvent, arg: boolean) => {
 		isRestarting = true;
 
 		if (mainWindow) {
@@ -985,9 +994,9 @@ function makeWindow() {
 
 	});
 
-	mainWindow.on("close", e => {
+	mainWindow.on("close", (event: Electron.Event) => {
 		if (enableBackground && !closeForReal) {
-			e.preventDefault();
+			event.preventDefault();
 			mainWindow.hide();
 			hidden = true;
 
@@ -999,24 +1008,24 @@ function makeWindow() {
 	})
 
 	// Enable tray icon
-	ipcMain.on("enableTray", (_event, _arg) => {
+	ipcMain.on("enableTray", (_event: Electron.IpcMainEvent) => {
 		enableTray = true;
 		makeTray();
 	});
 
 	// Disable tray icon
-	ipcMain.on("disableTray", (_event, _arg) => {
+	ipcMain.on("disableTray", (_event: Electron.IpcMainEvent) => {
 		enableTray = false;
 		destroyTray();
 	});
 
 	// Enable background notifications
-	ipcMain.on("enableBackground", (_event, _arg) => {
+	ipcMain.on("enableBackground", (_event: Electron.IpcMainEvent) => {
 		enableBackground = true;
 	});
 
 	// Disable background notifications
-	ipcMain.on("disableBackground", (_event, _arg) => {
+	ipcMain.on("disableBackground", (_event: Electron.IpcMainEvent) => {
 		enableBackground = false;
 	});
 
@@ -1099,7 +1108,7 @@ function makeTray() {
 	const contextMenu = Menu.buildFromTemplate([
 		{ label: I18n("Open ModernDeck"), click(){ showHiddenWindow() } },
 		{ label: (process.platform === "darwin" ? I18n("Preferences...") : I18n("Settings...")), click(){ if (!mainWindow){return;}mainWindow.show();mainWindow?.webContents?.send("openSettings"); } },
-		{ visible: (typeof process.windowStore === "undefined" && desktopConfig.autoUpdatePolicy !== "disabled"), label: (process.platform === "darwin" ? I18n("Check for Updates...") : I18n("Check for updates...")), click(){ if (!mainWindow){return;}mainWindow.show();mainWindow?.webContents?.send("checkForUpdatesMenu"); } },
+		{ visible: (typeof process.windowsStore === "undefined" && desktopConfig.autoUpdatePolicy !== "disabled"), label: (process.platform === "darwin" ? I18n("Check for Updates...") : I18n("Check for updates...")), click(){ if (!mainWindow){return;}mainWindow.show();mainWindow?.webContents?.send("checkForUpdatesMenu"); } },
 
 		{ type: "separator" },
 
@@ -1198,78 +1207,6 @@ app.on("second-instance", () => {
 	}
 })
 
-// Tell browser that there was an update error
-
-autoUpdater.on("error", (e,f,g) => {
-	if (!mainWindow || !mainWindow || !mainWindow.webContents) {
-		return;
-	}
-	mainWindow?.webContents?.send("error",e,f,g);
-});
-
-// Let moderndeck.js know that we are...
-
-// ... actively checking for updates
-autoUpdater.on("checking-for-update", (e) => {
-	if (!mainWindow || !mainWindow || !mainWindow.webContents) {
-		return;
-	}
-	mainWindow?.webContents?.send("checking-for-update",e);
-});
-
-// ...currently downloading updates
-autoUpdater.on("download-progress", (e) => {
-	if (!mainWindow || !mainWindow || !mainWindow.webContents) {
-		return;
-	}
-	mainWindow?.webContents?.send("download-progress",e);
-});
-
-// ...have found an update
-autoUpdater.on("update-available", (e) => {
-	if (!mainWindow || !mainWindow || !mainWindow.webContents) {
-		return;
-	}
-	mainWindow?.webContents?.send("update-available",e);
-});
-
-// ...have already downloaded updates
-autoUpdater.on("update-downloaded", (e) => {
-	if (!mainWindow || !mainWindow || !mainWindow.webContents) {
-		return;
-	}
-	mainWindow?.webContents?.send("update-downloaded",e);
-});
-
-// ...haven't found any updates
-autoUpdater.on("update-not-available", (e) => {
-	if (!mainWindow || !mainWindow || !mainWindow.webContents) {
-		return;
-	}
-	mainWindow?.webContents?.send("update-not-available",e);
-});
-
-// moderndeck can send manual update check requests
-ipcMain.on("checkForUpdates", (e) => {
-	console.log("Client requested update check");
-	if (autoUpdater && desktopConfig.autoUpdatePolicy !== "disabled" && isFlatpak !== true) {
-		autoUpdater.checkForUpdates();
-	}
-});
-
-ipcMain.on("downloadUpdates", (e) => {
-	console.log("Client requested update download");
-	if (autoUpdater && desktopConfig?.autoUpdatePolicy !== "disabled") {
-		autoUpdater.downloadUpdate();
-	}
-});
-
-// Main -> Beta and vice versa
-ipcMain.on("changeChannel", (e) => {
-	autoUpdater.allowPrerelease = store.get("mtd_updatechannel") === "beta";
-	autoUpdater.channel = store.get("mtd_updatechannel");
-});
-
 // App tags control browser behavior like CSS layouts and sometimes JS
 function updateAppTag() {
 	mainWindow?.webContents?.executeJavaScript('document.querySelector("html").classList.remove("mtd-app");\
@@ -1292,10 +1229,6 @@ function updateAppTag() {
 
 	if (isMAS) {
 		mtdAppTag += 'document.querySelector("html").classList.add("mtd-macappstore");\n';
-	}
-
-	if (isRosetta()) {
-		mtdAppTag += 'document.querySelector("html").classList.add("mtd-mac-rosetta");\n';
 	}
 
 	if (app.isEmojiPanelSupported()) {
@@ -1327,24 +1260,23 @@ function updateAppTag() {
 
 // OS inverted colour scheme (high contrast) mode changed. We automatically respond to changes for accessibility
 
-nativeTheme.on("updated", (e,v) => {
+nativeTheme.on("updated", (_event: Event) => {
 	mainWindow?.webContents?.send("inverted-color-scheme-changed",nativeTheme.shouldUseInvertedColorScheme);
-	// mainWindow?.webContents?.send("color-scheme-changed", nativeTheme.shouldUseDarkColors ? "dark" : "light");
 });
 
-if (process.platform === "darwin") {
-	try {
-		systemPreferences.subscribeNotification(
-			"AppleInterfaceThemeChangedNotification",
-			() => {
-				if (!mainWindow || !mainWindow.webContents) { return }
-				// mainWindow?.webContents?.send("color-scheme-changed", systemPreferences.isDarkMode() ? "dark" : "light");
-			}
-		)
-	} catch(e) {
-		console.error(e);
-	}
-}
+// if (process.platform === "darwin") {
+// 	try {
+// 		systemPreferences.subscribeNotification(
+// 			"AppleInterfaceThemeChangedNotification",
+// 			() => {
+// 				if (!mainWindow || !mainWindow.webContents) { return }
+// 				// mainWindow?.webContents?.send("color-scheme-changed", systemPreferences.isDarkMode() ? "dark" : "light");
+// 			}
+// 		)
+// 	} catch(e) {
+// 		console.error(e);
+// 	}
+// }
 setTimeout(() => {
 	mainWindow?.webContents?.send(
 		"inverted-color-scheme-changed",

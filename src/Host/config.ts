@@ -1,8 +1,12 @@
-import { app, dialog } from "electron";
-import * as fs from "fs";
+const { app, dialog } = require("electron");
+const fs = require("fs");
 
 export type DesktopConfig = {
-
+    autoUpdatePolicy?: "disabled" | "manual" | "checkOnly" | "autoDownload";
+    autoUpdateInstallOnQuit?: boolean;
+    customLoginImage?: string;
+    disableZoom?: boolean;
+    disableDevTools?: boolean;
 }
 
 export const tryConfig = (): DesktopConfig => {
@@ -26,8 +30,7 @@ export const tryConfig = (): DesktopConfig => {
         } catch (e) {
             // console.error("Could not read device config file");
             // console.error(e);
-
-            return {} as DesktopConfig;
         }
     }
+    return {} as DesktopConfig;
 }

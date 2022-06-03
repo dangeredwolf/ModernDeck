@@ -1,6 +1,6 @@
 {
 	"compilerOptions": {
-		"outDir": "./host/",
+		"outDir": "./dist",
 		"sourceMap": true,
 		"noImplicitAny": true,
 		"module": "esnext",
@@ -10,11 +10,5 @@
 		"noImplicitReturns": true,
 		"noUnusedLocals": true,
 		"resolveJsonModule": true,
-	},
-	"include": [
-	    "host/**/*"
-	],
-	"exclude": [
-		"src/**/*"
-	]
+	}
 }

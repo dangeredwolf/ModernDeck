@@ -118,6 +118,7 @@ export default class NFTActionQueue {
 			this._uiDismissNotification();
 		}
 		
+		// @ts-ignore im tired
 		this.notifText.text(this.queue.length > 1 ? (I18n("{length} users").replace("{length}", this.queue.length)) : ("@" + this.queue[0].screen_name));
 
 		if (timeOut) {
