@@ -10,5 +10,11 @@
 		"noImplicitReturns": true,
 		"noUnusedLocals": true,
 		"resolveJsonModule": true,
-	}
+	},
+	"include": [
+	    "host/**/*"
+	],
+	"exclude": [
+		"src/**/*"
+	]
 }
