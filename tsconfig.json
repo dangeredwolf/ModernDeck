@@ -1,6 +1,6 @@
 {
 	"compilerOptions": {
-		"outDir": "./dist/",
+		"outDir": "./host/",
 		"sourceMap": true,
 		"noImplicitAny": true,
 		"module": "esnext",

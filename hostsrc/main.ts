@@ -8,9 +8,9 @@
 */
 
 const electron = require("electron");
-const I18nData = require("../i18nMain.js").default;
+const I18nData = require("./i18nMain").default;
 
-const {
+import {
 	app,
 	BrowserWindow,
 	ipcMain,
@@ -23,20 +23,17 @@ const {
 	protocol,
 	Tray,
 	globalShortcut
-}		= require("electron");
+} from "electron";
 
-const fs = require("fs");
-const path = require("path");
-const url = require("url");
-const https = require("https");
+import * as fs from "fs";
+import * as path from "path";
+import * as url from "url";
+import * as https from "https";
 
 const separator = process.platform === "win32" ? "\\" : "/";
 
-const log = require("electron-log");
-
-const { autoUpdater } = require("electron-updater");
-
 const Store = require("electron-store");
+const { tryConfig } = require("./config");
 const store = new Store({name:"mtdsettings"});
 
 // const disableCss = false; // use storage.mtd_safemode
@@ -53,9 +50,9 @@ let enableBackground = true;
 let shouldQuitIfErrorClosed = true;
 
 let hidden = false;
-let mainWindow;
-let errorWindow;
-let tray = null;
+let mainWindow: BrowserWindow;
+let errorWindow: BrowserWindow;
+let tray: Tray = null;
 
 let isRestarting = false;
 let closeForReal = false;
@@ -63,70 +60,14 @@ let closeForReal = false;
 let mtdAppTag = '';
 let lang = store.get("mtd_lang");
 
-autoUpdater.setFeedURL({
-	"owner": "dangeredwolf",
-	"repo": "ModernDeck",
-	"provider": "github"
-});
-
-let desktopConfig = {};
-
-if (process.platform === "win32") {
-	try {
-		let configFile = fs.readFileSync("C:\\ProgramData\\ModernDeck\\config.json");
-
-		try {
-			desktopConfig = JSON.parse(configFile);
-		} catch(e) {
-			app.on("ready", () => {
-				dialog.showMessageBoxSync({
-					type:"error",
-					title:"ModernDeck",
-					message:"ModernDeck detected a device config file, but an error occurred while reading it. Please ensure the JSON is free from any errors.\n\n" + e
-				});
-			})
-		}
-	} catch (e) {
-		// console.error("Could not read device config file");
-		// console.error(e);
-	}
-}
-
-console.log(desktopConfig);
-
-autoUpdater.logger = log;
-autoUpdater.logger.transports.file.level = "info";
-
-switch(desktopConfig.autoUpdatePolicy) {
-	case "disabled":
-	case "manual":
-	case "checkOnly":
-	case "autoDownload":
-		if (desktopConfig.autoUpdateInstallOnQuit === false) {
-			autoUpdater.autoInstallOnAppQuit = false;
-		}
-
-		if (desktopConfig.autoUpdatePolicy !== "autoDownload") {
-			autoUpdater.autoDownload = false;
-		}
-
-		break;
-}
+let desktopConfig: DesktopConfig = {};
+desktopConfig = tryConfig();
 
 app.setAppUserModelId("com.dangeredwolf.ModernDeck");
 
 let useDir = "common";
 
-const I18n = function(key) {
-	let foundStr = I18nData[key];
-	if (!foundStr) {
-		console.warn("Main process missing translation: " + key);
-		return key;
-	}
-	return foundStr[lang] || key;
-}
-
-const mtdSchemeHandler = async (request, callback) => {
+const mtdSchemeHandler = async (request: Electron.ProtocolRequest, callback: (response: string | Electron.ProtocolResponse) => void) => {
 	if (request.url === "moderndeck://background/") {
 		callback({
 			path: desktopConfig.customLoginImage
@@ -226,7 +167,7 @@ const template = [
 ]
 
 
-const menu = Menu.buildFromTemplate(template);
+const menu = Menu.buildFromTemplate(template as Electron.MenuItemConstructorOptions[]);
 
 // if (process.platform === "darwin")
 Menu.setApplicationMenu(menu);
@@ -1404,32 +1345,9 @@ if (process.platform === "darwin") {
 		console.error(e);
 	}
 }
-
-if (desktopConfig.autoUpdatePolicy !== "disabled" && desktopConfig.autoUpdatePolicy !== "manual" && isFlatpak !== false) {
-	setInterval(() => {
-		try {
-			autoUpdater.checkForUpdates();
-		} catch(e) {
-			console.error(e);
-		}
-	},1000*60*15); //check for updates once every 15 minutes
-}
-
 setTimeout(() => {
-	try {
-		if (desktopConfig.autoUpdatePolicy !== "disabled" &&  desktopConfig.autoUpdatePolicy !== "manual" && isFlatpak !== true) {
-			autoUpdater.checkForUpdates();
-		}
-
-		if (!mainWindow) {
-			return;
-		}
-
-		mainWindow?.webContents?.send(
-			"inverted-color-scheme-changed",
-			!!nativeTheme.shouldUseInvertedColorScheme
-		);
-	} catch(e) {
-		console.error(e);
-	}
-}, 5000);
+	mainWindow?.webContents?.send(
+		"inverted-color-scheme-changed",
+		!!nativeTheme.shouldUseInvertedColorScheme
+	);
+}, 5000)
