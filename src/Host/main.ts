@@ -11,26 +11,22 @@ const electron = require("electron");
 
 const {
 	app,
-	Menu,
-	nativeTheme,
-	globalShortcut
+	nativeTheme
 } = electron;
 
 const path = require("path");
 const url = require("url");
 
-import { I18n } from "./i18n";
-
 import { initAutoUpdater } from "./autoUpdater";
 
-import{ tryConfig, DesktopConfig } from "./config";
+import{ tryConfig, DesktopConfig, loadDesktopConfigMain } from "./config";
 import { HostManager } from "./hostManager";
 import { makeTray } from "./tray";
 import { makeWindow } from "./mainWindow";
+import { setMenuBar } from "./menubar";
 
 
 // const disableCss = false; // use storage.mtd_safemode
-
 
 export let desktopConfig: DesktopConfig = tryConfig();
 export let autoUpdater = initAutoUpdater();
@@ -54,112 +50,7 @@ export const mtdSchemeHandler = async (request: Electron.ProtocolRequest, callba
 	});
 };
 
-const template = [
-	{
-		label: "ModernDeck",
-		role: "appMenu",
-		submenu: [
-			{ label: I18n("About ModernDeck"), click() { if (!HostManager.mainWindow){return;}HostManager.mainWindow.show();HostManager.mainWindow?.webContents?.send("aboutMenu"); } },
-			{ label: I18n("Check for Updates..."), click(){ if (!HostManager.mainWindow){return;}HostManager.mainWindow.show();HostManager.mainWindow?.webContents?.send("checkForUpdatesMenu"); } },
-			{ type: "separator" },
-			{ label: I18n("Preferences..."), click(){ if (!HostManager.mainWindow){return;}HostManager.mainWindow.show();HostManager.mainWindow?.webContents?.send("openSettings"); } },
-			{ label: I18n("Accounts..."), click(){ if (!HostManager.mainWindow){return;}HostManager.mainWindow.show();HostManager.mainWindow?.webContents?.send("accountsMan"); } },
-			{ type: "separator" },
-			{ role: "services" },
-			{ type: "separator" },
-			{ role: "hide" },
-			{ role: "hideothers" },
-			{ role: "unhide" },
-			{ type: "separator" },
-			{ role: "quit" }
-		]
-	},
-	{
-		role: "fileMenu",
-		submenu: [
-			{ label: I18n("New Tweet..."), click(){ if (!HostManager.mainWindow){return;}HostManager.mainWindow.show();HostManager.mainWindow?.webContents?.send("newTweet"); } },
-			{ label: I18n("New Direct Message..."), click(){ if (!HostManager.mainWindow){return;}HostManager.mainWindow.show();HostManager.mainWindow?.webContents?.send("newDM"); } },
-			{ type: "separator" },
-			{ role: "close" }
-		]
-	},
-	{
-		role: "editMenu",
-		submenu: [
-			{ role: "undo" },
-			{ role: "redo" },
-			{ type: "separator" },
-			{ role: "cut" },
-			{ role: "copy" },
-			{ role: "paste" },
-			{ role: "delete" },
-			{ role: "selectAll" },
-			{ type: "separator" },
-			{
-				label: I18n("Speech"),
-				submenu: [
-					{ role: "startspeaking" },
-					{ role: "stopspeaking" }
-				]
-			}
-		]
-	},
-	{
-		role: "viewMenu",
-		submenu: [
-			{ role: "reload" },
-			{ role: "forcereload" },
-			{ type: "separator" },
-			{ role: "resetzoom" },
-			{ role: "zoomin" },
-			{ role: "zoomout" },
-			{ role: "toggledevtools" },
-			{ type: "separator" },
-			{ role: "togglefullscreen" }
-		]
-	},
-	{
-		role: "windowMenu",
-		submenu: [
-			{ role: "minimize" },
-			{ role: "zoom" },
-			{ type: "separator" },
-			{ role: "front" },
-			{ type: "separator" },
-			{ role: "window" }
-		]
-	},
-	{
-		role: "help",
-		submenu: [
-			{ label: I18n("Send Feedback"), click(){ electron.shell.openExternal("https://github.com/dangeredwolf/ModernDeck/issues");}},
-			{ label: I18n("Message @ModernDeck"), click(){ if (!HostManager.mainWindow){electron.shell.openExternal("https://twitter.com/messages/compose?recipient_id=2927859037");return;}HostManager.mainWindow.show();HostManager.mainWindow?.webContents?.send("msgModernDeck"); } },
-		]
-	}
-]
-
-
-const menu = Menu.buildFromTemplate(template as Electron.MenuItemConstructorOptions[]);
-
-// if (process.platform === "darwin")
-Menu.setApplicationMenu(menu);
-
-function loadDesktopConfigMain() {
-	if (desktopConfig.disableDevTools) {
-		// https://stackoverflow.com/questions/40304833/how-to-make-the-dev-tools-not-show-up-on-screen-by-default-electron
-		globalShortcut.register("Control+Shift+I", () => {});
-	}if (desktopConfig.disableZoom) {
-		globalShortcut.register("Control+-", () => {});
-		globalShortcut.register("Control+Shift+=", () => {});
-	}
-}
-
-export function exitFully() {
-	HostManager.closeForReal = true;
-	app.relaunch();
-	app.exit();
-}
-
+setMenuBar();
 
 // Register moderndeck:// protocol for accessing moderndeck assets, like CSS, images, etc.
 
@@ -182,7 +73,7 @@ app.setAsDefaultProtocolClient("moderndeck");
 app.on("ready", () => {
 	try {
 		makeWindow();
-		loadDesktopConfigMain();
+		loadDesktopConfigMain(desktopConfig);
 		if (HostManager.enableTray) {
 			makeTray();
 		}
@@ -226,7 +117,7 @@ app.on("second-instance", () => {
 	}
 })
 
-// OS inverted colour scheme (high contrast) mode changed. We automatically respond to changes for accessibility
+// OS inverted color scheme (high contrast) mode changed. We automatically respond to changes for accessibility
 
 nativeTheme.on("updated", (_event: Event) => {
 	HostManager.mainWindow?.webContents?.send("inverted-color-scheme-changed",nativeTheme.shouldUseInvertedColorScheme);

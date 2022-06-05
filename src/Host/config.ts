@@ -1,4 +1,4 @@
-const { app, dialog } = require("electron");
+const { app, dialog, globalShortcut } = require("electron");
 const fs = require("fs");
 
 export type DesktopConfig = {
@@ -33,4 +33,14 @@ export const tryConfig = (): DesktopConfig => {
         }
     }
     return {} as DesktopConfig;
+}
+
+export const loadDesktopConfigMain = (desktopConfig: any) => {
+	if (desktopConfig.disableDevTools) {
+		// https://stackoverflow.com/questions/40304833/how-to-make-the-dev-tools-not-show-up-on-screen-by-default-electron
+		globalShortcut.register("Control+Shift+I", () => {});
+	}if (desktopConfig.disableZoom) {
+		globalShortcut.register("Control+-", () => {});
+		globalShortcut.register("Control+Shift+=", () => {});
+	}
 }

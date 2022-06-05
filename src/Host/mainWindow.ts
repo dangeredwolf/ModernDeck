@@ -3,7 +3,7 @@ import { makeErrorWindow } from "./errorWindow";
 import { HostManager } from "./hostManager";
 import { I18n } from "./i18n";
 import { makeLoginWindow } from "./loginWindow";
-import { autoUpdater, desktopConfig, exitFully, mtdSchemeHandler } from "./main";
+import { autoUpdater, desktopConfig, mtdSchemeHandler } from "./main";
 import { store } from "./store";
 import { destroyTray, makeTray } from "./tray";
 import { saveImageAs } from "./utils";
@@ -12,6 +12,12 @@ const { app, BrowserWindow, protocol, ipcMain, dialog, Menu, session } = electro
 
 const remote = require('@electron/remote/main');
 const fs = require("fs");
+
+function exitFully() {
+	HostManager.closeForReal = true;
+	app.relaunch();
+	app.exit();
+}
 
 function saveWindowBounds() {
 	if (!HostManager.mainWindow) {
