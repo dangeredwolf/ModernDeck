@@ -86,17 +86,17 @@ fs.writeFileSync(resultsMain,"export default " + JSON.stringify(processFile(buil
 
 processFile(buildFile, true);
 
-langMap.forEach(lang => {
-	if (lang !== "src") {
-		let thePath = path.format({
-			dir:__dirname + path.sep + ".." + path.sep + "src" + path.sep + "I18n" + path.sep + "Data",
-			base:lang + ".json"
-		});
+// langMap.forEach(lang => {
+// 	if (lang !== "src") {
+// 		let thePath = path.format({
+// 			dir:__dirname + path.sep + ".." + path.sep + "src" + path.sep + "I18n" + path.sep + "Data",
+// 			base:lang + ".json"
+// 		});
 
-		fs.writeFileSync(thePath, JSON.stringify(newFormatMap[lang]));
+// 		fs.writeFileSync(thePath, JSON.stringify(newFormatMap[lang]));
 
-	}
-})
+// 	}
+// })
 
 // Crowdin is stupid and doesn't export the correct folders
 
