@@ -8,7 +8,7 @@
 
 const baseUrlElement = document.querySelector(`meta[name="moderndeck-base-url"]`);
 window.mtdBaseURL = baseUrlElement.getAttribute("content");
-// @ts-ignore - Set webpack public path
+// @ts-expect-error - Set webpack public path
 __webpack_public_path__ = window.mtdBaseURL + "/";
 
 import { ModernDeck } from "../Functions/ModernDeckConst";
