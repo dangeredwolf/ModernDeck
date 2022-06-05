@@ -10,7 +10,7 @@
 	},
 	"author": "dangeredwolf",
 	"license": "MIT",
-	"main": "host/main.js",
+	"main": "common/assets/js/moderndeck-electronhost.js",
 	"resolutions": {
 		"@electron/universal": "1.3.0"
 	},
@@ -29,6 +29,7 @@
 		"buildAndMinify": "npm run webpack && npm run minify",
 		"rollup": "echo ==== ModernDeck 10 and later now build using webpack instead of rollup ==== && npm run webpack",
 		"webpack": "npm run incBuild && webpack",
+		"tscMain": "./node_modules/.bin/tsc",
 		"watch": "webpack --watch",
 		"start": "npm run webpack && electron .",
 		"startNoBuild": "electron .",
@@ -66,6 +67,7 @@
 		"@babel/plugin-transform-exponentiation-operator": "^7.16.7",
 		"@babel/preset-env": "7.18.2",
 		"@types/jquery": "^3.5.14",
+		"@types/node": "^17.0.39",
 		"@types/twit": "^2.2.30",
 		"adm-zip": "^0.5.9",
 		"babel-loader": "^8.2.5",

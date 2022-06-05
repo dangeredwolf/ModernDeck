@@ -2,6 +2,7 @@ const path = require("path");
 const webpack = require("webpack");
 
 const TerserPlugin = require('terser-webpack-plugin');
+const { resourcesPath } = require("process");
 // const BundleAnalyzerPlugin = require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
 // let commitHash = require('child_process')
 // 				.execSync('git rev-parse --short HEAD')
@@ -11,6 +12,7 @@ const TerserPlugin = require('terser-webpack-plugin');
 module.exports = {
 	entry: {
         "moderndeck": "./src/Boot/Boot.ts",
+		"moderndeck-electronhost": "./src/Host/main.ts"
 	},
 	output: {
 		filename: "[name].js",
@@ -56,6 +58,22 @@ Made with <3
 			test: /\.tsx?$/,
 			use: 'ts-loader',
 			exclude: /node_modules/,
+		},
+		{
+			test: /\.tsx?$/,
+			// ModernDeck only uses ES6 imports, `require` is only used to interface with Node in the Electron version
+			parser: {
+				amd: false, // disable AMD
+				commonjs: false, // disable CommonJS
+				system: false, // disable SystemJS
+				requireInclude: false, // disable require.include
+				requireEnsure: false, // disable require.ensure
+				requireContext: false, // disable require.context
+				browserify: false, // disable special handling of Browserify bundles
+				requireJs: false, // disable requirejs.*
+				node: false, // disable __dirname, __filename, module, require.extensions, require.main, etc.
+				commonjsMagicComments: false // disable magic comments support for CommonJS
+			},
 		},
 		{
 			test: /\.m?js$/,

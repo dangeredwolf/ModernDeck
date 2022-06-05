@@ -22,13 +22,13 @@ let i18nMain = path.format({
 });
 
 let results = path.format({
-	dir:__dirname +  path.sep + ".." + path.sep + "src",
+	dir:__dirname + path.sep + ".." + path.sep + "src",
 	base:"DataI18n.ts"
 });
 
 let resultsMain = path.format({
-	dir:__dirname +  path.sep + "..",
-	base:"i18nMain.js"
+	dir:__dirname + path.sep + ".." + path.sep + "src" + path.sep + "Host",
+	base:"i18nMain.ts"
 });
 
 let buildFile = fs.readFileSync(i18n) + "\n" + fs.readFileSync(i18nMD) + "";
@@ -82,7 +82,7 @@ function processFile(file, newFormat) {
 }
 
 fs.writeFileSync(results,"export default " + JSON.stringify(processFile(buildFile)));
-fs.writeFileSync(resultsMain,"exports.default = " + JSON.stringify(processFile(buildFileMain)));
+fs.writeFileSync(resultsMain,"export default " + JSON.stringify(processFile(buildFileMain)));
 
 processFile(buildFile, true);
 
