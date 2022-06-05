@@ -10,10 +10,10 @@ import { enableStylesheetExtension } from "../../StylesheetExtensions";
 export const initialTheme = () => {
 	// The default is dark for the loading screen, once the TD settings load it can use the user preference
 
-	if (window.html.hasClass("mtd-disable-css")) {
+	if (document.querySelector("html").classList.contains("mtd-disable-css")) {
 		enableStylesheetExtension("micro");
 	} else {
 		enableStylesheetExtension("dark");
 	}
-	window.html.addClass("mtd-dark");
+	document.querySelector("html").classList.add("mtd-dark");
 }
