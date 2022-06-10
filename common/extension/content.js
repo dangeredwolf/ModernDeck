@@ -6,11 +6,8 @@
 */
 
 "use strict";
-console.log("ModernDeck content.js");
 
 var browser = browser || chrome;
-
-console.log("Injecting moderndeck.css");
 
 if (document.querySelector(`[rel="manifest"]`) === null) {
 
@@ -35,15 +32,12 @@ if (document.querySelector(`[rel="manifest"]`) === null) {
 	injectScript2.type = "text/javascript";
 	document.head.appendChild(injectScript2);
 
-	console.log("Injecting moderndeck.js");
-
 	const injectScript = document.createElement("script");
 
 	const baseUrl = document.createElement("meta");
 	baseUrl.setAttribute("name", "moderndeck-base-url");
 	baseUrl.setAttribute("content", browser.runtime.getURL("/"));
 	document.head.appendChild(baseUrl);
-	console.log(`Injected baseUrl ${baseUrl.getAttribute("content")}`);
 
 	injectScript.src = browser.runtime.getURL("assets/js/moderndeck.js");
 
