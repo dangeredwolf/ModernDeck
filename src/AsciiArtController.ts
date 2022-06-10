@@ -12,6 +12,7 @@ export class AsciiArtController {
 	static draw(): void {
 
     let consoleStyle = `
+        color: #00aaff;
         line-height: 1.35;
     `
 
