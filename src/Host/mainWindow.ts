@@ -57,7 +57,7 @@ interface WindowBounds {
 }
 
 
-export function makeWindow() {
+export const makeWindow = (): void => {
 	const lock = app.requestSingleInstanceLock();
 
 	if (!lock) {
@@ -286,7 +286,6 @@ export function makeWindow() {
 			baseUrl.setAttribute("name", "moderndeck-base-url");
 			baseUrl.setAttribute("content", "moderndeck://");
 			document.head.appendChild(baseUrl);
-			console.log("Injected baseUrl " + baseUrl.getAttribute("content"));
 			
 			const InjectScript2 = document.createElement("script");
 			InjectScript2.src = "moderndeck://assets/libraries/moduleraid.min.js";
