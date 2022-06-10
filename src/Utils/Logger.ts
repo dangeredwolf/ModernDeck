@@ -2,6 +2,7 @@
 const colors: { [source: string]: string } = {
     Boot: "#ab42cd",
     SettingsInit: "#8ab4f8",
+    StoragePreferences: "#51c671",
 }
 
 export const log = (source: string, ...args: any[]) => {
