@@ -5,7 +5,7 @@
 	Released under the MIT License
 */
 
-import { defineBootComponent } from "../BootHelper";
+import { bootLog, defineBootComponent } from "../BootHelper";
 import { initSentry } from "../Items/Sentry";
 import { extractJQuery } from "../Items/ExtractJQuery";
 import { initAutoUpdater } from "../Items/AutoUpdater";
@@ -15,11 +15,11 @@ import { initLoginScreen } from "../Items/LoginScreen";
 import { initialTheme } from "../Items/InitialTheme";
 
 export const coreStage = async () => {
-	console.log("Boot: Beginning Core stage...");
+	bootLog("Beginning Core stage...");
     await defineBootComponent(drawAsciiArt);
+	await defineBootComponent(extractJQuery);
 	await defineBootComponent(initialTheme);
 	await defineBootComponent(initSentry);
-	await defineBootComponent(extractJQuery);
     await defineBootComponent(initLoginScreen);
 	await defineBootComponent(initAutoUpdater, typeof window.require !== "undefined");
 	await defineBootComponent(initAppFunctions, typeof window.require !== "undefined");

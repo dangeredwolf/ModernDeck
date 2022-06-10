@@ -6,8 +6,13 @@
 */
 
 import * as Sentry from "@sentry/browser";
+import { log } from "../Utils/Logger";
 
 window.moderndeckBootErrorCount = 0;
+
+export const bootLog = (...args: any[]) => {
+	log("Boot", ...args)
+}
 
 export const defineBootComponent = async (func: Function, condition?: boolean): Promise<any> => {
 	return new Promise((resolve) => {
@@ -18,10 +23,10 @@ export const defineBootComponent = async (func: Function, condition?: boolean): 
 			const timeBefore: number = performance.now();
 			const functionResult: any = func();
 			const elapsedTime: number = ((performance.now() - timeBefore) * 1000) / 1000;
-			console.log(`Boot: Done ${func.name} (${elapsedTime} ms)`);
+			bootLog(`✔ Done ${func.name} (${elapsedTime} ms)`);
 			resolve(functionResult);
 		} catch(error: any) {
-			console.error(`Error in boot component ${func.name}`);
+			console.error(`❌ Error in boot component ${func.name}`);
 			console.error(error);
 
 			window.moderndeckBootErrorCount++;

@@ -13,6 +13,7 @@
 */
 
 import { exists, isApp } from "./Utils";
+import { log } from "./Utils/Logger";
 export const debugStorageSys: boolean = false;
 
 let validSyncPrefs: string[] = null;
@@ -64,7 +65,7 @@ export const getPref = (id: string, defaultPreference?: any) : any => {
 	}
 
 	if (debugStorageSys)
-		console.log("getPref "+id+"? "+val);
+		log("StoragePreferences", "getPref "+id+"? "+val);
 
 	if (typeof val === "undefined")
 		return defaultPreference;
@@ -107,7 +108,7 @@ export const purgePrefs = () : void => {
 
 export const setPref = (id: string, pref: any) : void => {
 
-	console.log(`setPref ${id} ${pref}`);
+	log("StoragePreferences", `setPref ${id} ${pref}`);
 
 	if (id === "mtd_core_theme") {
 		return;
@@ -137,7 +138,7 @@ export const setPref = (id: string, pref: any) : void => {
 	}
 
 	if (debugStorageSys)
-		console.log(`setPref ${id} to ${pref}`);
+	log("StoragePreferences", `setPref ${id} to ${pref}`);
 }
 
 /*
@@ -165,7 +166,7 @@ export const hasPref = (id: string) : boolean => {
 	}
 
 	if (debugStorageSys)
-		console.log(`hasPref ${id}? ${hasIt}`);
+		log("StoragePreferences", `hasPref ${id}? ${hasIt}`);
 
 	return hasIt;
 }

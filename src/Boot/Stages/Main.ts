@@ -5,7 +5,7 @@
 	Released under the MIT License
 */
 
-import { defineBootComponent } from "../BootHelper";
+import { bootLog, defineBootComponent } from "../BootHelper";
 import { initAME } from "../Items/AME";
 import { initCollapsedColumns } from "../Items/CollapsedColumns";
 import { overrideFadeOut } from "../Items/FadeOut";
@@ -19,7 +19,7 @@ import { initSettingsHook } from "../Items/SettingsHook";
 import { initTweetDeckImagePaste } from "../Items/TweetDeckImagePaste";
 
 export const mainStage = async () => {
-	console.log("Boot: Beginning Main stage...");
+	bootLog("Beginning Main stage...");
     await defineBootComponent(initTweetDeckImagePaste);
     await defineBootComponent(initAME);
     await defineBootComponent(initPreferences);

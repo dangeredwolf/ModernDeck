@@ -9,7 +9,7 @@ import * as Sentry from "@sentry/browser";
 import { Integrations } from "@sentry/tracing";
 import { buildVersion } from "../../BuildProps.json";
 
-const useSentry = true;
+const useSentry = false;
 
 export const initSentry = () => {
     if (useSentry) {

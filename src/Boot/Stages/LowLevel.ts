@@ -5,7 +5,7 @@
 	Released under the MIT License
 */
 
-import { defineBootComponent } from "../BootHelper";
+import { bootLog, defineBootComponent } from "../BootHelper";
 import { initAjaxPrefilter } from "../Items/AjaxPrefilter";
 import { initCoreStylesheet } from "../Items/CoreStylesheet";
 import { initFeatureFlags } from "../Items/FeatureFlags";
@@ -19,7 +19,7 @@ import { runtimeStylesheetExtensions } from "../Items/RuntimeStylesheetExtension
 import { initI18nEngine } from "../Items/StartI18nEngine";
 
 export const lowlevelStage = async () => {
-	console.log("Boot: Beginning LowLevel stage...");
+	bootLog("Beginning LowLevel stage...");
 	await defineBootComponent(initLateBootScreen);
     await defineBootComponent(initInjectFonts);
     await defineBootComponent(initCoreStylesheet);

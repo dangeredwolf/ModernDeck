@@ -10,6 +10,7 @@ import { SettingsMigration } from "./SettingsMigration";
 import { disableStylesheetExtension, enableStylesheetExtension } from "../StylesheetExtensions";
 import { getPref, setPref, hasPref, debugStorageSys } from "../StoragePreferences";
 import { SettingsTab } from "./SettingsData";
+import { log } from "../Utils/Logger";
 
 /*
 	function loadPreferences()
@@ -49,18 +50,16 @@ export const loadPreferences = (): void => {
 					}
 
 					if (typeof window.desktopConfig !== "undefined" && typeof window.desktopConfig[key] !== "undefined" && typeof window.desktopConfig[key][i] !== "undefined") {
-						console.log(window.desktopConfig[key]);
-						console.log(window.desktopConfig[key][i]);
 						setting = window.desktopConfig[key][i];
 					}
 
 					switch(pref.type) {
 						case "checkbox":
 							if (setting === true) {
-								console.log("activate " + prefKey);
+								log("SettingsInit", "activate " + prefKey);
 								parseActions(pref.activate, undefined, true);
 							} else {
-								console.log("deactivate " + prefKey);
+								log("SettingsInit", "deactivate " + prefKey);
 								parseActions(pref.deactivate, undefined, true);
 							}
 							break;

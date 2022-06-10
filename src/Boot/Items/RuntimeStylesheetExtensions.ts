@@ -10,11 +10,14 @@ import { enableCustomStylesheetExtension } from "../../StylesheetExtensions"
 
 export const runtimeStylesheetExtensions = () => {
 
-	enableCustomStylesheetExtension("moderndeckLogo", `
-        .mtd-settings-panel .mtd-logo {
-            background-image: url(${window.mtdBaseURL}assets/img/moderndeck.svg);
-        }
-    `)
+    // Use rainbow logo in June
+    if ((new Date()).getMonth() === 5) {
+        enableCustomStylesheetExtension("moderndeckLogo", `
+            .mtd-settings-panel .mtd-logo {
+                background-image: url(${window.mtdBaseURL}assets/img/moderndeckrainbow.svg)!important;
+            }
+        `)
+    }
 
     enableCustomStylesheetExtension("i18nCSS",`
     .recent-search-clear.list-item-last span:after {
