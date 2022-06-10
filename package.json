@@ -54,7 +54,7 @@
 		"@sentry/tracing": "^7.1.1",
 		"asar": "^3.1.0",
 		"electron-log": "^4.4.7",
-		"electron-store": "^8.0.1",
+		"electron-store": "^8.0.2",
 		"electron-updater": "^5.0.1",
 		"through2": "^4.0.2"
 	},
