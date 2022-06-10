@@ -94,7 +94,7 @@ export const checkIfSigninFormIsPresent = (): void => {
 // replaces login page with moderndeck one
 
 export const loginTextReplacer = (): void => {
-	if ($(".mtd-signin-form").length <= 0) {
+	if ($(".mtd-signin-form").length <= 0 && $(".app-signin-wrap:not(.mtd-signin-wrap)").length > 0) {
 		console.info("oh no, we're too late!");
 
 		$(".app-signin-wrap:not(.mtd-signin-wrap)").remove();
