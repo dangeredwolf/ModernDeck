@@ -444,7 +444,7 @@ export const setupAME = () => {
         const t = this;
         e = getAMEFilterTarget(e, this.filterTarget, this.type);
 
-        // @ts-ignore
+        // @ts-ignore TS gets angry about AMEFilter not being able to be used as an index even though it it literally the index.
         const shouldDisplay = AmeFilters[this.type].function(t, e);
         if (e.chirpType === ChirpBaseTypeEnum.TWEET || e.chirpType === ChirpBaseTypeEnum.UNKNOWN) {
           maybeLogMuteCatch(e, this, shouldDisplay);
@@ -477,7 +477,7 @@ export const setupAME = () => {
   // Custom display type function to show proper description in filter list
   TD.vo.Filter.prototype.getDisplayType = function getDisplayType() {
     if (RAMEFilters.is(this.type)) {
-      // @ts-ignore
+      // @ts-ignore TS gets angry about AMEFilter not being able to be used as an index even though it it literally the index.
       return AmeFilters[this.type].descriptor;
     }
     return this._getDisplayType();

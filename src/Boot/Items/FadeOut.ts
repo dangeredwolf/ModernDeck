@@ -66,12 +66,16 @@ export function overrideFadeOut() {
 		};
 	})
 
-	$(".js-modal").on("removeChild", (rmnode) => {
-		$(rmnode).addClass("mtd-fade-out");
-		setTimeout(() => {
-           // @ts-ignore
-			rmnode.remove();
-		},200);
+	const modalContainers = $(".js-modal");
+
+	modalContainers.each((obj: number) => {
+        // @ts-ignore TypeScript does not like it when I override removeChild
+		modalContainers[obj].removeChild = (rmnode: HTMLElement) => {
+			$(rmnode).addClass("mtd-fade-out");
+			setTimeout(() => {
+				rmnode.remove();
+			},200);
+		}
 	});
 
 	// body's removeChild function is overriden to give tooltips their fade out animation
@@ -87,7 +91,7 @@ export function overrideFadeOut() {
 	// };
 	setTimeout(() => {
 		if (typeof ($(".app-navigator")[0]) !== "undefined") {
-            // @ts-ignoreTypeScript does not like it when I override removeChild
+            // @ts-ignore TypeScript does not like it when I override removeChild
 			$(".app-navigator")[0].removeChild = (i: HTMLElement) => {
 				if ($(i).hasClass("dropdown-menu")) {
 					$(i).addClass("mtd-fade-out");

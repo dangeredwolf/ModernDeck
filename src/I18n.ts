@@ -308,7 +308,7 @@ const patchTDFunctions = () => {
 	if (typeof window.mR !== "undefined" && window.mR.findConstructor && window.mR.findConstructor("en-x-psaccent")[0] && window.mR.findConstructor("en-x-psaccent")[0][1]) {
 		tweetDeckTranslateInitial = window.mR.findConstructor("en-x-psaccent")[0][1].default;
 		// @ts-ignore Seems to work? TODO: Check if this is still necessary
-		window.mR.findConstructor("en-x-psaccent")[0].default = I18n;
+		window.mR.findConstructor("en-x-psaccent")[0][1].default = I18n;
 
 		const months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
 		let newMonths: string[] = [];

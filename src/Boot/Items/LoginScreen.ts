@@ -29,9 +29,6 @@ export const initLoginScreen = () => {
 	checkIfSigninFormIsPresent();
 	window.loginInterval = setInterval(checkIfSigninFormIsPresent, 500);
 
-	// @ts-ignore
-	window.loginTextReplacer = loginTextReplacer;
-
 	handleErrors(loginTextReplacer, "Caught error in loginTextReplacer");
 	setTimeout(()=>handleErrors(loginTextReplacer, "Caught error in loginTextReplacer"),200);
 	setTimeout(()=>handleErrors(loginTextReplacer, "Caught error in loginTextReplacer"),500);

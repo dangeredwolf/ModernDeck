@@ -464,20 +464,9 @@
 	background-repeat:no-repeat
 }
 
-:not(.mtd-app-mac) .mtd-version-title {
-	margin-left: 82px;
-}
-
 .mtd-settings-panel .mtd-logo {
 	background-image: url(moderndeck://assets/img/moderndeck.svg);
 }
-
-.mtd-app-mac .mtd-settings-panel .mtd-logo {
-	--logoSize: 64px;
-	margin-left: 5px;
-	margin-right: 5px;
-	background-image: url(moderndeck://assets/img/macOS.svg);
-margin-top: 0px;}
 
 .mtd-settings-panel .mtd-logo:before {
 	content:""
@@ -495,10 +484,6 @@ margin-top: 0px;}
 	width:auto
 }
 
-.mtd-app-mac .mtd-about-title {
-	padding-left:10px
-}
-
 .mtd-about-title>span {
 	padding-left:8px;
 	font-size:14px
@@ -513,10 +498,6 @@ margin-top: 0px;}
 	padding-top: 38px;
 	width:305px;
 	margin-left:96px
-}
-
-.mtd-app-mac .mtd-version-title {
-	margin-left: 84px;
 }
 
 .mtd-patron-info {
@@ -770,4 +751,8 @@ html body .mtd-settings-subpanel button {
 
 .mtd-input-monospace::placeholder {
 	font-family: var(--defaultFontOrder);
+}
+
+.mtd-version-title {
+	margin-left: 82px;
 }

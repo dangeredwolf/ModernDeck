@@ -105,7 +105,7 @@ export class MuteEnumPage extends SettingsEnumPage {
 		
 		for (const type in this.filters) {
 			const filter = this.filters[type];
-			// @ts-ignore
+			// @ts-ignore Filter literally can only be TweetDeckFilterTypes | AMEFilters but TS complains anyway
 			make("option").attr("value", filter).html(this.muteLabel[(filter as TweetDeckFilterTypes | AMEFilters)]).appendTo(this.selectFilterType);
 		}
 		
@@ -201,7 +201,7 @@ export class MuteEnumPage extends SettingsEnumPage {
 
 			filterList.append(
 				make("li").addClass("list-filter").append(
-					// @ts-ignore
+					// @ts-ignore Filter literally can only be TweetDeckFilterTypes | AMEFilters but TS complains anyway
 					make("div").addClass("mtd-mute-text").html(this.muteText[myFilter.type as TweetDeckFilterTypes | AMEFilters]),
 					make("em").html(myFilter.value),
 					make("input")

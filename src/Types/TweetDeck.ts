@@ -194,9 +194,6 @@ interface Config {
 	disable_metrics_event: boolean;
 }
 
-
-
-
 interface Constants {
 	keyCodes: KeyCodes;
 	charCodes: CharCodes;
@@ -1304,7 +1301,7 @@ export interface TwitterStatus extends TweetDeckChirp {
 	};
 }
 
-// @ts-expect-error
+// @ts-expect-error dn
 export interface TwitterUser extends TweetDeckUser {
 	prototype: TweetDeckUser & {
 		[k: string]: any;

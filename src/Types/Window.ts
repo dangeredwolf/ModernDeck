@@ -13,6 +13,7 @@ import { TweetDeckObject } from './TweetDeck';
 declare global {
     
     let TD: TweetDeckObject;
+    let __webpack_public_path__: string;
 
     interface DesktopConfig {
         updatePolicy?: string,

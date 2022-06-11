@@ -110,6 +110,3 @@ export class SyncController {
         } 
     }
 }
-
-//@ts-ignore Debug only
-window.ModernDeck.SyncController = SyncController;

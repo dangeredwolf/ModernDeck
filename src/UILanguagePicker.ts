@@ -47,7 +47,6 @@ export class UILanguagePicker extends UIModal {
 			make("span").addClass("mtd-language-hello").text("안녕하세요"),
 			make("span").addClass("mtd-language-hello").text("Witam"),
 		)
-		// @ts-ignore TypeScript does not understand current format i18ndata
 		this.alertButton = make("button").addClass("btn-primary btn mtd-alert-button hidden").html("OK");
 		this.inaccuracy = make("div").addClass("mtd-unsupported-lang mtd-lang-inaccuracies").html((
 			// @ts-ignore TypeScript does not understand current format i18ndata
