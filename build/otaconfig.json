@@ -1,3 +1,6 @@
 {
-    
+    "customBadges": {
+        "dangeredwolf": "developer",
+        "ModernDeck": "developer"
+    }
 }

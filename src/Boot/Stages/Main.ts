@@ -14,6 +14,7 @@ import { initLateAppFunctions } from "../Items/LateAppFunctions";
 import { initPreferences } from "../Items/LoadPreferences";
 import { navigationSetup } from "../Items/NavigationSetup";
 import { hookNFTActions } from "../Items/NFTActions";
+import { setupOTAConfig } from "../Items/OTAConfig";
 import { initSettingsHook } from "../Items/SettingsHook";
 // import { startSync } from "../Items/Sync";
 import { initTweetDeckImagePaste } from "../Items/TweetDeckImagePaste";
@@ -30,6 +31,7 @@ export const mainStage = async () => {
     await defineBootComponent(overrideFadeOut);
     await defineBootComponent(initCollapsedColumns);
     await defineBootComponent(hookNFTActions);
+    await defineBootComponent(setupOTAConfig);
     // await defineBootComponent(startSync);
     
 }
