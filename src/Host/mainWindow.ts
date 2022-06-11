@@ -346,7 +346,7 @@ export const makeWindow = (): void => {
 				"frame-ancestors 'self' https: moderndeck:; "+
 				"img-src https: file: data: blob: moderndeck:; "+
 				"media-src * moderndeck: blob: https:; "+
-				"object-src 'self' https:; script-src 'self' 'unsafe-eval' https://moderndeck.org moderndeck: https://*.twitter.com https://*.twimg.com https://api-ssl.bitly.com blob:; "+
+				"object-src 'self' https:; script-src 'self' 'unsafe-eval' https://moderndeck.app moderndeck: https://*.twitter.com https://*.twimg.com https://api-ssl.bitly.com blob:; "+
 				"style-src 'self' 'unsafe-inline' 'unsafe-eval' https: moderndeck: blob:;"];
 			callback({ responseHeaders: foo});
 		}

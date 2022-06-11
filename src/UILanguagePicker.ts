@@ -55,7 +55,7 @@ export class UILanguagePicker extends UIModal {
 			DataI18n[navigator.language.substr(0,2)]["Translations may be incomplete or inaccurate."] :
 			// @ts-ignore TypeScript does not understand current format i18ndata
 			(inaccuraciesCodeTable[navigator.language.substr(0,2)] || inaccuraciesCodeTable["en"]))) +
-			" <a href='https://translate.moderndeck.org'>translate.moderndeck.org</a>")
+			" <a href='https://translate.moderndeck.app'>translate.moderndeck.app</a>")
 
 		this.selectLanguage = make("select").attr("id","mtd_language_select").append(
 			make("option").val("default").html("-").attr("selected","true").attr("disabled","true"),
@@ -97,7 +97,7 @@ export class UILanguagePicker extends UIModal {
 			let langCode = DataI18n["Translations may be incomplete or inaccurate."][this.selectLanguage.val()];
 			// @ts-ignore TypeScript does not understand current format i18ndata
 			let langCodeBase = DataI18n["Translations may be incomplete or inaccurate."][this.selectLanguage.val().substr(0,2)];
-			const footer = " <a href='https://translate.moderndeck.org'>translate.moderndeck.org</a>";
+			const footer = " <a href='https://translate.moderndeck.app'>translate.moderndeck.app</a>";
 
 			if (typeof langCode !== "undefined") {
 				this.inaccuracy.html(langCode + footer);
@@ -153,7 +153,7 @@ export class UILanguagePicker extends UIModal {
 		this.alertBody = make("p").addClass("mtd-alert-body").append(this.selectLanguage);
 		this.alertButtonContainer = make("div").addClass("mtd-alert-button-container");
 		// @ts-ignore TypeScript does not understand current format i18ndata
-		this.unsupportedLang = make("div").addClass("mtd-unsupported-lang").html((unsupportedCodeTable[navigator.language.substr(0,2)] || unsupportedCodeTable["en"]) + " <a href='https://translate.moderndeck.org'>translate.moderndeck.org</a>")
+		this.unsupportedLang = make("div").addClass("mtd-unsupported-lang").html((unsupportedCodeTable[navigator.language.substr(0,2)] || unsupportedCodeTable["en"]) + " <a href='https://translate.moderndeck.app'>translate.moderndeck.app</a>")
 
 
 
