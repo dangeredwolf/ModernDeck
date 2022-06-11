@@ -44,16 +44,6 @@
 			}
 		]
 	},
-	"appx": {
-		"publisher": "CN=FEC2801E-B19C-4051-A5E2-465F7B251519",
-		"publisherDisplayName": "dangered wolf",
-		"identityName": "53434dangeredwolf.ModernDeck",
-		"artifactName": "ModernDeck-${arch}.${ext}",
-		"applicationId": "ModernDeck"
-	},
-	"squirrelWindows": {
-		"artifactName": "ModernDeck-${arch}.${ext}"
-	},
 	"nsis": {
 		"deleteAppDataOnUninstall": true,
 		"artifactName": "ModernDeck-${arch}.${ext}",
@@ -64,12 +54,6 @@
 		"artifactName": "ModernDeck-${arch}.${ext}",
 		"perMachine": true,
 		"runAfterFinish": false
-	},
-	"nsisWeb": {
-		"deleteAppDataOnUninstall": true,
-		"artifactName": "ModernDeck-${arch}.${ext}",
-		"uninstallDisplayName": "ModernDeck",
-		"differentialPackage": true
 	},
 	"mac": {
 		"publish": [
@@ -92,11 +76,6 @@
 				]
 			},
 			{
-				"target": "mas",
-				"arch": [
-				]
-			},
-			{
 				"target": "zip",
 				"arch": [
 					"universal"
@@ -113,10 +92,6 @@
 		},
 		"format": "ULFO",
 		"title": "ModernDeck"
-	},
-	"mas": {
-		"appId": "com.dangeredwolf.ModernDeck",
-		"provisioningProfile": "build/ModernDeck_App_Store.provisionprofile"
 	},
 	"linux": {
 		"category": "Network",
