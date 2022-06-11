@@ -68,6 +68,7 @@ a[data-action="undo-retweet"]:before,
 .dropdown-menu a[data-action="signOut"]:before,
 .icon-tweetdeck:before,
 .icon-moderndeck:before,
+.icon-moderndeck-mini:before,
 .icon-sad-moderndeck:before,
 .icon-hashtag:before,
 .icon-retweet:before,
@@ -159,6 +160,10 @@ a[data-action="undo-retweet"]:before,
 }
 
 .icon-moderndeck:before {
+	content:"\f003"
+}
+
+.icon-moderndeck-mini:before {
 	content:"\f003"
 }
 
