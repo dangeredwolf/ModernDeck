@@ -59,7 +59,7 @@
 		"publish": [
 			"github"
 		],
-		"icon": "build/icons/macOS Big Sur.png",
+		"icon": "build/icons/macOS.png",
 		"artifactName": "${productName}-${arch}.${ext}",
 		"minimumSystemVersion": "10.11.0",
 		"darkModeSupport": true,
