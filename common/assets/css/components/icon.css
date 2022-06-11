@@ -69,10 +69,7 @@ a[data-action="undo-retweet"]:before,
 .icon-tweetdeck:before,
 .icon-moderndeck:before,
 .icon-sad-moderndeck:before,
-.icon-mtdmini:before,
 .icon-hashtag:before,
-.icon-settings:before,
-.icon-td-settings:before,
 .icon-retweet:before,
 .icon-retweet-filled:before,
 .icon-mtd-settings:before,
@@ -169,10 +166,6 @@ a[data-action="undo-retweet"]:before,
 	content:"\f00a"
 }
 
-.icon-mtdmini:before {
-	content:"\f004"
-}
-
 .icon-hashtag:before,
 .Icon--hashtag:before {
 	content:"\f005"
@@ -181,7 +174,7 @@ a[data-action="undo-retweet"]:before,
 .dropdown-menu a[data-action="globalSettings"]:before,
 .icon-settings:before,
 .Icon--settings:before {
-	content:"\f006"
+	content:"\e8b8"
 }
 
 .icon-retweet:before,

@@ -41,7 +41,7 @@ const setupOTAConfigAsync = async () => {
 							a[href="https://twitter.com/${key}"] .fullname:after,
 							a[href="https://twitter.com/${key}"].link-complex .link-complex-target:after,
 							a[data-user-name="${key}"] .fullname:after {
-								content:"\f003";
+								content:"\\f003";
 								font-size:20px;
 								font-style:normal;
 								text-rendering:optimizeLegibility;
