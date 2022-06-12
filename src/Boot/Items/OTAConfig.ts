@@ -13,6 +13,15 @@ interface OTAConfig {
 	customBadges? : {
 		[username: string] : BadgeTypes
 	}
+	cssPatches? : [
+		{
+			comment? : string
+			selector : string
+			patch : string
+			minBuild? : number
+			maxBuild? : number
+		}
+	]
 }
 
 export const setupOTAConfig = () => {
@@ -58,6 +67,24 @@ const setupOTAConfigAsync = async () => {
 					default:
 						console.log(`Unknown icon type ${badgeType} for ${key}`);
 						break;
+				}
+			}
+		}
+	}
+
+	if (config.cssPatches) {
+		for (const patch of config.cssPatches) {
+			if (patch.selector.match(/[{}]/g) !== null || patch.patch.match(/[{}]/g) !== null) {
+				console.error(`Safety check: OTA CSS patch ${patch.comment || patch.selector} contains invalid characters`);
+				continue;
+			}
+			if (patch.minBuild ? patch.minBuild <= window.ModernDeck.buildNumber : true) {
+				if (patch.maxBuild ? patch.maxBuild >= window.ModernDeck.buildNumber : true) {
+					otaCSS += `
+						${patch.selector} {
+							${patch.patch}
+						}
+					`;
 				}
 			}
 		}

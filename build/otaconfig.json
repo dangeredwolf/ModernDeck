@@ -2,5 +2,25 @@
     "customBadges": {
         "dangeredwolf": "developer",
         "ModernDeck": "developer"
-    }
+    },
+    "cssPatches": [
+        {
+            "selector": ".test-do-not-match",
+            "patch": "display: none;",
+            "minBuild": 0,
+            "maxBuild": 0
+        },
+        {
+            "selector": "html",
+            "patch": "background-color: #111;",
+            "minBuild": 2000,
+            "maxBuild": 3000
+        },
+        {
+            "selector": ".test-do-not-match",
+            "patch": "display: none;",
+            "minBuild": 9999,
+            "maxBuild": 9999
+        }
+    ]
 }
