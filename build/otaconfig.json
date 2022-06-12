@@ -5,7 +5,8 @@
     },
     "cssPatches": [
         {
-            "selector": ".test-do-not-match",
+            "comment": "Testing minBuild maxBuild 0",
+            "selector": ".test-do-not-match.build0",
             "patch": "display: none;",
             "minBuild": 0,
             "maxBuild": 0
@@ -17,7 +18,8 @@
             "maxBuild": 3000
         },
         {
-            "selector": ".test-do-not-match",
+            "comment": "Testing minBuild maxBuild 9999",
+            "selector": ".test-do-not-match.build9999",
             "patch": "display: none;",
             "minBuild": 9999,
             "maxBuild": 9999
