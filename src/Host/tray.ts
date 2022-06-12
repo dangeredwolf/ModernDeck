@@ -10,7 +10,7 @@ export function makeTray() {
 		return;
 	}
 
-	let pathName = `${__dirname}${separator}common${separator}assets${separator}` +
+	let pathName = `common${separator}assets${separator}` +
 					`img${separator}app${separator}${(process.platform === "darwin" ? "macOSTrayTemplate.png" : "Tray.png")}`;
 
 	const image = nativeImage.createFromPath(pathName);
