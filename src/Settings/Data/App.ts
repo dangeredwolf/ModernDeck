@@ -5,12 +5,15 @@
 	Released under the MIT License
 */
 
-import { setPref } from "../../StoragePreferences";
+import { getPref, setPref } from "../../StoragePreferences";
 import { exists, isApp } from "../../Utils";
 import { openLegacySettings } from "../../UISettings";
 import { enterSafeMode } from "../../SafeMode";
 
 import { ModernDeckSettingsTab, ModernDeckSettingsType } from "../../Types/ModernDeckSettings";
+import { ProxyMode } from "../Types/Proxy";
+import { SettingsKeys } from "../SettingsKeys";
+import { SettingsTab } from "../SettingsData";
 
 let tab: ModernDeckSettingsTab = {
     tabName: "<i class='icon icon-moderndeck'></i> {{App}}",
@@ -117,6 +120,64 @@ let tab: ModernDeckSettingsTab = {
             settingsKey: "mtd_updatechannel",
             default: "latest"
         },
+        proxyMode: {
+            headerBefore: "{{Proxy}}",
+            title: "{{Proxy mode}}",
+            type: ModernDeckSettingsType.DROPDOWN,
+            activate: {
+                func: (opt: ProxyMode): void => {
+                    setPref(SettingsKeys.PROXY_MODE, opt);
+
+                    const { ipcRenderer } = window.require("electron");
+                    ipcRenderer?.send?.("changeProxy");
+					setTimeout(() => window.renderTab(SettingsTab.APP));
+                }
+            },
+            options: {
+                autodetect: { value: ProxyMode.AUTODETECT, text: "{{Auto-detect}}" },
+                direct: { value: ProxyMode.DIRECT, text: "{{No proxy}}" },
+                manual: { value: ProxyMode.MANUAL, text: "{{Configure proxy servers}}" },
+                pac: { value: ProxyMode.PAC, text: "{{Use PAC script}}" },
+            },
+            settingsKey: SettingsKeys.PROXY_MODE,
+        },
+        proxyPACSetting: {
+            title: "{{PAC script URL}}",
+            type: ModernDeckSettingsType.TEXTBOX,
+            activate: {
+                func: (opt: string) : void => {
+                    setPref(SettingsKeys.PROXY_PAC_SCRIPT, opt);
+
+                    const { ipcRenderer } = window.require("electron");
+                    ipcRenderer?.send?.("changeProxy");
+                }
+            },
+            default: "",
+            settingsKey: SettingsKeys.PROXY_PAC_SCRIPT,
+            enabled: () => getPref(SettingsKeys.PROXY_MODE) === ProxyMode.PAC
+        },
+        proxyManualServers: {
+            title: "{{Proxy servers}}",
+            type: ModernDeckSettingsType.TEXTBOX,
+			addClass:"mtd-big-text-box",
+            activate: {
+                func: (opt: string) : void => {
+                    setPref(SettingsKeys.PROXY_SERVERS, opt);
+
+                    const { ipcRenderer } = window.require("electron");
+                    ipcRenderer?.send?.("changeProxy");
+                }
+            },
+            default: "",
+            placeholder: "socks5://example.com:3000;http://example.com:8080",
+            settingsKey: SettingsKeys.PROXY_SERVERS,
+            enabled: () => getPref(SettingsKeys.PROXY_MODE) === ProxyMode.MANUAL
+        },
+		proxyManualServerSubtext: {
+			label: "{{You can specify multiple proxy servers and they will be used in the order they are in.}}<br><br>{{HTTP, HTTPS, SOCKS4, and SOCKS5 proxies are supported.}}",
+			type:ModernDeckSettingsType.SUBTEXT,
+            enabled: () => getPref(SettingsKeys.PROXY_MODE) === ProxyMode.MANUAL
+		},
         trayEnabled: {
             headerBefore: "{{Tray}}",
             title: "{{Show ModernDeck in the system tray}}",

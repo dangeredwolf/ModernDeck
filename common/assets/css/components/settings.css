@@ -244,6 +244,11 @@
 	float:right
 }
 
+input[type="text"].mtd-big-text-box {
+    width: calc(100% - 14px)!important;
+	margin-bottom:16px
+}
+
 .mtd-settings-subpanel select[disabled], .mtd-settings-subpanel input[disabled] {
 	opacity:0.5
 }

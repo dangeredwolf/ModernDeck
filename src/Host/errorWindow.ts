@@ -4,8 +4,6 @@ import { HostManager } from "./hostManager";
 const electron = require("electron");
 const { app, BrowserWindow, shell } = electron;
 
-let errorWindow: Electron.BrowserWindow;
-
 export function makeErrorWindow() {
 
 	shell.beep();
@@ -15,6 +13,7 @@ export function makeErrorWindow() {
 		height: 260,
 		webPreferences: {
 			scrollBounce: true,
+			contextIsolation: false,
 			nodeIntegration: true
 		},
 		parent:HostManager.mainWindow,
@@ -23,21 +22,21 @@ export function makeErrorWindow() {
 
 	HostManager.shouldQuitIfErrorClosed = true;
 
-	errorWindow.webContents.on("new-window", (event: Event, url: string) => {
+	HostManager.errorWindow.webContents.on("new-window", (event: Event, url: string) => {
 		event.preventDefault();
 		shell.openExternal(url);
 	});
 
-	errorWindow.on("closed", () => {
-		errorWindow = null;
+	HostManager.errorWindow.on("closed", () => {
+		HostManager.errorWindow = null;
 		if (HostManager.shouldQuitIfErrorClosed) {
 			app.quit();
 		}
 	});
 
-	errorWindow.loadURL(__dirname + separator + "sadmoderndeck.html");
+	HostManager.errorWindow.loadURL(`file://${__dirname}${separator}..${separator}..${separator}..${separator}sadmoderndeck.html`);
 
-	errorWindow.webContents.on("did-start-navigation", (event, url) => {
+	HostManager.errorWindow.webContents.on("did-start-navigation", (event, url) => {
 		event.preventDefault();
 	});
 

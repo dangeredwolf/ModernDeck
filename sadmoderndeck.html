@@ -90,7 +90,7 @@
 				color:#5af
 			}
 
-			a.btn {
+			a.btn, #resetProxy {
 				float:left
 			}
         </style>
@@ -100,17 +100,25 @@
         <i class="icon icon-sad-moderndeck"></i>
         <h2 id="code"></h2>
 		<a class="btn" id="twitterStatus" target="_blank" href="https://api.twitterstat.us/"></a>
+		<button id="resetProxy"></button>
 		<button autofocus id="retry"></button>
         <button id="close"></button>
 
 
 		<script>
 			document.getElementById("close").addEventListener("click", function() {
-				require("electron").ipcRenderer.send("quit")
+				require("electron").ipcRenderer.send("errorQuit")
 			});
 
 			document.getElementById("retry").addEventListener("click", function() {
 				require("electron").ipcRenderer.send("errorReload")
+			});
+
+			document.getElementById("resetProxy").addEventListener("click", function() {
+				require("electron").ipcRenderer.send("resetProxy");
+				setTimeout(() => {
+					require("electron").ipcRenderer.send("errorReload");
+				})
 			});
 		</script>
     </body>

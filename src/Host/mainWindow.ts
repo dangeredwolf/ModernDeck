@@ -1,9 +1,12 @@
+import { SettingsKeys } from "../Settings/SettingsKeys";
+import { ProxyMode } from "../Settings/Types/Proxy";
 import { updateAppTag } from "./appTag";
 import { makeErrorWindow } from "./errorWindow";
 import { HostManager } from "./hostManager";
 import { I18n } from "./i18n";
 import { makeLoginWindow } from "./loginWindow";
 import { autoUpdater, desktopConfig, mtdSchemeHandler } from "./main";
+import { updateProxy } from "./proxy";
 import { store } from "./store";
 import { destroyTray, makeTray } from "./tray";
 import { saveImageAs } from "./utils";
@@ -324,9 +327,18 @@ export const makeWindow = (): void => {
 			document.getElementById("close").innerHTML = "${I18n("Close")}";
 			document.getElementById("retry").innerHTML = "${I18n("Retry")}";
 			document.getElementById("twitterStatus").innerHTML = "${I18n("Twitter Status")}";
+			document.getElementById("resetProxy").innerHTML = "${I18n("Reset Proxy")}";
 		`);
 
-		console.log(desc);
+		if (store.get(SettingsKeys.PROXY_MODE) === ProxyMode.AUTODETECT) {
+			HostManager.errorWindow.webContents.executeJavaScript(`
+				document.getElementById("resetProxy").remove();
+			`);
+		}
+
+		HostManager.errorWindow.show();
+
+		console.log(code, desc);
 
 		return;
 	});
@@ -370,7 +382,16 @@ export const makeWindow = (): void => {
 	// 	}
 	// );
 
-	HostManager.mainWindow?.webContents?.loadURL?.("https://tweetdeck.twitter.com");
+	// Update the proxy before attempting to load the page
+	updateProxy();
+
+	try {
+		HostManager.mainWindow.webContents.loadURL("https://tweetdeck.twitter.com");
+	} catch(e) {
+		console.error(e)
+	}
+
+	updateProxy();
 
 	/*
 
@@ -449,6 +470,10 @@ export const makeWindow = (): void => {
 		HostManager.mainWindow?.focus?.();
 	});
 
+	ipcMain.on("changeProxy", () => {
+		updateProxy();
+	});
+
 	/*
 		If a user uses native context menus, this is browser telling us
 		to put up a native context menu with the given commands, instead
@@ -463,9 +488,15 @@ export const makeWindow = (): void => {
 	});
 
 	ipcMain.on("errorReload", () => {
+		HostManager.shouldQuitIfErrorClosed = false;
 		HostManager.mainWindow.reload();
 		HostManager.mainWindow.show();
 		HostManager.errorWindow.close();
+	});
+
+	ipcMain.on("resetProxy", () => {
+		store.set(SettingsKeys.PROXY_MODE, ProxyMode.AUTODETECT);
+		updateProxy();
 	});
 
 	ipcMain.on("loadSettingsDialog", () => {
