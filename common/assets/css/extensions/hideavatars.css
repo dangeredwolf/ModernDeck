@@ -1,0 +1,7 @@
+.avatar:not(.size73):not(.size32):not(.mtd-nd-header-photo) {
+    display: none;
+}
+
+:root {
+    --avatarSize: 0px!important;
+}

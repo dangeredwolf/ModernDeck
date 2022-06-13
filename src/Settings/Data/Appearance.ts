@@ -7,7 +7,7 @@
 
 
 import { enableStylesheetExtension, disableStylesheetExtension, enableCustomStylesheetExtension } from "../../StylesheetExtensions";
-import { setPref } from "../../StoragePreferences";
+import { getPref, setPref } from "../../StoragePreferences";
 
 import { ModernDeckSettingsTab, ModernDeckSettingsType } from "../../Types/ModernDeckSettings";
 
@@ -205,9 +205,9 @@ let tab: ModernDeckSettingsTab = {
 			},
 			minimum:24,
 			maximum:64,
-			enabled:true,
 			settingsKey:"mtd_avatarsize",
 			displayUnit:"px",
+			enabled: () => getPref("mtd_disable_avatars", false) === false,
 			default:48
 		},
 		roundProfilePics:{
@@ -220,7 +220,26 @@ let tab: ModernDeckSettingsTab = {
 				enableStylesheet:"squareavatars"
 			},
 			settingsKey:"mtd_round_avatars",
+			enabled: () => getPref("mtd_disable_avatars", false) === false,
 			default:true
+		},
+		disableProfilePics:{
+			title:"{{Hide profile pictures}}",
+			type:ModernDeckSettingsType.CHECKBOX,
+			activate:{
+				enableStylesheet:"hideavatars",
+				func: (): void => {
+					setTimeout(() => window.renderTab(SettingsTab.APPEARANCE));
+				}
+			},
+			deactivate:{
+				disableStylesheet:"hideavatars",
+				func: (): void => {
+					setTimeout(() => window.renderTab(SettingsTab.APPEARANCE));
+				}
+			},
+			settingsKey:"mtd_disable_avatars",
+			default:false
 		},
 		newCharIndicator:{
 			title:"{{Use new character limit indicator}}",
