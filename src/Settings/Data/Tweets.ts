@@ -11,6 +11,7 @@ import { TweetDeckLinkShortener, TweetDeckObject } from "../../Types/TweetDeck";
 declare let TD: TweetDeckObject;
 
 import { allColumnsVisible, updateColumnVisibility } from "../../Column";
+import { SettingsTab } from "../SettingsData";
 
 let tab: ModernDeckSettingsTab = {
 	tabName:"<i class='Icon icon-twitter-bird'></i> {{Tweets}}",
@@ -116,22 +117,26 @@ let tab: ModernDeckSettingsTab = {
 					window.nftAvatarAction ? window.nftAvatarAction.actionToTake = opt : false;
 					if (opt !== "nothing") {
 						let alreadyHasFilter = false;
-						// TODO: Filter Types
-						TD.controller.filterManager.getAll().forEach((filter: any) => {
-							if (filter.type === "BTD_nft_avatar") {
-								alreadyHasFilter = true;
+						// Hack to make sure settings are initialized before we try to add the filter
+						setTimeout(() => {
+							TD.controller.filterManager.getAll().forEach((filter: any) => {
+								if (filter.type === "BTD_nft_avatar") {
+									alreadyHasFilter = true;
+								}
+							});
+	
+							if (!alreadyHasFilter) {
+								TD.controller.filterManager.addFilter('BTD_nft_avatar', 'ModernDeck NFT Avatar Filter');
 							}
-						});
-
-						if (!alreadyHasFilter) {
-							TD.controller.filterManager.addFilter('BTD_nft_avatar', 'ModernDeck NFT Avatar Filter');
-						}
+						})
 					} else {
-						TD.controller.filterManager.getAll().forEach((filter: any) => {
-							if (filter.type === "BTD_nft_avatar") {
-								TD.controller.filterManager.removeFilter(filter);
-							}
-						});
+						setTimeout(() => {
+							TD.controller.filterManager.getAll().forEach((filter: any) => {
+								if (filter.type === "BTD_nft_avatar") {
+									TD.controller.filterManager.removeFilter(filter);
+								}
+							});
+						})
 					}
 				}
 			},
@@ -183,7 +188,7 @@ let tab: ModernDeckSettingsTab = {
 			activate:{
 				func: (opt: TweetDeckLinkShortener): void => {
 					TD.settings.setLinkShortener(opt);
-					setTimeout(() => window.renderTab("tweets"));
+					setTimeout(() => window.renderTab(SettingsTab.TWEETS));
 				}
 			},
 			savePreference:false,

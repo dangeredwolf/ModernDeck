@@ -12,6 +12,7 @@ import { setPref } from "../../StoragePreferences";
 import { ModernDeckSettingsTab, ModernDeckSettingsType } from "../../Types/ModernDeckSettings";
 
 import { TweetDeckObject } from "../../Types/TweetDeck";
+import { SettingsTab } from "../SettingsData";
 declare let TD: TweetDeckObject;
 
 let tab: ModernDeckSettingsTab = {
@@ -92,13 +93,13 @@ let tab: ModernDeckSettingsTab = {
 			activate:{
 				func: (): void => {
 					TD.settings.setDisplaySensitiveMedia(true);
-					setTimeout(() => window.renderTab("appearance"));
+					setTimeout(() => window.renderTab(SettingsTab.APPEARANCE));
 				}
 			},
 			deactivate:{
 				func: (): void => {
 					TD.settings.setDisplaySensitiveMedia(false);
-					setTimeout(() => window.renderTab("appearance"));
+					setTimeout(() => window.renderTab(SettingsTab.APPEARANCE));
 				}
 			},
 			savePreference:false,

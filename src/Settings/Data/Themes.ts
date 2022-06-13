@@ -10,6 +10,7 @@ import { getPref, setPref } from "../../StoragePreferences";
 import { ctrlShiftText } from "../../Utils";
 
 import { ModernDeckSettingsTab, ModernDeckSettingsType } from "../../Types/ModernDeckSettings";
+import { SettingsTab } from "../SettingsData";
 
 let tab: ModernDeckSettingsTab = {
 	tabName:"<i class='material-icon' aria-hidden='true'>format_paint</i> {{Themes}}",
@@ -29,7 +30,7 @@ let tab: ModernDeckSettingsTab = {
 						opt = TD.settings.getTheme();
 					}
 
-					setTimeout(() => window.renderTab("themes"));
+					setTimeout(() => window.renderTab(SettingsTab.THEMES));
 
 					if (getPref("mtd_highcontrast") === true) {
 						disableStylesheetExtension("light");
