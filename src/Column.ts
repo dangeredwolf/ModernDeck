@@ -5,6 +5,7 @@
 	Released under the MIT License
 */
 
+import { SettingsKey } from "./Settings/SettingsKey";
 import { getPref } from "./StoragePreferences";
 
 export const getColumnFromColumnNumber = (num: number) : JQuery => {
@@ -25,7 +26,7 @@ export const getColumnNumber = (col: JQuery) : number => {
 
 export const updateColumnVisibility = () : void => {
 
-	if (getPref("mtd_column_visibility") === false) {
+	if (getPref(SettingsKey.COLUMN_VISIBILITY) === false) {
 		return allColumnsVisible()
 	}
 

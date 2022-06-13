@@ -15,6 +15,7 @@ import { setPref } from "./StoragePreferences";
 import { UIWelcome } from "./UIWelcome";
 
 import languageData from "./DataI18n";
+import { SettingsKey } from "./Settings/SettingsKey";
 
 export class UILanguagePicker extends UIModal {
 	hasMadeChange: boolean;
@@ -160,8 +161,8 @@ export class UILanguagePicker extends UIModal {
 		this.alertButtonContainer.append(this.alertButton);
 
 		this.alertButton.click(() => {
-			setPref("mtd_last_lang", navigator.language);
-			setPref("mtd_lang", this.selectLanguage.val());
+			setPref(SettingsKey.LAST_LANGUAGE, navigator.language);
+			setPref(SettingsKey.LANGUAGE, this.selectLanguage.val());
 
 			if (getFullLanguage() !== this.selectLanguage.val() && getMainLanguage() !== this.selectLanguage.val()) {
 				setTimeout(() => {

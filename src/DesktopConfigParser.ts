@@ -7,6 +7,7 @@
 
 import { setPref } from "./StoragePreferences";
 import { settingsData } from "./Settings/SettingsData";
+import { SettingsKey } from "./Settings/SettingsKey";
 
 export const parseConfig = (config: DesktopConfig): void => {
 	console.log("Parsing desktop config...");
@@ -15,7 +16,7 @@ export const parseConfig = (config: DesktopConfig): void => {
 		let value: any = config[option];
 
 		if (option === "disableDevTools" && value === true) {
-			setPref("mtd_inspectElement", false);
+			setPref(SettingsKey.INSPECT_ELEMENT, false);
 		}
 
 		if (typeof option === "object") {

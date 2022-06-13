@@ -9,6 +9,7 @@ import { ModernDeckSettingsTab, ModernDeckSettingsType } from "../../Types/Moder
 
 import { enableStylesheetExtension, disableStylesheetExtension } from "../../StylesheetExtensions";
 import { ctrlShiftText } from "../../Utils";
+import { SettingsKey } from "../SettingsKey";
 
 let tab: ModernDeckSettingsTab = {
     tabName:"<i class='material-icon' aria-hidden='true'>accessibility</i> {{Accessibility}}",
@@ -23,7 +24,7 @@ let tab: ModernDeckSettingsTab = {
             deactivate: {
                 htmlRemoveClass:"mtd-acc-focus-ring"
             },
-            settingsKey:"mtd_outlines",
+            settingsKey:SettingsKey.FOCUS_OUTLINES,
             default:false
         },
         highContrast: {
@@ -46,7 +47,7 @@ let tab: ModernDeckSettingsTab = {
                     disableStylesheetExtension("amoled");
                 }
             },
-            settingsKey:"mtd_highcontrast",
+            settingsKey:SettingsKey.HIGH_CONTRAST,
             default:false
         }
     }

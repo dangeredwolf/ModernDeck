@@ -12,6 +12,7 @@
 	https://github.com/dangeredwolf/ModernDeck/wiki/Preference-Management-Functions
 */
 
+import { SettingsKey } from "./Settings/SettingsKey";
 import { exists, isApp } from "./Utils";
 import { log } from "./Utils/Logger";
 export const debugStorageSys: boolean = false;
@@ -48,11 +49,7 @@ export const resetPref = (id: string) : void => {
 	}
 }
 
-export const getPref = (id: string, defaultPreference?: any) : any => {
-	if (id === "mtd_core_theme") {
-		return TD.settings.getTheme();
-	}
-
+export const getPref = (id: SettingsKey, defaultPreference?: any) : any => {
 	let val: any;
 
 	if (window.ModernDeck.store) {
@@ -106,13 +103,9 @@ export const purgePrefs = () : void => {
 	https://github.com/dangeredwolf/ModernDeck/wiki/Preference-Management-Functions
 */
 
-export const setPref = (id: string, pref: any) : void => {
+export const setPref = (id: SettingsKey, pref: any) : void => {
 
 	log("StoragePreferences", `setPref ${id} ${pref}`);
-
-	if (id === "mtd_core_theme") {
-		return;
-	}
 
 	let oldPref = getPref(id);
 
@@ -133,7 +126,7 @@ export const setPref = (id: string, pref: any) : void => {
 		validSyncPrefs = getValidSyncPreferences();
 	}
 
-	if (validSyncPrefs.indexOf(id) >= 0 && pref !== oldPref && id !== "mtd_collapsed_columns") {
+	if (validSyncPrefs.indexOf(id) >= 0 && pref !== oldPref && id !== SettingsKey.COLLAPSED_COLUMNS) {
 		window?.ModernDeck?.SyncController?.forceUpdate?.();
 	}
 
@@ -148,15 +141,11 @@ export const setPref = (id: string, pref: any) : void => {
 	https://github.com/dangeredwolf/ModernDeck/wiki/Preference-Management-Functions
 */
 
-export const hasPref = (id: string) : boolean => {
+export const hasPref = (id: SettingsKey) : boolean => {
 	let hasIt : boolean;
 
 	if (typeof id === "undefined") {
 		throw "id not specified for hasPref";
-	}
-
-	if (id === "mtd_core_theme") {
-		return true;
 	}
 
 	if (exists(window.ModernDeck.store)) {
@@ -185,7 +174,7 @@ export const dumpPreferencesString = () : string => {
 
 		if (!window.ModernDeck.settingsData[key].enum) {
 			for (let i in window.ModernDeck.settingsData[key].options) {
-				let prefKey: string = window.ModernDeck.settingsData[key].options[i].settingsKey;
+				let prefKey: SettingsKey = window.ModernDeck.settingsData[key].options[i].settingsKey;
 				let pref: any = window.ModernDeck.settingsData[key].options[i];
 
 				if (exists(prefKey) && pref.type !== "button" && pref.type !== "link") {
@@ -212,7 +201,7 @@ export const dumpPreferences = () : any => {
 	for (let key in window.ModernDeck.settingsData) {
 		if (!window.ModernDeck.settingsData[key].enum) {
 			for (const i in window.ModernDeck.settingsData[key].options) {
-				const prefKey: string = window.ModernDeck.settingsData[key].options[i].settingsKey;
+				const prefKey: SettingsKey = window.ModernDeck.settingsData[key].options[i].settingsKey;
 				const pref: any = window.ModernDeck.settingsData[key].options[i];
 
 				if (typeof prefKey === "string" && pref.type !== "button" && pref.type !== "link" && typeof pref.queryFunction !== "function") {
@@ -240,7 +229,7 @@ export const getValidSyncPreferences = () : string[] => {
 	for (let key in window.ModernDeck.settingsData) {
 		if (!window.ModernDeck.settingsData[key].enum) {
 			for (const i in window.ModernDeck.settingsData[key].options) {
-				const prefKey: string = window.ModernDeck.settingsData[key].options[i].settingsKey;
+				const prefKey: SettingsKey = window.ModernDeck.settingsData[key].options[i].settingsKey;
 				const pref: any = window.ModernDeck.settingsData[key].options[i];
 
 				if (typeof prefKey === "string" && pref.type !== "button" && pref.type !== "link" && typeof pref.queryFunction !== "function") {
@@ -257,7 +246,7 @@ export const findSettingForKey = (queryKey: string) : any => {
 	for (let key in window.ModernDeck.settingsData) {
 		if (!window.ModernDeck.settingsData[key].enum) {
 			for (const i in window.ModernDeck.settingsData[key].options) {
-				const prefKey: string = window.ModernDeck.settingsData[key].options[i].settingsKey;
+				const prefKey: SettingsKey = window.ModernDeck.settingsData[key].options[i].settingsKey;
 				const pref: any = window.ModernDeck.settingsData[key].options[i];
 
 				if (prefKey === queryKey) {

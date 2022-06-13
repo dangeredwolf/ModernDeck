@@ -1,4 +1,4 @@
-import { SettingsKeys } from "../Settings/SettingsKeys";
+import { SettingsKey } from "../Settings/SettingsKey";
 import { ProxyMode } from "../Settings/Types/Proxy";
 import { updateAppTag } from "./appTag";
 import { makeErrorWindow } from "./errorWindow";
@@ -29,10 +29,10 @@ function saveWindowBounds() {
 	try {
 		let bounds = HostManager.mainWindow.getBounds();
 
-		store.set("mtd_fullscreen", HostManager.mainWindow.isFullScreen());
-		store.set("mtd_maximised", HostManager.mainWindow.isMaximized());
+		store.set(SettingsKey.FULL_SCREEN, HostManager.mainWindow.isFullScreen());
+		store.set(SettingsKey.MAXIMIZED, HostManager.mainWindow.isMaximized());
 		if (!HostManager.mainWindow.isMaximized() && !HostManager.mainWindow.isFullScreen())
-			store.set("mtd_windowBounds", HostManager.mainWindow.getBounds());
+			store.set(SettingsKey.WINDOW_BOUNDS, HostManager.mainWindow.getBounds());
 
 		const matchedDisplay = electron.screen.getDisplayMatching({
 			x: bounds.x,
@@ -41,7 +41,7 @@ function saveWindowBounds() {
 			height: bounds.height
 		});
 
-		store.set("mtd_usedDisplay", matchedDisplay.id);
+		store.set(SettingsKey.LAST_DISPLAY, matchedDisplay.id);
 	} catch(e) {
 		console.error(e);
 	}
@@ -69,29 +69,29 @@ export const makeWindow = (): void => {
 		return;
 	}
 
-	if (!store.has("mtd_nativetitlebar")) {
-		store.set("mtd_nativetitlebar",false);
+	if (!store.has(SettingsKey.NATIVE_TITLE_BAR)) {
+		store.set(SettingsKey.NATIVE_TITLE_BAR,false);
 	}
 
 	protocol.registerFileProtocol("moderndeck", mtdSchemeHandler);
 
 	HostManager.isRestarting = false;
 
-	let useFrame: boolean = (store.get("mtd_nativetitlebar") || store.get("mtd_safemode") || process.platform === "darwin") as boolean;
+	let useFrame: boolean = (store.get(SettingsKey.NATIVE_TITLE_BAR) || store.get(SettingsKey.SAFE_MODE) || process.platform === "darwin") as boolean;
 	let titleBarStyle: TitleBarStyle = TitleBarStyle.HIDDEN;
 
-	if (store.get("mtd_nativetitlebar")) {
+	if (store.get(SettingsKey.NATIVE_TITLE_BAR)) {
 		titleBarStyle = TitleBarStyle.DEFAULT;
 	}
 
-	if (store.has("mtd_updatechannel")) {
-		if (store.get("mtd_updatechannel") === "beta") {
+	if (store.has(SettingsKey.UPDATE_CHANNEL)) {
+		if (store.get(SettingsKey.UPDATE_CHANNEL) === "beta") {
 			autoUpdater.allowPrerelease = true;
 		}
-		autoUpdater.channel = store.get("mtd_updatechannel");
+		autoUpdater.channel = store.get(SettingsKey.UPDATE_CHANNEL);
 	}
 
-	let bounds = (store.get("mtd_windowBounds") || {}) as WindowBounds;
+	let bounds = (store.get(SettingsKey.WINDOW_BOUNDS) || {}) as WindowBounds;
 	let useXY = !!bounds.x && !!bounds.y
 
 	HostManager.mainWindow = new BrowserWindow({
@@ -295,7 +295,7 @@ export const makeWindow = (): void => {
 			InjectScript2.type = "text/javascript";
 			document.head.appendChild(InjectScript2);`
 			+
-			(store.get("mtd_safemode") ? `document.getElementsByTagName("html")[0].classList.add("mtd-disable-css");` :
+			(store.get(SettingsKey.SAFE_MODE) ? `document.getElementsByTagName("html")[0].classList.add("mtd-disable-css");` :
 			`const injStyles = document.createElement("link");
 			injStyles.rel = "stylesheet";
 			injStyles.href = "moderndeck://assets/css/moderndeck.css";
@@ -330,7 +330,7 @@ export const makeWindow = (): void => {
 			document.getElementById("resetProxy").innerHTML = "${I18n("Reset Proxy")}";
 		`);
 
-		if (store.get(SettingsKeys.PROXY_MODE) === ProxyMode.AUTODETECT) {
+		if (store.get(SettingsKey.PROXY_MODE) === ProxyMode.AUTODETECT) {
 			HostManager.errorWindow.webContents.executeJavaScript(`
 				document.getElementById("resetProxy").remove();
 			`);
@@ -495,7 +495,7 @@ export const makeWindow = (): void => {
 	});
 
 	ipcMain.on("resetProxy", () => {
-		store.set(SettingsKeys.PROXY_MODE, ProxyMode.AUTODETECT);
+		store.set(SettingsKey.PROXY_MODE, ProxyMode.AUTODETECT);
 		updateProxy();
 	});
 
@@ -666,7 +666,7 @@ export const makeWindow = (): void => {
 			HostManager.mainWindow.close();
 		}
 
-		store.set("mtd_nativetitlebar", arg);
+		store.set(SettingsKey.NATIVE_TITLE_BAR, arg);
 
 		setTimeout(exitFully, 100);
 
@@ -728,7 +728,7 @@ export const makeWindow = (): void => {
 		');
 	});
 
-	if (store.get("mtd_maximised")) {
+	if (store.get(SettingsKey.MAXIMIZED)) {
 		HostManager.mainWindow?.maximize?.();
 	}
 
@@ -745,13 +745,13 @@ export const makeWindow = (): void => {
 		');
 	});
 
-	if (store.get("mtd_fullscreen")) {
+	if (store.get(SettingsKey.FULL_SCREEN)) {
 		HostManager.mainWindow?.webContents?.executeJavaScript?.('document.querySelector("html").classList.remove("mtd-app");');
 		HostManager.mainWindow?.setFullScreen?.(true)
 	}
 
 	HostManager.mainWindow.on("leave-full-screen", () => {
-		store.set("mtd_fullscreen", false);
+		store.set(SettingsKey.FULL_SCREEN, false);
 		updateAppTag();
 	});
 

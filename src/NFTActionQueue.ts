@@ -10,16 +10,17 @@ import { getPref, setPref } from "./StoragePreferences";
 import { make } from "./Utils";
 
 import { TwitterUserInternal } from "./Types/TweetDeck";
+import { SettingsKey } from "./Settings/SettingsKey";
 
 interface Notification {
 	_id: number;
 }
 
 export default class NFTActionQueue {
-	queue: TwitterUserInternal[] = getPref("mtd_nftActionQueue", []) || [];
+	queue: TwitterUserInternal[] = getPref(SettingsKey.NFT_ACTION_QUEUE, []) || [];
 	recentMutes: TwitterUserInternal[] = [];
 	isThreadRunning: boolean = false;
-	enableNotifications: boolean = getPref("mtd_nftNotify", true);
+	enableNotifications: boolean = getPref(SettingsKey.NFT_ACTION_NOTIFY, true);
 	lastAction: number = null;
 	notif: JQuery = null;
 	notifId: number = null;
@@ -32,7 +33,7 @@ export default class NFTActionQueue {
 	notifButton: JQuery = null;
 	notifLoading: JQuery = null;
 	clearNotificationTimeout: NodeJS.Timeout = null;
-	actionToTake: string = getPref("mtd_nftAvatarAction");
+	actionToTake: string = getPref(SettingsKey.NFT_AUTO_ACTION);
 
 	constructor () {
 		if (this.queue.length > 0 && this.isThreadRunning === false) {
@@ -133,7 +134,7 @@ export default class NFTActionQueue {
 		console.log(`NFTActionQueue: Checking if user ${user.screen_name} is already dealt with`);
 
 		let dealtWith: boolean = false;
-		this.actionToTake = getPref("mtd_nftAvatarAction");
+		this.actionToTake = getPref(SettingsKey.NFT_AUTO_ACTION);
 
 		// Check if we've already dealt with this user
 		this.recentMutes.forEach(mutedUser => {
@@ -194,7 +195,7 @@ export default class NFTActionQueue {
 	
 				// Clear queue
 				this.queue = [];
-				setPref("mtd_nftActionQueue", []);
+				setPref(SettingsKey.NFT_ACTION_QUEUE, []);
 	
 				this._uiDismissNotification();
 			});
@@ -203,7 +204,7 @@ export default class NFTActionQueue {
 
 	undoUserAction(user: TwitterUserInternal): void {
 		if (typeof user !== "undefined") {
-			switch(getPref("mtd_nftAvatarAction")) {
+			switch(getPref(SettingsKey.NFT_AUTO_ACTION)) {
 				case "nothing":
 				case "hide":
 					return;
@@ -223,7 +224,7 @@ export default class NFTActionQueue {
 		this.lastAction = new Date().getTime();
 
 		if (typeof user !== "undefined") {
-			switch(getPref("mtd_nftAvatarAction")) {
+			switch(getPref(SettingsKey.NFT_AUTO_ACTION)) {
 				case "nothing":
 				case "hide":
 					return;
@@ -242,7 +243,7 @@ export default class NFTActionQueue {
 			this.queue = this.queue.filter(u => u.id_str !== user.id_str);
 		}
 
-		setPref("mtd_nftActionQueue", this.queue);
+		setPref(SettingsKey.NFT_ACTION_QUEUE, this.queue);
 
 		// Queue next action if available
 

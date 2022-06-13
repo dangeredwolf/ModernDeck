@@ -11,6 +11,7 @@ import { UILanguagePicker } from "../../UILanguagePicker";
 import { translationCredits } from "../../DataTranslationCredits";
 
 import { ModernDeckSettingsTab, ModernDeckSettingsType } from "../../Types/ModernDeckSettings";
+import { SettingsKey } from "../SettingsKey";
 
 let tab: ModernDeckSettingsTab = {
     tabName:"<i class='material-icon' aria-hidden='true'>language</i> {{Language}}",
@@ -49,7 +50,7 @@ let tab: ModernDeckSettingsTab = {
                 h12:{value:"h12",text:"1:30 {{pm}}"},
                 h24:{value:"h24",text:"13:30"}
             },
-            settingsKey:"mtd_timeFormat",
+            settingsKey:SettingsKey.TIME_FORMAT,
             default:"default"
         },
         numberFormat:{
@@ -67,7 +68,7 @@ let tab: ModernDeckSettingsTab = {
                 blank:{value:"blank",text:"1 234 567,89"},
                 indian:{value:"indian",text:"12,34,567.89"}
             },
-            settingsKey:"mtd_shortDateFormat",
+            settingsKey:SettingsKey.NUMBER_FORMAT,
             default:"default"
         },
         abbrevNumbers:{
@@ -83,7 +84,7 @@ let tab: ModernDeckSettingsTab = {
                     window.mtdAbbrevNumbers = false
                 }
             },
-            settingsKey:"mtd_abbrevNumbers",
+            settingsKey:SettingsKey.ABBREV_NUMBERS,
             default:true
         },
     }

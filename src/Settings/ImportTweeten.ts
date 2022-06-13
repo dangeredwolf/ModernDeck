@@ -6,6 +6,7 @@
 */
 
 import { getPref, setPref } from "../StoragePreferences";
+import { SettingsKey } from "./SettingsKey";
 
 enum TweetDeckTheme {
 	light = "light",
@@ -57,10 +58,10 @@ export interface TweetenSettingsJSON {
 */
 export function importTweetenSettings(obj: TweetenSettingsJSON) {
 
-	setPref("mtd_customcss",(!!obj.dev ? obj.dev.customCSS || "" : ""))
+	setPref(SettingsKey.CUSTOM_CSS,(!!obj.dev ? obj.dev.customCSS || "" : ""))
 
 	if (typeof obj.dev !== "undefined") {
-		setPref("mtd_inspectElement",obj.dev.mode);
+		setPref(SettingsKey.INSPECT_ELEMENT,obj.dev.mode);
 	}
 
 	if (typeof obj.TDSettings !== "undefined") {
@@ -86,25 +87,25 @@ export function importTweetenSettings(obj: TweetenSettingsJSON) {
 	}
 
 	if (typeof obj.customTitlebar !== "undefined") {
-		setPref("mtd_nativetitlebar",!obj.customTitlebar);
+		setPref(SettingsKey.NATIVE_TITLE_BAR,!obj.customTitlebar);
 	}
 
 	if (typeof obj.customization !== "undefined") {
-		setPref("mtd_columnwidth",obj.customization.columnWidth || getPref("mtd_columnwidth"));
+		setPref(SettingsKey.COLUMN_WIDTH,obj.customization.columnWidth || getPref(SettingsKey.COLUMN_WIDTH));
 
 		if (obj.customization.completeBlack === true) {
-			setPref("mtd_theme","amoled");
+			setPref(SettingsKey.THEME,"amoled");
 		}
 
-		setPref("mtd_noemojipicker",typeof obj.customization.emojis !== "undefined" ? obj.customization.emojis : false);
-		setPref("mtd_newcharindicator",typeof obj.customization.charCount !== "undefined" ? !obj.customization.charCount : true);
+		setPref(SettingsKey.ENABLE_EMOJI_PICKER, typeof obj.customization.emojis !== "undefined" ? obj.customization.emojis : false);
+		setPref(SettingsKey.NEW_CHARACTER_INDICATOR,typeof obj.customization.charCount !== "undefined" ? !obj.customization.charCount : true);
 		TD.settings.setTheme(obj.customization.theme || TD.settings.getTheme());
 
 		if (typeof obj.customization.thinSB !== "undefined") {
-			setPref("mtd_scrollbar_style", (obj.customization.thinSB ? "scrollbarsnarrow" : "scrollbarsdefault"));
+			setPref(SettingsKey.SCROLLBAR_STYLE, (obj.customization.thinSB ? "scrollbarsnarrow" : "scrollbarsdefault"));
 		}
 
-		setPref("mtd_round_avatars",typeof obj.customization.roundAvi !== "undefined" ? obj.customization.roundAvi : true);
+		setPref(SettingsKey.ROUND_AVATARS,typeof obj.customization.roundAvi !== "undefined" ? obj.customization.roundAvi : true);
 
 		if (typeof obj.customization.font !== "undefined") {
 			let percentage = 100;
@@ -127,7 +128,7 @@ export function importTweetenSettings(obj: TweetenSettingsJSON) {
 					break;
 			}
 
-			setPref("mtd_fontsize",percentage);
+			setPref(SettingsKey.FONT_SIZE,percentage);
 		}
 	}
 }

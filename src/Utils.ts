@@ -9,6 +9,7 @@ import { I18n, getFullLanguage } from "./I18n";
 import * as Sentry from "@sentry/browser";
 import { getPref } from "./StoragePreferences";
 import _windowTypes from "./Types/Window";
+import { SettingsKey } from "./Settings/SettingsKey";
 
 /*
 	Shorthand function to create a new element, which is helpful for concise UI building.
@@ -56,7 +57,7 @@ export function formatNumberI18n(number: number): string {
 	number = Math.round(number * 100) / 100;
 	if (!window.mtdNumberFormat || window.mtdNeedsResetNumberFormatting) {
 		let format: string;
-		switch(getPref("mtd_shortDateFormat")) {
+		switch(getPref(SettingsKey.NUMBER_FORMAT)) {
 			case "default":
 				format = getFullLanguage().replace(/\_/g,"-");
 				break;

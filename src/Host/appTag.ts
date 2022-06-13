@@ -1,3 +1,4 @@
+import { SettingsKey } from "../Settings/SettingsKey";
 import { HostManager } from "./hostManager";
 import { store } from "./store";
 import { isAppX, isFlatpak, isMAS } from "./utils";
@@ -34,7 +35,7 @@ export function updateAppTag() {
 		mtdAppTag += 'document.querySelector("html").classList.add("mtd-supportsNativeEmojiPicker");\n';
 	}
 
-	if (!store.get("mtd_nativetitlebar")) {
+	if (!store.get(SettingsKey.NATIVE_TITLE_BAR)) {
 
 		mtdAppTag += 'document.querySelector("html").classList.add("mtd-app");\n';
 
@@ -53,6 +54,6 @@ export function updateAppTag() {
 	}
 
 	HostManager.mainWindow?.webContents?.executeJavaScript(
-		(store.get("mtd_fullscreen") ? 'document.querySelector("html").classList.add("mtd-js-app");' : mtdAppTag)
+		(store.get(SettingsKey.FULL_SCREEN) ? 'document.querySelector("html").classList.add("mtd-js-app");' : mtdAppTag)
 	)
 }

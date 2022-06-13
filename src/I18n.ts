@@ -15,12 +15,13 @@ let debugI18n = false;
 import { getPref } from "./StoragePreferences";
 // Import the language data (common to tweetdeck-i18n and ModernDeck)
 import _languageData from "./DataI18n";
+import { SettingsKey } from "./Settings/SettingsKey";
 let languageData = _languageData as any;
 
 let langFull: string;
 let langRoot: string;
 
-langFull = getPref("mtd_lang");
+langFull = getPref(SettingsKey.LANGUAGE);
 if (!langFull) {
 	langFull = navigator.language.replace("-","_");
 

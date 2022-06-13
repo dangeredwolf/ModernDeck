@@ -9,6 +9,7 @@ import { make, exists } from "./Utils";
 import { ContextMenuAction, contextMenuFunctions } from "./ContextMenuFunctions";
 import { getPref } from "./StoragePreferences";
 import { I18n } from "./I18n";
+import { SettingsKey } from "./Settings/SettingsKey";
 
 export interface ContextMenuItem {
 	enabled?: boolean;
@@ -161,7 +162,7 @@ export const buildContextMenu = (menuEvent: _Electron.ContextMenuParams): JQuery
 		items.push(makeCMDivider());
 	}
 
-	if (getPref("mtd_inspectElement")) {
+	if (getPref(SettingsKey.INSPECT_ELEMENT)) {
 		items.push(makeCMItem({mousex:x, mousey:y, dataaction:ContextMenuAction.inspectElement, text:I18n("Inspect element"), enabled:true, data:{x:x,y:y}}));
 	}
 

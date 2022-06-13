@@ -14,6 +14,7 @@ import { debugWelcome, UIWelcome } from "../../UIWelcome";
 import { handleErrors } from "../../Utils";
 import { hookComposer } from "./Composer";
 import modalKeepOpen from "../../ModalKeepOpen";
+import { SettingsKey } from "../../Settings/SettingsKey";
 
 export function navigationSetup(): void {
 
@@ -24,7 +25,7 @@ export function navigationSetup(): void {
 
 	handleErrors(modalKeepOpen, "Caught error in modalKeepOpen");
 
-	if (getPref("mtd_last_lang") !== navigator.language) {
+	if (getPref(SettingsKey.LAST_LANGUAGE) !== navigator.language) {
 		new UILanguagePicker();
 	}
 
@@ -40,7 +41,7 @@ export function navigationSetup(): void {
 
 	UINavDrawer();
 
-	if (!getPref("mtd_welcomed10") || debugWelcome) {
+	if (!getPref(SettingsKey.WELCOMED_10) || debugWelcome) {
 		handleErrors(() => {new UIWelcome()}, "Error in Welcome Screen");
 	}
 

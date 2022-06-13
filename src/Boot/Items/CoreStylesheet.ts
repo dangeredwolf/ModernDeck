@@ -5,6 +5,7 @@
 	Released under the MIT License
 */
 
+import { SettingsKey } from "../../Settings/SettingsKey";
 import { getPref, setPref } from "../../StoragePreferences";
 
 export const initCoreStylesheet = () => {
@@ -15,10 +16,10 @@ export const initCoreStylesheet = () => {
 
 	let beGone = document.querySelector("link[rel='apple-touch-icon']+link[rel='stylesheet']");
 
-	if (getPref("mtd_safemode")) {
+	if (getPref(SettingsKey.SAFE_MODE)) {
 		window.useSafeMode = true;
 		window.html.addClass("mtd-disable-css");
-		setPref("mtd_safemode",false)
+		setPref(SettingsKey.SAFE_MODE,false)
 	}
 
 	if (typeof beGone !== "undefined" && !window.html.hasClass("mtd-disable-css")) {

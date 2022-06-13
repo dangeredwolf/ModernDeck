@@ -1,7 +1,8 @@
 import { store } from "./store";
 
 import { default as I18nData } from "./i18nMain";
-let lang = store.get("mtd_lang");
+import { SettingsKey } from "../Settings/SettingsKey";
+let lang = store.get(SettingsKey.LANGUAGE);
 
 export const I18n = function(key: string) {
 	// @ts-expect-error TODO: fix this

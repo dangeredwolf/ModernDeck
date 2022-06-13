@@ -53,6 +53,7 @@ export enum AMEFilters {
 
 import * as t from 'io-ts';
 import { getPref } from '../StoragePreferences';
+import { SettingsKey } from '../Settings/SettingsKey';
 
 interface AMEFilter {
   name: string;
@@ -110,7 +111,7 @@ export const muteTypeAllowlist = [...nonUserSpecificsTypes, ...userSpecificTypes
 type AllowedMuteTypes = typeof muteTypeAllowlist[number];
 
 function getInitialMuteCatches() {
-	const fromLocalStorage = getPref("mtd_mute_catches");
+	const fromLocalStorage = getPref(SettingsKey.MUTE_CATCHES);
 	return new Map<string, MuteCatch>(fromLocalStorage);
 }
 

@@ -77,13 +77,6 @@ declare global {
         settingsData: {[key: string]: ModernDeckSettingsTab};
         nftAvatarAction: NFTActionQueue;
         isInWelcome: boolean;
-        mtd_welcome_dark: HTMLElement;
-        mtd_welcome_light: HTMLElement;
-        mtd_welcome_darker: HTMLElement;
-        mtd_welcome_paper: HTMLElement;
-        mtd_welcome_amoled: HTMLElement;
-        mtd_welcome_simplified: HTMLElement;
-        mtd_welcome_classic: HTMLElement;
         nftActionQueue: NFTActionQueue;
         moderndeckBootErrorCount: number;
         injectedFonts: boolean;

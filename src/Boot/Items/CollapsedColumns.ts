@@ -6,6 +6,7 @@
 */
 
 import { getColumnNumber } from "../../Column";
+import { SettingsKey } from "../../Settings/SettingsKey";
 import { getPref, setPref } from "../../StoragePreferences";
 
 export const initCollapsedColumns = () => {
@@ -23,7 +24,7 @@ export const initCollapsedColumns = () => {
 
 				$(document).trigger("uiMTDColumnCollapsed");
 
-				let arr = getPref("mtd_collapsed_columns", []);
+				let arr = getPref(SettingsKey.COLLAPSED_COLUMNS, []);
 				if ($(ohGodThisIsHorrible).hasClass("mtd-collapsed")) {
 					arr.push(getColumnNumber($(ohGodThisIsHorrible)));
 				} else {
@@ -31,7 +32,7 @@ export const initCollapsedColumns = () => {
 					arr = arr.filter((num: number) => num !== colNum)
 				}
 
-				setPref("mtd_collapsed_columns",arr);
+				setPref(SettingsKey.COLLAPSED_COLUMNS,arr);
 
 			} else if ($(e.target.parentElement).is("[data-testid=\"optionsToggle\"],[data-action=\"options\"]") &&
 			$(e.target.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement).hasClass("mtd-collapsed")) {
@@ -41,10 +42,10 @@ export const initCollapsedColumns = () => {
 				}
 				$(ohGodThisIsEvenWorseWhatTheHeck).removeClass("mtd-collapsed");
 				$(document).trigger("uiMTDColumnCollapsed");
-				let arr = getPref("mtd_collapsed_columns", []);
+				let arr = getPref(SettingsKey.COLLAPSED_COLUMNS, []);
 	 			let colNum = getColumnNumber($(ohGodThisIsEvenWorseWhatTheHeck));
 	 			arr = arr.filter((num: number) => num !== colNum)
-				setPref("mtd_collapsed_columns",arr);
+				setPref(SettingsKey.COLLAPSED_COLUMNS,arr);
 			}
 		} catch (e) {
 

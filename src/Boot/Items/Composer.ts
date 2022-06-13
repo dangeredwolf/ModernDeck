@@ -12,9 +12,10 @@
 import { UIAlert } from "../../UIAlert";
 import { isApp } from "../../Utils";
 import { initGifPanel, checkGifEligibility } from "../../UIGifPicker";
+// import { SettingsKey } from "../../Settings/SettingsKey";
 
 const useNativeEmojiPicker = (): boolean => {
-	return /*getPref("mtd_nativeEmoji") && */ window.html.hasClass("mtd-supportsNativeEmojiPicker");
+	return /*getPref(SettingsKey.NATIVE_EMOJI) && */ window.html.hasClass("mtd-supportsNativeEmojiPicker");
 }
 
 export const hookComposer = (): void => {

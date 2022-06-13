@@ -19,6 +19,7 @@ import { getPref } from "./StoragePreferences";
 import { make, handleErrors } from "./Utils";
 import { disableStylesheetExtension } from "./StylesheetExtensions";
 import { diag } from "./UIDiag";
+import { SettingsKey } from "./Settings/SettingsKey";
 
 export const keyboardShortcutHandler = (event: KeyboardEvent): void => {
 
@@ -42,7 +43,7 @@ export const keyboardShortcutHandler = (event: KeyboardEvent): void => {
 				if ($("#highcont").length > 0) {
 					$("#highcont").click();
 				} else {
-					if (getPref("mtd_highcontrast") === true) {
+					if (getPref(SettingsKey.HIGH_CONTRAST) === true) {
 						settingsData.accessibility.options.highContrast.deactivate.func();
 					} else {
 						settingsData.accessibility.options.highContrast.activate.func();
@@ -66,7 +67,7 @@ export const keyboardShortcutHandler = (event: KeyboardEvent): void => {
 	// Q opens nav drawer
 
 	if (event.key === "KeyQ" && document.querySelector("input:focus,textarea:focus") === null) {
-		if (getPref("mtd_headposition") !== "classic") {
+		if (getPref(SettingsKey.NAVIGATION_STYLE) !== "classic") {
 			if ($("#mtd_nav_drawer").hasClass("hidden")) {
 				$("#mtd-navigation-drawer-button").click();
 			} else {

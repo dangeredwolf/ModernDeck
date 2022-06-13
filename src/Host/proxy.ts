@@ -1,10 +1,10 @@
-import { SettingsKeys } from "../Settings/SettingsKeys";
+import { SettingsKey } from "../Settings/SettingsKey";
 import { ProxyMode } from "../Settings/Types/Proxy";
 import { HostManager } from "./hostManager";
 import { store } from "./store"
 
 export const updateProxy = () => {
-    const proxyMode = store.get(SettingsKeys.PROXY_MODE, ProxyMode.AUTODETECT);
+    const proxyMode = store.get(SettingsKey.PROXY_MODE, ProxyMode.AUTODETECT);
 
     console.log(`Switching proxy to ${proxyMode}...`);
 
@@ -22,11 +22,11 @@ export const updateProxy = () => {
         case ProxyMode.PAC:
             HostManager.mainWindow?.webContents?.session?.setProxy?.({
                 mode: "pac_script",
-                pacScript: store.get(SettingsKeys.PROXY_PAC_SCRIPT)
+                pacScript: store.get(SettingsKey.PROXY_PAC_SCRIPT)
             });
             break;
         case ProxyMode.MANUAL:
-            const servers = `${store.get(SettingsKeys.PROXY_SERVERS, "").split("\n").join(",").split(" ").join(",").split(";").join(",")},direct://`.replace(/ /g, "");
+            const servers = `${store.get(SettingsKey.PROXY_SERVERS, "").split("\n").join(",").split(" ").join(",").split(";").join(",")},direct://`.replace(/ /g, "");
             console.log(`Interpreted proxy servers as ${servers}`);
             HostManager.mainWindow?.webContents?.session?.setProxy?.({
                 mode: "fixed_servers",

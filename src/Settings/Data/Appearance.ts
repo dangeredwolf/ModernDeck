@@ -13,6 +13,7 @@ import { ModernDeckSettingsTab, ModernDeckSettingsType } from "../../Types/Moder
 
 import { TweetDeckObject } from "../../Types/TweetDeck";
 import { SettingsTab } from "../SettingsData";
+import { SettingsKey } from "../SettingsKey";
 declare let TD: TweetDeckObject;
 
 let tab: ModernDeckSettingsTab = {
@@ -31,14 +32,14 @@ let tab: ModernDeckSettingsTab = {
 						window.html.addClass("mtd-head-left");
 						window.html.addClass("mtd-classic-nav");
 					}
-					setPref("mtd_headposition",opt)
+					setPref(SettingsKey.NAVIGATION_STYLE,opt)
 				}
 			},
 			options:{
 				simplified:{value:"simplified",text:"{{Simplified}}"},
 				classic:{value:"classic",text:"{{Classic (TweetDeck)}}"},
 			},
-			settingsKey:"mtd_headposition",
+			settingsKey:SettingsKey.NAVIGATION_STYLE,
 			default:"left"
 		},
 		fixedArrows:{
@@ -50,7 +51,7 @@ let tab: ModernDeckSettingsTab = {
 			deactivate:{
 				disableStylesheet:"fixedarrows"
 			},
-			settingsKey:"mtd_usefixedarrows",
+			settingsKey:SettingsKey.FIXED_ARROWS,
 			default:true
 		},
 		enableNewTweetsButton:{
@@ -62,7 +63,7 @@ let tab: ModernDeckSettingsTab = {
 			deactivate:{
 				enableStylesheet:"nonewtweetsbutton"
 			},
-			settingsKey:"mtd_nonewtweetsbutton",
+			settingsKey:SettingsKey.ENABLE_NEW_TWEETS_BUTTON,
 			default:true
 		},
 		enableEmojiPicker:{
@@ -74,7 +75,7 @@ let tab: ModernDeckSettingsTab = {
 			deactivate:{
 				htmlAddClass:"mtd-no-emoji-picker"
 			},
-			settingsKey:"mtd_noemojipicker",
+			settingsKey:SettingsKey.ENABLE_EMOJI_PICKER,
 			enabled:false,
 			default:true
 		},
@@ -83,7 +84,7 @@ let tab: ModernDeckSettingsTab = {
 			type:ModernDeckSettingsType.CHECKBOX,
 			activate:{},
 			deactivate:{},
-			settingsKey:"mtd_modalKeepOpen",
+			settingsKey:SettingsKey.KEEP_MODALS_OPEN,
 			default:true
 		},
 		sensitiveMedia:{
@@ -116,7 +117,7 @@ let tab: ModernDeckSettingsTab = {
 			deactivate:{
 				disableStylesheet:"hideMessages"
 			},
-			settingsKey:"mtd_hideMessages",
+			settingsKey:SettingsKey.BLUR_MESSAGES,
 			default:false
 		},
 		threadIndicator:{
@@ -128,7 +129,7 @@ let tab: ModernDeckSettingsTab = {
 			deactivate:{
 				disableStylesheet:"threadIndicator"
 			},
-			settingsKey:"mtd_threadIndicator",
+			settingsKey:SettingsKey.THREAD_INDICATOR,
 			default:false
 		},
 		altSensitiveMedia:{
@@ -143,7 +144,7 @@ let tab: ModernDeckSettingsTab = {
 				htmlRemoveClass:"mtd-altsensitive"
 			},
 			enabled:() => !TD.settings.getDisplaySensitiveMedia(),
-			settingsKey:"mtd_sensitive_alt",
+			settingsKey:SettingsKey.ALT_SENSITIVE,
 			default:true
 		},
 		scrollbarStyle:{
@@ -161,7 +162,7 @@ let tab: ModernDeckSettingsTab = {
 				scrollbarsnarrow:{value:"scrollbarsnarrow",text:"{{Narrow}}"},
 				scrollbarsnone:{value:"scrollbarsnone",text:"{{Hidden}}"}
 			},
-			settingsKey:"mtd_scrollbar_style",
+			settingsKey:SettingsKey.SCROLLBAR_STYLE,
 			default:"scrollbarsnarrow"
 		},
 		columnWidth:{
@@ -169,13 +170,12 @@ let tab: ModernDeckSettingsTab = {
 			type:ModernDeckSettingsType.SLIDER,
 			activate:{
 				func: (opt: number): void => {
-					setPref("mtd_columnwidth",opt);
 					enableCustomStylesheetExtension("columnwidth",`:root{--columnSize:${opt}px!important}`);
 				}
 			},
 			minimum:275,
 			maximum:500,
-			settingsKey:"mtd_columnwidth",
+			settingsKey:SettingsKey.COLUMN_WIDTH,
 			displayUnit:"px",
 			default:325
 		},
@@ -184,13 +184,12 @@ let tab: ModernDeckSettingsTab = {
 			type:ModernDeckSettingsType.SLIDER,
 			activate:{
 				func: (opt: number): void => {
-					setPref("mtd_fontsize",opt);
 					enableCustomStylesheetExtension("fontsize",`html{font-size:${(opt/100)*16}px!important}`);
 				}
 			},
 			minimum:75,
 			maximum:130,
-			settingsKey:"mtd_fontsize",
+			settingsKey:SettingsKey.FONT_SIZE,
 			displayUnit:"{{%}}",
 			default:100
 		},
@@ -199,18 +198,17 @@ let tab: ModernDeckSettingsTab = {
 			type:ModernDeckSettingsType.SLIDER,
 			activate:{
 				func: (opt: number): void => {
-					//setPref("mtd_avatarsize",opt);
 					enableCustomStylesheetExtension("avatarsize",`:root{--avatarSize:${opt}px!important}`);
 				}
 			},
 			minimum:24,
 			maximum:64,
-			settingsKey:"mtd_avatarsize",
+			settingsKey:SettingsKey.AVATAR_SIZE,
 			displayUnit:"px",
-			enabled: () => getPref("mtd_disable_avatars", false) === false,
+			enabled: () => getPref(SettingsKey.DISABLE_AVATARS, false) === false,
 			default:48
 		},
-		roundProfilePics:{
+		roundAvatars:{
 			title:"{{Use round profile pictures}}",
 			type:ModernDeckSettingsType.CHECKBOX,
 			activate:{
@@ -219,11 +217,11 @@ let tab: ModernDeckSettingsTab = {
 			deactivate:{
 				enableStylesheet:"squareavatars"
 			},
-			settingsKey:"mtd_round_avatars",
-			enabled: () => getPref("mtd_disable_avatars", false) === false,
+			settingsKey:SettingsKey.ROUND_AVATARS,
+			enabled: () => getPref(SettingsKey.DISABLE_AVATARS, false) === false,
 			default:true
 		},
-		disableProfilePics:{
+		disableAvatars:{
 			title:"{{Hide profile pictures}}",
 			type:ModernDeckSettingsType.CHECKBOX,
 			activate:{
@@ -238,7 +236,7 @@ let tab: ModernDeckSettingsTab = {
 					setTimeout(() => window.renderTab(SettingsTab.APPEARANCE));
 				}
 			},
-			settingsKey:"mtd_disable_avatars",
+			settingsKey:SettingsKey.DISABLE_AVATARS,
 			default:false
 		},
 		newCharIndicator:{
@@ -250,10 +248,10 @@ let tab: ModernDeckSettingsTab = {
 			deactivate:{
 				disableStylesheet:"newcharacterindicator"
 			},
-			settingsKey:"mtd_newcharindicator",
+			settingsKey:SettingsKey.NEW_CHARACTER_INDICATOR,
 			default:true
 		},
-		disableContextMenuIcons:{
+		contextMenuIcons:{
 			title:"{{Display contextual icons in menus}}",
 			type:ModernDeckSettingsType.CHECKBOX,
 			activate:{
@@ -262,7 +260,7 @@ let tab: ModernDeckSettingsTab = {
 			deactivate:{
 				enableStylesheet:"nocontextmenuicons"
 			},
-			settingsKey:"mtd_nocontextmenuicons",
+			settingsKey:SettingsKey.CONTEXT_MENU_ICONS,
 			default:true
 		}
 	}

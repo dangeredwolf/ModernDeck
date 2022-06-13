@@ -5,6 +5,7 @@
 	Released under the MIT License
 */
 
+import { SettingsKey } from "./Settings/SettingsKey";
 import { setPref } from "./StoragePreferences";
 import { getIpc } from "./Utils";
 
@@ -13,6 +14,6 @@ import { getIpc } from "./Utils";
 */
 
 export const enterSafeMode = (): void => {
-	setPref("mtd_safemode", true);
+	setPref(SettingsKey.SAFE_MODE, true);
 	getIpc().send("restartApp");
 }

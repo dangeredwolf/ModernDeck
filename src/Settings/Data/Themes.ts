@@ -11,6 +11,7 @@ import { ctrlShiftText } from "../../Utils";
 
 import { ModernDeckSettingsTab, ModernDeckSettingsType } from "../../Types/ModernDeckSettings";
 import { SettingsTab } from "../SettingsData";
+import { SettingsKey } from "../SettingsKey";
 
 let tab: ModernDeckSettingsTab = {
 	tabName:"<i class='material-icon' aria-hidden='true'>format_paint</i> {{Themes}}",
@@ -32,7 +33,7 @@ let tab: ModernDeckSettingsTab = {
 
 					setTimeout(() => window.renderTab(SettingsTab.THEMES));
 
-					if (getPref("mtd_highcontrast") === true) {
+					if (getPref(SettingsKey.HIGH_CONTRAST) === true) {
 						disableStylesheetExtension("light");
 						disableStylesheetExtension("darker");
 						disableStylesheetExtension("discorddark");
@@ -153,7 +154,7 @@ let tab: ModernDeckSettingsTab = {
 				},
 				// custom:{value:"custom",text:"{{Custom...}}"}
 			},
-			settingsKey:"mtd_theme",
+			settingsKey:SettingsKey.THEME,
 			default:"darker"
 		},
 		themeColor:{
@@ -188,8 +189,8 @@ let tab: ModernDeckSettingsTab = {
 				violet:{value:"violet",text:"{{Violet}}"},
 				pink:{value:"pink",text:"{{Pink}}"}
 			},
-			enabled:() => (getPref("mtd_theme") !== "custom"),
-			settingsKey:"mtd_color_theme",
+			enabled:() => (getPref(SettingsKey.THEME) !== "custom"),
+			settingsKey:SettingsKey.THEME_COLOR,
 			default:"default"
 		}, selectedFont:{
 			title:"{{Preferred Font}}",
@@ -210,7 +211,7 @@ let tab: ModernDeckSettingsTab = {
 					window.html.removeClass("mtd-linux-system-font");
 
 					if (opt === "RobotoMono") {
-						setPref("mtd_selectedfont", "Roboto")
+						setPref(SettingsKey.SELECTED_FONT, "Roboto")
 						opt = "Roboto";
 					}
 
@@ -228,7 +229,7 @@ let tab: ModernDeckSettingsTab = {
 					}
 				}
 			},
-			settingsKey:"mtd_selectedfont",
+			settingsKey:SettingsKey.SELECTED_FONT,
 			default:"Roboto"
 		}, customCss:{
 			title:"{{Custom CSS (}}" + ctrlShiftText + "{{C disables it in case something went wrong)}}",
@@ -246,7 +247,7 @@ let tab: ModernDeckSettingsTab = {
 					enableCustomStylesheetExtension("customcss",opt);
 				}
 			},
-			settingsKey:"mtd_customcss",
+			settingsKey:SettingsKey.CUSTOM_CSS,
 			enabled:(): boolean => window.desktopConfig === undefined ? true : !window.desktopConfig.disableCustomCSS,
 			default:""
 		}

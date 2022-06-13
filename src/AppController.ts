@@ -18,6 +18,7 @@ import { I18n } from "./I18n";
 import { settingsData } from "./Settings/SettingsData";
 import { getPref } from "./StoragePreferences";
 import * as ElectronStore from "electron-store";
+import { SettingsKey } from "./Settings/SettingsKey";
 
 /*
 	Notifies users of an app update
@@ -65,7 +66,7 @@ export const mtdAppFunctions = (): void => {
 
 
 	ipcRenderer.on("inverted-color-scheme-changed", (_event: Event, enabled: boolean): void => {
-		if (enabled && getPref("mtd_highcontrast") !== true) {
+		if (enabled && getPref(SettingsKey.HIGH_CONTRAST) !== true) {
 			try {
 				settingsData.accessibility.options.highcont.activate.func();
 			} catch(e){}
@@ -85,23 +86,23 @@ export const mtdAppFunctions = (): void => {
 	});
 
 	ipcRenderer.on("aboutMenu", (): void => {
-		if ($(".mtd-settings-tab[data-action=\"about\"]").length > 0 && $("#settings-modal").attr("style") === "display: block;"){
-			$(".mtd-settings-tab[data-action=\"about\"]").click();
+		if ($(`.mtd-settings-tab[data-action="about"]`).length > 0 && $("#settings-modal").attr("style") === "display: block;"){
+			$(`.mtd-settings-tab[data-action="about"]`).click();
 		} else {
 			openSettings();
-			if ($(".mtd-settings-tab[data-action=\"about\"]").length > 0){
-				$(".mtd-settings-tab[data-action=\"about\"]").click();
+			if ($(`.mtd-settings-tab[data-action="about"]`).length > 0){
+				$(`.mtd-settings-tab[data-action="about"]`).click();
 			}
 		}
 	});
 
 	ipcRenderer.on("checkForUpdatesMenu", (): void => {
-		if ($(".mtd-settings-tab[data-action=\"about\"]").length > 0 && $("#settings-modal").attr("style") === "display: block;"){
-			$(".mtd-settings-tab[data-action=\"about\"]").click();
+		if ($(`.mtd-settings-tab[data-action="about"]`).length > 0 && $("#settings-modal").attr("style") === "display: block;"){
+			$(`.mtd-settings-tab[data-action="about"]`).click();
 		} else {
 			openSettings();
-			if ($(".mtd-settings-tab[data-action=\"about\"]").length > 0){
-				$(".mtd-settings-tab[data-action=\"about\"]").click();
+			if ($(`.mtd-settings-tab[data-action="about"]`).length > 0){
+				$(`.mtd-settings-tab[data-action="about"]`).click();
 			}
 		}
 
@@ -111,7 +112,7 @@ export const mtdAppFunctions = (): void => {
 	});
 
 	ipcRenderer.on("update-downloaded", (): void => {
-		if ($("#settings-modal[style='display: block;']>.mtd-settings-panel").length <= 0 && !window.html.hasClass("mtd-winstore") && !window.html.hasClass("mtd-flatpak") && !window.html.hasClass("mtd-macappstore")) {
+		if ($(`#settings-modal[style="display: block;"]>.mtd-settings-panel`).length <= 0 && !window.html.hasClass("mtd-winstore") && !window.html.hasClass("mtd-flatpak") && !window.html.hasClass("mtd-macappstore")) {
 			notifyUpdate()
 		}
 	});

@@ -28,8 +28,7 @@ let tab: ModernDeckSettingsTab = {
                         window.location.reload();
                     }
                 }
-            },
-            settingsKey:"mtd_resetSettings"
+            }
         },
         mtdClearData:{
             title:"{{Clear data}}",
@@ -44,7 +43,6 @@ let tab: ModernDeckSettingsTab = {
                     }
                 }
             },
-            settingsKey:"mtd_resetSettings",
             enabled:(): boolean => isApp
         },
         mtdSaveBackup:{
@@ -57,7 +55,6 @@ let tab: ModernDeckSettingsTab = {
                     ipcRenderer.send("saveSettings", JSON.stringify(window.ModernDeck.store.store));
                 }
             },
-            settingsKey:"mtd_backupSettings",
             enabled:(): boolean => isApp
         },
         mtdLoadBackup:{
@@ -70,7 +67,6 @@ let tab: ModernDeckSettingsTab = {
                     ipcRenderer.send("loadSettingsDialog");
                 }
             },
-            settingsKey:"mtd_loadSettings",
             enabled:(): boolean => isApp
         },
         mtdTweetenImport:{
@@ -83,7 +79,6 @@ let tab: ModernDeckSettingsTab = {
                     ipcRenderer.send("tweetenImportDialog");
                 }
             },
-            settingsKey:"mtd_tweetenImportSettings",
             enabled:(): boolean => isApp
         }
     }

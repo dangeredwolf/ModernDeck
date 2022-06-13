@@ -12,11 +12,11 @@ import { enterSafeMode } from "../../SafeMode";
 
 import { ModernDeckSettingsTab, ModernDeckSettingsType } from "../../Types/ModernDeckSettings";
 import { ProxyMode } from "../Types/Proxy";
-import { SettingsKeys } from "../SettingsKeys";
+import { SettingsKey } from "../SettingsKey";
 import { SettingsTab } from "../SettingsData";
 
 let tab: ModernDeckSettingsTab = {
-    tabName: "<i class='icon icon-moderndeck'></i> {{App}}",
+    tabName: "<i class='icon icon-moderndeck' aria-hidden='true'></i> {{App}}",
     enabled:() : boolean => isApp,
     options: {
         nativeTitlebar: {
@@ -29,7 +29,7 @@ let tab: ModernDeckSettingsTab = {
                         return;
                     }
 
-                    setPref("mtd_nativetitlebar",true);
+                    setPref(SettingsKey.NATIVE_TITLE_BAR,true);
 
                     const { ipcRenderer } = window.require("electron");
                     if (!!ipcRenderer)
@@ -42,14 +42,14 @@ let tab: ModernDeckSettingsTab = {
                         return;
                     }
 
-                    setPref("mtd_nativetitlebar",false);
+                    setPref(SettingsKey.NATIVE_TITLE_BAR,false);
 
                     const { ipcRenderer } = window.require("electron");
                     if (!!ipcRenderer)
                         ipcRenderer.send("setNativeTitlebar", false);
                 }
             },
-            settingsKey: "mtd_nativetitlebar",
+            settingsKey: SettingsKey.NATIVE_TITLE_BAR,
             default: false
         },
         nativeEmoji: {
@@ -60,7 +60,7 @@ let tab: ModernDeckSettingsTab = {
                     if (!load) {
                         $(document).trigger("uiDrawerHideDrawer");
                     }
-                    setPref("mtd_nativeEmoji",true);
+                    setPref(SettingsKey.NATIVE_EMOJI,true);
                 }
             },
             deactivate: {
@@ -68,11 +68,11 @@ let tab: ModernDeckSettingsTab = {
                     if (!load) {
                         $(document).trigger("uiDrawerHideDrawer");
                     }
-                    setPref("mtd_nativeEmoji",false);
+                    setPref(SettingsKey.NATIVE_EMOJI,false);
                 }
             },
             enabled: false,
-            settingsKey: "mtd_nativeEmoji",
+            settingsKey: SettingsKey.NATIVE_EMOJI,
             default: false
         },
         nativeContextMenus: {
@@ -88,7 +88,7 @@ let tab: ModernDeckSettingsTab = {
                     window.useNativeContextMenus = false;
                 }
             },
-            settingsKey: "mtd_nativecontextmenus",
+            settingsKey: SettingsKey.NATIVE_CONTEXT_MENUS,
             default:() => (isApp ? process.platform === "darwin" : false)
         }, updateChannel: {
             title: "{{App update channel}}",
@@ -98,8 +98,6 @@ let tab: ModernDeckSettingsTab = {
                     if (!isApp) {
                         return;
                     }
-                    setPref("mtd_updatechannel", opt);
-
                     setTimeout(() => {
                         const { ipcRenderer } = window.window.require("electron");
                         if (!!ipcRenderer) {
@@ -117,7 +115,7 @@ let tab: ModernDeckSettingsTab = {
                 beta: { value: "beta", text: "{{Beta}}" }
             },
             enabled: !document.getElementsByTagName("html")[0].classList.contains("mtd-flatpak") &&!document.getElementsByTagName("html")[0].classList.contains("mtd-winstore") && !document.getElementsByTagName("html")[0].classList.contains("mtd-macappstore"),
-            settingsKey: "mtd_updatechannel",
+            settingsKey: SettingsKey.UPDATE_CHANNEL,
             default: "latest"
         },
         proxyMode: {
@@ -126,7 +124,7 @@ let tab: ModernDeckSettingsTab = {
             type: ModernDeckSettingsType.DROPDOWN,
             activate: {
                 func: (opt: ProxyMode): void => {
-                    setPref(SettingsKeys.PROXY_MODE, opt);
+                    setPref(SettingsKey.PROXY_MODE, opt);
 
                     const { ipcRenderer } = window.require("electron");
                     ipcRenderer?.send?.("changeProxy");
@@ -139,22 +137,22 @@ let tab: ModernDeckSettingsTab = {
                 manual: { value: ProxyMode.MANUAL, text: "{{Configure proxy servers}}" },
                 pac: { value: ProxyMode.PAC, text: "{{Use PAC script}}" },
             },
-            settingsKey: SettingsKeys.PROXY_MODE,
+            settingsKey: SettingsKey.PROXY_MODE,
         },
         proxyPACSetting: {
             title: "{{PAC script URL}}",
             type: ModernDeckSettingsType.TEXTBOX,
             activate: {
                 func: (opt: string) : void => {
-                    setPref(SettingsKeys.PROXY_PAC_SCRIPT, opt);
+                    setPref(SettingsKey.PROXY_PAC_SCRIPT, opt);
 
                     const { ipcRenderer } = window.require("electron");
                     ipcRenderer?.send?.("changeProxy");
                 }
             },
             default: "",
-            settingsKey: SettingsKeys.PROXY_PAC_SCRIPT,
-            enabled: () => getPref(SettingsKeys.PROXY_MODE) === ProxyMode.PAC
+            settingsKey: SettingsKey.PROXY_PAC_SCRIPT,
+            enabled: () => getPref(SettingsKey.PROXY_MODE) === ProxyMode.PAC
         },
         proxyManualServers: {
             title: "{{Proxy servers}}",
@@ -162,7 +160,7 @@ let tab: ModernDeckSettingsTab = {
 			addClass:"mtd-big-text-box",
             activate: {
                 func: (opt: string) : void => {
-                    setPref(SettingsKeys.PROXY_SERVERS, opt);
+                    setPref(SettingsKey.PROXY_SERVERS, opt);
 
                     const { ipcRenderer } = window.require("electron");
                     ipcRenderer?.send?.("changeProxy");
@@ -170,13 +168,13 @@ let tab: ModernDeckSettingsTab = {
             },
             default: "",
             placeholder: "socks5://example.com:3000;http://example.com:8080",
-            settingsKey: SettingsKeys.PROXY_SERVERS,
-            enabled: () => getPref(SettingsKeys.PROXY_MODE) === ProxyMode.MANUAL
+            settingsKey: SettingsKey.PROXY_SERVERS,
+            enabled: () => getPref(SettingsKey.PROXY_MODE) === ProxyMode.MANUAL
         },
 		proxyManualServerSubtext: {
 			label: "{{You can specify one or more proxy servers and they will be used in the order they are in. }}{{If all specified proxy servers are down, requests will be sent without a proxy.}}<br><br>{{HTTP, HTTPS, SOCKS4, and SOCKS5 proxies are supported.}}",
 			type:ModernDeckSettingsType.SUBTEXT,
-            enabled: () => getPref(SettingsKeys.PROXY_MODE) === ProxyMode.MANUAL
+            enabled: () => getPref(SettingsKey.PROXY_MODE) === ProxyMode.MANUAL
 		},
         trayEnabled: {
             headerBefore: "{{Tray}}",
@@ -200,7 +198,7 @@ let tab: ModernDeckSettingsTab = {
                     ipcRenderer.send("disableTray");
                 }
             },
-            settingsKey: "mtd_systemtray",
+            settingsKey: SettingsKey.TRAY_ENABLED,
             default: (typeof process !== "undefined" && process.platform !== "darwin")
         },
         backgroundNotifications: {
@@ -224,7 +222,7 @@ let tab: ModernDeckSettingsTab = {
                     ipcRenderer.send("disableBackground");
                 }
             },
-            settingsKey: "mtd_background",
+            settingsKey: SettingsKey.BACKGROUND_NOTIFICATIONS,
             default: false
         },
         inspectElement: {
@@ -232,17 +230,7 @@ let tab: ModernDeckSettingsTab = {
             title: "{{Show Inspect Element in context menus}}",
             type: ModernDeckSettingsType.CHECKBOX,
             isDevTool: true,
-            activate: {
-                func: () => {
-                    setPref("mtd_inspectElement",true);
-                }
-            },
-            deactivate: {
-                func: () => {
-                    setPref("mtd_inspectElement",false);
-                }
-            },
-            settingsKey: "mtd_inspectElement",
+            settingsKey: SettingsKey.INSPECT_ELEMENT,
             default: false
         },
         mtdSafeMode: {

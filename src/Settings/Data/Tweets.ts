@@ -12,6 +12,7 @@ declare let TD: TweetDeckObject;
 
 import { allColumnsVisible, updateColumnVisibility } from "../../Column";
 import { SettingsTab } from "../SettingsData";
+import { SettingsKey } from "../SettingsKey";
 
 let tab: ModernDeckSettingsTab = {
 	tabName:"<i class='Icon icon-twitter-bird'></i> {{Tweets}}",
@@ -43,17 +44,17 @@ let tab: ModernDeckSettingsTab = {
 					allColumnsVisible();
 					updateColumnVisibility();
 
-					// setPref("mtd_column_visibility",opt);
+					// setPref(SettingsKey.COLUMN_VISIBILITY,opt);
 				}
 			},
 			deactivate:{
 				func: (): void => {
 					allColumnsVisible();
-					// setPref("mtd_column_visibility",opt);
+					// setPref(SettingsKey.COLUMN_VISIBILITY,opt);
 				}
 			},
-			settingsKey:"mtd_column_visibility",
-			default:navigator.userAgent.match("Firefox") === null // Firefox is so much faster that column visibility is unlikely to benefit
+			settingsKey:SettingsKey.COLUMN_VISIBILITY,
+			default:true // TODO: Vary this based on number of columns
 		},
 		autoplayGifs:{
 			title:"{{Automatically play GIFs}}",
@@ -91,7 +92,7 @@ let tab: ModernDeckSettingsTab = {
 				return TD.settings.getShowStartupNotifications();
 			}
 		},
-		useModernDeckAlertSound:{
+		moderndeckAlertSound:{
 			title:"{{Use custom ModernDeck alert sound}}",
 			type:ModernDeckSettingsType.CHECKBOX,
 			activate:{
@@ -104,14 +105,14 @@ let tab: ModernDeckSettingsTab = {
 					$(document.querySelector("audio")).attr("src", $(document.querySelector("audio>source")).attr("src"));
 				}
 			},
-			settingsKey:"mtd_sounds",
+			settingsKey:SettingsKey.MODERNDECK_ALERT_SOUND,
 			default:true
 		},
-		nftAvatarAction:{
+		nftBehavior:{
 			headerBefore:"{{NFT Behavior}}",
 			title:"{{Automatic action to take against users with NFT avatars}}",
 			type:ModernDeckSettingsType.DROPDOWN,
-			settingsKey:"mtd_nftAvatarAction",
+			settingsKey:SettingsKey.NFT_AUTO_ACTION,
 			activate:{
 				func: (opt: string): void => {
 					window.nftAvatarAction ? window.nftAvatarAction.actionToTake = opt : false;
@@ -159,7 +160,7 @@ let tab: ModernDeckSettingsTab = {
 			},
 			deactivate:{
 			},
-			settingsKey:"mtd_nftDontBlockFollowing",
+			settingsKey:SettingsKey.NFT_DONT_BLOCK_FOLLOWING,
 			enabled:false,
 			default:true
 		},
@@ -178,7 +179,7 @@ let tab: ModernDeckSettingsTab = {
 					window.nftAvatarAction ? window.nftAvatarAction.enableNotifications = false : false;
 				}
 			},
-			settingsKey:"mtd_nftNotify",
+			settingsKey:SettingsKey.NFT_ACTION_NOTIFY,
 			default:true
 		},
 		linkShortener:{

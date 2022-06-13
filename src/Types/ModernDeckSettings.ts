@@ -5,6 +5,8 @@
 	Released under the MIT License
 */
 
+import { SettingsKey } from "../Settings/SettingsKey";
+
 export interface ModernDeckSettingsTab {
     visible?: boolean | (() => boolean);
 	tabName: string;
@@ -64,7 +66,7 @@ export interface ModernDeckSettingsOption {
 	isDevTool?: boolean;
 	options?: {[key: string]: ModernDeckSettingsSuboption};
 	buttons?: ModernDeckSettingsButton[];
-	settingsKey?: string;
+	settingsKey?: SettingsKey;
 	initFunc?: Function;
 	enabled?: boolean | Function; 
 	placeholder?: string;

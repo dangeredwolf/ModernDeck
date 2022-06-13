@@ -6,6 +6,7 @@
 */
 
 import { parseActions } from "./Settings/SettingsInit";
+import { SettingsKey } from "./Settings/SettingsKey";
 import { dumpPreferences, findSettingForKey, getPref, setPref } from "./StoragePreferences";
 
 export class SyncController {
@@ -54,10 +55,10 @@ export class SyncController {
 
     static updateRemoteSettings(): void {
         // const time = new Date().getTime();
-        // setPref("mtd_sync_last_updated", time);
+        // setPref(SettingsKey.SYNC_LAST_UPDATED, time);
 
         let prefs = this.dumpPrefs();
-        prefs["mtd_sync_last_updated"] = getPref("mtd_sync_last_updated");//time;
+        prefs[SettingsKey.SYNC_LAST_UPDATED] = getPref(SettingsKey.SYNC_LAST_UPDATED);//time;
         
         this.setRemoteSettings(prefs);
     }
@@ -66,12 +67,12 @@ export class SyncController {
         const remoteSettings = SyncController.getRemoteSettings();
         console.log("Checking for differences between local and remote settings...");
         
-        setPref("mtd_sync_last_updated", remoteSettings["mtd_sync_last_updated"]); // Just in case...
+        setPref(SettingsKey.SYNC_LAST_UPDATED, remoteSettings[SettingsKey.SYNC_LAST_UPDATED]); // Just in case...
 
         for (let key in remoteSettings) {
-            if (getPref(key) !== remoteSettings[key]) {
-                console.log(`Local setting ${key} differs from remote. ${getPref(key)} local ${remoteSettings[key]} remote`);
-                setPref(key, remoteSettings[key]);
+            if (getPref(key as SettingsKey) !== remoteSettings[key]) {
+                console.log(`Local setting ${key} differs from remote. ${getPref(key as SettingsKey)} local ${remoteSettings[key]} remote`);
+                setPref(key as SettingsKey, remoteSettings[key]);
 
                 let setting = findSettingForKey(key);
 
@@ -88,23 +89,23 @@ export class SyncController {
     
     static forceUpdate(): void {
         console.log("FORCE UPDATE!!!");
-        setPref("mtd_sync_last_updated", new Date().getTime());
+        setPref(SettingsKey.SYNC_LAST_UPDATED, new Date().getTime());
         this.updateSync();
     }
 
     static updateSync(): void {
         console.log("updateSync");
-        if (getPref("mtd_sync_enabled")) {
-            let localLastUpdated = getPref("mtd_sync_last_updated") || 0;
+        if (getPref(SettingsKey.SYNC_ENABLED)) {
+            let localLastUpdated = getPref(SettingsKey.SYNC_LAST_UPDATED) || 0;
             const remoteSettings = SyncController.getRemoteSettings();
 
-            if (remoteSettings === null || remoteSettings["mtd_sync_last_updated"] < localLastUpdated) {
-                console.log(`Local is more up to date (${(remoteSettings || {})["mtd_sync_last_updated"]} remote ${localLastUpdated} local), let's update remote!`);
+            if (remoteSettings === null || remoteSettings[SettingsKey.SYNC_LAST_UPDATED] < localLastUpdated) {
+                console.log(`Local is more up to date (${(remoteSettings || {})[SettingsKey.SYNC_LAST_UPDATED]} remote ${localLastUpdated} local), let's update remote!`);
                 SyncController.updateRemoteSettings();
-            } else if (typeof localLastUpdated === "undefined" || remoteSettings["mtd_sync_last_updated"] > localLastUpdated) {
-                console.log(`Remote is more up to date (${remoteSettings["mtd_sync_last_updated"]} remote ${localLastUpdated} local), let's update local!`);
+            } else if (typeof localLastUpdated === "undefined" || remoteSettings[SettingsKey.SYNC_LAST_UPDATED] > localLastUpdated) {
+                console.log(`Remote is more up to date (${remoteSettings[SettingsKey.SYNC_LAST_UPDATED]} remote ${localLastUpdated} local), let's update local!`);
                 SyncController.updateLocalSettings();
-            } else if (remoteSettings["mtd_sync_last_updated"] === localLastUpdated) {
+            } else if (remoteSettings[SettingsKey.SYNC_LAST_UPDATED] === localLastUpdated) {
                 console.log("Sync is up-to-date");
             }
         } 

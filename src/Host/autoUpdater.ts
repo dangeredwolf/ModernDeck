@@ -1,6 +1,7 @@
 // import { log } from 'electron-log';
 const { ipcMain } = require('electron');
 const autoUpdater = require('electron-updater').autoUpdater;
+import { SettingsKey } from '../Settings/SettingsKey';
 import { desktopConfig} from './main';
 import { getWebContents } from './mainWindow';
 import { store } from './store';
@@ -103,8 +104,8 @@ export const initAutoUpdater = (): typeof autoUpdater => {
 
     // Main -> Beta and vice versa
     ipcMain.on("changeChannel", (_event: Event) => {
-        autoUpdater.allowPrerelease = store.get("mtd_updatechannel") === "beta";
-        autoUpdater.channel = store.get("mtd_updatechannel");
+        autoUpdater.allowPrerelease = store.get(SettingsKey.UPDATE_CHANNEL) === "beta";
+        autoUpdater.channel = store.get(SettingsKey.UPDATE_CHANNEL);
     });
 
 

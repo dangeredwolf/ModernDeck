@@ -6,10 +6,11 @@
 */
 
 import { getPref, setPref } from "../StoragePreferences";
+import { SettingsKey } from "./SettingsKey";
 
 export class SettingsMigration {
 	static migrate() : void {
-		let theme : string = getPref("mtd_theme");
+		let theme : string = getPref(SettingsKey.THEME_COLOR);
 
 		switch (theme) {
 			case "grey":
@@ -22,19 +23,19 @@ export class SettingsMigration {
 			case "blue":
 			case "violet":
 			case "pink":
-				setPref("mtd_color_theme", theme);
-				setPref("mtd_theme", TD.settings.getTheme());
+				setPref(SettingsKey.THEME_COLOR, theme);
+				setPref(SettingsKey.THEME, TD.settings.getTheme());
 				break;
 
 			case "black":
 		}
 
-		let headPosition: string = getPref("mtd_headposition");
+		let headPosition: string = getPref(SettingsKey.NAVIGATION_STYLE);
 
 		switch(headPosition) {
 			case "top":
 			case "left":
-				setPref("mtd_headposition", "simplified");
+				setPref(SettingsKey.NAVIGATION_STYLE, "simplified");
 				break;
 		}
 	}

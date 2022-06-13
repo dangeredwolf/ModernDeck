@@ -14,6 +14,7 @@ import { getPref, setPref } from "./StoragePreferences";
 import { TwitterUserInternal } from "./Types/TweetDeck";
 import { SettingsDropdown } from "./Settings/UI/Components/Dropdown";
 import themeSettings from "./Settings/Data/Themes";
+import { SettingsKey } from "./Settings/SettingsKey";
 
 export const debugWelcome = false;
 
@@ -96,11 +97,11 @@ export class UIWelcome extends UIModal {
 		this.rightPane = make("div").addClass("mtd-welcome-pane mtd-welcome-pane-right").appendTo(this.container);
 
 		$("#settings-modal").mouseup(() => {
-			setPref("mtd_welcomed10", true);
+			setPref(SettingsKey.WELCOMED_10, true);
 			$("#settings-modal").off("mouseup");
 		})
 
-		if (getPref("mtd_welcomed") !== true) {
+		if (getPref(SettingsKey.WELCOMED) !== true) {
 
 			this.leftPane.append(
 				make("h2").text(I18n("New to ModernDeck?")),
@@ -119,7 +120,7 @@ export class UIWelcome extends UIModal {
 				);
 			}
 			
-		} else if (getPref("mtd_welcomed") === true) {
+		} else if (getPref(SettingsKey.WELCOMED) === true) {
 			this.leftPane.append(
 				make("h2").text(I18n("You've been upgraded to ModernDeck 10")),
 				make("p").text(I18n("Things should look familiar around here, but with new features and a lot of under-the-hood changes. I hope you like it!"))

@@ -9,6 +9,7 @@ import { getPref } from "../../StoragePreferences";
 import { getColumnFromColumnNumber } from "../../Column";
 
 import { ModernDeckSettingsTab, ModernDeckSettingsType } from "../../Types/ModernDeckSettings";
+import { SettingsKey } from "../SettingsKey";
 
 let tab: ModernDeckSettingsTab = {
     enabled: false,
@@ -30,7 +31,7 @@ let tab: ModernDeckSettingsTab = {
                     },300);
                 }
             },
-            settingsKey:"mtd_collapsed_columns",
+            settingsKey:SettingsKey.COLLAPSED_COLUMNS,
             default:[]
         },
         lastVersion: {
@@ -38,12 +39,12 @@ let tab: ModernDeckSettingsTab = {
             title: "lastVersion",
             activate: {
                 func: () => {
-                    if (window.ModernDeck.versionString !== getPref("mtd_last_version")) {
+                    if (window.ModernDeck.versionString !== getPref(SettingsKey.LAST_VERSION)) {
                         // todo: something
                     }
                 }
             },
-            settingsKey:"mtd_last_version",
+            settingsKey:SettingsKey.LAST_VERSION,
             default:() => window.ModernDeck.versionString
         },
         replaceFavicon: {
@@ -51,10 +52,10 @@ let tab: ModernDeckSettingsTab = {
             title: "replaceFavicon",
             activate: {
                 func: () => {
-                    $("link[rel=\"shortcut icon\"]").attr("href", window.mtdBaseURL + "assets/img/favicon.ico");
+                    $(`link[rel="shortcut icon"]`).attr("href", `${window.mtdBaseURL}assets/img/favicon.ico`);
                 }
             },
-            settingsKey:"mtd_replace_favicon",
+            settingsKey:SettingsKey.REPLACE_FAVICON,
             savePreference:false,
             default:true
         }

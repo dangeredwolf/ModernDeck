@@ -9,6 +9,7 @@
 	https://github.com/chylex/TweetDuck/blob/master/LICENSE.md
 */
 
+import { SettingsKey } from "./Settings/SettingsKey";
 import { getPref } from "./StoragePreferences";
 
 export default function() {
@@ -21,7 +22,7 @@ export default function() {
 	}
 	
 	const overrideState = function(): void {
-		if (!getPref("mtd_modalKeepOpen")) {
+		if (!getPref(SettingsKey.KEEP_MODALS_OPEN)) {
 			return
 		}
 		
@@ -34,7 +35,7 @@ export default function() {
 	const restoreState = function(context: { state: { [x: string]: boolean; }; }, key: string): void {
 		window.setTimeout = prevSetTimeout;
 		
-		if (getPref("mtd_modalKeepOpen") && key in context.state) {
+		if (getPref(SettingsKey.KEEP_MODALS_OPEN) && key in context.state) {
 			context.state[key] = false;
 		}
 	};

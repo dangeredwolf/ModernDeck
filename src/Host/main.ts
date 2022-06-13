@@ -25,9 +25,6 @@ import { makeTray } from "./tray";
 import { makeWindow } from "./mainWindow";
 import { setMenuBar } from "./menubar";
 
-
-// const disableCss = false; // use storage.mtd_safemode
-
 export let desktopConfig: DesktopConfig = tryConfig();
 export let autoUpdater = initAutoUpdater();
 
