@@ -24,15 +24,15 @@ interface OTAConfig {
 	]
 }
 
-export const setupOTAConfig = () => {
+export const setupOTAConfig = (): void => {
 	setupOTAConfigAsync();
 }
 
 const setupOTAConfigAsync = async () => {
-	const otaconfig = await fetch("https://raw.githubusercontent.com/dangeredwolf/ModernDeck/master/build/otaconfig.json");
+	const otaconfig: Response = await fetch("https://raw.githubusercontent.com/dangeredwolf/ModernDeck/master/build/otaconfig.json");
 	const config: OTAConfig = await otaconfig.json();
 
-	let otaCSS = "";
+	let otaCSS: string = "";
 
 	console.log(config);
 
@@ -78,8 +78,8 @@ const setupOTAConfigAsync = async () => {
 				console.error(`Safety check: OTA CSS patch ${patch.comment || patch.selector} contains invalid characters`);
 				continue;
 			}
-			if (patch.minBuild ? patch.minBuild <= window.ModernDeck.buildNumber : true) {
-				if (patch.maxBuild ? patch.maxBuild >= window.ModernDeck.buildNumber : true) {
+			if (typeof patch.minBuild !== "undefined" ? patch.minBuild <= window.ModernDeck.buildNumber : true) {
+				if (typeof patch.maxBuild !== "undefined" ? patch.maxBuild >= window.ModernDeck.buildNumber : true) {
 					otaCSS += `
 						${patch.selector} {
 							${patch.patch}
