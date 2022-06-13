@@ -174,7 +174,7 @@ let tab: ModernDeckSettingsTab = {
             enabled: () => getPref(SettingsKeys.PROXY_MODE) === ProxyMode.MANUAL
         },
 		proxyManualServerSubtext: {
-			label: "{{You can specify one or more proxy servers and they will be used in the order they are in. }}{{If all specified proxies are down, a direct connection will be used instead.}}<br><br>{{HTTP, HTTPS, SOCKS4, and SOCKS5 proxies are supported.}}",
+			label: "{{You can specify one or more proxy servers and they will be used in the order they are in. }}{{If all specified proxy servers are down, requests will be sent without a proxy.}}<br><br>{{HTTP, HTTPS, SOCKS4, and SOCKS5 proxies are supported.}}",
 			type:ModernDeckSettingsType.SUBTEXT,
             enabled: () => getPref(SettingsKeys.PROXY_MODE) === ProxyMode.MANUAL
 		},
