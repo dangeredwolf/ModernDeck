@@ -146,7 +146,7 @@ let tab: ModernDeckSettingsTab = {
 					name:"{{Dark Themes}}",
 					children:{
 						darker:{value:"darker",text:"{{Dark}}"},
-						discorddark:{value:"discorddark",text:"{{Discord Dark}}"},
+						// discorddark:{value:"discorddark",text:"{{Discord Dark}}"},
 						twitterdark:{value:"twitterdark",text:"{{Twitter Dark}}"},
 						dark:{value:"dark",text:"{{Material Dark}}"},
 						amoled:{value:"amoled",text:"{{AMOLED}}"},
