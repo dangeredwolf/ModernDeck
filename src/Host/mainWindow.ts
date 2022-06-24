@@ -206,6 +206,12 @@ export const makeWindow = (): void => {
 
 	try {
 		HostManager.mainWindow?.webContents?.executeJavaScript(`
+			if (document.querySelector("html").classList.contains("scroll-v") === false) {
+				// TweetDeck Preview is loading, so we need to revert it to legacy
+				document.cookie = "tweetdeck_version=legacy; path=/;"
+				location.reload();
+			}
+
 			document.getElementsByClassName("js-signin-ui block")[0].innerHTML =
 			\`<img class="mtd-loading-logo" src="moderndeck://assets/img/moderndeck.svg" style="display: none;">
 			<div class="preloader-wrapper active">

@@ -11,6 +11,12 @@ var browser = browser || chrome;
 
 if (document.querySelector(`[rel="manifest"]`) === null) {
 
+	if (document.querySelector("html").classList.contains("scroll-v") === false) {
+		// TweetDeck Preview is loading, so we need to revert it to legacy
+		document.cookie = "tweetdeck_version=legacy; path=/;"
+		location.reload();
+	}
+
 	document.querySelector("link[rel=\"stylesheet\"]").remove();
 
 	const injStyles = document.createElement("link");

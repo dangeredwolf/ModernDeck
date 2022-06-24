@@ -7,9 +7,6 @@
 
 var browser = browser || chrome;
 
-console.log("TEST");
-
-
 browser.webRequest.onHeadersReceived.addListener(
 	details => {
 		if (details.type !== "main_frame" && details.type !== "sub_frame") {
