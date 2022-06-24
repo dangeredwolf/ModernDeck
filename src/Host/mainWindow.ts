@@ -208,7 +208,10 @@ export const makeWindow = (): void => {
 		HostManager.mainWindow?.webContents?.executeJavaScript(`
 			if (document.querySelector("html").classList.contains("scroll-v") === false) {
 				// TweetDeck Preview is loading, so we need to revert it to legacy
-				document.cookie = "tweetdeck_version=legacy; path=/;"
+				document.cookie = "tweetdeck_version=; domain=.twitter.com; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT";
+				document.cookie = "tweetdeck_version=; domain=tweetdeck.twitter.com; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT"
+				document.cookie = "tweetdeck_version=legacy; domain=.twitter.com; path=/; expires=Thu, 01 Jan 2099 00:00:00 GMT";
+				document.cookie = "tweetdeck_version=legacy; domain=tweetdeck.twitter.com; path=/; expires=Thu, 01 Jan 2099 00:00:00 GMT";
 				location.reload();
 			}
 

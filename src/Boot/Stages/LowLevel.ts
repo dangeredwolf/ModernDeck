@@ -10,6 +10,7 @@ import { initAjaxPrefilter } from "../Items/AjaxPrefilter";
 import { initCoreStylesheet } from "../Items/CoreStylesheet";
 import { initFeatureFlags } from "../Items/FeatureFlags";
 import { fixColumnAnimations } from "../Items/FixColumnAnimations";
+import { gryphonDisabler } from "../Items/GryphonDisable";
 import { initFunctionPatcher } from "../Items/InitFunctionPatcher";
 import { initInjectFonts } from "../Items/InjectFonts";
 import { initLateBootScreen } from "../Items/LateBootScreen";
@@ -27,6 +28,7 @@ export const lowlevelStage = async () => {
     await defineBootComponent(replacePrettyNumber);
     await defineBootComponent(runtimeStylesheetExtensions);
     await defineBootComponent(initProcessMustaches);
+    await defineBootComponent(gryphonDisabler)
     await defineBootComponent(initAjaxPrefilter);
     await defineBootComponent(initI18nEngine);
     await defineBootComponent(initFunctionPatcher);

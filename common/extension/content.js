@@ -9,13 +9,17 @@
 
 var browser = browser || chrome;
 
+function setCookies() {
+	// TweetDeck Preview is loading, so we need to revert it to legacy
+	document.cookie = "tweetdeck_version=; domain=.twitter.com; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT";
+	document.cookie = "tweetdeck_version=; domain=tweetdeck.twitter.com; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT"
+	document.cookie = "tweetdeck_version=legacy; domain=.twitter.com; path=/; expires=Thu, 01 Jan 2099 00:00:00 GMT";
+	document.cookie = "tweetdeck_version=legacy; domain=tweetdeck.twitter.com; path=/; expires=Thu, 01 Jan 2099 00:00:00 GMT";
+}
+
 if (document.querySelector(`[rel="manifest"]`) === null) {
 
-	if (document.querySelector("html").classList.contains("scroll-v") === false) {
-		// TweetDeck Preview is loading, so we need to revert it to legacy
-		document.cookie = "tweetdeck_version=legacy; path=/;"
-		location.reload();
-	}
+	setCookies();
 
 	document.querySelector("link[rel=\"stylesheet\"]").remove();
 
@@ -87,4 +91,7 @@ if (document.querySelector(`[rel="manifest"]`) === null) {
 	if (document.getElementsByTagName("title").length > 0) {
 		document.getElementsByTagName("title")[0].innerHTML = "ModernDeck"
 	}
+} else {
+	setCookies();
+	location.reload();
 }
