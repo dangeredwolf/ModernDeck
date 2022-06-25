@@ -1,8 +1,9 @@
 ModernDeck is made possible by other open source projects!
 
-=== Electron (ModernDeck App only) ===
+Electron (ModernDeck App only)
+===
 
-Copyright (c) 2013-2021 GitHub Inc.
+Copyright (c) 2013-2022 GitHub Inc.
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -23,7 +24,8 @@ LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
 OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-=== Material Design Spinner ===
+Material Design Spinner
+===
 
 Non-License Note: ModernDeck does not use Polymer for anything other than the material design spinner
 
@@ -56,7 +58,8 @@ THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-=== Roboto Font and Material Design Icons ===
+Roboto Font and Material Design Icons
+===
 
 https://github.com/google/roboto/
 https://github.com/google/material-design-icons/
@@ -263,7 +266,8 @@ https://github.com/google/material-design-icons/
    See the License for the specific language governing permissions and
    limitations under the License.
 
-=== Noto Sans Fonts ===
+Noto Sans Fonts
+===
 
 https://github.com/googlefonts/noto-fonts
 
@@ -362,7 +366,8 @@ DAMAGES, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
 FROM, OUT OF THE USE OR INABILITY TO USE THE FONT SOFTWARE OR FROM
 OTHER DEALINGS IN THE FONT SOFTWARE.
 
-=== moduleRaid ===
+moduleRaid
+===
 
 https://github.com/pixeldesu/moduleRaid
 
@@ -388,7 +393,8 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
-=== TweetDuck ===
+TweetDuck
+===
 
 https://github.com/chylex/TweetDuck/
 
@@ -402,7 +408,8 @@ The above copyright notice and this permission notice shall be included in all c
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-=== Better TweetDeck ===
+Better TweetDeck
+===
 
 https://github.com/eramdam/BetterTweetDeck
 
@@ -427,7 +434,8 @@ COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
 IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-=== Advanced Mute Engine ===
+Advanced Mute Engine
+===
 
 Advanced Mute Engine for TweetDeck
 Copyright (c) 2017 pixeldesu
