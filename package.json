@@ -72,7 +72,7 @@
 		"adm-zip": "^0.5.9",
 		"babel-loader": "^8.2.5",
 		"electron": "^19.0.8",
-		"electron-builder": "^23.1.0",
+		"electron-builder": "^23.3.3",
 		"fs-extra": "^10.1.0",
 		"got": "^11.8.5",
 		"io-ts": "^2.2.16",
