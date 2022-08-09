@@ -2,6 +2,7 @@ import { SettingsKey } from "../Settings/SettingsKey";
 import { ProxyMode } from "../Settings/Types/Proxy";
 import { updateAppTag } from "./appTag";
 import { makeErrorWindow } from "./errorWindow";
+import { startExternalLoginServer } from "./externalLoginListener";
 import { HostManager } from "./hostManager";
 import { I18n } from "./i18n";
 import { makeLoginWindow } from "./loginWindow";
@@ -715,6 +716,15 @@ export const makeWindow = (): void => {
 	ipcMain.on("disableBackground", (_event: Electron.IpcMainEvent) => {
 		HostManager.enableBackground = false;
 	});
+
+	ipcMain.on("start-external-server", (_event: Electron.IpcMainEvent) => {
+		// startExternalLoginServer();
+	})
+
+	ipcMain.on("beam-external-login-to-browser", (_event: Electron.IpcMainEvent) => {
+		const { shell } = require("electron");
+		shell.openExternal("https://tweetdeck.twitter.com/?moderndeck_external_login=1");
+	})
 
 	// Upon closing, set HostManager.mainWindow to null
 	HostManager.mainWindow.on("closed", () => {

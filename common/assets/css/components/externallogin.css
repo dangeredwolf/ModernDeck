@@ -1,0 +1,6 @@
+.mtd-external-login .preloader-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+}

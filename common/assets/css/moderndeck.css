@@ -29,6 +29,7 @@
 @import "components/classicnav.css";
 @import "components/themeeditor.css";
 @import "components/accessibilityHelper.css";
+@import "components/externallogin.css";
 /* stylelint-enable */
 
 :root {

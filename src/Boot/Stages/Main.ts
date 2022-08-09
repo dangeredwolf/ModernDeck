@@ -8,6 +8,7 @@
 import { bootLog, defineBootComponent } from "../BootHelper";
 import { initAME } from "../Items/AME";
 import { initCollapsedColumns } from "../Items/CollapsedColumns";
+import { checkForExternalLoginPending } from "../Items/ExternalLoginHandler";
 import { overrideFadeOut } from "../Items/FadeOut";
 import { keyboardShortcutHandlerInit } from "../Items/KeyboardShortcutHandler";
 import { initLateAppFunctions } from "../Items/LateAppFunctions";
@@ -25,6 +26,7 @@ export const mainStage = async () => {
     await defineBootComponent(initAME);
     await defineBootComponent(initPreferences);
 	await defineBootComponent(initLateAppFunctions, typeof window.require !== "undefined");
+    await defineBootComponent(checkForExternalLoginPending);
     await defineBootComponent(navigationSetup);
     await defineBootComponent(keyboardShortcutHandlerInit);
     await defineBootComponent(initSettingsHook);

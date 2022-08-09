@@ -70,10 +70,18 @@ export const checkIfSigninFormIsPresent = (): void => {
 
 		loginIntervalTick++;
 		enableStylesheetExtension("loginpage");
+		
+		if (typeof window.require !== "undefined") {
+			const ipcRenderer = window.require("electron").ipcRenderer;
+			console.log("sending start-external-server");
+			ipcRenderer.send("start-external-server");
+		}
 
 		if (loginIntervalTick > 5) {
 			clearInterval(window.loginInterval);
 		}
+
+		handleBrowserLoginClick();
 	} else {
 		if (typeof signinSheetPings === "undefined") {
 			signinSheetPings = 0;
@@ -91,6 +99,18 @@ export const checkIfSigninFormIsPresent = (): void => {
 	}
 
 }
+
+const handleBrowserLoginClick = (): void => {
+	$("#mtdBrowserSignIn").off("click").click(() => {
+		console.log("hi");
+		alert("hi");
+
+		const ipcRenderer = window.require("electron").ipcRenderer;
+		ipcRenderer.send("beam-external-login-to-browser");
+	});
+	console.log("i set the click handler");
+}
+
 // replaces login page with moderndeck one
 
 export const loginTextReplacer = (): void => {
@@ -100,6 +120,7 @@ export const loginTextReplacer = (): void => {
 		$(".app-signin-wrap:not(.mtd-signin-wrap)").remove();
 		$(".login-container .startflow").html(loginPage);
 		startUpdateGoodLoginText();
+		handleBrowserLoginClick();
 
 		$(".mtd-login-info-button").click(() => openSettings(undefined, true))
 	}

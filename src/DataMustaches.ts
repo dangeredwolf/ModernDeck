@@ -27,6 +27,9 @@ export const loginPage: string = `<div class="app-signin-wrap mtd-signin-wrap">
 					${I18n("Sign in with Twitter")}
 				</a>
 				<div class="divider-bar"></div>
+				<!--button id="mtdBrowserSignIn">
+					${I18n("Sign in using your browser with ModernDeck extension")}
+				</button-->
 			</section>
 		</div>
 	</div>
