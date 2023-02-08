@@ -75,4 +75,7 @@ export enum SettingsKey {
     MUTE_CATCHES = "mtd_mute_catches",
     SYNC_ENABLED = "mtd_sync_enabled",
     SYNC_LAST_UPDATED = "mtd_sync_last_updated",
+
+    // ModernDeck EOL Warning
+    EOL_WARNING = "mtd_eol_warning",
 }

@@ -2,7 +2,6 @@ import { SettingsKey } from "../Settings/SettingsKey";
 import { ProxyMode } from "../Settings/Types/Proxy";
 import { updateAppTag } from "./appTag";
 import { makeErrorWindow } from "./errorWindow";
-import { startExternalLoginServer } from "./externalLoginListener";
 import { HostManager } from "./hostManager";
 import { I18n } from "./i18n";
 import { makeLoginWindow } from "./loginWindow";

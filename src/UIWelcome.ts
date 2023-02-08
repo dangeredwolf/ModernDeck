@@ -35,7 +35,7 @@ export class UIWelcome extends UIModal {
 					<img class="tweet-avatar avatar pin-top-full-width" src="${profile.profileImageURL}" alt="${profile.screenName}">
 				</div>
 				<div class="mtd-welcome-profile-text">
-					<b class="fullname link-complex-target">${profile.emojifiedName}</b>
+					<b class="fullname link-complex-targwet">${profile.emojifiedName}</b>
 					<span class="username txt-mute">@${profile.screenName}</span>
 				</div>
 			</a>

@@ -9,7 +9,6 @@ import { I18n } from "../../../I18n";
 import { diag } from "../../../UIDiag";
 import { isApp, make } from "../../../Utils";
 import { SettingsEnumPage } from "../../SettingsEnumPage";
-import { versionString } from "../../../Functions/VersionController";
 import { AutoUpdateController } from "../../../AutoUpdateController";
 
 export class AboutEnumPage extends SettingsEnumPage {
@@ -46,13 +45,13 @@ export class AboutEnumPage extends SettingsEnumPage {
 			}
 		});
 
-		this.h1 = make("h1").addClass("mtd-about-title").html(`${window.ModernDeck.productName}<span>${I18n(versionString)}</span>`);
+		this.h1 = make("h1").addClass("mtd-about-title").html(`${window.ModernDeck.productName}`);
 		this.h2 = make("h2").addClass("mtd-version-title").html("Version " + window.ModernDeck.versionFriendlyString + I18n(" (Build ") + window.ModernDeck.buildNumber + ")");
 		this.logoContainer = make("div").addClass("mtd-logo-container");
 
 		if (!isApp) {
 			this.logoContainer.append(
-				make("p").addClass("mtd-check-out-app").html(I18n(`Get background notifications and more features with the free <a href='https://moderndeck.org'>ModernDeck App</a>!`))
+				// make("p").addClass("mtd-check-out-app").html(I18n(`Get background notifications and more features with the free <a href='https://moderndeck.org'>ModernDeck App</a>!`))
 			)
 		} else if (window.desktopConfig && window.desktopConfig.autoUpdatePolicy === "never") {
 			this.logoContainer.append(
