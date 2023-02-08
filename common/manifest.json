@@ -10,10 +10,20 @@
 	"default_locale":"en",
 
 	"permissions": [
-		"webRequest",
-		"webRequestBlocking",
+		"declarativeNetRequest"
+	],
+
+	"host_permissions": [
 		"https://tweetdeck.twitter.com/*"
 	],
+
+	"declarative_net_request" : {
+		"rule_resources" : [{
+			"id": "moderndeck_dnr",
+			"enabled": true,
+			"path": "extension/dnr_rules.json"
+		}]
+	},
 
 	"content_scripts": [
 		{
@@ -34,29 +44,26 @@
 	 },
 
 	"web_accessible_resources": [
-		"assets",
-		"assets/*",
-		"assets/js/moderndeck.js.map",
-		"assets/css/*",
-		"assets/css/*",
-		"assets/fonts/*",
-		"assets/js/*",
-		"assets/libraries/*",
-		"assets/img/*"
+		{
+			"resources": [
+				"assets",
+				"assets/*",
+				"assets/css/*",
+				"assets/js/*",
+				"assets/fonts/*",
+				"assets/libraries/*",
+				"assets/img/*"
+			],
+			"matches": ["https://tweetdeck.twitter.com/*"],
+			"use_dynamic_url": true
+		}
 	],
 
-	"background": {
-		"scripts": [
-			"extension/background.js"
-		],
-		"persistent": true
-	},
-
-	"browser_action": {
+	"action": {
 		"default_icon": "ModernDeck64.png",
 		"default_popup": "extension/popover.html",
 		"default_title": "__MSG_launch__"
 	},
 
-	"manifest_version": 2
+	"manifest_version": 3
 }
