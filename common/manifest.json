@@ -54,8 +54,7 @@
 				"assets/libraries/*",
 				"assets/img/*"
 			],
-			"matches": ["https://tweetdeck.twitter.com/*"],
-			"use_dynamic_url": true
+			"matches": ["https://tweetdeck.twitter.com/*"]
 		}
 	],
 
