@@ -64,5 +64,12 @@
 		"default_title": "__MSG_launch__"
 	},
 
+	"browser_specific_settings": {
+		"gecko": {
+		  "id": "d161e212-26d7-4a57-8fb8-3eb69c5b1a0b",
+		  "strict_min_version": "109.0"
+		}
+	},
+
 	"manifest_version": 3
 }
