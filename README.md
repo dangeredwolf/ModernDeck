@@ -1,3 +1,7 @@
+As of 8 February 2023, ModernDeck will not receive any new features and will cease to function whenever classic TweetDeck shuts down.
+===
+I worked on ModernDeck for over 8 years, so I hope you found it useful.
+
 # ![ModernDeck Logo](https://github.com/dangeredwolf/ModernDeck/raw/master/docs/img/ReadmeLogo.png)
 
 [![Webpack](https://github.com/dangeredwolf/ModernDeck/actions/workflows/webpack.yml/badge.svg)](https://github.com/dangeredwolf/ModernDeck/actions/workflows/webpack.yml)
