@@ -76,7 +76,7 @@
 		"electron-builder": "^23.3.3",
 		"fs-extra": "^10.1.0",
 		"got": "^12.5.3",
-		"io-ts": "^2.2.16",
+		"io-ts": "^2.2.20",
 		"moduleraid": "^6.0.0",
 		"terser-webpack-plugin": "^5.3.6",
 		"ts-loader": "^9.3.1",
