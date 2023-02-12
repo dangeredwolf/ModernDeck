@@ -52,7 +52,7 @@
 		"@electron/remote": "^2.0.8",
 		"@sentry/browser": "^7.37.1",
 		"@sentry/tracing": "^7.37.1",
-		"asar": "^3.1.0",
+		"asar": "^3.2.0",
 		"electron-log": "^4.4.8",
 		"electron-store": "^8.0.2",
 		"electron-updater": "^5.3.0",
