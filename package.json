@@ -49,7 +49,7 @@
 		"Twitter"
 	],
 	"dependencies": {
-		"@electron/remote": "^2.0.8",
+		"@electron/remote": "^2.0.9",
 		"@sentry/browser": "^7.37.1",
 		"@sentry/tracing": "^7.37.1",
 		"asar": "^3.1.0",
