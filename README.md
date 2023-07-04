@@ -1,4 +1,4 @@
-As of 8 February 2023, ModernDeck will not receive any new features and will cease to function whenever classic TweetDeck shuts down.
+[As of 8 February 2023, ModernDeck will not receive any new features and will cease to function whenever classic TweetDeck shuts down.](https://github.com/dangeredwolf/ModernDeck/issues/357)
 ===
 I worked on ModernDeck for over 8 years, so I hope you found it useful.
 
